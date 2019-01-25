@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
+import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -49,6 +51,20 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
 		
 		return rmirResponse;
+	}
+
+	@Override
+	public RetrieveEndtCodeResponse retrieveEndtCode(RetrieveEndtCodeRequest recr) throws SQLException {
+		RetrieveEndtCodeResponse recrResponse = new RetrieveEndtCodeResponse();
+		
+		HashMap<String, Object> retrieveEndtCodeParams = new HashMap<String, Object>();
+		retrieveEndtCodeParams.put("endtCd", recr.getEndtCd());
+		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
+		
+		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));;
+		logger.info("retrieveMtnInsuredResponse : " + recrResponse.toString());
+		
+		return recrResponse;
 	}
 
 }
