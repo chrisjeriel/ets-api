@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
+import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -34,6 +36,19 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
 		
 		return rqaResponse;
+	}
+
+	@Override
+	public RetrieveMtnInsuredResponse retrieveMtnInsured(RetrieveMtnInsuredRequest rmir) throws SQLException {
+		RetrieveMtnInsuredResponse rmirResponse = new RetrieveMtnInsuredResponse();
+		
+		HashMap<String, Object> retrieveMtnInsuredParams = new HashMap<String, Object>();
+		retrieveMtnInsuredParams.put("insuredId", rmir.getInsuredId());
+		
+		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
+		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
+		
+		return rmirResponse;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.maintenance.Insured;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -30,5 +31,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Alop> alopList = sqlSession.selectList("retrieveMaintenanceSample", params);
 		return alopList;
 	}
-
+	
+	@Override
+	public List<Insured> retrieveMtnInsured(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Insured> insured = sqlSession.selectList("retrieveMtnInsured", params);
+		return insured;
+	}
+	
 }

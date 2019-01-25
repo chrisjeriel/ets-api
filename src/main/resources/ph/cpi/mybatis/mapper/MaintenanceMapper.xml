@@ -35,5 +35,32 @@
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">
+		<result property="insuredId" 	column="INSURED_ID"/>
+		<result property="insuredName" 	column="INSURED_NAME"/>
+		<result property="insuredAbbr" 	column="INSURED_ABBR"/>
+		<result property="firstName" 	column="FIRST_NAME"/>
+		<result property="middleInitial" 	column="MIDDLE_INITIAL"/>
+		<result property="lastName" 	column="LAST_NAME"/>
+		<result property="addrLine1" 	column="ADDR_LINE1"/>
+		<result property="addrLine2" 	column="ADDR_LINE2"/>
+		<result property="addrLine3" 	column="ADDR_LINE3"/>
+		<result property="zipCd" 	column="ZIP_CD"/>
+		<result property="address" 	column="ADDRESS"/>
+		<result property="contactNo" 	column="CONTACT_NO"/>
+		<result property="emailAdd" 	column="EMAIL_ADD"/>
+		<result property="activeTag" 	column="ACTIVE_TAG"/>
+		<result property="corpTag" 	column="CORP_TAG"/>
+		<result property="vatTag" 	column="VAT_TAG"/>
+		<result property="oldInsId" 	column="OLD_INS_ID"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+	</resultMap>
+	
+	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'','')
+	</select>
 	
 </mapper>
