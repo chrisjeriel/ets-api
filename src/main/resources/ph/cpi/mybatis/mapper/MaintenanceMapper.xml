@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ph.cpi.mybatis.mapper.QuoteMapper">
+<mapper namespace="ph.cpi.mybatis.mapper.MaintenanceMapper">
 	
 	<resultMap type="java.util.Map" id="sampleMap">
 		<result property="insuredName" column="insured_name"/>
@@ -31,7 +31,7 @@
 	</resultMap>
 	
 	
-	<select id="retrieveQuoteAlopSample" resultMap="alopMap" parameterType="java.util.Map">
+	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
