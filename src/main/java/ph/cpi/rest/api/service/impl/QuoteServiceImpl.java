@@ -10,8 +10,12 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.controller.ApiController;
 import ph.cpi.rest.api.dao.QuoteDao;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -37,6 +41,42 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		return rqaResponse;
 	}
+
+	@Override
+	public RetrieveQuoteAttachmentResponse retrieveQuoteAttachment(RetrieveQuoteAttachmentRequest rqat)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveQuoteAttachmentResponse rqatResponse = new RetrieveQuoteAttachmentResponse();
+		
+		HashMap<String, Object> retrieveQuoteAttachmentParams = new HashMap<String, Object>();
+		retrieveQuoteAttachmentParams.put("quoteId", rqat.getQuotationNo());
+		retrieveQuoteAttachmentParams.put("quotationNo", rqat.getQuotationNo());
+		
+		rqatResponse.getQuotation().setAttachment(quoteDao.retrieveQuoteAttachment(retrieveQuoteAttachmentParams));
+		
+		logger.info("retrieveQuoteAttachmentResponse : " + rqatResponse.toString());
+		
+		return rqatResponse;
+	}
+
+	@Override
+	public RetrieveQuoteAlopItemResponse retrieveQuoteAlopItem(RetrieveQuoteAlopItemRequest retQuoteAlopItem)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveQuoteAlopItemResponse retQuoteAlopItemResponse = new RetrieveQuoteAlopItemResponse();
+		
+		HashMap<String, Object> retrieveQuoteAlopItemParams = new HashMap<String, Object>();
+		retrieveQuoteAlopItemParams.put("quoteId", retQuoteAlopItem.getQuotationNo());
+		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
+		
+		retQuoteAlopItemResponse.getQuotation().setAlopItem(quoteDao.retrieveQuoteAlopItem(retrieveQuoteAlopItemParams));
+		
+		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
+		return retQuoteAlopItemResponse;
+	}
+
 
 	
 	

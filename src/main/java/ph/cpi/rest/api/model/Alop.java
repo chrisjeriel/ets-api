@@ -1,7 +1,8 @@
 package ph.cpi.rest.api.model;
 
-import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+
+import ph.cpi.rest.api.model.quote.AlopItem;
 
 public class Alop {
 
@@ -23,7 +24,7 @@ public class Alop {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	
+	private AlopItem alopItem;
 	public Integer getAlopId() {
 		return alopId;
 	}
@@ -72,13 +73,30 @@ public class Alop {
 	public void setMaxIndemPdSi(Double maxIndemPdSi) {
 		this.maxIndemPdSi = maxIndemPdSi;
 	}
+	public LocalDateTime getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(LocalDateTime issueDate) {
+		this.issueDate = issueDate;
+	}
+	public LocalDateTime getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(LocalDateTime expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 	public Double getMaxIndemPd() {
 		return maxIndemPd;
 	}
 	public void setMaxIndemPd(Double maxIndemPd) {
 		this.maxIndemPd = maxIndemPd;
 	}
-
+	public LocalDateTime getIndemFromDate() {
+		return indemFromDate;
+	}
+	public void setIndemFromDate(LocalDateTime indemFromDate) {
+		this.indemFromDate = indemFromDate;
+	}
 	public Integer getTimeExc() {
 		return timeExc;
 	}
@@ -97,37 +115,17 @@ public class Alop {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-
-	public String getUpdateUser() {
-		return updateUser;
-	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-
-	public LocalDateTime getIssueDate() {
-		return issueDate;
-	}
-	public void setIssueDate(LocalDateTime issueDate) {
-		this.issueDate = issueDate;
-	}
-	public LocalDateTime getExpiryDate() {
-		return expiryDate;
-	}
-	public void setExpiryDate(LocalDateTime expiryDate) {
-		this.expiryDate = expiryDate;
-	}
-	public LocalDateTime getIndemFromDate() {
-		return indemFromDate;
-	}
-	public void setIndemFromDate(LocalDateTime indemFromDate) {
-		this.indemFromDate = indemFromDate;
-	}
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
 	public LocalDateTime getUpdateDate() {
 		return updateDate;
@@ -135,6 +133,13 @@ public class Alop {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public AlopItem getAlopItem() {
+		return alopItem;
+	}
+	public void setAlopItem(AlopItem alopItem) {
+		this.alopItem = alopItem;
+	}
+	
 	@Override
 	public String toString() {
 		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
@@ -142,7 +147,9 @@ public class Alop {
 				+ ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate
 				+ ", maxIndemPd=" + maxIndemPd + ", indemFromDate=" + indemFromDate + ", timeExc=" + timeExc
 				+ ", repInterval=" + repInterval + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", alopItem=" + alopItem + "]";
 	}
+	
+	
 	
 }

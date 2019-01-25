@@ -3,13 +3,11 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveQuoteAlopRequest {
-	
+public class RetrieveQuoteAlopItemRequest {
 	private Integer quoteId;
 	private String quotationNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -34,10 +32,12 @@ public class RetrieveQuoteAlopRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveQuoteAlopItemRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 }

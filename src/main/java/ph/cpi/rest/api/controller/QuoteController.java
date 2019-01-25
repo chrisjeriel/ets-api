@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -33,6 +37,18 @@ public class QuoteController {
 	}
 	
 	
+	@GetMapping(path="retrieveQuoteAttachment")
+	public @ResponseBody RetrieveQuoteAttachmentResponse retrieveQuoteAttachment(RetrieveQuoteAttachmentRequest rqat) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteAttachment");
+		logger.info("RetrieveQuoteAttachmentRequest : " + rqat.toString());
+		return quoteService.retrieveQuoteAttachment(rqat);
+	}
 	
+	@GetMapping(path="retrieveQuoteAlopItem")
+	public @ResponseBody RetrieveQuoteAlopItemResponse retrieveQuoteAlopItem(RetrieveQuoteAlopItemRequest retQuoteAlopItem) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteAlopItem");
+		logger.info("RetrieveQuoteAttachmentRequest : " + retQuoteAlopItem.toString());
+		return quoteService.retrieveQuoteAlopItem(retQuoteAlopItem);
+	}
 
 }

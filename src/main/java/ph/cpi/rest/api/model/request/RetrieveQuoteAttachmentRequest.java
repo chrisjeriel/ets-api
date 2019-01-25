@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveQuoteAlopRequest {
+public class RetrieveQuoteAttachmentRequest {
 	
 	private Integer quoteId;
 	private String quotationNo;
