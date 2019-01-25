@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.controller.ApiController;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -37,6 +39,23 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		return rqaResponse;
 	}
+	
+	/*@Override
+	public RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException {
+		
+		RetrieveQuoteAttachmentOcResponse rqaocResponse = new RetrieveQuoteAttachmentOcResponse();
+		
+		HashMap<String, Object> retrieveQuoteAttachmentOcParams = new HashMap<String, Object>();
+		retrieveQuoteAttachmentOcParams.put("quoteIdOc", rqaor.getQuoteIdOc());
+		retrieveQuoteAttachmentOcParams.put("openQuotationNo", rqaor.getOpenQuotationNo());
+		
+		rqaocResponse.getQuotationOc().setAttachment(attachment);
+		rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+		
+		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
+		
+		return rqaResponse;
+	}*/
 
 	
 	

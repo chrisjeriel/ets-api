@@ -1,0 +1,78 @@
+package ph.cpi.rest.api.model.quote;
+
+import java.util.Date;
+
+public class Competition {
+	private Integer adviceNo;
+	private Integer cedingId;
+	private String cedingRepId;
+	private String option;
+	private String wording;
+	private String createUser;
+	private Date createDate;
+	private String updateUser;
+	private Date updateDate;
+	public Integer getAdviceNo() {
+		return adviceNo;
+	}
+	public void setAdviceNo(Integer adviceNo) {
+		this.adviceNo = adviceNo;
+	}
+	public Integer getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(Integer cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingRepId() {
+		return cedingRepId;
+	}
+	public void setCedingRepId(String cedingRepId) {
+		this.cedingRepId = cedingRepId;
+	}
+	public String getOption() {
+		return option;
+	}
+	public void setOption(String option) {
+		this.option = option;
+	}
+	public String getWording() {
+		return wording;
+	}
+	public void setWording(String wording) {
+		this.wording = wording;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+	
+	@Override
+	public String toString() {
+		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId="
+				+ cedingRepId + ", option=" + option + ", wording="+ wording +", createUser="
+				+ createUser +", createDate="+ createDate +", updateUser="+ updateUser +", updateDate="
+				+ updateDate +"]";
+	}
+	
+}
