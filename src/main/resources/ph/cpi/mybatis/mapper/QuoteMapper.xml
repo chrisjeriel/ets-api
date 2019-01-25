@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ph.cpi.mybatis.mapper.QuoteMapper">
+	
+	<resultMap type="java.util.Map" id="sampleMap">
+		<result property="insuredName" column="insured_name"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.Alop" id="alopMap">
+	    <result property="alopId" 			column="ALOP_ID"/> 
+		<result property="insuredId" 		column="INS_ID"/> 
+		<result property="insuredName" 		column="INSURED_NAME"/> 
+		<result property="insuredDesc" 		column="INSURED_DESC"/> 
+		<result property="address" 			column="ADDRESS"/> 
+		<result property="insuredBusiness" 	column="INS_BUSINESS"/> 
+		<result property="annSi" 			column="ANN_SI"/> 
+		<result property="maxIndemPdSi" 	column="MAX_INDEM_PD_SI"/> 
+		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="maxIndemPd" 		column="MAX_INDEM_PD"/> 
+		<result property="indemFromDate" 	column="INDEM_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="timeExc" 			column="TIME_EXC"/> 
+		<result property="repInterval" 		column="REP_INTERVAL"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	
+	<select id="retrieveQuoteAlop" resultMap="alopMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
+	</select>
+	
+	
+</mapper>
