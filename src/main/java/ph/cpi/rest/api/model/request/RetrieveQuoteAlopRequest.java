@@ -9,7 +9,6 @@ public class RetrieveQuoteAlopRequest {
 	private String quotationNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -34,7 +33,6 @@ public class RetrieveQuoteAlopRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
-	
 	@Override
 	public String toString() {
 		return "RetrieveQuoteAlopRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", paginationRequest="

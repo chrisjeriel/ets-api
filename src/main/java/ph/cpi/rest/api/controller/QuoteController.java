@@ -32,5 +32,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteAlop(rqap);
 	}
 	
+	
+	
 
 }
