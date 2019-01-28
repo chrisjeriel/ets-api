@@ -12,8 +12,10 @@ import ph.cpi.rest.api.controller.ApiController;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -57,6 +59,25 @@ public class QuoteServiceImpl implements QuoteService{
 		logger.info("retrieveQuoteAttachmentOcResponse : " + rqaocResponse.toString());
 		
 		return rqaocResponse;
+	}
+	
+	@Override
+	public RetrieveQuoteCompetitionResponse retrieveQuoteCompetition(RetrieveQuoteCompetitionRequest rqcr) throws SQLException {
+		
+		RetrieveQuoteCompetitionResponse rqcrResponse = new RetrieveQuoteCompetitionResponse();
+		
+		HashMap<String, Object> retrieveQuoteCompetitionParams = new HashMap<String, Object>();
+		retrieveQuoteCompetitionParams.put("quoteIdOc", rqcr.getQuoteId());
+		retrieveQuoteCompetitionParams.put("openQuotationNo", rqcr.getQuotationNo());
+		
+		rqcrResponse.getQuotation().setQuoteId(rqcr.getQuoteId());
+		rqcrResponse.getQuotation().setQuotationNo(rqcr.getQuotationNo());
+		rqcrResponse.getQuotation().setCompetition(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));;
+		//rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+		
+		logger.info("retrieveQuoteCompetitionResponse : " + rqcrResponse.toString());
+		
+		return rqcrResponse;
 	}
 
 	

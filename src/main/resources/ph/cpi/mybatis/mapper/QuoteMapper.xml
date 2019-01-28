@@ -49,4 +49,20 @@
 			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_attachment_oc(#{quoteIdOc, jdbcType=VARCHAR}, #{openQuotationNo, jdbcType=VARCHAR}, '', 1, '', '')
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
+		 <result property="adviceNo"			 column="ADVICE_NO"/>
+		 <result property="cedingId"			 column="CEDING_ID"/>
+		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
+		 <result property="option"			 	 column="OPTION"/>
+		 <result property="wording"			 	 column="WORDINGS"/>
+		 <result property="createUser"		 	 column="CREATE_USER"/>
+		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		 <result property="updateUser"		 	 column="UPDATE_USER"/>
+		 <result property="updateDate"		 	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQuoteCompetition" resultMap="competitionMap" parameterType="java.util.Map">
+			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_competition(#{quoteId, jdbcType=VARCHAR}, #{quotationNo, jdbcType=VARCHAR}, '', 1, '', '')
+	</select>
+	
 </mapper>

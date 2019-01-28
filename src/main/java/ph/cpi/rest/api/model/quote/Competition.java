@@ -2,6 +2,8 @@ package ph.cpi.rest.api.model.quote;
 
 import java.util.Date;
 
+import org.joda.time.LocalDateTime;
+
 public class Competition {
 	private Integer adviceNo;
 	private Integer cedingId;
@@ -9,9 +11,9 @@ public class Competition {
 	private String option;
 	private String wording;
 	private String createUser;
-	private Date createDate;
+	private LocalDateTime createDate;
 	private String updateUser;
-	private Date updateDate;
+	private LocalDateTime updateDate;
 	public Integer getAdviceNo() {
 		return adviceNo;
 	}
@@ -48,10 +50,10 @@ public class Competition {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public Date getCreateDate() {
+	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -60,10 +62,10 @@ public class Competition {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public Date getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	

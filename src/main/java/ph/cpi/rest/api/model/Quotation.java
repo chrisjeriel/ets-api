@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.quote.Competition;
 
 public class Quotation {
@@ -7,13 +9,13 @@ public class Quotation {
 	private Integer quoteId; 
 	private String quotationNo;
 	private Alop alop;
-	private Competition competition;
+	private List<Competition> competition;
 	
-	public Competition getCompetition() {
+	public List<Competition> getCompetition() {
 		return competition;
 	}
-	public void setCompetition(Competition competition) {
-		this.competition = competition;
+	public void setCompetition(List<Competition> list) {
+		this.competition = list;
 	}
 	public Integer getQuoteId() {
 		return quoteId;

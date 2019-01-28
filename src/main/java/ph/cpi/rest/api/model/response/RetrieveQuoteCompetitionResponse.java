@@ -9,6 +9,9 @@ public class RetrieveQuoteCompetitionResponse {
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	public Quotation getQuotation() {
+		if(quotation == null){
+			quotation = new Quotation();
+		}
 		return quotation;
 	}
 	public void setQuotation(Quotation quotation) {

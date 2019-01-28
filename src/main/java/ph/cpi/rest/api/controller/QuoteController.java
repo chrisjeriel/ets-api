@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -38,6 +40,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteAttachmentOc");
 		logger.info("RetrieveQuoteAttachmentOc : " + rqaor.toString());
 		return quoteService.retrieveQuoteAttachmentOc(rqaor);
+	}
+	@GetMapping(path="retrieveQuoteCompetition")
+	public @ResponseBody RetrieveQuoteCompetitionResponse retrieveQuoteCompetition(RetrieveQuoteCompetitionRequest rqcr) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteCompetition");
+		logger.info("RetrieveQuoteCompetition : " + rqcr.toString());
+		return quoteService.retrieveQuoteCompetition(rqcr);
 	}
 
 }
