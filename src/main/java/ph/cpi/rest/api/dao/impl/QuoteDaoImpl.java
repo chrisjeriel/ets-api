@@ -52,9 +52,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 	@Override
-	public List<ProjectOc> retrieveQuoteCoverageOcList(final HashMap<String, Object> params) throws SQLException {
+	public List<QuotationOc> retrieveQuoteCoverageOcList(final HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<ProjectOc> projectOc = sqlSession.selectList("retrieveQuoteCoverageOc", params);
+		List<QuotationOc> projectOc = sqlSession.selectList("retrieveQuoteCoverageOc", params);
 		return projectOc;
 	}
 }

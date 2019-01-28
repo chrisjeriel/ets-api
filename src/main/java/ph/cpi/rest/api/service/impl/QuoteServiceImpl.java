@@ -85,11 +85,9 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteCoverageOcParams.put("quoteIdOc", rqcor.getQuoteIdOc());
 		retrieveQuoteCoverageOcParams.put("openQuotationNo", rqcor.getOpenQuotationNo());
 		
-		rqcorResponse.getQuotationOc().setQuoteIdOc(rqcor.getQuoteIdOc());
-		rqcorResponse.getQuotationOc().setOpenQuotationNo(rqcor.getOpenQuotationNo());
-		rqcorResponse.getQuotationOc().setProjectOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
+		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
 		
-		logger.info("retrieveQuoteCompetitionResponse : " + rqcorResponse.toString());
+		logger.info("retrieveQuoteCoverageOcResponse : " + rqcorResponse.toString());
 		
 		return rqcorResponse;
 	}
