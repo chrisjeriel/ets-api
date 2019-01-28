@@ -68,10 +68,8 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteCompetitionParams = new HashMap<String, Object>();
 		retrieveQuoteCompetitionParams.put("quoteId", rqcr.getQuoteId());
 		retrieveQuoteCompetitionParams.put("quotationNo", rqcr.getQuotationNo());
-		
-		rqcrResponse.getQuotation().setQuoteId(rqcr.getQuoteId());
-		rqcrResponse.getQuotation().setQuotationNo(rqcr.getQuotationNo());
-		rqcrResponse.getQuotation().setCompetition(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));;
+	
+		rqcrResponse.setQuotation(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));
 		
 		logger.info("retrieveQuoteCompetitionResponse : " + rqcrResponse.toString());
 		

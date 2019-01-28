@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.Quotation;
 import ph.cpi.rest.api.model.quote.Attachment;
 import ph.cpi.rest.api.model.quote.Competition;
 import ph.cpi.rest.api.model.quote.CoverageOc;
@@ -44,9 +45,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 	@Override
-	public List<Competition> retrieveQuoteCompetitionList(HashMap<String, Object> params) throws SQLException {
+	public List<Quotation> retrieveQuoteCompetitionList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Competition> competitionList = sqlSession.selectList("retrieveQuoteCompetition", params);
+		List<Quotation> competitionList = sqlSession.selectList("retrieveQuoteCompetition", params);
 		return competitionList;
 	}
 	

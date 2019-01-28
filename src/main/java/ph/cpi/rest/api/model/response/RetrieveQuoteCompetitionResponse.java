@@ -1,20 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.quote.QuotationOc;
 import ph.cpi.rest.api.model.Quotation;
 
 public class RetrieveQuoteCompetitionResponse {
-	private Quotation quotation;
+	private List<Quotation> quotation;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public Quotation getQuotation() {
-		if(quotation == null){
-			quotation = new Quotation();
-		}
+	public List<Quotation> getQuotation() {
 		return quotation;
 	}
-	public void setQuotation(Quotation quotation) {
+	public void setQuotation(List<Quotation> quotation) {
 		this.quotation = quotation;
 	}
 	public PaginationResponse getPaginationResponse() {
