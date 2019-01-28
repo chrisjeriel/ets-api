@@ -6,12 +6,15 @@ public class QuotationOc {
 	private Integer quoteIdOc;
 	private String openQuotationNo;
 	private List<Attachment> attachment;
-	private ProjectOc projectOc;
+	private List<ProjectOc> projectOc;
 	
-	public ProjectOc getProjectOc() {
+	public List<ProjectOc> getProjectOc() {
+		/*if(projectOc == null){
+			projectOc = new ProjectOc();
+		}*/
 		return projectOc;
 	}
-	public void setProjectOc(ProjectOc projectOc) {
+	public void setProjectOc(List<ProjectOc> projectOc) {
 		this.projectOc = projectOc;
 	}
 	public Integer getQuoteIdOc() {

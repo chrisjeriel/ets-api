@@ -13,9 +13,11 @@ import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -67,8 +69,8 @@ public class QuoteServiceImpl implements QuoteService{
 		RetrieveQuoteCompetitionResponse rqcrResponse = new RetrieveQuoteCompetitionResponse();
 		
 		HashMap<String, Object> retrieveQuoteCompetitionParams = new HashMap<String, Object>();
-		retrieveQuoteCompetitionParams.put("quoteIdOc", rqcr.getQuoteId());
-		retrieveQuoteCompetitionParams.put("openQuotationNo", rqcr.getQuotationNo());
+		retrieveQuoteCompetitionParams.put("quoteId", rqcr.getQuoteId());
+		retrieveQuoteCompetitionParams.put("quotationNo", rqcr.getQuotationNo());
 		
 		rqcrResponse.getQuotation().setQuoteId(rqcr.getQuoteId());
 		rqcrResponse.getQuotation().setQuotationNo(rqcr.getQuotationNo());
@@ -79,7 +81,27 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		return rqcrResponse;
 	}
-
+	
+	@Override
+	public RetrieveQuoteCoverageOcResponse retrieveQuoteCoverageOc(RetrieveQuoteCoverageOcRequest rqcor) throws SQLException {
+		
+		RetrieveQuoteCoverageOcResponse rqcorResponse = new RetrieveQuoteCoverageOcResponse();
+		
+		HashMap<String, Object> retrieveQuoteCoverageOcParams = new HashMap<String, Object>();
+		retrieveQuoteCoverageOcParams.put("quoteIdOc", rqcor.getQuoteIdOc());
+		retrieveQuoteCoverageOcParams.put("openQuotationNo", rqcor.getOpenQuotationNo());
+		
+		rqcorResponse.getQuotationOc().setQuoteIdOc(rqcor.getQuoteIdOc());
+		rqcorResponse.getQuotationOc().setOpenQuotationNo(rqcor.getOpenQuotationNo());
+		/*rqcorResponse.getQuotationOc().getProjectOc().setProjId(1);
+		rqcorResponse.getQuotationOc().getProjectOc().setProjDesc("projectDesc1");*/
+		rqcorResponse.getQuotationOc().setProjectOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
+		//rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+		
+		logger.info("retrieveQuoteCompetitionResponse : " + rqcorResponse.toString());
+		
+		return rqcorResponse;
+	}
 	
 	
 }

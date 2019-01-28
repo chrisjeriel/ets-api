@@ -2,28 +2,30 @@ package ph.cpi.rest.api.model.quote;
 
 import java.util.Date;
 
+import org.joda.time.LocalDateTime;
+
 public class CoverageOc {
 	private Integer riskId;
-	private Integer maxSi;
+	private Double maxSi;
 	private String currencyCd;
-	private Integer currencyRt;
-	private Integer pctShare;
-	private Integer pctPml;
-	private Integer totalValue;
+	private Double currencyRt;
+	private Double pctShare;
+	private Double pctPml;
+	private Double totalValue;
 	private String createUser;
-	private Date createDate;
+	private LocalDateTime createDate;
 	private String updateUser;
-	private Date updateDate;
+	private LocalDateTime updateDate;
 	public Integer getRiskId() {
 		return riskId;
 	}
 	public void setRiskId(Integer riskId) {
 		this.riskId = riskId;
 	}
-	public Integer getMaxSi() {
+	public Double getMaxSi() {
 		return maxSi;
 	}
-	public void setMaxSi(Integer maxSi) {
+	public void setMaxSi(Double maxSi) {
 		this.maxSi = maxSi;
 	}
 	public String getCurrencyCd() {
@@ -32,28 +34,28 @@ public class CoverageOc {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrencyRt() {
+	public Double getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(Integer currencyRt) {
+	public void setCurrencyRt(Double currencyRt) {
 		this.currencyRt = currencyRt;
 	}
-	public Integer getPctShare() {
+	public Double getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(Integer pctShare) {
+	public void setPctShare(Double pctShare) {
 		this.pctShare = pctShare;
 	}
-	public Integer getPctPml() {
+	public Double getPctPml() {
 		return pctPml;
 	}
-	public void setPctPml(Integer pctPml) {
+	public void setPctPml(Double pctPml) {
 		this.pctPml = pctPml;
 	}
-	public Integer getTotalValue() {
+	public Double getTotalValue() {
 		return totalValue;
 	}
-	public void setTotalValue(Integer totalValue) {
+	public void setTotalValue(Double totalValue) {
 		this.totalValue = totalValue;
 	}
 	public String getCreateUser() {
@@ -62,10 +64,10 @@ public class CoverageOc {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public Date getCreateDate() {
+	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -74,10 +76,10 @@ public class CoverageOc {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public Date getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	
