@@ -44,14 +44,14 @@ public class MaintenanceController {
 	}
 	
 	@GetMapping(path="retrieveMtnCrestaZone")
-	public @ResponseBody RetrieveMtnCrestaZoneResponse retrieveMtnCity(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
+	public @ResponseBody RetrieveMtnCrestaZoneResponse retrieveMtnCrestaZone(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCrestaZone");
 		logger.info("RetrieveMtnCrestaZoneRequest : " + rmczr.toString());
 		return maintenanceService.retrieveMtnCrestaZone(rmczr);
 	}
 	
 	@GetMapping(path="retrieveMtnCurrency")
-	public @ResponseBody RetrieveMtnCurrencyResponse retrieveMtnCity(RetrieveMtnCurrencyRequest rmcr) throws SQLException {
+	public @ResponseBody RetrieveMtnCurrencyResponse retrieveMtnCurrency(RetrieveMtnCurrencyRequest rmcr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCurrency");
 		logger.info("RetrieveMtnCurrencyRequest : " + rmcr.toString());
 		return maintenanceService.retrieveMtnCurrency(rmcr);
