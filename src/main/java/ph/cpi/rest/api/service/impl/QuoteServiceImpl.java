@@ -53,10 +53,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAttachmentOcParams.put("quoteIdOc", rqaor.getQuoteIdOc());
 		retrieveQuoteAttachmentOcParams.put("openQuotationNo", rqaor.getOpenQuotationNo());
 		
-		rqaocResponse.getQuotationOc().setQuoteIdOc(rqaor.getQuoteIdOc());
-		rqaocResponse.getQuotationOc().setOpenQuotationNo(rqaor.getOpenQuotationNo());
-		rqaocResponse.getQuotationOc().setAttachment(quoteDao.retrieveQuoteAttachmentOcList(retrieveQuoteAttachmentOcParams));
-		//rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+		rqaocResponse.setQuotationOc(quoteDao.retrieveQuoteAttachmentOcList(retrieveQuoteAttachmentOcParams));
 		
 		logger.info("retrieveQuoteAttachmentOcResponse : " + rqaocResponse.toString());
 		
@@ -75,7 +72,6 @@ public class QuoteServiceImpl implements QuoteService{
 		rqcrResponse.getQuotation().setQuoteId(rqcr.getQuoteId());
 		rqcrResponse.getQuotation().setQuotationNo(rqcr.getQuotationNo());
 		rqcrResponse.getQuotation().setCompetition(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));;
-		//rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 		
 		logger.info("retrieveQuoteCompetitionResponse : " + rqcrResponse.toString());
 		
@@ -93,10 +89,7 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqcorResponse.getQuotationOc().setQuoteIdOc(rqcor.getQuoteIdOc());
 		rqcorResponse.getQuotationOc().setOpenQuotationNo(rqcor.getOpenQuotationNo());
-		/*rqcorResponse.getQuotationOc().getProjectOc().setProjId(1);
-		rqcorResponse.getQuotationOc().getProjectOc().setProjDesc("projectDesc1");*/
 		rqcorResponse.getQuotationOc().setProjectOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
-		//rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 		
 		logger.info("retrieveQuoteCompetitionResponse : " + rqcorResponse.toString());
 		

@@ -32,8 +32,8 @@ public class QuotationOc {
 	public List<Attachment> getAttachment() {
 		return attachment;
 	}
-	public void setAttachment(List<Attachment> list) {
-		this.attachment = list;
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
 	}
 	@Override
 	public String toString() {

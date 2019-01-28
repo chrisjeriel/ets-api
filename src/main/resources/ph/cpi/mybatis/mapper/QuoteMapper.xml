@@ -35,6 +35,12 @@
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcMap">
+		<result property="quoteIdOc"		column="QUOTE_ID_OC"/>
+		<result property="openQuotationNo"	column="QUOTE_NO_OC"/>
+		<association property="attachment"  resultMap="attachmentOcMap" />
+	</resultMap>
+	
 	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentOcMap">
 		<result property="fileNo"			column="FILE_NO"/>
 		<result property="fileName"			column="FILE_NAME"/>
@@ -45,7 +51,7 @@
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveQuoteAttachmentOc" resultMap="attachmentOcMap" parameterType="java.util.Map">
+	<select id="retrieveQuoteAttachmentOc" resultMap="quotationOcMap" parameterType="java.util.Map">
 			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_attachment_oc(#{quoteIdOc, jdbcType=VARCHAR}, #{openQuotationNo, jdbcType=VARCHAR}, '', 1, '', '')
 	</select>
 	

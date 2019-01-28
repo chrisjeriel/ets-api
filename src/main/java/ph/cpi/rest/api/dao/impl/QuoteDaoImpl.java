@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.quote.Attachment;
 import ph.cpi.rest.api.model.quote.Competition;
 import ph.cpi.rest.api.model.quote.CoverageOc;
 import ph.cpi.rest.api.model.quote.ProjectOc;
+import ph.cpi.rest.api.model.quote.QuotationOc;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -36,9 +37,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 	@Override
-	public List<Attachment> retrieveQuoteAttachmentOcList(HashMap<String, Object> params) throws SQLException {
+	public List<QuotationOc> retrieveQuoteAttachmentOcList(final HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Attachment> attachmentOcList = sqlSession.selectList("retrieveQuoteAttachmentOc", params);
+		List<QuotationOc> attachmentOcList = sqlSession.selectList("retrieveQuoteAttachmentOc", params);
 		return attachmentOcList;
 	}
 	
