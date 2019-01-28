@@ -12,9 +12,11 @@ import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -66,8 +68,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		rmczrResponse.setCrestaZone(maintenanceDao.retrieveMtnCrestaZoneList(retrieveMtnCrestaZoneParams));
 		
-		logger.info("retrieveMtnCityResponse : " + rmczrResponse.toString());
+		logger.info("retrieveMtnCrestaZoneResponse : " + rmczrResponse.toString());
 		
 		return rmczrResponse;
+	}
+	
+	@Override
+	public RetrieveMtnCurrencyResponse retrieveMtnCurrency(RetrieveMtnCurrencyRequest rmcr) throws SQLException {
+		RetrieveMtnCurrencyResponse rmcrResponse = new RetrieveMtnCurrencyResponse();
+		
+		HashMap<String, Object> retrieveMtnCurrencyParams = new HashMap<String, Object>();
+		retrieveMtnCurrencyParams.put("currencyCd", rmcr.getCurrencyCd());
+		
+		rmcrResponse.setCurrency(maintenanceDao.retrieveMtnCurrencyList(retrieveMtnCurrencyParams));
+		
+		logger.info("retrieveMtnCurrencyResponse : " + rmcrResponse.toString());
+		
+		return rmcrResponse;
 	}
 }

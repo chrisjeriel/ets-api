@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Alop;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
+import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.Region;
 
 @Component
@@ -45,5 +46,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		List<CrestaZone> crestaZoneList = sqlSession.selectList("retrieveMtnCrestaZone", params);
 		return crestaZoneList;
+	}
+	
+	@Override
+	public List<Currency> retrieveMtnCurrencyList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Currency> currencyList = sqlSession.selectList("retrieveMtnCurrency", params);
+		return currencyList;
 	}
 }
