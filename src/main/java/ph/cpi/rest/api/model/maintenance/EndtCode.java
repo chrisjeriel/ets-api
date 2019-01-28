@@ -5,7 +5,7 @@ import org.joda.time.LocalDateTime;
 public class EndtCode {
 	private String lineCd;
 	private String lineDesc;
-	private String endtCd;
+	private Integer endtCd;
 	private String endtTitle;
 	private String description;
 	private String defaultTag;
@@ -44,10 +44,10 @@ public class EndtCode {
 	public void setLineDesc(String lineDesc) {
 		this.lineDesc = lineDesc;
 	}
-	public String getEndtCd() {
+	public Integer getEndtCd() {
 		return endtCd;
 	}
-	public void setEndtCd(String endtCd) {
+	public void setEndtCd(Integer endtCd) {
 		this.endtCd = endtCd;
 	}
 	public String getEndtTitle() {
@@ -219,6 +219,8 @@ public class EndtCode {
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}
+	
+	
 	
 	
 }

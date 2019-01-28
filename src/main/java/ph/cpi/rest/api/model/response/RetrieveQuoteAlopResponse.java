@@ -1,23 +1,23 @@
 package ph.cpi.rest.api.model.response;
 
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.Quotation;
+import ph.cpi.rest.api.model.QuotationSample;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 
 public class RetrieveQuoteAlopResponse extends Response {
 
-	private Quotation quotation;
+	private QuotationSample quotation;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public Quotation getQuotation() {
+	public QuotationSample getQuotation() {
 		if (quotation == null) {
-			quotation = new Quotation();
+			quotation = new QuotationSample();
 		}
 		return quotation;
 	}
-	public void setQuotation(Quotation quotation) {
+	public void setQuotation(QuotationSample quotation) {
 		this.quotation = quotation;
 	}
 	public PaginationResponse getPaginationResponse() {

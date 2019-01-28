@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -61,10 +65,37 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveEndtCodeParams.put("endtCd", recr.getEndtCd());
 		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
 		
-		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));;
+		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
 		logger.info("retrieveMtnInsuredResponse : " + recrResponse.toString());
 		
 		return recrResponse;
+	}
+
+	@Override
+	public RetrieveMtnDistrictResponse retrieveMtnDistrict(RetrieveMtnDistrictRequest rmdr) throws SQLException {
+		RetrieveMtnDistrictResponse rmdrResponse = new RetrieveMtnDistrictResponse();
+		HashMap<String, Object> retrieveMtnDistrictParams = new HashMap<String, Object>();
+		retrieveMtnDistrictParams.put("regionCd", rmdr.getRegionCd());
+		retrieveMtnDistrictParams.put("provinceCd", rmdr.getProvinceCd());
+		retrieveMtnDistrictParams.put("cityCd", rmdr.getCityCd());
+		retrieveMtnDistrictParams.put("districtCd", rmdr.getDistrictCd());
+		rmdrResponse.setRegion(maintenanceDao.retrieveMtnDistrict(retrieveMtnDistrictParams));
+		
+		logger.info("retrieveMtnDistrict : " + rmdrResponse.toString());
+		
+		return rmdrResponse;
+	}
+
+	@Override
+	public RetrieveMtnDeductiblesResponse retrieveMtnDeductibles(RetrieveMtnDeductiblesRequest rmdr)
+			throws SQLException {
+		RetrieveMtnDeductiblesResponse rmdrResponse = new RetrieveMtnDeductiblesResponse();
+		HashMap<String, Object> retrieveMtnDeductiblesParams = new HashMap<String, Object>();
+		retrieveMtnDeductiblesParams.put("lineCd", rmdr.getLineCd());
+		retrieveMtnDeductiblesParams.put("deductibleCd", rmdr.getDeductibleCd());
+		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
+		
+		return rmdrResponse;
 	}
 
 }

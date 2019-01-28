@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.quote.QuotationOc;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -29,6 +31,18 @@ public class QuoteDaoImpl implements QuoteDao{
 		// TODO Auto-generated method stub
 		List<Alop> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
 		return alopList;
+	}
+
+	@Override
+	public Quotation retrieveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
+		Quotation quotation = sqlSession.selectOne("retrieveQuoteCoverage", params);
+		return quotation;
+	}
+
+	@Override
+	public QuotationOc retrieveQuoteDetailsOc(HashMap<String, Object> params) throws SQLException {
+		QuotationOc quotationOc = sqlSession.selectOne("retrieveQuoteDetailsOc", params);
+		return quotationOc;
 	}
 	
 	

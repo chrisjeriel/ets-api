@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -43,9 +47,22 @@ public class MaintenanceController {
 	
 	@GetMapping(path="retrieveEndtCode")
 	public @ResponseBody RetrieveEndtCodeResponse retrieveEndtCode(RetrieveEndtCodeRequest recr) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMtnInsured");
+		logger.info("GET: /api/maintenance-service/retrieveEndtCode");
 		logger.info("RetrieveEndtCode : " + recr.toString());
 		return maintenanceService.retrieveEndtCode(recr);
 	}
+	
+	@GetMapping(path="retrieveMtnDistrict")
+	public @ResponseBody RetrieveMtnDistrictResponse retrieveMtnDistrict(RetrieveMtnDistrictRequest rmdr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnDistrict");
+		logger.info("RetrieveMtnDistrict : " + rmdr.toString());
+		return maintenanceService.retrieveMtnDistrict(rmdr);
+	}
 
+	@GetMapping(path="retrieveMtnDeductibles")
+	public @ResponseBody RetrieveMtnDeductiblesResponse retrieveMtnDeductibles(RetrieveMtnDeductiblesRequest rmdr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnDeductibles");
+		logger.info("RetrieveMtnDeductibles : " + rmdr.toString());
+		return maintenanceService.retrieveMtnDeductibles(rmdr);
+	}
 }

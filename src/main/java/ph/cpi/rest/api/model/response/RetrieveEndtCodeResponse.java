@@ -3,10 +3,11 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.EndtCode;;
 
-public class RetrieveEndtCodeResponse {
+public class RetrieveEndtCodeResponse extends Response{
 	private List<EndtCode> endtCode;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;

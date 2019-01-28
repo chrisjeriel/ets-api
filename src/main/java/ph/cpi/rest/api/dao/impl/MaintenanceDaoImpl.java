@@ -10,8 +10,10 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
+import ph.cpi.rest.api.model.maintenance.Region;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -42,8 +44,20 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 
 	@Override
 	public List<EndtCode> retrieveEndtCode(HashMap<String, Object> params) throws SQLException {
-		List<EndtCode> endtCode = sqlSession.selectList("retrieveMtnInsured", params);
+		List<EndtCode> endtCode = sqlSession.selectList("retrieveEndtCode", params);
 		return endtCode;
+	}
+
+	@Override
+	public List<Region> retrieveMtnDistrict(HashMap<String, Object> params) throws SQLException {
+		List<Region> district = sqlSession.selectList("retrieveMtnDistrict",params);
+		return district;
+	}
+
+	@Override
+	public List<Deductibles> retrieveMtnDeductibles(HashMap<String, Object> params) throws SQLException {
+		List<Deductibles> deductibles = sqlSession.selectList("retrieveMtnDeductibles",params);
+		return deductibles;
 	}
 	
 }
