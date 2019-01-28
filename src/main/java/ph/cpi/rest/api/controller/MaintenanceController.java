@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -37,6 +39,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCity");
 		logger.info("RetrieveMtnCityRequest : " + rmcr.toString());
 		return maintenanceService.retrieveMtnCity(rmcr);
+	}
+	
+	@GetMapping(path="retrieveMtnCrestaZone")
+	public @ResponseBody RetrieveMtnCrestaZoneResponse retrieveMtnCity(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCrestaZone");
+		logger.info("RetrieveMtnCrestaZoneRequest : " + rmczr.toString());
+		return maintenanceService.retrieveMtnCrestaZone(rmczr);
 	}
 
 }

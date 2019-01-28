@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -48,13 +50,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnCityParams.put("provinceCd", rmcr.getProvinceCd());
 		retrieveMtnCityParams.put("cityCd", rmcr.getCityCd());
 		
-		//rmcrResponse.getRegion().setProvince(maintenanceDao.retrieveMtnCityList(retrieveMtnCityParams));
 		rmcrResponse.setRegion(maintenanceDao.retrieveMtnCityList(retrieveMtnCityParams));
-		//rmcrResponse.getQuotation().setAlop(maintenanceDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 		
 		logger.info("retrieveMtnCityResponse : " + rmcrResponse.toString());
 		
 		return rmcrResponse;
 	}
-
+	
+	@Override
+	public RetrieveMtnCrestaZoneResponse retrieveMtnCrestaZone(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
+		RetrieveMtnCrestaZoneResponse rmczrResponse = new RetrieveMtnCrestaZoneResponse();
+		
+		HashMap<String, Object> retrieveMtnCrestaZoneParams = new HashMap<String, Object>();
+		retrieveMtnCrestaZoneParams.put("zoneCd", rmczr.getZoneCd());
+		
+		rmczrResponse.setCrestaZone(maintenanceDao.retrieveMtnCrestaZoneList(retrieveMtnCrestaZoneParams));
+		
+		logger.info("retrieveMtnCityResponse : " + rmczrResponse.toString());
+		
+		return rmczrResponse;
+	}
 }

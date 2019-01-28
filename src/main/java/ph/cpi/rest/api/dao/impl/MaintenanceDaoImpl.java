@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Region;
 
 @Component
@@ -38,5 +39,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Region> cityList = sqlSession.selectList("retrieveMtnCity", params);
 		return cityList;
 	}
-
+	
+	@Override
+	public List<CrestaZone> retrieveMtnCrestaZoneList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<CrestaZone> crestaZoneList = sqlSession.selectList("retrieveMtnCrestaZone", params);
+		return crestaZoneList;
+	}
 }
