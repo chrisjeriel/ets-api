@@ -40,7 +40,7 @@ public class QuoteServiceImpl implements QuoteService{
 		return rqaResponse;
 	}
 	
-	/*@Override
+	@Override
 	public RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException {
 		
 		RetrieveQuoteAttachmentOcResponse rqaocResponse = new RetrieveQuoteAttachmentOcResponse();
@@ -49,13 +49,15 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAttachmentOcParams.put("quoteIdOc", rqaor.getQuoteIdOc());
 		retrieveQuoteAttachmentOcParams.put("openQuotationNo", rqaor.getOpenQuotationNo());
 		
-		rqaocResponse.getQuotationOc().setAttachment(attachment);
-		rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+		rqaocResponse.getQuotationOc().setQuoteIdOc(rqaor.getQuoteIdOc());
+		rqaocResponse.getQuotationOc().setOpenQuotationNo(rqaor.getOpenQuotationNo());
+		rqaocResponse.getQuotationOc().setAttachment(quoteDao.retrieveQuoteAttachmentOcList(retrieveQuoteAttachmentOcParams));
+		//rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 		
-		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
+		logger.info("retrieveQuoteAttachmentOcResponse : " + rqaocResponse.toString());
 		
-		return rqaResponse;
-	}*/
+		return rqaocResponse;
+	}
 
 	
 	

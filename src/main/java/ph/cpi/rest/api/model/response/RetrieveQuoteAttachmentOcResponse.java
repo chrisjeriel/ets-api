@@ -10,6 +10,9 @@ public class RetrieveQuoteAttachmentOcResponse {
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	public QuotationOc getQuotationOc() {
+		if(quotationOc == null){
+			quotationOc = new QuotationOc();
+		}
 		return quotationOc;
 	}
 	public void setQuotationOc(QuotationOc quotationOc) {

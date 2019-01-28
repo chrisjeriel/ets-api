@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.quote.Attachment;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -29,6 +30,13 @@ public class QuoteDaoImpl implements QuoteDao{
 		// TODO Auto-generated method stub
 		List<Alop> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
 		return alopList;
+	}
+	
+	@Override
+	public List<Attachment> retrieveQuoteAttachmentOcList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Attachment> attachmentOcList = sqlSession.selectList("retrieveQuoteAttachmentOc", params);
+		return attachmentOcList;
 	}
 	
 	

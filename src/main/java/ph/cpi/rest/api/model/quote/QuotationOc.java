@@ -1,9 +1,11 @@
 package ph.cpi.rest.api.model.quote;
 
+import java.util.List;
+
 public class QuotationOc {
 	private Integer quoteIdOc;
 	private String openQuotationNo;
-	private Attachment attachment;
+	private List<Attachment> attachment;
 	private ProjectOc projectOc;
 	
 	public ProjectOc getProjectOc() {
@@ -24,11 +26,11 @@ public class QuotationOc {
 	public void setOpenQuotationNo(String openQuotationNo) {
 		this.openQuotationNo = openQuotationNo;
 	}
-	public Attachment getAttachment() {
+	public List<Attachment> getAttachment() {
 		return attachment;
 	}
-	public void setAttachment(Attachment attachment) {
-		this.attachment = attachment;
+	public void setAttachment(List<Attachment> list) {
+		this.attachment = list;
 	}
 	@Override
 	public String toString() {

@@ -13,6 +13,6 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 public interface QuoteService {
 	
 	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException;
-	//public RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException;
+	public RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException;
 		
 }

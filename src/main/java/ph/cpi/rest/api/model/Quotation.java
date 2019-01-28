@@ -1,11 +1,20 @@
 package ph.cpi.rest.api.model;
 
+import ph.cpi.rest.api.model.quote.Competition;
+
 public class Quotation {
 
 	private Integer quoteId; 
 	private String quotationNo;
 	private Alop alop;
+	private Competition competition;
 	
+	public Competition getCompetition() {
+		return competition;
+	}
+	public void setCompetition(Competition competition) {
+		this.competition = competition;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}

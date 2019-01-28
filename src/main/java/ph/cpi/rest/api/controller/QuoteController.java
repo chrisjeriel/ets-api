@@ -35,9 +35,9 @@ public class QuoteController {
 	}
 	@GetMapping(path="retrieveQuoteAttachmentOc")
 	public @ResponseBody RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException {
-		logger.info("GET: /api/quote-service/retrieveQuoteAlop");
-		logger.info("RetrieveQuoteAlopRequest : " + rqaor.toString());
-		return null;
+		logger.info("GET: /api/quote-service/retrieveQuoteAttachmentOc");
+		logger.info("RetrieveQuoteAttachmentOc : " + rqaor.toString());
+		return quoteService.retrieveQuoteAttachmentOc(rqaor);
 	}
 
 }

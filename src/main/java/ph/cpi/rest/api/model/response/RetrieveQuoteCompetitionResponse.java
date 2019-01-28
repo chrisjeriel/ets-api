@@ -2,7 +2,7 @@ package ph.cpi.rest.api.model.response;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.Quotation;
 
 public class RetrieveQuoteCompetitionResponse {
 	private Quotation quotation;
