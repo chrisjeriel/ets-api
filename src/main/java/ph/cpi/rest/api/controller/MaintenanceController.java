@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -28,6 +30,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveQuoteAlop");
 		logger.info("RetrieveQuoteAlopRequest : " + rqap.toString());
 		return maintenanceService.retrieveQuoteAlop(rqap);
+	}
+	
+	@GetMapping(path="retrieveMtnCity")
+	public @ResponseBody RetrieveMtnCityResponse retrieveMtnCity(RetrieveMtnCityRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCity");
+		logger.info("RetrieveMtnCityRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCity(rmcr);
 	}
 
 }
