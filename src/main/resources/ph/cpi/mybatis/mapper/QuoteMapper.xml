@@ -53,7 +53,7 @@
 		 <result property="adviceNo"			 column="ADVICE_NO"/>
 		 <result property="cedingId"			 column="CEDING_ID"/>
 		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
-		 <result property="option"			 	 column="OPTION"/>
+		 <result property="option"			 	 column="OPTN"/>
 		 <result property="wording"			 	 column="WORDINGS"/>
 		 <result property="createUser"		 	 column="CREATE_USER"/>
 		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
