@@ -1,11 +1,11 @@
-package ph.cpi.rest.api.model;
+package ph.cpi.rest.api.model.quote;
 
 import org.joda.time.LocalDateTime;
 
-import ph.cpi.rest.api.model.quote.AlopItem;
-
 public class Alop {
 
+	private AlopItem alopItem;
+	
 	private Integer alopId;
 	private Integer insuredId;
 	private String insuredName;
@@ -24,13 +24,21 @@ public class Alop {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	private AlopItem alopItem;
+
+	
+	public AlopItem getAlopItem() {
+		return alopItem;
+	}
+	public void setAlopItem(AlopItem alopItem) {
+		this.alopItem = alopItem;
+	}
 	public Integer getAlopId() {
 		return alopId;
 	}
 	public void setAlopId(Integer alopId) {
 		this.alopId = alopId;
 	}
+	
 	public Integer getInsuredId() {
 		return insuredId;
 	}
@@ -133,22 +141,16 @@ public class Alop {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public AlopItem getAlopItem() {
-		return alopItem;
-	}
-	public void setAlopItem(AlopItem alopItem) {
-		this.alopItem = alopItem;
-	}
-	
 	@Override
 	public String toString() {
-		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
-				+ insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", annSi=" + annSi
-				+ ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate
-				+ ", maxIndemPd=" + maxIndemPd + ", indemFromDate=" + indemFromDate + ", timeExc=" + timeExc
-				+ ", repInterval=" + repInterval + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", alopItem=" + alopItem + "]";
+		return "Alop [alopItem=" + alopItem + ", alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName="
+				+ insuredName + ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness="
+				+ insuredBusiness + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
+				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", indemFromDate=" + indemFromDate
+				+ ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+
 	
 	
 	

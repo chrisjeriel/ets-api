@@ -4,27 +4,19 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.AlopItem;
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.maintenance.CedingCompany;
 
-public class RetrieveQuoteAlopItemResponse {
-	
-	private List<Quotation> quotation;
-	private AlopItem alopItem;
+public class RetrieveMtnCedingCompanyResponse {
+	private List<CedingCompany> cedingCompany;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<Quotation> getQuotation() {
-		return quotation;
+	public List<CedingCompany> getCedingCompany() {
+		
+		return cedingCompany;
 	}
-	public void setQuotation(List<Quotation> quotation) {
-		this.quotation = quotation;
-	}
-	public AlopItem getAlopItem() {
-		return alopItem;
-	}
-	public void setAlopItem(AlopItem alopItem) {
-		this.alopItem = alopItem;
+	public void setCedingCompany(List<CedingCompany> cedingCompany) {
+		this.cedingCompany = cedingCompany;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -40,10 +32,9 @@ public class RetrieveQuoteAlopItemResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopItemResponse [quotation=" + quotation + ", alopItem=" + alopItem
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnCedingCompanyResponse [cedingCompany=" + cedingCompany + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
 	
 	
 }

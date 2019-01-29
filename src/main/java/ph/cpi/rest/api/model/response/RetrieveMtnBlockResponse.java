@@ -4,27 +4,18 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.AlopItem;
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.maintenance.Region;
 
-public class RetrieveQuoteAlopItemResponse {
-	
-	private List<Quotation> quotation;
-	private AlopItem alopItem;
+public class RetrieveMtnBlockResponse {
+	private List<Region> region;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<Quotation> getQuotation() {
-		return quotation;
+	public List<Region> getRegion() {
+		return region;
 	}
-	public void setQuotation(List<Quotation> quotation) {
-		this.quotation = quotation;
-	}
-	public AlopItem getAlopItem() {
-		return alopItem;
-	}
-	public void setAlopItem(AlopItem alopItem) {
-		this.alopItem = alopItem;
+	public void setRegion(List<Region> region) {
+		this.region = region;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -40,10 +31,9 @@ public class RetrieveQuoteAlopItemResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopItemResponse [quotation=" + quotation + ", alopItem=" + alopItem
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnBlockResponse [region=" + region + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
 	
 	
 }

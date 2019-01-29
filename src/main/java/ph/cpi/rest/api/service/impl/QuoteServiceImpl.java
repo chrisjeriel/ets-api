@@ -35,7 +35,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAlopParams.put("quoteId", rqap.getQuoteId());
 		retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo());
 		
-		rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlopList(retrieveQuoteAlopParams));
 		
 		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
 		
@@ -50,10 +50,10 @@ public class QuoteServiceImpl implements QuoteService{
 		RetrieveQuoteAttachmentResponse rqatResponse = new RetrieveQuoteAttachmentResponse();
 		
 		HashMap<String, Object> retrieveQuoteAttachmentParams = new HashMap<String, Object>();
-		retrieveQuoteAttachmentParams.put("quoteId", rqat.getQuotationNo());
+		retrieveQuoteAttachmentParams.put("quoteId", rqat.getQuoteId());
 		retrieveQuoteAttachmentParams.put("quotationNo", rqat.getQuotationNo());
 		
-		rqatResponse.getQuotation().setAttachment(quoteDao.retrieveQuoteAttachment(retrieveQuoteAttachmentParams));
+		rqatResponse.setQuotation(quoteDao.retrieveQuoteAttachmentList(retrieveQuoteAttachmentParams));
 		
 		logger.info("retrieveQuoteAttachmentResponse : " + rqatResponse.toString());
 		
@@ -68,10 +68,10 @@ public class QuoteServiceImpl implements QuoteService{
 		RetrieveQuoteAlopItemResponse retQuoteAlopItemResponse = new RetrieveQuoteAlopItemResponse();
 		
 		HashMap<String, Object> retrieveQuoteAlopItemParams = new HashMap<String, Object>();
-		retrieveQuoteAlopItemParams.put("quoteId", retQuoteAlopItem.getQuotationNo());
+		retrieveQuoteAlopItemParams.put("quoteId", retQuoteAlopItem.getQuoteId());
 		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
 		
-		retQuoteAlopItemResponse.getQuotation().setAlopItem(quoteDao.retrieveQuoteAlopItem(retrieveQuoteAlopItemParams));
+		retQuoteAlopItemResponse.setQuotation(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
 		
 		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
 		return retQuoteAlopItemResponse;

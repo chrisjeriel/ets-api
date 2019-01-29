@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
-import ph.cpi.rest.api.model.Alop;
-import ph.cpi.rest.api.model.quote.AlopItem;
+import ph.cpi.rest.api.model.AlopSample;
 import ph.cpi.rest.api.model.quote.Attachment;
+import ph.cpi.rest.api.model.quote.Quotation;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -20,46 +20,30 @@ public class QuoteDaoImpl implements QuoteDao{
 	private SqlSession sqlSession;
 
 	@Override
-	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+	public AlopSample retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Alop alop = sqlSession.selectOne("retrieveQuoteAlopSample", params);
+		AlopSample alop = sqlSession.selectOne("retrieveQuoteAlopSample", params);
 		return alop;
 	}
 
 	@Override
-	public List<Alop> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+	public List<Quotation> retrieveQuoteAttachmentList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Alop> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
-		return alopList;
+		List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAttachment", params);
+		return quotationList;
 	}
 
 	@Override
-	public Attachment retrieveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		Attachment attachment = sqlSession.selectOne("retrieveQuoteAttachment", params);
-		return attachment;
+	public List<Quotation> retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
+			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlopItem",params);
+		return quotationList;
 	}
 
-	@Override
-	public List<Attachment> retrieveQuoteAttachmentList(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		List<Attachment> attachmentList = sqlSession.selectList("retrieveQuoteAttachment", params);
-		return attachmentList;
-	}
 
 	@Override
-	public AlopItem retrieveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		AlopItem alopItem = sqlSession.selectOne("retrieveQuoteAlopItem", params);
-		return alopItem;
+	public List<Quotation> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+		List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlop",params);
+		return quotationList;
 	}
 
-	@Override
-	public List<AlopItem> retrieveQuoteAlopItemList(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		List<AlopItem> alopItemList = sqlSession.selectList("retrieveQuoteAlopItem", params);
-		return alopItemList;
-	}
-	
-	
 }

@@ -1,31 +1,27 @@
 package ph.cpi.rest.api.model.response;
 
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.Quotation;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.Attachment;
+import ph.cpi.rest.api.model.quote.Quotation;
 
 public class RetrieveQuoteAttachmentResponse {
 	
-	private Quotation quotation;
+	private List<Quotation> quotation;
 	private Attachment attachment;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public Quotation getQuotation() {
-		if (quotation == null) {
-			quotation = new Quotation();
-		}
+	public List<Quotation> getQuotation() {
 		return quotation;
 	}
-	public void setQuotation(Quotation quotation) {
+	public void setQuotation(List<Quotation> quotation) {
 		this.quotation = quotation;
 	}
 	public Attachment getAttachment() {
-		if (attachment == null) {
-			attachment = new Attachment();
-		}
 		return attachment;
 	}
 	public void setAttachment(Attachment attachment) {

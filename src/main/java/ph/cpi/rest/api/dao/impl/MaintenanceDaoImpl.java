@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
-import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.AlopSample;
+import ph.cpi.rest.api.model.maintenance.AdviceWordings;
+import ph.cpi.rest.api.model.maintenance.Block;
+import ph.cpi.rest.api.model.maintenance.CedingCompany;
+import ph.cpi.rest.api.model.maintenance.Region;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -17,18 +21,62 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+	/*@Override
+	public AlopSample retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Alop alop = sqlSession.selectOne("retrieveMaintenanceSample", params);
+		AlopSample alop = sqlSession.selectOne("retrieveMaintenanceSample", params);
 		return alop;
 	}
 
 	@Override
-	public List<Alop> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+	public List<AlopSample> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Alop> alopList = sqlSession.selectList("retrieveMaintenanceSample", params);
+		List<AlopSample> alopList = sqlSession.selectList("retrieveMaintenanceSample", params);
 		return alopList;
+	}*/
+
+	@Override
+	public AdviceWordings retrieveMaintenanceAdviceWordings(HashMap<String, Object> params) throws SQLException {
+		AdviceWordings adviceWordings = sqlSession.selectOne("retrieveMaintenanceAdviceWordings",params);
+		
+		return adviceWordings;
 	}
+
+	@Override
+	public List<AdviceWordings> retrieveMaintenanceAdviceWordingsList(HashMap<String, Object> params) throws SQLException {
+		List<AdviceWordings> adviceWordingsList = sqlSession.selectList("retrieveMaintenanceAdviceWordings", params);
+		return adviceWordingsList;
+	}
+
+	@Override
+	public List<Region> retrieveMaintenanceBlockList(HashMap<String, Object> params) throws SQLException {
+			List<Region> blockList = sqlSession.selectList("retrieveMtnBlock",params);
+		return blockList;
+	}
+
+	@Override
+	public List<CedingCompany> retrieveMaintenanceCedingCompany(HashMap<String, Object> params) throws SQLException {
+			List<CedingCompany> cedingCompanyListing = sqlSession.selectList("retMtnCedingCompanyListing", params);
+		return cedingCompanyListing;
+	}
+	
+
+
+
+	/*@Override
+	public CedingCompany retrieveMaintenanceCedingCompany(HashMap<String, Object> params) throws SQLException {
+		CedingCompany cedingCompany = sqlSession.selectOne("retrieveMaintenanceCedingCompany",params);
+		return cedingCompany;
+	}
+
+	@Override
+	public List<CedingCompany> retrieveMaintenanceCedingCompanyList(HashMap<String, Object> params)
+			throws SQLException {
+		List<CedingCompany> cedingCompanyList = sqlSession.selectList("retrieveMaintenanceCedingCompany", params);
+		return cedingCompanyList;
+	}*/
+
+
+	
 
 }
