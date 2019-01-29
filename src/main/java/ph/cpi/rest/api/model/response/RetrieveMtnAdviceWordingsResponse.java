@@ -1,22 +1,21 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 
 public class RetrieveMtnAdviceWordingsResponse {
 	
-	private AdviceWordings adviceWordings;
+	private List<AdviceWordings> adviceWordings;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public AdviceWordings getAdviceWordings() {
-		if (adviceWordings == null) {
-			adviceWordings = new AdviceWordings();
-		}
+	public List<AdviceWordings> getAdviceWordings() {
 		return adviceWordings;
 	}
-	public void setAdviceWordings(AdviceWordings adviceWordings) {
+	public void setAdviceWordings(List<AdviceWordings> adviceWordings) {
 		this.adviceWordings = adviceWordings;
 	}
 	public PaginationResponse getPaginationResponse() {

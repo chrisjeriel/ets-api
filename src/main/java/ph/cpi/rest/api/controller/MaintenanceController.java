@@ -60,10 +60,10 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMaintenanceCedingCompanyListing(retMtnCedingCompanyListing);
 	}
 	
-	/*@GetMapping(path="retrieveMaintenanceCedingCompany")
+	@GetMapping(path="retrieveMaintenanceCedingCompany")
 	public @ResponseBody RetrieveMtnCedingCompanyResponse retrieveMaintenanceCedingCompany(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompany");
-		logger.info("RetrieveMaintenanceAdviceWordingsRequest : " + retMtnCedingCompany.toString());
+		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
 		return maintenanceService.retrieveMaintenanceCedingCompany(retMtnCedingCompany);
-	}*/
+	}
 }

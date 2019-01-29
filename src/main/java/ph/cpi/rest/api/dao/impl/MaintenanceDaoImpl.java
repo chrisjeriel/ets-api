@@ -35,15 +35,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return alopList;
 	}*/
 
-	@Override
-	public AdviceWordings retrieveMaintenanceAdviceWordings(HashMap<String, Object> params) throws SQLException {
-		AdviceWordings adviceWordings = sqlSession.selectOne("retrieveMaintenanceAdviceWordings",params);
-		
-		return adviceWordings;
-	}
 
 	@Override
-	public List<AdviceWordings> retrieveMaintenanceAdviceWordingsList(HashMap<String, Object> params) throws SQLException {
+	public List<AdviceWordings> retrieveMaintenanceAdviceWordings(HashMap<String, Object> params) throws SQLException {
 		List<AdviceWordings> adviceWordingsList = sqlSession.selectList("retrieveMaintenanceAdviceWordings", params);
 		return adviceWordingsList;
 	}
@@ -55,9 +49,15 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public List<CedingCompany> retrieveMaintenanceCedingCompany(HashMap<String, Object> params) throws SQLException {
+	public List<CedingCompany> retrieveMaintenanceCedingCompanyList(HashMap<String, Object> params) throws SQLException {
 			List<CedingCompany> cedingCompanyListing = sqlSession.selectList("retMtnCedingCompanyListing", params);
 		return cedingCompanyListing;
+	}
+
+	@Override
+	public List<CedingCompany> retrieveMaintenanceCedingCompany(HashMap<String, Object> params) throws SQLException {
+			List<CedingCompany> cedingCompany = sqlSession.selectList("retMtnCedingCompany",params);
+		return cedingCompany;
 	}
 	
 

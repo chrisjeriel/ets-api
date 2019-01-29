@@ -86,6 +86,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnCedingCompanyListingResponse retrieveMaintenanceCedingCompanyListing(
 			RetrieveMtnCedingCompanyListingRequest retMtnCedingCompanyListing) throws SQLException {
+		
 		RetrieveMtnCedingCompanyListingResponse rmcclResponse = new RetrieveMtnCedingCompanyListingResponse();
 		
 		HashMap<String, Object> retrieveMtnCedingCompanyParams = new HashMap<String, Object>();
@@ -99,7 +100,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnCedingCompanyParams.put("activeTag",retMtnCedingCompanyListing.getActiveTag());
 		retrieveMtnCedingCompanyParams.put("govtTag",retMtnCedingCompanyListing.getGovtTag());
 		retrieveMtnCedingCompanyParams.put("membershipTag",retMtnCedingCompanyListing.getMembershipTag());
+		
+		rmcclResponse.setCedingcompany(maintenanceDao.retrieveMaintenanceCedingCompanyList(retrieveMtnCedingCompanyParams));
+        
 		return rmcclResponse;
+	}
+
+	@Override
+	public RetrieveMtnCedingCompanyResponse retrieveMaintenanceCedingCompany(
+			RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
+		RetrieveMtnCedingCompanyResponse rmccResponse = new RetrieveMtnCedingCompanyResponse();
+		
+		HashMap<String, Object> retrieveMtnCedingCompanyParams = new HashMap<String, Object>();
+		retrieveMtnCedingCompanyParams.put("cedingId",retMtnCedingCompany.getCedingId()); 
+		
+		rmccResponse.setCedingCompany(maintenanceDao.retrieveMaintenanceCedingCompany(retrieveMtnCedingCompanyParams));
+        
+		return rmccResponse;
 	}
 
 	/*@Override

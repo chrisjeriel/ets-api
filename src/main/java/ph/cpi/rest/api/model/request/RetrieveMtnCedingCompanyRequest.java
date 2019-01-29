@@ -8,6 +8,7 @@ public class RetrieveMtnCedingCompanyRequest {
 	private Integer cedingId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
 	public Integer getCedingId() {
 		return cedingId;
 	}

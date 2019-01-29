@@ -57,7 +57,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
         <result property="quoteId" column="QUOTE_ID"/>
-        <result property="quotationNo" column="QUOTE_NO"/>
+        <result property="quotationNo" column="QUOTATION_NO"/>
         <association property="alop" resultMap="alopMap"></association>
 	</resultMap>
 	
@@ -81,7 +81,7 @@
 	
         
     <select id="retrieveQuoteAlopItem" resultMap="quotationMap" parameterType="java.util.Map">
-            SELECT* FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
+            SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
     </select>
     
     
@@ -114,7 +114,7 @@
     </resultMap>
     
     <select id="retrieveQuoteAlop" resultMap="quotationMapAlop" parameterType="java.util.Map">
-			SELECT* FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
+			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
     </select>
   
 </mapper>
