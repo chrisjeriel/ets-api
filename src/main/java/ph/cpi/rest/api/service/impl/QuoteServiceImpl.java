@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ph.cpi.rest.api.controller.ApiController;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -50,10 +49,19 @@ public class QuoteServiceImpl implements QuoteService{
 		RetrieveQuoteAttachmentOcResponse rqaocResponse = new RetrieveQuoteAttachmentOcResponse();
 		
 		HashMap<String, Object> retrieveQuoteAttachmentOcParams = new HashMap<String, Object>();
+		
 		retrieveQuoteAttachmentOcParams.put("quoteIdOc", rqaor.getQuoteIdOc());
 		retrieveQuoteAttachmentOcParams.put("openQuotationNo", rqaor.getOpenQuotationNo());
+		retrieveQuoteAttachmentOcParams.put("position", rqaor.getPaginationRequest().getPosition());
+		retrieveQuoteAttachmentOcParams.put("count", rqaor.getPaginationRequest().getCount());
+		retrieveQuoteAttachmentOcParams.put("sortKey", rqaor.getSortRequest().getSortKey());
+		retrieveQuoteAttachmentOcParams.put("order", rqaor.getSortRequest().getOrder());
 		
 		rqaocResponse.setQuotationOc(quoteDao.retrieveQuoteAttachmentOcList(retrieveQuoteAttachmentOcParams));
+		rqaocResponse.getPaginationResponse().setPosition(rqaor.getPaginationRequest().getPosition());
+		rqaocResponse.getPaginationResponse().setCount(rqaor.getPaginationRequest().getCount());
+		rqaocResponse.getSortResponse().setSortKey(rqaor.getSortRequest().getSortKey());
+		rqaocResponse.getSortResponse().setOrder(rqaor.getSortRequest().getOrder());
 		
 		logger.info("retrieveQuoteAttachmentOcResponse : " + rqaocResponse.toString());
 		
@@ -70,6 +78,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteCompetitionParams.put("quotationNo", rqcr.getQuotationNo());
 	
 		rqcrResponse.setQuotation(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));
+		rqcrResponse.getPaginationResponse().setPosition(rqcr.getPaginationRequest().getPosition());
+		rqcrResponse.getPaginationResponse().setCount(rqcr.getPaginationRequest().getCount());
+		rqcrResponse.getSortResponse().setSortKey(rqcr.getSortRequest().getSortKey());
+		rqcrResponse.getSortResponse().setOrder(rqcr.getSortRequest().getOrder());
 		
 		logger.info("retrieveQuoteCompetitionResponse : " + rqcrResponse.toString());
 		
@@ -86,6 +98,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteCoverageOcParams.put("openQuotationNo", rqcor.getOpenQuotationNo());
 		
 		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
+		rqcorResponse.getPaginationResponse().setPosition(rqcor.getPaginationRequest().getPosition());
+		rqcorResponse.getPaginationResponse().setCount(rqcor.getPaginationRequest().getCount());
+		rqcorResponse.getSortResponse().setSortKey(rqcor.getSortRequest().getSortKey());
+		rqcorResponse.getSortResponse().setOrder(rqcor.getSortRequest().getOrder());
 		
 		logger.info("retrieveQuoteCoverageOcResponse : " + rqcorResponse.toString());
 		

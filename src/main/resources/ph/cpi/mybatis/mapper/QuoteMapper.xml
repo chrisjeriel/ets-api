@@ -52,7 +52,12 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachmentOc" resultMap="quotationOcForAttachmentMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_attachment_oc(#{quoteIdOc, jdbcType=VARCHAR}, #{openQuotationNo, jdbcType=VARCHAR}, '', 1, '', '')
+			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_attachment_oc(#{quoteIdOc, jdbcType=VARCHAR}, 
+																		 #{openQuotationNo, jdbcType=VARCHAR},
+																		 #{position, jdbcType=VARCHAR}, 
+																		 #{count, jdbcType=VARCHAR}, 
+																		 #{sortKey, jdbcType=VARCHAR}, 
+																		 #{order, jdbcType=VARCHAR})
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.Quotation" id="quotationForCompetitionMap">
@@ -74,7 +79,12 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteCompetition" resultMap="quotationForCompetitionMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_competition(#{quoteId, jdbcType=VARCHAR}, #{quotationNo, jdbcType=VARCHAR}, '', 1, '', '')
+			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_competition(#{quoteId, jdbcType=VARCHAR}, 
+																	   #{quotationNo, jdbcType=VARCHAR}, 
+																	   #{position, jdbcType=VARCHAR}, 
+																	   #{count, jdbcType=VARCHAR}, 
+																	   #{sortKey, jdbcType=VARCHAR}, 
+																	   #{order, jdbcType=VARCHAR})
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcForCoverageMap">
@@ -104,7 +114,12 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteCoverageOc" resultMap="quotationOcForCoverageMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_coverage_oc(#{quoteIdOc, jdbcType=VARCHAR}, #{openQuotationNo, jdbcType=VARCHAR}, '', 1, '', '')
+			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_coverage_oc(#{quoteIdOc, jdbcType=VARCHAR}, 
+																	   #{openQuotationNo, jdbcType=VARCHAR},
+																	   #{position, jdbcType=VARCHAR}, 
+																	   #{count, jdbcType=VARCHAR}, 
+																	   #{sortKey, jdbcType=VARCHAR}, 
+																	   #{order, jdbcType=VARCHAR})
 	</select>
 	
 </mapper>

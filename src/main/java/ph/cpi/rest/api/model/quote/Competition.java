@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.quote;
 
-import java.util.Date;
-
 import org.joda.time.LocalDateTime;
 
 public class Competition {

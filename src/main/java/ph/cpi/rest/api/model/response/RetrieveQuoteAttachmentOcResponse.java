@@ -18,12 +18,18 @@ public class RetrieveQuoteAttachmentOcResponse {
 		this.quotationOc = list;
 	}
 	public PaginationResponse getPaginationResponse() {
+		if(paginationResponse == null){
+			paginationResponse = new PaginationResponse();
+		}
 		return paginationResponse;
 	}
 	public void setPaginationResponse(PaginationResponse paginationResponse) {
 		this.paginationResponse = paginationResponse;
 	}
 	public SortResponse getSortResponse() {
+		if(sortResponse == null){
+			sortResponse = new SortResponse();
+		}
 		return sortResponse;
 	}
 	public void setSortResponse(SortResponse sortResponse) {

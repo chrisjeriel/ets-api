@@ -4,7 +4,6 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.QuotationOc;
 import ph.cpi.rest.api.model.Quotation;
 
 public class RetrieveQuoteCompetitionResponse {
@@ -18,12 +17,18 @@ public class RetrieveQuoteCompetitionResponse {
 		this.quotation = quotation;
 	}
 	public PaginationResponse getPaginationResponse() {
+		if(paginationResponse == null){
+			paginationResponse = new PaginationResponse();
+		}
 		return paginationResponse;
 	}
 	public void setPaginationResponse(PaginationResponse paginationResponse) {
 		this.paginationResponse = paginationResponse;
 	}
 	public SortResponse getSortResponse() {
+		if(sortResponse == null){
+			sortResponse = new SortResponse();
+		}
 		return sortResponse;
 	}
 	public void setSortResponse(SortResponse sortResponse) {
