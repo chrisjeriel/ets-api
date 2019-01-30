@@ -76,7 +76,11 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteCompetitionParams = new HashMap<String, Object>();
 		retrieveQuoteCompetitionParams.put("quoteId", rqcr.getQuoteId());
 		retrieveQuoteCompetitionParams.put("quotationNo", rqcr.getQuotationNo());
-	
+		retrieveQuoteCompetitionParams.put("position", rqcr.getPaginationRequest().getPosition());
+		retrieveQuoteCompetitionParams.put("count", rqcr.getPaginationRequest().getCount());
+		retrieveQuoteCompetitionParams.put("sortKey", rqcr.getSortRequest().getSortKey());
+		retrieveQuoteCompetitionParams.put("order", rqcr.getSortRequest().getOrder());
+		
 		rqcrResponse.setQuotation(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));
 		rqcrResponse.getPaginationResponse().setPosition(rqcr.getPaginationRequest().getPosition());
 		rqcrResponse.getPaginationResponse().setCount(rqcr.getPaginationRequest().getCount());
@@ -96,6 +100,10 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteCoverageOcParams = new HashMap<String, Object>();
 		retrieveQuoteCoverageOcParams.put("quoteIdOc", rqcor.getQuoteIdOc());
 		retrieveQuoteCoverageOcParams.put("openQuotationNo", rqcor.getOpenQuotationNo());
+		retrieveQuoteCoverageOcParams.put("position", rqcor.getPaginationRequest().getPosition());
+		retrieveQuoteCoverageOcParams.put("count", rqcor.getPaginationRequest().getCount());
+		retrieveQuoteCoverageOcParams.put("sortKey", rqcor.getSortRequest().getSortKey());
+		retrieveQuoteCoverageOcParams.put("order", rqcor.getSortRequest().getOrder());
 		
 		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
 		rqcorResponse.getPaginationResponse().setPosition(rqcor.getPaginationRequest().getPosition());

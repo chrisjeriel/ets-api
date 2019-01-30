@@ -13,21 +13,24 @@ public class RetrieveMtnCityResponse {
 	private SortResponse sortResponse;
 	
 	public List<Region> getRegion() {
-		/*if(region == null){
-			region = new Region();
-		}*/
 		return region;
 	}
 	public void setRegion(List<Region> region) {
 		this.region = region;
 	}
 	public PaginationResponse getPaginationResponse() {
+		if(paginationResponse == null){
+			paginationResponse = new PaginationResponse();
+		}
 		return paginationResponse;
 	}
 	public void setPaginationResponse(PaginationResponse paginationResponse) {
 		this.paginationResponse = paginationResponse;
 	}
 	public SortResponse getSortResponse() {
+		if(sortResponse == null){
+			sortResponse = new SortResponse();
+		}
 		return sortResponse;
 	}
 	public void setSortResponse(SortResponse sortResponse) {

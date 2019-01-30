@@ -61,7 +61,13 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_city(#{regionCd, jdbcType=VARCHAR}, #{provinceCd, jdbcType=VARCHAR}, #{cityCd, jdbcType=VARCHAR}, '', 1, '', '')
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_city(#{regionCd, jdbcType=VARCHAR}, 
+																		#{provinceCd, jdbcType=VARCHAR}, 
+																		#{cityCd, jdbcType=VARCHAR},
+																		#{position, jdbcType=VARCHAR}, 
+																		#{count, jdbcType=VARCHAR}, 
+																		#{sortKey, jdbcType=VARCHAR}, 
+																		#{order, jdbcType=VARCHAR})
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.CrestaZone" id="crestaZoneMap">
@@ -76,7 +82,11 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCrestaZone" resultMap="crestaZoneMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_cresta_zone(#{zoneCd, jdbcType=VARCHAR}, '', 1, '', '')
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_cresta_zone(#{zoneCd, jdbcType=VARCHAR}, 
+																			   #{position, jdbcType=VARCHAR}, 
+																			   #{count, jdbcType=VARCHAR}, 
+																			   #{sortKey, jdbcType=VARCHAR}, 
+																			   #{order, jdbcType=VARCHAR})
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Currency" id="currencyMap">
@@ -92,7 +102,11 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCurrency" resultMap="currencyMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR}, '', 1, '', '')
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+																			#{position, jdbcType=VARCHAR}, 
+																			#{count, jdbcType=VARCHAR}, 
+																			#{sortKey, jdbcType=VARCHAR}, 
+																			#{order, jdbcType=VARCHAR})
 	</select>
 	
 </mapper>

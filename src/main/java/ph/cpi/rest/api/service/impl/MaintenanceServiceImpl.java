@@ -50,9 +50,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnCityParams.put("regionCd", rmcr.getRegionCd());
 		retrieveMtnCityParams.put("provinceCd", rmcr.getProvinceCd());
 		retrieveMtnCityParams.put("cityCd", rmcr.getCityCd());
+		retrieveMtnCityParams.put("position", rmcr.getPaginationRequest().getPosition());
+		retrieveMtnCityParams.put("count", rmcr.getPaginationRequest().getCount());
+		retrieveMtnCityParams.put("sortKey", rmcr.getSortRequest().getSortKey());
+		retrieveMtnCityParams.put("order", rmcr.getSortRequest().getOrder());
 		
 		rmcrResponse.setRegion(maintenanceDao.retrieveMtnCityList(retrieveMtnCityParams));
-		
+		rmcrResponse.getPaginationResponse().setPosition(rmcr.getPaginationRequest().getPosition());
+		rmcrResponse.getPaginationResponse().setCount(rmcr.getPaginationRequest().getCount());
+		rmcrResponse.getSortResponse().setSortKey(rmcr.getSortRequest().getSortKey());
+		rmcrResponse.getSortResponse().setOrder(rmcr.getSortRequest().getOrder());
 		logger.info("retrieveMtnCityResponse : " + rmcrResponse.toString());
 		
 		return rmcrResponse;
@@ -64,8 +71,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnCrestaZoneParams = new HashMap<String, Object>();
 		retrieveMtnCrestaZoneParams.put("zoneCd", rmczr.getZoneCd());
+		retrieveMtnCrestaZoneParams.put("position", rmczr.getPaginationRequest().getPosition());
+		retrieveMtnCrestaZoneParams.put("count", rmczr.getPaginationRequest().getCount());
+		retrieveMtnCrestaZoneParams.put("sortKey", rmczr.getSortRequest().getSortKey());
+		retrieveMtnCrestaZoneParams.put("order", rmczr.getSortRequest().getOrder());
 		
 		rmczrResponse.setCrestaZone(maintenanceDao.retrieveMtnCrestaZoneList(retrieveMtnCrestaZoneParams));
+		rmczrResponse.getPaginationResponse().setPosition(rmczr.getPaginationRequest().getPosition());
+		rmczrResponse.getPaginationResponse().setCount(rmczr.getPaginationRequest().getCount());
+		rmczrResponse.getSortResponse().setSortKey(rmczr.getSortRequest().getSortKey());
+		rmczrResponse.getSortResponse().setOrder(rmczr.getSortRequest().getOrder());
 		
 		logger.info("retrieveMtnCrestaZoneResponse : " + rmczrResponse.toString());
 		
@@ -78,8 +93,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnCurrencyParams = new HashMap<String, Object>();
 		retrieveMtnCurrencyParams.put("currencyCd", rmcr.getCurrencyCd());
+		retrieveMtnCurrencyParams.put("position", rmcr.getPaginationRequest().getPosition());
+		retrieveMtnCurrencyParams.put("count", rmcr.getPaginationRequest().getCount());
+		retrieveMtnCurrencyParams.put("sortKey", rmcr.getSortRequest().getSortKey());
+		retrieveMtnCurrencyParams.put("order", rmcr.getSortRequest().getOrder());
 		
 		rmcrResponse.setCurrency(maintenanceDao.retrieveMtnCurrencyList(retrieveMtnCurrencyParams));
+		rmcrResponse.getPaginationResponse().setPosition(rmcr.getPaginationRequest().getPosition());
+		rmcrResponse.getPaginationResponse().setCount(rmcr.getPaginationRequest().getCount());
+		rmcrResponse.getSortResponse().setSortKey(rmcr.getSortRequest().getSortKey());
+		rmcrResponse.getSortResponse().setOrder(rmcr.getSortRequest().getOrder());
 		
 		logger.info("retrieveMtnCurrencyResponse : " + rmcrResponse.toString());
 		
