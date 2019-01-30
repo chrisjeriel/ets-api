@@ -29,9 +29,11 @@ public class QuoteDaoImpl implements QuoteDao{
 	@Override
 	public List<Quotation> retrieveQuoteAttachmentList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAttachment", params);
+			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAttachment", params);
 		return quotationList;
 	}
+	
+	
 
 	@Override
 	public List<Quotation> retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {

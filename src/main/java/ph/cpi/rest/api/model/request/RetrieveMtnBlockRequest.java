@@ -12,8 +12,8 @@ public class RetrieveMtnBlockRequest {
 	private Integer regionCd;
 	private Integer provinceCd;
 	private Integer cityCd;
-	private Integer districtCd;
-	private Integer blockCd;
+	private String districtCd;
+	private String blockCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public Integer getRegionCd() {
@@ -34,16 +34,16 @@ public class RetrieveMtnBlockRequest {
 	public void setCityCd(Integer cityCd) {
 		this.cityCd = cityCd;
 	}
-	public Integer getDistrictCd() {
+	public String getDistrictCd() {
 		return districtCd;
 	}
-	public void setDistrictCd(Integer districtCd) {
+	public void setDistrictCd(String districtCd) {
 		this.districtCd = districtCd;
 	}
-	public Integer getBlockCd() {
+	public String getBlockCd() {
 		return blockCd;
 	}
-	public void setBlockCd(Integer blockCd) {
+	public void setBlockCd(String blockCd) {
 		this.blockCd = blockCd;
 	}
 	public PaginationRequest getPaginationRequest() {
@@ -64,6 +64,8 @@ public class RetrieveMtnBlockRequest {
 				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
 	
 	
 	

@@ -38,7 +38,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 
 	@Override
 	public List<AdviceWordings> retrieveMaintenanceAdviceWordings(HashMap<String, Object> params) throws SQLException {
-		List<AdviceWordings> adviceWordingsList = sqlSession.selectList("retrieveMaintenanceAdviceWordings", params);
+		List<AdviceWordings> adviceWordingsList = sqlSession.selectList("retMtnAdviceWordings", params);
 		return adviceWordingsList;
 	}
 

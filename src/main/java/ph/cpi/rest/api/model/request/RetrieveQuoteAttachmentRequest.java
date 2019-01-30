@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveQuoteAttachmentRequest {
 	
 	private Integer quoteId;
-	private String quotationNo;
+	private String  quotationNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
