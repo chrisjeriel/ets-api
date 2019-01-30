@@ -87,7 +87,7 @@
     
     <resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMapAlop">
         <result property="quoteId" 		column="QUOTE_ID"/>
-        <result property="quotationNo" 	column="QUOTE_NO"/>
+        <result property="quotationNo" 	column="QUOTATION_NO"/>
         <association property="alop" resultMap="AlopMap"></association>
 	</resultMap>
 	

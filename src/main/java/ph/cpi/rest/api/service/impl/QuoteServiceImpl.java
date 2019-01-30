@@ -45,7 +45,6 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public RetrieveQuoteAttachmentResponse retrieveQuoteAttachment(RetrieveQuoteAttachmentRequest rqat)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		
 		RetrieveQuoteAttachmentResponse rqatResponse = new RetrieveQuoteAttachmentResponse();
 		
