@@ -9,7 +9,7 @@
 		<result property="insuredName" column="insured_name"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.Alop" id="alopMap">
+	<resultMap type="ph.cpi.rest.api.model.AlopSample" id="alopMap">
 	    <result property="alopId" 			column="ALOP_ID"/> 
 		<result property="insuredId" 		column="INS_ID"/> 
 		<result property="insuredName" 		column="INSURED_NAME"/> 
@@ -134,7 +134,7 @@
 	</select>
 	
 	
-	<resultMap type="ph.cpi.rest.api.model.maintenance.Deductibles" id="Deductibles">
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Deductibles" id="deductibles">
 		<result property="lineCd" column="LINE_CD"/>
 		<result property="lineDesc" column="DESCRIPTION"/>
 		<result property="deductibleCd" column="DEDUCTIBLE_CD"/>
@@ -153,7 +153,7 @@
 		<result property="updateDate" column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveMtnDeductibles" resultMap="Deductibles">
+	<select id="retrieveMtnDeductibles" resultMap="deductibles">
 		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},'',1,'','')
 	</select>
 	

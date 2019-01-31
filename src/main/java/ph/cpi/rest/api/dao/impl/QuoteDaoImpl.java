@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
-import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.AlopSample;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationOc;
 
@@ -20,16 +20,16 @@ public class QuoteDaoImpl implements QuoteDao{
 	private SqlSession sqlSession;
 
 	@Override
-	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+	public AlopSample retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Alop alop = sqlSession.selectOne("retrieveQuoteAlopSample", params);
-		return alop;
+		AlopSample alopSample = sqlSession.selectOne("retrieveQuoteAlopSample", params);
+		return alopSample;
 	}
 
 	@Override
-	public List<Alop> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+	public List<AlopSample> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Alop> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
+		List<AlopSample> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
 		return alopList;
 	}
 
@@ -43,6 +43,12 @@ public class QuoteDaoImpl implements QuoteDao{
 	public QuotationOc retrieveQuoteDetailsOc(HashMap<String, Object> params) throws SQLException {
 		QuotationOc quotationOc = sqlSession.selectOne("retrieveQuoteDetailsOc", params);
 		return quotationOc;
+	}
+
+	@Override
+	public Quotation retrieveQuoteDetails(HashMap<String, Object> params) throws SQLException {
+		Quotation quotation = sqlSession.selectOne("retrieveQuoteDetails", params);
+		return quotation;
 	}
 	
 	

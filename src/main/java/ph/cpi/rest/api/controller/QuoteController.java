@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -48,6 +50,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteDetailsOc");
 		logger.info("RetrieveQuoteDetailsOcRequest : " + rqdocr.toString());
 		return quoteService.retrieveQuoteDetailsOc(rqdocr);
+	}
+	
+	@GetMapping(path="retrieveQuoteDetails")
+	public @ResponseBody RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest rqdr) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteDetails");
+		logger.info("RetrieveQuoteDetailsRequest : " + rqdr.toString());
+		return quoteService.retrieveQuoteDetails(rqdr);
 	}
 	
 }

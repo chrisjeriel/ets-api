@@ -9,7 +9,7 @@
 		<result property="insuredName" column="insured_name"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.Alop" id="alopMap">
+	<resultMap type="ph.cpi.rest.api.model.AlopSample" id="alopMapSample">
 	    <result property="alopId" 			column="ALOP_ID"/> 
 		<result property="insuredId" 		column="INS_ID"/> 
 		<result property="insuredName" 		column="INSURED_NAME"/> 
@@ -31,7 +31,7 @@
 	</resultMap>
 	
 	
-	<select id="retrieveQuoteAlopSample" resultMap="alopMap" parameterType="java.util.Map">
+	<select id="retrieveQuoteAlopSample" resultMap="alopMapSample" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
@@ -58,26 +58,98 @@
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<association property="sectionCovers" resultMap="sectionCovers"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="project">
+		<result property="projId" column="PROJ_ID"/>
+		<result property="projDesc" column="PROJ_DESC"/>
 		<result property="riskId" column="RISK_ID"/>
 		<result property="riskName" column="RISK_NAME"/>
+		<result property="totalSi" column="PROJECT_TOTAL_SI"/>
+		<result property="pctShare" column="PCT_SHARE"/>
+		<result property="totalValue" column="TOTAL_VALUE"/>
+		<result property="objectId" column="OBJECT_ID"/>
+		<result property="objectDesc" column="OBJECT_DESCRIPTION"/>
+		<result property="site" column="SITE"/>
+		<result property="duration" column="DURATION"/>
+		<result property="testing" column="TESTING"/>
+		<result property="ipl" column="IPL"/>
+		<result property="timeExc" column="PROJECT_TIME_EXC"/>
+		<result property="noClaimPd" column="NO_CLAIM_PD"/>
+		<result property="createUser" column="PROJECT_CREATE_USER"/>
+		<result property="createDate" column="PROJECT_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="PROJECT_UPDATE_USER"/>
+		<result property="updateDate" column="PROJECT_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<association property="coverage" resultMap="coverage"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotation">
 		<result property="quoteId" column="QUOTE_ID"/>
 		<result property="quoteName" column="QUOTE_NAME"/>
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="lineCdDesc" column="LINE_DESCRIPTION"/>
+		<result property="quoteYear" column="QUOTE_YEAR"/>
+		<result property="quoteSeqNo" column="QUOTE_SEQ_NO"/>
+		<result property="quoteRevNo" column="QUOTE_REV_NO"/>
+		<result property="cedingId" column="QUOTE_CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
+		<result property="cessionId" column="CESSION_ID"/>
+		<result property="cessionDesc" column="CESSION_DESCRIPTION"/>
+		<result property="lineClassCd" column="LINE_CLASS_CD"/>
+		<result property="lineClassDesc" column="LINE_CLASS_DESCRIPTION"/>
+		<result property="principalId" column="PRIN_ID"/>
+		<result property="principalName" column="PRINCIPAL_NAME"/>
+		<result property="contractorId" column="CONTRACTOR_ID"/>
+		<result property="contactorName" column="CONTRACTOR_NAME"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
+		<result property="policyId" column="POLICY_ID"/>
+		<result property="policyNo" column="POL_NO"/>
+		<result property="status" column="STATUS"/>
+		<result property="reinsurerId" column="REINSURER_ID"/>
+		<result property="reinsurerName" column="REINSURER_NAME"/>
+		<result property="intmId" column="INTM_ID"/>
+		<result property="intmName" column="INTM_NAME"/>
+		<result property="issueDate" column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="expiryDate" column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="reqBy" column="REQ_BY"/>
+		<result property="reqDate" column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="reqMode" column="REQ_MODE"/>
+		<result property="mbiRefNo" column="MBI_REF_NO"/>
+		<result property="currencyCd" column="CURRENCY_CD"/>
+		<result property="currencyRt" column="CURRENCY_RT"/>
+		<result property="govtTag" column="GOVT_TAG"/>
+		<result property="indicativeTag" column="INDICATIVE_TAG"/>
+		<result property="openCoverTag" column="OPEN_COVER_TAG"/>
+		<result property="ocQuoteId" column="OC_QUOTE_ID"/>
+		<result property="openCoverQuotationNo" column="OC_QUOTE_NO"/>
+		<result property="declarationTag" column="DECLARATION_TAG"/>
+		<result property="preparedBy" column="PREPARED_BY"/>
+		<result property="approvedBy" column="APPROVED_BY"/>
+		<result property="printedBy" column="PRINTED_BY"/>
+		<result property="printDate" column="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="openingParag" column="OPENING_PARAG"/>
+		<result property="closingParag" column="CLOSING_PARAG"/>
+		<result property="reasonCd" column="REASON_CD"/>
+		<result property="reasonDesc" column="REF_CODE_DESCRIPTION"/>
+		<result property="createUser" column="QUOTE_CREATE_USER"/>
+		<result property="createDate" column="QUOTE_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="QUOTE_UPDATE_USER"/>
+		<result property="updateDate" column="QUOTE_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<association property="project" resultMap="project"></association>
+		<association property="attachmentsList" resultMap="attachment"></association>
+		<association property="competitiosList" resultMap="competition"></association>
+		<association property="alop" resultMap="alopMap"></association>
+		<association property="otherRatesList" resultMap="otherRates"></association>
+		<association property="optionsList" resultMap="options"></association>
 	</resultMap>
 	
 	<select id="retrieveQuoteCoverage" resultMap="quotation" parameterType="java.util.Map">
 		SELECT * FROM CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_coverage(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'','')
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentOc">
+	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachment">
 		<result property="fileNo" column="FILE_NO" />
 		<result property="fileName" column="FILE_NAME" />
 		<result property="description" column="DESCRIPTION" />
@@ -177,11 +249,109 @@
 		<result property="createDate" column="QUO_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" column="QUO_UPDATE_USER"/>
 		<result property="updateDate" column="QUO_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<association property="attachment" resultMap="attachmentOc"></association>
+		<association property="attachment" resultMap="attachment"></association>
 	</resultMap>
 	
 	<select id="retrieveQuoteDetailsOc" resultMap="quotationOc" parameterType="java.util.Map">
 		SELECT * FROM CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_details_oc(#{openQuotationNo, jdbcType=VARCHAR},#{quoteIdOc, jdbcType=VARCHAR},'',1,'','')
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competition">
+		<result property="adviceNo" column="ADVICE_NO"/>
+		<result property="cedingId" column="COMP_CEDING_ID"/>
+		<result property="cedingRepId" column="CEDING_REP_ID"/>
+		<result property="option" column="OPTN"/>
+		<result property="wordings" column="WORDINGS"/>
+		<result property="createUser" column="COMP_CREATE_USER"/>
+		<result property="createDate" column="COMP_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="COMP_UPDATE_USER"/>
+		<result property="updateDate" column="COMP_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItem">
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="quantity" column="QUANTITY"/>
+		<result property="description" column="ALOP_ITEM_DESCRIPTION"/>
+		<result property="importance" column="IMPORTANCE"/>
+		<result property="lossMin" column="LOSS_MIN"/>
+		<result property="createUser" column="ALOP_ITEM_CREATE_USER"/>
+		<result property="createDate" column="ALOP_ITEM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="ALOP_ITEM_UPDATE_USER"/>
+		<result property="updateDate" column="ALOP_ITEM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
+		<result property="alopId" column="ALOP_ID"/>
+		<result property="insuredId" column="INS_ID"/>
+		<result property="insuredName" column="INSURED_NAME"/>
+		<result property="insuredDesc" column="ALOP_INSURED_DESC"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="insuredBusiness" column="INS_BUSINESS"/>
+		<result property="annSi" column="ANN_SI"/>
+		<result property="maxIndemPdSi" column="MAX_INDEM_PD_SI"/>
+		<result property="issueDate" column="ALOP_ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="expiryDate" column="ALOP_EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="maxIndemPd" column="MAX_INDEM_PD"/>
+		<result property="indemFromDate" column="INDEM_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="timeExc" column="ALOP_TIME_EXC"/>
+		<result property="repInterval" column="REP_INTERVAL"/>
+		<result property="createUser" column="ALOP_CREATE_USER"/>
+		<result property="createDate" column="ALOP_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="ALOP_UPDATE_USER"/>
+		<result property="updateDate" column="ALOP_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="alopItemList" resultMap="alopItem"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="otherRates">
+		<result property="coverCd" column="OTHER_RATES_COVER_CD"/>
+		<result property="coverCdDesc" column="SECTION_COVERS_DESCRIPTION"/>
+		<result property="rate" column="RATE"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="createUser" column="OTHER_RATES_CREATE_USER"/>
+		<result property="createDate" column="OTHER_RATES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="OTHER_RATES_UPDATE_USER"/>
+		<result property="updateDate" column="OTHER_RATES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Endorsments" id="endorsments">
+		<result property="endtCd" column="ENDT_CD"/>
+		<result property="endtTitle" column="ENDT_TITLE"/>
+		<result property="remarks" column="ENDT_REMARKS"/>
+		<result property="createUser" column="ENDT_CREATE_USER"/>
+		<result property="createDate" column="ENDT_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="ENDT_UPDATE_USER"/>
+		<result property="updateDate" column="ENDT_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="deductiblesM">
+		<result property="deductibleCd" column="DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" column="DEDUCTIBLE_TITLE"/>
+		<result property="deductibleRt" column="DEDUCTIBLE_RT"/>
+		<result property="deductibleAmt" column="DEDUCTIBLE_AMT"/>
+		<result property="deductibleTxt" column="DEDUCTIBLE_TXT"/>
+		<result property="createUser" column="DEDUCTIBLES_CREATE_USER"/>
+		<result property="createDate" column="DEDUCTIBLES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="DEDUCTIBLES_UPDATE_USER"/>
+		<result property="updateDate" column="DEDUCTIBLES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Options" id="options">
+		<result property="optionId" column="OPTION_ID"/>
+		<result property="optioRt" column="OPTION_RT"/>
+		<result property="condition" column="CONDITION"/>
+		<result property="commRtQuota" column="COMM_RT_QUOTA"/>
+		<result property="commRtSurplus" column="COMM_RT_SURPLUS"/>
+		<result property="commRtFac" column="COMM_RT_FAC"/>
+		<result property="createUser" column="OPTIONS_CREATE_USER"/>
+		<result property="createDate" column="OPTIONS_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="OPTIONS_UPDATE_USER"/>
+		<result property="updateDate" column="OPTIONS_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="endorsments" resultMap="endorsments"></association>
+		<association property="deductiblesList" resultMap="deductiblesM"></association>
+	</resultMap>
+	
+	<select id="retrieveQuoteDetails" resultMap="quotation" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_details(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'','')
 	</select>
 	
 </mapper>

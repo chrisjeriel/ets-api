@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
-import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.AlopSample;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -22,16 +22,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	private SqlSession sqlSession;
 
 	@Override
-	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+	public AlopSample retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Alop alop = sqlSession.selectOne("retrieveMaintenanceSample", params);
-		return alop;
+		AlopSample alopSample = sqlSession.selectOne("retrieveMaintenanceSample", params);
+		return alopSample;
 	}
 
 	@Override
-	public List<Alop> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+	public List<AlopSample> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Alop> alopList = sqlSession.selectList("retrieveMaintenanceSample", params);
+		List<AlopSample> alopList = sqlSession.selectList("retrieveMaintenanceSample", params);
 		return alopList;
 	}
 	
