@@ -1,8 +1,10 @@
-package ph.cpi.rest.api.model;
+package ph.cpi.rest.api.model.maintenance;
 
 import org.apache.ibatis.type.Alias;
 
+import ph.cpi.rest.api.model.Alop;
 
+@Alias("MaintenanceQuotation")
 public class Quotation {
 
 	private Integer quoteId; 
