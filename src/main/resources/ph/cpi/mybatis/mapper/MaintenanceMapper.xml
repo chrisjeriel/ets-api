@@ -30,10 +30,81 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Risk" id="retrieveMtnRiskMap">
+		<result property="riskId"			column="RISK_ID"/>
+		<result property="riskAbbr"			column="RISK_ABBR"/>
+		<result property="riskName"			column="RISK_NAME"/>
+		<result property="regionCd"			column="REGION_CD"/>	
+		<result property="regionDesc"		column="REGION_DESC"/>
+		<result property="provinceCd"		column="PROVINCE_CD"/>	
+		<result property="provinceDesc"		column="PROVINCE_DESC"/>
+		<result property="cityCd"			column="CITY_CD"/>
+		<result property="cityDesc"			column="CITY_DESC"/>
+		<result property="districtCd"		column="DISTRICT_CD"/>	
+		<result property="districtDesc"		column="DISTRICT_DESC"/>
+		<result property="blockCd"			column="BLOCK_CD"/>
+		<result property="blockDesc"		column="BLOCK_DESC"/>
+		<result property="latitude"			column="LATITUDE"/>
+		<result property="longitude"		column="LONGITUDE"/>
+		<result property="zoneCd"			column="ZONE_CD"/>
+		<result property="zoneDesc"			column="ZONE_DESC"/>
+		<result property="activeTag"		column="ACTIVE_TAG"/>
+		<result property="remarks"			column="REMARKS"/>
+		<result property="createUser"		column="CREATE_USER"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.SectionCovers" id="retrieveMtnSectionCoversMap">
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="coverCd" 			column="COVER_CD"/>
+		<result property="coverCdAbbr" 		column="COVER_CD_ABBR"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="section" 			column="SECTION"/>
+		<result property="sortSeq" 			column="SORT_SEQ"/>
+		<result property="defaultTag" 		column="DEFAULT_TAG"/>
+		<result property="bulletNo" 		column="BULLET_NO"/>
+		<result property="addSi" 			column="ADD_SI"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Cession" id="retrieveTypeOfCessionMap">
+		<result property="cessionId" 		column="CESSION_ID"/>
+		<result property="cessionAbbr" 		column="CESSION_ABBR"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
+	<select id="retrieveMtnRisk" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
+		<!-- SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},null,null,null,null)
+	</select>
 	
+	<select id="retrieveMtnRiskListing" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk_listing(#{riskId},#{riskAbbr},#{riskName},#{regionDesc},#{provinceDesc},#{cityDesc},#{districtDesc},#{blockDesc},#{latitude},#{longitude},#{activeTag},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd},#{coverCd},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_type_of_cession(#{cessionId},null,null,null,null)
+	</select>
 </mapper>

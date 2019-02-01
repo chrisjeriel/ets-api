@@ -1,24 +1,22 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.QuotationOld;
-import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.quote.Quotation;
 
-public class RetrieveQuoteAlopResponse extends Response {
+public class RetrieveQuoteListingResponse {
 
-	private QuotationOld quotation;
+	private List<Quotation> quotationList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public QuotationOld getQuotation() {
-		if (quotation == null) {
-			quotation = new QuotationOld();
-		}
-		return quotation;
+	public List<Quotation> getQuotationList() {
+		return quotationList;
 	}
-	public void setQuotation(QuotationOld quotation) {
-		this.quotation = quotation;
+	public void setQuotationList(List<Quotation> quotationList) {
+		this.quotationList = quotationList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -34,9 +32,7 @@ public class RetrieveQuoteAlopResponse extends Response {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse + "]";
+		return "RetrieveQuoteListingResponse [quotationList=" + quotationList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
-	
 }

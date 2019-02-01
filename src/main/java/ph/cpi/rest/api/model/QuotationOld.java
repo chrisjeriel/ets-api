@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model;
 
-public class Quotation {
+public class QuotationOld {
 
 	private Integer quoteId; 
 	private String quotationNo;
