@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import org.joda.time.LocalDateTime;
 
 public class SectionCovers {
-	private String section;
 	private Integer coverCd;
+	private String section;
 	private String bulletNo;
 	private BigDecimal sumInsured;
 	private String addSi;
