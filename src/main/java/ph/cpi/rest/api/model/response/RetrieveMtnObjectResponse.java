@@ -1,24 +1,18 @@
 package ph.cpi.rest.api.model.response;
 
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.QuotationOld;
-import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.maintenance.Object_;
 
-public class RetrieveQuoteAlopResponse extends Response {
-
-	private QuotationOld quotation;
+public class RetrieveMtnObjectResponse {
+	private Object_ object;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public QuotationOld getQuotation() {
-		if (quotation == null) {
-			quotation = new QuotationOld();
-		}
-		return quotation;
+	public Object_ getObject() {
+		return object;
 	}
-	public void setQuotation(QuotationOld quotation) {
-		this.quotation = quotation;
+	public void setObject(Object_ object) {
+		this.object = object;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -34,9 +28,8 @@ public class RetrieveQuoteAlopResponse extends Response {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse + "]";
+		return "RetrieveMtnObjectResponse [object=" + object + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
 	
 }
