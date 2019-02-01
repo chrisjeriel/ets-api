@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
@@ -18,6 +19,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
+
 
 @Component
 public class MaintenanceServiceImpl implements MaintenanceService{
@@ -42,6 +44,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return rqaResponse;
 	}
 	
+
 	@Override
 	public RetrieveMtnCityResponse retrieveMtnCity(RetrieveMtnCityRequest rmcr) throws SQLException {
 		RetrieveMtnCityResponse rmcrResponse = new RetrieveMtnCityResponse();
