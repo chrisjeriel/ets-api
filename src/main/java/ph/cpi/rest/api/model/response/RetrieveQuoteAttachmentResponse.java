@@ -4,11 +4,12 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.Attachment;
 import ph.cpi.rest.api.model.quote.Quotation;
 
-public class RetrieveQuoteAttachmentResponse {
+public class RetrieveQuoteAttachmentResponse extends Response {
 	
 	private List<Quotation> quotation;
 	private Attachment attachment;
@@ -39,7 +40,6 @@ public class RetrieveQuoteAttachmentResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
 	@Override
 	public String toString() {
 		return "RetrieveQuoteAttachmentResponse [quotation=" + quotation + ", attachment=" + attachment

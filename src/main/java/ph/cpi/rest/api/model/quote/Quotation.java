@@ -1,10 +1,12 @@
 package ph.cpi.rest.api.model.quote;
 
+import java.util.List;
+
 public class Quotation {
 	
 	private Integer quoteId;
 	private String quotationNo;
-	private Alop alop;
+	private List<Alop> alop;
 	private Attachment attachment;
 	
 	public Integer getQuoteId() {
@@ -19,10 +21,10 @@ public class Quotation {
 	public void setQuotationNo(String quotationNo) {
 		this.quotationNo = quotationNo;
 	}
-	public Alop getAlop() {
+	public List<Alop> getAlop() {
 		return alop;
 	}
-	public void setAlop(Alop alop) {
+	public void setAlop(List<Alop> alop) {
 		this.alop = alop;
 	}
 	

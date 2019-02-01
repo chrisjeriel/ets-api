@@ -3,11 +3,12 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Quotation;
 
-public class RetrieveQuoteAlopItemResponse {
+public class RetrieveQuoteAlopItemResponse extends Response {
 	
 	private List<Quotation> quotation;
 	private AlopItem alopItem;

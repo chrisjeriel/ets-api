@@ -1,5 +1,9 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
+import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
@@ -36,8 +40,10 @@ public class RetrieveQuoteAttachmentRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveQuoteAttachmentRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+
+	
 	
 }

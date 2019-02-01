@@ -3,10 +3,11 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.Region;
 
-public class RetrieveMtnBlockResponse {
+public class RetrieveMtnBlockResponse extends Response{
 	private List<Region> region;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
