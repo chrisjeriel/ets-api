@@ -1,24 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.QuotationOld;
-import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.maintenance.Risk;
 
-public class RetrieveQuoteAlopResponse extends Response {
+public class RetrieveMtnRiskResponse {
 
-	private QuotationOld quotation;
+	private Risk risk;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public QuotationOld getQuotation() {
-		if (quotation == null) {
-			quotation = new QuotationOld();
-		}
-		return quotation;
+	public Risk getRisk() {
+		return risk;
 	}
-	public void setQuotation(QuotationOld quotation) {
-		this.quotation = quotation;
+	public void setRisk(Risk risk) {
+		this.risk = risk;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -34,9 +30,7 @@ public class RetrieveQuoteAlopResponse extends Response {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse + "]";
+		return "RetrieveMtnRiskResponse [risk=" + risk + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
-	
 }

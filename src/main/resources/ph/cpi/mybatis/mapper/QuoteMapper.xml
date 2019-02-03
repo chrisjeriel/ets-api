@@ -30,10 +30,110 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingMap">
+		<result property="quotationNo" 		column="QUOTATION_NO"/>
+		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
+		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
+		<result property="status" 			column="STATUS"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="principalName" 	column="PRINCIPAL_NAME"/>
+		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="reqBy" 			column="REQ_BY"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		
+		<association property="project" 	resultMap="assocProject"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingOcMap">
+		<result property="quotationNo" 		column="OPEN_QUOTATION_NO"/>
+		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
+		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
+		<result property="status" 			column="STATUS"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="principalName" 	column="PRINCIPAL_NAME"/>
+		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="policyNo" 		column="OPEN_POLICY_NO"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="reqBy" 			column="REQ_BY"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		
+		<association property="project" 	resultMap="assocProject"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteOptionMap">
+		<result property="quoteId" 			column="QUOTE_ID"/>
+		<result property="quotationNo" 		column="QUOTATION_NO"/>
+		
+		<association property="options" 	resultMap="assocOptions"/>
+		
+		<association property="otherRates" 	resultMap="assocOtherRates"/>	
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
+		<result property="riskName" 		column="RISK_NAME"/>
+		<result property="objectDesc" 		column="OBJECT_DESCRIPTION"/>
+		<result property="site" 			column="SITE"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Options" id="assocOptions">
+		<result property="optionId" 		column="OPTION_ID"/>
+		<result property="optionRt" 			column="OPTION_RT"/>
+		<result property="condition" 		column="CONDITION"/>
+		<result property="commRtQuota" 		column="COMM_RT_QUOTA"/>
+		<result property="commRtSurplus" 	column="COMM_RT_SURPLUS"/>
+		<result property="commRtFac" 		column="COMM_RT_FAC"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		
+		<association property="deductibles" resultMap="assocDeductibles"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles">
+		<result property="deductibleCd" 	column="DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" 	column="DEDUCTIBLE_TITLE"/>
+		<result property="deductibleRt" 	column="DEDUCTIBLE_RT"/>
+		<result property="deductibleAmt" 	column="DEDUCTIBLE_AMT"/>
+		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="assocOtherRates">
+		<result property="coverCd" 			column="COVER_CD"/>
+		<result property="coverCdDesc" 		column="DESCRIPTION"/>
+		<result property="rate" 			column="RATE"/>
+		<result property="amount" 			column="AMOUNT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
 	
 	<select id="retrieveQuoteAlopSample" resultMap="alopMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
+	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
+	</select>
 	
+	<select id="retrieveQuoteListingOc" resultMap="retrieveQuoteListingOcMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listin_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
+	</select>
+	
+	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId},#{quotationNo},null,null,null,null)
+	</select>
 </mapper>

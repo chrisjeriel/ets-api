@@ -1,9 +1,6 @@
 package ph.cpi.rest.api.model;
 
-import org.apache.ibatis.type.Alias;
-
-
-public class Quotation {
+public class QuotationOld {
 
 	private Integer quoteId; 
 	private String quotationNo;
