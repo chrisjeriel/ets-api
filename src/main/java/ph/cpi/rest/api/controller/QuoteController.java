@@ -30,13 +30,16 @@ public class QuoteController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 	
-	@CrossOrigin
-	@GetMapping(path="retrieveQuoteAlop")
-	public @ResponseBody RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
-		logger.info("GET: /api/quote-service/retrieveQuoteAlop");
-		logger.info("RetrieveQuoteAlopRequest : " + rqap.toString());
-		return quoteService.retrieveQuoteAlop(rqap);
-	}
+	/*
+	 * @CrossOrigin
+	 * 
+	 * @GetMapping(path="retrieveQuoteAlop") public @ResponseBody
+	 * RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap)
+	 * throws SQLException {
+	 * logger.info("GET: /api/quote-service/retrieveQuoteAlop");
+	 * logger.info("RetrieveQuoteAlopRequest : " + rqap.toString()); return
+	 * quoteService.retrieveQuoteAlop(rqap); }
+	 */
 	
 	@CrossOrigin
 	@GetMapping(path="retrieveQuoteListing")

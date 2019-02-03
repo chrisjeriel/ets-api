@@ -31,12 +31,14 @@ public class MaintenanceController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MaintenanceController.class);
 	
-	@GetMapping(path="retrieveQuoteAlop")
-	public @ResponseBody RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveQuoteAlop");
-		logger.info("RetrieveQuoteAlopRequest : " + rqap.toString());
-		return maintenanceService.retrieveQuoteAlop(rqap);
-	}
+	/*
+	 * @GetMapping(path="retrieveQuoteAlop") public @ResponseBody
+	 * RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap)
+	 * throws SQLException {
+	 * logger.info("GET: /api/maintenance-service/retrieveQuoteAlop");
+	 * logger.info("RetrieveQuoteAlopRequest : " + rqap.toString()); return
+	 * maintenanceService.retrieveQuoteAlop(rqap); }
+	 */
 	
 	@GetMapping(path="retrieveMtnRisk")
 	public @ResponseBody RetrieveMtnRiskResponse retrieveMtnRisk(RetrieveMtnRiskRequest rmrp) throws SQLException {
