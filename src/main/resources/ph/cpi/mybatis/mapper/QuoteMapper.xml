@@ -404,7 +404,9 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
 		 <result property="adviceNo"			 column="ADVICE_NO"/>
 		 <result property="cedingId"			 column="CEDING_ID"/>
+		 <result property="cedingName"			 column="CEDING_NAME"/>
 		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
+		 <result property="cedingRepName"		 column="CEDING_REP_NAME"/>
 		 <result property="option"			 	 column="OPTN"/>
 		 <result property="wordings"			 column="WORDINGS"/>
 		 <result property="createUser"		 	 column="CREATE_USER"/>

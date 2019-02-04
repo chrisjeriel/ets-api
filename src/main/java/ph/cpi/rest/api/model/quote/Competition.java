@@ -5,7 +5,9 @@ import org.joda.time.LocalDateTime;
 public class Competition {
 	private Integer adviceNo;
 	private Integer cedingId;
+	private String cedingName;
 	private String cedingRepId;
+	private String cedingRepName;
 	private String option;
 	private String wordings;
 	private String createUser;
@@ -25,11 +27,23 @@ public class Competition {
 	public void setCedingId(Integer cedingId) {
 		this.cedingId = cedingId;
 	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
 	public String getCedingRepId() {
 		return cedingRepId;
 	}
 	public void setCedingRepId(String cedingRepId) {
 		this.cedingRepId = cedingRepId;
+	}
+	public String getCedingRepName() {
+		return cedingRepName;
+	}
+	public void setCedingRepName(String cedingRepName) {
+		this.cedingRepName = cedingRepName;
 	}
 	public String getOption() {
 		return option;
@@ -67,9 +81,11 @@ public class Competition {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId=" + cedingRepId
+		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="+ cedingName 
+				+", cedingRepId=" + cedingRepId + ", cedingRepName="+ cedingRepName
 				+ ", option=" + option + ", wordings=" + wordings +  ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
