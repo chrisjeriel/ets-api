@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
@@ -24,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
@@ -336,6 +338,23 @@ public class QuoteServiceImpl implements QuoteService{
 		logger.info("retrieveQuoteCoverageOcResponse : " + rqcorResponse.toString());
 		
 		return rqcorResponse;
+	}
+
+	@Override
+	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
+		
+		RetrieveQuoteAlopResponse rqaResponse = new RetrieveQuoteAlopResponse();
+		
+		HashMap<String, Object> retrieveQuoteAlopParams = new HashMap<String, Object>();
+		retrieveQuoteAlopParams.put("quoteId",rqap.getQuoteId() );
+		retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo() );
+		
+		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+
+		
+		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
+		
+		return rqaResponse;
 	}
 	
 

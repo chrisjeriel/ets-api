@@ -19,12 +19,12 @@ public class QuoteDaoImpl implements QuoteDao{
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
+	/*@Override
 	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Alop alopSample = sqlSession.selectOne("retrieveQuoteAlopSample", params);
 		return alopSample;
-	}
+	}*/
 
 	@Override
 	public List<Quotation> retrieveQuoteAttachmentList(HashMap<String, Object> params) throws SQLException {
@@ -115,9 +115,9 @@ public class QuoteDaoImpl implements QuoteDao{
 
 
 	@Override
-	public List<Quotation> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
-		List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlop",params);
-		return quotationList;
+	public Quotation retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+		Quotation quotationAlop = sqlSession.selectOne("retrieveQuoteAlop",params);
+		return quotationAlop;
 	}
 
 }
