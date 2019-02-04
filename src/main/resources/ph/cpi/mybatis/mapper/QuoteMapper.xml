@@ -135,7 +135,7 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId},#{quotationNo},'','','','')
+			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','','')
 	</select>
 	
 	<select id="retrieveQuoteEndorsementsOc" resultMap="quoteEndorsementsOcMap" parameterType="java.util.Map">
@@ -147,7 +147,7 @@
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfo" resultMap="quoteGenInfoMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId},#{quotationNo},'','','','')
+			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','','')
 	</select>
 
 	<select id="retrieveQuoteAlopSample" resultMap="alopMap" parameterType="java.util.Map">
