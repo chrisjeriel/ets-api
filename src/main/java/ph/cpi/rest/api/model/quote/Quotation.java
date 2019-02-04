@@ -444,6 +444,14 @@ public class Quotation {
 	public void setHoldCover(HoldCover holdCover) {
 		this.holdCover = holdCover;
 	}
+	
+	
+	public Attachment getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(Attachment attachment) {
+		this.attachment = attachment;
+	}
 	@Override
 	public String toString() {
 		return "Quotation [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
@@ -465,8 +473,11 @@ public class Quotation {
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", project=" + project + ", options=" + options + ", otherRates=" + otherRates + ", attachmentsList="
 				+ attachmentsList + ", competitiosList=" + competitiosList + ", otherRatesList=" + otherRatesList
-				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + "]";
+				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment="
+				+ attachment + "]";
 	}
+	
+	
 	
 	
 }
