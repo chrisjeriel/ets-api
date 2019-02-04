@@ -86,12 +86,61 @@
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
+		
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Region" id="regionMap">
+		<result property = "regionCd"       column  =  "REGION_CD"/>
+		<result property = "regionDesc"     column  =  "REGION_DESC"/>
+		<result property = "activeTag"     	column  =  "ACTIVE_TAG"/> 
+		<result property = "remarks"        column  =  "REMARKS"/>
+		<result property = "createUser"     column  =  "CREATE_USER"/>
+		<result property = "createDate"     column  =  "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateUser"     column  =  "UPDATE_USER"/>
+		<result property = "updateDate"     column  =  "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Province" id="provinceMap">
+		<result property = "provinceCd "       column   ="PROVINCE_CD"/>
+		<result property = "provinceDesc"      column   ="PROVINCE_DESC"/>
+		<result property = "activeTag"         column   ="ACTIVE_TAG"/>
+		<result property = "remarks"           column   ="REMARKS"/>
+		<result property = "createUser"        column   ="CREATE_USER"/>
+		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateUser"        column   ="UPDATE_USER"/>
+		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Object_" id="objectMap">
+		<result property = "lineCd"         column  =   "LINE_CD"/>
+		<result property = "lineDesc"       column  =   "LINE_DESCRIPTION"/>
+		<result property = "objectId"       column  =   "OBJECT_ID"/>
+		<result property = "description"    column  =   "OBJECT_DESCRIPTION"/>
+		<result property = "activeTag"      column  =   "ACTIVE_TAG"/>
+		<result property = "remarks"        column  =   "REMARKS"/>
+		<result property = "createUser"     column  =   "CREATE_USER"/>
+		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateUser"     column  =   "UPDATE_USER"/>
+		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.QuoteWordings" id="quoteWordingsMap">
+		 <result property   ="lineCd"      column  =   "LINE_CD"/>   
+		 <result property   ="lineDesc"    column  =   "DESCRIPTION"/> 
+		 <result property   ="wordingId"   column  =   "WORDING_ID"/>    
+		 <result property   ="wording"     column  =   "WORDING"/>  
+		 <result property   ="type"        column  =   "TYPE"/> 
+		 <result property   ="activeTag"   column  =   "ACTIVE_TAG"/>    
+		 <result property   ="defaultTag"  column  =   "DEFAULT_TAG"/>   
+		 <result property   ="remarks"     column  =   "REMARKS"/>  
+		 <result property   ="createUser"  column  =   "CREATE_USER"/>   
+		 <result property   ="createDate"  column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>   
+		 <result property   ="updateUser"  column  =   "UPDATE_USER"/>   
+		 <result property   ="updateDate"  column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>  
+	</resultMap>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
-
 	<select id="retrieveMtnRisk" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
 		<!-- SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},#{position},#{count},#{sortKey},#{order}) -->
 		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},null,null,null,null)
@@ -230,4 +279,21 @@
 	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
 		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_type_of_cession(#{cessionId},null,null,null,null)
 	</select>
+
+	<select id="retrieveMtnRegion" resultMap="regionMap" parameterType="java.util.Map">
+			SELECT * FROM ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_region(#{regionCd},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnProvince" resultMap="provinceMap" parameterType="java.util.Map">
+			SELECT * FROM ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_province(#{regionCd},#{provinceCd},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_object(#{lineCd},#{objectId},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_quotation_wordings(#{lineCd},#{type},null,null,null,null)
+	</select>
+	
 </mapper>

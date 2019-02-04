@@ -152,7 +152,14 @@ public class Project {
 	public void setCoverage(Coverage coverage) {
 		this.coverage = coverage;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Project [quoteId=" + quoteId + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
+				+ ", riskName=" + riskName + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue="
+				+ totalValue + ", objectId=" + objectId + ", objectDesc=" + objectDesc + ", site=" + site
+				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
+				+ ", noClaimPd=" + noClaimPd + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", coverage=" + coverage + "]";
+	}
 	
 }

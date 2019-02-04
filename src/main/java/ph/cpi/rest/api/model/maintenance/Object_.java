@@ -1,36 +1,41 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import java.util.List;
 import org.joda.time.LocalDateTime;
 
-public class Province {
-	private Integer provinceCd ;
-	private String provinceDesc;
-	private List<City> cityList;
-	private String activeTag   ;
+public class Object_ {
+	private String lineCd;
+	private String lineDesc;
+	private Integer objectId ;
+	private String description;
+	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	
-	public Integer getProvinceCd() {
-		return provinceCd;
+	public String getLineCd() {
+		return lineCd;
 	}
-	public void setProvinceCd(Integer provinceCd) {
-		this.provinceCd = provinceCd;
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
 	}
-	public String getProvinceDesc() {
-		return provinceDesc;
+	public String getLineDesc() {
+		return lineDesc;
 	}
-	public void setProvinceDesc(String provinceDesc) {
-		this.provinceDesc = provinceDesc;
+	public void setLineDesc(String lineDesc) {
+		this.lineDesc = lineDesc;
 	}
-	public List<City> getCityList() {
-		return cityList;
+	public Integer getObjectId() {
+		return objectId;
 	}
-	public void setCityList(List<City> cityList) {
-		this.cityList = cityList;
+	public void setObjectId(Integer objectId) {
+		this.objectId = objectId;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -68,6 +73,11 @@ public class Province {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	@Override
+	public String toString() {
+		return "Object_ [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", objectId=" + objectId + ", description="
+				+ description + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+	}
 	
 }

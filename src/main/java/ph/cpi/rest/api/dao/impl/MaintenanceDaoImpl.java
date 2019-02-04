@@ -13,6 +13,9 @@ import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
+import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.Province;
+import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
@@ -63,6 +66,33 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		List<Risk> riskList = sqlSession.selectList("retrieveMtnRiskListing", params);
 		return riskList;
+	}
+
+	public Region retrieveMtnRegion(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Region region = sqlSession.selectOne("retrieveMtnRegion", params);;
+		return region;
+	}
+
+	@Override
+	public Province retrieveMtnProvince(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Province province = sqlSession.selectOne("retrieveMtnProvince", params);
+		return province;
+	}
+
+	@Override
+	public Object_ retrieveMtnObject(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Object_ object = sqlSession.selectOne("retrieveMtnObject", params);
+		return object;
+	}
+
+	@Override
+	public List<QuoteWordings> retrieveMtnQuoteWordings(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<QuoteWordings> listQuoteWordings = sqlSession.selectList("retrieveMtnQuoteWordings", params);
+		return listQuoteWordings;
 	}
 
 	@Override

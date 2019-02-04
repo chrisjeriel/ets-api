@@ -7,22 +7,25 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class ProjectOc {
-	private Integer projId;
-	private String projDesc;
-	private Integer riskId;
+	private Integer	projId;
+	private String	projDesc;
+	private Integer	riskId;
 	private String riskName;
+	private Integer	maxSiI; //Check and remap in XML
 	private BigDecimal maxSi;
+	private Integer	pctShareI; //Check and remap in XML
 	private BigDecimal pctShare;
+	private Integer	totalValueI; //Check and remap in XML
 	private BigDecimal totalValue;
-	private Integer objectId;
+	private Integer	objectId;
 	private String objectDesc;
-	private String site;
-	private String duration;
-	private String testing;
-	private String createUser;
-	private LocalDateTime createDate;
-	private String updateUser;
-	private LocalDateTime updateDate;
+	private String	site;
+	private String	duration;
+	private String	testing;
+	private String	createUser;
+	private LocalDateTime	createDate;
+	private String	updateUser;
+	private LocalDateTime	updateDate;
 	private List<EndorsementsOc> endorsementsOc;
 	private CoverageOc coverageOc;
 	public Integer getProjId() {
@@ -49,17 +52,35 @@ public class ProjectOc {
 	public void setRiskName(String riskName) {
 		this.riskName = riskName;
 	}
+	public Integer getMaxSiI() {
+		return maxSiI;
+	}
+	public void setMaxSiI(Integer maxSiI) {
+		this.maxSiI = maxSiI;
+	}
 	public BigDecimal getMaxSi() {
 		return maxSi;
 	}
 	public void setMaxSi(BigDecimal maxSi) {
 		this.maxSi = maxSi;
 	}
+	public Integer getPctShareI() {
+		return pctShareI;
+	}
+	public void setPctShareI(Integer pctShareI) {
+		this.pctShareI = pctShareI;
+	}
 	public BigDecimal getPctShare() {
 		return pctShare;
 	}
 	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
+	}
+	public Integer getTotalValueI() {
+		return totalValueI;
+	}
+	public void setTotalValueI(Integer totalValueI) {
+		this.totalValueI = totalValueI;
 	}
 	public BigDecimal getTotalValue() {
 		return totalValue;
@@ -132,6 +153,16 @@ public class ProjectOc {
 	}
 	public void setCoverageOc(CoverageOc coverageOc) {
 		this.coverageOc = coverageOc;
+	}
+	@Override
+	public String toString() {
+		return "ProjectOc [projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId + ", riskName="
+				+ riskName + ", maxSiI=" + maxSiI + ", maxSi=" + maxSi + ", pctShareI=" + pctShareI + ", pctShare="
+				+ pctShare + ", totalValueI=" + totalValueI + ", totalValue=" + totalValue + ", objectId=" + objectId
+				+ ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing=" + testing
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", endorsementsOc=" + endorsementsOc + ", coverageOc=" + coverageOc
+				+ "]";
 	}
 	
 }

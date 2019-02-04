@@ -13,6 +13,10 @@ import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
@@ -21,6 +25,10 @@ import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
@@ -180,5 +188,62 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		return rmdrResponse;
 	}
+
+	@Override
+	public RetrieveMtnRegionResponse retrieveMtnRegion(RetrieveMtnRegionRequest rmrp) throws SQLException {
+		RetrieveMtnRegionResponse rmrResponse = new RetrieveMtnRegionResponse();
+		
+		HashMap<String, Object> retrieveMtnRegionParams = new HashMap<String, Object>();
+		retrieveMtnRegionParams.put("regionCd", rmrp.getRegionCd());
+		retrieveMtnRegionParams.put("from", "retrieveMtnRegion");
+		rmrResponse.setRegion(maintenanceDao.retrieveMtnRegion(retrieveMtnRegionParams));
+		logger.info("retrieveMtnRegionResponse :" + rmrResponse.toString());
+		
+		return rmrResponse;
+	}
+
+	@Override
+	public RetrieveMtnProvinceResponse retrieveMtnProvince(RetrieveMtnProvinceRequest rmpp) throws SQLException {
+		RetrieveMtnProvinceResponse rmpResponse = new RetrieveMtnProvinceResponse();
+		
+		HashMap<String, Object> retrieveMtnProvinceParams = new HashMap<String, Object>();
+		retrieveMtnProvinceParams.put("regionCd", rmpp.getRegionCd());
+		retrieveMtnProvinceParams.put("provinceCd", rmpp.getProvinceCd());
+		retrieveMtnProvinceParams.put("from", "retrieveMtnProvince");
+		rmpResponse.setRegion(maintenanceDao.retrieveMtnRegion(retrieveMtnProvinceParams));
+		rmpResponse.getRegion().setProvince(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
+		logger.info("retrieveMtnProvinceResponse :" + rmpResponse.toString());
+		
+		return rmpResponse;
+	}
+
+	@Override
+	public RetrieveMtnObjectResponse retrieveMtnObject(RetrieveMtnObjectRequest rmop) throws SQLException {
+		RetrieveMtnObjectResponse rmoResponse = new RetrieveMtnObjectResponse();
+		
+		HashMap<String, Object> retrieveMtnObjectParams = new HashMap<String, Object>();
+		retrieveMtnObjectParams.put("objectId", rmop.getObjectId());
+		retrieveMtnObjectParams.put("lineCd", rmop.getLineCd());
+		rmoResponse.setObject(maintenanceDao.retrieveMtnObject(retrieveMtnObjectParams));
+		logger.info("retrieveMtnObjectResponse :" + rmoResponse.toString());
+		
+		return rmoResponse;
+	}
+
+	@Override
+	public RetrieveMtnQuoteWordingsResponse retrieveMtnQuoteWordings(RetrieveMtnQuoteWordingsRequest rmqwp)
+			throws SQLException {
+		RetrieveMtnQuoteWordingsResponse rmqwResponse = new RetrieveMtnQuoteWordingsResponse();
+		HashMap<String, Object> retrieveMtnQuoteWordingsParams = new HashMap<String, Object>();
+		retrieveMtnQuoteWordingsParams.put("lineCd", rmqwp.getLineCd());
+		retrieveMtnQuoteWordingsParams.put("type",rmqwp.getType());
+		rmqwResponse.setQuoteWordings(maintenanceDao.retrieveMtnQuoteWordings(retrieveMtnQuoteWordingsParams));
+		logger.info("retrieveMtnQuoteWordingsResponse :" + rmqwResponse.toString());
+
+		return rmqwResponse;
+	}
+
+	
+	
 
 }

@@ -12,12 +12,17 @@ import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteGeneralInfoOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteGeneralInfoOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
@@ -170,6 +175,55 @@ public class QuoteServiceImpl implements QuoteService{
 		return rqdrResponse;
 	}
 
+	@Override
+	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCover(RetrieveQuoteHoldCoverRequest rqhcp)
+			throws SQLException {
+		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
+		HashMap<String, Object> retrieveQuoteHoldCoveParams = new HashMap<String, Object>();
+		retrieveQuoteHoldCoveParams.put("holdCoverId", rqhcp.getHoldCoverId());
+		retrieveQuoteHoldCoveParams.put("holdCoverNo", rqhcp.getHoldCoverNo());
+		rqhcResponse.setQuotation(quoteDao.retrieveQuoteHoldCover(retrieveQuoteHoldCoveParams));
+		logger.info("retrieveQuoteHoldCoverResponse : " + rqhcResponse.toString());
+		
+		return rqhcResponse;
+	}
+
+	@Override
+	public RetrieveQuoteGeneralInfoOcResponse retrieveQuoteGeneralInfoOc(RetrieveQuoteGeneralInfoOcRequest rqgiocp)
+			throws SQLException {
+		RetrieveQuoteGeneralInfoOcResponse rqgiocResponse = new RetrieveQuoteGeneralInfoOcResponse();
+		HashMap<String, Object> retrieveQuoteGeneralInfoOcParams = new HashMap<String, Object>();
+		retrieveQuoteGeneralInfoOcParams.put("quoteIdOc", rqgiocp.getQuoteIdOc());
+		retrieveQuoteGeneralInfoOcParams.put("openQuotationNo", rqgiocp.getOpenQuotationNo());
+		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoterGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
+		logger.info("retrieveQuoteGeneralInfoOcResponse : " + rqgiocResponse.toString());
+		
+		return rqgiocResponse;
+	}
+
+	@Override
+	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp)
+			throws SQLException {
+		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
+		HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
+		retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
+		retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
+		retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
+		retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
+		retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
+		retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
+		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom());
+		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo());
+		retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
+		retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
+		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate());
+		retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
+		rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+		
+		return rqhcResponse;
+	}
+
 	
+
 	
 }

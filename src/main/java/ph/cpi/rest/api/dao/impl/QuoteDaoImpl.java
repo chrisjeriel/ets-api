@@ -59,9 +59,19 @@ public class QuoteDaoImpl implements QuoteDao{
 		return quotation;
 	}
 
+	public Quotation retrieveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+		Quotation quotation = sqlSession.selectOne("retrieveQuoteHoldCover", params);
+		return quotation;
+	}
+
 	@Override
 	public QuotationOc retrieveQuoteDetailsOc(HashMap<String, Object> params) throws SQLException {
 		QuotationOc quotationOc = sqlSession.selectOne("retrieveQuoteDetailsOc", params);
+		return quotationOc;
+	}
+	
+	public List<QuotationOc> retrieveQuoterGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
+		List<QuotationOc> quotationOc = sqlSession.selectList("retrieveQuoteGeneralInfoOc", params);
 		return quotationOc;
 	}
 
@@ -70,6 +80,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		Quotation quotation = sqlSession.selectOne("retrieveQuoteDetails", params);
 		return quotation;
 	}
-	
-	
+
+	public List<Quotation> retrieveQuoteHoldCoverListing(HashMap<String, Object> params) throws SQLException {
+		List<Quotation> quotationListing = sqlSession.selectList("retrieveQuoteHoldCoverListing", params);
+		return quotationListing;
+	}
+
 }

@@ -11,24 +11,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
-import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 @Controller
@@ -97,6 +103,34 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnDistrict");
 		logger.info("RetrieveMtnDistrict : " + rmdr.toString());
 		return maintenanceService.retrieveMtnDistrict(rmdr);
+	}
+	
+	@GetMapping(path="retrieveMtnRegion")
+	public @ResponseBody RetrieveMtnRegionResponse retrieveMtnRegion(RetrieveMtnRegionRequest rmrp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnRegion");
+		logger.info("RetrieveMtnRegionRequest : " + rmrp.toString());
+		return maintenanceService.retrieveMtnRegion(rmrp);
+	}
+	
+	@GetMapping(path="retrieveMtnProvince")
+	public @ResponseBody RetrieveMtnProvinceResponse retrieveMtnProvince(RetrieveMtnProvinceRequest rmpp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnProvince");
+		logger.info("RetrieveMtnProvinceRequest : " + rmpp.toString());
+		return maintenanceService.retrieveMtnProvince(rmpp);
+	}
+	
+	@GetMapping(path="retrieveMtnObject")
+	public @ResponseBody RetrieveMtnObjectResponse retrieveMtnObject(RetrieveMtnObjectRequest rmop) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnObject");
+		logger.info("RetrieveMtnObjectRequest : " + rmop.toString());
+		return maintenanceService.retrieveMtnObject(rmop);
+	}
+	
+	@GetMapping(path="retrieveMtnQuotationWordings")
+	public @ResponseBody RetrieveMtnQuoteWordingsResponse retrieveMtnQuoteWordings(RetrieveMtnQuoteWordingsRequest rmqwp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnQuoteWordings");
+		logger.info("RetrieveMtnQuoteWordingsRequest : " + rmqwp.toString());
+		return maintenanceService.retrieveMtnQuoteWordings(rmqwp);
 	}
 
 	@GetMapping(path="retrieveMtnDeductibles")
