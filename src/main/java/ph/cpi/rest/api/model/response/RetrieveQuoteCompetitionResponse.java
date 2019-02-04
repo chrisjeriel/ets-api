@@ -4,7 +4,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.Quotation;
+import ph.cpi.rest.api.model.quote.Quotation;
 
 public class RetrieveQuoteCompetitionResponse {
 	private List<Quotation> quotation;

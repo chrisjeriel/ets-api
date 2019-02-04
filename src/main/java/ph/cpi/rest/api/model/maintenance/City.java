@@ -1,10 +1,12 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class City {
 	private Integer cityCd;
 	private String cityDesc;
+	private List<District> districtList;
 	private String activeTag;
 	private String remarks;
 	private Integer zoneCd;
@@ -13,7 +15,6 @@ public class City {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	
 	public Integer getCityCd() {
 		return cityCd;
 	}
@@ -25,6 +26,12 @@ public class City {
 	}
 	public void setCityDesc(String cityDesc) {
 		this.cityDesc = cityDesc;
+	}
+	public List<District> getDistrictList() {
+		return districtList;
+	}
+	public void setDistrictList(List<District> districtList) {
+		this.districtList = districtList;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -74,13 +81,14 @@ public class City {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "City [cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", activeTag="
-				+ activeTag + ", remarks=" + remarks + ", zoneCd="+ zoneCd +", zoneCdDesc="+ zoneCdDesc +", createUser="
-				+ createUser +", createDate="+ createDate +", updateUser="+ updateUser +", updateDate="
-				+ updateDate +"]";
+		return "City [cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtList=" + districtList + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", zoneCd=" + zoneCd + ", zoneCdDesc=" + zoneCdDesc
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
+	
+	
 	
 }

@@ -9,10 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
-import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
+import ph.cpi.rest.api.model.maintenance.Deductibles;
+import ph.cpi.rest.api.model.maintenance.EndtCode;
+import ph.cpi.rest.api.model.maintenance.Insured;
+import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.Province;
+import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Region;
+import ph.cpi.rest.api.model.maintenance.Risk;
+import ph.cpi.rest.api.model.maintenance.SectionCovers;
+import ph.cpi.rest.api.model.quote.Alop;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -23,8 +32,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Alop alop = sqlSession.selectOne("retrieveMaintenanceSample", params);
-		return alop;
+		Alop alopSample = sqlSession.selectOne("retrieveMaintenanceSample", params);
+		return alopSample;
 	}
 
 	@Override
@@ -35,6 +44,84 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 	
 	@Override
+	public List<Insured> retrieveMtnInsured(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Insured> insured = sqlSession.selectList("retrieveMtnInsured", params);
+		return insured;
+	}
+
+	@Override
+	public List<EndtCode> retrieveEndtCode(HashMap<String, Object> params) throws SQLException {
+		List<EndtCode> endtCode = sqlSession.selectList("retrieveEndtCode", params);
+		return endtCode;
+	}
+
+	@Override
+	public Risk retrieveMtnRisk(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Risk risk = sqlSession.selectOne("retrieveMtnRisk", params);
+		return risk;
+	}
+	
+	@Override
+	public List<Risk> retrieveMtnRiskListing(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Risk> riskList = sqlSession.selectList("retrieveMtnRiskListing", params);
+		return riskList;
+	}
+
+	public Region retrieveMtnRegion(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Region region = sqlSession.selectOne("retrieveMtnRegion", params);;
+		return region;
+	}
+
+	@Override
+	public Province retrieveMtnProvince(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Province province = sqlSession.selectOne("retrieveMtnProvince", params);
+		return province;
+	}
+
+	@Override
+	public Object_ retrieveMtnObject(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Object_ object = sqlSession.selectOne("retrieveMtnObject", params);
+		return object;
+	}
+
+	@Override
+	public List<QuoteWordings> retrieveMtnQuoteWordings(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<QuoteWordings> listQuoteWordings = sqlSession.selectList("retrieveMtnQuoteWordings", params);
+		return listQuoteWordings;
+	}
+
+	@Override
+	public SectionCovers retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		SectionCovers sectionCovers = sqlSession.selectOne("retrieveMtnSectionCovers", params);
+		return sectionCovers;
+	}
+
+	@Override
+	public Cession retrieveTypeOfCession(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Cession cession = sqlSession.selectOne("retrieveMtnTypeOfCession", params);
+		return cession;
+	}
+
+	public List<Region> retrieveMtnDistrict(HashMap<String, Object> params) throws SQLException {
+		List<Region> district = sqlSession.selectList("retrieveMtnDistrict",params);
+		return district;
+	}
+
+	@Override
+	public List<Deductibles> retrieveMtnDeductibles(HashMap<String, Object> params) throws SQLException {
+		List<Deductibles> deductibles = sqlSession.selectList("retrieveMtnDeductibles",params);
+		return deductibles;
+	}
+	
 	public List<Region> retrieveMtnCityList(final HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Region> cityList = sqlSession.selectList("retrieveMtnCity", params);

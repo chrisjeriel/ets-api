@@ -7,11 +7,13 @@ public class Competition {
 	private Integer cedingId;
 	private String cedingRepId;
 	private String option;
-	private String wording;
+	private String wordings;
+	private String wording; //Must be wordings, check XML mapper before removing.
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	
 	public Integer getAdviceNo() {
 		return adviceNo;
 	}
@@ -35,6 +37,12 @@ public class Competition {
 	}
 	public void setOption(String option) {
 		this.option = option;
+	}
+	public String getWordings() {
+		return wordings;
+	}
+	public void setWordings(String wordings) {
+		this.wordings = wordings;
 	}
 	public String getWording() {
 		return wording;
@@ -66,13 +74,12 @@ public class Competition {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId="
-				+ cedingRepId + ", option=" + option + ", wording="+ wording +", createUser="
-				+ createUser +", createDate="+ createDate +", updateUser="+ updateUser +", updateDate="
-				+ updateDate +"]";
+		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId=" + cedingRepId
+				+ ", option=" + option + ", wordings=" + wordings + ", wording=" + wording + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 	
 }

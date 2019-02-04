@@ -2,9 +2,10 @@ package ph.cpi.rest.api.model;
 
 import java.util.List;
 
+import ph.cpi.rest.api.model.quote.Alop;
 import ph.cpi.rest.api.model.quote.Competition;
 
-public class Quotation {
+public class QuotationOld {
 
 	private Integer quoteId; 
 	private String quotationNo;

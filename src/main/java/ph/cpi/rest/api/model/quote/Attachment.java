@@ -52,12 +52,11 @@ public class Attachment {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "Attachment [fileNo=" + fileNo + ", fileName=" + fileName + ", description="
-				+ description + ", createUser=" + createUser + ", createDate="+ createDate +","
-						+ "updateUser="+updateUser+", updateDate="+updateDate+"]";
+		return "Attachment [fileNo=" + fileNo + ", fileName=" + fileName + ", description=" + description
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-
+	
 }

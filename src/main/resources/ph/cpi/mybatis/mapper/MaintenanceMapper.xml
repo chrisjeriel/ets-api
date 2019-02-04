@@ -9,7 +9,7 @@
 		<result property="insuredName" column="insured_name"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.Alop" id="alopMap">
+	<resultMap type="ph.cpi.rest.api.model.AlopSample" id="alopMap">
 	    <result property="alopId" 			column="ALOP_ID"/> 
 		<result property="insuredId" 		column="INS_ID"/> 
 		<result property="insuredName" 		column="INSURED_NAME"/> 
@@ -30,22 +30,273 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Risk" id="retrieveMtnRiskMap">
+		<result property="riskId"			column="RISK_ID"/>
+		<result property="riskAbbr"			column="RISK_ABBR"/>
+		<result property="riskName"			column="RISK_NAME"/>
+		<result property="regionCd"			column="REGION_CD"/>	
+		<result property="regionDesc"		column="REGION_DESC"/>
+		<result property="provinceCd"		column="PROVINCE_CD"/>	
+		<result property="provinceDesc"		column="PROVINCE_DESC"/>
+		<result property="cityCd"			column="CITY_CD"/>
+		<result property="cityDesc"			column="CITY_DESC"/>
+		<result property="districtCd"		column="DISTRICT_CD"/>	
+		<result property="districtDesc"		column="DISTRICT_DESC"/>
+		<result property="blockCd"			column="BLOCK_CD"/>
+		<result property="blockDesc"		column="BLOCK_DESC"/>
+		<result property="latitude"			column="LATITUDE"/>
+		<result property="longitude"		column="LONGITUDE"/>
+		<result property="zoneCd"			column="ZONE_CD"/>
+		<result property="zoneDesc"			column="ZONE_DESC"/>
+		<result property="activeTag"		column="ACTIVE_TAG"/>
+		<result property="remarks"			column="REMARKS"/>
+		<result property="createUser"		column="CREATE_USER"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.SectionCovers" id="retrieveMtnSectionCoversMap">
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="coverCd" 			column="COVER_CD"/>
+		<result property="coverCdAbbr" 		column="COVER_CD_ABBR"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="section" 			column="SECTION"/>
+		<result property="sortSeq" 			column="SORT_SEQ"/>
+		<result property="defaultTag" 		column="DEFAULT_TAG"/>
+		<result property="bulletNo" 		column="BULLET_NO"/>
+		<result property="addSi" 			column="ADD_SI"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Cession" id="retrieveTypeOfCessionMap">
+		<result property="cessionId" 		column="CESSION_ID"/>
+		<result property="cessionAbbr" 		column="CESSION_ABBR"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+		
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Region" id="regionMap">
+		<result property = "regionCd"       column  =  "REGION_CD"/>
+		<result property = "regionDesc"     column  =  "REGION_DESC"/>
+		<result property = "activeTag"     	column  =  "ACTIVE_TAG"/> 
+		<result property = "remarks"        column  =  "REMARKS"/>
+		<result property = "createUser"     column  =  "CREATE_USER"/>
+		<result property = "createDate"     column  =  "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateUser"     column  =  "UPDATE_USER"/>
+		<result property = "updateDate"     column  =  "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="province"	resultMap="provinceMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Province" id="provinceMap">
+		<result property = "provinceCd"        column   ="PROVINCE_CD"/>
+		<result property = "provinceDesc"      column   ="PROVINCE_DESC"/>
+		<result property = "activeTag"         column   ="ACTIVE_TAG"/>
+		<result property = "remarks"           column   ="REMARKS"/>
+		<result property = "createUser"        column   ="CREATE_USER"/>
+		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateUser"        column   ="UPDATE_USER"/>
+		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="cityList"	   resultMap="cityMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Object_" id="objectMap">
+		<result property = "lineCd"         column  =   "LINE_CD"/>
+		<result property = "lineDesc"       column  =   "LINE_DESCRIPTION"/>
+		<result property = "objectId"       column  =   "OBJECT_ID"/>
+		<result property = "description"    column  =   "OBJECT_DESCRIPTION"/>
+		<result property = "activeTag"      column  =   "ACTIVE_TAG"/>
+		<result property = "remarks"        column  =   "REMARKS"/>
+		<result property = "createUser"     column  =   "CREATE_USER"/>
+		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateUser"     column  =   "UPDATE_USER"/>
+		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.QuoteWordings" id="quoteWordingsMap">
+		 <result property   ="lineCd"      column  =   "LINE_CD"/>   
+		 <result property   ="lineDesc"    column  =   "DESCRIPTION"/> 
+		 <result property   ="wordingId"   column  =   "WORDING_ID"/>    
+		 <result property   ="wording"     column  =   "WORDING"/>  
+		 <result property   ="type"        column  =   "TYPE"/> 
+		 <result property   ="activeTag"   column  =   "ACTIVE_TAG"/>    
+		 <result property   ="defaultTag"  column  =   "DEFAULT_TAG"/>   
+		 <result property   ="remarks"     column  =   "REMARKS"/>  
+		 <result property   ="createUser"  column  =   "CREATE_USER"/>   
+		 <result property   ="createDate"  column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>   
+		 <result property   ="updateUser"  column  =   "UPDATE_USER"/>   
+		 <result property   ="updateDate"  column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>  
+	</resultMap>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.maintenance.Region" id="regionMap">
-		<result property="regionCd"			column="REGION_CD"/>
-		<result property="regionDesc"		column="REGION_DESC"/>
-		<association property="province"	resultMap="provinceMap"/>
+	<select id="retrieveMtnRisk" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
+		<!-- SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnRiskListing" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk_listing(#{riskId},#{riskAbbr},#{riskName},#{regionDesc},#{provinceDesc},#{cityDesc},#{districtDesc},#{blockDesc},#{latitude},#{longitude},#{activeTag},null,null,null,null)
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">
+		<result property="insuredId" 	column="INSURED_ID"/>
+		<result property="insuredName" 	column="INSURED_NAME"/>
+		<result property="insuredAbbr" 	column="INSURED_ABBR"/>
+		<result property="firstName" 	column="FIRST_NAME"/>
+		<result property="middleInitial" 	column="MIDDLE_INITIAL"/>
+		<result property="lastName" 	column="LAST_NAME"/>
+		<result property="addrLine1" 	column="ADDR_LINE1"/>
+		<result property="addrLine2" 	column="ADDR_LINE2"/>
+		<result property="addrLine3" 	column="ADDR_LINE3"/>
+		<result property="zipCd" 	column="ZIP_CD"/>
+		<result property="address" 	column="ADDRESS"/>
+		<result property="contactNo" 	column="CONTACT_NO"/>
+		<result property="emailAdd" 	column="EMAIL_ADD"/>
+		<result property="activeTag" 	column="ACTIVE_TAG"/>
+		<result property="corpTag" 	column="CORP_TAG"/>
+		<result property="vatTag" 	column="VAT_TAG"/>
+		<result property="oldInsId" 	column="OLD_INS_ID"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.maintenance.Province" id="provinceMap">
-		<result property="provinceCd"		column="PROVINCE_CD"/>
-		<result property="provinceDesc"		column="PROVINCE_DESC"/>
-		<association property="city"		resultMap="cityMap"/>
+	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'','')
+	</select>
+	
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.EndtCode" id="endtCode">
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="lineDesc" column="LINE_DESCRIPTION"/>
+		<result property="endtCd" column="ENDT_CD"/>
+		<result property="endtTitle" column="ENDT_TITLE"/>
+		<result property="description" column="ENDT_DESCRIPTION"/>
+		<result property="defaultTag" column="DEFAULT_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="endtText01" column="ENDT_TEXT01"/>
+		<result property="endtText02" column="ENDT_TEXT02"/>
+		<result property="endtText03" column="ENDT_TEXT03"/>
+		<result property="endtText04" column="ENDT_TEXT04"/>
+		<result property="endtText05" column="ENDT_TEXT05"/>
+		<result property="endtText06" column="ENDT_TEXT06"/>
+		<result property="endtText07" column="ENDT_TEXT07"/>
+		<result property="endtText08" column="ENDT_TEXT08"/>
+		<result property="endtText09" column="ENDT_TEXT09"/>
+		<result property="endtText10" column="ENDT_TEXT10"/>
+		<result property="endtText11" column="ENDT_TEXT11"/>
+		<result property="endtText12" column="ENDT_TEXT12"/>
+		<result property="endtText13" column="ENDT_TEXT13"/>
+		<result property="endtText14" column="ENDT_TEXT14"/>
+		<result property="endtText15" column="ENDT_TEXT15"/>
+		<result property="endtText16" column="ENDT_TEXT16"/>
+		<result property="endtText17" column="ENDT_TEXT17"/>
+		<result property="remarks" 	column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
+	
+	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'','')
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">
+		<result property="districtCd" column="DISTRICT_CD" />
+		<result property="districtDesc" column="DISTRICT_DESC" />
+		<result property="activeTag" column="ACTIVE_TAG" />
+		<result property="remarks" column="REMARKS" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER" />
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="city">
+		<result property="cityCd" column="CITY_CD" />
+		<result property="cityDesc" column="CITY_DESC" />
+		<association property="districtList" resultMap="district"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Province" id="province">
+		<result property="provinceCd" column="PROVINCE_CD" />
+		<result property="provinceDesc" column="PROVINCE_DESC" />
+		<association property="cityList" resultMap="city"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Region" id="region">
+		<result property="regionCd" column="REGION_CD" />
+		<result property="regionDesc" column="REGION_DESC" />
+		<association property="provinceList" resultMap="province"></association>
+	</resultMap>
+	
+	<select id="retrieveMtnDistrict" resultMap="region" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},'',1,'','')
+	</select>
+	
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Deductibles" id="deductibles">
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="lineDesc" column="DESCRIPTION"/>
+		<result property="deductibleCd" column="DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" column="DEDUCTIBLE_TITLE"/>
+		<result property="deductibleType" column="DEDUCTIBLE_TYPE"/>
+		<result property="deductibleRate" column="DEDUCTIBLE_RATE"/>
+		<result property="deductibleAmt" column="DEDUCTIBLE_AMT"/>
+		<result property="minAmt" column="MIN_AMT"/>
+		<result property="maxAmt" column="MAX_AMT"/>
+		<result property="deductibleText" column="DEDUCTIBLE_TEXT"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnDeductibles" resultMap="deductibles">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},'',1,'','')
+	</select>
+	
+	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd},#{coverCd},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_type_of_cession(#{cessionId},null,null,null,null)
+	</select>
+
+	<select id="retrieveMtnRegion" resultMap="regionMap" parameterType="java.util.Map">
+			SELECT * FROM ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_region(#{regionCd},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnProvince" resultMap="provinceMap" parameterType="java.util.Map">
+			SELECT * FROM ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_province(#{regionCd},#{provinceCd},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_object(#{lineCd},#{objectId},null,null,null,null)
+	</select>
+	
+	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_quotation_wordings(#{lineCd},#{type},null,null,null,null)
+	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="cityMap">
 		<result property="cityCd"			column="CITY_CD"/>
