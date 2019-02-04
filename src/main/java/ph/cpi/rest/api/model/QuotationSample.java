@@ -1,12 +1,10 @@
 package ph.cpi.rest.api.model;
 
-import ph.cpi.rest.api.model.quote.Alop;
-
-public class QuotationOld {
+public class QuotationSample {
 
 	private Integer quoteId; 
 	private String quotationNo;
-	private Alop alop;
+	private AlopSample alopSample;
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -20,15 +18,15 @@ public class QuotationOld {
 	public void setQuotationNo(String quotationNo) {
 		this.quotationNo = quotationNo;
 	}
-	public Alop getAlop() {
-		return alop;
+	public AlopSample getAlop() {
+		return alopSample;
 	}
-	public void setAlop(Alop alop) {
-		this.alop = alop;
+	public void setAlop(AlopSample alopSample) {
+		this.alopSample = alopSample;
 	}
 	@Override
 	public String toString() {
-		return "Quotation [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", alop=" + alop + "]";
+		return "Quotation [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", alop=" + alopSample + "]";
 	}
 	
 }

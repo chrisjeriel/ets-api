@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import org.apache.ibatis.type.Alias;
 import org.joda.time.LocalDateTime;
 
+@Alias("MaintenanceSectionCovers")
 public class SectionCovers {
 
 	private String lineCd ;

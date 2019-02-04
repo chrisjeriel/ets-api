@@ -9,16 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
+import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
-import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 @Component
@@ -29,20 +35,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
 	
-	@Override
-	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
-		RetrieveQuoteAlopResponse rqaResponse = new RetrieveQuoteAlopResponse();
-		
-		HashMap<String, Object> retrieveQuoteAlopParams = new HashMap<String, Object>();
-		retrieveQuoteAlopParams.put("quoteId", rqap.getQuoteId());
-		retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo());
-		
-		rqaResponse.getQuotation().setAlop(maintenanceDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
-		
-		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
-		
-		return rqaResponse;
-	}
+	/*
+	 * @Override public RetrieveQuoteAlopResponse
+	 * retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
+	 * RetrieveQuoteAlopResponse rqaResponse = new RetrieveQuoteAlopResponse();
+	 * 
+	 * HashMap<String, Object> retrieveQuoteAlopParams = new HashMap<String,
+	 * Object>(); retrieveQuoteAlopParams.put("quoteId", rqap.getQuoteId());
+	 * retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo());
+	 * 
+	 * rqaResponse.getQuotation().setAlop(maintenanceDao.retrieveQuoteAlop(
+	 * retrieveQuoteAlopParams));
+	 * 
+	 * logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
+	 * 
+	 * return rqaResponse; }
+	 */
 
 	@Override
 	public RetrieveMtnRiskResponse retrieveMtnRisk(RetrieveMtnRiskRequest rmrp) throws SQLException {
@@ -118,6 +126,59 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("retrieveMtnTypeOfCessionResponse : " + rmtcResponse.toString());
 		
 		return rmtcResponse;
+	}
+	
+	public RetrieveMtnInsuredResponse retrieveMtnInsured(RetrieveMtnInsuredRequest rmir) throws SQLException {
+		RetrieveMtnInsuredResponse rmirResponse = new RetrieveMtnInsuredResponse();
+		
+		HashMap<String, Object> retrieveMtnInsuredParams = new HashMap<String, Object>();
+		retrieveMtnInsuredParams.put("insuredId", rmir.getInsuredId());
+		
+		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
+		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
+		
+		return rmirResponse;
+	}
+
+	@Override
+	public RetrieveEndtCodeResponse retrieveEndtCode(RetrieveEndtCodeRequest recr) throws SQLException {
+		RetrieveEndtCodeResponse recrResponse = new RetrieveEndtCodeResponse();
+		
+		HashMap<String, Object> retrieveEndtCodeParams = new HashMap<String, Object>();
+		retrieveEndtCodeParams.put("endtCd", recr.getEndtCd());
+		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
+		
+		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
+		logger.info("retrieveMtnInsuredResponse : " + recrResponse.toString());
+		
+		return recrResponse;
+	}
+
+	@Override
+	public RetrieveMtnDistrictResponse retrieveMtnDistrict(RetrieveMtnDistrictRequest rmdr) throws SQLException {
+		RetrieveMtnDistrictResponse rmdrResponse = new RetrieveMtnDistrictResponse();
+		HashMap<String, Object> retrieveMtnDistrictParams = new HashMap<String, Object>();
+		retrieveMtnDistrictParams.put("regionCd", rmdr.getRegionCd());
+		retrieveMtnDistrictParams.put("provinceCd", rmdr.getProvinceCd());
+		retrieveMtnDistrictParams.put("cityCd", rmdr.getCityCd());
+		retrieveMtnDistrictParams.put("districtCd", rmdr.getDistrictCd());
+		rmdrResponse.setRegion(maintenanceDao.retrieveMtnDistrict(retrieveMtnDistrictParams));
+		
+		logger.info("retrieveMtnDistrict : " + rmdrResponse.toString());
+		
+		return rmdrResponse;
+	}
+
+	@Override
+	public RetrieveMtnDeductiblesResponse retrieveMtnDeductibles(RetrieveMtnDeductiblesRequest rmdr)
+			throws SQLException {
+		RetrieveMtnDeductiblesResponse rmdrResponse = new RetrieveMtnDeductiblesResponse();
+		HashMap<String, Object> retrieveMtnDeductiblesParams = new HashMap<String, Object>();
+		retrieveMtnDeductiblesParams.put("lineCd", rmdr.getLineCd());
+		retrieveMtnDeductiblesParams.put("deductibleCd", rmdr.getDeductibleCd());
+		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
+		
+		return rmdrResponse;
 	}
 
 }

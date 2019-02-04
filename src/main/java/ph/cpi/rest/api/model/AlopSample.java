@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
-public class Alop {
+public class AlopSample {
 
 	private Integer alopId;
 	private Integer insuredId;

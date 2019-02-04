@@ -11,17 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
-import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping(path="/quote-service")
 public class QuoteController {
 	
@@ -62,4 +67,26 @@ public class QuoteController {
 		logger.info("RetrieveQuoteOptionRequest : " + rqop.toString());
 		return quoteService.retrieveQuoteOption(rqop);
 	}
+
+	@GetMapping(path="retrieveQuoteCoverage")
+	public @ResponseBody RetrieveQuoteCoverageResponse retrieveQuoteCoverage(RetrieveQuoteCoverageRequest rqcr) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteCoverage");
+		logger.info("RetrieveQuoteCoverageRequest : " + rqcr.toString());
+		return quoteService.retrieveQuoteCoverage(rqcr);
+	}
+	
+	@GetMapping(path="retrieveQuoteDetailsOc")
+	public @ResponseBody RetrieveQuoteDetailsOcResponse retrieveQuoteDetailsOc(RetrieveQuoteDetailsOcRequest rqdocr) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteDetailsOc");
+		logger.info("RetrieveQuoteDetailsOcRequest : " + rqdocr.toString());
+		return quoteService.retrieveQuoteDetailsOc(rqdocr);
+	}
+	
+	@GetMapping(path="retrieveQuoteDetails")
+	public @ResponseBody RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest rqdr) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteDetails");
+		logger.info("RetrieveQuoteDetailsRequest : " + rqdr.toString());
+		return quoteService.retrieveQuoteDetails(rqdr);
+	}
+	
 }

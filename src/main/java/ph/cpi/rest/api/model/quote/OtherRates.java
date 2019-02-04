@@ -1,18 +1,20 @@
 package ph.cpi.rest.api.model.quote;
 
 import org.joda.time.LocalDateTime;
+import java.math.BigDecimal;
+
 
 public class OtherRates {
-
 	private Integer coverCd;
 	private String coverCdDesc;
-	private Integer rate;
-	private Integer amount;
+	private Integer rateI; //Must be removed and remapped in XML
+	private Integer amountI; //Must be removed and remapped in XML
+	private BigDecimal rate;
+	private BigDecimal amount;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	
 	public Integer getCoverCd() {
 		return coverCd;
 	}
@@ -25,16 +27,28 @@ public class OtherRates {
 	public void setCoverCdDesc(String coverCdDesc) {
 		this.coverCdDesc = coverCdDesc;
 	}
-	public Integer getRate() {
+	public Integer getRateI() {
+		return rateI;
+	}
+	public void setRateI(Integer rateI) {
+		this.rateI = rateI;
+	}
+	public Integer getAmountI() {
+		return amountI;
+	}
+	public void setAmountI(Integer amountI) {
+		this.amountI = amountI;
+	}
+	public BigDecimal getRate() {
 		return rate;
 	}
-	public void setRate(Integer rate) {
+	public void setRate(BigDecimal rate) {
 		this.rate = rate;
 	}
-	public Integer getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
-	public void setAmount(Integer amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 	public String getCreateUser() {
@@ -61,10 +75,7 @@ public class OtherRates {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	@Override
-	public String toString() {
-		return "OtherRates [coverCd=" + coverCd + ", coverCdDesc=" + coverCdDesc + ", rate=" + rate + ", amount="
-				+ amount + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
-	}
+
+	
+	
 }

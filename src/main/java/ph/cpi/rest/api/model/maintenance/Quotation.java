@@ -2,7 +2,7 @@ package ph.cpi.rest.api.model.maintenance;
 
 import org.apache.ibatis.type.Alias;
 
-import ph.cpi.rest.api.model.Alop;
+import ph.cpi.rest.api.model.quote.Alop;
 
 @Alias("MaintenanceQuotation")
 public class Quotation {
