@@ -96,10 +96,11 @@
 		<result property = "createDate"     column  =  "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property = "updateUser"     column  =  "UPDATE_USER"/>
 		<result property = "updateDate"     column  =  "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="province"	resultMap="provinceMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Province" id="provinceMap">
-		<result property = "provinceCd "       column   ="PROVINCE_CD"/>
+		<result property = "provinceCd"       column   ="PROVINCE_CD"/>
 		<result property = "provinceDesc"      column   ="PROVINCE_DESC"/>
 		<result property = "activeTag"         column   ="ACTIVE_TAG"/>
 		<result property = "remarks"           column   ="REMARKS"/>
@@ -107,6 +108,7 @@
 		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property = "updateUser"        column   ="UPDATE_USER"/>
 		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="city"		resultMap="cityMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Object_" id="objectMap">
@@ -294,6 +296,68 @@
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_quotation_wordings(#{lineCd},#{type},null,null,null,null)
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="cityMap">
+		<result property="cityCd"			column="CITY_CD"/>
+		<result property="cityDesc"			column="CITY_DESC"/>
+		<result property="activeTag"		column="ACTIVE_TAG"/>
+		<result property="remarks"			column="REMARKS"/>
+		<result property="zoneCd"			column="ZONE_CD"/>
+		<result property="zoneCdDesc"		column="ZONE_DESC"/>
+		<result property="createUser"		column="CREATE_USER"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_city(#{regionCd, jdbcType=VARCHAR}, 
+																		#{provinceCd, jdbcType=VARCHAR}, 
+																		#{cityCd, jdbcType=VARCHAR},
+																		#{position, jdbcType=VARCHAR}, 
+																		#{count, jdbcType=VARCHAR}, 
+																		#{sortKey, jdbcType=VARCHAR}, 
+																		#{order, jdbcType=VARCHAR})
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.CrestaZone" id="crestaZoneMap">
+		<result property="zoneCd" 			column="ZONE_CD" />
+		<result property="zoneDesc"			column="ZONE_DESC" />
+		<result property="activeTag" 		column="ACTIVE_TAG" />
+		<result property="remarks"			column="REMARKS" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnCrestaZone" resultMap="crestaZoneMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_cresta_zone(#{zoneCd, jdbcType=VARCHAR}, 
+																			   #{position, jdbcType=VARCHAR}, 
+																			   #{count, jdbcType=VARCHAR}, 
+																			   #{sortKey, jdbcType=VARCHAR}, 
+																			   #{order, jdbcType=VARCHAR})
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Currency" id="currencyMap">
+		<result property="currencyCd"		column="CURRENCY_CD" />
+		<result property="currencyAbbr"		column="CURRENCY_ABBR" />
+		<result property="currencyWord"		column="CURRENCY_WORD" />
+		<result property="currencyRt"		column="CURRENCY_RT" />
+		<result property="currencyDesc"		column="CURRENCY_DESC" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnCurrency" resultMap="currencyMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+																			#{position, jdbcType=VARCHAR}, 
+																			#{count, jdbcType=VARCHAR}, 
+																			#{sortKey, jdbcType=VARCHAR}, 
+																			#{order, jdbcType=VARCHAR})
 	</select>
 	
 </mapper>

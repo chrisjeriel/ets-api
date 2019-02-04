@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
@@ -20,6 +23,9 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
@@ -64,6 +70,24 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteHoldCover");
 		logger.info("RetrieveQuoteHoldCoverRequest : " + rqhcp.toString());
 		return quoteService.retrieveQuoteHoldCover(rqhcp);
+	}
+	@GetMapping(path="retrieveQuoteAttachmentOc")
+	public @ResponseBody RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteAttachmentOc");
+		logger.info("RetrieveQuoteAttachmentOc : " + rqaor.toString());
+		return quoteService.retrieveQuoteAttachmentOc(rqaor);
+	}
+	@GetMapping(path="retrieveQuoteCompetition")
+	public @ResponseBody RetrieveQuoteCompetitionResponse retrieveQuoteCompetition(RetrieveQuoteCompetitionRequest rqcr) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteCompetition");
+		logger.info("RetrieveQuoteCompetition : " + rqcr.toString());
+		return quoteService.retrieveQuoteCompetition(rqcr);
+	}
+	@GetMapping(path="retrieveQuoteCoverageOc")
+	public @ResponseBody RetrieveQuoteCoverageOcResponse retrieveQuoteCoverageOc(RetrieveQuoteCoverageOcRequest rqcor) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteCoverageOc");
+		logger.info("RetrieveQuoteCoverageOc : " + rqcor.toString());
+		return quoteService.retrieveQuoteCoverageOc(rqcor);
 	}
 	
 	@CrossOrigin

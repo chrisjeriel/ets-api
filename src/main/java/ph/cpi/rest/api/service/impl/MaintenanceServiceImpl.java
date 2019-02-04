@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
@@ -22,6 +25,9 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
@@ -34,6 +40,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
+
 
 @Component
 public class MaintenanceServiceImpl implements MaintenanceService{
@@ -242,8 +249,71 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 
 		return rmqwResponse;
 	}
-
 	
+	@Override
+	public RetrieveMtnCityResponse retrieveMtnCity(RetrieveMtnCityRequest rmcr) throws SQLException {
+		RetrieveMtnCityResponse rmcrResponse = new RetrieveMtnCityResponse();
+		
+		HashMap<String, Object> retrieveMtnCityParams = new HashMap<String, Object>();
+		retrieveMtnCityParams.put("regionCd", rmcr.getRegionCd());
+		retrieveMtnCityParams.put("provinceCd", rmcr.getProvinceCd());
+		retrieveMtnCityParams.put("cityCd", rmcr.getCityCd());
+		retrieveMtnCityParams.put("position", rmcr.getPaginationRequest().getPosition());
+		retrieveMtnCityParams.put("count", rmcr.getPaginationRequest().getCount());
+		retrieveMtnCityParams.put("sortKey", rmcr.getSortRequest().getSortKey());
+		retrieveMtnCityParams.put("order", rmcr.getSortRequest().getOrder());
+		
+		rmcrResponse.setRegion(maintenanceDao.retrieveMtnCityList(retrieveMtnCityParams));
+		rmcrResponse.getPaginationResponse().setPosition(rmcr.getPaginationRequest().getPosition());
+		rmcrResponse.getPaginationResponse().setCount(rmcr.getPaginationRequest().getCount());
+		rmcrResponse.getSortResponse().setSortKey(rmcr.getSortRequest().getSortKey());
+		rmcrResponse.getSortResponse().setOrder(rmcr.getSortRequest().getOrder());
+		logger.info("retrieveMtnCityResponse : " + rmcrResponse.toString());
+		
+		return rmcrResponse;
+	}
 	
-
+	@Override
+	public RetrieveMtnCrestaZoneResponse retrieveMtnCrestaZone(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
+		RetrieveMtnCrestaZoneResponse rmczrResponse = new RetrieveMtnCrestaZoneResponse();
+		
+		HashMap<String, Object> retrieveMtnCrestaZoneParams = new HashMap<String, Object>();
+		retrieveMtnCrestaZoneParams.put("zoneCd", rmczr.getZoneCd());
+		retrieveMtnCrestaZoneParams.put("position", rmczr.getPaginationRequest().getPosition());
+		retrieveMtnCrestaZoneParams.put("count", rmczr.getPaginationRequest().getCount());
+		retrieveMtnCrestaZoneParams.put("sortKey", rmczr.getSortRequest().getSortKey());
+		retrieveMtnCrestaZoneParams.put("order", rmczr.getSortRequest().getOrder());
+		
+		rmczrResponse.setCrestaZone(maintenanceDao.retrieveMtnCrestaZoneList(retrieveMtnCrestaZoneParams));
+		rmczrResponse.getPaginationResponse().setPosition(rmczr.getPaginationRequest().getPosition());
+		rmczrResponse.getPaginationResponse().setCount(rmczr.getPaginationRequest().getCount());
+		rmczrResponse.getSortResponse().setSortKey(rmczr.getSortRequest().getSortKey());
+		rmczrResponse.getSortResponse().setOrder(rmczr.getSortRequest().getOrder());
+		
+		logger.info("retrieveMtnCrestaZoneResponse : " + rmczrResponse.toString());
+		
+		return rmczrResponse;
+	}
+	
+	@Override
+	public RetrieveMtnCurrencyResponse retrieveMtnCurrency(RetrieveMtnCurrencyRequest rmcr) throws SQLException {
+		RetrieveMtnCurrencyResponse rmcrResponse = new RetrieveMtnCurrencyResponse();
+		
+		HashMap<String, Object> retrieveMtnCurrencyParams = new HashMap<String, Object>();
+		retrieveMtnCurrencyParams.put("currencyCd", rmcr.getCurrencyCd());
+		retrieveMtnCurrencyParams.put("position", rmcr.getPaginationRequest().getPosition());
+		retrieveMtnCurrencyParams.put("count", rmcr.getPaginationRequest().getCount());
+		retrieveMtnCurrencyParams.put("sortKey", rmcr.getSortRequest().getSortKey());
+		retrieveMtnCurrencyParams.put("order", rmcr.getSortRequest().getOrder());
+		
+		rmcrResponse.setCurrency(maintenanceDao.retrieveMtnCurrencyList(retrieveMtnCurrencyParams));
+		rmcrResponse.getPaginationResponse().setPosition(rmcr.getPaginationRequest().getPosition());
+		rmcrResponse.getPaginationResponse().setCount(rmcr.getPaginationRequest().getCount());
+		rmcrResponse.getSortResponse().setSortKey(rmcr.getSortRequest().getSortKey());
+		rmcrResponse.getSortResponse().setOrder(rmcr.getSortRequest().getOrder());
+		
+		logger.info("retrieveMtnCurrencyResponse : " + rmcrResponse.toString());
+		
+		return rmcrResponse;
+	}
 }

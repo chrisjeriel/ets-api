@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
@@ -24,6 +27,9 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
@@ -131,6 +137,27 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnQuoteWordings");
 		logger.info("RetrieveMtnQuoteWordingsRequest : " + rmqwp.toString());
 		return maintenanceService.retrieveMtnQuoteWordings(rmqwp);
+	}
+	
+	@GetMapping(path="retrieveMtnCity")
+	public @ResponseBody RetrieveMtnCityResponse retrieveMtnCity(RetrieveMtnCityRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCity");
+		logger.info("RetrieveMtnCityRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCity(rmcr);
+	}
+	
+	@GetMapping(path="retrieveMtnCrestaZone")
+	public @ResponseBody RetrieveMtnCrestaZoneResponse retrieveMtnCrestaZone(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCrestaZone");
+		logger.info("RetrieveMtnCrestaZoneRequest : " + rmczr.toString());
+		return maintenanceService.retrieveMtnCrestaZone(rmczr);
+	}
+	
+	@GetMapping(path="retrieveMtnCurrency")
+	public @ResponseBody RetrieveMtnCurrencyResponse retrieveMtnCurrency(RetrieveMtnCurrencyRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCurrency");
+		logger.info("RetrieveMtnCurrencyRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCurrency(rmcr);
 	}
 
 	@GetMapping(path="retrieveMtnDeductibles")

@@ -1,37 +1,28 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import java.util.List;
 import org.joda.time.LocalDateTime;
 
-public class Province {
-	private Integer provinceCd;
-	private String provinceDesc;
-	private List<City> cityList;
-//	private List<City> city; //Removed must be cityList, check XML mapper.
-	private String activeTag   ;
+public class CrestaZone {
+	private Integer zoneCd;
+	private String zoneDesc;
+	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
 	
-	public Integer getProvinceCd() {
-		return provinceCd;
+	public Integer getZoneCd() {
+		return zoneCd;
 	}
-	public void setProvinceCd(Integer provinceCd) {
-		this.provinceCd = provinceCd;
+	public void setZoneCd(Integer zoneCd) {
+		this.zoneCd = zoneCd;
 	}
-	public String getProvinceDesc() {
-		return provinceDesc;
+	public String getZoneDesc() {
+		return zoneDesc;
 	}
-	public void setProvinceDesc(String provinceDesc) {
-		this.provinceDesc = provinceDesc;
-	}
-	public List<City> getCityList() {
-		return cityList;
-	}
-	public void setCityList(List<City> cityList) {
-		this.cityList = cityList;
+	public void setZoneDesc(String zoneDesc) {
+		this.zoneDesc = zoneDesc;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -69,11 +60,13 @@ public class Province {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "Province [provinceCd=" + provinceCd + ", provinceDesc=" + provinceDesc + ", cityList=" + cityList
-				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "CrestaZone [zoneCd="+ zoneCd +", zoneCdDesc="+ zoneDesc +", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser +", createDate="+ createDate +", updateUser="+ updateUser +", updateDate="
+				+ updateDate +"]";
 	}
 	
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.CrestaZone;
+import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -120,4 +122,23 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return deductibles;
 	}
 	
+	public List<Region> retrieveMtnCityList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Region> cityList = sqlSession.selectList("retrieveMtnCity", params);
+		return cityList;
+	}
+	
+	@Override
+	public List<CrestaZone> retrieveMtnCrestaZoneList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<CrestaZone> crestaZoneList = sqlSession.selectList("retrieveMtnCrestaZone", params);
+		return crestaZoneList;
+	}
+	
+	@Override
+	public List<Currency> retrieveMtnCurrencyList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Currency> currencyList = sqlSession.selectList("retrieveMtnCurrency", params);
+		return currencyList;
+	}
 }

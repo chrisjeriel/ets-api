@@ -370,26 +370,5 @@ public class QuotationOc {
 	public void setAttachment(List<Attachment> attachment) {
 		this.attachment = attachment;
 	}
-	@Override
-	public String toString() {
-		return "QuotationOc [quoteIdOc=" + quoteIdOc + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc="
-				+ lineClassCdDesc + ", openQuotationNo=" + openQuotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
-				+ lineCdDesc + ", year=" + year + ", seqNo=" + seqNo + ", sevNo=" + sevNo + ", revNo=" + revNo
-				+ ", cedingId=" + cedingId + ", cessionId=" + cessionId + ", cedingName=" + cedingName
-				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", refPolNo=" + refPolNo
-				+ ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo + ", prinId=" + prinId
-				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contactorName="
-				+ contactorName + ", insuredDesc=" + insuredDesc + ", status=" + status + ", reinsurerId=" + reinsurerId
-				+ ", reinsurerName=" + reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate="
-				+ issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode="
-				+ reqMode + ", currencyCd=" + currencyCd + ", currencyRtI=" + currencyRtI + ", currencyRt=" + currencyRt
-				+ ", govtTag=" + govtTag + ", indicativeTag=" + indicativeTag + ", preparedBy=" + preparedBy
-				+ ", approvedBy=" + approvedBy + ", printedBy=" + printedBy + ", printDate=" + printDate
-				+ ", openingParag=" + openingParag + ", closingParag=" + closingParag + ", reasonCd=" + reasonCd
-				+ ", reasonDesc=" + reasonDesc + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projectOc=" + projectOc
-				+ ", attachment=" + attachment + "]";
-	}
-	
 	
 }

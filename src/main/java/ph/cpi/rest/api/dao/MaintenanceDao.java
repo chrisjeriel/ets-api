@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.CrestaZone;
+import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -28,6 +30,9 @@ public interface MaintenanceDao {
 	public List<EndtCode> retrieveEndtCode(final HashMap<String, Object> params) throws SQLException;
 	public List<Region> retrieveMtnDistrict(final HashMap<String, Object> params) throws SQLException;
 	public List<Deductibles> retrieveMtnDeductibles(final HashMap<String, Object> params) throws SQLException;
+	public List<Region> retrieveMtnCityList(final HashMap<String, Object> params) throws SQLException;
+	public List<CrestaZone> retrieveMtnCrestaZoneList(final HashMap<String, Object> params) throws SQLException;
+	public List<Currency> retrieveMtnCurrencyList(final HashMap<String, Object> params) throws SQLException;
 	
 	public Region retrieveMtnRegion(final HashMap<String, Object> params) throws SQLException;
 	public Province retrieveMtnProvince(final HashMap<String, Object> params) throws SQLException;
