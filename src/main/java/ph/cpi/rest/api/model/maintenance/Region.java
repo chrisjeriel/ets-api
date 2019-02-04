@@ -16,7 +16,6 @@ public class Region {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	private Province province;
-	
 	public Integer getRegionCd() {
 		return regionCd;
 	}
@@ -84,5 +83,6 @@ public class Region {
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", province=" + province
 				+ "]";
 	}
+	
 	
 }

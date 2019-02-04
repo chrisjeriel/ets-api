@@ -1,24 +1,31 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Quotation;
 
-
-public class RetrieveQuoteCoverageResponse extends Response{
+public class RetrieveQuoteAlopItemResponse extends Response {
 	
-	private Quotation quotation;
+	private List<Quotation> quotation;
+	private AlopItem alopItem;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public Quotation getQuotation() {
-		if (quotation == null) {
-			quotation = new Quotation();
-		}
+	
+	public List<Quotation> getQuotation() {
 		return quotation;
 	}
-	public void setQuotation(Quotation quotation) {
+	public void setQuotation(List<Quotation> quotation) {
 		this.quotation = quotation;
+	}
+	public AlopItem getAlopItem() {
+		return alopItem;
+	}
+	public void setAlopItem(AlopItem alopItem) {
+		this.alopItem = alopItem;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -34,9 +41,10 @@ public class RetrieveQuoteCoverageResponse extends Response{
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteCoverageResponse [paginationResponse=" + paginationResponse + ", sortResponse="
-				+ sortResponse + "]";
+		return "RetrieveQuoteAlopItemResponse [quotation=" + quotation + ", alopItem=" + alopItem
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
+	
 	
 	
 }

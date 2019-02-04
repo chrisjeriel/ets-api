@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
@@ -21,7 +23,9 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
@@ -83,7 +87,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
 		
 		rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
-		
 		logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
 		
 		return rqlResponse;
@@ -253,7 +256,40 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		return rqaocResponse;
 	}
-	
+
+	public RetrieveQuoteAttachmentResponse retrieveQuoteAttachment(RetrieveQuoteAttachmentRequest rqat)
+			throws SQLException {
+		
+		RetrieveQuoteAttachmentResponse rqatResponse = new RetrieveQuoteAttachmentResponse();
+		
+		HashMap<String, Object> retrieveQuoteAttachmentParams = new HashMap<String, Object>();
+		retrieveQuoteAttachmentParams.put("quoteId", rqat.getQuoteId());
+		retrieveQuoteAttachmentParams.put("quotationNo", rqat.getQuotationNo());
+		
+		rqatResponse.setQuotation(quoteDao.retrieveQuoteAttachmentList(retrieveQuoteAttachmentParams));
+		
+		logger.info("retrieveQuoteAttachmentResponse : " + rqatResponse.toString());
+		
+		return rqatResponse;
+	}
+
+	@Override
+	public RetrieveQuoteAlopItemResponse retrieveQuoteAlopItem(RetrieveQuoteAlopItemRequest retQuoteAlopItem)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveQuoteAlopItemResponse retQuoteAlopItemResponse = new RetrieveQuoteAlopItemResponse();
+		
+		HashMap<String, Object> retrieveQuoteAlopItemParams = new HashMap<String, Object>();
+		retrieveQuoteAlopItemParams.put("quoteId", retQuoteAlopItem.getQuoteId());
+		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
+		
+		retQuoteAlopItemResponse.setQuotation(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
+		
+		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
+		return retQuoteAlopItemResponse;
+	}
+
 	@Override
 	public RetrieveQuoteCompetitionResponse retrieveQuoteCompetition(RetrieveQuoteCompetitionRequest rqcr) throws SQLException {
 		

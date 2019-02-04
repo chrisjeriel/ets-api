@@ -27,10 +27,10 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public List<Alop> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+	public List<Quotation> retrieveQuoteAttachmentList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Alop> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
-		return alopList;
+			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAttachment", params);
+		return quotationList;
 	}
 
 	@Override
@@ -106,4 +106,18 @@ public class QuoteDaoImpl implements QuoteDao{
 		List<QuotationOc> projectOc = sqlSession.selectList("retrieveQuoteCoverageOc", params);
 		return projectOc;
 	}
+
+	@Override
+	public List<Quotation> retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
+			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlopItem",params);
+		return quotationList;
+	}
+
+
+	@Override
+	public List<Quotation> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+		List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlop",params);
+		return quotationList;
+	}
+
 }

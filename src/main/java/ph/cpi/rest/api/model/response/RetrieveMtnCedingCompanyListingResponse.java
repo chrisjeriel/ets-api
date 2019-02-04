@@ -1,24 +1,22 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.maintenance.CedingCompany;
 
-
-public class RetrieveQuoteCoverageResponse extends Response{
-	
-	private Quotation quotation;
+public class RetrieveMtnCedingCompanyListingResponse extends Response{
+	private List<CedingCompany> cedingcompany;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public Quotation getQuotation() {
-		if (quotation == null) {
-			quotation = new Quotation();
-		}
-		return quotation;
+	
+	public List<CedingCompany> getCedingcompany() {
+		return cedingcompany;
 	}
-	public void setQuotation(Quotation quotation) {
-		this.quotation = quotation;
+	public void setCedingcompany(List<CedingCompany> cedingcompany) {
+		this.cedingcompany = cedingcompany;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -34,8 +32,8 @@ public class RetrieveQuoteCoverageResponse extends Response{
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteCoverageResponse [paginationResponse=" + paginationResponse + ", sortResponse="
-				+ sortResponse + "]";
+		return "RetrieveMtnCedingCompanyListingResponse [cedingcompany=" + cedingcompany + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 	
 	

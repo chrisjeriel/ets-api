@@ -6,6 +6,9 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class Alop {
+
+	private AlopItem alopItem;
+	
 	private Integer alopId;
 	private Integer insuredId;
 	private String insuredName;
@@ -17,6 +20,9 @@ public class Alop {
 	private LocalDateTime issueDate;
 	private LocalDateTime expiryDate;
 	private Integer maxIndemPd;
+	private Double annSiD;
+	private Double maxIndemPdSiD;
+	private Double maxIndemPdD;
 	private LocalDateTime indemFromDate;
 	private Integer timeExc;
 	private Integer repInterval;
@@ -25,6 +31,12 @@ public class Alop {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	private List<AlopItem> alopItemList;
+	public AlopItem getAlopItem() {
+		return alopItem;
+	}
+	public void setAlopItem(AlopItem alopItem) {
+		this.alopItem = alopItem;
+	}
 	public Integer getAlopId() {
 		return alopId;
 	}
@@ -91,6 +103,24 @@ public class Alop {
 	public void setMaxIndemPd(Integer maxIndemPd) {
 		this.maxIndemPd = maxIndemPd;
 	}
+	public Double getAnnSiD() {
+		return annSiD;
+	}
+	public void setAnnSiD(Double annSiD) {
+		this.annSiD = annSiD;
+	}
+	public Double getMaxIndemPdSiD() {
+		return maxIndemPdSiD;
+	}
+	public void setMaxIndemPdSiD(Double maxIndemPdSiD) {
+		this.maxIndemPdSiD = maxIndemPdSiD;
+	}
+	public Double getMaxIndemPdD() {
+		return maxIndemPdD;
+	}
+	public void setMaxIndemPdD(Double maxIndemPdD) {
+		this.maxIndemPdD = maxIndemPdD;
+	}
 	public LocalDateTime getIndemFromDate() {
 		return indemFromDate;
 	}
@@ -141,14 +171,14 @@ public class Alop {
 	}
 	@Override
 	public String toString() {
-		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
-				+ insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", annSi=" + annSi
-				+ ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate
-				+ ", maxIndemPd=" + maxIndemPd + ", indemFromDate=" + indemFromDate + ", timeExc=" + timeExc
-				+ ", repInterval=" + repInterval + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", alopItemList=" + alopItemList + "]";
+		return "Alop [alopItem=" + alopItem + ", alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName="
+				+ insuredName + ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness="
+				+ insuredBusiness + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
+				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", annSiD=" + annSiD
+				+ ", maxIndemPdSiD=" + maxIndemPdSiD + ", maxIndemPdD=" + maxIndemPdD + ", indemFromDate="
+				+ indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", alopItemList=" + alopItemList + "]";
 	}
-	
-	
 	
 }
