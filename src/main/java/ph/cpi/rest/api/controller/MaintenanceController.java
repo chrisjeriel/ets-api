@@ -21,7 +21,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
-@CrossOrigin(origins = "http://127.0.0.1:4200")
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
 @Controller
 @RequestMapping(path="/maintenance-service")
 public class MaintenanceController {

@@ -23,7 +23,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
-@CrossOrigin(origins = "http://127.0.0.1:4200")
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
 @Controller
 @RequestMapping(path="/quote-service")
 public class QuoteController {
