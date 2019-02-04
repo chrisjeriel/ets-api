@@ -364,7 +364,7 @@
 		<result property="updateDate" column="QUOTE_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<association property="project" resultMap="project"></association>
 		<association property="attachmentsList" resultMap="attachment"></association>
-		<association property="competitiosList" resultMap="competition"></association>
+		<association property="competitionsList" resultMap="competition"></association>
 		<association property="alop" resultMap="alopMap"></association>
 		<association property="otherRatesList" resultMap="otherRates"></association>
 		<association property="optionsList" resultMap="options"></association>
@@ -398,7 +398,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationForCompetitionMap">
 		 <result property="quoteId"				 column="QUOTE_ID"/>
 		 <result property="quotationNo"			 column="QUOTE_NO"/>
-		 <association property="competitiosList"	 resultMap="competitionMap"/>
+		 <association property="competitionsList"	 resultMap="competitionMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
@@ -406,7 +406,7 @@
 		 <result property="cedingId"			 column="CEDING_ID"/>
 		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
 		 <result property="option"			 	 column="OPTN"/>
-		 <result property="wording"			 	 column="WORDINGS"/>
+		 <result property="wordings"			 column="WORDINGS"/>
 		 <result property="createUser"		 	 column="CREATE_USER"/>
 		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		 <result property="updateUser"		 	 column="UPDATE_USER"/>

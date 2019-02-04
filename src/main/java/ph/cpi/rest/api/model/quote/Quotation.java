@@ -66,7 +66,7 @@ public class Quotation {
 	private Options options;
 	private OtherRates otherRates;
 	private List<Attachment> attachmentsList;
-	private List<Competition> competitiosList;
+	private List<Competition> competitionsList;
 	private List<OtherRates> otherRatesList;
 	private List<Options> optionsList;
 	private Alop alop;
@@ -413,11 +413,11 @@ public class Quotation {
 	public void setAttachmentsList(List<Attachment> attachmentsList) {
 		this.attachmentsList = attachmentsList;
 	}
-	public List<Competition> getCompetitiosList() {
-		return competitiosList;
+	public List<Competition> getCompetitionsList() {
+		return competitionsList;
 	}
-	public void setCompetitiosList(List<Competition> competitiosList) {
-		this.competitiosList = competitiosList;
+	public void setCompetitiosList(List<Competition> competitionsList) {
+		this.competitionsList = competitionsList;
 	}
 	public List<OtherRates> getOtherRatesList() {
 		return otherRatesList;
@@ -463,7 +463,7 @@ public class Quotation {
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", project=" + project + ", options=" + options + ", otherRates=" + otherRates + ", attachmentsList="
-				+ attachmentsList + ", competitiosList=" + competitiosList + ", otherRatesList=" + otherRatesList
+				+ attachmentsList + ", competitiosList=" + competitionsList + ", otherRatesList=" + otherRatesList
 				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + "]";
 	}
 	

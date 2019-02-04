@@ -8,7 +8,6 @@ public class Competition {
 	private String cedingRepId;
 	private String option;
 	private String wordings;
-	private String wording; //Must be wordings, check XML mapper before removing.
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
@@ -44,12 +43,6 @@ public class Competition {
 	public void setWordings(String wordings) {
 		this.wordings = wordings;
 	}
-	public String getWording() {
-		return wording;
-	}
-	public void setWording(String wording) {
-		this.wording = wording;
-	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -77,7 +70,7 @@ public class Competition {
 	@Override
 	public String toString() {
 		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId=" + cedingRepId
-				+ ", option=" + option + ", wordings=" + wordings + ", wording=" + wording + ", createUser="
+				+ ", option=" + option + ", wordings=" + wordings +  ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}
