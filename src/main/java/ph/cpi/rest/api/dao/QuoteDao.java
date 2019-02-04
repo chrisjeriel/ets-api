@@ -32,4 +32,6 @@ public interface QuoteDao {
 	public List<Quotation> retrieveQuoteAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public List<Quotation> retrieveAlopItemList(final HashMap<String, Object> params ) throws SQLException;
 	
+	public List<Quotation> saveQuoteCoverage(final HashMap<String, Object> params ) throws SQLException;
+	public List<QuotationOc> saveQuoteCoverageOc(final HashMap<String, Object> params ) throws SQLException;
 }

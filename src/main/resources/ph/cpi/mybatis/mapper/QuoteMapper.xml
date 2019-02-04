@@ -763,7 +763,7 @@
     </resultMap>
     
     <select id="retrieveQuoteAlop" resultMap="quotationMapAlop" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
+			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null)
     </select>
   
 </mapper>
