@@ -444,6 +444,7 @@ public class Quotation {
 	public void setHoldCover(HoldCover holdCover) {
 		this.holdCover = holdCover;
 	}
+
 	public Attachment getAttachment() {
 		return attachment;
 	}

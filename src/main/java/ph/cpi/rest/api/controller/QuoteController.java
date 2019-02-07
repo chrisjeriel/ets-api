@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
@@ -26,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
@@ -156,6 +158,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteDetails");
 		logger.info("RetrieveQuoteDetailsRequest : " + rqdr.toString());
 		return quoteService.retrieveQuoteDetails(rqdr);
+	}
+	
+	@GetMapping(path="retrieveQuoteAlop")
+	public @ResponseBody RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqar) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteAlop");
+		logger.info("RetrieveQuoteAlopRequest : " + rqar.toString());
+		return quoteService.retrieveQuoteAlop(rqar);
 	}
 	
 }

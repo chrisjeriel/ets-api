@@ -30,6 +30,7 @@ public class Alop {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	
 	private List<AlopItem> alopItemList;
 	public AlopItem getAlopItem() {
 		return alopItem;
