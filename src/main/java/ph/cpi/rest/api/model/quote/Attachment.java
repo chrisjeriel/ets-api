@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.quote;
 import org.joda.time.LocalDateTime;
 
 public class Attachment {
-	private Integer fileNo ;
+	private Integer fileNo; 
 	private String fileName;
 	private String description;
 	private String createUser;
@@ -58,5 +58,5 @@ public class Attachment {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
+
 }

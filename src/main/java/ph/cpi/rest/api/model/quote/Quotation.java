@@ -70,6 +70,15 @@ public class Quotation {
 	private List<OtherRates> otherRatesList;
 	private List<Options> optionsList;
 	private Alop alop;
+	private HoldCover holdCover;
+	private Attachment attachment;
+	
+	public Attachment getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(Attachment attachment) {
+		this.attachment = attachment;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -436,8 +445,12 @@ public class Quotation {
 	public void setAlop(Alop alop) {
 		this.alop = alop;
 	}
-	
-	
-	
+	public HoldCover getHoldCover() {
+		return holdCover;
+	}
+	public void setHoldCover(HoldCover holdCover) {
+		this.holdCover = holdCover;
+	}
+
 	
 }

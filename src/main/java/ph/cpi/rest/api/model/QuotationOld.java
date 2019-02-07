@@ -1,13 +1,23 @@
 package ph.cpi.rest.api.model;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.quote.Alop;
+import ph.cpi.rest.api.model.quote.Competition;
 
 public class QuotationOld {
 
 	private Integer quoteId; 
 	private String quotationNo;
 	private Alop alop;
+	private List<Competition> competition;
 	
+	public List<Competition> getCompetition() {
+		return competition;
+	}
+	public void setCompetition(List<Competition> list) {
+		this.competition = list;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}

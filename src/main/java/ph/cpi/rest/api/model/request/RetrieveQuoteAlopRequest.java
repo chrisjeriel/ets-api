@@ -9,6 +9,7 @@ public class RetrieveQuoteAlopRequest {
 	private String quotationNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
 	public Integer getQuoteId() {
 		return quoteId;
 	}

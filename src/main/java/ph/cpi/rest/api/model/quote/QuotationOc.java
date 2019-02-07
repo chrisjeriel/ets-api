@@ -5,51 +5,52 @@ import java.util.List;
 
 import org.joda.time.LocalDateTime;
 
-
 public class QuotationOc {
-	private Integer quoteIdOc;
-	private String cessionDesc;
-	private String lineClassCdDesc;
-	private String openQuotationNo;
-	private String lineCd;
-	private String lineCdDesc;
-	private Integer year;
-	private Integer seqNo;
-	private Integer sevNo;
-	private Integer cedingId;
-	private Integer cessionId;
-	private String cedingName;
-	private String lineClassCd;
-	private String lineClassDesc;
-	private String refPolNo;
-	private Integer policyIdOc;
-	private String openPolicyNo;
-	private Integer prinId;
-	private String principalName;
-	private Integer contractorId;
-	private String contactorName;
-	private String insuredDesc;
-	private String status;
-	private Integer reinsurerId;
-	private String reinsurerName;
-	private Integer intmId;
-	private String intmName;
-	private LocalDateTime issueDate;
-	private LocalDateTime expiryDate;
-	private String reqBy;
-	private LocalDateTime reqDate;
-	private String reqMode;
-	private String currencyCd;
+	private Integer	quoteIdOc;
+	private String cessionDesc; //Added
+	private String lineClassCdDesc; //Added
+	private String	openQuotationNo;
+	private String	lineCd;
+	private String	lineCdDesc;
+	private Integer	year;
+	private Integer	seqNo;
+	private Integer sevNo; //Added Check spelling
+	private Integer	revNo;
+	private Integer	cedingId;
+	private Integer	cessionId;
+	private String	cedingName;
+	private String	lineClassCd;
+	private String	lineClassDesc;
+	private String	refPolNo;
+	private Integer	policyIdOc;
+	private String	openPolicyNo;
+	private Integer	prinId;
+	private String	principalName;
+	private Integer	contractorId;
+	private String	contactorName;
+	private String	insuredDesc;
+	private String	status;
+	private Integer	reinsurerId;
+	private String	reinsurerName;
+	private Integer	intmId;
+	private String	intmName;
+	private LocalDateTime	issueDate;
+	private LocalDateTime	expiryDate;
+	private String	reqBy;
+	private LocalDateTime	reqDate;
+	private String	reqMode;
+	private String	currencyCd;
+	private Integer	currencyRtI; //Added check XML for mapping
 	private BigDecimal currencyRt;
-	private String govtTag;
-	private String indicativeTag;
-	private String preparedBy;
-	private String approvedBy;
-	private String printedBy;
-	private LocalDateTime printDate;
-	private String openingParag;
-	private String closingParag;
-	private String reasonCd;
+	private String	govtTag;
+	private String	indicativeTag;
+	private String	preparedBy;
+	private String	approvedBy;
+	private String	printedBy;
+	private LocalDateTime	printDate;
+	private String	openingParag;
+	private String	closingParag;
+	private String	reasonCd;
 	private String reasonDesc;
 	private String createUser;
 	private LocalDateTime createDate;
@@ -57,7 +58,6 @@ public class QuotationOc {
 	private LocalDateTime updateDate;
 	private ProjectOc projectOc;
 	private List<Attachment> attachment;
-	
 	public Integer getQuoteIdOc() {
 		return quoteIdOc;
 	}
@@ -111,6 +111,12 @@ public class QuotationOc {
 	}
 	public void setSevNo(Integer sevNo) {
 		this.sevNo = sevNo;
+	}
+	public Integer getRevNo() {
+		return revNo;
+	}
+	public void setRevNo(Integer revNo) {
+		this.revNo = revNo;
 	}
 	public Integer getCedingId() {
 		return cedingId;
@@ -256,6 +262,12 @@ public class QuotationOc {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
+	public Integer getCurrencyRtI() {
+		return currencyRtI;
+	}
+	public void setCurrencyRtI(Integer currencyRtI) {
+		this.currencyRtI = currencyRtI;
+	}
 	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
@@ -358,7 +370,5 @@ public class QuotationOc {
 	public void setAttachment(List<Attachment> attachment) {
 		this.attachment = attachment;
 	}
-	
-	
 	
 }
