@@ -2,6 +2,9 @@ package ph.cpi.rest.api.model.request;
 
 import org.joda.time.LocalDateTime;
 
+import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SortRequest;
+
 public class RetrieveQuoteListingOcRequest {
 
 	private String quotationNo;
@@ -17,10 +20,12 @@ public class RetrieveQuoteListingOcRequest {
 	private String site;
 //	private Quotation().policyNo;
 	private String currencyCd;
-	private LocalDateTime issueDate;
-	private LocalDateTime expiryDate;
+	private String issueDate;
+	private String expiryDate;
 	private String reqBy;
 	private String createUser;
+	private PaginationRequest paginationRequest;
+	private SortRequest sortRequest;
 	
 	public String getQuotationNo() {
 		return quotationNo;
@@ -94,16 +99,16 @@ public class RetrieveQuoteListingOcRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public LocalDateTime getIssueDate() {
+	public String getIssueDate() {
 		return issueDate;
 	}
-	public void setIssueDate(LocalDateTime issueDate) {
+	public void setIssueDate(String issueDate) {
 		this.issueDate = issueDate;
 	}
-	public LocalDateTime getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
-	public void setExpiryDate(LocalDateTime expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 	public String getReqBy() {
@@ -118,6 +123,18 @@ public class RetrieveQuoteListingOcRequest {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
+	public PaginationRequest getPaginationRequest() {
+		return paginationRequest;
+	}
+	public void setPaginationRequest(PaginationRequest paginationRequest) {
+		this.paginationRequest = paginationRequest;
+	}
+	public SortRequest getSortRequest() {
+		return sortRequest;
+	}
+	public void setSortRequest(SortRequest sortRequest) {
+		this.sortRequest = sortRequest;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingOcRequest [quotationNo=" + quotationNo + ", cessionDesc=" + cessionDesc
@@ -125,6 +142,7 @@ public class RetrieveQuoteListingOcRequest {
 				+ ", principalName=" + principalName + ", contractorName=" + contractorName + ", insuredDesc="
 				+ insuredDesc + ", riskName=" + riskName + ", objectDesc=" + objectDesc + ", site=" + site
 				+ ", currencyCd=" + currencyCd + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
-				+ reqBy + ", createUser=" + createUser + "]";
+				+ reqBy + ", createUser=" + createUser + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
 }

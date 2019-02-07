@@ -57,6 +57,7 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnRisk(rmrp);
 	}
 	
+	@CrossOrigin
 	@GetMapping(path="retrieveMtnRiskListing")
 	public @ResponseBody RetrieveMtnRiskListingResponse retrieveMtnRiskListing(RetrieveMtnRiskListingRequest rmrlp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnRiskListing");

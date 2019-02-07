@@ -46,7 +46,6 @@ public class QuoteController {
 	 * quoteService.retrieveQuoteAlop(rqap); }
 	 */
 	
-	@CrossOrigin
 	@GetMapping(path="retrieveQuoteListing")
 	public @ResponseBody RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteListing");

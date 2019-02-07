@@ -70,6 +70,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
 		retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
+		/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
+		retrieveQuoteListingParams.put("count", rqlp.getPaginationRequest().getCount());
+		retrieveQuoteListingParams.put("sortKey", rqlp.getSortRequest().getSortKey());
+		retrieveQuoteListingParams.put("order", rqlp.getSortRequest().getOrder());*/
 		
 		rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 		
@@ -101,6 +105,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingOcParams.put("expiryDate", rqlop.getExpiryDate());
 		retrieveQuoteListingOcParams.put("reqBy", rqlop.getReqBy());
 		retrieveQuoteListingOcParams.put("createUser", rqlop.getCreateUser());
+		/*retrieveQuoteListingOcParams.put("position", rqlp.getPaginationRequest().getPosition());
+		retrieveQuoteListingOcParams.put("count", rqlp.getPaginationRequest().getCount());
+		retrieveQuoteListingOcParams.put("sortKey", rqlp.getSortRequest().getSortKey());
+		retrieveQuoteListingOcParams.put("order", rqlp.getSortRequest().getOrder());*/
 		
 		rqloResponse.setQuotationOcList(quoteDao.retrieveQuoteListingOc(retrieveQuoteListingOcParams));
 		

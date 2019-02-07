@@ -72,9 +72,9 @@
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
 		
-		<association property="options" 	resultMap="assocOptions"/>
+		<association property="optionsList" resultMap="assocOptions"/>
 		
-		<association property="otherRates" 	resultMap="assocOtherRates"/>	
+		<association property="otherRatesList" 	resultMap="assocOtherRates"/>	
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
@@ -85,7 +85,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Options" id="assocOptions">
 		<result property="optionId" 		column="OPTION_ID"/>
-		<result property="optionRt" 			column="OPTION_RT"/>
+		<result property="optionRt" 		column="OPTION_RT"/>
 		<result property="condition" 		column="CONDITION"/>
 		<result property="commRtQuota" 		column="COMM_RT_QUOTA"/>
 		<result property="commRtSurplus" 	column="COMM_RT_SURPLUS"/>
@@ -95,7 +95,7 @@
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		
-		<association property="deductibles" resultMap="assocDeductibles"/>
+		<association property="deductiblesList" resultMap="assocDeductibles"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles">
@@ -126,6 +126,7 @@
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
+		<!-- SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
 		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
 	</select>
 
@@ -449,7 +450,8 @@
 	</select>
 	
 	<select id="retrieveQuoteListingOc" resultMap="retrieveQuoteListingOcMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listin_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
+		<!-- SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
 	</select>
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
