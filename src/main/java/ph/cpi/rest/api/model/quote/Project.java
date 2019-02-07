@@ -1,10 +1,10 @@
 package ph.cpi.rest.api.model.quote;
 
 import java.math.BigDecimal;
-
 import org.joda.time.LocalDateTime;
 
 public class Project {
+
 	private Integer quoteId;
 	private Integer projId;
 	private String projDesc;
@@ -12,6 +12,8 @@ public class Project {
 	private String riskName;
 	private BigDecimal totalSi;
 	private BigDecimal pctShare;
+	private Integer totalSiI;
+	private Integer pctShareI;
 	private BigDecimal totalValue;
 	private Integer objectId;
 	private String objectDesc;
@@ -67,6 +69,18 @@ public class Project {
 	}
 	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
+	}
+	public Integer getTotalSiI() {
+		return totalSiI;
+	}
+	public void setTotalSiI(Integer totalSiI) {
+		this.totalSiI = totalSiI;
+	}
+	public Integer getPctShareI() {
+		return pctShareI;
+	}
+	public void setPctShareI(Integer pctShareI) {
+		this.pctShareI = pctShareI;
 	}
 	public BigDecimal getTotalValue() {
 		return totalValue;
@@ -152,14 +166,16 @@ public class Project {
 	public void setCoverage(Coverage coverage) {
 		this.coverage = coverage;
 	}
+	
 	@Override
 	public String toString() {
 		return "Project [quoteId=" + quoteId + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
-				+ ", riskName=" + riskName + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue="
-				+ totalValue + ", objectId=" + objectId + ", objectDesc=" + objectDesc + ", site=" + site
-				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
-				+ ", noClaimPd=" + noClaimPd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", coverage=" + coverage + "]";
+				+ ", riskName=" + riskName + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalSiI="
+				+ totalSiI + ", pctShareI=" + pctShareI + ", totalValue=" + totalValue + ", objectId=" + objectId
+				+ ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing=" + testing
+				+ ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", coverage=" + coverage + "]";
 	}
-	
+
 }

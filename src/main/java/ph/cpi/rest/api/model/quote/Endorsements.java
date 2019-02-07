@@ -2,26 +2,21 @@ package ph.cpi.rest.api.model.quote;
 
 import org.joda.time.LocalDateTime;
 
-public class EndorsementsOc {
-	
-	private Integer endtCd;
+
+public class Endorsements {
+
 	private Integer quoteId;
 	private String quotationNo;
-	private Integer projId;
-	private String projDesc;
-	/* private String endtCd; */ //Removed should be Integer
+	private Integer optionId;
+	private Integer endtCd;
 	private String endtTitle;
+	private String description;
 	private String remarks;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	public Integer getEndtCd() {
-		return endtCd;
-	}
-	public void setEndtCd(Integer endtCd) {
-		this.endtCd = endtCd;
-	}
+	
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -34,17 +29,17 @@ public class EndorsementsOc {
 	public void setQuotationNo(String quotationNo) {
 		this.quotationNo = quotationNo;
 	}
-	public Integer getProjId() {
-		return projId;
+	public Integer getOptionId() {
+		return optionId;
 	}
-	public void setProjId(Integer projId) {
-		this.projId = projId;
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
 	}
-	public String getProjDesc() {
-		return projDesc;
+	public Integer getEndtCd() {
+		return endtCd;
 	}
-	public void setProjDesc(String projDesc) {
-		this.projDesc = projDesc;
+	public void setEndtCd(Integer endtCd) {
+		this.endtCd = endtCd;
 	}
 	public String getEndtTitle() {
 		return endtTitle;
@@ -82,12 +77,22 @@ public class EndorsementsOc {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "EndorsementsOc [endtCd=" + endtCd + ", quoteId=" + quoteId + ", quotationNo=" + quotationNo
-				+ ", projId=" + projId + ", projDesc=" + projDesc + ", endtTitle=" + endtTitle + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+		return "Endorsements [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", optionId=" + optionId
+				+ ", endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", description=" + description + ", remarks="
+				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }
