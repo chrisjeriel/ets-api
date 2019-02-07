@@ -36,6 +36,7 @@
 		<result property="optionId" 		column="OPTION_ID"/> 
 		<result property="endtCd" 			column="ENDT_CD"/> 
 		<result property="endtTitle" 		column="ENDT_TITLE"/> 
+		<result property="description" 		column="ENDT_DESCRIPTION"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
@@ -135,7 +136,7 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','','')
+			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteEndorsementsOc" resultMap="quoteEndorsementsOcMap" parameterType="java.util.Map">
@@ -143,11 +144,12 @@
 	</select>
 	
 	<select id="retrieveQuoteEndorsements" resultMap="quoteEndorsementsMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements(#{quoteId},#{quotationNo},'','','','')
+			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+					WHERE OPTION_ID = NVL(#{optionId,jdbcType=VARCHAR},OPTION_ID)
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfo" resultMap="quoteGenInfoMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','','')
+			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 
 	<select id="retrieveQuoteAlopSample" resultMap="alopMap" parameterType="java.util.Map">

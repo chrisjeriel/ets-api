@@ -4,9 +4,10 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteEndorsementsRequest {
-	
+
 	private Integer quoteId;
 	private String quotationNo;
+	private Integer optionId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 
@@ -35,10 +36,17 @@ public class RetrieveQuoteEndorsementsRequest {
 		this.sortRequest = sortRequest;
 	}
 	
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveQuoteEndorsementsResquest [quoteId=" + quoteId + ", quotationNo=" + quotationNo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveQuoteEndorsementsRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", optionId="
+				+ optionId + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 
 	

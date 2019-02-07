@@ -4,12 +4,13 @@ import org.joda.time.LocalDateTime;
 
 
 public class Endorsements {
-	
+
 	private Integer quoteId;
 	private String quotationNo;
 	private Integer optionId;
 	private Integer endtCd;
 	private String endtTitle;
+	private String description;
 	private String remarks;
 	private String createUser;
 	private LocalDateTime createDate;
@@ -77,12 +78,21 @@ public class Endorsements {
 		this.updateDate = updateDate;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Endorsements [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", optionId=" + optionId
-				+ ", endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ ", endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", description=" + description + ", remarks="
+				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

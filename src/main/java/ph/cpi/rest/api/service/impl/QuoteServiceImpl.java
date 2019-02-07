@@ -67,6 +67,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteEndorsementsParams = new HashMap<String, Object>();
 		retrieveQuoteEndorsementsParams.put("quoteId", rqerp.getQuoteId());
 		retrieveQuoteEndorsementsParams.put("quotationNo", rqerp.getQuotationNo());
+		retrieveQuoteEndorsementsParams.put("optionId", rqerp.getOptionId());
 		rqeResponse.setEndorsements(quoteDao.retrieveQuoteEndorsements(retrieveQuoteEndorsementsParams));
 		logger.info("retrieveQuoteEndorsementsResponse : " + rqerp.toString());
 		// TODO Auto-generated method stub
