@@ -8,21 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.Employee;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -83,10 +90,24 @@ public class QuoteController {
 	}
 	
 	@GetMapping(path="retrieveQuoteDetails")
-	public @ResponseBody RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest rqdr) throws SQLException {
+	public @ResponseBody RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteDetails");
-		logger.info("RetrieveQuoteDetailsRequest : " + rqdr.toString());
-		return quoteService.retrieveQuoteDetails(rqdr);
+		logger.info("RetrieveQuoteDetailsRequest : " + sqar.toString());
+		return quoteService.retrieveQuoteDetails(sqar);
 	}
 	
+	@PostMapping(path="saveQuoteAttachment")
+	public @ResponseBody SaveQuoteAttachmentResponse saveQuoteAttachment(@RequestBody SaveQuoteAttachmentRequest sqar) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteAttachment");
+		logger.info("SaveQuoteAttachmentRequest : " + sqar.toString());
+		return quoteService.saveQuoteAttachment(sqar);
+	}
+	
+	@PostMapping(path="saveQuoteAlop")
+	public @ResponseBody SaveQuoteAlopResponse saveQuoteAlop(@RequestBody SaveQuoteAlopRequest sqar) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteAlop");
+		logger.info("SaveQuoteAlopRequest : " + sqar.toString());
+		return quoteService.saveQuoteAlop(sqar);
+	}
+		
 }

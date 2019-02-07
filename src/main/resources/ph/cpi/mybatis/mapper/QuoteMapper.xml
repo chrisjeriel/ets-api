@@ -455,4 +455,26 @@
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
 		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId},#{quotationNo},null,null,null,null)
 	</select>
+	
+	<select id="saveQuoteAttachmentMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="attachments">
+		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
+			   (#{quoteId},#{attachmentsList.fileNo},#{attachmentsList.fileName},#{attachmentsList.description},#{attachmentsList.createUser},
+			   CAST(to_timestamp(#{attachmentsList.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentsList.updateUser},
+			   CAST(to_timestamp(#{attachmentsList.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		END;
+	</select>
+	
+	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
+		   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{maxIndemPd},
+		   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{timeExc},#{repInterval},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		END;
+	</update>
 </mapper>

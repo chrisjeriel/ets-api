@@ -15,12 +15,16 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -168,6 +172,57 @@ public class QuoteServiceImpl implements QuoteService{
 		logger.info("retrieveQuoteDetailsResponse : " + rqdrResponse.toString());
 		
 		return rqdrResponse;
+	}
+
+	@Override
+	public SaveQuoteAttachmentResponse saveQuoteAttachment(SaveQuoteAttachmentRequest sqar) throws SQLException {
+		SaveQuoteAttachmentResponse sqarResponse = new SaveQuoteAttachmentResponse();
+		
+		HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
+		saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
+		/*saveQuoteAttachmentParams.put("fileNo", sqar.getFileNo());
+		saveQuoteAttachmentParams.put("fileName", sqar.getFileName());
+		saveQuoteAttachmentParams.put("description", sqar.getDescription());
+		saveQuoteAttachmentParams.put("createUser", sqar.getCreateUser());
+		saveQuoteAttachmentParams.put("createDate", sqar.getCreateDate());
+		saveQuoteAttachmentParams.put("updateUser", sqar.getUpdateUser());
+		saveQuoteAttachmentParams.put("updateDate", sqar.getUpdateDate());*/
+		saveQuoteAttachmentParams.put("attachmentsList", sqar.getAttachmentsList());
+		
+		
+		sqarResponse.setReturnCode(quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams));
+		
+		return sqarResponse;
+	}
+
+	@Override
+	public SaveQuoteAlopResponse saveQuoteAlop(SaveQuoteAlopRequest sqar) throws SQLException {
+		SaveQuoteAlopResponse sqarResponse = new SaveQuoteAlopResponse();
+		
+		HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
+		
+		saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId() );
+		saveQuoteAlopParams.put("alopId" , sqar.getAlopId() );
+		saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId() );
+		saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
+		saveQuoteAlopParams.put("address" , sqar.getAddress() );
+		saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
+		saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
+		saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
+		saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
+		saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
+		saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
+		saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
+		saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
+		saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
+		saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
+		saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
+		saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
+		saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
+		
+		sqarResponse.setReturnCode(quoteDao.saveQuoteAlop(saveQuoteAlopParams));
+		
+		return sqarResponse;
 	}
 
 	

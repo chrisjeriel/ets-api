@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -69,6 +70,18 @@ public class QuoteDaoImpl implements QuoteDao{
 	public Quotation retrieveQuoteDetails(HashMap<String, Object> params) throws SQLException {
 		Quotation quotation = sqlSession.selectOne("retrieveQuoteDetails", params);
 		return quotation;
+	}
+
+	@Override
+	public Integer saveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAttachmentMap",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAlopMap",params);
+		return errorCode;
 	}
 	
 	
