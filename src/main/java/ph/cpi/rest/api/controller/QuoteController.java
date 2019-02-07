@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
@@ -108,6 +110,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuoteAlop");
 		logger.info("SaveQuoteAlopRequest : " + sqar.toString());
 		return quoteService.saveQuoteAlop(sqar);
+	}
+	
+	@PostMapping(path="saveQuoteAlopItem")
+	public @ResponseBody SaveQuoteAlopItemResponse saveQuoteAlopItem(@RequestBody SaveQuoteAlopItemRequest sqair) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteAlopItem");
+		logger.info("SaveQuoteAlopItemRequest : " + sqair.toString());
+		return quoteService.saveQuoteAlopItem(sqair);
 	}
 		
 }

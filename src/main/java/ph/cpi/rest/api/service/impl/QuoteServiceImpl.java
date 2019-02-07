@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
@@ -23,6 +24,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
@@ -180,13 +182,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
 		saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
-		/*saveQuoteAttachmentParams.put("fileNo", sqar.getFileNo());
-		saveQuoteAttachmentParams.put("fileName", sqar.getFileName());
-		saveQuoteAttachmentParams.put("description", sqar.getDescription());
-		saveQuoteAttachmentParams.put("createUser", sqar.getCreateUser());
-		saveQuoteAttachmentParams.put("createDate", sqar.getCreateDate());
-		saveQuoteAttachmentParams.put("updateUser", sqar.getUpdateUser());
-		saveQuoteAttachmentParams.put("updateDate", sqar.getUpdateDate());*/
 		saveQuoteAttachmentParams.put("attachmentsList", sqar.getAttachmentsList());
 		
 		
@@ -223,6 +218,20 @@ public class QuoteServiceImpl implements QuoteService{
 		sqarResponse.setReturnCode(quoteDao.saveQuoteAlop(saveQuoteAlopParams));
 		
 		return sqarResponse;
+	}
+
+	@Override
+	public SaveQuoteAlopItemResponse saveQuoteAlopItem(SaveQuoteAlopItemRequest sqair) throws SQLException {
+		SaveQuoteAlopItemResponse sqairResponse = new SaveQuoteAlopItemResponse();
+		
+		HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
+		saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
+		saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
+		saveQuoteAlopItemParams.put("alopItemsList" , sqair.getAlopItemList() );
+		
+		sqairResponse.setReturnCode(quoteDao.saveQuoteAlopItem(saveQuoteAlopItemParams));
+		
+		return sqairResponse;
 	}
 
 	

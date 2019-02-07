@@ -458,11 +458,11 @@
 	
 	<select id="saveQuoteAttachmentMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="attachments">
+		   <foreach collection="attachmentsList" item="attachment">
 		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
-			   (#{quoteId},#{attachmentsList.fileNo},#{attachmentsList.fileName},#{attachmentsList.description},#{attachmentsList.createUser},
-			   CAST(to_timestamp(#{attachmentsList.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentsList.updateUser},
-			   CAST(to_timestamp(#{attachmentsList.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			   (#{quoteId},#{attachment.fileNo},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
+			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
+			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		END;
 	</select>
@@ -477,4 +477,18 @@
 		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		END;
 	</update>
+	
+	<update id="saveQuoteAloItempMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="alopItemsList" item="alopItem">
+		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
+		    	(#{quoteId},#{alopId},#{alopItem.itemNo},#{alopItem.quantity},
+		    	#{alopItem.description},#{alopItem.importance},#{alopItem.lossMin},
+		    	#{alopItem.createUser},
+		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

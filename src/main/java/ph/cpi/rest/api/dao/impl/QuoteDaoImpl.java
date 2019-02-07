@@ -83,6 +83,12 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteAlopMap",params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer saveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAloItempMap",params);
+		return errorCode;
+	}
 	
 	
 }

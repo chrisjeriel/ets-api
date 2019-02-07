@@ -21,7 +21,6 @@ public interface QuoteDao {
 	public Quotation retrieveQuoteDetails(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteAttachment(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
-	
-	
+	public Integer saveQuoteAlopItem(final HashMap<String, Object> params) throws SQLException;
 	
 }
