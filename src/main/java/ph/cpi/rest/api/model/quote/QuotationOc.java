@@ -27,7 +27,7 @@ public class QuotationOc {
 	private Integer	prinId;
 	private String	principalName;
 	private Integer	contractorId;
-	private String	contactorName;
+	private String	contractorName;
 	private String	insuredDesc;
 	private String	status;
 	private Integer	reinsurerId;
@@ -185,10 +185,10 @@ public class QuotationOc {
 		this.contractorId = contractorId;
 	}
 	public String getContactorName() {
-		return contactorName;
+		return contractorName;
 	}
 	public void setContactorName(String contactorName) {
-		this.contactorName = contactorName;
+		this.contractorName = contactorName;
 	}
 	public String getInsuredDesc() {
 		return insuredDesc;
@@ -379,7 +379,7 @@ public class QuotationOc {
 				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", refPolNo=" + refPolNo
 				+ ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo + ", prinId=" + prinId
 				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contactorName="
-				+ contactorName + ", insuredDesc=" + insuredDesc + ", status=" + status + ", reinsurerId=" + reinsurerId
+				+ contractorName + ", insuredDesc=" + insuredDesc + ", status=" + status + ", reinsurerId=" + reinsurerId
 				+ ", reinsurerName=" + reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate="
 				+ issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode="
 				+ reqMode + ", currencyCd=" + currencyCd + ", currencyRtI=" + currencyRtI + ", currencyRt=" + currencyRt

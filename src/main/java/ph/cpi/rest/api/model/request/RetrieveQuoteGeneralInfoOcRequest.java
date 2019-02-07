@@ -4,14 +4,14 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteGeneralInfoOcRequest {
-	private Integer quoteIdOc;
+	private String quoteIdOc;
 	private String openQuotationNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getQuoteIdOc() {
+	public String getQuoteIdOc() {
 		return quoteIdOc;
 	}
-	public void setQuoteIdOc(Integer quoteIdOc) {
+	public void setQuoteIdOc(String quoteIdOc) {
 		this.quoteIdOc = quoteIdOc;
 	}
 	public String getOpenQuotationNo() {
@@ -37,5 +37,4 @@ public class RetrieveQuoteGeneralInfoOcRequest {
 		return "RetrieveQuoteGeneralInfoOcRequest [quoteIdOc=" + quoteIdOc + ", openQuotationNo=" + openQuotationNo
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

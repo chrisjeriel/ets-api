@@ -4,14 +4,15 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteHoldCoverRequest {
-	private Integer holdCoverId;
+	private String holdCoverId;
 	private String holdCoverNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getHoldCoverId() {
+	
+	public String getHoldCoverId() {
 		return holdCoverId;
 	}
-	public void setHoldCoverId(Integer holdCoverId) {
+	public void setHoldCoverId(String holdCoverId) {
 		this.holdCoverId = holdCoverId;
 	}
 	public String getHoldCoverNo() {

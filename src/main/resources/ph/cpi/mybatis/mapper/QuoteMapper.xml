@@ -125,7 +125,7 @@
 		<result property    ="prinId"               column  ="PRIN_ID"/>
 		<result property    ="principalName"        column  ="PRINCIPAL_NAME"/>
 		<result property    ="contractorId"         column  ="CONTRACTOR_ID"/>
-		<result property    ="contactorName"        column  ="CONTRACTOR_NAME"/>
+		<result property    ="contractorName"        column  ="CONTRACTOR_NAME"/>
 		<result property    ="insuredDesc"          column  ="INSURED_DESC"/>
 		<result property    ="status"               column  ="STATUS"/>
 		<result property    ="reinsurerId"          column  ="REINSURER_ID"/>
@@ -187,6 +187,10 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationListingMap">
+		<result property 		= "quotationNo"		column		= "QUOTE_NO"/>
+		<result property 		= "quoteId"			column		= "QUOTE_ID"/>
+		<result property 		= "cedingName"		column		= "CEDING_NAME"/>
+		<result property 		= "insuredDesc"		column		= "INSURED_DESC"/>
 		<association property 	= "holdCover" 		resultMap 	= "holdCoverListingMap"/>
 		<association property 	= "project"			resultMap 	= "projectMap"/>
 	</resultMap>
