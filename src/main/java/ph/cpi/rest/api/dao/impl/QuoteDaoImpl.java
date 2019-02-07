@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -81,6 +82,7 @@ public class QuoteDaoImpl implements QuoteDao{
 		return quotation;
 	}
 
+	@Override
 	public List<Quotation> retrieveQuoteHoldCoverListing(HashMap<String, Object> params) throws SQLException {
 		List<Quotation> quotationListing = sqlSession.selectList("retrieveQuoteHoldCoverListing", params);
 		return quotationListing;
@@ -91,6 +93,24 @@ public class QuoteDaoImpl implements QuoteDao{
 		// TODO Auto-generated method stub
 		List<QuotationOc> attachmentOcList = sqlSession.selectList("retrieveQuoteAttachmentOc", params);
 		return attachmentOcList;
+	}
+	
+	@Override
+	public Integer saveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAttachmentMap",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAlopMap",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAloItempMap",params);
+		return errorCode;
 	}
 	
 	@Override

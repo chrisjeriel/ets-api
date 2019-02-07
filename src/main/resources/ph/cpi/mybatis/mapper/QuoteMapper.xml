@@ -766,4 +766,40 @@
 			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null)
     </select>
   
+
+	<select id="saveQuoteAttachmentMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="attachmentsList" item="attachment">
+		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
+			   (#{quoteId},#{attachment.fileNo},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
+			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
+			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		END;
+	</select>
+	
+	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
+		   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{maxIndemPd},
+		   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{timeExc},#{repInterval},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		END;
+	</update>
+	
+	<update id="saveQuoteAloItempMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="alopItemsList" item="alopItem">
+		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
+		    	(#{quoteId},#{alopId},#{alopItem.itemNo},#{alopItem.quantity},
+		    	#{alopItem.description},#{alopItem.importance},#{alopItem.lossMin},
+		    	#{alopItem.createUser},
+		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>
