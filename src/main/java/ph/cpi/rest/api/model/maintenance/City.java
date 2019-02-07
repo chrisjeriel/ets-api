@@ -15,6 +15,8 @@ public class City {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	private District district;
+	
 	public Integer getCityCd() {
 		return cityCd;
 	}
@@ -81,14 +83,11 @@ public class City {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	@Override
-	public String toString() {
-		return "City [cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtList=" + districtList + ", activeTag="
-				+ activeTag + ", remarks=" + remarks + ", zoneCd=" + zoneCd + ", zoneCdDesc=" + zoneCdDesc
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+	public District getDistrict() {
+		return district;
 	}
-	
-	
+	public void setDistrict(District district) {
+		this.district = district;
+	}
 	
 }

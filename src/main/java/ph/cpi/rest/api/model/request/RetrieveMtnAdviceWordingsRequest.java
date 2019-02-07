@@ -3,24 +3,17 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveQuoteAlopRequest {
+public class RetrieveMtnAdviceWordingsRequest {
 	
-	private Integer quoteId;
-	private String quotationNo;
+	private String adviceWordId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public Integer getQuoteId() {
-		return quoteId;
+	public String getAdviceWordId() {
+		return adviceWordId;
 	}
-	public void setQuoteId(Integer quoteId) {
-		this.quoteId = quoteId;
-	}
-	public String getQuotationNo() {
-		return quotationNo;
-	}
-	public void setQuotationNo(String quotationNo) {
-		this.quotationNo = quotationNo;
+	public void setAdviceWordId(String adviceWordId) {
+		this.adviceWordId = adviceWordId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -36,8 +29,10 @@ public class RetrieveQuoteAlopRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", paginationRequest="
+		return "RetrieveMaintenanceAdviceWordings [adviceWordId=" + adviceWordId + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
 	
 }

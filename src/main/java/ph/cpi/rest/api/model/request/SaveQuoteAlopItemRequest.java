@@ -1,18 +1,51 @@
-package ph.cpi.rest.api.model.quote;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.LocalDateTime;
+import java.util.List;
 
-public class AlopItem {
-	private Integer itemNo;
+import org.apache.ibatis.type.Alias;
+
+public class SaveQuoteAlopItemRequest {
+	private Integer quoteId;
+	private Integer alopId;
+	private List<AlopItem> alopItemList;
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
+	public Integer getAlopId() {
+		return alopId;
+	}
+	public void setAlopId(Integer alopId) {
+		this.alopId = alopId;
+	}
+	public List<AlopItem> getAlopItemList() {
+		return alopItemList;
+	}
+	public void setAlopItemList(List<AlopItem> alopItemList) {
+		this.alopItemList = alopItemList;
+	}
+	@Override
+	public String toString() {
+		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", alopId=" + alopId + ", alopItemList=" + alopItemList
+				+ "]";
+	}
+	
+	
+}
+
+@Alias("SaveQuoteAlopItem")
+class AlopItem{
+	private Integer itemNo ;
 	private Integer quantity;
 	private String description;
 	private String importance;
 	private String lossMin;
 	private String createUser;
-	private LocalDateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
-
+	private String updateDate;
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -49,10 +82,10 @@ public class AlopItem {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -61,10 +94,10 @@ public class AlopItem {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
@@ -73,5 +106,6 @@ public class AlopItem {
 				+ ", importance=" + importance + ", lossMin=" + lossMin + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

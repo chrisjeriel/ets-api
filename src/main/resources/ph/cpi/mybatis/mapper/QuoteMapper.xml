@@ -180,11 +180,12 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
 		<result property 		= "quoteId" 		column		= "QUOTE_ID" />
-		<result property 		= "quotationNo" 	column		= "QUOTE_NO" />
+		<result property 		= "quotationNo" 	column		= "QUOTE_NO" /> <!-- CHANGED FROM QUOTATION_NO -->
 		<result property 		= "cedingName" 		column		= "CEDING_NAME" />
 		<result property 		= "insuredDesc" 	column		= "INSURED_DESC" />
 		<association property 	= "holdCover" 		resultMap 	= "holdCoverMap"/>
 		<association property 	= "project"			resultMap 	= "projectMap"/>
+        <association property="alop" resultMap="alopMap" />
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationListingMap">
@@ -254,6 +255,26 @@
 	
 	<select id="retrieveQuoteAlopSample" resultMap="alopMapSample" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMapAttachment">
+        <result property="quoteId" 		column="QUOTE_ID"/>
+        <result property="quotationNo" 	column="QUOTATION_NO"/>
+        <association property="attachment" resultMap="attachmentMap"></association>
+	</resultMap>
+
+	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentMap">
+        <result property="fileNo"  		column="FILE_NO"/> 
+        <result property="fileName"  	column="FILE_NAME"/>
+        <result property="description"  column="DESCRIPTION"/>
+        <result property="createUser"  	column="CREATE_USER"/>
+     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+        <result property="updateUser"  	column="UPDATE_USER"/>
+        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+	</resultMap>
+	
+	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
+			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_attachment(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR}, null, null ,null, null)
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
@@ -622,6 +643,7 @@
 		<result property="updateUser" column="ALOP_UPDATE_USER"/>
 		<result property="updateDate" column="ALOP_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<association property="alopItemList" resultMap="alopItem"></association>
+        <association property="alopItem" resultMap="alopItemMap"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="otherRates">
@@ -683,4 +705,103 @@
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
 		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId},#{quotationNo},null,null,null,null)
 	</select>
+	
+<!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
+        <result property="quoteId" 		column="QUOTE_ID"/>
+        <result property="quotationNo" 	column="QUOTATION_NO"/>
+        <association property="alop" resultMap="alopMap"></association>
+	</resultMap> --> <!-- REMOVED DUPLICATE ID-->
+	
+<!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
+        <result property="alopId" column="ALOP_ID"/>
+        <association property="alopItem" resultMap="alopItemMap"></association>
+	</resultMap> --> <!-- REMOVED DUPLICATE ID -->
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItemMap">
+        <result property="itemNo" 		column="ITEM_NO"/>
+        <result property="quantity" 	column="QUANTITY"/>
+        <result property="description" 	column="DESCRIPTION"/>
+        <result property="importance" 	column="IMPORTANCE"/>
+        <result property="lossMin" 		column="LOSS_MIN"/>
+        <result property="createUser" 	column="CREATE_USER"/>
+        <result property="createDate" 	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+        <result property="updateUser" 	column="UPDATE_USER"/>
+        <result property="updateDate" 	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	
+        
+    <select id="retrieveQuoteAlopItem" resultMap="quotationMap" parameterType="java.util.Map">
+            SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
+    </select>
+    
+    
+    <resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMapAlop">
+        <result property="quoteId" 		column="QUOTE_ID"/>
+        <result property="quotationNo" 	column="QUOTATION_NO"/>
+        <association property="alop" resultMap="AlopMap"></association>
+	</resultMap>
+	
+	
+     <resultMap type="ph.cpi.rest.api.model.quote.Alop" id="AlopMap">
+    	<result property="alopId" 			column="ALOP_ID"/>
+		<result property="insuredId" 		column="INS_ID"/>
+		<result property="insuredName" 		column="INSURED_NAME"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="address" 			column="ADDRESS"/>
+		<result property="insuredBusiness" 	column="INS_BUSINESS"/>
+		<result property="annSi" 			column="ANN_SI"/>
+		<result property="maxIndemPdSi" 	column="MAX_INDEM_PD_SI"/>
+		<result property="issueDate" 		column="ISSUE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="expiryDate" 		column="EXPIRY_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="maxIndemPd" 		column="MAX_INDEM_PD"/>
+		<result property="indemFromDate" 	column="INDEM_FROM_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="timeExc" 			column="TIME_EXC"/>
+		<result property="repInterval" 		column="REP_INTERVAL"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER" />
+		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+    </resultMap>
+    
+    <select id="retrieveQuoteAlop" resultMap="quotationMapAlop" parameterType="java.util.Map">
+			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null)
+    </select>
+  
+
+	<select id="saveQuoteAttachmentMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="attachmentsList" item="attachment">
+		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
+			   (#{quoteId},#{attachment.fileNo},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
+			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
+			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		END;
+	</select>
+	
+	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
+		   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{maxIndemPd},
+		   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{timeExc},#{repInterval},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		END;
+	</update>
+	
+	<update id="saveQuoteAloItempMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="alopItemsList" item="alopItem">
+		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
+		    	(#{quoteId},#{alopId},#{alopItem.itemNo},#{alopItem.quantity},
+		    	#{alopItem.description},#{alopItem.importance},#{alopItem.lossMin},
+		    	#{alopItem.createUser},
+		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

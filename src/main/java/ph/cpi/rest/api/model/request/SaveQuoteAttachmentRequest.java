@@ -1,15 +1,48 @@
-package ph.cpi.rest.api.model.quote;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.LocalDateTime;
 
-public class Attachment {
-	private Integer fileNo; 
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
+
+public class SaveQuoteAttachmentRequest {
+
+	private Integer quoteId;
+	private List<Attachment> attachmentsList;
+	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
+
+	public List<Attachment> getAttachmentsList() {
+		return attachmentsList;
+	}
+
+	public void setAttachmentsList(List<Attachment> attachmentsList) {
+		this.attachmentsList = attachmentsList;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveQuoteAttachmentRequest [quoteId=" + quoteId + ", attachmentsList=" + attachmentsList + "]";
+	}
+
+}
+
+@Alias("SaveQuoteAttachment")
+class Attachment {
+	private Integer fileNo ;
 	private String fileName;
 	private String description;
 	private String createUser;
-	private LocalDateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private String updateDate;
+	
 	public Integer getFileNo() {
 		return fileNo;
 	}
@@ -34,10 +67,10 @@ public class Attachment {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -46,10 +79,10 @@ public class Attachment {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
@@ -58,5 +91,5 @@ public class Attachment {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-
+	
 }

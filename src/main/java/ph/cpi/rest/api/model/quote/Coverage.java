@@ -6,7 +6,9 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class Coverage {
-
+	
+	private Integer riskId;
+	
 	private BigDecimal sectionISi;
 	private BigDecimal sectionIISi;
 	private BigDecimal sectionIIISi;
@@ -18,13 +20,16 @@ public class Coverage {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	
+	private List<SectionCovers> sectionCovers;
+	
 	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	private List<SectionCovers> sectionCovers;
+	
 	public BigDecimal getSectionISi() {
 		return sectionISi;
 	}
