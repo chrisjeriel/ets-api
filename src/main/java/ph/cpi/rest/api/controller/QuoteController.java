@@ -196,5 +196,12 @@ public class QuoteController {
 		logger.info("SaveQuoteAlopItemRequest : " + sqair.toString());
 		return quoteService.saveQuoteAlopItem(sqair);
 	}
+	
+	@PostMapping(path="saveQuoteHoldCover")
+	public @ResponseBody SaveQuoteHoldCoverResponse saveQuoteHoldCover(@RequestBody SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteHoldCover");
+		logger.info("SaveQuoteHoldCoverRequest : " + sqhcr.toString());
+		return quoteService.saveQuoteHoldCover(sqhcr);
+	}
 		
 }
