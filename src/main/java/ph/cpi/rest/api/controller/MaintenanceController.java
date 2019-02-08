@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
@@ -24,6 +27,9 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
@@ -35,6 +41,14 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 @Controller
@@ -132,11 +146,67 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnQuoteWordingsRequest : " + rmqwp.toString());
 		return maintenanceService.retrieveMtnQuoteWordings(rmqwp);
 	}
+	
+	@GetMapping(path="retrieveMtnCity")
+	public @ResponseBody RetrieveMtnCityResponse retrieveMtnCity(RetrieveMtnCityRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCity");
+		logger.info("RetrieveMtnCityRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCity(rmcr);
+	}
+	
+	@GetMapping(path="retrieveMtnCrestaZone")
+	public @ResponseBody RetrieveMtnCrestaZoneResponse retrieveMtnCrestaZone(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCrestaZone");
+		logger.info("RetrieveMtnCrestaZoneRequest : " + rmczr.toString());
+		return maintenanceService.retrieveMtnCrestaZone(rmczr);
+	}
+	
+	@GetMapping(path="retrieveMtnCurrency")
+	public @ResponseBody RetrieveMtnCurrencyResponse retrieveMtnCurrency(RetrieveMtnCurrencyRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCurrency");
+		logger.info("RetrieveMtnCurrencyRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCurrency(rmcr);
+	}
+	/*@GetMapping(path="retrieveQuoteAlop")
+	public @ResponseBody RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveQuoteAlop");
+		logger.info("RetrieveQuoteAlopRequest : " + rqap.toString());
+		return maintenanceService.retrieveQuoteAlop(rqap);
+	}*/
+	
+	@GetMapping(path="retrieveMaintenanceAdviceWordings")
+	public @ResponseBody RetrieveMtnAdviceWordingsResponse retrieveMaintenanceAdviceWordings(RetrieveMtnAdviceWordingsRequest retMtnAdviceWordings) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMaintenanceAdviceWordings");
+		logger.info("RetrieveMaintenanceAdviceWordingsRequest : " + retMtnAdviceWordings.toString());
+		return maintenanceService.retrieveMaintenanceAdviceWordings(retMtnAdviceWordings);
+	}
+	
+	@GetMapping(path="retrieveMaintenanceBlock")
+	public @ResponseBody RetrieveMtnBlockResponse retrieveMaintenanceBlock(RetrieveMtnBlockRequest retMtnBlock) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMaintenanceBlock");
+		logger.info("RetrieveMaintenanceAdviceWordingsRequest : " + retMtnBlock.toString());
+		return maintenanceService.retrieveMaintenanceBlock(retMtnBlock);
+	}
+	
 
 	@GetMapping(path="retrieveMtnDeductibles")
 	public @ResponseBody RetrieveMtnDeductiblesResponse retrieveMtnDeductibles(RetrieveMtnDeductiblesRequest rmdr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnDeductibles");
 		logger.info("RetrieveMtnDeductibles : " + rmdr.toString());
 		return maintenanceService.retrieveMtnDeductibles(rmdr);
+	}
+		
+	@GetMapping(path="retrieveMaintenanceCedingCompanyListing")
+	public @ResponseBody RetrieveMtnCedingCompanyListingResponse retrieveMtnCedingCompanyListing(RetrieveMtnCedingCompanyListingRequest retMtnCedingCompanyListing) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompanyListing");
+		logger.info("RetrieveMtnCedingCompanyListingRequest : " + retMtnCedingCompanyListing.toString());
+		return maintenanceService.retrieveMaintenanceCedingCompanyListing(retMtnCedingCompanyListing);
+	}
+	
+	@GetMapping(path="retrieveMaintenanceCedingCompany")
+	public @ResponseBody RetrieveMtnCedingCompanyResponse retrieveMaintenanceCedingCompany(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompany");
+		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
+		return maintenanceService.retrieveMaintenanceCedingCompany(retMtnCedingCompany);
 	}
 }

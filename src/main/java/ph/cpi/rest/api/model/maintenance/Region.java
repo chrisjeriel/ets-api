@@ -1,13 +1,14 @@
 package ph.cpi.rest.api.model.maintenance;
 
 import java.util.List;
-
 import org.joda.time.LocalDateTime;
 
 public class Region {
+	
 	private Integer regionCd;
 	private String regionDesc;
 	private List<Province> provinceList;
+	//private List<Province> province; //Must be removed, should be provinceList
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -82,5 +83,6 @@ public class Region {
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", province=" + province
 				+ "]";
 	}
+	
 	
 }

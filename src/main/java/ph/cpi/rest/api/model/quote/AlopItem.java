@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.quote;
 import org.joda.time.LocalDateTime;
 
 public class AlopItem {
-	private Integer itemNo ;
+	private Integer itemNo;
 	private Integer quantity;
 	private String description;
 	private String importance;
@@ -12,6 +12,7 @@ public class AlopItem {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -72,6 +73,5 @@ public class AlopItem {
 				+ ", importance=" + importance + ", lossMin=" + lossMin + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

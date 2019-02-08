@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
@@ -18,6 +24,17 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
@@ -26,6 +43,11 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -77,7 +99,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
 		
 		rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
-		
 		logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
 		
 		return rqlResponse;
@@ -223,6 +244,199 @@ public class QuoteServiceImpl implements QuoteService{
 		return rqhcResponse;
 	}
 
+	@Override
+	public SaveQuoteAttachmentResponse saveQuoteAttachment(SaveQuoteAttachmentRequest sqar) throws SQLException {
+		SaveQuoteAttachmentResponse sqarResponse = new SaveQuoteAttachmentResponse();
+		
+		HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
+		saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
+		saveQuoteAttachmentParams.put("attachmentsList", sqar.getAttachmentsList());
+		
+		
+		sqarResponse.setReturnCode(quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams));
+		
+		return sqarResponse;
+	}
+
+	@Override
+	public SaveQuoteAlopResponse saveQuoteAlop(SaveQuoteAlopRequest sqar) throws SQLException {
+		SaveQuoteAlopResponse sqarResponse = new SaveQuoteAlopResponse();
+		
+		HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
+		
+		saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId() );
+		saveQuoteAlopParams.put("alopId" , sqar.getAlopId() );
+		saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId() );
+		saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
+		saveQuoteAlopParams.put("address" , sqar.getAddress() );
+		saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
+		saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
+		saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
+		saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
+		saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
+		saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
+		saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
+		saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
+		saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
+		saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
+		saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
+		saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
+		saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
+		
+		sqarResponse.setReturnCode(quoteDao.saveQuoteAlop(saveQuoteAlopParams));
+		
+		return sqarResponse;
+	}
+
+	@Override
+	public SaveQuoteAlopItemResponse saveQuoteAlopItem(SaveQuoteAlopItemRequest sqair) throws SQLException {
+		SaveQuoteAlopItemResponse sqairResponse = new SaveQuoteAlopItemResponse();
+		
+		HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
+		saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
+		saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
+		saveQuoteAlopItemParams.put("alopItemsList" , sqair.getAlopItemList() );
+		
+		sqairResponse.setReturnCode(quoteDao.saveQuoteAlopItem(saveQuoteAlopItemParams));
+		
+		return sqairResponse;
+	}
+
+	@Override
+	public RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException {
+		
+		RetrieveQuoteAttachmentOcResponse rqaocResponse = new RetrieveQuoteAttachmentOcResponse();
+		
+		HashMap<String, Object> retrieveQuoteAttachmentOcParams = new HashMap<String, Object>();
+		
+		retrieveQuoteAttachmentOcParams.put("quoteIdOc", rqaor.getQuoteIdOc());
+		retrieveQuoteAttachmentOcParams.put("openQuotationNo", rqaor.getOpenQuotationNo());
+		retrieveQuoteAttachmentOcParams.put("position", rqaor.getPaginationRequest().getPosition());
+		retrieveQuoteAttachmentOcParams.put("count", rqaor.getPaginationRequest().getCount());
+		retrieveQuoteAttachmentOcParams.put("sortKey", rqaor.getSortRequest().getSortKey());
+		retrieveQuoteAttachmentOcParams.put("order", rqaor.getSortRequest().getOrder());
+		
+		rqaocResponse.setQuotationOc(quoteDao.retrieveQuoteAttachmentOcList(retrieveQuoteAttachmentOcParams));
+		rqaocResponse.getPaginationResponse().setPosition(rqaor.getPaginationRequest().getPosition());
+		rqaocResponse.getPaginationResponse().setCount(rqaor.getPaginationRequest().getCount());
+		rqaocResponse.getSortResponse().setSortKey(rqaor.getSortRequest().getSortKey());
+		rqaocResponse.getSortResponse().setOrder(rqaor.getSortRequest().getOrder());
+		
+		logger.info("retrieveQuoteAttachmentOcResponse : " + rqaocResponse.toString());
+		
+		return rqaocResponse;
+	}
+
+	public RetrieveQuoteAttachmentResponse retrieveQuoteAttachment(RetrieveQuoteAttachmentRequest rqat)
+			throws SQLException {
+		
+		RetrieveQuoteAttachmentResponse rqatResponse = new RetrieveQuoteAttachmentResponse();
+		
+		HashMap<String, Object> retrieveQuoteAttachmentParams = new HashMap<String, Object>();
+		retrieveQuoteAttachmentParams.put("quoteId", rqat.getQuoteId());
+		retrieveQuoteAttachmentParams.put("quotationNo", rqat.getQuotationNo());
+		
+		rqatResponse.setQuotation(quoteDao.retrieveQuoteAttachmentList(retrieveQuoteAttachmentParams));
+		
+		logger.info("retrieveQuoteAttachmentResponse : " + rqatResponse.toString());
+		
+		return rqatResponse;
+	}
+
+	@Override
+	public RetrieveQuoteAlopItemResponse retrieveQuoteAlopItem(RetrieveQuoteAlopItemRequest retQuoteAlopItem)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveQuoteAlopItemResponse retQuoteAlopItemResponse = new RetrieveQuoteAlopItemResponse();
+		
+		HashMap<String, Object> retrieveQuoteAlopItemParams = new HashMap<String, Object>();
+		retrieveQuoteAlopItemParams.put("quoteId", retQuoteAlopItem.getQuoteId());
+		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
+		
+		retQuoteAlopItemResponse.setQuotation(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
+		
+		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
+		return retQuoteAlopItemResponse;
+	}
+
+	@Override
+	public RetrieveQuoteCompetitionResponse retrieveQuoteCompetition(RetrieveQuoteCompetitionRequest rqcr) throws SQLException {
+		
+		RetrieveQuoteCompetitionResponse rqcrResponse = new RetrieveQuoteCompetitionResponse();
+		
+		HashMap<String, Object> retrieveQuoteCompetitionParams = new HashMap<String, Object>();
+		retrieveQuoteCompetitionParams.put("quoteId", rqcr.getQuoteId());
+		retrieveQuoteCompetitionParams.put("quotationNo", rqcr.getQuotationNo());
+		retrieveQuoteCompetitionParams.put("position", rqcr.getPaginationRequest().getPosition());
+		retrieveQuoteCompetitionParams.put("count", rqcr.getPaginationRequest().getCount());
+		retrieveQuoteCompetitionParams.put("sortKey", rqcr.getSortRequest().getSortKey());
+		retrieveQuoteCompetitionParams.put("order", rqcr.getSortRequest().getOrder());
+		
+		rqcrResponse.setQuotation(quoteDao.retrieveQuoteCompetitionList(retrieveQuoteCompetitionParams));
+		rqcrResponse.getPaginationResponse().setPosition(rqcr.getPaginationRequest().getPosition());
+		rqcrResponse.getPaginationResponse().setCount(rqcr.getPaginationRequest().getCount());
+		rqcrResponse.getSortResponse().setSortKey(rqcr.getSortRequest().getSortKey());
+		rqcrResponse.getSortResponse().setOrder(rqcr.getSortRequest().getOrder());
+		
+		logger.info("retrieveQuoteCompetitionResponse : " + rqcrResponse.toString());
+		
+		return rqcrResponse;
+	}
+	
+	@Override
+	public RetrieveQuoteCoverageOcResponse retrieveQuoteCoverageOc(RetrieveQuoteCoverageOcRequest rqcor) throws SQLException {
+		
+		RetrieveQuoteCoverageOcResponse rqcorResponse = new RetrieveQuoteCoverageOcResponse();
+		
+		HashMap<String, Object> retrieveQuoteCoverageOcParams = new HashMap<String, Object>();
+		retrieveQuoteCoverageOcParams.put("quoteIdOc", rqcor.getQuoteIdOc());
+		retrieveQuoteCoverageOcParams.put("openQuotationNo", rqcor.getOpenQuotationNo());
+		retrieveQuoteCoverageOcParams.put("position", rqcor.getPaginationRequest().getPosition());
+		retrieveQuoteCoverageOcParams.put("count", rqcor.getPaginationRequest().getCount());
+		retrieveQuoteCoverageOcParams.put("sortKey", rqcor.getSortRequest().getSortKey());
+		retrieveQuoteCoverageOcParams.put("order", rqcor.getSortRequest().getOrder());
+		
+		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
+		rqcorResponse.getPaginationResponse().setPosition(rqcor.getPaginationRequest().getPosition());
+		rqcorResponse.getPaginationResponse().setCount(rqcor.getPaginationRequest().getCount());
+		rqcorResponse.getSortResponse().setSortKey(rqcor.getSortRequest().getSortKey());
+		rqcorResponse.getSortResponse().setOrder(rqcor.getSortRequest().getOrder());
+		
+		logger.info("retrieveQuoteCoverageOcResponse : " + rqcorResponse.toString());
+		
+		return rqcorResponse;
+	}
+
+	@Override
+	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
+		
+		RetrieveQuoteAlopResponse rqaResponse = new RetrieveQuoteAlopResponse();
+		
+		HashMap<String, Object> retrieveQuoteAlopParams = new HashMap<String, Object>();
+		retrieveQuoteAlopParams.put("quoteId",rqap.getQuoteId() );
+		retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo() );
+		
+		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
+
+		
+		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
+		
+		return rqaResponse;
+	}
+
+	@Override
+	public SaveQuoteCoverageResponse saveQuoteCoverage(SaveQuoteCoverageRequest saveQuoteCoverage) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public SaveQuoteCoverageOcResponse saveQuoteCoverageOc(SaveQuoteCoverageOcRequest saveQuoteCoverage)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 	

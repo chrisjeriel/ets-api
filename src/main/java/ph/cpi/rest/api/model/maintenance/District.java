@@ -12,6 +12,7 @@ public class District {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	private Block block;
 	public String getDistrictCd() {
 		return districtCd;
 	}
@@ -60,11 +61,11 @@ public class District {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	@Override
-	public String toString() {
-		return "District [districtCd=" + districtCd + ", districtDesc=" + districtDesc + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+	public Block getBlock() {
+		return block;
+	}
+	public void setBlock(Block block) {
+		this.block = block;
 	}
 	
 	

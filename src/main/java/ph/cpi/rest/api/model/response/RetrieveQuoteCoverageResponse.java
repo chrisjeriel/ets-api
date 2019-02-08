@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.Quotation;
 
+
 public class RetrieveQuoteCoverageResponse extends Response{
 	
 	private Quotation quotation;
@@ -31,7 +32,11 @@ public class RetrieveQuoteCoverageResponse extends Response{
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
+	@Override
+	public String toString() {
+		return "RetrieveQuoteCoverageResponse [paginationResponse=" + paginationResponse + ", sortResponse="
+				+ sortResponse + "]";
+	}
 	
 	
 }

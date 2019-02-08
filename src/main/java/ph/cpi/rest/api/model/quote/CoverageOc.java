@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.model.quote;
 
 import java.math.BigDecimal;
-
 import org.joda.time.LocalDateTime;
 
 public class CoverageOc {
@@ -12,6 +11,11 @@ public class CoverageOc {
 	private BigDecimal pctShare;
 	private BigDecimal pctPml;
 	private BigDecimal totalValue;
+	private Double maxSiD; //Must be BigDecimal, must be removed but check XML mapper first.
+	private Double currencyRtD; //Must be BigDecimal, must be removed but check XML mapper first.
+	private Double pctShareD; //Must be BigDecimal, must be removed but check XML mapper first.
+	private Double pctPmlD; //Must be BigDecimal, must be removed but check XML mapper first.
+	private Double totalValueD; //Must be BigDecimal, must be removed but check XML mapper first.
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
@@ -58,6 +62,36 @@ public class CoverageOc {
 	public void setTotalValue(BigDecimal totalValue) {
 		this.totalValue = totalValue;
 	}
+	public Double getMaxSiD() {
+		return maxSiD;
+	}
+	public void setMaxSiD(Double maxSiD) {
+		this.maxSiD = maxSiD;
+	}
+	public Double getCurrencyRtD() {
+		return currencyRtD;
+	}
+	public void setCurrencyRtD(Double currencyRtD) {
+		this.currencyRtD = currencyRtD;
+	}
+	public Double getPctShareD() {
+		return pctShareD;
+	}
+	public void setPctShareD(Double pctShareD) {
+		this.pctShareD = pctShareD;
+	}
+	public Double getPctPmlD() {
+		return pctPmlD;
+	}
+	public void setPctPmlD(Double pctPmlD) {
+		this.pctPmlD = pctPmlD;
+	}
+	public Double getTotalValueD() {
+		return totalValueD;
+	}
+	public void setTotalValueD(Double totalValueD) {
+		this.totalValueD = totalValueD;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -86,8 +120,10 @@ public class CoverageOc {
 	public String toString() {
 		return "CoverageOc [riskId=" + riskId + ", maxSi=" + maxSi + ", currencyCd=" + currencyCd + ", currencyRt="
 				+ currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", maxSiD=" + maxSiD + ", currencyRtD=" + currencyRtD + ", pctShareD=" + pctShareD + ", pctPmlD="
+				+ pctPmlD + ", totalValueD=" + totalValueD + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

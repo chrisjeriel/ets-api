@@ -370,6 +370,7 @@ public class QuotationOc {
 	public void setAttachment(List<Attachment> attachment) {
 		this.attachment = attachment;
 	}
+	
 	@Override
 	public String toString() {
 		return "QuotationOc [quoteIdOc=" + quoteIdOc + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc="
@@ -390,6 +391,5 @@ public class QuotationOc {
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projectOc=" + projectOc
 				+ ", attachment=" + attachment + "]";
 	}
-	
 	
 }

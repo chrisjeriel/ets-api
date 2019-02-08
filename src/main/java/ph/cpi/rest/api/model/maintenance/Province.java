@@ -4,16 +4,17 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class Province {
-	private Integer provinceCd ;
+	private Integer provinceCd;
 	private String provinceDesc;
 	private List<City> cityList;
+//	private List<City> city; //Removed must be cityList, check XML mapper.
 	private String activeTag   ;
 	private String remarks;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	
+	private City city;
 	public Integer getProvinceCd() {
 		return provinceCd;
 	}
@@ -68,6 +69,17 @@ public class Province {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public City getCity() {
+		return city;
+	}
+	public void setCity(City city) {
+		this.city = city;
+	}
+	@Override
+	public String toString() {
+		return "Province [provinceCd=" + provinceCd + ", provinceDesc=" + provinceDesc + ", cityList=" + cityList
+				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", city=" + city + "]";
+	}
 	
 }

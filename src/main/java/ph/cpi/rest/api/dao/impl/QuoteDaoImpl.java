@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,18 +20,18 @@ public class QuoteDaoImpl implements QuoteDao{
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
+	/*@Override
 	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Alop alopSample = sqlSession.selectOne("retrieveQuoteAlopSample", params);
 		return alopSample;
-	}
+	}*/
 
 	@Override
-	public List<Alop> retrieveQuoteAlopList(HashMap<String, Object> params) throws SQLException {
+	public List<Quotation> retrieveQuoteAttachmentList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<Alop> alopList = sqlSession.selectList("retrieveQuoteAlopSample", params);
-		return alopList;
+			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAttachment", params);
+		return quotationList;
 	}
 
 	@Override
@@ -81,9 +82,74 @@ public class QuoteDaoImpl implements QuoteDao{
 		return quotation;
 	}
 
+	@Override
 	public List<Quotation> retrieveQuoteHoldCoverListing(HashMap<String, Object> params) throws SQLException {
 		List<Quotation> quotationListing = sqlSession.selectList("retrieveQuoteHoldCoverListing", params);
 		return quotationListing;
+	}
+
+	@Override
+	public List<QuotationOc> retrieveQuoteAttachmentOcList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<QuotationOc> attachmentOcList = sqlSession.selectList("retrieveQuoteAttachmentOc", params);
+		return attachmentOcList;
+	}
+	
+	@Override
+	public Integer saveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAttachmentMap",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAlopMap",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAloItempMap",params);
+		return errorCode;
+	}
+	
+	@Override
+	public List<Quotation> retrieveQuoteCompetitionList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Quotation> competitionList = sqlSession.selectList("retrieveQuoteCompetition", params);
+		return competitionList;
+	}
+	
+	@Override
+	public List<QuotationOc> retrieveQuoteCoverageOcList(final HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<QuotationOc> projectOc = sqlSession.selectList("retrieveQuoteCoverageOc", params);
+		return projectOc;
+	}
+
+	@Override
+	public List<Quotation> retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
+			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlopItem",params);
+		return quotationList;
+	}
+
+
+	@Override
+	public Quotation retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+		Quotation quotationAlop = sqlSession.selectOne("retrieveQuoteAlop",params);
+		return quotationAlop;
+	}
+
+	@Override
+	public List<Quotation> saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
+		List<Quotation> savequotationCoverage = sqlSession.selectList("saveQuoteCoverage",params);
+		return savequotationCoverage;
+	}
+
+	@Override
+	public List<QuotationOc> saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
+		List<QuotationOc> savequotationCoverageOc = sqlSession.selectList("saveQuoteCoverageOc",params);
+		return savequotationCoverageOc;
 	}
 
 }
