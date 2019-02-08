@@ -18,7 +18,10 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteGeneralInfoOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
@@ -38,7 +41,10 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteGeneralInfoOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
@@ -438,6 +444,48 @@ public class QuoteServiceImpl implements QuoteService{
 		return null;
 	}
 	
+	@Override
+	public RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip)
+			throws SQLException {
+		
+		RetrieveQuoteGeneralInfoResponse rqgiResponse = new RetrieveQuoteGeneralInfoResponse();
+		HashMap<String, Object> retrieveQuoteGeneralInfoParams = new HashMap<String, Object>();
+		retrieveQuoteGeneralInfoParams.put("quoteId", rqgip.getQuoteId());
+		retrieveQuoteGeneralInfoParams.put("quotationNo", rqgip.getQuotationNo());
+		
+		rqgiResponse.setQuotationGeneralInfo(quoteDao.retrieveQuoteGeneralInfo(retrieveQuoteGeneralInfoParams));
+		rqgiResponse.setProject(quoteDao.retrieveQuoteProject(retrieveQuoteGeneralInfoParams));
+		logger.info("retrieveQuoteGeneralInfoResponse : " + rqgiResponse.toString());
+		// TODO Auto-generated method stub
+		return rqgiResponse;
+	}
 
-	
+	@Override
+	public RetrieveQuoteEndorsementsResponse retrieveQuoteEndorsements(RetrieveQuoteEndorsementsRequest rqerp)
+			throws SQLException {
+		
+		RetrieveQuoteEndorsementsResponse rqeResponse = new RetrieveQuoteEndorsementsResponse();
+		HashMap<String, Object> retrieveQuoteEndorsementsParams = new HashMap<String, Object>();
+		retrieveQuoteEndorsementsParams.put("quoteId", rqerp.getQuoteId());
+		retrieveQuoteEndorsementsParams.put("quotationNo", rqerp.getQuotationNo());
+		retrieveQuoteEndorsementsParams.put("optionId", rqerp.getOptionId());
+		rqeResponse.setEndorsements(quoteDao.retrieveQuoteEndorsements(retrieveQuoteEndorsementsParams));
+		logger.info("retrieveQuoteEndorsementsResponse : " + rqerp.toString());
+		// TODO Auto-generated method stub
+		return rqeResponse;
+	}
+
+	@Override
+	public RetrieveQuoteEndorsementsOcResponse retrieveQuoteEndorsementsOc(RetrieveQuoteEndorsementsOcRequest rqerop)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveQuoteEndorsementsOcResponse rqeoResponse = new RetrieveQuoteEndorsementsOcResponse();
+		HashMap<String, Object> retrieveQuoteEndorsementsOcParams = new HashMap<String, Object>();
+		retrieveQuoteEndorsementsOcParams.put("quoteId",rqerop.getQuoteId());
+		retrieveQuoteEndorsementsOcParams.put("quotationNo", rqerop.getQuotationNo());
+		rqeoResponse.setEndorsementsOc(quoteDao.retrieveQuoteEndorsementsOc(retrieveQuoteEndorsementsOcParams));
+		logger.info("retrieveQuoteEndorsementsOcResponse : " + rqerop.toString());
+		return rqeoResponse;
+	}
+
 }
