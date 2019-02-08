@@ -57,7 +57,7 @@ public class QuotationOc {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	private ProjectOc projectOc;
-	private List<Attachment> attachment;
+	private List<AttachmentOc> attachmentOc;
 	public Integer getQuoteIdOc() {
 		return quoteIdOc;
 	}
@@ -364,11 +364,11 @@ public class QuotationOc {
 	public void setProjectOc(ProjectOc projectOc) {
 		this.projectOc = projectOc;
 	}
-	public List<Attachment> getAttachment() {
-		return attachment;
+	public List<AttachmentOc> getAttachmentOc() {
+		return attachmentOc;
 	}
-	public void setAttachment(List<Attachment> attachment) {
-		this.attachment = attachment;
+	public void setAttachment(List<AttachmentOc> attachmentOc) {
+		this.attachmentOc = attachmentOc;
 	}
 	
 }

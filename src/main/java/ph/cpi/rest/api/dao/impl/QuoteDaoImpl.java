@@ -151,5 +151,11 @@ public class QuoteDaoImpl implements QuoteDao{
 		List<QuotationOc> savequotationCoverageOc = sqlSession.selectList("saveQuoteCoverageOc",params);
 		return savequotationCoverageOc;
 	}
+	
+	@Override
+	public Integer saveQuoteAttachmentOc(final HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAttachmentOcMap",params);
+		return errorCode;
+	}
 
 }

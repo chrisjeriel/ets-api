@@ -37,6 +37,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
@@ -48,6 +49,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
@@ -195,6 +197,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuoteAlopItem");
 		logger.info("SaveQuoteAlopItemRequest : " + sqair.toString());
 		return quoteService.saveQuoteAlopItem(sqair);
+	}
+	
+	@PostMapping(path="saveQuoteAttachmentOc")
+	public @ResponseBody SaveQuoteAttachmentOcResponse saveQuoteAttachmentOc(@RequestBody SaveQuoteAttachmentOcRequest sqaor) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteAttachmentOc");
+		logger.info("SaveQuoteAttachmentOcRequest : " + sqaor.toString());
+		return quoteService.saveQuoteAttachmentOc(sqaor);
 	}
 		
 }

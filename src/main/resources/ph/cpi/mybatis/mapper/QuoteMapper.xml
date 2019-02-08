@@ -394,7 +394,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcForAttachmentMap">
 		<result property="quoteIdOc"		column="QUOTE_ID_OC"/>
 		<result property="openQuotationNo"	column="QUOTE_NO_OC"/>
-		<association property="attachment"  resultMap="attachmentOcMap" />
+		<association property="attachmentOc"  resultMap="attachmentOcMap" />
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentOcMap">
@@ -801,6 +801,17 @@
 		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 			</foreach>
+		END;
+	</update>
+	
+	<update id="saveQuoteAttachmentOcMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="attachmentsOcList" item="attachmentOc">
+		   	   ETS_QUOTE_PKG_NDC.save_quote_attachment_oc
+			   (#{quoteIdOc},#{attachmentOc.fileNo},#{attachmentOc.fileName},#{attachmentOc.description},#{attachmentOc.createUser},
+			   CAST(to_timestamp(#{attachmentOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentOc.updateUser},
+			   CAST(to_timestamp(#{attachmentOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
 		END;
 	</update>
 	
