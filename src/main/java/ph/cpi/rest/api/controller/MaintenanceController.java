@@ -49,7 +49,16 @@ import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
+
 
 @Controller
 @CrossOrigin(origins="http://localhost:4200")
@@ -188,6 +197,26 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMaintenanceBlock(retMtnBlock);
 	}
 	
+	@GetMapping(path="retrieveMntIntermediary")
+	public @ResponseBody RetrieveMtnIntermediaryResponse retrieveMtnIntermediary(RetrieveMtnIntermediaryRequest rmip) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMntIntermediary");
+		logger.info("RetrieveMtnIntermediaryRequest : " + rmip.toString());
+		return maintenanceService.retrieveMtnIntermediary(rmip);
+	}
+	
+	@GetMapping(path="retrieveMntLine")
+	public @ResponseBody RetrieveMtnLineResponse retrieveMtnLine(RetrieveMtnLineRequest rmlp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMntLine");
+		logger.info("RetrieveMtnLineRequest : " + rmlp.toString());
+		return maintenanceService.retrieveMtnLine(rmlp);
+	}
+	
+	@GetMapping(path="retrieveMntLineClass")
+	public @ResponseBody RetrieveMtnLineClassResponse retrieveMtnLineClass(RetrieveMtnLineClassRequest rmlcp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMntLineClass");
+		logger.info("RetrieveMtnLineClassRequest : " + rmlcp.toString());
+		return maintenanceService.retrieveMtnLineClass(rmlcp);
+	}
 
 	@GetMapping(path="retrieveMtnDeductibles")
 	public @ResponseBody RetrieveMtnDeductiblesResponse retrieveMtnDeductibles(RetrieveMtnDeductiblesRequest rmdr) throws SQLException {

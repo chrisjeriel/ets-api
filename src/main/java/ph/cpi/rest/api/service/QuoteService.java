@@ -13,7 +13,10 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteGeneralInfoOcRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
@@ -33,7 +36,10 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteGeneralInfoOcResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
@@ -43,6 +49,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+
 
 @Service
 public interface QuoteService {
@@ -71,4 +78,7 @@ public interface QuoteService {
 	public SaveQuoteAttachmentResponse saveQuoteAttachment(SaveQuoteAttachmentRequest sqar) throws SQLException;
 	public SaveQuoteAlopResponse saveQuoteAlop(SaveQuoteAlopRequest sqar) throws SQLException;
 	public SaveQuoteAlopItemResponse saveQuoteAlopItem(SaveQuoteAlopItemRequest sqair) throws SQLException;
+	public RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip) throws SQLException;
+	public RetrieveQuoteEndorsementsResponse retrieveQuoteEndorsements(RetrieveQuoteEndorsementsRequest rqerp ) throws SQLException;
+	public RetrieveQuoteEndorsementsOcResponse retrieveQuoteEndorsementsOc(RetrieveQuoteEndorsementsOcRequest rqerop ) throws SQLException;
 }
