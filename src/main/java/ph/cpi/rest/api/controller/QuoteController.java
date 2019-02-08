@@ -176,6 +176,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteAlop(rqar);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteAttachment")
 	public @ResponseBody SaveQuoteAttachmentResponse saveQuoteAttachment(@RequestBody SaveQuoteAttachmentRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAttachment");
@@ -183,6 +184,7 @@ public class QuoteController {
 		return quoteService.saveQuoteAttachment(sqar);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteAlop")
 	public @ResponseBody SaveQuoteAlopResponse saveQuoteAlop(@RequestBody SaveQuoteAlopRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAlop");
@@ -190,6 +192,7 @@ public class QuoteController {
 		return quoteService.saveQuoteAlop(sqar);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteAlopItem")
 	public @ResponseBody SaveQuoteAlopItemResponse saveQuoteAlopItem(@RequestBody SaveQuoteAlopItemRequest sqair) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAlopItem");

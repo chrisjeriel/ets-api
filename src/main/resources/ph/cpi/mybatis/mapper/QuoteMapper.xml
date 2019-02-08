@@ -260,7 +260,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMapAttachment">
         <result property="quoteId" 		column="QUOTE_ID"/>
         <result property="quotationNo" 	column="QUOTATION_NO"/>
-        <association property="attachment" resultMap="attachmentMap"></association>
+        <association property="attachmentsList" resultMap="attachmentMap"></association>
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentMap">
@@ -767,16 +767,16 @@
     </select>
   
 
-	<select id="saveQuoteAttachmentMap" parameterType="java.util.Map">
+	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map">
 		BEGIN
 		   <foreach collection="attachmentsList" item="attachment">
 		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
-			   (#{quoteId},#{attachment.fileNo},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
+			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
 			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
 			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		END;
-	</select>
+	</update>
 	
 	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
 		BEGIN
