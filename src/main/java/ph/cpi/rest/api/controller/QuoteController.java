@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
@@ -49,6 +50,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -195,6 +197,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuoteAlopItem");
 		logger.info("SaveQuoteAlopItemRequest : " + sqair.toString());
 		return quoteService.saveQuoteAlopItem(sqair);
+	}
+	
+	@PostMapping(path="saveQuoteCoverage")
+	public @ResponseBody SaveQuoteCoverageResponse saveQuoteCoverage(@RequestBody SaveQuoteCoverageRequest sqcr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteCoverage");
+		logger.info("SaveQuoteCoverageRequest : " + sqcr.toString());
+		return quoteService.saveQuoteCoverage(sqcr);
 	}
 		
 }

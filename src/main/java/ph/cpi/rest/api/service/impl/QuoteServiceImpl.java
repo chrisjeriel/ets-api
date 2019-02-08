@@ -427,8 +427,17 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public SaveQuoteCoverageResponse saveQuoteCoverage(SaveQuoteCoverageRequest saveQuoteCoverage) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		SaveQuoteCoverageResponse sqaResponse = new SaveQuoteCoverageResponse();
+		
+		HashMap<String, Object> saveQuoteCoverageResponseParams = new HashMap<String, Object>();
+		saveQuoteCoverageResponseParams.put("quoteId", saveQuoteCoverage.getQuoteId());
+		saveQuoteCoverageResponseParams.put("projId", saveQuoteCoverage.getProjId());
+		saveQuoteCoverageResponseParams.put("coverage", saveQuoteCoverage.getCoverage());
+		saveQuoteCoverageResponseParams.put("sectionCoversList", saveQuoteCoverage.getSectioncoversList());
+		
+		sqaResponse.setReturnCode(quoteDao.saveQuoteCoverage(saveQuoteCoverageResponseParams));
+		
+		return sqaResponse;
 	}
 
 	@Override
