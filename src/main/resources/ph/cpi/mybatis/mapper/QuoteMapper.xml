@@ -926,15 +926,23 @@
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="sectioncoversList" item="sectioncovers">
+		   <foreach collection="sectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.saveQuoteCoverage
-			   (#{quoteId},#{projId},#{coverage.riskId},#{coverage.sectionISi},#{coverage.sectionIISi},#{coverage.sectionIIISi},#{coverage.totalSi},#{coverage.currencyCd},#{coverage.currencyRt},#{coverage.remarks},#{coverage.createUser},
-			   CAST(to_timestamp(#{coverage.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{coverage.updateUser},CAST(to_timestamp(#{coverage.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncoversList.lineCd},
-			   #{sectioncoversList.section},#{sectioncoversList.coverCd},#{sectioncoversList.bulletNo},#{sectioncoversList.sumInsured},
-			   #{sectioncoversList.addSi},#{sectioncoversList.sectionCovercreateUser},CAST(to_timestamp(#{sectioncoversList.sectionCovercreateDate}, 
-			   'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncoversList.sectionCoverupdateUser},#{},CAST(to_timestamp(#{sectioncoversList.sectionCoverupdateDate},'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE);
+			   (#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
+			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+			   #{sectioncovers.addSi},#{sectioncovers.createUser},
+			   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.updateUser},
+			   CAST(to_timestamp(#{sectioncovers.updateDate},'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		END;
 	</update>
 	
+	<update id="saveQuoteCoverageOcMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_EJVA.saveQuoteCoverageOc(#{quoteIdOc},#{projId},#{riskId},#{maxSi},#{currencyCd},#{currencyRt},#{pctShare},#{pctPml},#{totalValue},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		END;
+	</update>
 </mapper>

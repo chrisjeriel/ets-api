@@ -180,9 +180,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public List<QuotationOc> saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
-		List<QuotationOc> savequotationCoverageOc = sqlSession.selectList("saveQuoteCoverageOc",params);
-		return savequotationCoverageOc;
+	public Integer saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteCoverageOcMap",params);
+		return errorCode;
 	}
 
 }

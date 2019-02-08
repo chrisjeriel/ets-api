@@ -11,7 +11,7 @@ import ph.cpi.rest.api.model.quote.Quotation;
 public class RetrieveQuoteAlopItemResponse extends Response {
 	
 	private List<Quotation> quotation;
-	private AlopItem alopItem;
+	private List<AlopItem> alopItem;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
@@ -21,10 +21,10 @@ public class RetrieveQuoteAlopItemResponse extends Response {
 	public void setQuotation(List<Quotation> quotation) {
 		this.quotation = quotation;
 	}
-	public AlopItem getAlopItem() {
+	public List<AlopItem> getAlopItem() {
 		return alopItem;
 	}
-	public void setAlopItem(AlopItem alopItem) {
+	public void setAlopItem(List<AlopItem> alopItem) {
 		this.alopItem = alopItem;
 	}
 	public PaginationResponse getPaginationResponse() {

@@ -34,15 +34,13 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
-import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
@@ -58,6 +56,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
@@ -212,6 +211,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuoteCoverage");
 		logger.info("SaveQuoteCoverageRequest : " + sqcr.toString());
 		return quoteService.saveQuoteCoverage(sqcr);
+	}
+	
+	@PostMapping(path="saveQuoteCoverageOc")
+	public @ResponseBody SaveQuoteCoverageOcResponse saveQuoteCoverageOc(@RequestBody SaveQuoteCoverageOcRequest sqcocr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteCoverageOc");
+		logger.info("SaveQuoteCoverageOcRequest : " + sqcocr.toString());
+		return quoteService.saveQuoteCoverageOc(sqcocr);
 	}
 		
 	@CrossOrigin

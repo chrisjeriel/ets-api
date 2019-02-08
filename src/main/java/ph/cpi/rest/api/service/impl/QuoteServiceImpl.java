@@ -435,22 +435,51 @@ public class QuoteServiceImpl implements QuoteService{
 	public SaveQuoteCoverageResponse saveQuoteCoverage(SaveQuoteCoverageRequest saveQuoteCoverage) throws SQLException {
 		SaveQuoteCoverageResponse sqaResponse = new SaveQuoteCoverageResponse();
 		
-		HashMap<String, Object> saveQuoteCoverageResponseParams = new HashMap<String, Object>();
-		saveQuoteCoverageResponseParams.put("quoteId", saveQuoteCoverage.getQuoteId());
-		saveQuoteCoverageResponseParams.put("projId", saveQuoteCoverage.getProjId());
-		saveQuoteCoverageResponseParams.put("coverage", saveQuoteCoverage.getCoverage());
-		saveQuoteCoverageResponseParams.put("sectionCoversList", saveQuoteCoverage.getSectioncoversList());
+		HashMap<String, Object> saveQuoteCoverageParams = new HashMap<String, Object>();
+		saveQuoteCoverageParams.put("quoteId", saveQuoteCoverage.getQuoteId());
+		saveQuoteCoverageParams.put("projId", saveQuoteCoverage.getProjId());
+		saveQuoteCoverageParams.put("riskId", saveQuoteCoverage.getRiskId());
+		saveQuoteCoverageParams.put("sectionISi", saveQuoteCoverage.getSectionISi());
+		saveQuoteCoverageParams.put("sectionIISi", saveQuoteCoverage.getSectionIISi());
+		saveQuoteCoverageParams.put("sectionIIISi", saveQuoteCoverage.getSectionIIISi());
+		saveQuoteCoverageParams.put("totalSi", saveQuoteCoverage.getTotalSi());
+		saveQuoteCoverageParams.put("currencyCd", saveQuoteCoverage.getCurrencyCd());
+		saveQuoteCoverageParams.put("currencyRt", saveQuoteCoverage.getCurrencyRt());
+		saveQuoteCoverageParams.put("remarks", saveQuoteCoverage.getRemarks());
+		saveQuoteCoverageParams.put("createUser", saveQuoteCoverage.getCreateUser());
+		saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
+		saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
+		saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
+		saveQuoteCoverageParams.put("sectionCovers", saveQuoteCoverage.getSectionCovers());
 		
-		sqaResponse.setReturnCode(quoteDao.saveQuoteCoverage(saveQuoteCoverageResponseParams));
+		sqaResponse.setReturnCode(quoteDao.saveQuoteCoverage(saveQuoteCoverageParams));
 		
 		return sqaResponse;
 	}
 
 	@Override
-	public SaveQuoteCoverageOcResponse saveQuoteCoverageOc(SaveQuoteCoverageOcRequest saveQuoteCoverage)
+	public SaveQuoteCoverageOcResponse saveQuoteCoverageOc(SaveQuoteCoverageOcRequest saveQuoteCoverageOc)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		SaveQuoteCoverageOcResponse sqcocResponse = new SaveQuoteCoverageOcResponse();
+		
+		HashMap<String, Object> saveQuoteCoverageOcParams = new HashMap<String, Object>();
+		saveQuoteCoverageOcParams.put("quoteIdOc", saveQuoteCoverageOc.getQuoteIdOc());
+		saveQuoteCoverageOcParams.put("projId", saveQuoteCoverageOc.getProjId());
+		saveQuoteCoverageOcParams.put("riskId", saveQuoteCoverageOc.getRiskId());
+		saveQuoteCoverageOcParams.put("maxSi", saveQuoteCoverageOc.getMaxSi());
+		saveQuoteCoverageOcParams.put("currencyCd", saveQuoteCoverageOc.getCurrencyCd());
+		saveQuoteCoverageOcParams.put("currencyRt", saveQuoteCoverageOc.getCurrencyRt());
+		saveQuoteCoverageOcParams.put("pctShare", saveQuoteCoverageOc.getPctShare());
+		saveQuoteCoverageOcParams.put("pctPml", saveQuoteCoverageOc.getPctPml());
+		saveQuoteCoverageOcParams.put("totalValue", saveQuoteCoverageOc.getTotalValue());
+		saveQuoteCoverageOcParams.put("createUser", saveQuoteCoverageOc.getCreateUser());
+		saveQuoteCoverageOcParams.put("createDate", saveQuoteCoverageOc.getCreateDate());
+		saveQuoteCoverageOcParams.put("updateUser", saveQuoteCoverageOc.getUpdateUser());
+		saveQuoteCoverageOcParams.put("updateDate", saveQuoteCoverageOc.getUpdateDate());
+		
+		sqcocResponse.setReturnCode(quoteDao.saveQuoteCoverageOc(saveQuoteCoverageOcParams));
+		
+		return sqcocResponse;
 	}
 	
 	@Override
