@@ -915,7 +915,7 @@
 		BEGIN
 			<foreach collection="alopItemsList" item="alopItem">
 		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
-		    	(#{quoteId},#{alopId},#{alopItem.itemNo},#{alopItem.quantity},
+		    	(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
 		    	#{alopItem.description},#{alopItem.importance},#{alopItem.lossMin},
 		    	#{alopItem.createUser},
 		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
