@@ -2,7 +2,8 @@ package ph.cpi.rest.api.model.request;
 
 import org.joda.time.LocalDateTime;
 
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteListingRequest {
 
@@ -25,6 +26,8 @@ public class RetrieveQuoteListingRequest {
 	private String expiryDate;
 	private String reqBy;
 	private String createUser;
+	private PaginationRequest paginationRequest;
+	private SortRequest sortRequest;
 	
 	public String getQuotationNo() {
 		return quotationNo;
@@ -122,6 +125,18 @@ public class RetrieveQuoteListingRequest {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
+	public PaginationRequest getPaginationRequest() {
+		return paginationRequest;
+	}
+	public void setPaginationRequest(PaginationRequest paginationRequest) {
+		this.paginationRequest = paginationRequest;
+	}
+	public SortRequest getSortRequest() {
+		return sortRequest;
+	}
+	public void setSortRequest(SortRequest sortRequest) {
+		this.sortRequest = sortRequest;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", cessionDesc=" + cessionDesc
@@ -129,6 +144,7 @@ public class RetrieveQuoteListingRequest {
 				+ ", principalName=" + principalName + ", contractorName=" + contractorName + ", insuredDesc="
 				+ insuredDesc + ", riskName=" + riskName + ", objectDesc=" + objectDesc + ", site=" + site
 				+ ", currencyCd=" + currencyCd + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
-				+ reqBy + ", createUser=" + createUser + "]";
+				+ reqBy + ", createUser=" + createUser + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
 }
