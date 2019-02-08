@@ -12,13 +12,15 @@ import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
+import ph.cpi.rest.api.model.maintenance.Intermediary;
+import ph.cpi.rest.api.model.maintenance.Line;
+import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Province;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
-import ph.cpi.rest.api.model.quote.Alop;
 
 public interface MaintenanceDao {
 
@@ -43,5 +45,11 @@ public interface MaintenanceDao {
 	public Province retrieveMtnProvince(final HashMap<String, Object> params) throws SQLException;
 	public Object_ retrieveMtnObject(final HashMap<String, Object> params) throws SQLException;
 	public List<QuoteWordings> retrieveMtnQuoteWordings(final HashMap<String, Object> params) throws SQLException;
+	
+//	public Alop retrieveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
+//	public List<Alop> retrieveQuoteAlopList(final HashMap<String, Object> params) throws SQLException;
+	public Intermediary retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
+	public List<Line> retrieveMntLine(final HashMap<String, Object> params ) throws SQLException;
+	public LineClass retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
 	
 }

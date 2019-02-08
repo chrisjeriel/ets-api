@@ -138,6 +138,69 @@
 		 <result property   ="updateUser"  column  =   "UPDATE_USER"/>   
 		 <result property   ="updateDate"  column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>  
 	</resultMap>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Intermediary" id="mntIntMap">
+		 <result property="intmId" 			column="INTM_ID"/> 
+		<result property="intmName" 		column="INTM_NAME"/> 
+		<result property="firstName" 		column="FIRST_NAME"/> 
+		<result property="middleInitial" 	column="MIDDLE_INITIAL"/> 
+		<result property="lastName" 		column="LAST_NAME"/> 
+		<result property="addrLine1" 		column="ADDR_LINE1"/> 
+		<result property="addrLine2" 		column="ADDR_LINE2"/> 
+		<result property="addrLine3" 		column="ADDR_LINE3"/> 
+		<result property="zipCd" 			column="ZIP_CD"/> 
+		<result property="address" 			column="ADDRESS"/> 
+		<result property="contactNo" 		column="CONTACT_NO"/> 
+		<result property="emailAdd" 		column="EMAIL_ADD"/> 
+		<result property="activeTag" 		column="ACTIVE_TAG"/> 
+		<result property="corpTag" 			column="CORP_TAG"/>
+		<result property="vatTag" 			column="VAT_TAG"/> 
+		<result property="oldIntmId" 		column="OLD_INTM_ID"/> 
+		<result property="remarks" 			column="REMARKS"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Line" id="mntLineMap">
+		<result property="lineCd" 			column="LINE_CD"/> 
+		<result property="description" 		column="DESCRIPTION"/> 
+		<result property="activeTag" 		column="ACTIVE_TAG"/> 
+		<result property="catTag" 			column="CAT_TAG"/> 
+		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
+		<result property="sortSeq" 			column="SORT_SEQ"/> 
+		<result property="remarks" 			column="REMARKS"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.LineClass" id="mntLineClassMap">
+		<result property="lineCd" 			column="LINE_CD"/> 
+		<result property="lineCdDesc" 		column="DESCRIPTION"/> 
+		<result property="lineClassCd" 		column="LINE_CLASS_CD"/> 
+		<result property="lineClassCdDesc" 	column="DESCRIPTION"/> 
+		<result property="activeTag" 		column="ACTIVE_TAG"/> 
+		<result property="remarks" 			column="REMARKS"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId}, '', '', '', '')
+	</select>
+	
+	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd , jdbcType=VARCHAR}, '', '', '','')
+	</select>
+	
+	<select id="retrieveMntLineClass" resultMap="mntLineClassMap" parameterType="java.util.Map">
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd},'', '', '','')
+	</select>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
