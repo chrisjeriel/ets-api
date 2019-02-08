@@ -17,6 +17,9 @@ import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
+import ph.cpi.rest.api.model.maintenance.Intermediary;
+import ph.cpi.rest.api.model.maintenance.Line;
+import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Province;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -181,5 +184,28 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<CedingCompany> cedingCompanyList = sqlSession.selectList("retrieveMaintenanceCedingCompany", params);
 		return cedingCompanyList;
 	}*/
+
+	@Override
+	public Intermediary retrieveMntIntermediary(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Intermediary intermediary = sqlSession.selectOne("retrieveMntIntermediary", params);
+		System.out.println("retrieveMntIntermediaryDAO : " + intermediary);
+		return intermediary;
+	}
+
+	@Override
+	public List<Line> retrieveMntLine(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Line> line = sqlSession.selectList("retrieveMntLine", params);
+		return line;
+	}
+
+	@Override
+	public LineClass retrieveMntLineClass(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		LineClass lineClass = sqlSession.selectOne("retrieveMntLineClass", params);
+		System.out.println("retrieveMntLineClassDao : " + lineClass);
+		return lineClass;
+	}
 
 }
