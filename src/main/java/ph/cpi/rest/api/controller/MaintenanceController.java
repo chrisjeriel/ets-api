@@ -85,7 +85,7 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnRiskRequest : " + rmrp.toString());
 		return maintenanceService.retrieveMtnRisk(rmrp);
 	}
-	
+	@CrossOrigin
 	@GetMapping(path="retrieveMtnRiskListing")
 	public @ResponseBody RetrieveMtnRiskListingResponse retrieveMtnRiskListing(RetrieveMtnRiskListingRequest rmrlp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnRiskListing");
@@ -203,7 +203,7 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnIntermediaryRequest : " + rmip.toString());
 		return maintenanceService.retrieveMtnIntermediary(rmip);
 	}
-	
+	@CrossOrigin
 	@GetMapping(path="retrieveMntLine")
 	public @ResponseBody RetrieveMtnLineResponse retrieveMtnLine(RetrieveMtnLineRequest rmlp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMntLine");
