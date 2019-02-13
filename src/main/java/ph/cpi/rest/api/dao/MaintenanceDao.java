@@ -48,8 +48,8 @@ public interface MaintenanceDao {
 	
 //	public Alop retrieveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
 //	public List<Alop> retrieveQuoteAlopList(final HashMap<String, Object> params) throws SQLException;
-	public Intermediary retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
+	public List<Intermediary> retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
 	public List<Line> retrieveMntLine(final HashMap<String, Object> params ) throws SQLException;
-	public LineClass retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
+	public List<LineClass> retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
 	
 }

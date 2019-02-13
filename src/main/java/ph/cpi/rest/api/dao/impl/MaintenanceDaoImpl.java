@@ -186,9 +186,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}*/
 
 	@Override
-	public Intermediary retrieveMntIntermediary(HashMap<String, Object> params) throws SQLException {
+	public List<Intermediary> retrieveMntIntermediary(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Intermediary intermediary = sqlSession.selectOne("retrieveMntIntermediary", params);
+		List<Intermediary> intermediary = sqlSession.selectList("retrieveMntIntermediary", params);
 		System.out.println("retrieveMntIntermediaryDAO : " + intermediary);
 		return intermediary;
 	}
@@ -201,9 +201,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public LineClass retrieveMntLineClass(HashMap<String, Object> params) throws SQLException {
+	public List<LineClass> retrieveMntLineClass(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		LineClass lineClass = sqlSession.selectOne("retrieveMntLineClass", params);
+		List<LineClass> lineClass = sqlSession.selectList("retrieveMntLineClass", params);
 		System.out.println("retrieveMntLineClassDao : " + lineClass);
 		return lineClass;
 	}

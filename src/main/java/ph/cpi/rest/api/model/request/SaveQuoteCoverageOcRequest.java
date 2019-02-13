@@ -1,106 +1,107 @@
 package ph.cpi.rest.api.model.request;
 
-import org.joda.time.LocalDateTime;
+
 
 public class SaveQuoteCoverageOcRequest {
-	private Integer quote_id_oc;
-	private Integer proj_id;
-	private Integer risk_id;
-	private Integer max_si;
-	private String currency_cd;
-	private Integer currency_rt;
-	private Integer pct_share;
-	private Integer pct_pml;
-	private Integer total_value;
-	private String create_user;
-	private LocalDateTime create_date;
-	private String update_user;
-	private LocalDateTime update_date;
-	public Integer getQuote_id_oc() {
-		return quote_id_oc;
+	private Integer quoteIdOc;
+	private Integer projId;
+	private Integer riskId;
+	private Integer maxSi;
+	private String currencyCd;
+	private Integer currencyRt;
+	private Integer pctShare;
+	private Integer pctPml;
+	private Integer totalValue;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	
+	public Integer getQuoteIdOc() {
+		return quoteIdOc;
 	}
-	public void setQuote_id_oc(Integer quote_id_oc) {
-		this.quote_id_oc = quote_id_oc;
+	public void setQuoteIdOc(Integer quoteIdOc) {
+		this.quoteIdOc = quoteIdOc;
 	}
-	public Integer getProj_id() {
-		return proj_id;
+	public Integer getProjId() {
+		return projId;
 	}
-	public void setProj_id(Integer proj_id) {
-		this.proj_id = proj_id;
+	public void setProjId(Integer projId) {
+		this.projId = projId;
 	}
-	public Integer getRisk_id() {
-		return risk_id;
+	public Integer getRiskId() {
+		return riskId;
 	}
-	public void setRisk_id(Integer risk_id) {
-		this.risk_id = risk_id;
+	public void setRiskId(Integer riskId) {
+		this.riskId = riskId;
 	}
-	public Integer getMax_si() {
-		return max_si;
+	public Integer getMaxSi() {
+		return maxSi;
 	}
-	public void setMax_si(Integer max_si) {
-		this.max_si = max_si;
+	public void setMaxSi(Integer maxSi) {
+		this.maxSi = maxSi;
 	}
-	public String getCurrency_cd() {
-		return currency_cd;
+	public String getCurrencyCd() {
+		return currencyCd;
 	}
-	public void setCurrency_cd(String currency_cd) {
-		this.currency_cd = currency_cd;
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrency_rt() {
-		return currency_rt;
+	public Integer getCurrencyRt() {
+		return currencyRt;
 	}
-	public void setCurrency_rt(Integer currency_rt) {
-		this.currency_rt = currency_rt;
+	public void setCurrencyRt(Integer currencyRt) {
+		this.currencyRt = currencyRt;
 	}
-	public Integer getPct_share() {
-		return pct_share;
+	public Integer getPctShare() {
+		return pctShare;
 	}
-	public void setPct_share(Integer pct_share) {
-		this.pct_share = pct_share;
+	public void setPctShare(Integer pctShare) {
+		this.pctShare = pctShare;
 	}
-	public Integer getPct_pml() {
-		return pct_pml;
+	public Integer getPctPml() {
+		return pctPml;
 	}
-	public void setPct_pml(Integer pct_pml) {
-		this.pct_pml = pct_pml;
+	public void setPctPml(Integer pctPml) {
+		this.pctPml = pctPml;
 	}
-	public Integer getTotal_value() {
-		return total_value;
+	public Integer getTotalValue() {
+		return totalValue;
 	}
-	public void setTotal_value(Integer total_value) {
-		this.total_value = total_value;
+	public void setTotalValue(Integer totalValue) {
+		this.totalValue = totalValue;
 	}
-	public String getCreate_user() {
-		return create_user;
+	public String getCreateUser() {
+		return createUser;
 	}
-	public void setCreate_user(String create_user) {
-		this.create_user = create_user;
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
 	}
-	public LocalDateTime getCreate_date() {
-		return create_date;
+	public String getCreateDate() {
+		return createDate;
 	}
-	public void setCreate_date(LocalDateTime create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
-	public String getUpdate_user() {
-		return update_user;
+	public String getUpdateUser() {
+		return updateUser;
 	}
-	public void setUpdate_user(String update_user) {
-		this.update_user = update_user;
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdate_date() {
-		return update_date;
+	public String getUpdateDate() {
+		return updateDate;
 	}
-	public void setUpdate_date(LocalDateTime update_date) {
-		this.update_date = update_date;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "SaveQuoteCoverageOcRequest [quote_id_oc=" + quote_id_oc + ", proj_id=" + proj_id + ", risk_id="
-				+ risk_id + ", max_si=" + max_si + ", currency_cd=" + currency_cd + ", currency_rt=" + currency_rt
-				+ ", pct_share=" + pct_share + ", pct_pml=" + pct_pml + ", total_value=" + total_value
-				+ ", create_user=" + create_user + ", create_date=" + create_date + ", update_user=" + update_user
-				+ ", update_date=" + update_date + "]";
+		return "SaveQuoteCoverageOcRequest [quoteIdOc=" + quoteIdOc + ", projId=" + projId + ", riskId=" + riskId
+				+ ", maxSi=" + maxSi + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
+				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 	
