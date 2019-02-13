@@ -117,10 +117,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public Cession retrieveTypeOfCession(HashMap<String, Object> params) throws SQLException {
+	public List<Cession> retrieveTypeOfCession(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Cession cession = sqlSession.selectOne("retrieveMtnTypeOfCession", params);
-		return cession;
+		List<Cession> cessionList = sqlSession.selectList("retrieveMtnTypeOfCession", params);
+		return cessionList;
 	}
 
 	public List<Region> retrieveMtnDistrict(HashMap<String, Object> params) throws SQLException {
