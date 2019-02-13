@@ -45,4 +45,6 @@ public interface QuoteDao {
 	public List<Endorsements> retrieveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
 	public EndorsementsOc retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
 	public Project retrieveQuoteProject(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer saveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 }

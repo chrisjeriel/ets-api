@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -54,6 +55,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -201,7 +203,6 @@ public class QuoteController {
 		return quoteService.saveQuoteAlopItem(sqair);
 	}
 		
-	@CrossOrigin
 	@GetMapping(path="retrieveQuoteGeneralInfo")
 	public @ResponseBody RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteGeneralInfo");
@@ -223,4 +224,10 @@ public class QuoteController {
 		return quoteService.retrieveQuoteEndorsementsOc(rqerop);
 	}
 
+	@PostMapping(path="saveQuoteGeneralInfo")
+	public @ResponseBody SaveQuoteGeneralInfoResponse saveQuoteGeneralInfo(@RequestBody SaveQuoteGeneralInfoRequest sqgip) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteGeneralInfo");
+		logger.info("SaveQuoteGeneralInfoRequest : " + sqgip.toString());
+		return quoteService.saveQuoteGeneralInfo(sqgip);
+	}
 }

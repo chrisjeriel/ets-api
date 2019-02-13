@@ -282,9 +282,9 @@
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/> 
 		<result property="lineClassDesc" 	column="DESCRIPTION_LINE_CLASS"/> 
 		<result property="principalId" 		column="PRIN_ID"/>
-		<result property="principalName" 	column="INSURED_NAME"/> 
+		<result property="principalName" 	column="PRINCIPAL_NAME"/> 
 		<result property="contractorId" 	column="CONTRACTOR_ID"/> 
-		<result property="contractorName" 	column="INSURED_NAME"/> 
+		<result property="contractorName" 	column="CONTRACTOR_NAME"/> 
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
 		<result property="policyId" 		column="POLICY_ID"/> 
 		<result property="policyNo" 		column="POLICY_NO"/> 
@@ -311,7 +311,7 @@
 		<result property="approvedBy" 		column="APPROVED_BY"/>
 		<result property="printedBy" 		column="PRINTED_BY"/>
 		<result property="printDate" 		column="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>  
-		<result property="openningParag" 	column="OPENNING_PARAG"/>
+		<result property="openingParag" 	column="OPENING_PARAG"/>
 		<result property="closingParag" 	column="CLOSING_PARAG"/>
 		<result property="reasonCd" 		column="REASON_CD"/>
 		<result property="reasonDesc" 		column="DESCRIPTION_REASON"/>
@@ -341,6 +341,18 @@
 		<result property="projDesc" 		column="PROJ_DESC"/> 
 		<result property="riskId" 			column="RISK_ID"/> 
 		<result property="riskName" 		column="RISK_NAME"/>
+		<result property="regionCd" 		column="REGION_CD"/>
+		<result property="regionDesc" 		column="REGION_DESC"/>
+		<result property="provinceCd" 		column="PROVINCE_CD"/>
+		<result property="provinceDesc"		column="PROVINCE_DESC"/>
+		<result property="cityCd"	 		column="CITY_CD"/>
+		<result property="cityDesc"	 		column="CITY_DESC"/>
+		<result property="districtCd" 		column="DISTRICT_CD"/>
+		<result property="districtDesc"		column="DISTRICT_DESC"/>
+		<result property="blockCd"	 		column="BLOCK_CD"/>
+		<result property="blockDesc"		column="BLOCK_DESC"/>
+		<result property="latitude"	 		column="LATITUDE"/>
+		<result property="longitude" 		column="LONGITUDE"/>		
 		<result property="totalSi" 			column="TOTAL_SI"/>  
 		<result property="pctShare" 		column="PCT_SHARE"/>
 		<result property="totalValue" 		column="TOTAL_VALUE"/>  	 
@@ -401,7 +413,7 @@
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
 		<!-- SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
+		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},'','','',''))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
@@ -926,4 +938,33 @@
 		END;
 	</update>
 	
+	<update id="saveQuoteGeneralInfo" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.save_quote_general_info(
+				#{quoteId, jdbcType=INTEGER},#{lineCd},#{quoteYear, jdbcType=INTEGER},#{quoteSeqNo, jdbcType=INTEGER},
+				#{quoteRevNo, jdbcType=INTEGER},#{cedingId, jdbcType=INTEGER},#{cessionId, jdbcType=INTEGER},#{lineClassCd},
+				#{prinId, jdbcType=INTEGER},#{contractorId, jdbcType=INTEGER},#{insuredDesc},#{policyId, jdbcType=INTEGER},
+				#{status},#{reinsurerId, jdbcType=INTEGER},#{intmId, jdbcType=INTEGER},
+				CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{reqBy},
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{reqMode},
+				#{mbiRefNo, jdbcType=INTEGER},#{currencyCd},#{currencyRt, jdbcType=FLOAT},#{govtTag},#{indicativeTag},
+				#{openCoverTag},#{declarationTag},#{preparedBy},#{approvedBy, jdbcType=VARCHAR},#{printedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{printDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{openingParag, jdbcType=VARCHAR},#{closingParag, jdbcType=VARCHAR},#{createUser},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{projId, jdbcType=INTEGER},#{projDesc},#{riskId, jdbcType=INTEGER},
+				#{totalSi, jdbcType=DECIMAL},#{pctShare, jdbcType=FLOAT},#{totalValue, jdbcType=DECIMAL},#{objectId, jdbcType=INTEGER},
+				#{site},#{duration},#{testing, jdbcType=VARCHAR},#{ipl, jdbcType=INTEGER},#{timeExc, jdbcType=INTEGER},#{noClaimPd, jdbcType=INTEGER},
+				#{prjCreateUser},
+				CAST(to_timestamp(#{prjCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{prjUpdateUser},
+				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+		END;
+	</update>
 </mapper>

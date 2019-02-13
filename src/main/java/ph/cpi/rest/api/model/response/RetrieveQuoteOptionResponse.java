@@ -1,10 +1,11 @@
 package ph.cpi.rest.api.model.response;
 
 import ph.cpi.rest.api.model.PaginationResponse;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.Quotation;
 
-public class RetrieveQuoteOptionResponse {
+public class RetrieveQuoteOptionResponse extends Response{
 
 	private Quotation quotation;
 	private PaginationResponse paginationResponse;
