@@ -27,7 +27,7 @@ public class QuotationOc {
 	private Integer	prinId;
 	private String	principalName;
 	private Integer	contractorId;
-	private String	contactorName;
+	private String	contractorName;
 	private String	insuredDesc;
 	private String	status;
 	private Integer	reinsurerId;
@@ -57,7 +57,7 @@ public class QuotationOc {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	private ProjectOc projectOc;
-	private List<Attachment> attachment;
+	private List<AttachmentOc> attachmentOc;
 	public Integer getQuoteIdOc() {
 		return quoteIdOc;
 	}
@@ -185,10 +185,10 @@ public class QuotationOc {
 		this.contractorId = contractorId;
 	}
 	public String getContactorName() {
-		return contactorName;
+		return contractorName;
 	}
 	public void setContactorName(String contactorName) {
-		this.contactorName = contactorName;
+		this.contractorName = contactorName;
 	}
 	public String getInsuredDesc() {
 		return insuredDesc;
@@ -364,11 +364,31 @@ public class QuotationOc {
 	public void setProjectOc(ProjectOc projectOc) {
 		this.projectOc = projectOc;
 	}
-	public List<Attachment> getAttachment() {
-		return attachment;
+	public List<AttachmentOc> getAttachmentOc() {
+		return attachmentOc;
 	}
-	public void setAttachment(List<Attachment> attachment) {
-		this.attachment = attachment;
+	public void setAttachment(List<AttachmentOc> attachmentOc) {
+		this.attachmentOc = attachmentOc;
+	}
+	@Override
+	public String toString() {
+		return "QuotationOc [quoteIdOc=" + quoteIdOc + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc="
+				+ lineClassCdDesc + ", openQuotationNo=" + openQuotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
+				+ lineCdDesc + ", year=" + year + ", seqNo=" + seqNo + ", sevNo=" + sevNo + ", revNo=" + revNo
+				+ ", cedingId=" + cedingId + ", cessionId=" + cessionId + ", cedingName=" + cedingName
+				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", refPolNo=" + refPolNo
+				+ ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo + ", prinId=" + prinId
+				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contractorName="
+				+ contractorName + ", insuredDesc=" + insuredDesc + ", status=" + status + ", reinsurerId="
+				+ reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName
+				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate="
+				+ reqDate + ", reqMode=" + reqMode + ", currencyCd=" + currencyCd + ", currencyRtI=" + currencyRtI
+				+ ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag=" + indicativeTag
+				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
+				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", projectOc=" + projectOc + ", attachmentOc=" + attachmentOc + "]";
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +17,15 @@ import ph.cpi.rest.api.model.quote.Project;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationOc;
+import ph.cpi.rest.api.service.impl.QuoteServiceImpl;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	private static final Logger logger = LoggerFactory.getLogger(QuoteDaoImpl.class);
 
 	/*@Override
 	public Alop retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
@@ -59,6 +64,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	
 	public Quotation retrieveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
 		Quotation quotation = sqlSession.selectOne("retrieveQuoteCoverage", params);
+		
+		logger.info("retrieveQuoteCoverage DAOImpl : " + quotation);
+		
 		return quotation;
 	}
 
@@ -174,21 +182,40 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public List<Quotation> saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
-		List<Quotation> savequotationCoverage = sqlSession.selectList("saveQuoteCoverage",params);
-		return savequotationCoverage;
+	public Integer saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
+			Integer errorCode = sqlSession.update("saveQuoteCoverageMap",params);
+		return errorCode;
 	}
 
 	@Override
-	public List<QuotationOc> saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
-		List<QuotationOc> savequotationCoverageOc = sqlSession.selectList("saveQuoteCoverageOc",params);
-		return savequotationCoverageOc;
+	public Integer saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteCoverageOcMap",params);
+		return errorCode;
 	}
 
 	@Override
 	public Integer saveQuoteGeneralInfo(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteGeneralInfo",params);
 		
+		return errorCode;
+	}
+	
+
+	@Override
+	public Integer saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveQuoteAttachmentOc(final HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteAttachmentOcMap",params);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer saveQuoteCompetition(final HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteCompetitionMap",params);
 		return errorCode;
 	}
 

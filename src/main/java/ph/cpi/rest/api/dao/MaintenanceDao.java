@@ -43,13 +43,13 @@ public interface MaintenanceDao {
 	public List<CedingCompany> retrieveMaintenanceCedingCompany(final HashMap<String, Object> params) throws SQLException;
 	public Region retrieveMtnRegion(final HashMap<String, Object> params) throws SQLException;
 	public Province retrieveMtnProvince(final HashMap<String, Object> params) throws SQLException;
-	public Object_ retrieveMtnObject(final HashMap<String, Object> params) throws SQLException;
+	public List<Object_> retrieveMtnObject(final HashMap<String, Object> params) throws SQLException;
 	public List<QuoteWordings> retrieveMtnQuoteWordings(final HashMap<String, Object> params) throws SQLException;
 	
 //	public Alop retrieveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
 //	public List<Alop> retrieveQuoteAlopList(final HashMap<String, Object> params) throws SQLException;
-	public Intermediary retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
+	public List<Intermediary> retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
 	public List<Line> retrieveMntLine(final HashMap<String, Object> params ) throws SQLException;
-	public LineClass retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
+	public List<LineClass> retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
 	
 }

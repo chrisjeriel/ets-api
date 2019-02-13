@@ -1,33 +1,39 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
 import org.joda.time.LocalDateTime;
+
 
 public class SaveQuoteCoverageRequest {
 	
 	private Integer quoteId ;
 	private Integer projId ;
-	private Integer riskId  ;
-	private Integer sectionISi ;
-	private Integer sectionIISi ;
-	private Integer sectioIIISi ;
-	private Integer totalSi ;
-	private String currencyCd ;
-	private Integer currencyRt ;
-	private String remarks ;
-	private String createUser ;
-	private LocalDateTime createDate ;
-	private String updateUser ;
-	private LocalDateTime updateDate ;
-	private Integer lineCd  ;
-	private String section ;
-	private Integer coverCd  ;
-	private String bulletNo ;
-	private Integer sumInsured ;
-	private String addSi ;
-	private String sectionCovercreateUser ;
-	private LocalDateTime sectionCovercreateDate ;
-	private String sectionCoverupdateUser ;
-	private LocalDateTime sectionCoverupdateDate ;
+	
+	private Integer riskId;
+	private BigDecimal sectionISi;
+	private BigDecimal sectionIISi;
+	private BigDecimal sectionIIISi;
+	private BigDecimal totalSi;
+	private String currencyCd;
+	private Integer currencyRt;
+	private String remarks;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	
+	private List<SectionCovers> sectionCovers;
+	
+	
+	public Integer getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(Integer riskId) {
+		this.riskId = riskId;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -40,34 +46,28 @@ public class SaveQuoteCoverageRequest {
 	public void setProjId(Integer projId) {
 		this.projId = projId;
 	}
-	public Integer getRiskId() {
-		return riskId;
-	}
-	public void setRiskId(Integer riskId) {
-		this.riskId = riskId;
-	}
-	public Integer getSectionISi() {
+	public BigDecimal getSectionISi() {
 		return sectionISi;
 	}
-	public void setSectionISi(Integer sectionISi) {
+	public void setSectionISi(BigDecimal sectionISi) {
 		this.sectionISi = sectionISi;
 	}
-	public Integer getSectionIISi() {
+	public BigDecimal getSectionIISi() {
 		return sectionIISi;
 	}
-	public void setSectionIISi(Integer sectionIISi) {
+	public void setSectionIISi(BigDecimal sectionIISi) {
 		this.sectionIISi = sectionIISi;
 	}
-	public Integer getSectioIIISi() {
-		return sectioIIISi;
+	public BigDecimal getSectionIIISi() {
+		return sectionIIISi;
 	}
-	public void setSectioIIISi(Integer sectioIIISi) {
-		this.sectioIIISi = sectioIIISi;
+	public void setSectionIIISi(BigDecimal sectionIIISi) {
+		this.sectionIIISi = sectionIIISi;
 	}
-	public Integer getTotalSi() {
+	public BigDecimal getTotalSi() {
 		return totalSi;
 	}
-	public void setTotalSi(Integer totalSi) {
+	public void setTotalSi(BigDecimal totalSi) {
 		this.totalSi = totalSi;
 	}
 	public String getCurrencyCd() {
@@ -94,10 +94,10 @@ public class SaveQuoteCoverageRequest {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -106,16 +106,49 @@ public class SaveQuoteCoverageRequest {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	public Integer getLineCd() {
+	public List<SectionCovers> getSectionCovers() {
+		return sectionCovers;
+	}
+	public void setSectionCovers(List<SectionCovers> sectionCovers) {
+		this.sectionCovers = sectionCovers;
+	}
+	@Override
+	public String toString() {
+		return "SaveQuoteCoverageRequest [quoteId=" + quoteId + ", projId=" + projId + ", riskId=" + riskId
+				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
+				+ ", totalSi=" + totalSi + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", remarks="
+				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", sectionCovers=" + sectionCovers + "]";
+	} 
+	
+	
+	
+}
+
+@Alias("SaveQuoteCoverage")
+class SectionCovers {
+	private String lineCd  ;
+	private String section ;
+	private Integer coverCd  ;
+	private String bulletNo ;
+	private Integer sumInsured ;
+	private String addSi ;
+	private String createUser ;
+	private String createDate ;
+	private String updateUser ;
+	private String updateDate ;
+	
+	
+	public String getLineCd() {
 		return lineCd;
 	}
-	public void setLineCd(Integer lineCd) {
+	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
 	public String getSection() {
@@ -148,42 +181,39 @@ public class SaveQuoteCoverageRequest {
 	public void setAddSi(String addSi) {
 		this.addSi = addSi;
 	}
-	public String getSectionCovercreateUser() {
-		return sectionCovercreateUser;
+	public String getCreateUser() {
+		return createUser;
 	}
-	public void setSectionCovercreateUser(String sectionCovercreateUser) {
-		this.sectionCovercreateUser = sectionCovercreateUser;
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
 	}
-	public LocalDateTime getSectionCovercreateDate() {
-		return sectionCovercreateDate;
+	public String getCreateDate() {
+		return createDate;
 	}
-	public void setSectionCovercreateDate(LocalDateTime sectionCovercreateDate) {
-		this.sectionCovercreateDate = sectionCovercreateDate;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
-	public String getSectionCoverupdateUser() {
-		return sectionCoverupdateUser;
+	public String getUpdateUser() {
+		return updateUser;
 	}
-	public void setSectionCoverupdateUser(String sectionCoverupdateUser) {
-		this.sectionCoverupdateUser = sectionCoverupdateUser;
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
 	}
-	public LocalDateTime getSectionCoverupdateDate() {
-		return sectionCoverupdateDate;
+	public String getUpdateDate() {
+		return updateDate;
 	}
-	public void setSectionCoverupdateDate(LocalDateTime sectionCoverupdateDate) {
-		this.sectionCoverupdateDate = sectionCoverupdateDate;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteCoverageRequest [quoteId=" + quoteId + ", projId=" + projId + ", riskId=" + riskId
-				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectioIIISi=" + sectioIIISi
-				+ ", totalSi=" + totalSi + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd
-				+ ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi
-				+ ", sectionCovercreateUser=" + sectionCovercreateUser + ", sectionCovercreateDate="
-				+ sectionCovercreateDate + ", sectionCoverupdateUser=" + sectionCoverupdateUser
-				+ ", sectionCoverupdateDate=" + sectionCoverupdateDate + "]";
+		return "SectionCovers [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
+				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+
+	
 	
 	
 }

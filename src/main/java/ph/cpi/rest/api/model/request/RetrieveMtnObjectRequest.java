@@ -5,7 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnObjectRequest {
 	private String lineCd;
-	private Integer objectId;
+	private String objectId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getLineCd() {
@@ -14,10 +14,10 @@ public class RetrieveMtnObjectRequest {
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
-	public Integer getObjectId() {
+	public String getObjectId() {
 		return objectId;
 	}
-	public void setObjectId(Integer objectId) {
+	public void setObjectId(String objectId) {
 		this.objectId = objectId;
 	}
 	public PaginationRequest getPaginationRequest() {
@@ -34,8 +34,17 @@ public class RetrieveMtnObjectRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnObjectRequest [lineCd=" + lineCd + ", objectId=" + objectId + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("RetrieveMtnObjectRequest [lineCd=");
+		builder.append(lineCd);
+		builder.append(", objectId=");
+		builder.append(objectId);
+		builder.append(", paginationRequest=");
+		builder.append(paginationRequest);
+		builder.append(", sortRequest=");
+		builder.append(sortRequest);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

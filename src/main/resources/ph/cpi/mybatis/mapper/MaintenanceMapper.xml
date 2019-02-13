@@ -96,11 +96,11 @@
 		<result property = "createDate"     column  =  "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property = "updateUser"     column  =  "UPDATE_USER"/>
 		<result property = "updateDate"     column  =  "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<association property="province"	resultMap="provinceMap"/>
+		<association property="provinceList"	resultMap="provinceMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Province" id="provinceMap">
-		<result property = "provinceCd"       column   ="PROVINCE_CD"/>
+		<result property = "provinceCd"        column   ="PROVINCE_CD"/>
 		<result property = "provinceDesc"      column   ="PROVINCE_DESC"/>
 		<result property = "activeTag"         column   ="ACTIVE_TAG"/>
 		<result property = "remarks"           column   ="REMARKS"/>
@@ -108,7 +108,7 @@
 		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property = "updateUser"        column   ="UPDATE_USER"/>
 		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<association property="city"		resultMap="cityMap"/>
+		<association property="cityList"	   resultMap="cityMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Object_" id="objectMap">
@@ -191,15 +191,15 @@
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId}, '', '', '', '')
+			SELECT * FROM TABLE(CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd , jdbcType=VARCHAR}, '', '', '','')
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd,jdbcType=VARCHAR}, '', '', '','')
 	</select>
 	
 	<select id="retrieveMntLineClass" resultMap="mntLineClassMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd},'', '', '','')
+			SELECT * FROM TABLE(CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd, jdbcType=VARCHAR},'', '', '',''))
 	</select>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
