@@ -43,6 +43,6 @@ public interface QuoteDao {
 //	public List<Alop> retrieveQuoteAlopList(final HashMap<String, Object> params) throws SQLException;
 	public QuotationGeneralInfo retrieveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 	public List<Endorsements> retrieveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
-	public EndorsementsOc retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
+	public List<EndorsementsOc> retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
 	public Project retrieveQuoteProject(final HashMap<String, Object> params) throws SQLException;
 }
