@@ -191,15 +191,15 @@
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId}, '', '', '', '')
+			SELECT * FROM TABLE(CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd , jdbcType=VARCHAR}, '', '', '','')
+			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd,jdbcType=VARCHAR}, '', '', '','')
 	</select>
 	
 	<select id="retrieveMntLineClass" resultMap="mntLineClassMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd},'', '', '','')
+			SELECT * FROM TABLE(CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd, jdbcType=VARCHAR},'', '', '',''))
 	</select>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">

@@ -12,12 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
@@ -27,12 +34,19 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
@@ -41,22 +55,6 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
-import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
-import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
-import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
-import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
-import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -85,7 +83,7 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnRiskRequest : " + rmrp.toString());
 		return maintenanceService.retrieveMtnRisk(rmrp);
 	}
-	
+
 	@CrossOrigin
 	@GetMapping(path="retrieveMtnRiskListing")
 	public @ResponseBody RetrieveMtnRiskListingResponse retrieveMtnRiskListing(RetrieveMtnRiskListingRequest rmrlp) throws SQLException {
@@ -204,7 +202,7 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnIntermediaryRequest : " + rmip.toString());
 		return maintenanceService.retrieveMtnIntermediary(rmip);
 	}
-	
+	@CrossOrigin
 	@GetMapping(path="retrieveMntLine")
 	public @ResponseBody RetrieveMtnLineResponse retrieveMtnLine(RetrieveMtnLineRequest rmlp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMntLine");

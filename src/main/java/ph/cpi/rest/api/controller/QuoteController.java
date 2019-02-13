@@ -133,6 +133,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteListingOc(rqlop);
 	}
 	
+	@CrossOrigin
 	@GetMapping(path="retrieveQuoteOption")
 	public @ResponseBody RetrieveQuoteOptionResponse retrieveQuoteOption(RetrieveQuoteOptionRequest rqop) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteOption");
@@ -213,6 +214,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteGeneralInfo(rqgip);
 	}
 	
+	@CrossOrigin
 	@GetMapping(path="retrieveQuoteEndorsements")
 	public @ResponseBody RetrieveQuoteEndorsementsResponse retrieveQuoteEndorsements(RetrieveQuoteEndorsementsRequest rqerp) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteEndorsements");

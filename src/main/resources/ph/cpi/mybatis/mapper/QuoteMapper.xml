@@ -835,7 +835,7 @@
 	</select>
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId},#{quotationNo},null,null,null,null)
+		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)
 	</select>
 	
 <!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
