@@ -550,6 +550,7 @@
 		 <result property="cedingName"			 column="CEDING_NAME"/>
 		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
 		 <result property="cedingRepName"		 column="CEDING_REP_NAME"/>
+		 <result property="position"		 	 column="POSITION"/>
 		 <result property="option"			 	 column="OPTN"/>
 		 <result property="wordings"			 column="WORDINGS"/>
 		 <result property="createUser"		 	 column="CREATE_USER"/>
@@ -934,6 +935,14 @@
 			   CAST(to_timestamp(#{attachmentOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentOc.updateUser},
 			   CAST(to_timestamp(#{attachmentOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
+		END;
+	</update>
+	
+	<update id="saveQuoteCompetitionMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_NDC.save_quote_competition(#{quoteId},#{adviceNo},#{cedingId},#{cedingRepId},#{option},#{wordings},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		END;
 	</update>
 	

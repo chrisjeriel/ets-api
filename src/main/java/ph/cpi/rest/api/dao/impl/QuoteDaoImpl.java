@@ -190,5 +190,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteAttachmentOcMap",params);
 		return errorCode;
 	}
-
+	
+	@Override
+	public Integer saveQuoteCompetition(final HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteCompetitionMap",params);
+		return errorCode;
+	}
 }

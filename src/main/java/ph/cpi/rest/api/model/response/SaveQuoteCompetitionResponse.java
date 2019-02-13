@@ -5,7 +5,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveQuoteAttachmentOcResponse {
+public class SaveQuoteCompetitionResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
@@ -36,7 +36,7 @@ public class SaveQuoteAttachmentOcResponse {
 
 	@Override
 	public String toString() {
-		return "SaveQuoteAttachmentOcResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "SaveQuoteCompetitionResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
 }

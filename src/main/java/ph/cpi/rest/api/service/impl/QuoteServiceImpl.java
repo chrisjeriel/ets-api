@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -54,6 +55,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.service.QuoteService;
@@ -500,6 +502,26 @@ public class QuoteServiceImpl implements QuoteService{
 		rqeoResponse.setEndorsementsOc(quoteDao.retrieveQuoteEndorsementsOc(retrieveQuoteEndorsementsOcParams));
 		logger.info("retrieveQuoteEndorsementsOcResponse : " + rqerop.toString());
 		return rqeoResponse;
+	}
+	
+	@Override
+	public SaveQuoteCompetitionResponse saveQuoteCompetition(SaveQuoteCompetitionRequest sqcr) throws SQLException{
+		SaveQuoteCompetitionResponse sqcrResponse = new SaveQuoteCompetitionResponse();
+		
+		HashMap<String, Object> saveQuoteCompetitionParams = new HashMap<String, Object>();
+		saveQuoteCompetitionParams.put("quoteId", sqcr.getQuoteId());
+		saveQuoteCompetitionParams.put("adviceNo", sqcr.getAdviceNo());
+		saveQuoteCompetitionParams.put("cedingId", sqcr.getCedingId());
+		saveQuoteCompetitionParams.put("cedingRepId", sqcr.getCedingRepId());
+		saveQuoteCompetitionParams.put("option", sqcr.getOption());
+		saveQuoteCompetitionParams.put("wordings", sqcr.getWordings());
+		saveQuoteCompetitionParams.put("createUser", sqcr.getCreateUser());
+		saveQuoteCompetitionParams.put("createDate", sqcr.getCreateDate());
+		saveQuoteCompetitionParams.put("updateUser", sqcr.getUpdateUser());
+		saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());
+		sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
+		
+		return sqcrResponse;
 	}
 
 }
