@@ -122,7 +122,7 @@
 		<result property    ="prinId"               column  ="PRIN_ID"/>
 		<result property    ="principalName"        column  ="PRINCIPAL_NAME"/>
 		<result property    ="contractorId"         column  ="CONTRACTOR_ID"/>
-		<result property    ="contactorName"        column  ="CONTRACTOR_NAME"/>
+		<result property    ="contractorName"        column  ="CONTRACTOR_NAME"/>
 		<result property    ="insuredDesc"          column  ="INSURED_DESC"/>
 		<result property    ="status"               column  ="STATUS"/>
 		<result property    ="reinsurerId"          column  ="REINSURER_ID"/>
@@ -186,6 +186,10 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationListingMap">
+		<result property 		= "quotationNo"		column		= "QUOTE_NO"/>
+		<result property 		= "quoteId"			column		= "QUOTE_ID"/>
+		<result property 		= "cedingName"		column		= "CEDING_NAME"/>
+		<result property 		= "insuredDesc"		column		= "INSURED_DESC"/>
 		<association property 	= "holdCover" 		resultMap 	= "holdCoverListingMap"/>
 		<association property 	= "project"			resultMap 	= "projectMap"/>
 	</resultMap>
@@ -742,7 +746,7 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{holdCoverNo},#{status},#{cedingName},#{quotationNo},#{riskName},#{insuredDesc},
+			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo},#{status},#{cedingName},#{holdCoverNo},#{riskName},#{insuredDesc},
 					#{periodFrom},#{periodTo},#{compRefHoldCovNo},#{reqBy},#{reqDate},#{expiringInDays},'','','','')
 	</select>
 	
@@ -1010,4 +1014,25 @@
 		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		END;
 	</update> 
+	
+	<update id="saveQuoteHoldCover" parameterType="java.util.Map">
+		BEGIN
+			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
+				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
+				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
+				#{holdCoverRevNo,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{compRefHoldCovNo,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+				#{reqBy,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{preparedBy,jdbcType=VARCHAR},
+				#{approvedBy,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{updateUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+		END;
+	</update>
+	
 </mapper>

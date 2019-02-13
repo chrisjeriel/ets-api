@@ -1,17 +1,19 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.Object_;
 
 public class RetrieveMtnObjectResponse {
-	private Object_ object;
+	private List<Object_> object;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public Object_ getObject() {
+	public List<Object_> getObject() {
 		return object;
 	}
-	public void setObject(Object_ object) {
+	public void setObject(List<Object_> object) {
 		this.object = object;
 	}
 	public PaginationResponse getPaginationResponse() {
@@ -28,8 +30,15 @@ public class RetrieveMtnObjectResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnObjectResponse [object=" + object + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("RetrieveMtnObjectResponse [object=");
+		builder.append(object);
+		builder.append(", paginationResponse=");
+		builder.append(paginationResponse);
+		builder.append(", sortResponse=");
+		builder.append(sortResponse);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

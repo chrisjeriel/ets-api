@@ -96,9 +96,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public Object_ retrieveMtnObject(HashMap<String, Object> params) throws SQLException {
+	public List<Object_> retrieveMtnObject(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Object_ object = sqlSession.selectOne("retrieveMtnObject", params);
+		List<Object_> object = sqlSession.selectList("retrieveMtnObject", params);
 		return object;
 	}
 

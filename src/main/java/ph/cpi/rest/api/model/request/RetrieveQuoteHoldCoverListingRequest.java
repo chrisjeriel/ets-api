@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.request;
 
-import org.joda.time.LocalDateTime;
-
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
@@ -12,12 +10,12 @@ public class RetrieveQuoteHoldCoverListingRequest {
 	private String	        	quotationNo;
 	private String	        	riskName;
 	private String	        	insuredDesc;
-	private LocalDateTime   	periodFrom;
-	private LocalDateTime		periodTo;
+	private String   			periodFrom;
+	private String				periodTo;
 	private String	        	compRefHoldCovNo;
 	private String	        	reqBy;
-	private LocalDateTime		reqDate;
-	private Integer	        	expiringInDays;
+	private String				reqDate;
+	private String	        	expiringInDays;
 	private PaginationRequest 	paginationRequest;
 	private SortRequest			sortRequest;
 	public String getHoldCoverNo() {
@@ -56,16 +54,16 @@ public class RetrieveQuoteHoldCoverListingRequest {
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
-	public LocalDateTime getPeriodFrom() {
+	public String getPeriodFrom() {
 		return periodFrom;
 	}
-	public void setPeriodFrom(LocalDateTime periodFrom) {
+	public void setPeriodFrom(String periodFrom) {
 		this.periodFrom = periodFrom;
 	}
-	public LocalDateTime getPeriodTo() {
+	public String getPeriodTo() {
 		return periodTo;
 	}
-	public void setPeriodTo(LocalDateTime periodTo) {
+	public void setPeriodTo(String periodTo) {
 		this.periodTo = periodTo;
 	}
 	public String getCompRefHoldCovNo() {
@@ -80,16 +78,16 @@ public class RetrieveQuoteHoldCoverListingRequest {
 	public void setReqBy(String reqBy) {
 		this.reqBy = reqBy;
 	}
-	public LocalDateTime getReqDate() {
+	public String getReqDate() {
 		return reqDate;
 	}
-	public void setReqDate(LocalDateTime reqDate) {
+	public void setReqDate(String reqDate) {
 		this.reqDate = reqDate;
 	}
-	public Integer getExpiringInDays() {
+	public String getExpiringInDays() {
 		return expiringInDays;
 	}
-	public void setExpiringInDays(Integer expiringInDays) {
+	public void setExpiringInDays(String expiringInDays) {
 		this.expiringInDays = expiringInDays;
 	}
 	public PaginationRequest getPaginationRequest() {
@@ -113,5 +111,4 @@ public class RetrieveQuoteHoldCoverListingRequest {
 				+ ", expiringInDays=" + expiringInDays + ", paginationRequest=" + paginationRequest + ", sortRequest="
 				+ sortRequest + "]";
 	}
-	
 }

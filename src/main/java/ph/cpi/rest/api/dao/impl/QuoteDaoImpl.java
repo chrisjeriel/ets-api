@@ -199,8 +199,14 @@ public class QuoteDaoImpl implements QuoteDao{
 		
 		return errorCode;
 	}
-
 	
+
+	@Override
+	public Integer saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
+		return errorCode;
+	}
+
 	@Override
 	public Integer saveQuoteAttachmentOc(final HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteAttachmentOcMap",params);
@@ -212,4 +218,5 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteCompetitionMap",params);
 		return errorCode;
 	}
+
 }
