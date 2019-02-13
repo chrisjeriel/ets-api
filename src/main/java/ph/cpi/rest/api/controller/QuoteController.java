@@ -37,12 +37,14 @@ import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
@@ -60,6 +62,8 @@ import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -216,6 +220,20 @@ public class QuoteController {
 		logger.info("POST: /api/quote-service/saveQuoteAttachmentOc");
 		logger.info("SaveQuoteAttachmentOcRequest : " + sqaor.toString());
 		return quoteService.saveQuoteAttachmentOc(sqaor);
+	}
+
+	@PostMapping(path="saveQuoteCoverage")
+	public @ResponseBody SaveQuoteCoverageResponse saveQuoteCoverage(@RequestBody SaveQuoteCoverageRequest sqcr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteCoverage");
+		logger.info("SaveQuoteCoverageRequest : " + sqcr.toString());
+		return quoteService.saveQuoteCoverage(sqcr);
+	}
+	
+	@PostMapping(path="saveQuoteCoverageOc")
+	public @ResponseBody SaveQuoteCoverageOcResponse saveQuoteCoverageOc(@RequestBody SaveQuoteCoverageOcRequest sqcocr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteCoverageOc");
+		logger.info("SaveQuoteCoverageOcRequest : " + sqcocr.toString());
+		return quoteService.saveQuoteCoverageOc(sqcocr);
 	}
 		
 	@GetMapping(path="retrieveQuoteGeneralInfo")

@@ -7,12 +7,13 @@ import org.joda.time.LocalDateTime;
 
 public class Coverage {
 	
+	Integer riskId;
 	private BigDecimal sectionISi;
 	private BigDecimal sectionIISi;
 	private BigDecimal sectionIIISi;
 	private BigDecimal totalSi;
 	private String currencyCd;
-	private String currencyRt;
+	private Integer currencyRt;
 	private String remarks;
 	private String createUser;
 	private LocalDateTime createDate;
@@ -21,6 +22,13 @@ public class Coverage {
 	
 	private List<SectionCovers> sectionCovers;
 	
+	
+	public Integer getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(Integer riskId) {
+		this.riskId = riskId;
+	}
 	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
@@ -58,10 +66,10 @@ public class Coverage {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getCurrencyRt() {
+	public Integer getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(String currencyRt) {
+	public void setCurrencyRt(Integer currencyRt) {
 		this.currencyRt = currencyRt;
 	}
 	public String getRemarks() {
@@ -96,11 +104,13 @@ public class Coverage {
 	}
 	@Override
 	public String toString() {
-		return "Coverage [sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
-				+ ", totalSi=" + totalSi + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", sectionCovers=" + sectionCovers + "]";
+		return "Coverage [riskId=" + riskId + ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi
+				+ ", sectionIIISi=" + sectionIIISi + ", totalSi=" + totalSi + ", currencyCd=" + currencyCd
+				+ ", currencyRt=" + currencyRt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", sectionCovers="
+				+ sectionCovers + "]";
 	}
+	
 
 	
 	

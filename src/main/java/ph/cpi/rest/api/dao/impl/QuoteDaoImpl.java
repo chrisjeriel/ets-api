@@ -182,15 +182,15 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public List<Quotation> saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
-		List<Quotation> savequotationCoverage = sqlSession.selectList("saveQuoteCoverage",params);
-		return savequotationCoverage;
+	public Integer saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
+			Integer errorCode = sqlSession.update("saveQuoteCoverageMap",params);
+		return errorCode;
 	}
 
 	@Override
-	public List<QuotationOc> saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
-		List<QuotationOc> savequotationCoverageOc = sqlSession.selectList("saveQuoteCoverageOc",params);
-		return savequotationCoverageOc;
+	public Integer saveQuoteCoverageOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteCoverageOcMap",params);
+		return errorCode;
 	}
 
 	@Override

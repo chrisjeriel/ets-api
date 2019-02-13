@@ -406,7 +406,7 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_attachment(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR}, null, null ,null, null)
+			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_attachment(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR}, null, null ,null, null)
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
@@ -415,6 +415,7 @@
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
+	
 		<result property="section" column="SECTION" />
 		<result property="coverCd" column="COVER_CD" />
 		<result property="bulletNo" column="BULLET_NO" />
@@ -976,6 +977,20 @@
 			   (#{quoteIdOc},#{attachmentOc.fileNo},#{attachmentOc.fileName},#{attachmentOc.description},#{attachmentOc.createUser},
 			   CAST(to_timestamp(#{attachmentOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentOc.updateUser},
 			   CAST(to_timestamp(#{attachmentOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		    </foreach>
+		END;
+	</update>
+	
+	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="sectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.saveQuoteCoverage
+			   (#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
+			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+			   #{sectioncovers.addSi},#{sectioncovers.createUser},
+			   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.updateUser},
+			   CAST(to_timestamp(#{sectioncovers.updateDate},'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		END;
 	</update>
@@ -988,4 +1003,11 @@
 		END;
 	</update>
 	
+	<update id="saveQuoteCoverageOcMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_EJVA.saveQuoteCoverageOc(#{quoteIdOc},#{projId},#{riskId},#{maxSi},#{currencyCd},#{currencyRt},#{pctShare},#{pctPml},#{totalValue},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		END;
+	</update> 
 </mapper>
