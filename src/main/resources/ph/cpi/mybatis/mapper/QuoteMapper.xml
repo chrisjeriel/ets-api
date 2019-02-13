@@ -404,6 +404,7 @@
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
+	
 		<result property="section" column="SECTION" />
 		<result property="coverCd" column="COVER_CD" />
 		<result property="bulletNo" column="BULLET_NO" />
@@ -944,5 +945,5 @@
 		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
 		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		END;
-	</update>
+	</update> 
 </mapper>
