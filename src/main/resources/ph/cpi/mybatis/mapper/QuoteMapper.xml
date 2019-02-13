@@ -216,7 +216,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Options" id="assocOptions">
 		<result property="optionId" 		column="OPTION_ID"/>
-		<result property="optionRt" 			column="OPTION_RT"/>
+		<result property="optionRt" 		column="OPTION_RT"/>
 		<result property="condition" 		column="CONDITION"/>
 		<result property="commRtQuota" 		column="COMM_RT_QUOTA"/>
 		<result property="commRtSurplus" 	column="COMM_RT_SURPLUS"/>
@@ -412,7 +412,7 @@
 		<result property="createUser" column="SECTION_CREATE_USER" />
 		<result property="createDate" column="SECTION_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" column="SECTION_UPDATE_USER" />
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" column="SECTION_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Coverage" id="coverage">
@@ -423,7 +423,7 @@
 		<result property="currencyCd" column="CURRENCY_CD"/>
 		<result property="currencyRt" column="CURRENCY_RT"/>
 		<result property="remarks" column="REMARKS"/>
-		<result property="createUser" column="CREATE_USER"/>
+		 <result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
