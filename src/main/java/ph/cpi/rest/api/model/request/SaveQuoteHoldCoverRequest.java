@@ -1,24 +1,173 @@
 package ph.cpi.rest.api.model.request;
 
-import ph.cpi.rest.api.model.quote.Quotation;
-
 public class SaveQuoteHoldCoverRequest {
-	private Quotation quotation;
-
-	public Quotation getQuotation() {
-		return quotation;
+	private String quoteId;
+	private String holdCoverId ;
+	private String lineCd;
+	private String holdCoverYear;
+	private String holdCoverSeqNo;
+	private String holdCoverRevNo;
+	private String periodFrom;
+	private String periodTo;
+	private String compRefHoldCovNo;
+	private String status;
+	private String reqBy;
+	private String reqDate;
+	private String preparedBy;
+	private String approvedBy;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	public String getQuoteId() {
+		return quoteId;
 	}
-
-	public void setQuotation(Quotation quotation) {
-		this.quotation = quotation;
+	public void setQuoteId(String quoteId) {
+		this.quoteId = quoteId;
 	}
-
+	public String getHoldCoverId() {
+		return holdCoverId;
+	}
+	public void setHoldCoverId(String holdCoverId) {
+		this.holdCoverId = holdCoverId;
+	}
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getHoldCoverYear() {
+		return holdCoverYear;
+	}
+	public void setHoldCoverYear(String holdCoverYear) {
+		this.holdCoverYear = holdCoverYear;
+	}
+	public String getHoldCoverSeqNo() {
+		return holdCoverSeqNo;
+	}
+	public void setHoldCoverSeqNo(String holdCoverSeqNo) {
+		this.holdCoverSeqNo = holdCoverSeqNo;
+	}
+	public String getHoldCoverRevNo() {
+		return holdCoverRevNo;
+	}
+	public void setHoldCoverRevNo(String holdCoverRevNo) {
+		this.holdCoverRevNo = holdCoverRevNo;
+	}
+	public String getPeriodFrom() {
+		return periodFrom;
+	}
+	public void setPeriodFrom(String periodFrom) {
+		this.periodFrom = periodFrom;
+	}
+	public String getPeriodTo() {
+		return periodTo;
+	}
+	public void setPeriodTo(String periodTo) {
+		this.periodTo = periodTo;
+	}
+	public String getCompRefHoldCovNo() {
+		return compRefHoldCovNo;
+	}
+	public void setCompRefHoldCovNo(String compRefHoldCovNo) {
+		this.compRefHoldCovNo = compRefHoldCovNo;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getReqBy() {
+		return reqBy;
+	}
+	public void setReqBy(String reqBy) {
+		this.reqBy = reqBy;
+	}
+	public String getReqDate() {
+		return reqDate;
+	}
+	public void setReqDate(String reqDate) {
+		this.reqDate = reqDate;
+	}
+	public String getPreparedBy() {
+		return preparedBy;
+	}
+	public void setPreparedBy(String preparedBy) {
+		this.preparedBy = preparedBy;
+	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteHoldCoverRequest [quotation=");
-		builder.append(quotation);
+		builder.append("SaveQuoteHoldCoverRequest [quoteId=");
+		builder.append(quoteId);
+		builder.append(", holdCoverId=");
+		builder.append(holdCoverId);
+		builder.append(", lineCd=");
+		builder.append(lineCd);
+		builder.append(", holdCoverYear=");
+		builder.append(holdCoverYear);
+		builder.append(", holdCoverSeqNo=");
+		builder.append(holdCoverSeqNo);
+		builder.append(", holdCoverRevNo=");
+		builder.append(holdCoverRevNo);
+		builder.append(", periodFrom=");
+		builder.append(periodFrom);
+		builder.append(", periodTo=");
+		builder.append(periodTo);
+		builder.append(", compRefHoldCovNo=");
+		builder.append(compRefHoldCovNo);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", reqBy=");
+		builder.append(reqBy);
+		builder.append(", reqDate=");
+		builder.append(reqDate);
+		builder.append(", preparedBy=");
+		builder.append(preparedBy);
+		builder.append(", approvedBy=");
+		builder.append(approvedBy);
+		builder.append(", createUser=");
+		builder.append(createUser);
+		builder.append(", createDate=");
+		builder.append(createDate);
+		builder.append(", updateUser=");
+		builder.append(updateUser);
+		builder.append(", updateDate=");
+		builder.append(updateDate);
 		builder.append("]");
 		return builder.toString();
 	}
+	
 }

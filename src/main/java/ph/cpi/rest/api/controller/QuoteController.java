@@ -226,11 +226,19 @@ public class QuoteController {
 		return quoteService.retrieveQuoteEndorsementsOc(rqerop);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteHoldCover")
 	public @ResponseBody SaveQuoteHoldCoverResponse saveQuoteHoldCover(@RequestBody SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
-		logger.info("GET: /api/quote-service/saveQuoteHoldCover");
+		logger.info("POST: /api/quote-service/saveQuoteHoldCover");
 		logger.info("SaveQuoteHoldCoverRequest : " + sqhcr.toString());
 		return quoteService.saveQuoteHoldCover(sqhcr);
 	}
+	
+//	@PostMapping(path="saveQuoteEndorsements")
+//	public @ResponseBody SaveQuoteEndorsementsResponse saveQuoteEndorsements(@RequestBody SaveQuoteEndorsementsRequest sqer) throws SQLException {
+//		logger.info("GET: /api/quote-service/saveQuoteEndorsements");
+//		logger.info("SaveQuoteEndorsementsRequest : " + sqer.toString());
+//		return quoteService.saveQuoteEndorsements(sqer);
+//	}
 
 }

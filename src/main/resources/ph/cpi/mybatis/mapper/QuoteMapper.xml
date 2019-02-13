@@ -933,10 +933,19 @@
 	<update id="saveQuoteHoldCover" parameterType="java.util.Map">
 		BEGIN
 			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
-				#{quoteId},#{holdCoverId },#{lineCd},#{holdCoverYear},#{holdCoverSeqNo},
-				#{holdCoverRevNo},#{periodFrom},#{periodTo},#{compRefHoldCovNo},#{status},
-				#{reqBy},#{reqDate},#{preparedBy},#{approvedBy},#{createUser},#{createDate},
-				#{updateUser},#{updateDate}
+				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
+				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
+				#{holdCoverRevNo,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{compRefHoldCovNo,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+				#{reqBy,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{preparedBy,jdbcType=VARCHAR},
+				#{approvedBy,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{updateUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
 		END;
 	</update>
