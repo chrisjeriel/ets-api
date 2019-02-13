@@ -193,4 +193,11 @@ public class QuoteDaoImpl implements QuoteDao{
 		return savequotationCoverageOc;
 	}
 
+	@Override
+	public Integer saveQuoteGeneralInfo(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteGeneralInfo",params);
+		
+		return errorCode;
+	}
+
 }

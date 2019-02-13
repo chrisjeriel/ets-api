@@ -1,14 +1,14 @@
 package ph.cpi.rest.api.model.request;
 
-import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteOptionRequest {
 
 	private String quoteId;
 	private String quotationNo;
-	private PaginationResponse paginationResponse;
-	private SortResponse sortResponse;
+	private PaginationRequest paginationRequest;
+	private SortRequest sortRequest;
 	
 	public String getQuoteId() {
 		return quoteId;
@@ -22,21 +22,21 @@ public class RetrieveQuoteOptionRequest {
 	public void setQuotationNo(String quotationNo) {
 		this.quotationNo = quotationNo;
 	}
-	public PaginationResponse getPaginationResponse() {
-		return paginationResponse;
+	public PaginationRequest getPaginationRequest() {
+		return paginationRequest;
 	}
-	public void setPaginationResponse(PaginationResponse paginationResponse) {
-		this.paginationResponse = paginationResponse;
+	public void setPaginationRequest(PaginationRequest paginationRequest) {
+		this.paginationRequest = paginationRequest;
 	}
-	public SortResponse getSortResponse() {
-		return sortResponse;
+	public SortRequest getSortRequest() {
+		return sortRequest;
 	}
-	public void setSortResponse(SortResponse sortResponse) {
-		this.sortResponse = sortResponse;
+	public void setSortRequest(SortRequest sortRequest) {
+		this.sortRequest = sortRequest;
 	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteOptionRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

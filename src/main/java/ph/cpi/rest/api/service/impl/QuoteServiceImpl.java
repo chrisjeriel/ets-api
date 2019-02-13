@@ -1,8 +1,13 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +37,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -54,6 +60,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Component
@@ -103,6 +110,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
 		retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
+		/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
+		retrieveQuoteListingParams.put("count", rqlp.getPaginationRequest().getCount());
+		retrieveQuoteListingParams.put("sortKey", rqlp.getSortRequest().getSortKey());
+		retrieveQuoteListingParams.put("order", rqlp.getSortRequest().getOrder());*/
 		
 		rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 		logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
@@ -133,6 +144,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingOcParams.put("expiryDate", rqlop.getExpiryDate());
 		retrieveQuoteListingOcParams.put("reqBy", rqlop.getReqBy());
 		retrieveQuoteListingOcParams.put("createUser", rqlop.getCreateUser());
+		/*retrieveQuoteListingOcParams.put("position", rqlp.getPaginationRequest().getPosition());
+		retrieveQuoteListingOcParams.put("count", rqlp.getPaginationRequest().getCount());
+		retrieveQuoteListingOcParams.put("sortKey", rqlp.getSortRequest().getSortKey());
+		retrieveQuoteListingOcParams.put("order", rqlp.getSortRequest().getOrder());*/
 		
 		rqloResponse.setQuotationOcList(quoteDao.retrieveQuoteListingOc(retrieveQuoteListingOcParams));
 		
@@ -486,6 +501,72 @@ public class QuoteServiceImpl implements QuoteService{
 		rqeoResponse.setEndorsementsOc(quoteDao.retrieveQuoteEndorsementsOc(retrieveQuoteEndorsementsOcParams));
 		logger.info("retrieveQuoteEndorsementsOcResponse : " + rqerop.toString());
 		return rqeoResponse;
+	}
+
+	@Override
+	public SaveQuoteGeneralInfoResponse saveQuoteGeneralInfo(SaveQuoteGeneralInfoRequest sqgip) throws SQLException {
+		SaveQuoteGeneralInfoResponse sqgiResponse = new SaveQuoteGeneralInfoResponse();
+		
+		HashMap<String, Object> saveQuoteGeneralInfoParams = new HashMap<String, Object>();
+		
+		saveQuoteGeneralInfoParams.put("quoteId", sqgip.getQuoteId());
+		saveQuoteGeneralInfoParams.put("lineCd", sqgip.getLineCd());
+		saveQuoteGeneralInfoParams.put("quoteYear", sqgip.getQuoteYear());
+		saveQuoteGeneralInfoParams.put("quoteSeqNo", sqgip.getQuoteSeqNo());
+		saveQuoteGeneralInfoParams.put("quoteRevNo", sqgip.getQuoteRevNo());
+		saveQuoteGeneralInfoParams.put("cedingId", sqgip.getCedingId());
+		saveQuoteGeneralInfoParams.put("cessionId", sqgip.getCessionId());
+		saveQuoteGeneralInfoParams.put("lineClassCd", sqgip.getLineClassCd());
+		saveQuoteGeneralInfoParams.put("prinId", sqgip.getPrinId());
+		saveQuoteGeneralInfoParams.put("contractorId", sqgip.getContractorId());
+		saveQuoteGeneralInfoParams.put("insuredDesc", sqgip.getInsuredDesc());
+		saveQuoteGeneralInfoParams.put("policyId", sqgip.getPolicyId());
+		saveQuoteGeneralInfoParams.put("status", sqgip.getStatus());
+		saveQuoteGeneralInfoParams.put("reinsurerId", sqgip.getReinsurerId());
+		saveQuoteGeneralInfoParams.put("intmId", sqgip.getIntmId());
+		saveQuoteGeneralInfoParams.put("issueDate", sqgip.getIssueDate());
+		saveQuoteGeneralInfoParams.put("expiryDate", sqgip.getExpiryDate());
+		saveQuoteGeneralInfoParams.put("reqBy", sqgip.getReqBy());
+		saveQuoteGeneralInfoParams.put("reqDate", sqgip.getReqDate());
+		saveQuoteGeneralInfoParams.put("reqMode", sqgip.getReqMode());
+		saveQuoteGeneralInfoParams.put("mbiRefNo", sqgip.getMbiRefNo());
+		saveQuoteGeneralInfoParams.put("currencyCd", sqgip.getCurrencyCd());
+		saveQuoteGeneralInfoParams.put("currencyRt", sqgip.getCurrencyRt());
+		saveQuoteGeneralInfoParams.put("govtTag", sqgip.getGovtTag());
+		saveQuoteGeneralInfoParams.put("indicativeTag", sqgip.getIndicativeTag());
+		saveQuoteGeneralInfoParams.put("openCoverTag", sqgip.getOpenCoverTag());
+		saveQuoteGeneralInfoParams.put("declarationTag", sqgip.getDeclarationTag());
+		saveQuoteGeneralInfoParams.put("preparedBy", sqgip.getPreparedBy());
+		saveQuoteGeneralInfoParams.put("approvedBy", sqgip.getApprovedBy());
+		saveQuoteGeneralInfoParams.put("printedBy", sqgip.getPrintedBy());
+		saveQuoteGeneralInfoParams.put("printDate", sqgip.getPrintDate());
+		saveQuoteGeneralInfoParams.put("openingParag", sqgip.getOpeningParag());
+		saveQuoteGeneralInfoParams.put("closingParag", sqgip.getClosingParag());
+		saveQuoteGeneralInfoParams.put("createUser", sqgip.getCreateUser());
+		saveQuoteGeneralInfoParams.put("createDate", sqgip.getCreateDate());
+		saveQuoteGeneralInfoParams.put("updateUser", sqgip.getUpdateUser());
+		saveQuoteGeneralInfoParams.put("updateDate", sqgip.getUpdateDate());
+		saveQuoteGeneralInfoParams.put("projId", sqgip.getProjId());
+		saveQuoteGeneralInfoParams.put("projDesc", sqgip.getProjDesc());
+		saveQuoteGeneralInfoParams.put("riskId", sqgip.getRiskId());
+		saveQuoteGeneralInfoParams.put("totalSi", sqgip.getTotalSi());
+		saveQuoteGeneralInfoParams.put("pctShare", sqgip.getPctShare());
+		saveQuoteGeneralInfoParams.put("totalValue", sqgip.getTotalValue());
+		saveQuoteGeneralInfoParams.put("objectId", sqgip.getObjectId());
+		saveQuoteGeneralInfoParams.put("site", sqgip.getSite());
+		saveQuoteGeneralInfoParams.put("duration", sqgip.getDuration());
+		saveQuoteGeneralInfoParams.put("testing", sqgip.getTesting());
+		saveQuoteGeneralInfoParams.put("ipl", sqgip.getIpl());
+		saveQuoteGeneralInfoParams.put("timeExc", sqgip.getTimeExc());
+		saveQuoteGeneralInfoParams.put("noClaimPd", sqgip.getNoClaimPd());
+		saveQuoteGeneralInfoParams.put("prjCreateUser", sqgip.getPrjCreateUser());
+		saveQuoteGeneralInfoParams.put("prjCreateDate", sqgip.getPrjCreateDate());
+		saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
+		saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
+		
+		sqgiResponse.setReturnCode(quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams));
+		
+		return sqgiResponse;
 	}
 
 }

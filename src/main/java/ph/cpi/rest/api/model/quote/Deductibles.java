@@ -6,15 +6,14 @@ import java.math.BigDecimal;
 public class Deductibles {
 	private String deductibleCd;
 	private String deductibleTitle;
-	private Integer deductibleRtI; //Must be removed and remapped in XML
 	private BigDecimal deductibleRt;
-	private Integer deductibleAmtI; //Must be removed and remapped in XML
 	private BigDecimal deductibleAmt;
 	private String deductibleTxt;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	
 	public String getDeductibleCd() {
 		return deductibleCd;
 	}
@@ -27,23 +26,11 @@ public class Deductibles {
 	public void setDeductibleTitle(String deductibleTitle) {
 		this.deductibleTitle = deductibleTitle;
 	}
-	public Integer getDeductibleRtI() {
-		return deductibleRtI;
-	}
-	public void setDeductibleRtI(Integer deductibleRtI) {
-		this.deductibleRtI = deductibleRtI;
-	}
 	public BigDecimal getDeductibleRt() {
 		return deductibleRt;
 	}
 	public void setDeductibleRt(BigDecimal deductibleRt) {
 		this.deductibleRt = deductibleRt;
-	}
-	public Integer getDeductibleAmtI() {
-		return deductibleAmtI;
-	}
-	public void setDeductibleAmtI(Integer deductibleAmtI) {
-		this.deductibleAmtI = deductibleAmtI;
 	}
 	public BigDecimal getDeductibleAmt() {
 		return deductibleAmt;
@@ -81,6 +68,4 @@ public class Deductibles {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	
 }
