@@ -5,7 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnRiskListingRequest {
 
-	private Integer riskId;
+	private String riskId;
 	private String riskAbbr;
 	private String riskName;
 	private String regionDesc;
@@ -19,10 +19,10 @@ public class RetrieveMtnRiskListingRequest {
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public Integer getRiskId() {
+	public String getRiskId() {
 		return riskId;
 	}
-	public void setRiskId(Integer riskId) {
+	public void setRiskId(String riskId) {
 		this.riskId = riskId;
 	}
 	public String getRiskAbbr() {

@@ -7,8 +7,6 @@ import org.joda.time.LocalDateTime;
 
 public class Coverage {
 	
-	private Integer riskId;
-	
 	private BigDecimal sectionISi;
 	private BigDecimal sectionIISi;
 	private BigDecimal sectionIIISi;

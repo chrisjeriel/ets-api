@@ -72,9 +72,9 @@
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
 		
-		<association property="options" 	resultMap="assocOptions"/>
+		<association property="optionsList" 	resultMap="assocOptions"/>
 		
-		<association property="otherRates" 	resultMap="assocOtherRates"/>	
+		<association property="otherRatesList" 	resultMap="assocOtherRates"/>	
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
@@ -226,7 +226,7 @@
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		
-		<association property="deductibles" resultMap="assocDeductibles"/>
+		<association property="deductiblesList" resultMap="assocDeductibles"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles">
@@ -507,7 +507,7 @@
 		<result property="updateDate" column="QUOTE_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<association property="project" resultMap="project"></association>
 		<association property="attachmentsList" resultMap="attachment"></association>
-		<association property="competitiosList" resultMap="competition"></association>
+		<association property="competitionsList" resultMap="competition"></association>
 		<association property="alop" resultMap="alopMap"></association>
 		<association property="otherRatesList" resultMap="otherRates"></association>
 		<association property="optionsList" resultMap="options"></association>
@@ -541,7 +541,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationForCompetitionMap">
 		 <result property="quoteId"				 column="QUOTE_ID"/>
 		 <result property="quotationNo"			 column="QUOTE_NO"/>
-		 <association property="competition"	 resultMap="competitionMap"/>
+		 <association property="competitionsList"	 resultMap="competitionMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
@@ -762,8 +762,8 @@
 		<result property="createDate" column="ALOP_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" column="ALOP_UPDATE_USER"/>
 		<result property="updateDate" column="ALOP_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<association property="alopItemList" resultMap="alopItem"></association>
-        <association property="alopItem" resultMap="alopItemMap"></association>
+		<association property="alopItemList" resultMap="alopItemMap"></association>
+        <!-- <association property="alopItem" resultMap="alopItemMap"></association> -->
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="otherRates">

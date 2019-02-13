@@ -5,15 +5,15 @@ import ph.cpi.rest.api.model.SortResponse;
 
 public class RetrieveQuoteOptionRequest {
 
-	private Integer quoteId;
+	private String quoteId;
 	private String quotationNo;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public Integer getQuoteId() {
+	public String getQuoteId() {
 		return quoteId;
 	}
-	public void setQuoteId(Integer quoteId) {
+	public void setQuoteId(String quoteId) {
 		this.quoteId = quoteId;
 	}
 	public String getQuotationNo() {

@@ -4,14 +4,14 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteCompetitionRequest {
-	private Integer quoteId;
+	private String quoteId;
 	private String quotationNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getQuoteId() {
+	public String getQuoteId() {
 		return quoteId;
 	}
-	public void setQuoteId(Integer quoteId) {
+	public void setQuoteId(String quoteId) {
 		this.quoteId = quoteId;
 	}
 	public String getQuotationNo() {

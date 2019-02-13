@@ -7,7 +7,7 @@ import org.joda.time.LocalDateTime;
 
 public class Alop {
 
-	private AlopItem alopItem;
+	//private AlopItem alopItem;
 	
 	private Integer alopId;
 	private Integer insuredId;
@@ -32,12 +32,13 @@ public class Alop {
 	private LocalDateTime updateDate;
 	
 	private List<AlopItem> alopItemList;
-	public AlopItem getAlopItem() {
-		return alopItem;
-	}
-	public void setAlopItem(AlopItem alopItem) {
-		this.alopItem = alopItem;
-	}
+	
+//	public AlopItem getAlopItem() {
+//		return alopItem;
+//	}
+//	public void setAlopItem(AlopItem alopItem) {
+//		this.alopItem = alopItem;
+//	}
 	public Integer getAlopId() {
 		return alopId;
 	}
@@ -172,7 +173,9 @@ public class Alop {
 	}
 	@Override
 	public String toString() {
-		return "Alop [alopItem=" + alopItem + ", alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName="
+		return "Alop "
+				//+ "[alopItem=" + alopItem 
+				+ ", alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName="
 				+ insuredName + ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness="
 				+ insuredBusiness + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
 				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", annSiD=" + annSiD

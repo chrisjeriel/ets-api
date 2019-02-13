@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import org.joda.time.LocalDateTime;
 
 public class SectionCovers {
-	private String lineCd;
 	private Integer coverCd;
 	private String section;
 	private String bulletNo;
@@ -71,15 +70,9 @@ public class SectionCovers {
 		this.updateDate = updateDate;
 	}
 	
-	public String getLineCd() {
-		return lineCd;
-	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
 	@Override
 	public String toString() {
-		return "SectionCovers [lineCd=" + lineCd + ", coverCd=" + coverCd + ", section=" + section + ", bulletNo="
+		return "SectionCovers coverCd=" + coverCd + ", section=" + section + ", bulletNo="
 				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
