@@ -527,7 +527,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcForAttachmentMap">
 		<result property="quoteIdOc"		column="QUOTE_ID_OC"/>
 		<result property="openQuotationNo"	column="QUOTE_NO_OC"/>
-		<association property="attachment"  resultMap="attachmentOcMap" />
+		<association property="attachmentOc"  resultMap="attachmentOcMap" />
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentOcMap">
@@ -558,9 +558,12 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
 		 <result property="adviceNo"			 column="ADVICE_NO"/>
 		 <result property="cedingId"			 column="CEDING_ID"/>
+		 <result property="cedingName"			 column="CEDING_NAME"/>
 		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
+		 <result property="cedingRepName"		 column="CEDING_REP_NAME"/>
+		 <result property="position"		 	 column="POSITION"/>
 		 <result property="option"			 	 column="OPTN"/>
-		 <result property="wording"			 	 column="WORDINGS"/>
+		 <result property="wordings"			 column="WORDINGS"/>
 		 <result property="createUser"		 	 column="CREATE_USER"/>
 		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		 <result property="updateUser"		 	 column="UPDATE_USER"/>
@@ -965,4 +968,24 @@
 			);
 		END;
 	</update>
+
+	<update id="saveQuoteAttachmentOcMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="attachmentsOcList" item="attachmentOc">
+		   	   ETS_QUOTE_PKG_NDC.save_quote_attachment_oc
+			   (#{quoteIdOc},#{attachmentOc.fileNo},#{attachmentOc.fileName},#{attachmentOc.description},#{attachmentOc.createUser},
+			   CAST(to_timestamp(#{attachmentOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentOc.updateUser},
+			   CAST(to_timestamp(#{attachmentOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		END;
+	</update>
+	
+	<update id="saveQuoteCompetitionMap" parameterType="java.util.Map">
+		BEGIN
+		   ETS_QUOTE_PKG_NDC.save_quote_competition(#{quoteId},#{adviceNo},#{cedingId},#{cedingRepId},#{option},#{wordings},#{createUser},
+		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
+		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		END;
+	</update>
+	
 </mapper>

@@ -1,21 +1,26 @@
-package ph.cpi.rest.api.model.quote;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.LocalDateTime;
 
-public class Competition {
+public class SaveQuoteCompetitionRequest {
+	
+	private Integer quoteId;
 	private Integer adviceNo;
 	private Integer cedingId;
-	private String cedingName;
 	private String cedingRepId;
-	private String cedingRepName;
-	private String position;
 	private String option;
 	private String wordings;
 	private String createUser;
-	private LocalDateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private String updateDate;
 	
+	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
 	public Integer getAdviceNo() {
 		return adviceNo;
 	}
@@ -28,29 +33,11 @@ public class Competition {
 	public void setCedingId(Integer cedingId) {
 		this.cedingId = cedingId;
 	}
-	public String getCedingName() {
-		return cedingName;
-	}
-	public void setCedingName(String cedingName) {
-		this.cedingName = cedingName;
-	}
 	public String getCedingRepId() {
 		return cedingRepId;
 	}
 	public void setCedingRepId(String cedingRepId) {
 		this.cedingRepId = cedingRepId;
-	}
-	public String getCedingRepName() {
-		return cedingRepName;
-	}
-	public void setCedingRepName(String cedingRepName) {
-		this.cedingRepName = cedingRepName;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
 	}
 	public String getOption() {
 		return option;
@@ -70,10 +57,10 @@ public class Competition {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -82,20 +69,20 @@ public class Competition {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	
 	@Override
 	public String toString() {
-		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="+ cedingName 
-				+", cedingRepId=" + cedingRepId + ", cedingRepName="+ cedingRepName
+		return "SaveQuoteCompetitionRequest [quoteId=" + quoteId + "adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId=" + cedingRepId
 				+ ", option=" + option + ", wordings=" + wordings +  ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}
+	
 	
 }

@@ -33,7 +33,9 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -54,12 +56,14 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
 @RequestMapping(path="/quote-service")
 public class QuoteController {
 	
@@ -206,6 +210,13 @@ public class QuoteController {
 		logger.info("SaveQuoteAlopItemRequest : " + sqair.toString());
 		return quoteService.saveQuoteAlopItem(sqair);
 	}
+	
+	@PostMapping(path="saveQuoteAttachmentOc")
+	public @ResponseBody SaveQuoteAttachmentOcResponse saveQuoteAttachmentOc(@RequestBody SaveQuoteAttachmentOcRequest sqaor) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteAttachmentOc");
+		logger.info("SaveQuoteAttachmentOcRequest : " + sqaor.toString());
+		return quoteService.saveQuoteAttachmentOc(sqaor);
+	}
 		
 	@GetMapping(path="retrieveQuoteGeneralInfo")
 	public @ResponseBody RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip) throws SQLException {
@@ -227,6 +238,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteEndorsementsOc");
 		logger.info("RetrieveQuoteEndorsementsOcRequest : " + rqerop.toString());
 		return quoteService.retrieveQuoteEndorsementsOc(rqerop);
+	}
+	
+	@PostMapping(path="saveQuoteCompetition")
+	public @ResponseBody SaveQuoteCompetitionResponse saveQuoteCompetition(@RequestBody SaveQuoteCompetitionRequest sqcr) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteCompetition");
+		logger.info("SaveQuoteCompetitionRequest : " + sqcr.toString());
+		return quoteService.saveQuoteCompetition(sqcr);
 	}
 
 	@PostMapping(path="saveQuoteGeneralInfo")

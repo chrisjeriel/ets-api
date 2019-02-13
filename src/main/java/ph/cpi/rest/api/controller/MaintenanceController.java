@@ -59,7 +59,7 @@ import ph.cpi.rest.api.service.MaintenanceService;
 
 
 @Controller
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
 @RequestMapping(path="/maintenance-service")
 public class MaintenanceController {
 	
