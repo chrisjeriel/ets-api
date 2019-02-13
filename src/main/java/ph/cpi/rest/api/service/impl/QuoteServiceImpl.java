@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -55,6 +56,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
@@ -523,6 +525,23 @@ public class QuoteServiceImpl implements QuoteService{
 		sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
 		
 		return sqhcrResponse;
+	}
+
+	@Override
+	public SaveQuoteEndorsementsResponse saveQuoteEndorsements(SaveQuoteEndorsementsRequest sqer) throws SQLException {
+		SaveQuoteEndorsementsResponse sqerResponse = new SaveQuoteEndorsementsResponse();	
+		HashMap<String, Object> saveQuoteEndorsementsParams = new HashMap<String, Object>();
+		saveQuoteEndorsementsParams.put("quoteId",sqer.getQuoteId());
+		saveQuoteEndorsementsParams.put("optionId",sqer.getOptionId());
+		saveQuoteEndorsementsParams.put("endtCd",sqer.getEndtCd());
+		saveQuoteEndorsementsParams.put("remarks",sqer.getRemarks());
+		saveQuoteEndorsementsParams.put("createUser",sqer.getCreateUser());
+		saveQuoteEndorsementsParams.put("createDate",sqer.getCreateDate());
+		saveQuoteEndorsementsParams.put("updateUser",sqer.getUpdateUser());
+		saveQuoteEndorsementsParams.put("updateDate",sqer.getUpdateDate());
+		sqerResponse.setReturnCode(quoteDao.saveQuoteEndorsements(saveQuoteEndorsementsParams));
+		
+		return sqerResponse;
 	}
 
 }

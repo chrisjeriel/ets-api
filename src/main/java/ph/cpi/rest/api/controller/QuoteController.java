@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -55,6 +56,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
@@ -234,11 +236,11 @@ public class QuoteController {
 		return quoteService.saveQuoteHoldCover(sqhcr);
 	}
 	
-//	@PostMapping(path="saveQuoteEndorsements")
-//	public @ResponseBody SaveQuoteEndorsementsResponse saveQuoteEndorsements(@RequestBody SaveQuoteEndorsementsRequest sqer) throws SQLException {
-//		logger.info("GET: /api/quote-service/saveQuoteEndorsements");
-//		logger.info("SaveQuoteEndorsementsRequest : " + sqer.toString());
-//		return quoteService.saveQuoteEndorsements(sqer);
-//	}
+	@PostMapping(path="saveQuoteEndorsements")
+	public @ResponseBody SaveQuoteEndorsementsResponse saveQuoteEndorsements(@RequestBody SaveQuoteEndorsementsRequest sqer) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteEndorsements");
+		logger.info("SaveQuoteEndorsementsRequest : " + sqer.toString());
+		return quoteService.saveQuoteEndorsements(sqer);
+	}
 
 }
