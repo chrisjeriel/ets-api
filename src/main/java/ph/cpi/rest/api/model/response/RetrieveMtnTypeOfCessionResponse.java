@@ -1,19 +1,21 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.Cession;
 
 public class RetrieveMtnTypeOfCessionResponse {
 
-	private Cession cession;
+	private List<Cession> cession;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public Cession getCession() {
+	public List<Cession> getCession() {
 		return cession;
 	}
-	public void setCession(Cession cession) {
+	public void setCession(List<Cession> cession) {
 		this.cession = cession;
 	}
 	public PaginationResponse getPaginationResponse() {

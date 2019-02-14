@@ -5,14 +5,14 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnTypeOfCessionRequest {
 
-	private Integer cessionId;
+	private String cessionId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public Integer getCessionId() {
+	public String getCessionId() {
 		return cessionId;
 	}
-	public void setCessionId(Integer cessionId) {
+	public void setCessionId(String cessionId) {
 		this.cessionId = cessionId;
 	}
 	public PaginationRequest getPaginationRequest() {
