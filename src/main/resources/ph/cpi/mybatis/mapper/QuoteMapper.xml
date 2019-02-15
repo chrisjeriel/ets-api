@@ -1047,4 +1047,16 @@
 		END;
 	</update>
 	
+	<update id="saveQuoteEndorsementsOc" parameterType="java.util.Map">
+		BEGIN
+			ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
+				#{quoteIdOc,jdbcType=INTEGER},#{endtCd,jdbcType=INTEGER},
+				#{remarks,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{updateUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+		END;
+	</update>
+	
 </mapper>

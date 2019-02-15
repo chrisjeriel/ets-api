@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
@@ -292,5 +294,12 @@ public class QuoteController {
 		logger.info("POST: /api/quote-service/saveQuoteGeneralInfo");
 		logger.info("SaveQuoteGeneralInfoRequest : " + sqgip.toString());
 		return quoteService.saveQuoteGeneralInfo(sqgip);
+	}
+	
+	@PostMapping(path="saveQuoteEndorsementsOc")
+	public @ResponseBody SaveQuoteEndorsementsOcResponse saveQuoteEndorsementsOc(@RequestBody SaveQuoteEndorsementsOcRequest sqeocr) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteEndorsementsOc");
+		logger.info("SaveQuoteEndorsementsOcRequest : " + sqeocr.toString());
+		return quoteService.saveQuoteEndorsementsOc(sqeocr);
 	}
 }

@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
@@ -56,6 +57,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
@@ -97,4 +99,6 @@ public interface QuoteService {
 
 	public SaveQuoteHoldCoverResponse saveQuoteHoldCover(SaveQuoteHoldCoverRequest sqhcr) throws SQLException;
 	public SaveQuoteEndorsementsResponse saveQuoteEndorsements(SaveQuoteEndorsementsRequest sqer) throws SQLException;
+	public SaveQuoteEndorsementsOcResponse saveQuoteEndorsementsOc(SaveQuoteEndorsementsOcRequest sqeocr) throws SQLException;
+
 }

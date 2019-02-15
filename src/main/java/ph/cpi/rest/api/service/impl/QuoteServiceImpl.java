@@ -39,6 +39,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
@@ -66,10 +67,12 @@ import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.QuoteService;
+
 
 @Component
 public class QuoteServiceImpl implements QuoteService{
@@ -691,4 +694,21 @@ public class QuoteServiceImpl implements QuoteService{
 		return sqerResponse;
 	}
 
+	@Override
+	public SaveQuoteEndorsementsOcResponse saveQuoteEndorsementsOc(SaveQuoteEndorsementsOcRequest sqeocr)throws SQLException {
+		SaveQuoteEndorsementsOcResponse sqeocrResponse = new SaveQuoteEndorsementsOcResponse();	
+		HashMap<String, Object> saveQuoteEndorsementsOcParams = new HashMap<String, Object>();
+		saveQuoteEndorsementsOcParams.put("quoteIdOc",sqeocr.getQuoteIdOc());
+		saveQuoteEndorsementsOcParams.put("endtCd",sqeocr.getEndtCd());
+		saveQuoteEndorsementsOcParams.put("remarks",sqeocr.getRemarks());
+		saveQuoteEndorsementsOcParams.put("createUser",sqeocr.getCreateUser());
+		saveQuoteEndorsementsOcParams.put("createDate",sqeocr.getCreateDate());
+		saveQuoteEndorsementsOcParams.put("updateUser",sqeocr.getUpdateUser());
+		saveQuoteEndorsementsOcParams.put("updateDate",sqeocr.getUpdateDate());
+		sqeocrResponse.setReturnCode(quoteDao.saveQuoteEndorsementsOc(saveQuoteEndorsementsOcParams));
+		
+		return sqeocrResponse;
+	}
+
+	
 }
