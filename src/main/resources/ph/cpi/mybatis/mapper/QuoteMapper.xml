@@ -1005,8 +1005,7 @@
 			   SYSDATE);
 		   </foreach>
 		   <foreach collection="deleteSectionCovers" item="sectioncovers">
-		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage
-		   	   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
+		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
 		   </foreach>
 		END;
 	</update>
