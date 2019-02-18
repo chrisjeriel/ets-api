@@ -25,7 +25,6 @@ public class Quotation {
 	private Integer principalId;
 	private String principalName;
 	private Integer contractorId;
-	private String contactorName; //Remove Rename in XML too
 	private String contractorName;
 	private String insuredDesc;
 	private Integer policyId;
@@ -173,12 +172,6 @@ public class Quotation {
 	}
 	public void setContractorId(Integer contractorId) {
 		this.contractorId = contractorId;
-	}
-	public String getContactorName() {
-		return contactorName;
-	}
-	public void setContactorName(String contactorName) {
-		this.contactorName = contactorName;
 	}
 	public String getContractorName() {
 		return contractorName;
@@ -457,7 +450,7 @@ public class Quotation {
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", cessionId=" + cessionId
 				+ ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", lineClassCd="
 				+ lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId + ", principalName="
-				+ principalName + ", contractorId=" + contractorId + ", contactorName=" + contactorName
+				+ principalName + ", contractorId=" + contractorId
 				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", policyId=" + policyId
 				+ ", policyNo=" + policyNo + ", status=" + status + ", reinsurerId=" + reinsurerId + ", reinsurerName="
 				+ reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate=" + issueDate
