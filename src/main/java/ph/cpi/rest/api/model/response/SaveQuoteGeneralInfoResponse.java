@@ -9,6 +9,21 @@ public class SaveQuoteGeneralInfoResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private Integer quoteId;
+	private String quotationNo;
+	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
+	public String getQuotationNo() {
+		return quotationNo;
+	}
+	public void setQuotationNo(String quotationNo) {
+		this.quotationNo = quotationNo;
+	}
 	public List<Error> getErrorList() {
 		return errorList;
 	}

@@ -291,6 +291,7 @@
 		<result property="policyId" 		column="POLICY_ID"/> 
 		<result property="policyNo" 		column="POLICY_NO"/> 
 		<result property="status" 			column="STATUS"/> 
+		<result property="statusDesc" 		column="DESCRIPTION_STATUS"/> 
 		<result property="reinsurerId" 		column="REINSURER_ID"/>
 		<result property="reinsurerName" 	column="CEDING_NAME_REINSURER"/> 
 		<result property="intmId" 			column="INTM_ID"/> 
@@ -944,9 +945,11 @@
 		END;
 	</update>
 	
-	<update id="saveQuoteGeneralInfo" parameterType="java.util.Map">
+	<update id="saveQuoteGeneralInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			CPI.ETS_QUOTE_PKG_MBM.save_quote_general_info(
+				#{quotationNo, mode=OUT, jdbcType=VARCHAR},
+				#{outQuoteId, mode=OUT, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},#{lineCd},#{quoteYear, jdbcType=INTEGER},#{quoteSeqNo, jdbcType=INTEGER},
 				#{quoteRevNo, jdbcType=INTEGER},#{cedingId, jdbcType=INTEGER},#{cessionId, jdbcType=INTEGER},#{lineClassCd},
 				#{prinId, jdbcType=INTEGER},#{contractorId, jdbcType=INTEGER},#{insuredDesc},#{policyId, jdbcType=INTEGER},
@@ -965,7 +968,7 @@
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 				#{projId, jdbcType=INTEGER},#{projDesc},#{riskId, jdbcType=INTEGER},
 				#{totalSi, jdbcType=DECIMAL},#{pctShare, jdbcType=FLOAT},#{totalValue, jdbcType=DECIMAL},#{objectId, jdbcType=INTEGER},
-				#{site},#{duration},#{testing, jdbcType=VARCHAR},#{ipl, jdbcType=INTEGER},#{timeExc, jdbcType=INTEGER},#{noClaimPd, jdbcType=INTEGER},
+				#{site},#{duration, jdbcType=VARCHAR},#{testing, jdbcType=VARCHAR},#{ipl, jdbcType=INTEGER},#{timeExc, jdbcType=INTEGER},#{noClaimPd, jdbcType=INTEGER},
 				#{prjCreateUser},
 				CAST(to_timestamp(#{prjCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 				#{prjUpdateUser},
