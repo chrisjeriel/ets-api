@@ -7,7 +7,8 @@ import org.apache.ibatis.type.Alias;
 public class SaveQuoteAlopItemRequest {
 	private Integer quoteId;
 	private Integer alopId;
-	private List<AlopItem> alopItemList;
+	private List<AlopItem> saveAlopItemList;
+	private List<AlopItem> deleteAlopItemList;
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -20,17 +21,24 @@ public class SaveQuoteAlopItemRequest {
 	public void setAlopId(Integer alopId) {
 		this.alopId = alopId;
 	}
-	public List<AlopItem> getAlopItemList() {
-		return alopItemList;
+	public List<AlopItem> getSaveAlopItemList() {
+		return saveAlopItemList;
 	}
-	public void setAlopItemList(List<AlopItem> alopItemList) {
-		this.alopItemList = alopItemList;
+	public void setSaveAlopItemList(List<AlopItem> saveAlopItemList) {
+		this.saveAlopItemList = saveAlopItemList;
+	}
+	public List<AlopItem> getDeleteAlopItemList() {
+		return deleteAlopItemList;
+	}
+	public void setDeleteAlopItemList(List<AlopItem> deleteAlopItemList) {
+		this.deleteAlopItemList = deleteAlopItemList;
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", alopId=" + alopId + ", alopItemList=" + alopItemList
-				+ "]";
+		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", alopId=" + alopId + ", saveAlopItemList="
+				+ saveAlopItemList + ", deleteAlopItemList=" + deleteAlopItemList + "]";
 	}
+	
 	
 	
 }
