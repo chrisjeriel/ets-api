@@ -911,11 +911,14 @@
 
 	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="attachmentsList" item="attachment">
+		   <foreach collection="saveAttachmentsList" item="attachment">
 		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
 			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
 			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
 			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		   <foreach collection="deleteAttachmentsList" item="attachment">
+		   		ETS_QUOTE_PKG_PCPCR.delete_quote_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
 		   </foreach>
 		END;
 	</update>
@@ -933,13 +936,18 @@
 	
 	<update id="saveQuoteAloItempMap" parameterType="java.util.Map">
 		BEGIN
-			<foreach collection="alopItemsList" item="alopItem">
+			<foreach collection="saveAlopItemsList" item="alopItem">
 		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
 		    	(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
-		    	#{alopItem.description},#{alopItem.importance},#{alopItem.lossMin},
+		    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 		    	#{alopItem.createUser},
 		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			</foreach>
+			<foreach collection="deleteAlopItemsList" item="alopItem">
+				BEGIN
+    				ETS_QUOTE_PKG_PCPCR.delete_quote_alop_item(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR});
+				END;
 			</foreach>
 		END;
 	</update>

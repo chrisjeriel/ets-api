@@ -277,9 +277,8 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
 		saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
-		saveQuoteAttachmentParams.put("attachmentsList", sqar.getAttachmentsList());
-		
-		
+		saveQuoteAttachmentParams.put("saveAttachmentsList", sqar.getSaveAttachmentsList());
+		saveQuoteAttachmentParams.put("deleteAttachmentsList", sqar.getDeleteAttachmentsList());
 		sqarResponse.setReturnCode(quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams));
 		
 		return sqarResponse;
@@ -322,7 +321,8 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
 		saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
 		saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
-		saveQuoteAlopItemParams.put("alopItemsList" , sqair.getAlopItemList() );
+		saveQuoteAlopItemParams.put("saveAlopItemsList" , sqair.getSaveAlopItemList() );
+		saveQuoteAlopItemParams.put("deleteAlopItemsList" , sqair.getDeleteAlopItemList() );
 		
 		sqairResponse.setReturnCode(quoteDao.saveQuoteAlopItem(saveQuoteAlopItemParams));
 		
