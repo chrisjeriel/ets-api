@@ -987,7 +987,7 @@
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="sectionCovers" item="sectioncovers">
+		   <foreach collection="saveSectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.saveQuoteCoverage
 			   (#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
@@ -995,6 +995,10 @@
 			   #{sectioncovers.addSi},#{sectioncovers.createUser},
 			   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.updateUser},
 			   SYSDATE);
+		   </foreach>
+		   <foreach collection="deleteSectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage
+		   	   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
 		   </foreach>
 		END;
 	</update>
