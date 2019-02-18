@@ -509,7 +509,8 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> saveQuoteAttachmentOcParams = new HashMap<String, Object>();
 		saveQuoteAttachmentOcParams.put("quoteIdOc", sqaor.getQuoteIdOc());
-		saveQuoteAttachmentOcParams.put("attachmentsOcList", sqaor.getAttachmentsOcList());
+		saveQuoteAttachmentOcParams.put("saveAttachmentsOcList", sqaor.getSaveAttachmentsOcList());
+		saveQuoteAttachmentOcParams.put("deleteAttachmentsOcList", sqaor.getDeleteAttachmentsOcList());
 		
 		sqaorResponse.setReturnCode(quoteDao.saveQuoteAttachmentOc(saveQuoteAttachmentOcParams));
 		
