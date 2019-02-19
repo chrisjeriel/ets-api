@@ -984,12 +984,15 @@
 
 	<update id="saveQuoteAttachmentOcMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="attachmentsOcList" item="attachmentOc">
+		   <foreach collection="saveAttachmentsOcList" item="attachmentOc">
 		   	   ETS_QUOTE_PKG_NDC.save_quote_attachment_oc
 			   (#{quoteIdOc},#{attachmentOc.fileNo},#{attachmentOc.fileName},#{attachmentOc.description},#{attachmentOc.createUser},
 			   CAST(to_timestamp(#{attachmentOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentOc.updateUser},
 			   CAST(to_timestamp(#{attachmentOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		    </foreach>
+		    <foreach collection="deleteAttachmentsOcList" item="attachment">
+		   		ETS_QUOTE_PKG_NDC.delete_quote_attachment_oc(#{quoteIdOc},#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
 		END;
 	</update>
 	

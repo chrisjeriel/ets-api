@@ -162,9 +162,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 	@Override
-	public List<QuotationOc> retrieveQuoteCoverageOcList(final HashMap<String, Object> params) throws SQLException {
+	public QuotationOc retrieveQuoteCoverageOc(final HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<QuotationOc> projectOc = sqlSession.selectList("retrieveQuoteCoverageOc", params);
+		QuotationOc projectOc = sqlSession.selectOne("retrieveQuoteCoverageOc", params);
 		return projectOc;
 	}
 
