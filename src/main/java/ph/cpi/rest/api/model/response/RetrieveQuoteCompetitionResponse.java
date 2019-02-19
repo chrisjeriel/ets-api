@@ -36,6 +36,6 @@ public class RetrieveQuoteCompetitionResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse + "]";
+		return "RetrieveQuoteCompetitionResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse + "]";
 	}
 }

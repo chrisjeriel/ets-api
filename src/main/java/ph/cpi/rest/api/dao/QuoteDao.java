@@ -29,7 +29,7 @@ public interface QuoteDao {
 
 	public List<QuotationOc> retrieveQuoteAttachmentOcList(final HashMap<String, Object> params) throws SQLException;
 	public List<Quotation> retrieveQuoteCompetitionList(final HashMap<String, Object> params) throws SQLException;
-	public List<QuotationOc> retrieveQuoteCoverageOcList(final HashMap<String, Object> params) throws SQLException;
+	public QuotationOc retrieveQuoteCoverageOc(final HashMap<String, Object> params) throws SQLException;
 	
 	public Quotation retrieveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
 	public List<Quotation> retrieveQuoteAttachmentList(final HashMap<String, Object> params) throws SQLException;

@@ -282,9 +282,8 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
 		saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
-		saveQuoteAttachmentParams.put("attachmentsList", sqar.getAttachmentsList());
-		
-		
+		saveQuoteAttachmentParams.put("saveAttachmentsList", sqar.getSaveAttachmentsList());
+		saveQuoteAttachmentParams.put("deleteAttachmentsList", sqar.getDeleteAttachmentsList());
 		sqarResponse.setReturnCode(quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams));
 		
 		return sqarResponse;
@@ -327,7 +326,8 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
 		saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
 		saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
-		saveQuoteAlopItemParams.put("alopItemsList" , sqair.getAlopItemList() );
+		saveQuoteAlopItemParams.put("saveAlopItemsList" , sqair.getSaveAlopItemList() );
+		saveQuoteAlopItemParams.put("deleteAlopItemsList" , sqair.getDeleteAlopItemList() );
 		
 		sqairResponse.setReturnCode(quoteDao.saveQuoteAlopItem(saveQuoteAlopItemParams));
 		
@@ -429,7 +429,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteCoverageOcParams.put("sortKey", rqcor.getSortRequest().getSortKey());
 		retrieveQuoteCoverageOcParams.put("order", rqcor.getSortRequest().getOrder());
 		
-		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
+		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOc(retrieveQuoteCoverageOcParams));
 		rqcorResponse.getPaginationResponse().setPosition(rqcor.getPaginationRequest().getPosition());
 		rqcorResponse.getPaginationResponse().setCount(rqcor.getPaginationRequest().getCount());
 		rqcorResponse.getSortResponse().setSortKey(rqcor.getSortRequest().getSortKey());
@@ -476,7 +476,8 @@ public class QuoteServiceImpl implements QuoteService{
 		saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
 		saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
 		saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
-		saveQuoteCoverageParams.put("sectionCovers", saveQuoteCoverage.getSectionCovers());
+		saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
+		saveQuoteCoverageParams.put("deleteSectionCovers", saveQuoteCoverage.getDeleteSectionCovers());
 		
 		sqaResponse.setReturnCode(quoteDao.saveQuoteCoverage(saveQuoteCoverageParams));
 		
@@ -514,7 +515,8 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> saveQuoteAttachmentOcParams = new HashMap<String, Object>();
 		saveQuoteAttachmentOcParams.put("quoteIdOc", sqaor.getQuoteIdOc());
-		saveQuoteAttachmentOcParams.put("attachmentsOcList", sqaor.getAttachmentsOcList());
+		saveQuoteAttachmentOcParams.put("saveAttachmentsOcList", sqaor.getSaveAttachmentsOcList());
+		saveQuoteAttachmentOcParams.put("deleteAttachmentsOcList", sqaor.getDeleteAttachmentsOcList());
 		
 		sqaorResponse.setReturnCode(quoteDao.saveQuoteAttachmentOc(saveQuoteAttachmentOcParams));
 		

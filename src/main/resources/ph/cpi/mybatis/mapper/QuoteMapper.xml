@@ -912,18 +912,21 @@
 
 	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="attachmentsList" item="attachment">
+		   <foreach collection="saveAttachmentsList" item="attachment">
 		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
 			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
 			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
 			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		   <foreach collection="deleteAttachmentsList" item="attachment">
+		   		ETS_QUOTE_PKG_PCPCR.delete_quote_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
 		   </foreach>
 		END;
 	</update>
 	
 	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
 		BEGIN
-		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
+		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId, jdbcType=VARCHAR},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
 		   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{maxIndemPd},
 		   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{timeExc},#{repInterval},#{createUser},
@@ -934,13 +937,18 @@
 	
 	<update id="saveQuoteAloItempMap" parameterType="java.util.Map">
 		BEGIN
-			<foreach collection="alopItemsList" item="alopItem">
+			<foreach collection="saveAlopItemsList" item="alopItem">
 		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
 		    	(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
-		    	#{alopItem.description},#{alopItem.importance},#{alopItem.lossMin},
+		    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 		    	#{alopItem.createUser},
 		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			</foreach>
+			<foreach collection="deleteAlopItemsList" item="alopItem">
+				BEGIN
+    				ETS_QUOTE_PKG_PCPCR.delete_quote_alop_item(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR});
+				END;
 			</foreach>
 		END;
 	</update>
@@ -979,25 +987,31 @@
 
 	<update id="saveQuoteAttachmentOcMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="attachmentsOcList" item="attachmentOc">
+		   <foreach collection="saveAttachmentsOcList" item="attachmentOc">
 		   	   ETS_QUOTE_PKG_NDC.save_quote_attachment_oc
 			   (#{quoteIdOc},#{attachmentOc.fileNo},#{attachmentOc.fileName},#{attachmentOc.description},#{attachmentOc.createUser},
 			   CAST(to_timestamp(#{attachmentOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachmentOc.updateUser},
 			   CAST(to_timestamp(#{attachmentOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		    </foreach>
+		    <foreach collection="deleteAttachmentsOcList" item="attachment">
+		   		ETS_QUOTE_PKG_NDC.delete_quote_attachment_oc(#{quoteIdOc},#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
 		END;
 	</update>
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="sectionCovers" item="sectioncovers">
+		   <foreach collection="saveSectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.saveQuoteCoverage
 			   (#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
-			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+			   SYSDATE,#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 			   #{sectioncovers.addSi},#{sectioncovers.createUser},
 			   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.updateUser},
-			   CAST(to_timestamp(#{sectioncovers.updateDate},'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			   SYSDATE);
+		   </foreach>
+		   <foreach collection="deleteSectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
 		   </foreach>
 		END;
 	</update>
