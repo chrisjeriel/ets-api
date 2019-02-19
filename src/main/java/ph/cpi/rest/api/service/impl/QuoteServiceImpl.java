@@ -424,7 +424,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteCoverageOcParams.put("sortKey", rqcor.getSortRequest().getSortKey());
 		retrieveQuoteCoverageOcParams.put("order", rqcor.getSortRequest().getOrder());
 		
-		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOcList(retrieveQuoteCoverageOcParams));
+		rqcorResponse.setQuotationOc(quoteDao.retrieveQuoteCoverageOc(retrieveQuoteCoverageOcParams));
 		rqcorResponse.getPaginationResponse().setPosition(rqcor.getPaginationRequest().getPosition());
 		rqcorResponse.getPaginationResponse().setCount(rqcor.getPaginationRequest().getCount());
 		rqcorResponse.getSortResponse().setSortKey(rqcor.getSortRequest().getSortKey());
