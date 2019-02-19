@@ -592,6 +592,8 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> saveQuoteGeneralInfoParams = new HashMap<String, Object>();
 		
+		saveQuoteGeneralInfoParams.put("quotationNo", "");
+		saveQuoteGeneralInfoParams.put("outQuoteId", "");
 		saveQuoteGeneralInfoParams.put("quoteId", sqgip.getQuoteId());
 		saveQuoteGeneralInfoParams.put("lineCd", sqgip.getLineCd());
 		saveQuoteGeneralInfoParams.put("quoteYear", sqgip.getQuoteYear());
@@ -647,7 +649,11 @@ public class QuoteServiceImpl implements QuoteService{
 		saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
 		saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
 		
-		sqgiResponse.setReturnCode(quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams));
+		HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);
+		
+		sqgiResponse.setReturnCode((Integer) res.get("errorCode"));
+		sqgiResponse.setQuoteId((Integer) (res.get("outQuoteId")));
+		sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
 		
 		return sqgiResponse;
 	}
