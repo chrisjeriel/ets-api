@@ -925,7 +925,7 @@
 	
 	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
 		BEGIN
-		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
+		   ETS_QUOTE_PKG_PCPCR.save_quote_alop(#{quoteId},#{alopId, jdbcType=VARCHAR},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{annSi},#{maxIndemPdSi},
 		   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{maxIndemPd},
 		   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{timeExc},#{repInterval},#{createUser},
