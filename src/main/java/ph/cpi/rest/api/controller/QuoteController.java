@@ -33,13 +33,20 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
+import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
@@ -53,11 +60,18 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
 @RequestMapping(path="/quote-service")
 public class QuoteController {
 	
@@ -77,13 +91,13 @@ public class QuoteController {
 	 * quoteService.retrieveQuoteAlop(rqap); }
 	 */
 	
-	@CrossOrigin
 	@GetMapping(path="retrieveQuoteListing")
 	public @ResponseBody RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteListing");
 		logger.info("RetrieveQuoteListingRequest : " + rqlp.toString());
 		return quoteService.retrieveQuoteListing(rqlp);
 	}
+	
 	
 	@GetMapping(path="retrieveQuoteHoldCover")
 	public @ResponseBody RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCover(RetrieveQuoteHoldCoverRequest rqhcp) throws SQLException {
@@ -182,6 +196,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteAlop(rqar);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteAttachment")
 	public @ResponseBody SaveQuoteAttachmentResponse saveQuoteAttachment(@RequestBody SaveQuoteAttachmentRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAttachment");
@@ -189,6 +204,7 @@ public class QuoteController {
 		return quoteService.saveQuoteAttachment(sqar);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteAlop")
 	public @ResponseBody SaveQuoteAlopResponse saveQuoteAlop(@RequestBody SaveQuoteAlopRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAlop");
@@ -196,11 +212,34 @@ public class QuoteController {
 		return quoteService.saveQuoteAlop(sqar);
 	}
 	
+	@CrossOrigin
 	@PostMapping(path="saveQuoteAlopItem")
 	public @ResponseBody SaveQuoteAlopItemResponse saveQuoteAlopItem(@RequestBody SaveQuoteAlopItemRequest sqair) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAlopItem");
 		logger.info("SaveQuoteAlopItemRequest : " + sqair.toString());
 		return quoteService.saveQuoteAlopItem(sqair);
+	}
+	
+	@CrossOrigin
+	@PostMapping(path="saveQuoteAttachmentOc")
+	public @ResponseBody SaveQuoteAttachmentOcResponse saveQuoteAttachmentOc(@RequestBody SaveQuoteAttachmentOcRequest sqaor) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteAttachmentOc");
+		logger.info("SaveQuoteAttachmentOcRequest : " + sqaor.toString());
+		return quoteService.saveQuoteAttachmentOc(sqaor);
+	}
+
+	@PostMapping(path="saveQuoteCoverage")
+	public @ResponseBody SaveQuoteCoverageResponse saveQuoteCoverage(@RequestBody SaveQuoteCoverageRequest sqcr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteCoverage");
+		logger.info("SaveQuoteCoverageRequest : " + sqcr.toString());
+		return quoteService.saveQuoteCoverage(sqcr);
+	}
+	
+	@PostMapping(path="saveQuoteCoverageOc")
+	public @ResponseBody SaveQuoteCoverageOcResponse saveQuoteCoverageOc(@RequestBody SaveQuoteCoverageOcRequest sqcocr) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteCoverageOc");
+		logger.info("SaveQuoteCoverageOcRequest : " + sqcocr.toString());
+		return quoteService.saveQuoteCoverageOc(sqcocr);
 	}
 		
 	@CrossOrigin
@@ -225,5 +264,43 @@ public class QuoteController {
 		logger.info("RetrieveQuoteEndorsementsOcRequest : " + rqerop.toString());
 		return quoteService.retrieveQuoteEndorsementsOc(rqerop);
 	}
+	
+	@PostMapping(path="saveQuoteCompetition")
+	public @ResponseBody SaveQuoteCompetitionResponse saveQuoteCompetition(@RequestBody SaveQuoteCompetitionRequest sqcr) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteCompetition");
+		logger.info("SaveQuoteCompetitionRequest : " + sqcr.toString());
+		return quoteService.saveQuoteCompetition(sqcr);
+	}
+	
+	@CrossOrigin
+	@PostMapping(path="saveQuoteHoldCover")
+	public @ResponseBody SaveQuoteHoldCoverResponse saveQuoteHoldCover(@RequestBody SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteHoldCover");
+		logger.info("SaveQuoteHoldCoverRequest : " + sqhcr.toString());
+		return quoteService.saveQuoteHoldCover(sqhcr);
+	}
+	
+//	@PostMapping(path="saveQuoteEndorsements")
+//	public @ResponseBody SaveQuoteEndorsementsResponse saveQuoteEndorsements(@RequestBody SaveQuoteEndorsementsRequest sqer) throws SQLException {
+//		logger.info("GET: /api/quote-service/saveQuoteEndorsements");
+//		logger.info("SaveQuoteEndorsementsRequest : " + sqer.toString());
+//		return quoteService.saveQuoteEndorsements(sqer);
+//	}
 
+	@PostMapping(path="saveQuoteGeneralInfo")
+	public @ResponseBody SaveQuoteGeneralInfoResponse saveQuoteGeneralInfo(@RequestBody SaveQuoteGeneralInfoRequest sqgip) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteGeneralInfo");
+		logger.info("SaveQuoteGeneralInfoRequest : " + sqgip.toString());
+		return quoteService.saveQuoteGeneralInfo(sqgip);
+	}
+	
+	@PostMapping(path="saveQuoteOption")
+	public @ResponseBody SaveQuoteOptionResponse saveQuoteOption(@RequestBody SaveQuoteOptionRequest sqop) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteOption");
+		logger.info("SaveQuoteOptionRequest : " + sqop.toString());
+		return quoteService.saveQuoteOption(sqop);
+	}
+	
+	
+	
 }

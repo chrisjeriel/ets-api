@@ -66,19 +66,12 @@ public class Quotation {
 	private Options options;
 	private OtherRates otherRates;
 	private List<Attachment> attachmentsList;
-	private List<Competition> competitiosList;
+	private List<Competition> competitionsList;
 	private List<OtherRates> otherRatesList;
 	private List<Options> optionsList;
 	private Alop alop;
 	private HoldCover holdCover;
 	private Attachment attachment;
-	
-	public Attachment getAttachment() {
-		return attachment;
-	}
-	public void setAttachment(Attachment attachment) {
-		this.attachment = attachment;
-	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -421,11 +414,11 @@ public class Quotation {
 	public void setAttachmentsList(List<Attachment> attachmentsList) {
 		this.attachmentsList = attachmentsList;
 	}
-	public List<Competition> getCompetitiosList() {
-		return competitiosList;
+	public List<Competition> getCompetitionsList() {
+		return competitionsList;
 	}
-	public void setCompetitiosList(List<Competition> competitiosList) {
-		this.competitiosList = competitiosList;
+	public void setCompetitionsList(List<Competition> competitionsList) {
+		this.competitionsList = competitionsList;
 	}
 	public List<OtherRates> getOtherRatesList() {
 		return otherRatesList;
@@ -451,6 +444,36 @@ public class Quotation {
 	public void setHoldCover(HoldCover holdCover) {
 		this.holdCover = holdCover;
 	}
-
+	public Attachment getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(Attachment attachment) {
+		this.attachment = attachment;
+	}
+	@Override
+	public String toString() {
+		return "Quotation [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
+				+ lineCdDesc + ", quoteYear=" + quoteYear + ", quoteSeqNo=" + quoteSeqNo + ", quoteRevNo=" + quoteRevNo
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", cessionId=" + cessionId
+				+ ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", lineClassCd="
+				+ lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId + ", principalName="
+				+ principalName + ", contractorId=" + contractorId + ", contactorName=" + contactorName
+				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", policyId=" + policyId
+				+ ", policyNo=" + policyNo + ", status=" + status + ", reinsurerId=" + reinsurerId + ", reinsurerName="
+				+ reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate=" + issueDate
+				+ ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode
+				+ ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag="
+				+ govtTag + ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId="
+				+ ocQuoteId + ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
+				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
+				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", project=" + project + ", options=" + options + ", otherRates=" + otherRates + ", attachmentsList="
+				+ attachmentsList + ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList
+				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment="
+				+ attachment + "]";
+	}
+	
 	
 }

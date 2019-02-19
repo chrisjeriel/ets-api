@@ -11,6 +11,7 @@ public class RetrieveQuoteCoverageResponse extends Response{
 	private Quotation quotation;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
+	
 	public Quotation getQuotation() {
 		if (quotation == null) {
 			quotation = new Quotation();

@@ -5,7 +5,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveQuoteCoverageResponse {
+public class SaveQuoteGeneralInfoResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
@@ -29,7 +29,7 @@ public class SaveQuoteCoverageResponse {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteCoverageResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "SaveQuoteAlopItemResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
 }

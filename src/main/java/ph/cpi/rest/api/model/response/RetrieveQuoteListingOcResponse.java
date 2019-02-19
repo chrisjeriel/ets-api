@@ -3,10 +3,11 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.QuotationOc;
 
-public class RetrieveQuoteListingOcResponse {
+public class RetrieveQuoteListingOcResponse extends Response{
 
 	private List<QuotationOc> quotationOcList;
 	private PaginationResponse paginationResponse;
