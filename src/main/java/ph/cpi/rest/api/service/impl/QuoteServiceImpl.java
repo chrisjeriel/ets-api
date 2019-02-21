@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.QuoteService;
+import ph.cpi.rest.api.model.Error;
 
 
 @Component
@@ -567,20 +569,28 @@ public class QuoteServiceImpl implements QuoteService{
 	
 	@Override
 	public SaveQuoteCompetitionResponse saveQuoteCompetition(SaveQuoteCompetitionRequest sqcr) throws SQLException{
+		
 		SaveQuoteCompetitionResponse sqcrResponse = new SaveQuoteCompetitionResponse();
 		
-		HashMap<String, Object> saveQuoteCompetitionParams = new HashMap<String, Object>();
-		saveQuoteCompetitionParams.put("quoteId", sqcr.getQuoteId());
-		saveQuoteCompetitionParams.put("adviceNo", sqcr.getAdviceNo());
-		saveQuoteCompetitionParams.put("cedingId", sqcr.getCedingId());
-		saveQuoteCompetitionParams.put("cedingRepId", sqcr.getCedingRepId());
-		saveQuoteCompetitionParams.put("option", sqcr.getOption());
-		saveQuoteCompetitionParams.put("wordings", sqcr.getWordings());
-		saveQuoteCompetitionParams.put("createUser", sqcr.getCreateUser());
-		saveQuoteCompetitionParams.put("createDate", sqcr.getCreateDate());
-		saveQuoteCompetitionParams.put("updateUser", sqcr.getUpdateUser());
-		saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());
-		sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
+		try{
+			HashMap<String, Object> saveQuoteCompetitionParams = new HashMap<String, Object>();
+			/*saveQuoteCompetitionParams.put("quoteId", sqcr.getQuoteId());
+			saveQuoteCompetitionParams.put("adviceNo", sqcr.getAdviceNo());
+			saveQuoteCompetitionParams.put("cedingId", sqcr.getCedingId());
+			saveQuoteCompetitionParams.put("cedingRepId", sqcr.getCedingRepId());
+			saveQuoteCompetitionParams.put("option", sqcr.getOption());
+			saveQuoteCompetitionParams.put("wordings", sqcr.getWordings());
+			saveQuoteCompetitionParams.put("createUser", sqcr.getCreateUser());
+			saveQuoteCompetitionParams.put("createDate", sqcr.getCreateDate());
+			saveQuoteCompetitionParams.put("updateUser", sqcr.getUpdateUser());
+			saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());*/
+			saveQuoteCompetitionParams.put("competitionsList", sqcr.getCompetitionsList());
+			sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
+		}catch(Exception ex){
+			sqcrResponse.setReturnCode(1);
+			sqcrResponse.getErrorList().add(new Error("EXCEPTION-001", "An error has occured. Please check your inputs."));
+			ex.printStackTrace();
+		}
 		
 		return sqcrResponse;
 	}

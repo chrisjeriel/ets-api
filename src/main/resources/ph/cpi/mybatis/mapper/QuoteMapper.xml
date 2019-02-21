@@ -1027,10 +1027,19 @@
 	
 	<update id="saveQuoteCompetitionMap" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="competitionsList" item="competition">
+		   	  
+				   ETS_QUOTE_PKG_NDC.save_quote_competition(#{competition.quoteId},#{competition.adviceNo},#{competition.cedingId},#{competition.cedingRepId},#{competition.option},#{competition.wordings},#{competition.createUser},
+				   CAST(to_timestamp(#{competition.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{competition.updateUser},
+				   CAST(to_timestamp(#{competition.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			  
+		    </foreach>
+	    END;
+		<!-- BEGIN
 		   ETS_QUOTE_PKG_NDC.save_quote_competition(#{quoteId},#{adviceNo},#{cedingId},#{cedingRepId},#{option},#{wordings},#{createUser},
 		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
 		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
-		END;
+		END; -->
 	</update>
 	
 	<update id="saveQuoteCoverageOcMap" parameterType="java.util.Map">

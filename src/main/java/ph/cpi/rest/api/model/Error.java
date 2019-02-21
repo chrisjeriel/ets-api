@@ -10,6 +10,7 @@ public class Error {
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
 	}
+
 	public String getErrorCode() {
 		return errorCode;
 	}
