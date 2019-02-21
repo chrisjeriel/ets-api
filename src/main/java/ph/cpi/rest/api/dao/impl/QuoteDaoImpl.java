@@ -159,9 +159,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 	@Override
-	public List<QuotationOc> retrieveQuoteCoverageOcList(final HashMap<String, Object> params) throws SQLException {
+	public QuotationOc retrieveQuoteCoverageOc(final HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		List<QuotationOc> projectOc = sqlSession.selectList("retrieveQuoteCoverageOc", params);
+		QuotationOc projectOc = sqlSession.selectOne("retrieveQuoteCoverageOc", params);
 		return projectOc;
 	}
 
@@ -191,10 +191,11 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public Integer saveQuoteGeneralInfo(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveQuoteGeneralInfo(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteGeneralInfo",params);
+		params.put("errorCode", errorCode);
 		
-		return errorCode;
+		return params;
 	}
 	
 
@@ -205,6 +206,11 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
+	public Integer saveQuoteEndorsements(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteEndorsements", params);
+		return errorCode;
+	}
+
 	public Integer saveQuoteAttachmentOc(final HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteAttachmentOcMap",params);
 		return errorCode;
@@ -222,5 +228,17 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteOptionMap",params);
 		return errorCode;
 	}
+	
+	public Integer saveQuoteEndorsementsOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteEndorsementsOc", params);
+		return errorCode;
+	}
 
+	@Override
+	public Integer saveQuoteOtherRates(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveQuoteOtherRatesMap", params);
+		return errorCode;
+	}
+		
 }

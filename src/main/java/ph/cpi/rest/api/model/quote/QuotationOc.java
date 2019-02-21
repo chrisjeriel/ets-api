@@ -184,10 +184,10 @@ public class QuotationOc {
 	public void setContractorId(Integer contractorId) {
 		this.contractorId = contractorId;
 	}
-	public String getContactorName() {
+	public String getContractorName() {
 		return contractorName;
 	}
-	public void setContactorName(String contactorName) {
+	public void setContractorName(String contactorName) {
 		this.contractorName = contactorName;
 	}
 	public String getInsuredDesc() {

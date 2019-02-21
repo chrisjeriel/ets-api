@@ -8,29 +8,31 @@ import org.apache.ibatis.type.Alias;
 public class SaveQuoteAttachmentRequest {
 
 	private Integer quoteId;
-	private List<Attachment> attachmentsList;
-	
+	private List<Attachment> saveAttachmentsList;
+	private List<Attachment> deleteAttachmentsList;
 	public Integer getQuoteId() {
 		return quoteId;
 	}
-	
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
-
-	public List<Attachment> getAttachmentsList() {
-		return attachmentsList;
+	public List<Attachment> getSaveAttachmentsList() {
+		return saveAttachmentsList;
 	}
-
-	public void setAttachmentsList(List<Attachment> attachmentsList) {
-		this.attachmentsList = attachmentsList;
+	public void setSaveAttachmentsList(List<Attachment> saveAttachmentsList) {
+		this.saveAttachmentsList = saveAttachmentsList;
 	}
-
+	public List<Attachment> getDeleteAttachmentsList() {
+		return deleteAttachmentsList;
+	}
+	public void setDeleteAttachmentsList(List<Attachment> deleteAttachmentsList) {
+		this.deleteAttachmentsList = deleteAttachmentsList;
+	}
 	@Override
 	public String toString() {
-		return "SaveQuoteAttachmentRequest [quoteId=" + quoteId + ", attachmentsList=" + attachmentsList + "]";
+		return "SaveQuoteAttachmentRequest [quoteId=" + quoteId + ", saveAttachmentsList=" + saveAttachmentsList
+				+ ", deleteAttachmentsList=" + deleteAttachmentsList + "]";
 	}
-
 }
 
 @Alias("SaveQuoteAttachment")

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 import org.joda.time.LocalDateTime;
 
+
 public class SaveQuoteOptionRequest {
 
 	private Integer quoteId;

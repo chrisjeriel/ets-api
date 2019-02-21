@@ -6,8 +6,25 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveQuoteAttachmentOcRequest {
 	private Integer quoteIdOc;
-	private List<AttachmentOc> attachmentsOcList;
+	private List<AttachmentOc> saveAttachmentsOcList;
+	private List<AttachmentOc> deleteAttachmentsOcList;
 	
+	public List<AttachmentOc> getSaveAttachmentsOcList() {
+		return saveAttachmentsOcList;
+	}
+
+	public void setSaveAttachmentsOcList(List<AttachmentOc> saveAttachmentsOcList) {
+		this.saveAttachmentsOcList = saveAttachmentsOcList;
+	}
+
+	public List<AttachmentOc> getDeleteAttachmentsOcList() {
+		return deleteAttachmentsOcList;
+	}
+
+	public void setDeleteAttachmentsOcList(List<AttachmentOc> deleteAttachmentsOcList) {
+		this.deleteAttachmentsOcList = deleteAttachmentsOcList;
+	}
+
 	public Integer getQuoteIdOc() {
 		return quoteIdOc;
 	}
@@ -16,17 +33,9 @@ public class SaveQuoteAttachmentOcRequest {
 		this.quoteIdOc = quoteIdOc;
 	}
 
-	public List<AttachmentOc> getAttachmentsOcList() {
-		return attachmentsOcList;
-	}
-
-	public void setAttachmentsOcList(List<AttachmentOc> attachmentsOcList) {
-		this.attachmentsOcList = attachmentsOcList;
-	}
-
 	@Override
 	public String toString() {
-		return "SaveQuoteAttachmentOcRequest [quoteIdOc=" + quoteIdOc + ", attachmentsOcList=" + attachmentsOcList + "]";
+		return "SaveQuoteAttachmentOcRequest [quoteIdOc=" + quoteIdOc + ", saveAttachmentsOcList=" + saveAttachmentsOcList + ", deleteAttachmentsOcList=" + deleteAttachmentsOcList + "]";
 	}
 }
 

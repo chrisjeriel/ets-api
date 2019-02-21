@@ -25,6 +25,7 @@ public class QuotationGeneralInfo {
 	private Integer policyId;
 	private String policyNo;
 	private String status;
+	private String statusDesc;
 	private Integer reinsurerId;
 	private String reinsurerName;
 	private Integer intmId;
@@ -181,6 +182,12 @@ public class QuotationGeneralInfo {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
 	}
 	public Integer getReinsurerId() {
 		return reinsurerId;
@@ -362,7 +369,6 @@ public class QuotationGeneralInfo {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "QuotationGeneralInfo [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", lineCd=" + lineCd
@@ -372,22 +378,16 @@ public class QuotationGeneralInfo {
 				+ ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId + ", principalName="
 				+ principalName + ", contractorId=" + contractorId + ", contractorName=" + contractorName
 				+ ", insuredDesc=" + insuredDesc + ", policyId=" + policyId + ", policyNo=" + policyNo + ", status="
-				+ status + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId
-				+ ", intmName=" + intmName + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
-				+ reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd="
-				+ currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag="
-				+ indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoted=" + ocQuoted + ", openQuotationNo="
-				+ openQuotationNo + ", declarationTag=" + declarationTag + ", preparedBy=" + preparedBy
-				+ ", approvedBy=" + approvedBy + ", printedBy=" + printedBy + ", printDate=" + printDate
-				+ ", openingParag=" + openingParag + ", closingPrag=" + closingParag + ", reasonCd=" + reasonCd
-				+ ", reasonDesc=" + reasonDesc + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ status + ", statusDesc=" + statusDesc + ", reinsurerId=" + reinsurerId + ", reinsurerName="
+				+ reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate=" + issueDate
+				+ ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode
+				+ ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag="
+				+ govtTag + ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoted="
+				+ ocQuoted + ", openQuotationNo=" + openQuotationNo + ", declarationTag=" + declarationTag
+				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
+				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-		
-	
-	
-	
-	
-	
 
 }

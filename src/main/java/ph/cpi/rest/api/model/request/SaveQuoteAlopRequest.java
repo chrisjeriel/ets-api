@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class SaveQuoteAlopRequest {
 	private Integer quoteId;
-	private Integer alopId;
-	private Integer insuredId;
+	private String alopId;
+	private String insuredId;
 	private String insuredDesc;
 	private String address;
 	private String insuredBusiness;
@@ -27,16 +27,16 @@ public class SaveQuoteAlopRequest {
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
-	public Integer getAlopId() {
+	public String getAlopId() {
 		return alopId;
 	}
-	public void setAlopId(Integer alopId) {
+	public void setAlopId(String alopId) {
 		this.alopId = alopId;
 	}
-	public Integer getInsuredId() {
+	public String getInsuredId() {
 		return insuredId;
 	}
-	public void setInsuredId(Integer insuredId) {
+	public void setInsuredId(String insuredId) {
 		this.insuredId = insuredId;
 	}
 	public String getInsuredDesc() {

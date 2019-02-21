@@ -25,15 +25,8 @@ public class SaveQuoteCoverageRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	private List<SectionCovers> sectionCovers;
-	
-	
-	public Integer getRiskId() {
-		return riskId;
-	}
-	public void setRiskId(Integer riskId) {
-		this.riskId = riskId;
-	}
+	private List<SectionCovers> saveSectionCovers;
+	private List<SectionCovers> deleteSectionCovers;
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -45,6 +38,12 @@ public class SaveQuoteCoverageRequest {
 	}
 	public void setProjId(Integer projId) {
 		this.projId = projId;
+	}
+	public Integer getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(Integer riskId) {
+		this.riskId = riskId;
 	}
 	public BigDecimal getSectionISi() {
 		return sectionISi;
@@ -112,11 +111,17 @@ public class SaveQuoteCoverageRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<SectionCovers> getSectionCovers() {
-		return sectionCovers;
+	public List<SectionCovers> getSaveSectionCovers() {
+		return saveSectionCovers;
 	}
-	public void setSectionCovers(List<SectionCovers> sectionCovers) {
-		this.sectionCovers = sectionCovers;
+	public void setSaveSectionCovers(List<SectionCovers> saveSectionCovers) {
+		this.saveSectionCovers = saveSectionCovers;
+	}
+	public List<SectionCovers> getDeleteSectionCovers() {
+		return deleteSectionCovers;
+	}
+	public void setDeleteSectionCovers(List<SectionCovers> deleteSectionCovers) {
+		this.deleteSectionCovers = deleteSectionCovers;
 	}
 	@Override
 	public String toString() {
@@ -124,9 +129,9 @@ public class SaveQuoteCoverageRequest {
 				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
 				+ ", totalSi=" + totalSi + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", sectionCovers=" + sectionCovers + "]";
-	} 
-	
+				+ ", updateDate=" + updateDate + ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers="
+				+ deleteSectionCovers + "]";
+	}
 	
 	
 }
