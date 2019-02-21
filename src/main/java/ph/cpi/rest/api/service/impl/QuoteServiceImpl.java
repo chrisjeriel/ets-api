@@ -547,6 +547,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteEndorsementsParams.put("quoteId", rqerp.getQuoteId());
 		retrieveQuoteEndorsementsParams.put("quotationNo", rqerp.getQuotationNo());
 		retrieveQuoteEndorsementsParams.put("optionId", rqerp.getOptionId());
+		//retrieveQuoteEndorsementsParams.put("deleteEndorsements", rqerp.get)
 		rqeResponse.setEndorsements(quoteDao.retrieveQuoteEndorsements(retrieveQuoteEndorsementsParams));
 		logger.info("retrieveQuoteEndorsementsResponse : " + rqerp.toString());
 		// TODO Auto-generated method stub
@@ -691,12 +692,8 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteEndorsementsParams = new HashMap<String, Object>();
 		saveQuoteEndorsementsParams.put("quoteId",sqer.getQuoteId());
 		saveQuoteEndorsementsParams.put("optionId",sqer.getOptionId());
-		saveQuoteEndorsementsParams.put("endtCd",sqer.getEndtCd());
-		saveQuoteEndorsementsParams.put("remarks",sqer.getRemarks());
-		saveQuoteEndorsementsParams.put("createUser",sqer.getCreateUser());
-		saveQuoteEndorsementsParams.put("createDate",sqer.getCreateDate());
-		saveQuoteEndorsementsParams.put("updateUser",sqer.getUpdateUser());
-		saveQuoteEndorsementsParams.put("updateDate",sqer.getUpdateDate());
+		saveQuoteEndorsementsParams.put("saveEndorsements", sqer.getSaveEndorsements());
+		saveQuoteEndorsementsParams.put("deleteEndorsements", sqer.getDeleteEndorsements());
 		sqerResponse.setReturnCode(quoteDao.saveQuoteEndorsements(saveQuoteEndorsementsParams));
 		
 		return sqerResponse;
