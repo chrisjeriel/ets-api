@@ -749,13 +749,7 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteOtherRatesResponse sqorResponse = new SaveQuoteOtherRatesResponse();
 		HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
 		saveQuoteOtherRatesParams.put("quoteId", sqorr.getQuoteId());
-		saveQuoteOtherRatesParams.put("coverCd", sqorr.getCoverCd());
-		saveQuoteOtherRatesParams.put("rate", sqorr.getRate());
-		saveQuoteOtherRatesParams.put("amount", sqorr.getAmount());
-		saveQuoteOtherRatesParams.put("createUser", sqorr.getCreateUser());
-		saveQuoteOtherRatesParams.put("createDate", sqorr.getCreateDate());
-		saveQuoteOtherRatesParams.put("updateUser", sqorr.getUpdateUser());
-		saveQuoteOtherRatesParams.put("updateDate", sqorr.getUpdateDate());
+		saveQuoteOtherRatesParams.put("otherRates", sqorr.getOtherRates());
 		sqorResponse.setReturnCode(quoteDao.saveQuoteOtherRates(saveQuoteOtherRatesParams));
 		return sqorResponse;
 	}

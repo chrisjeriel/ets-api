@@ -1,12 +1,42 @@
 package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import org.apache.ibatis.type.Alias;
 import org.joda.time.LocalDateTime;
 
 public class SaveQuoteOtherRatesRequest {
 	
 	private Integer quoteId;
+	private List<OtherRates> otherRates;
+	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
+	public List<OtherRates> getOtherRates() {
+		return otherRates;
+	}
+	public void setOtherRates(List<OtherRates> otherRates) {
+		this.otherRates = otherRates;
+	}
+	
+	@Override
+	public String toString() {
+		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", otherRates=" + otherRates + "]";
+	}
+	
+	
+}
+
+@Alias("SaveQuoteOtherRates")
+
+class OtherRates {
+	
 	private Integer coverCd;
 	private BigDecimal rate;
 	private BigDecimal amount;
@@ -15,12 +45,6 @@ public class SaveQuoteOtherRatesRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	public Integer getQuoteId() {
-		return quoteId;
-	}
-	public void setQuoteId(Integer quoteId) {
-		this.quoteId = quoteId;
-	}
 	public Integer getCoverCd() {
 		return coverCd;
 	}
@@ -63,11 +87,12 @@ public class SaveQuoteOtherRatesRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", coverCd=" + coverCd + ", rate=" + rate + ", amount=" + amount + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "OtherRates [coverCd=" + coverCd + ", rate=" + rate + ", amount=" + amount + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
+
 }
+
