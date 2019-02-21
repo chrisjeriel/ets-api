@@ -5,6 +5,11 @@ public class Error {
 	private String errorCode;
 	private String errorMessage;
 	
+	public Error(String errorCode, String errorMessage) {
+		super();
+		this.errorCode = errorCode;
+		this.errorMessage = errorMessage;
+	}
 	public String getErrorCode() {
 		return errorCode;
 	}
