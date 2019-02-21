@@ -571,7 +571,7 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteCompetitionResponse sqcrResponse = new SaveQuoteCompetitionResponse();
 		
 		HashMap<String, Object> saveQuoteCompetitionParams = new HashMap<String, Object>();
-		saveQuoteCompetitionParams.put("quoteId", sqcr.getQuoteId());
+		/*saveQuoteCompetitionParams.put("quoteId", sqcr.getQuoteId());
 		saveQuoteCompetitionParams.put("adviceNo", sqcr.getAdviceNo());
 		saveQuoteCompetitionParams.put("cedingId", sqcr.getCedingId());
 		saveQuoteCompetitionParams.put("cedingRepId", sqcr.getCedingRepId());
@@ -580,7 +580,8 @@ public class QuoteServiceImpl implements QuoteService{
 		saveQuoteCompetitionParams.put("createUser", sqcr.getCreateUser());
 		saveQuoteCompetitionParams.put("createDate", sqcr.getCreateDate());
 		saveQuoteCompetitionParams.put("updateUser", sqcr.getUpdateUser());
-		saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());
+		saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());*/
+		saveQuoteCompetitionParams.put("competitionsList", sqcr.getCompetitionsList());
 		sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
 		
 		return sqcrResponse;

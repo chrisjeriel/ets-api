@@ -1,8 +1,30 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
 
 public class SaveQuoteCompetitionRequest {
 	
+	public List<Competition> competitionsList;
+
+	public List<Competition> getCompetitionsList() {
+		return competitionsList;
+	}
+
+	public void setCompetitionsList(List<Competition> competitionsList) {
+		this.competitionsList = competitionsList;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveQuoteCompetitionRequest [competitionsList=" + competitionsList + "]";
+	}
+
+}
+
+@Alias("SaveQuoteCompetition")
+class Competition{
 	private Integer quoteId;
 	private Integer adviceNo;
 	private Integer cedingId;
@@ -13,8 +35,6 @@ public class SaveQuoteCompetitionRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	
-	
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -75,11 +95,10 @@ public class SaveQuoteCompetitionRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "SaveQuoteCompetitionRequest [quoteId=" + quoteId + "adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingRepId=" + cedingRepId
-				+ ", option=" + option + ", wordings=" + wordings +  ", createUser="
+		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId
+				+ ", cedingRepId=" + cedingRepId + ", option=" + option + ", wordings=" + wordings + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}
