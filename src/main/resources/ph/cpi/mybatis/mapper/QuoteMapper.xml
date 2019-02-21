@@ -248,10 +248,10 @@
 		<result property="coverCdDesc" 		column="DESCRIPTION"/>
 		<result property="rate" 			column="RATE"/>
 		<result property="amount" 			column="AMOUNT"/>
-		<result property="createUser" 		column="CREATE_USER"/>
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="UPDATE_USER"/>
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createUser" 		column="OTHER_RATES_CREATE_USER"/>
+		<result property="createDate" 		column="OTHER_RATES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="OTHER_RATES_UPDATE_USER"/>
+		<result property="updateDate" 		column="OTHER_RATES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 
@@ -378,7 +378,7 @@
 	</select>
 	
 	<select id="retrieveQuoteEndorsementsOc" resultMap="quoteEndorsementsOcMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements_Oc(#{quoteId},#{quotationNo},'','','','')
+			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements_Oc(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteEndorsements" resultMap="quoteEndorsementsMap" parameterType="java.util.Map">
@@ -844,7 +844,7 @@
 	</select>
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)
+		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 <!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
@@ -1069,6 +1069,34 @@
 			);
 		END;
 	</update>
+
+	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="deductibles" item="deductibles">
+		   	   ETS_QUOTE_PKG_ETC.save_quote_option
+			   (#{quoteId},
+			   #{optionId},
+			   #{optionRt},
+			   #{condition},
+			   #{commRtQuota},
+			   #{commRtSurplus},
+			   #{commRtFac},
+			   #{createUser},
+			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+			   #{updateUser},
+			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+			   #{deductibles.deductibleTitle},
+			   #{deductibles.deductibleRt},
+			   #{deductibles.deductibleAmt},
+			   #{deductibles.deductibleTxt},
+			   #{deductibles.createUser},
+			   CAST(to_timestamp(#{deductibles.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+			   #{deductibles.updateUser},
+			   CAST(to_timestamp(#{deductibles.updateDate},'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		END;
+	</update>
+	
 	
 	<update id="saveQuoteEndorsements" parameterType="java.util.Map">
 		BEGIN
@@ -1096,6 +1124,23 @@
 				#{updateUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
+		END;
+	</update>
+	
+	<update id="saveQuoteOtherRatesMap" parameterType="java.util.Map">
+		BEGIN
+		 <foreach collection="otherRates" item="otherRates">
+			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
+				#{quoteId,jdbcType=INTEGER},
+				#{otherRates.coverCd,jdbcType=VARCHAR},
+				#{otherRates.rate,jdbcType=VARCHAR},
+				#{otherRates.amount,jdbcType=VARCHAR},
+				#{otherRates.createUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{otherRates.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{otherRates.updateUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+		 </foreach>
 		END;
 	</update>
 	

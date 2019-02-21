@@ -42,6 +42,8 @@ import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -70,6 +72,8 @@ import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.model.Error;
 
@@ -702,6 +706,27 @@ public class QuoteServiceImpl implements QuoteService{
 	}
 
 	@Override
+	public SaveQuoteOptionResponse saveQuoteOption(SaveQuoteOptionRequest sqor) throws SQLException {
+		SaveQuoteOptionResponse sqoResponse = new SaveQuoteOptionResponse();
+		HashMap<String, Object> saveQuoteOptionsParams = new HashMap<String, Object>(); 
+		saveQuoteOptionsParams.put("quoteId" , sqor.getQuoteId());
+		saveQuoteOptionsParams.put("optionId" , sqor.getOptionId());
+		saveQuoteOptionsParams.put("optionRt" , sqor.getOptionRt());
+		saveQuoteOptionsParams.put("condition" , sqor.getCondition());
+		saveQuoteOptionsParams.put("commRtQuota" , sqor.getCommRtQuota());
+		saveQuoteOptionsParams.put("commRtSurplus" , sqor.getCommRtSurplus());
+		saveQuoteOptionsParams.put("commRtFac" , sqor.getCommRtFac());
+		saveQuoteOptionsParams.put("createUser" , sqor.getCreateUser());
+		saveQuoteOptionsParams.put("createDate" , sqor.getCreateDate());
+		saveQuoteOptionsParams.put("updateUser" , sqor.getUpdateUser());
+		saveQuoteOptionsParams.put("updateDate" , sqor.getUpdateDate());
+		saveQuoteOptionsParams.put("deductibles" , sqor.getDeductibleList());
+		sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
+		return sqoResponse;
+		// TODO Auto-generated method stub
+		
+	}
+
 	public SaveQuoteEndorsementsResponse saveQuoteEndorsements(SaveQuoteEndorsementsRequest sqer) throws SQLException {
 		SaveQuoteEndorsementsResponse sqerResponse = new SaveQuoteEndorsementsResponse();	
 		HashMap<String, Object> saveQuoteEndorsementsParams = new HashMap<String, Object>();
@@ -730,5 +755,15 @@ public class QuoteServiceImpl implements QuoteService{
 		return sqeocrResponse;
 	}
 
-	
+	@Override
+	public SaveQuoteOtherRatesResponse saveQuoteOtherRates(SaveQuoteOtherRatesRequest sqorr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveQuoteOtherRatesResponse sqorResponse = new SaveQuoteOtherRatesResponse();
+		HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
+		saveQuoteOtherRatesParams.put("quoteId", sqorr.getQuoteId());
+		saveQuoteOtherRatesParams.put("otherRates", sqorr.getOtherRates());
+		sqorResponse.setReturnCode(quoteDao.saveQuoteOtherRates(saveQuoteOtherRatesParams));
+		return sqorResponse;
+	}
+
 }
