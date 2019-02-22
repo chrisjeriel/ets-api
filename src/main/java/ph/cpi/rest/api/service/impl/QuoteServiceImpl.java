@@ -687,7 +687,7 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public SaveQuoteEndorsementsResponse saveQuoteEndorsements(SaveQuoteEndorsementsRequest sqer) throws SQLException {
-		SaveQuoteEndorsementsResponse sqerResponse = new SaveQuoteEndorsementsResponse();	
+		SaveQuoteEndorsementsResponse sqerResponse = new SaveQuoteEndorsementsResponse();
 		HashMap<String, Object> saveQuoteEndorsementsParams = new HashMap<String, Object>();
 		saveQuoteEndorsementsParams.put("quoteId",sqer.getQuoteId());
 		saveQuoteEndorsementsParams.put("optionId",sqer.getOptionId());

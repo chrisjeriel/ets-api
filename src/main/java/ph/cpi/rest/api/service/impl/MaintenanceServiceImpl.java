@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import net.sf.jasperreports.engine.JRException;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
@@ -20,6 +22,9 @@ import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
@@ -39,6 +44,9 @@ import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
@@ -47,15 +55,8 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
-import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
-import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
-import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
+import ph.cpi.rest.api.utils.PrintingUtility;
 
 
 @Component
@@ -497,4 +498,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 	
 
+	@Override
+	public RetrieveMtnCedingCompanyResponse dummyCallJReports(
+			RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
+		RetrieveMtnCedingCompanyResponse rmccResponse = new RetrieveMtnCedingCompanyResponse();
+		
+		PrintingUtility pu = new PrintingUtility();
+		try {
+			pu.generateJasperReport(null, null, null, null);
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+		return rmccResponse;
+	}
 }
