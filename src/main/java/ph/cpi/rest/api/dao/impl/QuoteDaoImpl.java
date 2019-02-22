@@ -134,21 +134,24 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public Integer saveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteAttachmentMap",params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
-	public Integer saveQuoteAlop(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteAlopMap",params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
-	public Integer saveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteAloItempMap",params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 	
 	@Override
@@ -179,9 +182,10 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public Integer saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
 			Integer errorCode = sqlSession.update("saveQuoteCoverageMap",params);
-		return errorCode;
+			params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
