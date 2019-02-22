@@ -120,9 +120,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public EndorsementsOc retrieveQuoteEndorsementsOc(HashMap<String, Object> params) throws SQLException {
+	public List<EndorsementsOc> retrieveQuoteEndorsementsOc(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		EndorsementsOc endorsementsOc = sqlSession.selectOne("retrieveQuoteEndorsementsOc", params);
+		List<EndorsementsOc> endorsementsOc = sqlSession.selectList("retrieveQuoteEndorsementsOc", params);
 		return endorsementsOc;
 	}
 
@@ -133,9 +133,6 @@ public class QuoteDaoImpl implements QuoteDao{
 		return project;
 	}
 
-	
-
-	
 	@Override
 	public Integer saveQuoteAttachment(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteAttachmentMap",params);
@@ -226,9 +223,22 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
+	public Integer saveQuoteOption(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveQuoteOptionMap",params);
+		return errorCode;
+	}
+	
 	public Integer saveQuoteEndorsementsOc(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteEndorsementsOc", params);
 		return errorCode;
 	}
 
+	@Override
+	public Integer saveQuoteOtherRates(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveQuoteOtherRatesMap", params);
+		return errorCode;
+	}
+		
 }

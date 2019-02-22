@@ -1,21 +1,30 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 
 public class RetrieveQuoteEndorsementsOcResponse {
 
-	private EndorsementsOc endorsementsOc;
+	private List<EndorsementsOc> endorsementsOc;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 
-	public EndorsementsOc getEndorsementsOc() {
+	/*public EndorsementsOc getEndorsementsOc() {
 		return endorsementsOc;
 	}
 	public void setEndorsementsOc(EndorsementsOc endorsementsOc) {
 		this.endorsementsOc = endorsementsOc;
+	}*/
+	public List<EndorsementsOc> getEndorsementsOc() {
+		return endorsementsOc;
 	}
+	public void setEndorsementsOc(List<EndorsementsOc> endorsementsOc) {
+		this.endorsementsOc = endorsementsOc;
+	}
+
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
 	}
