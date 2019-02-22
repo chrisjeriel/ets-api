@@ -596,7 +596,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqcrResponse.setReturnCode(0);
 			sqcrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			System.out.println(sqcrResponse);
-			//ex.printStackTrace();
+			ex.printStackTrace();
 		}
 		
 		return sqcrResponse;
