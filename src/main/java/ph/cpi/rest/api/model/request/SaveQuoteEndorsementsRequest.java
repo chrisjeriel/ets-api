@@ -1,15 +1,16 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
+
+
 public class SaveQuoteEndorsementsRequest {
 
 	private String quoteId;
 	private String optionId;
-	private String endtCd;
-	private String remarks;
-	private String createUser;
-	private String createDate;
-	private String updateUser;
-	private String updateDate;
+	private List<Endorsementss> saveEndorsements;
+	private List<Endorsementss> deleteEndorsements;
 	public String getQuoteId() {
 		return quoteId;
 	}
@@ -22,6 +23,34 @@ public class SaveQuoteEndorsementsRequest {
 	public void setOptionId(String optionId) {
 		this.optionId = optionId;
 	}
+	public List<Endorsementss> getSaveEndorsements() {
+		return saveEndorsements;
+	}
+	public void setSaveEndorsements(List<Endorsementss> saveEndorsements) {
+		this.saveEndorsements = saveEndorsements;
+	}
+	public List<Endorsementss> getDeleteEndorsements() {
+		return deleteEndorsements;
+	}
+	public void setDeleteEndorsements(List<Endorsementss> deleteEndorsements) {
+		this.deleteEndorsements = deleteEndorsements;
+	}
+	@Override
+	public String toString() {
+		return "SaveQuoteEndorsementsRequest [quoteId=" + quoteId + ", optionId=" + optionId + ", saveEndorsements="
+				+ saveEndorsements + ", deleteEndorsements=" + deleteEndorsements + "]";
+	}
+	
+}
+
+
+class Endorsementss {
+	private String endtCd;
+	private String remarks;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
 	public String getEndtCd() {
 		return endtCd;
 	}
@@ -60,24 +89,9 @@ public class SaveQuoteEndorsementsRequest {
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteEndorsementsRequest [quoteId=");
-		builder.append(quoteId);
-		builder.append(", optionId=");
-		builder.append(optionId);
-		builder.append(", endtCd=");
-		builder.append(endtCd);
-		builder.append(", remarks=");
-		builder.append(remarks);
-		builder.append(", createUser=");
-		builder.append(createUser);
-		builder.append(", createDate=");
-		builder.append(createDate);
-		builder.append(", updateUser=");
-		builder.append(updateUser);
-		builder.append(", updateDate=");
-		builder.append(updateDate);
-		builder.append("]");
-		return builder.toString();
+		return "Endorsements [endtCd=" + endtCd + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
 }

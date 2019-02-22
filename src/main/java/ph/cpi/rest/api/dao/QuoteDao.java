@@ -46,13 +46,15 @@ public interface QuoteDao {
 //	public List<Alop> retrieveQuoteAlopList(final HashMap<String, Object> params) throws SQLException;
 	public QuotationGeneralInfo retrieveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 	public List<Endorsements> retrieveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
-	public EndorsementsOc retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
+	public List<EndorsementsOc> retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
 	public Project retrieveQuoteProject(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteCompetition(final HashMap<String, Object> params) throws SQLException;
 	
 	public Integer saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveQuoteOption(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveQuoteOtherRates(final HashMap<String, Object> params) throws SQLException;
 
 }

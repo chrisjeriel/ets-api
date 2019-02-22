@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 public class SaveQuoteGeneralInfoRequest {
+	private String savingType;
 	private String quoteId;
 	private String lineCd;
 	private String quoteYear;
@@ -56,6 +57,12 @@ public class SaveQuoteGeneralInfoRequest {
 	private String prjUpdateUser;
 	private String prjUpdateDate;
 	
+	public String getSavingType() {
+		return savingType;
+	}
+	public void setSavingType(String savingType) {
+		this.savingType = savingType;
+	}
 	public String getQuoteId() {
 		return quoteId;
 	}
@@ -382,19 +389,19 @@ public class SaveQuoteGeneralInfoRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteGeneralInfoRequest [quoteId=" + quoteId + ", lineCd=" + lineCd + ", quoteYear=" + quoteYear
-				+ ", quoteSeqNo=" + quoteSeqNo + ", quoteRevNo=" + quoteRevNo + ", cedingId=" + cedingId
-				+ ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", prinId=" + prinId + ", contractorId="
-				+ contractorId + ", insuredDesc=" + insuredDesc + ", policyId=" + policyId + ", status=" + status
-				+ ", reinsurerId=" + reinsurerId + ", intmId=" + intmId + ", issueDate=" + issueDate + ", expiryDate="
-				+ expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo="
-				+ mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag
-				+ ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag + ", declarationTag="
-				+ declarationTag + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy="
-				+ printedBy + ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag="
-				+ closingParag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc
-				+ ", riskId=" + riskId + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue="
+		return "SaveQuoteGeneralInfoRequest [savingType=" + savingType + ", quoteId=" + quoteId + ", lineCd=" + lineCd
+				+ ", quoteYear=" + quoteYear + ", quoteSeqNo=" + quoteSeqNo + ", quoteRevNo=" + quoteRevNo
+				+ ", cedingId=" + cedingId + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", prinId="
+				+ prinId + ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc + ", policyId=" + policyId
+				+ ", status=" + status + ", reinsurerId=" + reinsurerId + ", intmId=" + intmId + ", issueDate="
+				+ issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode="
+				+ reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
+				+ ", govtTag=" + govtTag + ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag
+				+ ", declarationTag=" + declarationTag + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy
+				+ ", printedBy=" + printedBy + ", printDate=" + printDate + ", openingParag=" + openingParag
+				+ ", closingParag=" + closingParag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc="
+				+ projDesc + ", riskId=" + riskId + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue="
 				+ totalValue + ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
 				+ prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser=" + prjUpdateUser
