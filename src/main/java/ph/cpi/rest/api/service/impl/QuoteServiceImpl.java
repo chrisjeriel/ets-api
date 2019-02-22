@@ -588,9 +588,12 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCompetitionParams.put("competitionsList", sqcr.getCompetitionsList());
 			sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
 		}catch(Exception ex){
+			System.out.println("ERROR RESPONSE");
 			sqcrResponse.setReturnCode(1);
 			sqcrResponse.getErrorList().add(new Error("EXCEPTION-001", "An error has occured. Please check your inputs."));
-			ex.printStackTrace();
+			System.out.println("ERROR RESPONSE");
+			System.out.println(sqcrResponse);
+			//ex.printStackTrace();
 		}
 		
 		return sqcrResponse;
