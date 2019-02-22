@@ -590,11 +590,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());*/
 			saveQuoteCompetitionParams.put("competitionsList", sqcr.getCompetitionsList());
 			sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
+			/*HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteCompetitionParams);
+			sqcrResponse.setReturnCode((Integer) res.get("errorCode"));*/
 		}catch(Exception ex){
-			System.out.println("ERROR RESPONSE");
-			sqcrResponse.setReturnCode(1);
-			sqcrResponse.getErrorList().add(new Error("EXCEPTION-001", "An error has occured. Please check your inputs."));
-			System.out.println("ERROR RESPONSE");
+			sqcrResponse.setReturnCode(0);
+			sqcrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			System.out.println(sqcrResponse);
 			//ex.printStackTrace();
 		}
