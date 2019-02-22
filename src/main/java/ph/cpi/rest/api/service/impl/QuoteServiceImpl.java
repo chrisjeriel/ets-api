@@ -710,17 +710,10 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteOptionResponse sqoResponse = new SaveQuoteOptionResponse();
 		HashMap<String, Object> saveQuoteOptionsParams = new HashMap<String, Object>(); 
 		saveQuoteOptionsParams.put("quoteId" , sqor.getQuoteId());
-		saveQuoteOptionsParams.put("optionId" , sqor.getOptionId());
-		saveQuoteOptionsParams.put("optionRt" , sqor.getOptionRt());
-		saveQuoteOptionsParams.put("condition" , sqor.getCondition());
-		saveQuoteOptionsParams.put("commRtQuota" , sqor.getCommRtQuota());
-		saveQuoteOptionsParams.put("commRtSurplus" , sqor.getCommRtSurplus());
-		saveQuoteOptionsParams.put("commRtFac" , sqor.getCommRtFac());
-		saveQuoteOptionsParams.put("createUser" , sqor.getCreateUser());
-		saveQuoteOptionsParams.put("createDate" , sqor.getCreateDate());
-		saveQuoteOptionsParams.put("updateUser" , sqor.getUpdateUser());
-		saveQuoteOptionsParams.put("updateDate" , sqor.getUpdateDate());
-		saveQuoteOptionsParams.put("deductibles" , sqor.getDeductibleList());
+		saveQuoteOptionsParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
+		saveQuoteOptionsParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
+		saveQuoteOptionsParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+		saveQuoteOptionsParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 		sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
 		return sqoResponse;
 		// TODO Auto-generated method stub
