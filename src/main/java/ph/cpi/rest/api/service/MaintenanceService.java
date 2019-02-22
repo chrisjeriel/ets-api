@@ -85,4 +85,7 @@ public interface MaintenanceService {
 	public RetrieveMtnIntermediaryResponse retrieveMtnIntermediary(RetrieveMtnIntermediaryRequest rmip) throws SQLException;
 	public RetrieveMtnLineResponse retrieveMtnLine(RetrieveMtnLineRequest rmlp ) throws SQLException;
 	public RetrieveMtnLineClassResponse retrieveMtnLineClass(RetrieveMtnLineClassRequest rmlcp ) throws SQLException;
+	
+	
+	public RetrieveMtnCedingCompanyResponse dummyCallJReports(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException;
 }

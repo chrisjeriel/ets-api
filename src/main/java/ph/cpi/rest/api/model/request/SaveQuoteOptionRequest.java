@@ -8,19 +8,25 @@ import org.joda.time.LocalDateTime;
 
 
 public class SaveQuoteOptionRequest {
-
+	
 	private Integer quoteId;
-	private List<Deductibles> deductibleList;
-	private Integer optionId;
-	private BigDecimal optionRt;
-	private String condition;
-	private BigDecimal commRtQuota;
-	private BigDecimal commRtSurplus;
-	private BigDecimal commRtFac;
-	private String createUser;
-	private LocalDateTime createDate;
-	private String updateUser;
-	private LocalDateTime updateDate;
+	List<QuoteOption> saveQuoteOptionsList;
+	List<QuoteOption> deleteQuoteOptionsList;
+	List<Deductibles> saveDeductibleList;
+	List<Deductibles> deleteDeductibleList;
+	
+	public List<Deductibles> getSaveDeductibleList() {
+		return saveDeductibleList;
+	}
+	public void setSaveDeductibleList(List<Deductibles> saveDeductibleList) {
+		this.saveDeductibleList = saveDeductibleList;
+	}
+	public List<Deductibles> getDeleteDeductibleList() {
+		return deleteDeductibleList;
+	}
+	public void setDeleteDeductibleList(List<Deductibles> deleteDeductibleList) {
+		this.deleteDeductibleList = deleteDeductibleList;
+	}
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -28,119 +34,63 @@ public class SaveQuoteOptionRequest {
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
-	public List<Deductibles> getDeductibleList() {
-		return deductibleList;
+	public List<QuoteOption> getSaveQuoteOptionsList() {
+		return saveQuoteOptionsList;
 	}
-	public void setDeductibleList(List<Deductibles> deductibleList) {
-		this.deductibleList = deductibleList;
+	public void setSaveQuoteOptionsList(List<QuoteOption> saveQuoteOptionsList) {
+		this.saveQuoteOptionsList = saveQuoteOptionsList;
 	}
+	public List<QuoteOption> getDeleteQuoteOptionsList() {
+		return deleteQuoteOptionsList;
+	}
+	public void setDeleteQuoteOptionsList(List<QuoteOption> deleteQuoteOptionsList) {
+		this.deleteQuoteOptionsList = deleteQuoteOptionsList;
+	}
+	@Override
+	public String toString() {
+		return "SaveQuoteOptionRequest [quoteId=" + quoteId + ", saveQuoteOptionsList=" + saveQuoteOptionsList
+				+ ", deleteQuoteOptionsList=" + deleteQuoteOptionsList + "]";
+	}
+	
+		
+}
+
+
+@Alias("SaveQuoteDeductibles")
+class Deductibles {
+	private Integer optionId;
+	private String deductibleCd;
+	private String deductibleRt;
+	private String deductibleAmt;
+	private String deductibleTxt;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	
+	
 	public Integer getOptionId() {
 		return optionId;
 	}
 	public void setOptionId(Integer optionId) {
 		this.optionId = optionId;
 	}
-	public BigDecimal getOptionRt() {
-		return optionRt;
-	}
-	public void setOptionRt(BigDecimal optionRt) {
-		this.optionRt = optionRt;
-	}
-	public String getCondition() {
-		return condition;
-	}
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
-	public BigDecimal getCommRtQuota() {
-		return commRtQuota;
-	}
-	public void setCommRtQuota(BigDecimal commRtQuota) {
-		this.commRtQuota = commRtQuota;
-	}
-	public BigDecimal getCommRtSurplus() {
-		return commRtSurplus;
-	}
-	public void setCommRtSurplus(BigDecimal commRtSurplus) {
-		this.commRtSurplus = commRtSurplus;
-	}
-	public BigDecimal getCommRtFac() {
-		return commRtFac;
-	}
-	public void setCommRtFac(BigDecimal commRtFac) {
-		this.commRtFac = commRtFac;
-	}
-	public String getCreateUser() {
-		return createUser;
-	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-	public LocalDateTime getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(LocalDateTime createDate) {
-		this.createDate = createDate;
-	}
-	public String getUpdateUser() {
-		return updateUser;
-	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-	public LocalDateTime getUpdateDate() {
-		return updateDate;
-	}
-	public void setUpdateDate(LocalDateTime updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	@Override
-	public String toString() {
-		return "SaveQuoteOptionRequest [quoteId=" + quoteId + ", deductibleList=" + deductibleList + ", optionId="
-				+ optionId + ", optionRt=" + optionRt + ", condition=" + condition + ", commRtQuota=" + commRtQuota
-				+ ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", ]";
-	}
-		
-}
-
-
-@Alias("SaveQuoteOption")
-class Deductibles {
-	private String deductibleTitle;
-	private BigDecimal deductibleRt;
-	private BigDecimal deductibleAmt;
-	private String deductibleTxt;
-	private String createUser;
-	private LocalDateTime createDate;
-	private String updateUser;
-	private LocalDateTime updateDate;
-	
-	private String deductibleCd;
 	public String getDeductibleCd() {
 		return deductibleCd;
 	}
 	public void setDeductibleCd(String deductibleCd) {
 		this.deductibleCd = deductibleCd;
 	}
-	public String getDeductibleTitle() {
-		return deductibleTitle;
-	}
-	public void setDeductibleTitle(String deductibleTitle) {
-		this.deductibleTitle = deductibleTitle;
-	}
-	public BigDecimal getDeductibleRt() {
+	public String getDeductibleRt() {
 		return deductibleRt;
 	}
-	public void setDeductibleRt(BigDecimal deductibleRt) {
+	public void setDeductibleRt(String deductibleRt) {
 		this.deductibleRt = deductibleRt;
 	}
-	public BigDecimal getDeductibleAmt() {
+	public String getDeductibleAmt() {
 		return deductibleAmt;
 	}
-	public void setDeductibleAmt(BigDecimal deductibleAmt) {
+	public void setDeductibleAmt(String deductibleAmt) {
 		this.deductibleAmt = deductibleAmt;
 	}
 	public String getDeductibleTxt() {
@@ -155,10 +105,10 @@ class Deductibles {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -167,15 +117,15 @@ class Deductibles {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "Deductibles [deductibleTitle=" + deductibleTitle + ", deductibleRt=" + deductibleRt + ", deductibleAmt="
+		return "Deductibles [deductibleRt=" + deductibleRt + ", deductibleAmt="
 				+ deductibleAmt + ", deductibleTxt=" + deductibleTxt + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", deductibleCd="
 				+ deductibleCd + "]";
@@ -185,6 +135,90 @@ class Deductibles {
 }
 	
 
+@Alias("SaveQuoteOption")
+class QuoteOption{
+	private Integer optionId;
+	private String optionRt;
+	private String condition;
+	private String commRtQuota;
+	private String commRtSurplus;
+	private String commRtFac;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	
 
+	
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
+	public String getOptionRt() {
+		return optionRt;
+	}
+	public void setOptionRt(String optionRt) {
+		this.optionRt = optionRt;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	public String getCommRtQuota() {
+		return commRtQuota;
+	}
+	public void setCommRtQuota(String commRtQuota) {
+		this.commRtQuota = commRtQuota;
+	}
+	public String getCommRtSurplus() {
+		return commRtSurplus;
+	}
+	public void setCommRtSurplus(String commRtSurplus) {
+		this.commRtSurplus = commRtSurplus;
+	}
+	public String getCommRtFac() {
+		return commRtFac;
+	}
+	public void setCommRtFac(String commRtFac) {
+		this.commRtFac = commRtFac;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	@Override
+	public String toString() {
+		return "QuoteOption optionId=" + optionId + ", optionRt=" + optionRt + ", condition="
+				+ condition + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac="
+				+ commRtFac + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
+	}
+
+	
+}
 
 

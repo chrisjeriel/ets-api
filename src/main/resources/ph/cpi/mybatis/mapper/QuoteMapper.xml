@@ -223,10 +223,10 @@
 		<result property="commRtQuota" 		column="COMM_RT_QUOTA"/>
 		<result property="commRtSurplus" 	column="COMM_RT_SURPLUS"/>
 		<result property="commRtFac" 		column="COMM_RT_FAC"/>
-		<result property="createUser" 		column="CREATE_USER"/>
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="UPDATE_USER"/>
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createUser" 		column="OPTIONS_CREATE_USER"/>
+		<result property="createDate" 		column="OPTIONS_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="OPTIONS_UPDATE_USER"/>
+		<result property="updateDate" 		column="OPTIONS_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		
 		<association property="deductiblesList" resultMap="assocDeductibles"/>
 	</resultMap>
@@ -237,10 +237,10 @@
 		<result property="deductibleRt" 	column="DEDUCTIBLE_RT"/>
 		<result property="deductibleAmt" 	column="DEDUCTIBLE_AMT"/>
 		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/>
-		<result property="createUser" 		column="CREATE_USER"/>
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="UPDATE_USER"/>
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createUser" 		column="DEDUCTIBLES_CREATE_USER"/>
+		<result property="createDate" 		column="DEDUCTIBLES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="DEDUCTIBLES_UPDATE_USER"/>
+		<result property="updateDate" 		column="DEDUCTIBLES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="assocOtherRates">
@@ -405,9 +405,9 @@
         <result property="fileName"  	column="FILE_NAME"/>
         <result property="description"  column="DESCRIPTION"/>
         <result property="createUser"  	column="CREATE_USER"/>
-     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
         <result property="updateUser"  	column="UPDATE_USER"/>
-        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
@@ -1071,7 +1071,7 @@
 		END;
 	</update>
 
-	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
+	<!-- <update id="saveQuoteOptionMap" parameterType="java.util.Map">
 		BEGIN
 		   <foreach collection="deductibles" item="deductibles">
 		   	   ETS_QUOTE_PKG_ETC.save_quote_option
@@ -1096,7 +1096,35 @@
 			   CAST(to_timestamp(#{deductibles.updateDate},'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		END;
+	</update> -->
+	
+	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
+		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId},#{quoteOption.optionRt},
+		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
+		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		   
+		   <foreach collection="saveDeductibleList" item="deductible">
+		   		ETS_QUOTE_PKG_ETC.save_q_deductible(
+		   			#{quoteId},#{deductible.optionId},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+		   		);
+		   </foreach>
+		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId});
+		   </foreach>
+		   <foreach collection="deleteDeductibleList" item="deductible">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd});
+		   </foreach>
+		   
+		   
+		   
+		END;
 	</update>
+	
 	
 	
 	<update id="saveQuoteEndorsements" parameterType="java.util.Map">
