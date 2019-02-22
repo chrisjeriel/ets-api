@@ -237,4 +237,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
 		return maintenanceService.retrieveMaintenanceCedingCompany(retMtnCedingCompany);
 	}
+	
+	@GetMapping(path="dummyCallJReports")
+	public @ResponseBody RetrieveMtnCedingCompanyResponse dummyCallJReports(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompany");
+		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
+		return maintenanceService.dummyCallJReports(retMtnCedingCompany);
+	}
 }

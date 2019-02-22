@@ -427,16 +427,7 @@
 		<result property="adviceWordId" 	column="ADVICE_WORD_ID"/> 
 		<result property="description" 		column="DESCRIPTION"/> 
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
-		<result property="adviceText01" 	column="ADVICE_TEXT01"/> 
-		<result property="adviceText02" 	column="ADVICE_TEXT02"/> 
-		<result property="adviceText03" 	column="ADVICE_TEXT03"/> 
-		<result property="adviceText04" 	column="ADVICE_TEXT04"/> 
-		<result property="adviceText05" 	column="ADVICE_TEXT05"/> 
-		<result property="adviceText06" 	column="ADVICE_TEXT06"/> 
-		<result property="adviceText07" 	column="ADVICE_TEXT07"/> 
-		<result property="adviceText08" 	column="ADVICE_TEXT08"/> 
-		<result property="adviceText09" 	column="ADVICE_TEXT09"/> 
-		<result property="adviceText10" 	column="ADVICE_TEXT10"/> 
+		<result property="wordings" 		column="WORDINGS"/>
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
 		<result property="createDate" 		column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
