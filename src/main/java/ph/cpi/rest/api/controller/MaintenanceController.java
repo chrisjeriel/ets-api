@@ -1,10 +1,19 @@
 package ph.cpi.rest.api.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -244,4 +253,28 @@ public class MaintenanceController {
 		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
 		return maintenanceService.dummyCallJReports(retMtnCedingCompany);
 	}
+	
+	@GetMapping(path="dummyViewReport")
+	public ResponseEntity dummyViewReport() throws SQLException, IOException {
+		String filepath = "D:/Projects/PMMSC/Reports/Output/File.pdf";
+		File file = new File("D:/Projects/PMMSC/Reports/Output/File.pdf");
+		
+		
+		
+//		HttpHeaders headers = new HttpHeaders();
+//	    headers.add("Custom-Header", "foo");
+//	    headers.add("Content-Type", "application/pdf");
+//	    headers.add("Content-Disposition", "inline; attachment;filename="+fileOut.getAbsolutePath()+"\"");
+	         
+//	    return new ResponseEntity<>("Custom header set", headers, HttpStatus.OK);
+	    
+	    Path path = Paths.get(file.getAbsolutePath());
+	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+	    
+	    return ResponseEntity.ok()
+	            .contentType(MediaType.parseMediaType("application/pdf"))
+	            .body(resource);
+	}
+	
+//	;
 }
