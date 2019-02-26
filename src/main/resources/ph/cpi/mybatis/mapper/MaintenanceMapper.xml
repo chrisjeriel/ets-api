@@ -58,10 +58,10 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.SectionCovers" id="retrieveMtnSectionCoversMap">
 		<result property="lineCd" 			column="LINE_CD"/>
-		<result property="description" 		column="DESCRIPTION"/>
+		<result property="lineDesc" 		column="LINE_DESCRIPTION"/>
 		<result property="coverCd" 			column="COVER_CD"/>
 		<result property="coverCdAbbr" 		column="COVER_CD_ABBR"/>
-		<result property="description" 		column="DESCRIPTION"/>
+		<result property="description" 		column="COVERS_DESCRIPTION"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="section" 			column="SECTION"/>
 		<result property="sortSeq" 			column="SORT_SEQ"/>
@@ -338,7 +338,7 @@
 	</select>
 	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd},#{coverCd},null,null,null,null)
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd, jdbcType=VARCHAR},#{coverCd, jdbcType=VARCHAR},null,null,null,null)
 	</select>
 	
 	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">

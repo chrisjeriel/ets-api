@@ -283,58 +283,74 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public SaveQuoteAttachmentResponse saveQuoteAttachment(SaveQuoteAttachmentRequest sqar) throws SQLException {
 		SaveQuoteAttachmentResponse sqarResponse = new SaveQuoteAttachmentResponse();
-		
-		HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
-		saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
-		saveQuoteAttachmentParams.put("saveAttachmentsList", sqar.getSaveAttachmentsList());
-		saveQuoteAttachmentParams.put("deleteAttachmentsList", sqar.getDeleteAttachmentsList());
-		sqarResponse.setReturnCode(quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams));
-		
+		try{
+			HashMap<String, Object> saveQuoteAttachmentParams = new HashMap<String, Object>();
+			saveQuoteAttachmentParams.put("quoteId", sqar.getQuoteId());
+			saveQuoteAttachmentParams.put("saveAttachmentsList", sqar.getSaveAttachmentsList());
+			saveQuoteAttachmentParams.put("deleteAttachmentsList", sqar.getDeleteAttachmentsList());
+			
+			HashMap<String, Object> res = quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams);
+			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch(Exception ex){
+			sqarResponse.setReturnCode(0);
+			sqarResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
 		return sqarResponse;
 	}
 
 	@Override
 	public SaveQuoteAlopResponse saveQuoteAlop(SaveQuoteAlopRequest sqar) throws SQLException {
 		SaveQuoteAlopResponse sqarResponse = new SaveQuoteAlopResponse();
-		
-		HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
-		
-		saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId() );
-		saveQuoteAlopParams.put("alopId" , sqar.getAlopId() );
-		saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId() );
-		saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
-		saveQuoteAlopParams.put("address" , sqar.getAddress() );
-		saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
-		saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
-		saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
-		saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
-		saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
-		saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
-		saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
-		saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
-		saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
-		saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
-		saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
-		saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
-		saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
-		
-		sqarResponse.setReturnCode(quoteDao.saveQuoteAlop(saveQuoteAlopParams));
-		
+		try{
+			HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
+			
+			saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId() );
+			saveQuoteAlopParams.put("alopId" , sqar.getAlopId() );
+			saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId() );
+			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
+			saveQuoteAlopParams.put("address" , sqar.getAddress() );
+			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
+			saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
+			saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
+			saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
+			saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
+			saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
+			saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
+			saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
+			saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
+			saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
+			saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
+			saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
+			saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
+			
+			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
+			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			sqarResponse.setReturnCode(0);
+			sqarResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
 		return sqarResponse;
 	}
 
 	@Override
 	public SaveQuoteAlopItemResponse saveQuoteAlopItem(SaveQuoteAlopItemRequest sqair) throws SQLException {
 		SaveQuoteAlopItemResponse sqairResponse = new SaveQuoteAlopItemResponse();
-		
-		HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
-		saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
-		saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
-		saveQuoteAlopItemParams.put("saveAlopItemsList" , sqair.getSaveAlopItemList() );
-		saveQuoteAlopItemParams.put("deleteAlopItemsList" , sqair.getDeleteAlopItemList() );
-		
-		sqairResponse.setReturnCode(quoteDao.saveQuoteAlopItem(saveQuoteAlopItemParams));
-		
+		try{
+			HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
+			saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
+			saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
+			saveQuoteAlopItemParams.put("saveAlopItemsList" , sqair.getSaveAlopItemList() );
+			saveQuoteAlopItemParams.put("deleteAlopItemsList" , sqair.getDeleteAlopItemList() );
+			
+			HashMap<String, Object> res = quoteDao.saveQuoteAlopItem(saveQuoteAlopItemParams);
+			sqairResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch(Exception ex){
+			sqairResponse.setReturnCode(0);
+			sqairResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
 		return sqairResponse;
 	}
 
@@ -464,27 +480,32 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public SaveQuoteCoverageResponse saveQuoteCoverage(SaveQuoteCoverageRequest saveQuoteCoverage) throws SQLException {
 		SaveQuoteCoverageResponse sqaResponse = new SaveQuoteCoverageResponse();
-		
-		HashMap<String, Object> saveQuoteCoverageParams = new HashMap<String, Object>();
-		saveQuoteCoverageParams.put("quoteId", saveQuoteCoverage.getQuoteId());
-		saveQuoteCoverageParams.put("projId", saveQuoteCoverage.getProjId());
-		saveQuoteCoverageParams.put("riskId", saveQuoteCoverage.getRiskId());
-		saveQuoteCoverageParams.put("sectionISi", saveQuoteCoverage.getSectionISi());
-		saveQuoteCoverageParams.put("sectionIISi", saveQuoteCoverage.getSectionIISi());
-		saveQuoteCoverageParams.put("sectionIIISi", saveQuoteCoverage.getSectionIIISi());
-		saveQuoteCoverageParams.put("totalSi", saveQuoteCoverage.getTotalSi());
-		saveQuoteCoverageParams.put("currencyCd", saveQuoteCoverage.getCurrencyCd());
-		saveQuoteCoverageParams.put("currencyRt", saveQuoteCoverage.getCurrencyRt());
-		saveQuoteCoverageParams.put("remarks", saveQuoteCoverage.getRemarks());
-		saveQuoteCoverageParams.put("createUser", saveQuoteCoverage.getCreateUser());
-		saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
-		saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
-		saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
-		saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
-		saveQuoteCoverageParams.put("deleteSectionCovers", saveQuoteCoverage.getDeleteSectionCovers());
-		
-		sqaResponse.setReturnCode(quoteDao.saveQuoteCoverage(saveQuoteCoverageParams));
-		
+		try{
+			HashMap<String, Object> saveQuoteCoverageParams = new HashMap<String, Object>();
+			saveQuoteCoverageParams.put("quoteId", saveQuoteCoverage.getQuoteId());
+			saveQuoteCoverageParams.put("projId", saveQuoteCoverage.getProjId());
+			saveQuoteCoverageParams.put("riskId", saveQuoteCoverage.getRiskId());
+			saveQuoteCoverageParams.put("sectionISi", saveQuoteCoverage.getSectionISi());
+			saveQuoteCoverageParams.put("sectionIISi", saveQuoteCoverage.getSectionIISi());
+			saveQuoteCoverageParams.put("sectionIIISi", saveQuoteCoverage.getSectionIIISi());
+			saveQuoteCoverageParams.put("totalSi", saveQuoteCoverage.getTotalSi());
+			saveQuoteCoverageParams.put("currencyCd", saveQuoteCoverage.getCurrencyCd());
+			saveQuoteCoverageParams.put("currencyRt", saveQuoteCoverage.getCurrencyRt());
+			saveQuoteCoverageParams.put("remarks", saveQuoteCoverage.getRemarks());
+			saveQuoteCoverageParams.put("createUser", saveQuoteCoverage.getCreateUser());
+			saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
+			saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
+			saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
+			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
+			saveQuoteCoverageParams.put("deleteSectionCovers", saveQuoteCoverage.getDeleteSectionCovers());
+			
+			HashMap<String, Object> res = quoteDao.saveQuoteCoverage(saveQuoteCoverageParams);
+			sqaResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			sqaResponse.setReturnCode(0);
+			sqaResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
 		return sqaResponse;
 	}
 
@@ -674,7 +695,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (Exception ex) {
 			sqgiResponse.setReturnCode(0);
-			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
 		}
 		
@@ -683,27 +704,39 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public SaveQuoteHoldCoverResponse saveQuoteHoldCover(SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
-		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();	
+		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
-		saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
-		saveQuoteHoldCoverParams.put("holdCoverId", sqhcr.getHoldCoverId());
-		saveQuoteHoldCoverParams.put("lineCd", sqhcr.getLineCd());
-		saveQuoteHoldCoverParams.put("holdCoverYear", sqhcr.getHoldCoverYear());
-		saveQuoteHoldCoverParams.put("holdCoverSeqNo", sqhcr.getHoldCoverSeqNo());
-		saveQuoteHoldCoverParams.put("holdCoverRevNo", sqhcr.getHoldCoverRevNo());
-		saveQuoteHoldCoverParams.put("periodFrom", sqhcr.getPeriodFrom());
-		saveQuoteHoldCoverParams.put("periodTo", sqhcr.getPeriodTo());
-		saveQuoteHoldCoverParams.put("compRefHoldCovNo", sqhcr.getCompRefHoldCovNo());
-		saveQuoteHoldCoverParams.put("status", sqhcr.getStatus());
-		saveQuoteHoldCoverParams.put("reqBy", sqhcr.getReqBy());
-		saveQuoteHoldCoverParams.put("reqDate", sqhcr.getReqDate());
-		saveQuoteHoldCoverParams.put("preparedBy", sqhcr.getPreparedBy());
-		saveQuoteHoldCoverParams.put("approvedBy", sqhcr.getApprovedBy());
-		saveQuoteHoldCoverParams.put("createUser", sqhcr.getCreateUser());
-		saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
-		saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
-		saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
-		sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
+		
+		try {
+			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
+			saveQuoteHoldCoverParams.put("holdCoverId", sqhcr.getHoldCoverId());
+			saveQuoteHoldCoverParams.put("lineCd", sqhcr.getLineCd());
+			saveQuoteHoldCoverParams.put("holdCoverYear", sqhcr.getHoldCoverYear());
+			saveQuoteHoldCoverParams.put("holdCoverSeqNo", sqhcr.getHoldCoverSeqNo());
+			saveQuoteHoldCoverParams.put("holdCoverRevNo", sqhcr.getHoldCoverRevNo());
+			saveQuoteHoldCoverParams.put("periodFrom", sqhcr.getPeriodFrom());
+			saveQuoteHoldCoverParams.put("periodTo", sqhcr.getPeriodTo());
+			saveQuoteHoldCoverParams.put("compRefHoldCovNo", sqhcr.getCompRefHoldCovNo());
+			saveQuoteHoldCoverParams.put("status", sqhcr.getStatus());
+			saveQuoteHoldCoverParams.put("reqBy", sqhcr.getReqBy());
+			saveQuoteHoldCoverParams.put("reqDate", sqhcr.getReqDate());
+			saveQuoteHoldCoverParams.put("preparedBy", sqhcr.getPreparedBy());
+			saveQuoteHoldCoverParams.put("approvedBy", sqhcr.getApprovedBy());
+			saveQuoteHoldCoverParams.put("createUser", sqhcr.getCreateUser());
+			saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
+			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
+			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
+			sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
+		} catch (SQLException sqlex) {
+			sqhcrResponse.setReturnCode(0);
+			sqhcrResponse.getErrorList().add(new Error("SQLException","Error stack: " + System.lineSeparator() + sqlex.getCause()));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sqhcrResponse.setReturnCode(0);
+			sqhcrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+	
 		
 		return sqhcrResponse;
 	}
@@ -713,17 +746,10 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteOptionResponse sqoResponse = new SaveQuoteOptionResponse();
 		HashMap<String, Object> saveQuoteOptionsParams = new HashMap<String, Object>(); 
 		saveQuoteOptionsParams.put("quoteId" , sqor.getQuoteId());
-		saveQuoteOptionsParams.put("optionId" , sqor.getOptionId());
-		saveQuoteOptionsParams.put("optionRt" , sqor.getOptionRt());
-		saveQuoteOptionsParams.put("condition" , sqor.getCondition());
-		saveQuoteOptionsParams.put("commRtQuota" , sqor.getCommRtQuota());
-		saveQuoteOptionsParams.put("commRtSurplus" , sqor.getCommRtSurplus());
-		saveQuoteOptionsParams.put("commRtFac" , sqor.getCommRtFac());
-		saveQuoteOptionsParams.put("createUser" , sqor.getCreateUser());
-		saveQuoteOptionsParams.put("createDate" , sqor.getCreateDate());
-		saveQuoteOptionsParams.put("updateUser" , sqor.getUpdateUser());
-		saveQuoteOptionsParams.put("updateDate" , sqor.getUpdateDate());
-		saveQuoteOptionsParams.put("deductibles" , sqor.getDeductibleList());
+		saveQuoteOptionsParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
+		saveQuoteOptionsParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
+		saveQuoteOptionsParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+		saveQuoteOptionsParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 		sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
 		return sqoResponse;
 		// TODO Auto-generated method stub

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.Risk;
@@ -7,14 +9,13 @@ import ph.cpi.rest.api.model.maintenance.SectionCovers;
 
 public class RetrieveMtnSectionCoversResponse {
 	
-	private SectionCovers sectionCovers;
+	private List<SectionCovers> sectionCovers;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public SectionCovers getSectionCovers() {
+	public List<SectionCovers> getSectionCovers() {
 		return sectionCovers;
 	}
-	public void setSectionCovers(SectionCovers sectionCovers) {
+	public void setSectionCovers(List<SectionCovers> sectionCovers) {
 		this.sectionCovers = sectionCovers;
 	}
 	public PaginationResponse getPaginationResponse() {
@@ -34,4 +35,6 @@ public class RetrieveMtnSectionCoversResponse {
 		return "RetrieveMtnSectionCoversResponse [sectionCovers=" + sectionCovers + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
+	
+	
 }

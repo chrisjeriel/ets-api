@@ -110,9 +110,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public SectionCovers retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
+	public List<SectionCovers> retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		SectionCovers sectionCovers = sqlSession.selectOne("retrieveMtnSectionCovers", params);
+		List<SectionCovers> sectionCovers = sqlSession.selectList("retrieveMtnSectionCovers", params);
 		return sectionCovers;
 	}
 
