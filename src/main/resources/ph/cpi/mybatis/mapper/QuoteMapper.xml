@@ -1011,15 +1011,17 @@
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="saveSectionCovers" item="sectioncovers">
-		   	   ETS_QUOTE_PKG_EJVA.saveQuoteCoverage
-			   (#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
+			   ETS_QUOTE_PKG_EJVA.save_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
-			   SYSDATE,#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+			   SYSDATE);
+		   <foreach collection="saveSectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.save_quote_section_covers
+			   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 			   #{sectioncovers.addSi},#{sectioncovers.createUser},
 			   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.updateUser},
 			   SYSDATE);
 		   </foreach>
+		   
 		   <foreach collection="deleteSectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
 		   </foreach>
