@@ -47,9 +47,9 @@ public class PrintingUtility {
 		reportPath = "C:\\ETS\\REPORTS\\QUOTER009A_MAIN.jrxml";
 		
 		String filename = "QUOTER009A_" + "1_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
-		outputPath = "D:\\Projects\\PMMSC\\Reports\\Output\\" + filename;
+		outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
 		outputType = "pdf";
-		mapRptParam.put("P_QUOTE_ID", 1);
+		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
 		mapRptParam.put("pQuoteId", 1);
 		
 
@@ -78,13 +78,13 @@ public class PrintingUtility {
 		}
 		
 
-		return filename;
+		return file.getAbsolutePath();
 	}
 
 	public JasperPrint jasperPrint(String reportPath, HashMap<String, Object> reportParameters)
 			throws SQLException, JRException, IOException {
 
-		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.10.10.210:1521:ETSDEV", "CPI",
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.10.10.210:1521:ETSQA", "CPI",
 				"CPI12345!");
 
 		try {
