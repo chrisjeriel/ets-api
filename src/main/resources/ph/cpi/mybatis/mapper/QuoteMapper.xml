@@ -1169,6 +1169,9 @@
 				CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
 		 </foreach>
+		 <foreach collection="deleteOtherRates" item="otherRates">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{otherRates.quoteId},#{otherRates.coverCd});
+		 </foreach>
 		END;
 	</update>
 	

@@ -10,6 +10,7 @@ public class SaveQuoteOtherRatesRequest {
 	
 	private Integer quoteId;
 	private List<OtherRates> otherRates;
+	private List<OtherRates> deleteOtherRates;
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -25,12 +26,19 @@ public class SaveQuoteOtherRatesRequest {
 		this.otherRates = otherRates;
 	}
 	
-	@Override
-	public String toString() {
-		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", otherRates=" + otherRates + "]";
+	public List<OtherRates> getDeleteOtherRates() {
+		return deleteOtherRates;
+	}
+
+	public void setDeleteOtherRates(List<OtherRates> deleteOtherRates) {
+		this.deleteOtherRates = deleteOtherRates;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", otherRates=" + otherRates + ", deleteOtherRates="
+				+ deleteOtherRates + "]";
+	}
 }
 
 @Alias("SaveQuoteOtherRates")

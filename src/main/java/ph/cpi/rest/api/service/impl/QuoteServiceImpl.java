@@ -776,6 +776,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
 		saveQuoteOtherRatesParams.put("quoteId", sqorr.getQuoteId());
 		saveQuoteOtherRatesParams.put("otherRates", sqorr.getOtherRates());
+		saveQuoteOtherRatesParams.put("deleteOtherRates", sqorr.getDeleteOtherRates());
 		sqorResponse.setReturnCode(quoteDao.saveQuoteOtherRates(saveQuoteOtherRatesParams));
 		return sqorResponse;
 	}
