@@ -564,5 +564,17 @@
      <select id="retMtnCedingCompany" resultMap="maintenanceCedingCompanyMap" parameterType="java.util.Map">
             SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_ceding_company(#{cedingId, jdbcType=VARCHAR},null,null,null,null)
      </select>
-  
+  	
+  	<update id="saveMtnRisk" parameterType="java.util.Map">
+  		BEGIN
+  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId},#{riskAbbr},
+  				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd},
+  				#{latitude},#{longitude},#{zoneCd},#{activeTag},#{remarks},
+  				#{createUser},
+  				to_date(#{createDate}, 'YYYY-MM-DD'),
+  				#{updateUser},
+  				to_date(#{updateDate}, 'YYYY-MM-DD')
+  				);
+  		END;
+  	</update>
 </mapper>

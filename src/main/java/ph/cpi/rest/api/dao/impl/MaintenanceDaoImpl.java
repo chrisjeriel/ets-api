@@ -208,4 +208,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return lineClass;
 	}
 
+	@Override
+	public Integer saveMtnRisk(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnRisk = sqlSession.update("saveMtnRisk", params);
+		return saveMtnRisk;
+	}
+
 }
