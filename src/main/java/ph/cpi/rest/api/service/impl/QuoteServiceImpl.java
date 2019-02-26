@@ -692,7 +692,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (Exception ex) {
 			sqgiResponse.setReturnCode(0);
-			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
 		}
 		
@@ -701,27 +701,39 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public SaveQuoteHoldCoverResponse saveQuoteHoldCover(SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
-		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();	
+		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
-		saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
-		saveQuoteHoldCoverParams.put("holdCoverId", sqhcr.getHoldCoverId());
-		saveQuoteHoldCoverParams.put("lineCd", sqhcr.getLineCd());
-		saveQuoteHoldCoverParams.put("holdCoverYear", sqhcr.getHoldCoverYear());
-		saveQuoteHoldCoverParams.put("holdCoverSeqNo", sqhcr.getHoldCoverSeqNo());
-		saveQuoteHoldCoverParams.put("holdCoverRevNo", sqhcr.getHoldCoverRevNo());
-		saveQuoteHoldCoverParams.put("periodFrom", sqhcr.getPeriodFrom());
-		saveQuoteHoldCoverParams.put("periodTo", sqhcr.getPeriodTo());
-		saveQuoteHoldCoverParams.put("compRefHoldCovNo", sqhcr.getCompRefHoldCovNo());
-		saveQuoteHoldCoverParams.put("status", sqhcr.getStatus());
-		saveQuoteHoldCoverParams.put("reqBy", sqhcr.getReqBy());
-		saveQuoteHoldCoverParams.put("reqDate", sqhcr.getReqDate());
-		saveQuoteHoldCoverParams.put("preparedBy", sqhcr.getPreparedBy());
-		saveQuoteHoldCoverParams.put("approvedBy", sqhcr.getApprovedBy());
-		saveQuoteHoldCoverParams.put("createUser", sqhcr.getCreateUser());
-		saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
-		saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
-		saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
-		sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
+		
+		try {
+			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
+			saveQuoteHoldCoverParams.put("holdCoverId", sqhcr.getHoldCoverId());
+			saveQuoteHoldCoverParams.put("lineCd", sqhcr.getLineCd());
+			saveQuoteHoldCoverParams.put("holdCoverYear", sqhcr.getHoldCoverYear());
+			saveQuoteHoldCoverParams.put("holdCoverSeqNo", sqhcr.getHoldCoverSeqNo());
+			saveQuoteHoldCoverParams.put("holdCoverRevNo", sqhcr.getHoldCoverRevNo());
+			saveQuoteHoldCoverParams.put("periodFrom", sqhcr.getPeriodFrom());
+			saveQuoteHoldCoverParams.put("periodTo", sqhcr.getPeriodTo());
+			saveQuoteHoldCoverParams.put("compRefHoldCovNo", sqhcr.getCompRefHoldCovNo());
+			saveQuoteHoldCoverParams.put("status", sqhcr.getStatus());
+			saveQuoteHoldCoverParams.put("reqBy", sqhcr.getReqBy());
+			saveQuoteHoldCoverParams.put("reqDate", sqhcr.getReqDate());
+			saveQuoteHoldCoverParams.put("preparedBy", sqhcr.getPreparedBy());
+			saveQuoteHoldCoverParams.put("approvedBy", sqhcr.getApprovedBy());
+			saveQuoteHoldCoverParams.put("createUser", sqhcr.getCreateUser());
+			saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
+			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
+			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
+			sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
+		} catch (SQLException sqlex) {
+			sqhcrResponse.setReturnCode(0);
+			sqhcrResponse.getErrorList().add(new Error("SQLException","Error stack: " + System.lineSeparator() + sqlex.getCause()));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sqhcrResponse.setReturnCode(0);
+			sqhcrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+	
 		
 		return sqhcrResponse;
 	}
