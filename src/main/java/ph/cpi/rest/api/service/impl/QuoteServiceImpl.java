@@ -749,12 +749,8 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteEndorsementsOcResponse sqeocrResponse = new SaveQuoteEndorsementsOcResponse();	
 		HashMap<String, Object> saveQuoteEndorsementsOcParams = new HashMap<String, Object>();
 		saveQuoteEndorsementsOcParams.put("quoteIdOc",sqeocr.getQuoteIdOc());
-		saveQuoteEndorsementsOcParams.put("endtCd",sqeocr.getEndtCd());
-		saveQuoteEndorsementsOcParams.put("remarks",sqeocr.getRemarks());
-		saveQuoteEndorsementsOcParams.put("createUser",sqeocr.getCreateUser());
-		saveQuoteEndorsementsOcParams.put("createDate",sqeocr.getCreateDate());
-		saveQuoteEndorsementsOcParams.put("updateUser",sqeocr.getUpdateUser());
-		saveQuoteEndorsementsOcParams.put("updateDate",sqeocr.getUpdateDate());
+		saveQuoteEndorsementsOcParams.put("saveEndorsementsOc", sqeocr.getSaveEndorsementsOc());
+		saveQuoteEndorsementsOcParams.put("deleteEndorsementsOc",sqeocr.getDeleteEndorsementsOc());
 		sqeocrResponse.setReturnCode(quoteDao.saveQuoteEndorsementsOc(saveQuoteEndorsementsOcParams));
 		
 		return sqeocrResponse;

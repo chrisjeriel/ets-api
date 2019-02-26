@@ -1,19 +1,44 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
 public class SaveQuoteEndorsementsOcRequest {
 	private String quoteIdOc;
-	private String endtCd;
-	private String remarks;
-	private String createUser;
-	private String createDate;
-	private String updateUser;
-	private String updateDate;
+	private List<EndorsementssOc> saveEndorsementsOc;
+	private List<EndorsementssOc> deleteEndorsementsOc;
 	public String getQuoteIdOc() {
 		return quoteIdOc;
 	}
 	public void setQuoteIdOc(String quoteIdOc) {
 		this.quoteIdOc = quoteIdOc;
 	}
+	public List<EndorsementssOc> getSaveEndorsementsOc() {
+		return saveEndorsementsOc;
+	}
+	public void setSaveEndorsementsOc(List<EndorsementssOc> saveEndorsementsOc) {
+		this.saveEndorsementsOc = saveEndorsementsOc;
+	}
+	public List<EndorsementssOc> getDeleteEndorsementsOc() {
+		return deleteEndorsementsOc;
+	}
+	public void setDeleteEndorsementsOc(List<EndorsementssOc> deleteEndorsementsOc) {
+		this.deleteEndorsementsOc = deleteEndorsementsOc;
+	}
+	@Override
+	public String toString() {
+		return "SaveQuoteEndorsementsOcRequest [quoteIdOc=" + quoteIdOc + ", saveEndorsementsOc=" + saveEndorsementsOc
+				+ ", deleteEndorsementsOc=" + deleteEndorsementsOc + "]";
+	}
+	
+}
+
+class EndorsementssOc {
+	private String endtCd;
+	private String remarks;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
 	public String getEndtCd() {
 		return endtCd;
 	}
@@ -52,22 +77,9 @@ public class SaveQuoteEndorsementsOcRequest {
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteEndorsementsOcRequest [quoteIdOc=");
-		builder.append(quoteIdOc);
-		builder.append(", endtCd=");
-		builder.append(endtCd);
-		builder.append(", remarks=");
-		builder.append(remarks);
-		builder.append(", createUser=");
-		builder.append(createUser);
-		builder.append(", createDate=");
-		builder.append(createDate);
-		builder.append(", updateUser=");
-		builder.append(updateUser);
-		builder.append(", updateDate=");
-		builder.append(updateDate);
-		builder.append("]");
-		return builder.toString();
+		return "EndorsementssOc [endtCd=" + endtCd + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
 }
