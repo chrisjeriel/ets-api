@@ -86,6 +86,4 @@ public interface MaintenanceService {
 	public RetrieveMtnLineResponse retrieveMtnLine(RetrieveMtnLineRequest rmlp ) throws SQLException;
 	public RetrieveMtnLineClassResponse retrieveMtnLineClass(RetrieveMtnLineClassRequest rmlcp ) throws SQLException;
 	
-	
-	public RetrieveMtnCedingCompanyResponse dummyCallJReports(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException;
 }

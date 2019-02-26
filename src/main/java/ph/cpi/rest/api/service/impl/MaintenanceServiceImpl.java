@@ -497,23 +497,4 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return rmlcResponse;
 	}
 	
-
-	@Override
-	public RetrieveMtnCedingCompanyResponse dummyCallJReports(
-			RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
-		RetrieveMtnCedingCompanyResponse rmccResponse = new RetrieveMtnCedingCompanyResponse();
-		
-		PrintingUtility pu = new PrintingUtility();
-		try {
-			pu.generateJasperReport(null, null, null, null);
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-		return rmccResponse;
-	}
 }

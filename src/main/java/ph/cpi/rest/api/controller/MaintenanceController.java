@@ -246,35 +246,5 @@ public class MaintenanceController {
 		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
 		return maintenanceService.retrieveMaintenanceCedingCompany(retMtnCedingCompany);
 	}
-	
-	@GetMapping(path="dummyCallJReports")
-	public @ResponseBody RetrieveMtnCedingCompanyResponse dummyCallJReports(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompany");
-		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
-		return maintenanceService.dummyCallJReports(retMtnCedingCompany);
-	}
-	
-	@GetMapping(path="dummyViewReport")
-	public ResponseEntity dummyViewReport() throws SQLException, IOException {
-		String filepath = "D:/Projects/PMMSC/Reports/Output/File.pdf";
-		File file = new File("D:/Projects/PMMSC/Reports/Output/File.pdf");
-		
-		
-		
-//		HttpHeaders headers = new HttpHeaders();
-//	    headers.add("Custom-Header", "foo");
-//	    headers.add("Content-Type", "application/pdf");
-//	    headers.add("Content-Disposition", "inline; attachment;filename="+fileOut.getAbsolutePath()+"\"");
-	         
-//	    return new ResponseEntity<>("Custom header set", headers, HttpStatus.OK);
-	    
-	    Path path = Paths.get(file.getAbsolutePath());
-	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-	    
-	    return ResponseEntity.ok()
-	            .contentType(MediaType.parseMediaType("application/pdf"))
-	            .body(resource);
-	}
-	
-//	;
+
 }

@@ -28,7 +28,7 @@ public class PrintingUtility {
 
 	private static final Logger logger = LoggerFactory.getLogger(PrintingUtility.class);
 
-	public void generateJasperReport(HashMap<String, Object> reportParams, String reportPath, String outputPath,
+	public String generateJasperReport(HashMap<String, Object> reportParams, String reportPath, String outputPath,
 			String outputType) throws SQLException, JRException, IOException {
 
 		logger.info("Generate Report: JASPER");
@@ -78,9 +78,7 @@ public class PrintingUtility {
 		}
 		
 
-		
-
-		
+		return filename;
 	}
 
 	public JasperPrint jasperPrint(String reportPath, HashMap<String, Object> reportParameters)
