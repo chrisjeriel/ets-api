@@ -93,6 +93,18 @@
 		    <type>pom</type>
 		</dependency>
 		
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports-functions</artifactId>
+		    <version>6.0.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>ph.cpi.rest</groupId>
+		    <artifactId>pmmsc-rep-fonts</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

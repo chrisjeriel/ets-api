@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,19 +31,32 @@ public class UtilController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 	
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
+	
+	@Value("${spring.datasource.username}")
+	private String username;
+	
+	@Value("${spring.datasource.password}")
+	private String password;
+	
 	@SuppressWarnings("unchecked")
 	@GetMapping(path="generateReport/{quoteId}")
 	public ResponseEntity generateReport(@PathVariable("quoteId") Integer quoteId) throws SQLException, IOException {
 		logger.info("GET: /api/util-service/generateReport");
 		logger.info("generateReportRequest : ");
 		
+		HashMap dbParams = new HashMap<String, String>();
+		dbParams.put("dbUrl", dbUrl);
+		dbParams.put("username", username);
+		dbParams.put("password", password);
 		
 		PrintingUtility pu = new PrintingUtility();
 		HashMap reportParam = new HashMap<String, String>();
 		reportParam.put("QUOTE_ID", quoteId);
 		String filename = "";
 		try {
-			filename = pu.generateJasperReport(reportParam, null, null, null);
+			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,9 +65,10 @@ public class UtilController {
 			e.printStackTrace();
 		}
 		
-		String filepath = "D:/Projects/PMMSC/Reports/Output/File.pdf";
+
 		File file = new File(filename);
-	    
+		logger.info("FILE filename: " + filename);
+	    logger.info("FILE Absolute Path: " + file.getAbsolutePath());
 	    Path path = Paths.get(file.getAbsolutePath());
 	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 	    
