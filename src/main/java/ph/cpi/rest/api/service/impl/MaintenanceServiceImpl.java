@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import net.sf.jasperreports.engine.JRException;
 import ph.cpi.rest.api.dao.MaintenanceDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
@@ -233,8 +234,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnProvinceParams.put("regionCd", rmpp.getRegionCd());
 		retrieveMtnProvinceParams.put("provinceCd", rmpp.getProvinceCd());
 		retrieveMtnProvinceParams.put("from", "retrieveMtnProvince");
-		rmpResponse.setRegion(maintenanceDao.retrieveMtnRegion(retrieveMtnProvinceParams));
-		rmpResponse.getRegion().setProvince(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
+		rmpResponse.setRegion(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
+		//rmpResponse.getRegion().setProvinceList(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
 		logger.info("retrieveMtnProvinceResponse :" + rmpResponse.toString());
 		
 		return rmpResponse;
@@ -520,9 +521,19 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnRiskParams.put("createDate", smrr.getCreateDate());
 		saveMtnRiskParams.put("updateUser", smrr.getUpdateUser());
 		saveMtnRiskParams.put("updateDate", smrr.getUpdateDate());
-		
-		smrrResponse.setReturnCode(maintenanceDao.saveMtnRisk(saveMtnRiskParams));
-		return null;
+		saveMtnRiskParams.put("blockCd", smrr.getBlockCd());
+		try{
+			smrrResponse.setReturnCode(maintenanceDao.saveMtnRisk(saveMtnRiskParams));
+		}catch (SQLException ex) {
+			smrrResponse.setReturnCode(0);
+			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			smrrResponse.setReturnCode(0);
+			smrrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return smrrResponse;
 	}
 	
 }

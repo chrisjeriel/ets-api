@@ -17,6 +17,14 @@ public class SaveMtnRiskRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String blockCd;
+	
+	public String getBlockCd() {
+		return blockCd;
+	}
+	public void setBlockCd(String blockCd) {
+		this.blockCd = blockCd;
+	}
 	public String getRiskId() {
 		return riskId;
 	}
@@ -119,8 +127,10 @@ public class SaveMtnRiskRequest {
 				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
 				+ districtCd + ", latitude=" + latitude + ", longitude=" + longitude + ", zoneCd=" + zoneCd
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", blockCd=" + blockCd
+				+ "]";
 	}
+
 	
 	
 }

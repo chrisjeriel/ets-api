@@ -242,10 +242,9 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMaintenanceCedingCompany(retMtnCedingCompany);
 	}
 	
-	@CrossOrigin
 	@PostMapping(path="saveMtnRisk")
 	public @ResponseBody SaveMtnRiskResponse saveMaintenanceRisk(@RequestBody SaveMtnRiskRequest smrr) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompany");
+		logger.info("POST: /api/maintenance-service/saveMtnRisk");
 		logger.info("SaveMtnRiskRequest : " + smrr.toString());
 		return maintenanceService.saveMtnRisk(smrr);
 	}
