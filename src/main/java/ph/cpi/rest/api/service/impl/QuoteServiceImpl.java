@@ -802,9 +802,13 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteDeductiblesParams.put("saveDeductibleList" , sqdr.getSaveDeductibleList());
 			saveQuoteDeductiblesParams.put("deleteDeductibleList" , sqdr.getDeleteDeductibleList());
 			sqdrResponse.setReturnCode(quoteDao.saveQuoteDeductibles(saveQuoteDeductiblesParams));
-		}catch (Exception ex) {
+		}catch (SQLException ex) {
 			sqdrResponse.setReturnCode(0);
 			sqdrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sqdrResponse.setReturnCode(0);
+			sqdrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
 		}
 		return sqdrResponse;

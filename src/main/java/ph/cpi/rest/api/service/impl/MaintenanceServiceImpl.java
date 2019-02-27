@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import net.sf.jasperreports.engine.JRException;
 import ph.cpi.rest.api.dao.MaintenanceDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
@@ -33,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
@@ -55,6 +57,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 import ph.cpi.rest.api.utils.PrintingUtility;
 
@@ -231,8 +234,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnProvinceParams.put("regionCd", rmpp.getRegionCd());
 		retrieveMtnProvinceParams.put("provinceCd", rmpp.getProvinceCd());
 		retrieveMtnProvinceParams.put("from", "retrieveMtnProvince");
-		rmpResponse.setRegion(maintenanceDao.retrieveMtnRegion(retrieveMtnProvinceParams));
-		rmpResponse.getRegion().setProvince(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
+		rmpResponse.setRegion(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
+		//rmpResponse.getRegion().setProvinceList(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
 		logger.info("retrieveMtnProvinceResponse :" + rmpResponse.toString());
 		
 		return rmpResponse;
@@ -495,6 +498,42 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmlcResponse.setLineClass(maintenanceDao.retrieveMntLineClass(retrieveMtnLineClassParams));
 		logger.info("retrieveMtnLineClassResponse : " + rmlcResponse.toString());
 		return rmlcResponse;
+	}
+
+	@Override
+	public SaveMtnRiskResponse saveMtnRisk(SaveMtnRiskRequest smrr) throws SQLException {
+		SaveMtnRiskResponse smrrResponse = new SaveMtnRiskResponse();
+		HashMap<String, Object> saveMtnRiskParams = new HashMap<String, Object>();
+		
+		saveMtnRiskParams.put("riskId", smrr.getRiskId());
+		saveMtnRiskParams.put("riskAbbr", smrr.getRiskAbbr());
+		saveMtnRiskParams.put("riskName", smrr.getRiskName());
+		saveMtnRiskParams.put("regionCd", smrr.getRegionCd());
+		saveMtnRiskParams.put("provinceCd", smrr.getProvinceCd());
+		saveMtnRiskParams.put("cityCd", smrr.getCityCd());
+		saveMtnRiskParams.put("districtCd", smrr.getDistrictCd());
+		saveMtnRiskParams.put("latitude", smrr.getLatitude());
+		saveMtnRiskParams.put("longitude", smrr.getLongitude());
+		saveMtnRiskParams.put("zoneCd", smrr.getZoneCd());
+		saveMtnRiskParams.put("activeTag", smrr.getActiveTag());
+		saveMtnRiskParams.put("remarks", smrr.getRemarks());
+		saveMtnRiskParams.put("createUser", smrr.getCreateUser());
+		saveMtnRiskParams.put("createDate", smrr.getCreateDate());
+		saveMtnRiskParams.put("updateUser", smrr.getUpdateUser());
+		saveMtnRiskParams.put("updateDate", smrr.getUpdateDate());
+		saveMtnRiskParams.put("blockCd", smrr.getBlockCd());
+		try{
+			smrrResponse.setReturnCode(maintenanceDao.saveMtnRisk(saveMtnRiskParams));
+		}catch (SQLException ex) {
+			smrrResponse.setReturnCode(0);
+			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			smrrResponse.setReturnCode(0);
+			smrrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return smrrResponse;
 	}
 	
 }
