@@ -33,14 +33,17 @@ public class PrintingUtility {
 	public String generateJasperReport(HashMap<String, Object> reportParams, HashMap<String, Object> dbParams, String reportPath, String outputPath,
 			String outputType) throws SQLException, JRException, IOException {
 
-		logger.info("Generate Report: JASPER");
-		Connection conn = DriverManager.getConnection(dbParams.get("dbUrl").toString(), dbParams.get("username").toString(), dbParams.get("password").toString());
+		logger.info("Generate Jasper Report:");
+		Connection conn = DriverManager.getConnection(dbParams.get("dbUrl").toString(), 
+												      dbParams.get("username").toString(), 
+												      dbParams.get("password").toString());
 
+		String reportName = reportParams.get("REPORT_NAME").toString();
 		HashMap<String, Object> mapRptParam = new HashMap<>();
 
-		reportPath = "C:\\ETS\\REPORTS\\QUOTER009A\\QUOTER009A_MAIN.jrxml";
+		reportPath = "C:\\ETS\\REPORTS\\" + reportName +"\\" + reportName + "_MAIN.jrxml";
 		
-		String filename = "QUOTER009A_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
+		String filename = reportName + "_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
 		outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
 		outputType = "pdf";
 		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
