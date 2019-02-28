@@ -15,7 +15,6 @@ public class SaveQuoteOtherRatesRequest {
 	public Integer getQuoteId() {
 		return quoteId;
 	}
-	
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
@@ -25,11 +24,9 @@ public class SaveQuoteOtherRatesRequest {
 	public void setOtherRates(List<OtherRates> otherRates) {
 		this.otherRates = otherRates;
 	}
-	
 	public List<OtherRates> getDeleteOtherRates() {
 		return deleteOtherRates;
 	}
-
 	public void setDeleteOtherRates(List<OtherRates> deleteOtherRates) {
 		this.deleteOtherRates = deleteOtherRates;
 	}
@@ -39,6 +36,7 @@ public class SaveQuoteOtherRatesRequest {
 		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", otherRates=" + otherRates + ", deleteOtherRates="
 				+ deleteOtherRates + "]";
 	}
+
 }
 
 @Alias("SaveQuoteOtherRates")
