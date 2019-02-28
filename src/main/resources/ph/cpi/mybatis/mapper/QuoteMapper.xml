@@ -49,23 +49,28 @@
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingOcMap">
-		<result property="quotationNo" 		column="OPEN_QUOTATION_NO"/>
+	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="retrieveQuoteListingOcMap">
+		<result property="openQuotationNo" 	column="OPEN_QUOTATION_NO"/>
+		<result property="cessionId" 		column="CESSION_ID"/>
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
+		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
 		<result property="status" 			column="STATUS"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="prinId" 			column="PRIN_ID"/>
 		<result property="principalName" 	column="PRINCIPAL_NAME"/>
+		<result property="contractorId" 	column="CONTRACTOR_ID"/>
 		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
-		<result property="policyNo" 		column="OPEN_POLICY_NO"/>
+		<result property="openPolicyNo" 	column="OPEN_POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
 		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="reqBy" 			column="REQ_BY"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		
-		<association property="project" 	resultMap="assocProject"/>
+		<association property="projectOc" 	resultMap="assocProjectOc"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteOptionMap">
@@ -76,6 +81,12 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
+		<result property="riskName" 		column="RISK_NAME"/>
+		<result property="objectDesc" 		column="OBJECT_DESCRIPTION"/>
+		<result property="site" 			column="SITE"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.ProjectOc" id="assocProjectOc">
 		<result property="riskName" 		column="RISK_NAME"/>
 		<result property="objectDesc" 		column="OBJECT_DESCRIPTION"/>
 		<result property="site" 			column="SITE"/>

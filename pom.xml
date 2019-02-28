@@ -83,7 +83,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.6.0</version>
+			<version>6.0.0</version>
 		</dependency>
 		
 		<dependency>
@@ -104,7 +104,7 @@
 		    <artifactId>pmmsc-rep-fonts</artifactId>
 		    <version>1.0.0</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
