@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
@@ -68,6 +69,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
@@ -748,8 +750,6 @@ public class QuoteServiceImpl implements QuoteService{
 		saveQuoteOptionsParams.put("quoteId" , sqor.getQuoteId());
 		saveQuoteOptionsParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 		saveQuoteOptionsParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
-		saveQuoteOptionsParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
-		saveQuoteOptionsParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 		sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
 		return sqoResponse;
 		// TODO Auto-generated method stub
@@ -791,8 +791,30 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
 		saveQuoteOtherRatesParams.put("quoteId", sqorr.getQuoteId());
 		saveQuoteOtherRatesParams.put("otherRates", sqorr.getOtherRates());
+		saveQuoteOtherRatesParams.put("deleteOtherRates", sqorr.getDeleteOtherRates());
 		sqorResponse.setReturnCode(quoteDao.saveQuoteOtherRates(saveQuoteOtherRatesParams));
 		return sqorResponse;
+	}
+
+	@Override
+	public SaveQuoteDeductiblesResponse saveQuoteDeductibles(SaveQuoteDeductiblesRequest sqdr) throws SQLException {
+		SaveQuoteDeductiblesResponse sqdrResponse = new SaveQuoteDeductiblesResponse();
+		try{
+			HashMap<String, Object> saveQuoteDeductiblesParams = new HashMap<String, Object>();
+			saveQuoteDeductiblesParams.put("quoteId" , sqdr.getQuoteId());
+			saveQuoteDeductiblesParams.put("saveDeductibleList" , sqdr.getSaveDeductibleList());
+			saveQuoteDeductiblesParams.put("deleteDeductibleList" , sqdr.getDeleteDeductibleList());
+			sqdrResponse.setReturnCode(quoteDao.saveQuoteDeductibles(saveQuoteDeductiblesParams));
+		}catch (SQLException ex) {
+			sqdrResponse.setReturnCode(0);
+			sqdrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sqdrResponse.setReturnCode(0);
+			sqdrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return sqdrResponse;
 	}
 
 }

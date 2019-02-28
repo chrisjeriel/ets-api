@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
@@ -55,6 +58,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -238,10 +242,11 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMaintenanceCedingCompany(retMtnCedingCompany);
 	}
 	
-	@GetMapping(path="dummyCallJReports")
-	public @ResponseBody RetrieveMtnCedingCompanyResponse dummyCallJReports(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMaintenanceCedingCompany");
-		logger.info("RetrieveMaintenanceCedingCompanyRequest : " + retMtnCedingCompany.toString());
-		return maintenanceService.dummyCallJReports(retMtnCedingCompany);
+	@PostMapping(path="saveMtnRisk")
+	public @ResponseBody SaveMtnRiskResponse saveMaintenanceRisk(@RequestBody SaveMtnRiskRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRisk");
+		logger.info("SaveMtnRiskRequest : " + smrr.toString());
+		return maintenanceService.saveMtnRisk(smrr);
 	}
+
 }
