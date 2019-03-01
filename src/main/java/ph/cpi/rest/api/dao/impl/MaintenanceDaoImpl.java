@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +35,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Autowired
 	private SqlSession sqlSession;
 
+	private static final Logger logger = LoggerFactory.getLogger(MaintenanceDaoImpl.class);
 	/*@Override
 	public AlopSample retrieveQuoteAlop(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
@@ -82,16 +85,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return riskList;
 	}
 
-	public Region retrieveMtnRegion(HashMap<String, Object> params) throws SQLException {
+	public List<Region> retrieveMtnRegion(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Region region = sqlSession.selectOne("retrieveMtnRegion", params);;
+		List<Region> region = sqlSession.selectList("retrieveMtnRegion", params);;
 		return region;
 	}
 
 	@Override
-	public Province retrieveMtnProvince(HashMap<String, Object> params) throws SQLException {
+	public List<Region> retrieveMtnProvince(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Province province = sqlSession.selectOne("retrieveMtnProvince", params);
+		List<Region> province = sqlSession.selectList("retrieveMtnProvince", params);
 		return province;
 	}
 
@@ -110,9 +113,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public SectionCovers retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
+	public List<SectionCovers> retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		SectionCovers sectionCovers = sqlSession.selectOne("retrieveMtnSectionCovers", params);
+		List<SectionCovers> sectionCovers = sqlSession.selectList("retrieveMtnSectionCovers", params);
 		return sectionCovers;
 	}
 
@@ -206,6 +209,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<LineClass> lineClass = sqlSession.selectList("retrieveMntLineClass", params);
 		System.out.println("retrieveMntLineClassDao : " + lineClass);
 		return lineClass;
+	}
+
+	@Override
+	public Integer saveMtnRisk(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnRisk DAOImpl : " + params);
+		Integer saveMtnRisk = sqlSession.update("saveMtnRisk", params);
+		return saveMtnRisk;
 	}
 
 }

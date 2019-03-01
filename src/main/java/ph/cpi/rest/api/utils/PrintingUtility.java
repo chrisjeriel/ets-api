@@ -15,6 +15,8 @@ import javax.imageio.ImageIO;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -27,33 +29,28 @@ import net.sf.jasperreports.engine.JasperReport;
 public class PrintingUtility {
 
 	private static final Logger logger = LoggerFactory.getLogger(PrintingUtility.class);
-
-	public void generateJasperReport(HashMap<String, Object> reportParams, String reportPath, String outputPath,
+	
+	public String generateJasperReport(HashMap<String, Object> reportParams, HashMap<String, Object> dbParams, String reportPath, String outputPath,
 			String outputType) throws SQLException, JRException, IOException {
 
-		logger.info("Generate Report: JASPER");
+		logger.info("Generate Jasper Report:");
+		Connection conn = DriverManager.getConnection(dbParams.get("dbUrl").toString(), 
+												      dbParams.get("username").toString(), 
+												      dbParams.get("password").toString());
 
+		String reportName = reportParams.get("REPORT_NAME").toString();
 		HashMap<String, Object> mapRptParam = new HashMap<>();
 
-		/*
-		 * for (ReportParameter reportParameter : reportParams) {
-		 * 
-		 * mapRptParam.put(reportParameter.getParamName(),
-		 * reportParameter.getParamValue());
-		 * 
-		 * }
-		 */
-
-		reportPath = "C:\\ETS\\REPORTS\\QUOTER009A_MAIN.jrxml";
+		reportPath = "C:\\ETS\\REPORTS\\" + reportName +"\\" + reportName + "_MAIN.jrxml";
 		
-		String filename = "QUOTER009A_" + "1_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
-		outputPath = "D:\\Projects\\PMMSC\\Reports\\Output\\" + filename;
+		String filename = reportName + "_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
+		outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
 		outputType = "pdf";
-		mapRptParam.put("P_QUOTE_ID", 1);
-		mapRptParam.put("pQuoteId", 1);
+		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
+		mapRptParam.put("pQuoteId", reportParams.get("QUOTE_ID"));
 		
-
-		JasperPrint jasperPrint = jasperPrint(reportPath, mapRptParam);
+		logger.info("generateJasperReport outputPath : " + outputPath);
+		JasperPrint jasperPrint = jasperPrint(conn, reportPath, mapRptParam);
 		
 		File file = new File(outputPath);
 		OutputStream out = new FileOutputStream(file);
@@ -78,21 +75,16 @@ public class PrintingUtility {
 		}
 		
 
-		
-
-		
+		return file.getAbsolutePath();
 	}
 
-	public JasperPrint jasperPrint(String reportPath, HashMap<String, Object> reportParameters)
+	@Autowired
+	public JasperPrint jasperPrint(Connection conn, String reportPath, HashMap<String, Object> reportParameters)
 			throws SQLException, JRException, IOException {
-
-		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@192.10.10.210:1521:ETSDEV", "CPI",
-				"CPI12345!");
-
+		
 		try {
 
 			JasperPrint print = null;
-			/* conn = datasource.getConnection(); */
 			File reportFile = new File(reportPath);
 
 			if (!reportFile.exists()) {

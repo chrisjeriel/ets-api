@@ -28,7 +28,7 @@ public interface MaintenanceDao {
 //	public List<Alop> retrieveQuoteAlopList(final HashMap<String, Object> params) throws SQLException;
 	public Risk retrieveMtnRisk(final HashMap<String, Object> params) throws SQLException;
 	public List<Risk> retrieveMtnRiskListing(final HashMap<String, Object> params) throws SQLException;
-	public SectionCovers retrieveSectionCovers(final HashMap<String, Object> params) throws SQLException;
+	public List<SectionCovers> retrieveSectionCovers(final HashMap<String, Object> params) throws SQLException;
 	public List<Cession> retrieveTypeOfCession(final HashMap<String, Object> params) throws SQLException;
 	public List<Insured> retrieveMtnInsured(final HashMap<String, Object> params) throws SQLException;
 	public List<EndtCode> retrieveEndtCode(final HashMap<String, Object> params) throws SQLException;
@@ -41,8 +41,8 @@ public interface MaintenanceDao {
 	public List<Region> retrieveMaintenanceBlockList(final HashMap<String, Object> params) throws SQLException;
 	public List<CedingCompany> retrieveMaintenanceCedingCompanyList(final HashMap<String, Object> params) throws SQLException;
 	public List<CedingCompany> retrieveMaintenanceCedingCompany(final HashMap<String, Object> params) throws SQLException;
-	public Region retrieveMtnRegion(final HashMap<String, Object> params) throws SQLException;
-	public Province retrieveMtnProvince(final HashMap<String, Object> params) throws SQLException;
+	public List<Region> retrieveMtnRegion(final HashMap<String, Object> params) throws SQLException;
+	public List<Region> retrieveMtnProvince(final HashMap<String, Object> params) throws SQLException;
 	public List<Object_> retrieveMtnObject(final HashMap<String, Object> params) throws SQLException;
 	public List<QuoteWordings> retrieveMtnQuoteWordings(final HashMap<String, Object> params) throws SQLException;
 	
@@ -51,5 +51,6 @@ public interface MaintenanceDao {
 	public List<Intermediary> retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
 	public List<Line> retrieveMntLine(final HashMap<String, Object> params ) throws SQLException;
 	public List<LineClass> retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveMtnRisk(final HashMap<String, Object> params ) throws SQLException;
 	
 }

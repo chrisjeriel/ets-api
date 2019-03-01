@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.util.List;
+
 import org.joda.time.LocalDateTime;
 
 public class District {
@@ -13,6 +15,7 @@ public class District {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	private Block block;
+	private List<Block> blockList;
 	public String getDistrictCd() {
 		return districtCd;
 	}
@@ -67,6 +70,19 @@ public class District {
 	public void setBlock(Block block) {
 		this.block = block;
 	}
+	public List<Block> getBlockList() {
+		return blockList;
+	}
+	public void setBlockList(List<Block> blockList) {
+		this.blockList = blockList;
+	}
+	@Override
+	public String toString() {
+		return "District [districtCd=" + districtCd + ", districtDesc=" + districtDesc + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", block=" + block + ", blockList=" + blockList + "]";
+	}
+	
 	
 	
 }

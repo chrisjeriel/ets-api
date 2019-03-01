@@ -49,23 +49,28 @@
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingOcMap">
-		<result property="quotationNo" 		column="OPEN_QUOTATION_NO"/>
+	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="retrieveQuoteListingOcMap">
+		<result property="openQuotationNo" 	column="OPEN_QUOTATION_NO"/>
+		<result property="cessionId" 		column="CESSION_ID"/>
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
+		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
 		<result property="status" 			column="STATUS"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="prinId" 			column="PRIN_ID"/>
 		<result property="principalName" 	column="PRINCIPAL_NAME"/>
+		<result property="contractorId" 	column="CONTRACTOR_ID"/>
 		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
-		<result property="policyNo" 		column="OPEN_POLICY_NO"/>
+		<result property="openPolicyNo" 	column="OPEN_POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
 		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="reqBy" 			column="REQ_BY"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		
-		<association property="project" 	resultMap="assocProject"/>
+		<association property="projectOc" 	resultMap="assocProjectOc"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteOptionMap">
@@ -76,6 +81,12 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
+		<result property="riskName" 		column="RISK_NAME"/>
+		<result property="objectDesc" 		column="OBJECT_DESCRIPTION"/>
+		<result property="site" 			column="SITE"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.ProjectOc" id="assocProjectOc">
 		<result property="riskName" 		column="RISK_NAME"/>
 		<result property="objectDesc" 		column="OBJECT_DESCRIPTION"/>
 		<result property="site" 			column="SITE"/>
@@ -405,9 +416,9 @@
         <result property="fileName"  	column="FILE_NAME"/>
         <result property="description"  column="DESCRIPTION"/>
         <result property="createUser"  	column="CREATE_USER"/>
-     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/>
+     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
         <result property="updateUser"  	column="UPDATE_USER"/>
-        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="org.apache.ibatis.type.LocalDateTimeTypeHandler"/> 
+        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
@@ -967,17 +978,18 @@
 			CPI.ETS_QUOTE_PKG_MBM.save_quote_general_info(
 				#{quotationNo, mode=OUT, jdbcType=VARCHAR},
 				#{outQuoteId, mode=OUT, jdbcType=INTEGER},
+				#{savingType},
 				#{quoteId, jdbcType=INTEGER},#{lineCd},#{quoteYear, jdbcType=INTEGER},#{quoteSeqNo, jdbcType=INTEGER},
 				#{quoteRevNo, jdbcType=INTEGER},#{cedingId, jdbcType=INTEGER},#{cessionId, jdbcType=INTEGER},#{lineClassCd},
 				#{prinId, jdbcType=INTEGER},#{contractorId, jdbcType=INTEGER},#{insuredDesc},#{policyId, jdbcType=INTEGER},
 				#{status},#{reinsurerId, jdbcType=INTEGER},#{intmId, jdbcType=INTEGER},
 				CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				#{reqBy},
+				#{reqBy, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 				#{reqMode},
 				#{mbiRefNo, jdbcType=INTEGER},#{currencyCd},#{currencyRt, jdbcType=FLOAT},#{govtTag},#{indicativeTag},
-				#{openCoverTag},#{declarationTag},#{preparedBy},#{approvedBy, jdbcType=VARCHAR},#{printedBy, jdbcType=VARCHAR},
+				#{openCoverTag},#{declarationTag},#{preparedBy, jdbcType=VARCHAR},#{approvedBy, jdbcType=VARCHAR},#{printedBy, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{printDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 				#{openingParag, jdbcType=VARCHAR},#{closingParag, jdbcType=VARCHAR},#{createUser},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1010,15 +1022,17 @@
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 		BEGIN
-		   <foreach collection="saveSectionCovers" item="sectioncovers">
-		   	   ETS_QUOTE_PKG_EJVA.saveQuoteCoverage
-			   (#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
+			   ETS_QUOTE_PKG_EJVA.save_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
-			   SYSDATE,#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+			   SYSDATE);
+		   <foreach collection="saveSectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.save_quote_section_covers
+			   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 			   #{sectioncovers.addSi},#{sectioncovers.createUser},
 			   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{sectioncovers.updateUser},
 			   SYSDATE);
 		   </foreach>
+		   
 		   <foreach collection="deleteSectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
 		   </foreach>
@@ -1100,28 +1114,32 @@
 	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
 		BEGIN
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
-		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId},#{quoteOption.optionRt},
+		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
 		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		   
-		   <foreach collection="saveDeductibleList" item="deductible">
-		   		ETS_QUOTE_PKG_ETC.save_q_deductible(
-		   			#{quoteId},#{deductible.optionId},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
-		   		);
-		   </foreach>
+		   
 		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
 		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId});
 		   </foreach>
+		   
+		END;
+	</update>
+	
+	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveDeductibleList" item="deductible">
+			   		ETS_QUOTE_PKG_ETC.save_q_deductible(
+			   			#{quoteId},#{deductible.optionId},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   		);
+			</foreach>
 		   <foreach collection="deleteDeductibleList" item="deductible">
 		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd});
 		   </foreach>
-		   
-		   
-		   
-		END;
+	   END;
 	</update>
 	
 	
@@ -1175,7 +1193,13 @@
 				CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
 		 </foreach>
+		 <foreach collection="deleteOtherRates" item="otherRates">
+		 	CPI.ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
+		 		#{quoteId,jdbcType=INTEGER},
+				#{otherRates.coverCd,jdbcType=VARCHAR}
+		 	);
+		 </foreach>
 		END;
-	</update>
+	</update> 
 	
 </mapper>
