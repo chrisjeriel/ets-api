@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.sf.jasperreports.engine.JRException;
+import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.utils.PrintingUtility;
 
 @Controller
@@ -76,6 +76,44 @@ public class UtilController {
 	            .contentType(MediaType.parseMediaType("application/pdf"))
 	            .body(resource);
 		
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@GetMapping(path="generateReport")
+	public ResponseEntity generateReport(GenerateReportRequest grr) throws SQLException, IOException {
+		logger.info("GET: /api/util-service/generateReport");
+		logger.info("generateReportRequest : " + grr.toString());
+		
+		HashMap dbParams = new HashMap<String, String>();
+		dbParams.put("dbUrl", dbUrl);
+		dbParams.put("username", username);
+		dbParams.put("password", password);
+		
+		PrintingUtility pu = new PrintingUtility();
+		HashMap reportParam = new HashMap<String, String>();
+		reportParam.put("QUOTE_ID", grr.getQuoteId());
+		reportParam.put("REPORT_NAME", grr.getReportName());
+		String filename = "";
+		try {
+			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		File file = new File(filename);
+		logger.info("FILE filename: " + filename);
+	    logger.info("FILE Absolute Path: " + file.getAbsolutePath());
+	    Path path = Paths.get(file.getAbsolutePath());
+	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+	    
+	    return ResponseEntity.ok()
+	            .contentType(MediaType.parseMediaType("application/pdf"))
+	            .body(resource);
 	}
 	
 }
