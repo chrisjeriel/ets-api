@@ -8,6 +8,7 @@ import org.joda.time.LocalDateTime;
 
 public class SaveQuoteOtherRatesRequest {
 	
+	
 	private Integer quoteId;
 	private List<OtherRates> otherRates;
 	private List<OtherRates> deleteOtherRates;
@@ -36,6 +37,7 @@ public class SaveQuoteOtherRatesRequest {
 		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", otherRates=" + otherRates + ", deleteOtherRates="
 				+ deleteOtherRates + "]";
 	}
+
 
 }
 

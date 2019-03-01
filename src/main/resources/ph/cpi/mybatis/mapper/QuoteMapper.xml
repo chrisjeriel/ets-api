@@ -1162,7 +1162,7 @@
 	
 	<update id="saveQuoteOtherRatesMap" parameterType="java.util.Map">
 		BEGIN
-		 <foreach collection="otherRates" item="otherRates">
+		<foreach collection="otherRates" item="otherRates">
 			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
 				#{quoteId,jdbcType=INTEGER},
 				#{otherRates.coverCd,jdbcType=VARCHAR},
@@ -1179,7 +1179,7 @@
 		 		#{quoteId,jdbcType=INTEGER},
 				#{otherRates.coverCd,jdbcType=VARCHAR}
 		 	);
-		 </foreach>
+		 </foreach> 
 		END;
 	</update> 
 	
