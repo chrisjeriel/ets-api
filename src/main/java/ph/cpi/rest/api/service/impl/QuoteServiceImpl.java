@@ -77,6 +77,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
+import ph.cpi.rest.api.utils.DateUtility;
 import ph.cpi.rest.api.model.Error;
 
 
@@ -108,6 +109,7 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		RetrieveQuoteListingResponse rqlResponse = new RetrieveQuoteListingResponse();
+		DateUtility date = new DateUtility();
 		
 		HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
 		retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
@@ -123,8 +125,8 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("site", rqlp.getSite());
 		retrieveQuoteListingParams.put("policyNo", ""); //from policy table
 		retrieveQuoteListingParams.put("currencyCd", rqlp.getCurrencyCd());
-		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate());
-		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
+		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate().isEmpty() ? rqlp.getIssueDate() : date.toDate(rqlp.getIssueDate()));
+		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
 		retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
 		/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
