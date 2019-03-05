@@ -40,7 +40,7 @@ public class UtilController {
 	@Value("${spring.datasource.password}")
 	private String password;
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(path="generateReport/{quoteId}")
 	public ResponseEntity generateReport(@PathVariable("quoteId") Integer quoteId) throws SQLException, IOException {
 		logger.info("GET: /api/util-service/generateReport");

@@ -41,7 +41,7 @@ public class PrintingUtility {
 		String reportName = reportParams.get("REPORT_NAME").toString();
 		HashMap<String, Object> mapRptParam = new HashMap<>();
 
-		reportPath = "C:\\ETS\\REPORTS\\" + reportName +"\\" + reportName + "_MAIN.jrxml";
+		reportPath = "C:\\ETS\\REPORTS\\" + reportName + "_MAIN.jrxml";
 		
 		String filename = reportName + "_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
 		outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
