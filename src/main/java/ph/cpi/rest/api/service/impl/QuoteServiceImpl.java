@@ -266,6 +266,7 @@ public class QuoteServiceImpl implements QuoteService{
 	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp)
 			throws SQLException {
 		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
+		DateUtility date = new DateUtility();
 		HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
 		retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
 		retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
@@ -273,11 +274,11 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
 		retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
 		retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
-		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom());
-		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo());
+		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom().isEmpty() ? rqhclp.getPeriodFrom() : date.toDate(rqhclp.getPeriodFrom()));
+		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo().isEmpty() ? rqhclp.getPeriodTo() : date.toDate(rqhclp.getPeriodTo()));
 		retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
 		retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
-		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate());
+		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate().isEmpty() ? rqhclp.getReqDate() : date.toDate(rqhclp.getReqDate()));
 		retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
 		rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
 		
