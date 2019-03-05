@@ -6,6 +6,7 @@ import org.joda.time.LocalDateTime;
 
 public class SectionCovers {
 	private Integer coverCd;
+	private String coverCdAbbr;
 	private String section;
 	private String bulletNo;
 	private BigDecimal sumInsured;
@@ -14,18 +15,23 @@ public class SectionCovers {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	
-	public String getSection() {
-		return section;
-	}
-	public void setSection(String section) {
-		this.section = section;
-	}
 	public Integer getCoverCd() {
 		return coverCd;
 	}
 	public void setCoverCd(Integer coverCd) {
 		this.coverCd = coverCd;
+	}
+	public String getCoverCdAbbr() {
+		return coverCdAbbr;
+	}
+	public void setCoverCdAbbr(String coverCdAbbr) {
+		this.coverCdAbbr = coverCdAbbr;
+	}
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
 	}
 	public String getBulletNo() {
 		return bulletNo;
@@ -69,14 +75,13 @@ public class SectionCovers {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "SectionCovers coverCd=" + coverCd + ", section=" + section + ", bulletNo="
-				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "SectionCovers [coverCd=" + coverCd + ", coverCdAbbr=" + coverCdAbbr + ", section=" + section
+				+ ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
-	
 	
 	
 }
