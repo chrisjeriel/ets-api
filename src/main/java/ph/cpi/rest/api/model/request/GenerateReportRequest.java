@@ -17,5 +17,9 @@ public class GenerateReportRequest {
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
+	@Override
+	public String toString() {
+		return "GenerateReportRequest [reportName=" + reportName + ", quoteId=" + quoteId + "]";
+	}
 	
 }

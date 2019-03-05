@@ -434,6 +434,7 @@
 	
 		<result property="section" column="SECTION" />
 		<result property="coverCd" column="COVER_CD" />
+		<result property="coverCdAbbr" column="COVER_CD_ABBR" />
 		<result property="bulletNo" column="BULLET_NO" />
 		<result property="sumInsured" column="SUM_INSURED" />
 		<result property="addSi" column="ADD_SI" />
@@ -1034,7 +1035,7 @@
 		   </foreach>
 		   
 		   <foreach collection="deleteSectionCovers" item="sectioncovers">
-		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
+		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId,jdbcType=INTEGER},#{projId,jdbcType=INTEGER},#{riskId,jdbcType=INTEGER},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
 		   </foreach>
 		END;
 	</update>
