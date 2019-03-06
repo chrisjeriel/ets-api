@@ -32,6 +32,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingMap">
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
+		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
 		<result property="status" 			column="STATUS"/>
@@ -1197,4 +1198,13 @@
 		END;
 	</update> 
 	
+	<update id="saveQuoteChangeQuoteStatusMap" parameterType="java.util.Map">
+		BEGIN
+		 <foreach collection="changeQuoteStatus" item="changeQuoteStatus">
+		 	CPI.ETS_QUOTE_PKG_EJVA_TEST.save_quote_change_quote_status(
+		 		#{changeQuoteStatus.quoteId, jdbcType=INTEGER},#{changeQuoteStatus.cedingId},#{changeQuoteStatus.cessionId},#{changeQuoteStatus.status}
+		 	);
+		 </foreach>
+		END;
+	</update> 
 </mapper>
