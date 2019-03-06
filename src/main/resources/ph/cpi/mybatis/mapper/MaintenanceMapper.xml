@@ -411,7 +411,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Currency" id="currencyMap">
 		<result property="currencyCd"		column="CURRENCY_CD" />
-		<result property="currencyAbbr"		column="CURRENCY_ABBR" />
+		<!-- <result property="currencyAbbr"		column="CURRENCY_ABBR" /> -->
 		<result property="currencyWord"		column="CURRENCY_WORD" />
 		<result property="currencyRt"		column="CURRENCY_RT" />
 		<result property="currencyDesc"		column="CURRENCY_DESC" />
