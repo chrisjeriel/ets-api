@@ -77,6 +77,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
+import ph.cpi.rest.api.utils.DateUtility;
 import ph.cpi.rest.api.model.Error;
 
 
@@ -108,6 +109,7 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		RetrieveQuoteListingResponse rqlResponse = new RetrieveQuoteListingResponse();
+		DateUtility date = new DateUtility();
 		
 		HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
 		retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
@@ -123,8 +125,8 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("site", rqlp.getSite());
 		retrieveQuoteListingParams.put("policyNo", ""); //from policy table
 		retrieveQuoteListingParams.put("currencyCd", rqlp.getCurrencyCd());
-		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate());
-		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
+		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate().isEmpty() ? rqlp.getIssueDate() : date.toDate(rqlp.getIssueDate()));
+		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
 		retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
 		/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
@@ -264,6 +266,7 @@ public class QuoteServiceImpl implements QuoteService{
 	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp)
 			throws SQLException {
 		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
+		DateUtility date = new DateUtility();
 		HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
 		retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
 		retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
@@ -271,11 +274,11 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
 		retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
 		retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
-		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom());
-		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo());
+		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom().isEmpty() ? rqhclp.getPeriodFrom() : date.toDate(rqhclp.getPeriodFrom()));
+		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo().isEmpty() ? rqhclp.getPeriodTo() : date.toDate(rqhclp.getPeriodTo()));
 		retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
 		retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
-		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate());
+		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate().isEmpty() ? rqhclp.getReqDate() : date.toDate(rqhclp.getReqDate()));
 		retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
 		rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
 		
@@ -613,9 +616,12 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());*/
 			saveQuoteCompetitionParams.put("competitionsList", sqcr.getCompetitionsList());
 			sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
+			/*HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteCompetitionParams);
+			sqcrResponse.setReturnCode((Integer) res.get("errorCode"));*/
 		}catch(Exception ex){
-			sqcrResponse.setReturnCode(1);
-			sqcrResponse.getErrorList().add(new Error("EXCEPTION-001", "An error has occured. Please check your inputs."));
+			sqcrResponse.setReturnCode(0);
+			sqcrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			System.out.println(sqcrResponse);
 			ex.printStackTrace();
 		}
 		

@@ -548,7 +548,7 @@
 		<association property="attachmentOc"  resultMap="attachmentOcMap" />
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachmentOcMap">
+	<resultMap type="ph.cpi.rest.api.model.quote.AttachmentOc" id="attachmentOcMap">
 		<result property="fileNo"			column="FILE_NO"/>
 		<result property="fileName"			column="FILE_NAME"/>
 		<result property="description"		column="DESCRIPTION"/>
