@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 public class Currency {
 	private String currencyCd;
-	private String currencyAbbr;
+	//private String currencyAbbr;
 	private String currencyWord;
 	private Double currencyRt;
 	private String currencyDesc;
@@ -18,12 +18,12 @@ public class Currency {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getCurrencyAbbr() {
+	/*public String getCurrencyAbbr() {
 		return currencyAbbr;
 	}
 	public void setCurrencyAbbr(String currencyAbbr) {
 		this.currencyAbbr = currencyAbbr;
-	}
+	}*/
 	public String getCurrencyWord() {
 		return currencyWord;
 	}
@@ -69,7 +69,7 @@ public class Currency {
 	
 	@Override
 	public String toString() {
-		return "Currency [currencyCd="+ currencyCd +", currencyAbbr="+ currencyAbbr +", currencyWord="
+		return "Currency [currencyCd="+ currencyCd +", currencyWord="
 				+ currencyWord + ", currencyRt=" + currencyRt + ", currencyDesc=" + currencyDesc + ", createUser="
 				+ createUser +", createDate="+ createDate +", updateUser="+ updateUser +", updateDate="
 				+ updateDate +"]";
