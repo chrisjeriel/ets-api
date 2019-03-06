@@ -251,4 +251,9 @@ public class QuoteDaoImpl implements QuoteDao{
 		return errorCode;
 	}
 		
+	public Integer saveQuoteOptionAll(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);
+		return errorCode;
+	}
 }
