@@ -423,6 +423,7 @@
 	
 	<select id="retrieveMtnCurrency" resultMap="currencyMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+																			#{activeTag, jdbcType=VARCHAR},
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 
 																			#{sortKey, jdbcType=VARCHAR}, 

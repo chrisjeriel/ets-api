@@ -318,6 +318,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnCurrencyParams = new HashMap<String, Object>();
 		retrieveMtnCurrencyParams.put("currencyCd", rmcr.getCurrencyCd());
+		retrieveMtnCurrencyParams.put("activeTag", rmcr.getActiveTag());
 		retrieveMtnCurrencyParams.put("position", rmcr.getPaginationRequest().getPosition());
 		retrieveMtnCurrencyParams.put("count", rmcr.getPaginationRequest().getCount());
 		retrieveMtnCurrencyParams.put("sortKey", rmcr.getSortRequest().getSortKey());
