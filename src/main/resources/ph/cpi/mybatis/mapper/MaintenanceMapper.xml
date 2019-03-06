@@ -583,4 +583,9 @@
   				);
   		END;
   	</update>
+  	
+  	<select id="userLogin" resultType="java.lang.String" parameterType="java.util.Map">
+    	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
+    	ORDER BY module_id
+    </select>
 </mapper>
