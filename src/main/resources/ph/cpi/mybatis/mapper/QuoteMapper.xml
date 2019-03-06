@@ -307,10 +307,10 @@
 		<result property="reinsurerName" 	column="CEDING_NAME_REINSURER"/> 
 		<result property="intmId" 			column="INTM_ID"/> 
 		<result property="intmName" 		column="INTM_NAME"/> 
-		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
-		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="reqBy" 			column="REQ_BY" /> 
-		<result property="reqDate" 			column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="reqDate" 			column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="reqMode" 			column="REQ_MODE"/> 
 		<result property="mbiRefNo" 		column="MBI_REF_NO"/> 
 		<result property="currencyCd" 		column="CURRENCY_CD"/> 
@@ -324,15 +324,15 @@
 		<result property="preparedBy" 		column="PREPARED_BY"/>  
 		<result property="approvedBy" 		column="APPROVED_BY"/>
 		<result property="printedBy" 		column="PRINTED_BY"/>
-		<result property="printDate" 		column="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>  
+		<result property="printDate" 		column="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>  
 		<result property="openingParag" 	column="OPENING_PARAG"/>
 		<result property="closingParag" 	column="CLOSING_PARAG"/>
 		<result property="reasonCd" 		column="REASON_CD"/>
 		<result property="reasonDesc" 		column="DESCRIPTION_REASON"/>
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.EndorsementsOc" id="quoteEndorsementsOcMap">
@@ -984,25 +984,25 @@
 				#{quoteRevNo, jdbcType=INTEGER},#{cedingId, jdbcType=INTEGER},#{cessionId, jdbcType=INTEGER},#{lineClassCd},
 				#{prinId, jdbcType=INTEGER},#{contractorId, jdbcType=INTEGER},#{insuredDesc},#{policyId, jdbcType=INTEGER},
 				#{status},#{reinsurerId, jdbcType=INTEGER},#{intmId, jdbcType=INTEGER},
-				CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqBy, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqMode},
 				#{mbiRefNo, jdbcType=INTEGER},#{currencyCd},#{currencyRt, jdbcType=FLOAT},#{govtTag},#{indicativeTag},
 				#{openCoverTag},#{declarationTag},#{preparedBy, jdbcType=VARCHAR},#{approvedBy, jdbcType=VARCHAR},#{printedBy, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{printDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{printDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{openingParag, jdbcType=VARCHAR},#{closingParag, jdbcType=VARCHAR},#{createUser},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{projId, jdbcType=INTEGER},#{projDesc},#{riskId, jdbcType=INTEGER},
 				#{totalSi, jdbcType=DECIMAL},#{pctShare, jdbcType=FLOAT},#{totalValue, jdbcType=DECIMAL},#{objectId, jdbcType=INTEGER},
 				#{site},#{duration, jdbcType=VARCHAR},#{testing, jdbcType=VARCHAR},#{ipl, jdbcType=INTEGER},#{timeExc, jdbcType=INTEGER},#{noClaimPd, jdbcType=INTEGER},
 				#{prjCreateUser},
-				CAST(to_timestamp(#{prjCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{prjCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{prjUpdateUser},
-				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
