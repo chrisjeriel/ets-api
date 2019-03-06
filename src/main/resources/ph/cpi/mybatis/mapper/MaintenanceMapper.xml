@@ -423,6 +423,7 @@
 	
 	<select id="retrieveMtnCurrency" resultMap="currencyMap" parameterType="java.util.Map">
 			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+																			#{activeTag, jdbcType=VARCHAR},
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 
 																			#{sortKey, jdbcType=VARCHAR}, 
@@ -571,9 +572,9 @@
             SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_ceding_company(#{cedingId, jdbcType=VARCHAR},null,null,null,null)
      </select>
   	
-  	<update id="saveMtnRisk" parameterType="java.util.Map">
+  	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
   		BEGIN
-  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId , jdbcType=VARCHAR},#{riskAbbr},
+  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=OUT , jdbcType=VARCHAR},#{riskAbbr},
   				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd},
   				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd},#{activeTag},#{remarks},
   				#{createUser},

@@ -51,6 +51,6 @@ public interface MaintenanceDao {
 	public List<Intermediary> retrieveMntIntermediary(final HashMap<String, Object> params) throws SQLException;
 	public List<Line> retrieveMntLine(final HashMap<String, Object> params ) throws SQLException;
 	public List<LineClass> retrieveMntLineClass(final HashMap<String, Object> params ) throws SQLException;
-	public Integer saveMtnRisk(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveMtnRisk(final HashMap<String, Object> params ) throws SQLException;
 	
 }

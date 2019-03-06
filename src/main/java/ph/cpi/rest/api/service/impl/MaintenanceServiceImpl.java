@@ -318,6 +318,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnCurrencyParams = new HashMap<String, Object>();
 		retrieveMtnCurrencyParams.put("currencyCd", rmcr.getCurrencyCd());
+		retrieveMtnCurrencyParams.put("activeTag", rmcr.getActiveTag());
 		retrieveMtnCurrencyParams.put("position", rmcr.getPaginationRequest().getPosition());
 		retrieveMtnCurrencyParams.put("count", rmcr.getPaginationRequest().getCount());
 		retrieveMtnCurrencyParams.put("sortKey", rmcr.getSortRequest().getSortKey());
@@ -523,7 +524,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnRiskParams.put("updateDate", smrr.getUpdateDate());
 		saveMtnRiskParams.put("blockCd", smrr.getBlockCd());
 		try{
-			smrrResponse.setReturnCode(maintenanceDao.saveMtnRisk(saveMtnRiskParams));
+			HashMap<String, Object> res = maintenanceDao.saveMtnRisk(saveMtnRiskParams);
+			smrrResponse.setReturnCode((Integer) res.get("errorCode"));
+			smrrResponse.setRiskId((String) res.get("riskId")); 
 		}catch (SQLException ex) {
 			smrrResponse.setReturnCode(0);
 			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
