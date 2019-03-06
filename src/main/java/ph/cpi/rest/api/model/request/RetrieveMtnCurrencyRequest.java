@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnCurrencyRequest {
 	private String currencyCd;
+	private String activeTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -13,6 +14,12 @@ public class RetrieveMtnCurrencyRequest {
 	}
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public PaginationRequest getPaginationRequest() {
 		if(paginationRequest == null){
@@ -32,11 +39,10 @@ public class RetrieveMtnCurrencyRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
-	
 	@Override
 	public String toString() {
-		return "RetrieveMtnCurrencyRequest [currencyCd=" + currencyCd +", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
-	}
+		return "RetrieveMtnCurrencyRequest [currencyCd=" + currencyCd + ", activeTag=" + activeTag
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+	}	
 	
 }
