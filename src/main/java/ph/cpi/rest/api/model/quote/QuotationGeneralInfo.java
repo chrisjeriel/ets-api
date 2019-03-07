@@ -57,6 +57,7 @@ public class QuotationGeneralInfo {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
 	public Integer getQuoteId() {
 		return quoteId;
 	}
