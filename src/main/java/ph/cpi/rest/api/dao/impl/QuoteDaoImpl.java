@@ -258,4 +258,11 @@ public class QuoteDaoImpl implements QuoteDao{
 		
 		return params;
 	}
+	
+	@Override
+	public HashMap<String, Object> saveQuoteChangeQuoteStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteChangeQuoteStatusMap",params);
+			params.put("errorCode", errorCode);
+		return params;
+	}
 }

@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteChangeQuoteStatusRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteChangeQuoteStatusResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
@@ -339,4 +341,11 @@ public class QuoteController {
 		return quoteService.saveQuoteGeneralInfoOc(sqgiop);
 	}
 
+	@CrossOrigin
+	@PostMapping(path="saveQuoteChangeQuoteStatus")
+	public @ResponseBody SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(@RequestBody SaveQuoteChangeQuoteStatusRequest sqcqs) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuoteChangeQuoteStatus");
+		logger.info("SaveQuoteChangeQuoteStatusRequest : " + sqcqs.toString());
+		return quoteService.saveQuoteChangeQuoteStatus(sqcqs);
+	}
 }
