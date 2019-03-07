@@ -93,6 +93,7 @@ public class UtilController {
 		HashMap reportParam = new HashMap<String, String>();
 		reportParam.put("QUOTE_ID", grr.getQuoteId());
 		reportParam.put("REPORT_NAME", grr.getReportName());
+		reportParam.put("ADVICE_NO", grr.getAdviceNo());
 		String filename = "";
 		try {
 			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);

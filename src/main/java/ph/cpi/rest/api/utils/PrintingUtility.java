@@ -49,6 +49,9 @@ public class PrintingUtility {
 		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
 		mapRptParam.put("pQuoteId", reportParams.get("QUOTE_ID"));
 		
+		mapRptParam.put("P_ADVICE_NO", reportParams.get("ADVICE_NO"));
+		mapRptParam.put("pAdviceNo", reportParams.get("ADVICE_NO"));
+		
 		logger.info("generateJasperReport outputPath : " + outputPath);
 		JasperPrint jasperPrint = jasperPrint(conn, reportPath, mapRptParam);
 		

@@ -212,10 +212,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public Integer saveMtnRisk(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveMtnRisk(HashMap<String, Object> params) throws SQLException {
 		logger.info("saveMtnRisk DAOImpl : " + params);
 		Integer saveMtnRisk = sqlSession.update("saveMtnRisk", params);
-		return saveMtnRisk;
+		params.put("errorCode", saveMtnRisk);
+		return params;
 	}
 
 }
