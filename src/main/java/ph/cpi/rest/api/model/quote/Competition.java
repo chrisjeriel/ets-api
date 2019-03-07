@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.quote;
 import org.joda.time.LocalDateTime;
 
 public class Competition {
+	private Integer quoteId;
 	private Integer adviceNo;
 	private Integer cedingId;
 	private String cedingName;
@@ -16,6 +17,12 @@ public class Competition {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
 	public Integer getAdviceNo() {
 		return adviceNo;
 	}
@@ -88,14 +95,14 @@ public class Competition {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "Competition [adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="+ cedingName 
-				+", cedingRepId=" + cedingRepId + ", cedingRepName="+ cedingRepName
-				+ ", option=" + option + ", wordings=" + wordings +  ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", cedingRepId=" + cedingRepId + ", cedingRepName=" + cedingRepName + ", position="
+				+ position + ", option=" + option + ", wordings=" + wordings + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
 	
 }

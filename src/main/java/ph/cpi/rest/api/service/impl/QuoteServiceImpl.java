@@ -734,11 +734,11 @@ public class QuoteServiceImpl implements QuoteService{
 			sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
 		} catch (SQLException sqlex) {
 			sqhcrResponse.setReturnCode(0);
-			sqhcrResponse.getErrorList().add(new Error("SQLException","Error stack: " + System.lineSeparator() + sqlex.getCause()));
+			sqhcrResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
 		} catch (Exception ex) {
 			sqhcrResponse.setReturnCode(0);
-			sqhcrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			sqhcrResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
 		}
 	
@@ -749,11 +749,23 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public SaveQuoteOptionResponse saveQuoteOption(SaveQuoteOptionRequest sqor) throws SQLException {
 		SaveQuoteOptionResponse sqoResponse = new SaveQuoteOptionResponse();
-		HashMap<String, Object> saveQuoteOptionsParams = new HashMap<String, Object>(); 
-		saveQuoteOptionsParams.put("quoteId" , sqor.getQuoteId());
-		saveQuoteOptionsParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
-		saveQuoteOptionsParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
-		sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
+		try{
+			HashMap<String, Object> saveQuoteOptionsParams = new HashMap<String, Object>(); 
+			saveQuoteOptionsParams.put("quoteId" , sqor.getQuoteId());
+			saveQuoteOptionsParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
+			saveQuoteOptionsParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
+			sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
+		}catch (SQLException ex) {
+			logger.info("Paul Exception Caught");
+			sqoResponse.setReturnCode(0);
+			sqoResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sqoResponse.setReturnCode(0);
+			sqoResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		
 		return sqoResponse;
 		// TODO Auto-generated method stub
 		
@@ -791,11 +803,21 @@ public class QuoteServiceImpl implements QuoteService{
 	public SaveQuoteOtherRatesResponse saveQuoteOtherRates(SaveQuoteOtherRatesRequest sqorr) throws SQLException {
 		// TODO Auto-generated method stub
 		SaveQuoteOtherRatesResponse sqorResponse = new SaveQuoteOtherRatesResponse();
-		HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
-		saveQuoteOtherRatesParams.put("quoteId", sqorr.getQuoteId());
-		saveQuoteOtherRatesParams.put("otherRates", sqorr.getOtherRates());
-		saveQuoteOtherRatesParams.put("deleteOtherRates", sqorr.getDeleteOtherRates());
-		sqorResponse.setReturnCode(quoteDao.saveQuoteOtherRates(saveQuoteOtherRatesParams));
+		try{
+			HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
+			saveQuoteOtherRatesParams.put("quoteId", sqorr.getQuoteId());
+			saveQuoteOtherRatesParams.put("otherRates", sqorr.getOtherRates());
+			saveQuoteOtherRatesParams.put("deleteOtherRates", sqorr.getDeleteOtherRates());
+			sqorResponse.setReturnCode(quoteDao.saveQuoteOtherRates(saveQuoteOtherRatesParams));
+		}catch (SQLException ex) {
+			sqorResponse.setReturnCode(0);
+			sqorResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sqorResponse.setReturnCode(0);
+			sqorResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
 		return sqorResponse;
 	}
 

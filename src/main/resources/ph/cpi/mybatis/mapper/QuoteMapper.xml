@@ -574,6 +574,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
+		 <result property="quoteId"			 	 column="QUOTE_ID"/>
 		 <result property="adviceNo"			 column="ADVICE_NO"/>
 		 <result property="cedingId"			 column="CEDING_ID"/>
 		 <result property="cedingName"			 column="CEDING_NAME"/>
@@ -1114,6 +1115,9 @@
 	
 	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deleteQuoteOptionsList" item="quoteOption">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
+		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
 		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
 		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
@@ -1121,25 +1125,19 @@
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
-		   
-		   
-		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
-		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId});
-		   </foreach>
-		   
 		END;
 	</update>
 	
 	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 			   		ETS_QUOTE_PKG_ETC.save_q_deductible(
 			   			#{quoteId},#{deductible.optionId},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
-		   <foreach collection="deleteDeductibleList" item="deductible">
-		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd});
-		   </foreach>
 	   END;
 	</update>
 	
@@ -1176,6 +1174,12 @@
 	
 	<update id="saveQuoteOtherRatesMap" parameterType="java.util.Map">
 		BEGIN
+		<foreach collection="deleteOtherRates" item="otherRates">
+		 	CPI.ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
+		 		#{quoteId,jdbcType=INTEGER},
+				#{otherRates.coverCd,jdbcType=VARCHAR}
+		 	);
+		 </foreach>
 		 <foreach collection="otherRates" item="otherRates">
 			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
 				#{quoteId,jdbcType=INTEGER},
@@ -1187,12 +1191,6 @@
 				#{otherRates.updateUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
-		 </foreach>
-		 <foreach collection="deleteOtherRates" item="otherRates">
-		 	CPI.ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
-		 		#{quoteId,jdbcType=INTEGER},
-				#{otherRates.coverCd,jdbcType=VARCHAR}
-		 	);
 		 </foreach>
 		END;
 	</update> 

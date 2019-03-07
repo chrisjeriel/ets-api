@@ -572,9 +572,9 @@
             SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_ceding_company(#{cedingId, jdbcType=VARCHAR},null,null,null,null)
      </select>
   	
-  	<update id="saveMtnRisk" parameterType="java.util.Map">
+  	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
   		BEGIN
-  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId , jdbcType=VARCHAR},#{riskAbbr},
+  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=OUT , jdbcType=VARCHAR},#{riskAbbr},
   				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd},
   				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd},#{activeTag},#{remarks},
   				#{createUser},
@@ -584,4 +584,9 @@
   				);
   		END;
   	</update>
+  	
+  	<select id="userLogin" resultType="java.lang.String" parameterType="java.util.Map">
+    	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
+    	ORDER BY module_id
+    </select>
 </mapper>

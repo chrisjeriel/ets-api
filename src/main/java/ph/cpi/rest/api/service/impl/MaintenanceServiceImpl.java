@@ -524,7 +524,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnRiskParams.put("updateDate", smrr.getUpdateDate());
 		saveMtnRiskParams.put("blockCd", smrr.getBlockCd());
 		try{
-			smrrResponse.setReturnCode(maintenanceDao.saveMtnRisk(saveMtnRiskParams));
+			HashMap<String, Object> res = maintenanceDao.saveMtnRisk(saveMtnRiskParams);
+			smrrResponse.setReturnCode((Integer) res.get("errorCode"));
+			smrrResponse.setRiskId((String) res.get("riskId")); 
 		}catch (SQLException ex) {
 			smrrResponse.setReturnCode(0);
 			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));

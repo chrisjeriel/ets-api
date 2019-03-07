@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Error;
@@ -12,6 +13,8 @@ public class SaveQuoteOptionResponse {
 	private Integer returnCode;
 	
 	public List<Error> getErrorList() {
+		if(errorList == null)
+			errorList = new ArrayList<Error>();
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
