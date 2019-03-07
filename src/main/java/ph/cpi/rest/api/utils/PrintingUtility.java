@@ -41,13 +41,16 @@ public class PrintingUtility {
 		String reportName = reportParams.get("REPORT_NAME").toString();
 		HashMap<String, Object> mapRptParam = new HashMap<>();
 
-		reportPath = "C:\\ETS\\REPORTS\\" + reportName +"\\" + reportName + "_MAIN.jrxml";
+		reportPath = "C:\\ETS\\REPORTS\\" + reportName + "_MAIN.jrxml";
 		
 		String filename = reportName + "_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
 		outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
 		outputType = "pdf";
 		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
 		mapRptParam.put("pQuoteId", reportParams.get("QUOTE_ID"));
+		
+		mapRptParam.put("P_ADVICE_NO", reportParams.get("ADVICE_NO"));
+		mapRptParam.put("pAdviceNo", reportParams.get("ADVICE_NO"));
 		
 		logger.info("generateJasperReport outputPath : " + outputPath);
 		JasperPrint jasperPrint = jasperPrint(conn, reportPath, mapRptParam);

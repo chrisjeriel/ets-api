@@ -40,7 +40,7 @@ public class UtilController {
 	@Value("${spring.datasource.password}")
 	private String password;
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(path="generateReport/{quoteId}")
 	public ResponseEntity generateReport(@PathVariable("quoteId") Integer quoteId) throws SQLException, IOException {
 		logger.info("GET: /api/util-service/generateReport");
@@ -93,6 +93,7 @@ public class UtilController {
 		HashMap reportParam = new HashMap<String, String>();
 		reportParam.put("QUOTE_ID", grr.getQuoteId());
 		reportParam.put("REPORT_NAME", grr.getReportName());
+		reportParam.put("ADVICE_NO", grr.getAdviceNo());
 		String filename = "";
 		try {
 			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);

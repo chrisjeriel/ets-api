@@ -10,6 +10,15 @@ public class SaveMtnRiskResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private String riskId;
+	
+	
+	public String getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(String riskId) {
+		this.riskId = riskId;
+	}
 	public List<Error> getErrorList() {
 		if(errorList== null){
 			errorList = new ArrayList<Error>();
@@ -34,7 +43,8 @@ public class SaveMtnRiskResponse {
 	@Override
 	public String toString() {
 		return "SaveMtnRiskResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+				+ returnCode + ", riskId=" + riskId + "]";
 	}
+	
 	
 }
