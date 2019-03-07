@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
@@ -328,6 +330,13 @@ public class QuoteController {
 		logger.info("POST: /api/quote-service/saveQuoteDeductibles");
 		logger.info("SaveQuoteDeductiblesRequest : " + sqdr.toString());
 		return quoteService.saveQuoteDeductibles(sqdr);
+	}
+	
+	@PostMapping(path="saveQuoteGeneralInfoOc")
+	public @ResponseBody SaveQuoteGeneralInfoOcResponse saveQuoteGeneralInfoOc(@RequestBody SaveQuoteGeneralInfoOcRequest sqgiop) throws SQLException {
+		logger.info("POST: /api/quote-service/saveQuoteGeneralInfoOc");
+		logger.info("SaveQuoteGeneralInfoOcRequest : " + sqgiop.toString());
+		return quoteService.saveQuoteGeneralInfoOc(sqgiop);
 	}
 
 }

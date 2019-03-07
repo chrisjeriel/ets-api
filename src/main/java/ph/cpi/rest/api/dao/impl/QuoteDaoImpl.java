@@ -250,5 +250,12 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteDeductiblesMap", params);
 		return errorCode;
 	}
+	
+	@Override
+	public HashMap<String, Object> saveQuoteGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteGeneralInfoOc",params);
+		params.put("errorCode", errorCode);
 		
+		return params;
+	}
 }
