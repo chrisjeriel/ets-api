@@ -8,6 +8,7 @@ public class Line {
 	private String activeTag;
 	private String catTag;
 	private String renewalTag;
+	private String openCoverTag;
 	private Integer referenceNo;
 	private Integer sortSeq;
 	private String remarks;
@@ -45,6 +46,12 @@ public class Line {
 	}
 	public void setRenewalTag(String renewalTag) {
 		this.renewalTag = renewalTag;
+	}
+	public String getOpenCoverTag() {
+		return openCoverTag;
+	}
+	public void setOpenCoverTag(String openCoverTag) {
+		this.openCoverTag = openCoverTag;
 	}
 	public Integer getReferenceNo() {
 		return referenceNo;
@@ -92,9 +99,8 @@ public class Line {
 	@Override
 	public String toString() {
 		return "Line [lineCd=" + lineCd + ", description=" + description + ", activeTag=" + activeTag + ", catTag="
-				+ catTag + ", renewalTag=" + renewalTag + ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo="
+				+ referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }
