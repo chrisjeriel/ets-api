@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteChangeQuoteStatusRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteChangeQuoteStatusResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
@@ -115,6 +117,7 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
 		retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
+		retrieveQuoteListingParams.put("quoteId", rqlp.getQuoteId());
 		retrieveQuoteListingParams.put("cessionDesc", rqlp.getCessionDesc());
 		retrieveQuoteListingParams.put("lineClassCdDesc", rqlp.getLineClassCdDesc());
 		retrieveQuoteListingParams.put("status", rqlp.getStatus());
@@ -854,6 +857,7 @@ public class QuoteServiceImpl implements QuoteService{
 	}
 
 	@Override
+
 	public SaveQuoteOptionAllResponse saveQuoteOptionAll(SaveQuoteOptionAllRequest sqor) throws SQLException {
 		SaveQuoteOptionAllResponse saveQuoteOptionAllResponse = new SaveQuoteOptionAllResponse();
 		
@@ -878,6 +882,27 @@ public class QuoteServiceImpl implements QuoteService{
 		}
 		
 		return saveQuoteOptionAllResponse;
+	}
+	
+	public SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(SaveQuoteChangeQuoteStatusRequest sqcqs)
+			throws SQLException {
+		SaveQuoteChangeQuoteStatusResponse sqcqsResponse = new SaveQuoteChangeQuoteStatusResponse();
+		
+		try {
+			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
+			saveQuoteChangeQuoteStatusParams.put("changeQuoteStatus", sqcqs.getChangeQuoteStatus());
+		
+			HashMap<String, Object> res = quoteDao.saveQuoteChangeQuoteStatus(saveQuoteChangeQuoteStatusParams);
+			
+			sqcqsResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqcqsResponse.setQuoteId((Integer) (res.get("outQuoteId")));
+			sqcqsResponse.setQuotationNo((String) res.get("quotationNo"));
+		} catch (Exception ex) {
+			sqcqsResponse.setReturnCode(0);
+			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return sqcqsResponse;
 	}
 
 }
