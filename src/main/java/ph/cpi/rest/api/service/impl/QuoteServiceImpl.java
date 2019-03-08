@@ -853,7 +853,8 @@ public class QuoteServiceImpl implements QuoteService{
 		try {
 			HashMap<String, Object> saveQuoteGeneralInfoParams = new HashMap<String, Object>();
 			
-			
+			saveQuoteGeneralInfoParams.put("openQuotationNo", "");
+			saveQuoteGeneralInfoParams.put("outQuoteIdOc", "");
 			saveQuoteGeneralInfoParams.put("quoteId", sqgiop.getQuoteIdOc());
 			saveQuoteGeneralInfoParams.put("lineCd", sqgiop.getLineCd());
 			saveQuoteGeneralInfoParams.put("year", sqgiop.getYear());
