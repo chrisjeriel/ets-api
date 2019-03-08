@@ -94,6 +94,7 @@ public class UtilController {
 		reportParam.put("QUOTE_ID", grr.getQuoteId());
 		reportParam.put("REPORT_NAME", grr.getReportName());
 		reportParam.put("ADVICE_NO", grr.getAdviceNo());
+		reportParam.put("HOLD_COV_ID", grr.getHoldCovId());
 		String filename = "";
 		try {
 			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);
