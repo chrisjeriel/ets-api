@@ -42,6 +42,8 @@
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="reasonCd"			column="REASON_CD"/>
+		<result property="reasonDesc"		column="DESCRIPTION"/>		
 		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="reqBy" 			column="REQ_BY"/>
@@ -1197,9 +1199,9 @@
 	
 	<update id="saveQuoteChangeQuoteStatusMap" parameterType="java.util.Map">
 		BEGIN
-		 <foreach collection="changeQuoteStatus" item="changeQuoteStatus">
+		 <foreach collection="quoteList" item="quote">
 		 	CPI.ETS_QUOTE_PKG_EJVA_TEST.save_quote_change_quote_status(
-		 		#{changeQuoteStatus.quoteId, jdbcType=INTEGER},#{changeQuoteStatus.cedingId},#{changeQuoteStatus.cessionId},#{changeQuoteStatus.status}
+		 		#{quote.quoteId},#{status},#{quote.reasonCd}
 		 	);
 		 </foreach>
 		END;

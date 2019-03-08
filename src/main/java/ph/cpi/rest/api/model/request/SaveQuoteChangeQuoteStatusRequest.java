@@ -8,6 +8,7 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveQuoteChangeQuoteStatusRequest {
 	
+	private String statusCd;
 	private List<ChangeQuoteStatus> changeQuoteStatus;
 	
 	public List<ChangeQuoteStatus> getChangeQuoteStatus() {
@@ -16,9 +17,16 @@ public class SaveQuoteChangeQuoteStatusRequest {
 	public void setChangeQuoteStatus(List<ChangeQuoteStatus> changeQuoteStatus) {
 		this.changeQuoteStatus = changeQuoteStatus;
 	}
+	public String getStatusCd() {
+		return statusCd;
+	}
+	public void setStatusCd(String statusCd) {
+		this.statusCd = statusCd;
+	}
 	@Override
 	public String toString() {
-		return "SaveQuoteChangeQuoteStatusRequest [changeQuoteStatus=" + changeQuoteStatus + "]";
+		return "SaveQuoteChangeQuoteStatusRequest [statusCd=" + statusCd + ", changeQuoteStatus=" + changeQuoteStatus
+				+ "]";
 	}
 	
 }
@@ -27,9 +35,7 @@ public class SaveQuoteChangeQuoteStatusRequest {
 @Alias("SaveQuoteChangeQuoteStatus")
 class ChangeQuoteStatus {
 	private Integer quoteId ;
-	private Integer cedingId;
-	private Integer cessionId;
-	private Integer status;
+	private String reasonCd;
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -37,30 +43,17 @@ class ChangeQuoteStatus {
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
-	public Integer getCedingId() {
-		return cedingId;
+	
+	public String getReasonCd() {
+		return reasonCd;
 	}
-	public void setCedingId(Integer cedingId) {
-		this.cedingId = cedingId;
-	}
-	public Integer getCessionId() {
-		return cessionId;
-	}
-	public void setCessionId(Integer cessionId) {
-		this.cessionId = cessionId;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
 	}
 	@Override
 	public String toString() {
-		return "ChangeQuoteStatus [quoteId=" + quoteId + ", cedingId=" + cedingId + ", cessionId=" + cessionId
-				+ ", status=" + status + "]";
+		return "ChangeQuoteStatus [quoteId=" + quoteId + ", reasonCd=" + reasonCd + "]";
 	}
-
 }
 
 
