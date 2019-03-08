@@ -1242,7 +1242,7 @@
 				CAST(to_timestamp(#{printDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{openingParag, jdbcType=VARCHAR},
 				#{closingParag, jdbcType=VARCHAR},
-				#{reasonCd, jdbcType=VARCHAR},
+				#{reasonCd},
 				#{createUser},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser},

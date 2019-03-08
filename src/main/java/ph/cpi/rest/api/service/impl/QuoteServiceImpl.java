@@ -855,7 +855,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			saveQuoteGeneralInfoOcParams.put("openQuotationNo", "");
 			saveQuoteGeneralInfoOcParams.put("outQuoteIdOc", "");
-			saveQuoteGeneralInfoOcParams.put("quoteId", sqgiop.getQuoteIdOc());
+			saveQuoteGeneralInfoOcParams.put("quoteIdOc", sqgiop.getQuoteIdOc());
 			saveQuoteGeneralInfoOcParams.put("lineCd", sqgiop.getLineCd());
 			saveQuoteGeneralInfoOcParams.put("year", sqgiop.getYear());
 			saveQuoteGeneralInfoOcParams.put("seqNo", sqgiop.getSeqNo());
@@ -885,6 +885,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoOcParams.put("printDate", sqgiop.getPrintDate());
 			saveQuoteGeneralInfoOcParams.put("openingParag", sqgiop.getOpeningParag());
 			saveQuoteGeneralInfoOcParams.put("closingParag", sqgiop.getClosingParag());
+			saveQuoteGeneralInfoOcParams.put("reasonCd", sqgiop.getReasonCd());
 			saveQuoteGeneralInfoOcParams.put("createUser", sqgiop.getCreateUser());
 			saveQuoteGeneralInfoOcParams.put("createDate", sqgiop.getCreateDate());
 			saveQuoteGeneralInfoOcParams.put("updateUser", sqgiop.getUpdateUser());
