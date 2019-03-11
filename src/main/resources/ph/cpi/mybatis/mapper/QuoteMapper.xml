@@ -1060,7 +1060,7 @@
 	
 	<update id="saveQuoteCoverageOcMap" parameterType="java.util.Map">
 		BEGIN
-		   ETS_QUOTE_PKG_EJVA.saveQuoteCoverageOc(#{quoteIdOc},#{projId},#{riskId},#{maxSi},#{currencyCd},#{currencyRt},#{pctShare},#{pctPml},#{totalValue},#{createUser},
+		   ETS_QUOTE_PKG_EJVA.save_quote_coverage_oc(#{quoteIdOc},#{projId},#{riskId},#{maxSi},#{currencyCd},#{currencyRt},#{pctShare},#{pctPml},#{totalValue},#{createUser},
 		   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
 		   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		END;
@@ -1200,5 +1200,48 @@
 		 </foreach>
 		END;
 	</update> 
+	
+	<update id="saveQuoteOptionsAll" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
+		   </foreach>
+		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
+		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
+		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
+		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   </foreach>
+		   
+		   <foreach collection="deleteDeductibleList" item="deductible">
+		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   </foreach>
+		   <foreach collection="saveDeductibleList" item="deductible">
+			   		ETS_QUOTE_PKG_ETC.save_q_deductible(
+			   			#{quoteId},#{deductible.optionId},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   		);
+		   </foreach>
+		   
+		   <foreach collection="deleteOtherRates" item="otherRates">
+		 	CPI.ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
+		 		#{quoteId,jdbcType=INTEGER},
+				#{otherRates.coverCd,jdbcType=VARCHAR}
+		 	);
+		 </foreach>
+		 <foreach collection="otherRates" item="otherRates">
+			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
+				#{quoteId,jdbcType=INTEGER},
+				#{otherRates.coverCd,jdbcType=VARCHAR},
+				#{otherRates.rate,jdbcType=VARCHAR},
+				#{otherRates.amount,jdbcType=VARCHAR},
+				#{otherRates.createUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{otherRates.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{otherRates.updateUser,jdbcType=VARCHAR},
+				CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+		 </foreach>
+		END;
+	</update>
 	
 </mapper>
