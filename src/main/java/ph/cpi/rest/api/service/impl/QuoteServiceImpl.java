@@ -891,6 +891,7 @@ public class QuoteServiceImpl implements QuoteService{
 		try {
 			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
 			saveQuoteChangeQuoteStatusParams.put("status", sqcqs.getStatusCd());
+			saveQuoteChangeQuoteStatusParams.put("reasonCd", sqcqs.getReasonCd());
 			saveQuoteChangeQuoteStatusParams.put("quoteList",sqcqs.getChangeQuoteStatus());
 			
 			
