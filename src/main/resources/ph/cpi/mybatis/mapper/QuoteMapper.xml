@@ -1202,7 +1202,7 @@
 		BEGIN
 		 <foreach collection="quoteList" item="quote">
 		 	CPI.ETS_QUOTE_PKG_EJVA.save_quote_change_quote_status(
-		 		#{quote.quoteId},#{status},#{quote.reasonCd}
+		 		#{quote.quoteId},#{status},#{reasonCd}
 		 	);
 		 </foreach>
 		END;

@@ -9,6 +9,7 @@ import org.apache.ibatis.type.Alias;
 public class SaveQuoteChangeQuoteStatusRequest {
 	
 	private String statusCd;
+	private String reasonCd;
 	private List<ChangeQuoteStatus> changeQuoteStatus;
 	
 	public List<ChangeQuoteStatus> getChangeQuoteStatus() {
@@ -23,27 +24,6 @@ public class SaveQuoteChangeQuoteStatusRequest {
 	public void setStatusCd(String statusCd) {
 		this.statusCd = statusCd;
 	}
-	@Override
-	public String toString() {
-		return "SaveQuoteChangeQuoteStatusRequest [statusCd=" + statusCd + ", changeQuoteStatus=" + changeQuoteStatus
-				+ "]";
-	}
-	
-}
-
-
-@Alias("SaveQuoteChangeQuoteStatus")
-class ChangeQuoteStatus {
-	private Integer quoteId ;
-	private String reasonCd;
-	
-	public Integer getQuoteId() {
-		return quoteId;
-	}
-	public void setQuoteId(Integer quoteId) {
-		this.quoteId = quoteId;
-	}
-	
 	public String getReasonCd() {
 		return reasonCd;
 	}
@@ -52,8 +32,30 @@ class ChangeQuoteStatus {
 	}
 	@Override
 	public String toString() {
-		return "ChangeQuoteStatus [quoteId=" + quoteId + ", reasonCd=" + reasonCd + "]";
+		return "SaveQuoteChangeQuoteStatusRequest [statusCd=" + statusCd + ", reasonCd=" + reasonCd
+				+ ", changeQuoteStatus=" + changeQuoteStatus + "]";
 	}
+
+	
+	
+}
+
+
+@Alias("SaveQuoteChangeQuoteStatus")
+class ChangeQuoteStatus {
+	private Integer quoteId ;
+	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
+	@Override
+	public String toString() {
+		return "ChangeQuoteStatus [quoteId=" + quoteId + "]";
+	}
+	
 }
 
 
