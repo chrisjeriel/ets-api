@@ -919,6 +919,8 @@ public class QuoteServiceImpl implements QuoteService{
 			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfoOc(saveQuoteGeneralInfoOcParams);
 			
 			sqgioResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqgioResponse.setQuoteIdOc((Integer) (res.get("outQuoteIdOc")));
+			sqgioResponse.setOpenQuotationNo((String) res.get("openQuotationNo"));
 		} catch (Exception ex) {
 			sqgioResponse.setReturnCode(0);
 			sqgioResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));

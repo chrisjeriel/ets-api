@@ -115,7 +115,7 @@
 		<result property = "updateDate"          column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcMap">
+	<resultMap type="ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc" id="quotationOcMap">
 		<result property    ="quoteIdOc"            column  ="QUOTE_ID_OC"/>
 		<result property    ="openQuotationNo"      column  ="OC_QUOTE_NO"/>
 		<result property    ="lineCd"               column  ="LINE_CD"/>
@@ -141,10 +141,10 @@
 		<result property    ="reinsurerName"        column  ="CEDING_NAME"/>
 		<result property    ="intmId"               column  ="INTM_ID"/>
 		<result property    ="intmName"             column  ="INTM_NAME"/>
-		<result property    ="issueDate"            column  ="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property    ="expiryDate"           column  ="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="issueDate"            column  ="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property    ="expiryDate"           column  ="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="reqBy"                column  ="REQ_BY"/>
-		<result property    ="reqDate"              column  ="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="reqDate"              column  ="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="reqMode"              column  ="REQ_MODE"/>
 		<result property    ="currencyCd"           column  ="CURRENCY_CD"/>
 		<result property    ="currencyRt"           column  ="CURRENCY_RT"/>
@@ -153,15 +153,15 @@
 		<result property    ="preparedBy"           column  ="PREPARED_BY"/>
 		<result property    ="approvedBy"           column  ="APPROVED_BY"/>
 		<result property    ="printedBy"            column  ="PRINTED_BY"/>
-		<result property    ="printDate"            column  ="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="printDate"            column  ="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="openingParag"         column  ="OPENING_PARAG"/>
 		<result property    ="closingParag"         column  ="CLOSING_PARAG"/>
 		<result property    ="reasonCd"             column  ="REASON_CD"/>
 		<result property    ="reasonDesc"           column  ="ETS_DESCRIPTION"/>
 		<result property    ="createUser"           column  ="GEN_INFO_OC_CREATE_USER"/>
-		<result property    ="createDate"           column  ="GEN_INFO_OC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="createDate"           column  ="GEN_INFO_OC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="updateUser"           column  ="GEN_INFO_OC_UPDATE_USER"/>
-		<result property    ="updateDate"           column  ="GEN_INFO_OC_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="updateDate"           column  ="GEN_INFO_OC_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property = "projectOc"		resultMap = "projectOcMap"/>
 	</resultMap>
 	
