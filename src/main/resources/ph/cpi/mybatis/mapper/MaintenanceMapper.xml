@@ -175,6 +175,7 @@
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="catTag" 			column="CAT_TAG"/> 
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
+		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -588,5 +589,32 @@
   	<select id="userLogin" resultType="java.lang.String" parameterType="java.util.Map">
     	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
     	ORDER BY module_id
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Users" id="usersMap">
+     	<result property="userId"            	column="USER_ID"/>
+		<result property="userGrp"           	column="USER_GRP"/>
+		<result property="userGrpDesc"			column="USER_GRP_DESC"/>
+		<result property="userName"          	column="USER_NAME"/>
+		<result property="activeTag"         	column="ACTIVE_TAG"/>
+		<result property="password"           	column="PASSWORD"/>
+		<result property="emailAddress"      	column="EMAIL_ADDRESS"/>
+		<result property="remarks"            	column="REMARKS"/>
+		<result property="lastLogin"         	column="LAST_LOGIN"         	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="passwordResetDate"	column="PASSWORD_RESET_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="salt"               	column="SALT"/>
+		<result property="invalidLoginTries"	column="INVALID_LOGIN_TRIES"/>
+		<result property="createUser"			column="CREATE_USER"/>
+		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"        	column="UPDATE_USER"/>
+		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
+    	SELECT * FROM ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
+												  #{position, jdbcType=VARCHAR}, 
+												  #{count, jdbcType=VARCHAR}, 
+												  #{sortKey, jdbcType=VARCHAR}, 
+												  #{order, jdbcType=VARCHAR})
     </select>
 </mapper>

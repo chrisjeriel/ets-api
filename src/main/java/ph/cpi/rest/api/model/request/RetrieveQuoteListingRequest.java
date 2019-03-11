@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveQuoteListingRequest {
 
 	private String quotationNo;
+	private Integer quoteId;
 	private String cessionDesc;
 	private String lineClassCdDesc;
 	private String status;
@@ -34,6 +35,13 @@ public class RetrieveQuoteListingRequest {
 	}
 	public void setQuotationNo(String quotationNo) {
 		this.quotationNo = quotationNo;
+	}
+	
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
 	}
 	public String getCessionDesc() {
 		return cessionDesc;
@@ -139,12 +147,13 @@ public class RetrieveQuoteListingRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", cessionDesc=" + cessionDesc
-				+ ", lineClassCdDesc=" + lineClassCdDesc + ", status=" + status + ", cedingName=" + cedingName
-				+ ", principalName=" + principalName + ", contractorName=" + contractorName + ", insuredDesc="
-				+ insuredDesc + ", riskName=" + riskName + ", objectDesc=" + objectDesc + ", site=" + site
-				+ ", currencyCd=" + currencyCd + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
-				+ reqBy + ", createUser=" + createUser + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
+				+ cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", status=" + status + ", cedingName="
+				+ cedingName + ", principalName=" + principalName + ", contractorName=" + contractorName
+				+ ", insuredDesc=" + insuredDesc + ", riskName=" + riskName + ", objectDesc=" + objectDesc + ", site="
+				+ site + ", currencyCd=" + currencyCd + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate
+				+ ", reqBy=" + reqBy + ", createUser=" + createUser + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 }

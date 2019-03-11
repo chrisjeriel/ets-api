@@ -6,14 +6,18 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveQuoteCoverageOcResponse {
+public class SaveQuoteChangeQuoteStatusResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private Integer quoteId;
+	private String quotationNo;
+	
 	public List<Error> getErrorList() {
-		if(errorList == null){
+		if (errorList == null) {
 			errorList = new ArrayList<Error>();
 		}
+		
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -31,11 +35,22 @@ public class SaveQuoteCoverageOcResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
+	public Integer getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(Integer quoteId) {
+		this.quoteId = quoteId;
+	}
+	public String getQuotationNo() {
+		return quotationNo;
+	}
+	public void setQuotationNo(String quotationNo) {
+		this.quotationNo = quotationNo;
+	}
 	@Override
 	public String toString() {
-		return "SaveQuoteCoverageOcResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+		return "SaveQuoteChangeQuoteStatus [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + ", quoteId=" + quoteId + ", quotationNo=" + quotationNo + "]";
 	}
-	
 	
 }
