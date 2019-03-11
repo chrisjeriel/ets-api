@@ -5,11 +5,21 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
+import ph.cpi.rest.api.model.quote.Quotation;
 
 public class SaveQuoteHoldCoverResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private Quotation quotation;
+	
+	
+	public Quotation getQuotation() {
+		return quotation;
+	}
+	public void setQuotation(Quotation quotation) {
+		this.quotation = quotation;
+	}
 	public List<Error> getErrorList() {
 		if (errorList == null) {
 			errorList = new ArrayList<Error>();
@@ -36,14 +46,7 @@ public class SaveQuoteHoldCoverResponse {
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteHoldCoverResponse [errorList=");
-		builder.append(errorList);
-		builder.append(", messageList=");
-		builder.append(messageList);
-		builder.append(", returnCode=");
-		builder.append(returnCode);
-		builder.append("]");
-		return builder.toString();
+		return "SaveQuoteHoldCoverResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + ", quotation=" + quotation + "]";
 	}
 }
