@@ -1066,9 +1066,10 @@
 		END;
 	</update> 
 	
-	<update id="saveQuoteHoldCover" parameterType="java.util.Map">
+	<update id="saveQuoteHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
+				#{holdCoverNo,mode=OUT,jdbcType=VARCHAR},
 				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
 				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
 				#{holdCoverRevNo,jdbcType=VARCHAR},

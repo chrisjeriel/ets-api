@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
+import ph.cpi.rest.api.model.quote.HoldCover;
+import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -725,6 +727,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
 		
 		try {
+			saveQuoteHoldCoverParams.put("holdCoverNo", "");
 			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
 			saveQuoteHoldCoverParams.put("holdCoverId", sqhcr.getHoldCoverId());
 			saveQuoteHoldCoverParams.put("lineCd", sqhcr.getLineCd());
@@ -743,7 +746,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
 			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
 			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
-			sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
+			
+			HashMap<String, Object> response = quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams);
+			
+			sqhcrResponse.setReturnCode((Integer) response.get("errorCode"));
+			sqhcrResponse.setHoldCoverNo((String) response.get("holdCoverNo"));
 		} catch (SQLException sqlex) {
 			sqhcrResponse.setReturnCode(0);
 			sqhcrResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
