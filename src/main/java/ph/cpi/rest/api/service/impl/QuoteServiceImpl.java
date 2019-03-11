@@ -45,6 +45,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -78,6 +79,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
@@ -539,7 +541,17 @@ public class QuoteServiceImpl implements QuoteService{
 		saveQuoteCoverageOcParams.put("updateUser", saveQuoteCoverageOc.getUpdateUser());
 		saveQuoteCoverageOcParams.put("updateDate", saveQuoteCoverageOc.getUpdateDate());
 		
-		sqcocResponse.setReturnCode(quoteDao.saveQuoteCoverageOc(saveQuoteCoverageOcParams));
+		try{
+			sqcocResponse.setReturnCode(quoteDao.saveQuoteCoverageOc(saveQuoteCoverageOcParams));
+		}catch (SQLException ex) {
+			sqcocResponse.setReturnCode(0);
+			sqcocResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sqcocResponse.setReturnCode(0);
+			sqcocResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
 		
 		return sqcocResponse;
 	}
@@ -761,7 +773,6 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
 			sqoResponse.setReturnCode(quoteDao.saveQuoteOption(saveQuoteOptionsParams));
 		}catch (SQLException ex) {
-			logger.info("Paul Exception Caught");
 			sqoResponse.setReturnCode(0);
 			sqoResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
@@ -937,6 +948,33 @@ public class QuoteServiceImpl implements QuoteService{
 			ex.printStackTrace();
 		}
 		return sqcqsResponse;
+	}
+
+	@Override
+	public SaveQuoteOptionAllResponse saveQuoteOptionAll(SaveQuoteOptionAllRequest sqor) throws SQLException {
+		SaveQuoteOptionAllResponse saveQuoteOptionAllResponse = new SaveQuoteOptionAllResponse();
+		
+		try{
+			HashMap<String, Object> saveQuoteOptionsAllParams = new HashMap<String, Object>(); 
+			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
+			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
+			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
+			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
+			saveQuoteOptionsAllParams.put("otherRates", sqor.getOtherRates());
+			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
+			saveQuoteOptionAllResponse.setReturnCode(quoteDao.saveQuoteOptionAll(saveQuoteOptionsAllParams));
+		}catch (SQLException ex) {
+			saveQuoteOptionAllResponse.setReturnCode(0);
+			saveQuoteOptionAllResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			saveQuoteOptionAllResponse.setReturnCode(0);
+			saveQuoteOptionAllResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		
+		return saveQuoteOptionAllResponse;
 	}
 
 }
