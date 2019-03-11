@@ -589,4 +589,13 @@
     	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
     	ORDER BY module_id
     </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Reason" id="ReasonMap">
+		<result property="reasonCd" 		column="REASON_CD"/> 
+		<result property="description" 		column="DESCRIPTION"/>
+	</resultMap>
+	
+	<select id="retrieveMtnReason" resultMap="ReasonMap" parameterType="java.util.Map">
+            SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_reason(#{reasonCd, jdbcType=VARCHAR},NULL,NULL,NULL,NULL)
+     </select>
 </mapper>

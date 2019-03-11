@@ -1201,7 +1201,7 @@
 	<update id="saveQuoteChangeQuoteStatusMap" parameterType="java.util.Map">
 		BEGIN
 		 <foreach collection="quoteList" item="quote">
-		 	CPI.ETS_QUOTE_PKG_EJVA_TEST.save_quote_change_quote_status(
+		 	CPI.ETS_QUOTE_PKG_EJVA.save_quote_change_quote_status(
 		 		#{quote.quoteId},#{status},#{quote.reasonCd}
 		 	);
 		 </foreach>

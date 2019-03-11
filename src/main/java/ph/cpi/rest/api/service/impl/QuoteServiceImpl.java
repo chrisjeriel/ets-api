@@ -863,7 +863,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqcqsResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (Exception ex) {
 			sqcqsResponse.setReturnCode(0);
-			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
 		}
 		return sqcqsResponse;
