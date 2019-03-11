@@ -890,8 +890,10 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		try {
 			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
-			saveQuoteChangeQuoteStatusParams.put("changeQuoteStatus", sqcqs.getChangeQuoteStatus());
-		
+			saveQuoteChangeQuoteStatusParams.put("status", sqcqs.getStatusCd());
+			saveQuoteChangeQuoteStatusParams.put("quoteList",sqcqs.getChangeQuoteStatus());
+			
+			
 			HashMap<String, Object> res = quoteDao.saveQuoteChangeQuoteStatus(saveQuoteChangeQuoteStatusParams);
 			
 			sqcqsResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -899,7 +901,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqcqsResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (Exception ex) {
 			sqcqsResponse.setReturnCode(0);
-			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
 		}
 		return sqcqsResponse;

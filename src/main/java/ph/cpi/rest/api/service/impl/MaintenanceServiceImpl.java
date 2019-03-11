@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
@@ -52,6 +53,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
@@ -537,6 +539,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smrrResponse;
+	}
+	
+	@Override
+	public RetrieveMtnReasonResponse retrieveMtnReason(RetrieveMtnReasonRequest rmrr) throws SQLException {
+		RetrieveMtnReasonResponse rmrResponse = new RetrieveMtnReasonResponse();
+		
+		HashMap<String, Object> retrieveMtnReasonParams =  new HashMap<String, Object>();
+		retrieveMtnReasonParams.put("reasonCd", rmrr.getReasonCd());
+		
+		rmrResponse.setReason(maintenanceDao.retrieveMtnReason(retrieveMtnReasonParams));
+		
+		return rmrResponse;
 	}
 	
 }
