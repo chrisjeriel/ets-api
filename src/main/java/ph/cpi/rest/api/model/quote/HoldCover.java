@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.quote;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
 public class HoldCover {
@@ -10,18 +11,18 @@ public class HoldCover {
 	private Integer holdCoverYear;
 	private Integer holdCoverSeqNo;
 	private Integer holdCoverRevNo;
-	private LocalDateTime periodFrom;
-	private LocalDateTime periodTo;
+	private DateTime periodFrom;
+	private DateTime periodTo;
 	private String compRefHoldCovNo;
 	private String status;
 	private String reqBy;
-	private LocalDateTime reqDate;
+	private DateTime reqDate;
 	private String preparedBy;
 	private String approvedBy;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	public Integer getHoldCoverId() {
 		return holdCoverId;
 	}
@@ -64,16 +65,16 @@ public class HoldCover {
 	public void setHoldCoverRevNo(Integer holdCoverRevNo) {
 		this.holdCoverRevNo = holdCoverRevNo;
 	}
-	public LocalDateTime getPeriodFrom() {
+	public DateTime getPeriodFrom() {
 		return periodFrom;
 	}
-	public void setPeriodFrom(LocalDateTime periodFrom) {
+	public void setPeriodFrom(DateTime periodFrom) {
 		this.periodFrom = periodFrom;
 	}
-	public LocalDateTime getPeriodTo() {
+	public DateTime getPeriodTo() {
 		return periodTo;
 	}
-	public void setPeriodTo(LocalDateTime periodTo) {
+	public void setPeriodTo(DateTime periodTo) {
 		this.periodTo = periodTo;
 	}
 	public String getCompRefHoldCovNo() {
@@ -94,10 +95,10 @@ public class HoldCover {
 	public void setReqBy(String reqBy) {
 		this.reqBy = reqBy;
 	}
-	public LocalDateTime getReqDate() {
+	public DateTime getReqDate() {
 		return reqDate;
 	}
-	public void setReqDate(LocalDateTime reqDate) {
+	public void setReqDate(DateTime reqDate) {
 		this.reqDate = reqDate;
 	}
 	public String getPreparedBy() {
@@ -118,10 +119,10 @@ public class HoldCover {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -130,10 +131,10 @@ public class HoldCover {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
@@ -146,5 +147,5 @@ public class HoldCover {
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}
-
+	
 }
