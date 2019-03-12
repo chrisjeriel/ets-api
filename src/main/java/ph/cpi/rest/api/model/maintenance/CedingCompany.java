@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.util.List;
+
 import org.joda.time.LocalDateTime;
 
 public class CedingCompany {
@@ -25,7 +27,7 @@ public class CedingCompany {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	private CedingRepresentative cedingRepresentative;
+	private List<CedingRepresentative> cedingRepresentative;
 	
 	public Integer getCedingId() {
 		return cedingId;
@@ -161,13 +163,12 @@ public class CedingCompany {
 	}
 	
 	
-	public CedingRepresentative getCedingRepresentative() {
+	public List<CedingRepresentative> getCedingRepresentative() {
 		return cedingRepresentative;
 	}
-	public void setCedingRepresentative(CedingRepresentative cedingRepresentative) {
+	public void setCedingRepresentative(List<CedingRepresentative> cedingRepresentative) {
 		this.cedingRepresentative = cedingRepresentative;
 	}
-	
 	@Override
 	public String toString() {
 		return "CedingCompany [cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr
@@ -179,5 +180,7 @@ public class CedingCompany {
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + ", cedingRepresentative=" + cedingRepresentative + "]";
 	}
+	
+	
 	
 }

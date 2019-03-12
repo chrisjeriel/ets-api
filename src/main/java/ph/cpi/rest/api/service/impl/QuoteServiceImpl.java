@@ -35,12 +35,14 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteChangeQuoteStatusRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
@@ -67,12 +69,14 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteChangeQuoteStatusResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
@@ -115,6 +119,7 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
 		retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
+		retrieveQuoteListingParams.put("quoteId", rqlp.getQuoteId());
 		retrieveQuoteListingParams.put("cessionDesc", rqlp.getCessionDesc());
 		retrieveQuoteListingParams.put("lineClassCdDesc", rqlp.getLineClassCdDesc());
 		retrieveQuoteListingParams.put("status", rqlp.getStatus());
@@ -851,6 +856,100 @@ public class QuoteServiceImpl implements QuoteService{
 			ex.printStackTrace();
 		}
 		return sqdrResponse;
+	}
+	
+	public SaveQuoteGeneralInfoOcResponse saveQuoteGeneralInfoOc(SaveQuoteGeneralInfoOcRequest sqgiop) throws SQLException{
+			SaveQuoteGeneralInfoOcResponse sqgioResponse = new SaveQuoteGeneralInfoOcResponse();
+		
+		try {
+			HashMap<String, Object> saveQuoteGeneralInfoOcParams = new HashMap<String, Object>();
+			
+			saveQuoteGeneralInfoOcParams.put("openQuotationNo", "");
+			saveQuoteGeneralInfoOcParams.put("outQuoteIdOc", "");
+			saveQuoteGeneralInfoOcParams.put("quoteIdOc", sqgiop.getQuoteIdOc());
+			saveQuoteGeneralInfoOcParams.put("lineCd", sqgiop.getLineCd());
+			saveQuoteGeneralInfoOcParams.put("year", sqgiop.getYear());
+			saveQuoteGeneralInfoOcParams.put("seqNo", sqgiop.getSeqNo());
+			saveQuoteGeneralInfoOcParams.put("revNo", sqgiop.getRevNo());
+			saveQuoteGeneralInfoOcParams.put("cedingId", sqgiop.getCedingId());
+			saveQuoteGeneralInfoOcParams.put("cessionId", sqgiop.getCessionId());
+			saveQuoteGeneralInfoOcParams.put("lineClassCd", sqgiop.getLineClassCd());
+			saveQuoteGeneralInfoOcParams.put("prinId", sqgiop.getPrinId());
+			saveQuoteGeneralInfoOcParams.put("contractorId", sqgiop.getContractorId());
+			saveQuoteGeneralInfoOcParams.put("insuredDesc", sqgiop.getInsuredDesc());
+			saveQuoteGeneralInfoOcParams.put("policyIdOc", sqgiop.getPolicyIdOc());
+			saveQuoteGeneralInfoOcParams.put("status", sqgiop.getStatus());
+			saveQuoteGeneralInfoOcParams.put("reinsurerId", sqgiop.getReinsurerId());
+			saveQuoteGeneralInfoOcParams.put("intmId", sqgiop.getIntmId());
+			saveQuoteGeneralInfoOcParams.put("issueDate", sqgiop.getIssueDate());
+			saveQuoteGeneralInfoOcParams.put("expiryDate", sqgiop.getExpiryDate());
+			saveQuoteGeneralInfoOcParams.put("reqBy", sqgiop.getReqBy());
+			saveQuoteGeneralInfoOcParams.put("reqDate", sqgiop.getReqDate());
+			saveQuoteGeneralInfoOcParams.put("reqMode", sqgiop.getReqMode());
+			saveQuoteGeneralInfoOcParams.put("currencyCd", sqgiop.getCurrencyCd());
+			saveQuoteGeneralInfoOcParams.put("currencyRt", sqgiop.getCurrencyRt());
+			saveQuoteGeneralInfoOcParams.put("govtTag", sqgiop.getGovtTag());
+			saveQuoteGeneralInfoOcParams.put("indicativeTag", sqgiop.getIndicativeTag());
+			saveQuoteGeneralInfoOcParams.put("preparedBy", sqgiop.getPreparedBy());
+			saveQuoteGeneralInfoOcParams.put("approvedBy", sqgiop.getApprovedBy());
+			saveQuoteGeneralInfoOcParams.put("printedBy", sqgiop.getPrintedBy());
+			saveQuoteGeneralInfoOcParams.put("printDate", sqgiop.getPrintDate());
+			saveQuoteGeneralInfoOcParams.put("openingParag", sqgiop.getOpeningParag());
+			saveQuoteGeneralInfoOcParams.put("closingParag", sqgiop.getClosingParag());
+			saveQuoteGeneralInfoOcParams.put("reasonCd", sqgiop.getReasonCd());
+			saveQuoteGeneralInfoOcParams.put("createUser", sqgiop.getCreateUser());
+			saveQuoteGeneralInfoOcParams.put("createDate", sqgiop.getCreateDate());
+			saveQuoteGeneralInfoOcParams.put("updateUser", sqgiop.getUpdateUser());
+			saveQuoteGeneralInfoOcParams.put("updateDate", sqgiop.getUpdateDate());
+			saveQuoteGeneralInfoOcParams.put("projId", sqgiop.getProjId());
+			saveQuoteGeneralInfoOcParams.put("projDesc", sqgiop.getProjDesc());
+			saveQuoteGeneralInfoOcParams.put("riskId", sqgiop.getRiskId());
+			saveQuoteGeneralInfoOcParams.put("maxSi", sqgiop.getMaxSi());
+			saveQuoteGeneralInfoOcParams.put("pctShare", sqgiop.getPctShare());
+			saveQuoteGeneralInfoOcParams.put("totalValue", sqgiop.getTotalValue());
+			saveQuoteGeneralInfoOcParams.put("objectId", sqgiop.getObjectId());
+			saveQuoteGeneralInfoOcParams.put("site", sqgiop.getSite());
+			saveQuoteGeneralInfoOcParams.put("duration", sqgiop.getDuration());
+			saveQuoteGeneralInfoOcParams.put("testing", sqgiop.getTesting());
+			saveQuoteGeneralInfoOcParams.put("prjCreateUser", sqgiop.getPrjCreateUser());
+			saveQuoteGeneralInfoOcParams.put("prjCreateDate", sqgiop.getPrjCreateDate());
+			saveQuoteGeneralInfoOcParams.put("prjUpdateUser", sqgiop.getPrjUpdateUser());
+			saveQuoteGeneralInfoOcParams.put("prjUpdateDate", sqgiop.getPrjUpdateDate());	
+			
+			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfoOc(saveQuoteGeneralInfoOcParams);
+			
+			sqgioResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqgioResponse.setQuoteIdOc((Integer) (res.get("outQuoteIdOc")));
+			sqgioResponse.setOpenQuotationNo((String) res.get("openQuotationNo"));
+		} catch (Exception ex) {
+			sqgioResponse.setReturnCode(0);
+			sqgioResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		
+		return sqgioResponse;
+	}
+
+	@Override
+	public SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(SaveQuoteChangeQuoteStatusRequest sqcqs)
+			throws SQLException {
+		SaveQuoteChangeQuoteStatusResponse sqcqsResponse = new SaveQuoteChangeQuoteStatusResponse();
+		
+		try {
+			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
+			saveQuoteChangeQuoteStatusParams.put("changeQuoteStatus", sqcqs.getChangeQuoteStatus());
+		
+			HashMap<String, Object> res = quoteDao.saveQuoteChangeQuoteStatus(saveQuoteChangeQuoteStatusParams);
+			
+			sqcqsResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqcqsResponse.setQuoteId((Integer) (res.get("outQuoteId")));
+			sqcqsResponse.setQuotationNo((String) res.get("quotationNo"));
+		} catch (Exception ex) {
+			sqcqsResponse.setReturnCode(0);
+			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return sqcqsResponse;
 	}
 
 	@Override

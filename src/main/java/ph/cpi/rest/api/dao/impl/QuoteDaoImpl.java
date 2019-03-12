@@ -250,7 +250,20 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteDeductiblesMap", params);
 		return errorCode;
 	}
-		
+	
+	@Override
+	public HashMap<String, Object> saveQuoteGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteGeneralInfoOc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public HashMap<String, Object> saveQuoteChangeQuoteStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteChangeQuoteStatusMap",params);
+			params.put("errorCode", errorCode);
+		return params;
+	}
 	public Integer saveQuoteOptionAll(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);

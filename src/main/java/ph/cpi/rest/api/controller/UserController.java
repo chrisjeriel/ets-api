@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
+import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
 
@@ -39,5 +41,12 @@ public class UserController {
 		return ulResponse;
 	}
 	
+	@GetMapping(path="retMtnUsers")
+	public @ResponseBody RetrieveMtnUsersResponse retMtnUsers(RetrieveMtnUsersRequest rmur) throws SQLException {
+		logger.info("GET: /api/user-service/retMtnUsers");
+		logger.info("RetrieveMtnUsersRequest : " + rmur.toString());
+		
+		return userService.retMtnUsers(rmur);
+	}
 	
 }
