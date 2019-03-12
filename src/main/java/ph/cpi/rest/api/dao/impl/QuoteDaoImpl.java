@@ -203,10 +203,17 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 
+//	@Override
+//	public Integer saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+//		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
+//		return errorCode;
+//	}
+	
 	@Override
-	public Integer saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object>  saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override

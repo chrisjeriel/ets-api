@@ -1069,9 +1069,10 @@
 		END;
 	</update> 
 	
-	<update id="saveQuoteHoldCover" parameterType="java.util.Map">
+	<update id="saveQuoteHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
+				#{holdCoverNo,mode=OUT,jdbcType=VARCHAR},
 				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
 				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
 				#{holdCoverRevNo,jdbcType=VARCHAR},
@@ -1165,13 +1166,19 @@
 	
 	<update id="saveQuoteEndorsementsOc" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
-				#{quoteIdOc,jdbcType=INTEGER},#{endtCd,jdbcType=INTEGER},
-				#{remarks,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				#{updateUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
-			);
+			<foreach collection="saveEndorsementsOc" item="endoOc">
+				ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
+					#{quoteIdOc,jdbcType=INTEGER},#{endoOc.endtCd,jdbcType=INTEGER},
+					#{endoOc.remarks,jdbcType=VARCHAR},#{endoOc.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{endoOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+					#{endoOc.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{endoOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+				);
+			</foreach>
+			<foreach collection="deleteEndorsementsOc" item="endoOc">
+				ETS_QUOTE_PKG_JAP.delete_quote_endorsements_oc(#{quoteIdOc,jdbcType=INTEGER},#{endoOc.endtCd,jdbcType=INTEGER});
+			</foreach>
+			
 		END;
 	</update>
 	

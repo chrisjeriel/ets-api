@@ -51,7 +51,8 @@ public interface QuoteDao {
 	public HashMap<String, Object> saveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteCompetition(final HashMap<String, Object> params) throws SQLException;
 	
-	public Integer saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
+	//public Integer saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteOption(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
