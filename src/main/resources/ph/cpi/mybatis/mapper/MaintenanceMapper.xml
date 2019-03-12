@@ -589,4 +589,29 @@
     	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
     	ORDER BY module_id
     </select>
+    
+    
+    <!-- <resultMap id="employeeResult" type="ph.cpi.rest.api.model.Employee">
+    	<result property="empId" 			column="EMP_ID"/>
+    	<result property="empDepartment" 		column="EMP_DEPARTMENT"/>
+		<result property="empName" 		column="EMP_NAME"/>
+	  	<collection property="addressList" javaType="ArrayList" column="{empId = EMP_ID, addressId = ADDRESS_ID}" ofType="addressResult" select="getEmployeeAddress"/>
+	</resultMap>
+	
+	<resultMap id="addressResult" type="ph.cpi.rest.api.model.Address">
+    	<result property="addressId" 		column="ADDRESS_ID"/>
+    	<result property="empAddress" 		column="EMP_ADDRESS"/>
+	</resultMap>
+    
+    <select id="getEmployeeX" resultMap="employeeResult">
+	  SELECT a.* FROm tbl_employee a
+	   where emp_id = #{empId}
+	</select>
+	
+	<select id="getEmployeeAddress" resultMap="addressResult">
+	  SELECT a.* FROM tbl_address a
+	  WHERE emp_id = #{empId}
+	    AND address_id = #{addressId}
+	</select> -->
+    
 </mapper>
