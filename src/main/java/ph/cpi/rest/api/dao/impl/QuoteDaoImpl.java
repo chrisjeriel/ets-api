@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
+import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
 import ph.cpi.rest.api.service.impl.QuoteServiceImpl;
 
@@ -81,8 +82,8 @@ public class QuoteDaoImpl implements QuoteDao{
 		return quotationOc;
 	}
 	
-	public List<QuotationOc> retrieveQuoterGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
-		List<QuotationOc> quotationOc = sqlSession.selectList("retrieveQuoteGeneralInfoOc", params);
+	public QuotationGeneralInfoOc retrieveQuoteGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
+		QuotationGeneralInfoOc quotationOc = sqlSession.selectOne("retrieveQuoteGeneralInfoOc", params);
 		return quotationOc;
 	}
 

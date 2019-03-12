@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
+import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
 
 public interface QuoteDao {
@@ -24,7 +25,7 @@ public interface QuoteDao {
 	public QuotationOc retrieveQuoteDetailsOc(final HashMap<String, Object> params) throws SQLException;
 	public Quotation retrieveQuoteDetails(final HashMap<String, Object> params) throws SQLException;
 	public Quotation retrieveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
-	public List<QuotationOc> retrieveQuoterGeneralInfoOc(final HashMap<String, Object> params) throws SQLException;
+	public QuotationGeneralInfoOc retrieveQuoteGeneralInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public List<Quotation> retrieveQuoteHoldCoverListing(final HashMap<String, Object> params) throws SQLException;
 
 	public List<QuotationOc> retrieveQuoteAttachmentOcList(final HashMap<String, Object> params) throws SQLException;

@@ -4,17 +4,26 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.QuotationOc;
+import ph.cpi.rest.api.model.quote.ProjectOc;
+import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 
 public class RetrieveQuoteGeneralInfoOcResponse {
-	private List<QuotationOc> quotationOc;
+	private QuotationGeneralInfoOc quotationOc;
+	private ProjectOc projectOc;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<QuotationOc> getQuotationOc() {
+	
+	public QuotationGeneralInfoOc getQuotationOc() {
 		return quotationOc;
 	}
-	public void setQuotationOc(List<QuotationOc> list) {
-		this.quotationOc = list;
+	public void setQuotationOc(QuotationGeneralInfoOc quotationOc) {
+		this.quotationOc = quotationOc;
+	}
+	public ProjectOc getProjectOc() {
+		return projectOc;
+	}
+	public void setProjectOc(ProjectOc projectOc) {
+		this.projectOc = projectOc;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -28,10 +37,10 @@ public class RetrieveQuoteGeneralInfoOcResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveQuoteGeneralInfoOcResponse [paginationResponse=" + paginationResponse + ", sortResponse="
-				+ sortResponse + "]";
+		return "RetrieveQuoteGeneralInfoOcResponse [quotationOc=" + quotationOc + ", projectOc=" + projectOc
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
 }

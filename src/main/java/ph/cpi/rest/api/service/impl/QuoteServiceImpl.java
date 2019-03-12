@@ -263,7 +263,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteGeneralInfoOcParams = new HashMap<String, Object>();
 		retrieveQuoteGeneralInfoOcParams.put("quoteIdOc", rqgiocp.getQuoteIdOc());
 		retrieveQuoteGeneralInfoOcParams.put("openQuotationNo", rqgiocp.getOpenQuotationNo());
-		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoterGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
+		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoteGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
 		logger.info("retrieveQuoteGeneralInfoOcResponse : " + rqgiocResponse.toString());
 		
 		return rqgiocResponse;
@@ -804,12 +804,8 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteEndorsementsOcResponse sqeocrResponse = new SaveQuoteEndorsementsOcResponse();	
 		HashMap<String, Object> saveQuoteEndorsementsOcParams = new HashMap<String, Object>();
 		saveQuoteEndorsementsOcParams.put("quoteIdOc",sqeocr.getQuoteIdOc());
-		saveQuoteEndorsementsOcParams.put("endtCd",sqeocr.getEndtCd());
-		saveQuoteEndorsementsOcParams.put("remarks",sqeocr.getRemarks());
-		saveQuoteEndorsementsOcParams.put("createUser",sqeocr.getCreateUser());
-		saveQuoteEndorsementsOcParams.put("createDate",sqeocr.getCreateDate());
-		saveQuoteEndorsementsOcParams.put("updateUser",sqeocr.getUpdateUser());
-		saveQuoteEndorsementsOcParams.put("updateDate",sqeocr.getUpdateDate());
+		saveQuoteEndorsementsOcParams.put("saveEndorsementsOcList",sqeocr.getSaveEndorsementsOcList());
+		saveQuoteEndorsementsOcParams.put("deleteEndorsementsOcList",sqeocr.getDeleteEndorsementsOcList());
 		sqeocrResponse.setReturnCode(quoteDao.saveQuoteEndorsementsOc(saveQuoteEndorsementsOcParams));
 		
 		return sqeocrResponse;

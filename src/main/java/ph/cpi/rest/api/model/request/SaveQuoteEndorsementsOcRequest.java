@@ -1,23 +1,53 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
+
 public class SaveQuoteEndorsementsOcRequest {
-	private String quoteIdOc;
-	private String endtCd;
+	private Integer quoteIdOc;
+	private List<EndorsementsOc> saveEndorsementsOcList;
+	private List<EndorsementsOc> deleteEndorsementsOcList;
+	
+	public Integer getQuoteIdOc() {
+		return quoteIdOc;
+	}
+	public void setQuoteIdOc(Integer quoteIdOc) {
+		this.quoteIdOc = quoteIdOc;
+	}
+	public List<EndorsementsOc> getSaveEndorsementsOcList() {
+		return saveEndorsementsOcList;
+	}
+	public void setSaveEndorsementsOcList(List<EndorsementsOc> saveEndorsementsOcList) {
+		this.saveEndorsementsOcList = saveEndorsementsOcList;
+	}
+	public List<EndorsementsOc> getDeleteEndorsementsOcList() {
+		return deleteEndorsementsOcList;
+	}
+	public void setDeleteEndorsementsOcList(List<EndorsementsOc> deleteEndorsementsOcList) {
+		this.deleteEndorsementsOcList = deleteEndorsementsOcList;
+	}
+	
+	@Override
+	public String toString() {
+		return "SaveQuoteEndorsementsOcRequest [quoteIdOc=" + quoteIdOc + ", saveEndorsementsOcList="
+				+ saveEndorsementsOcList + ", deleteEndorsementsOcList=" + deleteEndorsementsOcList + "]";
+	}
+}
+
+@Alias("SaveQuoteEndorsementsOc")
+class EndorsementsOc{
+	private Integer endtCd;
 	private String remarks;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	public String getQuoteIdOc() {
-		return quoteIdOc;
-	}
-	public void setQuoteIdOc(String quoteIdOc) {
-		this.quoteIdOc = quoteIdOc;
-	}
-	public String getEndtCd() {
+	
+	public Integer getEndtCd() {
 		return endtCd;
 	}
-	public void setEndtCd(String endtCd) {
+	public void setEndtCd(Integer endtCd) {
 		this.endtCd = endtCd;
 	}
 	public String getRemarks() {
@@ -52,22 +82,9 @@ public class SaveQuoteEndorsementsOcRequest {
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteEndorsementsOcRequest [quoteIdOc=");
-		builder.append(quoteIdOc);
-		builder.append(", endtCd=");
-		builder.append(endtCd);
-		builder.append(", remarks=");
-		builder.append(remarks);
-		builder.append(", createUser=");
-		builder.append(createUser);
-		builder.append(", createDate=");
-		builder.append(createDate);
-		builder.append(", updateUser=");
-		builder.append(updateUser);
-		builder.append(", updateDate=");
-		builder.append(updateDate);
-		builder.append("]");
-		return builder.toString();
+		return "EndorsementsOc [endtCd=" + endtCd + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
 }

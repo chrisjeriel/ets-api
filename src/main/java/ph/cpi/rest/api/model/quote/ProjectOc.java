@@ -7,6 +7,7 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class ProjectOc {
+	private Integer quoteIdOc;
 	private Integer	projId;
 	private String	projDesc;
 	private Integer	riskId;
@@ -28,6 +29,13 @@ public class ProjectOc {
 	private LocalDateTime	updateDate;
 	private List<EndorsementsOc> endorsementsOc;
 	private CoverageOc coverageOc;
+	
+	public Integer getQuoteIdOc() {
+		return quoteIdOc;
+	}
+	public void setQuoteIdOc(Integer quoteIdOc) {
+		this.quoteIdOc = quoteIdOc;
+	}
 	public Integer getProjId() {
 		return projId;
 	}
@@ -156,13 +164,12 @@ public class ProjectOc {
 	}
 	@Override
 	public String toString() {
-		return "ProjectOc [projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId + ", riskName="
-				+ riskName + ", maxSiI=" + maxSiI + ", maxSi=" + maxSi + ", pctShareI=" + pctShareI + ", pctShare="
-				+ pctShare + ", totalValueI=" + totalValueI + ", totalValue=" + totalValue + ", objectId=" + objectId
-				+ ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing=" + testing
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", endorsementsOc=" + endorsementsOc + ", coverageOc=" + coverageOc
-				+ "]";
+		return "ProjectOc [quoteIdOc=" + quoteIdOc + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId="
+				+ riskId + ", riskName=" + riskName + ", maxSiI=" + maxSiI + ", maxSi=" + maxSi + ", pctShareI="
+				+ pctShareI + ", pctShare=" + pctShare + ", totalValueI=" + totalValueI + ", totalValue=" + totalValue
+				+ ", objectId=" + objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration
+				+ ", testing=" + testing + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", endorsementsOc=" + endorsementsOc + ", coverageOc="
+				+ coverageOc + "]";
 	}
-	
 }
