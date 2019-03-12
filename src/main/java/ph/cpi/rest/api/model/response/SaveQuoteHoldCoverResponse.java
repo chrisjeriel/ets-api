@@ -1,6 +1,5 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Error;
@@ -10,19 +9,14 @@ public class SaveQuoteHoldCoverResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private String holdCoverNo;
 	public List<Error> getErrorList() {
-		if (errorList == null) {
-			errorList = new ArrayList<Error>();
-		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
 		this.errorList = errorList;
 	}
 	public List<Message> getMessageList() {
-		if (messageList == null) {
-			messageList = new ArrayList<Message>();
-		}
 		return messageList;
 	}
 	public void setMessageList(List<Message> messageList) {
@@ -34,16 +28,18 @@ public class SaveQuoteHoldCoverResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
+	public String getHoldCoverNo() {
+		return holdCoverNo;
+	}
+	public void setHoldCoverNo(String holdCoverNo) {
+		this.holdCoverNo = holdCoverNo;
+	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteHoldCoverResponse [errorList=");
-		builder.append(errorList);
-		builder.append(", messageList=");
-		builder.append(messageList);
-		builder.append(", returnCode=");
-		builder.append(returnCode);
-		builder.append("]");
-		return builder.toString();
+		return "SaveQuoteHoldCoverResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + ", holdCoverNo=" + holdCoverNo + "]";
 	}
+	
+	
+	
 }

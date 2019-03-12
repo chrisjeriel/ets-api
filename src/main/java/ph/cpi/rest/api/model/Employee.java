@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,8 @@ public class Employee {
 	private String empName;
 	
 	private String empDepartment;
+	
+	private ArrayList<Address> addressList;
 
 	public Employee() {
 		super();
@@ -53,9 +57,18 @@ public class Employee {
 		this.empDepartment = empDepartment;
 	}
 
+	public ArrayList<Address> getAddressList() {
+		return addressList;
+	}
+
+	public void setAddressList(ArrayList<Address> addressList) {
+		this.addressList = addressList;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", empDepartment=" + empDepartment + "]";
+		return "Employee [empId=" + empId + ", empName=" + empName + ", empDepartment=" + empDepartment
+				+ ", addressList=" + addressList + "]";
 	}
-	
+
 }

@@ -2,52 +2,48 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import org.apache.ibatis.type.Alias;
-
 public class SaveQuoteEndorsementsOcRequest {
-	private Integer quoteIdOc;
-	private List<EndorsementsOc> saveEndorsementsOcList;
-	private List<EndorsementsOc> deleteEndorsementsOcList;
-	
-	public Integer getQuoteIdOc() {
+	private String quoteIdOc;
+	private List<EndorsementssOc> saveEndorsementsOc;
+	private List<EndorsementssOc> deleteEndorsementsOc;
+	public String getQuoteIdOc() {
 		return quoteIdOc;
 	}
-	public void setQuoteIdOc(Integer quoteIdOc) {
+	public void setQuoteIdOc(String quoteIdOc) {
 		this.quoteIdOc = quoteIdOc;
 	}
-	public List<EndorsementsOc> getSaveEndorsementsOcList() {
-		return saveEndorsementsOcList;
+	public List<EndorsementssOc> getSaveEndorsementsOc() {
+		return saveEndorsementsOc;
 	}
-	public void setSaveEndorsementsOcList(List<EndorsementsOc> saveEndorsementsOcList) {
-		this.saveEndorsementsOcList = saveEndorsementsOcList;
+	public void setSaveEndorsementsOc(List<EndorsementssOc> saveEndorsementsOc) {
+		this.saveEndorsementsOc = saveEndorsementsOc;
 	}
-	public List<EndorsementsOc> getDeleteEndorsementsOcList() {
-		return deleteEndorsementsOcList;
+	public List<EndorsementssOc> getDeleteEndorsementsOc() {
+		return deleteEndorsementsOc;
 	}
-	public void setDeleteEndorsementsOcList(List<EndorsementsOc> deleteEndorsementsOcList) {
-		this.deleteEndorsementsOcList = deleteEndorsementsOcList;
+	public void setDeleteEndorsementsOc(List<EndorsementssOc> deleteEndorsementsOc) {
+		this.deleteEndorsementsOc = deleteEndorsementsOc;
 	}
-	
 	@Override
 	public String toString() {
-		return "SaveQuoteEndorsementsOcRequest [quoteIdOc=" + quoteIdOc + ", saveEndorsementsOcList="
-				+ saveEndorsementsOcList + ", deleteEndorsementsOcList=" + deleteEndorsementsOcList + "]";
+		return "SaveQuoteEndorsementsOcRequest [quoteIdOc=" + quoteIdOc + ", saveEndorsementsOc=" + saveEndorsementsOc
+				+ ", deleteEndorsementsOc=" + deleteEndorsementsOc + "]";
 	}
+	
 }
 
-@Alias("SaveQuoteEndorsementsOc")
-class EndorsementsOc{
-	private Integer endtCd;
+class EndorsementssOc {
+	private String endtCd;
 	private String remarks;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	
-	public Integer getEndtCd() {
+
+	public String getEndtCd() {
 		return endtCd;
 	}
-	public void setEndtCd(Integer endtCd) {
+	public void setEndtCd(String endtCd) {
 		this.endtCd = endtCd;
 	}
 	public String getRemarks() {
@@ -82,7 +78,7 @@ class EndorsementsOc{
 	}
 	@Override
 	public String toString() {
-		return "EndorsementsOc [endtCd=" + endtCd + ", remarks=" + remarks + ", createUser=" + createUser
+		return "EndorsementssOc [endtCd=" + endtCd + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	

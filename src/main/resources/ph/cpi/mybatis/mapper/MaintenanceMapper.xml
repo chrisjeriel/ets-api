@@ -301,6 +301,8 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="city">
 		<result property="cityCd" column="CITY_CD" />
 		<result property="cityDesc" column="CITY_DESC" />
+		<result property="zoneCd" column="ZONE_CD" />
+		<result property="zoneDesc" column="ZONE_DESC" />
 		<association property="districtList" resultMap="district"></association>
 	</resultMap>
 	
@@ -374,7 +376,7 @@
 		<result property="activeTag"		column="ACTIVE_TAG"/>
 		<result property="remarks"			column="REMARKS"/>
 		<result property="zoneCd"			column="ZONE_CD"/>
-		<result property="zoneCdDesc"		column="ZONE_DESC"/>
+		<result property="zoneDesc"			column="ZONE_DESC"/>
 		<result property="createUser"		column="CREATE_USER"/>
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
@@ -575,13 +577,13 @@
   	
   	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
   		BEGIN
-  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=OUT , jdbcType=VARCHAR},#{riskAbbr},
-  				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd},
-  				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd},#{activeTag},#{remarks},
+  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=INOUT , jdbcType=VARCHAR},#{riskAbbr},
+  				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},
+  				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd, jdbcType=VARCHAR},#{activeTag},#{remarks, jdbcType=VARCHAR},
   				#{createUser},
   				to_date(#{createDate}, 'YYYY-MM-DD'),
   				#{updateUser},
-  				to_date(#{updateDate}, 'YYYY-MM-DD'),#{blockCd}
+  				to_date(#{updateDate}, 'YYYY-MM-DD'),#{blockCd, jdbcType=VARCHAR}
   				);
   		END;
   	</update>
@@ -590,6 +592,39 @@
     	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
     	ORDER BY module_id
     </select>
+    
+
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Reason" id="ReasonMap">
+		<result property="reasonCd" 		column="REASON_CD"/> 
+		<result property="description" 		column="DESCRIPTION"/>
+	</resultMap>
+	
+	<select id="retrieveMtnReason" resultMap="ReasonMap" parameterType="java.util.Map">
+            SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_reason(#{reasonCd, jdbcType=VARCHAR},NULL,NULL,NULL,NULL)
+     </select>
+
+    <!-- <resultMap id="employeeResult" type="ph.cpi.rest.api.model.Employee">
+    	<result property="empId" 			column="EMP_ID"/>
+    	<result property="empDepartment" 		column="EMP_DEPARTMENT"/>
+		<result property="empName" 		column="EMP_NAME"/>
+	  	<collection property="addressList" javaType="ArrayList" column="{empId = EMP_ID, addressId = ADDRESS_ID}" ofType="addressResult" select="getEmployeeAddress"/>
+	</resultMap>
+	
+	<resultMap id="addressResult" type="ph.cpi.rest.api.model.Address">
+    	<result property="addressId" 		column="ADDRESS_ID"/>
+    	<result property="empAddress" 		column="EMP_ADDRESS"/>
+	</resultMap>
+    
+    <select id="getEmployeeX" resultMap="employeeResult">
+	  SELECT a.* FROm tbl_employee a
+	   where emp_id = #{empId}
+	</select>
+	
+	<select id="getEmployeeAddress" resultMap="addressResult">
+	  SELECT a.* FROM tbl_address a
+	  WHERE emp_id = #{empId}
+	    AND address_id = #{addressId}
+	</select> -->
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.Users" id="usersMap">
      	<result property="userId"            	column="USER_ID"/>
