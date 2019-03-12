@@ -508,8 +508,9 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
 			saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
 			saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
-			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
 			saveQuoteCoverageParams.put("deleteSectionCovers", saveQuoteCoverage.getDeleteSectionCovers());
+			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
+			
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteCoverage(saveQuoteCoverageParams);
 			sqaResponse.setReturnCode((Integer) res.get("errorCode"));

@@ -1030,6 +1030,11 @@
 			   ETS_QUOTE_PKG_EJVA.save_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
 			   SYSDATE);
+			   
+		   <foreach collection="deleteSectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId,jdbcType=INTEGER},#{projId,jdbcType=INTEGER},#{riskId,jdbcType=INTEGER},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
+		   </foreach>
+		   
 		   <foreach collection="saveSectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.save_quote_section_covers
 			   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
@@ -1038,9 +1043,6 @@
 			   SYSDATE);
 		   </foreach>
 		   
-		   <foreach collection="deleteSectionCovers" item="sectioncovers">
-		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId,jdbcType=INTEGER},#{projId,jdbcType=INTEGER},#{riskId,jdbcType=INTEGER},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
-		   </foreach>
 		END;
 	</update>
 	
