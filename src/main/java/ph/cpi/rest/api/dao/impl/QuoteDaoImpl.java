@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.quote.Endorsements;
@@ -17,7 +18,6 @@ import ph.cpi.rest.api.model.quote.Project;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationOc;
-import ph.cpi.rest.api.service.impl.QuoteServiceImpl;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -271,6 +271,10 @@ public class QuoteDaoImpl implements QuoteDao{
 			params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Autowired
+	private PlatformTransactionManager transactionManager;
+	
 	public Integer saveQuoteOptionAll(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);
