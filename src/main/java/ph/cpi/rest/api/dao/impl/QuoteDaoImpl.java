@@ -256,4 +256,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);
 		return errorCode;
 	}
+
+	@Override
+	public Quotation retrieveQuoteDeductibles(HashMap<String, Object> params) throws SQLException {
+		Quotation quotation = sqlSession.selectOne("retrieveQuoteDeductibles", params);
+		return quotation;
+	}
 }

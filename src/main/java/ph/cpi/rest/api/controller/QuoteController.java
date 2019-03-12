@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
@@ -53,6 +54,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
@@ -337,6 +339,13 @@ public class QuoteController {
 		logger.info("POST: /api/quote-service/saveQuoteDeductibles");
 		logger.info("SaveQuoteDeductiblesRequest : " + sqdr.toString());
 		return quoteService.saveQuoteDeductibles(sqdr);
+	}
+	
+	@GetMapping(path="retrieveQuoteDeductibles")
+	public @ResponseBody RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqds) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteDeductibles");
+		logger.info("RetrieveQuoteDeductiblesRequest : " + rqds.toString());
+		return quoteService.retrieveQuoteDeductibles(rqds);
 	}
 
 }
