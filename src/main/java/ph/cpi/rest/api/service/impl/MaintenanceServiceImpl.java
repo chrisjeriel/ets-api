@@ -531,11 +531,11 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			smrrResponse.setRiskId((String) res.get("riskId")); 
 		}catch (SQLException ex) {
 			smrrResponse.setReturnCode(0);
-			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
 		}catch (Exception ex) {
 			smrrResponse.setReturnCode(0);
-			smrrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			smrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
 			ex.printStackTrace();
 		}
 		return smrrResponse;

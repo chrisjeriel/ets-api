@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
 
+import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -39,6 +40,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -118,4 +120,6 @@ public interface QuoteService {
 	public SaveQuoteGeneralInfoOcResponse saveQuoteGeneralInfoOc(SaveQuoteGeneralInfoOcRequest sqgiop) throws SQLException;
 	public SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(SaveQuoteChangeQuoteStatusRequest sqcqs ) throws SQLException;
 	public SaveQuoteOptionAllResponse saveQuoteOptionAll(SaveQuoteOptionAllRequest sqor ) throws SQLException;
+	
+	public CopyEndorsementResponse copyEndorsement(CopyEndorsementRequest cer ) throws SQLException;
 }

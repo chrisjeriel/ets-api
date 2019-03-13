@@ -10,7 +10,7 @@ public class City {
 	private String activeTag;
 	private String remarks;
 	private Integer zoneCd;
-	private String zoneCdDesc;
+	private String zoneDesc;
 	private String createUser;
 	private LocalDateTime createDate;
 	private String updateUser;
@@ -53,11 +53,12 @@ public class City {
 	public void setZoneCd(Integer zoneCd) {
 		this.zoneCd = zoneCd;
 	}
-	public String getZoneCdDesc() {
-		return zoneCdDesc;
+	
+	public String getZoneDesc() {
+		return zoneDesc;
 	}
-	public void setZoneCdDesc(String zoneCdDesc) {
-		this.zoneCdDesc = zoneCdDesc;
+	public void setZoneDesc(String zoneDesc) {
+		this.zoneDesc = zoneDesc;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -89,5 +90,13 @@ public class City {
 	public void setDistrict(District district) {
 		this.district = district;
 	}
+	@Override
+	public String toString() {
+		return "City [cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtList=" + districtList + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", zoneCd=" + zoneCd + ", zoneDesc=" + zoneDesc + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", district=" + district + "]";
+	}
+	
 	
 }

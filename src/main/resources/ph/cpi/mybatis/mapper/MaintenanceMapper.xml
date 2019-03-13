@@ -301,6 +301,8 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="city">
 		<result property="cityCd" column="CITY_CD" />
 		<result property="cityDesc" column="CITY_DESC" />
+		<result property="zoneCd" column="ZONE_CD" />
+		<result property="zoneDesc" column="ZONE_DESC" />
 		<association property="districtList" resultMap="district"></association>
 	</resultMap>
 	
@@ -374,7 +376,7 @@
 		<result property="activeTag"		column="ACTIVE_TAG"/>
 		<result property="remarks"			column="REMARKS"/>
 		<result property="zoneCd"			column="ZONE_CD"/>
-		<result property="zoneCdDesc"		column="ZONE_DESC"/>
+		<result property="zoneDesc"			column="ZONE_DESC"/>
 		<result property="createUser"		column="CREATE_USER"/>
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
@@ -465,6 +467,8 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="maintenanceCityMap">
         <result property="cityCd" 	column="CITY_CD"/>
         <result property="cityDesc" column="CITY_DESC"/>
+        <result property="zoneCd" column="ZONE_CD" />
+		<result property="zoneDesc" column="ZONE_DESC" />
         <association property="districtList" resultMap="maintenanceDistrictMap"></association>
 	</resultMap>
 	
@@ -575,13 +579,13 @@
   	
   	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
   		BEGIN
-  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=OUT , jdbcType=VARCHAR},#{riskAbbr},
-  				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd},
-  				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd},#{activeTag},#{remarks},
+  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=INOUT , jdbcType=VARCHAR},#{riskAbbr},
+  				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},
+  				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd, jdbcType=VARCHAR},#{activeTag},#{remarks, jdbcType=VARCHAR},
   				#{createUser},
   				to_date(#{createDate}, 'YYYY-MM-DD'),
   				#{updateUser},
-  				to_date(#{updateDate}, 'YYYY-MM-DD'),#{blockCd}
+  				to_date(#{updateDate}, 'YYYY-MM-DD'),#{blockCd, jdbcType=VARCHAR}
   				);
   		END;
   	</update>

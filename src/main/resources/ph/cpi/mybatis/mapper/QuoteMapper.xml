@@ -103,18 +103,18 @@
 		<result property = "holdCoverYear"       column = "HOLD_COV_YEAR"/>
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
-		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
 		<result property = "status"              column = "STATUS"/>
 		<result property = "reqBy"               column = "REQ_BY"/>
-		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "preparedBy"          column = "PREPARED_BY"/>
 		<result property = "approvedBy"          column = "APPROVED_BY"/>
 		<result property = "createUser"          column = "CREATE_USER"/>
-		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"          column = "UPDATE_USER"/>
-		<result property = "updateDate"          column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"          column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc" id="quotationOcMap">
@@ -127,6 +127,7 @@
 		<result property    ="revNo"                column  ="REV_NO"/>
 		<result property    ="cedingId"             column  ="CEDING_ID"/>
 		<result property    ="cessionId"            column  ="CESSION_ID"/>
+		<result property    ="cessionDesc"          column  ="DESCRIPTION"/>
 		<result property    ="cedingName"           column  ="CEDING_NAME"/>
 		<result property    ="lineClassCd"          column  ="LINE_CLASS_CD"/>
 		<result property    ="lineClassDesc"        column  ="LINE_CLASS_DESCRIPTION"/>
@@ -216,16 +217,16 @@
 		<result property = "holdCoverYear"       column = "HOLD_COV_YEAR"/>
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
-		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
 		<result property = "status"              column = "STATUS"/>
 		<result property = "reqBy"               column = "REQ_BY"/>
-		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "preparedBy"          column = "PREPARED_BY"/>
 		<result property = "approvedBy"          column = "APPROVED_BY"/>
 		<result property = "createUser"          column = "CREATE_USER"/>
-		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"          column = "UPDATE_USER"/>
 	</resultMap>
 	
@@ -387,8 +388,44 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.ProjectOc" id="quoteProjectOcMap">
+		<result property="quoteIdOc" 	    column="QUOTE_ID_OC"/>
+		<result property="openQuotationNo" 	column="OPEN_QUOTATION_NO"/> 
+		<result property="projId" 			column="PROJ_ID"/> 
+		<result property="projDesc" 		column="PROJ_DESC"/> 
+		<result property="riskId" 			column="RISK_ID"/> 
+		<result property="riskName" 		column="RISK_NAME"/>
+		<result property="regionCd" 		column="REGION_CD"/>
+		<result property="regionDesc" 		column="REGION_DESC"/>
+		<result property="provinceCd" 		column="PROVINCE_CD"/>
+		<result property="provinceDesc"		column="PROVINCE_DESC"/>
+		<result property="cityCd"	 		column="CITY_CD"/>
+		<result property="cityDesc"	 		column="CITY_DESC"/>
+		<result property="districtCd" 		column="DISTRICT_CD"/>
+		<result property="districtDesc"		column="DISTRICT_DESC"/>
+		<result property="blockCd"	 		column="BLOCK_CD"/>
+		<result property="blockDesc"		column="BLOCK_DESC"/>
+		<result property="latitude"	 		column="LATITUDE"/>
+		<result property="longitude" 		column="LONGITUDE"/>		
+		<result property="maxSi" 			column="MAX_SI"/>  
+		<result property="pctShare" 		column="PCT_SHARE"/>
+		<result property="totalValue" 		column="TOTAL_VALUE"/>  	 
+		<result property="objectId" 		column="OBJECT_ID"/>
+		<result property="objectDesc" 		column="DESCRIPTION"/>
+		<result property="site" 			column="SITE"/>
+		<result property="duration" 		column="DURATION"/>
+		<result property="testing" 			column="TESTING"/>     
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+	</select>
+	<select id="retrieveQuoteProjectOc" resultMap="quoteProjectOcMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_NDC.ret_quo_proj_oc(#{quoteIdOc,jdbcType=VARCHAR},#{openQuotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteEndorsementsOc" resultMap="quoteEndorsementsOcMap" parameterType="java.util.Map">
@@ -1071,22 +1108,23 @@
 		END;
 	</update> 
 	
-	<update id="saveQuoteHoldCover" parameterType="java.util.Map">
+	<update id="saveQuoteHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
+				#{holdCoverNo,mode=OUT,jdbcType=VARCHAR},
 				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
 				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
 				#{holdCoverRevNo,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{compRefHoldCovNo,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
 				#{reqBy,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{preparedBy,jdbcType=VARCHAR},
 				#{approvedBy,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
@@ -1167,13 +1205,18 @@
 	
 	<update id="saveQuoteEndorsementsOc" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
-				#{quoteIdOc,jdbcType=INTEGER},#{endtCd,jdbcType=INTEGER},
-				#{remarks,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				#{updateUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
-			);
+			<foreach collection="saveEndorsementsOc" item="endoOc">
+				ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
+					#{quoteIdOc,jdbcType=INTEGER},#{endoOc.endtCd,jdbcType=INTEGER},
+					#{endoOc.remarks,jdbcType=VARCHAR},#{endoOc.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{endoOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+					#{endoOc.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{endoOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+				);
+			</foreach>
+			<foreach collection="deleteEndorsementsOc" item="endoOc">
+				ETS_QUOTE_PKG_JAP.delete_quote_endorsements_oc(#{quoteIdOc,jdbcType=INTEGER},#{endoOc.endtCd,jdbcType=INTEGER});
+			</foreach>
 		END;
 	</update>
 	
@@ -1311,5 +1354,18 @@
 		 </foreach>
 		END;
 	</update>
+	
+	<update id="copyEndorsementMap" parameterType="java.util.Map">
+		BEGIN
+		 <foreach collection="toOptionNo" item="copy">
+		 	CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+		 		#{copyingType},#{fromOptionNo},#{copy.toOptionNo},
+		 		#{quoteId},#{quoteId},
+		 		#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		 		#{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+		 	);
+		 </foreach>
+		END;
+	</update> 
 	
 </mapper>
