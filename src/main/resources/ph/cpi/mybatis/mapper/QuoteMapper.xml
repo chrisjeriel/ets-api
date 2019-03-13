@@ -865,7 +865,7 @@
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
 		<!-- SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)) -->
-		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_PCPCR_TEST.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 <!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
@@ -1139,10 +1139,10 @@
 	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deleteDeductibleList" item="deductible">
-		   		ETS_QUOTE_PKG_PCPCR_TEST.delete_q_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   		ETS_QUOTE_PKG_ETC.delete_q_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
 		   </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
-			   		ETS_QUOTE_PKG_PCPCR_TEST.save_q_deductible(
+			   		ETS_QUOTE_PKG_ETC.save_q_deductible(
 			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.sumInsured} ,#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
@@ -1208,10 +1208,10 @@
 			v_option_id QUOTE_OTHER_RATES.OPTION_ID%TYPE;
 		BEGIN
 		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
-		   		CPI.ETS_QUOTE_PKG_PCPCR_TEST.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
+		   		CPI.ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
-		   	   CPI.ETS_QUOTE_PKG_PCPCR_TEST.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
+		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
 		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1234,7 +1234,7 @@
 		 	);
 		 </foreach> -->
 		 <foreach collection="otherRates" item="otherRates">
-			CPI.ETS_QUOTE_PKG_PCPCR_TEST.save_q_other_rates(
+			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
 				#{quoteId,jdbcType=INTEGER},
 				#{otherRates.optionId,jdbcType=INTEGER},
 				#{otherRates.section},
@@ -1252,14 +1252,14 @@
 		 
 		 <foreach collection="newOptions" item="quoteOption">
 		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
-		   	   CPI.ETS_QUOTE_PKG_PCPCR_TEST.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
+		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
 		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   	   
 		   	   <foreach collection="quoteOption.otherRatesList" item="otherRates">
-					CPI.ETS_QUOTE_PKG_PCPCR_TEST.save_q_other_rates(
+					CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
 						#{quoteId,jdbcType=INTEGER},
 						v_option_id,
 						#{otherRates.section},
@@ -1279,6 +1279,6 @@
 	</update>
 	
 	<select id="retrieveQuoteDeductibles" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_PCPCR_TEST.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 </mapper>
