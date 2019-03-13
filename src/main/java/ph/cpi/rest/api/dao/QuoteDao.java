@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.quote.Alop;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
+import ph.cpi.rest.api.model.quote.ProjectOc;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
@@ -49,6 +50,7 @@ public interface QuoteDao {
 	public List<Endorsements> retrieveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
 	public List<EndorsementsOc> retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
 	public Project retrieveQuoteProject(final HashMap<String, Object> params) throws SQLException;
+	public ProjectOc retrieveQuoteProjectOc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteCompetition(final HashMap<String, Object> params) throws SQLException;
 	

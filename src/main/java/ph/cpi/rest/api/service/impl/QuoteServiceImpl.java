@@ -266,6 +266,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteGeneralInfoOcParams.put("quoteIdOc", rqgiocp.getQuoteIdOc());
 		retrieveQuoteGeneralInfoOcParams.put("openQuotationNo", rqgiocp.getOpenQuotationNo());
 		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoteGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
+		rqgiocResponse.setProjectOc(quoteDao.retrieveQuoteProjectOc(retrieveQuoteGeneralInfoOcParams));
 		logger.info("retrieveQuoteGeneralInfoOcResponse : " + rqgiocResponse.toString());
 		
 		return rqgiocResponse;

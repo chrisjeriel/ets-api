@@ -15,6 +15,7 @@ import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
+import ph.cpi.rest.api.model.quote.ProjectOc;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
@@ -131,6 +132,13 @@ public class QuoteDaoImpl implements QuoteDao{
 	public Project retrieveQuoteProject(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Project project = sqlSession.selectOne("retrieveQuoteProject",params);
+		return project;
+	}
+	
+	@Override
+	public ProjectOc retrieveQuoteProjectOc(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		ProjectOc project = sqlSession.selectOne("retrieveQuoteProjectOc",params);
 		return project;
 	}
 

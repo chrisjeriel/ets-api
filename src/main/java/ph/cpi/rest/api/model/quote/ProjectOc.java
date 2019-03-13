@@ -8,10 +8,23 @@ import org.joda.time.LocalDateTime;
 
 public class ProjectOc {
 	private Integer quoteIdOc;
+	private String openQuotationNo;
 	private Integer	projId;
 	private String	projDesc;
 	private Integer	riskId;
 	private String riskName;
+	private Integer regionCd;
+	private String regionDesc;
+	private Integer provinceCd;
+	private String provinceDesc;
+	private Integer cityCd;
+	private String cityDesc;
+	private String districtCd;
+	private String districtDesc;
+	private String blockCd;
+	private String blockDesc;
+	private String latitude;
+	private String longitude;
 	private Integer	maxSiI; //Check and remap in XML
 	private BigDecimal maxSi;
 	private Integer	pctShareI; //Check and remap in XML
@@ -36,6 +49,12 @@ public class ProjectOc {
 	public void setQuoteIdOc(Integer quoteIdOc) {
 		this.quoteIdOc = quoteIdOc;
 	}
+	public String getOpenQuotationNo() {
+		return openQuotationNo;
+	}
+	public void setOpenQuotationNo(String openQuotationNo) {
+		this.openQuotationNo = openQuotationNo;
+	}
 	public Integer getProjId() {
 		return projId;
 	}
@@ -59,6 +78,78 @@ public class ProjectOc {
 	}
 	public void setRiskName(String riskName) {
 		this.riskName = riskName;
+	}
+	public Integer getRegionCd() {
+		return regionCd;
+	}
+	public void setRegionCd(Integer regionCd) {
+		this.regionCd = regionCd;
+	}
+	public String getRegionDesc() {
+		return regionDesc;
+	}
+	public void setRegionDesc(String regionDesc) {
+		this.regionDesc = regionDesc;
+	}
+	public Integer getProvinceCd() {
+		return provinceCd;
+	}
+	public void setProvinceCd(Integer provinceCd) {
+		this.provinceCd = provinceCd;
+	}
+	public String getProvinceDesc() {
+		return provinceDesc;
+	}
+	public void setProvinceDesc(String provinceDesc) {
+		this.provinceDesc = provinceDesc;
+	}
+	public Integer getCityCd() {
+		return cityCd;
+	}
+	public void setCityCd(Integer cityCd) {
+		this.cityCd = cityCd;
+	}
+	public String getCityDesc() {
+		return cityDesc;
+	}
+	public void setCityDesc(String cityDesc) {
+		this.cityDesc = cityDesc;
+	}
+	public String getDistrictCd() {
+		return districtCd;
+	}
+	public void setDistrictCd(String districtCd) {
+		this.districtCd = districtCd;
+	}
+	public String getDistrictDesc() {
+		return districtDesc;
+	}
+	public void setDistrictDesc(String districtDesc) {
+		this.districtDesc = districtDesc;
+	}
+	public String getBlockCd() {
+		return blockCd;
+	}
+	public void setBlockCd(String blockCd) {
+		this.blockCd = blockCd;
+	}
+	public String getBlockDesc() {
+		return blockDesc;
+	}
+	public void setBlockDesc(String blockDesc) {
+		this.blockDesc = blockDesc;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 	public Integer getMaxSiI() {
 		return maxSiI;
@@ -162,11 +253,16 @@ public class ProjectOc {
 	public void setCoverageOc(CoverageOc coverageOc) {
 		this.coverageOc = coverageOc;
 	}
+	
 	@Override
 	public String toString() {
-		return "ProjectOc [quoteIdOc=" + quoteIdOc + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId="
-				+ riskId + ", riskName=" + riskName + ", maxSiI=" + maxSiI + ", maxSi=" + maxSi + ", pctShareI="
-				+ pctShareI + ", pctShare=" + pctShare + ", totalValueI=" + totalValueI + ", totalValue=" + totalValue
+		return "ProjectOc [quoteIdOc=" + quoteIdOc + ", openQuotationNo=" + openQuotationNo + ", projId=" + projId
+				+ ", projDesc=" + projDesc + ", riskId=" + riskId + ", riskName=" + riskName + ", regionCd=" + regionCd
+				+ ", regionDesc=" + regionDesc + ", provinceCd=" + provinceCd + ", provinceDesc=" + provinceDesc
+				+ ", cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtCd=" + districtCd + ", districtDesc="
+				+ districtDesc + ", blockCd=" + blockCd + ", blockDesc=" + blockDesc + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", maxSiI=" + maxSiI + ", maxSi=" + maxSi + ", pctShareI=" + pctShareI
+				+ ", pctShare=" + pctShare + ", totalValueI=" + totalValueI + ", totalValue=" + totalValue
 				+ ", objectId=" + objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration
 				+ ", testing=" + testing + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", endorsementsOc=" + endorsementsOc + ", coverageOc="
