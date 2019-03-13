@@ -1251,6 +1251,7 @@
 		 </foreach>
 		 
 		 <foreach collection="newOptions" item="quoteOption">
+		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
 		   	   CPI.ETS_QUOTE_PKG_PCPCR_TEST.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
 		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},

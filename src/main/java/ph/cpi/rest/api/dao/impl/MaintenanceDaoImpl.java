@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
+import ph.cpi.rest.api.model.maintenance.Treaty;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -218,5 +219,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		params.put("errorCode", saveMtnRisk);
 		return params;
 	}
+
+	@Override
+	public List<Treaty> retrieveMtnTreaty() throws SQLException {
+		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty");
+		logger.info("retrieveMtnTreaty treatyList : " + treatyList);
+		return treatyList;
+	}
+	
+	
 
 }

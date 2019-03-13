@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -56,6 +57,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -208,6 +210,10 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveMtnDeductiblesParams = new HashMap<String, Object>();
 		retrieveMtnDeductiblesParams.put("lineCd", rmdr.getLineCd());
 		retrieveMtnDeductiblesParams.put("deductibleCd", rmdr.getDeductibleCd());
+		retrieveMtnDeductiblesParams.put("coverCd", rmdr.getCoverCd());
+		retrieveMtnDeductiblesParams.put("endtCd", rmdr.getEndtCd());
+		retrieveMtnDeductiblesParams.put("activeTag", rmdr.getActiveTag());
+		retrieveMtnDeductiblesParams.put("defaultTag", rmdr.getDefaultTag());
 		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
 		
 		return rmdrResponse;
@@ -537,6 +543,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smrrResponse;
+	}
+
+	@Override
+	public RetrieveMtnTreatyResponse retrieveMtnTreaty(RetrieveMtnTreatyRequest rmtr) throws SQLException {
+		RetrieveMtnTreatyResponse retrieveMtnTreatyResponse = new RetrieveMtnTreatyResponse();
+		retrieveMtnTreatyResponse.setTreatyList(maintenanceDao.retrieveMtnTreaty());
+		return retrieveMtnTreatyResponse;
 	}
 	
 }
