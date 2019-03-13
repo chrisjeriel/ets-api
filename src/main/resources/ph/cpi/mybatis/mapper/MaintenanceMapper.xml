@@ -467,6 +467,8 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="maintenanceCityMap">
         <result property="cityCd" 	column="CITY_CD"/>
         <result property="cityDesc" column="CITY_DESC"/>
+        <result property="zoneCd" column="ZONE_CD" />
+		<result property="zoneDesc" column="ZONE_DESC" />
         <association property="districtList" resultMap="maintenanceDistrictMap"></association>
 	</resultMap>
 	
