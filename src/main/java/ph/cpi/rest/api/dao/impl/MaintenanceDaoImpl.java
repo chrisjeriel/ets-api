@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
+import ph.cpi.rest.api.model.maintenance.Treaty;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -226,5 +227,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		System.out.println("retrieveMtnReason: " + reason);
 		return reason;
 	}
-
+	
+	public List<Treaty> retrieveMtnTreaty() throws SQLException {
+		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty");
+		logger.info("retrieveMtnTreaty treatyList : " + treatyList);
+		return treatyList;
+	}
+	
 }

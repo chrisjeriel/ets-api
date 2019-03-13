@@ -343,9 +343,10 @@
 	</resultMap>
 	
 	<select id="retrieveMtnDeductibles" resultMap="deductibles">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},'',1,'','')
+		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},
+		#{coverCd, jdbcType=VARCHAR},#{endtCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},
+		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'','')
 	</select>
-	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
 		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd, jdbcType=VARCHAR},#{coverCd, jdbcType=VARCHAR},null,null,null,null)
 	</select>
@@ -595,7 +596,6 @@
     	ORDER BY module_id
     </select>
     
-
     <resultMap type="ph.cpi.rest.api.model.maintenance.Reason" id="ReasonMap">
 		<result property="reasonCd" 		column="REASON_CD"/> 
 		<result property="description" 		column="DESCRIPTION"/>
@@ -647,11 +647,24 @@
 		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
      </resultMap>
      
-     <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
+    <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
     	SELECT * FROM ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
 												  #{order, jdbcType=VARCHAR})
+	</select>
+	 
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Treaty" id="treatyMap">
+    	<result property="treatyId" 		column="TREATY_ID"/>
+    	<result property="treatyName" 		column="TREATY_NAME"/>
+    	<result property="activeTag" 		column="ACTIVE_TAG"/>
+    	<result property="comRate" 			column="COMMISSION_RATE"/>
+    	<result property="treatyAbbr" 		column="TREATY_ABBR"/>
+    	<result property="treatyType" 		column="TREATY_TYPE"/>
+    </resultMap>
+    
+    <select id="retrieveMtnTreaty" resultMap="treatyMap">
+    	SELECT * FROM ETS_QUOTE_PKG_PCPCR_TEST.retrieve_mtn_treaty(NULL,NULL,NULL,NULL)
     </select>
 </mapper>

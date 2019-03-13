@@ -16,12 +16,12 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.Object_;
-import ph.cpi.rest.api.model.maintenance.Province;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
+import ph.cpi.rest.api.model.maintenance.Treaty;
 
 public interface MaintenanceDao {
 
@@ -55,4 +55,5 @@ public interface MaintenanceDao {
 	public HashMap<String, Object> saveMtnRisk(final HashMap<String, Object> params ) throws SQLException;
 	public List<Reason> retrieveMtnReason(final HashMap<String, Object> params) throws SQLException;
 	
+	public List<Treaty> retrieveMtnTreaty() throws SQLException;
 }
