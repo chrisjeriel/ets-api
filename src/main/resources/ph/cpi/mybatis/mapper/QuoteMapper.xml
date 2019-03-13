@@ -1169,7 +1169,7 @@
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
 		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
-		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
@@ -1327,7 +1327,7 @@
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
 		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
-		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
@@ -1368,7 +1368,7 @@
 		 <foreach collection="newOptions" item="quoteOption">
 		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
 		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
-		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
