@@ -341,7 +341,6 @@ public class QuoteController {
 		return quoteService.saveQuoteDeductibles(sqdr);
 	}
 
-	@CrossOrigin
 	@PostMapping(path="saveQuoteChangeQuoteStatus")
 	public @ResponseBody SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(@RequestBody SaveQuoteChangeQuoteStatusRequest sqcqs) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteChangeQuoteStatus");
