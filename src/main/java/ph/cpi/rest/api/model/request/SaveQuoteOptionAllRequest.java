@@ -8,10 +8,11 @@ public class SaveQuoteOptionAllRequest {
 	private List<QuoteOption> deleteQuoteOptionsList;
 	
 	private List<OtherRates> otherRates;
-	private List<OtherRates> deleteOtherRates;
-	
-	private List<Deductibles> saveDeductibleList;
-	private List<Deductibles> deleteDeductibleList;
+	private List<QuoteOption> newQuoteOptionsList;
+//	private List<OtherRates> deleteOtherRates;
+//	
+//	private List<Deductibles> saveDeductibleList;
+//	private List<Deductibles> deleteDeductibleList;
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -36,31 +37,18 @@ public class SaveQuoteOptionAllRequest {
 	public void setOtherRates(List<OtherRates> otherRates) {
 		this.otherRates = otherRates;
 	}
-	public List<OtherRates> getDeleteOtherRates() {
-		return deleteOtherRates;
+	
+	public List<QuoteOption> getNewQuoteOptionsList() {
+		return newQuoteOptionsList;
 	}
-	public void setDeleteOtherRates(List<OtherRates> deleteOtherRates) {
-		this.deleteOtherRates = deleteOtherRates;
-	}
-	public List<Deductibles> getSaveDeductibleList() {
-		return saveDeductibleList;
-	}
-	public void setSaveDeductibleList(List<Deductibles> saveDeductibleList) {
-		this.saveDeductibleList = saveDeductibleList;
-	}
-	public List<Deductibles> getDeleteDeductibleList() {
-		return deleteDeductibleList;
-	}
-	public void setDeleteDeductibleList(List<Deductibles> deleteDeductibleList) {
-		this.deleteDeductibleList = deleteDeductibleList;
+	public void setNewQuoteOptionsList(List<QuoteOption> newQuoteOptionsList) {
+		this.newQuoteOptionsList = newQuoteOptionsList;
 	}
 	@Override
 	public String toString() {
 		return "SaveQuoteOptionAllRequest [quoteId=" + quoteId + ", saveQuoteOptionsList=" + saveQuoteOptionsList
 				+ ", deleteQuoteOptionsList=" + deleteQuoteOptionsList + ", otherRates=" + otherRates
-				+ ", deleteOtherRates=" + deleteOtherRates + ", saveDeductibleList=" + saveDeductibleList
-				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
+				+ ", newQuoteOptionsList=" + newQuoteOptionsList + "]";
 	}
-	
 }
 
