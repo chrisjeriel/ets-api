@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
@@ -59,6 +60,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
@@ -513,8 +515,9 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
 			saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
 			saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
-			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
 			saveQuoteCoverageParams.put("deleteSectionCovers", saveQuoteCoverage.getDeleteSectionCovers());
+			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
+			
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteCoverage(saveQuoteCoverageParams);
 			sqaResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -849,6 +852,7 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			HashMap<String, Object> saveQuoteDeductiblesParams = new HashMap<String, Object>();
 			saveQuoteDeductiblesParams.put("quoteId" , sqdr.getQuoteId());
+			saveQuoteDeductiblesParams.put("optionId" , sqdr.getOptionId());
 			saveQuoteDeductiblesParams.put("saveDeductibleList" , sqdr.getSaveDeductibleList());
 			saveQuoteDeductiblesParams.put("deleteDeductibleList" , sqdr.getDeleteDeductibleList());
 			sqdrResponse.setReturnCode(quoteDao.saveQuoteDeductibles(saveQuoteDeductiblesParams));
@@ -970,10 +974,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
-			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
-			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
+//			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+//			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 			saveQuoteOptionsAllParams.put("otherRates", sqor.getOtherRates());
-			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
+//			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
+			saveQuoteOptionsAllParams.put("newOptions",sqor.getNewQuoteOptionsList());
 			saveQuoteOptionAllResponse.setReturnCode(quoteDao.saveQuoteOptionAll(saveQuoteOptionsAllParams));
 		}catch (SQLException ex) {
 			saveQuoteOptionAllResponse.setReturnCode(0);
@@ -1011,6 +1016,24 @@ public class QuoteServiceImpl implements QuoteService{
 			ex.printStackTrace();
 		}
 		return ceResponse;
+	}
+
+	@Override
+	public RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqdr)
+			throws SQLException {
+		RetrieveQuoteDeductiblesResponse rqdrResponse = new RetrieveQuoteDeductiblesResponse();
+		
+		HashMap<String, Object> retrieveQuoteDeductiblesParams = new HashMap<String, Object>();
+		retrieveQuoteDeductiblesParams.put("quoteId", rqdr.getQuoteId());
+		retrieveQuoteDeductiblesParams.put("quotationNo", rqdr.getQuotationNo());
+		retrieveQuoteDeductiblesParams.put("optionId", rqdr.getOptionId());
+		retrieveQuoteDeductiblesParams.put("coverCd", rqdr.getCoverCd());
+		
+		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDeductibles(retrieveQuoteDeductiblesParams));
+		
+		logger.info("retrieveQuoteCoverageResponse : " + rqdrResponse.toString());
+		
+		return rqdrResponse;
 	}
 
 }

@@ -13,7 +13,29 @@ public class Deductibles {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	private Integer coverCd;
+	private BigDecimal sumInsured;
+	private String endtCd;
 	
+	
+	public String getEndtCd() {
+		return endtCd;
+	}
+	public void setEndtCd(String endtCd) {
+		this.endtCd = endtCd;
+	}
+	public Integer getCoverCd() {
+		return coverCd;
+	}
+	public void setCoverCd(Integer coverCd) {
+		this.coverCd = coverCd;
+	}
+	public BigDecimal getSumInsured() {
+		return sumInsured;
+	}
+	public void setSumInsured(BigDecimal sumInsured) {
+		this.sumInsured = sumInsured;
+	}
 	public String getDeductibleCd() {
 		return deductibleCd;
 	}
@@ -68,4 +90,13 @@ public class Deductibles {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	@Override
+	public String toString() {
+		return "Deductibles [deductibleCd=" + deductibleCd + ", deductibleTitle=" + deductibleTitle + ", deductibleRt="
+				+ deductibleRt + ", deductibleAmt=" + deductibleAmt + ", deductibleTxt=" + deductibleTxt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", coverCd=" + coverCd + ", sumInsured=" + sumInsured + ", endtCd="
+				+ endtCd + "]";
+	}
+	
 }

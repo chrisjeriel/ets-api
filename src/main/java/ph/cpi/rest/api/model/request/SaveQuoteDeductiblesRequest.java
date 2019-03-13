@@ -7,6 +7,7 @@ import org.apache.ibatis.type.Alias;
 public class SaveQuoteDeductiblesRequest {
 
 	private Integer quoteId;
+	private Integer optionId;
 	List<Deductibles> saveDeductibleList;
 	List<Deductibles> deleteDeductibleList;
 	
@@ -34,10 +35,18 @@ public class SaveQuoteDeductiblesRequest {
 		this.deleteDeductibleList = deleteDeductibleList;
 	}
 
+	public Integer getOptionId() {
+		return optionId;
+	}
+
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
+
 	@Override
 	public String toString() {
-		return "SaveQuoteDeductiblesRequest [quoteId=" + quoteId + ", saveDeductibleList=" + saveDeductibleList
-				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
+		return "SaveQuoteDeductiblesRequest [quoteId=" + quoteId + ", optionId=" + optionId + ", saveDeductibleList="
+				+ saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
 
 	
@@ -54,6 +63,9 @@ class Deductibles {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String coverCd;
+	private String endtCd;
+	private String sumInsured;
 	
 	
 	public String getOptionId() {
@@ -110,12 +122,30 @@ class Deductibles {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCoverCd() {
+		return coverCd;
+	}
+	public void setCoverCd(String coverCd) {
+		this.coverCd = coverCd;
+	}
+	public String getEndtCd() {
+		return endtCd;
+	}
+	public void setEndtCd(String endtCd) {
+		this.endtCd = endtCd;
+	}
+	public String getSumInsured() {
+		return sumInsured;
+	}
+	public void setSumInsured(String sumInsured) {
+		this.sumInsured = sumInsured;
+	}
 	@Override
 	public String toString() {
-		return "Deductibles [deductibleRt=" + deductibleRt + ", deductibleAmt="
-				+ deductibleAmt + ", deductibleTxt=" + deductibleTxt + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", deductibleCd="
-				+ deductibleCd + "]";
+		return "Deductibles [optionId=" + optionId + ", deductibleCd=" + deductibleCd + ", deductibleRt=" + deductibleRt
+				+ ", deductibleAmt=" + deductibleAmt + ", deductibleTxt=" + deductibleTxt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", coverCd=" + coverCd + ", endtCd=" + endtCd + ", sumInsured=" + sumInsured + "]";
 	}
 	
 	

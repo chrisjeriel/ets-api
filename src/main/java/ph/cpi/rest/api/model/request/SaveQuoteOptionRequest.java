@@ -50,6 +50,7 @@ class QuoteOption{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private List<OtherRates> otherRatesList;
 	
 
 	
@@ -113,13 +114,21 @@ class QuoteOption{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public List<OtherRates> getOtherRatesList() {
+		return otherRatesList;
+	}
+	public void setOtherRatesList(List<OtherRates> otherRatesList) {
+		this.otherRatesList = otherRatesList;
+	}
 	@Override
 	public String toString() {
-		return "QuoteOption optionId=" + optionId + ", optionRt=" + optionRt + ", condition="
-				+ condition + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac="
-				+ commRtFac + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "QuoteOption [optionId=" + optionId + ", optionRt=" + optionRt + ", condition=" + condition
+				+ ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", otherRatesList=" + otherRatesList + "]";
 	}
+	
 
 	
 }
