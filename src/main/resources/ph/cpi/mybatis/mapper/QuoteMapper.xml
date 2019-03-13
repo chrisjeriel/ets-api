@@ -1357,8 +1357,8 @@
 		BEGIN
 		 <foreach collection="toOptionNo" item="copy">
 		 	CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
-		 		#{copyingType},#{fromOptionNo},#{copy.toOptionNo},
-		 		#{quoteId},#{quoteId},
+		 		#{copyingType},#{fromOptionNo},#{copy.optionNo},
+		 		'',#{quoteId},
 		 		#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		 		#{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 		 	);
