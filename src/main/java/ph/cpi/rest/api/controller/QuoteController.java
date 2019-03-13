@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
@@ -376,5 +378,13 @@ public class QuoteController {
 		logger.info("POST: /api/quote-service/copyEndorsement");
 		logger.info("CopyEndorsement : " + cer.toString());
 		return quoteService.copyEndorsement(cer);
+	}
+		
+	@CrossOrigin
+	@PostMapping(path="saveQuotationCopy")
+	public @ResponseBody SaveQuotationCopyResponse saveQuotationCopy(@RequestBody SaveQuotationCopyRequest sqcp) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuotationCopy");
+		logger.info("SaveQuotationCopyRequest : " + sqcp.toString());
+		return quoteService.saveQuotationCopy(sqcp);
 	}
 }

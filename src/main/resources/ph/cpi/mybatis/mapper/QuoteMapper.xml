@@ -1395,6 +1395,7 @@
 		END;
 	</update>
 	
+
 	<update id="copyEndorsementMap" parameterType="java.util.Map">
 		BEGIN
 		 <foreach collection="toOptionNo" item="copy">
@@ -1411,5 +1412,135 @@
 	<select id="retrieveQuoteDeductibles" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},null,null,null,null))
 	</select>
+
+	<!-- START COPY -->
+	<update id="copyQuoteGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_gen_info(
+				#{newQuoteId, mode=OUT, jdbcType=INTEGER},
+				#{newQuoteNo, mode=OUT, jdbcType=VARCHAR},
+				#{quoteId, jdbcType=INTEGER},
+				#{lineCd, jdbcType=VARCHAR},
+				#{quoteYear, jdbcType=INTEGER},
+				#{cedingId, jdbcType=INTEGER},
+				#{riskId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteProject" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_project(
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{riskId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteCoverage" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_coverage(
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{riskId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_section_covers(
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{riskId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteOptions" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_options(
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteDeductibles" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_deductibles(
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteOtherRates" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_other_rates(
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteEndorsements" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+				#{copyingType, jdbcType=VARCHAR},
+				#{fromOptionNo, jdbcType=INTEGER},
+				#{toOptionNo, jdbcType=INTEGER},
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteAlop" parameterType="java.util.Map">
+		BEGIN
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_alop(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	<!-- END COPY -->
 
 </mapper>
