@@ -289,4 +289,9 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);
 		return errorCode;
 	}
+	
+	public Integer copyEndorsement(final HashMap<String, Object> params) throws SQLException{
+		Integer errorCode = sqlSession.update("copyEndorsementMap",params);
+		return errorCode;
+	}
 }

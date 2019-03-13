@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -49,6 +50,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -358,5 +360,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuoteChangeQuoteStatus");
 		logger.info("SaveQuoteChangeQuoteStatusRequest : " + sqcqs.toString());
 		return quoteService.saveQuoteChangeQuoteStatus(sqcqs);
+	}
+	
+	@PostMapping(path="copyEndorsement")
+	public @ResponseBody CopyEndorsementResponse copyEndorsement(@RequestBody CopyEndorsementRequest cer) throws SQLException {
+		logger.info("POST: /api/quote-service/copyEndorsement");
+		logger.info("CopyEndorsement : " + cer.toString());
+		return quoteService.copyEndorsement(cer);
 	}
 }

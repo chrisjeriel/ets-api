@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.quote.HoldCover;
 import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -50,6 +51,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -984,6 +986,31 @@ public class QuoteServiceImpl implements QuoteService{
 		}
 		
 		return saveQuoteOptionAllResponse;
+	}
+	
+	public CopyEndorsementResponse copyEndorsement(CopyEndorsementRequest cer ) throws SQLException{
+		CopyEndorsementResponse ceResponse = new CopyEndorsementResponse();
+		try {
+			HashMap<String, Object> copyEndorsementParams = new HashMap<String, Object>();
+			copyEndorsementParams.put("copyingType", cer.getCopyingType());
+			copyEndorsementParams.put("fromOptionNo", cer.getFromOptionNo());
+			copyEndorsementParams.put("toOptionNo",cer.getToOptionNo());
+			copyEndorsementParams.put("newQuoteId",cer.getNewQuoteId());
+			copyEndorsementParams.put("quoteId",cer.getQuoteId());
+			copyEndorsementParams.put("createUser",cer.getCreateUser());
+			copyEndorsementParams.put("createDate",cer.getCreateDate());
+			copyEndorsementParams.put("updateUser",cer.getUpdateUser());
+			copyEndorsementParams.put("updateDate",cer.getUpdateDate());
+			
+			Integer res = quoteDao.copyEndorsement(copyEndorsementParams);
+			
+			ceResponse.setReturnCode(res);
+		} catch (Exception ex) {
+			ceResponse.setReturnCode(0);
+			ceResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return ceResponse;
 	}
 
 }
