@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.dao.impl;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +10,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.quote.Endorsements;
@@ -23,6 +30,18 @@ import ph.cpi.rest.api.model.quote.QuotationOc;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
+	
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
+	
+	@Value("${spring.datasource.username}")
+	private String username;
+	
+	@Value("${spring.datasource.password}")
+	private String password;
+	
+	@Autowired
+	private PlatformTransactionManager txManager;
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -299,5 +318,26 @@ public class QuoteDaoImpl implements QuoteDao{
 	public Quotation retrieveQuoteDeductibles(HashMap<String, Object> params) throws SQLException {
 		Quotation quotation = sqlSession.selectOne("retrieveQuoteDeductibles", params);
 		return quotation;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public HashMap<String, Object> saveQuotationCopy(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("copyQuoteGenInfo", params);
+		params.put("errorCode", errorCode);
+		
+		sqlSession.update("copyQuoteProject", params);			
+		sqlSession.update("copyQuoteCoverage", params);
+		sqlSession.update("copyQuoteSectionCovers", params);		
+		sqlSession.update("copyQuoteOptions", params);
+		sqlSession.update("copyQuoteDeductibles", params);
+		sqlSession.update("copyQuoteOtherRates", params);
+		
+		params.put("copyingType", "normal");
+		sqlSession.update("copyQuoteEndorsements", params);
+		
+		sqlSession.update("copyQuoteAlop", params);
+
+		return params;
 	}
 }
