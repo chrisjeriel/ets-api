@@ -33,7 +33,8 @@ public class RetrieveQuoteDeductiblesResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteCoverageResponse [paginationResponse=" + paginationResponse + ", sortResponse="
-				+ sortResponse + "]";
+		return "RetrieveQuoteDeductiblesResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
 }

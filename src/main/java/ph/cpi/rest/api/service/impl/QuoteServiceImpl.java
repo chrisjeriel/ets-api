@@ -1041,10 +1041,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteDeductiblesParams.put("quotationNo", rqdr.getQuotationNo());
 		retrieveQuoteDeductiblesParams.put("optionId", rqdr.getOptionId());
 		retrieveQuoteDeductiblesParams.put("coverCd", rqdr.getCoverCd());
-		
+		retrieveQuoteDeductiblesParams.put("endtCd", rqdr.getEndtCd());
 		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDeductibles(retrieveQuoteDeductiblesParams));
 		
-		logger.info("retrieveQuoteCoverageResponse : " + rqdrResponse.toString());
+		logger.info("retrieveQuoteDeductiblesResponse : " + rqdrResponse.toString());
 		
 		return rqdrResponse;
 	}
