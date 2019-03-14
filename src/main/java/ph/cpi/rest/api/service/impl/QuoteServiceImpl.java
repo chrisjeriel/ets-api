@@ -330,18 +330,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
 			saveQuoteAlopParams.put("address" , sqar.getAddress() );
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
-			saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
-			saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
-			saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
-			saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
-			saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
-			saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
-			saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
-			saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
-			saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
-			saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
-			saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
-			saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
+			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -490,7 +479,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 
-		
 		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
 		
 		return rqaResponse;
