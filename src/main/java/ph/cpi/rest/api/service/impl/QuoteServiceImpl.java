@@ -282,21 +282,31 @@ public class QuoteServiceImpl implements QuoteService{
 	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp)
 			throws SQLException {
 		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
-		DateUtility date = new DateUtility();
-		HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
-		retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
-		retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
-		retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
-		retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
-		retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
-		retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
-		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom().isEmpty() ? rqhclp.getPeriodFrom() : date.toDate(rqhclp.getPeriodFrom()));
-		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo().isEmpty() ? rqhclp.getPeriodTo() : date.toDate(rqhclp.getPeriodTo()));
-		retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
-		retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
-		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate().isEmpty() ? rqhclp.getReqDate() : date.toDate(rqhclp.getReqDate()));
-		retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
-		rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+		
+		try {
+			DateUtility date = new DateUtility();
+			HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
+			retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
+			retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
+			retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
+			retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
+			retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
+			retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
+			retrieveQuoteHoldCoverParams.put("periodFrom", (rqhclp.getPeriodFrom() == null  || rqhclp.getPeriodFrom().isEmpty()) ? "" : date.toDate(rqhclp.getPeriodFrom()));
+			retrieveQuoteHoldCoverParams.put("periodTo", (rqhclp.getPeriodTo() == null || rqhclp.getPeriodTo().isEmpty()) ? "" : date.toDate(rqhclp.getPeriodTo()));
+			retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
+			retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
+			retrieveQuoteHoldCoverParams.put("reqDate", (rqhclp.getReqDate() == null || rqhclp.getReqDate().isEmpty()) ? "" : date.toDate(rqhclp.getReqDate()));
+			retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
+			rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+			
+		} catch (SQLException sqlex) {
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		logger.info("RetrieveQuoteHoldCoverResponse : " + rqhcResponse);
 		
 		return rqhcResponse;
 	}

@@ -807,8 +807,55 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo},#{status},#{cedingName},#{holdCoverNo},#{riskName},#{insuredDesc},
-					#{periodFrom},#{periodTo},#{compRefHoldCovNo},#{reqBy},#{reqDate},#{expiringInDays},'','','','')
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo},
+																		      #{status},
+																		      #{cedingName},
+																		      #{holdCoverNo},
+																		      #{riskName},
+																		      #{insuredDesc},
+																			  #{periodFrom},
+																			  #{periodTo},
+																			  #{compRefHoldCovNo},
+																			  #{reqBy},
+																			  #{reqDate},
+																			  #{expiringInDays},
+																			  '',
+																			  '',
+																			  '',
+																			  ''))
+			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo, jdbcType=VARCHAR},
+																		      #{status},
+																		      #{cedingName, jdbcType=VARCHAR},
+																		      #{holdCoverNo, jdbcType=VARCHAR},
+																		      #{riskName, jdbcType=VARCHAR},
+																		      #{insuredDesc, jdbcType=VARCHAR},
+																			  #{periodFrom, jdbcType=DATE},
+																			  #{periodTo, jdbcType=DATE},
+																			  #{compRefHoldCovNo},
+																			  #{reqBy},
+																			  #{reqDate, jdbcType=DATE},
+																			  #{expiringInDays},
+																			  '',
+																			  '',
+																			  '',
+																			  '')) -->
+			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP_SPL.retrieve_quote_hold_cover_listing(
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'', 
+																						'')) -->
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItem">
