@@ -30,10 +30,12 @@ import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -53,10 +55,12 @@ import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -247,6 +251,20 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnRisk");
 		logger.info("SaveMtnRiskRequest : " + smrr.toString());
 		return maintenanceService.saveMtnRisk(smrr);
+	}
+	
+	@GetMapping(path="retrieveMtnReason")
+	public @ResponseBody RetrieveMtnReasonResponse retrieveMtnReason(RetrieveMtnReasonRequest retMtnReason) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnReason");
+		logger.info("RetrieveMtnReasonRequest : " + retMtnReason.toString());
+		return maintenanceService.retrieveMtnReason(retMtnReason);
+	}
+
+	@GetMapping(path="retrieveMtnTreaty")
+	public @ResponseBody RetrieveMtnTreatyResponse retrieveMtnTreaty(RetrieveMtnTreatyRequest rmtr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnTreaty");
+		logger.info("RetrieveMtnTreaty : " + rmtr.toString());
+		return maintenanceService.retrieveMtnTreaty(rmtr);
 	}
 
 }

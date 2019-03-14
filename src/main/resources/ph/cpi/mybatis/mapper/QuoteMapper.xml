@@ -42,6 +42,8 @@
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="reasonCd"			column="REASON_CD"/>
+		<result property="reasonDesc"		column="DESCRIPTION"/>		
 		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="reqBy" 			column="REQ_BY"/>
@@ -78,7 +80,7 @@
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
 		<association property="optionsList" resultMap="assocOptions"/>
-		<association property="otherRatesList" 	resultMap="assocOtherRates"/>	
+		<!-- <association property="otherRatesList" 	resultMap="assocOtherRates"/>	 -->
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
@@ -101,21 +103,21 @@
 		<result property = "holdCoverYear"       column = "HOLD_COV_YEAR"/>
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
-		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
 		<result property = "status"              column = "STATUS"/>
 		<result property = "reqBy"               column = "REQ_BY"/>
-		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "preparedBy"          column = "PREPARED_BY"/>
 		<result property = "approvedBy"          column = "APPROVED_BY"/>
 		<result property = "createUser"          column = "CREATE_USER"/>
-		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"          column = "UPDATE_USER"/>
-		<result property = "updateDate"          column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"          column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcMap">
+	<resultMap type="ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc" id="quotationOcMap">
 		<result property    ="quoteIdOc"            column  ="QUOTE_ID_OC"/>
 		<result property    ="openQuotationNo"      column  ="OC_QUOTE_NO"/>
 		<result property    ="lineCd"               column  ="LINE_CD"/>
@@ -125,6 +127,7 @@
 		<result property    ="revNo"                column  ="REV_NO"/>
 		<result property    ="cedingId"             column  ="CEDING_ID"/>
 		<result property    ="cessionId"            column  ="CESSION_ID"/>
+		<result property    ="cessionDesc"          column  ="DESCRIPTION"/>
 		<result property    ="cedingName"           column  ="CEDING_NAME"/>
 		<result property    ="lineClassCd"          column  ="LINE_CLASS_CD"/>
 		<result property    ="lineClassDesc"        column  ="LINE_CLASS_DESCRIPTION"/>
@@ -141,10 +144,10 @@
 		<result property    ="reinsurerName"        column  ="CEDING_NAME"/>
 		<result property    ="intmId"               column  ="INTM_ID"/>
 		<result property    ="intmName"             column  ="INTM_NAME"/>
-		<result property    ="issueDate"            column  ="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property    ="expiryDate"           column  ="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="issueDate"            column  ="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property    ="expiryDate"           column  ="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="reqBy"                column  ="REQ_BY"/>
-		<result property    ="reqDate"              column  ="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="reqDate"              column  ="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="reqMode"              column  ="REQ_MODE"/>
 		<result property    ="currencyCd"           column  ="CURRENCY_CD"/>
 		<result property    ="currencyRt"           column  ="CURRENCY_RT"/>
@@ -153,15 +156,15 @@
 		<result property    ="preparedBy"           column  ="PREPARED_BY"/>
 		<result property    ="approvedBy"           column  ="APPROVED_BY"/>
 		<result property    ="printedBy"            column  ="PRINTED_BY"/>
-		<result property    ="printDate"            column  ="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="printDate"            column  ="PRINT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="openingParag"         column  ="OPENING_PARAG"/>
 		<result property    ="closingParag"         column  ="CLOSING_PARAG"/>
 		<result property    ="reasonCd"             column  ="REASON_CD"/>
 		<result property    ="reasonDesc"           column  ="ETS_DESCRIPTION"/>
 		<result property    ="createUser"           column  ="GEN_INFO_OC_CREATE_USER"/>
-		<result property    ="createDate"           column  ="GEN_INFO_OC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="createDate"           column  ="GEN_INFO_OC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="updateUser"           column  ="GEN_INFO_OC_UPDATE_USER"/>
-		<result property    ="updateDate"           column  ="GEN_INFO_OC_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="updateDate"           column  ="GEN_INFO_OC_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property = "projectOc"		resultMap = "projectOcMap"/>
 	</resultMap>
 	
@@ -214,16 +217,16 @@
 		<result property = "holdCoverYear"       column = "HOLD_COV_YEAR"/>
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
-		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
 		<result property = "status"              column = "STATUS"/>
 		<result property = "reqBy"               column = "REQ_BY"/>
-		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "reqDate"             column = "REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "preparedBy"          column = "PREPARED_BY"/>
 		<result property = "approvedBy"          column = "APPROVED_BY"/>
 		<result property = "createUser"          column = "CREATE_USER"/>
-		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"          column = "UPDATE_USER"/>
 	</resultMap>
 	
@@ -241,11 +244,15 @@
 		<result property="updateDate" 		column="OPTIONS_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		
 		<association property="deductiblesList" resultMap="assocDeductibles"/>
+		<association property="otherRatesList" 	resultMap="assocOtherRates"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles">
 		<result property="deductibleCd" 	column="DEDUCTIBLE_CD"/>
 		<result property="deductibleTitle" 	column="DEDUCTIBLE_TITLE"/>
+		<result property="coverCd" 			column="COVER_CD"/>
+		<result property="endtCd" 			column="ENDT_CD"/>
+		<result property="sumInsured" 		column="SUM_INSURED"/>
 		<result property="deductibleRt" 	column="DEDUCTIBLE_RT"/>
 		<result property="deductibleAmt" 	column="DEDUCTIBLE_AMT"/>
 		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/>
@@ -256,6 +263,9 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="assocOtherRates">
+		<result property="bulletNo" 		column="BULLET_NO"/>
+		<result property="changeTag" 			column="CHANGE_TAG"/>
+		<result property="section" 			column="SECTION"/>
 		<result property="coverCd" 			column="COVER_CD"/>
 		<result property="coverCdDesc" 		column="DESCRIPTION"/>
 		<result property="rate" 			column="RATE"/>
@@ -385,8 +395,44 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.ProjectOc" id="quoteProjectOcMap">
+		<result property="quoteIdOc" 	    column="QUOTE_ID_OC"/>
+		<result property="openQuotationNo" 	column="OPEN_QUOTATION_NO"/> 
+		<result property="projId" 			column="PROJ_ID"/> 
+		<result property="projDesc" 		column="PROJ_DESC"/> 
+		<result property="riskId" 			column="RISK_ID"/> 
+		<result property="riskName" 		column="RISK_NAME"/>
+		<result property="regionCd" 		column="REGION_CD"/>
+		<result property="regionDesc" 		column="REGION_DESC"/>
+		<result property="provinceCd" 		column="PROVINCE_CD"/>
+		<result property="provinceDesc"		column="PROVINCE_DESC"/>
+		<result property="cityCd"	 		column="CITY_CD"/>
+		<result property="cityDesc"	 		column="CITY_DESC"/>
+		<result property="districtCd" 		column="DISTRICT_CD"/>
+		<result property="districtDesc"		column="DISTRICT_DESC"/>
+		<result property="blockCd"	 		column="BLOCK_CD"/>
+		<result property="blockDesc"		column="BLOCK_DESC"/>
+		<result property="latitude"	 		column="LATITUDE"/>
+		<result property="longitude" 		column="LONGITUDE"/>		
+		<result property="maxSi" 			column="MAX_SI"/>  
+		<result property="pctShare" 		column="PCT_SHARE"/>
+		<result property="totalValue" 		column="TOTAL_VALUE"/>  	 
+		<result property="objectId" 		column="OBJECT_ID"/>
+		<result property="objectDesc" 		column="DESCRIPTION"/>
+		<result property="site" 			column="SITE"/>
+		<result property="duration" 		column="DURATION"/>
+		<result property="testing" 			column="TESTING"/>     
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+	</select>
+	<select id="retrieveQuoteProjectOc" resultMap="quoteProjectOcMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_NDC.ret_quo_proj_oc(#{quoteIdOc,jdbcType=VARCHAR},#{openQuotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteEndorsementsOc" resultMap="quoteEndorsementsOcMap" parameterType="java.util.Map">
@@ -858,6 +904,7 @@
 	</select>
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
+		<!-- SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)) -->
 		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
@@ -1028,6 +1075,11 @@
 			   ETS_QUOTE_PKG_EJVA.save_quote_coverage(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
 			   SYSDATE);
+			   
+		   <foreach collection="deleteSectionCovers" item="sectioncovers">
+		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId,jdbcType=INTEGER},#{projId,jdbcType=INTEGER},#{riskId,jdbcType=INTEGER},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
+		   </foreach>
+		   
 		   <foreach collection="saveSectionCovers" item="sectioncovers">
 		   	   ETS_QUOTE_PKG_EJVA.save_quote_section_covers
 			   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
@@ -1036,9 +1088,6 @@
 			   SYSDATE);
 		   </foreach>
 		   
-		   <foreach collection="deleteSectionCovers" item="sectioncovers">
-		   	   ETS_QUOTE_PKG_EJVA.delete_quote_coverage(#{quoteId,jdbcType=INTEGER},#{projId,jdbcType=INTEGER},#{riskId,jdbcType=INTEGER},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd});
-		   </foreach>
 		END;
 	</update>
 	
@@ -1067,22 +1116,23 @@
 		END;
 	</update> 
 	
-	<update id="saveQuoteHoldCover" parameterType="java.util.Map">
+	<update id="saveQuoteHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
+				#{holdCoverNo,mode=OUT,jdbcType=VARCHAR},
 				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
 				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
 				#{holdCoverRevNo,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{compRefHoldCovNo,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
 				#{reqBy,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{preparedBy,jdbcType=VARCHAR},
 				#{approvedBy,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
@@ -1121,7 +1171,7 @@
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
 		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
-		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
@@ -1132,11 +1182,11 @@
 	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deleteDeductibleList" item="deductible">
-		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   		ETS_QUOTE_PKG_ETC.delete_q_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
 		   </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 			   		ETS_QUOTE_PKG_ETC.save_q_deductible(
-			   			#{quoteId},#{deductible.optionId},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.sumInsured} ,#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
 	   END;
@@ -1163,13 +1213,18 @@
 	
 	<update id="saveQuoteEndorsementsOc" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
-				#{quoteIdOc,jdbcType=INTEGER},#{endtCd,jdbcType=INTEGER},
-				#{remarks,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-				#{updateUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
-			);
+			<foreach collection="saveEndorsementsOc" item="endoOc">
+				ETS_QUOTE_PKG_JAP.save_quote_endorsements_oc(
+					#{quoteIdOc,jdbcType=INTEGER},#{endoOc.endtCd,jdbcType=INTEGER},
+					#{endoOc.remarks,jdbcType=VARCHAR},#{endoOc.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{endoOc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+					#{endoOc.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{endoOc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+				);
+			</foreach>
+			<foreach collection="deleteEndorsementsOc" item="endoOc">
+				ETS_QUOTE_PKG_JAP.delete_quote_endorsements_oc(#{quoteIdOc,jdbcType=INTEGER},#{endoOc.endtCd,jdbcType=INTEGER});
+			</foreach>
 		END;
 	</update>
 	
@@ -1198,9 +1253,9 @@
 	
 	<update id="saveQuoteChangeQuoteStatusMap" parameterType="java.util.Map">
 		BEGIN
-		 <foreach collection="changeQuoteStatus" item="changeQuoteStatus">
-		 	CPI.ETS_QUOTE_PKG_EJVA_TEST.save_quote_change_quote_status(
-		 		#{changeQuoteStatus.quoteId, jdbcType=INTEGER},#{changeQuoteStatus.cedingId},#{changeQuoteStatus.cessionId},#{changeQuoteStatus.status}
+		 <foreach collection="quoteList" item="quote">
+		 	CPI.ETS_QUOTE_PKG_EJVA.save_quote_change_quote_status(
+		 		#{quote.quoteId},#{status},#{reasonCd}
 		 	);
 		 </foreach>
 		END;
@@ -1266,19 +1321,21 @@
 	</update>
 	
 	<update id="saveQuoteOptionsAll" parameterType="java.util.Map">
+		DECLARE
+			v_option_id QUOTE_OTHER_RATES.OPTION_ID%TYPE;
 		BEGIN
 		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
-		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
+		   		CPI.ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
-		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
-		   	   #{quoteOption.condition},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
+		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		   
-		   <foreach collection="deleteDeductibleList" item="deductible">
+		   <!-- <foreach collection="deleteDeductibleList" item="deductible">
 		   		ETS_QUOTE_PKG_ETC.delete_quote_deductibles(#{quoteId},#{deductible.optionId},#{deductible.deductibleCd,jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveDeductibleList" item="deductible">
@@ -1292,22 +1349,70 @@
 		 		#{quoteId,jdbcType=INTEGER},
 				#{otherRates.coverCd,jdbcType=VARCHAR}
 		 	);
-		 </foreach>
+		 </foreach> -->
 		 <foreach collection="otherRates" item="otherRates">
 			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
 				#{quoteId,jdbcType=INTEGER},
+				#{otherRates.optionId,jdbcType=INTEGER},
+				#{otherRates.section},
 				#{otherRates.coverCd,jdbcType=VARCHAR},
-				#{otherRates.rate,jdbcType=VARCHAR},
+				#{otherRates.bulletNo},
 				#{otherRates.amount,jdbcType=VARCHAR},
+				#{otherRates.changeTag},
+				#{otherRates.rate,jdbcType=VARCHAR},
 				#{otherRates.createUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{otherRates.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 				#{otherRates.updateUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
 		 </foreach>
+		 
+		 <foreach collection="newOptions" item="quoteOption">
+		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
+		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
+		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
+		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
+		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   	   
+		   	   <foreach collection="quoteOption.otherRatesList" item="otherRates">
+					CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
+						#{quoteId,jdbcType=INTEGER},
+						v_option_id,
+						#{otherRates.section},
+						#{otherRates.coverCd,jdbcType=VARCHAR},
+						#{otherRates.bulletNo},
+						#{otherRates.amount,jdbcType=VARCHAR},
+						#{otherRates.changeTag},
+						#{otherRates.rate,jdbcType=VARCHAR},
+						#{otherRates.createUser,jdbcType=VARCHAR},
+						CAST(to_timestamp(#{otherRates.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+						#{otherRates.updateUser,jdbcType=VARCHAR},
+						CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+					);
+		   	   </foreach>
+		 </foreach>
 		END;
 	</update>
 	
+
+	<update id="copyEndorsementMap" parameterType="java.util.Map">
+		BEGIN
+		 <foreach collection="toOptionNo" item="copy">
+		 	CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+		 		#{copyingType},#{fromOptionNo},#{copy.toOptionNo},
+		 		#{quoteId},#{quoteId},
+		 		#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+		 		#{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+		 	);
+		 </foreach>
+		END;
+	</update> 
+
+	<select id="retrieveQuoteDeductibles" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+
 	<!-- START COPY -->
 	<update id="copyQuoteGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
@@ -1437,5 +1542,5 @@
 		END;
 	</update>
 	<!-- END COPY -->
-	
+
 </mapper>

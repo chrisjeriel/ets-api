@@ -2,9 +2,8 @@ package ph.cpi.rest.api.model.quote;
 
 public class ChangeQuoteStatus {
 	private Integer quoteId;
-	private Integer cedingId;
-	private Integer cessionId;
 	private Integer status;
+	private String reasonCode; 
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -13,29 +12,25 @@ public class ChangeQuoteStatus {
 		this.quoteId = quoteId;
 	}
 	
-	public Integer getCedingId() {
-		return cedingId;
-	}
-	public void setCedingId(Integer cedingId) {
-		this.cedingId = cedingId;
-	}
-	public Integer getCessionId() {
-		return cessionId;
-	}
-	public void setCessionId(Integer cessionId) {
-		this.cessionId = cessionId;
-	}
 	public Integer getStatus() {
 		return status;
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+	
+	public String getReasonCode() {
+		return reasonCode;
+	}
+	public void setReasonCode(String reasonCode) {
+		this.reasonCode = reasonCode;
+	}
 	@Override
 	public String toString() {
-		return "ChangeQuoteStatus [quoteId=" + quoteId + ", cedingId=" + cedingId + ", cessionId=" + cessionId
-				+ ", status=" + status + "]";
+		return "ChangeQuoteStatus [quoteId=" + quoteId + ", status=" + status + ", reasonCode=" + reasonCode + "]";
 	}
+	
+	
 	
 	
 	

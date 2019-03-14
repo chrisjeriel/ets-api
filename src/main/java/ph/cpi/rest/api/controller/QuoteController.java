@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -20,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
@@ -50,6 +52,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -57,6 +60,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
@@ -353,6 +357,13 @@ public class QuoteController {
 		logger.info("SaveQuoteGeneralInfoOcRequest : " + sqgiop.toString());
 		return quoteService.saveQuoteGeneralInfoOc(sqgiop);
 	}
+		
+	@GetMapping(path="retrieveQuoteDeductibles")
+	public @ResponseBody RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqds) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteDeductibles");
+		logger.info("RetrieveQuoteDeductiblesRequest : " + rqds.toString());
+		return quoteService.retrieveQuoteDeductibles(rqds);
+	}
 
 	@CrossOrigin
 	@PostMapping(path="saveQuoteChangeQuoteStatus")
@@ -362,6 +373,13 @@ public class QuoteController {
 		return quoteService.saveQuoteChangeQuoteStatus(sqcqs);
 	}
 	
+	@PostMapping(path="copyEndorsement")
+	public @ResponseBody CopyEndorsementResponse copyEndorsement(@RequestBody CopyEndorsementRequest cer) throws SQLException {
+		logger.info("POST: /api/quote-service/copyEndorsement");
+		logger.info("CopyEndorsement : " + cer.toString());
+		return quoteService.copyEndorsement(cer);
+	}
+		
 	@CrossOrigin
 	@PostMapping(path="saveQuotationCopy")
 	public @ResponseBody SaveQuotationCopyResponse saveQuotationCopy(@RequestBody SaveQuotationCopyRequest sqcp) throws SQLException {

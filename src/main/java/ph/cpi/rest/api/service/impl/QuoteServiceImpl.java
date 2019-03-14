@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
+import ph.cpi.rest.api.model.quote.HoldCover;
+import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -20,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
@@ -49,6 +53,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -56,6 +61,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
@@ -265,7 +271,8 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteGeneralInfoOcParams = new HashMap<String, Object>();
 		retrieveQuoteGeneralInfoOcParams.put("quoteIdOc", rqgiocp.getQuoteIdOc());
 		retrieveQuoteGeneralInfoOcParams.put("openQuotationNo", rqgiocp.getOpenQuotationNo());
-		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoterGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
+		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoteGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
+		rqgiocResponse.setProjectOc(quoteDao.retrieveQuoteProjectOc(retrieveQuoteGeneralInfoOcParams));
 		logger.info("retrieveQuoteGeneralInfoOcResponse : " + rqgiocResponse.toString());
 		
 		return rqgiocResponse;
@@ -510,8 +517,9 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCoverageParams.put("createDate", saveQuoteCoverage.getCreateDate());
 			saveQuoteCoverageParams.put("updateUser", saveQuoteCoverage.getUpdateUser());
 			saveQuoteCoverageParams.put("updateDate", saveQuoteCoverage.getUpdateDate());
-			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
 			saveQuoteCoverageParams.put("deleteSectionCovers", saveQuoteCoverage.getDeleteSectionCovers());
+			saveQuoteCoverageParams.put("saveSectionCovers", saveQuoteCoverage.getSaveSectionCovers());
+			
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteCoverage(saveQuoteCoverageParams);
 			sqaResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -733,6 +741,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
 		
 		try {
+			saveQuoteHoldCoverParams.put("holdCoverNo", "");
 			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
 			saveQuoteHoldCoverParams.put("holdCoverId", sqhcr.getHoldCoverId());
 			saveQuoteHoldCoverParams.put("lineCd", sqhcr.getLineCd());
@@ -751,7 +760,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
 			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
 			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
-			sqhcrResponse.setReturnCode(quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams));
+			
+			HashMap<String, Object> response = quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams);
+			
+			sqhcrResponse.setReturnCode((Integer) response.get("errorCode"));
+			sqhcrResponse.setHoldCoverNo((String) response.get("holdCoverNo"));
 		} catch (SQLException sqlex) {
 			sqhcrResponse.setReturnCode(0);
 			sqhcrResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -807,12 +820,8 @@ public class QuoteServiceImpl implements QuoteService{
 		SaveQuoteEndorsementsOcResponse sqeocrResponse = new SaveQuoteEndorsementsOcResponse();	
 		HashMap<String, Object> saveQuoteEndorsementsOcParams = new HashMap<String, Object>();
 		saveQuoteEndorsementsOcParams.put("quoteIdOc",sqeocr.getQuoteIdOc());
-		saveQuoteEndorsementsOcParams.put("endtCd",sqeocr.getEndtCd());
-		saveQuoteEndorsementsOcParams.put("remarks",sqeocr.getRemarks());
-		saveQuoteEndorsementsOcParams.put("createUser",sqeocr.getCreateUser());
-		saveQuoteEndorsementsOcParams.put("createDate",sqeocr.getCreateDate());
-		saveQuoteEndorsementsOcParams.put("updateUser",sqeocr.getUpdateUser());
-		saveQuoteEndorsementsOcParams.put("updateDate",sqeocr.getUpdateDate());
+		saveQuoteEndorsementsOcParams.put("saveEndorsementsOc", sqeocr.getSaveEndorsementsOc());
+		saveQuoteEndorsementsOcParams.put("deleteEndorsementsOc",sqeocr.getDeleteEndorsementsOc());
 		sqeocrResponse.setReturnCode(quoteDao.saveQuoteEndorsementsOc(saveQuoteEndorsementsOcParams));
 		
 		return sqeocrResponse;
@@ -846,6 +855,7 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			HashMap<String, Object> saveQuoteDeductiblesParams = new HashMap<String, Object>();
 			saveQuoteDeductiblesParams.put("quoteId" , sqdr.getQuoteId());
+			saveQuoteDeductiblesParams.put("optionId" , sqdr.getOptionId());
 			saveQuoteDeductiblesParams.put("saveDeductibleList" , sqdr.getSaveDeductibleList());
 			saveQuoteDeductiblesParams.put("deleteDeductibleList" , sqdr.getDeleteDeductibleList());
 			sqdrResponse.setReturnCode(quoteDao.saveQuoteDeductibles(saveQuoteDeductiblesParams));
@@ -922,6 +932,8 @@ public class QuoteServiceImpl implements QuoteService{
 			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfoOc(saveQuoteGeneralInfoOcParams);
 			
 			sqgioResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqgioResponse.setQuoteIdOc((Integer) (res.get("outQuoteIdOc")));
+			sqgioResponse.setOpenQuotationNo((String) res.get("openQuotationNo"));
 		} catch (Exception ex) {
 			sqgioResponse.setReturnCode(0);
 			sqgioResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
@@ -938,8 +950,11 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		try {
 			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
-			saveQuoteChangeQuoteStatusParams.put("changeQuoteStatus", sqcqs.getChangeQuoteStatus());
-		
+			saveQuoteChangeQuoteStatusParams.put("status", sqcqs.getStatusCd());
+			saveQuoteChangeQuoteStatusParams.put("reasonCd", sqcqs.getReasonCd());
+			saveQuoteChangeQuoteStatusParams.put("quoteList",sqcqs.getChangeQuoteStatus());
+			
+			
 			HashMap<String, Object> res = quoteDao.saveQuoteChangeQuoteStatus(saveQuoteChangeQuoteStatusParams);
 			
 			sqcqsResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -947,7 +962,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqcqsResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (Exception ex) {
 			sqcqsResponse.setReturnCode(0);
-			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			sqcqsResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
 		}
 		return sqcqsResponse;
@@ -962,10 +977,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
-			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
-			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
+//			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+//			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 			saveQuoteOptionsAllParams.put("otherRates", sqor.getOtherRates());
-			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
+//			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
+			saveQuoteOptionsAllParams.put("newOptions",sqor.getNewQuoteOptionsList());
 			saveQuoteOptionAllResponse.setReturnCode(quoteDao.saveQuoteOptionAll(saveQuoteOptionsAllParams));
 		}catch (SQLException ex) {
 			saveQuoteOptionAllResponse.setReturnCode(0);
@@ -978,6 +994,49 @@ public class QuoteServiceImpl implements QuoteService{
 		}
 		
 		return saveQuoteOptionAllResponse;
+	}
+	
+	public CopyEndorsementResponse copyEndorsement(CopyEndorsementRequest cer ) throws SQLException{
+		CopyEndorsementResponse ceResponse = new CopyEndorsementResponse();
+		try {
+			HashMap<String, Object> copyEndorsementParams = new HashMap<String, Object>();
+			copyEndorsementParams.put("copyingType", cer.getCopyingType());
+			copyEndorsementParams.put("fromOptionNo", cer.getFromOptionNo());
+			copyEndorsementParams.put("toOptionNo",cer.getToOptionNo());
+			copyEndorsementParams.put("newQuoteId",cer.getNewQuoteId());
+			copyEndorsementParams.put("quoteId",cer.getQuoteId());
+			copyEndorsementParams.put("createUser",cer.getCreateUser());
+			copyEndorsementParams.put("createDate",cer.getCreateDate());
+			copyEndorsementParams.put("updateUser",cer.getUpdateUser());
+			copyEndorsementParams.put("updateDate",cer.getUpdateDate());
+			
+			Integer res = quoteDao.copyEndorsement(copyEndorsementParams);
+			
+			ceResponse.setReturnCode(res);
+		} catch (Exception ex) {
+			ceResponse.setReturnCode(0);
+			ceResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return ceResponse;
+	}
+
+	@Override
+	public RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqdr)
+			throws SQLException {
+		RetrieveQuoteDeductiblesResponse rqdrResponse = new RetrieveQuoteDeductiblesResponse();
+		
+		HashMap<String, Object> retrieveQuoteDeductiblesParams = new HashMap<String, Object>();
+		retrieveQuoteDeductiblesParams.put("quoteId", rqdr.getQuoteId());
+		retrieveQuoteDeductiblesParams.put("quotationNo", rqdr.getQuotationNo());
+		retrieveQuoteDeductiblesParams.put("optionId", rqdr.getOptionId());
+		retrieveQuoteDeductiblesParams.put("coverCd", rqdr.getCoverCd());
+		
+		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDeductibles(retrieveQuoteDeductiblesParams));
+		
+		logger.info("retrieveQuoteCoverageResponse : " + rqdrResponse.toString());
+		
+		return rqdrResponse;
 	}
 
 	@Override

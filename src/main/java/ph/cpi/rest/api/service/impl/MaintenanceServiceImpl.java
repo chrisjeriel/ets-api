@@ -29,10 +29,12 @@ import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -52,10 +54,12 @@ import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -208,6 +212,10 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveMtnDeductiblesParams = new HashMap<String, Object>();
 		retrieveMtnDeductiblesParams.put("lineCd", rmdr.getLineCd());
 		retrieveMtnDeductiblesParams.put("deductibleCd", rmdr.getDeductibleCd());
+		retrieveMtnDeductiblesParams.put("coverCd", rmdr.getCoverCd());
+		retrieveMtnDeductiblesParams.put("endtCd", rmdr.getEndtCd());
+		retrieveMtnDeductiblesParams.put("activeTag", rmdr.getActiveTag());
+		retrieveMtnDeductiblesParams.put("defaultTag", rmdr.getDefaultTag());
 		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
 		
 		return rmdrResponse;
@@ -529,14 +537,33 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			smrrResponse.setRiskId((String) res.get("riskId")); 
 		}catch (SQLException ex) {
 			smrrResponse.setReturnCode(0);
-			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
-			ex.printStackTrace();
+			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			//ex.printStackTrace();
 		}catch (Exception ex) {
 			smrrResponse.setReturnCode(0);
-			smrrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
-			ex.printStackTrace();
+			smrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			//ex.printStackTrace();
 		}
 		return smrrResponse;
+	}
+
+	@Override
+	public RetrieveMtnTreatyResponse retrieveMtnTreaty(RetrieveMtnTreatyRequest rmtr) throws SQLException {
+		RetrieveMtnTreatyResponse retrieveMtnTreatyResponse = new RetrieveMtnTreatyResponse();
+		retrieveMtnTreatyResponse.setTreatyList(maintenanceDao.retrieveMtnTreaty());
+		return retrieveMtnTreatyResponse;
+	}
+	
+	@Override
+	public RetrieveMtnReasonResponse retrieveMtnReason(RetrieveMtnReasonRequest rmrr) throws SQLException {
+		RetrieveMtnReasonResponse rmrResponse = new RetrieveMtnReasonResponse();
+		
+		HashMap<String, Object> retrieveMtnReasonParams =  new HashMap<String, Object>();
+		retrieveMtnReasonParams.put("reasonCd", rmrr.getReasonCd());
+		
+		rmrResponse.setReason(maintenanceDao.retrieveMtnReason(retrieveMtnReasonParams));
+		
+		return rmrResponse;
 	}
 	
 }
