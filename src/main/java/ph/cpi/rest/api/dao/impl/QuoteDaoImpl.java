@@ -9,15 +9,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
+import ph.cpi.rest.api.model.quote.ProjectOc;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
+import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
-import ph.cpi.rest.api.service.impl.QuoteServiceImpl;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -81,8 +83,8 @@ public class QuoteDaoImpl implements QuoteDao{
 		return quotationOc;
 	}
 	
-	public List<QuotationOc> retrieveQuoterGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
-		List<QuotationOc> quotationOc = sqlSession.selectList("retrieveQuoteGeneralInfoOc", params);
+	public QuotationGeneralInfoOc retrieveQuoteGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
+		QuotationGeneralInfoOc quotationOc = sqlSession.selectOne("retrieveQuoteGeneralInfoOc", params);
 		return quotationOc;
 	}
 
@@ -130,6 +132,13 @@ public class QuoteDaoImpl implements QuoteDao{
 	public Project retrieveQuoteProject(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Project project = sqlSession.selectOne("retrieveQuoteProject",params);
+		return project;
+	}
+	
+	@Override
+	public ProjectOc retrieveQuoteProjectOc(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		ProjectOc project = sqlSession.selectOne("retrieveQuoteProjectOc",params);
 		return project;
 	}
 
@@ -203,10 +212,17 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 	
 
+//	@Override
+//	public Integer saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+//		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
+//		return errorCode;
+//	}
+	
 	@Override
-	public Integer saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object>  saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
@@ -250,17 +266,38 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteDeductiblesMap", params);
 		return errorCode;
 	}
-
+	
+	@Override
+	public HashMap<String, Object> saveQuoteGeneralInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveQuoteGeneralInfoOc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
 	@Override
 	public HashMap<String, Object> saveQuoteChangeQuoteStatus(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteChangeQuoteStatusMap",params);
 			params.put("errorCode", errorCode);
 		return params;
 	}
-		
+	
+	@Autowired
+	private PlatformTransactionManager transactionManager;
+	
 	public Integer saveQuoteOptionAll(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);
 		return errorCode;
+	}
+	
+	public Integer copyEndorsement(final HashMap<String, Object> params) throws SQLException{
+		Integer errorCode = sqlSession.update("copyEndorsementMap",params);
+		return errorCode;
+	}
+	
+	@Override
+	public Quotation retrieveQuoteDeductibles(HashMap<String, Object> params) throws SQLException {
+		Quotation quotation = sqlSession.selectOne("retrieveQuoteDeductibles", params);
+		return quotation;
 	}
 }

@@ -7,6 +7,10 @@ public class RetrieveMtnDeductiblesRequest {
 	
 	private String lineCd ;
 	private String deductibleCd;
+	private String coverCd;
+	private String endtCd;
+	private String activeTag;
+	private String defaultTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getLineCd() {
@@ -20,6 +24,30 @@ public class RetrieveMtnDeductiblesRequest {
 	}
 	public void setDeductibleCd(String deductibleCd) {
 		this.deductibleCd = deductibleCd;
+	}
+	public String getCoverCd() {
+		return coverCd;
+	}
+	public void setCoverCd(String coverCd) {
+		this.coverCd = coverCd;
+	}
+	public String getEndtCd() {
+		return endtCd;
+	}
+	public void setEndtCd(String endtCd) {
+		this.endtCd = endtCd;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
+	}
+	public String getDefaultTag() {
+		return defaultTag;
+	}
+	public void setDefaultTag(String defaultTag) {
+		this.defaultTag = defaultTag;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -35,9 +63,11 @@ public class RetrieveMtnDeductiblesRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnDeductiblesRequest [lineCd=" + lineCd + ", deductibleCd=" + deductibleCd
+		return "RetrieveMtnDeductiblesRequest [lineCd=" + lineCd + ", deductibleCd=" + deductibleCd + ", coverCd="
+				+ coverCd + ", endtCd=" + endtCd + ", activeTag=" + activeTag + ", defaultTag=" + defaultTag
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 	
 }

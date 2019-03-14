@@ -17,10 +17,9 @@ public class Options {
 	private String updateUser;
 	private LocalDateTime updateDate;
 	private Deductibles deductibles;
-	
+	private List<OtherRates> otherRatesList;
 	private List<Deductibles> deductiblesList;
 	private List<Endorsments> endorsments;
-	
 	public Integer getOptionId() {
 		return optionId;
 	}
@@ -87,6 +86,12 @@ public class Options {
 	public void setDeductibles(Deductibles deductibles) {
 		this.deductibles = deductibles;
 	}
+	public List<OtherRates> getOtherRatesList() {
+		return otherRatesList;
+	}
+	public void setOtherRatesList(List<OtherRates> otherRatesList) {
+		this.otherRatesList = otherRatesList;
+	}
 	public List<Deductibles> getDeductiblesList() {
 		return deductiblesList;
 	}
@@ -99,8 +104,16 @@ public class Options {
 	public void setEndorsments(List<Endorsments> endorsments) {
 		this.endorsments = endorsments;
 	}
+	@Override
+	public String toString() {
+		return "Options [optionId=" + optionId + ", optionRt=" + optionRt + ", condition=" + condition
+				+ ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", otherRates=" + otherRatesList
+				+ ", deductiblesList=" + deductiblesList + ", endorsments=" + endorsments + "]";
+	}
 	
-	
+
 	
 	
 	

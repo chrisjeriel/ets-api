@@ -8,8 +8,10 @@ import ph.cpi.rest.api.model.quote.Alop;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
+import ph.cpi.rest.api.model.quote.ProjectOc;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
+import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
 
 public interface QuoteDao {
@@ -24,7 +26,7 @@ public interface QuoteDao {
 	public QuotationOc retrieveQuoteDetailsOc(final HashMap<String, Object> params) throws SQLException;
 	public Quotation retrieveQuoteDetails(final HashMap<String, Object> params) throws SQLException;
 	public Quotation retrieveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
-	public List<QuotationOc> retrieveQuoterGeneralInfoOc(final HashMap<String, Object> params) throws SQLException;
+	public QuotationGeneralInfoOc retrieveQuoteGeneralInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public List<Quotation> retrieveQuoteHoldCoverListing(final HashMap<String, Object> params) throws SQLException;
 
 	public List<QuotationOc> retrieveQuoteAttachmentOcList(final HashMap<String, Object> params) throws SQLException;
@@ -48,15 +50,21 @@ public interface QuoteDao {
 	public List<Endorsements> retrieveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
 	public List<EndorsementsOc> retrieveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
 	public Project retrieveQuoteProject(final HashMap<String, Object> params) throws SQLException;
+	public ProjectOc retrieveQuoteProjectOc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuoteGeneralInfo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteCompetition(final HashMap<String, Object> params) throws SQLException;
 	
-	public Integer saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
+	//public Integer saveQuoteHoldCover(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteOption(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteEndorsements(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteEndorsementsOc(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteOtherRates(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteDeductibles(final HashMap<String, Object> params) throws SQLException;
-	public Integer saveQuoteOptionAll(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveQuoteGeneralInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuoteChangeQuoteStatus(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveQuoteOptionAll(final HashMap<String, Object> params) throws SQLException;
+	public Integer copyEndorsement(final HashMap<String, Object> params) throws SQLException;
+	public Quotation retrieveQuoteDeductibles(final HashMap<String, Object> params) throws SQLException;
+
 }

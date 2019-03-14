@@ -51,7 +51,37 @@ class OtherRates {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String optionId;
+	private String changeTag;
+	private String bulletNo;
+	private String section;
 	
+	
+	
+	public String getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(String optionId) {
+		this.optionId = optionId;
+	}
+	public String getChangeTag() {
+		return changeTag;
+	}
+	public void setChangeTag(String changeTag) {
+		this.changeTag = changeTag;
+	}
+	public String getBulletNo() {
+		return bulletNo;
+	}
+	public void setBulletNo(String bulletNo) {
+		this.bulletNo = bulletNo;
+	}
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
+	}
 	public Integer getCoverCd() {
 		return coverCd;
 	}
@@ -94,12 +124,12 @@ class OtherRates {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "OtherRates [coverCd=" + coverCd + ", rate=" + rate + ", amount=" + amount + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", optionId=" + optionId + ", changeTag=" + changeTag + ", bulletNo=" + bulletNo + ", section="
+				+ section + "]";
 	}
-
 }
 

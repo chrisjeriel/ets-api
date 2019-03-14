@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UserDao;
+import ph.cpi.rest.api.model.maintenance.Users;
 
 @Component
 public class UserDaoImpl implements UserDao{
@@ -25,6 +26,12 @@ public class UserDaoImpl implements UserDao{
 	public List<String> userLogin(HashMap<String, Object> params) throws SQLException {
 		List<String> modulesList = sqlSession.selectList("userLogin", params);
 		return modulesList;
+	}
+	
+	@Override
+	public List<Users> retMtnUsers(final HashMap<String, Object> params) throws SQLException{
+		List<Users> usersList = sqlSession.selectList("retMtnUsers", params);
+		return usersList;
 	}
 
 }
