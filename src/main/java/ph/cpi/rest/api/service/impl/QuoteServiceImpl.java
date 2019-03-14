@@ -1,9 +1,7 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.HashMap;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.Message;
-import ph.cpi.rest.api.model.quote.HoldCover;
-import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
@@ -92,7 +87,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
-import ph.cpi.rest.api.model.Error;
+
 
 
 @Component
