@@ -337,4 +337,19 @@ public class QuoteDaoImpl implements QuoteDao{
 
 		return params;
 	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer copyInternalCompetition(HashMap<String, Object> params) throws SQLException {
+		
+		sqlSession.update("copyQuoteCoverage", params);
+		sqlSession.update("copyQuoteSectionCovers", params);		
+		sqlSession.update("copyQuoteOptions", params);
+		sqlSession.update("copyQuoteDeductibles", params);
+		sqlSession.update("copyQuoteOtherRates", params);
+		sqlSession.update("copyQuoteEndorsements", params);
+		sqlSession.update("copyQuoteAlop", params);
+		
+		return null;
+	}
 }
