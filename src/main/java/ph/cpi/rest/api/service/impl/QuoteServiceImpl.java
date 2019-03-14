@@ -1048,6 +1048,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			saveQuotationCopyParams.put("newQuoteId", "");
 			saveQuotationCopyParams.put("newQuoteNo", "");
+			saveQuotationCopyParams.put("copyingType", sqcp.getCopyingType());
 			saveQuotationCopyParams.put("quoteId", sqcp.getQuoteId());
 			saveQuotationCopyParams.put("lineCd", sqcp.getLineCd());
 			saveQuotationCopyParams.put("quoteYear", sqcp.getQuoteYear());

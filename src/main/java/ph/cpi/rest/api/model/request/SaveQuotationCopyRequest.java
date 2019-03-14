@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 public class SaveQuotationCopyRequest {
+	private String copyingType;
 	private String quoteId;
 	private String lineCd;
 	private String quoteYear;
@@ -11,6 +12,12 @@ public class SaveQuotationCopyRequest {
 	private String updateUser;
 	private String updateDate;
 	
+	public String getCopyingType() {
+		return copyingType;
+	}
+	public void setCopyingType(String copyingType) {
+		this.copyingType = copyingType;
+	}
 	public String getQuoteId() {
 		return quoteId;
 	}
@@ -67,8 +74,9 @@ public class SaveQuotationCopyRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuotationCopyRequest [quoteId=" + quoteId + ", lineCd=" + lineCd + ", quoteYear=" + quoteYear
-				+ ", cedingId=" + cedingId + ", riskId=" + riskId + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
-	}
+		return "SaveQuotationCopyRequest [copyingType=" + copyingType + ", quoteId=" + quoteId + ", lineCd=" + lineCd
+				+ ", quoteYear=" + quoteYear + ", cedingId=" + cedingId + ", riskId=" + riskId + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
+	}	
 }
