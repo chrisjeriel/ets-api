@@ -1286,7 +1286,7 @@
 				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqBy, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{reqMode},
+				#{reqMode, jdbcType=VARCHAR},
 				#{currencyCd},
 				#{currencyRt, jdbcType=FLOAT},
 				#{govtTag},
