@@ -725,10 +725,18 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
 			saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
 			
-			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);
+			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);					
+			
+			if(sqgip.getSavingType().equals("internalComp")) {
+				saveQuoteGeneralInfoParams.put("copyingType", "internalComp");
+				saveQuoteGeneralInfoParams.put("newQuoteId", res.get("outQuoteId"));
+				saveQuoteGeneralInfoParams.put("quoteId", sqgip.getTempQuoteIdInternalComp());
+				
+				quoteDao.copyInternalCompetition(saveQuoteGeneralInfoParams);
+			}
 			
 			sqgiResponse.setReturnCode((Integer) res.get("errorCode"));
-			sqgiResponse.setQuoteId((Integer) (res.get("outQuoteId")));
+			sqgiResponse.setQuoteId((Integer) res.get("outQuoteId"));
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (SQLException ex) {
 			sqgiResponse.setReturnCode(0);
