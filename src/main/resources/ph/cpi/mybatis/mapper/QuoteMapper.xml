@@ -84,6 +84,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
+		<result property="riskId" 			column="RISK_ID"/>
 		<result property="riskName" 		column="RISK_NAME"/>
 		<result property="objectDesc" 		column="OBJECT_DESCRIPTION"/>
 		<result property="site" 			column="SITE"/>
@@ -1463,9 +1464,10 @@
 	<!-- START COPY -->
 	<update id="copyQuoteGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_gen_info(
+			CPI.ETS_QUOTE_PKG_MBM.copy_quote_gen_info(			
 				#{newQuoteId, mode=OUT, jdbcType=INTEGER},
 				#{newQuoteNo, mode=OUT, jdbcType=VARCHAR},
+				#{copyingType, jdbcType=VARCHAR},
 				#{quoteId, jdbcType=INTEGER},
 				#{lineCd, jdbcType=VARCHAR},
 				#{quoteYear, jdbcType=INTEGER},
