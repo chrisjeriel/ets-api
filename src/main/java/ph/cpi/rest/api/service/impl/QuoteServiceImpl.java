@@ -1020,7 +1020,7 @@ public class QuoteServiceImpl implements QuoteService{
 			ceResponse.setReturnCode(res);
 		} catch (Exception ex) {
 			ceResponse.setReturnCode(0);
-			ceResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ceResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
 		return ceResponse;

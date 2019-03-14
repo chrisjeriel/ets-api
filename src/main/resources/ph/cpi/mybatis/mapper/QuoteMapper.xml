@@ -184,9 +184,9 @@
 		<result property    ="duration"             column  ="DURATION"/>
 		<result property    ="testing"              column  ="TESTING"/>
 		<result property    ="createUser"           column  ="CREATE_USER"/>
-		<result property    ="createDate"           column  ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="createDate"           column  ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property    ="updateUser"           column  ="UPDATE_USER"/>
-		<result property    ="updateDate"           column  ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property    ="updateDate"           column  ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="coverageOc"			resultMap="coverageOcMap"/>
 	</resultMap>
 	
@@ -423,9 +423,9 @@
 		<result property="duration" 		column="DURATION"/>
 		<result property="testing" 			column="TESTING"/>     
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
@@ -1333,7 +1333,7 @@
 				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqBy, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{reqMode},
+				#{reqMode, jdbcType=VARCHAR},
 				#{currencyCd},
 				#{currencyRt, jdbcType=FLOAT},
 				#{govtTag},
@@ -1447,8 +1447,8 @@
 		BEGIN
 		 <foreach collection="toOptionNo" item="copy">
 		 	CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
-		 		#{copyingType},#{fromOptionNo},#{copy.toOptionNo},
-		 		#{quoteId},#{quoteId},
+		 		#{copyingType},#{fromOptionNo},#{copy.optionNo},
+		 		'',#{quoteId},
 		 		#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		 		#{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 		 	);
