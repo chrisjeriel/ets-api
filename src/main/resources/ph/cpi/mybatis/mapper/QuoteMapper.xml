@@ -142,7 +142,7 @@
 		<result property    ="insuredDesc"          column  ="INSURED_DESC"/>
 		<result property    ="status"               column  ="STATUS"/>
 		<result property    ="reinsurerId"          column  ="REINSURER_ID"/>
-		<result property    ="reinsurerName"        column  ="CEDING_NAME"/>
+		<result property    ="reinsurerName"        column  ="REINSURER_NAME"/>
 		<result property    ="intmId"               column  ="INTM_ID"/>
 		<result property    ="intmName"             column  ="INTM_NAME"/>
 		<result property    ="issueDate"            column  ="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
