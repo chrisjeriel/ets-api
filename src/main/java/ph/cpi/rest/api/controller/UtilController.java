@@ -25,7 +25,7 @@ import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.utils.PrintingUtility;
 
 @Controller
-@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
 @RequestMapping(path="/util-service")
 public class UtilController {
 	
