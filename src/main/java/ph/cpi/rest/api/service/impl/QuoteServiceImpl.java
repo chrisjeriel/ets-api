@@ -1,9 +1,7 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.HashMap;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.Message;
-import ph.cpi.rest.api.model.quote.HoldCover;
-import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
@@ -35,6 +30,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
@@ -71,6 +67,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
@@ -90,7 +87,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
-import ph.cpi.rest.api.model.Error;
+
 
 
 @Component
@@ -280,21 +277,31 @@ public class QuoteServiceImpl implements QuoteService{
 	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp)
 			throws SQLException {
 		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
-		DateUtility date = new DateUtility();
-		HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
-		retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
-		retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
-		retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
-		retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
-		retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
-		retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
-		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom().isEmpty() ? rqhclp.getPeriodFrom() : date.toDate(rqhclp.getPeriodFrom()));
-		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo().isEmpty() ? rqhclp.getPeriodTo() : date.toDate(rqhclp.getPeriodTo()));
-		retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
-		retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
-		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate().isEmpty() ? rqhclp.getReqDate() : date.toDate(rqhclp.getReqDate()));
-		retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
-		rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+		
+		try {
+			DateUtility date = new DateUtility();
+			HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
+			retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
+			retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
+			retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
+			retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
+			retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
+			retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
+			retrieveQuoteHoldCoverParams.put("periodFrom", (rqhclp.getPeriodFrom() == null  || rqhclp.getPeriodFrom().isEmpty()) ? "" : date.toDate(rqhclp.getPeriodFrom()));
+			retrieveQuoteHoldCoverParams.put("periodTo", (rqhclp.getPeriodTo() == null || rqhclp.getPeriodTo().isEmpty()) ? "" : date.toDate(rqhclp.getPeriodTo()));
+			retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
+			retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
+			retrieveQuoteHoldCoverParams.put("reqDate", (rqhclp.getReqDate() == null || rqhclp.getReqDate().isEmpty()) ? "" : date.toDate(rqhclp.getReqDate()));
+			retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
+			rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+			
+		} catch (SQLException sqlex) {
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		logger.info("RetrieveQuoteHoldCoverResponse : " + rqhcResponse);
 		
 		return rqhcResponse;
 	}
@@ -707,16 +714,25 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
 			saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
 			
-			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);
+			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);					
+			
+			if(sqgip.getSavingType().equals("internalComp")) {
+				saveQuoteGeneralInfoParams.put("copyingType", "internalComp");
+				saveQuoteGeneralInfoParams.put("newQuoteId", res.get("outQuoteId"));
+				saveQuoteGeneralInfoParams.put("quoteId", sqgip.getTempQuoteIdInternalComp());
+				
+				quoteDao.copyInternalCompetition(saveQuoteGeneralInfoParams);
+			}
 			
 			sqgiResponse.setReturnCode((Integer) res.get("errorCode"));
-			sqgiResponse.setQuoteId((Integer) (res.get("outQuoteId")));
+			sqgiResponse.setQuoteId((Integer) res.get("outQuoteId"));
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
-		} catch (Exception ex) {
+		} catch (SQLException ex) {
 			sqgiResponse.setReturnCode(0);
-			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.getCause();
 			ex.printStackTrace();
-		}
+		} 
 		
 		return sqgiResponse;
 	}
@@ -1001,7 +1017,7 @@ public class QuoteServiceImpl implements QuoteService{
 			ceResponse.setReturnCode(res);
 		} catch (Exception ex) {
 			ceResponse.setReturnCode(0);
-			ceResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ceResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
 		return ceResponse;
@@ -1017,12 +1033,49 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteDeductiblesParams.put("quotationNo", rqdr.getQuotationNo());
 		retrieveQuoteDeductiblesParams.put("optionId", rqdr.getOptionId());
 		retrieveQuoteDeductiblesParams.put("coverCd", rqdr.getCoverCd());
-		
+		retrieveQuoteDeductiblesParams.put("endtCd", rqdr.getEndtCd());
 		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDeductibles(retrieveQuoteDeductiblesParams));
 		
-		logger.info("retrieveQuoteCoverageResponse : " + rqdrResponse.toString());
+		logger.info("retrieveQuoteDeductiblesResponse : " + rqdrResponse.toString());
 		
 		return rqdrResponse;
+	}
+
+	@Override
+	public SaveQuotationCopyResponse saveQuotationCopy(SaveQuotationCopyRequest sqcp) throws SQLException {
+		SaveQuotationCopyResponse sqcResponse = new SaveQuotationCopyResponse();
+		
+		try {
+			HashMap<String, Object> saveQuotationCopyParams = new HashMap<String, Object>();
+			
+			saveQuotationCopyParams.put("newQuoteId", "");
+			saveQuotationCopyParams.put("newQuoteNo", "");
+			saveQuotationCopyParams.put("copyingType", sqcp.getCopyingType());
+			saveQuotationCopyParams.put("quoteId", sqcp.getQuoteId());
+			saveQuotationCopyParams.put("lineCd", sqcp.getLineCd());
+			saveQuotationCopyParams.put("quoteYear", sqcp.getQuoteYear());
+			saveQuotationCopyParams.put("cedingId", sqcp.getCedingId());
+			saveQuotationCopyParams.put("riskId", sqcp.getRiskId());
+			saveQuotationCopyParams.put("createUser", sqcp.getCreateUser());
+			saveQuotationCopyParams.put("createDate", sqcp.getCreateDate());
+			saveQuotationCopyParams.put("updateUser", sqcp.getUpdateUser());
+			saveQuotationCopyParams.put("updateDate", sqcp.getUpdateDate());
+			
+			HashMap<String, Object> res = quoteDao.saveQuotationCopy(saveQuotationCopyParams);
+			
+			sqcResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqcResponse.setQuoteId((Integer) res.get("newQuoteId"));
+			sqcResponse.setQuotationNo((String) res.get("newQuoteNo"));
+		} catch (Exception e) {
+			sqcResponse.setReturnCode(0);
+			sqcResponse.setQuoteId(null);
+			sqcResponse.setQuotationNo(null);
+			sqcResponse.getErrorList().add(new Error("Exception","An exception occured while copying."));
+			e.getMessage();
+			e.printStackTrace();
+		}
+		
+		return sqcResponse;
 	}
 
 }

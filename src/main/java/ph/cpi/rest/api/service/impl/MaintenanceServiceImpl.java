@@ -544,6 +544,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			smrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
 			ex.printStackTrace();
 		}
+		
+		System.out.println("smrrResponse: " + smrrResponse);
 		return smrrResponse;
 	}
 

@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
@@ -91,7 +93,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
-@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200"})
+@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
 @RequestMapping(path="/quote-service")
 public class QuoteController {
 	
@@ -111,6 +113,7 @@ public class QuoteController {
 	 * quoteService.retrieveQuoteAlop(rqap); }
 	 */
 	
+	
 	@GetMapping(path="retrieveQuoteListing")
 	public @ResponseBody RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteListing");
@@ -125,18 +128,24 @@ public class QuoteController {
 		logger.info("RetrieveQuoteHoldCoverRequest : " + rqhcp.toString());
 		return quoteService.retrieveQuoteHoldCover(rqhcp);
 	}
+	
+	
 	@GetMapping(path="retrieveQuoteAttachmentOc")
 	public @ResponseBody RetrieveQuoteAttachmentOcResponse retrieveQuoteAttachmentOc(RetrieveQuoteAttachmentOcRequest rqaor) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteAttachmentOc");
 		logger.info("RetrieveQuoteAttachmentOc : " + rqaor.toString());
 		return quoteService.retrieveQuoteAttachmentOc(rqaor);
 	}
+	
+	
 	@GetMapping(path="retrieveQuoteCompetition")
 	public @ResponseBody RetrieveQuoteCompetitionResponse retrieveQuoteCompetition(RetrieveQuoteCompetitionRequest rqcr) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteCompetition");
 		logger.info("RetrieveQuoteCompetition : " + rqcr.toString());
 		return quoteService.retrieveQuoteCompetition(rqcr);
 	}
+	
+	
 	@GetMapping(path="retrieveQuoteCoverageOc")
 	public @ResponseBody RetrieveQuoteCoverageOcResponse retrieveQuoteCoverageOc(RetrieveQuoteCoverageOcRequest rqcor) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteCoverageOc");
@@ -144,13 +153,14 @@ public class QuoteController {
 		return quoteService.retrieveQuoteCoverageOc(rqcor);
 	}
 	
-	@CrossOrigin
+	
 	@GetMapping(path="retrieveQuoteGeneralInfoOc")
 	public @ResponseBody RetrieveQuoteGeneralInfoOcResponse retrieveQuoteGeneralInfoOc(RetrieveQuoteGeneralInfoOcRequest rqgiocp) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteGeneralInfoOc");
 		logger.info("RetrieveQuoteGeneralInfoOcRequest : " + rqgiocp.toString());
 		return quoteService.retrieveQuoteGeneralInfoOc(rqgiocp);
 	}
+	
 	
 	@GetMapping(path="retrieveQuoteHoldCoverListing")
 	public @ResponseBody RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp) throws SQLException {
@@ -159,6 +169,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteHoldCoverListing(rqhclp);
 	}
 	
+	
 	@GetMapping(path="retrieveQuoteListingOc")
 	public @ResponseBody RetrieveQuoteListingOcResponse retrieveQuoteListingOc(RetrieveQuoteListingOcRequest rqlop) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteListingOc");
@@ -166,13 +177,14 @@ public class QuoteController {
 		return quoteService.retrieveQuoteListingOc(rqlop);
 	}
 	
-	@CrossOrigin
+	
 	@GetMapping(path="retrieveQuoteOption")
 	public @ResponseBody RetrieveQuoteOptionResponse retrieveQuoteOption(RetrieveQuoteOptionRequest rqop) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteOption");
 		logger.info("RetrieveQuoteOptionRequest : " + rqop.toString());
 		return quoteService.retrieveQuoteOption(rqop);
 	}
+	
 	
 	@GetMapping(path="retrieveQuoteAttachment")
 	public @ResponseBody RetrieveQuoteAttachmentResponse retrieveQuoteAttachment(RetrieveQuoteAttachmentRequest rqat) throws SQLException {
@@ -181,6 +193,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteAttachment(rqat);
 	}
 	
+	
 	@GetMapping(path="retrieveQuoteAlopItem")
 	public @ResponseBody RetrieveQuoteAlopItemResponse retrieveQuoteAlopItem(RetrieveQuoteAlopItemRequest retQuoteAlopItem) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteAlopItem");
@@ -188,12 +201,14 @@ public class QuoteController {
 		return quoteService.retrieveQuoteAlopItem(retQuoteAlopItem);
 	}
 
+	
 	@GetMapping(path="retrieveQuoteCoverage")
 	public @ResponseBody RetrieveQuoteCoverageResponse retrieveQuoteCoverage(RetrieveQuoteCoverageRequest rqcr) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteCoverage");
 		logger.info("RetrieveQuoteCoverageRequest : " + rqcr.toString());
 		return quoteService.retrieveQuoteCoverage(rqcr);
 	}
+	
 	
 	@GetMapping(path="retrieveQuoteDetailsOc")
 	public @ResponseBody RetrieveQuoteDetailsOcResponse retrieveQuoteDetailsOc(RetrieveQuoteDetailsOcRequest rqdocr) throws SQLException {
@@ -202,12 +217,14 @@ public class QuoteController {
 		return quoteService.retrieveQuoteDetailsOc(rqdocr);
 	}
 	
+	
 	@GetMapping(path="retrieveQuoteDetails")
 	public @ResponseBody RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteDetails");
 		logger.info("RetrieveQuoteDetailsRequest : " + sqar.toString());
 		return quoteService.retrieveQuoteDetails(sqar);
 	}
+	
 	
 	@GetMapping(path="retrieveQuoteAlop")
 	public @ResponseBody RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqar) throws SQLException {
@@ -216,7 +233,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteAlop(rqar);
 	}
 	
-	@CrossOrigin
+	
 	@PostMapping(path="saveQuoteAttachment")
 	public @ResponseBody SaveQuoteAttachmentResponse saveQuoteAttachment(@RequestBody SaveQuoteAttachmentRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAttachment");
@@ -224,7 +241,7 @@ public class QuoteController {
 		return quoteService.saveQuoteAttachment(sqar);
 	}
 	
-	@CrossOrigin
+	
 	@PostMapping(path="saveQuoteAlop")
 	public @ResponseBody SaveQuoteAlopResponse saveQuoteAlop(@RequestBody SaveQuoteAlopRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAlop");
@@ -232,7 +249,7 @@ public class QuoteController {
 		return quoteService.saveQuoteAlop(sqar);
 	}
 	
-	@CrossOrigin
+	
 	@PostMapping(path="saveQuoteAlopItem")
 	public @ResponseBody SaveQuoteAlopItemResponse saveQuoteAlopItem(@RequestBody SaveQuoteAlopItemRequest sqair) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAlopItem");
@@ -240,7 +257,7 @@ public class QuoteController {
 		return quoteService.saveQuoteAlopItem(sqair);
 	}
 	
-	@CrossOrigin
+	
 	@PostMapping(path="saveQuoteAttachmentOc")
 	public @ResponseBody SaveQuoteAttachmentOcResponse saveQuoteAttachmentOc(@RequestBody SaveQuoteAttachmentOcRequest sqaor) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteAttachmentOc");
@@ -248,12 +265,14 @@ public class QuoteController {
 		return quoteService.saveQuoteAttachmentOc(sqaor);
 	}
 
+	
 	@PostMapping(path="saveQuoteCoverage")
 	public @ResponseBody SaveQuoteCoverageResponse saveQuoteCoverage(@RequestBody SaveQuoteCoverageRequest sqcr) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteCoverage");
 		logger.info("SaveQuoteCoverageRequest : " + sqcr.toString());
 		return quoteService.saveQuoteCoverage(sqcr);
 	}
+	
 	
 	@PostMapping(path="saveQuoteCoverageOc")
 	public @ResponseBody SaveQuoteCoverageOcResponse saveQuoteCoverageOc(@RequestBody SaveQuoteCoverageOcRequest sqcocr) throws SQLException {
@@ -262,7 +281,7 @@ public class QuoteController {
 		return quoteService.saveQuoteCoverageOc(sqcocr);
 	}
 		
-	@CrossOrigin
+	
 	@GetMapping(path="retrieveQuoteGeneralInfo")
 	public @ResponseBody RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteGeneralInfo");
@@ -270,13 +289,14 @@ public class QuoteController {
 		return quoteService.retrieveQuoteGeneralInfo(rqgip);
 	}
 	
-	@CrossOrigin
+	
 	@GetMapping(path="retrieveQuoteEndorsements")
 	public @ResponseBody RetrieveQuoteEndorsementsResponse retrieveQuoteEndorsements(RetrieveQuoteEndorsementsRequest rqerp) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteEndorsements");
 		logger.info("RetrieveQuoteEndorsementsRequest : " + rqerp.toString());
 		return quoteService.retrieveQuoteEndorsements(rqerp);
 	}
+	
 	
 	@GetMapping(path="retrieveQuoteEndorsementsOc")
 	public @ResponseBody RetrieveQuoteEndorsementsOcResponse retrieveQuoteEndorsementsOc(RetrieveQuoteEndorsementsOcRequest rqerop) throws SQLException {
@@ -285,6 +305,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteEndorsementsOc(rqerop);
 	}
 	
+	
 	@PostMapping(path="saveQuoteCompetition")
 	public @ResponseBody SaveQuoteCompetitionResponse saveQuoteCompetition(@RequestBody SaveQuoteCompetitionRequest sqcr) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteCompetition");
@@ -292,13 +313,14 @@ public class QuoteController {
 		return quoteService.saveQuoteCompetition(sqcr);
 	}
 	
-	@CrossOrigin
+	
 	@PostMapping(path="saveQuoteHoldCover")
 	public @ResponseBody SaveQuoteHoldCoverResponse saveQuoteHoldCover(@RequestBody SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteHoldCover");
 		logger.info("SaveQuoteHoldCoverRequest : " + sqhcr.toString());
 		return quoteService.saveQuoteHoldCover(sqhcr);
 	}
+	
 	
 	@PostMapping(path="saveQuoteEndorsements")
 	public @ResponseBody SaveQuoteEndorsementsResponse saveQuoteEndorsements(@RequestBody SaveQuoteEndorsementsRequest sqer) throws SQLException {
@@ -307,12 +329,14 @@ public class QuoteController {
 		return quoteService.saveQuoteEndorsements(sqer);
 	}
 
+	
 	@PostMapping(path="saveQuoteGeneralInfo")
 	public @ResponseBody SaveQuoteGeneralInfoResponse saveQuoteGeneralInfo(@RequestBody SaveQuoteGeneralInfoRequest sqgip) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteGeneralInfo");
 		logger.info("SaveQuoteGeneralInfoRequest : " + sqgip.toString());
 		return quoteService.saveQuoteGeneralInfo(sqgip);
 	}
+	
 	
 	@PostMapping(path="saveQuoteOption")
 	public @ResponseBody SaveQuoteOptionResponse saveQuoteOption(@RequestBody SaveQuoteOptionRequest sqdr) throws SQLException {
@@ -321,6 +345,7 @@ public class QuoteController {
 		return quoteService.saveQuoteOption(sqdr);
 	}
 	
+	
 	@PostMapping(path="saveQuoteOptionAll")
 	public @ResponseBody SaveQuoteOptionAllResponse saveQuoteOptionAll(@RequestBody SaveQuoteOptionAllRequest sqdr) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteOptionAll");
@@ -328,12 +353,14 @@ public class QuoteController {
 		return quoteService.saveQuoteOptionAll(sqdr);
 	}
 
+	
 	@PostMapping(path="saveQuoteEndorsementsOc")
 	public @ResponseBody SaveQuoteEndorsementsOcResponse saveQuoteEndorsementsOc(@RequestBody SaveQuoteEndorsementsOcRequest sqeocr) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteEndorsementsOc");
 		logger.info("SaveQuoteEndorsementsOcRequest : " + sqeocr.toString());
 		return quoteService.saveQuoteEndorsementsOc(sqeocr);
 	}
+	
 	
 	@PostMapping(path="saveQuoteOtherRates")
 	public @ResponseBody SaveQuoteOtherRatesResponse saveQuoteOtherRates(@RequestBody SaveQuoteOtherRatesRequest sqorr) throws SQLException {
@@ -342,12 +369,14 @@ public class QuoteController {
 		return quoteService.saveQuoteOtherRates(sqorr);
 	}
 	
+	
 	@PostMapping(path="saveQuoteDeductibles")
 	public @ResponseBody SaveQuoteDeductiblesResponse saveQuoteDeductibles(@RequestBody SaveQuoteDeductiblesRequest sqdr) throws SQLException {
 		logger.info("POST: /api/quote-service/saveQuoteDeductibles");
 		logger.info("SaveQuoteDeductiblesRequest : " + sqdr.toString());
 		return quoteService.saveQuoteDeductibles(sqdr);
 	}
+	
 	
 	@PostMapping(path="saveQuoteGeneralInfoOc")
 	public @ResponseBody SaveQuoteGeneralInfoOcResponse saveQuoteGeneralInfoOc(@RequestBody SaveQuoteGeneralInfoOcRequest sqgiop) throws SQLException {
@@ -356,6 +385,7 @@ public class QuoteController {
 		return quoteService.saveQuoteGeneralInfoOc(sqgiop);
 	}
 		
+	
 	@GetMapping(path="retrieveQuoteDeductibles")
 	public @ResponseBody RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqds) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteDeductibles");
@@ -363,7 +393,7 @@ public class QuoteController {
 		return quoteService.retrieveQuoteDeductibles(rqds);
 	}
 
-	@CrossOrigin
+	
 	@PostMapping(path="saveQuoteChangeQuoteStatus")
 	public @ResponseBody SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(@RequestBody SaveQuoteChangeQuoteStatusRequest sqcqs) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteChangeQuoteStatus");
@@ -371,10 +401,19 @@ public class QuoteController {
 		return quoteService.saveQuoteChangeQuoteStatus(sqcqs);
 	}
 	
+	
 	@PostMapping(path="copyEndorsement")
 	public @ResponseBody CopyEndorsementResponse copyEndorsement(@RequestBody CopyEndorsementRequest cer) throws SQLException {
 		logger.info("POST: /api/quote-service/copyEndorsement");
 		logger.info("CopyEndorsement : " + cer.toString());
 		return quoteService.copyEndorsement(cer);
+	}
+		
+	
+	@PostMapping(path="saveQuotationCopy")
+	public @ResponseBody SaveQuotationCopyResponse saveQuotationCopy(@RequestBody SaveQuotationCopyRequest sqcp) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuotationCopy");
+		logger.info("SaveQuotationCopyRequest : " + sqcp.toString());
+		return quoteService.saveQuotationCopy(sqcp);
 	}
 }

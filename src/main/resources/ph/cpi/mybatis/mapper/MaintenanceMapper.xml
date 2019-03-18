@@ -198,28 +198,28 @@
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd,jdbcType=VARCHAR}, '', '', '','')
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd,jdbcType=VARCHAR}, '', '', '',''))
 	</select>
 	
 	<select id="retrieveMntLineClass" resultMap="mntLineClassMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd, jdbcType=VARCHAR},'', '', '',''))
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd, jdbcType=VARCHAR},'', '', '',''))
 	</select>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
+			SELECT * FROM TABLE(ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo}))
 	</select>
 	
 	<select id="retrieveMtnRisk" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},null,null,null,null)
+		<!-- SELECT * FROM ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnRiskListing" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk_listing(#{riskId},#{riskAbbr},#{riskName},#{regionDesc},#{provinceDesc},#{cityDesc},#{districtDesc},#{blockDesc},#{latitude},#{longitude},#{activeTag},null,null,null,null)
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk_listing(#{riskId},#{riskAbbr},#{riskName},#{regionDesc},#{provinceDesc},#{cityDesc},#{districtDesc},#{blockDesc},#{latitude},#{longitude},#{activeTag},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">
@@ -247,7 +247,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'','')
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	
@@ -284,7 +284,7 @@
 	</resultMap>
 	
 	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'','')
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">
@@ -319,7 +319,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnDistrict" resultMap="region" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},'',1,'','')
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	
@@ -343,32 +343,32 @@
 	</resultMap>
 	
 	<select id="retrieveMtnDeductibles" resultMap="deductibles">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},
 		#{coverCd, jdbcType=VARCHAR},#{endtCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},
-		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'','')
+		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd, jdbcType=VARCHAR},#{coverCd, jdbcType=VARCHAR},null,null,null,null)
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd, jdbcType=VARCHAR},#{coverCd, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_type_of_cession(#{cessionId},null,null,null,null)
+		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_type_of_cession(#{cessionId},null,null,null,null))
 	</select>
 
 	<select id="retrieveMtnRegion" resultMap="regionMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_region(#{regionCd, jdbcType=VARCHAR},null,null,null,null)
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_region(#{regionCd, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnProvince" resultMap="regionForProvinceMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_province(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},null,null,null,null)
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_province(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_object(#{lineCd},#{objectId},null,null,null,null)
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_object(#{lineCd},#{objectId},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_quotation_wordings(#{lineCd},#{type},null,null,null,null)
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_quote_wordings(#{lineCd},#{type},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="cityMap">
@@ -385,13 +385,13 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_city(#{regionCd, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_city(#{regionCd, jdbcType=VARCHAR}, 
 																		#{provinceCd, jdbcType=VARCHAR}, 
 																		#{cityCd, jdbcType=VARCHAR},
 																		#{position, jdbcType=VARCHAR}, 
 																		#{count, jdbcType=VARCHAR}, 
 																		#{sortKey, jdbcType=VARCHAR}, 
-																		#{order, jdbcType=VARCHAR})
+																		#{order, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.CrestaZone" id="crestaZoneMap">
@@ -406,11 +406,11 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCrestaZone" resultMap="crestaZoneMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_cresta_zone(#{zoneCd, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_cresta_zone(#{zoneCd, jdbcType=VARCHAR}, 
 																			   #{position, jdbcType=VARCHAR}, 
 																			   #{count, jdbcType=VARCHAR}, 
 																			   #{sortKey, jdbcType=VARCHAR}, 
-																			   #{order, jdbcType=VARCHAR})
+																			   #{order, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Currency" id="currencyMap">
@@ -426,12 +426,12 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCurrency" resultMap="currencyMap" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
 																			#{activeTag, jdbcType=VARCHAR},
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 
 																			#{sortKey, jdbcType=VARCHAR}, 
-																			#{order, jdbcType=VARCHAR})
+																			#{order, jdbcType=VARCHAR}))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.maintenance.AdviceWordings" id="adviceWordingsMap">
@@ -447,7 +447,7 @@
 	</resultMap>
 	
 	<select id="retMtnAdviceWordings" resultMap="adviceWordingsMap" parameterType="java.util.Map">
-            SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_advice_wordings(#{adviceWordId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL)
+            SELECT* FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_advice_wordings(#{adviceWordId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
      
      
@@ -491,7 +491,7 @@
      </resultMap>
      
      <select id="retrieveMtnBlock" resultMap="maintenanceRegionMap" parameterType="java.util.Map">
-            SELECT * FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_block(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR}, null, null ,null, null)
+            SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_block(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR}, null, null ,null, null))
      </select>
      
      
@@ -522,7 +522,7 @@
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
-            SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_ceding_company_listing(#{cedingId, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{cedingAbbr, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{membershipDate, jdbcType=VARCHAR},#{terminationDate, jdbcType=VARCHAR},#{inactiveDate, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{govtTag, jdbcType=VARCHAR},#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null)
+            SELECT* FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_ceding_comp_list(#{cedingId, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{cedingAbbr, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{membershipDate, jdbcType=VARCHAR},#{terminationDate, jdbcType=VARCHAR},#{inactiveDate, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{govtTag, jdbcType=VARCHAR},#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
      </select>
      
      
@@ -575,12 +575,12 @@
    
      
      <select id="retMtnCedingCompany" resultMap="maintenanceCedingCompanyMap" parameterType="java.util.Map">
-            SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_ceding_company(#{cedingId, jdbcType=VARCHAR},null,null,null,null)
+            SELECT* FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_ceding_company(#{cedingId, jdbcType=VARCHAR},null,null,null,null))
      </select>
   	
   	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
   		BEGIN
-  			CPI.ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=INOUT , jdbcType=VARCHAR},#{riskAbbr},
+  			ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=INOUT , jdbcType=VARCHAR},#{riskAbbr},
   				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},
   				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd, jdbcType=VARCHAR},#{activeTag},#{remarks, jdbcType=VARCHAR},
   				#{createUser},
@@ -602,7 +602,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnReason" resultMap="ReasonMap" parameterType="java.util.Map">
-            SELECT* FROM ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_reason(#{reasonCd, jdbcType=VARCHAR},NULL,NULL,NULL,NULL)
+            SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_reason(#{reasonCd, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
 
     <!-- <resultMap id="employeeResult" type="ph.cpi.rest.api.model.Employee">
@@ -648,11 +648,11 @@
      </resultMap>
      
     <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
-    	SELECT * FROM ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
+    	SELECT * FROM TABLE(ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
 	</select>
 	 
     <resultMap type="ph.cpi.rest.api.model.maintenance.Treaty" id="treatyMap">
@@ -665,6 +665,6 @@
     </resultMap>
     
     <select id="retrieveMtnTreaty" resultMap="treatyMap">
-    	SELECT * FROM ETS_QUOTE_PKG_PCPCR_TEST.retrieve_mtn_treaty(NULL,NULL,NULL,NULL)
+    	SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR_TEST.retrieve_mtn_treaty(NULL,NULL,NULL,NULL))
     </select>
 </mapper>
