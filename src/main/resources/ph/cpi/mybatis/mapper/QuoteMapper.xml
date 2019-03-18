@@ -939,7 +939,7 @@
 	
         
     <select id="retrieveQuoteAlopItem" resultMap="quotation" parameterType="java.util.Map">
-            SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
+            SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},#{optionId},'',0,'','')
     </select>
     
     
@@ -1017,7 +1017,7 @@
 		BEGIN
 			<foreach collection="saveAlopItemsList" item="alopItem">
 		    	ETS_QUOTE_PKG_PCPCR.save_quote_alopItem
-		    	(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+		    	(#{quoteId},{#optionId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
 		    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 		    	#{alopItem.createUser},
 		    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1025,7 +1025,7 @@
 			</foreach>
 			<foreach collection="deleteAlopItemsList" item="alopItem">
 				BEGIN
-    				ETS_QUOTE_PKG_PCPCR.delete_quote_alop_item(#{quoteId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR});
+    				ETS_QUOTE_PKG_PCPCR.delete_quote_alop_item(#{quoteId},#{optionId},#{alopId},#{alopItem.itemNo, jdbcType=VARCHAR});
 				END;
 			</foreach>
 		END;
