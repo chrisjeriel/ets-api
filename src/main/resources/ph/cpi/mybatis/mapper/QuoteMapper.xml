@@ -430,27 +430,27 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	<select id="retrieveQuoteProjectOc" resultMap="quoteProjectOcMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_NDC.ret_quo_proj_oc(#{quoteIdOc,jdbcType=VARCHAR},#{openQuotationNo,jdbcType=VARCHAR},'','','',''))
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_NDC.ret_quo_proj_oc(#{quoteIdOc,jdbcType=VARCHAR},#{openQuotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteEndorsementsOc" resultMap="quoteEndorsementsOcMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements_Oc(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements_Oc(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteEndorsements" resultMap="quoteEndorsementsMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
 					WHERE OPTION_ID = NVL(#{optionId,jdbcType=VARCHAR},OPTION_ID)
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfo" resultMap="quoteGenInfoMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','',''))
 	</select>
 
 	<select id="retrieveQuoteAlopSample" resultMap="quotation" parameterType="java.util.Map">
-			SELECT * FROM CPI.ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo})
+			SELECT * FROM TABLE(ETS_QUOTE_PKG.retrieve_quote_alop(#{quoteId},#{quotationNo}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMapAttachment">
@@ -470,12 +470,12 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_attachment(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR}, null, null ,null, null)
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_EJVA.retrieve_quote_attachment(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR}, null, null ,null, null))
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},'','','',''))
+		<!-- SELECT * FROM ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},'','','',''))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
@@ -607,12 +607,12 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachmentOc" resultMap="quotationOcForAttachmentMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_attachment_oc(#{quoteIdOc, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_NDC.retrieve_quote_attachment_oc(#{quoteIdOc, jdbcType=VARCHAR}, 
 																		 #{openQuotationNo, jdbcType=VARCHAR},
 																		 #{position, jdbcType=VARCHAR}, 
 																		 #{count, jdbcType=VARCHAR}, 
 																		 #{sortKey, jdbcType=VARCHAR}, 
-																		 #{order, jdbcType=VARCHAR})
+																		 #{order, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationForCompetitionMap">
@@ -638,12 +638,12 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteCompetition" resultMap="quotationForCompetitionMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_competition(#{quoteId, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_NDC.retrieve_quote_competition(#{quoteId, jdbcType=VARCHAR}, 
 																	   #{quotationNo, jdbcType=VARCHAR}, 
 																	   #{position, jdbcType=VARCHAR}, 
 																	   #{count, jdbcType=VARCHAR}, 
 																	   #{sortKey, jdbcType=VARCHAR}, 
-																	   #{order, jdbcType=VARCHAR})
+																	   #{order, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationOc" id="quotationOcForCoverageMap">
@@ -667,16 +667,16 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteCoverageOc" resultMap="quotationOcForCoverageMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_NDC.retrieve_quote_coverage_oc(#{quoteIdOc, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_NDC.retrieve_quote_coverage_oc(#{quoteIdOc, jdbcType=VARCHAR}, 
 																	   #{openQuotationNo, jdbcType=VARCHAR},
 																	   #{position, jdbcType=VARCHAR}, 
 																	   #{count, jdbcType=VARCHAR}, 
 																	   #{sortKey, jdbcType=VARCHAR}, 
-																	   #{order, jdbcType=VARCHAR})
+																	   #{order, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveQuoteCoverage" resultMap="quotation" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_coverage(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'','')
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_coverage(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Attachment" id="attachment">
@@ -783,7 +783,7 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteDetailsOc" resultMap="quotationOc" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_details_oc(#{openQuotationNo, jdbcType=VARCHAR},#{quoteIdOc, jdbcType=VARCHAR},'',1,'','')
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_details_oc(#{openQuotationNo, jdbcType=VARCHAR},#{quoteIdOc, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competition">
@@ -800,15 +800,15 @@
 
 
 	<select id="retrieveQuoteHoldCover" resultMap="quotationMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover(#{holdCoverId},#{holdCoverNo},null,null,null,null)
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover(#{holdCoverId},#{holdCoverNo},null,null,null,null))
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfoOc" resultMap="quotationOcMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_gen_info_oc(#{quoteIdOc},#{openQuotationNo},null,null,null,null)
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_gen_info_oc(#{quoteIdOc},#{openQuotationNo},null,null,null,null))
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo},
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_list(#{quotationNo},
 																		      #{status},
 																		      #{cedingName},
 																		      #{holdCoverNo},
@@ -824,7 +824,7 @@
 																			  '',
 																			  '',
 																			  ''))
-			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo, jdbcType=VARCHAR},
+			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_list(#{quotationNo, jdbcType=VARCHAR},
 																		      #{status},
 																		      #{cedingName, jdbcType=VARCHAR},
 																		      #{holdCoverNo, jdbcType=VARCHAR},
@@ -840,7 +840,7 @@
 																			  '',
 																			  '',
 																			  '')) -->
-			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP_SPL.retrieve_quote_hold_cover_listing(
+			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP_SPL.retrieve_quote_hold_cover_list(
 																						'', 
 																						'', 
 																						'', 
@@ -948,17 +948,17 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteDetails" resultMap="quotation" parameterType="java.util.Map">
-		SELECT * FROM CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_details(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'','')
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_details(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	<select id="retrieveQuoteListingOc" resultMap="retrieveQuoteListingOcMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null)
+		<!-- SELECT * FROM ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null))
 	</select>
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)) -->
-		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
+		<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)) -->
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 <!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
@@ -987,7 +987,7 @@
 	
         
     <select id="retrieveQuoteAlopItem" resultMap="quotation" parameterType="java.util.Map">
-            SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'','')
+            SELECT * FROM TABLE(ETS_QUOTE_PKG_EJVA.retrieve_quote_alop_item(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',0,'',''))
     </select>
     
     
@@ -1030,7 +1030,7 @@
     </resultMap> -->
     
     <select id="retrieveQuoteAlop" resultMap="quotation" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null)
+			SELECT * FROM TABLE(ETS_QUOTE_PKG_EJVA.retrieve_quote_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null))
     </select>
   
 
@@ -1081,7 +1081,7 @@
 	
 	<update id="saveQuoteGeneralInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.save_quote_general_info(
+			ETS_QUOTE_PKG_MBM.save_quote_general_info(
 				#{quotationNo, mode=OUT, jdbcType=VARCHAR},
 				#{outQuoteId, mode=OUT, jdbcType=INTEGER},
 				#{savingType},
@@ -1287,13 +1287,13 @@
 	<update id="saveQuoteOtherRatesMap" parameterType="java.util.Map">
 		BEGIN
 		<foreach collection="deleteOtherRates" item="otherRates">
-		 	CPI.ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
+		 	ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
 		 		#{quoteId,jdbcType=INTEGER},
 				#{otherRates.coverCd,jdbcType=VARCHAR}
 		 	);
 		 </foreach>
 		 <foreach collection="otherRates" item="otherRates">
-			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
+			ETS_QUOTE_PKG_ETC.save_q_other_rates(
 				#{quoteId,jdbcType=INTEGER},
 				#{otherRates.coverCd,jdbcType=VARCHAR},
 				#{otherRates.rate,jdbcType=VARCHAR},
@@ -1310,7 +1310,7 @@
 	<update id="saveQuoteChangeQuoteStatusMap" parameterType="java.util.Map">
 		BEGIN
 		 <foreach collection="quoteList" item="quote">
-		 	CPI.ETS_QUOTE_PKG_EJVA.save_quote_change_quote_status(
+		 	ETS_QUOTE_PKG_EJVA.save_quote_change_quote_status(
 		 		#{quote.quoteId},#{status},#{reasonCd}
 		 	);
 		 </foreach>
@@ -1319,7 +1319,7 @@
 	
 	<update id="saveQuoteGeneralInfoOc" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.save_quote_general_info_oc(
+			ETS_QUOTE_PKG_MBM.save_quote_general_info_oc(
 				#{openQuotationNo, mode=OUT, jdbcType=VARCHAR},
 				#{outQuoteIdOc, mode=OUT, jdbcType=INTEGER},
 				#{quoteIdOc, jdbcType=INTEGER},
@@ -1381,10 +1381,10 @@
 			v_option_id QUOTE_OTHER_RATES.OPTION_ID%TYPE;
 		BEGIN
 		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
-		   		CPI.ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
+		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
-		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
+		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1401,13 +1401,13 @@
 		   </foreach>
 		   
 		   <foreach collection="deleteOtherRates" item="otherRates">
-		 	CPI.ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
+		 	ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
 		 		#{quoteId,jdbcType=INTEGER},
 				#{otherRates.coverCd,jdbcType=VARCHAR}
 		 	);
 		 </foreach> -->
 		 <foreach collection="otherRates" item="otherRates">
-			CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
+			ETS_QUOTE_PKG_ETC.save_q_other_rates(
 				#{quoteId,jdbcType=INTEGER},
 				#{otherRates.optionId,jdbcType=INTEGER},
 				#{otherRates.section},
@@ -1425,14 +1425,14 @@
 		 
 		 <foreach collection="newOptions" item="quoteOption">
 		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
-		   	   CPI.ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
+		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   	   
 		   	   <foreach collection="quoteOption.otherRatesList" item="otherRates">
-					CPI.ETS_QUOTE_PKG_ETC.save_q_other_rates(
+					ETS_QUOTE_PKG_ETC.save_q_other_rates(
 						#{quoteId,jdbcType=INTEGER},
 						v_option_id,
 						#{otherRates.section},
@@ -1455,7 +1455,7 @@
 	<update id="copyEndorsementMap" parameterType="java.util.Map">
 	BEGIN
 		<foreach collection="toOptionNo" item="copy">
-				CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+				ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
 				#{copyingType},#{fromOptionNo},#{copy.optionNo},
 				'',#{quoteId},
 				#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1466,13 +1466,13 @@
 	</update> 
 
 	<select id="retrieveQuoteDeductibles" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(CPI.ETS_QUOTE_PKG_PCPCR.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 
 	<!-- START COPY -->
 	<update id="copyQuoteGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_gen_info(			
+			ETS_QUOTE_PKG_MBM.copy_quote_gen_info(			
 				#{newQuoteId, mode=OUT, jdbcType=INTEGER},
 				#{newQuoteNo, mode=OUT, jdbcType=VARCHAR},
 				#{copyingType, jdbcType=VARCHAR},
@@ -1491,7 +1491,7 @@
 	
 	<update id="copyQuoteProject" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_project(
+			ETS_QUOTE_PKG_MBM.copy_quote_project(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
@@ -1505,7 +1505,7 @@
 	
 	<update id="copyQuoteCoverage" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_coverage(
+			ETS_QUOTE_PKG_MBM.copy_quote_coverage(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
@@ -1519,7 +1519,7 @@
 	
 	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_section_covers(
+			ETS_QUOTE_PKG_MBM.copy_quote_section_covers(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
@@ -1533,7 +1533,7 @@
 	
 	<update id="copyQuoteOptions" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_options(
+			ETS_QUOTE_PKG_MBM.copy_quote_options(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -1546,7 +1546,7 @@
 	
 	<update id="copyQuoteDeductibles" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_deductibles(
+			ETS_QUOTE_PKG_MBM.copy_quote_deductibles(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -1559,7 +1559,7 @@
 	
 	<update id="copyQuoteOtherRates" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_other_rates(
+			ETS_QUOTE_PKG_MBM.copy_quote_other_rates(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -1572,7 +1572,7 @@
 	
 	<update id="copyQuoteEndorsements" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+			ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
 				#{copyingType, jdbcType=VARCHAR},
 				#{fromOptionNo, jdbcType=INTEGER},
 				#{toOptionNo, jdbcType=INTEGER},
@@ -1588,7 +1588,7 @@
 	
 	<update id="copyQuoteAlop" parameterType="java.util.Map">
 		BEGIN
-			CPI.ETS_QUOTE_PKG_MBM.copy_quote_alop(				
+			ETS_QUOTE_PKG_MBM.copy_quote_alop(				
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
