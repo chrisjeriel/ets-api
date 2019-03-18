@@ -15,22 +15,7 @@ public class Alop {
 	private String insuredDesc;
 	private String address;
 	private String insuredBusiness;
-	private BigDecimal annSi;
-	private BigDecimal maxIndemPdSi;
-	private LocalDateTime issueDate;
-	private LocalDateTime expiryDate;
-	private Integer maxIndemPd;
-	private Double annSiD;
-	private Double maxIndemPdSiD;
-	private Double maxIndemPdD;
-	private LocalDateTime indemFromDate;
-	private Integer timeExc;
-	private Integer repInterval;
-	private String createUser;
-	private LocalDateTime createDate;
-	private String updateUser;
-	private LocalDateTime updateDate;
-	
+	private List<AlopDetails> alopDetails;
 	private List<AlopItem> alopItemList;
 	
 //	public AlopItem getAlopItem() {
@@ -75,95 +60,12 @@ public class Alop {
 	public void setInsuredBusiness(String insuredBusiness) {
 		this.insuredBusiness = insuredBusiness;
 	}
-	public BigDecimal getAnnSi() {
-		return annSi;
+	
+	public List<AlopDetails> getAlopDetails() {
+		return alopDetails;
 	}
-	public void setAnnSi(BigDecimal annSi) {
-		this.annSi = annSi;
-	}
-	public BigDecimal getMaxIndemPdSi() {
-		return maxIndemPdSi;
-	}
-	public void setMaxIndemPdSi(BigDecimal maxIndemPdSi) {
-		this.maxIndemPdSi = maxIndemPdSi;
-	}
-	public LocalDateTime getIssueDate() {
-		return issueDate;
-	}
-	public void setIssueDate(LocalDateTime issueDate) {
-		this.issueDate = issueDate;
-	}
-	public LocalDateTime getExpiryDate() {
-		return expiryDate;
-	}
-	public void setExpiryDate(LocalDateTime expiryDate) {
-		this.expiryDate = expiryDate;
-	}
-	public Integer getMaxIndemPd() {
-		return maxIndemPd;
-	}
-	public void setMaxIndemPd(Integer maxIndemPd) {
-		this.maxIndemPd = maxIndemPd;
-	}
-	public Double getAnnSiD() {
-		return annSiD;
-	}
-	public void setAnnSiD(Double annSiD) {
-		this.annSiD = annSiD;
-	}
-	public Double getMaxIndemPdSiD() {
-		return maxIndemPdSiD;
-	}
-	public void setMaxIndemPdSiD(Double maxIndemPdSiD) {
-		this.maxIndemPdSiD = maxIndemPdSiD;
-	}
-	public Double getMaxIndemPdD() {
-		return maxIndemPdD;
-	}
-	public void setMaxIndemPdD(Double maxIndemPdD) {
-		this.maxIndemPdD = maxIndemPdD;
-	}
-	public LocalDateTime getIndemFromDate() {
-		return indemFromDate;
-	}
-	public void setIndemFromDate(LocalDateTime indemFromDate) {
-		this.indemFromDate = indemFromDate;
-	}
-	public Integer getTimeExc() {
-		return timeExc;
-	}
-	public void setTimeExc(Integer timeExc) {
-		this.timeExc = timeExc;
-	}
-	public Integer getRepInterval() {
-		return repInterval;
-	}
-	public void setRepInterval(Integer repInterval) {
-		this.repInterval = repInterval;
-	}
-	public String getCreateUser() {
-		return createUser;
-	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-	public LocalDateTime getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(LocalDateTime createDate) {
-		this.createDate = createDate;
-	}
-	public String getUpdateUser() {
-		return updateUser;
-	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-	public LocalDateTime getUpdateDate() {
-		return updateDate;
-	}
-	public void setUpdateDate(LocalDateTime updateDate) {
-		this.updateDate = updateDate;
+	public void setAlopDetails(List<AlopDetails> alopDetails) {
+		this.alopDetails = alopDetails;
 	}
 	public List<AlopItem> getAlopItemList() {
 		return alopItemList;
@@ -173,16 +75,9 @@ public class Alop {
 	}
 	@Override
 	public String toString() {
-		return "Alop "
-				//+ "[alopItem=" + alopItem 
-				+ ", alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName="
-				+ insuredName + ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness="
-				+ insuredBusiness + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
-				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", annSiD=" + annSiD
-				+ ", maxIndemPdSiD=" + maxIndemPdSiD + ", maxIndemPdD=" + maxIndemPdD + ", indemFromDate="
-				+ indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", alopItemList=" + alopItemList + "]";
+		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
+				+ insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", alopDetails="
+				+ alopDetails + ", alopItemList=" + alopItemList + "]";
 	}
 	
 }
