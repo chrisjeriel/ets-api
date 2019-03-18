@@ -464,9 +464,9 @@
         <result property="fileName"  	column="FILE_NAME"/>
         <result property="description"  column="DESCRIPTION"/>
         <result property="createUser"  	column="CREATE_USER"/>
-     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+     	<result property="createDate"  	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="updateUser"  	column="UPDATE_USER"/>
-        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+        <result property="updateDate"  	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
@@ -486,10 +486,10 @@
 		<result property="bulletNo" column="BULLET_NO" />
 		<result property="sumInsured" column="SUM_INSURED" />
 		<result property="addSi" column="ADD_SI" />
-		<result property="createUser" column="SECTION_CREATE_USER" />
-		<result property="createDate" column="SECTION_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" column="SECTION_UPDATE_USER" />
-		<result property="updateDate" column="SECTION_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createUser" column="SEC_CREATE_USER" />
+		<result property="createDate" column="SEC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="SEC_UPDATE_USER" />
+		<result property="updateDate" column="SEC_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Coverage" id="coverage">
@@ -543,7 +543,7 @@
 		<result property="cessionId" column="CESSION_ID"/>
 		<result property="cessionDesc" column="CESSION_DESCRIPTION"/>
 		<result property="lineClassCd" column="LINE_CLASS_CD"/>
-		<result property="lineClassDesc" column="LINE_CLASS_DESCRIPTION"/>
+		<result property="lineClassDesc" column="LINE_CLASS_DESC"/>
 		<result property="principalId" column="PRIN_ID"/>
 		<result property="principalName" column="PRINCIPAL_NAME"/>
 		<result property="contractorId" column="CONTRACTOR_ID"/>
@@ -744,7 +744,7 @@
 		<result property="cessionId" column="CESSION_ID"/>
 		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="lineClassCd" column="LINE_CLASS_CD"/>
-		<result property="lineClassDesc" column="LINE_CLASS_DESCRIPTION"/>
+		<result property="lineClassDesc" column="LINE_CLASS_DESC"/>
 		<result property="refPolNo" column="REF_POL_NO"/>
 		<result property="policyIdOc" column="POLICY_ID_OC"/>
 		<result property="openPolicyNo" column="POLICY_NO"/>
@@ -1033,8 +1033,9 @@
 		   <foreach collection="saveAttachmentsList" item="attachment">
 		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
 			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
-			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
-			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{attachment.updateUser},
+			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			   
 		   </foreach>
 		   <foreach collection="deleteAttachmentsList" item="attachment">
 		   		ETS_QUOTE_PKG_PCPCR.delete_quote_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
