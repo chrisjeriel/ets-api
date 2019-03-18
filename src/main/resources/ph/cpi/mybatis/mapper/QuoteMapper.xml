@@ -210,6 +210,14 @@
 		<association property 	= "project"			resultMap 	= "projectMap"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quoteInfoListing">
+		<result property 		= "quoteId"			column		= "QUOTE_ID"/>
+		<result property 		= "quotationNo"		column		= "QUOTE_NO"/>
+		<result property 		= "cedingName"		column		= "CEDING_NAME"/>
+		<result property 		= "insuredDesc"		column		= "INSURED_DESC"/>
+		<association property 	= "project"			resultMap 	= "projectMap"/>
+	</resultMap>
+	
 	<resultMap type="ph.cpi.rest.api.model.quote.HoldCover" id="holdCoverListingMap">
 		<result property = "holdCoverId"         column = "HOLD_COV_ID"/>
 		<result property = "holdCoverNo"         column = "HOLD_COV_NO"/>
@@ -800,7 +808,7 @@
 
 
 	<select id="retrieveQuoteHoldCover" resultMap="quotationMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover(#{holdCoverId},#{holdCoverNo},null,null,null,null)
+			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hc(#{holdCoverId},#{holdCoverNo},null,null,null,null)
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfoOc" resultMap="quotationOcMap" parameterType="java.util.Map">
@@ -808,7 +816,7 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_listing(#{quotationNo},#{status},#{cedingName},#{holdCoverNo},#{riskName},#{insuredDesc},
+			SELECT * FROM ETS_QUOTE_PKG_JAP.retrieve_q_hc_list(#{quotationNo},#{status},#{cedingName},#{holdCoverNo},#{riskName},#{insuredDesc},
 					#{periodFrom},#{periodTo},#{compRefHoldCovNo},#{reqBy},#{reqDate},#{expiringInDays},'','','','')
 	</select>
 	
@@ -1545,4 +1553,8 @@
 	</update>
 	<!-- END COPY -->
 
+
+	<select id="searchQuoteInfo" resultMap="quoteInfoListing" parameterType="java.util.Map">
+		SELECT * FROM ETS_QUOTE_PKG_JAP.search_quote_info(#{lineCd,jdbcType=VARCHAR},#{quoteYear,jdbcType=INTEGER},#{quoteSeqNo,jdbcType=INTEGER},#{quoteRevNo,jdbcType=INTEGER},#{quoteCedingId,jdbcType=INTEGER})
+	</select>
 </mapper>

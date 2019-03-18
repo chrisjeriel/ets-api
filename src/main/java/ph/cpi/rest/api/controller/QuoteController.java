@@ -52,6 +52,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -90,6 +91,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
+import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -386,5 +388,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuotationCopy");
 		logger.info("SaveQuotationCopyRequest : " + sqcp.toString());
 		return quoteService.saveQuotationCopy(sqcp);
+	}
+	
+	@GetMapping(path="searchQuoteInfo")
+	public @ResponseBody SearchQuoteInfoResponse searchQuoteInfo(SearchQuoteInfoRequest sqip) throws SQLException {
+		logger.info("GET: /api/quote-service/searchQuoteInfo");
+		logger.info("SearchQuoteInfoRequest : " + sqip.toString());
+		return quoteService.searchQuoteInfo(sqip);
 	}
 }

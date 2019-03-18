@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
+import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -90,6 +91,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
+import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
 import ph.cpi.rest.api.model.Error;
@@ -1082,6 +1084,21 @@ public class QuoteServiceImpl implements QuoteService{
 		}
 		
 		return sqcResponse;
+	}
+
+	@Override
+	public SearchQuoteInfoResponse searchQuoteInfo(SearchQuoteInfoRequest sqip) throws SQLException {
+		SearchQuoteInfoResponse sqiResponse = new SearchQuoteInfoResponse();
+		HashMap<String, Object> searchQuoteInfoParams = new HashMap<String, Object>();
+		searchQuoteInfoParams.put("lineCd", sqip.getLineCd());
+		searchQuoteInfoParams.put("quoteYear", sqip.getQuoteYear());
+		searchQuoteInfoParams.put("quoteSeqNo", sqip.getQuoteSeqNo());
+		searchQuoteInfoParams.put("quoteRevNo", sqip.getQuoteRevNo());
+		searchQuoteInfoParams.put("quoteCedingId", sqip.getQuoteCedingId());
+		sqiResponse.setQuotation(quoteDao.searchQuoteInfo(searchQuoteInfoParams));
+		
+		logger.info("searchQuoteInfoResponse : " + sqiResponse.toString());
+		return sqiResponse;
 	}
 
 }
