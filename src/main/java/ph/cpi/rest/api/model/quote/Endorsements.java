@@ -8,7 +8,7 @@ public class Endorsements {
 	private Integer quoteId;
 	private String quotationNo;
 	private Integer optionId;
-	private Integer endtCd;
+	private String endtCd;
 	private String endtTitle;
 	private String description;
 	private String remarks;
@@ -35,10 +35,10 @@ public class Endorsements {
 	public void setOptionId(Integer optionId) {
 		this.optionId = optionId;
 	}
-	public Integer getEndtCd() {
+	public String getEndtCd() {
 		return endtCd;
 	}
-	public void setEndtCd(Integer endtCd) {
+	public void setEndtCd(String endtCd) {
 		this.endtCd = endtCd;
 	}
 	public String getEndtTitle() {
