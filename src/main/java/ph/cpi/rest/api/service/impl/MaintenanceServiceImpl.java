@@ -538,12 +538,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}catch (SQLException ex) {
 			smrrResponse.setReturnCode(0);
 			smrrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
-			//ex.printStackTrace();
+			ex.printStackTrace();
 		}catch (Exception ex) {
 			smrrResponse.setReturnCode(0);
 			smrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
-			//ex.printStackTrace();
+			ex.printStackTrace();
 		}
+		
+		System.out.println("smrrResponse: " + smrrResponse);
 		return smrrResponse;
 	}
 

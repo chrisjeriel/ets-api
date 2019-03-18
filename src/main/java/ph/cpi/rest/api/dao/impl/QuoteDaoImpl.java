@@ -115,6 +115,7 @@ public class QuoteDaoImpl implements QuoteDao{
 
 	@Override
 	public List<Quotation> retrieveQuoteHoldCoverListing(HashMap<String, Object> params) throws SQLException {
+		System.out.println(params);
 		List<Quotation> quotationListing = sqlSession.selectList("retrieveQuoteHoldCoverListing", params);
 		return quotationListing;
 	}

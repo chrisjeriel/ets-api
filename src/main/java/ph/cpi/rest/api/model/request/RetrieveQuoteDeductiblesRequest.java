@@ -8,6 +8,7 @@ public class RetrieveQuoteDeductiblesRequest {
 	private String quotationNo;
 	private String optionId;
 	private String coverCd;
+	private String endtCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getQuoteId() {
@@ -46,12 +47,20 @@ public class RetrieveQuoteDeductiblesRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
+	public String getEndtCd() {
+		return endtCd;
+	}
+	public void setEndtCd(String endtCd) {
+		this.endtCd = endtCd;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteDeductiblesRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", optionId="
-				+ optionId + ", coverCd=" + coverCd + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ optionId + ", coverCd=" + coverCd + ", endtCd=" + endtCd + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 	
 }

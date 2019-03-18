@@ -1,9 +1,7 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.HashMap;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +10,6 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.Message;
-import ph.cpi.rest.api.model.quote.HoldCover;
-import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
@@ -94,7 +89,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
-import ph.cpi.rest.api.model.Error;
+
 
 
 @Component
@@ -284,21 +279,31 @@ public class QuoteServiceImpl implements QuoteService{
 	public RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCoverListing(RetrieveQuoteHoldCoverListingRequest rqhclp)
 			throws SQLException {
 		RetrieveQuoteHoldCoverResponse rqhcResponse = new RetrieveQuoteHoldCoverResponse();
-		DateUtility date = new DateUtility();
-		HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
-		retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
-		retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
-		retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
-		retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
-		retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
-		retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
-		retrieveQuoteHoldCoverParams.put("periodFrom", rqhclp.getPeriodFrom().isEmpty() ? rqhclp.getPeriodFrom() : date.toDate(rqhclp.getPeriodFrom()));
-		retrieveQuoteHoldCoverParams.put("periodTo", rqhclp.getPeriodTo().isEmpty() ? rqhclp.getPeriodTo() : date.toDate(rqhclp.getPeriodTo()));
-		retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
-		retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
-		retrieveQuoteHoldCoverParams.put("reqDate", rqhclp.getReqDate().isEmpty() ? rqhclp.getReqDate() : date.toDate(rqhclp.getReqDate()));
-		retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
-		rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+		
+		try {
+			DateUtility date = new DateUtility();
+			HashMap<String, Object> retrieveQuoteHoldCoverParams = new HashMap<String, Object>();
+			retrieveQuoteHoldCoverParams.put("holdCoverNo",	rqhclp.getHoldCoverNo());
+			retrieveQuoteHoldCoverParams.put("status", rqhclp.getStatus());
+			retrieveQuoteHoldCoverParams.put("cedingName", rqhclp.getCedingName());
+			retrieveQuoteHoldCoverParams.put("quotationNo", rqhclp.getQuotationNo());
+			retrieveQuoteHoldCoverParams.put("riskName", rqhclp.getRiskName());
+			retrieveQuoteHoldCoverParams.put("insuredDesc", rqhclp.getInsuredDesc());
+			retrieveQuoteHoldCoverParams.put("periodFrom", (rqhclp.getPeriodFrom() == null  || rqhclp.getPeriodFrom().isEmpty()) ? "" : date.toDate(rqhclp.getPeriodFrom()));
+			retrieveQuoteHoldCoverParams.put("periodTo", (rqhclp.getPeriodTo() == null || rqhclp.getPeriodTo().isEmpty()) ? "" : date.toDate(rqhclp.getPeriodTo()));
+			retrieveQuoteHoldCoverParams.put("compRefHoldCovNo", rqhclp.getCompRefHoldCovNo());
+			retrieveQuoteHoldCoverParams.put("reqBy", rqhclp.getReqBy());
+			retrieveQuoteHoldCoverParams.put("reqDate", (rqhclp.getReqDate() == null || rqhclp.getReqDate().isEmpty()) ? "" : date.toDate(rqhclp.getReqDate()));
+			retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
+			rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
+			
+		} catch (SQLException sqlex) {
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		logger.info("RetrieveQuoteHoldCoverResponse : " + rqhcResponse);
 		
 		return rqhcResponse;
 	}
@@ -334,18 +339,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
 			saveQuoteAlopParams.put("address" , sqar.getAddress() );
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
-			saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
-			saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
-			saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
-			saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
-			saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
-			saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
-			saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
-			saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
-			saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
-			saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
-			saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
-			saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
+			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -494,7 +488,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 
-		
 		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
 		
 		return rqaResponse;
@@ -1025,7 +1018,7 @@ public class QuoteServiceImpl implements QuoteService{
 			ceResponse.setReturnCode(res);
 		} catch (Exception ex) {
 			ceResponse.setReturnCode(0);
-			ceResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ceResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
 		return ceResponse;
@@ -1041,10 +1034,10 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteDeductiblesParams.put("quotationNo", rqdr.getQuotationNo());
 		retrieveQuoteDeductiblesParams.put("optionId", rqdr.getOptionId());
 		retrieveQuoteDeductiblesParams.put("coverCd", rqdr.getCoverCd());
-		
+		retrieveQuoteDeductiblesParams.put("endtCd", rqdr.getEndtCd());
 		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDeductibles(retrieveQuoteDeductiblesParams));
 		
-		logger.info("retrieveQuoteCoverageResponse : " + rqdrResponse.toString());
+		logger.info("retrieveQuoteDeductiblesResponse : " + rqdrResponse.toString());
 		
 		return rqdrResponse;
 	}
