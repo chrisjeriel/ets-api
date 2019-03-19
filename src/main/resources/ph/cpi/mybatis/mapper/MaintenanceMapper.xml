@@ -119,9 +119,9 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Object_" id="objectMap">
 		<result property = "lineCd"         column  =   "LINE_CD"/>
-		<result property = "lineDesc"       column  =   "LINE_DESCRIPTION"/>
+		<result property = "lineDesc"       column  =   "LINE_DESC"/>
 		<result property = "objectId"       column  =   "OBJECT_ID"/>
-		<result property = "description"    column  =   "OBJECT_DESCRIPTION"/>
+		<result property = "description"    column  =   "OBJECT_DESC"/>
 		<result property = "activeTag"      column  =   "ACTIVE_TAG"/>
 		<result property = "remarks"        column  =   "REMARKS"/>
 		<result property = "createUser"     column  =   "CREATE_USER"/>
@@ -382,19 +382,19 @@
 	</select>
 
 	<select id="retrieveMtnRegion" resultMap="regionMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_region(#{regionCd, jdbcType=VARCHAR},null,null,null,null))
+			SELECT * FROM TABLE(MTN_REGION_PKG.ret_mtn_region(#{regionCd, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnProvince" resultMap="regionForProvinceMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_province(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},null,null,null,null))
+			SELECT * FROM TABLE(MTN_PROVINCE_PKG.ret_mtn_prvnce(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_object(#{lineCd},#{objectId},null,null,null,null))
+			SELECT * FROM TABLE(MTN_OBJECT_PKG.ret_mtn_obj(#{lineCd},#{objectId},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_quote_wordings(#{lineCd},#{type},null,null,null,null))
+			SELECT * FROM TABLE(MTN_QUOTE_WORDINGS_PKG.ret_mtn_qu_wordings(#{lineCd},#{type},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="cityMap">
