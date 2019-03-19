@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import ph.cpi.rest.api.constants.ExceptionCodes;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
@@ -99,24 +100,7 @@ public class QuoteServiceImpl implements QuoteService{
 	QuoteDao quoteDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
-
-	/*
-	 * @Override public RetrieveQuoteAlopResponse
-	 * retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException {
-	 * 
-	 * RetrieveQuoteAlopResponse rqaResponse = new RetrieveQuoteAlopResponse();
-	 * 
-	 * HashMap<String, Object> retrieveQuoteAlopParams = new HashMap<String,
-	 * Object>(); retrieveQuoteAlopParams.put("quoteId", rqap.getQuoteId());
-	 * retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo());
-	 * 
-	 * rqaResponse.getQuotation().setAlop(quoteDao.retrieveQuoteAlop(
-	 * retrieveQuoteAlopParams));
-	 * 
-	 * logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
-	 * 
-	 * return rqaResponse; }
-	 */
+	
 	@Override
 	public RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		RetrieveQuoteListingResponse rqlResponse = new RetrieveQuoteListingResponse();
@@ -157,32 +141,36 @@ public class QuoteServiceImpl implements QuoteService{
 			throws SQLException {
 		RetrieveQuoteListingOcResponse rqloResponse = new RetrieveQuoteListingOcResponse();
 		
-		HashMap<String, Object> retrieveQuoteListingOcParams = new HashMap<String, Object>();
-		retrieveQuoteListingOcParams.put("quotationNo", rqlop.getQuotationNo());
-		retrieveQuoteListingOcParams.put("cessionDesc", rqlop.getCessionDesc());
-		retrieveQuoteListingOcParams.put("lineClassCdDesc", rqlop.getLineClassCdDesc());
-		retrieveQuoteListingOcParams.put("status", rqlop.getStatus());
-		retrieveQuoteListingOcParams.put("cedingName", rqlop.getCedingName());
-		retrieveQuoteListingOcParams.put("principalName", rqlop.getPrincipalName());
-		retrieveQuoteListingOcParams.put("contractorName", rqlop.getContractorName());
-		retrieveQuoteListingOcParams.put("insuredDesc", rqlop.getInsuredDesc());
-		retrieveQuoteListingOcParams.put("riskName", rqlop.getRiskName());
-		retrieveQuoteListingOcParams.put("objectDesc", rqlop.getObjectDesc());
-		retrieveQuoteListingOcParams.put("site", rqlop.getSite());
-		retrieveQuoteListingOcParams.put("policyNo", ""); //from policy table
-		retrieveQuoteListingOcParams.put("currencyCd", rqlop.getCurrencyCd());
-		retrieveQuoteListingOcParams.put("issueDate", rqlop.getIssueDate());
-		retrieveQuoteListingOcParams.put("expiryDate", rqlop.getExpiryDate());
-		retrieveQuoteListingOcParams.put("reqBy", rqlop.getReqBy());
-		retrieveQuoteListingOcParams.put("createUser", rqlop.getCreateUser());
-		/*retrieveQuoteListingOcParams.put("position", rqlp.getPaginationRequest().getPosition());
-		retrieveQuoteListingOcParams.put("count", rqlp.getPaginationRequest().getCount());
-		retrieveQuoteListingOcParams.put("sortKey", rqlp.getSortRequest().getSortKey());
-		retrieveQuoteListingOcParams.put("order", rqlp.getSortRequest().getOrder());*/
-		
-		rqloResponse.setQuotationOcList(quoteDao.retrieveQuoteListingOc(retrieveQuoteListingOcParams));
-		
-		logger.info("retrieveQuoteListingOcResponse : " + rqloResponse.toString());
+		try {
+			HashMap<String, Object> retrieveQuoteListingOcParams = new HashMap<String, Object>();
+			retrieveQuoteListingOcParams.put("quotationNo", rqlop.getQuotationNo());
+			retrieveQuoteListingOcParams.put("cessionDesc", rqlop.getCessionDesc());
+			retrieveQuoteListingOcParams.put("lineClassCdDesc", rqlop.getLineClassCdDesc());
+			retrieveQuoteListingOcParams.put("status", rqlop.getStatus());
+			retrieveQuoteListingOcParams.put("cedingName", rqlop.getCedingName());
+			retrieveQuoteListingOcParams.put("principalName", rqlop.getPrincipalName());
+			retrieveQuoteListingOcParams.put("contractorName", rqlop.getContractorName());
+			retrieveQuoteListingOcParams.put("insuredDesc", rqlop.getInsuredDesc());
+			retrieveQuoteListingOcParams.put("riskName", rqlop.getRiskName());
+			retrieveQuoteListingOcParams.put("objectDesc", rqlop.getObjectDesc());
+			retrieveQuoteListingOcParams.put("site", rqlop.getSite());
+			retrieveQuoteListingOcParams.put("policyNo", ""); //from policy table
+			retrieveQuoteListingOcParams.put("currencyCd", rqlop.getCurrencyCd());
+			retrieveQuoteListingOcParams.put("issueDate", rqlop.getIssueDate());
+			retrieveQuoteListingOcParams.put("expiryDate", rqlop.getExpiryDate());
+			retrieveQuoteListingOcParams.put("reqBy", rqlop.getReqBy());
+			retrieveQuoteListingOcParams.put("createUser", rqlop.getCreateUser());
+			/*retrieveQuoteListingOcParams.put("position", rqlp.getPaginationRequest().getPosition());
+			retrieveQuoteListingOcParams.put("count", rqlp.getPaginationRequest().getCount());
+			retrieveQuoteListingOcParams.put("sortKey", rqlp.getSortRequest().getSortKey());
+			retrieveQuoteListingOcParams.put("order", rqlp.getSortRequest().getOrder());*/
+			
+			rqloResponse.setQuotationOcList(quoteDao.retrieveQuoteListingOc(retrieveQuoteListingOcParams));
+			
+			logger.info("retrieveQuoteListingOcResponse : " + rqloResponse.toString());
+		} catch (Exception ex) {
+			rqloResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_1010, ExceptionCodes.QUEX_1010_MSG));
+		}
 		
 		return rqloResponse;
 	}
@@ -972,6 +960,7 @@ public class QuoteServiceImpl implements QuoteService{
 	}
 
 	@Override
+
 	public SaveQuoteOptionAllResponse saveQuoteOptionAll(SaveQuoteOptionAllRequest sqor) throws SQLException {
 		SaveQuoteOptionAllResponse saveQuoteOptionAllResponse = new SaveQuoteOptionAllResponse();
 		

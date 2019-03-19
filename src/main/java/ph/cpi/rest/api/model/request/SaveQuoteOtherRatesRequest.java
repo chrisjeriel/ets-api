@@ -4,27 +4,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-import org.joda.time.LocalDateTime;
 
 public class SaveQuoteOtherRatesRequest {
 	
 	private Integer quoteId;
-	private List<OtherRates> otherRates;
-	private List<OtherRates> deleteOtherRates;
+	List<OtherRates> otherRates;
+	List<OtherRates> deleteOtherRates;
 	
 	
-	public List<OtherRates> getDeleteOtherRates() {
-		return deleteOtherRates;
-	}
-
-	public void setDeleteOtherRates(List<OtherRates> deleteOtherRates) {
-		this.deleteOtherRates = deleteOtherRates;
-	}
-
 	public Integer getQuoteId() {
 		return quoteId;
 	}
-	
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
 	}
@@ -34,16 +24,20 @@ public class SaveQuoteOtherRatesRequest {
 	public void setOtherRates(List<OtherRates> otherRates) {
 		this.otherRates = otherRates;
 	}
-
+	public List<OtherRates> getDeleteOtherRates() {
+		return deleteOtherRates;
+	}
+	public void setDeleteOtherRates(List<OtherRates> deleteOtherRates) {
+		this.deleteOtherRates = deleteOtherRates;
+	}
+	
 	@Override
 	public String toString() {
 		return "SaveQuoteOtherRatesRequest [quoteId=" + quoteId + ", otherRates=" + otherRates + ", deleteOtherRates="
 				+ deleteOtherRates + "]";
 	}
-	
-	
-	
-	
+
+
 }
 
 @Alias("SaveQuoteOtherRates")
