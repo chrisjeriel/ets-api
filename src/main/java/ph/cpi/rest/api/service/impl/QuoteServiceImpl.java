@@ -337,18 +337,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
 			saveQuoteAlopParams.put("address" , sqar.getAddress() );
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
-			saveQuoteAlopParams.put("annSi" , sqar.getAnnSi() );
-			saveQuoteAlopParams.put("maxIndemPdSi" , sqar.getMaxIndemPdSi() );
-			saveQuoteAlopParams.put("issueDate" , sqar.getIssueDate() );
-			saveQuoteAlopParams.put("expiryDate" , sqar.getExpiryDate() );
-			saveQuoteAlopParams.put("maxIndemPd" , sqar.getMaxIndemPd() );
-			saveQuoteAlopParams.put("indemFromDate" , sqar.getIndemFromDate() );
-			saveQuoteAlopParams.put("timeExc" , sqar.getTimeExc() );
-			saveQuoteAlopParams.put("repInterval" , sqar.getRepInterval() );
-			saveQuoteAlopParams.put("createUser" , sqar.getCreateUser() );
-			saveQuoteAlopParams.put("createDate" , sqar.getCreateDate() );
-			saveQuoteAlopParams.put("updateUser" , sqar.getUpdateUser() );
-			saveQuoteAlopParams.put("updateDate" , sqar.getUpdateDate() );
+			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -497,7 +486,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
 
-		
 		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
 		
 		return rqaResponse;
@@ -725,10 +713,18 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
 			saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
 			
-			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);
+			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);					
+			
+			if(sqgip.getSavingType().equals("internalComp")) {
+				saveQuoteGeneralInfoParams.put("copyingType", "internalComp");
+				saveQuoteGeneralInfoParams.put("newQuoteId", res.get("outQuoteId"));
+				saveQuoteGeneralInfoParams.put("quoteId", sqgip.getTempQuoteIdInternalComp());
+				
+				quoteDao.copyInternalCompetition(saveQuoteGeneralInfoParams);
+			}
 			
 			sqgiResponse.setReturnCode((Integer) res.get("errorCode"));
-			sqgiResponse.setQuoteId((Integer) (res.get("outQuoteId")));
+			sqgiResponse.setQuoteId((Integer) res.get("outQuoteId"));
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
 		} catch (SQLException ex) {
 			sqgiResponse.setReturnCode(0);
@@ -1054,6 +1050,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			saveQuotationCopyParams.put("newQuoteId", "");
 			saveQuotationCopyParams.put("newQuoteNo", "");
+			saveQuotationCopyParams.put("copyingType", sqcp.getCopyingType());
 			saveQuotationCopyParams.put("quoteId", sqcp.getQuoteId());
 			saveQuotationCopyParams.put("lineCd", sqcp.getLineCd());
 			saveQuotationCopyParams.put("quoteYear", sqcp.getQuoteYear());
