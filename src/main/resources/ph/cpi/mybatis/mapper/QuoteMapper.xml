@@ -478,7 +478,7 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteAttachment" resultMap="quotationMapAttachment" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_EJVA.retrieve_quote_attachment(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR}, null, null ,null, null))
+			SELECT * FROM TABLE(QU_ATTACHMENT_PKG.ret_qu_attachment(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR}, null, null ,null, null))
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
@@ -808,7 +808,7 @@
 
 
 	<select id="retrieveQuoteHoldCover" resultMap="quotationMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover(#{holdCoverId},#{holdCoverNo},null,null,null,null))
+			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_quote_hc(#{holdCoverId,jdbcType=INTEGER},#{holdCoverNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfoOc" resultMap="quotationOcMap" parameterType="java.util.Map">
@@ -816,18 +816,18 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_list(#{quotationNo},
-																		      #{status},
-																		      #{cedingName},
-																		      #{holdCoverNo},
-																		      #{riskName},
-																		      #{insuredDesc},
-																			  #{periodFrom},
-																			  #{periodTo},
-																			  #{compRefHoldCovNo},
-																			  #{reqBy},
-																			  #{reqDate},
-																			  #{expiringInDays},
+			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{quotationNo,jdbcType=VARCHAR},
+																		      #{status,jdbcType=VARCHAR},
+																		      #{cedingName,jdbcType=VARCHAR},
+																		      #{holdCoverNo,jdbcType=VARCHAR},
+																		      #{riskName,jdbcType=VARCHAR},
+																		      #{insuredDesc,jdbcType=VARCHAR},
+																			  #{periodFrom,jdbcType=DATE},
+																			  #{periodTo,jdbcType=DATE},
+																			  #{compRefHoldCovNo,jdbcType=VARCHAR},
+																			  #{reqBy,jdbcType=VARCHAR},
+																			  #{reqDate,jdbcType=DATE},
+																			  #{expiringInDays,jdbcType=INTEGER},
 																			  '',
 																			  '',
 																			  '',
@@ -1045,13 +1045,13 @@
 	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map">
 		BEGIN
 		   <foreach collection="saveAttachmentsList" item="attachment">
-		   	   ETS_QUOTE_PKG_PCPCR.save_quote_attachment
+		   	   QU_ATTACHMENT_PKG.save_qu_attachment
 			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
 			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{attachment.updateUser},
 			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   </foreach>
 		   <foreach collection="deleteAttachmentsList" item="attachment">
-		   		ETS_QUOTE_PKG_PCPCR.delete_quote_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
+		   		QU_ATTACHMENT_PKG.del_qu_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
 		   </foreach>
 		END;
 	</update>
@@ -1182,7 +1182,7 @@
 	
 	<update id="saveQuoteHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			ETS_QUOTE_PKG_JAP.save_quote_hold_cover(
+				QU_HOLD_COVER_PKG.save_quote_hc(
 				#{holdCoverNo,mode=OUT,jdbcType=VARCHAR},
 				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
 				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
@@ -1610,6 +1610,6 @@
 
 
 	<select id="searchQuoteInfo" resultMap="quoteInfoListing" parameterType="java.util.Map">
-		SELECT * FROM ETS_QUOTE_PKG_JAP.search_quote_info(#{lineCd,jdbcType=VARCHAR},#{quoteYear,jdbcType=INTEGER},#{quoteSeqNo,jdbcType=INTEGER},#{quoteRevNo,jdbcType=INTEGER},#{quoteCedingId,jdbcType=INTEGER})
+		SELECT * FROM TABLE(QU_HOLD_COVER_PKG.srch_quote_info(#{lineCd,jdbcType=VARCHAR},#{quoteYear,jdbcType=INTEGER},#{quoteSeqNo,jdbcType=INTEGER},#{quoteRevNo,jdbcType=INTEGER},#{quoteCedingId,jdbcType=INTEGER}))
 	</select>
 </mapper>
