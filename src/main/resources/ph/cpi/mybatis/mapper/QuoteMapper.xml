@@ -894,7 +894,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
-		<result property="alopId" column="ALOP_ID"/>
+		<result property="optionId" column="OPTION_ID"/>
 		<result property="insuredId" column="INS_ID"/>
 		<result property="insuredName" column="INSURED_NAME"/>
 		<result property="insuredDesc" column="INSURED_DESC_ALOP"/>
