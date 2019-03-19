@@ -119,15 +119,15 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Object_" id="objectMap">
 		<result property = "lineCd"         column  =   "LINE_CD"/>
-		<result property = "lineDesc"       column  =   "LINE_DESCRIPTION"/>
+		<result property = "lineDesc"       column  =   "LINE_DESC"/>
 		<result property = "objectId"       column  =   "OBJECT_ID"/>
-		<result property = "description"    column  =   "OBJECT_DESCRIPTION"/>
+		<result property = "description"    column  =   "OBJECT_DESC"/>
 		<result property = "activeTag"      column  =   "ACTIVE_TAG"/>
 		<result property = "remarks"        column  =   "REMARKS"/>
 		<result property = "createUser"     column  =   "CREATE_USER"/>
-		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"     column  =   "CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property = "updateUser"     column  =   "UPDATE_USER"/>
-		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"     column  =   "UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.QuoteWordings" id="quoteWordingsMap">
@@ -386,11 +386,11 @@
 	</select>
 	
 	<select id="retrieveMtnProvince" resultMap="regionForProvinceMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_province(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},null,null,null,null))
+			SELECT * FROM TABLE(MTN_REGION_PKG.ret_mtn_region(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_JAP.retrieve_mtn_object(#{lineCd},#{objectId},null,null,null,null))
+			SELECT * FROM TABLE(MTN_OBJECT_PKG.ret_mtn_obj(#{lineCd},#{objectId},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">

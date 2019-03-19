@@ -45,6 +45,7 @@ public class SaveQuoteAlopItemRequest {
 
 @Alias("SaveQuoteAlopItem")
 class AlopItem{
+	private Integer optionId;
 	private Integer itemNo ;
 	private Integer quantity;
 	private String description;
@@ -54,6 +55,13 @@ class AlopItem{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -110,10 +118,9 @@ class AlopItem{
 	}
 	@Override
 	public String toString() {
-		return "AlopItem [itemNo=" + itemNo + ", quantity=" + quantity + ", description=" + description
-				+ ", importance=" + importance + ", lossMin=" + lossMin + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AlopItem [optionId=" + optionId + ", itemNo=" + itemNo + ", quantity=" + quantity + ", description="
+				+ description + ", importance=" + importance + ", lossMin=" + lossMin + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

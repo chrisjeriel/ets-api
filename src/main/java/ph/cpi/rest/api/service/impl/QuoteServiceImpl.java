@@ -325,12 +325,12 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
 			
-			saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId() );
-			saveQuoteAlopParams.put("alopId" , sqar.getAlopId() );
-			saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId() );
-			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc() );
-			saveQuoteAlopParams.put("address" , sqar.getAddress() );
-			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness() );
+			saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId());
+			saveQuoteAlopParams.put("alopId" , sqar.getAlopId());
+			saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId());
+			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc());
+			saveQuoteAlopParams.put("address" , sqar.getAddress());
+			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness());
 			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
@@ -414,6 +414,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> retrieveQuoteAlopItemParams = new HashMap<String, Object>();
 		retrieveQuoteAlopItemParams.put("quoteId", retQuoteAlopItem.getQuoteId());
 		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
+		retrieveQuoteAlopItemParams.put("optionId", retQuoteAlopItem.getOptionId());
 		
 		retQuoteAlopItemResponse.setQuotation(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
 		

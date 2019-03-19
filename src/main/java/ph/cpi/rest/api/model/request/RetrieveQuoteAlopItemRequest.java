@@ -6,6 +6,7 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveQuoteAlopItemRequest {
 	private Integer quoteId;
 	private String quotationNo;
+	private Integer optionId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -34,10 +35,16 @@ public class RetrieveQuoteAlopItemRequest {
 		this.sortRequest = sortRequest;
 	}
 	
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopItemRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveQuoteAlopItemRequest [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", optionId="
+				+ optionId + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 	

@@ -16,7 +16,7 @@ public class Alop {
 	private String address;
 	private String insuredBusiness;
 	private List<AlopDetails> alopDetails;
-	private List<AlopItem> alopItemList;
+	
 	
 //	public AlopItem getAlopItem() {
 //		return alopItem;
@@ -67,17 +67,11 @@ public class Alop {
 	public void setAlopDetails(List<AlopDetails> alopDetails) {
 		this.alopDetails = alopDetails;
 	}
-	public List<AlopItem> getAlopItemList() {
-		return alopItemList;
-	}
-	public void setAlopItemList(List<AlopItem> alopItemList) {
-		this.alopItemList = alopItemList;
-	}
 	@Override
 	public String toString() {
 		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
 				+ insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", alopDetails="
-				+ alopDetails + ", alopItemList=" + alopItemList + "]";
+				+ alopDetails + "]";
 	}
 	
 }
