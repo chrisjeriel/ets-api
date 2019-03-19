@@ -859,15 +859,15 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItem">
-		<result property="itemNo" column="ITEM_NO"/>
-		<result property="quantity" column="QUANTITY"/>
-		<result property="description" column="ALOP_ITEM_DESCRIPTION"/>
-		<result property="importance" column="IMPORTANCE"/>
-		<result property="lossMin" column="LOSS_MIN"/>
-		<result property="createUser" column="ALOP_ITEM_CREATE_USER"/>
-		<result property="createDate" column="ALOP_ITEM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" column="ALOP_ITEM_UPDATE_USER"/>
-		<result property="updateDate" column="ALOP_ITEM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="itemNo" 			column="ITEM_NO"/>
+		<result property="quantity" 		column="QUANTITY"/>
+		<result property="description" 		column="ALOP_ITEM_DESCRIPTION"/>
+		<result property="importance" 		column="IMPORTANCE"/>
+		<result property="lossMin" 			column="LOSS_MIN"/>
+		<result property="createUser" 		column="ALOP_ITEM_CREATE_USER"/>
+		<result property="createDate" 		column="ALOP_ITEM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="ALOP_ITEM_UPDATE_USER"/>
+		<result property="updateDate" 		column="ALOP_ITEM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
@@ -986,7 +986,7 @@
 	
         
     <select id="retrieveQuoteAlopItem" resultMap="quotation" parameterType="java.util.Map">
-            SELECT * FROM TABLE(QU_ALOP_ITM_PKG.ret_qu_alop_itm(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},#{optionId},'',0,'',''))
+            SELECT * FROM TABLE(QU_ALOP_ITM_PKG.qu_alop_itm_type(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},#{optionId},'',0,'',''))
     </select>
     
     
@@ -1518,7 +1518,7 @@
 	
 	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
 		BEGIN
-			QU_SEC_COVER_PKG.save_qu_sec_cvrs(
+			QU_SEC_COVER_PKG.copy_qu_sec_covers(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
