@@ -308,9 +308,9 @@
 		<result property="cedingId" 			column="CEDING_ID"/> 
 		<result property="cedingName" 			column="CEDING_NAME"/> 
 		<result property="cessionId" 			column="CESSION_ID"/> 
-		<result property="cessionDesc" 			column="DESCRIPTION_TYPE_OF_CESSION"/> 
+		<result property="cessionDesc" 			column="CESSION_DESC"/> 
 		<result property="lineClassCd" 			column="LINE_CLASS_CD"/> 
-		<result property="lineClassDesc" 		column="DESCRIPTION_LINE_CLASS"/> 
+		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/> 
 		<result property="principalId" 			column="PRIN_ID"/>
 		<result property="principalName" 		column="PRINCIPAL_NAME"/> 
 		<result property="contractorId" 		column="CONTRACTOR_ID"/> 
