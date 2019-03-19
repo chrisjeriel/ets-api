@@ -68,7 +68,7 @@ public interface QuoteDao {
 	public Quotation retrieveQuoteDeductibles(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuotationCopy(final HashMap<String, Object> params ) throws SQLException;
 	public Integer copyInternalCompetition(final HashMap<String, Object> params) throws SQLException;
-	
 	public List<Quotation> searchQuoteInfo(final HashMap<String, Object> params) throws SQLException;
- 
+	public Integer saveQuoteAdviceWordings(final HashMap<String, Object> params) throws SQLException;
+	
 }

@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
@@ -626,7 +628,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteCompetitionParams.put("createDate", sqcr.getCreateDate());
 			saveQuoteCompetitionParams.put("updateUser", sqcr.getUpdateUser());
 			saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());*/
-			saveQuoteCompetitionParams.put("competitionsList", sqcr.getCompetitionsList());
+			saveQuoteCompetitionParams.put("saveQuoteCompetition", sqcr.getSaveQuoteCompetition());
 			sqcrResponse.setReturnCode(quoteDao.saveQuoteCompetition(saveQuoteCompetitionParams));
 			/*HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteCompetitionParams);
 			sqcrResponse.setReturnCode((Integer) res.get("errorCode"));*/
@@ -1068,6 +1070,36 @@ public class QuoteServiceImpl implements QuoteService{
 		}
 		
 		return sqcResponse;
+	}
+	
+	@Override
+	public SaveQuoteAdviceWordingsResponse saveQuoteAdviceWordings(SaveQuoteAdviceWordingsRequest sqawr) throws SQLException{
+		
+		SaveQuoteAdviceWordingsResponse sqawResponse = new SaveQuoteAdviceWordingsResponse();
+		
+		try{
+			HashMap<String, Object> saveQuoteAdviceWordingsParams = new HashMap<String, Object>();
+			/*saveQuoteCompetitionParams.put("quoteId", sqcr.getQuoteId());
+			saveQuoteCompetitionParams.put("adviceNo", sqcr.getAdviceNo());
+			saveQuoteCompetitionParams.put("cedingId", sqcr.getCedingId());
+			saveQuoteCompetitionParams.put("cedingRepId", sqcr.getCedingRepId());
+			saveQuoteCompetitionParams.put("option", sqcr.getOption());
+			saveQuoteCompetitionParams.put("wordings", sqcr.getWordings());
+			saveQuoteCompetitionParams.put("createUser", sqcr.getCreateUser());
+			saveQuoteCompetitionParams.put("createDate", sqcr.getCreateDate());
+			saveQuoteCompetitionParams.put("updateUser", sqcr.getUpdateUser());
+			saveQuoteCompetitionParams.put("updateDate", sqcr.getUpdateDate());*/
+			saveQuoteAdviceWordingsParams.put("saveAdviceWordings", sqawr.getSaveAdviceWordings());
+			sqawResponse.setReturnCode(quoteDao.saveQuoteAdviceWordings(saveQuoteAdviceWordingsParams));
+			/*HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteCompetitionParams);
+			sqcrResponse.setReturnCode((Integer) res.get("errorCode"));*/
+		}catch(Exception ex){
+			sqawResponse.setReturnCode(0);
+			sqawResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		return sqawResponse;
 	}
 
 	@Override

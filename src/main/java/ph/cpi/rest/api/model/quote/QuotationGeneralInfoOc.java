@@ -30,6 +30,7 @@ public class QuotationGeneralInfoOc {
 	private String	contractorName;
 	private String	insuredDesc;
 	private String	status;
+	private String  statusDesc;
 	private Integer	reinsurerId;
 	private String	reinsurerName;
 	private Integer	intmId;
@@ -202,6 +203,12 @@ public class QuotationGeneralInfoOc {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
+	}
 	public Integer getReinsurerId() {
 		return reinsurerId;
 	}
@@ -372,22 +379,22 @@ public class QuotationGeneralInfoOc {
 	}
 	@Override
 	public String toString() {
-		return "QuotationOc [quoteIdOc=" + quoteIdOc + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc="
+		return "QuotationGeneralInfoOc [quoteIdOc=" + quoteIdOc + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc="
 				+ lineClassCdDesc + ", openQuotationNo=" + openQuotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
 				+ lineCdDesc + ", year=" + year + ", seqNo=" + seqNo + ", sevNo=" + sevNo + ", revNo=" + revNo
 				+ ", cedingId=" + cedingId + ", cessionId=" + cessionId + ", cedingName=" + cedingName
 				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", refPolNo=" + refPolNo
 				+ ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo + ", prinId=" + prinId
 				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contractorName="
-				+ contractorName + ", insuredDesc=" + insuredDesc + ", status=" + status + ", reinsurerId="
-				+ reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName
-				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate="
-				+ reqDate + ", reqMode=" + reqMode + ", currencyCd=" + currencyCd + ", currencyRtI=" + currencyRtI
-				+ ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag=" + indicativeTag
-				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
-				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", projectOc=" + projectOc + ", attachmentOc=" + attachmentOc + "]";
+				+ contractorName + ", insuredDesc=" + insuredDesc + ", status=" + status + ", statusDesc=" + statusDesc
+				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId
+				+ ", intmName=" + intmName + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
+				+ reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", currencyCd=" + currencyCd
+				+ ", currencyRtI=" + currencyRtI + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag
+				+ ", indicativeTag=" + indicativeTag + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy
+				+ ", printedBy=" + printedBy + ", printDate=" + printDate + ", openingParag=" + openingParag
+				+ ", closingParag=" + closingParag + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", projectOc=" + projectOc + ", attachmentOc=" + attachmentOc + "]";
 	}
 }

@@ -139,8 +139,9 @@
 		<result property    ="contractorName"        column  ="CONTRACTOR_NAME"/>
 		<result property    ="insuredDesc"          column  ="INSURED_DESC"/>
 		<result property    ="status"               column  ="STATUS"/>
+		<result property    ="statusDesc"           column  ="STATUS_DESC"/>
 		<result property    ="reinsurerId"          column  ="REINSURER_ID"/>
-		<result property    ="reinsurerName"        column  ="CEDING_NAME"/>
+		<result property    ="reinsurerName"        column  ="REINSURER_NAME"/>
 		<result property    ="intmId"               column  ="INTM_ID"/>
 		<result property    ="intmName"             column  ="INTM_NAME"/>
 		<result property    ="issueDate"            column  ="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -678,23 +679,21 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
-	 <result property="quoteId"	 	 column="QUOTE_ID"/>
-	 <result property="adviceNo"	 column="ADVICE_NO"/>
-	 <result property="cedingId"	 column="CEDING_ID"/>
-	 <result property="cedingName"	 column="CEDING_NAME"/>
-	 <result property="cedingRepId"	 	 column="CEDING_REP_ID"/>
-	 <result property="cedingRepName"	 column="CEDING_REP_NAME"/>
-	 <result property="position"	 	 column="POSITION"/>
-	 <result property="option"	 	 column="OPTN"/>
-	 <result property="wordings"	 column="WORDINGS"/>
-	 <result property="createUser"	 	 column="CREATE_USER"/>
-	 <result property="createDate"	 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-	 <result property="updateUser"	 	 column="UPDATE_USER"/>
-	 <result property="updateDate"	 	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		 <result property="quoteId"			 	 column="QUOTE_ID"/>
+		 <result property="adviceNo"			 column="ADVICE_NO"/>
+		 <result property="cedingId"			 column="CEDING_ID"/>
+		 <result property="cedingName"			 column="CEDING_NAME"/>
+		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
+		 <result property="cedingRepName"		 column="CEDING_REP_NAME"/>
+		 <result property="position"		 	 column="POSITION"/>
+		 <result property="createUser"		 	 column="CREATE_USER"/>
+		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		 <result property="updateUser"		 	 column="UPDATE_USER"/>
+		 <result property="updateDate"		 	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveQuoteCompetition" resultMap="quotationForCompetitionMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_NDC.retrieve_quote_competition(#{quoteId, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(QU_COMPETITION_PKG.ret_quo_comp(#{quoteId, jdbcType=VARCHAR}, 
 																	   #{quotationNo, jdbcType=VARCHAR}, 
 																	   #{position, jdbcType=VARCHAR}, 
 																	   #{count, jdbcType=VARCHAR}, 
@@ -880,39 +879,6 @@
 																			  '',
 																			  '',
 																			  ''))
-			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_list(#{quotationNo, jdbcType=VARCHAR},
-																		      #{status},
-																		      #{cedingName, jdbcType=VARCHAR},
-																		      #{holdCoverNo, jdbcType=VARCHAR},
-																		      #{riskName, jdbcType=VARCHAR},
-																		      #{insuredDesc, jdbcType=VARCHAR},
-																			  #{periodFrom, jdbcType=DATE},
-																			  #{periodTo, jdbcType=DATE},
-																			  #{compRefHoldCovNo},
-																			  #{reqBy},
-																			  #{reqDate, jdbcType=DATE},
-																			  #{expiringInDays},
-																			  '',
-																			  '',
-																			  '',
-																			  '')) -->
-			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP_SPL.retrieve_quote_hold_cover_list(
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'', 
-																						'')) -->
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItem">
@@ -1231,20 +1197,34 @@
 	</update>
 	
 	<update id="saveQuoteCompetitionMap" parameterType="java.util.Map">
-	BEGIN
-	<foreach collection="competitionsList" item="competition">
-	   	  
-	   ETS_QUOTE_PKG_NDC.save_quote_competition(#{competition.quoteId},#{competition.adviceNo},#{competition.cedingId},#{competition.cedingRepId},#{competition.option},#{competition.wordings},#{competition.createUser},
-	   CAST(to_timestamp(#{competition.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{competition.updateUser},
-	   CAST(to_timestamp(#{competition.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
-	  
-	    </foreach>
-	END;
-	<!-- BEGIN
-	   ETS_QUOTE_PKG_NDC.save_quote_competition(#{quoteId},#{adviceNo},#{cedingId},#{cedingRepId},#{option},#{wordings},#{createUser},
-	   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{updateUser},
-	   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
-	END; -->
+		BEGIN
+			<foreach collection="saveQuoteCompetition" item="competition">
+				   QU_COMPETITION_PKG.save_quo_comp(#{competition.quoteId},
+				   									#{competition.adviceNo},
+				   									#{competition.cedingId},
+				   									#{competition.cedingRepId},
+				   									#{competition.createUser},
+				   									CAST(to_timestamp(#{competition.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				   									#{competition.updateUser},
+				   									CAST(to_timestamp(#{competition.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		    </foreach>
+	    END;
+	</update>
+	
+	<update id="saveQuoteAdviceWordingsMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveAdviceWordings" item="adv">
+				   QU_ADV_WORD_PKG.save_quo_adv_word(#{adv.quoteId},
+				   									 #{adv.adviceNo},
+				   									 #{adv.cedingId},
+				   									 #{adv.advOption},
+				   									 #{adv.wordings},
+				   									 #{adv.createUser},
+				   									 CAST(to_timestamp(#{adv.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				   									 #{competition.updateUser},
+				   									 CAST(to_timestamp(#{adv.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		    </foreach>
+	    END;
 	</update>
 	
 	<update id="saveQuoteCoverageOcMap" parameterType="java.util.Map">

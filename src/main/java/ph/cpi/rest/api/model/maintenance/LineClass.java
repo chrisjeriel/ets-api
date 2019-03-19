@@ -1,18 +1,19 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class LineClass {
 	private String lineCd;
 	private String lineCdDesc;
 	private String lineClassCd;
 	private String lineClassCdDesc;
+	private String cutOffTime;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	
 	public String getLineCd() {
 		return lineCd;
@@ -38,6 +39,12 @@ public class LineClass {
 	public void setLineClassCdDesc(String lineClassCdDesc) {
 		this.lineClassCdDesc = lineClassCdDesc;
 	}
+	public String getCutOffTime() {
+		return cutOffTime;
+	}
+	public void setCutOffTime(String cutOffTime) {
+		this.cutOffTime = cutOffTime;
+	}
 	public String getActiveTag() {
 		return activeTag;
 	}
@@ -56,10 +63,10 @@ public class LineClass {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -68,20 +75,18 @@ public class LineClass {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
 		return "LineClass [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", lineClassCd=" + lineClassCd
-				+ ", lineClassCdDesc=" + lineClassCdDesc + ", activeTag=" + activeTag + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", lineClassCdDesc=" + lineClassCdDesc + ", cutOffTime=" + cutOffTime + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
-	
-	
 }

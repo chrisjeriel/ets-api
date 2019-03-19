@@ -3,8 +3,6 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
@@ -27,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
@@ -65,6 +64,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
@@ -132,4 +132,5 @@ public interface QuoteService {
 	public RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqdr) throws SQLException;
 	public SaveQuotationCopyResponse saveQuotationCopy(SaveQuotationCopyRequest sqcp) throws SQLException;
 	public SearchQuoteInfoResponse searchQuoteInfo(SearchQuoteInfoRequest sqip) throws SQLException;
+	public SaveQuoteAdviceWordingsResponse saveQuoteAdviceWordings(SaveQuoteAdviceWordingsRequest sqawr) throws SQLException;
 }

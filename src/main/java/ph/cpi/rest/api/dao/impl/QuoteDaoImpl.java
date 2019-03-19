@@ -359,4 +359,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		List<Quotation> quoteList = sqlSession.selectList("searchQuoteInfo", params);
 		return quoteList;
 	}
+	
+	@Override
+	public Integer saveQuoteAdviceWordings(final HashMap<String, Object> params) throws SQLException{
+		Integer errorCode = sqlSession.update("saveQuoteAdviceWordingsMap",params);
+		return errorCode;
+	}
 }

@@ -1,17 +1,17 @@
 package ph.cpi.rest.api.model.request;
 
-
+import java.math.BigDecimal;
 
 public class SaveQuoteCoverageOcRequest {
 	private Integer quoteIdOc;
 	private Integer projId;
 	private Integer riskId;
-	private Integer maxSi;
+	private BigDecimal maxSi;
 	private String currencyCd;
-	private Integer currencyRt;
-	private Integer pctShare;
-	private Integer pctPml;
-	private Integer totalValue;
+	private BigDecimal currencyRt;
+	private BigDecimal pctShare;
+	private BigDecimal pctPml;
+	private BigDecimal totalValue;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -35,10 +35,10 @@ public class SaveQuoteCoverageOcRequest {
 	public void setRiskId(Integer riskId) {
 		this.riskId = riskId;
 	}
-	public Integer getMaxSi() {
+	public BigDecimal getMaxSi() {
 		return maxSi;
 	}
-	public void setMaxSi(Integer maxSi) {
+	public void setMaxSi(BigDecimal maxSi) {
 		this.maxSi = maxSi;
 	}
 	public String getCurrencyCd() {
@@ -47,28 +47,28 @@ public class SaveQuoteCoverageOcRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrencyRt() {
+	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(Integer currencyRt) {
+	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
-	public Integer getPctShare() {
+	public BigDecimal getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(Integer pctShare) {
+	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
 	}
-	public Integer getPctPml() {
+	public BigDecimal getPctPml() {
 		return pctPml;
 	}
-	public void setPctPml(Integer pctPml) {
+	public void setPctPml(BigDecimal pctPml) {
 		this.pctPml = pctPml;
 	}
-	public Integer getTotalValue() {
+	public BigDecimal getTotalValue() {
 		return totalValue;
 	}
-	public void setTotalValue(Integer totalValue) {
+	public void setTotalValue(BigDecimal totalValue) {
 		this.totalValue = totalValue;
 	}
 	public String getCreateUser() {
@@ -103,7 +103,4 @@ public class SaveQuoteCoverageOcRequest {
 				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
-	
-
 }

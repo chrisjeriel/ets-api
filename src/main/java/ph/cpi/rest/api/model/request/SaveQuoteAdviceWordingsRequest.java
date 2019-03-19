@@ -4,31 +4,31 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
-public class SaveQuoteCompetitionRequest {
+public class SaveQuoteAdviceWordingsRequest {
 	
-	public List<SCompetition> saveQuoteCompetition;
+	private List<AdviceWordings> saveAdviceWordings;
 
-	public List<SCompetition> getSaveQuoteCompetition() {
-		return saveQuoteCompetition;
+	public List<AdviceWordings> getSaveAdviceWordings() {
+		return saveAdviceWordings;
 	}
 
-	public void setSaveQuoteCompetition(List<SCompetition> saveQuoteCompetition) {
-		this.saveQuoteCompetition = saveQuoteCompetition;
+	public void setSaveAdviceWordings(List<AdviceWordings> saveAdviceWordings) {
+		this.saveAdviceWordings = saveAdviceWordings;
 	}
 
 	@Override
 	public String toString() {
-		return "SaveQuoteCompetitionRequest [saveQuoteCompetition=" + saveQuoteCompetition + "]";
+		return "SaveQuoteAdviceWordingsRequest [saveAdviceWordings=" + saveAdviceWordings + "]";
 	}
-	
 }
 
-@Alias("SaveQuoteCompetition")
-class SCompetition{
+@Alias("SaveQuoteAdviceWordings")
+class AdviceWordings{
 	private Integer quoteId;
 	private Integer adviceNo;
 	private String cedingId;
-	private Integer cedingRepId;
+	private String advOption;
+	private String wordings;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -51,11 +51,17 @@ class SCompetition{
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
-	public Integer getCedingRepId() {
-		return cedingRepId;
+	public String getAdvOption() {
+		return advOption;
 	}
-	public void setCedingRepId(Integer cedingRepId) {
-		this.cedingRepId = cedingRepId;
+	public void setAdvOption(String advOption) {
+		this.advOption = advOption;
+	}
+	public String getWordings() {
+		return wordings;
+	}
+	public void setWordings(String wordings) {
+		this.wordings = wordings;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -83,9 +89,8 @@ class SCompetition{
 	}
 	@Override
 	public String toString() {
-		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId
-				+ ", cedingRepId=" + cedingRepId + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AdviceWordings [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId
+				+ ", advOption=" + advOption + ", wordings=" + wordings + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

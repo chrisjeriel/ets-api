@@ -1,21 +1,19 @@
 package ph.cpi.rest.api.model.quote;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class Competition {
 	private Integer quoteId;
 	private Integer adviceNo;
-	private Integer cedingId;
+	private String cedingId;
 	private String cedingName;
-	private String cedingRepId;
+	private Integer cedingRepId;
 	private String cedingRepName;
 	private String position;
-	private String option;
-	private String wordings;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -29,10 +27,10 @@ public class Competition {
 	public void setAdviceNo(Integer adviceNo) {
 		this.adviceNo = adviceNo;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public String getCedingName() {
@@ -41,10 +39,10 @@ public class Competition {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public String getCedingRepId() {
+	public Integer getCedingRepId() {
 		return cedingRepId;
 	}
-	public void setCedingRepId(String cedingRepId) {
+	public void setCedingRepId(Integer cedingRepId) {
 		this.cedingRepId = cedingRepId;
 	}
 	public String getCedingRepName() {
@@ -59,28 +57,16 @@ public class Competition {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public String getOption() {
-		return option;
-	}
-	public void setOption(String option) {
-		this.option = option;
-	}
-	public String getWordings() {
-		return wordings;
-	}
-	public void setWordings(String wordings) {
-		this.wordings = wordings;
-	}
 	public String getCreateUser() {
 		return createUser;
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -89,20 +75,19 @@ public class Competition {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
 		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="
 				+ cedingName + ", cedingRepId=" + cedingRepId + ", cedingRepName=" + cedingRepName + ", position="
-				+ position + ", option=" + option + ", wordings=" + wordings + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ position + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
-	
 	
 }
