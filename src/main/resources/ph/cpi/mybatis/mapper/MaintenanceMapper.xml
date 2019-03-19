@@ -338,7 +338,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnDistrict" resultMap="region" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_DISTRICT_PKG.ret_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	
@@ -377,7 +377,7 @@
 	</select>
 	
 	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_type_of_cession(#{cessionId},null,null,null,null))
+		SELECT * FROM TABLE(MTN_CESSION_PKG.ret_mtn_cession(#{cessionId},null,null,null,null))
 	</select>
 
 	<select id="retrieveMtnRegion" resultMap="regionMap" parameterType="java.util.Map">
@@ -410,7 +410,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_city(#{regionCd, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(MTN_CITY_PKG.ret_mtn_city(#{regionCd, jdbcType=VARCHAR}, 
 																		#{provinceCd, jdbcType=VARCHAR}, 
 																		#{cityCd, jdbcType=VARCHAR},
 																		#{position, jdbcType=VARCHAR}, 
@@ -431,7 +431,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCrestaZone" resultMap="crestaZoneMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_cresta_zone(#{zoneCd, jdbcType=VARCHAR}, 
+			SELECT * FROM TABLE(MTN_CRESTA_PKG.ret_mtn_cresta(#{zoneCd, jdbcType=VARCHAR}, 
 																			   #{position, jdbcType=VARCHAR}, 
 																			   #{count, jdbcType=VARCHAR}, 
 																			   #{sortKey, jdbcType=VARCHAR}, 
@@ -451,7 +451,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnCurrency" resultMap="currencyMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_NDC.retrieve_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+			SELECT * FROM TABLE(MTN_CURR_PKG.ret_mtn_curr(#{currencyCd, jdbcType=VARCHAR},
 																			#{activeTag, jdbcType=VARCHAR},
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 

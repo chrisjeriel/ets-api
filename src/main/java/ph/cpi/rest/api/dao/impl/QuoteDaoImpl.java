@@ -353,4 +353,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		
 		return null;
 	}
+
+	@Override
+	public List<Quotation> searchQuoteInfo(HashMap<String, Object> params) throws SQLException {
+		List<Quotation> quoteList = sqlSession.selectList("searchQuoteInfo", params);
+		return quoteList;
+	}
 }
