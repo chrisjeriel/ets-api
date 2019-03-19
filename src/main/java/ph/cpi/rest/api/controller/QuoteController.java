@@ -46,7 +46,6 @@ import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
@@ -84,7 +83,6 @@ import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
@@ -392,7 +390,6 @@ public class QuoteController {
 		logger.info("RetrieveQuoteDeductiblesRequest : " + rqds.toString());
 		return quoteService.retrieveQuoteDeductibles(rqds);
 	}
-
 	
 	@PostMapping(path="saveQuoteChangeQuoteStatus")
 	public @ResponseBody SaveQuoteChangeQuoteStatusResponse saveQuoteChangeQuoteStatus(@RequestBody SaveQuoteChangeQuoteStatusRequest sqcqs) throws SQLException {
