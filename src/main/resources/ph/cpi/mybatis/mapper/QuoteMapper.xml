@@ -239,42 +239,42 @@
 		<result property="commRtQuota" 		column="COMM_RT_QUOTA"/>
 		<result property="commRtSurplus" 	column="COMM_RT_SURPLUS"/>
 		<result property="commRtFac" 		column="COMM_RT_FAC"/>
-		<result property="createUser" 		column="OPTIONS_CREATE_USER"/>
-		<result property="createDate" 		column="OPTIONS_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="OPTIONS_UPDATE_USER"/>
-		<result property="updateDate" 		column="OPTIONS_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createUser" 		column="OPT_CREATE_USER"/>
+		<result property="createDate" 		column="OPT_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="OPT_UPDATE_USER"/>
+		<result property="updateDate" 		column="OPT_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		
 		<association property="deductiblesList" resultMap="assocDeductibles"/>
 		<association property="otherRatesList" 	resultMap="assocOtherRates"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles">
-		<result property="deductibleCd" 	column="DEDUCTIBLE_CD"/>
-		<result property="deductibleTitle" 	column="DEDUCTIBLE_TITLE"/>
+		<result property="deductibleCd" 	column="DED_CD"/>
+		<result property="deductibleTitle" 	column="DED_TITLE"/>
 		<result property="coverCd" 			column="COVER_CD"/>
 		<result property="endtCd" 			column="ENDT_CD"/>
 		<result property="sumInsured" 		column="SUM_INSURED"/>
-		<result property="deductibleRt" 	column="DEDUCTIBLE_RT"/>
-		<result property="deductibleAmt" 	column="DEDUCTIBLE_AMT"/>
-		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/>
-		<result property="createUser" 		column="DEDUCTIBLES_CREATE_USER"/>
-		<result property="createDate" 		column="DEDUCTIBLES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="DEDUCTIBLES_UPDATE_USER"/>
-		<result property="updateDate" 		column="DEDUCTIBLES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="deductibleRt" 	column="DED_RT"/>
+		<result property="deductibleAmt" 	column="DED_AMT"/>
+		<result property="deductibleTxt" 	column="DED_TXT"/>
+		<result property="createUser" 		column="DED_CREATE_USER"/>
+		<result property="createDate" 		column="DED_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="DED_UPDATE_USER"/>
+		<result property="updateDate" 		column="DED_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="assocOtherRates">
 		<result property="bulletNo" 		column="BULLET_NO"/>
-		<result property="changeTag" 			column="CHANGE_TAG"/>
+		<result property="changeTag" 		column="CHANGE_TAG"/>
 		<result property="section" 			column="SECTION"/>
 		<result property="coverCd" 			column="COVER_CD"/>
 		<result property="coverCdDesc" 		column="DESCRIPTION"/>
 		<result property="rate" 			column="RATE"/>
 		<result property="amount" 			column="AMOUNT"/>
-		<result property="createUser" 		column="OTHER_RATES_CREATE_USER"/>
-		<result property="createDate" 		column="OTHER_RATES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="OTHER_RATES_UPDATE_USER"/>
-		<result property="updateDate" 		column="OTHER_RATES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createUser" 		column="OTH_RT_CREATE_USER"/>
+		<result property="createDate" 		column="OTH_RT_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="OTH_RT_UPDATE_USER"/>
+		<result property="updateDate" 		column="OTH_RT_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 
@@ -441,7 +441,7 @@
 	</select>
 	
 	<select id="retrieveQuoteEndorsements" resultMap="quoteEndorsementsMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_endorsements(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			SELECT * FROM TABLE(QU_ENDT_PKG.ret_qu_endt(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
 					WHERE OPTION_ID = NVL(#{optionId,jdbcType=VARCHAR},OPTION_ID)
 	</select>
 	
@@ -958,7 +958,7 @@
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
 		<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)) -->
-		SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(QU_OPTION_PKG.ret_qu_opt(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 <!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
@@ -1239,10 +1239,10 @@
 	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deleteDeductibleList" item="deductible">
-		   		ETS_QUOTE_PKG_ETC.delete_q_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   		QU_DEDUCTIBLES_PKG.del_qu_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
 		   </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
-			   		ETS_QUOTE_PKG_ETC.save_q_deductible(
+			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
 			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
@@ -1254,7 +1254,7 @@
 	<update id="saveQuoteEndorsements" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="saveEndorsements" item="endo">
-				ETS_QUOTE_PKG_JAP.save_quote_endorsements(
+				QU_ENDT_PKG.save_qu_endt(
 					#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER},
 					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1263,7 +1263,7 @@
 				);
 			</foreach>
 			<foreach collection="deleteEndorsements" item="endo">
-				ETS_QUOTE_PKG_JAP.delete_quote_endorsements(#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER});
+				QU_ENDT_PKG.del_qu_endt(#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER});
 			</foreach>
 		END;
 	</update>
@@ -1285,7 +1285,7 @@
 		END;
 	</update>
 	
-	<update id="saveQuoteOtherRatesMap" parameterType="java.util.Map">
+	<!-- <update id="saveQuoteOtherRatesMap" parameterType="java.util.Map">
 		BEGIN
 		<foreach collection="deleteOtherRates" item="otherRates">
 		 	ETS_QUOTE_PKG_ETC.delete_quote_other_rates(
@@ -1306,7 +1306,7 @@
 			);
 		 </foreach>
 		END;
-	</update> 
+	</update>  -->
 	
 	<update id="saveQuoteChangeQuoteStatusMap" parameterType="java.util.Map">
 		BEGIN
@@ -1382,10 +1382,10 @@
 			v_option_id QUOTE_OTHER_RATES.OPTION_ID%TYPE;
 		BEGIN
 		   <foreach collection="deleteQuoteOptionsList" item="quoteOption">
-		   		ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
+		   		QU_OPTION_PKG.del_qu_opt(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
-		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
+		   	   QU_OPTION_PKG.save_qu_opt(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1408,7 +1408,7 @@
 		 	);
 		 </foreach> -->
 		 <foreach collection="otherRates" item="otherRates">
-			ETS_QUOTE_PKG_ETC.save_q_other_rates(
+			QU_OTHER_RT_PKG.save_qu_oth_rt(
 				#{quoteId,jdbcType=INTEGER},
 				#{otherRates.optionId,jdbcType=INTEGER},
 				#{otherRates.section},
@@ -1426,14 +1426,14 @@
 		 
 		 <foreach collection="newOptions" item="quoteOption">
 		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
-		   	   ETS_QUOTE_PKG_ETC.save_q_option(#{quoteId},v_option_id,#{quoteOption.optionRt},
+		   	   QU_OPTION_PKG.save_qu_opt(#{quoteId},v_option_id,#{quoteOption.optionRt},
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
 		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 		   	   
 		   	   <foreach collection="quoteOption.otherRatesList" item="otherRates">
-					ETS_QUOTE_PKG_ETC.save_q_other_rates(
+					QU_OTHER_RT_PKG.save_qu_oth_rt(
 						#{quoteId,jdbcType=INTEGER},
 						v_option_id,
 						#{otherRates.section},
@@ -1467,7 +1467,7 @@
 	</update> 
 
 	<select id="retrieveQuoteDeductibles" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(QU_DEDUCTIBLES_PKG.ret_qu_deductibles(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 
 	<!-- START COPY -->
@@ -1547,7 +1547,7 @@
 	
 	<update id="copyQuoteDeductibles" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_deductibles(
+			QU_DEDUCTIBLES_PKG.copy_qu_deductibles(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
