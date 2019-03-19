@@ -178,7 +178,7 @@ public class QuoteDaoImpl implements QuoteDao{
 
 	@Override
 	public HashMap<String, Object> saveQuoteAlopItem(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("saveQuoteAloItempMap",params);
+		Integer errorCode = sqlSession.update("saveQuoteAlopItemMap",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

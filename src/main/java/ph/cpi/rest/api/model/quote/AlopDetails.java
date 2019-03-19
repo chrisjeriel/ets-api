@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.quote;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
@@ -22,6 +23,8 @@ public class AlopDetails {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	private List<AlopItem> alopItemList;
 	
 	public BigDecimal getAnnSi() {
 		return annSi;
@@ -119,14 +122,23 @@ public class AlopDetails {
 	public void setOptionId(Integer optionId) {
 		this.optionId = optionId;
 	}
+	
+	public List<AlopItem> getAlopItemList() {
+		return alopItemList;
+	}
+	public void setAlopItemList(List<AlopItem> alopItemList) {
+		this.alopItemList = alopItemList;
+	}
 	@Override
 	public String toString() {
-		return "AlopDetails [annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
-				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", annSiD=" + annSiD
-				+ ", maxIndemPdSiD=" + maxIndemPdSiD + ", maxIndemPdD=" + maxIndemPdD + ", indemFromDate="
+		return "AlopDetails [optionId=" + optionId + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi
+				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", annSiD="
+				+ annSiD + ", maxIndemPdSiD=" + maxIndemPdSiD + ", maxIndemPdD=" + maxIndemPdD + ", indemFromDate="
 				+ indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", optionId=" + optionId + "]";
+				+ ", alopItemList=" + alopItemList + "]";
 	}
+	
+	
 	
 }

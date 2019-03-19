@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.maintenance.Province;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
+import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -232,6 +233,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty");
 		logger.info("retrieveMtnTreaty treatyList : " + treatyList);
 		return treatyList;
+	}
+
+	@Override
+	public List<Reports> retrieveMtnReports(HashMap<String, Object> params) throws SQLException {
+		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
+		return reports;
 	}
 	
 }
