@@ -471,7 +471,7 @@
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
 		<!-- SELECT * FROM ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},'','','',''))
+		SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},'','','',''))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
