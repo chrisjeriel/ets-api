@@ -43,9 +43,9 @@
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
 		<result property="reasonCd"			column="REASON_CD"/>
-		<result property="reasonDesc"		column="DESCRIPTION"/>	
-		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="reasonDesc"		column="DESCRIPTION"/>		
+		<result property="issueDate" 		column="ISSUE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" 		column="EXPIRY_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="reqBy" 			column="REQ_BY"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<association property="project" 	resultMap="assocProject"/>
@@ -434,7 +434,13 @@
 	</resultMap>
 	
 	<select id="retrieveQuoteProject" resultMap="quoteProjectMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_project(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','','')) -->
+			SELECT * FROM TABLE(QU_PROJECT_PKG.ret_qu_project(#{quoteId, jdbcType=VARCHAR},
+															  #{quotationNo, jdbcType=VARCHAR},
+															  '',
+															  '',
+															  '',
+															  ''))
 	</select>
 	<select id="retrieveQuoteProjectOc" resultMap="quoteProjectOcMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(ETS_QUOTE_PKG_NDC.ret_quo_proj_oc(#{quoteIdOc,jdbcType=VARCHAR},#{openQuotationNo,jdbcType=VARCHAR},'','','',''))
@@ -450,7 +456,13 @@
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfo" resultMap="quoteGenInfoMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','',''))
+			<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_ETC.retrieve_quote_gen_info(#{quoteId,jdbcType=VARCHAR },#{quotationNo,jdbcType=VARCHAR},'','','','')) -->
+			SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_gen_info(#{quoteId, jdbcType=INTEGER},
+															    #{quotationNo, jdbcType=VARCHAR},
+																'',
+																'',
+																'',
+																''))
 	</select>
 
 	<select id="retrieveQuoteAlopSample" resultMap="quotation" parameterType="java.util.Map">
@@ -478,8 +490,49 @@
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},'','','',''))
+		<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo, jdbcType=VARCHAR},
+																	 #{cessionDesc, jdbcType=VARCHAR},
+																	 #{lineClassCdDesc, jdbcType=VARCHAR},
+																	 #{status, jdbcType=INTEGER},
+																	 #{cedingName, jdbcType=VARCHAR},
+																	 #{principalName, jdbcType=VARCHAR},
+																	 #{contractorName, jdbcType=VARCHAR},
+																	 #{insuredDesc, jdbcType=VARCHAR},
+																	 #{riskName, jdbcType=VARCHAR},
+																	 #{objectDesc, jdbcType=VARCHAR},
+																	 #{site, jdbcType=VARCHAR},
+																	 #{policyNo, jdbcType=VARCHAR},
+																	 #{currencyCd, jdbcType=VARCHAR},
+																	 #{issueDate, jdbcType=DATE},
+																	 #{expiryDate, jdbcType=DATE},
+																	 #{reqBy, jdbcType=VARCHAR},
+																	 #{createUser, jdbcType=VARCHAR},
+																	 '',
+																	 '',
+																	 '',
+																	 '')) -->
+																	 
+		SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+														   #{cessionDesc, jdbcType=VARCHAR},
+														   #{lineClassCdDesc, jdbcType=VARCHAR},
+														   #{status, jdbcType=INTEGER},
+														   #{cedingName, jdbcType=VARCHAR},
+														   #{principalName, jdbcType=VARCHAR},
+														   #{contractorName, jdbcType=VARCHAR},
+														   #{insuredDesc, jdbcType=VARCHAR},
+														   #{riskName, jdbcType=VARCHAR},
+														   #{objectDesc, jdbcType=VARCHAR},
+														   #{site, jdbcType=VARCHAR},
+														   #{policyNo, jdbcType=VARCHAR},
+														   #{currencyCd, jdbcType=VARCHAR},
+														   #{issueDate, jdbcType=DATE},
+														   #{expiryDate, jdbcType=DATE},
+														   #{reqBy, jdbcType=VARCHAR},
+														   #{createUser, jdbcType=VARCHAR},
+														   '',
+														   '',
+														   '',
+														   ''))																 
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
@@ -1079,32 +1132,63 @@
 	
 	<update id="saveQuoteGeneralInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.save_quote_general_info(
+			QU_GEN_INFO_PKG.save_qu_general_info(
 				#{quotationNo, mode=OUT, jdbcType=VARCHAR},
 				#{outQuoteId, mode=OUT, jdbcType=INTEGER},
-				#{savingType},
-				#{quoteId, jdbcType=INTEGER},#{lineCd},#{quoteYear, jdbcType=INTEGER},#{quoteSeqNo, jdbcType=INTEGER},
-				#{quoteRevNo, jdbcType=INTEGER},#{cedingId, jdbcType=INTEGER},#{cessionId, jdbcType=INTEGER},#{lineClassCd},
-				#{prinId, jdbcType=INTEGER},#{contractorId, jdbcType=INTEGER},#{insuredDesc},#{policyId, jdbcType=INTEGER},
-				#{status},#{reinsurerId, jdbcType=INTEGER},#{intmId, jdbcType=INTEGER},
+				#{savingType, jdbcType=VARCHAR}, 
+				#{quoteId, jdbcType=INTEGER},
+				#{lineCd, jdbcType=VARCHAR},
+				#{quoteYear, jdbcType=INTEGER},
+				#{quoteSeqNo, jdbcType=INTEGER},
+				#{quoteRevNo, jdbcType=INTEGER},
+				#{cedingId, jdbcType=INTEGER},
+				#{cessionId, jdbcType=INTEGER},
+				#{lineClassCd, jdbcType=VARCHAR}, 
+				#{prinId, jdbcType=INTEGER},
+				#{contractorId, jdbcType=INTEGER},
+				#{insuredDesc, jdbcType=VARCHAR},
+				#{policyId, jdbcType=INTEGER},
+				#{status, jdbcType=INTEGER},
+				#{reinsurerId, jdbcType=INTEGER},
+				#{intmId, jdbcType=INTEGER},
 				CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqBy, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqMode, jdbcType=VARCHAR},
-				#{mbiRefNo, jdbcType=INTEGER},#{currencyCd},#{currencyRt, jdbcType=FLOAT},#{govtTag},#{indicativeTag},
-				#{openCoverTag},#{declarationTag},#{preparedBy, jdbcType=VARCHAR},#{approvedBy, jdbcType=VARCHAR},#{printedBy, jdbcType=VARCHAR},
+				#{mbiRefNo, jdbcType=INTEGER},
+				#{currencyCd, jdbcType=VARCHAR}, 
+				#{currencyRt, jdbcType=FLOAT},
+				#{govtTag, jdbcType=VARCHAR}, 
+				#{indicativeTag, jdbcType=VARCHAR},
+				#{openCoverTag, jdbcType=VARCHAR}, 
+				#{declarationTag, jdbcType=VARCHAR},
+				#{preparedBy, jdbcType=VARCHAR}, 
+				#{approvedBy, jdbcType=VARCHAR},
+				#{printedBy, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{printDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{openingParag, jdbcType=VARCHAR},#{closingParag, jdbcType=VARCHAR},#{createUser},
+				#{openingParag, jdbcType=VARCHAR}, 
+				#{closingParag, jdbcType=VARCHAR},
+				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{updateUser},
+				#{updateUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{projId, jdbcType=INTEGER},#{projDesc},#{riskId, jdbcType=INTEGER},
-				#{totalSi, jdbcType=DECIMAL},#{pctShare, jdbcType=FLOAT},#{totalValue, jdbcType=DECIMAL},#{objectId, jdbcType=INTEGER},
-				#{site},#{duration, jdbcType=VARCHAR},#{testing, jdbcType=VARCHAR},#{ipl, jdbcType=INTEGER},#{timeExc, jdbcType=INTEGER},#{noClaimPd, jdbcType=INTEGER},
-				#{prjCreateUser},
+				#{projId, jdbcType=INTEGER},
+				#{projDesc, jdbcType=VARCHAR},
+				#{riskId, jdbcType=INTEGER},
+				#{totalSi, jdbcType=DECIMAL},
+				#{pctShare, jdbcType=FLOAT}, 
+				#{totalValue, jdbcType=DECIMAL},
+				#{objectId, jdbcType=INTEGER}, 
+				#{site, jdbcType=VARCHAR},
+				#{duration, jdbcType=VARCHAR}, 
+				#{testing, jdbcType=VARCHAR},
+				#{ipl, jdbcType=INTEGER}, 
+				#{timeExc, jdbcType=INTEGER},
+				#{noClaimPd, jdbcType=INTEGER},
+				#{prjCreateUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{prjCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{prjUpdateUser},
+				#{prjUpdateUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
@@ -1467,7 +1551,7 @@
 	<!-- START COPY -->
 	<update id="copyQuoteGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_gen_info(			
+			QU_GEN_INFO_PKG.copy_qu_gen_info(			
 				#{newQuoteId, mode=OUT, jdbcType=INTEGER},
 				#{newQuoteNo, mode=OUT, jdbcType=VARCHAR},
 				#{copyingType, jdbcType=VARCHAR},
@@ -1486,7 +1570,7 @@
 	
 	<update id="copyQuoteProject" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_project(
+			QU_PROJECT_PKG.copy_qu_project(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},

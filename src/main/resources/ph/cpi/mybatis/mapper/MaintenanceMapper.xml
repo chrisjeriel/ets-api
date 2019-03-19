@@ -70,9 +70,9 @@
 		<result property="addSi" 			column="ADD_SI"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Cession" id="retrieveTypeOfCessionMap">
@@ -215,11 +215,30 @@
 	
 	<select id="retrieveMtnRisk" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
 		<!-- SELECT * FROM ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},#{position},#{count},#{sortKey},#{order}) -->
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk(#{riskId},null,null,null,null))
+		SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk(#{riskId, jdbcType=INTEGER},
+													  null,
+													  null,
+													  null,
+													  null))
 	</select>
 	
 	<select id="retrieveMtnRiskListing" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_risk_listing(#{riskId},#{riskAbbr},#{riskName},#{regionDesc},#{provinceDesc},#{cityDesc},#{districtDesc},#{blockDesc},#{latitude},#{longitude},#{activeTag},null,null,null,null))
+		SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
+															  #{riskAbbr, jdbcType=VARCHAR},
+															  #{riskName, jdbcType=VARCHAR},
+															  #{regionDesc, jdbcType=VARCHAR},
+															  #{provinceDesc, jdbcType=VARCHAR},
+															  #{cityDesc, jdbcType=VARCHAR},
+															  #{districtDesc, jdbcType=VARCHAR},
+															  #{blockDesc, jdbcType=VARCHAR},
+															  #{latitude, jdbcType=VARCHAR},
+															  #{longitude, jdbcType=VARCHAR},
+															  #{activeTag, jdbcType=VARCHAR},
+															  null,
+															  null,
+															  null,
+															  null
+															  ))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">
@@ -348,7 +367,13 @@
 		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_MBM.retrieve_mtn_section_covers(#{lineCd, jdbcType=VARCHAR},#{coverCd, jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(MTN_SEC_COVER_PKG.ret_mtn_sec_cover(#{lineCd, jdbcType=VARCHAR},
+																#{coverCd, jdbcType=VARCHAR},
+																null,
+																null,
+																null,
+																null
+																))
 	</select>
 	
 	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
@@ -580,13 +605,23 @@
   	
   	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
   		BEGIN
-  			ETS_MAINTENANCE_PKG_PCPCR.save_mtn_risk(#{riskId, mode=INOUT , jdbcType=VARCHAR},#{riskAbbr},
-  				#{riskName},#{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},
-  				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{zoneCd, jdbcType=VARCHAR},#{activeTag},#{remarks, jdbcType=VARCHAR},
-  				#{createUser},
-  				to_date(#{createDate}, 'YYYY-MM-DD'),
-  				#{updateUser},
-  				to_date(#{updateDate}, 'YYYY-MM-DD'),#{blockCd, jdbcType=VARCHAR}
+  			MTN_RISK_PKG.save_mtn_risk(#{riskId, mode=INOUT, jdbcType=VARCHAR},
+  									   #{riskAbbr},
+  									   #{riskName},
+  									   #{regionCd},
+  									   #{provinceCd},
+  									   #{cityCd},
+  									   #{districtCd, jdbcType=VARCHAR},
+  									   #{latitude, jdbcType=VARCHAR},
+  									   #{longitude, jdbcType=VARCHAR},
+  									   #{zoneCd, jdbcType=VARCHAR},
+  									   #{activeTag},
+  									   #{remarks, jdbcType=VARCHAR},
+  									   #{createUser},
+  									   to_date(#{createDate}, 'YYYY-MM-DD'),
+  									   #{updateUser},
+  									   to_date(#{updateDate}, 'YYYY-MM-DD'),
+  									   #{blockCd, jdbcType=VARCHAR}
   				);
   		END;
   	</update>
