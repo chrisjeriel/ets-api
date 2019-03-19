@@ -303,7 +303,7 @@
 	</resultMap>
 	
 	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">
@@ -362,7 +362,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnDeductibles" resultMap="deductibles">
-		SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},
+		SELECT * FROM TABLE(MTN_DEDUCTIBLES_PKG.ret_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},
 		#{coverCd, jdbcType=VARCHAR},#{endtCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},
 		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'',''))
 	</select>
@@ -700,6 +700,6 @@
     </resultMap>
     
     <select id="retrieveMtnTreaty" resultMap="treatyMap">
-    	SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR_TEST.retrieve_mtn_treaty(NULL,NULL,NULL,NULL))
+    	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(NULL,NULL,NULL,NULL))
     </select>
 </mapper>
