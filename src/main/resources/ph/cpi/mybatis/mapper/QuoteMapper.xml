@@ -803,7 +803,7 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_QUOTE_PKG_JAP.retrieve_quote_hold_cover_list(#{quotationNo},
+			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{quotationNo},
 																		      #{status},
 																		      #{cedingName},
 																		      #{holdCoverNo},
