@@ -164,9 +164,9 @@
 		<result property="oldIntmId" 		column="OLD_INTM_ID"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Line" id="mntLineMap">
@@ -179,9 +179,9 @@
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.LineClass" id="mntLineClassMap">
@@ -189,24 +189,25 @@
 		<result property="lineCdDesc" 		column="DESCRIPTION"/> 
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/> 
 		<result property="lineClassCdDesc" 	column="DESCRIPTION"/> 
+		<result property="cutOffTime" 		column="CUT_OFF_TIME"/> 
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_intermediary(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
+			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line(#{lineCd,jdbcType=VARCHAR}, '', '', '',''))
+			SELECT * FROM TABLE(MTN_LINE_PKG.ret_mtn_line(#{lineCd,jdbcType=VARCHAR}, '', '', '',''))
 	</select>
 	
 	<select id="retrieveMntLineClass" resultMap="mntLineClassMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_ETC.retrieve_mtn_line_class(#{lineCd},#{lineClassCd, jdbcType=VARCHAR},'', '', '',''))
+			SELECT * FROM TABLE(MTN_LINE_CLASS_PKG.ret_mtn_line_class(#{lineCd},#{lineClassCd, jdbcType=VARCHAR},'', '', '',''))
 	</select>
 	
 	<select id="retrieveMaintenanceSample" resultMap="alopMap" parameterType="java.util.Map">
@@ -241,13 +242,13 @@
 		<result property="vatTag" 	column="VAT_TAG"/>
 		<result property="oldInsId" 	column="OLD_INS_ID"/>
 		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_PCPCR.retrieve_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'',''))
+			SELECT * FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	

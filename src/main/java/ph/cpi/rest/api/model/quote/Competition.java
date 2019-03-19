@@ -7,7 +7,7 @@ public class Competition {
 	private Integer adviceNo;
 	private String cedingId;
 	private String cedingName;
-	private String cedingRepId;
+	private Integer cedingRepId;
 	private String cedingRepName;
 	private String position;
 	private String createUser;
@@ -39,10 +39,10 @@ public class Competition {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public String getCedingRepId() {
+	public Integer getCedingRepId() {
 		return cedingRepId;
 	}
-	public void setCedingRepId(String cedingRepId) {
+	public void setCedingRepId(Integer cedingRepId) {
 		this.cedingRepId = cedingRepId;
 	}
 	public String getCedingRepName() {

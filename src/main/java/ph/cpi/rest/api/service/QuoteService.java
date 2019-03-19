@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
@@ -64,6 +65,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
@@ -129,4 +131,5 @@ public interface QuoteService {
 	public CopyEndorsementResponse copyEndorsement(CopyEndorsementRequest cer ) throws SQLException;
 	public RetrieveQuoteDeductiblesResponse retrieveQuoteDeductibles(RetrieveQuoteDeductiblesRequest rqdr) throws SQLException;
 	public SaveQuotationCopyResponse saveQuotationCopy(SaveQuotationCopyRequest sqcp) throws SQLException;
+	public SaveQuoteAdviceWordingsResponse saveQuoteAdviceWordings(SaveQuoteAdviceWordingsRequest sqawr) throws SQLException;
 }

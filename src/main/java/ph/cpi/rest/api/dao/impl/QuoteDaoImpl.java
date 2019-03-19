@@ -353,4 +353,9 @@ public class QuoteDaoImpl implements QuoteDao{
 		
 		return null;
 	}
+	
+	public Integer saveQuoteAdviceWordings(final HashMap<String, Object> params) throws SQLException{
+		Integer errorCode = sqlSession.update("saveQuoteAdviceWordingsMap",params);
+		return errorCode;
+	}
 }
