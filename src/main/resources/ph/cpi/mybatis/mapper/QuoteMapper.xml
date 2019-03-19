@@ -1504,7 +1504,7 @@
 	
 	<update id="copyQuoteCoverage" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_coverage(
+			QU_COVERAGE_PKG.copy_qu_cover(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
@@ -1518,7 +1518,7 @@
 	
 	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_section_covers(
+			QU_SEC_COVER_PKG.save_qu_sec_cvrs(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
