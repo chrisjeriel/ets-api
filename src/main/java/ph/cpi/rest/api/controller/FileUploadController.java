@@ -52,6 +52,8 @@ public class FileUploadController {
 	    @ResponseBody
 	    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
+		 logger.info("GET: /api/file-upload-service/files/");
+		 
 	        Resource file = storageService.loadAsResource(filename);
 	        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 	                "attachment; filename=\"" + file.getFilename() + "\"").body(file);

@@ -22,7 +22,7 @@ public class ETSApiApplication extends SpringBootServletInitializer {
 	}
 	
 	 @Bean
-	 CommandLineRunner init(StorageService storageService) {
+	 CommandLineRunner init(StorageService storageService) { 
 	        return (args) -> {
 	            storageService.deleteAll();
 	            storageService.init();

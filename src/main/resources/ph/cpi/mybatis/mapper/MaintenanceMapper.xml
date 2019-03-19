@@ -473,7 +473,7 @@
 	</resultMap>
 	
 	<select id="retMtnAdviceWordings" resultMap="adviceWordingsMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_advice_wordings(#{adviceWordId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+            SELECT* FROM TABLE(MTN_ADV_WORD_PKG.ret_adv_wordings(#{adviceWordId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
      
      
@@ -517,7 +517,7 @@
      </resultMap>
      
      <select id="retrieveMtnBlock" resultMap="maintenanceRegionMap" parameterType="java.util.Map">
-            SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_block(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR}, null, null ,null, null))
+            SELECT * FROM TABLE(MTN_BLOCK_PKG.ret_block(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR}, null, null ,null, null))
      </select>
      
      
@@ -548,7 +548,7 @@
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_ceding_comp_list(#{cedingId, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{cedingAbbr, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{membershipDate, jdbcType=VARCHAR},#{terminationDate, jdbcType=VARCHAR},#{inactiveDate, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{govtTag, jdbcType=VARCHAR},#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
+            SELECT* FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{cedingAbbr, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{membershipDate, jdbcType=VARCHAR},#{terminationDate, jdbcType=VARCHAR},#{inactiveDate, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{govtTag, jdbcType=VARCHAR},#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
      </select>
      
      
@@ -601,7 +601,7 @@
    
      
      <select id="retMtnCedingCompany" resultMap="maintenanceCedingCompanyMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_ceding_company(#{cedingId, jdbcType=VARCHAR},null,null,null,null))
+            SELECT* FROM TABLE(MTN_CED_REP_PKG.ret_ced_com(#{cedingId, jdbcType=VARCHAR},null,null,null,null))
      </select>
   	
   	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
