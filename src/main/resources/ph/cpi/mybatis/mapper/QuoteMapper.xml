@@ -1575,7 +1575,7 @@
 	
 	<update id="copyQuoteAlop" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_alop(				
+			QU_ALOP_PKG.copy_qu_alop(				
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
