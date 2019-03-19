@@ -882,15 +882,15 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItem">
-		<result property="itemNo" 			column="ITEM_NO"/>
-		<result property="quantity" 		column="QUANTITY"/>
-		<result property="description" 		column="ALOP_ITEM_DESCRIPTION"/>
-		<result property="importance" 		column="IMPORTANCE"/>
-		<result property="lossMin" 			column="LOSS_MIN"/>
-		<result property="createUser" 		column="ALOP_ITEM_CREATE_USER"/>
-		<result property="createDate" 		column="ALOP_ITEM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="ALOP_ITEM_UPDATE_USER"/>
-		<result property="updateDate" 		column="ALOP_ITEM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="quantity" column="QUANTITY"/>
+		<result property="description" column="ALOP_ITEM_DESCRIPTION"/>
+		<result property="importance" column="IMPORTANCE"/>
+		<result property="lossMin" column="LOSS_MIN"/>
+		<result property="createUser" column="ALOP_ITEM_CREATE_USER"/>
+		<result property="createDate" column="ALOP_ITEM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" column="ALOP_ITEM_UPDATE_USER"/>
+		<result property="updateDate" column="ALOP_ITEM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
