@@ -4,6 +4,7 @@ package ph.cpi.rest.api.model.quote;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
 public class Quotation {
@@ -34,10 +35,10 @@ public class Quotation {
 	private String reinsurerName;
 	private Integer intmId;
 	private String intmName;
-	private LocalDateTime issueDate;
-	private LocalDateTime expiryDate;
+	private DateTime issueDate;
+	private DateTime expiryDate;
 	private String reqBy;
-	private LocalDateTime reqDate;
+	private DateTime reqDate;
 	private String reqMode;
 	private String mbiRefNo;
 	private String currencyCd;
@@ -51,15 +52,15 @@ public class Quotation {
 	private String preparedBy;
 	private String approvedBy;
 	private String printedBy;
-	private LocalDateTime printDate;
+	private DateTime printDate;
 	private String openingParag;
 	private String closingParag;
 	private String reasonCd;
 	private String reasonDesc;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	
 	private Project project;
 	private Options options;
@@ -227,16 +228,16 @@ public class Quotation {
 	public void setIntmName(String intmName) {
 		this.intmName = intmName;
 	}
-	public LocalDateTime getIssueDate() {
+	public DateTime getIssueDate() {
 		return issueDate;
 	}
-	public void setIssueDate(LocalDateTime issueDate) {
+	public void setIssueDate(DateTime issueDate) {
 		this.issueDate = issueDate;
 	}
-	public LocalDateTime getExpiryDate() {
+	public DateTime getExpiryDate() {
 		return expiryDate;
 	}
-	public void setExpiryDate(LocalDateTime expiryDate) {
+	public void setExpiryDate(DateTime expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 	public String getReqBy() {
@@ -245,10 +246,10 @@ public class Quotation {
 	public void setReqBy(String reqBy) {
 		this.reqBy = reqBy;
 	}
-	public LocalDateTime getReqDate() {
+	public DateTime getReqDate() {
 		return reqDate;
 	}
-	public void setReqDate(LocalDateTime reqDate) {
+	public void setReqDate(DateTime reqDate) {
 		this.reqDate = reqDate;
 	}
 	public String getReqMode() {
@@ -329,10 +330,10 @@ public class Quotation {
 	public void setPrintedBy(String printedBy) {
 		this.printedBy = printedBy;
 	}
-	public LocalDateTime getPrintDate() {
+	public DateTime getPrintDate() {
 		return printDate;
 	}
-	public void setPrintDate(LocalDateTime printDate) {
+	public void setPrintDate(DateTime printDate) {
 		this.printDate = printDate;
 	}
 	public String getOpeningParag() {
@@ -365,10 +366,10 @@ public class Quotation {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -377,10 +378,10 @@ public class Quotation {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	public Project getProject() {
