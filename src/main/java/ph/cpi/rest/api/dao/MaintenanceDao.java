@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
@@ -58,4 +59,5 @@ public interface MaintenanceDao {
 	
 	public List<Treaty> retrieveMtnTreaty() throws SQLException;
 	public List<Reports> retrieveMtnReports(final HashMap<String, Object> params) throws SQLException;
+	public List<RefCode> retrieveRefCode(final HashMap<String, Object> params) throws SQLException;
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
+import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
@@ -239,6 +240,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public List<Reports> retrieveMtnReports(HashMap<String, Object> params) throws SQLException {
 		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
 		return reports;
+	}
+	
+	public List<RefCode> retrieveRefCode(final HashMap<String, Object> params) throws SQLException{
+		List<RefCode> refCode = sqlSession.selectList("retrieveRefCode", params);
+		return refCode;
 	}
 	
 }
