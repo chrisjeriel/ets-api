@@ -1,9 +1,6 @@
 package ph.cpi.rest.api.model.quote;
 
-import java.math.BigDecimal;
 import java.util.List;
-
-import org.joda.time.LocalDateTime;
 
 public class Alop {
 
@@ -67,6 +64,7 @@ public class Alop {
 	public void setAlopDetails(List<AlopDetails> alopDetails) {
 		this.alopDetails = alopDetails;
 	}
+	
 	@Override
 	public String toString() {
 		return "Alop [optionId=" + optionId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="

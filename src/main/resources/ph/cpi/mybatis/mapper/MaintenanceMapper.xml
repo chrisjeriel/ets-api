@@ -638,7 +638,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnReason" resultMap="ReasonMap" parameterType="java.util.Map">
-            SELECT * FROM TABLE(ETS_MAINTENANCE_PKG_EJVA.retrieve_mtn_reason(#{reasonCd, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+            SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_mtn_reason(#{reasonCd, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
 
     <!-- <resultMap id="employeeResult" type="ph.cpi.rest.api.model.Employee">
