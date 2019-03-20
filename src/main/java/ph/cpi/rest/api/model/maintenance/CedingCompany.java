@@ -5,7 +5,7 @@ import java.util.List;
 import org.joda.time.LocalDateTime;
 
 public class CedingCompany {
-	private Integer cedingId ;
+	private String cedingId ;
 	private String cedingName;
 	private String cedingAbbr;
 	private String addrLine1;
@@ -29,10 +29,10 @@ public class CedingCompany {
 	private LocalDateTime updateDate;
 	private List<CedingRepresentative> cedingRepresentative;
 	
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public String getCedingName() {
