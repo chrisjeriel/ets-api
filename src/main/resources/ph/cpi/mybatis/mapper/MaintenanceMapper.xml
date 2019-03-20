@@ -703,4 +703,16 @@
     <select id="retrieveMtnTreaty" resultMap="treatyMap">
     	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(NULL,NULL,NULL,NULL))
     </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.RefCode" id="refCodeMap">
+    	<result property="code" 			column="CODE"/>
+    	<result property="identifier" 		column="IDENTIFIER"/>
+    	<result property="description" 		column="DESCRIPTION"/>
+    </resultMap>
+    
+    <select id="retrieveRefCode" resultMap="refCodeMap">
+    	SELECT * FROM TABLE(REFCODE_PKG.ref_lov(#{identifier, jdbcType=VARCHAR}))
+    </select>
+    
+    
 </mapper>

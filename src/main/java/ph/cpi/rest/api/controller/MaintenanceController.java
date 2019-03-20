@@ -37,6 +37,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -62,6 +63,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -265,6 +267,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnTreaty");
 		logger.info("RetrieveMtnTreaty : " + rmtr.toString());
 		return maintenanceService.retrieveMtnTreaty(rmtr);
+	}
+	
+	@GetMapping(path="retrieveRefCode")
+	public @ResponseBody RetrieveRefCodeResponse retrieveRefCode(RetrieveRefCodeRequest rrcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveRefCode");
+		logger.info("RetrieveRefCodeRequest : " + rrcr.toString());
+		return maintenanceService.retrieveRefCode(rrcr);
 	}
 
 }
