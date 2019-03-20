@@ -1283,7 +1283,7 @@
 	END;
 	</update> -->
 	
-	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
+	<!-- <update id="saveQuoteOptionMap" parameterType="java.util.Map">
 	BEGIN
 	<foreach collection="deleteQuoteOptionsList" item="quoteOption">
 	   	ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
@@ -1296,7 +1296,7 @@
 	   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 	   </foreach>
 	END;
-	</update>
+	</update> -->
 	
 	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
 		BEGIN
@@ -1492,7 +1492,7 @@
 	<update id="copyEndorsementMap" parameterType="java.util.Map">
 	BEGIN
 		<foreach collection="toOptionNo" item="copy">
-				ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+				QU_ENDT_PKG.copy_qu_endt(
 				#{copyingType},#{fromOptionNo},#{copy.optionNo},
 				'',#{quoteId},
 				#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),

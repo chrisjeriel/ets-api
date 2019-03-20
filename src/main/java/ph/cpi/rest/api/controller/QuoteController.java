@@ -285,7 +285,7 @@ public class QuoteController {
 	@GetMapping(path="retrieveQuoteGeneralInfo")
 	public @ResponseBody RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteGeneralInfo");
-		logger.info("RetrieveQuoteAlopRequest : " + rqgip.toString());
+		logger.info("RetrieveQuoteGeneralInfo : " + rqgip.toString());
 		return quoteService.retrieveQuoteGeneralInfo(rqgip);
 	}
 	
