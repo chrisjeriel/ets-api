@@ -686,6 +686,8 @@
 		 <result property="cedingRepId"		 	 column="CEDING_REP_ID"/>
 		 <result property="cedingRepName"		 column="CEDING_REP_NAME"/>
 		 <result property="position"		 	 column="POSITION"/>
+		 <result property="advOption"		 	 column="ADV_OPTION"/>
+		 <result property="wordings"		 	 column="WORDINGS"/>
 		 <result property="createUser"		 	 column="CREATE_USER"/>
 		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		 <result property="updateUser"		 	 column="UPDATE_USER"/>
@@ -1221,7 +1223,7 @@
 				   									 #{adv.wordings},
 				   									 #{adv.createUser},
 				   									 CAST(to_timestamp(#{adv.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				   									 #{competition.updateUser},
+				   									 #{adv.updateUser},
 				   									 CAST(to_timestamp(#{adv.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		    </foreach>
 	    END;
