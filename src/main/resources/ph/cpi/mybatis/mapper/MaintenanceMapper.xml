@@ -600,7 +600,7 @@
      </resultMap>
    
      
-     <select id="retMtnCedingCompany" resultMap="maintenanceCedingCompanyMap" parameterType="java.util.Map">
+     <select id="retMtnCedingCompany" resultMap="cedingRepresentativeMap" parameterType="java.util.Map">
             SELECT* FROM TABLE(MTN_CED_REP_PKG.ret_ced_com(#{cedingId, jdbcType=VARCHAR},null,null,null,null))
      </select>
   	

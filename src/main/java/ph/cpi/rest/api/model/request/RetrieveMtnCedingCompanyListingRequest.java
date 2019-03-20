@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnCedingCompanyListingRequest {
-	private Integer cedingId;
+	private String cedingId;
 	private String cedingName;
 	private String cedingAbbr;
 	private String address;
@@ -19,10 +19,10 @@ public class RetrieveMtnCedingCompanyListingRequest {
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public String getCedingName() {
