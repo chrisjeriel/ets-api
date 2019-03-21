@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.maintenance;
 import org.joda.time.LocalDateTime;
 
 public class CedingRepresentative {
-	private Integer cedingId;
+	private String cedingId;
 	private Integer cedingRepId;
 	private String designation;
 	private String firstName;
@@ -22,12 +22,12 @@ public class CedingRepresentative {
 	private LocalDateTime updateDate;
 	
 	
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
 
 
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 

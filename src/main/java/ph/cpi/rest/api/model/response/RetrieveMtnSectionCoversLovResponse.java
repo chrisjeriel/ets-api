@@ -6,11 +6,12 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 
-public class RetrieveMtnSectionCoversResponse {
-	
+public class RetrieveMtnSectionCoversLovResponse {
+
 	private List<SectionCovers> sectionCovers;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
+	
 	public List<SectionCovers> getSectionCovers() {
 		return sectionCovers;
 	}
@@ -31,9 +32,7 @@ public class RetrieveMtnSectionCoversResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnSectionCoversResponse [sectionCovers=" + sectionCovers + ", paginationResponse="
+		return "RetrieveMtnSectionCoversLovResponse [sectionCovers=" + sectionCovers + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
 }

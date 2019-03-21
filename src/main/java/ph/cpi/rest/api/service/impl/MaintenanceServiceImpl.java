@@ -34,9 +34,11 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -60,9 +62,11 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -579,6 +583,32 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		rmreResponse.setReports(maintenanceDao.retrieveMtnReports(retrieveMtnReportsParams));
 		return rmreResponse;
+	}
+
+	@Override
+	public RetrieveMtnSectionCoversLovResponse retrieveMtnSectionCoversLov(RetrieveMtnSectionCoversLovRequest rmsclp)
+			throws SQLException {
+		RetrieveMtnSectionCoversLovResponse rmsclResponse = new RetrieveMtnSectionCoversLovResponse();
+		
+		HashMap<String, Object> retrieveMtnSectionCoversLovParams = new HashMap<String, Object>();
+		retrieveMtnSectionCoversLovParams.put("lineCd", rmsclp.getLineCd());
+		retrieveMtnSectionCoversLovParams.put("cover", rmsclp.getCover());
+		
+		rmsclResponse.setSectionCovers(maintenanceDao.retrieveSectionCoversLov(retrieveMtnSectionCoversLovParams));
+		
+		logger.info("retrieveMtnSectionCoversLovResponse : " + rmsclResponse.toString());
+
+		return rmsclResponse;
+	}
+	
+	@Override
+	public RetrieveRefCodeResponse retrieveRefCode(RetrieveRefCodeRequest rrcr) throws SQLException{
+		RetrieveRefCodeResponse rrcResponse = new RetrieveRefCodeResponse();
+		HashMap <String, Object> retrieveRefCodeParams = new HashMap<String, Object>();
+		retrieveRefCodeParams.put("identifier", rrcr.getIdentifier());
+		
+		rrcResponse.setRefCodeList(maintenanceDao.retrieveRefCode(retrieveRefCodeParams));
+		return rrcResponse;
 	}
 	
 }

@@ -326,12 +326,15 @@ public class QuoteServiceImpl implements QuoteService{
 			HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
 			
 			saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId());
-			saveQuoteAlopParams.put("alopId" , sqar.getAlopId());
 			saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId());
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc());
 			saveQuoteAlopParams.put("address" , sqar.getAddress());
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness());
 			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
+			saveQuoteAlopParams.put("createUser", sqar.getCreateUser());
+			saveQuoteAlopParams.put("createDate", sqar.getCreateDate());
+			saveQuoteAlopParams.put("updateUser", sqar.getUpdateUser());
+			saveQuoteAlopParams.put("updateDate", sqar.getUpdateDate());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -974,8 +977,8 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
-//			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
-//			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
+			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 			saveQuoteOptionsAllParams.put("otherRates", sqor.getOtherRates());
 //			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
 			saveQuoteOptionsAllParams.put("newOptions",sqor.getNewQuoteOptionsList());
