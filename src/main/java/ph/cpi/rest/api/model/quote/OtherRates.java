@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.model.quote;
 
-import org.joda.time.LocalDateTime;
 import java.math.BigDecimal;
+import java.util.List;
+
+import org.joda.time.LocalDateTime;
 
 
 public class OtherRates {
@@ -18,6 +20,7 @@ public class OtherRates {
 	private String section;
 	private String bulletNo;
 	private String changeTag;
+	private List<Deductibles> deductiblesList;
 	public Integer getCoverCd() {
 		return coverCd;
 	}
@@ -96,13 +99,18 @@ public class OtherRates {
 	public void setChangeTag(String changeTag) {
 		this.changeTag = changeTag;
 	}
+	public List<Deductibles> getDeductiblesList() {
+		return deductiblesList;
+	}
+	public void setDeductiblesList(List<Deductibles> deductiblesList) {
+		this.deductiblesList = deductiblesList;
+	}
 	@Override
 	public String toString() {
 		return "OtherRates [coverCd=" + coverCd + ", coverCdDesc=" + coverCdDesc + ", rateI=" + rateI + ", amountI="
 				+ amountI + ", rate=" + rate + ", amount=" + amount + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", section=" + section
-				+ ", bulletNo=" + bulletNo + ", changeTag=" + changeTag + "]";
+				+ ", bulletNo=" + bulletNo + ", changeTag=" + changeTag + ", deductiblesList=" + deductiblesList + "]";
 	}
-	
 	
 }
