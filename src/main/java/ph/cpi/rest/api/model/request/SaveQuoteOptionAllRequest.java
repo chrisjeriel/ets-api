@@ -11,8 +11,8 @@ public class SaveQuoteOptionAllRequest {
 	private List<QuoteOption> newQuoteOptionsList;
 //	private List<OtherRates> deleteOtherRates;
 //	
-//	private List<Deductibles> saveDeductibleList;
-//	private List<Deductibles> deleteDeductibleList;
+	private List<Deductibles> saveDeductibleList;
+	private List<Deductibles> deleteDeductibleList;
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -44,11 +44,26 @@ public class SaveQuoteOptionAllRequest {
 	public void setNewQuoteOptionsList(List<QuoteOption> newQuoteOptionsList) {
 		this.newQuoteOptionsList = newQuoteOptionsList;
 	}
+	
+	public List<Deductibles> getSaveDeductibleList() {
+		return saveDeductibleList;
+	}
+	public void setSaveDeductibleList(List<Deductibles> saveDeductibleList) {
+		this.saveDeductibleList = saveDeductibleList;
+	}
+	public List<Deductibles> getDeleteDeductibleList() {
+		return deleteDeductibleList;
+	}
+	public void setDeleteDeductibleList(List<Deductibles> deleteDeductibleList) {
+		this.deleteDeductibleList = deleteDeductibleList;
+	}
 	@Override
 	public String toString() {
 		return "SaveQuoteOptionAllRequest [quoteId=" + quoteId + ", saveQuoteOptionsList=" + saveQuoteOptionsList
 				+ ", deleteQuoteOptionsList=" + deleteQuoteOptionsList + ", otherRates=" + otherRates
-				+ ", newQuoteOptionsList=" + newQuoteOptionsList + "]";
+				+ ", newQuoteOptionsList=" + newQuoteOptionsList + ", saveDeductibleList=" + saveDeductibleList
+				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
+	
 }
 

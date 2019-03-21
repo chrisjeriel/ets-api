@@ -255,18 +255,33 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles">
-		<result property="deductibleCd" 	column="DED_CD"/>
-		<result property="deductibleTitle" 	column="DED_TITLE"/>
-		<result property="coverCd" 			column="COVER_CD"/>
-		<result property="endtCd" 			column="ENDT_CD"/>
-		<result property="sumInsured" 		column="SUM_INSURED"/>
-		<result property="deductibleRt" 	column="DED_RT"/>
-		<result property="deductibleAmt" 	column="DED_AMT"/>
-		<result property="deductibleTxt" 	column="DED_TXT"/>
-		<result property="createUser" 		column="DED_CREATE_USER"/>
-		<result property="createDate" 		column="DED_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="updateUser" 		column="DED_UPDATE_USER"/>
-		<result property="updateDate" 		column="DED_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="deductibleCd" 	column="O_DED_CD"/>
+		<result property="deductibleTitle" 	column="O_DED_TITLE"/>
+		<result property="coverCd" 			column="O_COVER_CD"/>
+		<result property="endtCd" 			column="O_ENDT_CD"/>
+		<result property="sumInsured" 		column="O_SUM_INSURED"/>
+		<result property="deductibleRt" 	column="O_DED_RT"/>
+		<result property="deductibleAmt" 	column="O_DED_AMT"/>
+		<result property="deductibleTxt" 	column="O_DED_TXT"/>
+		<result property="createUser" 		column="O_DED_CREATE_USER"/>
+		<result property="createDate" 		column="O_DED_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="O_DED_UPDATE_USER"/>
+		<result property="updateDate" 		column="O_DED_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Deductibles" id="assocDeductibles2">
+		<result property="deductibleCd" 	column="C_DED_CD"/>
+		<result property="deductibleTitle" 	column="C_DED_TITLE"/>
+		<result property="coverCd" 			column="C_COVER_CD"/>
+		<result property="endtCd" 			column="C_ENDT_CD"/>
+		<result property="sumInsured" 		column="C_SUM_INSURED"/>
+		<result property="deductibleRt" 	column="C_DED_RT"/>
+		<result property="deductibleAmt" 	column="C_DED_AMT"/>
+		<result property="deductibleTxt" 	column="C_DED_TXT"/>
+		<result property="createUser" 		column="C_DED_CREATE_USER"/>
+		<result property="createDate" 		column="C_DED_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateUser" 		column="C_DED_UPDATE_USER"/>
+		<result property="updateDate" 		column="C_DED_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.OtherRates" id="assocOtherRates">
@@ -281,6 +296,7 @@
 		<result property="createDate" 		column="OTH_RT_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" 		column="OTH_RT_UPDATE_USER"/>
 		<result property="updateDate" 		column="OTH_RT_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="deductiblesList" resultMap="assocDeductibles2"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Endorsements" id="quoteEndorsementsMap">
@@ -907,6 +923,8 @@
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="alopDetails" resultMap="alopDetailsMap"></association>
+		<!-- <association property="alopItemList" resultMap="alopItemMap"></association> -->
+
         <!-- <association property="alopItem" resultMap="alopItemMap"></association> -->
 	</resultMap>
 		
@@ -1292,7 +1310,7 @@
 	END;
 	</update> -->
 	
-	<update id="saveQuoteOptionMap" parameterType="java.util.Map">
+	<!-- <update id="saveQuoteOptionMap" parameterType="java.util.Map">
 	BEGIN
 	<foreach collection="deleteQuoteOptionsList" item="quoteOption">
 	   	ETS_QUOTE_PKG_ETC.delete_quote_option(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
@@ -1305,7 +1323,7 @@
 	   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 	   </foreach>
 	END;
-	</update>
+	</update> -->
 	
 	<update id="saveQuoteDeductiblesMap" parameterType="java.util.Map">
 		BEGIN
@@ -1460,7 +1478,6 @@
 				#{otherRates.section},
 				#{otherRates.coverCd,jdbcType=VARCHAR},
 				#{otherRates.bulletNo},
-				#{otherRates.amount,jdbcType=VARCHAR},
 				#{otherRates.changeTag},
 				#{otherRates.rate,jdbcType=VARCHAR},
 				#{otherRates.createUser,jdbcType=VARCHAR},
@@ -1485,7 +1502,6 @@
 						#{otherRates.section},
 						#{otherRates.coverCd,jdbcType=VARCHAR},
 						#{otherRates.bulletNo},
-						#{otherRates.amount,jdbcType=VARCHAR},
 						#{otherRates.changeTag},
 						#{otherRates.rate,jdbcType=VARCHAR},
 						#{otherRates.createUser,jdbcType=VARCHAR},
@@ -1495,13 +1511,22 @@
 					);
 		   	   </foreach>
 		 </foreach>
+		 
+		 <foreach collection="deleteDeductibleList" item="deductible">
+		   		QU_DEDUCTIBLES_PKG.del_qu_deductible(#{quoteId},#{deductible.optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
+			   			#{quoteId},#{deductible.optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   		);
+			</foreach>
 		END;
 	</update>
 	
 	<update id="copyEndorsementMap" parameterType="java.util.Map">
 	BEGIN
 		<foreach collection="toOptionNo" item="copy">
-				ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+				QU_ENDT_PKG.copy_qu_endt(
 				#{copyingType},#{fromOptionNo},#{copy.optionNo},
 				'',#{quoteId},
 				#{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
