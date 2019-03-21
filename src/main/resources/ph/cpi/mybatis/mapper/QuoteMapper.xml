@@ -915,7 +915,7 @@
 		<result property="optionId" 		column="OPTION_ID"/>
 		<result property="insuredId" 		column="INS_ID"/>
 		<result property="insuredName" 		column="INSURED_NAME"/>
-		<result property="insuredDesc" 		column="INSURED_DESC_ALOP"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
 		<result property="address" 			column="ADDRESS"/>
 		<result property="insuredBusiness" 	column="INS_BUSINESS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -1041,7 +1041,6 @@
 	</resultMap>
 	
   <resultMap type="ph.cpi.rest.api.model.quote.Alop" id="AlopMap">
-    	<result property="alopId" 			column="ALOP_ID"/>
 		<result property="insuredId" 		column="INS_ID"/>
 		<result property="insuredName" 		column="INSURED_NAME"/>
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
