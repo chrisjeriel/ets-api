@@ -71,4 +71,6 @@ public interface QuoteDao {
 	public List<Quotation> searchQuoteInfo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuoteAdviceWordings(final HashMap<String, Object> params) throws SQLException;
 	
+	public Integer updateHoldCoverStatus(final HashMap<String, Object> params) throws SQLException;
+	
 }

@@ -11,6 +11,7 @@ public class HoldCover {
 	private Integer holdCoverYear;
 	private Integer holdCoverSeqNo;
 	private Integer holdCoverRevNo;
+	private Integer optionId;
 	private DateTime periodFrom;
 	private DateTime periodTo;
 	private String compRefHoldCovNo;
@@ -64,6 +65,12 @@ public class HoldCover {
 	}
 	public void setHoldCoverRevNo(Integer holdCoverRevNo) {
 		this.holdCoverRevNo = holdCoverRevNo;
+	}
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
 	}
 	public DateTime getPeriodFrom() {
 		return periodFrom;
@@ -141,11 +148,11 @@ public class HoldCover {
 	public String toString() {
 		return "HoldCover [holdCoverId=" + holdCoverId + ", holdCoverNo=" + holdCoverNo + ", lineCd=" + lineCd
 				+ ", lineCdDesc=" + lineCdDesc + ", holdCoverYear=" + holdCoverYear + ", holdCoverSeqNo="
-				+ holdCoverSeqNo + ", holdCoverRevNo=" + holdCoverRevNo + ", periodFrom=" + periodFrom + ", periodTo="
-				+ periodTo + ", compRefHoldCovNo=" + compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy
-				+ ", reqDate=" + reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ holdCoverSeqNo + ", holdCoverRevNo=" + holdCoverRevNo + ", optionId=" + optionId + ", periodFrom="
+				+ periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo=" + compRefHoldCovNo + ", status="
+				+ status + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", preparedBy=" + preparedBy + ", approvedBy="
+				+ approvedBy + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

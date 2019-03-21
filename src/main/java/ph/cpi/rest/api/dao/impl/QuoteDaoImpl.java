@@ -365,4 +365,12 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("saveQuoteAdviceWordingsMap",params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer updateHoldCoverStatus(HashMap<String, Object> params) throws SQLException {
+		System.out.println("Palatandaan dao1");
+		Integer errorCode = sqlSession.update("updateHoldCoverStatus",params);
+		System.out.println("Palatandaan dao2");
+		return errorCode;
+	}
 }
