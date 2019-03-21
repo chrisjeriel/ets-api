@@ -367,6 +367,7 @@
 		#{coverCd, jdbcType=VARCHAR},#{endtCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},
 		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'',''))
 	</select>
+	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_SEC_COVER_PKG.ret_mtn_sec_cover(#{lineCd, jdbcType=VARCHAR},
 																#{coverCd, jdbcType=VARCHAR},
@@ -703,4 +704,14 @@
     <select id="retrieveMtnTreaty" resultMap="treatyMap">
     	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(NULL,NULL,NULL,NULL))
     </select>
+    
+    <select id="retrieveMtnSectionCoversLov" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_SEC_COVER_PKG.ret_mtn_sec_cover_lov(#{lineCd, jdbcType=VARCHAR},
+																    #{cover, jdbcType=VARCHAR},
+																    null,
+																    null,
+																	null,
+																	null
+																	))
+	</select>
 </mapper>

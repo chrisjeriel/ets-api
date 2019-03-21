@@ -240,5 +240,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
 		return reports;
 	}
+
+	@Override
+	public List<SectionCovers> retrieveSectionCoversLov(HashMap<String, Object> params) throws SQLException {
+		List<SectionCovers> sectionCovers = sqlSession.selectList("retrieveMtnSectionCoversLov", params);
+		return sectionCovers;
+	}
 	
 }

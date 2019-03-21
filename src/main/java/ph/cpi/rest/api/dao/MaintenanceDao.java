@@ -58,4 +58,6 @@ public interface MaintenanceDao {
 	
 	public List<Treaty> retrieveMtnTreaty() throws SQLException;
 	public List<Reports> retrieveMtnReports(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<SectionCovers> retrieveSectionCoversLov(final HashMap<String, Object> params) throws SQLException;
 }
