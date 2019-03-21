@@ -692,6 +692,10 @@
 		 <result property="createDate"		 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		 <result property="updateUser"		 	 column="UPDATE_USER"/>
 		 <result property="updateDate"		 	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		 <result property="advWordCreateUser"	 column="AW_CREATE_USER"/>
+		 <result property="advWordCreateDate"	 column="AW_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		 <result property="advWordUpdateUser"	 column="AW_UPDATE_USER"/>
+		 <result property="advWordUpdateDate"	 column="AW_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveQuoteCompetition" resultMap="quotationForCompetitionMap" parameterType="java.util.Map">
