@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -65,6 +66,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -597,6 +599,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("retrieveMtnSectionCoversLovResponse : " + rmsclResponse.toString());
 
 		return rmsclResponse;
+	}
+	
+	@Override
+	public RetrieveRefCodeResponse retrieveRefCode(RetrieveRefCodeRequest rrcr) throws SQLException{
+		RetrieveRefCodeResponse rrcResponse = new RetrieveRefCodeResponse();
+		HashMap <String, Object> retrieveRefCodeParams = new HashMap<String, Object>();
+		retrieveRefCodeParams.put("identifier", rrcr.getIdentifier());
+		
+		rrcResponse.setRefCodeList(maintenanceDao.retrieveRefCode(retrieveRefCodeParams));
+		return rrcResponse;
 	}
 	
 }

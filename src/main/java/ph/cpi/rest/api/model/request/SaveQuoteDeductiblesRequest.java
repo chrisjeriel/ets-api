@@ -65,7 +65,6 @@ class Deductibles {
 	private String updateDate;
 	private String coverCd;
 	private String endtCd;
-	private String sumInsured;
 	
 	
 	public String getOptionId() {
@@ -134,19 +133,14 @@ class Deductibles {
 	public void setEndtCd(String endtCd) {
 		this.endtCd = endtCd;
 	}
-	public String getSumInsured() {
-		return sumInsured;
-	}
-	public void setSumInsured(String sumInsured) {
-		this.sumInsured = sumInsured;
-	}
 	@Override
 	public String toString() {
 		return "Deductibles [optionId=" + optionId + ", deductibleCd=" + deductibleCd + ", deductibleRt=" + deductibleRt
 				+ ", deductibleAmt=" + deductibleAmt + ", deductibleTxt=" + deductibleTxt + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", coverCd=" + coverCd + ", endtCd=" + endtCd + ", sumInsured=" + sumInsured + "]";
+				+ ", coverCd=" + coverCd + ", endtCd=" + endtCd + "]";
 	}
+	
 	
 	
 }

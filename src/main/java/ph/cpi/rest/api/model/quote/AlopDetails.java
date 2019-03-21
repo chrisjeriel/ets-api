@@ -19,10 +19,10 @@ public class AlopDetails {
 	private DateTime indemFromDate;
 	private Integer timeExc;
 	private Integer repInterval;
-	private String createUser;
-	private DateTime createDate;
-	private String updateUser;
-	private DateTime updateDate;
+	private String createUserAlop;
+	private DateTime createDateAlop;
+	private String updateUserAlop;
+	private DateTime updateDateAlop;
 	
 	private List<AlopItem> alopItemList;
 	
@@ -92,29 +92,29 @@ public class AlopDetails {
 	public void setRepInterval(Integer repInterval) {
 		this.repInterval = repInterval;
 	}
-	public String getCreateUser() {
-		return createUser;
+	public String getCreateUserAlop() {
+		return createUserAlop;
 	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
+	public void setCreateUserAlop(String createUserAlop) {
+		this.createUserAlop = createUserAlop;
 	}
-	public DateTime getCreateDate() {
-		return createDate;
+	public DateTime getCreateDateAlop() {
+		return createDateAlop;
 	}
-	public void setCreateDate(DateTime createDate) {
-		this.createDate = createDate;
+	public void setCreateDateAlop(DateTime createDateAlop) {
+		this.createDateAlop = createDateAlop;
 	}
-	public String getUpdateUser() {
-		return updateUser;
+	public String getUpdateUserAlop() {
+		return updateUserAlop;
 	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
+	public void setUpdateUserAlop(String updateUserAlop) {
+		this.updateUserAlop = updateUserAlop;
 	}
-	public DateTime getUpdateDate() {
-		return updateDate;
+	public DateTime getUpdateDateAlop() {
+		return updateDateAlop;
 	}
-	public void setUpdateDate(DateTime updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdateDateAlop(DateTime updateDateAlop) {
+		this.updateDateAlop = updateDateAlop;
 	}
 	public Integer getOptionId() {
 		return optionId;
@@ -134,8 +134,8 @@ public class AlopDetails {
 		return "AlopDetails [optionId=" + optionId + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi
 				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", annSiD="
 				+ annSiD + ", maxIndemPdSiD=" + maxIndemPdSiD + ", maxIndemPdD=" + maxIndemPdD + ", indemFromDate="
-				+ indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUserAlop=" + createUserAlop
+				+ ", createDateAlop=" + createDateAlop + ", updateUserAlop=" + updateUserAlop + ", updateDateAlop=" + updateDateAlop
 				+ ", alopItemList=" + alopItemList + "]";
 	}
 	

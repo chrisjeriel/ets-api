@@ -10,6 +10,8 @@ public class Competition {
 	private Integer cedingRepId;
 	private String cedingRepName;
 	private String position;
+	private String advOption;
+	private String wordings;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -57,6 +59,18 @@ public class Competition {
 	public void setPosition(String position) {
 		this.position = position;
 	}
+	public String getAdvOption() {
+		return advOption;
+	}
+	public void setAdvOption(String advOption) {
+		this.advOption = advOption;
+	}
+	public String getWordings() {
+		return wordings;
+	}
+	public void setWordings(String wordings) {
+		this.wordings = wordings;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -86,8 +100,7 @@ public class Competition {
 	public String toString() {
 		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="
 				+ cedingName + ", cedingRepId=" + cedingRepId + ", cedingRepName=" + cedingRepName + ", position="
-				+ position + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ position + ", advOption=" + advOption + ", wordings=" + wordings + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }
