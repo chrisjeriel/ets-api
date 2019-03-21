@@ -658,7 +658,7 @@
 	   where emp_id = #{empId}
 	</select>
 	
-	<select id="getEmployeeAddress" resultMap="addressResult">
+	<select id="EmployeeAddress" resultMap="addressResult">
 	  SELECT a.* FROM tbl_address a
 	  WHERE emp_id = #{empId}
 	    AND address_id = #{addressId}
