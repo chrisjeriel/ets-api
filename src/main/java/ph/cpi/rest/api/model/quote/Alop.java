@@ -9,7 +9,7 @@ public class Alop {
 
 	//private AlopItem alopItem;
 	
-	private Integer alopId;
+	private Integer optionId;
 	private Integer insuredId;
 	private String insuredName;
 	private String insuredDesc;
@@ -24,11 +24,11 @@ public class Alop {
 //	public void setAlopItem(AlopItem alopItem) {
 //		this.alopItem = alopItem;
 //	}
-	public Integer getAlopId() {
-		return alopId;
+	public Integer getOptionId() {
+		return optionId;
 	}
-	public void setAlopId(Integer alopId) {
-		this.alopId = alopId;
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
 	}
 	public Integer getInsuredId() {
 		return insuredId;
@@ -69,7 +69,7 @@ public class Alop {
 	}
 	@Override
 	public String toString() {
-		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
+		return "Alop [optionId=" + optionId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
 				+ insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", alopDetails="
 				+ alopDetails + "]";
 	}
