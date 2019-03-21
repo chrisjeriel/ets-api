@@ -311,6 +311,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
 		<result property="updateUser" 			column="UPDATE_USER"/> 
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<association property="deductiblesList" resultMap="assocDeductibles2"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationGeneralInfo" id="quoteGenInfoMap">
@@ -468,8 +469,7 @@
 	</select>
 	
 	<select id="retrieveQuoteEndorsements" resultMap="quoteEndorsementsMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(QU_ENDT_PKG.ret_qu_endt(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},'','','',''))
-					WHERE OPTION_ID = NVL(#{optionId,jdbcType=VARCHAR},OPTION_ID)
+			SELECT * FROM TABLE(QU_ENDT_PKG.ret_qu_endt(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},#{optionId,jdbcType=VARCHAR},'','','',''))
 	</select>
 	
 	<select id="retrieveQuoteGeneralInfo" resultMap="quoteGenInfoMap" parameterType="java.util.Map">
@@ -1341,6 +1341,15 @@
 			<foreach collection="deleteEndorsements" item="endo">
 				QU_ENDT_PKG.del_qu_endt(#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER});
 			</foreach>
+			
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		QU_DEDUCTIBLES_PKG.del_qu_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
+			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   		);
+			</foreach>
 		END;
 	</update>
 	
@@ -1499,6 +1508,11 @@
 						CAST(to_timestamp(#{otherRates.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 					);
 		   	   </foreach>
+		   	   <foreach collection="quoteOption.deductiblesList" item="deductible">
+			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
+			   			#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   		);
+				</foreach>
 		 </foreach>
 		 
 		 <foreach collection="deleteDeductibleList" item="deductible">
@@ -1664,4 +1678,10 @@
 	<select id="searchQuoteInfo" resultMap="quoteInfoListing" parameterType="java.util.Map">
 		SELECT * FROM TABLE(QU_HOLD_COVER_PKG.srch_quote_info(#{lineCd,jdbcType=VARCHAR},#{quoteYear,jdbcType=INTEGER},#{quoteSeqNo,jdbcType=INTEGER},#{quoteRevNo,jdbcType=INTEGER},#{quoteCedingId,jdbcType=INTEGER}))
 	</select>
+	
+	<update id="renumberQuoteOptions" parameterType="String">
+		BEGIN
+			QU_OPTION_PKG.renumber(${value});
+		END;
+	</update>
 </mapper>
