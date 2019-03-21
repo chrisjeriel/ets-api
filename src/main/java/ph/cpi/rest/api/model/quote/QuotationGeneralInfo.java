@@ -27,7 +27,7 @@ public class QuotationGeneralInfo {
 	private String policyNo;
 	private String status;
 	private String statusDesc;
-	private Integer reinsurerId;
+	private String reinsurerId;
 	private String reinsurerName;
 	private Integer intmId;
 	private String intmName;
@@ -190,10 +190,10 @@ public class QuotationGeneralInfo {
 	public void setStatusDesc(String statusDesc) {
 		this.statusDesc = statusDesc;
 	}
-	public Integer getReinsurerId() {
+	public String getReinsurerId() {
 		return reinsurerId;
 	}
-	public void setReinsurerId(Integer reinsurerId) {
+	public void setReinsurerId(String reinsurerId) {
 		this.reinsurerId = reinsurerId;
 	}
 	public String getReinsurerName() {
