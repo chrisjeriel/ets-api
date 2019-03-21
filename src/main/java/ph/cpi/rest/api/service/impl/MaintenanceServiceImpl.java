@@ -187,7 +187,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
 		
 		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
-		logger.info("retrieveMtnInsuredResponse : " + recrResponse.toString());
+		logger.info("recrResponse : " + recrResponse.toString());
 		
 		return recrResponse;
 	}
