@@ -51,7 +51,7 @@ class QuoteOption{
 	private String updateUser;
 	private String updateDate;
 	private List<OtherRates> otherRatesList;
-	
+	private List<Deductibles> deductiblesList;
 
 	
 	public String getOptionId() {
@@ -121,13 +121,22 @@ class QuoteOption{
 	public void setOtherRatesList(List<OtherRates> otherRatesList) {
 		this.otherRatesList = otherRatesList;
 	}
+	
+	public List<Deductibles> getDeductiblesList() {
+		return deductiblesList;
+	}
+	public void setDeductiblesList(List<Deductibles> deductiblesList) {
+		this.deductiblesList = deductiblesList;
+	}
 	@Override
 	public String toString() {
 		return "QuoteOption [optionId=" + optionId + ", optionRt=" + optionRt + ", condition=" + condition
 				+ ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", otherRatesList=" + otherRatesList + "]";
+				+ ", updateDate=" + updateDate + ", otherRatesList=" + otherRatesList + ", deductiblesList="
+				+ deductiblesList + "]";
 	}
+	
 	
 
 	
