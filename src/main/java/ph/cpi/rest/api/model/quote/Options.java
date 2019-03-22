@@ -20,6 +20,7 @@ public class Options {
 	private List<OtherRates> otherRatesList;
 	private List<Deductibles> deductiblesList;
 	private List<Endorsments> endorsments;
+	private AlopDetails alopDetails;
 	public Integer getOptionId() {
 		return optionId;
 	}
@@ -104,14 +105,23 @@ public class Options {
 	public void setEndorsments(List<Endorsments> endorsments) {
 		this.endorsments = endorsments;
 	}
+	
+	public AlopDetails getAlopDetails() {
+		return alopDetails;
+	}
+	public void setAlopDetails(AlopDetails alopDetails) {
+		this.alopDetails = alopDetails;
+	}
 	@Override
 	public String toString() {
 		return "Options [optionId=" + optionId + ", optionRt=" + optionRt + ", condition=" + condition
 				+ ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", otherRates=" + otherRatesList
-				+ ", deductiblesList=" + deductiblesList + ", endorsments=" + endorsments + "]";
+				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", otherRatesList=" + otherRatesList
+				+ ", deductiblesList=" + deductiblesList + ", endorsments=" + endorsments + ", alopDetails="
+				+ alopDetails + "]";
 	}
+	
 	
 
 	
