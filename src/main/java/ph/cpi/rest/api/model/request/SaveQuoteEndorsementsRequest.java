@@ -11,6 +11,8 @@ public class SaveQuoteEndorsementsRequest {
 	private String optionId;
 	private List<Endorsementss> saveEndorsements;
 	private List<Endorsementss> deleteEndorsements;
+	private List<Deductibles> saveDeductibleList;
+	private List<Deductibles> deleteDeductibleList;
 	public String getQuoteId() {
 		return quoteId;
 	}
@@ -35,15 +37,29 @@ public class SaveQuoteEndorsementsRequest {
 	public void setDeleteEndorsements(List<Endorsementss> deleteEndorsements) {
 		this.deleteEndorsements = deleteEndorsements;
 	}
+	public List<Deductibles> getSaveDeductibleList() {
+		return saveDeductibleList;
+	}
+	public void setSaveDeductibleList(List<Deductibles> saveDeductibleList) {
+		this.saveDeductibleList = saveDeductibleList;
+	}
+	public List<Deductibles> getDeleteDeductibleList() {
+		return deleteDeductibleList;
+	}
+	public void setDeleteDeductibleList(List<Deductibles> deleteDeductibleList) {
+		this.deleteDeductibleList = deleteDeductibleList;
+	}
 	@Override
 	public String toString() {
 		return "SaveQuoteEndorsementsRequest [quoteId=" + quoteId + ", optionId=" + optionId + ", saveEndorsements="
-				+ saveEndorsements + ", deleteEndorsements=" + deleteEndorsements + "]";
+				+ saveEndorsements + ", deleteEndorsements=" + deleteEndorsements + ", saveDeductibleList="
+				+ saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
+	
 	
 }
 
-
+@Alias("SaveQuoteEndorsements")
 class Endorsementss {
 	private String endtCd;
 	private String remarks;
