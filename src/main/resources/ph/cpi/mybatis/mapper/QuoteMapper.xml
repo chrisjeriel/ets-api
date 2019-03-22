@@ -338,8 +338,8 @@
 		<result property="status" 				column="STATUS"/> 
 		<result property="statusDesc" 			column="DESCRIPTION_STATUS"/> 
 		<result property="reinsurerId" 			column="REINSURER_ID"/>
-		<result property="reinsurerName" 		column="CEDING_NAME_REINSURER"/> 
-		<result property="intmId" 				column="INTM_ID"/> 
+		<result property="reinsurerName" 		column="REINSURER_NAME"/> 
+		<result property="intmId" 				column="INTM_ID"/>
 		<result property="intmName" 			column="INTM_NAME"/> 
 		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
@@ -1618,7 +1618,7 @@
 	
 	<update id="copyQuoteOptions" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_options(
+			QU_OPTION_PKG.copy_qu_opt(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -1644,7 +1644,7 @@
 	
 	<update id="copyQuoteOtherRates" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_other_rates(
+			QU_OTHER_RT_PKG.copy_qu_oth_rt(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -1657,7 +1657,7 @@
 	
 	<update id="copyQuoteEndorsements" parameterType="java.util.Map">
 		BEGIN
-			ETS_QUOTE_PKG_MBM.copy_quote_endorsements(
+			QU_ENDT_PKG.copy_qu_endt(
 				#{copyingType, jdbcType=VARCHAR},
 				#{fromOptionNo, jdbcType=INTEGER},
 				#{toOptionNo, jdbcType=INTEGER},
