@@ -46,7 +46,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolCATPerilParams.put("policyId", rpcpr.getPolicyId());
 		retrievePolCATPerilParams.put("policyNo", rpcpr.getPolicyNo());
 		
-/*		rpcpresponse.setCatPeril();*/
+		rpcpresponse.setCatPeril(underwritingDao.retrievePolCATPeril(retrievePolCATPerilParams));
 		logger.info("retrievePolCATPerilResponse : " + rpcpresponse.toString());
 		
 		return rpcpresponse;

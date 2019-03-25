@@ -9,7 +9,7 @@
 	    <result property="policyId" 		column="POLICY_ID"/> 
 		<result property="policyNo" 		column="POLICY_NO"/> 
 		<result property="projId" 			column="PROJ_ID"/> 
-		<result property="risk" 			column="RISK_ID"/> 
+		<result property="riskId" 			column="RISK_ID"/> 
 		<result property="riskName" 		column="RISK_NAME"/> 
 		<result property="itemNo" 			column="ITEM_NO"/> 
 		<result property="quantity" 		column="QUANTITY"/> 

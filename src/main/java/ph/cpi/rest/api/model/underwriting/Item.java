@@ -2,14 +2,14 @@ package ph.cpi.rest.api.model.underwriting;
 
 import java.math.BigDecimal;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+
 
 public class Item {
-    
 	private Integer	policyId;
 	private String  policyNo;
 	private String	projId;
-	private Integer risk;
+	private Integer riskId;
 	private String 	riskName;
 	private Integer	itemNo;
 	private Integer	quantity;
@@ -26,11 +26,9 @@ public class Item {
 	private String  relativeImp;
 	private String  standbyUnit;
 	private String createUser;
-	private DateTime createDate;
+	private LocalDateTime createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	
-	
+	private LocalDateTime updateDate;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -49,11 +47,11 @@ public class Item {
 	public void setProjId(String projId) {
 		this.projId = projId;
 	}
-	public Integer getRisk() {
-		return risk;
+	public Integer getRiskId() {
+		return riskId;
 	}
-	public void setRisk(Integer risk) {
-		this.risk = risk;
+	public void setRiskId(Integer riskId) {
+		this.riskId = riskId;
 	}
 	public String getRiskName() {
 		return riskName;
@@ -151,10 +149,10 @@ public class Item {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -163,16 +161,16 @@ public class Item {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Item [policyId=" + policyId + ", policyNo=" + policyNo + ", projId=" + projId + ", risk=" + risk
+		return "Item [policyId=" + policyId + ", policyNo=" + policyNo + ", projId=" + projId + ", riskId=" + riskId
 				+ ", riskName=" + riskName + ", itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
 				+ ", makeYear=" + makeYear + ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured
 				+ ", stockType=" + stockType + ", serialNo=" + serialNo + ", location=" + location + ", chamberNo="
@@ -180,6 +178,10 @@ public class Item {
 				+ ", standbyUnit=" + standbyUnit + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
+	
+	
 
 	
 	

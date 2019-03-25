@@ -1,17 +1,19 @@
 package ph.cpi.rest.api.model.underwriting;
 
-import org.joda.time.DateTime;
+import java.math.BigDecimal;
+
+import org.joda.time.LocalDateTime;
 
 public class CATPeril {
 	
 	private Integer	policyId;
 	private String  policyNo;
 	private Integer	catPrlId;
-	private Integer pctShrPrm;
+	private BigDecimal pctShrPrm;
 	private String createUser;
-	private DateTime createDate;
+	private LocalDateTime createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private LocalDateTime updateDate;
 
 	public Integer getPolicyId() {
 		return policyId;
@@ -31,10 +33,10 @@ public class CATPeril {
 	public void setCatPrlId(Integer catPrlId) {
 		this.catPrlId = catPrlId;
 	}
-	public Integer getPctShrPrm() {
+	public BigDecimal getPctShrPrm() {
 		return pctShrPrm;
 	}
-	public void setPctShrPrm(Integer pctShrPrm) {
+	public void setPctShrPrm(BigDecimal pctShrPrm) {
 		this.pctShrPrm = pctShrPrm;
 	}
 	public String getCreateUser() {
@@ -43,10 +45,10 @@ public class CATPeril {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -55,10 +57,10 @@ public class CATPeril {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 

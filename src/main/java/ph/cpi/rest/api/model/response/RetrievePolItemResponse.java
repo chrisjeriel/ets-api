@@ -9,15 +9,14 @@ import ph.cpi.rest.api.model.underwriting.Item;
 public class RetrievePolItemResponse {
 
 	private Item item;
-	private PaginationResponse paginationResponse;
-	private SortResponse sortResponse;
-	
 	public Item getItem() {
 		return item;
 	}
 	public void setItem(Item item) {
 		this.item = item;
 	}
+	private PaginationResponse paginationResponse;
+	private SortResponse sortResponse;
 	
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
