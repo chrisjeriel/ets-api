@@ -102,6 +102,7 @@
 		<result property = "holdCoverYear"       column = "HOLD_COV_YEAR"/>
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
+		<result property = "optionId"		     column = "OPTION_ID"/>
 		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
@@ -225,6 +226,7 @@
 		<result property = "holdCoverYear"       column = "HOLD_COV_YEAR"/>
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
+		<result property = "optionId"			 column = "OPTION_ID"/>
 		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
@@ -1266,16 +1268,22 @@
 		BEGIN
 				QU_HOLD_COVER_PKG.save_quote_hc(
 				#{holdCoverNo,mode=OUT,jdbcType=VARCHAR},
-				#{quoteId,jdbcType=INTEGER},#{holdCoverId,jdbcType=INTEGER},#{lineCd,jdbcType=VARCHAR},
-				#{holdCoverYear,jdbcType=VARCHAR},#{holdCoverSeqNo,jdbcType=VARCHAR},
+				#{quoteId,jdbcType=INTEGER},
+				#{holdCoverId,jdbcType=INTEGER},
+				#{lineCd,jdbcType=VARCHAR},
+				#{holdCoverYear,jdbcType=VARCHAR},
+				#{holdCoverSeqNo,jdbcType=VARCHAR},
 				#{holdCoverRevNo,jdbcType=VARCHAR},
+				#{optionId,jdbcType=INTEGER},
 				CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{compRefHoldCovNo,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+				#{compRefHoldCovNo,jdbcType=VARCHAR},
+				#{status,jdbcType=VARCHAR},
 				#{reqBy,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{preparedBy,jdbcType=VARCHAR},
-				#{approvedBy,jdbcType=VARCHAR},#{createUser,jdbcType=VARCHAR},
+				#{approvedBy,jdbcType=VARCHAR},
+				#{createUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
@@ -1693,6 +1701,14 @@
 	<update id="renumberQuoteOptions" parameterType="String">
 		BEGIN
 			QU_OPTION_PKG.renumber(${value});
+	</update>
+	
+	<update id="updateHoldCoverStatus" parameterType="java.util.Map">
+		BEGIN
+			QU_HOLD_COVER_PKG.up_qu_hold_cover(
+				#{quoteId,jdbcType=INTEGER},
+				#{holdCoverId,jdbcType=INTEGER}
+			);
 		END;
 	</update>
 </mapper>

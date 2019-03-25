@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,6 +55,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
+import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -94,6 +96,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
+import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -425,6 +428,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/searchQuoteInfo");
 		logger.info("SearchQuoteInfoRequest : " + sqip.toString());
 		return quoteService.searchQuoteInfo(sqip);
+	}
+	
+	@PostMapping(path="updateHoldCoverStatus")
+	public @ResponseBody UpdateHoldCoverStatusResponse updateHoldCoverStatus(@RequestBody UpdateHoldCoverStatusRequest uhcsp) throws SQLException {
+		logger.info("GET: /api/quote-service/updateHoldCoverStatus");
+		logger.info("UpdateHoldCoverStatusRequest : " + uhcsp.toString());
+		return quoteService.updateHoldCoverStatus(uhcsp);
 	}
 	
 	@PostMapping(path="saveQuoteAdviceWordings")

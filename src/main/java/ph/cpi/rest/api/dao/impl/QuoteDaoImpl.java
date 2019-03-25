@@ -371,4 +371,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("renumberQuoteOptions",quoteId);
 		return errorCode;
 	}
+		
+	@Override	
+	public Integer updateHoldCoverStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateHoldCoverStatus",params);
+		return errorCode;
+	}
 }
