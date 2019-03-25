@@ -32,6 +32,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyMap">
 		<association property = "inwPolBalance" 	resultMap = "inwPolBalMap"/>
+		<association property = "coInsurance" 		resultMap = "coInsuranceMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
@@ -48,11 +49,11 @@
 		<result property = "updateDate"		column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrievePolInwardBal" resultMap="inwPolBalMap" parameterType="java.util.Map">
+	<select id="retrievePolInwardBal" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INWARD_PKG.ret_pol_inward(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
-	<select id="retrievePolCoInsurance" resultMap="coInsuranceMap" parameterType="java.util.Map">
+	<select id="retrievePolCoInsurance" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INSURANCE_PKG.ret_pol_insurance(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
