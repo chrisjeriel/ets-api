@@ -20,6 +20,7 @@ public class Deductibles {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+
 	public Integer getCoverCd() {
 		return coverCd;
 	}
@@ -106,6 +107,5 @@ public class Deductibles {
 				+ deductibleTxt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
-	
+
 }

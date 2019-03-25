@@ -9,7 +9,8 @@ public class Policy {
 	private String policyNo;
 	private List<Deductibles> deductibles;
 	private Project project;
-	
+	private List<Endorsements> endorsements;
+	private List<Attachment> attachments;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -34,10 +35,22 @@ public class Policy {
 	public void setProject(Project project) {
 		this.project = project;
 	}
+	public List<Endorsements> getEndorsements() {
+		return endorsements;
+	}
+	public void setEndorsements(List<Endorsements> endorsements) {
+		this.endorsements = endorsements;
+	}
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", deductibles=" + deductibles + ", project="
-				+ project + "]";
+				+ project + ", endorsements=" + endorsements + ", attachments=" + attachments + "]";
 	}
 	
 }

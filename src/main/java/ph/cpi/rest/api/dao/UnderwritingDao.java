@@ -9,5 +9,7 @@ public interface UnderwritingDao {
 	
 	public Policy retrievePolicyDeductibles(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolicyCoverage(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolEndtList(final HashMap<String, Object> params) throws SQLException;
 
 }

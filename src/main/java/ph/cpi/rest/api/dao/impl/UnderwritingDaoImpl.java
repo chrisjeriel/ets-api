@@ -15,8 +15,8 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
-public class UnderwritingDaoImpl implements UnderwritingDao {
-	
+public class UnderwritingDaoImpl implements UnderwritingDao{
+
 	@Value("${spring.datasource.url}")
 	private String dbUrl;
 	
@@ -47,4 +47,15 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return policy;
 	}
 	
+	@Override
+	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException{
+		Policy polAttachmentList = sqlSession.selectOne("retrievePolAttachment", params);
+		return polAttachmentList;
+	}
+
+	@Override
+	public Policy retrievePolEndtList(HashMap<String, Object> params) throws SQLException {
+		Policy polEndtList = sqlSession.selectOne("retrievePolEndt", params);
+		return polEndtList;
+	}
 }
