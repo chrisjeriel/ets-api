@@ -10,12 +10,16 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -79,5 +83,34 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rpeResponse.setEndtList(underwritingDao.retrievePolEndtList(retrievePolEndtParams));
 		logger.info("RetrievePolEndtResponse : " + rpeResponse.toString());
 		return rpeResponse;
+	}
+	
+	@Override
+	public RetrievePolItemResponse retrievePolItem(RetrievePolItemRequest rpir) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrievePolItemResponse rpiresponse = new RetrievePolItemResponse();
+		HashMap<String, Object> retrievePolItemParams = new HashMap<String, Object>();
+		
+		retrievePolItemParams.put("policyId", rpir.getPolicyId());
+		retrievePolItemParams.put("policyNo", rpir.getPolicyNo());
+		
+		rpiresponse.setItem(underwritingDao.retrievePolItem(retrievePolItemParams));
+		logger.info("retrievePolItemResponse : " + rpiresponse.toString());
+		return rpiresponse;
+	}
+
+	@Override
+	public RetrievePolCATPerilResponse retrievePolCATPeril(RetrievePolCATPerilRequest rpcpr) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrievePolCATPerilResponse rpcpresponse = new RetrievePolCATPerilResponse();
+		HashMap<String, Object> retrievePolCATPerilParams = new HashMap<String, Object>();
+		
+		retrievePolCATPerilParams.put("policyId", rpcpr.getPolicyId());
+		retrievePolCATPerilParams.put("policyNo", rpcpr.getPolicyNo());
+		
+		rpcpresponse.setCatPeril(underwritingDao.retrievePolCATPeril(retrievePolCATPerilParams));
+		logger.info("retrievePolCATPerilResponse : " + rpcpresponse.toString());
+		
+		return rpcpresponse;
 	}
 }

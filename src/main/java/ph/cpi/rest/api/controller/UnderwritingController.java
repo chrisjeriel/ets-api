@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -58,6 +62,20 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolEndt");
 		logger.info("RetrievePolEndtRequest : " + rper.toString());
 		return underwritingService.retrievePolEndt(rper);
+	}
+	
+	@GetMapping(path="retrievePolItem")
+	public @ResponseBody RetrievePolItemResponse retrievePolItem(RetrievePolItemRequest rpir) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolItem");
+		logger.info("RetrievePolItem : " + rpir.toString());
+		return underwritingService.retrievePolItem(rpir);
+	}
+	
+	@GetMapping(path="retrievePolCATPeril")
+	public @ResponseBody RetrievePolCATPerilResponse retrievePolCATPeril(RetrievePolCATPerilRequest rpcpr) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolCATPeril");
+		logger.info("RetrievePolCATPeril : " + rpcpr.toString());
+		return underwritingService.retrievePolCATPeril(rpcpr);
 	}
 
 }

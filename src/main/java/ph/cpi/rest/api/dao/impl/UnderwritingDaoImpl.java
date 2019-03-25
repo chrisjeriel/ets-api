@@ -12,11 +12,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.underwriting.CATPeril;
+import ph.cpi.rest.api.model.underwriting.Item;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
-public class UnderwritingDaoImpl implements UnderwritingDao{
-
+public class UnderwritingDaoImpl implements UnderwritingDao {
+	
 	@Value("${spring.datasource.url}")
 	private String dbUrl;
 	
@@ -58,4 +60,21 @@ public class UnderwritingDaoImpl implements UnderwritingDao{
 		Policy polEndtList = sqlSession.selectOne("retrievePolEndt", params);
 		return polEndtList;
 	}
+	
+	@Override
+	public Item retrievePolItem(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Item polItem = sqlSession.selectOne("retrievePolItem", params);
+		logger.info("retrievePolItem DAOImpl : " + polItem);
+		return polItem;
+	}
+
+	@Override
+	public CATPeril retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		CATPeril polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
+		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
+		return polCATPeril;
+	}
+	
 }
