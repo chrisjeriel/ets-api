@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
+import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -40,20 +42,22 @@ import ph.cpi.rest.api.model.request.SaveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteChangeQuoteStatusRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsOcRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteEndorsementsRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoOcRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteGeneralInfoRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
+import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
+import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -79,23 +83,24 @@ import ph.cpi.rest.api.model.response.SaveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteChangeQuoteStatusResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsOcResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoOcResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteGeneralInfoResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
+import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
-@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
 @RequestMapping(path="/quote-service")
 public class QuoteController {
 	
@@ -287,7 +292,7 @@ public class QuoteController {
 	@GetMapping(path="retrieveQuoteGeneralInfo")
 	public @ResponseBody RetrieveQuoteGeneralInfoResponse retrieveQuoteGeneralInfo(RetrieveQuoteGeneralInfoRequest rqgip) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteGeneralInfo");
-		logger.info("RetrieveQuoteAlopRequest : " + rqgip.toString());
+		logger.info("RetrieveQuoteGeneralInfo : " + rqgip.toString());
 		return quoteService.retrieveQuoteGeneralInfo(rqgip);
 	}
 	
@@ -425,10 +430,24 @@ public class QuoteController {
 		return quoteService.searchQuoteInfo(sqip);
 	}
 	
+	@PostMapping(path="updateHoldCoverStatus")
+	public @ResponseBody UpdateHoldCoverStatusResponse updateHoldCoverStatus(@RequestBody UpdateHoldCoverStatusRequest uhcsp) throws SQLException {
+		logger.info("GET: /api/quote-service/updateHoldCoverStatus");
+		logger.info("UpdateHoldCoverStatusRequest : " + uhcsp.toString());
+		return quoteService.updateHoldCoverStatus(uhcsp);
+	}
+	
 	@PostMapping(path="saveQuoteAdviceWordings")
 	public @ResponseBody SaveQuoteAdviceWordingsResponse saveQuoteAdviceWordings(@RequestBody SaveQuoteAdviceWordingsRequest sqawr) throws SQLException {
 		logger.info("GET: /api/quote-service/saveQuoteAdviceWordings");
 		logger.info("SaveQuoteAdviceWordingsRequest : " + sqawr.toString());
 		return quoteService.saveQuoteAdviceWordings(sqawr);
+	}
+		
+	@PostMapping(path="renumberQuoteOptions")
+	public @ResponseBody RenumberQuoteOptionsResponse renumberQuoteOptions(@RequestBody RenumberQuoteOptionsRequest rqds) throws SQLException {
+		logger.info("GET: /api/quote-service/renumberQuoteOptions");
+		logger.info("RenumberQuoteOptionsRequest : " + rqds.toString());
+		return quoteService.renumberQuoteOptions(rqds);
 	}
 }

@@ -7,23 +7,20 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveQuoteAlopRequest {
 	private Integer quoteId;
-	private String alopId;
 	private String insuredId;
 	private String insuredDesc;
 	private String address;
 	private String insuredBusiness;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
 	private List<AlopDetails> alopDetails;
 	public Integer getQuoteId() {
 		return quoteId;
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
-	}
-	public String getAlopId() {
-		return alopId;
-	}
-	public void setAlopId(String alopId) {
-		this.alopId = alopId;
 	}
 	public String getInsuredId() {
 		return insuredId;
@@ -49,6 +46,30 @@ public class SaveQuoteAlopRequest {
 	public void setInsuredBusiness(String insuredBusiness) {
 		this.insuredBusiness = insuredBusiness;
 	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
 	public List<AlopDetails> getAlopDetails() {
 		return alopDetails;
 	}
@@ -57,16 +78,11 @@ public class SaveQuoteAlopRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteAlopRequest [quoteId=" + quoteId + ", alopId=" + alopId + ", insuredId=" + insuredId
-				+ ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness
+		return "SaveQuoteAlopRequest [quoteId=" + quoteId + ", insuredId=" + insuredId + ", insuredDesc=" + insuredDesc
+				+ ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", alopDetails=" + alopDetails + "]";
 	}
-	
-	
-	
-	
-	
-	
 }
 
 @Alias("SaveQuoteAlopDetails")
@@ -80,10 +96,10 @@ class AlopDetails {
 	private String indemFromDate;
 	private Integer timeExc;
 	private Integer repInterval;
-	private String createUser;
-	private String createDate;
-	private String updateUser;
-	private String updateDate;
+	private String createUserAlop;
+	private String createDateAlop;
+	private String updateUserAlop;
+	private String updateDateAlop;
 
 	public String getOptionId() {
 		return optionId;
@@ -139,37 +155,37 @@ class AlopDetails {
 	public void setRepInterval(Integer repInterval) {
 		this.repInterval = repInterval;
 	}
-	public String getCreateUser() {
-		return createUser;
+	public String getCreateUserAlop() {
+		return createUserAlop;
 	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
+	public void setCreateUserAlop(String createUserAlop) {
+		this.createUserAlop = createUserAlop;
 	}
-	public String getCreateDate() {
-		return createDate;
+	public String getCreateDateAlop() {
+		return createDateAlop;
 	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setCreateDateAlop(String createDateAlop) {
+		this.createDateAlop = createDateAlop;
 	}
-	public String getUpdateUser() {
-		return updateUser;
+	public String getUpdateUserAlop() {
+		return updateUserAlop;
 	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
+	public void setUpdateUserAlop(String updateUserAlop) {
+		this.updateUserAlop = updateUserAlop;
 	}
-	public String getUpdateDate() {
-		return updateDate;
+	public String getUpdateDateAlop() {
+		return updateDateAlop;
 	}
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdateDateAlop(String updateDateAlop) {
+		this.updateDateAlop = updateDateAlop;
 	}
 	@Override
 	public String toString() {
 		return "AlopDetails [optionId=" + optionId + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi
 				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd
 				+ ", indemFromDate=" + indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", createUserAlop=" + createUserAlop + ", createDateAlop=" + createDateAlop + ", updateUserAlop=" + updateUserAlop
+				+ ", updateDateAlop=" + updateDateAlop + "]";
 	}
 	
 }

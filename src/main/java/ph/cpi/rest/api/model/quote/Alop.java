@@ -1,20 +1,23 @@
 package ph.cpi.rest.api.model.quote;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class Alop {
 
 	//private AlopItem alopItem;
 	
-	private Integer alopId;
+	private Integer optionId;
 	private Integer insuredId;
 	private String insuredName;
 	private String insuredDesc;
 	private String address;
 	private String insuredBusiness;
+	private String createUser;
+	private DateTime createDate;
+	private String updateUser;
+	private DateTime updateDate;
 	private List<AlopDetails> alopDetails;
 	
 	
@@ -24,11 +27,11 @@ public class Alop {
 //	public void setAlopItem(AlopItem alopItem) {
 //		this.alopItem = alopItem;
 //	}
-	public Integer getAlopId() {
-		return alopId;
+	public Integer getOptionId() {
+		return optionId;
 	}
-	public void setAlopId(Integer alopId) {
-		this.alopId = alopId;
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
 	}
 	public Integer getInsuredId() {
 		return insuredId;
@@ -67,11 +70,38 @@ public class Alop {
 	public void setAlopDetails(List<AlopDetails> alopDetails) {
 		this.alopDetails = alopDetails;
 	}
+	
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public DateTime getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(DateTime createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public DateTime getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(DateTime updateDate) {
+		this.updateDate = updateDate;
+	}
 	@Override
 	public String toString() {
-		return "Alop [alopId=" + alopId + ", insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredDesc="
-				+ insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness + ", alopDetails="
-				+ alopDetails + "]";
+		return "Alop [optionId=" + optionId + ", insuredId=" + insuredId + ", insuredName=" + insuredName
+				+ ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", alopDetails=" + alopDetails + "]";
 	}
+	
 	
 }

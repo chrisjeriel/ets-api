@@ -12,6 +12,7 @@ import ph.cpi.rest.api.constants.ExceptionCodes;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
+import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
@@ -51,7 +52,9 @@ import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
+import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
+import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
@@ -90,6 +93,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
+import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
 
@@ -326,12 +330,15 @@ public class QuoteServiceImpl implements QuoteService{
 			HashMap<String, Object> saveQuoteAlopParams = new HashMap<String, Object>();
 			
 			saveQuoteAlopParams.put("quoteId" , sqar.getQuoteId());
-			saveQuoteAlopParams.put("alopId" , sqar.getAlopId());
 			saveQuoteAlopParams.put("insuredId" , sqar.getInsuredId());
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc());
 			saveQuoteAlopParams.put("address" , sqar.getAddress());
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness());
 			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
+			saveQuoteAlopParams.put("createUser", sqar.getCreateUser());
+			saveQuoteAlopParams.put("createDate", sqar.getCreateDate());
+			saveQuoteAlopParams.put("updateUser", sqar.getUpdateUser());
+			saveQuoteAlopParams.put("updateDate", sqar.getUpdateDate());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -744,6 +751,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("holdCoverYear", sqhcr.getHoldCoverYear());
 			saveQuoteHoldCoverParams.put("holdCoverSeqNo", sqhcr.getHoldCoverSeqNo());
 			saveQuoteHoldCoverParams.put("holdCoverRevNo", sqhcr.getHoldCoverRevNo());
+			saveQuoteHoldCoverParams.put("optionId", sqhcr.getOptionId());
 			saveQuoteHoldCoverParams.put("periodFrom", sqhcr.getPeriodFrom());
 			saveQuoteHoldCoverParams.put("periodTo", sqhcr.getPeriodTo());
 			saveQuoteHoldCoverParams.put("compRefHoldCovNo", sqhcr.getCompRefHoldCovNo());
@@ -806,6 +814,9 @@ public class QuoteServiceImpl implements QuoteService{
 		saveQuoteEndorsementsParams.put("optionId",sqer.getOptionId());
 		saveQuoteEndorsementsParams.put("saveEndorsements", sqer.getSaveEndorsements());
 		saveQuoteEndorsementsParams.put("deleteEndorsements", sqer.getDeleteEndorsements());
+
+		saveQuoteEndorsementsParams.put("saveDeductibleList" , sqer.getSaveDeductibleList());
+		saveQuoteEndorsementsParams.put("deleteDeductibleList" , sqer.getDeleteDeductibleList());
 		sqerResponse.setReturnCode(quoteDao.saveQuoteEndorsements(saveQuoteEndorsementsParams));
 		
 		return sqerResponse;
@@ -974,8 +985,8 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
-//			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
-//			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
+			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
+			saveQuoteOptionsAllParams.put("deleteDeductibleList" , sqor.getDeleteDeductibleList());
 			saveQuoteOptionsAllParams.put("otherRates", sqor.getOtherRates());
 //			saveQuoteOptionsAllParams.put("deleteOtherRates", sqor.getDeleteOtherRates());
 			saveQuoteOptionsAllParams.put("newOptions",sqor.getNewQuoteOptionsList());
@@ -1116,6 +1127,26 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		logger.info("searchQuoteInfoResponse : " + sqiResponse.toString());
 		return sqiResponse;
+	}
+
+	@Override
+	public RenumberQuoteOptionsResponse renumberQuoteOptions(RenumberQuoteOptionsRequest rqds) throws SQLException {
+		RenumberQuoteOptionsResponse optionsResponse = new RenumberQuoteOptionsResponse();
+			optionsResponse.setReturnCode(quoteDao.renumberQuoteOptions(rqds.getQuoteId()));
+		return optionsResponse;
+	}
+	
+	@Override
+	public UpdateHoldCoverStatusResponse updateHoldCoverStatus(UpdateHoldCoverStatusRequest uhcr)
+			throws SQLException {
+		UpdateHoldCoverStatusResponse uhcrResponse = new UpdateHoldCoverStatusResponse();
+		HashMap<String, Object> updateHoldCoverStatusParams = new HashMap<String, Object>();
+		updateHoldCoverStatusParams.put("quoteId", uhcr.getQuoteId());
+		updateHoldCoverStatusParams.put("holdCoverId", uhcr.getHoldCoverId());
+		uhcrResponse.setReturnCode(quoteDao.updateHoldCoverStatus(updateHoldCoverStatusParams));
+		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
+		
+		return uhcrResponse;
 	}
 
 }

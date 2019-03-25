@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
@@ -69,7 +71,7 @@ import ph.cpi.rest.api.service.MaintenanceService;
 
 
 @Controller
-@CrossOrigin(origins = {"http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
 @RequestMapping(path="/maintenance-service")
 public class MaintenanceController {
 	
@@ -267,6 +269,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnTreaty");
 		logger.info("RetrieveMtnTreaty : " + rmtr.toString());
 		return maintenanceService.retrieveMtnTreaty(rmtr);
+	}
+	
+	@GetMapping(path="retrieveMtnSectionCoversLov")
+	public @ResponseBody RetrieveMtnSectionCoversLovResponse retrieveMtnSectionCoversLov(RetrieveMtnSectionCoversLovRequest rmsclp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnSectionCoversLov");
+		logger.info("RetrieveMtnSectionCoversLovRequest : " + rmsclp.toString());
+		return maintenanceService.retrieveMtnSectionCoversLov(rmsclp);
 	}
 	
 	@GetMapping(path="retrieveRefCode")

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.quote;
 
+import java.util.List;
+
 import org.joda.time.LocalDateTime;
 
 
@@ -16,6 +18,7 @@ public class Endorsements {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
+	private List<Deductibles> deductiblesList;
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -84,15 +87,20 @@ public class Endorsements {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+	public List<Deductibles> getDeductiblesList() {
+		return deductiblesList;
+	}
+	public void setDeductiblesList(List<Deductibles> deductiblesList) {
+		this.deductiblesList = deductiblesList;
+	}
 	@Override
 	public String toString() {
 		return "Endorsements [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", optionId=" + optionId
 				+ ", endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", description=" + description + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", deductiblesList=" + deductiblesList + "]";
 	}
+	
 	
 	
 }
