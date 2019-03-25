@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -20,6 +19,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.Attachment;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
 public class UnderwritingDaoImpl implements UnderwritingDao{
@@ -41,8 +41,15 @@ public class UnderwritingDaoImpl implements UnderwritingDao{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UnderwritingDaoImpl.class);
 	
-	public List<Attachment> retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException{
-		List<Attachment> polAttachmentList = sqlSession.selectList("retrievePolAttachment", params);
+	@Override
+	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException{
+		Policy polAttachmentList = sqlSession.selectOne("retrievePolAttachment", params);
 		return polAttachmentList;
+	}
+
+	@Override
+	public Policy retrievePolEndtList(HashMap<String, Object> params) throws SQLException {
+		Policy polEndtList = sqlSession.selectOne("retrievePolEndt", params);
+		return polEndtList;
 	}
 }

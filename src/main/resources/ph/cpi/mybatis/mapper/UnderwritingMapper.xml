@@ -5,9 +5,13 @@
 
 <mapper namespace="ph.cpi.mybatis.mapper.UnderwritingMapper">
 
-	<resultMap type="ph.cpi.rest.api.model.underwriting.Attachment" id="polAttachmentMap">
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="polAttachmentMap">
 	    <result property="policyId" 		column="POLICY_ID"/> 
 		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="attachments" resultMap="assocAttachmentMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Attachment" id="assocAttachmentMap">
 		<result property="fileNo" 			column="FILE_NO"/> 
 		<result property="fileName" 		column="FILE_NAME"/> 
 		<result property="description" 		column="DESCRIPTION"/> 
@@ -24,6 +28,48 @@
 																	#{count, jdbcType=VARCHAR}, 
 																	#{sortKey, jdbcType=VARCHAR}, 
 																	#{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="polEndtMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="endorsements" resultMap="assocEndorsementsMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Endorsements" id="assocEndorsementsMap">
+		<result property="endtCd" 			column="ENDT_CD"/> 
+		<result property="endtTitle" 		column="ENDT_TITLE"/> 
+		<result property="changeTag" 		column="CHANGE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="deductibles" resultMap="assocDeductiblesMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Deductibles" id="assocDeductiblesMap">
+		<result property="coverCd" 			column="D_COVER_CD"/> 
+		<result property="endtCd" 			column="D_ENDT_CD"/> 
+		<result property="endtTitle" 		column="D_ENDT_TITLE"/> 
+		<result property="deductibleCd"     column="D_DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" 	column="D_DEDUCTIBLE_TITLE"/> 
+		<result property="deductibleRt" 	column="D_DEDUCTIBLE_RT"/>
+		<result property="deductibleAmt" 	column="D_DEDUCTIBLE_AMT"/>
+		<result property="deductibleTxt" 	column="D_DEDUCTIBLE_TXT"/>
+		<result property="createUser" 		column="D_CREATE_USER"/> 
+		<result property="createDate" 		column="D_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="D_UPDATE_USER"/> 
+		<result property="updateDate" 		column="D_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolEndt" resultMap="polEndtMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ENDT_PKG.ret_pol_endt(#{policyId, jdbcType=INTEGER},
+														  #{policyNo, jdbcType=VARCHAR},
+														  #{position, jdbcType=VARCHAR}, 
+														  #{count, jdbcType=VARCHAR}, 
+														  #{sortKey, jdbcType=VARCHAR}, 
+														  #{order, jdbcType=VARCHAR}))
 	</select>
 
 </mapper>

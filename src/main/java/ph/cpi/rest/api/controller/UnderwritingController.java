@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
@@ -35,5 +37,11 @@ public class UnderwritingController {
 		return underwritingService.retrievePolAttachment(rpar);
 	}
 	
+	@GetMapping(path="retrievePolEndt")
+	public @ResponseBody RetrievePolEndtResponse retrievePolEndt(RetrievePolEndtRequest rper) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolEndt");
+		logger.info("RetrievePolEndtRequest : " + rper.toString());
+		return underwritingService.retrievePolEndt(rper);
+	}
 
 }

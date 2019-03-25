@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -31,6 +33,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rpaResponse.setPolAttachmentList(underwritingDao.retrievePolAttachmentList(retrievePolAttachmentParams));
 		logger.info("retrievePolAttachmentResponse : " + rpaResponse.toString());
 		return rpaResponse;
+	}
+
+	@Override
+	public RetrievePolEndtResponse retrievePolEndt(RetrievePolEndtRequest rper) throws SQLException {
+		RetrievePolEndtResponse rpeResponse = new RetrievePolEndtResponse();
+		HashMap<String, Object> retrievePolEndtParams = new HashMap<String, Object>();
+		retrievePolEndtParams.put("policyId", rper.getPolicyId());
+		retrievePolEndtParams.put("policyNo", rper.getPolicyNo());
+		
+		rpeResponse.setEndtList(underwritingDao.retrievePolEndtList(retrievePolEndtParams));
+		logger.info("RetrievePolEndtResponse : " + rpeResponse.toString());
+		return rpeResponse;
 	}
 
 }

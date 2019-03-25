@@ -5,8 +5,6 @@ import org.joda.time.DateTime;
 
 @Alias("PolicyAttachment")
 public class Attachment {
-	private Integer policyId;
-	private String policyNo;
 	private Integer fileNo;
 	private String fileName;
 	private String description;
@@ -14,18 +12,7 @@ public class Attachment {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public Integer getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
-	}
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
+	
 	public Integer getFileNo() {
 		return fileNo;
 	}
@@ -70,7 +57,7 @@ public class Attachment {
 	}
 	@Override
 	public String toString() {
-		return "Attachment [policyId=" + policyId + ", policyNo=" + policyNo + ", fileNo=" + fileNo + ", fileName="
+		return "Attachment [fileNo=" + fileNo + ", fileName="
 				+ fileName + ", description=" + description + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}

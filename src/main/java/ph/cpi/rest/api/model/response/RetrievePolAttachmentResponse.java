@@ -1,22 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.Attachment;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolAttachmentResponse {
 	
-	private List<Attachment> polAttachmentList;
+	private Policy polAttachmentList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<Attachment> getPolAttachmentList() {
+	public Policy getPolAttachmentList() {
 		return polAttachmentList;
 	}
-	public void setPolAttachmentList(List<Attachment> polAttachmentList) {
-		this.polAttachmentList = polAttachmentList;
+	public void setPolAttachmentList(Policy policy) {
+		this.polAttachmentList = policy;
 	}
 	public PaginationResponse getPaginationResponse() {
 		if(paginationResponse == null){
