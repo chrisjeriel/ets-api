@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
-import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
@@ -29,16 +28,23 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	
 	@Autowired
 	private PlatformTransactionManager txManager;
-
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteDaoImpl.class);
-	
+
 	@Override
 	public Policy retrievePolicyDeductibles(HashMap<String, Object> params) throws SQLException {
 		Policy policy = sqlSession.selectOne("retrievePolicyDeductibles", params);
 		return policy;
 	}
 
+	@Override
+	public Policy retrievePolicyCoverage(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolCoverage",params);
+		logger.info("retrievePolCoverage DAOImpl : " + policy);
+		return policy;
+	}
+	
 }

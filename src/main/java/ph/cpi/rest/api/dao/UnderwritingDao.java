@@ -6,5 +6,8 @@ import java.util.HashMap;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public interface UnderwritingDao {
+	
 	public Policy retrievePolicyDeductibles(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolicyCoverage(final HashMap<String, Object> params) throws SQLException;
+
 }

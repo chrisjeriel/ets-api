@@ -9,14 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
 public class UnderwritingServiceImpl implements UnderwritingService {
 	@Autowired
-	UnderwritingDao underwrittingDao;
+	UnderwritingDao underwritingDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
 	
@@ -29,11 +31,24 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolDeductiblesParams.put("policyNo", rpdr.getPolicyNo());
 		retrievePolDeductiblesParams.put("coverCd", rpdr.getCoverCd());
 		retrievePolDeductiblesParams.put("endtCd", rpdr.getEndtCd());
-		rpdResponse.setPolicy(underwrittingDao.retrievePolicyDeductibles(retrievePolDeductiblesParams));
+		rpdResponse.setPolicy(underwritingDao.retrievePolicyDeductibles(retrievePolDeductiblesParams));
 		
 		logger.info("retrievePolicyDeductiblesResponse : " + rpdResponse.toString());
 		
 		return rpdResponse;
 	}
-
+	
+	public RetrievePolCoverageResponse retrievePolCoverage(RetrievePolCoverageRequest rpcr) throws SQLException {
+		RetrievePolCoverageResponse rpcResponse = new RetrievePolCoverageResponse();
+		
+		HashMap<String, Object> retrievePolCoverageParams = new HashMap<String, Object>();
+		retrievePolCoverageParams.put("policyId", rpcr.getPolicyId());
+		retrievePolCoverageParams.put("policyNo", rpcr.getPolicyNo());
+		
+		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverage(retrievePolCoverageParams));
+		
+		logger.info("retrievePolCoverageResponse : " + rpcResponse.toString());
+		
+		return rpcResponse;
+	}
 }

@@ -356,7 +356,6 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			HashMap<String, Object> saveQuoteAlopItemParams = new HashMap<String, Object>();
 			saveQuoteAlopItemParams.put("quoteId" , sqair.getQuoteId() );
-			saveQuoteAlopItemParams.put("alopId" , sqair.getAlopId() );
 			saveQuoteAlopItemParams.put("saveAlopItemsList" , sqair.getSaveAlopItemList() );
 			saveQuoteAlopItemParams.put("deleteAlopItemsList" , sqair.getDeleteAlopItemList() );
 			
