@@ -7,6 +7,7 @@ public class SaveQuoteHoldCoverRequest {
 	private String holdCoverYear;
 	private String holdCoverSeqNo;
 	private String holdCoverRevNo;
+	private String optionId;
 	private String periodFrom;
 	private String periodTo;
 	private String compRefHoldCovNo;
@@ -54,6 +55,12 @@ public class SaveQuoteHoldCoverRequest {
 	}
 	public void setHoldCoverRevNo(String holdCoverRevNo) {
 		this.holdCoverRevNo = holdCoverRevNo;
+	}
+	public String getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(String optionId) {
+		this.optionId = optionId;
 	}
 	public String getPeriodFrom() {
 		return periodFrom;
@@ -129,45 +136,11 @@ public class SaveQuoteHoldCoverRequest {
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteHoldCoverRequest [quoteId=");
-		builder.append(quoteId);
-		builder.append(", holdCoverId=");
-		builder.append(holdCoverId);
-		builder.append(", lineCd=");
-		builder.append(lineCd);
-		builder.append(", holdCoverYear=");
-		builder.append(holdCoverYear);
-		builder.append(", holdCoverSeqNo=");
-		builder.append(holdCoverSeqNo);
-		builder.append(", holdCoverRevNo=");
-		builder.append(holdCoverRevNo);
-		builder.append(", periodFrom=");
-		builder.append(periodFrom);
-		builder.append(", periodTo=");
-		builder.append(periodTo);
-		builder.append(", compRefHoldCovNo=");
-		builder.append(compRefHoldCovNo);
-		builder.append(", status=");
-		builder.append(status);
-		builder.append(", reqBy=");
-		builder.append(reqBy);
-		builder.append(", reqDate=");
-		builder.append(reqDate);
-		builder.append(", preparedBy=");
-		builder.append(preparedBy);
-		builder.append(", approvedBy=");
-		builder.append(approvedBy);
-		builder.append(", createUser=");
-		builder.append(createUser);
-		builder.append(", createDate=");
-		builder.append(createDate);
-		builder.append(", updateUser=");
-		builder.append(updateUser);
-		builder.append(", updateDate=");
-		builder.append(updateDate);
-		builder.append("]");
-		return builder.toString();
+		return "SaveQuoteHoldCoverRequest [quoteId=" + quoteId + ", holdCoverId=" + holdCoverId + ", lineCd=" + lineCd
+				+ ", holdCoverYear=" + holdCoverYear + ", holdCoverSeqNo=" + holdCoverSeqNo + ", holdCoverRevNo="
+				+ holdCoverRevNo + ", optionId=" + optionId + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo
+				+ ", compRefHoldCovNo=" + compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy + ", reqDate="
+				+ reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

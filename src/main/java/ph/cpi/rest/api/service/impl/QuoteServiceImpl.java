@@ -52,6 +52,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteOptionAllRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
+import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -92,6 +93,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionAllResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
+import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
 
@@ -749,6 +751,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("holdCoverYear", sqhcr.getHoldCoverYear());
 			saveQuoteHoldCoverParams.put("holdCoverSeqNo", sqhcr.getHoldCoverSeqNo());
 			saveQuoteHoldCoverParams.put("holdCoverRevNo", sqhcr.getHoldCoverRevNo());
+			saveQuoteHoldCoverParams.put("optionId", sqhcr.getOptionId());
 			saveQuoteHoldCoverParams.put("periodFrom", sqhcr.getPeriodFrom());
 			saveQuoteHoldCoverParams.put("periodTo", sqhcr.getPeriodTo());
 			saveQuoteHoldCoverParams.put("compRefHoldCovNo", sqhcr.getCompRefHoldCovNo());
@@ -1132,5 +1135,19 @@ public class QuoteServiceImpl implements QuoteService{
 			optionsResponse.setReturnCode(quoteDao.renumberQuoteOptions(rqds.getQuoteId()));
 		return optionsResponse;
 	}
+	
+	@Override
+	public UpdateHoldCoverStatusResponse updateHoldCoverStatus(UpdateHoldCoverStatusRequest uhcr)
+			throws SQLException {
+		UpdateHoldCoverStatusResponse uhcrResponse = new UpdateHoldCoverStatusResponse();
+		HashMap<String, Object> updateHoldCoverStatusParams = new HashMap<String, Object>();
+		updateHoldCoverStatusParams.put("quoteId", uhcr.getQuoteId());
+		updateHoldCoverStatusParams.put("holdCoverId", uhcr.getHoldCoverId());
+		uhcrResponse.setReturnCode(quoteDao.updateHoldCoverStatus(updateHoldCoverStatusParams));
+		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
+		
+		return uhcrResponse;
+	}
+	
 
 }
