@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ph.cpi.mybatis.mapper.UnderwritingMapper">
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="PolicyMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Deductibles" id="PolDeductiblesMap">
+		<result property="coverCd"			column="COVER_CD" />
+		<result property="coverCdDesc"		column="COVER_DESC"/>
+		<result property="endtCd"			column="ENDT_CD"/>
+		<result property="endtTitle"		column="ENDT_TITLE"/>
+		<result property="deductibleCd"		column="DED_CD"/>
+		<result property="deductibleTitle"	column="DED_TITLE"/>
+		<result property="deductibleRt"		column="DED_RT"/>
+		<result property="deductibleAmt"	column="DED_AMT"/>
+		<result property="deductibleTxt"	column="DED_TXT"/>
+		<result property="createUser"		column="DED_CREATE_USER"/>
+		<result property="createDate"		column="DED_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"		column="DED_UPDATE_USER"/>
+		<result property="updateDate"		column="DED_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolicyDeductibles" resultMap="PolicyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE (POL_DEDUCTIBLES_PKG.ret_pol_deductibles(#{policyId,jdbcType=VARCHAR},#{policyNo,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+</mapper>
