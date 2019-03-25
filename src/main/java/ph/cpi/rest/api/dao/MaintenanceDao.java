@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
+import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -58,4 +59,5 @@ public interface MaintenanceDao {
 	
 	public List<Treaty> retrieveMtnTreaty() throws SQLException;
 	public List<Reports> retrieveMtnReports(final HashMap<String, Object> params) throws SQLException;
+	public List<ReportsParam> retrieveMtnReportsParam(final HashMap<String, Object> params) throws SQLException;
 }

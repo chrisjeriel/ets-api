@@ -703,4 +703,27 @@
     <select id="retrieveMtnTreaty" resultMap="treatyMap">
     	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(NULL,NULL,NULL,NULL))
     </select>
+    
+     <resultMap type="ph.cpi.rest.api.model.maintenance.ReportsParam" id="reportsParamMap">
+    	<result property="reportId" 		column="REPORT_ID"/>
+    	<result property="title" 		    column="TITLE"/>
+    	<result property="text" 		    column="TEXT"/>
+    	<result property="lineCd" 			column="LINE_CD"/>
+    	<result property="remarks" 		    column="REMARKS"/>
+    	<result property="createUser"		column="CREATE_USER"/>
+		<result property="createDate"       column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"       column="UPDATE_USER"/>
+		<result property="updateDate"	    column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retrieveMtnReportsParam" resultMap="reportsParamMap" parameterType="java.util.Map">
+    	SELECT* FROM TABLE(MTN_REP_PARAM_PKG.ret_mtn_rep_param(#{reportId, jdbcType=VARCHAR},null,null,null,null))
+    </select>
+    
+    
+    
+    
+    
+    
+    
 </mapper>

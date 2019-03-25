@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnReportsParamRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
@@ -57,6 +58,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnReportsParamResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
@@ -579,6 +581,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		rmreResponse.setReports(maintenanceDao.retrieveMtnReports(retrieveMtnReportsParams));
 		return rmreResponse;
+	}
+
+	@Override
+	public RetrieveMtnReportsParamResponse retrieveMtnReportsParam(RetrieveMtnReportsParamRequest rmrp)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnReportsParamResponse rmrpResponse = new RetrieveMtnReportsParamResponse();
+		HashMap<String, Object> retrieveMtnReportsParamParams = new HashMap<String, Object>();
+		retrieveMtnReportsParamParams.put("reportId", rmrp.getReportId());
+		rmrpResponse.setReportsParam(maintenanceDao.retrieveMtnReportsParam(retrieveMtnReportsParamParams));
+		return rmrpResponse;
+		
 	}
 	
 }

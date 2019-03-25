@@ -1,0 +1,55 @@
+package ph.cpi.rest.api.dao.impl;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.underwriting.CATPeril;
+import ph.cpi.rest.api.model.underwriting.Item;
+
+@Component
+public class UnderwritingDaoImpl implements UnderwritingDao {
+	
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
+	
+	@Value("${spring.datasource.username}")
+	private String username;
+	
+	@Value("${spring.datasource.password}")
+	private String password;
+	
+	@Autowired
+	private PlatformTransactionManager txManager;
+
+	@Autowired
+	private SqlSession sqlSession;
+	
+	private static final Logger logger = LoggerFactory.getLogger(UnderwritingDaoImpl.class);
+
+	@Override
+	public Item retrievePolItem(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Item polItem = sqlSession.selectOne("retrievePolItem", params);
+		logger.info("retrievePolItem DAOImpl : " + polItem);
+		return polItem;
+	}
+
+	@Override
+	public CATPeril retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		CATPeril polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
+		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
+		return polCATPeril;
+	}
+
+}

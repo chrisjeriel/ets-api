@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="ph.cpi.mybatis.mapper.UnderwritingMapper">
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Item" id="itemMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<result property="projId" 			column="PROJ_ID"/> 
+		<result property="risk" 			column="RISK_ID"/> 
+		<result property="riskName" 		column="RISK_NAME"/> 
+		<result property="itemNo" 			column="ITEM_NO"/> 
+		<result property="quantity" 		column="QUANTITY"/> 
+		<result property="itemDesc" 		column="ITEM_DESC"/> 
+		<result property="makeYear" 		column="MAKE_YEAR"/> 
+		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/> 
+		<result property="sumInsured" 		column="SUM_INSURED"/> 
+		<result property="stockType" 		column="STOCK_TYPE"/> 
+	    <result property="serialNo"         column="SERIAL_NO"/> 
+		<result property="location" 	    column="LOCATION"/> 
+		<result property="chamberNo" 		column="CHAMBER_NO"/> 
+		<result property="noClaimPd" 		column="NO_CLAIM_PD"/> 
+		<result property="ipl" 	   			column="IPL"/> 
+		<result property="relativeImp" 		column="RELATIVE_IMP"/> 
+		<result property="standbyUnit" 		column="STANDBY_UNIT"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+		<resultMap type="ph.cpi.rest.api.model.underwriting.CATPeril" id="catPerilMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<result property="catPrlId" 	    column="CAT_PERIL_ID"/> 
+		<result property="pctShrPrm" 	    column="PCT_SHARE_PREM"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+
+	<select id="retrievePolItem" resultMap="itemMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ITEM_PKG.ret_pol_itm(#{policyId, jdbcType=VARCHAR},
+													     #{policyNo, jdbcType=VARCHAR}, 
+													     null, 
+													     null, 
+													     null, 
+													     null))
+	</select>
+
+	<select id="retrievePolCATPeril" resultMap="catPerilMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_CAT_PERIL_PKG.ret_pol_cat_prl(#{policyId, jdbcType=VARCHAR},
+													     #{policyNo, jdbcType=VARCHAR}, 
+													     null, 
+													     null, 
+													     null, 
+													     null))
+	</select>
+
+</mapper>

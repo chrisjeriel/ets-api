@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
+import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -239,6 +240,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public List<Reports> retrieveMtnReports(HashMap<String, Object> params) throws SQLException {
 		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
 		return reports;
+	}
+
+	@Override
+	public List<ReportsParam> retrieveMtnReportsParam(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<ReportsParam> reportsParam = sqlSession.selectList("retrieveMtnReportsParam", params);
+		return reportsParam;
 	}
 	
 }
