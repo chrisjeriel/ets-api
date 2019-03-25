@@ -22,6 +22,9 @@ public class Alop {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private AlopItem alopItem;
+	
+	
 	public Integer getInsId() {
 		return insId;
 	}
@@ -117,6 +120,12 @@ public class Alop {
 	}
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
+	}
+	public AlopItem getAlopItem() {
+		return alopItem;
+	}
+	public void setAlopItem(AlopItem alopItem) {
+		this.alopItem = alopItem;
 	}
 	
 	@Override

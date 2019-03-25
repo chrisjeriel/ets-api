@@ -5,6 +5,7 @@ public class Policy {
 	private Integer policyId;
 	private String policyNo;
 	private Alop alop;
+	
 	public Integer getPolicyId() {
 		return policyId;
 	}

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
+import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -30,5 +32,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolAlop");
 		logger.info("RetrievePolAlopRequest : " + rpap.toString());
 		return underwritingService.retrievePolAlop(rpap);
+	}
+	
+	@GetMapping(path="retrievePolAlopItem")
+	public @ResponseBody RetrievePolAlopItemResponse retrievePolAlopItem(RetrievePolAlopItemRequest rpap) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolAlopItem");
+		logger.info("RetrievePolAlopItemRequest : " + rpap.toString());
+		return underwritingService.retrievePolAlopItem(rpap);
 	}
 }
