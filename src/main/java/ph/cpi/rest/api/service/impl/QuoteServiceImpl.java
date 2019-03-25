@@ -1130,6 +1130,13 @@ public class QuoteServiceImpl implements QuoteService{
 	}
 
 	@Override
+	public RenumberQuoteOptionsResponse renumberQuoteOptions(RenumberQuoteOptionsRequest rqds) throws SQLException {
+		RenumberQuoteOptionsResponse optionsResponse = new RenumberQuoteOptionsResponse();
+			optionsResponse.setReturnCode(quoteDao.renumberQuoteOptions(rqds.getQuoteId()));
+		return optionsResponse;
+	}
+	
+	@Override
 	public UpdateHoldCoverStatusResponse updateHoldCoverStatus(UpdateHoldCoverStatusRequest uhcr)
 			throws SQLException {
 		UpdateHoldCoverStatusResponse uhcrResponse = new UpdateHoldCoverStatusResponse();
@@ -1142,11 +1149,5 @@ public class QuoteServiceImpl implements QuoteService{
 		return uhcrResponse;
 	}
 	
-	@Override
-	public RenumberQuoteOptionsResponse renumberQuoteOptions(RenumberQuoteOptionsRequest rqds) throws SQLException {
-		RenumberQuoteOptionsResponse optionsResponse = new RenumberQuoteOptionsResponse();
-			optionsResponse.setReturnCode(quoteDao.renumberQuoteOptions(rqds.getQuoteId()));
-		return optionsResponse;
-	}
 
 }
