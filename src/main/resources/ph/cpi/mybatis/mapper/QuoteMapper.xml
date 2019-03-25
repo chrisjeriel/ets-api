@@ -1704,6 +1704,7 @@
 				#{quoteId,jdbcType=INTEGER},
 				#{holdCoverId,jdbcType=INTEGER}
 			);
+	    END;
 	</update>
 	
 	<update id="renumberQuoteOptions" parameterType="String">
