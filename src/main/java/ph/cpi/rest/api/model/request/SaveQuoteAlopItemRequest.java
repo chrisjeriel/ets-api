@@ -6,7 +6,6 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveQuoteAlopItemRequest {
 	private Integer quoteId;
-	private Integer alopId;
 	private List<AlopItem> saveAlopItemList;
 	private List<AlopItem> deleteAlopItemList;
 	public Integer getQuoteId() {
@@ -14,12 +13,6 @@ public class SaveQuoteAlopItemRequest {
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
-	}
-	public Integer getAlopId() {
-		return alopId;
-	}
-	public void setAlopId(Integer alopId) {
-		this.alopId = alopId;
 	}
 	public List<AlopItem> getSaveAlopItemList() {
 		return saveAlopItemList;
@@ -35,7 +28,7 @@ public class SaveQuoteAlopItemRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", alopId=" + alopId + ", saveAlopItemList="
+		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", saveAlopItemList="
 				+ saveAlopItemList + ", deleteAlopItemList=" + deleteAlopItemList + "]";
 	}
 	
@@ -51,10 +44,10 @@ class AlopItem{
 	private String description;
 	private String importance;
 	private String lossMin;
-	private String createUser;
-	private String createDate;
-	private String updateUser;
-	private String updateDate;
+	private String createUserItem;
+	private String createDateItem;
+	private String updateUserItem;
+	private String updateDateItem;
 	
 	public Integer getOptionId() {
 		return optionId;
@@ -92,35 +85,35 @@ class AlopItem{
 	public void setLossMin(String lossMin) {
 		this.lossMin = lossMin;
 	}
-	public String getCreateUser() {
-		return createUser;
+	public String getCreateUserItem() {
+		return createUserItem;
 	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
+	public void setCreateUserItem(String createUserItem) {
+		this.createUserItem = createUserItem;
 	}
-	public String getCreateDate() {
-		return createDate;
+	public String getCreateDateItem() {
+		return createDateItem;
 	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setCreateDateItem(String createDateItem) {
+		this.createDateItem = createDateItem;
 	}
-	public String getUpdateUser() {
-		return updateUser;
+	public String getUpdateUserItem() {
+		return updateUserItem;
 	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
+	public void setUpdateUserItem(String updateUserItem) {
+		this.updateUserItem = updateUserItem;
 	}
-	public String getUpdateDate() {
-		return updateDate;
+	public String getUpdateDateItem() {
+		return updateDateItem;
 	}
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdateDateItem(String updateDateItem) {
+		this.updateDateItem = updateDateItem;
 	}
 	@Override
 	public String toString() {
 		return "AlopItem [optionId=" + optionId + ", itemNo=" + itemNo + ", quantity=" + quantity + ", description="
-				+ description + ", importance=" + importance + ", lossMin=" + lossMin + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ description + ", importance=" + importance + ", lossMin=" + lossMin + ", createUserItem=" + createUserItem
+				+ ", createDateItem=" + createDateItem + ", updateUserItem=" + updateUserItem + ", updateDateItem=" + updateDateItem + "]";
 	}
 	
 }

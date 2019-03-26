@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="ph.cpi.mybatis.mapper.UnderwritingMapper">
-
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.InwPolBalance" id="inwPolBalMap">
 		<result property = "instNo" 			column = "INST_NO"/>
@@ -56,6 +55,209 @@
 	<select id="retrievePolCoInsurance" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INSURANCE_PKG.ret_pol_insurance(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
+
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="PolicyMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
+		<association property="project" 		resultMap="projectMap"></association>
+	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Deductibles" id="PolDeductiblesMap">
+		<result property="coverCd"			column="COVER_CD" />
+		<result property="coverCdDesc"		column="COVER_DESC"/>
+		<result property="endtCd"			column="ENDT_CD"/>
+		<result property="endtTitle"		column="ENDT_TITLE"/>
+		<result property="deductibleCd"		column="DED_CD"/>
+		<result property="deductibleTitle"	column="DED_TITLE"/>
+		<result property="deductibleRt"		column="DED_RT"/>
+		<result property="deductibleAmt"	column="DED_AMT"/>
+		<result property="deductibleTxt"	column="DED_TXT"/>
+		<result property="createUser"		column="DED_CREATE_USER"/>
+		<result property="createDate"		column="DED_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"		column="DED_UPDATE_USER"/>
+		<result property="updateDate"		column="DED_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Project" id="projectMap">
+		<result property="projId" 		column="PROJ_ID"/>
+		<result property="riskId" 		column="RISK_ID"/>
+		<result property="riskName" 	column="RISK_NAME"/>
+		<association property="coverage" resultMap="coverageMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Coverage" id="coverageMap">
+		<result property="sectionISi" 			column="SECTION_I_SI"/>
+		<result property="sectionIISi" 			column="SECTION_II_SI"/>
+		<result property="sectionIIISi" 		column="SECTION_III_SI"/>
+		<result property="totalSi" 				column="TOTAL_SI"/>
+		<result property="sectionIPrem" 		column="SECTION_I_PREM"/>
+		<result property="sectionIIPrem" 		column="SECTION_II_PREM"/>
+		<result property="sectionIIIPrem" 		column="SECTION_III_PREM"/>
+		<result property="totalPrem" 			column="TOTAL_PREM"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="currencyRt" 			column="CURRENCY_RT"/>
+		<result property="pctShare" 			column="PCT_SHARE"/>
+		<result property="pctPml" 				column="PCT_PML"/>
+		<result property="totalValue" 			column="TOTAL_VALUE"/>
+		<result property="remarks" 				column="REMARKS"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="sectionCovers" resultMap ="sectionCoversMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.SectionCovers" id="sectionCoversMap">
+		<result property="lineCd" 					column="LINE_CD"/>
+		<result property="lineCdDesc" 				column="LINE_DESC"/>
+		<result property="section" 					column="SECTION"/>
+		<result property="coverCd" 					column="COVER_CD"/>
+		<result property="description" 				column="DESCRIPTION"/>
+		<result property="bulletNo" 				column="BULLET_NO"/>
+		<result property="sumInsured" 				column="SUM_INSURED"/>
+		<result property="premRt" 					column="PREM_RT"/>
+		<result property="premAmt" 					column="PREM_AMT"/>
+		<result property="addSi" 					column="ADD_SI"/>
+		<result property="createUserSec" 			column="CREATE_USER_SEC"/>
+		<result property="createDateSec" 			column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUserSec" 			column="UPDATE_USER_SEC"/>
+		<result property="updateDateSec" 			column="UPDATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	
+	
+	<select id="retrievePolicyDeductibles" resultMap="PolicyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE (POL_DEDUCTIBLES_PKG.ret_pol_deductibles(#{policyId,jdbcType=VARCHAR},#{policyNo,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
+	<select id="retrievePolCoverage" resultMap="PolicyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_COVERAGE_PKG.ret_pol_cover(#{policyId, jdbcType=VARCHAR},#{policyNo, jdbcType=VARCHAR},#{position, jdbcType=VARCHAR}, 
+																	   #{count, jdbcType=VARCHAR}, 
+																	   #{sortKey, jdbcType=VARCHAR}, 
+																	   #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="polAttachmentMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="attachments" resultMap="assocAttachmentMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Attachment" id="assocAttachmentMap">
+		<result property="fileNo" 			column="FILE_NO"/> 
+		<result property="fileName" 		column="FILE_NAME"/> 
+		<result property="description" 		column="DESCRIPTION"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolAttachment" resultMap="polAttachmentMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ATTACHMENT_PKG.ret_pol_attchmnt(#{policyId, jdbcType=INTEGER},
+																	#{policyNo, jdbcType=VARCHAR},
+																	#{position, jdbcType=VARCHAR}, 
+																	#{count, jdbcType=VARCHAR}, 
+																	#{sortKey, jdbcType=VARCHAR}, 
+																	#{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="polEndtMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="endorsements" resultMap="assocEndorsementsMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Endorsements" id="assocEndorsementsMap">
+		<result property="endtCd" 			column="ENDT_CD"/> 
+		<result property="endtTitle" 		column="ENDT_TITLE"/> 
+		<result property="changeTag" 		column="CHANGE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="deductibles" resultMap="assocDeductiblesMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Deductibles" id="assocDeductiblesMap">
+		<result property="coverCd" 			column="D_COVER_CD"/> 
+		<result property="endtCd" 			column="D_ENDT_CD"/> 
+		<result property="endtTitle" 		column="D_ENDT_TITLE"/> 
+		<result property="deductibleCd"     column="D_DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" 	column="D_DEDUCTIBLE_TITLE"/> 
+		<result property="deductibleRt" 	column="D_DEDUCTIBLE_RT"/>
+		<result property="deductibleAmt" 	column="D_DEDUCTIBLE_AMT"/>
+		<result property="deductibleTxt" 	column="D_DEDUCTIBLE_TXT"/>
+		<result property="createUser" 		column="D_CREATE_USER"/> 
+		<result property="createDate" 		column="D_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="D_UPDATE_USER"/> 
+		<result property="updateDate" 		column="D_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolEndt" resultMap="polEndtMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ENDT_PKG.ret_pol_endt(#{policyId, jdbcType=INTEGER},
+														  #{policyNo, jdbcType=VARCHAR},
+														  #{position, jdbcType=VARCHAR}, 
+														  #{count, jdbcType=VARCHAR}, 
+														  #{sortKey, jdbcType=VARCHAR}, 
+														  #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Item" id="itemMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<result property="projId" 			column="PROJ_ID"/> 
+		<result property="riskId" 			column="RISK_ID"/> 
+		<result property="riskName" 		column="RISK_NAME"/> 
+		<result property="itemNo" 			column="ITEM_NO"/> 
+		<result property="quantity" 		column="QUANTITY"/> 
+		<result property="itemDesc" 		column="ITEM_DESC"/> 
+		<result property="makeYear" 		column="MAKE_YEAR"/> 
+		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/> 
+		<result property="sumInsured" 		column="SUM_INSURED"/> 
+		<result property="stockType" 		column="STOCK_TYPE"/> 
+	    <result property="serialNo"         column="SERIAL_NO"/> 
+		<result property="location" 	    column="LOCATION"/> 
+		<result property="chamberNo" 		column="CHAMBER_NO"/> 
+		<result property="noClaimPd" 		column="NO_CLAIM_PD"/> 
+		<result property="ipl" 	   			column="IPL"/> 
+		<result property="relativeImp" 		column="RELATIVE_IMP"/> 
+		<result property="standbyUnit" 		column="STANDBY_UNIT"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.CATPeril" id="catPerilMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<result property="catPrlId" 	    column="CAT_PERIL_ID"/> 
+		<result property="pctShrPrm" 	    column="PCT_SHARE_PREM"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+	</resultMap>
+
+	<select id="retrievePolItem" resultMap="itemMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ITEM_PKG.ret_pol_itm(#{policyId, jdbcType=VARCHAR},
+													     #{policyNo, jdbcType=VARCHAR}, 
+													     null, 
+													     null, 
+													     null, 
+													     null))
+	</select>
+
+	<select id="retrievePolCATPeril" resultMap="catPerilMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_CAT_PERIL_PKG.ret_pol_cat_prl(#{policyId, jdbcType=VARCHAR},
+													     #{policyNo, jdbcType=VARCHAR}, 
+													     null, 
+													     null, 
+													     null, 
+													     null))
+	</select>
+
 </mapper>
-        

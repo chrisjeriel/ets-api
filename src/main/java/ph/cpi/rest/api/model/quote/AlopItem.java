@@ -9,10 +9,10 @@ public class AlopItem {
 	private String description;
 	private String importance;
 	private String lossMin;
-	private String createUser;
-	private DateTime createDate;
-	private String updateUser;
-	private DateTime updateDate;
+	private String createUserItem;
+	private DateTime createDateItem;
+	private String updateUserItem;
+	private DateTime updateDateItem;
 
 	public Integer getItemNo() {
 		return itemNo;
@@ -44,35 +44,35 @@ public class AlopItem {
 	public void setLossMin(String lossMin) {
 		this.lossMin = lossMin;
 	}
-	public String getCreateUser() {
-		return createUser;
+	public String getCreateUserItem() {
+		return createUserItem;
 	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
+	public void setCreateUserItem(String createUserItem) {
+		this.createUserItem = createUserItem;
 	}
-	public DateTime getCreateDate() {
-		return createDate;
+	public DateTime getCreateDateItem() {
+		return createDateItem;
 	}
-	public void setCreateDate(DateTime createDate) {
-		this.createDate = createDate;
+	public void setCreateDateItem(DateTime createDateItem) {
+		this.createDateItem = createDateItem;
 	}
-	public String getUpdateUser() {
-		return updateUser;
+	public String getUpdateUserItem() {
+		return updateUserItem;
 	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
+	public void setUpdateUserItem(String updateUserItem) {
+		this.updateUserItem = updateUserItem;
 	}
-	public DateTime getUpdateDate() {
-		return updateDate;
+	public DateTime getUpdateDateItem() {
+		return updateDateItem;
 	}
-	public void setUpdateDate(DateTime updateDate) {
-		this.updateDate = updateDate;
+	public void setUpdateDateItem(DateTime updateDateItem) {
+		this.updateDateItem = updateDateItem;
 	}
 	@Override
 	public String toString() {
 		return "AlopItem [itemNo=" + itemNo + ", quantity=" + quantity + ", description=" + description
-				+ ", importance=" + importance + ", lossMin=" + lossMin + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", importance=" + importance + ", lossMin=" + lossMin + ", createUserItem=" + createUserItem + ", createDateItem="
+				+ createDateItem + ", updateUserItem=" + updateUserItem + ", updateDateItem=" + updateDateItem + "]";
 	}
 	
 }

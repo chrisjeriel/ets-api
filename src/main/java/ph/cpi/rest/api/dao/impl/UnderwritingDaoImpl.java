@@ -7,13 +7,29 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.underwriting.CATPeril;
+import ph.cpi.rest.api.model.underwriting.Item;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
-public class UnderwritingDaoImpl implements UnderwritingDao{
+public class UnderwritingDaoImpl implements UnderwritingDao {
+	
+	@Value("${spring.datasource.url}")
+	private String dbUrl;
+	
+	@Value("${spring.datasource.username}")
+	private String username;
+	
+	@Value("${spring.datasource.password}")
+	private String password;
+	
+	@Autowired
+	private PlatformTransactionManager txManager;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -31,5 +47,45 @@ public class UnderwritingDaoImpl implements UnderwritingDao{
 		Policy pol =  sqlSession.selectOne("retrievePolCoInsurance",params);
 		return pol;
 	}
+	
+	@Override
+	public Policy retrievePolicyDeductibles(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolicyDeductibles", params);
+		return policy;
+	}
 
+	@Override
+	public Policy retrievePolicyCoverage(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolCoverage",params);
+		logger.info("retrievePolCoverage DAOImpl : " + policy);
+		return policy;
+	}
+	
+	@Override
+	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException{
+		Policy polAttachmentList = sqlSession.selectOne("retrievePolAttachment", params);
+		return polAttachmentList;
+	}
+
+	@Override
+	public Policy retrievePolEndtList(HashMap<String, Object> params) throws SQLException {
+		Policy polEndtList = sqlSession.selectOne("retrievePolEndt", params);
+		return polEndtList;
+	}
+	
+	@Override
+	public Item retrievePolItem(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Item polItem = sqlSession.selectOne("retrievePolItem", params);
+		logger.info("retrievePolItem DAOImpl : " + polItem);
+		return polItem;
+	}
+
+	@Override
+	public CATPeril retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		CATPeril polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
+		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
+		return polCATPeril;
+	}	
 }
