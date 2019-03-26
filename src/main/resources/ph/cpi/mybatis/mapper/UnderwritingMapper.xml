@@ -31,11 +31,71 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyMap">
 		<result property="policyId" 			column="POLICY_ID"/>
 		<result property="policyNo" 			column="POLICY_NO"/>
-	
+		<result property="lineCd" 				column="LINE_CD"/>
+		<result property="lineCdDesc" 			column="LINE_DESC"/>
+		<result property="polYear" 				column="POL_YEAR"/>
+		<result property="polSeqNo" 			column="POL_SEQ_NO"/>
+		<result property="cedingId" 			column="CEDING_ID"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>
+		<result property="coSeriesNo" 			column="CO_SERIES_NO"/>
+		<result property="altNo" 				column="ALT_NO"/>
+		<result property="cessionId" 			column="CESSION_ID"/>
+		<result property="cessionDesc" 			column="CESSION_DESC"/>
+		<result property="lineClassCd" 			column="LINE_CLASS_CD"/>
+		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="quoteId" 				column="QUOTE_ID"/>
+		<result property="quotationNo" 			column="QUOTATION_NO"/>
+		<result property="holdCoverNo" 			column="HOLD_COV_NO"/>
+		<result property="status" 				column="STATUS"/>
+		<result property="statusDesc" 			column="STATUS_DESC"/>
+		<result property="coRefNo" 				column="CO_REF_NO"/>
+		<result property="reinsurerId" 			column="REINSURER_ID"/>
+		<result property="reinsurerName" 		column="CEDING_NAME"/>
+		<result property="riBinderNo" 			column="RI_BINDER_NO"/>
+		<result property="mbiRefNo" 			column="MBI_REF_NO"/>
+		<result property="policyIdOc" 			column="POLICY_ID_OC"/>
+		<result property="openPolicyNo"			column="OC_POLICY_NO"/>
+		<result property="refOpenPolNo" 		column="REF_OPEN_POL_NO"/>
+		<result property="intmId" 				column="INTM_ID"/>
+		<result property="intmName" 			column="INTM_NAME"/>
+		<result property="principalId" 			column="PRIN_ID"/>
+		<result property="principalName" 		column="INSURED_NAME"/>
+		<result property="contractorId" 		column="CONTRACTOR_ID"/>
+		<result property="contractorName" 		column="INSURED_NAME"/>
+		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lapseFrom" 			column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lapseTo" 				column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maintenanceFrom" 		column="MAINTENANCE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maintenanceTo" 		column="MAINTENANCE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDate" 				column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="distDate" 			column="DIST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="currencyRt" 			column="CURRENCY_RT"/>
+		<result property="bookedTag" 			column="BOOKED_TAG"/>
+		<result property="govtTag" 				column="GOVT_TAG"/>
+		<result property="openCoverTag" 		column="OPEN_COVER_TAG"/>
+		<result property="holdCoverTag" 		column="HOLD_COVER_TAG"/>
+		<result property="declarationTag" 		column="DECLARATION_TAG"/>
+		<result property="minDepTag" 			column="MIN_DEP_TAG"/>
+		<result property="altTag" 				column="ALT_TAG"/>
+		<result property="specialPolicyTag" 	column="SPECIAL_POLICY_TAG"/>
+		<result property="instTag" 				column="INST_TAG"/>
+		<result property="extensionTag" 		column="EXTENSION_TAG"/>
+		<result property="excludeDistTag" 		column="EXCLUDE_DIST_TAG"/>
+		<result property="wordings" 			column="WORDINGS"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
+		<association property="alop" 			resultMap="assocAlop"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
@@ -80,6 +140,33 @@
 		<result property="projId" 		column="PROJ_ID"/>
 		<result property="riskId" 		column="RISK_ID"/>
 		<result property="riskName" 	column="RISK_NAME"/>
+		<result property="riskName" 	column="RISK_NAME"/>
+		<result property="regionCd" 	column="REGION_CD"/>
+		<result property="regionDesc" 	column="REGION_DESC"/>
+		<result property="provinceCd" 	column="PROVINCE_CD"/>
+		<result property="provinceDesc" column="PROVINCE_DESC"/>
+		<result property="cityCd" 		column="CITY_CD"/>
+		<result property="cityDesc" 	column="CITY_DESC"/>
+		<result property="districtCd" 	column="DISTRICT_CD"/>
+		<result property="districtDesc" column="DISTRICT_DESC"/>
+		<result property="blockCd" 		column="BLOCK_CD"/>
+		<result property="blockDesc" 	column="BLOCK_DESC"/>
+		<result property="latitude" 	column="LATITUDE"/>
+		<result property="longitude" 	column="LONGITUDE"/>
+		<result property="totalSi" 		column="TOTAL_SI"/>
+		<result property="objectId" 	column="OBJECT_ID"/>
+		<result property="objectDesc" 	column="OBJECT_DESC"/>
+		<result property="site" 		column="SITE"/>
+		<result property="duration" 	column="DURATION"/>
+		<result property="testing" 		column="TESTING"/>
+		<result property="ipl" 			column="IPL"/>
+		<result property="timeExc" 		column="TIME_EXC"/>
+		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>
+		<result property="createUser" 	column="PRJ_CREATE_USER"/>
+		<result property="createDate" 	column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="PRJ_UPDATE_USER"/>
+		<result property="updateDate" 	column="PRJ_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
 		<association property="coverage" resultMap="coverageMap"></association>
 	</resultMap>
 	
@@ -256,19 +343,13 @@
 	</select>
 	
 	<select id="retrievePolGenInfo" resultMap="policyMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(POL_CAT_PERIL_PKG.ret_pol_cat_prl(#{policyId, jdbcType=VARCHAR},
-													     #{policyNo, jdbcType=VARCHAR}, 
-													     null, 
-													     null, 
-													     null, 
-													     null))
+			SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_gen_info(#{policyId, jdbcType=INTEGER},
+													     		  #{policyNo, jdbcType=VARCHAR}, 
+													     	      null, 
+													     		  null, 
+													     		  null, 
+													     		  null))
 	</select>
-
-	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="polAlopMap">
-		<result property="policyId" 			column="POLICY_ID"/> 
-		<result property="policyNo" 		column="POLICY_NO"/> 
-		<association property="alop" 	resultMap="assocAlop"/>
-	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Alop" id="assocAlop">
 		<result property="insId" column="INS_ID"/>
@@ -303,7 +384,7 @@
 		
 	</resultMap>
 	
-	<select id="retrievePolAlop" resultMap="polAlopMap" parameterType="java.util.Map">
+	<select id="retrievePolAlop" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_ALOP_PKG.ret_pol_alop(#{policyId, jdbcType=INTEGER}, 
 													  #{policyNo, jdbcType=VARCHAR},
 																	  null, 
@@ -312,7 +393,7 @@
 																	  null))
 	</select>
 	
-	<select id="retrievePolAlopItem" resultMap="polAlopMap" parameterType="java.util.Map">
+	<select id="retrievePolAlopItem" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_ALOP_ITEM_PKG.ret_pol_alop_item(#{policyId, jdbcType=INTEGER},
 			#{policyNo, jdbcType=VARCHAR}, null, null, null, null))
 	</select>
