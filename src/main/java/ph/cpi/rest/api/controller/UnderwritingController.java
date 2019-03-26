@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
@@ -33,6 +36,7 @@ import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
@@ -106,6 +110,13 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolGenInfo");
 		logger.info("RetrievePolGenInfo : " + rpgip.toString());
 		return underwritingService.retrievePolGenInfo(rpgip);
+	}
+		
+	@PostMapping(path="savePolAttachment")
+	public @ResponseBody SavePolAttachmentResponse savePolAttachment(@RequestBody SavePolAttachmentRequest spar) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolAttachment");
+		logger.info("SavePolAttachmentRequest : " + spar.toString());
+		return underwritingService.savePolAttachments(spar);
 	}
 
 	@GetMapping(path="retrievePolAlop")
