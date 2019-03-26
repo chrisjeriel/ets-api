@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnReportsParamRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
@@ -59,6 +60,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnReportsParamResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
@@ -283,6 +285,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveRefCode");
 		logger.info("RetrieveRefCodeRequest : " + rrcr.toString());
 		return maintenanceService.retrieveRefCode(rrcr);
+	}
+	
+	@GetMapping(path="retrieveMtnReportsParam")
+	public @ResponseBody RetrieveMtnReportsParamResponse retrieveMtnReportsParam(RetrieveMtnReportsParamRequest rmrp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnReportsParam");
+		logger.info("RetrieveMtnReportsParam : " + rmrp.toString());
+		return maintenanceService.retrieveMtnReportsParam(rmrp);
 	}
 
 }

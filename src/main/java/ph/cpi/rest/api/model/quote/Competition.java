@@ -16,6 +16,10 @@ public class Competition {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String advWordCreateUser;
+	private DateTime advWordCreateDate;
+	private String advWordUpdateUser;
+	private DateTime advWordUpdateDate;
 	
 	public Integer getQuoteId() {
 		return quoteId;
@@ -95,12 +99,38 @@ public class Competition {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getAdvWordCreateUser() {
+		return advWordCreateUser;
+	}
+	public void setAdvWordCreateUser(String advWordCreateUser) {
+		this.advWordCreateUser = advWordCreateUser;
+	}
+	public DateTime getAdvWordCreateDate() {
+		return advWordCreateDate;
+	}
+	public void setAdvWordCreateDate(DateTime advWordCreateDate) {
+		this.advWordCreateDate = advWordCreateDate;
+	}
+	public String getAdvWordUpdateUser() {
+		return advWordUpdateUser;
+	}
+	public void setAdvWordUpdateUser(String advWordUpdateUser) {
+		this.advWordUpdateUser = advWordUpdateUser;
+	}
+	public DateTime getAdvWordUpdateDate() {
+		return advWordUpdateDate;
+	}
+	public void setAdvWordUpdateDate(DateTime advWordUpdateDate) {
+		this.advWordUpdateDate = advWordUpdateDate;
+	}
 	
 	@Override
 	public String toString() {
 		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="
 				+ cedingName + ", cedingRepId=" + cedingRepId + ", cedingRepName=" + cedingRepName + ", position="
 				+ position + ", advOption=" + advOption + ", wordings=" + wordings + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", advWordCreateUser=" + advWordCreateUser + ", advWordCreateDate=" + advWordCreateDate
+				+ ", advWordUpdateUser=" + advWordUpdateUser + ", advWordUpdateDate=" + advWordUpdateDate + "]";
 	}
 }

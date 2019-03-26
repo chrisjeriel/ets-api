@@ -8,7 +8,7 @@ public class Alop {
 
 	//private AlopItem alopItem;
 	
-	private Integer optionId;
+	
 	private Integer insuredId;
 	private String insuredName;
 	private String insuredDesc;
@@ -18,7 +18,7 @@ public class Alop {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private List<AlopDetails> alopDetails;
+	
 	
 	
 //	public AlopItem getAlopItem() {
@@ -27,12 +27,7 @@ public class Alop {
 //	public void setAlopItem(AlopItem alopItem) {
 //		this.alopItem = alopItem;
 //	}
-	public Integer getOptionId() {
-		return optionId;
-	}
-	public void setOptionId(Integer optionId) {
-		this.optionId = optionId;
-	}
+	
 	public Integer getInsuredId() {
 		return insuredId;
 	}
@@ -64,12 +59,6 @@ public class Alop {
 		this.insuredBusiness = insuredBusiness;
 	}
 	
-	public List<AlopDetails> getAlopDetails() {
-		return alopDetails;
-	}
-	public void setAlopDetails(List<AlopDetails> alopDetails) {
-		this.alopDetails = alopDetails;
-	}
 	
 	public String getCreateUser() {
 		return createUser;
@@ -97,10 +86,10 @@ public class Alop {
 	}
 	@Override
 	public String toString() {
-		return "Alop [optionId=" + optionId + ", insuredId=" + insuredId + ", insuredName=" + insuredName
+		return "Alop [insuredId=" + insuredId + ", insuredName=" + insuredName
 				+ ", insuredDesc=" + insuredDesc + ", address=" + address + ", insuredBusiness=" + insuredBusiness
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", alopDetails=" + alopDetails + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 	
