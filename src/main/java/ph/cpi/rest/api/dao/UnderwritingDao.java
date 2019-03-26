@@ -9,5 +9,5 @@ public interface UnderwritingDao {
 	
 	public Policy retrievePolicyDeductibles(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolicyCoverage(final HashMap<String, Object> params) throws SQLException;
-
+	public HashMap<String, Object> savePolCoverage(final HashMap<String, Object> params ) throws SQLException;
 }
