@@ -161,7 +161,7 @@
 		<result property="duration" 	column="DURATION"/>
 		<result property="testing" 		column="TESTING"/>
 		<result property="ipl" 			column="IPL"/>
-		<result property="timeExc" 		column="TIME_EXC"/>
+		<result property="timeExc" 		column="TIME_EXEC"/>
 		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>
 		<result property="createUser" 	column="PRJ_CREATE_USER"/>
 		<result property="createDate" 	column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
