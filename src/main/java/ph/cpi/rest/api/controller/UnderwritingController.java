@@ -30,7 +30,10 @@ import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
-
+import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
+import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 
 @Controller
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
@@ -103,5 +106,19 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolGenInfo");
 		logger.info("RetrievePolGenInfo : " + rpgip.toString());
 		return underwritingService.retrievePolGenInfo(rpgip);
+	}
+
+	@GetMapping(path="retrievePolAlop")
+	public @ResponseBody RetrievePolAlopResponse retrievePolAlop(RetrievePolAlopRequest rpap) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolAlop");
+		logger.info("RetrievePolAlopRequest : " + rpap.toString());
+		return underwritingService.retrievePolAlop(rpap);
+	}
+	
+	@GetMapping(path="retrievePolAlopItem")
+	public @ResponseBody RetrievePolAlopItemResponse retrievePolAlopItem(RetrievePolAlopItemRequest rpap) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolAlopItem");
+		logger.info("RetrievePolAlopItemRequest : " + rpap.toString());
+		return underwritingService.retrievePolAlopItem(rpap);
 	}
 }

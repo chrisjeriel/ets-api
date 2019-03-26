@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.CATPeril;
 import ph.cpi.rest.api.model.underwriting.Item;
+import java.util.List;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
@@ -95,5 +96,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		logger.info("retrievePolGenInfo DAOImpl : " + policy);
 		
 		return policy;
-	}	
+	}
+	
+	@Override
+	public List<Policy> retrievePolAlop(final HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolAlop", params);
+		return policyList;
+	}
+	
+	@Override
+	public List<Policy> retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolAlopItem", params);
+		return policyList;
+	}
+	
 }

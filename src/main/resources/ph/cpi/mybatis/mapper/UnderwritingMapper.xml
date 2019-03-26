@@ -265,4 +265,57 @@
 													     null))
 	</select>
 
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="polAlopMap">
+		<result property="policyId" 			column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="alop" 	resultMap="assocAlop"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Alop" id="assocAlop">
+		<result property="insId" column="INS_ID"/>
+		<result property="insuredName" column="INSURED_NAME"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="annSi" column="ANN_SI"/>
+		<result property="maxIndemPdSi" column="MAX_INDEM_PD_SI"/>
+		<result property="issueDate" column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maxIndemPd" column="MAX_INDEM_PD"/>
+		<result property="indemFromDate" column="INDEM_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="timeExc" column="TIME_EXC"/>
+		<result property="repInterval" column="REP_INTERVAL"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="alopItem" resultMap="assocAlopItem"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.AlopItem" id="assocAlopItem">
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="quantity" column="QUANTITY"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="importance" column="IMPORTANCE"/>
+		<result property="lossMin" column="LOSS_MIN"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+	</resultMap>
+	
+	<select id="retrievePolAlop" resultMap="polAlopMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_ALOP_PKG.ret_pol_alop(#{policyId, jdbcType=INTEGER}, 
+													  #{policyNo, jdbcType=VARCHAR},
+																	  null, 
+																      null, 
+																	  null, 
+																	  null))
+	</select>
+	
+	<select id="retrievePolAlopItem" resultMap="polAlopMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_ALOP_ITEM_PKG.ret_pol_alop_item(#{policyId, jdbcType=INTEGER},
+			#{policyNo, jdbcType=VARCHAR}, null, null, null, null))
+	</select>
+	
 </mapper>
