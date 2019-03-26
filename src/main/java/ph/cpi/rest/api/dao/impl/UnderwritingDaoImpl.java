@@ -61,6 +61,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		logger.info("retrievePolCoverage DAOImpl : " + policy);
 		return policy;
 	}
+
+	@Override
+	public HashMap<String, Object> savePolCoverage(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolCoverage",params);
+			params.put("errorCode", errorCode);
+		return params;
+	}
 	
 	@Override
 	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException{

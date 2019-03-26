@@ -198,9 +198,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public List<Quotation> retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
-			List<Quotation> quotationList = sqlSession.selectList("retrieveQuoteAlopItem",params);
-		return quotationList;
+	public Quotation retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
+			Quotation quotation = sqlSession.selectOne("retrieveQuoteAlopItem",params);
+		return quotation;
 	}
 
 
