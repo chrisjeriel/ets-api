@@ -9,19 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
@@ -32,8 +38,33 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 
 	@Autowired
 	UnderwritingDao underwritingDao;
-	
-	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(UnderwritingServiceImpl.class);
+
+	@Override
+	public RetrievePolInwardBalResponse retrievePolInwardBal(RetrievePolInwardBalRequest rpibp) throws SQLException {
+		RetrievePolInwardBalResponse rpibResponse = new RetrievePolInwardBalResponse();
+		HashMap<String, Object> retrievePolInwardBalParams = new HashMap<String, Object>();
+		retrievePolInwardBalParams.put("policyId", rpibp.getPolicyId());
+		retrievePolInwardBalParams.put("policyNo",rpibp.getPolicyNo());
+		rpibResponse.setPolicy(underwritingDao.retrievePolInwardBal(retrievePolInwardBalParams));
+		logger.info("retrievePolInwardBalResponse : " + rpibResponse.toString());
+		
+		return rpibResponse;
+	}
+
+	@Override
+	public RetrievePolCoInsuranceResponse retrievePolCoInsurance(RetrievePolCoInsuranceRequest rpcip)
+			throws SQLException {
+		RetrievePolCoInsuranceResponse rpcoiResponse = new RetrievePolCoInsuranceResponse();
+		HashMap<String, Object> retrievePolCoInsuranceParams = new HashMap<String, Object>();
+		retrievePolCoInsuranceParams.put("policyId",rpcip.getPolicyId());
+		retrievePolCoInsuranceParams.put("policyNo",rpcip.getPolicyNo());
+		rpcoiResponse.setPolicy(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
+		logger.info("retrievePolCoInsuranceResponse : " + rpcoiResponse.toString());
+		
+		return rpcoiResponse;
+	}
 	
 	@Override
 	public RetrievePolicyDeductiblesResponse retrievePolicyDeductibles(RetrievePolicyDeductiblesRequest rpdr)
@@ -51,6 +82,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		return rpdResponse;
 	}
 	
+	@Override
 	public RetrievePolCoverageResponse retrievePolCoverage(RetrievePolCoverageRequest rpcr) throws SQLException {
 		RetrievePolCoverageResponse rpcResponse = new RetrievePolCoverageResponse();
 		
@@ -119,28 +151,43 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	}
 
 	@Override
-	public RetrievePolInwardBalResponse retrievePolInwardBal(RetrievePolInwardBalRequest rpibp) throws SQLException {
-		RetrievePolInwardBalResponse rpibResponse = new RetrievePolInwardBalResponse();
-		HashMap<String, Object> retrievePolInwardBalParams = new HashMap<String, Object>();
-		retrievePolInwardBalParams.put("policyId", rpibp.getPolicyId());
-		retrievePolInwardBalParams.put("policyNo",rpibp.getPolicyNo());
-		rpibResponse.setPolicy(underwritingDao.retrievePolInwardBal(retrievePolInwardBalParams));
-		logger.info("retrievePolInwardBalResponse : " + rpibResponse.toString());
+	public RetrievePolGenInfoResponse retrievePolGenInfo(RetrievePolGenInfoRequest rpgip) throws SQLException {
+		RetrievePolGenInfoResponse rpgiResponse = new RetrievePolGenInfoResponse();
+		HashMap<String, Object> retrievePolGenInfoParams = new HashMap<String, Object>();
 		
-		return rpibResponse;
+		retrievePolGenInfoParams.put("policyId", rpgip.getPolicyId());
+		retrievePolGenInfoParams.put("policyNo", rpgip.getPolicyNo());
+		
+		rpgiResponse.setPolicy(underwritingDao.retrievePolGenInfo(retrievePolGenInfoParams));
+		logger.info("retrievePolGenInfoResponse : " + rpgiResponse.toString());
+		
+		return rpgiResponse;
 	}
-
-	@Override
-	public RetrievePolCoInsuranceResponse retrievePolCoInsurance(RetrievePolCoInsuranceRequest rpcip)
-			throws SQLException {
-		RetrievePolCoInsuranceResponse rpcoiResponse = new RetrievePolCoInsuranceResponse();
-		HashMap<String, Object> retrievePolCoInsuranceParams = new HashMap<String, Object>();
-		retrievePolCoInsuranceParams.put("policyId",rpcip.getPolicyId());
-		retrievePolCoInsuranceParams.put("policyNo",rpcip.getPolicyNo());
-		rpcoiResponse.setPolicy(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
-		logger.info("retrievePolCoInsuranceResponse : " + rpcoiResponse.toString());
+	
+	public RetrievePolAlopResponse retrievePolAlop(RetrievePolAlopRequest rpap) throws SQLException {
+		RetrievePolAlopResponse rpaResponse = new RetrievePolAlopResponse();
 		
-		return rpcoiResponse;
+		HashMap<String, Object> retrievePolAlopParams = new HashMap<String, Object>();
+		retrievePolAlopParams.put("policyId", rpap.getPolicyId());
+		retrievePolAlopParams.put("policyNo", rpap.getPolicyNo());
+		
+		rpaResponse.setPolicy(underwritingDao.retrievePolAlop(retrievePolAlopParams));
+		
+		return rpaResponse;
+	}
+	
+	public RetrievePolAlopItemResponse retrievePolAlopItem(RetrievePolAlopItemRequest rpaip) throws SQLException {
+		
+		RetrievePolAlopItemResponse rpaiResponse = new RetrievePolAlopItemResponse();
+		
+		HashMap<String, Object> retrievePolAlopItemParams = new HashMap<String, Object>();
+		retrievePolAlopItemParams.put("policyId", rpaip.getPolicyId());
+		retrievePolAlopItemParams.put("policyNo", rpaip.getPolicyNo());
+		
+		rpaiResponse.setPolicy(underwritingDao.retrievePolAlopItem(retrievePolAlopItemParams));
+		
+		return rpaiResponse;
+		
 	}
 	
 }

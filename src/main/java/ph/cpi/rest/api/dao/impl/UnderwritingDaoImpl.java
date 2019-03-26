@@ -2,6 +2,7 @@ package ph.cpi.rest.api.dao.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -34,8 +35,20 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static final Logger logger = LoggerFactory.getLogger(QuoteDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(UnderwritingDaoImpl.class);
 
+	@Override
+	public Policy retrievePolInwardBal(HashMap<String, Object> params) throws SQLException {
+		Policy pol =  sqlSession.selectOne("retrievePolInwardBal",params);
+		return pol;
+	}
+
+	@Override
+	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
+		Policy pol =  sqlSession.selectOne("retrievePolCoInsurance",params);
+		return pol;
+	}
+	
 	@Override
 	public Policy retrievePolicyDeductibles(HashMap<String, Object> params) throws SQLException {
 		Policy policy = sqlSession.selectOne("retrievePolicyDeductibles", params);
@@ -76,18 +89,25 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
 	}
+
+	@Override
+	public Policy retrievePolGenInfo(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolGenInfo", params);
+		logger.info("retrievePolGenInfo DAOImpl : " + policy);
+		
+		return policy;
+	}
 	
-
 	@Override
-	public Policy retrievePolInwardBal(HashMap<String, Object> params) throws SQLException {
-		Policy pol =  sqlSession.selectOne("retrievePolInwardBal",params);
-		return pol;
+	public List<Policy> retrievePolAlop(final HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolAlop", params);
+		return policyList;
 	}
-
+	
 	@Override
-	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
-		Policy pol =  sqlSession.selectOne("retrievePolCoInsurance",params);
-		return pol;
+	public List<Policy> retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolAlopItem", params);
+		return policyList;
 	}
-
+	
 }
