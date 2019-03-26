@@ -15,5 +15,7 @@ public interface UnderwritingDao {
 	public Policy retrievePolEndtList(final HashMap<String, Object> params) throws SQLException;
 	public Item retrievePolItem(final HashMap<String, Object> params) throws SQLException;
 	public CATPeril retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
+	public Integer savePolicyDeductibles(final HashMap<String, Object> params ) throws SQLException;
+	
 	
 }
