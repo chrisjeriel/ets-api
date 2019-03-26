@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import ph.cpi.rest.api.model.quote.Project;
-
 public class Policy {
 	private Integer policyId;
 	private String policyNo;
