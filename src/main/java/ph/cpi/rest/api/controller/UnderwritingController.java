@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
@@ -22,6 +24,9 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
+import ph.cpi.rest.api.model.request.SavePolAlopRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
@@ -29,6 +34,9 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
+import ph.cpi.rest.api.model.response.SavePolAlopResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -114,11 +122,25 @@ public class UnderwritingController {
 		logger.info("RetrievePolAlopRequest : " + rpap.toString());
 		return underwritingService.retrievePolAlop(rpap);
 	}
-	
+
 	@GetMapping(path="retrievePolAlopItem")
 	public @ResponseBody RetrievePolAlopItemResponse retrievePolAlopItem(RetrievePolAlopItemRequest rpap) throws SQLException {
 		logger.info("GET: /api/underwriting-service/retrievePolAlopItem");
 		logger.info("RetrievePolAlopItemRequest : " + rpap.toString());
 		return underwritingService.retrievePolAlopItem(rpap);
+	}
+	
+	@PostMapping(path="savePolAlop")
+	public @ResponseBody SavePolAlopResponse savePolAlop(@RequestBody SavePolAlopRequest spap) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolAlop");
+		logger.info("SavePolAlopRequest : " + spap.toString());
+		return underwritingService.savePolAlop(spap);
+	}
+	
+	@PostMapping(path="savePolAlopItem")
+	public @ResponseBody SavePolAlopItemResponse savePolAlopItem(@RequestBody SavePolAlopItemRequest spaip) throws SQLException {
+		logger.info("POST: /api/quote-service/savePolAlopItemRequest");
+		logger.info("SavePolAlopItemRequest : " + spaip.toString());
+		return underwritingService.savePolAlopItem(spaip);
 	}
 }

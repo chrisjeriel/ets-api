@@ -20,6 +20,8 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
+import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
@@ -27,10 +29,10 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
+import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 
-import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
@@ -168,6 +170,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		return rpgiResponse;
 	}
 	
+	@Override
 	public RetrievePolAlopResponse retrievePolAlop(RetrievePolAlopRequest rpap) throws SQLException {
 		RetrievePolAlopResponse rpaResponse = new RetrievePolAlopResponse();
 		
@@ -180,8 +183,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		return rpaResponse;
 	}
 	
+	@Override
 	public RetrievePolAlopItemResponse retrievePolAlopItem(RetrievePolAlopItemRequest rpaip) throws SQLException {
-		
 		RetrievePolAlopItemResponse rpaiResponse = new RetrievePolAlopItemResponse();
 		
 		HashMap<String, Object> retrievePolAlopItemParams = new HashMap<String, Object>();
@@ -190,8 +193,62 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rpaiResponse.setPolicy(underwritingDao.retrievePolAlopItem(retrievePolAlopItemParams));
 		
-		return rpaiResponse;
+		return rpaiResponse;	
+	}
+	
+	@Override
+	public SavePolAlopResponse savePolAlop(SavePolAlopRequest spap) throws SQLException {
+		SavePolAlopResponse spapResponse = new SavePolAlopResponse();
 		
+		try {
+			HashMap<String, Object> savePolAlopParams = new HashMap<String, Object>();
+			
+			savePolAlopParams.put("policyId", spap.getPolicyId());
+			savePolAlopParams.put("insId", spap.getInsId());
+			savePolAlopParams.put("insuredDesc", spap.getInsuredDesc());
+			savePolAlopParams.put("address", spap.getAddress());
+			savePolAlopParams.put("annSi", spap.getAnnSi());
+			savePolAlopParams.put("maxIndemPdSi", spap.getMaxIndemPdSi());
+			savePolAlopParams.put("issueDate", spap.getIssueDate());
+			savePolAlopParams.put("expiryDate", spap.getExpiryDate());
+			savePolAlopParams.put("maxIndemPd", spap.getMaxIndemPd());
+			savePolAlopParams.put("indemFromDate", spap.getIndemFromDate());
+			savePolAlopParams.put("timeExc", spap.getTimeExc());
+			savePolAlopParams.put("repInterval", spap.getRepInterval());
+			savePolAlopParams.put("createUser", spap.getCreateUser());
+			savePolAlopParams.put("createDate", spap.getCreateDate());
+			savePolAlopParams.put("updateUser", spap.getUpdateUser());
+			savePolAlopParams.put("updateDate", spap.getUpdateDate());
+			
+			HashMap<String, Object> res = underwritingDao.savePolAlop(savePolAlopParams);
+			spapResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			spapResponse.setReturnCode(0);
+			spapResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		
+		return spapResponse;
+	}
+	
+	@Override
+	public SavePolAlopItemResponse savePolAlopItem(SavePolAlopItemRequest spaip) throws SQLException {
+		SavePolAlopItemResponse spaipResponse = new SavePolAlopItemResponse();
+		
+		try {
+			HashMap<String, Object> savePolAlopItemParams = new HashMap<String, Object>();
+			savePolAlopItemParams.put("policyId", spaip.getPolicyId());
+			savePolAlopItemParams.put("savePolAlopItemList", spaip.getSaveAlopItemList());
+			
+			HashMap<String, Object> res = underwritingDao.savePolAlopItem(savePolAlopItemParams);
+			spaipResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			spaipResponse.setReturnCode(0);
+			spaipResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		
+		return spaipResponse;
 	}
 	
 }
