@@ -13,7 +13,7 @@ public interface UnderwritingDao {
 	public Policy retrievePolicyCoverage(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolEndtList(final HashMap<String, Object> params) throws SQLException;
-	public Item retrievePolItem(final HashMap<String, Object> params) throws SQLException;
-	public CATPeril retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
-	
+	public Policy retrievePolItem(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> savePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
 }

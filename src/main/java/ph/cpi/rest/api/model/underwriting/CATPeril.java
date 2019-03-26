@@ -2,8 +2,10 @@ package ph.cpi.rest.api.model.underwriting;
 
 import java.math.BigDecimal;
 
+import org.apache.ibatis.type.Alias;
 import org.joda.time.LocalDateTime;
 
+@Alias("UnderwritingCATPeril")
 public class CATPeril {
 	
 	private Integer	policyId;

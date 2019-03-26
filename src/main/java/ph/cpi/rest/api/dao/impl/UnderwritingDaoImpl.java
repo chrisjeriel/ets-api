@@ -62,19 +62,24 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public Item retrievePolItem(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		Item polItem = sqlSession.selectOne("retrievePolItem", params);
+	public Policy retrievePolItem(HashMap<String, Object> params) throws SQLException {
+		Policy polItem = sqlSession.selectOne("retrievePolItem", params);
 		logger.info("retrievePolItem DAOImpl : " + polItem);
 		return polItem;
 	}
 
 	@Override
-	public CATPeril retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		CATPeril polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
+	public Policy retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		Policy polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
 		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
+	}
+	
+	@Override
+	public HashMap<String, Object> savePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolCATPeril", params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 	
 }

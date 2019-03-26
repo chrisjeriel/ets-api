@@ -11,6 +11,9 @@ public class Policy {
 	private Project project;
 	private List<Endorsements> endorsements;
 	private List<Attachment> attachments;
+	private List<Item> items;
+	private CATPeril catPeril;
+	
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -47,10 +50,26 @@ public class Policy {
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
 	}
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	public CATPeril getCatPeril() {
+		return catPeril;
+	}
+	public void setCatPeril(CATPeril catPeril) {
+		this.catPeril = catPeril;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", deductibles=" + deductibles + ", project="
-				+ project + ", endorsements=" + endorsements + ", attachments=" + attachments + "]";
+				+ project + ", endorsements=" + endorsements + ", attachments=" + attachments + ", items=" + items
+				+ ", catPeril=" + catPeril + "]";
 	}
 	
+
+	
+
 }

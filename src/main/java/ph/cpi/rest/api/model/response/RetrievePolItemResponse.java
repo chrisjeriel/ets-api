@@ -3,20 +3,22 @@ package ph.cpi.rest.api.model.response;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
 
 
 public class RetrievePolItemResponse {
 
-	private Item item;
-	public Item getItem() {
-		return item;
-	}
-	public void setItem(Item item) {
-		this.item = item;
-	}
+	private Policy policy;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
+	
+	public Policy getPolicy() {
+		return policy;
+	}
+	public void setPolicy(Policy policy) {
+		this.policy = policy;
+	}
 	
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,7 +34,7 @@ public class RetrievePolItemResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrievePolItemResponse [item=" + item + ", paginationResponse=" + paginationResponse
+		return "RetrievePolItemResponse [policy=" + policy + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
 }

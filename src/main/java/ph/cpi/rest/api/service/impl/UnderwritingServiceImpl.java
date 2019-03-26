@@ -9,18 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -94,7 +97,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolItemParams.put("policyId", rpir.getPolicyId());
 		retrievePolItemParams.put("policyNo", rpir.getPolicyNo());
 		
-		rpiresponse.setItem(underwritingDao.retrievePolItem(retrievePolItemParams));
+		rpiresponse.setPolicy(underwritingDao.retrievePolItem(retrievePolItemParams));
 		logger.info("retrievePolItemResponse : " + rpiresponse.toString());
 		return rpiresponse;
 	}
@@ -107,10 +110,38 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		retrievePolCATPerilParams.put("policyId", rpcpr.getPolicyId());
 		retrievePolCATPerilParams.put("policyNo", rpcpr.getPolicyNo());
-		
-		rpcpresponse.setCatPeril(underwritingDao.retrievePolCATPeril(retrievePolCATPerilParams));
+	
+		rpcpresponse.setPolicy(underwritingDao.retrievePolCATPeril(retrievePolCATPerilParams));
 		logger.info("retrievePolCATPerilResponse : " + rpcpresponse.toString());
 		
 		return rpcpresponse;
 	}
+	
+	@Override
+	public SavePolCATPerilResponse savePolCATPeril(SavePolCATPerilRequest spcpr) throws SQLException {
+		// TODO Auto-generated method stub
+		SavePolCATPerilResponse spcpresponse = new SavePolCATPerilResponse();
+		try{
+			HashMap<String, Object> savePolCATPerilParams = new HashMap<String, Object>();
+			
+			savePolCATPerilParams.put("policyId", spcpr.getPolicyId());
+			savePolCATPerilParams.put("catPerilId",spcpr.getCatPerilId());
+			savePolCATPerilParams.put("pctSharePrem", spcpr.getPctSharePrem());
+			savePolCATPerilParams.put("createUser", spcpr.getCreateUser());
+			savePolCATPerilParams.put("createDate", spcpr.getCreateDate());
+			savePolCATPerilParams.put("updateUser", spcpr.getUpdateUser());
+			savePolCATPerilParams.put("updateDate", spcpr.getUpdateDate());
+			
+			HashMap<String, Object> res = underwritingDao.savePolCATPeril(savePolCATPerilParams);
+			spcpresponse.setReturnCode((Integer) res.get("errorCode"));
+		}catch (Exception ex) {
+			spcpresponse.setReturnCode(0);
+			spcpresponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		System.out.println("spcprResponse: " + spcpresponse);
+		return spcpresponse;
+	}
+
+	
 }

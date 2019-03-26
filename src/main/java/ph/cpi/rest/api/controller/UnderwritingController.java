@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,12 +19,16 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 
@@ -77,5 +83,13 @@ public class UnderwritingController {
 		logger.info("RetrievePolCATPeril : " + rpcpr.toString());
 		return underwritingService.retrievePolCATPeril(rpcpr);
 	}
+	
+	@PostMapping(path="savePolCATPeril")
+	public @ResponseBody SavePolCATPerilResponse savePolCATPeril(@RequestBody SavePolCATPerilRequest spcpr ) throws SQLException {
+		logger.info("GET: /api/underwriting-service/savePolCATPeril");
+		logger.info("savePolCATPerilRequest : " + spcpr.toString());
+		return underwritingService.savePolCATPeril(spcpr);
+	}
+	
 
 }
