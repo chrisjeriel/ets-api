@@ -26,6 +26,12 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 
+import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
+import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
+import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
+import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
+import ph.cpi.rest.api.service.UnderwritingService;
+
 @Controller
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
 @RequestMapping(path="/underwriting-service")
@@ -78,4 +84,18 @@ public class UnderwritingController {
 		return underwritingService.retrievePolCATPeril(rpcpr);
 	}
 
+	@GetMapping(path="retrievePolInwardBal")
+	public @ResponseBody RetrievePolInwardBalResponse retrievePolInwardBal(RetrievePolInwardBalRequest rpibp) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolInwardBal");
+		logger.info("RetrievePolInwardBalRequest : " + rpibp.toString());
+		return underwritingService.retrievePolInwardBal(rpibp);
+	}
+	
+	@GetMapping(path="retrievePolCoInsurance")
+	public @ResponseBody RetrievePolCoInsuranceResponse retrievePolCoInsurance(RetrievePolCoInsuranceRequest rpoip) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolCoInsurance");
+		logger.info("RetrievePolCoInsuranceRequest : " + rpoip.toString());
+		return underwritingService.retrievePolCoInsurance(rpoip);
+	}
+	
 }

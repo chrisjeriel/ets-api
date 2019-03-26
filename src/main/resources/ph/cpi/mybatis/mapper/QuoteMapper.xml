@@ -1714,6 +1714,12 @@
 				#{quoteId,jdbcType=INTEGER},
 				#{holdCoverId,jdbcType=INTEGER}
 			);
-		END;
+	    END;
 	</update>
+	
+	<!-- <update id="renumberQuoteOptions" parameterType="String">
+		BEGIN
+			QU_OPTION_PKG.renumber(${value});
+		END;
+	</update> -->
 </mapper>

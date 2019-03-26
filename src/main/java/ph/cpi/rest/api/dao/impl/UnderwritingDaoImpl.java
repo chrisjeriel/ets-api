@@ -77,4 +77,17 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return polCATPeril;
 	}
 	
+
+	@Override
+	public Policy retrievePolInwardBal(HashMap<String, Object> params) throws SQLException {
+		Policy pol =  sqlSession.selectOne("retrievePolInwardBal",params);
+		return pol;
+	}
+
+	@Override
+	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
+		Policy pol =  sqlSession.selectOne("retrievePolCoInsurance",params);
+		return pol;
+	}
+
 }
