@@ -17,12 +17,14 @@ import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
@@ -142,5 +144,19 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		logger.info("retrievePolCATPerilResponse : " + rpcpresponse.toString());
 		
 		return rpcpresponse;
+	}
+
+	@Override
+	public RetrievePolGenInfoResponse retrievePolGenInfo(RetrievePolGenInfoRequest rpgip) throws SQLException {
+		RetrievePolGenInfoResponse rpgiResponse = new RetrievePolGenInfoResponse();
+		HashMap<String, Object> retrievePolGenInfoParams = new HashMap<String, Object>();
+		
+		retrievePolGenInfoParams.put("policyId", rpgip.getPolicyId());
+		retrievePolGenInfoParams.put("policyNo", rpgip.getPolicyNo());
+		
+		rpgiResponse.setPolicy(underwritingDao.retrievePolGenInfo(retrievePolGenInfoParams));
+		logger.info("retrievePolGenInfoResponse : " + rpgiResponse.toString());
+		
+		return rpgiResponse;
 	}
 }

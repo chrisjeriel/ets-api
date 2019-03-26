@@ -87,5 +87,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		CATPeril polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
 		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
+	}
+
+	@Override
+	public Policy retrievePolGenInfo(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolGenInfo", params);
+		logger.info("retrievePolGenInfo DAOImpl : " + policy);
+		
+		return policy;
 	}	
 }
