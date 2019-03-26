@@ -9,14 +9,15 @@ import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Quotation;
 
 public class RetrieveQuoteAlopItemResponse extends Response {
-	private Quotation quotation;
+	private List<AlopItem> alopItem;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public Quotation getQuotation() {
-		return quotation;
+	
+	public List<AlopItem> getAlopItem() {
+		return alopItem;
 	}
-	public void setQuotation(Quotation quotation) {
-		this.quotation = quotation;
+	public void setAlopItem(List<AlopItem> alopItem) {
+		this.alopItem = alopItem;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,9 +33,10 @@ public class RetrieveQuoteAlopItemResponse extends Response {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopItemResponse [quotation=" + quotation + ", paginationResponse=" + paginationResponse
+		return "RetrieveQuoteAlopItemResponse [alopItem=" + alopItem + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
 	
 	
 }
