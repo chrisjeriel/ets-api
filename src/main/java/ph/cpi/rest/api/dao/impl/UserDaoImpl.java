@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UserDao;
+import ph.cpi.rest.api.model.maintenance.UserGrp;
 import ph.cpi.rest.api.model.maintenance.Users;
 
 @Component
@@ -32,6 +33,24 @@ public class UserDaoImpl implements UserDao{
 	public List<Users> retMtnUsers(final HashMap<String, Object> params) throws SQLException{
 		List<Users> usersList = sqlSession.selectList("retMtnUsers", params);
 		return usersList;
+	}
+
+	@Override
+	public List<Users> retrieveMtnUserAccess(HashMap<String, Object> params) throws SQLException {
+		List<Users> userAccessList = sqlSession.selectList("retrieveMtnUserAccess", params);
+		return userAccessList;
+	}
+
+	@Override
+	public List<UserGrp> retrieveMtnUserGroup(HashMap<String, Object> params) throws SQLException {
+		List<UserGrp> userGroupList = sqlSession.selectList("retrieveMtnUserGroup", params);
+		return userGroupList;
+	}
+
+	@Override
+	public List<UserGrp> retrieveMtnUserGroupAccess(HashMap<String, Object> params) throws SQLException {
+		List<UserGrp> userGroupAccessList = sqlSession.selectList("retrieveMtnUserGroupAccess", params);
+		return userGroupAccessList;
 	}
 
 }

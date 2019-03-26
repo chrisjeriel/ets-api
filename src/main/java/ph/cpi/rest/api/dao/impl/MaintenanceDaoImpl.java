@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
+import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
@@ -22,6 +23,7 @@ import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
+import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Province;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -227,4 +229,15 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return reason;
 	}
 
+	@Override
+	public List<CATPeril> retrieveMtnCATPeril(HashMap<String, Object> params) throws SQLException {
+		List<CATPeril> catPeril = sqlSession.selectList("retrieveMtnCATPeril",params);
+		return catPeril;
+	}
+
+	@Override
+	public List<MtnCharges> retrieveMtnCharges(HashMap<String, Object> params) throws SQLException {
+		List<MtnCharges> charges = sqlSession.selectList("retrieveMtnCharges",params);
+		return charges;
+	}
 }

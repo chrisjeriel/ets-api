@@ -99,12 +99,12 @@
 		    <version>6.0.0</version>
 		</dependency> -->
 		
-		<dependency>
+		<!-- <dependency>
 		    <groupId>ph.cpi.rest</groupId>
 		    <artifactId>pmmsc-rep-fonts</artifactId>
 		    <version>1.0.0</version>
 		</dependency>
-
+ -->
 	</dependencies>
 
 	<build>

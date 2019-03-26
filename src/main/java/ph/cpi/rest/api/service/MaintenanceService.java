@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
@@ -27,8 +29,10 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
@@ -91,4 +95,6 @@ public interface MaintenanceService {
 	public RetrieveMtnLineClassResponse retrieveMtnLineClass(RetrieveMtnLineClassRequest rmlcp ) throws SQLException;
 	public SaveMtnRiskResponse saveMtnRisk(SaveMtnRiskRequest smrr) throws SQLException;
 	public RetrieveMtnReasonResponse retrieveMtnReason (RetrieveMtnReasonRequest rmrr) throws SQLException;
+	public RetrieveMtnCATPerilResponse retrieveMtnCATPeril (RetrieveMtnCATPerilRequest rmcatpr) throws SQLException;
+	public RetrieveMtnChargesResponse retrieveMtnCharges (RetrieveMtnChargesRequest rmcr) throws SQLException;
 }
