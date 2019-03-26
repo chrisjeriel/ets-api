@@ -19,6 +19,7 @@ public class Users {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private UserTran userTran;
 	
 	public String getUserId() {
 		return userId;
@@ -116,6 +117,12 @@ public class Users {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public UserTran getUserTran() {
+		return userTran;
+	}
+	public void setUserTran(UserTran userTran) {
+		this.userTran = userTran;
+	}
 	
 	@Override
 	public String toString() {
@@ -123,7 +130,7 @@ public class Users {
 				+ userName + ", activeTag=" + activeTag + ", password=" + password + ", emailAddress=" + emailAddress
 				+ ", remarks=" + remarks + ", lastLogin=" + lastLogin + ", passwordResetDate=" + passwordResetDate
 				+ ", salt=" + salt + ", invalidLoginTries=" + invalidLoginTries + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", userTran=" + userTran + "]";
 	}
-	
 }
