@@ -214,7 +214,7 @@
 		   	   POL_ATTACHMENT_PKG.save_pol_attchmnt(#{policyId},
 		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
 		   	   										#{attachment.fileName},
-		   	   										#{attachment.description},
+		   	   										#{attachment.description, jdbcType=VARCHAR},
 		   	   										#{attachment.createUser},
 			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   										#{attachment.updateUser},
