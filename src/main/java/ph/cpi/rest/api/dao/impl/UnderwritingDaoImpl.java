@@ -129,5 +129,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer returnCd = sqlSession.update("savePolicyDeductibles",params);
 		return returnCd;
 	}
+
+	@Override
+	public Integer savePolHoldCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolHoldCover", params);
+		return errorCode;
+	}
 	
 }

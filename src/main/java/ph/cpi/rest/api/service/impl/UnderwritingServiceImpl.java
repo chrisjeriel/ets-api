@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
@@ -38,6 +39,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -278,5 +280,39 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spcResponse;
+	}
+
+	@Override
+	public SavePolHoldCoverResponse savePolHoldCover(SavePolHoldCoverRequest sphcr) throws SQLException {
+		// TODO Auto-generated method stub
+		SavePolHoldCoverResponse sphcResponse= new SavePolHoldCoverResponse();
+		try{
+			HashMap<String, Object> savePolHoldCoverParams = new HashMap<String, Object>();
+			savePolHoldCoverParams.put("policyId", sphcr.getPolicyId());
+			savePolHoldCoverParams.put("holdCovId", sphcr.getHoldCovId());
+			savePolHoldCoverParams.put("lineCd", sphcr.getLineCd());
+			savePolHoldCoverParams.put("holdCovYear", sphcr.getHoldCovYear());
+			savePolHoldCoverParams.put("holdCovSeqNo", sphcr.getHoldCovSeqNo());
+			savePolHoldCoverParams.put("holdCovRevNo", sphcr.getHoldCovRevNo());
+			savePolHoldCoverParams.put("periodFrom", sphcr.getPeriodFrom());
+			savePolHoldCoverParams.put("periodTo", sphcr.getPeriodTo());
+			savePolHoldCoverParams.put("compRefHoldCovNo", sphcr.getCompRefHoldCovNo());
+			savePolHoldCoverParams.put("status", sphcr.getStatus());
+			savePolHoldCoverParams.put("reqBy", sphcr.getReqBy());
+			savePolHoldCoverParams.put("reqDate", sphcr.getReqDate());
+			savePolHoldCoverParams.put("preparedBy", sphcr.getPreparedBy());
+			savePolHoldCoverParams.put("approvedBy", sphcr.getApprovedBy());
+			savePolHoldCoverParams.put("createUser", sphcr.getCreateUser());
+			savePolHoldCoverParams.put("createDate", sphcr.getCreateDate());
+			savePolHoldCoverParams.put("updateUser", sphcr.getUpdateUser());
+			savePolHoldCoverParams.put("updateDate", sphcr.getUpdateDate());
+			
+			sphcResponse.setReturnCode(underwritingDao.savePolHoldCover(savePolHoldCoverParams));
+		}catch(Exception ex){
+			sphcResponse.setReturnCode(0);
+			sphcResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return sphcResponse;
 	}
 }

@@ -461,5 +461,31 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="savePolHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POL_HOLD_COVER_PKG.save_pol_hold_cover(
+				 #{polHoldCoverNo, mode=OUT, jdbcType=VARCHAR},
+				 #{policyId},
+				 #{holdCovId},
+				 #{lineCd},
+				 #{holdCovYear},
+				 #{holdCovSeqNo},
+				 #{holdCovRevNo},
+				 #{periodFrom},
+				 #{periodTo},
+				 #{compRefHoldCovNo, jdbcType=VARCHAR},
+				 #{status},
+				 #{reqBy, jdbcType=VARCHAR},
+				 #{reqDate},
+				 #{preparedBy, jdbcType=VARCHAR},
+				 #{approvedBy, jdbcType=VARCHAR},
+				 #{createUser},
+				 CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 #{updateUser},
+				 CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			);
+		END;
+	</update>
 
 </mapper>

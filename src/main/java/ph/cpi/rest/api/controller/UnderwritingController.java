@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -40,6 +41,7 @@ import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -149,5 +151,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/savePolCoverage");
 		logger.info("SavePolCoverageRequest : " + sqcr.toString());
 		return underwritingService.savePolCoverage(sqcr);
+	}
+	
+	@PostMapping(path="savePolHoldCover")
+	public @ResponseBody SavePolHoldCoverResponse savePolHoldCover(@RequestBody SavePolHoldCoverRequest sphcr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolHoldCover");
+		logger.info("SavePolHoldCoverRequest : " + sphcr.toString());
+		return underwritingService.savePolHoldCover(sphcr);
 	}
 }
