@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import ph.cpi.rest.api.model.quote.Alop;
-import ph.cpi.rest.api.model.quote.Project;
+import ph.cpi.rest.api.model.underwriting.Project;
 
 public class Policy {
 	private Integer policyId;

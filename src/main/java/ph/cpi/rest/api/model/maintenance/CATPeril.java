@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
+@Alias("mtnCatPeril")
 public class CATPeril {
 	private String lineCd; 
 	private String lineDesc;
