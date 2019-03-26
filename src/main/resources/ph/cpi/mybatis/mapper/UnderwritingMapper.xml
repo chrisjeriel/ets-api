@@ -207,5 +207,24 @@
 													     null, 
 													     null))
 	</select>
+	
+	<update id="savePolAttachment" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="savePolAttachments" item="attachment">
+		   	   POL_ATTACHMENT_PKG.save_pol_attchmnt(#{policyId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		   <foreach collection="deletePolAttachments" item="attachment">
+		   		POL_ATTACHMENT_PKG.del_pol_attchmnt(#{policyId},
+		   											#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		END;
+	</update>
 
 </mapper>

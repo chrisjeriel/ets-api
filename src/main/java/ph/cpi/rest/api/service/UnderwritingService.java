@@ -10,12 +10,14 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 
 @Service
 public interface UnderwritingService {
@@ -26,5 +28,7 @@ public interface UnderwritingService {
 	public RetrievePolEndtResponse retrievePolEndt(RetrievePolEndtRequest rper) throws SQLException;
 	public RetrievePolItemResponse retrievePolItem(RetrievePolItemRequest rpir) throws SQLException;
 	public RetrievePolCATPerilResponse retrievePolCATPeril(RetrievePolCATPerilRequest rpcpr) throws SQLException;
+	
+	public SavePolAttachmentResponse savePolAttachments(SavePolAttachmentRequest spar) throws SQLException;
 	
 }

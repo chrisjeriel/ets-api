@@ -9,18 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -112,5 +115,24 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		logger.info("retrievePolCATPerilResponse : " + rpcpresponse.toString());
 		
 		return rpcpresponse;
+	}
+
+	@Override
+	public SavePolAttachmentResponse savePolAttachments(SavePolAttachmentRequest spar) throws SQLException {
+		// TODO Auto-generated method stub
+		SavePolAttachmentResponse spaResponse = new SavePolAttachmentResponse();
+		try{
+			HashMap<String, Object> savePolAttachmentParams = new HashMap<String, Object>();
+			savePolAttachmentParams.put("policyId", spar.getPolicyId());
+			savePolAttachmentParams.put("savePolAttachments", spar.getSavePolAttachments());
+			savePolAttachmentParams.put("deletePolAttachments", spar.getDeletePolAttachments());
+			
+			spaResponse.setReturnCode(underwritingDao.savePolAttachments(savePolAttachmentParams));
+		}catch(Exception ex){
+			spaResponse.setReturnCode(0);
+			spaResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return spaResponse;
 	}
 }

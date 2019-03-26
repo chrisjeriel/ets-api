@@ -76,5 +76,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
 	}
+
+	@Override
+	public Integer savePolAttachments(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("savePolAttachment",params);
+		return errorCode;
+	}
 	
 }
