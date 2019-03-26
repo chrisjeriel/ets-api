@@ -1617,7 +1617,7 @@
 	
 	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
 		BEGIN
-			QU_SEC_COVER_PKG.copy_qu_sec_covers(
+			QU_SEC_COVER_PKG.copy_qu_sec_cvrs(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},

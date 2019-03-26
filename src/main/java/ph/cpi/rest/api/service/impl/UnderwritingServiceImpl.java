@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
@@ -27,6 +28,8 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -192,6 +195,34 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		return rpaiResponse;
 		
+	}
+
+	@Override
+	public RetrievePolicyListingResponse retrievePolicyListing(RetrievePolicyListingRequest rplp) throws SQLException {
+		RetrievePolicyListingResponse rplResponse = new RetrievePolicyListingResponse();
+		HashMap<String, Object> retrievePolicyListingParams = new HashMap<String, Object>();
+		
+		retrievePolicyListingParams.put("policyNo", rplp.getPolicyNo());
+		retrievePolicyListingParams.put("cessionDesc", rplp.getCessionDesc());
+		retrievePolicyListingParams.put("cedingName", rplp.getCedingName());
+		retrievePolicyListingParams.put("lineClassDesc", rplp.getLineClassDesc());
+		retrievePolicyListingParams.put("insuredDesc", rplp.getInsuredDesc());
+		retrievePolicyListingParams.put("riskName", rplp.getRiskName());
+		retrievePolicyListingParams.put("objectDesc", rplp.getObjectDesc());
+		retrievePolicyListingParams.put("site", rplp.getSite());
+		retrievePolicyListingParams.put("currencyCd", rplp.getCurrencyCd());
+		retrievePolicyListingParams.put("totalSi", rplp.getTotalSi());
+		retrievePolicyListingParams.put("totalPrem", rplp.getTotalPrem());
+		retrievePolicyListingParams.put("issueDate", rplp.getIssueDate());
+		retrievePolicyListingParams.put("expiryDate", rplp.getExpiryDate());
+		retrievePolicyListingParams.put("inceptDate", rplp.getInceptDate());
+		retrievePolicyListingParams.put("acctDate", rplp.getAcctDate());
+		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
+		
+		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
+		logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
+		
+		return rplResponse;
 	}
 	
 }

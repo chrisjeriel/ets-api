@@ -399,4 +399,27 @@
 			#{policyNo, jdbcType=VARCHAR}, null, null, null, null))
 	</select>
 	
+	<select id="retrievePolicyListing" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+															 #{cessionDesc, jdbcType=VARCHAR},
+															 #{cedingName, jdbcType=VARCHAR},
+															 #{lineClassDesc, jdbcType=VARCHAR},
+															 #{insuredDesc, jdbcType=VARCHAR},
+															 #{riskName, jdbcType=VARCHAR},
+															 #{objectDesc, jdbcType=VARCHAR},
+															 #{site, jdbcType=VARCHAR},
+															 #{currencyCd, jdbcType=VARCHAR},
+															 #{totalSi, jdbcType=DECIMAL},
+															 #{totalPrem, jdbcType=DECIMAL},
+															 CAST(to_timestamp(#{issueDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{statusDesc, jdbcType=VARCHAR},
+															 null,
+															 null,
+															 null,
+															 null))
+	</select>
+	
 </mapper>
