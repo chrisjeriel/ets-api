@@ -38,15 +38,15 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	private static final Logger logger = LoggerFactory.getLogger(UnderwritingDaoImpl.class);
 
 	@Override
-	public Policy retrievePolInwardBal(HashMap<String, Object> params) throws SQLException {
-		Policy pol =  sqlSession.selectOne("retrievePolInwardBal",params);
-		return pol;
+	public List<Policy> retrievePolInwardBal(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolInwardBal",params);
+		return policyList;
 	}
 
 	@Override
-	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
-		Policy pol =  sqlSession.selectOne("retrievePolCoInsurance",params);
-		return pol;
+	public List<Policy> retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolCoInsurance",params);
+		return policyList;
 	}
 	
 	@Override

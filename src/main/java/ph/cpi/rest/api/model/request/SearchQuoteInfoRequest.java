@@ -5,7 +5,7 @@ public class SearchQuoteInfoRequest {
 	private Integer quoteYear;
 	private Integer quoteSeqNo;
 	private Integer quoteRevNo;
-	private Integer quoteCedingId;
+	private String quoteCedingId;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -30,10 +30,10 @@ public class SearchQuoteInfoRequest {
 	public void setQuoteRevNo(Integer quoteRevNo) {
 		this.quoteRevNo = quoteRevNo;
 	}
-	public Integer getQuoteCedingId() {
+	public String getQuoteCedingId() {
 		return quoteCedingId;
 	}
-	public void setQuoteCedingId(Integer quoteCedingId) {
+	public void setQuoteCedingId(String quoteCedingId) {
 		this.quoteCedingId = quoteCedingId;
 	}
 	@Override
@@ -41,4 +41,5 @@ public class SearchQuoteInfoRequest {
 		return "SearchQuoteInfoRequest [lineCd=" + lineCd + ", quoteYear=" + quoteYear + ", quoteSeqNo=" + quoteSeqNo
 				+ ", quoteRevNo=" + quoteRevNo + ", quoteCedingId=" + quoteCedingId + "]";
 	}
+	
 }

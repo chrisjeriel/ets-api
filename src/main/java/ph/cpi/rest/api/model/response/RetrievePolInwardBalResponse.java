@@ -1,19 +1,21 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolInwardBalResponse {
 
-	private Policy policy;
+	private List<Policy> policyList;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Policy getPolicy() {
-		return policy;
+	public List<Policy> getPolicyList() {
+		return policyList;
 	}
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
+	public void setPolicyList(List<Policy> policyList) {
+		this.policyList = policyList;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -29,8 +31,9 @@ public class RetrievePolInwardBalResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrievePolInwardBalResponse [policy=" + policy + ", paginationRequest=" + paginationRequest
+		return "RetrievePolInwardBalResponse [policyList=" + policyList + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 }

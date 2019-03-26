@@ -50,7 +50,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> retrievePolInwardBalParams = new HashMap<String, Object>();
 		retrievePolInwardBalParams.put("policyId", rpibp.getPolicyId());
 		retrievePolInwardBalParams.put("policyNo",rpibp.getPolicyNo());
-		rpibResponse.setPolicy(underwritingDao.retrievePolInwardBal(retrievePolInwardBalParams));
+		rpibResponse.setPolicyList(underwritingDao.retrievePolInwardBal(retrievePolInwardBalParams));
 		logger.info("retrievePolInwardBalResponse : " + rpibResponse.toString());
 		
 		return rpibResponse;
@@ -63,7 +63,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> retrievePolCoInsuranceParams = new HashMap<String, Object>();
 		retrievePolCoInsuranceParams.put("policyId",rpcip.getPolicyId());
 		retrievePolCoInsuranceParams.put("policyNo",rpcip.getPolicyNo());
-		rpcoiResponse.setPolicy(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
+		rpcoiResponse.setPolicyList(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
 		logger.info("retrievePolCoInsuranceResponse : " + rpcoiResponse.toString());
 		
 		return rpcoiResponse;
