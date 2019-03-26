@@ -2,7 +2,6 @@ package ph.cpi.rest.api.model.underwriting;
 
 import java.util.List;
 
-import ph.cpi.rest.api.model.quote.Project;
 
 public class Policy {
 	private Integer policyId;
