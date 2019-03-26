@@ -16,6 +16,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.CATPeril;
 import ph.cpi.rest.api.model.underwriting.Item;
 import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.underwriting.PolicyOc;
 
 @Component
 public class UnderwritingDaoImpl implements UnderwritingDao {
@@ -134,6 +135,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Integer savePolHoldCover(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolHoldCover", params);
 		return errorCode;
+	}
+
+	@Override
+	public PolicyOc retrievePolAttachmentOcList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		PolicyOc attachmentsOcList = sqlSession.selectOne("retrievePolAttachmentOc", params);
+		return attachmentsOcList;
 	}
 	
 }

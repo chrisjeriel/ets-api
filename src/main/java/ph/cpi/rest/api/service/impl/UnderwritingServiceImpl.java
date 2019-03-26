@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
+import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
@@ -25,6 +26,7 @@ import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
+import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
@@ -315,4 +317,20 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		return sphcResponse;
 	}
+
+	@Override
+	public RetrievePolAttachmentOcResponse retrievePolAttachmentOc(RetrievePolAttachmentOcRequest rpaor)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrievePolAttachmentOcResponse rpaoResponse = new RetrievePolAttachmentOcResponse();
+		HashMap<String, Object> retrievePolAttachmentOcParams = new HashMap<String, Object>();
+		retrievePolAttachmentOcParams.put("policyIdoc", rpaor.getPolicyIdOc());
+		retrievePolAttachmentOcParams.put("openPolicyNo", rpaor.getOpenPolicyNo());
+		
+		rpaoResponse.setAttachmentsList(underwritingDao.retrievePolAttachmentOcList(retrievePolAttachmentOcParams));
+		logger.info("retrievePolAttachmentResponse : " + rpaoResponse.toString());
+		return rpaoResponse;
+	}
+
+
 }

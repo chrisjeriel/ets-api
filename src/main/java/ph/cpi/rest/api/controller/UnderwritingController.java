@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
+import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
@@ -30,6 +31,7 @@ import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
+import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
@@ -158,5 +160,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/savePolHoldCover");
 		logger.info("SavePolHoldCoverRequest : " + sphcr.toString());
 		return underwritingService.savePolHoldCover(sphcr);
+	}
+	
+	@GetMapping(path="retrievePolAttachmentOc")
+	public @ResponseBody RetrievePolAttachmentOcResponse retrievePolAttachmentOc(RetrievePolAttachmentOcRequest rpaor) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolAttachmentOc");
+		logger.info("RetrievePolAttachmentOcRequest : " + rpaor.toString());
+		return underwritingService.retrievePolAttachmentOc(rpaor);
 	}
 }
