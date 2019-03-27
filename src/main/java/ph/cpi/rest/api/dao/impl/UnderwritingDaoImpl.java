@@ -136,4 +136,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return returnCd;
 	}
 	
+	@Override
+	public HashMap<String, Object> savePolAlop(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAlopMap",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public HashMap<String, Object> savePolAlopItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAlopItemMap",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
 }

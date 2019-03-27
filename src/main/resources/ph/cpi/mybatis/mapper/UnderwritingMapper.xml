@@ -432,6 +432,31 @@
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
+		   	</foreach>
+		END;
+	</update>
+	
+	<update id="savePolAlopMap" parameterType="java.util.Map">
+		BEGIN
+			POL_ALOP_PKG.save_pol_alop(#{policyId},#{insId},#{insuredDesc},#{address},#{annSi},#{maxIndemPdSi},
+			   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+			   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{maxIndemPd}, 
+			   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   #{timeExc}, #{repInterval}, #{createUser},
+			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
+			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="savePolAlopItemMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="savePolAlopItemList" item="alopItem">
+			    	POL_ALOP_ITEM_PKG.save_pol_alop_item
+			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+			    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
+			    	#{alopItem.createUser},
+			    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
 			</foreach>
 		END;
 	</update>
@@ -486,4 +511,3 @@
 	</select>
 
 </mapper>
-	
