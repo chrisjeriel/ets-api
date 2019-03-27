@@ -415,9 +415,9 @@
 		<result property="timeExc" 		column="TIME_EXC"/>
 		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>        
 		<result property="createUser" 	column="CREATE_USER"/> 
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 	column="UPDATE_USER"/> 
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.ProjectOc" id="quoteProjectOcMap">
@@ -1617,7 +1617,7 @@
 	
 	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
 		BEGIN
-			QU_SEC_COVER_PKG.copy_qu_sec_covers(
+			QU_SEC_COVER_PKG.copy_qu_sec_cvrs(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},

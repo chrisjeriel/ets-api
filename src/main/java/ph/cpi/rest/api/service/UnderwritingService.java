@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
@@ -29,6 +30,7 @@ import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
@@ -50,5 +52,6 @@ public interface UnderwritingService {
 	public SavePolAttachmentResponse savePolAttachments(SavePolAttachmentRequest spar) throws SQLException;
 	public SavePolicyDeductiblesResponse savePolicyDeductibles(SavePolicyDeductiblesRequest spdr) throws SQLException;
 	public SavePolCoverageResponse savePolCoverage(SavePolCoverageRequest spcr) throws SQLException;	
+	public RetrievePolicyListingResponse retrievePolicyListing(RetrievePolicyListingRequest rpgip) throws SQLException;
 	
 }

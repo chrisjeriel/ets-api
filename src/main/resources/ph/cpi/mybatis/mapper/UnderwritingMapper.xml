@@ -160,7 +160,7 @@
 		<result property="duration" 	column="DURATION"/>
 		<result property="testing" 		column="TESTING"/>
 		<result property="ipl" 			column="IPL"/>
-		<result property="timeExc" 		column="TIME_EXC"/>
+		<result property="timeExc" 		column="TIME_EXEC"/>
 		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>
 		<result property="createUser" 	column="PRJ_CREATE_USER"/>
 		<result property="createDate" 	column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -461,5 +461,29 @@
 			</foreach>
 		END;
 	</update>
+	
+	<select id="retrievePolicyListing" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+															 #{cessionDesc, jdbcType=VARCHAR},
+															 #{cedingName, jdbcType=VARCHAR},
+															 #{lineClassDesc, jdbcType=VARCHAR},
+															 #{insuredDesc, jdbcType=VARCHAR},
+															 #{riskName, jdbcType=VARCHAR},
+															 #{objectDesc, jdbcType=VARCHAR},
+															 #{site, jdbcType=VARCHAR},
+															 #{currencyCd, jdbcType=VARCHAR},
+															 #{totalSi, jdbcType=DECIMAL},
+															 #{totalPrem, jdbcType=DECIMAL},
+															 CAST(to_timestamp(#{issueDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{statusDesc, jdbcType=VARCHAR},
+															 null,
+															 null,
+															 null,
+															 null))
+	</select>
 
 </mapper>
+	

@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
+import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
@@ -42,6 +43,11 @@ import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
+import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
+import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
+import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 
 @Controller
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
@@ -149,5 +155,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/savePolCoverage");
 		logger.info("SavePolCoverageRequest : " + sqcr.toString());
 		return underwritingService.savePolCoverage(sqcr);
+	}
+	
+	@GetMapping(path="retrievePolicyListing")
+	public @ResponseBody RetrievePolicyListingResponse retrievePolicyListing(RetrievePolicyListingRequest rplp) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolicyListing");
+		logger.info("RetrievePolicyListing : " + rplp.toString());
+		return underwritingService.retrievePolicyListing(rplp);
 	}
 }
