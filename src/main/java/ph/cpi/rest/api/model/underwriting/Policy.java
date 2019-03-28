@@ -77,7 +77,7 @@ public class Policy {
 	private List<Attachment> attachments;
 	private InwPolBalance inwPolBalance;
 	private CoInsurance coInsurance;
-	private Alop alop;
+	private List<Alop> alop;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -481,10 +481,10 @@ public class Policy {
 	public void setCoInsurance(CoInsurance coInsurance) {
 		this.coInsurance = coInsurance;
 	}
-	public Alop getAlop() {
+	public List<Alop> getAlop() {
 		return alop;
 	}
-	public void setAlop(Alop alop) {
+	public void setAlop(List<Alop> alop) {
 		this.alop = alop;
 	}
 	@Override
