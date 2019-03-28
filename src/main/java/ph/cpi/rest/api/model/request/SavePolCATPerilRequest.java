@@ -1,16 +1,14 @@
 package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
 
 public class SavePolCATPerilRequest {
 	
 	private Integer policyId;
-	private Integer catPerilId;
-	private BigDecimal pctSharePrem;
-	private String createUser;
-	private String createDate;
-	private String updateUser;
-	private String updateDate;
+	private List<CATPeril> saveCATPerilList;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -18,17 +16,39 @@ public class SavePolCATPerilRequest {
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
-	public Integer getCatPerilId() {
-		return catPerilId;
+	public List<CATPeril> getSaveCATPerilList() {
+		return saveCATPerilList;
 	}
-	public void setCatPerilId(Integer catPerilId) {
-		this.catPerilId = catPerilId;
+	public void setSaveCATPerilList(List<CATPeril> saveCATPerilList) {
+		this.saveCATPerilList = saveCATPerilList;
 	}
-	public BigDecimal getPctSharePrem() {
-		return pctSharePrem;
+	@Override
+	public String toString() {
+		return "SavePolCATPerilRequest [policyId=" + policyId + ", saveCATPerilList=" + saveCATPerilList + "]";
 	}
-	public void setPctSharePrem(BigDecimal pctSharePrem) {
-		this.pctSharePrem = pctSharePrem;
+	
+}
+
+@Alias("SavePolCATPeril")
+class CATPeril {
+	private Integer	catPrlId;
+	private BigDecimal pctShrPrm;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	
+	public Integer getCatPrlId() {
+		return catPrlId;
+	}
+	public void setCatPrlId(Integer catPrlId) {
+		this.catPrlId = catPrlId;
+	}
+	public BigDecimal getPctShrPrm() {
+		return pctShrPrm;
+	}
+	public void setPctShrPrm(BigDecimal pctShrPrm) {
+		this.pctShrPrm = pctShrPrm;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -54,12 +74,11 @@ public class SavePolCATPerilRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "SavePolCATPerilRequest [policyId=" + policyId + ", catPerilId=" + catPerilId + ", pctSharePrem="
-				+ pctSharePrem + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "CATPeril [catPrlId=" + catPrlId + ", pctShrPrm=" + pctShrPrm + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-
+	
+	
 }

@@ -154,8 +154,6 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Item" id="assocItemsMap">
-	    <result property="policyId" 		column="POLICY_ID"/> 
-		<result property="policyNo" 		column="POLICY_NO"/> 
 		<result property="projId" 			column="PROJ_ID"/> 
 		<result property="riskId" 			column="RISK_ID"/> 
 		<result property="riskName" 		column="RISK_NAME"/> 
@@ -180,8 +178,6 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CATPeril" id="assocCATPerilMap">
-	    <result property="policyId" 		column="POLICY_ID"/> 
-		<result property="policyNo" 		column="POLICY_NO"/> 
 		<result property="catPrlId" 	    column="CAT_PERIL_ID"/> 
 		<result property="pctShrPrm" 	    column="PCT_SHARE_PREM"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -221,18 +217,48 @@
 																	#{order, jdbcType=VARCHAR}))
 	</select>
 	
-	<update id="savePolCATPeril" parameterType="java.util.Map" statementType="CALLABLE">
+	<update id="savePolCATPeril" parameterType="java.util.Map">
 		BEGIN
+		  <foreach collection="saveCATPerilList" item="CATPeril">
 			POL_CAT_PERIL_PKG.save_pol_cat_prl(
 				#{policyId, jdbcType=INTEGER},
-				#{catPerilId, jdbcType=INTEGER},
-				#{pctSharePrem, jdbcType=INTEGER},
-				#{createUser, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{updateUser, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-	
+				#{CATPeril.catPrlId, jdbcType=INTEGER},
+				#{CATPeril.pctShrPrm, jdbcType=INTEGER},
+				#{CATPeril.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{CATPeril.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{CATPeril.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{CATPeril.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
+			</foreach>
+		END;
+	</update>
+	
+	<update id="savePolItem" parameterType="java.util.Map">
+		BEGIN
+		  <foreach collection="saveItemLists" item="Items">
+			POL_ITEM_PKG.save_pol_itm(
+				#{policyId, jdbcType=INTEGER},
+				#{Items.projId, jdbcType=INTEGER},
+				#{Items.itemNo, jdbcType=INTEGER},
+				#{Items.quantity, jdbcType=INTEGER},
+				#{Items.itemDesc, jdbcType=VARCHAR},
+				#{Items.makeYear, jdbcType=VARCHAR},
+				#{Items.deductibleTxt, jdbcType=VARCHAR},
+				#{Items.sumInsured, jdbcType=INTEGER},
+				#{Items.stockType, jdbcType=VARCHAR},
+				#{Items.serialNo, jdbcType=VARCHAR},
+				#{Items.location, jdbcType=VARCHAR},
+				#{Items.chamberNo, jdbcType=VARCHAR},
+				#{Items.noClaimPd, jdbcType=INTEGER},
+				#{Items.ipl, jdbcType=INTEGER},
+				#{Items.relativeImp, jdbcType=VARCHAR},
+				#{Items.standbyUnit, jdbcType=VARCHAR},
+				#{Items.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{Items.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+			</foreach>
 		END;
 	</update>
 

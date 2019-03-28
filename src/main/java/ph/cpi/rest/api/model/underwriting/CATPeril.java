@@ -7,9 +7,6 @@ import org.joda.time.LocalDateTime;
 
 @Alias("UnderwritingCATPeril")
 public class CATPeril {
-	
-	private Integer	policyId;
-	private String  policyNo;
 	private Integer	catPrlId;
 	private BigDecimal pctShrPrm;
 	private String createUser;
@@ -17,18 +14,6 @@ public class CATPeril {
 	private String updateUser;
 	private LocalDateTime updateDate;
 
-	public Integer getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
-	}
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
 	public Integer getCatPrlId() {
 		return catPrlId;
 	}
@@ -66,11 +51,12 @@ public class CATPeril {
 		this.updateDate = updateDate;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "CATPeril [policyId=" + policyId + ", policyNo=" + policyNo + ", catPrlId=" + catPrlId + ", pctShrPrm="
-				+ pctShrPrm + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "CATPeril [catPrlId=" + catPrlId + ", pctShrPrm=" + pctShrPrm + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

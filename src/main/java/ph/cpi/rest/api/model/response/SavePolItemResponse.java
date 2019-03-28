@@ -6,12 +6,12 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SavePolCATPerilResponse {
+public class SavePolItemResponse {
 	
 	private List<Error> errorList = null;
 	private List<Message> messageList;
 	private Integer returnCode;
-	
+
 	public List<Error> getErrorList() {
 		if (errorList == null) {
 			errorList = new ArrayList<Error>();
@@ -36,7 +36,8 @@ public class SavePolCATPerilResponse {
 	
 	@Override
 	public String toString() {
-		return "SavePolCATPerilResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "SavePolItemResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
+	
 }

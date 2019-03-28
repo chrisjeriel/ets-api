@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
+import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
@@ -24,6 +25,7 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -116,22 +118,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		return rpcpresponse;
 	}
-	
+
 	@Override
 	public SavePolCATPerilResponse savePolCATPeril(SavePolCATPerilRequest spcpr) throws SQLException {
-		// TODO Auto-generated method stub
 		SavePolCATPerilResponse spcpresponse = new SavePolCATPerilResponse();
 		try{
 			HashMap<String, Object> savePolCATPerilParams = new HashMap<String, Object>();
 			
 			savePolCATPerilParams.put("policyId", spcpr.getPolicyId());
-			savePolCATPerilParams.put("catPerilId",spcpr.getCatPerilId());
-			savePolCATPerilParams.put("pctSharePrem", spcpr.getPctSharePrem());
-			savePolCATPerilParams.put("createUser", spcpr.getCreateUser());
-			savePolCATPerilParams.put("createDate", spcpr.getCreateDate());
-			savePolCATPerilParams.put("updateUser", spcpr.getUpdateUser());
-			savePolCATPerilParams.put("updateDate", spcpr.getUpdateDate());
-			
+			savePolCATPerilParams.put("saveCATPerilList", spcpr.getSaveCATPerilList());
 			HashMap<String, Object> res = underwritingDao.savePolCATPeril(savePolCATPerilParams);
 			spcpresponse.setReturnCode((Integer) res.get("errorCode"));
 		}catch (Exception ex) {
@@ -142,6 +137,25 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		System.out.println("spcprResponse: " + spcpresponse);
 		return spcpresponse;
 	}
+
+	@Override
+	public SavePolItemResponse savePolItem(SavePolItemRequest spir) throws SQLException {
+		SavePolItemResponse spiresponse = new SavePolItemResponse();
+		try{
+			HashMap<String, Object> savePolItemParams = new HashMap<String, Object>();
+			savePolItemParams.put("policyId", spir.getPolicyId());
+			savePolItemParams.put("saveItemLists",spir.getSaveItemLists());
+			HashMap<String, Object> res = underwritingDao.savePolItem(savePolItemParams);
+			spiresponse.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			spiresponse.setReturnCode(0);
+			spiresponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return spiresponse;
+	}
+	
+
 
 	
 }

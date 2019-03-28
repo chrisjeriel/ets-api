@@ -74,12 +74,20 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
 	}
-	
+
 	@Override
 	public HashMap<String, Object> savePolCATPeril(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolCATPeril", params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> savePolItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolItem",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
+
 }

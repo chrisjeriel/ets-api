@@ -11,6 +11,7 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
+import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
@@ -18,6 +19,7 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
 
 @Service
 public interface UnderwritingService {
@@ -29,5 +31,6 @@ public interface UnderwritingService {
 	public RetrievePolItemResponse retrievePolItem(RetrievePolItemRequest rpir) throws SQLException;
 	public RetrievePolCATPerilResponse retrievePolCATPeril(RetrievePolCATPerilRequest rpcpr) throws SQLException;
 	public SavePolCATPerilResponse savePolCATPeril(SavePolCATPerilRequest spcpr ) throws SQLException;
+	public SavePolItemResponse savePolItem(SavePolItemRequest spir ) throws SQLException;
 	
 }

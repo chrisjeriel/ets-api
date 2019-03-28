@@ -1,15 +1,38 @@
-package ph.cpi.rest.api.model.underwriting;
+package ph.cpi.rest.api.model.request;
+
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-import org.joda.time.LocalDateTime;
 
-@Alias("UnderwritingItem")
-public class Item {
-	private Integer	policyId;
-	private String  policyNo;
-	private String	projId;
-	private Integer riskId;
-	private String 	riskName;
+public class SavePolItemRequest {
+	
+	private Integer policyId;
+	private List<Items> saveItemLists;
+	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	
+	public List<Items> getSaveItemLists() {
+		return saveItemLists;
+	}
+	public void setSaveItemLists(List<Items> saveItemLists) {
+		this.saveItemLists = saveItemLists;
+	}
+	
+	@Override
+	public String toString() {
+		return "SavePolItemRequest [policyId=" + policyId + ", saveItemLists=" + saveItemLists + "]";
+	}	
+}
+
+@Alias("SavePolItem")
+class Items {
+	
+	private Integer projId;
 	private Integer	itemNo;
 	private Integer	quantity;
 	private String	itemDesc;
@@ -25,38 +48,15 @@ public class Item {
 	private String  relativeImp;
 	private String  standbyUnit;
 	private String createUser;
-	private LocalDateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
-	public Integer getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
-	}
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
-	public String getProjId() {
+	private String updateDate;
+	
+	public Integer getProjId() {
 		return projId;
 	}
-	public void setProjId(String projId) {
+	public void setProjId(Integer projId) {
 		this.projId = projId;
-	}
-	public Integer getRiskId() {
-		return riskId;
-	}
-	public void setRiskId(Integer riskId) {
-		this.riskId = riskId;
-	}
-	public String getRiskName() {
-		return riskName;
-	}
-	public void setRiskName(String riskName) {
-		this.riskName = riskName;
 	}
 	public Integer getItemNo() {
 		return itemNo;
@@ -148,10 +148,10 @@ public class Item {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -160,17 +160,15 @@ public class Item {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-
 	@Override
 	public String toString() {
-		return "Item [policyId=" + policyId + ", policyNo=" + policyNo + ", projId=" + projId + ", riskId=" + riskId
-				+ ", riskName=" + riskName + ", itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
+		return "Item [projId=" + projId + ", itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
 				+ ", makeYear=" + makeYear + ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured
 				+ ", stockType=" + stockType + ", serialNo=" + serialNo + ", location=" + location + ", chamberNo="
 				+ chamberNo + ", noClaimPd=" + noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp
@@ -178,10 +176,7 @@ public class Item {
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
-	
-	
-	
+}
 
 	
 	
-}

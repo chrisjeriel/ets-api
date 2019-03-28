@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
+import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -40,7 +42,7 @@ public class UnderwritingController {
 	@Autowired
 	private UnderwritingService underwritingService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UnderwritingController.class);
 	
 	@GetMapping(path="retrievePolicyDeductibles")
 	public @ResponseBody RetrievePolicyDeductiblesResponse retrievePolicyDeductibles(RetrievePolicyDeductiblesRequest rpdr) throws SQLException {
@@ -87,8 +89,15 @@ public class UnderwritingController {
 	@PostMapping(path="savePolCATPeril")
 	public @ResponseBody SavePolCATPerilResponse savePolCATPeril(@RequestBody SavePolCATPerilRequest spcpr ) throws SQLException {
 		logger.info("GET: /api/underwriting-service/savePolCATPeril");
-		logger.info("savePolCATPerilRequest : " + spcpr.toString());
+		logger.info("savePolCATPeril : " + spcpr.toString());
 		return underwritingService.savePolCATPeril(spcpr);
+	}
+	
+	@PostMapping(path="savePolItem")
+	public @ResponseBody SavePolItemResponse savePolItem(@RequestBody SavePolItemRequest spir ) throws SQLException {
+		logger.info("GET: /api/underwriting-service/savePolItem");
+		logger.info("savePolItem : " + spir.toString());
+		return underwritingService.savePolItem(spir);
 	}
 	
 
