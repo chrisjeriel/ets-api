@@ -111,7 +111,7 @@
 		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="statusDesc" 			column="STATUS"/>
 		
-		<association property="project" 		resultMap="projectMap"/>		
+		<association property="project" 		resultMap="projectMap"/>	
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
