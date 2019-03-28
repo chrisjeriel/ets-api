@@ -78,6 +78,7 @@ public class Policy {
 	private InwPolBalance inwPolBalance;
 	private CoInsurance coInsurance;
 	private List<Alop> alop;
+	private List<HoldCover> holdCoverList;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -487,6 +488,13 @@ public class Policy {
 	public void setAlop(List<Alop> alop) {
 		this.alop = alop;
 	}
+	
+	public List<HoldCover> getHoldCoverList() {
+		return holdCoverList;
+	}
+	public void setHoldCoverList(List<HoldCover> holdCoverList) {
+		this.holdCoverList = holdCoverList;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd + ", lineCdDesc="
@@ -510,7 +518,6 @@ public class Policy {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
 				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
-				+ ", coInsurance=" + coInsurance + ", alop=" + alop + "]";
+				+ ", coInsurance=" + coInsurance + ", alop=" + alop + ", holdCoverList=" + holdCoverList + "]";
 	}
-	
 }

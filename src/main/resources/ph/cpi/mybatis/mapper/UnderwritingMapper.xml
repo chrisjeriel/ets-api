@@ -96,6 +96,7 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
+		<association property="holdCover" 		resultMap="holdCoverMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
@@ -381,8 +382,29 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		
 	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.HoldCover" id="holdCoverMap">
+		<result property="policyId"				column="POLICY_ID" />
+		<result property="holdCovId"			column="HOLD_COV_ID" />
+		<result property="holdCovNo"			column="HOLD_COV_NO" />  
+		<result property="lineCd"				column="LINE_CD" />
+		<result property="holdCovYear"			column="HOLD_COV_YEAR" />
+		<result property="holdCovSeqNo"			column="HOLD_COV_SEQ_NO" />
+		<result property="holdCovRevNo"			column="HOLD_COV_REV_NO" />
+		<result property="periodFrom"			column="PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="periodTo"				column="PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="compRefHoldCovNo"		column="COMP_REF_HOLD_COV_NO" />
+		<result property="status"				column="STATUS" />
+		<result property="reqBy"				column="REQ_BY" />
+		<result property="reqDate"				column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="preparedBy"			column="PREPARED_BY" />
+		<result property="approvedBy"			column="APPROVED_BY" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap> 
 	
 	<select id="retrievePolAlop" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_ALOP_PKG.ret_pol_alop(#{policyId, jdbcType=INTEGER}, 
@@ -509,5 +531,34 @@
 															 null,
 															 null))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retPolHoldCoverMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>
+		<result property="principalName" 		column="INSURED_NAME"/>
+<!-- 		<association property="project" 		resultMap="projectMap"/> -->
+		<collection property="holdCoverList" javaType="ArrayList" column="{policyId = POLICY_ID, policyNo = POLICY_NO}" ofType="holdCoverMap" select="retrievePolHoldCover"/>
+	</resultMap>
+	
+	<select id="retrievePolHoldCoverMain" resultMap="retPolHoldCoverMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.RET_POL_HOLD_COVER(#{policyId, jdbcType=VARCHAR},
+															      #{policyNo, jdbcType=VARCHAR},
+															      #{position, jdbcType=VARCHAR}, 
+																  #{count, jdbcType=VARCHAR}, 
+																  #{sortKey, jdbcType=VARCHAR}, 
+																  #{order, jdbcType=VARCHAR}))
+		 WHERE rownum = 1
+	</select>
+	
+	<select id="retrievePolHoldCover" resultMap="holdCoverMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.RET_POL_HOLD_COVER(#{policyId, jdbcType=VARCHAR},
+															      #{policyNo, jdbcType=VARCHAR},
+															      #{position, jdbcType=VARCHAR}, 
+																  #{count, jdbcType=VARCHAR}, 
+																  #{sortKey, jdbcType=VARCHAR}, 
+																  #{order, jdbcType=VARCHAR}))
+	</select>
+	
 
 </mapper>
