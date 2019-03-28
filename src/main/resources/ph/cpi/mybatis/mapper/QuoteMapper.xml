@@ -1037,7 +1037,7 @@
         <result property="updateDateItem" 	column="UPDATE_DATE_ITM" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-    <select id="retrieveQuoteAlopItem" resultMap="quotation" parameterType="java.util.Map">
+    <select id="retrieveQuoteAlopItem" resultMap="alopItemMap" parameterType="java.util.Map">
             SELECT * FROM TABLE(QU_ALOP_ITM_PKG.ret_qu_alop_itm(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},#{optionId},'',0,'',''))
     </select>
 

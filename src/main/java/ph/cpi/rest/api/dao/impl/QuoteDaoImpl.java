@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.QuoteDao;
+import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
@@ -198,9 +199,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	}
 
 	@Override
-	public Quotation retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
-			Quotation quotation = sqlSession.selectOne("retrieveQuoteAlopItem",params);
-		return quotation;
+	public List<AlopItem> retrieveAlopItemList(HashMap<String, Object> params) throws SQLException {
+			List<AlopItem> alopItem = sqlSession.selectList("retrieveQuoteAlopItem",params);
+		return alopItem;
 	}
 
 

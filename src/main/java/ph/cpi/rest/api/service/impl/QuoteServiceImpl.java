@@ -422,7 +422,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
 		retrieveQuoteAlopItemParams.put("optionId", retQuoteAlopItem.getOptionId());
 		
-		retQuoteAlopItemResponse.setQuotation(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
+		retQuoteAlopItemResponse.setAlopItem(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
 		
 		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
 		return retQuoteAlopItemResponse;
