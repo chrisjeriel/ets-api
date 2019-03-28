@@ -50,7 +50,7 @@
 		<result property="statusDesc" 			column="STATUS_DESC"/>
 		<result property="coRefNo" 				column="CO_REF_NO"/>
 		<result property="reinsurerId" 			column="REINSURER_ID"/>
-		<result property="reinsurerName" 		column="CEDING_NAME"/>
+		<result property="reinsurerName" 		column="REINSURER_NAME"/>
 		<result property="riBinderNo" 			column="RI_BINDER_NO"/>
 		<result property="mbiRefNo" 			column="MBI_REF_NO"/>
 		<result property="policyIdOc" 			column="POLICY_ID_OC"/>
@@ -96,10 +96,22 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
+		<association property="alterationHist" 	resultMap="AlterationHistMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.AlterationHist" id="AlterationHistMap" >
+		<result property="policyId"     column="ALT_POLICY_ID"/>
+		<result property="policyNo"     column="ALT_POLICY_NO"/>
+		<result property="effDate"  column="ALT_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"    column="ALT_ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quotationNo"  column="ALT_QUOTATION_NO"/>
+		<result property="sumInsured"   column="ALT_TOTAL_SI"/>
+		<result property="premAmt"  column="ALT_TOTAL_PREM"/>
+		<result property="status"   column="ALT_STATUS_DESC"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
-		<result property="policyNo"		column="POLICY_NO"/>
+		<!-- <result property="policyNo"		column="POLICY_NO"/> -->
 		<result property="coRefNo"		column="CO_REF_NO"/>
 		<result property="cedingId"		column="CEDING_ID"/>
 		<result property="cedingName"	column="CEDING_NAME"/>
@@ -508,6 +520,10 @@
 															 null,
 															 null,
 															 null))
+	</select>
+	
+	<select id="retrievePolicyInformation" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_info(#{policyId, jdbcType=VARCHAR},#{policyNo, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 
 </mapper>

@@ -149,5 +149,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Policy retrievePolicyInformation(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolicyInformation", params);
+		return policy;
+	}
 	
 }

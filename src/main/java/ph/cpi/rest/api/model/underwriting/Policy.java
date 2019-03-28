@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import ph.cpi.rest.api.model.quote.Alop;
 import ph.cpi.rest.api.model.underwriting.Project;
 
 public class Policy {
@@ -78,6 +77,7 @@ public class Policy {
 	private InwPolBalance inwPolBalance;
 	private CoInsurance coInsurance;
 	private Alop alop;
+	private List<AlterationHist> alterationHist;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -487,6 +487,12 @@ public class Policy {
 	public void setAlop(Alop alop) {
 		this.alop = alop;
 	}
+	public List<AlterationHist> getAlterationHist() {
+		return alterationHist;
+	}
+	public void setAlterationHist(List<AlterationHist> alterationHist) {
+		this.alterationHist = alterationHist;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd + ", lineCdDesc="
@@ -510,7 +516,7 @@ public class Policy {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
 				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
-				+ ", coInsurance=" + coInsurance + ", alop=" + alop + "]";
+				+ ", coInsurance=" + coInsurance + ", alop=" + alop + ", alterationHist=" + alterationHist + "]";
 	}
 	
 }
