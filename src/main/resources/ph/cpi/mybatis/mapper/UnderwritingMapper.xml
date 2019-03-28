@@ -98,6 +98,22 @@
 		<association property="alop" 			resultMap="assocAlop"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="cessionDesc" 			column="CESSION_DESC"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>		
+		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="statusDesc" 			column="STATUS"/>
+		
+		<association property="project" 		resultMap="projectMap"/>		
+	</resultMap>
+	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
 		<result property="policyNo"		column="POLICY_NO"/>
 		<result property="coRefNo"		column="CO_REF_NO"/>
@@ -487,7 +503,7 @@
 		END;
 	</update>
 	
-	<select id="retrievePolicyListing" resultMap="policyMap" parameterType="java.util.Map">
+	<select id="retrievePolicyListing" resultMap="policyListingMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
 															 #{cedingName, jdbcType=VARCHAR},
