@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
@@ -24,7 +25,7 @@ public class Alop {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private AlopItem alopItem;
+	private List<AlopItem> alopItem;
 	
 	public Integer getInsId() {
 		return insId;
@@ -122,20 +123,22 @@ public class Alop {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public AlopItem getAlopItem() {
+	
+	public List<AlopItem> getAlopItem() {
 		return alopItem;
 	}
-	public void setAlopItem(AlopItem alopItem) {
+	public void setAlopItem(List<AlopItem> alopItem) {
 		this.alopItem = alopItem;
 	}
-	
 	@Override
 	public String toString() {
 		return "Alop [insId=" + insId + ", insuredName=" + insuredName + ", insuredDesc=" + insuredDesc + ", address="
 				+ address + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
 				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", indemFromDate=" + indemFromDate
 				+ ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", alopItem=" + alopItem + "]";
 	}
+	
 	
 }

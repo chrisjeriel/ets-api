@@ -373,7 +373,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrievePolHoldCoverResponse rphcResponse = new RetrievePolHoldCoverResponse();
 		HashMap<String, Object> retrievePolHoldCoverParams = new HashMap<String, Object>();
 		
-		retrievePolHoldCoverParams.put("policyId", rphc.getPolicyNo());
+		retrievePolHoldCoverParams.put("policyId", rphc.getPolicyId());
 		retrievePolHoldCoverParams.put("policyNo", rphc.getPolicyNo());
 		
 		rphcResponse.setPolicy(underwritingDao.retrievePolHoldCover(retrievePolHoldCoverParams));

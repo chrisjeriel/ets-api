@@ -96,7 +96,7 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
-		<association property="holdCover" 		resultMap="holdCoverMap"/>
+		<association property="holdCoverList" 		resultMap="holdCoverMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
@@ -431,7 +431,21 @@
 																	  null))
 	</select>
 	
-	<select id="retrievePolAlopItem" resultMap="policyMap" parameterType="java.util.Map">
+	
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retrievePolAlopItemPolicyMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="alop" resultMap="retrievePolAlopItemAlopMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Alop" id="retrievePolAlopItemAlopMap">
+		<result property="insId" column="INS_ID"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
+		<association property="alopItem" resultMap="assocAlopItem"/>
+	</resultMap>
+	
+	<select id="retrievePolAlopItem" resultMap="retrievePolAlopItemPolicyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_ALOP_ITEM_PKG.ret_pol_alop_item(#{policyId, jdbcType=INTEGER},
 			#{policyNo, jdbcType=VARCHAR}, null, null, null, null))
 	</select>
