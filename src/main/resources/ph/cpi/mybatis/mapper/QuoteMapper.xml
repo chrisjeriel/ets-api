@@ -1706,8 +1706,9 @@
 	<update id="renumberQuoteOptions" parameterType="String">
 		BEGIN
 			QU_OPTION_PKG.renumber(${value});
+		END;
 	</update>
-	
+		
 	<update id="updateHoldCoverStatus" parameterType="java.util.Map">
 		BEGIN
 			QU_HOLD_COVER_PKG.up_qu_hold_cover(
@@ -1717,9 +1718,4 @@
 	    END;
 	</update>
 	
-	<!-- <update id="renumberQuoteOptions" parameterType="String">
-		BEGIN
-			QU_OPTION_PKG.renumber(${value});
-		END;
-	</update> -->
 </mapper>
