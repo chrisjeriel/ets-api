@@ -29,5 +29,6 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> savePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolAlopItem(final HashMap<String, Object> params) throws SQLException;
 	public OpenPolicy retrievePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
 
 }

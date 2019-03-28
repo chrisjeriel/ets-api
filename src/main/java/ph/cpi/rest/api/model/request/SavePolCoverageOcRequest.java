@@ -2,41 +2,37 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import org.apache.ibatis.type.Alias;
-import org.joda.time.DateTime;
-
-public class SavePolCoverageRequest {
-	private  Integer policyId;
+public class SavePolCoverageOcRequest {
+	private  Integer policyIdOc;
 	private  Integer riskId;
 	private  Integer projId;
-	private  Integer sectionISi;
-	private  Integer sectionIISi;
-	private  Integer sectionIIISi;
-	private  Integer totalSi;
-	private  Integer sectionIPrem;
-	private  Integer sectionIIPrem;
-	private  Integer sectionIIIPrem;
-	private  Integer totalPrem;
-	private  String currencyCd;
-	private  Integer currencyRt;
-	private  Integer pctShare;
-	private  Integer pctPml;
-	private  Integer totalValue;
-	private  String remarks;
-	private  String createUser;
-	private  String createDate;
-	private  String updateUser;
-	private  String updateDate;
+	private Integer sectionISi;
+	private Integer sectionIISi;
+	private Integer sectionIIISi;
+	private Integer totalSi;
+	private Integer sectionIPrem;
+	private Integer sectionIIPrem;
+	private Integer sectionIIIPrem;
+	private Integer totalPrem;
+	private String currencyCd;
+	private Integer currencyRt;
+	private Integer pctShare;
+	private Integer pctPml;
+	private Integer totalValue;
+	private String remarks;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
 	
-	private List<SectionCoversUw> saveSectionCovers;
-	private List<SectionCoversUw> deleteSectionCovers;
+	private List<SectionCoversOc> saveSectionCoversOc;
+	private List<SectionCoversOc> delSectionCoversOc;
 	
-	
-	public Integer getPolicyId() {
-		return policyId;
+	public Integer getPolicyIdOc() {
+		return policyIdOc;
 	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
+	public void setPolicyIdOc(Integer policyIdOc) {
+		this.policyIdOc = policyIdOc;
 	}
 	public Integer getRiskId() {
 		return riskId;
@@ -152,55 +148,53 @@ public class SavePolCoverageRequest {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	
 	public String getUpdateDate() {
 		return updateDate;
 	}
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<SectionCoversUw> getSaveSectionCovers() {
-		return saveSectionCovers;
+	
+	public List<SectionCoversOc> getSaveSectionCoversOc() {
+		return saveSectionCoversOc;
 	}
-	public void setSaveSectionCovers(List<SectionCoversUw> saveSectionCovers) {
-		this.saveSectionCovers = saveSectionCovers;
+	public void setSaveSectionCoversOc(List<SectionCoversOc> saveSectionCoversOc) {
+		this.saveSectionCoversOc = saveSectionCoversOc;
 	}
-	public List<SectionCoversUw> getDeleteSectionCovers() {
-		return deleteSectionCovers;
+	public List<SectionCoversOc> getDelSectionCoversOc() {
+		return delSectionCoversOc;
 	}
-	public void setDeleteSectionCovers(List<SectionCoversUw> deleteSectionCovers) {
-		this.deleteSectionCovers = deleteSectionCovers;
+	public void setDelSectionCoversOc(List<SectionCoversOc> delSectionCoversOc) {
+		this.delSectionCoversOc = delSectionCoversOc;
 	}
 	@Override
 	public String toString() {
-		return "SavePolCoverageRequest [policyId=" + policyId + ", riskId=" + riskId + ", projId=" + projId
+		return "SavePolCoverageOcRequest [policyIdOc=" + policyIdOc + ", riskId=" + riskId + ", projId=" + projId
 				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
 				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
 				+ totalValue + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveSectionCovers="
-				+ saveSectionCovers + ", deleteSectionCovers=" + deleteSectionCovers + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 	
 	
 }
 
-@Alias ("UWSaveSec")
-class SectionCoversUw {
-	private String lineCd;
-	private String section;  
-	private String coverCd; 
-	private String bulletNo;
-	private Integer sumInsured;
-	private Integer premRt;
-	private Integer premAmt;
-	private String addSi;
-	private String createUserSec;
-	private String createDateSec;
-	private String updateUserSec;
-	private String updateDateSec;
+ class SectionCoversOc {
+	 private String lineCd;
+	 private String section  ;
+	 private String coverCd ;
+	 private String bulletNo;
+	 private Integer sumInsured;
+	 private Integer premRt;
+	 private Integer premAmt;
+	 private String addSi;
+	 private String createUserSec;
+	 private String createDateSec;
+	 private String updateUserSec;
+	 private String updateDateSec;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -255,7 +249,6 @@ class SectionCoversUw {
 	public void setCreateUserSec(String createUserSec) {
 		this.createUserSec = createUserSec;
 	}
-	
 	public String getCreateDateSec() {
 		return createDateSec;
 	}
@@ -268,7 +261,6 @@ class SectionCoversUw {
 	public void setUpdateUserSec(String updateUserSec) {
 		this.updateUserSec = updateUserSec;
 	}
-	
 	public String getUpdateDateSec() {
 		return updateDateSec;
 	}
@@ -277,11 +269,11 @@ class SectionCoversUw {
 	}
 	@Override
 	public String toString() {
-		return "SectionCovers [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
+		return "SectionCoversOc [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
 				+ bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi="
-				+ addSi + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec=" + updateUserSec
-				+ ", updateDateSec=" + updateDateSec + "]";
+				+ addSi + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
+				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
-	
-	
+	 
+	 
 }

@@ -566,4 +566,31 @@
 																	   #{sortKey, jdbcType=VARCHAR}, 
 																	   #{order, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="savePolCoverageOc" parameterType="java.util.Map">
+		BEGIN
+			POL_COVERAGE_OC_PKG.save_pol_cover_oc( #{policyIdOc},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
+										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
+										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
+										   #{pctPml}, #{totalValue}, #{remarks}, #{createUser}, 
+										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+										   
+			<foreach collection="delSectionCoversOc" item="sectioncovers">
+				POL_SEC_COVER_OC_PKG.del_pol_cover_oc (#{policyIdOc},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd});
+			</foreach>
+			
+			<foreach collection="saveSectionCoversOc" item="sectioncovers">
+				POL_SEC_COVER_OC_PKG.save_pol_sec_cvrs_oc(#{policyIdOc},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
+													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+													#{sectioncovers.premRt},#{sectioncovers.premAmt},
+													#{sectioncovers.addSi},#{sectioncovers.createUserSec},
+													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>
