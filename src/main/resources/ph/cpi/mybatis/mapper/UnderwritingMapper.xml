@@ -99,7 +99,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
-		<result property="policyNo"		column="POLICY_NO"/>
+		<!-- <result property="policyNo"		column="POLICY_NO"/> -->
 		<result property="coRefNo"		column="CO_REF_NO"/>
 		<result property="cedingId"		column="CEDING_ID"/>
 		<result property="cedingName"	column="CEDING_NAME"/>
