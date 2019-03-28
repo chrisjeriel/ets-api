@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.CATPeril;
 import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
@@ -148,6 +149,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolAlopItemMap",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public OpenPolicy retrievePolCoverageOc(HashMap<String, Object> params) throws SQLException {
+		OpenPolicy policyOc = sqlSession.selectOne("retrievePolCoverageOc",params);
+		logger.info("retrievePolCoverageOc DAOImpl : " + policyOc);
+		return policyOc;
 	}
 	
 }

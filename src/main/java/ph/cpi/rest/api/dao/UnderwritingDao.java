@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.underwriting.CATPeril;
 import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public interface UnderwritingDao {
@@ -27,5 +28,6 @@ public interface UnderwritingDao {
 	public List<Policy> retrievePolicyListing(final HashMap<String, Object> params) throws SQLException;	
 	public HashMap<String, Object> savePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolAlopItem(final HashMap<String, Object> params) throws SQLException;
+	public OpenPolicy retrievePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
 
 }
