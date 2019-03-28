@@ -15,7 +15,7 @@ public class EndtOc {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private List<Deductibles> deductibles;
+	private List<DeductiblesOc> deductiblesOc;
 	
 	public String getEndtCd() {
 		return endtCd;
@@ -65,17 +65,17 @@ public class EndtOc {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<Deductibles> getDeductibles() {
-		return deductibles;
+	public List<DeductiblesOc> getDeductiblesOc() {
+		return deductiblesOc;
 	}
-	public void setDeductibles(List<Deductibles> deductibles) {
-		this.deductibles = deductibles;
+	public void setDeductiblesOc(List<DeductiblesOc> deductiblesOc) {
+		this.deductiblesOc = deductiblesOc;
 	}
 	
 	@Override
 	public String toString() {
 		return "EndtOc [endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", changeTag=" + changeTag + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + "]";
+				+ ", updateDate=" + updateDate + ", deductiblesOc=" + deductiblesOc + "]";
 	}
 }

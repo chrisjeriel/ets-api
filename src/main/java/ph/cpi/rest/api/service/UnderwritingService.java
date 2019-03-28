@@ -11,6 +11,7 @@ import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
@@ -27,6 +28,7 @@ import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
@@ -56,4 +58,5 @@ public interface UnderwritingService {
 	public SavePolCoverageResponse savePolCoverage(SavePolCoverageRequest spcr) throws SQLException;	
 	public SavePolHoldCoverResponse savePolHoldCover(SavePolHoldCoverRequest sphcr) throws SQLException;
 	public RetrievePolAttachmentOcResponse retrievePolAttachmentOc(RetrievePolAttachmentOcRequest rpaor) throws SQLException;
+	public RetrievePolEndtOcResponse retrievePolEndtOc(RetrievePolEndtOcRequest rpeor) throws SQLException;
 }

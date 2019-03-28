@@ -144,5 +144,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		PolicyOc attachmentsOcList = sqlSession.selectOne("retrievePolAttachmentOc", params);
 		return attachmentsOcList;
 	}
+
+	@Override
+	public PolicyOc retrievePolEndtOcList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		PolicyOc endorsementsOcList = sqlSession.selectOne("retrievePolEndtOc", params);
+		return endorsementsOcList;
+	}
 	
 }
