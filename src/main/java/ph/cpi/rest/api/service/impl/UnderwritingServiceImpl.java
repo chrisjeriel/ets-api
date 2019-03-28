@@ -309,7 +309,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolHoldCoverParams.put("updateUser", sphcr.getUpdateUser());
 			savePolHoldCoverParams.put("updateDate", sphcr.getUpdateDate());
 			
-			sphcResponse.setReturnCode(underwritingDao.savePolHoldCover(savePolHoldCoverParams));
+			HashMap<String, Object> res = underwritingDao.savePolHoldCover(savePolHoldCoverParams);
+			sphcResponse.setReturnCode((Integer) res.get("errorCode"));
+			sphcResponse.setPolHoldCoverNo((String) res.get("polHoldCoverNo"));
+			//sphcResponse.setPolHoldCoverNo(polHoldCoverNo);
 		}catch(Exception ex){
 			sphcResponse.setReturnCode(0);
 			sphcResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));

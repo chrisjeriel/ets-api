@@ -132,9 +132,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 
 	@Override
-	public Integer savePolHoldCover(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> savePolHoldCover(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolHoldCover", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override

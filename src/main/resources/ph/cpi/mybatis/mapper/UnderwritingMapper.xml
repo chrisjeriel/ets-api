@@ -464,26 +464,26 @@
 	
 	<update id="savePolHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			POL_HOLD_COVER_PKG.save_pol_hold_cover(
+			POL_HOLD_COVER_PKG.save_pol_hc(
 				 #{polHoldCoverNo, mode=OUT, jdbcType=VARCHAR},
-				 #{policyId},
-				 #{holdCovId},
+				 #{policyId, jdbcType=VARCHAR},
+				 #{holdCovId, jdbcType=VARCHAR},
 				 #{lineCd},
 				 #{holdCovYear},
-				 #{holdCovSeqNo},
-				 #{holdCovRevNo},
-				 #{periodFrom},
-				 #{periodTo},
+				 #{holdCovSeqNo, jdbcType=VARCHAR},
+				 #{holdCovRevNo, jdbcType=VARCHAR},
+				 CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				 #{compRefHoldCovNo, jdbcType=VARCHAR},
-				 #{status},
+				 #{status, jdbcType=VARCHAR},
 				 #{reqBy, jdbcType=VARCHAR},
-				 #{reqDate},
+				 CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				 #{preparedBy, jdbcType=VARCHAR},
 				 #{approvedBy, jdbcType=VARCHAR},
 				 #{createUser},
 				 CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				 #{updateUser},
-				 CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
