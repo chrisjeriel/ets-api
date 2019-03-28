@@ -329,7 +329,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		// TODO Auto-generated method stub
 		RetrievePolAttachmentOcResponse rpaoResponse = new RetrievePolAttachmentOcResponse();
 		HashMap<String, Object> retrievePolAttachmentOcParams = new HashMap<String, Object>();
-		retrievePolAttachmentOcParams.put("policyIdoc", rpaor.getPolicyIdOc());
+		retrievePolAttachmentOcParams.put("policyIdOc", rpaor.getPolicyIdOc());
 		retrievePolAttachmentOcParams.put("openPolicyNo", rpaor.getOpenPolicyNo());
 		
 		rpaoResponse.setAttachmentsList(underwritingDao.retrievePolAttachmentOcList(retrievePolAttachmentOcParams));
