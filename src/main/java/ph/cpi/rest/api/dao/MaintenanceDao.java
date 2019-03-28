@@ -63,4 +63,7 @@ public interface MaintenanceDao {
 	public List<SectionCovers> retrieveSectionCoversLov(final HashMap<String, Object> params) throws SQLException;
 	public List<RefCode> retrieveRefCode(final HashMap<String, Object> params) throws SQLException;
 	public List<ReportsParam> retrieveMtnReportsParam(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer saveMtnLine(final HashMap<String, Object> params) throws SQLException;
+
 }

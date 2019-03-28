@@ -1,22 +1,20 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
-
-public class Line {
-	private String lineCd;
-	private String description;
-	private String activeTag;
-	private String catTag;
-	private String renewalTag;
-	private String openCoverTag;
-	private Integer referenceNo;
-	private Integer sortSeq;
-	private String remarks;
-	private String createUser;
-	private DateTime createDate;
-	private String updateUser;
-	private DateTime updateDate;
-	private String alopTag;
+public class SaveMtnLineRequest {
+	 private String lineCd ;
+     private String description ;
+     private String activeTag ;
+     private String catTag ;
+     private String renewalTag ;
+     private String openCoverTag ;
+     private String referenceNo ;
+     private String sortSeq ;
+     private String remarks ;
+     private String createUser ;
+     private String createDate ;
+     private String updateUser ;
+     private String updateDate ;
+     private String alopTag ;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -53,16 +51,16 @@ public class Line {
 	public void setOpenCoverTag(String openCoverTag) {
 		this.openCoverTag = openCoverTag;
 	}
-	public Integer getReferenceNo() {
+	public String getReferenceNo() {
 		return referenceNo;
 	}
-	public void setReferenceNo(Integer referenceNo) {
+	public void setReferenceNo(String referenceNo) {
 		this.referenceNo = referenceNo;
 	}
-	public Integer getSortSeq() {
+	public String getSortSeq() {
 		return sortSeq;
 	}
-	public void setSortSeq(Integer sortSeq) {
+	public void setSortSeq(String sortSeq) {
 		this.sortSeq = sortSeq;
 	}
 	public String getRemarks() {
@@ -77,10 +75,10 @@ public class Line {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -89,10 +87,10 @@ public class Line {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	public String getAlopTag() {
@@ -103,11 +101,11 @@ public class Line {
 	}
 	@Override
 	public String toString() {
-		return "Line [lineCd=" + lineCd + ", description=" + description + ", activeTag=" + activeTag + ", catTag="
-				+ catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo="
-				+ referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", alopTag=" + alopTag + "]";
+		return "SaveMtnLineRequest [lineCd=" + lineCd + ", description=" + description + ", activeTag=" + activeTag
+				+ ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag
+				+ ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", alopTag=" + alopTag + "]";
 	}
-
+	
 }

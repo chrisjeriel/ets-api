@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -618,6 +620,30 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnReportsParamParams.put("reportId", rmrp.getReportId());
 		rmrpResponse.setReportsParam(maintenanceDao.retrieveMtnReportsParam(retrieveMtnReportsParamParams));
 		return rmrpResponse;
+	}
+
+	@Override
+	public SaveMtnLineResponse saveMtnLine(SaveMtnLineRequest smlr) throws SQLException {
+		SaveMtnLineResponse smlResponse = new SaveMtnLineResponse();
+		HashMap<String, Object> saveMtnLineParams = new HashMap<String, Object>();
+		saveMtnLineParams.put("lineCd", smlr.getLineCd()) ;
+        saveMtnLineParams.put("description", smlr.getDescription()) ;
+        saveMtnLineParams.put("activeTag", smlr.getActiveTag()) ;
+        saveMtnLineParams.put("catTag", smlr.getCatTag()) ;
+        saveMtnLineParams.put("renewalTag", smlr.getRenewalTag()) ;
+        saveMtnLineParams.put("openCoverTag", smlr.getOpenCoverTag()) ;
+        saveMtnLineParams.put("referenceNo", smlr.getReferenceNo()) ;
+        saveMtnLineParams.put("sortSeq", smlr.getSortSeq()) ;
+        saveMtnLineParams.put("remarks", smlr.getRemarks()) ;
+        saveMtnLineParams.put("createUser", smlr.getCreateUser()) ;
+        saveMtnLineParams.put("createDate", smlr.getCreateDate()) ;
+        saveMtnLineParams.put("updateUser", smlr.getUpdateUser()) ;
+        saveMtnLineParams.put("updateDate", smlr.getUpdateDate()) ;
+        saveMtnLineParams.put("alopTag", smlr.getAlopTag()) ;
+        smlResponse.setReturnCode(maintenanceDao.saveMtnLine(saveMtnLineParams));
+		logger.info("SaveMtnLineResponse : " + smlResponse.toString());
+
+		return smlResponse;
 	}
 	
 }

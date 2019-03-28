@@ -40,6 +40,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -68,6 +69,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -294,4 +296,10 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnReportsParam(rmrp);
 	}
 
+	@PostMapping(path="saveMtnLine")
+	public @ResponseBody SaveMtnLineResponse saveMtnLine(@RequestBody SaveMtnLineRequest smlr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnLine");
+		logger.info("SaveMtnLineRequest : " + smlr.toString());
+		return maintenanceService.saveMtnLine(smlr);
+	}
 }
