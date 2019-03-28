@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -43,6 +44,7 @@ import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -364,5 +366,94 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spcResponse;
+	}
+
+	@Override
+	public SavePolGenInfoResponse savePolGenInfo(SavePolGenInfoRequest spgip) throws SQLException {
+		SavePolGenInfoResponse spgiResponse = new SavePolGenInfoResponse();
+		
+		try {
+			HashMap<String, Object> savePolGenInfoParams = new HashMap<String, Object>();
+			
+			savePolGenInfoParams.put("policyNo", "");
+			savePolGenInfoParams.put("outPolicyId", "");
+			savePolGenInfoParams.put("policyId", spgip.getPolicyId());
+			savePolGenInfoParams.put("lineCd", spgip.getLineCd());
+			savePolGenInfoParams.put("polYear", spgip.getPolYear());
+			savePolGenInfoParams.put("polSeqNo", spgip.getPolSeqNo());
+			savePolGenInfoParams.put("cedingId", spgip.getCedingId());
+			savePolGenInfoParams.put("coSeriesNo", spgip.getCoSeriesNo());
+			savePolGenInfoParams.put("altNo", spgip.getAltNo());
+			savePolGenInfoParams.put("cessionId", spgip.getCessionId());
+			savePolGenInfoParams.put("lineClassCd", spgip.getLineClassCd());
+			savePolGenInfoParams.put("quoteId", spgip.getQuoteId());
+			savePolGenInfoParams.put("status", spgip.getStatus());
+			savePolGenInfoParams.put("coRefNo", spgip.getCoRefNo());
+			savePolGenInfoParams.put("reinsurerId", spgip.getReinsurerId());
+			savePolGenInfoParams.put("riBinderNo", spgip.getRiBinderNo());
+			savePolGenInfoParams.put("mbiRefNo", spgip.getMbiRefNo());
+			savePolGenInfoParams.put("policyIdOc", spgip.getPolicyIdOc());
+			savePolGenInfoParams.put("refOpenPolNo", spgip.getRefOpenPolNo());
+			savePolGenInfoParams.put("intmId", spgip.getIntmId());
+			savePolGenInfoParams.put("principalId", spgip.getPrincipalId());
+			savePolGenInfoParams.put("contractorId", spgip.getContractorId());
+			savePolGenInfoParams.put("insuredDesc", spgip.getInsuredDesc());
+			savePolGenInfoParams.put("inceptDate", spgip.getInceptDate());
+			savePolGenInfoParams.put("expiryDate", spgip.getExpiryDate());
+			savePolGenInfoParams.put("lapseFrom", spgip.getLapseFrom());
+			savePolGenInfoParams.put("lapseTo", spgip.getLapseTo());
+			savePolGenInfoParams.put("maintenanceFrom", spgip.getMaintenanceFrom());
+			savePolGenInfoParams.put("maintenanceTo", spgip.getMaintenanceTo());
+			savePolGenInfoParams.put("issueDate", spgip.getIssueDate());
+			savePolGenInfoParams.put("effDate", spgip.getEffDate());
+			savePolGenInfoParams.put("distDate", spgip.getDistDate());
+			savePolGenInfoParams.put("acctDate", spgip.getAcctDate());
+			savePolGenInfoParams.put("currencyCd", spgip.getCurrencyCd());
+			savePolGenInfoParams.put("currencyRt", spgip.getCurrencyRt());
+			savePolGenInfoParams.put("bookedTag", spgip.getBookedTag());
+			savePolGenInfoParams.put("govtTag", spgip.getGovtTag());
+			savePolGenInfoParams.put("openCoverTag", spgip.getOpenCoverTag());
+			savePolGenInfoParams.put("holdCoverTag", spgip.getHoldCoverTag());
+			savePolGenInfoParams.put("declarationTag", spgip.getDeclarationTag());
+			savePolGenInfoParams.put("minDepTag", spgip.getMinDepTag());
+			savePolGenInfoParams.put("altTag", spgip.getAltTag());
+			savePolGenInfoParams.put("specialPolicyTag", spgip.getSpecialPolicyTag());
+			savePolGenInfoParams.put("instTag", spgip.getInstTag());
+			savePolGenInfoParams.put("extensionTag", spgip.getExtensionTag());
+			savePolGenInfoParams.put("excludeDistTag", spgip.getExcludeDistTag());
+			savePolGenInfoParams.put("wordings", spgip.getWordings());
+			savePolGenInfoParams.put("createUser", spgip.getCreateUser());
+			savePolGenInfoParams.put("createDate", spgip.getCreateDate());
+			savePolGenInfoParams.put("updateUser", spgip.getUpdateUser());
+			savePolGenInfoParams.put("updateDate", spgip.getUpdateDate());
+			savePolGenInfoParams.put("projId", spgip.getProjId());
+			savePolGenInfoParams.put("projDesc", spgip.getProjDesc());
+			savePolGenInfoParams.put("riskId", spgip.getRiskId());
+			savePolGenInfoParams.put("totalSi", spgip.getTotalSi());
+			savePolGenInfoParams.put("objectId", spgip.getObjectId());
+			savePolGenInfoParams.put("site", spgip.getSite());
+			savePolGenInfoParams.put("duration", spgip.getDuration());
+			savePolGenInfoParams.put("testing", spgip.getTesting());
+			savePolGenInfoParams.put("ipl", spgip.getIpl());
+			savePolGenInfoParams.put("timeExec", spgip.getTimeExec());
+			savePolGenInfoParams.put("noClaimPd", spgip.getNoClaimPd());
+			savePolGenInfoParams.put("prjCreateUser", spgip.getPrjCreateUser());
+			savePolGenInfoParams.put("prjCreateDate", spgip.getPrjCreateDate());
+			savePolGenInfoParams.put("prjUpdateUser", spgip.getPrjUpdateUser());
+			savePolGenInfoParams.put("prjUpdateDate", spgip.getPrjUpdateDate());
+			
+			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
+			
+			spgiResponse.setReturnCode((Integer) res.get("errorCode"));
+			spgiResponse.setPolicyId((Integer) res.get("outPolicyId"));
+			spgiResponse.setPolicyNo((String) res.get("policyNo"));
+			
+		} catch (SQLException e) {
+			spgiResponse.setReturnCode(0);
+			spgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();			
+		}
+		
+		return spgiResponse;
 	}
 }

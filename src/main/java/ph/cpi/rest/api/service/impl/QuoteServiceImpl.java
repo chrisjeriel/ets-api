@@ -730,7 +730,6 @@ public class QuoteServiceImpl implements QuoteService{
 		} catch (SQLException ex) {
 			sqgiResponse.setReturnCode(0);
 			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
-			ex.getCause();
 			ex.printStackTrace();
 		} 
 		

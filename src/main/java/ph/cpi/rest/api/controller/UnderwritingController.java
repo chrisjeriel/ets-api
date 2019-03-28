@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -46,6 +47,7 @@ import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -176,5 +178,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/quote-service/savePolAlopItemRequest");
 		logger.info("SavePolAlopItemRequest : " + spaip.toString());
 		return underwritingService.savePolAlopItem(spaip);
+	}
+	
+	@PostMapping(path="savePolGenInfo")
+	public @ResponseBody SavePolGenInfoResponse savePolGenInfo(@RequestBody SavePolGenInfoRequest spgip) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolGenInfo");
+		logger.info("SavePolGenInfoRequest : " + spgip.toString());
+		return underwritingService.savePolGenInfo(spgip);
 	}
 }
