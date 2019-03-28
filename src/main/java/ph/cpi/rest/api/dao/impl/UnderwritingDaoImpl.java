@@ -112,9 +112,9 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public List<Policy> retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException {
-		List<Policy> policyList = sqlSession.selectList("retrievePolAlopItem", params);
-		return policyList;
+	public Policy retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolAlopItem", params);
+		return policy;
 	}
 
 	@Override
