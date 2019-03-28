@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -41,6 +42,7 @@ import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 
 @Service
@@ -65,5 +67,6 @@ public interface UnderwritingService {
 	public SavePolAlopItemResponse savePolAlopItem(SavePolAlopItemRequest spaip) throws SQLException;
 	public RetrievePolCoverageOcResponse retrievePolCoverageOc(RetrievePolCoverageOcRequest rpcr) throws SQLException;
 	public SavePolCoverageOcResponse savePolCoverageOc(SavePolCoverageOcRequest spaip) throws SQLException;
+	public SavePolEndtOcResponse savePolEndtOc(SavePolEndtOcRequest spaip) throws SQLException;
 	
 }

@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -47,6 +48,7 @@ import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -422,5 +424,30 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spcResponse;
+	}
+
+	@Override
+	public SavePolEndtOcResponse savePolEndtOc(SavePolEndtOcRequest speoc) throws SQLException {
+		SavePolEndtOcResponse speResponse = new SavePolEndtOcResponse();
+		try{
+			HashMap<String, Object> savePolEndtOcParams = new HashMap<String, Object>();
+			savePolEndtOcParams.put("policyIdOc",speoc.getPolicyIdOc());
+			savePolEndtOcParams.put("endtCd",speoc.getEndtCd());
+			savePolEndtOcParams.put("changeTag",speoc.getChangeTag());
+			savePolEndtOcParams.put("remarks",speoc.getRemarks());
+			savePolEndtOcParams.put("createUser",speoc.getCreateUser());
+			savePolEndtOcParams.put("createDate",speoc.getCreateDate());
+			savePolEndtOcParams.put("updateUser",speoc.getUpdateUser());
+			savePolEndtOcParams.put("updateDate",speoc.getUpdateDate());
+			savePolEndtOcParams.put("savedeductiblesOc",speoc.getSavedeductiblesOc());
+			
+			HashMap<String, Object> res = underwritingDao.savePolEndtOc(savePolEndtOcParams);
+			speResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			speResponse.setReturnCode(0);
+			speResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return speResponse;
 	}
 }

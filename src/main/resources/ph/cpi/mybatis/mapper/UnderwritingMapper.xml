@@ -593,4 +593,19 @@
 		END;
 	</update>
 	
+	<update id="savePolEndtOc" parameterType="java.util.Map">
+		BEGIN
+			POL_ENDT_OC_PKG.save_pol_endt_oc( #{policyIdOc}, #{endtCd}, #{changeTag}, #{remarks},
+											  #{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="savedeductiblesOc" item="deductibles">
+				POL_ENDT_OC_PKG.save_pol_endt_dedt_oc(#{policyIdOc},#{deductibles.coverCd},#{deductibles.endtCdDedt}, #{deductibles.deductibleCd}, 
+													  #{deductibles.deductibleRt}, #{deductibles.deductibleAmt}, 
+													  #{deductibles.deductibleTxt}, #{deductibles.createUser}, CAST(to_timestamp(#{deductibles.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													  #{deductibles.updateUser}, CAST(to_timestamp(#{deductibles.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

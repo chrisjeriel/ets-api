@@ -175,8 +175,10 @@ public class SavePolCoverageOcRequest {
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
 				+ totalValue + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveSectionCoversOc="
+				+ saveSectionCoversOc + ", delSectionCoversOc=" + delSectionCoversOc + "]";
 	}
+	
 	
 	
 	
@@ -274,6 +276,7 @@ public class SavePolCoverageOcRequest {
 				+ addSi + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
 				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
+	
 	 
 	 
 }
