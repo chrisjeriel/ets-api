@@ -80,7 +80,8 @@ public class Policy {
 	private CoInsurance coInsurance;
 	private List<Alop> alop;
 	private List<HoldCover> holdCoverList;
-	
+	private List<Item> items;
+	private CATPeril catPeril;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -495,12 +496,23 @@ public class Policy {
 	public void setAlop(List<Alop> alop) {
 		this.alop = alop;
 	}
-	
 	public List<HoldCover> getHoldCoverList() {
 		return holdCoverList;
 	}
 	public void setHoldCoverList(List<HoldCover> holdCoverList) {
 		this.holdCoverList = holdCoverList;
+	}
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	public CATPeril getCatPeril() {
+		return catPeril;
+	}
+	public void setCatPeril(CATPeril catPeril) {
+		this.catPeril = catPeril;
 	}
 	@Override
 	public String toString() {
@@ -526,7 +538,9 @@ public class Policy {
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
 				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + "]";
+				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", items=" + items + ", catPeril=" + catPeril
+				+ "]";
 	}
-
+	
+	
 }

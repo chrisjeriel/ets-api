@@ -33,6 +33,9 @@ import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
+import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
+import ph.cpi.rest.api.model.request.SavePolItemRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
@@ -49,6 +52,9 @@ import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
@@ -138,6 +144,20 @@ public class UnderwritingController {
 		return underwritingService.retrievePolAlop(rpap);
 	}
 
+	@PostMapping(path="savePolCATPeril")
+	public @ResponseBody SavePolCATPerilResponse savePolCATPeril(@RequestBody SavePolCATPerilRequest spcpr ) throws SQLException {
+		logger.info("GET: /api/underwriting-service/savePolCATPeril");
+		logger.info("savePolCATPeril : " + spcpr.toString());
+		return underwritingService.savePolCATPeril(spcpr);
+	}
+	
+	@PostMapping(path="savePolItem")
+	public @ResponseBody SavePolItemResponse savePolItem(@RequestBody SavePolItemRequest spir ) throws SQLException {
+		logger.info("GET: /api/underwriting-service/savePolItem");
+		logger.info("savePolItem : " + spir.toString());
+		return underwritingService.savePolItem(spir);
+	}
+	
 	@GetMapping(path="retrievePolAlopItem")
 	public @ResponseBody RetrievePolAlopItemResponse retrievePolAlopItem(RetrievePolAlopItemRequest rpap) throws SQLException {
 		logger.info("GET: /api/underwriting-service/retrievePolAlopItem");

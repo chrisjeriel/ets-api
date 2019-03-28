@@ -14,8 +14,6 @@ public interface UnderwritingDao {
 	public Policy retrievePolicyCoverage(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolEndtList(final HashMap<String, Object> params) throws SQLException;
-	public Item retrievePolItem(final HashMap<String, Object> params) throws SQLException;
-	public CATPeril retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
 	public Policy retrievePolGenInfo(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException;
@@ -28,5 +26,9 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> savePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolAlopItem(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolHoldCover(final HashMap<String, Object> params) throws SQLException;
-	
+	public Policy retrievePolItem(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> savePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> savePolItem(final HashMap<String, Object> params ) throws SQLException;
+
 }
