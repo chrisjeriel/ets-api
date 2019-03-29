@@ -1,21 +1,50 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
+import org.apache.ibatis.type.Alias;
+
 public class SaveMtnLineRequest {
-	 private String lineCd ;
-     private String description ;
-     private String cutOffTime;
-     private String activeTag ;
-     private String catTag ;
-     private String renewalTag ;
-     private String openCoverTag ;
-     private String referenceNo ;
-     private String sortSeq ;
-     private String remarks ;
-     private String createUser ;
-     private String createDate ;
-     private String updateUser ;
-     private String updateDate ;
-     private String alopTag ;
+	 
+   private List<Lines> saveLine;
+   private List<Lines> deleteLine;
+   
+	public List<Lines> getSaveLine() {
+		return saveLine;
+	}
+	public void setSaveLine(List<Lines> saveLine) {
+		this.saveLine = saveLine;
+	}
+	public List<Lines> getDeleteLine() {
+		return deleteLine;
+	}
+	public void setDeleteLine(List<Lines> deleteLine) {
+		this.deleteLine = deleteLine;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnLineRequest [saveLine=" + saveLine + ", deleteLine=" + deleteLine + "]";
+	}
+  
+}
+
+@Alias("SaveMtnLine")
+class Lines {
+	private String lineCd ;
+    private String description ;
+    private String cutOffTime;
+    private String activeTag ;
+    private String catTag ;
+    private String renewalTag ;
+    private String openCoverTag ;
+    private String referenceNo ;
+    private String sortSeq ;
+    private String remarks ;
+    private String createUser ;
+    private String createDate ;
+    private String updateUser ;
+    private String updateDate ;
+    private String alopTag ;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -108,10 +137,11 @@ public class SaveMtnLineRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveMtnLineRequest [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime
+		return "Lines [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime
 				+ ", activeTag=" + activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag="
 				+ openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", alopTag=" + alopTag + "]";
 	}
+    
 }

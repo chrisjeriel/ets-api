@@ -744,23 +744,28 @@
     
     <update id="saveMtnLine" parameterType="java.util.Map">
     	BEGIN
-    		MTN_LINE_PKG.save_mtn_line(
-    			#{lineCd,jdbcType=VARCHAR},
-		        #{description,jdbcType=VARCHAR},
-		        CAST(to_timestamp(#{cutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		        #{activeTag,jdbcType=VARCHAR},
-		        #{catTag,jdbcType=VARCHAR},
-		        #{renewalTag,jdbcType=VARCHAR},
-		        #{openCoverTag,jdbcType=VARCHAR},
-		        #{referenceNo,jdbcType=INTEGER},
-		        #{sortSeq,jdbcType=INTEGER},
-		        #{remarks,jdbcType=VARCHAR},
-		        #{createUser,jdbcType=VARCHAR},
-		        CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		        #{updateUser,jdbcType=VARCHAR},
-		        CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		        #{alopTag,jdbcType=VARCHAR}
-    		);
+    		<foreach collection="saveLine" item="line">
+	    		MTN_LINE_PKG.save_mtn_line(
+	    			#{line.lineCd,jdbcType=VARCHAR},
+			        #{line.description,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{line.cutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{line.activeTag,jdbcType=VARCHAR},
+			        #{line.catTag,jdbcType=VARCHAR},
+			        #{line.renewalTag,jdbcType=VARCHAR},
+			        #{line.openCoverTag,jdbcType=VARCHAR},
+			        #{line.alopTag,jdbcType=VARCHAR},
+			        #{line.referenceNo,jdbcType=INTEGER},
+			        #{line.sortSeq,jdbcType=INTEGER},
+			        #{line.remarks,jdbcType=VARCHAR},
+			        #{line.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{line.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{line.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{line.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteLine" item="lineDel">
+    			MTN_LINE_PKG.del_mtn_line(#{lineDel.lineCd,jdbcType=VARCHAR});
+    		</foreach>
     	END;
     </update>
     
