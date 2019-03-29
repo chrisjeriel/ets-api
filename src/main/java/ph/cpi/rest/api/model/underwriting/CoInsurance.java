@@ -3,7 +3,6 @@ package ph.cpi.rest.api.model.underwriting;
 import org.joda.time.DateTime;
 
 public class CoInsurance {
-	private String policyNo;
 	private String coRefNo;
 	private String cedingId ;
 	private String cedingName;
@@ -15,13 +14,6 @@ public class CoInsurance {
 	private String updateUser;
 	private DateTime updateDate;
 	
-	
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
 	public String getCoRefNo() {
 		return coRefNo;
 	}
@@ -84,10 +76,10 @@ public class CoInsurance {
 	}
 	@Override
 	public String toString() {
-		return "CoInsurance [policyNo=" + policyNo + ", coRefNo=" + coRefNo + ", cedingId=" + cedingId + ", cedingName="
-				+ cedingName + ", pctShare=" + pctShare + ", shareSiAmt=" + shareSiAmt + ", sharePremAmt="
-				+ sharePremAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "CoInsurance [coRefNo=" + coRefNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", pctShare=" + pctShare + ", shareSiAmt=" + shareSiAmt + ", sharePremAmt=" + sharePremAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

@@ -87,7 +87,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> retrievePolCoInsuranceParams = new HashMap<String, Object>();
 		retrievePolCoInsuranceParams.put("policyId",rpcip.getPolicyId());
 		retrievePolCoInsuranceParams.put("policyNo",rpcip.getPolicyNo());
-		rpcoiResponse.setPolicyList(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
+		rpcoiResponse.setPolicy(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
 		logger.info("retrievePolCoInsuranceResponse : " + rpcoiResponse.toString());
 		
 		return rpcoiResponse;
@@ -228,6 +228,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolAlopParams.put("insId", spap.getInsId());
 			savePolAlopParams.put("insuredDesc", spap.getInsuredDesc());
 			savePolAlopParams.put("address", spap.getAddress());
+			savePolAlopParams.put("insBusiness", spap.getInsBusiness());
 			savePolAlopParams.put("annSi", spap.getAnnSi());
 			savePolAlopParams.put("maxIndemPdSi", spap.getMaxIndemPdSi());
 			savePolAlopParams.put("issueDate", spap.getIssueDate());

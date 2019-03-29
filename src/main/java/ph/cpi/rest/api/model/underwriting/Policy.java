@@ -77,7 +77,7 @@ public class Policy {
 	private List<Endorsements> endorsements;
 	private List<Attachment> attachments;
 	private InwPolBalance inwPolBalance;
-	private CoInsurance coInsurance;
+	private List<CoInsurance> coInsurance;
 	private List<Alop> alop;
 	private List<HoldCover> holdCoverList;
 	private List<Item> items;
@@ -484,10 +484,10 @@ public class Policy {
 	public void setInwPolBalance(InwPolBalance inwPolBalance) {
 		this.inwPolBalance = inwPolBalance;
 	}
-	public CoInsurance getCoInsurance() {
+	public List<CoInsurance> getCoInsurance() {
 		return coInsurance;
 	}
-	public void setCoInsurance(CoInsurance coInsurance) {
+	public void setCoInsurance(List<CoInsurance> coInsurance) {
 		this.coInsurance = coInsurance;
 	}
 	public List<Alop> getAlop() {

@@ -133,9 +133,15 @@
 		SELECT * FROM TABLE(POL_INWARD_PKG.ret_pol_inward(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
-	<select id="retrievePolCoInsurance" resultMap="policyMap" parameterType="java.util.Map">
+	<select id="retrievePolCoInsurance" resultMap="retrievePolCoinsuranceMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INSURANCE_PKG.ret_pol_insurance(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retrievePolCoinsuranceMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
+	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Deductibles" id="PolDeductiblesMap">
 		<result property="coverCd"			column="COVER_CD" />
@@ -381,6 +387,7 @@
 		<result property="insuredName" column="INSURED_NAME"/>
 		<result property="insuredDesc" column="INSURED_DESC"/>
 		<result property="address" column="ADDRESS"/>
+		<result property="insBusiness" column="INS_BUSINESS"/>
 		<result property="annSi" column="ANN_SI"/>
 		<result property="maxIndemPdSi" column="MAX_INDEM_PD_SI"/>
 		<result property="issueDate" column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -498,7 +505,7 @@
 	
 	<update id="savePolAlopMap" parameterType="java.util.Map">
 		BEGIN
-			POL_ALOP_PKG.save_pol_alop(#{policyId},#{insId},#{insuredDesc},#{address},#{annSi},#{maxIndemPdSi},
+			POL_ALOP_PKG.save_pol_alop(#{policyId},#{insId},#{insuredDesc},#{address},#{insBusiness},#{annSi},#{maxIndemPdSi},
 			   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 			   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{maxIndemPd}, 
 			   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
