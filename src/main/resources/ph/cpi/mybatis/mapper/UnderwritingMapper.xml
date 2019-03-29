@@ -104,12 +104,14 @@
 		<result property="cessionDesc" 			column="CESSION_DESC"/>
 		<result property="cedingName" 			column="CEDING_NAME"/>		
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="insuredDesc" 			column="INSURED_DESC"/>
 		<result property="currencyCd" 			column="CURRENCY_CD"/>
 		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="statusDesc" 			column="STATUS"/>
+		<result property="status"	 			column="STATUS"/>
+		<result property="statusDesc"	 		column="STATUS_DESC"/>
 		
 		<association property="project" 		resultMap="projectMap"/>	
 	</resultMap>

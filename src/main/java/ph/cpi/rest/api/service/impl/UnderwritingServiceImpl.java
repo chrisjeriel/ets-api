@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
@@ -46,6 +47,7 @@ import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -455,5 +457,31 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		
 		return spgiResponse;
+	}
+
+	@Override
+	public SavePolicyDetailsResponse savePolicyDetails(SavePolicyDetailsRequest spdp) throws SQLException {
+		SavePolicyDetailsResponse spdResponse = new SavePolicyDetailsResponse();
+		
+		try {
+			HashMap<String, Object> savePolicyDetailsParams = new HashMap<String, Object>();
+			
+			savePolicyDetailsParams.put("quotationNo", spdp.getQuotationNo());
+			savePolicyDetailsParams.put("holdCoverNo", spdp.getHoldCoverNo());
+			savePolicyDetailsParams.put("openPolicyNo", spdp.getOpenPolicyNo());
+			savePolicyDetailsParams.put("optionId", spdp.getOptionId());
+			savePolicyDetailsParams.put("inceptDate", spdp.getInceptDate());
+			savePolicyDetailsParams.put("expiryDate", spdp.getExpiryDate());
+			
+			HashMap<String, Object> res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+			
+		} catch (SQLException e) {
+			spdResponse.setReturnCode(0);
+			spdResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		
+		
+		return spdResponse;
 	}
 }
