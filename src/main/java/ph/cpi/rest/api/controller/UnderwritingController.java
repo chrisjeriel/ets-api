@@ -35,7 +35,9 @@ import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -66,10 +68,12 @@ import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
-import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
+import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
+import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
@@ -261,5 +265,19 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/savePolEndtOc");
 		logger.info("SavePolEndtOcRequest : " + sqcr.toString());
 		return underwritingService.savePolEndtOc(sqcr);
+	}
+	
+	@PostMapping(path="savePolGenInfo")
+	public @ResponseBody SavePolGenInfoResponse savePolGenInfo(@RequestBody SavePolGenInfoRequest spgip) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolGenInfo");
+		logger.info("SavePolGenInfoRequest : " + spgip.toString());
+		return underwritingService.savePolGenInfo(spgip);
+	}
+	
+	@PostMapping(path="savePolicyDetails")
+	public @ResponseBody SavePolicyDetailsResponse savePolicyDetails(@RequestBody SavePolicyDetailsRequest spdp) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolicyDetails");
+		logger.info("SavePolicyDetails : " + spdp.toString());
+		return underwritingService.savePolicyDetails(spdp);
 	}
 }

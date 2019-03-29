@@ -3,6 +3,8 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -29,7 +31,9 @@ import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
+import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -55,7 +59,9 @@ import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
+import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 
 @Service
 public interface UnderwritingService {
@@ -86,6 +92,6 @@ public interface UnderwritingService {
 	public RetrievePolCoverageOcResponse retrievePolCoverageOc(RetrievePolCoverageOcRequest rpcr) throws SQLException;
 	public SavePolCoverageOcResponse savePolCoverageOc(SavePolCoverageOcRequest spaip) throws SQLException;
 	public SavePolEndtOcResponse savePolEndtOc(SavePolEndtOcRequest spaip) throws SQLException;
-	
-
+	public SavePolGenInfoResponse savePolGenInfo(SavePolGenInfoRequest spgip) throws SQLException;
+	public SavePolicyDetailsResponse savePolicyDetails(SavePolicyDetailsRequest spdp) throws SQLException;
 }
