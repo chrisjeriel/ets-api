@@ -415,9 +415,9 @@
 		<result property="timeExc" 		column="TIME_EXC"/>
 		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>        
 		<result property="createUser" 	column="CREATE_USER"/> 
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 	column="UPDATE_USER"/> 
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.ProjectOc" id="quoteProjectOcMap">
@@ -544,9 +544,9 @@
 														   #{site, jdbcType=VARCHAR},
 														   #{policyNo, jdbcType=VARCHAR},
 														   #{currencyCd, jdbcType=VARCHAR},
-														   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														   CAST(to_timestamp(#{issueDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   <!-- #{issueDate, jdbcType=DATE}, -->
-														   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														   CAST(to_timestamp(#{expiryDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												<!-- 		   TO_DATE(#{expiryDate, jdbcType=DATE},'yyyy-mm-dd'), -->
 														   #{reqBy, jdbcType=VARCHAR},
 														   #{createUser, jdbcType=VARCHAR},
@@ -1037,7 +1037,7 @@
         <result property="updateDateItem" 	column="UPDATE_DATE_ITM" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-    <select id="retrieveQuoteAlopItem" resultMap="quotation" parameterType="java.util.Map">
+    <select id="retrieveQuoteAlopItem" resultMap="alopItemMap" parameterType="java.util.Map">
             SELECT * FROM TABLE(QU_ALOP_ITM_PKG.ret_qu_alop_itm(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},#{optionId},'',0,'',''))
     </select>
 
@@ -1117,7 +1117,7 @@
 	BEGIN
 		<foreach collection="deleteAlopItemsList" item="alopItem">
 		BEGIN
-	    	QU_ALOP_ITM_PKG.del_qu_alop_itm(#{quoteId},#{alopItem.itemNo, jdbcType=VARCHAR});
+	    	QU_ALOP_ITM_PKG.del_qu_alop_itm(#{quoteId},#{alopItem.optionId},#{alopItem.itemNo, jdbcType=VARCHAR});
 		END;
 		</foreach>
 		<foreach collection="saveAlopItemsList" item="alopItem">
@@ -1617,7 +1617,7 @@
 	
 	<update id="copyQuoteSectionCovers" parameterType="java.util.Map">
 		BEGIN
-			QU_SEC_COVER_PKG.copy_qu_sec_covers(
+			QU_SEC_COVER_PKG.copy_qu_sec_cvrs(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
@@ -1706,8 +1706,9 @@
 	<update id="renumberQuoteOptions" parameterType="String">
 		BEGIN
 			QU_OPTION_PKG.renumber(${value});
+		END;
 	</update>
-	
+		
 	<update id="updateHoldCoverStatus" parameterType="java.util.Map">
 		BEGIN
 			QU_HOLD_COVER_PKG.up_qu_hold_cover(
@@ -1717,9 +1718,4 @@
 	    END;
 	</update>
 	
-	<!-- <update id="renumberQuoteOptions" parameterType="String">
-		BEGIN
-			QU_OPTION_PKG.renumber(${value});
-		END;
-	</update> -->
 </mapper>

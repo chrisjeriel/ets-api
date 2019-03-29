@@ -422,7 +422,7 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAlopItemParams.put("quotationNo", retQuoteAlopItem.getQuotationNo());
 		retrieveQuoteAlopItemParams.put("optionId", retQuoteAlopItem.getOptionId());
 		
-		retQuoteAlopItemResponse.setQuotation(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
+		retQuoteAlopItemResponse.setAlopItem(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
 		
 		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
 		return retQuoteAlopItemResponse;
@@ -808,15 +808,26 @@ public class QuoteServiceImpl implements QuoteService{
 
 	public SaveQuoteEndorsementsResponse saveQuoteEndorsements(SaveQuoteEndorsementsRequest sqer) throws SQLException {
 		SaveQuoteEndorsementsResponse sqerResponse = new SaveQuoteEndorsementsResponse();
-		HashMap<String, Object> saveQuoteEndorsementsParams = new HashMap<String, Object>();
-		saveQuoteEndorsementsParams.put("quoteId",sqer.getQuoteId());
-		saveQuoteEndorsementsParams.put("optionId",sqer.getOptionId());
-		saveQuoteEndorsementsParams.put("saveEndorsements", sqer.getSaveEndorsements());
-		saveQuoteEndorsementsParams.put("deleteEndorsements", sqer.getDeleteEndorsements());
-
-		saveQuoteEndorsementsParams.put("saveDeductibleList" , sqer.getSaveDeductibleList());
-		saveQuoteEndorsementsParams.put("deleteDeductibleList" , sqer.getDeleteDeductibleList());
-		sqerResponse.setReturnCode(quoteDao.saveQuoteEndorsements(saveQuoteEndorsementsParams));
+		try{
+			HashMap<String, Object> saveQuoteEndorsementsParams = new HashMap<String, Object>();
+			saveQuoteEndorsementsParams.put("quoteId",sqer.getQuoteId());
+			saveQuoteEndorsementsParams.put("optionId",sqer.getOptionId());
+			saveQuoteEndorsementsParams.put("saveEndorsements", sqer.getSaveEndorsements());
+			saveQuoteEndorsementsParams.put("deleteEndorsements", sqer.getDeleteEndorsements());
+	
+			saveQuoteEndorsementsParams.put("saveDeductibleList" , sqer.getSaveDeductibleList());
+			saveQuoteEndorsementsParams.put("deleteDeductibleList" , sqer.getDeleteDeductibleList());
+			sqerResponse.setReturnCode(quoteDao.saveQuoteEndorsements(saveQuoteEndorsementsParams));
+			
+		}catch (SQLException ex) {
+			sqerResponse.setReturnCode(0);
+			sqerResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sqerResponse.setReturnCode(0);
+			sqerResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
 		
 		return sqerResponse;
 	}

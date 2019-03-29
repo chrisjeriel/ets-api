@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.quote.Alop;
+import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
 import ph.cpi.rest.api.model.quote.Project;
@@ -35,7 +36,7 @@ public interface QuoteDao {
 	
 	public Quotation retrieveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
 	public List<Quotation> retrieveQuoteAttachmentList(final HashMap<String, Object> params) throws SQLException;
-	public Quotation retrieveAlopItemList(final HashMap<String, Object> params ) throws SQLException;
+	public List<AlopItem> retrieveAlopItemList(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> saveQuoteAttachment(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuoteAlop(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveQuoteAlopItem(final HashMap<String, Object> params) throws SQLException;

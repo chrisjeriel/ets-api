@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-import ph.cpi.rest.api.model.quote.Alop;
+
 import ph.cpi.rest.api.model.underwriting.Project;
 
 public class Policy {
@@ -42,6 +42,7 @@ public class Policy {
 	private String principalName;
 	private Integer contractorId;
 	private String contractorName;
+	private String insuredDesc;
 	private DateTime inceptDate;
 	private DateTime expiryDate;
 	private DateTime lapseFrom;
@@ -77,8 +78,10 @@ public class Policy {
 	private List<Attachment> attachments;
 	private InwPolBalance inwPolBalance;
 	private CoInsurance coInsurance;
-	private Alop alop;
-	
+	private List<Alop> alop;
+	private List<HoldCover> holdCoverList;
+	private List<Item> items;
+	private CATPeril catPeril;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -276,6 +279,12 @@ public class Policy {
 	}
 	public void setContractorName(String contractorName) {
 		this.contractorName = contractorName;
+	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
 	}
 	public DateTime getInceptDate() {
 		return inceptDate;
@@ -481,11 +490,29 @@ public class Policy {
 	public void setCoInsurance(CoInsurance coInsurance) {
 		this.coInsurance = coInsurance;
 	}
-	public Alop getAlop() {
+	public List<Alop> getAlop() {
 		return alop;
 	}
-	public void setAlop(Alop alop) {
+	public void setAlop(List<Alop> alop) {
 		this.alop = alop;
+	}
+	public List<HoldCover> getHoldCoverList() {
+		return holdCoverList;
+	}
+	public void setHoldCoverList(List<HoldCover> holdCoverList) {
+		this.holdCoverList = holdCoverList;
+	}
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	public CATPeril getCatPeril() {
+		return catPeril;
+	}
+	public void setCatPeril(CATPeril catPeril) {
+		this.catPeril = catPeril;
 	}
 	@Override
 	public String toString() {
@@ -499,18 +526,21 @@ public class Policy {
 				+ ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo
 				+ ", refOpenPolNo=" + refOpenPolNo + ", intmId=" + intmId + ", intmName=" + intmName + ", principalId="
 				+ principalId + ", principalName=" + principalName + ", contractorId=" + contractorId
-				+ ", contractorName=" + contractorName + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
-				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
-				+ ", maintenanceTo=" + maintenanceTo + ", issueDate=" + issueDate + ", effDate=" + effDate
-				+ ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd=" + currencyCd + ", currencyRt="
-				+ currencyRt + ", bookedTag=" + bookedTag + ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag
-				+ ", holdCoverTag=" + holdCoverTag + ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag
-				+ ", altTag=" + altTag + ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag
-				+ ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag + ", wordings=" + wordings
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
-				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
-				+ ", coInsurance=" + coInsurance + ", alop=" + alop + "]";
+				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate
+				+ ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
+				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", issueDate="
+				+ issueDate + ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate=" + acctDate
+				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", bookedTag=" + bookedTag
+				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
+				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
+				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
+				+ ", excludeDistTag=" + excludeDistTag + ", wordings=" + wordings + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
+				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
+				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", items=" + items + ", catPeril=" + catPeril
+				+ "]";
 	}
+	
 	
 }

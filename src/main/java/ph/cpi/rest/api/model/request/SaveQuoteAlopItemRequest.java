@@ -28,9 +28,10 @@ public class SaveQuoteAlopItemRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", saveAlopItemList="
-				+ saveAlopItemList + ", deleteAlopItemList=" + deleteAlopItemList + "]";
+		return "SaveQuoteAlopItemRequest [quoteId=" + quoteId + ", saveAlopItemList=" + saveAlopItemList
+				+ ", deleteAlopItemList=" + deleteAlopItemList + "]";
 	}
+	
 	
 	
 	
@@ -112,8 +113,8 @@ class AlopItem{
 	@Override
 	public String toString() {
 		return "AlopItem [optionId=" + optionId + ", itemNo=" + itemNo + ", quantity=" + quantity + ", description="
-				+ description + ", importance=" + importance + ", lossMin=" + lossMin + ", createUserItem=" + createUserItem
-				+ ", createDateItem=" + createDateItem + ", updateUserItem=" + updateUserItem + ", updateDateItem=" + updateDateItem + "]";
+				+ description + ", importance=" + importance + ", lossMin=" + lossMin + ", createUserItem="
+				+ createUserItem + ", createDateItem=" + createDateItem + ", updateUserItem=" + updateUserItem
+				+ ", updateDateItem=" + updateDateItem + "]";
 	}
-	
 }

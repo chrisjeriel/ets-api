@@ -96,10 +96,27 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
+		<association property="holdCoverList" 		resultMap="holdCoverMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="cessionDesc" 			column="CESSION_DESC"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>		
+		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="statusDesc" 			column="STATUS"/>
+		
+		<association property="project" 		resultMap="projectMap"/>		
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
-		<result property="policyNo"		column="POLICY_NO"/>
+		<!-- <result property="policyNo"		column="POLICY_NO"/> -->
 		<result property="coRefNo"		column="CO_REF_NO"/>
 		<result property="cedingId"		column="CEDING_ID"/>
 		<result property="cedingName"	column="CEDING_NAME"/>
@@ -140,7 +157,6 @@
 		<result property="projId" 		column="PROJ_ID"/>
 		<result property="riskId" 		column="RISK_ID"/>
 		<result property="riskName" 	column="RISK_NAME"/>
-		<result property="riskName" 	column="RISK_NAME"/>
 		<result property="regionCd" 	column="REGION_CD"/>
 		<result property="regionDesc" 	column="REGION_DESC"/>
 		<result property="provinceCd" 	column="PROVINCE_CD"/>
@@ -160,7 +176,7 @@
 		<result property="duration" 	column="DURATION"/>
 		<result property="testing" 		column="TESTING"/>
 		<result property="ipl" 			column="IPL"/>
-		<result property="timeExc" 		column="TIME_EXC"/>
+		<result property="timeExc" 		column="TIME_EXEC"/>
 		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>
 		<result property="createUser" 	column="PRJ_CREATE_USER"/>
 		<result property="createDate" 	column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -287,9 +303,7 @@
 														  #{order, jdbcType=VARCHAR}))
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.underwriting.Item" id="itemMap">
-	    <result property="policyId" 		column="POLICY_ID"/> 
-		<result property="policyNo" 		column="POLICY_NO"/> 
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Item" id="assocItemsMap">
 		<result property="projId" 			column="PROJ_ID"/> 
 		<result property="riskId" 			column="RISK_ID"/> 
 		<result property="riskName" 		column="RISK_NAME"/> 
@@ -313,9 +327,7 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.underwriting.CATPeril" id="catPerilMap">
-	    <result property="policyId" 		column="POLICY_ID"/> 
-		<result property="policyNo" 		column="POLICY_NO"/> 
+	<resultMap type="ph.cpi.rest.api.model.underwriting.CATPeril" id="assocCATPerilMap">
 		<result property="catPrlId" 	    column="CAT_PERIL_ID"/> 
 		<result property="pctShrPrm" 	    column="PCT_SHARE_PREM"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -323,23 +335,36 @@
 		<result property="updateUser" 		column="UPDATE_USER"/> 
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="itemMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="items" resultMap="assocItemsMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="catPerilMap">
+	    <result property="policyId" 		column="POLICY_ID"/> 
+		<result property="policyNo" 		column="POLICY_NO"/> 
+		<association property="catPeril" resultMap="assocCATPerilMap"></association>
+	</resultMap>
 
 	<select id="retrievePolItem" resultMap="itemMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(POL_ITEM_PKG.ret_pol_itm(#{policyId, jdbcType=VARCHAR},
-													     #{policyNo, jdbcType=VARCHAR}, 
-													     null, 
-													     null, 
-													     null, 
-													     null))
+			SELECT * FROM TABLE(POL_ITEM_PKG.ret_pol_itm(#{policyId, jdbcType=INTEGER},
+																	#{policyNo, jdbcType=VARCHAR},
+																	#{position, jdbcType=VARCHAR}, 
+																	#{count, jdbcType=VARCHAR}, 
+																	#{sortKey, jdbcType=VARCHAR}, 
+																	#{order, jdbcType=VARCHAR}))
 	</select>
+	
 
 	<select id="retrievePolCATPeril" resultMap="catPerilMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(POL_CAT_PERIL_PKG.ret_pol_cat_prl(#{policyId, jdbcType=VARCHAR},
-													     #{policyNo, jdbcType=VARCHAR}, 
-													     null, 
-													     null, 
-													     null, 
-													     null))
+			SELECT * FROM TABLE(POL_CAT_PERIL_PKG.ret_pol_cat_prl(#{policyId, jdbcType=INTEGER},
+																	#{policyNo, jdbcType=VARCHAR},
+																	#{position, jdbcType=VARCHAR}, 
+																	#{count, jdbcType=VARCHAR}, 
+																	#{sortKey, jdbcType=VARCHAR}, 
+																	#{order, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrievePolGenInfo" resultMap="policyMap" parameterType="java.util.Map">
@@ -381,8 +406,29 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		
 	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.HoldCover" id="holdCoverMap">
+		<result property="policyId"				column="POLICY_ID" />
+		<result property="holdCovId"			column="HOLD_COV_ID" />
+		<result property="holdCovNo"			column="HOLD_COV_NO" />  
+		<result property="lineCd"				column="LINE_CD" />
+		<result property="holdCovYear"			column="HOLD_COV_YEAR" />
+		<result property="holdCovSeqNo"			column="HOLD_COV_SEQ_NO" />
+		<result property="holdCovRevNo"			column="HOLD_COV_REV_NO" />
+		<result property="periodFrom"			column="PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="periodTo"				column="PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="compRefHoldCovNo"		column="COMP_REF_HOLD_COV_NO" />
+		<result property="status"				column="STATUS" />
+		<result property="reqBy"				column="REQ_BY" />
+		<result property="reqDate"				column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="preparedBy"			column="PREPARED_BY" />
+		<result property="approvedBy"			column="APPROVED_BY" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap> 
 	
 	<select id="retrievePolAlop" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_ALOP_PKG.ret_pol_alop(#{policyId, jdbcType=INTEGER}, 
@@ -393,7 +439,21 @@
 																	  null))
 	</select>
 	
-	<select id="retrievePolAlopItem" resultMap="policyMap" parameterType="java.util.Map">
+	
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retrievePolAlopItemPolicyMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="alop" resultMap="retrievePolAlopItemAlopMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Alop" id="retrievePolAlopItemAlopMap">
+		<result property="insId" column="INS_ID"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
+		<association property="alopItem" resultMap="assocAlopItem"/>
+	</resultMap>
+	
+	<select id="retrievePolAlopItem" resultMap="retrievePolAlopItemPolicyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_ALOP_ITEM_PKG.ret_pol_alop_item(#{policyId, jdbcType=INTEGER},
 			#{policyNo, jdbcType=VARCHAR}, null, null, null, null))
 	</select>
@@ -432,6 +492,48 @@
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
+		   	</foreach>
+		END;
+	</update>
+	
+	<update id="savePolAlopMap" parameterType="java.util.Map">
+		BEGIN
+			POL_ALOP_PKG.save_pol_alop(#{policyId},#{insId},#{insuredDesc},#{address},#{annSi},#{maxIndemPdSi},
+			   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+			   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{maxIndemPd}, 
+			   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   #{timeExc}, #{repInterval}, #{createUser},
+			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
+			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="savePolAlopItemMap" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="savePolAlopItemList" item="alopItem">
+			    	POL_ALOP_ITEM_PKG.save_pol_alop_item
+			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+			    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
+			    	#{alopItem.createUser},
+			    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    	#{alopItem.updateUser},CAST(to_timestamp(#{alopItem.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+			</foreach>
+		END;
+	</update>
+			    	
+			    	
+	<update id="savePolCATPeril" parameterType="java.util.Map">
+		BEGIN
+		  <foreach collection="saveCATPerilList" item="CATPeril">
+			POL_CAT_PERIL_PKG.save_pol_cat_prl(
+				#{policyId, jdbcType=INTEGER},
+				#{CATPeril.catPrlId, jdbcType=INTEGER},
+				#{CATPeril.pctShrPrm, jdbcType=INTEGER},
+				#{CATPeril.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{CATPeril.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{CATPeril.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{CATPeril.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
 			</foreach>
 		END;
 	</update>
@@ -554,5 +656,184 @@
 														  		#{sortKey, jdbcType=VARCHAR}, 
 														  		#{order, jdbcType=VARCHAR}))
 	</select>
+	
+	<select id="retrievePolicyListing" resultMap="policyListingMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+															 #{cessionDesc, jdbcType=VARCHAR},
+															 #{cedingName, jdbcType=VARCHAR},
+															 #{lineClassDesc, jdbcType=VARCHAR},
+															 #{insuredDesc, jdbcType=VARCHAR},
+															 #{riskName, jdbcType=VARCHAR},
+															 #{objectDesc, jdbcType=VARCHAR},
+															 #{site, jdbcType=VARCHAR},
+															 #{currencyCd, jdbcType=VARCHAR},
+															 #{totalSi, jdbcType=DECIMAL},
+															 #{totalPrem, jdbcType=DECIMAL},
+															 CAST(to_timestamp(#{issueDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{statusDesc, jdbcType=VARCHAR},
+															 null,
+															 null,
+															 null,
+															 null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retPolHoldCoverMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>
+		<result property="principalName" 		column="INSURED_NAME"/>
+<!-- 		<association property="project" 		resultMap="projectMap"/> -->
+		<collection property="holdCoverList" javaType="ArrayList" column="{policyId = POLICY_ID, policyNo = POLICY_NO}" ofType="holdCoverMap" select="retrievePolHoldCover"/>
+	</resultMap>
+	
+	<select id="retrievePolHoldCoverMain" resultMap="retPolHoldCoverMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.RET_POL_HOLD_COVER(#{policyId, jdbcType=VARCHAR},
+															      #{policyNo, jdbcType=VARCHAR},
+															      #{position, jdbcType=VARCHAR}, 
+																  #{count, jdbcType=VARCHAR}, 
+																  #{sortKey, jdbcType=VARCHAR}, 
+																  #{order, jdbcType=VARCHAR}))
+		 WHERE rownum = 1
+	</select>
+	
+	<select id="retrievePolHoldCover" resultMap="holdCoverMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.RET_POL_HOLD_COVER(#{policyId, jdbcType=VARCHAR},
+															      #{policyNo, jdbcType=VARCHAR},
+															      #{position, jdbcType=VARCHAR}, 
+																  #{count, jdbcType=VARCHAR}, 
+																  #{sortKey, jdbcType=VARCHAR}, 
+																  #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="savePolItem" parameterType="java.util.Map">
+		BEGIN
+		  <foreach collection="saveItemLists" item="Items">
+			POL_ITEM_PKG.save_pol_itm(
+				#{policyId, jdbcType=INTEGER},
+				#{Items.projId, jdbcType=INTEGER},
+				#{Items.itemNo, jdbcType=INTEGER},
+				#{Items.quantity, jdbcType=INTEGER},
+				#{Items.itemDesc, jdbcType=VARCHAR},
+				#{Items.makeYear, jdbcType=VARCHAR},
+				#{Items.deductibleTxt, jdbcType=VARCHAR},
+				#{Items.sumInsured, jdbcType=INTEGER},
+				#{Items.stockType, jdbcType=VARCHAR},
+				#{Items.serialNo, jdbcType=VARCHAR},
+				#{Items.location, jdbcType=VARCHAR},
+				#{Items.chamberNo, jdbcType=VARCHAR},
+				#{Items.noClaimPd, jdbcType=INTEGER},
+				#{Items.ipl, jdbcType=INTEGER},
+				#{Items.relativeImp, jdbcType=VARCHAR},
+				#{Items.standbyUnit, jdbcType=VARCHAR},
+				#{Items.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+				#{Items.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			);
+			</foreach>
+		END;
+	</update>
 
+	<resultMap type="ph.cpi.rest.api.model.underwriting.OpenPolicy" id="policyOcMap">
+		<result property="policyId" 			column="POLICY_ID_OC"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="projectOc" 		resultMap="projectOcMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ProjectOc" id="projectOcMap">
+		<result property="riskId" 		column="RISK_ID"/>
+		<result property="riskName" 	column="RISK_NAME"/>
+		<association property="coverageOc" 		resultMap="coverageOcMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.CoverageOc" id="coverageOcMap">
+		<result property="sectionISi" column="SECTION_I_SI"/>
+		<result property="sectionIISi" column="SECTION_II_SI"/>
+		<result property="sectionIIISi" column="SECTION_III_SI"/>
+		<result property="totalSi" column="TOTAL_SI"/>
+		<result property="sectionIPrem" column="SECTION_I_PREM"/>
+		<result property="sectionIIPrem" column="SECTION_II_PREM"/>
+		<result property="sectionIIIPrem" column="SECTION_III_PREM"/>
+		<result property="totalPrem" column="TOTAL_PREM"/>
+		<result property="currencyCd" column="CURRENCY_CD"/>
+		<result property="currencyRt" column="CURRENCY_RT"/>
+		<result property="pctShare" column="PCT_SHARE"/>
+		<result property="pctPml" column="PCT_PML"/>
+		<result property="totalValue" column="TOTAL_VALUE"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="sectionCoversOc" 		resultMap="sectionCoversOcMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.SectionCoversOc" id="sectionCoversOcMap">
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="lineCdDesc" column="LINE_DESC"/>
+		<result property="section" column="SECTION"/>
+		<result property="coverCd" column="COVER_CD"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="bulletNo" column="BULLET_NO"/>
+		<result property="sumInsured" column="SUM_INSURED"/>
+		<result property="premRt" column="PREM_RT"/>
+		<result property="premAmt" column="PREM_AMT"/>
+		<result property="addSi" column="ADD_SI"/>
+		<result property="createUserSec" column="CREATE_USER_SEC"/>
+		<result property="createDateSec" column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUserSec" column="UPDATE_USER_SEC"/>
+		<result property="updateDateSec" column="UPDATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolCoverageOc" resultMap="policyOcMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_COVERAGE_OC_PKG.ret_pol_cov_oc(#{policyId, jdbcType=VARCHAR},#{policyNo, jdbcType=VARCHAR},#{position, jdbcType=VARCHAR}, 
+																	   #{count, jdbcType=VARCHAR}, 
+																	   #{sortKey, jdbcType=VARCHAR}, 
+																	   #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="savePolCoverageOc" parameterType="java.util.Map">
+		BEGIN
+			POL_COVERAGE_OC_PKG.save_pol_cover_oc( #{policyIdOc},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
+										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
+										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
+										   #{pctPml}, #{totalValue}, #{remarks}, #{createUser}, 
+										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+										   
+			<foreach collection="delSectionCoversOc" item="sectioncovers">
+				POL_SEC_COVER_OC_PKG.del_pol_cover_oc (#{policyIdOc},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd});
+			</foreach>
+			
+			<foreach collection="saveSectionCoversOc" item="sectioncovers">
+				POL_SEC_COVER_OC_PKG.save_pol_sec_cvrs_oc(#{policyIdOc},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
+													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+													#{sectioncovers.premRt},#{sectioncovers.premAmt},
+													#{sectioncovers.addSi},#{sectioncovers.createUserSec},
+													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="savePolEndtOc" parameterType="java.util.Map">
+		BEGIN
+			POL_ENDT_OC_PKG.save_pol_endt_oc( #{policyIdOc}, #{endtCd}, #{changeTag}, #{remarks},
+											  #{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="savedeductiblesOc" item="deductibles">
+				POL_ENDT_OC_PKG.save_pol_endt_dedt_oc(#{policyIdOc},#{deductibles.coverCd},#{deductibles.endtCdDedt}, #{deductibles.deductibleCd}, 
+													  #{deductibles.deductibleRt}, #{deductibles.deductibleAmt}, 
+													  #{deductibles.deductibleTxt}, #{deductibles.createUser}, CAST(to_timestamp(#{deductibles.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													  #{deductibles.updateUser}, CAST(to_timestamp(#{deductibles.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

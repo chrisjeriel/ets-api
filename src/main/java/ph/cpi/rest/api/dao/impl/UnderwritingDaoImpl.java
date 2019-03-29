@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
-import ph.cpi.rest.api.model.underwriting.CATPeril;
-import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 
@@ -83,17 +82,15 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public Item retrievePolItem(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		Item polItem = sqlSession.selectOne("retrievePolItem", params);
+	public Policy retrievePolItem(HashMap<String, Object> params) throws SQLException {
+		Policy polItem = sqlSession.selectOne("retrievePolItem", params);
 		logger.info("retrievePolItem DAOImpl : " + polItem);
 		return polItem;
 	}
 
 	@Override
-	public CATPeril retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		CATPeril polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
+	public Policy retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		Policy polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
 		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
 	}
@@ -113,8 +110,14 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public List<Policy> retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException {
-		List<Policy> policyList = sqlSession.selectList("retrievePolAlopItem", params);
+	public Policy retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolAlopItem", params);
+		return policy;
+	}
+
+	@Override
+	public List<Policy> retrievePolicyListing(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrievePolicyListing", params);
 		return policyList;
 	}
 	
@@ -150,6 +153,61 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		// TODO Auto-generated method stub
 		PolicyOc endorsementsOcList = sqlSession.selectOne("retrievePolEndtOc", params);
 		return endorsementsOcList;
+	}
+	
+	@Override
+	public HashMap<String, Object> savePolAlop(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAlopMap",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public HashMap<String, Object> savePolAlopItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAlopItemMap",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Policy retrievePolHoldCover(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolHoldCoverMain", params);
+		return policy;
+	}
+
+	@Override
+	public HashMap<String, Object> savePolCATPeril(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolCATPeril", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public OpenPolicy retrievePolCoverageOc(HashMap<String, Object> params) throws SQLException {
+		OpenPolicy policyOc = sqlSession.selectOne("retrievePolCoverageOc",params);
+		logger.info("retrievePolCoverageOc DAOImpl : " + policyOc);
+		return policyOc;
+	}
+
+	@Override
+	public HashMap<String, Object> savePolCoverageOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolCoverageOc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> savePolItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolItem",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> savePolEndtOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolEndtOc",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 	
 }

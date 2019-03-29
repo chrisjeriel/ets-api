@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import ph.cpi.rest.api.model.underwriting.CATPeril;
-import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 
@@ -15,11 +14,9 @@ public interface UnderwritingDao {
 	public Policy retrievePolicyCoverage(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolEndtList(final HashMap<String, Object> params) throws SQLException;
-	public Item retrievePolItem(final HashMap<String, Object> params) throws SQLException;
-	public CATPeril retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
 	public Policy retrievePolGenInfo(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolAlop(final HashMap<String, Object> params) throws SQLException;
-	public List<Policy> retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolAttachments(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolInwardBal(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolCoInsurance(final HashMap<String, Object> params) throws SQLException;
@@ -28,4 +25,17 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> savePolHoldCover(final HashMap<String, Object> params) throws SQLException;
 	public PolicyOc retrievePolAttachmentOcList(final HashMap<String,Object> params) throws SQLException;
 	public PolicyOc retrievePolEndtOcList(final HashMap<String, Object> params) throws SQLException;
+	public List<Policy> retrievePolicyListing(final HashMap<String, Object> params) throws SQLException;	
+	public HashMap<String, Object> savePolAlop(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolAlopItem(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolHoldCover(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolItem(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> savePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> savePolItem(final HashMap<String, Object> params ) throws SQLException;
+	public OpenPolicy retrievePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolEndtOc(final HashMap<String, Object> params) throws SQLException;
+
+
 }

@@ -3,21 +3,20 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.AlopItem;
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
-public class RetrieveQuoteAlopItemResponse extends Response {
-	private List<AlopItem> alopItem;
+public class RetrievePolicyListingResponse {
+
+	private List<Policy> policyList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<AlopItem> getAlopItem() {
-		return alopItem;
+	public List<Policy> getPolicyList() {
+		return policyList;
 	}
-	public void setAlopItem(List<AlopItem> alopItem) {
-		this.alopItem = alopItem;
+	public void setPolicyList(List<Policy> policyList) {
+		this.policyList = policyList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -33,10 +32,7 @@ public class RetrieveQuoteAlopItemResponse extends Response {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteAlopItemResponse [alopItem=" + alopItem + ", paginationResponse=" + paginationResponse
+		return "RetrievePolicyListingResponse [policyList=" + policyList + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
-	
 }

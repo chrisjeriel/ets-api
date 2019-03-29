@@ -6,13 +6,14 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveQuoteEndorsementsResponse {
+public class SavePolCoverageOcResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
 	public List<Error> getErrorList() {
-		if(errorList == null)
+		if (errorList == null) {
 			errorList = new ArrayList<Error>();
+		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -32,14 +33,9 @@ public class SaveQuoteEndorsementsResponse {
 	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("SaveQuoteEndorsementsResponse [errorList=");
-		builder.append(errorList);
-		builder.append(", messageList=");
-		builder.append(messageList);
-		builder.append(", returnCode=");
-		builder.append(returnCode);
-		builder.append("]");
-		return builder.toString();
+		return "SavePolCoverageOcResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + "]";
 	}
+	
+	
 }

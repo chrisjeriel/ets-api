@@ -1,19 +1,43 @@
-package ph.cpi.rest.api.model.underwriting;
+package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-import org.joda.time.LocalDateTime;
 
-@Alias("UnderwritingCATPeril")
-public class CATPeril {
+public class SavePolCATPerilRequest {
+	
+	private Integer policyId;
+	private List<CATPeril> saveCATPerilList;
+	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public List<CATPeril> getSaveCATPerilList() {
+		return saveCATPerilList;
+	}
+	public void setSaveCATPerilList(List<CATPeril> saveCATPerilList) {
+		this.saveCATPerilList = saveCATPerilList;
+	}
+	@Override
+	public String toString() {
+		return "SavePolCATPerilRequest [policyId=" + policyId + ", saveCATPerilList=" + saveCATPerilList + "]";
+	}
+	
+}
+
+@Alias("SavePolCATPeril")
+class CATPeril {
 	private Integer	catPrlId;
 	private BigDecimal pctShrPrm;
 	private String createUser;
-	private LocalDateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
-
+	private String updateDate;
+	
 	public Integer getCatPrlId() {
 		return catPrlId;
 	}
@@ -32,10 +56,10 @@ public class CATPeril {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -44,14 +68,12 @@ public class CATPeril {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-
-	
 	@Override
 	public String toString() {
 		return "CATPeril [catPrlId=" + catPrlId + ", pctShrPrm=" + pctShrPrm + ", createUser=" + createUser

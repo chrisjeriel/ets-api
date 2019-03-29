@@ -1,43 +1,38 @@
-package ph.cpi.rest.api.model.underwriting;
+package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import org.apache.ibatis.type.Alias;
-import org.joda.time.DateTime;
-
-@Alias("PolicyAlop")
-public class Alop {
-
+public class SavePolAlopRequest {
+	
+	private Integer policyId;
 	private Integer insId;
-	private String insuredName;
 	private String insuredDesc;
 	private String address;
 	private BigDecimal annSi;
 	private BigDecimal maxIndemPdSi;
-	private DateTime issueDate;
-	private DateTime expiryDate;
+	private String issueDate;
+	private String expiryDate;
 	private Integer maxIndemPd;
-	private DateTime indemFromDate;
+	private String indemFromDate;
 	private String timeExc;
 	private Integer repInterval;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private List<AlopItem> alopItem;
+	private String updateDate;
+	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
 	
 	public Integer getInsId() {
 		return insId;
 	}
 	public void setInsId(Integer insId) {
 		this.insId = insId;
-	}
-	public String getInsuredName() {
-		return insuredName;
-	}
-	public void setInsuredName(String insuredName) {
-		this.insuredName = insuredName;
 	}
 	public String getInsuredDesc() {
 		return insuredDesc;
@@ -63,16 +58,16 @@ public class Alop {
 	public void setMaxIndemPdSi(BigDecimal maxIndemPdSi) {
 		this.maxIndemPdSi = maxIndemPdSi;
 	}
-	public DateTime getIssueDate() {
+	public String getIssueDate() {
 		return issueDate;
 	}
-	public void setIssueDate(DateTime issueDate) {
+	public void setIssueDate(String issueDate) {
 		this.issueDate = issueDate;
 	}
-	public DateTime getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
-	public void setExpiryDate(DateTime expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 	public Integer getMaxIndemPd() {
@@ -81,10 +76,10 @@ public class Alop {
 	public void setMaxIndemPd(Integer maxIndemPd) {
 		this.maxIndemPd = maxIndemPd;
 	}
-	public DateTime getIndemFromDate() {
+	public String getIndemFromDate() {
 		return indemFromDate;
 	}
-	public void setIndemFromDate(DateTime indemFromDate) {
+	public void setIndemFromDate(String indemFromDate) {
 		this.indemFromDate = indemFromDate;
 	}
 	public String getTimeExc() {
@@ -105,10 +100,10 @@ public class Alop {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -117,28 +112,20 @@ public class Alop {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	
-	public List<AlopItem> getAlopItem() {
-		return alopItem;
-	}
-	public void setAlopItem(List<AlopItem> alopItem) {
-		this.alopItem = alopItem;
-	}
 	@Override
 	public String toString() {
-		return "Alop [insId=" + insId + ", insuredName=" + insuredName + ", insuredDesc=" + insuredDesc + ", address="
-				+ address + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate=" + issueDate
-				+ ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", indemFromDate=" + indemFromDate
-				+ ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", alopItem=" + alopItem + "]";
+		return "SavePolAlopRequest [policyId=" + policyId + ", insId=" + insId + ", insuredDesc=" + insuredDesc
+				+ ", address=" + address + ", annSi=" + annSi + ", maxIndemPdSi=" + maxIndemPdSi + ", issueDate="
+				+ issueDate + ", expiryDate=" + expiryDate + ", maxIndemPd=" + maxIndemPd + ", indemFromDate="
+				+ indemFromDate + ", timeExc=" + timeExc + ", repInterval=" + repInterval + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
-	
+
 }
