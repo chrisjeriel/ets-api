@@ -420,6 +420,7 @@
 		<result property="periodTo"				column="PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="compRefHoldCovNo"		column="COMP_REF_HOLD_COV_NO" />
 		<result property="status"				column="STATUS" />
+		<result property="statusDesc"			column="STATUS_DESC" />
 		<result property="reqBy"				column="REQ_BY" />
 		<result property="reqDate"				column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="preparedBy"			column="PREPARED_BY" />

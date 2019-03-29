@@ -17,6 +17,7 @@ public class HoldCover {
 	private DateTime periodTo;
 	private String compRefHoldCovNo;
 	private String status;
+	private String statusDesc;
 	private String reqBy;
 	private DateTime reqDate;
 	private String preparedBy;
@@ -91,6 +92,12 @@ public class HoldCover {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
+	}
 	public String getReqBy() {
 		return reqBy;
 	}
@@ -144,8 +151,9 @@ public class HoldCover {
 		return "HoldCover [policyId=" + policyId + ", holdCovId=" + holdCovId + ", holdCovNo=" + holdCovNo + ", lineCd="
 				+ lineCd + ", holdCovYear=" + holdCovYear + ", holdCovSeqNo=" + holdCovSeqNo + ", holdCovRevNo="
 				+ holdCovRevNo + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo="
-				+ compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy + ", reqDate=" + reqDate
-				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ compRefHoldCovNo + ", status=" + status + ", statusDesc=" + statusDesc + ", reqBy=" + reqBy
+				+ ", reqDate=" + reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }
