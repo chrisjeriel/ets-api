@@ -29,7 +29,6 @@ public class SavePolCoverageRequest {
 	private  String updateDate;
 	
 	private List<SectionCoversUw> saveSectionCovers;
-	private List<SectionCoversUw> deleteSectionCovers;
 	
 	
 	public Integer getPolicyId() {
@@ -165,12 +164,6 @@ public class SavePolCoverageRequest {
 	public void setSaveSectionCovers(List<SectionCoversUw> saveSectionCovers) {
 		this.saveSectionCovers = saveSectionCovers;
 	}
-	public List<SectionCoversUw> getDeleteSectionCovers() {
-		return deleteSectionCovers;
-	}
-	public void setDeleteSectionCovers(List<SectionCoversUw> deleteSectionCovers) {
-		this.deleteSectionCovers = deleteSectionCovers;
-	}
 	@Override
 	public String toString() {
 		return "SavePolCoverageRequest [policyId=" + policyId + ", riskId=" + riskId + ", projId=" + projId
@@ -180,10 +173,8 @@ public class SavePolCoverageRequest {
 				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
 				+ totalValue + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveSectionCovers="
-				+ saveSectionCovers + ", deleteSectionCovers=" + deleteSectionCovers + "]";
+				+ saveSectionCovers + "]";
 	}
-	
-	
 	
 }
 

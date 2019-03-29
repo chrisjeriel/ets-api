@@ -81,7 +81,7 @@ public class Policy {
 	private List<Alop> alop;
 	private List<HoldCover> holdCoverList;
 	private List<Item> items;
-	private CATPeril catPeril;
+	private List<CATPeril> catPeril;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -508,10 +508,11 @@ public class Policy {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	public CATPeril getCatPeril() {
+	
+	public List<CATPeril> getCatPeril() {
 		return catPeril;
 	}
-	public void setCatPeril(CATPeril catPeril) {
+	public void setCatPeril(List<CATPeril> catPeril) {
 		this.catPeril = catPeril;
 	}
 	@Override
@@ -541,6 +542,5 @@ public class Policy {
 				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", items=" + items + ", catPeril=" + catPeril
 				+ "]";
 	}
-	
 	
 }
