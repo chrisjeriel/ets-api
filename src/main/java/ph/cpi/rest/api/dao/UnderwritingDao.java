@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import ph.cpi.rest.api.model.underwriting.CATPeril;
-import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public interface UnderwritingDao {
@@ -30,5 +29,8 @@ public interface UnderwritingDao {
 	public Policy retrievePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> savePolCATPeril(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> savePolItem(final HashMap<String, Object> params ) throws SQLException;
+	public OpenPolicy retrievePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolEndtOc(final HashMap<String, Object> params) throws SQLException;
 
 }

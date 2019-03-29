@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
@@ -160,10 +161,31 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 
 	@Override
+	public OpenPolicy retrievePolCoverageOc(HashMap<String, Object> params) throws SQLException {
+		OpenPolicy policyOc = sqlSession.selectOne("retrievePolCoverageOc",params);
+		logger.info("retrievePolCoverageOc DAOImpl : " + policyOc);
+		return policyOc;
+	}
+
+	@Override
+	public HashMap<String, Object> savePolCoverageOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolCoverageOc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public HashMap<String, Object> savePolItem(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolItem",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
 
+	@Override
+	public HashMap<String, Object> savePolEndtOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolEndtOc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
 }

@@ -1117,7 +1117,7 @@
 	BEGIN
 		<foreach collection="deleteAlopItemsList" item="alopItem">
 		BEGIN
-	    	QU_ALOP_ITM_PKG.del_qu_alop_itm(#{quoteId},#{alopItem.itemNo, jdbcType=VARCHAR});
+	    	QU_ALOP_ITM_PKG.del_qu_alop_itm(#{quoteId},#{alopItem.optionId},#{alopItem.itemNo, jdbcType=VARCHAR});
 		END;
 		</foreach>
 		<foreach collection="saveAlopItemsList" item="alopItem">
