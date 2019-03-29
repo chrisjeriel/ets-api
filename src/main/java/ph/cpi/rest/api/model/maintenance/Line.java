@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class Line {
 	private String lineCd;
 	private String description;
+	private DateTime cutOffTime;
 	private String activeTag;
 	private String catTag;
 	private String renewalTag;
@@ -28,6 +29,12 @@ public class Line {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public DateTime getCutOffTime() {
+		return cutOffTime;
+	}
+	public void setCutOffTime(DateTime cutOffTime) {
+		this.cutOffTime = cutOffTime;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -103,11 +110,11 @@ public class Line {
 	}
 	@Override
 	public String toString() {
-		return "Line [lineCd=" + lineCd + ", description=" + description + ", activeTag=" + activeTag + ", catTag="
-				+ catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo="
-				+ referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", alopTag=" + alopTag + "]";
+		return "Line [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime + ", activeTag="
+				+ activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag
+				+ ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", alopTag=" + alopTag + "]";
 	}
 
 }

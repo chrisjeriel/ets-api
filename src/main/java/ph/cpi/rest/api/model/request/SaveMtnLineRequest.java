@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.request;
 public class SaveMtnLineRequest {
 	 private String lineCd ;
      private String description ;
+     private String cutOffTime;
      private String activeTag ;
      private String catTag ;
      private String renewalTag ;
@@ -26,6 +27,12 @@ public class SaveMtnLineRequest {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getCutOffTime() {
+		return cutOffTime;
+	}
+	public void setCutOffTime(String cutOffTime) {
+		this.cutOffTime = cutOffTime;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -101,11 +108,10 @@ public class SaveMtnLineRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveMtnLineRequest [lineCd=" + lineCd + ", description=" + description + ", activeTag=" + activeTag
-				+ ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag
-				+ ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", alopTag=" + alopTag + "]";
+		return "SaveMtnLineRequest [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime
+				+ ", activeTag=" + activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag="
+				+ openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", alopTag=" + alopTag + "]";
 	}
-	
 }

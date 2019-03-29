@@ -628,6 +628,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnLineParams = new HashMap<String, Object>();
 		saveMtnLineParams.put("lineCd", smlr.getLineCd()) ;
         saveMtnLineParams.put("description", smlr.getDescription()) ;
+        saveMtnLineParams.put("cutOffTime", smlr.getCutOffTime());
         saveMtnLineParams.put("activeTag", smlr.getActiveTag()) ;
         saveMtnLineParams.put("catTag", smlr.getCatTag()) ;
         saveMtnLineParams.put("renewalTag", smlr.getRenewalTag()) ;

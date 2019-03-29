@@ -171,11 +171,13 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Line" id="mntLineMap">
 		<result property="lineCd" 			column="LINE_CD"/> 
-		<result property="description" 		column="DESCRIPTION"/> 
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="cutOffTime" 		column="CUT_OFF_TIME" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="catTag" 			column="CAT_TAG"/> 
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
-		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/> 
+		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/>
+		<result property="alopTag" 			column="ALOP_TAG"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -745,6 +747,7 @@
     		MTN_LINE_PKG.save_mtn_line(
     			#{lineCd,jdbcType=VARCHAR},
 		        #{description,jdbcType=VARCHAR},
+		        CAST(to_timestamp(#{cutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		        #{activeTag,jdbcType=VARCHAR},
 		        #{catTag,jdbcType=VARCHAR},
 		        #{renewalTag,jdbcType=VARCHAR},
