@@ -11,6 +11,7 @@ public class SavePolHoldCoverResponse {
 	private List<Message> messageList = new ArrayList<Message>();
 	private Integer returnCode;
 	private String polHoldCoverNo;
+	private Integer polHoldCoverId;
 	
 	public List<Error> getErrorList() {
 		return errorList;
@@ -36,10 +37,16 @@ public class SavePolHoldCoverResponse {
 	public void setPolHoldCoverNo(String polHoldCoverNo) {
 		this.polHoldCoverNo = polHoldCoverNo;
 	}
+	public Integer getPolHoldCoverId() {
+		return polHoldCoverId;
+	}
+	public void setPolHoldCoverId(Integer polHoldCoverId) {
+		this.polHoldCoverId = polHoldCoverId;
+	}
 	
 	@Override
 	public String toString() {
 		return "SavePolHoldCoverResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", polHoldCoverNo=" + polHoldCoverNo + "]";
+				+ returnCode + ", polHoldCoverNo=" + polHoldCoverNo + ", polHoldCoverId=" + polHoldCoverId + "]";
 	}
 }

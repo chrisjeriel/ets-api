@@ -466,6 +466,7 @@
 		BEGIN
 			POL_HOLD_COVER_PKG.save_pol_hc(
 				 #{polHoldCoverNo, mode=OUT, jdbcType=VARCHAR},
+				 #{polHoldCoverId, mode=OUT, jdbcType=INTEGER},
 				 #{policyId, jdbcType=VARCHAR},
 				 #{holdCovId, jdbcType=VARCHAR},
 				 #{lineCd},

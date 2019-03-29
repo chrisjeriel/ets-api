@@ -314,6 +314,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			HashMap<String, Object> res = underwritingDao.savePolHoldCover(savePolHoldCoverParams);
 			sphcResponse.setReturnCode((Integer) res.get("errorCode"));
 			sphcResponse.setPolHoldCoverNo((String) res.get("polHoldCoverNo"));
+			sphcResponse.setPolHoldCoverId((Integer) res.get("polHoldCoverId"));
 			//sphcResponse.setPolHoldCoverNo(polHoldCoverNo);
 		}catch(Exception ex){
 			sphcResponse.setReturnCode(0);
