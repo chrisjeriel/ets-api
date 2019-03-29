@@ -155,5 +155,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Policy policy = sqlSession.selectOne("retrievePolicyInformation", params);
 		return policy;
 	}
+
+	@Override
+	public Integer savePolInwardBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolInwardBal",params);
+		return errorCode;
+	}
 	
 }

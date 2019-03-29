@@ -6,6 +6,7 @@ public class OtherCharges {
 	private Integer instNo ;
 	private Integer chargeCd;
 	private Integer amount;
+	private String chargeDesc;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -27,6 +28,13 @@ public class OtherCharges {
 	}
 	public void setAmount(Integer amount) {
 		this.amount = amount;
+	}
+	
+	public String getChargeDesc() {
+		return chargeDesc;
+	}
+	public void setChargeDesc(String chargeDesc) {
+		this.chargeDesc = chargeDesc;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -54,9 +62,8 @@ public class OtherCharges {
 	}
 	@Override
 	public String toString() {
-		return "OtherCharges [instNo=" + instNo + ", chargeCd=" + chargeCd + ", amount=" + amount + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "OtherCharges [instNo=" + instNo + ", chargeCd=" + chargeCd + ", amount=" + amount + ", chargeDesc="
+				+ chargeDesc + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-
 }

@@ -4,6 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ph.cpi.mybatis.mapper.UnderwritingMapper">
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retInwPolBalMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
+	</resultMap>
+	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.InwPolBalance" id="inwPolBalMap">
 		<result property="instNo" 				column="INST_NO"/>
 		<result property="dueDate" 				column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -22,6 +28,7 @@
 		<result property="instNo"			column="OTHER_INST_NO"/> 
 		<result property="chargeCd"			column="CHARGE_CD"/>
 		<result property="amount"			column="AMOUNT"/>
+		<result property="chargeDesc"		column="CHARGE_DESC"/>
 		<result property="createUser"		column="OTHER_CREATE_USER"/>
 		<result property="createDate"		column="OTHER_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="OTHER_UPDATE_USER"/>
@@ -140,7 +147,7 @@
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrievePolInwardBal" resultMap="policyMap" parameterType="java.util.Map">
+	<select id="retrievePolInwardBal" resultMap="retInwPolBalMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INWARD_PKG.ret_pol_inward(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
@@ -541,5 +548,50 @@
 	<select id="retrievePolicyInformation" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_info(#{policyId, jdbcType=VARCHAR},#{policyNo, jdbcType=VARCHAR},null,null,null,null))
 	</select>
+	
+	<update id="savePolInwardBal" parameterType="java.util.Map">
+		DECLARE
+			v_instNo POL_INWARD_BAL.INST_NO%TYPE;
+		BEGIN
+			<foreach collection="newSavePolInward" item="polInward">
+				v_instNo := #{polInward.instNo,jdbcType=VARCHAR};
+				POL_INWARD_PKG.save_inw(#{policyId},v_instNo,
+						CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{polInward.premAmt},1,1,#{polInward.otherChargesInw},#{polInward.amtDue},#{polInward.createUser},
+						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
+						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				<foreach collection="polInward.otherCharges" item="otherCharges">
+					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount},
+							#{otherCharges.createUser},
+							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
+							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				</foreach>
+			</foreach>
+		
+		
+			<foreach collection="delPolInward" item="polInward">
+				POL_INWARD_PKG.del_inw(#{policyId},#{polInward.instNo});
+			</foreach>
+			<foreach collection="delOtherCharges" item="otherCharges">
+				POL_INWARD_PKG.del_oth_charges(#{policyId},#{otherCharges.instNo},#{otherCharges.chargeCd});
+			</foreach>
+			<foreach collection="savePolInward" item="polInward">
+				POL_INWARD_PKG.save_inw(#{policyId},#{polInward.instNo},
+						CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{polInward.premAmt},1,1,#{polInward.otherChargesInw},#{polInward.amtDue},#{polInward.createUser},
+						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
+						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			<foreach collection="saveOtherCharges" item="otherCharges">
+					POL_INWARD_PKG.save_oth_charges(#{policyId},#{otherCharges.instNo},#{otherCharges.chargeCd},#{otherCharges.amount},
+							#{otherCharges.createUser},
+							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
+							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			
+		END;
+	</update>
 
 </mapper>

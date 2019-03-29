@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -376,5 +378,25 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolInquiryParams.put("policyNo", rpir.getPolicyNo());
 		rpirResponse.setPolicy(underwritingDao.retrievePolicyInformation(retrievePolInquiryParams));
 		return rpirResponse;
+	}
+
+	@Override
+	public SavePolInwardBalResponse savePolInwardBal(SavePolInwardBalRequest spibr) throws SQLException {
+		SavePolInwardBalResponse spibrResponse = new SavePolInwardBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", spibr.getPolicyId());
+		params.put("savePolInward", spibr.getSavePolInward());
+		params.put("delPolInward",spibr.getDelPolInward());
+		params.put("saveOtherCharges", spibr.getSaveOtherCharges());
+		params.put("delOtherCharges",spibr.getDelOtherCharges());
+		params.put("newSavePolInward", spibr.getNewSavePolInward());
+		try{
+			spibrResponse.setReturnCode(underwritingDao.savePolInwardBal(params));
+		} catch (Exception ex) {
+			spibrResponse.setReturnCode(0);
+			spibrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return spibrResponse;
 	}
 }
