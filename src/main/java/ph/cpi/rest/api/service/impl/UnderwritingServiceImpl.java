@@ -500,7 +500,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			HashMap<String, Object> savePolItemParams = new HashMap<String, Object>();
 			savePolItemParams.put("policyId", spir.getPolicyId());
+			savePolItemParams.put("projId", spir.getProjId());
 			savePolItemParams.put("saveItemLists",spir.getSaveItemLists());
+			savePolItemParams.put("deleteItemLists",spir.getDeleteItemLists());
 			HashMap<String, Object> res = underwritingDao.savePolItem(savePolItemParams);
 			spiresponse.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
