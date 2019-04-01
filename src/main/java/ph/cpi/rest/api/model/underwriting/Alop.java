@@ -13,6 +13,7 @@ public class Alop {
 	private String insuredName;
 	private String insuredDesc;
 	private String address;
+	private String insBusiness;
 	private BigDecimal annSi;
 	private BigDecimal maxIndemPdSi;
 	private DateTime issueDate;
@@ -50,6 +51,12 @@ public class Alop {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getInsBusiness() {
+		return insBusiness;
+	}
+	public void setInsBusiness(String insBusiness) {
+		this.insBusiness = insBusiness;
 	}
 	public BigDecimal getAnnSi() {
 		return annSi;
