@@ -298,12 +298,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("objectDesc", rplp.getObjectDesc());
 		retrievePolicyListingParams.put("site", rplp.getSite());
 		retrievePolicyListingParams.put("currencyCd", rplp.getCurrencyCd());
-		retrievePolicyListingParams.put("totalSi", rplp.getTotalSi());
-		retrievePolicyListingParams.put("totalPrem", rplp.getTotalPrem());
-		retrievePolicyListingParams.put("issueDate", rplp.getIssueDate());
-		retrievePolicyListingParams.put("expiryDate", rplp.getExpiryDate());
-		retrievePolicyListingParams.put("inceptDate", rplp.getInceptDate());
-		retrievePolicyListingParams.put("acctDate", rplp.getAcctDate());
+		retrievePolicyListingParams.put("totalSiLess", rplp.getTotalSiLess());
+		retrievePolicyListingParams.put("totalSiGrt", rplp.getTotalSiGrt());
+		retrievePolicyListingParams.put("totalPremLess", rplp.getTotalPremLess());
+		retrievePolicyListingParams.put("totalPremGrt", rplp.getTotalPremGrt());
+		retrievePolicyListingParams.put("issueDateFrom", rplp.getIssueDateFrom());
+		retrievePolicyListingParams.put("issueDateTo", rplp.getIssueDateTo());
+		retrievePolicyListingParams.put("expiryDateFrom", rplp.getExpiryDateFrom());
+		retrievePolicyListingParams.put("expiryDateTo", rplp.getExpiryDateTo());
+		retrievePolicyListingParams.put("inceptDateFrom", rplp.getInceptDateFrom());
+		retrievePolicyListingParams.put("inceptDateTo", rplp.getInceptDateTo());
+		retrievePolicyListingParams.put("acctDateFrom", rplp.getAcctDateFrom());
+		retrievePolicyListingParams.put("acctDateTo", rplp.getAcctDateTo());
 		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
 		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));

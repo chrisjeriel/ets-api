@@ -14,12 +14,18 @@ public class RetrievePolicyListingRequest {
 	private String objectDesc;
 	private String site;
 	private String currencyCd;
-	private String totalSi;
-	private String totalPrem;
-	private String issueDate;
-	private String expiryDate;
-	private String inceptDate;
-	private String acctDate;
+	private String totalSiLess;
+	private String totalSiGrt;
+	private String totalPremLess;
+	private String totalPremGrt;
+	private String issueDateFrom;
+	private String issueDateTo;
+	private String expiryDateFrom;
+	private String expiryDateTo;
+	private String inceptDateFrom;
+	private String inceptDateTo;
+	private String acctDateFrom;
+	private String acctDateTo;
 	private String statusDesc;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
@@ -78,41 +84,29 @@ public class RetrievePolicyListingRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getTotalSi() {
-		return totalSi;
+	public String getTotalSiLess() {
+		return totalSiLess;
 	}
-	public void setTotalSi(String totalSi) {
-		this.totalSi = totalSi;
+	public void setTotalSiLess(String totalSiLess) {
+		this.totalSiLess = totalSiLess;
 	}
-	public String getTotalPrem() {
-		return totalPrem;
+	public String getTotalSiGrt() {
+		return totalSiGrt;
 	}
-	public void setTotalPrem(String totalPrem) {
-		this.totalPrem = totalPrem;
+	public void setTotalSiGrt(String totalSiGrt) {
+		this.totalSiGrt = totalSiGrt;
 	}
-	public String getIssueDate() {
-		return issueDate;
+	public String getIssueDateFrom() {
+		return issueDateFrom;
 	}
-	public void setIssueDate(String issueDate) {
-		this.issueDate = issueDate;
+	public void setIssueDateFrom(String issueDateFrom) {
+		this.issueDateFrom = issueDateFrom;
 	}
-	public String getExpiryDate() {
-		return expiryDate;
+	public String getIssueDateTo() {
+		return issueDateTo;
 	}
-	public void setExpiryDate(String expiryDate) {
-		this.expiryDate = expiryDate;
-	}
-	public String getInceptDate() {
-		return inceptDate;
-	}
-	public void setInceptDate(String inceptDate) {
-		this.inceptDate = inceptDate;
-	}
-	public String getAcctDate() {
-		return acctDate;
-	}
-	public void setAcctDate(String acctDate) {
-		this.acctDate = acctDate;
+	public void setIssueDateTo(String issueDateTo) {
+		this.issueDateTo = issueDateTo;
 	}
 	public String getStatusDesc() {
 		return statusDesc;
@@ -132,13 +126,67 @@ public class RetrievePolicyListingRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public String getInceptDateFrom() {
+		return inceptDateFrom;
+	}
+	public void setInceptDateFrom(String inceptDateFrom) {
+		this.inceptDateFrom = inceptDateFrom;
+	}
+	public String getInceptDateTo() {
+		return inceptDateTo;
+	}
+	public void setInceptDateTo(String inceptDateTo) {
+		this.inceptDateTo = inceptDateTo;
+	}
+	public String getExpiryDateFrom() {
+		return expiryDateFrom;
+	}
+	public void setExpiryDateFrom(String expiryDateFrom) {
+		this.expiryDateFrom = expiryDateFrom;
+	}
+	public String getExpiryDateTo() {
+		return expiryDateTo;
+	}
+	public void setExpiryDateTo(String expiryDateTo) {
+		this.expiryDateTo = expiryDateTo;
+	}
+	public String getAcctDateFrom() {
+		return acctDateFrom;
+	}
+	public void setAcctDateFrom(String acctDateFrom) {
+		this.acctDateFrom = acctDateFrom;
+	}
+	public String getAcctDateTo() {
+		return acctDateTo;
+	}
+	public void setAcctDateTo(String acctDateTo) {
+		this.acctDateTo = acctDateTo;
+	}
+	public String getTotalPremLess() {
+		return totalPremLess;
+	}
+	public void setTotalPremLess(String totalPremLess) {
+		this.totalPremLess = totalPremLess;
+	}
+	public String getTotalPremGrt() {
+		return totalPremGrt;
+	}
+	public void setTotalPremGrt(String totalPremGrt) {
+		this.totalPremGrt = totalPremGrt;
+	}
 	@Override
 	public String toString() {
 		return "RetrievePolicyListingRequest [policyNo=" + policyNo + ", cessionDesc=" + cessionDesc + ", cedingName="
 				+ cedingName + ", lineClassDesc=" + lineClassDesc + ", insuredDesc=" + insuredDesc + ", riskName="
 				+ riskName + ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd
-				+ ", totalSi=" + totalSi + ", totalPrem=" + totalPrem + ", issueDate=" + issueDate + ", expiryDate="
-				+ expiryDate + ", inceptDate=" + inceptDate + ", acctDate=" + acctDate + ", statusDesc=" + statusDesc
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", totalSiLess=" + totalSiLess + ", totalSiGrt=" + totalSiGrt + ", totalPremLess=" + totalPremLess
+				+ ", totalPremGrt=" + totalPremGrt + ", issueDateFrom=" + issueDateFrom + ", issueDateTo=" + issueDateTo
+				+ ", expiryDateFrom=" + expiryDateFrom + ", expiryDateTo=" + expiryDateTo + ", inceptDateFrom="
+				+ inceptDateFrom + ", inceptDateTo=" + inceptDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo="
+				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
+
 }
