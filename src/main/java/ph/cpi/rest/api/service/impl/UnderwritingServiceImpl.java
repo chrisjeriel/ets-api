@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
@@ -36,6 +37,7 @@ import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
+import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
@@ -51,6 +53,7 @@ import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
@@ -67,6 +70,7 @@ import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
+import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
@@ -696,5 +700,35 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		
 		return spdResponse;
+	}
+	
+	@Override
+	public RetrievePolicyInformationResponse retrievePolicyInformation(RetrievePolicyInformationRequest rpir) throws SQLException {
+		RetrievePolicyInformationResponse rpirResponse = new RetrievePolicyInformationResponse();
+		HashMap<String, Object> retrievePolInquiryParams = new HashMap<String, Object>();
+		retrievePolInquiryParams.put("policyId", rpir.getPolicyId());
+		retrievePolInquiryParams.put("policyNo", rpir.getPolicyNo());
+		rpirResponse.setPolicy(underwritingDao.retrievePolicyInformation(retrievePolInquiryParams));
+		return rpirResponse;
+	}
+
+	@Override
+	public SavePolInwardBalResponse savePolInwardBal(SavePolInwardBalRequest spibr) throws SQLException {
+		SavePolInwardBalResponse spibrResponse = new SavePolInwardBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", spibr.getPolicyId());
+		params.put("savePolInward", spibr.getSavePolInward());
+		params.put("delPolInward",spibr.getDelPolInward());
+		params.put("saveOtherCharges", spibr.getSaveOtherCharges());
+		params.put("delOtherCharges",spibr.getDelOtherCharges());
+		params.put("newSavePolInward", spibr.getNewSavePolInward());
+		try{
+			spibrResponse.setReturnCode(underwritingDao.savePolInwardBal(params));
+		} catch (Exception ex) {
+			spibrResponse.setReturnCode(0);
+			spibrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return spibrResponse;
 	}
 }

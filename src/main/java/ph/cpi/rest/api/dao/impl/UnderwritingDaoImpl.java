@@ -175,6 +175,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Policy policy = sqlSession.selectOne("retrievePolHoldCoverMain", params);
 		return policy;
 	}
+	
+	@Override
+	public Policy retrievePolicyInformation(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolicyInformation", params);
+		return policy;
+	}
 
 	@Override
 	public HashMap<String, Object> savePolCATPeril(HashMap<String, Object> params) throws SQLException {
@@ -223,6 +229,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolicyDetails",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public Integer savePolInwardBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolInwardBal",params);
+		return errorCode;
 	}
 	
 }

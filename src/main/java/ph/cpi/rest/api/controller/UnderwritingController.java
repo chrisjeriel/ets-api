@@ -28,26 +28,24 @@ import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
+import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
-import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
+import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
+import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
-import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
-import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
-import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
-import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
-import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
-import ph.cpi.rest.api.model.request.SavePolItemRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
@@ -60,18 +58,19 @@ import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
+import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
-import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
-import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
-import ph.cpi.rest.api.model.response.SavePolItemResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
+import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
+import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
@@ -279,5 +278,19 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/savePolicyDetails");
 		logger.info("SavePolicyDetails : " + spdp.toString());
 		return underwritingService.savePolicyDetails(spdp);
+	}
+		
+	@GetMapping(path="retrievePolicyInformation")
+	public @ResponseBody RetrievePolicyInformationResponse retrievePolicyInformation(RetrievePolicyInformationRequest rpir) throws SQLException {
+		logger.info("GET: /api/Policy-service/retrievePolInquiry");
+		logger.info("RetrievePolInquiryRequest : " + rpir.toString());
+		return underwritingService.retrievePolicyInformation(rpir);
+	}
+	
+	@PostMapping(path="savePolInwardBal")
+	public @ResponseBody SavePolInwardBalResponse savePolInwardBal(@RequestBody SavePolInwardBalRequest spibr) throws SQLException {
+		logger.info("GET: /api/Policy-service/savePolInwardBal");
+		logger.info("SavePolInwardBalRequest : " + spibr.toString());
+		return underwritingService.savePolInwardBal(spibr);
 	}
 }
