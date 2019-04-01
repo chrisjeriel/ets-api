@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.underwriting.PolicyOc;
 
 public interface UnderwritingDao {
 	
@@ -21,6 +22,9 @@ public interface UnderwritingDao {
 	public Policy retrievePolCoInsurance(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolicyDeductibles(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> savePolCoverage(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> savePolHoldCover(final HashMap<String, Object> params) throws SQLException;
+	public PolicyOc retrievePolAttachmentOcList(final HashMap<String,Object> params) throws SQLException;
+	public PolicyOc retrievePolEndtOcList(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolicyListing(final HashMap<String, Object> params) throws SQLException;	
 	public HashMap<String, Object> savePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolAlopItem(final HashMap<String, Object> params) throws SQLException;
@@ -32,5 +36,6 @@ public interface UnderwritingDao {
 	public OpenPolicy retrievePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolCoverageOc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolEndtOc(final HashMap<String, Object> params) throws SQLException;
-
+	public HashMap<String, Object> savePolGenInfo(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolicyDetails(final HashMap<String, Object> params) throws SQLException;
 }

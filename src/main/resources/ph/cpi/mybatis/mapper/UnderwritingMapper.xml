@@ -105,14 +105,16 @@
 		<result property="cessionDesc" 			column="CESSION_DESC"/>
 		<result property="cedingName" 			column="CEDING_NAME"/>		
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="insuredDesc" 			column="INSURED_DESC"/>
 		<result property="currencyCd" 			column="CURRENCY_CD"/>
 		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="statusDesc" 			column="STATUS"/>
+		<result property="status"	 			column="STATUS"/>
+		<result property="statusDesc"	 		column="STATUS_DESC"/>
 		
-		<association property="project" 		resultMap="projectMap"/>		
+		<association property="project" 		resultMap="projectMap"/>	
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
@@ -427,6 +429,7 @@
 		<result property="periodTo"				column="PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="compRefHoldCovNo"		column="COMP_REF_HOLD_COV_NO" />
 		<result property="status"				column="STATUS" />
+		<result property="statusDesc"			column="STATUS_DESC" />
 		<result property="reqBy"				column="REQ_BY" />
 		<result property="reqDate"				column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="preparedBy"			column="PREPARED_BY" />
@@ -571,6 +574,99 @@
 		END;
 	</update>
 	
+	<update id="savePolHoldCover" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POL_HOLD_COVER_PKG.save_pol_hc(
+				 #{polHoldCoverNo, mode=OUT, jdbcType=VARCHAR},
+				 #{polHoldCoverId, mode=OUT, jdbcType=INTEGER},
+				 #{policyId, jdbcType=VARCHAR},
+				 #{holdCovId, jdbcType=VARCHAR},
+				 #{lineCd},
+				 #{holdCovYear},
+				 #{holdCovSeqNo, jdbcType=VARCHAR},
+				 #{holdCovRevNo, jdbcType=VARCHAR},
+				 CAST(to_timestamp(#{periodFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 CAST(to_timestamp(#{periodTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 #{compRefHoldCovNo, jdbcType=VARCHAR},
+				 #{status, jdbcType=VARCHAR},
+				 #{reqBy, jdbcType=VARCHAR},
+				 CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 #{preparedBy, jdbcType=VARCHAR},
+				 #{approvedBy, jdbcType=VARCHAR},
+				 #{createUser},
+				 CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 #{updateUser},
+				 CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="polAttachmentOcMap">
+	    <result property="policyIdOc" 		column="POLICY_ID_OC"/> 
+		<result property="openPolicyNo" 	column="OPEN_POLICY_NO"/> 
+		<association property="attachmentsOc" resultMap="assocAttachmentOcMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.AttachmentOc" id="assocAttachmentOcMap">
+		<result property="fileNo" 			column="FILE_NO"/> 
+		<result property="fileName" 		column="FILE_NAME"/> 
+		<result property="description" 		column="DESCRIPTION"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolAttachmentOc" resultMap="polAttachmentOcMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ATTACHMENT_OC_PKG.ret_pol_att_oc(#{policyIdOc, jdbcType=INTEGER},
+																	 #{openPolicyNo, jdbcType=VARCHAR},
+																	 #{position, jdbcType=VARCHAR}, 
+																	 #{count, jdbcType=VARCHAR}, 
+																	 #{sortKey, jdbcType=VARCHAR}, 
+																	 #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="polEndtOcMap">
+	    <result property="policyIdOc" 		column="POLICY_ID_OC"/> 
+		<result property="openPolicyNo"     column="OPEN_POLICY_NO"/> 
+		<association property="endorsementsOc" resultMap="assocEndorsementsOcMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.EndtOc" id="assocEndorsementsOcMap">
+		<result property="endtCd" 			column="ENDT_CD"/> 
+		<result property="endtTitle" 		column="ENDT_TITLE"/> 
+		<result property="changeTag" 		column="CHANGE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="deductiblesOc" resultMap="assocDeductiblesOcMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DeductiblesOc" id="assocDeductiblesOcMap">
+		<result property="endtCd" 			column="D_ENDT_CD"/> 
+		<result property="endtTitle" 		column="D_ENDT_TITLE"/> 
+		<result property="deductibleCd"     column="D_DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" 	column="D_DEDUCTIBLE_TITLE"/> 
+		<result property="deductibleRt" 	column="D_DEDUCTIBLE_RT"/>
+		<result property="deductibleAmt" 	column="D_DEDUCTIBLE_AMT"/>
+		<result property="deductibleTxt" 	column="D_DEDUCTIBLE_TXT"/>
+		<result property="createUser" 		column="D_CREATE_USER"/> 
+		<result property="createDate" 		column="D_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="D_UPDATE_USER"/> 
+		<result property="updateDate" 		column="D_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrievePolEndtOc" resultMap="polEndtOcMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_ENDT_OC_PKG.ret_pol_endt_oc(#{policyIdOc, jdbcType=INTEGER},
+														  		#{openPolicyNo, jdbcType=VARCHAR},
+														  		#{position, jdbcType=VARCHAR}, 
+														  		#{count, jdbcType=VARCHAR}, 
+														  		#{sortKey, jdbcType=VARCHAR}, 
+														  		#{order, jdbcType=VARCHAR}))
+	</select>
+	
 	<select id="retrievePolicyListing" resultMap="policyListingMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
@@ -648,6 +744,78 @@
 				CAST(to_timestamp(#{Items.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			);
 			</foreach>
+		END;
+	</update>
+	
+	<update id="savePolGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POL_GEN_INFO_PKG.save_pol_gen_info(#{policyNo, mode=OUT, jdbcType=VARCHAR},
+											   #{outPolicyId, mode=OUT, jdbcType=INTEGER},
+											   #{policyId, jdbcType=INTEGER},
+											   #{lineCd, jdbcType=VARCHAR},
+											   #{polYear, jdbcType=INTEGER},
+											   #{polSeqNo, jdbcType=INTEGER},
+											   #{cedingId, jdbcType=VARCHAR},
+											   #{coSeriesNo, jdbcType=INTEGER},
+											   #{altNo, jdbcType=INTEGER},
+											   #{cessionId, jdbcType=INTEGER},
+											   #{lineClassCd, jdbcType=VARCHAR},
+											   #{quoteId, jdbcType=INTEGER},
+											   #{status, jdbcType=VARCHAR},
+											   #{coRefNo, jdbcType=VARCHAR},
+											   #{reinsurerId, jdbcType=VARCHAR},
+											   #{riBinderNo, jdbcType=VARCHAR},
+											   #{mbiRefNo, jdbcType=VARCHAR},
+											   #{policyIdOc, jdbcType=INTEGER},
+											   #{refOpenPolNo, jdbcType=VARCHAR},
+											   #{intmId, jdbcType=INTEGER},
+											   #{principalId, jdbcType=INTEGER},
+											   #{contractorId, jdbcType=INTEGER},
+											   #{insuredDesc, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{lapseFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{lapseTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{maintenanceFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{maintenanceTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{issueDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{effDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{distDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   CAST(to_timestamp(#{acctDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{currencyCd, jdbcType=VARCHAR},
+											   #{currencyRt, jdbcType=FLOAT},
+											   #{bookedTag, jdbcType=VARCHAR},
+											   #{govtTag, jdbcType=VARCHAR},
+											   #{openCoverTag, jdbcType=VARCHAR},
+											   #{holdCoverTag, jdbcType=VARCHAR},
+											   #{declarationTag, jdbcType=VARCHAR},
+											   #{minDepTag, jdbcType=VARCHAR},
+											   #{altTag, jdbcType=VARCHAR},
+											   #{specialPolicyTag, jdbcType=VARCHAR},
+											   #{instTag, jdbcType=VARCHAR},
+											   #{extensionTag, jdbcType=VARCHAR},
+											   #{excludeDistTag, jdbcType=VARCHAR},
+											   #{wordings, jdbcType=VARCHAR},
+											   #{createUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{updateUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{projId, jdbcType=INTEGER},
+											   #{projDesc, jdbcType=VARCHAR},
+											   #{riskId, jdbcType=INTEGER},
+											   #{totalSi, jdbcType=DECIMAL},
+											   #{objectId, jdbcType=VARCHAR},
+											   #{site, jdbcType=VARCHAR},
+											   #{duration, jdbcType=VARCHAR},
+											   #{testing, jdbcType=VARCHAR},
+											   #{ipl, jdbcType=INTEGER},
+											   #{timeExec, jdbcType=INTEGER},
+											   #{noClaimPd, jdbcType=INTEGER},
+											   #{prjCreateUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{prjCreateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{prjUpdateUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			)
 		END;
 	</update>
 

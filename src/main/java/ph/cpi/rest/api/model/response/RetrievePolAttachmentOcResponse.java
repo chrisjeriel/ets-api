@@ -1,21 +1,19 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.underwriting.PolicyOc;
 
-public class RetrievePolEndtResponse {
-	private Policy endtList;
+public class RetrievePolAttachmentOcResponse {
+	private PolicyOc attachmentsList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
 	
-	public Policy getEndtList() {
-		return endtList;
+	public PolicyOc getAttachmentsList() {
+		return attachmentsList;
 	}
-	public void setEndtList(Policy policy) {
-		this.endtList = policy;
+	public void setAttachmentsList(PolicyOc attachmentsList) {
+		this.attachmentsList = attachmentsList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,7 +30,7 @@ public class RetrievePolEndtResponse {
 	
 	@Override
 	public String toString() {
-		return "RetrievePolEndtResponse [endtList=" + endtList
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrievePolAttachmentOcResponse [attachmentsList=" + attachmentsList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }
