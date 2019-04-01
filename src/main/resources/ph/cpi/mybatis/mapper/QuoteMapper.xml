@@ -1353,6 +1353,13 @@
 
 	<update id="saveQuoteEndorsements" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deleteEndorsements" item="endo">
+				QU_ENDT_PKG.del_qu_endt(#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER});
+			</foreach>
+			
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		QU_DEDUCTIBLES_PKG.del_qu_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
+		   </foreach>
 			<foreach collection="saveEndorsements" item="endo">
 				QU_ENDT_PKG.save_qu_endt(
 					#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER},
@@ -1362,13 +1369,7 @@
 					CAST(to_timestamp(#{endo.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 				);
 			</foreach>
-			<foreach collection="deleteEndorsements" item="endo">
-				QU_ENDT_PKG.del_qu_endt(#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER});
-			</foreach>
 			
-			<foreach collection="deleteDeductibleList" item="deductible">
-		   		QU_DEDUCTIBLES_PKG.del_qu_deductible(#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR});
-		   </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
 			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
