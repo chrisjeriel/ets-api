@@ -7,6 +7,8 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retInwPolBalMap">
 		<result property="policyId" 			column="POLICY_ID"/>
 		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate" 			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="project" 	resultMap="inwPolBalProjMap"/>
 	</resultMap>
@@ -852,23 +854,6 @@
 		DECLARE
 			v_instNo POL_INWARD_BAL.INST_NO%TYPE;
 		BEGIN
-			<foreach collection="newSavePolInward" item="polInward">
-				v_instNo := #{polInward.instNo,jdbcType=VARCHAR};
-				POL_INWARD_PKG.save_inw(#{policyId},v_instNo,
-						CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						#{polInward.premAmt},1,1,#{polInward.otherChargesInw},#{polInward.amtDue},#{polInward.createUser},
-						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
-						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-				<foreach collection="polInward.otherCharges" item="otherCharges">
-					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount},
-							#{otherCharges.createUser},
-							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
-							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-				</foreach>
-			</foreach>
-		
-		
 			<foreach collection="delPolInward" item="polInward">
 				POL_INWARD_PKG.del_inw(#{policyId},#{polInward.instNo});
 			</foreach>
@@ -888,6 +873,22 @@
 							#{otherCharges.createUser},
 							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
 							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			
+			<foreach collection="newSavePolInward" item="polInward">
+				v_instNo := #{polInward.instNo,jdbcType=VARCHAR};
+				POL_INWARD_PKG.save_inw(#{policyId},v_instNo,
+						CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{polInward.premAmt},1,1,#{polInward.otherChargesInw},#{polInward.amtDue},#{polInward.createUser},
+						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
+						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				<foreach collection="polInward.otherCharges" item="otherCharges">
+					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount},
+							#{otherCharges.createUser},
+							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
+							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				</foreach>
 			</foreach>
 			POL_INWARD_PKG.chk_inst_tag(#{policyId});
 		END;
@@ -989,6 +990,36 @@
 													  #{deductibles.deductibleTxt}, #{deductibles.createUser}, CAST(to_timestamp(#{deductibles.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 													  #{deductibles.updateUser}, CAST(to_timestamp(#{deductibles.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
+		END;
+	</update>
+	
+	<update id="savePolEndorsement" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="deleteEndorsements" item="endo">
+				POL_ENDT_PKG.del_pol_endt(#{policyId},#{endo.endtCd});
+			</foreach>
+			<foreach collection="saveEndorsements" item="endo">
+				POL_ENDT_PKG.save_pol_endt(
+					#{policyId},#{endo.endtCd},#{endo.changeTag},
+					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser},
+		   			CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		   			#{endo.updateUser},
+				   	CAST(to_timestamp(#{endo.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+				);
+			</foreach>
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_PKG.del_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
 		END;
 	</update>
 	

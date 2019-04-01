@@ -236,5 +236,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolInwardBal",params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer savePolEndorsement(HashMap<String, Object> params) throws SQLException {	
+		Integer errorCode = sqlSession.update("savePolEndorsement",params);
+		return errorCode;
+	}
 	
 }

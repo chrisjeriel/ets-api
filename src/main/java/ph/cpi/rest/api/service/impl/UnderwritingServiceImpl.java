@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
@@ -63,11 +64,13 @@ import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
@@ -730,5 +733,31 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spibrResponse;
+	}
+
+	@Override
+	public SavePolEndorsementResponse savePolEndorsement(SavePolEndorsementRequest sper) throws SQLException {
+		SavePolEndorsementResponse sperResponse = new SavePolEndorsementResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("policyId",sper.getPolicyId());
+			params.put("saveEndorsements", sper.getSaveEndorsements());
+			params.put("deleteEndorsements", sper.getDeleteEndorsements());
+	
+			params.put("saveDeductibleList" , sper.getSaveDeductibleList());
+			params.put("deleteDeductibleList" , sper.getDeleteDeductibleList());
+			sperResponse.setReturnCode(underwritingDao.savePolEndorsement(params));
+			
+		}catch (SQLException ex) {
+			sperResponse.setReturnCode(0);
+			sperResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			sperResponse.setReturnCode(0);
+			sperResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		
+		return sperResponse;
 	}
 }

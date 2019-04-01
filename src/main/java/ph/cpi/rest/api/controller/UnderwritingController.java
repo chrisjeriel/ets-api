@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
@@ -66,6 +67,7 @@ import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
+import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
@@ -289,8 +291,15 @@ public class UnderwritingController {
 	
 	@PostMapping(path="savePolInwardBal")
 	public @ResponseBody SavePolInwardBalResponse savePolInwardBal(@RequestBody SavePolInwardBalRequest spibr) throws SQLException {
-		logger.info("GET: /api/Policy-service/savePolInwardBal");
+		logger.info("POST: /api/Policy-service/savePolInwardBal");
 		logger.info("SavePolInwardBalRequest : " + spibr.toString());
 		return underwritingService.savePolInwardBal(spibr);
+	}
+	
+	@PostMapping(path="savePolEndorsement")
+	public @ResponseBody SavePolEndorsementResponse savePolEndorsement(@RequestBody SavePolEndorsementRequest sper) throws SQLException {
+		logger.info("GET: /api/Policy-service/savePolEndorsement");
+		logger.info("SavePolEndorsementRequest : " + sper.toString());
+		return underwritingService.savePolEndorsement(sper);
 	}
 }
