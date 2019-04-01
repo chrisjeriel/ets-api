@@ -8,6 +8,16 @@
 		<result property="policyId" 			column="POLICY_ID"/>
 		<result property="policyNo" 			column="POLICY_NO"/>
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
+		<association property="project" 	resultMap="inwPolBalProjMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Project" id="inwPolBalProjMap">
+		<association property="coverage" 	resultMap="inwPolBalCovMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Coverage" id="inwPolBalCovMap">
+		<result property="totalPrem" 			column="TOTAL_PREM"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.InwPolBalance" id="inwPolBalMap">
@@ -879,6 +889,7 @@
 							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
 							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
+			POL_INWARD_PKG.chk_inst_tag(#{policyId});
 		END;
 	</update>
 
