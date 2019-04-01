@@ -72,6 +72,7 @@ public class Quotation {
 	private Alop alop;
 	private HoldCover holdCover;
 	private Attachment attachment;
+	
 	public Integer getQuoteId() {
 		return quoteId;
 	}
