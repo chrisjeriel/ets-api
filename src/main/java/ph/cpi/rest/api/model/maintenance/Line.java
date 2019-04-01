@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class Line {
 	private String lineCd;
 	private String description;
+	private DateTime cutOffTime;
 	private String activeTag;
 	private String catTag;
 	private String renewalTag;
@@ -16,7 +17,7 @@ public class Line {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
+	private String alopTag;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -28,6 +29,12 @@ public class Line {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public DateTime getCutOffTime() {
+		return cutOffTime;
+	}
+	public void setCutOffTime(DateTime cutOffTime) {
+		this.cutOffTime = cutOffTime;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -77,7 +84,7 @@ public class Line {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public <T> DateTime getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(DateTime createDate) {
@@ -95,12 +102,19 @@ public class Line {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getAlopTag() {
+		return alopTag;
+	}
+	public void setAlopTag(String alopTag) {
+		this.alopTag = alopTag;
+	}
 	@Override
 	public String toString() {
-		return "Line [lineCd=" + lineCd + ", description=" + description + ", activeTag=" + activeTag + ", catTag="
-				+ catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo="
-				+ referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Line [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime + ", activeTag="
+				+ activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag
+				+ ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", alopTag=" + alopTag + "]";
 	}
+
 }

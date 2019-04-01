@@ -1,39 +1,35 @@
 package ph.cpi.rest.api.model.underwriting;
 
-import java.math.BigDecimal;
-
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
-@Alias("UnderwritingCATPeril")
-public class CATPeril {
-	private Integer	catPrlId;
-	private String catPerilName;
-	private BigDecimal pctShrPrm;
+@Alias("PolicyAttachmentOc")
+public class AttachmentOc {
+	private Integer fileNo;
+	private String fileName;
+	private String description;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-
-	public Integer getCatPrlId() {
-		return catPrlId;
-	}
-	public void setCatPrlId(Integer catPrlId) {
-		this.catPrlId = catPrlId;
-	}
 	
-	public String getCatPerilName() {
-		return catPerilName;
+	public Integer getFileNo() {
+		return fileNo;
 	}
-	public void setCatPerilName(String catPerilName) {
-		this.catPerilName = catPerilName;
+	public void setFileNo(Integer fileNo) {
+		this.fileNo = fileNo;
 	}
-	public BigDecimal getPctShrPrm() {
-		return pctShrPrm;
+	public String getFileName() {
+		return fileName;
 	}
-	public void setPctShrPrm(BigDecimal pctShrPrm) {
-		this.pctShrPrm = pctShrPrm;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -59,14 +55,12 @@ public class CATPeril {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "CATPeril [catPrlId=" + catPrlId + ", catPerilName=" + catPerilName + ", pctShrPrm=" + pctShrPrm
+		return "AttachmentOc [fileNo=" + fileNo + ", fileName=" + fileName + ", description=" + description
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-
-	
-	
 	
 }

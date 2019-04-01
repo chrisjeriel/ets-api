@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.underwriting.PolicyOc;
 
 @Component
 public class UnderwritingDaoImpl implements UnderwritingDao {
@@ -43,9 +44,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 
 	@Override
-	public List<Policy> retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
-		List<Policy> policyList = sqlSession.selectList("retrievePolCoInsurance",params);
-		return policyList;
+	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolCoInsurance",params);
+		logger.info("retrievePolCoInsurance DAOImpl : " + policy);
+		return policy;
 	}
 	
 	@Override
@@ -132,6 +134,27 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer returnCd = sqlSession.update("savePolicyDeductibles",params);
 		return returnCd;
 	}
+
+	@Override
+	public HashMap<String, Object> savePolHoldCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolHoldCover", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public PolicyOc retrievePolAttachmentOcList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		PolicyOc attachmentsOcList = sqlSession.selectOne("retrievePolAttachmentOc", params);
+		return attachmentsOcList;
+	}
+
+	@Override
+	public PolicyOc retrievePolEndtOcList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		PolicyOc endorsementsOcList = sqlSession.selectOne("retrievePolEndtOc", params);
+		return endorsementsOcList;
+	}
 	
 	@Override
 	public HashMap<String, Object> savePolAlop(HashMap<String, Object> params) throws SQLException {
@@ -180,10 +203,24 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public HashMap<String, Object> savePolGenInfo(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolGenInfo",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 
 	@Override
 	public HashMap<String, Object> savePolEndtOc(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolEndtOc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public HashMap<String, Object> savePolicyDetails(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolicyDetails",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

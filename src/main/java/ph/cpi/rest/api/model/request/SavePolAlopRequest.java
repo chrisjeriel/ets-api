@@ -8,6 +8,7 @@ public class SavePolAlopRequest {
 	private Integer insId;
 	private String insuredDesc;
 	private String address;
+	private String insBusiness;
 	private BigDecimal annSi;
 	private BigDecimal maxIndemPdSi;
 	private String issueDate;
@@ -45,6 +46,12 @@ public class SavePolAlopRequest {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getInsBusiness() {
+		return insBusiness;
+	}
+	public void setInsBusiness(String insBusiness) {
+		this.insBusiness = insBusiness;
 	}
 	public BigDecimal getAnnSi() {
 		return annSi;

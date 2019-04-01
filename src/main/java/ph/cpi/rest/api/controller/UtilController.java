@@ -1,14 +1,24 @@
 package ph.cpi.rest.api.controller;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +31,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import net.sf.jasperreports.engine.JRException;
+import ph.cpi.rest.api.model.maintenance.Line;
+import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.utils.PrintingUtility;
 
@@ -118,5 +134,122 @@ public class UtilController {
 	            .contentType(MediaType.parseMediaType("application/pdf"))
 	            .body(resource);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping(path="exportToCSV")
+	public ResponseEntity exportToCSV(ExportToCSVRequest etcr) throws SQLException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		logger.info("GET: /api/util-service/exportToCSV");
+		logger.info("exportToCSVRequest : " + etcr.toString());
+		String output = "";
+		try {
+
+			URL url = new URL("http://localhost:8888/api" + etcr.getMethodUrl());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			if (conn.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+			}
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+				(conn.getInputStream())));
+
+			
+			System.out.println("Output from Server .... \n");
+			if ((output = br.readLine()) != null) {
+				System.out.println("OUTPUT : " + output);
+			}
+			ObjectMapper mapper = new ObjectMapper();
+		    String jsonString = "";
+		    
+		    try{
+		         System.out.println("OUTPUT2: " + output);
+		         Class<?> cls = Class.forName(etcr.getOutputClass());
+		         
+		         Object obj = cls.newInstance();
+		         
+		         
+		    	 Object outputClass = mapper.readValue(output, cls.newInstance().getClass());
+		         System.out.println(outputClass);
+		         
+		         jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(outputClass);
+		         System.out.println("jsonString: " + jsonString);
+		         
+		         
+		         
+		         try (PrintWriter writer = new PrintWriter(new File("C:\\ETS\\REPORTS\\CSV\\" + etcr.getExtractTitle() +"_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".csv"))) {
+		        	  StringBuilder sb = new StringBuilder();
+		        	  
+		        	  for (String title : etcr.getColumnTitleList()) {
+						sb.append(title);
+						sb.append(",");
+		        	  }
+		        	  sb.append('\n');
+		        	  
+		        	  
+		        	  
+		        	  for (Line li : (ArrayList<Line>) outputClass.getClass().getMethod("getLine").invoke(outputClass)) {
+		        		  
+		        		  for (String column : etcr.getColumnList()) {
+		        			  try {
+		        				java.lang.reflect.Method method;
+		        				method = li.getClass().getMethod("get" + Character.toUpperCase(column.charAt(0)) + column.substring(1));
+								sb.append(method.invoke(li));
+								sb.append(',');
+							} catch (NoSuchMethodException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (SecurityException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IllegalAccessException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvocationTargetException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+		        		  }
+		        		  
+		        		  sb.append('\n');
+		        		  
+		        		  
+		        	  }
+		        	  
+				      
+		        	  writer.write(sb.toString());
+				      System.out.println("done!");
+
+			    } catch (FileNotFoundException e) {
+			      System.out.println(e.getMessage());
+			    }
+		    }
+		    catch (JsonParseException e) { e.printStackTrace();}
+		    catch (JsonMappingException e) { e.printStackTrace(); }
+		    catch (IOException e) { e.printStackTrace(); } 
+		    catch (ClassNotFoundException e1) { e1.printStackTrace(); }
+			
+			
+			conn.disconnect();
+
+		  } catch (MalformedURLException e) {
+
+			e.printStackTrace();
+
+		  } catch (IOException e) {
+
+			e.printStackTrace();
+
+		  }
+	    
+	    return null;
+	}
+	
+	
 	
 }

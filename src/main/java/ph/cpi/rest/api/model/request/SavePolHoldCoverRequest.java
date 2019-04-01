@@ -1,31 +1,25 @@
-package ph.cpi.rest.api.model.underwriting;
+package ph.cpi.rest.api.model.request;
 
-import org.apache.ibatis.type.Alias;
-import org.joda.time.DateTime;
-
-@Alias("uwHoldCover")
-public class HoldCover {
-
-	private String policyId; 
-	private String holdCovId; 
-	private String holdCovNo;
+public class SavePolHoldCoverRequest {
+	private String policyId;
+	private String holdCovId;
 	private String lineCd;
 	private String holdCovYear;
 	private String holdCovSeqNo;
 	private String holdCovRevNo;
-	private DateTime periodFrom;
-	private DateTime periodTo;
+	private String periodFrom;
+	private String periodTo;
 	private String compRefHoldCovNo;
 	private String status;
-	private String statusDesc;
 	private String reqBy;
-	private DateTime reqDate;
+	private String reqDate;
 	private String preparedBy;
 	private String approvedBy;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
+	
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -37,12 +31,6 @@ public class HoldCover {
 	}
 	public void setHoldCovId(String holdCovId) {
 		this.holdCovId = holdCovId;
-	}
-	public String getHoldCovNo() {
-		return holdCovNo;
-	}
-	public void setHoldCovNo(String holdCovNo) {
-		this.holdCovNo = holdCovNo;
 	}
 	public String getLineCd() {
 		return lineCd;
@@ -68,16 +56,16 @@ public class HoldCover {
 	public void setHoldCovRevNo(String holdCovRevNo) {
 		this.holdCovRevNo = holdCovRevNo;
 	}
-	public DateTime getPeriodFrom() {
+	public String getPeriodFrom() {
 		return periodFrom;
 	}
-	public void setPeriodFrom(DateTime periodFrom) {
+	public void setPeriodFrom(String periodFrom) {
 		this.periodFrom = periodFrom;
 	}
-	public DateTime getPeriodTo() {
+	public String getPeriodTo() {
 		return periodTo;
 	}
-	public void setPeriodTo(DateTime periodTo) {
+	public void setPeriodTo(String periodTo) {
 		this.periodTo = periodTo;
 	}
 	public String getCompRefHoldCovNo() {
@@ -92,22 +80,16 @@ public class HoldCover {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getStatusDesc() {
-		return statusDesc;
-	}
-	public void setStatusDesc(String statusDesc) {
-		this.statusDesc = statusDesc;
-	}
 	public String getReqBy() {
 		return reqBy;
 	}
 	public void setReqBy(String reqBy) {
 		this.reqBy = reqBy;
 	}
-	public DateTime getReqDate() {
+	public String getReqDate() {
 		return reqDate;
 	}
-	public void setReqDate(DateTime reqDate) {
+	public void setReqDate(String reqDate) {
 		this.reqDate = reqDate;
 	}
 	public String getPreparedBy() {
@@ -128,10 +110,10 @@ public class HoldCover {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -140,20 +122,20 @@ public class HoldCover {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "HoldCover [policyId=" + policyId + ", holdCovId=" + holdCovId + ", holdCovNo=" + holdCovNo + ", lineCd="
-				+ lineCd + ", holdCovYear=" + holdCovYear + ", holdCovSeqNo=" + holdCovSeqNo + ", holdCovRevNo="
-				+ holdCovRevNo + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo="
-				+ compRefHoldCovNo + ", status=" + status + ", statusDesc=" + statusDesc + ", reqBy=" + reqBy
-				+ ", reqDate=" + reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "SavePolHoldCoverRequest [policyId=" + policyId + ", holdCovId=" + holdCovId + ", lineCd=" + lineCd
+				+ ", holdCovYear=" + holdCovYear + ", holdCovSeqNo=" + holdCovSeqNo + ", holdCovRevNo=" + holdCovRevNo
+				+ ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo=" + compRefHoldCovNo
+				+ ", status=" + status + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", preparedBy=" + preparedBy
+				+ ", approvedBy=" + approvedBy + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

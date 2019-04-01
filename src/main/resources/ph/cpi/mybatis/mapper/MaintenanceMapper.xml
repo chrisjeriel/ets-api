@@ -171,11 +171,13 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Line" id="mntLineMap">
 		<result property="lineCd" 			column="LINE_CD"/> 
-		<result property="description" 		column="DESCRIPTION"/> 
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="cutOffTime" 		column="CUT_OFF_TIME" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="catTag" 			column="CAT_TAG"/> 
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
-		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/> 
+		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/>
+		<result property="alopTag" 			column="ALOP_TAG"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -629,7 +631,7 @@
   	</update>
   	
   	<select id="userLogin" resultType="java.lang.String" parameterType="java.util.Map">
-    	SELECT DISTINCT(module_id) module_id FROM TABLE(ETS_USERS_PKG.user_login(#{userId}, #{password}))
+    	SELECT DISTINCT(module_id) module_id FROM TABLE(MTN_USERS_PKG.user_login(#{userId}, #{password}))
     	ORDER BY module_id
     </select>
     
@@ -871,4 +873,31 @@
 												  #{order, jdbcType=VARCHAR})
      </select>
      
+    <update id="saveMtnLine" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveLine" item="line">
+	    		MTN_LINE_PKG.save_mtn_line(
+	    			#{line.lineCd,jdbcType=VARCHAR},
+			        #{line.description,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{line.cutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{line.activeTag,jdbcType=VARCHAR},
+			        #{line.catTag,jdbcType=VARCHAR},
+			        #{line.renewalTag,jdbcType=VARCHAR},
+			        #{line.openCoverTag,jdbcType=VARCHAR},
+			        #{line.alopTag,jdbcType=VARCHAR},
+			        #{line.referenceNo,jdbcType=INTEGER},
+			        #{line.sortSeq,jdbcType=INTEGER},
+			        #{line.remarks,jdbcType=VARCHAR},
+			        #{line.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{line.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{line.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{line.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteLine" item="lineDel">
+    			MTN_LINE_PKG.del_mtn_line(#{lineDel.lineCd,jdbcType=VARCHAR});
+    		</foreach>
+    	END;
+    </update>
+    
 </mapper>
