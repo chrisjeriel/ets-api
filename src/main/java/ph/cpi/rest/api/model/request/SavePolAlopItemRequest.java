@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 public class SavePolAlopItemRequest {
 	
 	private Integer policyId;
-	private List<PolAlopItem> saveAlopItemList;
+	private List<PolAlopItem> savePolAlopItemList;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -15,15 +15,15 @@ public class SavePolAlopItemRequest {
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
-	public List<PolAlopItem> getSaveAlopItemList() {
-		return saveAlopItemList;
+	public List<PolAlopItem> getSavePolAlopItemList() {
+		return savePolAlopItemList;
 	}
-	public void setSaveAlopItemList(List<PolAlopItem> saveAlopItemList) {
-		this.saveAlopItemList = saveAlopItemList;
+	public void setSavePolAlopItemList(List<PolAlopItem> savePolAlopItemList) {
+		this.savePolAlopItemList = savePolAlopItemList;
 	}
 	@Override
 	public String toString() {
-		return "SavePolAlopItemRequest [policyId=" + policyId + ", saveAlopItemList=" + saveAlopItemList
+		return "SavePolAlopItemRequest [policyId=" + policyId + ", savePolAlopItemList=" + savePolAlopItemList
 				+ "]";
 	}
 	

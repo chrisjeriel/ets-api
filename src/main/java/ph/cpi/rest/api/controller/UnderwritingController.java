@@ -234,7 +234,7 @@ public class UnderwritingController {
 	
 	@PostMapping(path="savePolAlopItem")
 	public @ResponseBody SavePolAlopItemResponse savePolAlopItem(@RequestBody SavePolAlopItemRequest spaip) throws SQLException {
-		logger.info("POST: /api/quote-service/savePolAlopItemRequest");
+		logger.info("POST: /api/underwriting-service/savePolAlopItemRequest");
 		logger.info("SavePolAlopItemRequest : " + spaip.toString());
 		return underwritingService.savePolAlopItem(spaip);
 	}
