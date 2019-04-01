@@ -7,24 +7,10 @@ import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolEndtResponse {
-	private Integer policyId;
-	private String policyNo;
 	private Policy endtList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
 	
-	public Integer getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
-	}
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
 	public Policy getEndtList() {
 		return endtList;
 	}
@@ -46,7 +32,7 @@ public class RetrievePolEndtResponse {
 	
 	@Override
 	public String toString() {
-		return "RetrievePolEndtResponse [policyId=" + policyId + ", policyNo=" + policyNo + ", endtList=" + endtList
+		return "RetrievePolEndtResponse [endtList=" + endtList
 				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

@@ -84,7 +84,7 @@ public class Line {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public <T> DateTime getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(DateTime createDate) {

@@ -11,8 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveMtnUserAccessRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
+import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
@@ -49,4 +55,27 @@ public class UserController {
 		return userService.retMtnUsers(rmur);
 	}
 	
+	@GetMapping(path="retrieveMtnUserAccess")
+	public @ResponseBody RetrieveMtnUserAccessResponse retrieveMtnUserAccess(RetrieveMtnUserAccessRequest rmuar) throws SQLException {
+		logger.info("GET: /api/user-service/retrieveMtnUserAccess");
+		logger.info("RetrieveMtnUserAccessRequest : " + rmuar.toString());
+		
+		return userService.retrieveMtnUserAccess(rmuar);
+	}
+	
+	@GetMapping(path="retrieveMtnUserGroup")
+	public @ResponseBody RetrieveMtnUserGroupResponse retrieveMtnUserGroup(RetrieveMtnUserGroupRequest rmugr) throws SQLException {
+		logger.info("GET: /api/user-service/retrieveMtnUserGroup");
+		logger.info("RetrieveMtnUserGroupRequest : " + rmugr.toString());
+		
+		return userService.retrieveMtnUserGroup(rmugr);
+	}
+	
+	@GetMapping(path="retrieveMtnUserGroupAccess")
+	public @ResponseBody RetrieveMtnUserGroupAccessResponse retrieveMtnUserGroupAccess(RetrieveMtnUserGroupAccessRequest rmugar) throws SQLException {
+		logger.info("GET: /api/user-service/retrieveMtnUserGroupAccess");
+		logger.info("RetrieveMtnUserGroupAccessRequest : " + rmugar.toString());
+		
+		return userService.retrieveMtnUserGroupAccess(rmugar);
+	}
 }

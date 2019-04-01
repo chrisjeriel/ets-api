@@ -4,19 +4,21 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.underwriting.CATPeril;
 import ph.cpi.rest.api.model.underwriting.Item;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolCATPerilResponse {
 	
-	private CATPeril catPeril;
+	private Policy policy;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public CATPeril getCatPeril() {
-		return catPeril;
+	public Policy getPolicy() {
+		return policy;
 	}
-	public void setCatPeril(CATPeril catPeril) {
-		this.catPeril = catPeril;
+	public void setPolicy(Policy policy) {
+		this.policy = policy;
 	}
+	
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
 	}
@@ -29,9 +31,10 @@ public class RetrievePolCATPerilResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrievePolCATPerilResponse [catPeril=" + catPeril + ", paginationResponse=" + paginationResponse
+		return "RetrievePolCATPerilResponse [policy=" + policy + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
 	

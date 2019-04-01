@@ -13,6 +13,7 @@ public class CoInsurance {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
 	public String getCoRefNo() {
 		return coRefNo;
 	}
@@ -80,5 +81,5 @@ public class CoInsurance {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-
+	
 }
