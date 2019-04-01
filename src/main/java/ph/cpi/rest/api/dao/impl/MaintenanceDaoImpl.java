@@ -262,6 +262,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<ReportsParam> reportsParam = sqlSession.selectList("retrieveMtnReportsParam", params);
 		return reportsParam;
 	}
+
+	@Override
+	public Integer saveMtnLine(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnLine = sqlSession.update("saveMtnLine",params);
+		return saveMtnLine;
+	}
 	
 	@Override
 	public List<CATPeril> retrieveMtnCATPeril(HashMap<String, Object> params) throws SQLException {
