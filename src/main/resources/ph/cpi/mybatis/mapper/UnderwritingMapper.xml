@@ -664,7 +664,7 @@
 	</select>
 	
 	<select id="retrievePolicyListing" resultMap="policyListingMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(POL_GEN_INFO_PKG_TEST.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
 															 #{cedingName, jdbcType=VARCHAR},
 															 #{lineClassDesc, jdbcType=VARCHAR},
