@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ExportToCSVRequest {
@@ -10,7 +11,7 @@ public class ExportToCSVRequest {
 	private String[] columnTitleList;
 	private String[] columnList;
 	private String outputClass;
-	private Map<String, Object> params;
+	private HashMap<String, Object> params;
 	public String getMethodUrl() {
 		return methodUrl;
 	}
@@ -44,7 +45,7 @@ public class ExportToCSVRequest {
 	public Map<String, Object> getParams() {
 		return params;
 	}
-	public void setParams(Map<String, Object> params) {
+	public void setParams(HashMap<String, Object> params) {
 		this.params = params;
 	}
 	@Override
