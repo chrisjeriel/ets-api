@@ -12,7 +12,7 @@ public class QuotationGeneralInfo {
 	private Integer quoteYear;
 	private Integer quoteSeqNo;
 	private Integer quoteRevNo;
-	private Integer cedingId;
+	private String cedingId;
 	private String cedingName;
 	private Integer cessionId;
 	private String cessionDesc;
@@ -100,10 +100,10 @@ public class QuotationGeneralInfo {
 	public void setQuoteRevNo(Integer quoteRevNo) {
 		this.quoteRevNo = quoteRevNo;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public String getCedingName() {
