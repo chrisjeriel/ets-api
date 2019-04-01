@@ -336,12 +336,13 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CATPeril" id="assocCATPerilMap">
-		<result property="catPrlId" 	    column="CAT_PERIL_ID"/> 
+		<result property="catPrlId" 	    column="CAT_PERIL_ID"/>
+		<result property="catPerilName" 	column="CAT_PERIL_NAME"/>  
 		<result property="pctShrPrm" 	    column="PCT_SHARE_PREM"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="itemMap">
@@ -556,11 +557,6 @@
 										   #{pctPml}, #{totalValue}, #{remarks}, #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-										   
-			<foreach collection="deleteSectionCovers" item="sectioncovers">
-				POL_SEC_COVER_PKG.del_pol_cover (#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
-													#{sectioncovers.section}  ,#{sectioncovers.coverCd});
-			</foreach>
 			
 			<foreach collection="saveSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.save_pol_sec_cvrs(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
