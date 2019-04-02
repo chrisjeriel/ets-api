@@ -14,7 +14,8 @@ public class RetrieveQuoteHoldCoverListingRequest {
 	private String				periodTo;
 	private String	        	compRefHoldCovNo;
 	private String	        	reqBy;
-	private String				reqDate;
+	private String				reqDateFrom;
+	private String				reqDateTo;
 	private String	        	expiringInDays;
 	private PaginationRequest 	paginationRequest;
 	private SortRequest			sortRequest;
@@ -78,11 +79,17 @@ public class RetrieveQuoteHoldCoverListingRequest {
 	public void setReqBy(String reqBy) {
 		this.reqBy = reqBy;
 	}
-	public String getReqDate() {
-		return reqDate;
+	public String getReqDateFrom() {
+		return reqDateFrom;
 	}
-	public void setReqDate(String reqDate) {
-		this.reqDate = reqDate;
+	public void setReqDateFrom(String reqDateFrom) {
+		this.reqDateFrom = reqDateFrom;
+	}
+	public String getReqDateTo() {
+		return reqDateTo;
+	}
+	public void setReqDateTo(String reqDateTo) {
+		this.reqDateTo = reqDateTo;
 	}
 	public String getExpiringInDays() {
 		return expiringInDays;
@@ -107,8 +114,8 @@ public class RetrieveQuoteHoldCoverListingRequest {
 		return "RetrieveQuoteHoldCoverListingRequest [holdCoverNo=" + holdCoverNo + ", status=" + status
 				+ ", cedingName=" + cedingName + ", quotationNo=" + quotationNo + ", riskName=" + riskName
 				+ ", insuredDesc=" + insuredDesc + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo
-				+ ", compRefHoldCovNo=" + compRefHoldCovNo + ", reqBy=" + reqBy + ", reqDate=" + reqDate
-				+ ", expiringInDays=" + expiringInDays + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ ", compRefHoldCovNo=" + compRefHoldCovNo + ", reqBy=" + reqBy + ", reqDateFrom=" + reqDateFrom
+				+ ", reqDateTo=" + reqDateTo + ", expiringInDays=" + expiringInDays + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }
