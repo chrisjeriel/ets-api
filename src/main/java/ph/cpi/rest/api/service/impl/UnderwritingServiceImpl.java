@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
+import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
@@ -773,5 +775,29 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		
 		return sperResponse;
+	}
+
+	@Override
+	public SaveSumInsOCResponse saveSumInsOC(SaveSumInsOCRequest ssioc) throws SQLException {
+		SaveSumInsOCResponse ssiocResponse = new SaveSumInsOCResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("pctShare", ssioc.getPctShare());
+		params.put("pctPml", ssioc.getPctPml());
+		params.put("totalValue", ssioc.getTotalValue());
+		params.put("policyId", ssioc.getPolicyId());
+		params.put("updateUser", ssioc.getUpdateUser());
+		params.put("updateDate", ssioc.getUpdateDate());
+		try{
+			ssiocResponse.setReturnCode(underwritingDao.saveSumInsOC(params));
+		}catch (SQLException ex) {
+			ssiocResponse.setReturnCode(0);
+			ssiocResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			ssiocResponse.setReturnCode(0);
+			ssiocResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return ssiocResponse;
 	}
 }

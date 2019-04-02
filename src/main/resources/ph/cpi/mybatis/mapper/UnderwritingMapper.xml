@@ -1058,4 +1058,10 @@
 		END;
 	</update>
 	
+	<update id="saveSumInsOC" parameterType="java.util.Map">
+		BEGIN
+			POL_COVERAGE_OC_PKG.save_sum_ins_oc(#{policyId},#{pctShare},#{pctPml},#{totalValue},#{updateUser, jdbcType=VARCHAR},
+											  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>

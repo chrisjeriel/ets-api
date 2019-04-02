@@ -44,6 +44,7 @@ import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -75,6 +76,7 @@ import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
@@ -301,5 +303,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/Policy-service/savePolEndorsement");
 		logger.info("SavePolEndorsementRequest : " + sper.toString());
 		return underwritingService.savePolEndorsement(sper);
+	}
+	
+	@PostMapping(path="saveSumInsOC")
+	public @ResponseBody SaveSumInsOCResponse saveSumInsOC(@RequestBody SaveSumInsOCRequest ssioc) throws SQLException {
+		logger.info("POST: /api/Policy-service/saveSumInsOC");
+		logger.info("SaveSumInsOCRequest : " + ssioc.toString());
+		return underwritingService.saveSumInsOC(ssioc);
 	}
 }

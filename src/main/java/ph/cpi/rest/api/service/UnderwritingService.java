@@ -3,6 +3,8 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -35,6 +37,7 @@ import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -66,6 +69,7 @@ import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 
 @Service
 public interface UnderwritingService {
@@ -101,5 +105,7 @@ public interface UnderwritingService {
 	public RetrievePolicyInformationResponse retrievePolicyInformation(RetrievePolicyInformationRequest rpir) throws SQLException;
 	public SavePolInwardBalResponse savePolInwardBal(SavePolInwardBalRequest spibr) throws SQLException;
 	public SavePolEndorsementResponse savePolEndorsement(SavePolEndorsementRequest sper)throws SQLException;
+	public SaveSumInsOCResponse saveSumInsOC( SaveSumInsOCRequest ssioc) throws SQLException;
+	
 	
 }
