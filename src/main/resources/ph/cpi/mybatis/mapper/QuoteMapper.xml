@@ -889,7 +889,7 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(QU_HOLD_COVER_PKG_TEST.ret_qu_hc_list(#{holdCoverNo,jdbcType=VARCHAR},
+			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{holdCoverNo,jdbcType=VARCHAR},
 																		      #{status,jdbcType=VARCHAR},
 																		      #{cedingName,jdbcType=VARCHAR},
 																		      #{quotationNo,jdbcType=VARCHAR},
