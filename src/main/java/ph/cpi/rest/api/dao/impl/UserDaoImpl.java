@@ -53,4 +53,10 @@ public class UserDaoImpl implements UserDao{
 		return userGroupAccessList;
 	}
 
+	@Override
+	public Integer saveApproval(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveApproval", params);
+		return errorCode;
+	}
+
 }

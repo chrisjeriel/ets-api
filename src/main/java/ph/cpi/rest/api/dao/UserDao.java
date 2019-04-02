@@ -14,4 +14,7 @@ public interface UserDao {
 	public List<Users> retrieveMtnUserAccess(final HashMap<String, Object> params) throws SQLException;
 	public List<UserGrp> retrieveMtnUserGroup(final HashMap<String, Object> params) throws SQLException;
 	public List<UserGrp> retrieveMtnUserGroupAccess(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer saveApproval(final HashMap<String, Object> params) throws SQLException;
+
 }
