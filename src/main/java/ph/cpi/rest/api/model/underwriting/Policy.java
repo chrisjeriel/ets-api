@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-
-import ph.cpi.rest.api.model.underwriting.Project;
-
 public class Policy {
 	private Integer policyId;
 	private String policyNo;
@@ -76,12 +73,12 @@ public class Policy {
 	private Project project;
 	private List<Endorsements> endorsements;
 	private List<Attachment> attachments;
-	private InwPolBalance inwPolBalance;
+	private List<InwPolBalance> inwPolBalance;
 	private List<CoInsurance> coInsurance;
 	private List<Alop> alop;
 	private List<HoldCover> holdCoverList;
-	private List<Item> items;
 	private List<CATPeril> catPeril;
+	private List<AlterationHist> alterationHist;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -478,10 +475,10 @@ public class Policy {
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
 	}
-	public InwPolBalance getInwPolBalance() {
+	public List<InwPolBalance> getInwPolBalance() {
 		return inwPolBalance;
 	}
-	public void setInwPolBalance(InwPolBalance inwPolBalance) {
+	public void setInwPolBalance(List<InwPolBalance> inwPolBalance) {
 		this.inwPolBalance = inwPolBalance;
 	}
 	public List<CoInsurance> getCoInsurance() {
@@ -502,18 +499,17 @@ public class Policy {
 	public void setHoldCoverList(List<HoldCover> holdCoverList) {
 		this.holdCoverList = holdCoverList;
 	}
-	public List<Item> getItems() {
-		return items;
-	}
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-	
 	public List<CATPeril> getCatPeril() {
 		return catPeril;
 	}
 	public void setCatPeril(List<CATPeril> catPeril) {
 		this.catPeril = catPeril;
+	}
+	public List<AlterationHist> getAlterationHist() {
+		return alterationHist;
+	}
+	public void setAlterationHist(List<AlterationHist> alterationHist) {
+		this.alterationHist = alterationHist;
 	}
 	@Override
 	public String toString() {
@@ -539,8 +535,7 @@ public class Policy {
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
 				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", items=" + items + ", catPeril=" + catPeril
-				+ "]";
+				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril
+				+ ", alterationHist=" + alterationHist + "]";
 	}
-	
 }

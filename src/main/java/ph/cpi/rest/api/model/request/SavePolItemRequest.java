@@ -7,32 +7,44 @@ import org.apache.ibatis.type.Alias;
 public class SavePolItemRequest {
 	
 	private Integer policyId;
+	private Integer projId;
 	private List<Items> saveItemLists;
-	
+	private List<Items> deleteItemLists;
 	public Integer getPolicyId() {
 		return policyId;
 	}
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
-	
+	public Integer getProjId() {
+		return projId;
+	}
+	public void setProjId(Integer projId) {
+		this.projId = projId;
+	}
 	public List<Items> getSaveItemLists() {
 		return saveItemLists;
 	}
 	public void setSaveItemLists(List<Items> saveItemLists) {
 		this.saveItemLists = saveItemLists;
 	}
-	
+	public List<Items> getDeleteItemLists() {
+		return deleteItemLists;
+	}
+	public void setDeleteItemLists(List<Items> deleteItemLists) {
+		this.deleteItemLists = deleteItemLists;
+	}
 	@Override
 	public String toString() {
-		return "SavePolItemRequest [policyId=" + policyId + ", saveItemLists=" + saveItemLists + "]";
-	}	
+		return "SavePolItemRequest [policyId=" + policyId + ", projId=" + projId + ", saveItemLists=" + saveItemLists
+				+ ", deleteItemLists=" + deleteItemLists + "]";
+	}
+	
+		
 }
 
 @Alias("SavePolItem")
 class Items {
-	
-	private Integer projId;
 	private Integer	itemNo;
 	private Integer	quantity;
 	private String	itemDesc;
@@ -52,12 +64,7 @@ class Items {
 	private String updateUser;
 	private String updateDate;
 	
-	public Integer getProjId() {
-		return projId;
-	}
-	public void setProjId(Integer projId) {
-		this.projId = projId;
-	}
+	
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -168,7 +175,7 @@ class Items {
 	}
 	@Override
 	public String toString() {
-		return "Item [projId=" + projId + ", itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
+		return "Item [itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
 				+ ", makeYear=" + makeYear + ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured
 				+ ", stockType=" + stockType + ", serialNo=" + serialNo + ", location=" + location + ", chamberNo="
 				+ chamberNo + ", noClaimPd=" + noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp

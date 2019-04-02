@@ -55,8 +55,7 @@ class OtherRates {
 	private String changeTag;
 	private String bulletNo;
 	private String section;
-	
-	
+	private List<Deductibles> deductiblesList;
 	
 	public String getOptionId() {
 		return optionId;
@@ -124,12 +123,18 @@ class OtherRates {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<Deductibles> getDeductiblesList() {
+		return deductiblesList;
+	}
+	public void setDeductiblesList(List<Deductibles> deductiblesList) {
+		this.deductiblesList = deductiblesList;
+	}
 	@Override
 	public String toString() {
 		return "OtherRates [coverCd=" + coverCd + ", rate=" + rate + ", amount=" + amount + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", optionId=" + optionId + ", changeTag=" + changeTag + ", bulletNo=" + bulletNo + ", section="
-				+ section + "]";
+				+ section + ", deductiblesList=" + deductiblesList + "]";
 	}
 }
 

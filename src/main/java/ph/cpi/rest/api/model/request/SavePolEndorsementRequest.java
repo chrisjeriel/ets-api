@@ -4,37 +4,29 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
-
-public class SaveQuoteEndorsementsRequest {
-
-	private String quoteId;
-	private String optionId;
-	private List<Endorsementss> saveEndorsements;
-	private List<Endorsementss> deleteEndorsements;
+public class SavePolEndorsementRequest {
+	
+	private String policyId;
+	private List<PolEndorsements> saveEndorsements;
+	private List<PolEndorsements> deleteEndorsements;
 	private List<UwDeductibles> saveDeductibleList;
 	private List<UwDeductibles> deleteDeductibleList;
-	public String getQuoteId() {
-		return quoteId;
+	public String getPolicyId() {
+		return policyId;
 	}
-	public void setQuoteId(String quoteId) {
-		this.quoteId = quoteId;
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
 	}
-	public String getOptionId() {
-		return optionId;
-	}
-	public void setOptionId(String optionId) {
-		this.optionId = optionId;
-	}
-	public List<Endorsementss> getSaveEndorsements() {
+	public List<PolEndorsements> getSaveEndorsements() {
 		return saveEndorsements;
 	}
-	public void setSaveEndorsements(List<Endorsementss> saveEndorsements) {
+	public void setSaveEndorsements(List<PolEndorsements> saveEndorsements) {
 		this.saveEndorsements = saveEndorsements;
 	}
-	public List<Endorsementss> getDeleteEndorsements() {
+	public List<PolEndorsements> getDeleteEndorsements() {
 		return deleteEndorsements;
 	}
-	public void setDeleteEndorsements(List<Endorsementss> deleteEndorsements) {
+	public void setDeleteEndorsements(List<PolEndorsements> deleteEndorsements) {
 		this.deleteEndorsements = deleteEndorsements;
 	}
 	public List<UwDeductibles> getSaveDeductibleList() {
@@ -51,16 +43,17 @@ public class SaveQuoteEndorsementsRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteEndorsementsRequest [quoteId=" + quoteId + ", optionId=" + optionId + ", saveEndorsements="
-				+ saveEndorsements + ", deleteEndorsements=" + deleteEndorsements + ", saveDeductibleList="
-				+ saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
+		return "SavePolEndorsementRequest [policyId=" + policyId + ", saveEndorsements=" + saveEndorsements
+				+ ", deleteEndorsements=" + deleteEndorsements + ", saveDeductibleList=" + saveDeductibleList
+				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
 	
 }
 
-@Alias("SaveQuoteEndorsements")
-class Endorsementss {
+@Alias("SavePolEndorsements")
+class PolEndorsements {
 	private String endtCd;
+	private String changeTag;
 	private String remarks;
 	private String createUser;
 	private String createDate;
@@ -71,6 +64,12 @@ class Endorsementss {
 	}
 	public void setEndtCd(String endtCd) {
 		this.endtCd = endtCd;
+	}
+	public String getChangeTag() {
+		return changeTag;
+	}
+	public void setChangeTag(String changeTag) {
+		this.changeTag = changeTag;
 	}
 	public String getRemarks() {
 		return remarks;

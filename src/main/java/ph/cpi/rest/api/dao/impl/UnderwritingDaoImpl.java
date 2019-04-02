@@ -84,7 +84,7 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	
 	@Override
 	public Policy retrievePolItem(HashMap<String, Object> params) throws SQLException {
-		Policy polItem = sqlSession.selectOne("retrievePolItem", params);
+		Policy polItem = sqlSession.selectOne("retrievePolItem",params);
 		logger.info("retrievePolItem DAOImpl : " + polItem);
 		return polItem;
 	}
@@ -175,6 +175,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Policy policy = sqlSession.selectOne("retrievePolHoldCoverMain", params);
 		return policy;
 	}
+	
+	@Override
+	public Policy retrievePolicyInformation(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolicyInformation", params);
+		return policy;
+	}
 
 	@Override
 	public HashMap<String, Object> savePolCATPeril(HashMap<String, Object> params) throws SQLException {
@@ -220,9 +226,21 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	
 	@Override
 	public HashMap<String, Object> savePolicyDetails(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("savePolicyDetails",params);
+		Integer errorCode = sqlSession.update("savePDGenInfo",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public Integer savePolInwardBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolInwardBal",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer savePolEndorsement(HashMap<String, Object> params) throws SQLException {	
+		Integer errorCode = sqlSession.update("savePolEndorsement",params);
+		return errorCode;
 	}
 	
 }

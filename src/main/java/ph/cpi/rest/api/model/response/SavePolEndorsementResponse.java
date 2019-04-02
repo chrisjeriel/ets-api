@@ -6,12 +6,10 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SavePolItemResponse {
-	
+public class SavePolEndorsementResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
-
 	public List<Error> getErrorList() {
 		if (errorList == null) {
 			errorList = new ArrayList<Error>();
@@ -33,11 +31,11 @@ public class SavePolItemResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	
 	@Override
 	public String toString() {
-		return "SavePolItemResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "SavePolCoverageResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
+	
 	
 }

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class InwPolBalance {
@@ -13,7 +15,7 @@ public class InwPolBalance {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private OtherCharges otherCharges;
+	private List<OtherCharges> otherCharges;
 	public Integer getInstNo() {
 		return instNo;
 	}
@@ -74,10 +76,10 @@ public class InwPolBalance {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public OtherCharges getOtherCharges() {
+	public List<OtherCharges> getOtherCharges() {
 		return otherCharges;
 	}
-	public void setOtherCharges(OtherCharges otherCharges) {
+	public void setOtherCharges(List<OtherCharges> otherCharges) {
 		this.otherCharges = otherCharges;
 	}
 	@Override
@@ -87,5 +89,6 @@ public class InwPolBalance {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", otherCharges=" + otherCharges + "]";
 	}
+	
 
 }
