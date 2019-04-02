@@ -61,7 +61,7 @@ public class FileUploadController {
 	 
 	 
 	 @PostMapping("/")
-	    public String handleFileUpload(@RequestParam("file") MultipartFile file,
+	    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file,
 	            RedirectAttributes redirectAttributes) {
 		 
 		 logger.info("POST: /api/file-upload-service/files/");

@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
+import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
@@ -773,5 +775,24 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		
 		return sperResponse;
+	}
+
+	@Override
+	public UpdatePolHoldCoverStatusResponse updatePolHoldCoverStatus(UpdatePolHoldCoverStatusRequest uphcsr)
+			throws SQLException {
+		UpdatePolHoldCoverStatusResponse uphcsResponse = new UpdatePolHoldCoverStatusResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("policyId",uphcsr.getPolicyId());
+			params.put("holdCovId", uphcsr.getHoldCovId());
+			params.put("updateUser", uphcsr.getUpdateUser());
+			params.put("updateDate" , uphcsr.getUpdateDate());
+			uphcsResponse.setReturnCode(underwritingDao.updatePolHoldCoverStatus(params));
+		}catch(Exception ex){
+			uphcsResponse.setReturnCode(0);
+			uphcsResponse.getErrorList().add(new Error("Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return uphcsResponse;
 	}
 }

@@ -242,5 +242,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolEndorsement",params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer updatePolHoldCoverStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updatePolHoldCoverStatus", params);
+		return errorCode;
+	}
 	
 }
