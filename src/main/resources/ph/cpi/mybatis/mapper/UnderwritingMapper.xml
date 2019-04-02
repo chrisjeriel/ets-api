@@ -557,6 +557,11 @@
 	
 	<update id="savePolAlopItemMap" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deletePolAlopItemList" item="alopItem">
+			BEGIN
+		    	POL_ALOP_ITEM_PKG.del_pol_alop_item(#{policyId},#{alopItem.itemNo, jdbcType=INTEGER});
+			END;
+			</foreach>
 			<foreach collection="savePolAlopItemList" item="alopItem">
 			    	POL_ALOP_ITEM_PKG.save_pol_alop_item
 			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity, jdbcType=INTEGER},

@@ -8,7 +8,14 @@ public class SavePolAlopItemRequest {
 	
 	private Integer policyId;
 	private List<PolAlopItem> savePolAlopItemList;
+	private List<PolAlopItem> deletePolAlopItemList;
 	
+	public List<PolAlopItem> getDeletePolAlopItemList() {
+		return deletePolAlopItemList;
+	}
+	public void setDeletePolAlopItemList(List<PolAlopItem> deletePolAlopItemList) {
+		this.deletePolAlopItemList = deletePolAlopItemList;
+	}
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -24,7 +31,7 @@ public class SavePolAlopItemRequest {
 	@Override
 	public String toString() {
 		return "SavePolAlopItemRequest [policyId=" + policyId + ", savePolAlopItemList=" + savePolAlopItemList
-				+ "]";
+				+ ", deletePolAlopItemList=" + deletePolAlopItemList + "]";
 	}
 	
 }

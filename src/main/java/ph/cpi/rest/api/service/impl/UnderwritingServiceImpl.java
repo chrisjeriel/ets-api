@@ -278,8 +278,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try {
 			HashMap<String, Object> savePolAlopItemParams = new HashMap<String, Object>();
 			savePolAlopItemParams.put("policyId", spaip.getPolicyId());
-			System.out.println(spaip.getSavePolAlopItemList());
 			savePolAlopItemParams.put("savePolAlopItemList", spaip.getSavePolAlopItemList());
+			savePolAlopItemParams.put("deletePolAlopItemList", spaip.getDeletePolAlopItemList());
 			
 			HashMap<String, Object> res = underwritingDao.savePolAlopItem(savePolAlopItemParams);
 			spaipResponse.setReturnCode((Integer) res.get("errorCode"));
