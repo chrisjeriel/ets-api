@@ -29,6 +29,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -36,7 +38,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.sf.jasperreports.engine.JRException;
-import ph.cpi.rest.api.model.maintenance.Line;
+import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -136,17 +138,29 @@ public class UtilController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@GetMapping(path="exportToCSV")
-	public ResponseEntity exportToCSV(ExportToCSVRequest etcr) throws SQLException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	@PostMapping(path="exportToCSV")
+	public ResponseEntity exportToCSV(@RequestBody ExportToCSVRequest etcr) throws SQLException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		logger.info("GET: /api/util-service/exportToCSV");
 		logger.info("exportToCSVRequest : " + etcr.toString());
 		String output = "";
+		File file = new File("C:\\ETS\\REPORTS\\CSV\\" + etcr.getExtractTitle() +"_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".csv");
 		try {
 
-			URL url = new URL("http://localhost:8888/api" + etcr.getMethodUrl());
+			
+			
+			String params = "";
+			
+			for (String key : etcr.getParams().keySet()) {
+				params = params + key + "=" + etcr.getParams().get(key);
+			}
+			
+			
+			URL url = new URL("http://localhost:8888/api" + etcr.getMethodUrl() + 
+					"?" + params);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept", "application/json");	
+	
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
@@ -162,25 +176,15 @@ public class UtilController {
 				System.out.println("OUTPUT : " + output);
 			}
 			ObjectMapper mapper = new ObjectMapper();
-		    String jsonString = "";
 		    
 		    try{
-		         System.out.println("OUTPUT2: " + output);
 		         Class<?> cls = Class.forName(etcr.getOutputClass());
-		         
-		         Object obj = cls.newInstance();
-		         
-		         
 		    	 Object outputClass = mapper.readValue(output, cls.newInstance().getClass());
-		         System.out.println(outputClass);
-		         
-		         jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(outputClass);
-		         System.out.println("jsonString: " + jsonString);
+		         System.out.println("outputClass : " + outputClass);
 		         
 		         
-		         
-		         try (PrintWriter writer = new PrintWriter(new File("C:\\ETS\\REPORTS\\CSV\\" + etcr.getExtractTitle() +"_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".csv"))) {
-		        	  StringBuilder sb = new StringBuilder();
+		         try (PrintWriter writer = new PrintWriter(file)) {
+		        	 StringBuilder sb = new StringBuilder();
 		        	  
 		        	  for (String title : etcr.getColumnTitleList()) {
 						sb.append(title);
@@ -188,40 +192,71 @@ public class UtilController {
 		        	  }
 		        	  sb.append('\n');
 		        	  
-		        	  
-		        	  
-		        	  for (Line li : (ArrayList<Line>) outputClass.getClass().getMethod("getLine").invoke(outputClass)) {
-		        		  
-		        		  for (String column : etcr.getColumnList()) {
-		        			  try {
-		        				java.lang.reflect.Method method;
-		        				method = li.getClass().getMethod("get" + Character.toUpperCase(column.charAt(0)) + column.substring(1));
-								sb.append(method.invoke(li));
-								sb.append(',');
-							} catch (NoSuchMethodException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (SecurityException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IllegalAccessException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IllegalArgumentException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (InvocationTargetException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-		        		  }
-		        		  
-		        		  sb.append('\n');
-		        		  
-		        		  
+		        	  if ("/quote-service/retrieveQuoteListing".equalsIgnoreCase(etcr.getMethodUrl())) {
+		        		  for (Quotation li : (ArrayList<Quotation>) outputClass.getClass().getMethod("getQuotationList").invoke(outputClass)) {
+			        		  
+			        		  for (String column : etcr.getColumnList()) {
+			        			  try {
+			        				java.lang.reflect.Method method;
+			        				method = li.getClass().getMethod("get" + Character.toUpperCase(column.charAt(0)) + column.substring(1));
+									sb.append(method.invoke(li));
+									sb.append(',');
+								} catch (NoSuchMethodException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SecurityException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IllegalAccessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IllegalArgumentException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (InvocationTargetException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+			        		  }
+			        		  
+			        		  sb.append('\n');
+			        	  }
+		        	  } else if ("/quote-service/retrieveQuoteHoldCoverListing".equalsIgnoreCase(etcr.getMethodUrl())) {
+		        		  for (Quotation li : (ArrayList<Quotation>) outputClass.getClass().getMethod("getQuotationList").invoke(outputClass)) {
+			        		  
+			        		  for (String column : etcr.getColumnList()) {
+			        			  try {
+			        				java.lang.reflect.Method method;
+			        				method = li.getClass().getMethod("get" + Character.toUpperCase(column.charAt(0)) + column.substring(1));
+									sb.append(method.invoke(li));
+									sb.append(',');
+								} catch (NoSuchMethodException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (SecurityException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IllegalAccessException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (IllegalArgumentException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								} catch (InvocationTargetException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+			        		  }
+			        		  
+			        		  sb.append('\n');
+			        	  }
 		        	  }
 		        	  
-				      
+		        	  
+		        	  
+		        	  
+		        	  
+		        	  
 		        	  writer.write(sb.toString());
 				      System.out.println("done!");
 
@@ -233,21 +268,23 @@ public class UtilController {
 		    catch (JsonMappingException e) { e.printStackTrace(); }
 		    catch (IOException e) { e.printStackTrace(); } 
 		    catch (ClassNotFoundException e1) { e1.printStackTrace(); }
-			
-			
-			conn.disconnect();
+
+		    conn.disconnect();
 
 		  } catch (MalformedURLException e) {
-
 			e.printStackTrace();
-
 		  } catch (IOException e) {
-
 			e.printStackTrace();
-
 		  }
 	    
-	    return null;
+		logger.info("FILE filename: " + file);
+	    logger.info("FILE Absolute Path: " + file.getAbsolutePath());
+	    Path path = Paths.get(file.getAbsolutePath());
+	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+	    
+	    return ResponseEntity.ok()
+	            .contentType(MediaType.parseMediaType("application/pdf"))
+	            .body(resource);
 	}
 	
 	
