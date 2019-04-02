@@ -1,15 +1,9 @@
 package ph.cpi.rest.api.model.underwriting;
 
 import org.apache.ibatis.type.Alias;
-import org.joda.time.LocalDateTime;
-
+import org.joda.time.DateTime;
 @Alias("UnderwritingItem")
 public class Item {
-	private Integer	policyId;
-	private String  policyNo;
-	private String	projId;
-	private Integer riskId;
-	private String 	riskName;
 	private Integer	itemNo;
 	private Integer	quantity;
 	private String	itemDesc;
@@ -25,39 +19,10 @@ public class Item {
 	private String  relativeImp;
 	private String  standbyUnit;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
-	public Integer getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
-	}
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
-	public String getProjId() {
-		return projId;
-	}
-	public void setProjId(String projId) {
-		this.projId = projId;
-	}
-	public Integer getRiskId() {
-		return riskId;
-	}
-	public void setRiskId(Integer riskId) {
-		this.riskId = riskId;
-	}
-	public String getRiskName() {
-		return riskName;
-	}
-	public void setRiskName(String riskName) {
-		this.riskName = riskName;
-	}
+	private DateTime updateDate;
+	
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -148,11 +113,18 @@ public class Item {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
+	}
+	public DateTime getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(DateTime updateDate) {
+		this.updateDate = updateDate;
 	}
 	public String getUpdateUser() {
 		return updateUser;
@@ -160,28 +132,15 @@ public class Item {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
-		return updateDate;
-	}
-	public void setUpdateDate(LocalDateTime updateDate) {
-		this.updateDate = updateDate;
-	}
-
 	@Override
 	public String toString() {
-		return "Item [policyId=" + policyId + ", policyNo=" + policyNo + ", projId=" + projId + ", riskId=" + riskId
-				+ ", riskName=" + riskName + ", itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
-				+ ", makeYear=" + makeYear + ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured
-				+ ", stockType=" + stockType + ", serialNo=" + serialNo + ", location=" + location + ", chamberNo="
-				+ chamberNo + ", noClaimPd=" + noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp
-				+ ", standbyUnit=" + standbyUnit + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Item [itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc + ", makeYear=" + makeYear
+				+ ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured + ", stockType=" + stockType
+				+ ", serialNo=" + serialNo + ", location=" + location + ", chamberNo=" + chamberNo + ", noClaimPd="
+				+ noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp + ", standbyUnit=" + standbyUnit
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
-	
-	
-	
-
 	
 	
 }

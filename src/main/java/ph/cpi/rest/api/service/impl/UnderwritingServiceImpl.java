@@ -305,12 +305,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("objectDesc", rplp.getObjectDesc());
 		retrievePolicyListingParams.put("site", rplp.getSite());
 		retrievePolicyListingParams.put("currencyCd", rplp.getCurrencyCd());
-		retrievePolicyListingParams.put("totalSi", rplp.getTotalSi());
-		retrievePolicyListingParams.put("totalPrem", rplp.getTotalPrem());
-		retrievePolicyListingParams.put("issueDate", rplp.getIssueDate());
-		retrievePolicyListingParams.put("expiryDate", rplp.getExpiryDate());
-		retrievePolicyListingParams.put("inceptDate", rplp.getInceptDate());
-		retrievePolicyListingParams.put("acctDate", rplp.getAcctDate());
+		retrievePolicyListingParams.put("totalSiLess", rplp.getTotalSiLess());
+		retrievePolicyListingParams.put("totalSiGrt", rplp.getTotalSiGrt());
+		retrievePolicyListingParams.put("totalPremLess", rplp.getTotalPremLess());
+		retrievePolicyListingParams.put("totalPremGrt", rplp.getTotalPremGrt());
+		retrievePolicyListingParams.put("issueDateFrom", rplp.getIssueDateFrom());
+		retrievePolicyListingParams.put("issueDateTo", rplp.getIssueDateTo());
+		retrievePolicyListingParams.put("expiryDateFrom", rplp.getExpiryDateFrom());
+		retrievePolicyListingParams.put("expiryDateTo", rplp.getExpiryDateTo());
+		retrievePolicyListingParams.put("inceptDateFrom", rplp.getInceptDateFrom());
+		retrievePolicyListingParams.put("inceptDateTo", rplp.getInceptDateTo());
+		retrievePolicyListingParams.put("acctDateFrom", rplp.getAcctDateFrom());
+		retrievePolicyListingParams.put("acctDateTo", rplp.getAcctDateTo());
 		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
 		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
@@ -500,7 +506,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			HashMap<String, Object> savePolItemParams = new HashMap<String, Object>();
 			savePolItemParams.put("policyId", spir.getPolicyId());
+			savePolItemParams.put("projId", spir.getProjId());
 			savePolItemParams.put("saveItemLists",spir.getSaveItemLists());
+			savePolItemParams.put("deleteItemLists",spir.getDeleteItemLists());
 			HashMap<String, Object> res = underwritingDao.savePolItem(savePolItemParams);
 			spiresponse.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
@@ -686,12 +694,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try {
 			HashMap<String, Object> savePolicyDetailsParams = new HashMap<String, Object>();
 			
+			savePolicyDetailsParams.put("policyId", "");
+			savePolicyDetailsParams.put("policyNo", "");
 			savePolicyDetailsParams.put("quotationNo", spdp.getQuotationNo());
 			savePolicyDetailsParams.put("holdCoverNo", spdp.getHoldCoverNo());
 			savePolicyDetailsParams.put("openPolicyNo", spdp.getOpenPolicyNo());
 			savePolicyDetailsParams.put("optionId", spdp.getOptionId());
 			savePolicyDetailsParams.put("inceptDate", spdp.getInceptDate());
 			savePolicyDetailsParams.put("expiryDate", spdp.getExpiryDate());
+			savePolicyDetailsParams.put("createUser", spdp.getCreateUser());
+			savePolicyDetailsParams.put("createDate", spdp.getCreateDate());
+			savePolicyDetailsParams.put("updateUser", spdp.getUpdateUser());
+			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());
 			
 			HashMap<String, Object> res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
 			

@@ -1,4 +1,5 @@
 package ph.cpi.rest.api.model.underwriting;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
@@ -34,7 +35,8 @@ public class Project {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-
+	
+	private List<Item> items;
 	private Coverage coverage;
 
 	public Integer getProjId() {
@@ -276,6 +278,15 @@ public class Project {
 	public void setCoverage(Coverage coverage) {
 		this.coverage = coverage;
 	}
+	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 
 	@Override
 	public String toString() {
@@ -287,6 +298,8 @@ public class Project {
 				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", coverage=" + coverage + "]";
+				+ updateDate + ", items=" + items + ", coverage=" + coverage + "]";
 	}
+
+	
 }

@@ -8,7 +8,7 @@ import ph.cpi.rest.api.model.Message;
 
 public class SavePolItemResponse {
 	
-	private List<Error> errorList = null;
+	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
 

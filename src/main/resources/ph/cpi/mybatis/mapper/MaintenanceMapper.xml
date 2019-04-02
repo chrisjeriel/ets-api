@@ -177,7 +177,8 @@
 		<result property="catTag" 			column="CAT_TAG"/> 
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
 		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/>
-		<result property="alopTag" 			column="ALOP_TAG"/> 
+		<result property="alopTag" 			column="ALOP_TAG"/>
+		<result property="referenceNo"		column="REFERENCE_NO"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 

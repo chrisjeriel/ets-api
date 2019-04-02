@@ -98,7 +98,7 @@
 		    <artifactId>jasperreports-functions</artifactId>
 		    <version>6.0.0</version>
 		</dependency>
-		
+
  		<dependency>
 		    <groupId>ph.cpi.rest</groupId>
 		    <artifactId>pmmsc-rep-fonts</artifactId>
