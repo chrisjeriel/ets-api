@@ -226,7 +226,7 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	
 	@Override
 	public HashMap<String, Object> savePolicyDetails(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("savePolicyDetails",params);
+		Integer errorCode = sqlSession.update("savePDGenInfo",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

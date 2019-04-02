@@ -694,12 +694,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try {
 			HashMap<String, Object> savePolicyDetailsParams = new HashMap<String, Object>();
 			
+			savePolicyDetailsParams.put("policyId", "");
+			savePolicyDetailsParams.put("policyNo", "");
 			savePolicyDetailsParams.put("quotationNo", spdp.getQuotationNo());
 			savePolicyDetailsParams.put("holdCoverNo", spdp.getHoldCoverNo());
 			savePolicyDetailsParams.put("openPolicyNo", spdp.getOpenPolicyNo());
 			savePolicyDetailsParams.put("optionId", spdp.getOptionId());
 			savePolicyDetailsParams.put("inceptDate", spdp.getInceptDate());
 			savePolicyDetailsParams.put("expiryDate", spdp.getExpiryDate());
+			savePolicyDetailsParams.put("createUser", spdp.getCreateUser());
+			savePolicyDetailsParams.put("createDate", spdp.getCreateDate());
+			savePolicyDetailsParams.put("updateUser", spdp.getUpdateUser());
+			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());
 			
 			HashMap<String, Object> res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
 			
