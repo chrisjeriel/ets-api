@@ -1044,9 +1044,10 @@
 		BEGIN
 			POL_GEN_INFO_PKG.save_pd_gen_info(#{policyId, mode=OUT, jdbcType=INTEGER},
 											  #{policyNo, mode=OUT, jdbcType=VARCHAR},
-											  #{quotationNo, mode=OUT, jdbcType=VARCHAR},
-											  #{holdCoverNo, mode=OUT, jdbcType=VARCHAR},
-											  #{openPolicyNo, mode=OUT, jdbcType=VARCHAR},
+											  #{lineCd, jdbcType=VARCHAR},
+											  #{quotationNo, jdbcType=VARCHAR},
+											  #{holdCoverNo, jdbcType=VARCHAR},
+											  #{openPolicyNo, jdbcType=VARCHAR},
 											  #{optionId, mode=OUT, jdbcType=INTEGER},
 											  CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											  CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),

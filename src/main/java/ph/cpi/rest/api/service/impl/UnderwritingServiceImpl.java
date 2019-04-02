@@ -696,6 +696,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			savePolicyDetailsParams.put("policyId", "");
 			savePolicyDetailsParams.put("policyNo", "");
+			savePolicyDetailsParams.put("lineCd", spdp.getLineCd());
 			savePolicyDetailsParams.put("quotationNo", spdp.getQuotationNo());
 			savePolicyDetailsParams.put("holdCoverNo", spdp.getHoldCoverNo());
 			savePolicyDetailsParams.put("openPolicyNo", spdp.getOpenPolicyNo());
