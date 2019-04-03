@@ -53,4 +53,9 @@ public class UserDaoImpl implements UserDao{
 		return userGroupAccessList;
 	}
 
+	@Override
+	public Users userAuthenticate(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("userAuthenticate", params);
+	}
+
 }
