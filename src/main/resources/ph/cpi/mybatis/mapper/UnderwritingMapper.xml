@@ -636,6 +636,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="polAttachmentOcMap">
 	    <result property="policyIdOc" 		column="POLICY_ID_OC"/> 
 		<result property="openPolicyNo" 	column="OPEN_POLICY_NO"/> 
+		
 		<association property="attachmentsOc" resultMap="assocAttachmentOcMap"></association>
 	</resultMap>
 	
@@ -1064,4 +1065,63 @@
 											  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<select id="retrievePolicyOcListing" parameterType="java.util.Map" resultMap="PolicyOcListingMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_OC_PKG.ret_pol_list_oc(#{policyNo, jdbcType=VARCHAR},
+															 #{cessionDesc, jdbcType=VARCHAR},
+															 #{cedingName, jdbcType=VARCHAR},
+															 #{lineClassDesc, jdbcType=VARCHAR},
+															 #{insuredDesc, jdbcType=VARCHAR},
+															 #{riskName, jdbcType=VARCHAR},
+															 #{objectDesc, jdbcType=VARCHAR},
+															 #{site, jdbcType=VARCHAR},
+															 #{currencyCd, jdbcType=VARCHAR},
+															 #{totalSiLess, jdbcType=DECIMAL},
+															 #{totalSiGrt, jdbcType=DECIMAL},
+															 #{totalPremLess, jdbcType=DECIMAL},
+															 #{totalPremGrt, jdbcType=DECIMAL},
+															 CAST(to_timestamp(#{issueDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{issueDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{statusDesc, jdbcType=VARCHAR},
+															 null,
+															 null,
+															 null,
+															 null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="PolicyOcListingMap">
+		<result property="policyIdOc"           column="POLICY_ID_OC"/>
+        <result property="openPolicyNo"         column="POLICY_NO"/>
+        <result property="cessionDesc"          column="CESSION_DESC"/>
+        <result property="cedingId"             column="CEDING_ID"/>
+        <result property="cedingName"           column="CEDING_NAME"/>
+        <result property="lineClassDesc"        column="LINE_CLASS_DESC"/>
+        <result property="insuredDesc"          column="INSURED_DESC"/>
+        <result property="currencyCd"           column="CURRENCY_CD"/>
+        <result property="issueDate"            column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate"           column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="inceptDate"           column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="acctDate"             column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="statusDesc"           column="STATUS_DESC"/>
+        <association property="project" resultMap="PolProjOcListingMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ProjectOc" id="PolProjOcListingMap">
+		<result property="riskName"           	column="RISK_NAME"/>
+        <result property="objectDesc"           column="OBJECT_DESC"/>
+        <result property="site"           		column="SITE"/>
+        <association property="coverageOc" resultMap="PolCovOcListingMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.CoverageOc" id="PolCovOcListingMap">
+		<result property="totalSi"          column="TOTAL_SI"/>
+        <result property="totalPrem"           column="TOTAL_PREM"/>
+	</resultMap>
+	
 </mapper>
