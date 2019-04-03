@@ -232,6 +232,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCode", errorCode);
 		
 		sqlSession.update("savePDProject",params);
+		sqlSession.update("savePDCoverage",params);
+		sqlSession.update("savePDSecCovers",params);		
+		sqlSession.update("savePDDeductibles",params);
+		sqlSession.update("savePDAlop",params);
+		sqlSession.update("savePDAlopItem",params);
+		sqlSession.update("savePDEndorsements",params);
 		
 		return params;
 	}
