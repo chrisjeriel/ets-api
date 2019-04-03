@@ -665,7 +665,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("duration", spgip.getDuration());
 			savePolGenInfoParams.put("testing", spgip.getTesting());
 			savePolGenInfoParams.put("ipl", spgip.getIpl());
-			savePolGenInfoParams.put("timeExec", spgip.getTimeExec());
+			savePolGenInfoParams.put("timeExc", spgip.getTimeExc());
 			savePolGenInfoParams.put("noClaimPd", spgip.getNoClaimPd());
 			savePolGenInfoParams.put("prjCreateUser", spgip.getPrjCreateUser());
 			savePolGenInfoParams.put("prjCreateDate", spgip.getPrjCreateDate());
@@ -696,6 +696,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			savePolicyDetailsParams.put("policyId", "");
 			savePolicyDetailsParams.put("policyNo", "");
+			savePolicyDetailsParams.put("lineCd", spdp.getLineCd());
 			savePolicyDetailsParams.put("quotationNo", spdp.getQuotationNo());
 			savePolicyDetailsParams.put("holdCoverNo", spdp.getHoldCoverNo());
 			savePolicyDetailsParams.put("openPolicyNo", spdp.getOpenPolicyNo());
@@ -709,6 +710,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			HashMap<String, Object> res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
 			
+			spdResponse.setReturnCode((Integer) res.get("errorCode"));
+			spdResponse.setPolicyId((Integer) res.get("policyId"));
+			spdResponse.setPolicyNo((String) res.get("policyNo"));
 		} catch (SQLException e) {
 			spdResponse.setReturnCode(0);
 			spdResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
