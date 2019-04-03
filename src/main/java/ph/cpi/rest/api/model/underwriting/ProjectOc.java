@@ -6,9 +6,11 @@ import org.apache.ibatis.type.Alias;
 public class ProjectOc {
 	private Integer riskId;
 	private String riskName;
+	private String objectDesc;
+	private String site;
 	
 	private CoverageOc coverageOc;
-	
+
 	public Integer getRiskId() {
 		return riskId;
 	}
@@ -25,6 +27,22 @@ public class ProjectOc {
 		this.riskName = riskName;
 	}
 
+	public String getObjectDesc() {
+		return objectDesc;
+	}
+
+	public void setObjectDesc(String objectDesc) {
+		this.objectDesc = objectDesc;
+	}
+
+	public String getSite() {
+		return site;
+	}
+
+	public void setSite(String site) {
+		this.site = site;
+	}
+
 	public CoverageOc getCoverageOc() {
 		return coverageOc;
 	}
@@ -35,8 +53,12 @@ public class ProjectOc {
 
 	@Override
 	public String toString() {
-		return "ProjectOc [riskId=" + riskId + ", riskName=" + riskName + ", coverageOc=" + coverageOc + "]";
+		return "ProjectOc [riskId=" + riskId + ", riskName=" + riskName + ", objectDesc=" + objectDesc + ", site="
+				+ site + ", coverageOc=" + coverageOc + "]";
 	}
+	
+	
+
 	
 	
 }
