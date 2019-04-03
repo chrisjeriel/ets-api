@@ -172,7 +172,7 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Line" id="mntLineMap">
 		<result property="lineCd" 			column="LINE_CD"/> 
 		<result property="description" 		column="DESCRIPTION"/>
-		<result property="cutOffTime" 		column="CUT_OFF_TIME" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cutOffTime" 		column="CUT_OFF_TIME"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="catTag" 			column="CAT_TAG"/> 
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
@@ -634,6 +634,18 @@
   	<select id="userLogin" resultType="java.lang.String" parameterType="java.util.Map">
     	SELECT DISTINCT(module_id) module_id FROM TABLE(MTN_USERS_PKG.user_login(#{userId}, #{password}))
     	ORDER BY module_id
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Users" id="userMap">
+     	<result property="userId"            	column="USER_ID"/>
+		<result property="userGrp"           	column="USER_GRP"/>
+		<result property="userName"          	column="USER_NAME"/>
+		<result property="activeTag"         	column="ACTIVE_TAG"/>
+		<result property="emailAddress"      	column="EMAIL_ADDRESS"/>
+     </resultMap>
+    
+    <select id="userAuthenticate" resultMap="userMap" parameterType="java.util.Map">
+    	SELECT * FROM TABLE(MTN_USERS_PKG.user_authenticate(#{userId}, #{password}))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.Reason" id="ReasonMap">
