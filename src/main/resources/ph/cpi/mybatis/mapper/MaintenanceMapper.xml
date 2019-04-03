@@ -668,33 +668,7 @@
 	    AND address_id = #{addressId}
 	</select> -->
     
-    <resultMap type="ph.cpi.rest.api.model.maintenance.Users" id="usersMap">
-     	<result property="userId"            	column="USER_ID"/>
-		<result property="userGrp"           	column="USER_GRP"/>
-		<result property="userGrpDesc"			column="USER_GRP_DESC"/>
-		<result property="userName"          	column="USER_NAME"/>
-		<result property="activeTag"         	column="ACTIVE_TAG"/>
-		<result property="password"           	column="PASSWORD"/>
-		<result property="emailAddress"      	column="EMAIL_ADDRESS"/>
-		<result property="remarks"            	column="REMARKS"/>
-		<result property="lastLogin"         	column="LAST_LOGIN"         	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="passwordResetDate"	column="PASSWORD_RESET_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="salt"               	column="SALT"/>
-		<result property="invalidLoginTries"	column="INVALID_LOGIN_TRIES"/>
-		<result property="createUser"			column="CREATE_USER"/>
-		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"        	column="UPDATE_USER"/>
-		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     	<association property="userTran" resultMap="userTranMap"></association>
-     </resultMap>
-     
-    <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
-    	SELECT * FROM TABLE(ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
-												  #{position, jdbcType=VARCHAR}, 
-												  #{count, jdbcType=VARCHAR}, 
-												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR}))
-	</select>
+    
 	 
     <resultMap type="ph.cpi.rest.api.model.maintenance.Treaty" id="treatyMap">
     	<result property="treatyId" 		column="TREATY_ID"/>
@@ -744,89 +718,7 @@
     	SELECT* FROM TABLE(MTN_REP_PARAM_PKG.ret_mtn_rep_param(#{reportId, jdbcType=VARCHAR},null,null,null,null))
     </select>
     
-    <resultMap type="ph.cpi.rest.api.model.maintenance.UserTran" id="userTranMap">
-     	<result property="userId"            	column="USER_ID"/>
-		<result property="tranCd"           	column="TRAN_CD"/>
-		<result property="description"			column="TRAN_DESC"/>
-		<result property="remarks"            	column="REMARKS"/>
-		<result property="createUser"			column="CREATE_USER"/>
-		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"        	column="UPDATE_USER"/>
-		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     	<association property="userModule" resultMap="userModuleMap"></association>
-     </resultMap>
-     
-     <resultMap type="ph.cpi.rest.api.model.maintenance.UserModule" id="userModuleMap">
-     	<result property="userId"            	column="USER_ID"/>
-		<result property="tranCd"           	column="TRAN_CD"/>
-		<result property="moduleId"				column="MODULE_ID"/>
-		<result property="moduleDesc"			column="MODULE_DESC"/>
-		<result property="remarks"            	column="REMARKS"/>
-		<result property="createUser"			column="CREATE_USER"/>
-		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"        	column="UPDATE_USER"/>
-		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     </resultMap>
-     
-     <select id="retrieveMtnUserAccess" resultMap="usersMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USERS_PKG.retrieve_mtn_user_access(#{userId, jdbcType=VARCHAR},
-												  #{position, jdbcType=VARCHAR}, 
-												  #{count, jdbcType=VARCHAR}, 
-												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
-     </select>
-     
-     <resultMap type="ph.cpi.rest.api.model.maintenance.UserGrp" id="userGrpMap">
-     	<result property="userGrp"            	column="USER_GRP"/>
-		<result property="userGrpDesc"          column="USER_GRP_DESC"/>
-		<result property="remarks"            	column="REMARKS"/>
-		<result property="createUser"			column="CREATE_USER"/>
-		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"        	column="UPDATE_USER"/>
-		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     	<association property="userGrpTran" resultMap="userGrpTranMap"></association>
-     </resultMap>
-     
-     <select id="retrieveMtnUserGroup" resultMap="userGrpMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USER_GRP_PKG.retrieve_mtn_user_group(#{userGrp, jdbcType=INTEGER},
-												  #{position, jdbcType=VARCHAR}, 
-												  #{count, jdbcType=VARCHAR}, 
-												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
-     </select>
-     
-     <resultMap type="ph.cpi.rest.api.model.maintenance.UserGrpTran" id="userGrpTranMap">
-     	<result property="userGrp"            	column="USER_GRP"/>
-		<result property="tranCd"          		column="TRAN_CD"/>
-		<result property="description"          column="TRAN_DESC"/>
-		<result property="remarks"            	column="REMARKS"/>
-		<result property="createUser"			column="CREATE_USER"/>
-		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"        	column="UPDATE_USER"/>
-		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     	<association property="userGrpModule" resultMap="userGrpModuleMap"></association>
-     </resultMap>
-     
-     <resultMap type="ph.cpi.rest.api.model.maintenance.UserGrpModule" id="userGrpModuleMap">
-     	<result property="userGrp"            	column="USER_GRP"/>
-		<result property="tranCd"          		column="TRAN_CD"/>
-		<result property="moduleId"          	column="MODULE_ID"/>
-		<result property="moduleDesc"           column="MODULE_DESC"/>
-		<result property="remarks"            	column="REMARKS"/>
-		<result property="createUser"			column="CREATE_USER"/>
-		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"        	column="UPDATE_USER"/>
-		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     </resultMap>
-     
-     <select id="retrieveMtnUserGroupAccess" resultMap="userGrpMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USER_GRP_PKG.retrieve_mtn_user_group_access(#{userGrp, jdbcType=INTEGER},
-												  #{position, jdbcType=VARCHAR}, 
-												  #{count, jdbcType=VARCHAR}, 
-												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
-     </select>
-     
+    
      <resultMap type="ph.cpi.rest.api.model.maintenance.CATPeril" id="catPerilMap">
 		<result property="lineCd"				column="LINE_CD"/>
 		<result property="lineDesc"				column="DESCRIPTION"/>
