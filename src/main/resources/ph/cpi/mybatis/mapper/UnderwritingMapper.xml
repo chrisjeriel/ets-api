@@ -1059,4 +1059,18 @@
 		END;
 	</update>
 	
+	<update id="savePDProject" parameterType="java.util.Map">
+		BEGIN
+			POL_PROJECT_PKG.save_pd_project(#{policyId, jdbcType=INTEGER},
+											#{quotationNo, jdbcType=VARCHAR},
+											#{holdCoverNo, jdbcType=VARCHAR},
+											#{openPolicyNo, jdbcType=VARCHAR},
+											#{createUser, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											#{updateUser, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										   )
+		END;
+	</update>
+	
 </mapper>
