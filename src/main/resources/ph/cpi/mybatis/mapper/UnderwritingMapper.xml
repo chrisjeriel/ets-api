@@ -144,6 +144,7 @@
 		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="status"	 			column="STATUS"/>
 		<result property="statusDesc"	 		column="STATUS_DESC"/>
+		<result property="altNo"	 		    column="ALT_NO"/>
 		
 		<association property="project" 		resultMap="projectMap"/>	
 	</resultMap>
