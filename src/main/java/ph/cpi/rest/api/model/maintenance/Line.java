@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 public class Line {
 	private String lineCd;
 	private String description;
-	private DateTime cutOffTime;
+	private String cutOffTime;
 	private String activeTag;
 	private String catTag;
 	private String renewalTag;
@@ -30,10 +30,10 @@ public class Line {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public DateTime getCutOffTime() {
+	public String getCutOffTime() {
 		return cutOffTime;
 	}
-	public void setCutOffTime(DateTime cutOffTime) {
+	public void setCutOffTime(String cutOffTime) {
 		this.cutOffTime = cutOffTime;
 	}
 	public String getActiveTag() {
@@ -84,7 +84,7 @@ public class Line {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public <T> DateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(DateTime createDate) {
@@ -116,5 +116,5 @@ public class Line {
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + ", alopTag=" + alopTag + "]";
 	}
-
+	
 }
