@@ -58,5 +58,10 @@ public class UserDaoImpl implements UserDao{
 		Integer errorCode = sqlSession.update("saveApproval", params);
 		return errorCode;
 	}
+	
+	@Override
+	public Users userAuthenticate(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("userAuthenticate", params);
+	}
 
 }

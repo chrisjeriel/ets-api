@@ -18,14 +18,13 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.SaveApprovalResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
+import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
 
@@ -45,12 +44,22 @@ public class UserController {
 	@GetMapping(path="userLogin")
 	public @ResponseBody UserLoginResponse userLogin(UserLoginRequest ulr) throws SQLException {
 		logger.info("GET: /api/user-service/userLogin");
-		logger.info("RetrieveQuoteListingRequest : " + ulr.toString());
+		logger.info("UserLoginRequest : " + ulr.toString());
 		
 		UserLoginResponse ulResponse = userService.userLogin(ulr);
 		ulResponse.setUserId(ulr.getUserId());	
 		
 		return ulResponse;
+	}
+	
+	@GetMapping(path="userAuthenticate")
+	public @ResponseBody UserAuthenticateResponse userAuthenticate(UserLoginRequest ulr) throws SQLException {
+		logger.info("GET: /api/user-service/userAuthenticate");
+		logger.info("UserLoginRequest : " + ulr.toString());
+		
+		UserAuthenticateResponse uaResponse = userService.userAuthenticate(ulr);
+
+		return uaResponse;
 	}
 	
 	@GetMapping(path="retMtnUsers")

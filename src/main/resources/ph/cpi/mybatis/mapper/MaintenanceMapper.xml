@@ -636,6 +636,18 @@
     	ORDER BY module_id
     </select>
     
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Users" id="userMap">
+     	<result property="userId"            	column="USER_ID"/>
+		<result property="userGrp"           	column="USER_GRP"/>
+		<result property="userName"          	column="USER_NAME"/>
+		<result property="activeTag"         	column="ACTIVE_TAG"/>
+		<result property="emailAddress"      	column="EMAIL_ADDRESS"/>
+     </resultMap>
+    
+    <select id="userAuthenticate" resultMap="userMap" parameterType="java.util.Map">
+    	SELECT * FROM TABLE(MTN_USERS_PKG.user_authenticate(#{userId}, #{password}))
+    </select>
+    
     <resultMap type="ph.cpi.rest.api.model.maintenance.Reason" id="ReasonMap">
 		<result property="reasonCd" 		column="REASON_CD"/> 
 		<result property="description" 		column="DESCRIPTION"/>
