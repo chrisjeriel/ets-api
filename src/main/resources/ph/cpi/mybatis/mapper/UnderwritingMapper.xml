@@ -1068,4 +1068,20 @@
 		END;
 	</update>
 	
+	<update id="saveOpenPolDetails" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CONVERT_QU_TO_OPENPOL_PKG.save_opd(#{policyIdOc, mode=OUT, jdbcType=INTEGER},
+										 #{openPolNo, mode=OUT, jdbcType=VARCHAR},
+										 #{quotationNo, jdbcType=VARCHAR},
+										 #{optionId, jdbcType=INTEGER},
+										 CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 #{createUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 #{updateUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										);
+		END;
+	</update>
+	
 </mapper>

@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
+import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
+import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
@@ -794,5 +796,32 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return uphcsResponse;
+	}
+
+	@Override
+	public SaveOpenPolDetailsResponse saveOpenPolDetails(SaveOpenPolDetailsRequest sopdr) throws SQLException {
+		SaveOpenPolDetailsResponse sopdResponse= new SaveOpenPolDetailsResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("quotationNo", sopdr.getQuotationNo());
+			params.put("optionId", sopdr.getOptionId());
+			params.put("inceptDate", sopdr.getInceptDate());
+			params.put("expiryDate", sopdr.getExpiryDate());
+			params.put("createUser", sopdr.getCreateUser());
+			params.put("createDate", sopdr.getCreateDate());
+			params.put("updateUser", sopdr.getUpdateUser());
+			params.put("updateDate", sopdr.getUpdateDate());
+			
+			HashMap<String, Object> res = underwritingDao.saveOpenPolDetails(params);
+			sopdResponse.setReturnCode((Integer) res.get("errorCode"));
+			sopdResponse.setPolicyIdOc((Integer) res.get("policyIdOc"));
+			sopdResponse.setOpenPolNo((String) res.get("openPolNo"));
+			//sphcResponse.setPolHoldCoverNo(polHoldCoverNo);
+		}catch(Exception ex){
+			sopdResponse.setReturnCode(0);
+			sopdResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return sopdResponse;
 	}
 }
