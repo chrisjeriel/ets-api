@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
+import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
 
@@ -101,6 +102,19 @@ public class UserServiceImpl implements UserService {
 		ugaResponse.setUserGroups(userDao.retrieveMtnUserGroupAccess(params));
 		
 		return ugaResponse;
+	}
+
+	@Override
+	public UserAuthenticateResponse userAuthenticate(UserLoginRequest ulr) throws SQLException {
+		UserAuthenticateResponse uaResponse = new UserAuthenticateResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("userId", ulr.getUserId());
+		params.put("password", ulr.getPassword());
+		
+		uaResponse.setUser(userDao.userAuthenticate(params));
+		
+		return uaResponse;
 	}
 
 }
