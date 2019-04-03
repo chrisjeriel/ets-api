@@ -54,6 +54,9 @@ public class UserController {
 		logger.info("UserLoginRequest : " + ulr.toString());
 		
 		UserAuthenticateResponse uaResponse = userService.userAuthenticate(ulr);
+		if (uaResponse.getUser() == null) {
+			uaResponse.setReturnCode(400);
+		}
 
 		return uaResponse;
 	}
