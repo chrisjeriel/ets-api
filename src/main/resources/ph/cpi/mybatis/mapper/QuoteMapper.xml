@@ -523,7 +523,8 @@
 																	 #{site, jdbcType=VARCHAR},
 																	 #{policyNo, jdbcType=VARCHAR},
 																	 #{currencyCd, jdbcType=VARCHAR},
-																	 #{issueDate, jdbcType=DATE},
+																	 #{issueDateFrom, jdbcType=DATE},
+																	 #{issueDateTo, jdbcType=DATE},
 																	 #{expiryDate, jdbcType=DATE},
 																	 #{reqBy, jdbcType=VARCHAR},
 																	 #{createUser, jdbcType=VARCHAR},
@@ -545,7 +546,8 @@
 														   #{site, jdbcType=VARCHAR},
 														   #{policyNo, jdbcType=VARCHAR},
 														   #{currencyCd, jdbcType=VARCHAR},
-														   CAST(to_timestamp(#{issueDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														   CAST(to_timestamp(#{issueDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														   CAST(to_timestamp(#{issueDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   <!-- #{issueDate, jdbcType=DATE}, -->
 														   CAST(to_timestamp(#{expiryDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												<!-- 		   TO_DATE(#{expiryDate, jdbcType=DATE},'yyyy-mm-dd'), -->
