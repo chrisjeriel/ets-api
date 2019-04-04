@@ -17,6 +17,9 @@ public class SectionCovers {
 	private BigDecimal premRt;
 	private BigDecimal premAmt;
 	private String addSi;
+	private String discountTag;
+	private String cumSi;
+	private String cumPrem;
 	private String createUserSec;
 	private DateTime createDateSec;
 	private String updateUserSec;
@@ -81,6 +84,24 @@ public class SectionCovers {
 	public void setAddSi(String addSi) {
 		this.addSi = addSi;
 	}
+	public String getDiscountTag() {
+		return discountTag;
+	}
+	public void setDiscountTag(String discountTag) {
+		this.discountTag = discountTag;
+	}
+	public String getCumSi() {
+		return cumSi;
+	}
+	public void setCumSi(String cumSi) {
+		this.cumSi = cumSi;
+	}
+	public String getCumPrem() {
+		return cumPrem;
+	}
+	public void setCumPrem(String cumPrem) {
+		this.cumPrem = cumPrem;
+	}
 	public String getCreateUserSec() {
 		return createUserSec;
 	}
@@ -109,11 +130,10 @@ public class SectionCovers {
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", section=" + section + ", coverCd="
 				+ coverCd + ", description=" + description + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured
-				+ ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", createUserSec="
-				+ createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec=" + updateUserSec
-				+ ", updateDateSec=" + updateDateSec + "]";
+				+ ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag
+				+ ", cumSi=" + cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec="
+				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
-	
 	
 	
 }

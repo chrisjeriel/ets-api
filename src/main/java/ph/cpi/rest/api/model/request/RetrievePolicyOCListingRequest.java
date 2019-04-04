@@ -3,8 +3,7 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrievePolicyListingRequest {
-	
+public class RetrievePolicyOCListingRequest {
 	private String policyNo;
 	private String cessionDesc;
 	private String cedingName;
@@ -29,7 +28,6 @@ public class RetrievePolicyListingRequest {
 	private String statusDesc;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
-	
 	public String getPolicyNo() {
 		return policyNo;
 	}
@@ -96,6 +94,18 @@ public class RetrievePolicyListingRequest {
 	public void setTotalSiGrt(String totalSiGrt) {
 		this.totalSiGrt = totalSiGrt;
 	}
+	public String getTotalPremLess() {
+		return totalPremLess;
+	}
+	public void setTotalPremLess(String totalPremLess) {
+		this.totalPremLess = totalPremLess;
+	}
+	public String getTotalPremGrt() {
+		return totalPremGrt;
+	}
+	public void setTotalPremGrt(String totalPremGrt) {
+		this.totalPremGrt = totalPremGrt;
+	}
 	public String getIssueDateFrom() {
 		return issueDateFrom;
 	}
@@ -107,6 +117,42 @@ public class RetrievePolicyListingRequest {
 	}
 	public void setIssueDateTo(String issueDateTo) {
 		this.issueDateTo = issueDateTo;
+	}
+	public String getExpiryDateFrom() {
+		return expiryDateFrom;
+	}
+	public void setExpiryDateFrom(String expiryDateFrom) {
+		this.expiryDateFrom = expiryDateFrom;
+	}
+	public String getExpiryDateTo() {
+		return expiryDateTo;
+	}
+	public void setExpiryDateTo(String expiryDateTo) {
+		this.expiryDateTo = expiryDateTo;
+	}
+	public String getInceptDateFrom() {
+		return inceptDateFrom;
+	}
+	public void setInceptDateFrom(String inceptDateFrom) {
+		this.inceptDateFrom = inceptDateFrom;
+	}
+	public String getInceptDateTo() {
+		return inceptDateTo;
+	}
+	public void setInceptDateTo(String inceptDateTo) {
+		this.inceptDateTo = inceptDateTo;
+	}
+	public String getAcctDateFrom() {
+		return acctDateFrom;
+	}
+	public void setAcctDateFrom(String acctDateFrom) {
+		this.acctDateFrom = acctDateFrom;
+	}
+	public String getAcctDateTo() {
+		return acctDateTo;
+	}
+	public void setAcctDateTo(String acctDateTo) {
+		this.acctDateTo = acctDateTo;
 	}
 	public String getStatusDesc() {
 		return statusDesc;
@@ -126,57 +172,9 @@ public class RetrievePolicyListingRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
-	public String getInceptDateFrom() {
-		return inceptDateFrom;
-	}
-	public void setInceptDateFrom(String inceptDateFrom) {
-		this.inceptDateFrom = inceptDateFrom;
-	}
-	public String getInceptDateTo() {
-		return inceptDateTo;
-	}
-	public void setInceptDateTo(String inceptDateTo) {
-		this.inceptDateTo = inceptDateTo;
-	}
-	public String getExpiryDateFrom() {
-		return expiryDateFrom;
-	}
-	public void setExpiryDateFrom(String expiryDateFrom) {
-		this.expiryDateFrom = expiryDateFrom;
-	}
-	public String getExpiryDateTo() {
-		return expiryDateTo;
-	}
-	public void setExpiryDateTo(String expiryDateTo) {
-		this.expiryDateTo = expiryDateTo;
-	}
-	public String getAcctDateFrom() {
-		return acctDateFrom;
-	}
-	public void setAcctDateFrom(String acctDateFrom) {
-		this.acctDateFrom = acctDateFrom;
-	}
-	public String getAcctDateTo() {
-		return acctDateTo;
-	}
-	public void setAcctDateTo(String acctDateTo) {
-		this.acctDateTo = acctDateTo;
-	}
-	public String getTotalPremLess() {
-		return totalPremLess;
-	}
-	public void setTotalPremLess(String totalPremLess) {
-		this.totalPremLess = totalPremLess;
-	}
-	public String getTotalPremGrt() {
-		return totalPremGrt;
-	}
-	public void setTotalPremGrt(String totalPremGrt) {
-		this.totalPremGrt = totalPremGrt;
-	}
 	@Override
 	public String toString() {
-		return "RetrievePolicyListingRequest [policyNo=" + policyNo + ", cessionDesc=" + cessionDesc + ", cedingName="
+		return "RetrievePolicyOCListingRequest [policyNo=" + policyNo + ", cessionDesc=" + cessionDesc + ", cedingName="
 				+ cedingName + ", lineClassDesc=" + lineClassDesc + ", insuredDesc=" + insuredDesc + ", riskName="
 				+ riskName + ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd
 				+ ", totalSiLess=" + totalSiLess + ", totalSiGrt=" + totalSiGrt + ", totalPremLess=" + totalPremLess
@@ -186,5 +184,6 @@ public class RetrievePolicyListingRequest {
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 }

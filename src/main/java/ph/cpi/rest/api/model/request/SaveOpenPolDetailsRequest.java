@@ -1,11 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
-public class SavePolicyDetailsRequest {
-
-	private String lineCd;
+public class SaveOpenPolDetailsRequest {
 	private String quotationNo;
-	private String holdCoverNo;
-	private String openPolicyNo;
 	private String optionId;
 	private String inceptDate;
 	private String expiryDate;
@@ -14,29 +10,11 @@ public class SavePolicyDetailsRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	public String getLineCd() {
-		return lineCd;
-	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
 	public String getQuotationNo() {
 		return quotationNo;
 	}
 	public void setQuotationNo(String quotationNo) {
 		this.quotationNo = quotationNo;
-	}
-	public String getHoldCoverNo() {
-		return holdCoverNo;
-	}
-	public void setHoldCoverNo(String holdCoverNo) {
-		this.holdCoverNo = holdCoverNo;
-	}
-	public String getOpenPolicyNo() {
-		return openPolicyNo;
-	}
-	public void setOpenPolicyNo(String openPolicyNo) {
-		this.openPolicyNo = openPolicyNo;
 	}
 	public String getOptionId() {
 		return optionId;
@@ -80,10 +58,10 @@ public class SavePolicyDetailsRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "SavePolicyDetailsRequest [lineCd=" + lineCd + ", quotationNo=" + quotationNo + ", holdCoverNo="
-				+ holdCoverNo + ", openPolicyNo=" + openPolicyNo + ", optionId=" + optionId + ", inceptDate="
+		return "SaveOpenPolDetailsRequest [quotationNo=" + quotationNo + ", optionId=" + optionId + ", inceptDate="
 				+ inceptDate + ", expiryDate=" + expiryDate + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}

@@ -47,6 +47,7 @@
 		<result property="issueDate" 		column="ISSUE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="reqBy" 			column="REQ_BY"/>
+		<result property="openCoverTag" 	column="OP_COV_TAG"/>  <!-- Added by Neco, 04/02/2019, Reason: For create open pol LOV -->
 		<result property="createUser" 		column="CREATE_USER"/>
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
@@ -889,17 +890,18 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{quotationNo,jdbcType=VARCHAR},
+			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{holdCoverNo,jdbcType=VARCHAR},
 																		      #{status,jdbcType=VARCHAR},
 																		      #{cedingName,jdbcType=VARCHAR},
-																		      #{holdCoverNo,jdbcType=VARCHAR},
+																		      #{quotationNo,jdbcType=VARCHAR},
 																		      #{riskName,jdbcType=VARCHAR},
 																		      #{insuredDesc,jdbcType=VARCHAR},
 																			  #{periodFrom,jdbcType=DATE},
 																			  #{periodTo,jdbcType=DATE},
 																			  #{compRefHoldCovNo,jdbcType=VARCHAR},
 																			  #{reqBy,jdbcType=VARCHAR},
-																			  #{reqDate,jdbcType=DATE},
+																			  #{reqDateFrom,jdbcType=DATE},
+																			  #{reqDateTo,jdbcType=DATE},
 																			  #{expiringInDays,jdbcType=INTEGER},
 																			  '',
 																			  '',
@@ -1099,14 +1101,14 @@
 	
 	<update id="saveQuoteAlopMap" parameterType="java.util.Map">
 		BEGIN
-			QU_ALOP_INFO_PKG.save_qu_alop_info(#{quoteId},#{insuredId},#{insuredDesc},#{address},#{insuredBusiness},#{createUser},
+			QU_ALOP_INFO_PKG.save_qu_alop_info(#{quoteId},#{insuredId},#{insuredDesc, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{insuredBusiness, jdbcType=VARCHAR},#{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
 			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   <foreach collection="alopDetails" item="alopDetails">
 		   	   QU_ALOP_PKG.save_qu_alop(#{quoteId},#{alopDetails.optionId, jdbcType=VARCHAR},#{alopDetails.annSi},#{alopDetails.maxIndemPdSi},
-			   CAST(to_timestamp(#{alopDetails.issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-			   CAST(to_timestamp(#{alopDetails.expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.maxIndemPd},
-			   CAST(to_timestamp(#{alopDetails.indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.timeExc},#{alopDetails.repInterval},#{alopDetails.createUserAlop},
+			   CAST(to_timestamp(#{alopDetails.issueDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   CAST(to_timestamp(#{alopDetails.expiryDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.maxIndemPd},
+			   CAST(to_timestamp(#{alopDetails.indemFromDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.timeExc},#{alopDetails.repInterval},#{alopDetails.createUserAlop},
 			   CAST(to_timestamp(#{alopDetails.createDateAlop}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.updateUserAlop},
 			   CAST(to_timestamp(#{alopDetails.updateDateAlop}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   </foreach>

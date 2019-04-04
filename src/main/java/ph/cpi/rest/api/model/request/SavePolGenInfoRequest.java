@@ -60,7 +60,7 @@ public class SavePolGenInfoRequest {
 	private String duration;
 	private String testing;
 	private String ipl;
-	private String timeExec;
+	private String timeExc;
 	private String noClaimPd;
 	private String prjCreateUser;
 	private String prjCreateDate;
@@ -415,11 +415,11 @@ public class SavePolGenInfoRequest {
 	public void setIpl(String ipl) {
 		this.ipl = ipl;
 	}
-	public String getTimeExec() {
-		return timeExec;
+	public String getTimeExc() {
+		return timeExc;
 	}
-	public void setTimeExec(String timeExec) {
-		this.timeExec = timeExec;
+	public void setTimeExc(String timeExc) {
+		this.timeExc = timeExc;
 	}
 	public String getNoClaimPd() {
 		return noClaimPd;
@@ -470,7 +470,7 @@ public class SavePolGenInfoRequest {
 				+ ", wordings=" + wordings + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc="
 				+ projDesc + ", riskId=" + riskId + ", totalSi=" + totalSi + ", objectId=" + objectId + ", site=" + site
-				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExec=" + timeExec
+				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
 				+ ", noClaimPd=" + noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
 				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
 	}

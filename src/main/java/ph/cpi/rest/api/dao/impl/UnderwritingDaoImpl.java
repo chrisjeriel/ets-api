@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
@@ -224,10 +225,20 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return params;
 	}
 	
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public HashMap<String, Object> savePolicyDetails(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePDGenInfo",params);
 		params.put("errorCode", errorCode);
+		
+		sqlSession.update("savePDProject",params);
+		sqlSession.update("savePDCoverage",params);
+		sqlSession.update("savePDSecCovers",params);		
+		sqlSession.update("savePDDeductibles",params);
+		sqlSession.update("savePDAlop",params);
+		sqlSession.update("savePDAlopItem",params);
+		sqlSession.update("savePDEndorsements",params);
+		
 		return params;
 	}
 	
@@ -241,6 +252,31 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Integer savePolEndorsement(HashMap<String, Object> params) throws SQLException {	
 		Integer errorCode = sqlSession.update("savePolEndorsement",params);
 		return errorCode;
+	}
+
+	@Override
+	public Integer saveSumInsOC(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveSumInsOC",params);
+		return errorCode;
+	}
+		
+	@Override
+	public Integer updatePolHoldCoverStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updatePolHoldCoverStatus", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<PolicyOc> retrievePolicyOcListing(HashMap<String, Object> params) throws SQLException {
+		List<PolicyOc> policyList = sqlSession.selectList("retrievePolicyOcListing",params);
+		return policyList;
+	}
+	
+	@Override
+	public HashMap<String, Object> saveOpenPolDetails(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveOpenPolDetails", params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 	
 }
