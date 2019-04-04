@@ -22,64 +22,64 @@ import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
-import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
-import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
-import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
-import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
+import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
+import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
+import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
+import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
-import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
-import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
-import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
-import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
-import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
-import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteCoverageResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteEndorsementsResponse;
-import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
+import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
+import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
+import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -847,5 +847,51 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			logger.info("retrievePolicyOCListingResponse : " + rplResponse.toString());
 			
 			return rplResponse;
+	}
+	
+	@Override
+	public UpdatePolHoldCoverStatusResponse updatePolHoldCoverStatus(UpdatePolHoldCoverStatusRequest uphcsr)
+			throws SQLException {
+		UpdatePolHoldCoverStatusResponse uphcsResponse = new UpdatePolHoldCoverStatusResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("policyId",uphcsr.getPolicyId());
+			params.put("holdCovId", uphcsr.getHoldCovId());
+			params.put("updateUser", uphcsr.getUpdateUser());
+			params.put("updateDate" , uphcsr.getUpdateDate());
+			uphcsResponse.setReturnCode(underwritingDao.updatePolHoldCoverStatus(params));
+		}catch(Exception ex){
+			uphcsResponse.setReturnCode(0);
+			uphcsResponse.getErrorList().add(new Error("Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return uphcsResponse;
+	}
+
+	@Override
+	public SaveOpenPolDetailsResponse saveOpenPolDetails(SaveOpenPolDetailsRequest sopdr) throws SQLException {
+		SaveOpenPolDetailsResponse sopdResponse= new SaveOpenPolDetailsResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("quotationNo", sopdr.getQuotationNo());
+			params.put("optionId", sopdr.getOptionId());
+			params.put("inceptDate", sopdr.getInceptDate());
+			params.put("expiryDate", sopdr.getExpiryDate());
+			params.put("createUser", sopdr.getCreateUser());
+			params.put("createDate", sopdr.getCreateDate());
+			params.put("updateUser", sopdr.getUpdateUser());
+			params.put("updateDate", sopdr.getUpdateDate());
+			
+			HashMap<String, Object> res = underwritingDao.saveOpenPolDetails(params);
+			sopdResponse.setReturnCode((Integer) res.get("errorCode"));
+			sopdResponse.setPolicyIdOc((Integer) res.get("policyIdOc"));
+			sopdResponse.setOpenPolNo((String) res.get("openPolNo"));
+			//sphcResponse.setPolHoldCoverNo(polHoldCoverNo);
+		}catch(Exception ex){
+			sopdResponse.setReturnCode(0);
+			sopdResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return sopdResponse;
 	}
 }

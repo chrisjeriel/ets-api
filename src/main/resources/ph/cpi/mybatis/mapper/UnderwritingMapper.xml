@@ -1242,5 +1242,31 @@
 		<result property="totalSi"          column="TOTAL_SI"/>
         <result property="totalPrem"           column="TOTAL_PREM"/>
 	</resultMap>
+
+	<update id="updatePolHoldCoverStatus" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POL_HOLD_COVER_PKG.upd_hc_status(#{policyId, jdbcType=INTEGER},
+											 #{holdCovId, jdbcType=INTEGER},
+											 #{updateUser, jdbcType=VARCHAR},
+											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											 );
+		END;
+	</update>
+	
+	<update id="saveOpenPolDetails" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CONVERT_QU_TO_OPENPOL_PKG.save_opd(#{policyIdOc, mode=OUT, jdbcType=INTEGER},
+										 #{openPolNo, mode=OUT, jdbcType=VARCHAR},
+										 #{quotationNo, jdbcType=VARCHAR},
+										 #{optionId, jdbcType=INTEGER},
+										 CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 #{createUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 #{updateUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										);
+		END;
+	</update>
 	
 </mapper>
