@@ -241,6 +241,14 @@
 		<result property="pctPml" 				column="PCT_PML"/>
 		<result property="totalValue" 			column="TOTAL_VALUE"/>
 		<result property="remarks" 				column="REMARKS"/>
+		<result property="cumSecISi" 			column="CUM_SECI_SI"/>
+		<result property="cumSecIISi" 			column="CUM_SECII_SI"/>
+		<result property="cumSecIIISi" 			column="CUM_SECIII_SI"/>
+		<result property="cumTSi" 				column="CUM_TSI"/>
+		<result property="cumSecIPrem" 			column="CUM_SECI_PREM"/>
+		<result property="cumSecIIPrem" 		column="CUM_SECII_PREM"/>
+		<result property="cumSecIIIPrem" 		column="CUM_SECIII_PREM"/>
+		<result property="cumTPrem" 			column="CUM_TPREM"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
@@ -259,6 +267,9 @@
 		<result property="premRt" 					column="PREM_RT"/>
 		<result property="premAmt" 					column="PREM_AMT"/>
 		<result property="addSi" 					column="ADD_SI"/>
+		<result property="discountTag" 				column="DISCOUNT_TAG"/>
+		<result property="cumSi" 					column="CUM_SI"/>
+		<result property="cumPrem" 					column="CUM_PREM"/>	
 		<result property="createUserSec" 			column="CREATE_USER_SEC"/>
 		<result property="createDateSec" 			column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUserSec" 			column="UPDATE_USER_SEC"/>
@@ -590,7 +601,8 @@
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml}, #{totalValue}, #{remarks}, #{createUser}, 
+										   #{pctPml}, #{totalValue}, #{remarks}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
@@ -599,7 +611,9 @@
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi},#{sectioncovers.createUserSec},
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag}, 
+													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
+													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>

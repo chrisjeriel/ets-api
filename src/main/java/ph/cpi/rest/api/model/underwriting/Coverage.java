@@ -23,13 +23,21 @@ public class Coverage {
 	private BigDecimal pctPml;
 	private BigDecimal totalValue;
 	private String remarks;
+	private BigDecimal cumSecISi;
+	private BigDecimal cumSecIISi;
+	private BigDecimal cumSecIIISi;
+	private BigDecimal cumTSi;
+	private BigDecimal cumSecIPrem;
+	private BigDecimal cumSecIIPrem;
+	private BigDecimal cumSecIIIPrem;
+	private BigDecimal cumTPrem;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	
 	private List<SectionCovers> sectionCovers;
-	
+
 	public BigDecimal getSectionISi() {
 		return sectionISi;
 	}
@@ -142,6 +150,70 @@ public class Coverage {
 		this.remarks = remarks;
 	}
 
+	public BigDecimal getCumSecISi() {
+		return cumSecISi;
+	}
+
+	public void setCumSecISi(BigDecimal cumSecISi) {
+		this.cumSecISi = cumSecISi;
+	}
+
+	public BigDecimal getCumSecIISi() {
+		return cumSecIISi;
+	}
+
+	public void setCumSecIISi(BigDecimal cumSecIISi) {
+		this.cumSecIISi = cumSecIISi;
+	}
+
+	public BigDecimal getCumSecIIISi() {
+		return cumSecIIISi;
+	}
+
+	public void setCumSecIIISi(BigDecimal cumSecIIISi) {
+		this.cumSecIIISi = cumSecIIISi;
+	}
+
+	public BigDecimal getCumTSi() {
+		return cumTSi;
+	}
+
+	public void setCumTSi(BigDecimal cumTSi) {
+		this.cumTSi = cumTSi;
+	}
+
+	public BigDecimal getCumSecIPrem() {
+		return cumSecIPrem;
+	}
+
+	public void setCumSecIPrem(BigDecimal cumSecIPrem) {
+		this.cumSecIPrem = cumSecIPrem;
+	}
+
+	public BigDecimal getCumSecIIPrem() {
+		return cumSecIIPrem;
+	}
+
+	public void setCumSecIIPrem(BigDecimal cumSecIIPrem) {
+		this.cumSecIIPrem = cumSecIIPrem;
+	}
+
+	public BigDecimal getCumSecIIIPrem() {
+		return cumSecIIIPrem;
+	}
+
+	public void setCumSecIIIPrem(BigDecimal cumSecIIIPrem) {
+		this.cumSecIIIPrem = cumSecIIIPrem;
+	}
+
+	public BigDecimal getCumTPrem() {
+		return cumTPrem;
+	}
+
+	public void setCumTPrem(BigDecimal cumTPrem) {
+		this.cumTPrem = cumTPrem;
+	}
+
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -188,9 +260,11 @@ public class Coverage {
 				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
-				+ totalValue + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", sectionCovers=" + sectionCovers
-				+ "]";
+				+ totalValue + ", remarks=" + remarks + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi
+				+ ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem
+				+ ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", sectionCovers=" + sectionCovers + "]";
 	}
 	
 	
