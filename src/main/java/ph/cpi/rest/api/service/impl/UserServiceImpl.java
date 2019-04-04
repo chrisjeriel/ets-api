@@ -13,11 +13,14 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
+import ph.cpi.rest.api.model.request.SaveApprovalRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
+import ph.cpi.rest.api.model.response.SaveApprovalResponse;
+import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
@@ -102,6 +105,30 @@ public class UserServiceImpl implements UserService {
 		ugaResponse.setUserGroups(userDao.retrieveMtnUserGroupAccess(params));
 		
 		return ugaResponse;
+	}
+
+	@Override
+	public SaveApprovalResponse saveApproval(SaveApprovalRequest sar) throws SQLException {
+		SaveApprovalResponse saResponse = new SaveApprovalResponse();
+		HashMap<String, Object> saveApprovalParams = new HashMap<String, Object>();
+		saveApprovalParams.put("approvalId",sar.getApprovalId());
+		saveApprovalParams.put("referenceId",sar.getReferenceId());
+		saveApprovalParams.put("module",sar.getModule());
+		saveApprovalParams.put("moduleId",sar.getModuleId());
+		saveApprovalParams.put("details",sar.getDetails());
+		saveApprovalParams.put("assignedDate",sar.getAssignedDate());
+		saveApprovalParams.put("assignedTo",sar.getAssignedTo());
+		saveApprovalParams.put("assignedBy",sar.getAssignedBy());
+		saveApprovalParams.put("approvalTag",sar.getApprovalTag());
+		saveApprovalParams.put("createUser",sar.getCreateUser());
+		saveApprovalParams.put("createDate",sar.getCreateDate());
+		saveApprovalParams.put("updateUser",sar.getUpdateUser());
+		saveApprovalParams.put("updateDate",sar.getUpdateDate());
+		
+		saResponse.setReturnCode(userDao.saveApproval(saveApprovalParams));
+		
+		logger.info("saveApproval : " + saResponse.toString());
+		return saResponse;
 	}
 
 	@Override

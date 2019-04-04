@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,11 +17,13 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
+import ph.cpi.rest.api.model.request.SaveApprovalRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
+import ph.cpi.rest.api.model.response.SaveApprovalResponse;
 import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
@@ -91,5 +95,12 @@ public class UserController {
 		logger.info("RetrieveMtnUserGroupAccessRequest : " + rmugar.toString());
 		
 		return userService.retrieveMtnUserGroupAccess(rmugar);
+	}
+	
+	@PostMapping(path="saveApproval")
+	public @ResponseBody SaveApprovalResponse saveApproval(@RequestBody SaveApprovalRequest sar) throws SQLException {
+		logger.info("POST: /api/user-service/saveApproval");
+		logger.info("SaveApprovalRequest : " + sar.toString());
+		return userService.saveApproval(sar);
 	}
 }
