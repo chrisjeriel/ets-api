@@ -12,6 +12,7 @@ public class Deductibles {
 	private String deductibleCd;
 	private String deductibleTitle;
 	private String deductibleType;
+	private String typeDesc;
 	private BigDecimal deductibleRate;
 	private BigDecimal deductibleAmt;
 	private String lineCd;
@@ -24,17 +25,11 @@ public class Deductibles {
 	private LocalDateTime createDate;
 	private String updateUser;
 	private LocalDateTime updateDate;
-	public String getLineCd() {
-		return lineCd;
+	public String getActiveTag() {
+		return activeTag;
 	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
-	public String getLineDesc() {
-		return lineDesc;
-	}
-	public void setLineDesc(String lineDesc) {
-		this.lineDesc = lineDesc;
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getDeductibleCd() {
 		return deductibleCd;
@@ -54,6 +49,12 @@ public class Deductibles {
 	public void setDeductibleType(String deductibleType) {
 		this.deductibleType = deductibleType;
 	}
+	public String getTypeDesc() {
+		return typeDesc;
+	}
+	public void setTypeDesc(String typeDesc) {
+		this.typeDesc = typeDesc;
+	}
 	public BigDecimal getDeductibleRate() {
 		return deductibleRate;
 	}
@@ -65,6 +66,18 @@ public class Deductibles {
 	}
 	public void setDeductibleAmt(BigDecimal deductibleAmt) {
 		this.deductibleAmt = deductibleAmt;
+	}
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getLineDesc() {
+		return lineDesc;
+	}
+	public void setLineDesc(String lineDesc) {
+		this.lineDesc = lineDesc;
 	}
 	public BigDecimal getMinAmt() {
 		return minAmt;
@@ -83,12 +96,6 @@ public class Deductibles {
 	}
 	public void setDeductibleText(String deductibleText) {
 		this.deductibleText = deductibleText;
-	}
-	public String getActiveTag() {
-		return activeTag;
-	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -122,13 +129,12 @@ public class Deductibles {
 	}
 	@Override
 	public String toString() {
-		return "Deductibles [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", deductibleCd=" + deductibleCd
-				+ ", deductibleTitle=" + deductibleTitle + ", deductibleType=" + deductibleType + ", deductibleRate="
-				+ deductibleRate + ", deductibleAmt=" + deductibleAmt + ", minAmt=" + minAmt + ", maxAmt=" + maxAmt
-				+ ", deductibleText=" + deductibleText + ", activeTag=" + activeTag + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "Deductibles [activeTag=" + activeTag + ", deductibleCd=" + deductibleCd + ", deductibleTitle="
+				+ deductibleTitle + ", deductibleType=" + deductibleType + ", typeDesc=" + typeDesc
+				+ ", deductibleRate=" + deductibleRate + ", deductibleAmt=" + deductibleAmt + ", lineCd=" + lineCd
+				+ ", lineDesc=" + lineDesc + ", minAmt=" + minAmt + ", maxAmt=" + maxAmt + ", deductibleText="
+				+ deductibleText + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

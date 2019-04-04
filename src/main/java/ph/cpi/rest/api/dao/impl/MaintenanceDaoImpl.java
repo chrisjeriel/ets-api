@@ -280,4 +280,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<MtnCharges> charges = sqlSession.selectList("retrieveMtnCharges",params);
 		return charges;
 	}
+
+	@Override
+	public Integer saveMtnDeductibles(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnDeductibles",params);
+		return errorCode;
+	}
 }
