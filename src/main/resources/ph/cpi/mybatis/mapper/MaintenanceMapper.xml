@@ -349,6 +349,8 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Deductibles" id="deductibles">
 		<result property="lineCd" 				column="LINE_CD"/>
 		<result property="lineDesc" 			column="DESCRIPTION"/>
+		<result property="coverCd"	 			column="COVER_CD"/>
+		<result property="endtCd" 				column="ENDT_CD"/>
 		<result property="deductibleCd" 		column="DEDUCTIBLE_CD"/>
 		<result property="deductibleTitle" 		column="DEDUCTIBLE_TITLE"/>
 		<result property="deductibleType" 		column="DEDUCTIBLE_TYPE"/>
@@ -359,17 +361,26 @@
 		<result property="maxAmt" 				column="MAX_AMT"/>
 		<result property="deductibleText" 		column="DEDUCTIBLE_TEXT"/>
 		<result property="activeTag" 			column="ACTIVE_TAG"/>
+		<result property="defaultTag" 			column="DEFAULT_TAG"/>
 		<result property="remarks" 				column="REMARKS"/>
 		<result property="createUser" 			column="CREATE_USER"/>
-		<result property="createDate" 			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate" 			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
-		<result property="updateDate" 			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveMtnDeductibles" resultMap="deductibles">
-		SELECT * FROM TABLE(MTN_DEDUCTIBLES_PKG.ret_mtn_deductibles(#{lineCd, jdbcType=VARCHAR},
-		#{coverCd, jdbcType=VARCHAR},#{endtCd, jdbcType=VARCHAR},#{deductibleCd, jdbcType=VARCHAR},
-		#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_DEDUCTIBLES_PKG.ret_mtn_deductibles(
+										#{lineCd, jdbcType=VARCHAR},
+										#{coverCd, jdbcType=VARCHAR},
+										#{endtCd, jdbcType=VARCHAR},
+										#{deductibleCd, jdbcType=VARCHAR},
+										#{activeTag, jdbcType=VARCHAR},
+										#{defaultTag, jdbcType=VARCHAR},
+										'',
+										1,
+										'',
+										''))
 	</select>
 	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
@@ -834,8 +845,6 @@
     		<foreach collection="deleteDeductibles" item="deleteD">
     			MTN_DEDUCTIBLES_PKG.del_mtn_deductibles(
 	    			#{deleteD.lineCd,jdbcType=VARCHAR},
-					#{deleteD.coverCd,jdbcType=INTEGER},
-					#{deleteD.endtCd,jdbcType=VARCHAR},
 					#{deleteD.deductibleCd,jdbcType=VARCHAR}
 	    		);
     		</foreach>

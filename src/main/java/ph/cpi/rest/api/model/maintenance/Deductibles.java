@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.maintenance;
 import java.math.BigDecimal;
 
 import org.apache.ibatis.type.Alias;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
 @Alias("DeductiblesMtn")
@@ -10,6 +11,9 @@ public class Deductibles {
 
 	private String activeTag;
 	private String deductibleCd;
+	private Integer	coverCd;
+	private Integer endtCd;
+	private String defaultTag;
 	private String deductibleTitle;
 	private String deductibleType;
 	private String typeDesc;
@@ -22,9 +26,9 @@ public class Deductibles {
 	private String deductibleText;
 	private String remarks;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	public String getActiveTag() {
 		return activeTag;
 	}
@@ -36,6 +40,24 @@ public class Deductibles {
 	}
 	public void setDeductibleCd(String deductibleCd) {
 		this.deductibleCd = deductibleCd;
+	}
+	public Integer getCoverCd() {
+		return coverCd;
+	}
+	public void setCoverCd(Integer coverCd) {
+		this.coverCd = coverCd;
+	}
+	public Integer getEndtCd() {
+		return endtCd;
+	}
+	public void setEndtCd(Integer endtCd) {
+		this.endtCd = endtCd;
+	}
+	public String getDefaultTag() {
+		return defaultTag;
+	}
+	public void setDefaultTag(String defaultTag) {
+		this.defaultTag = defaultTag;
 	}
 	public String getDeductibleTitle() {
 		return deductibleTitle;
@@ -109,10 +131,10 @@ public class Deductibles {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -121,20 +143,21 @@ public class Deductibles {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "Deductibles [activeTag=" + activeTag + ", deductibleCd=" + deductibleCd + ", deductibleTitle="
-				+ deductibleTitle + ", deductibleType=" + deductibleType + ", typeDesc=" + typeDesc
-				+ ", deductibleRate=" + deductibleRate + ", deductibleAmt=" + deductibleAmt + ", lineCd=" + lineCd
-				+ ", lineDesc=" + lineDesc + ", minAmt=" + minAmt + ", maxAmt=" + maxAmt + ", deductibleText="
-				+ deductibleText + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Deductibles [activeTag=" + activeTag + ", deductibleCd=" + deductibleCd + ", coverCd=" + coverCd
+				+ ", endtCd=" + endtCd + ", defaultTag=" + defaultTag + ", deductibleTitle=" + deductibleTitle
+				+ ", deductibleType=" + deductibleType + ", typeDesc=" + typeDesc + ", deductibleRate=" + deductibleRate
+				+ ", deductibleAmt=" + deductibleAmt + ", lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", minAmt="
+				+ minAmt + ", maxAmt=" + maxAmt + ", deductibleText=" + deductibleText + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
+
 }
