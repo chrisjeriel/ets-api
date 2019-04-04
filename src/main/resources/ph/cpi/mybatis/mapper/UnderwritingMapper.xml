@@ -144,6 +144,7 @@
 		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="status"	 			column="STATUS"/>
 		<result property="statusDesc"	 		column="STATUS_DESC"/>
+		<result property="altNo"	 		    column="ALT_NO"/>
 		
 		<association property="project" 		resultMap="projectMap"/>	
 	</resultMap>
@@ -215,7 +216,7 @@
 		<result property="duration" 	column="DURATION"/>
 		<result property="testing" 		column="TESTING"/>
 		<result property="ipl" 			column="IPL"/>
-		<result property="timeExc" 		column="TIME_EXEC"/>
+		<result property="timeExc" 		column="TIME_EXC"/>
 		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>
 		<result property="createUser" 	column="PRJ_CREATE_USER"/>
 		<result property="createDate" 	column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -241,6 +242,14 @@
 		<result property="pctPml" 				column="PCT_PML"/>
 		<result property="totalValue" 			column="TOTAL_VALUE"/>
 		<result property="remarks" 				column="REMARKS"/>
+		<result property="cumSecISi" 			column="CUM_SECI_SI"/>
+		<result property="cumSecIISi" 			column="CUM_SECII_SI"/>
+		<result property="cumSecIIISi" 			column="CUM_SECIII_SI"/>
+		<result property="cumTSi" 				column="CUM_TSI"/>
+		<result property="cumSecIPrem" 			column="CUM_SECI_PREM"/>
+		<result property="cumSecIIPrem" 		column="CUM_SECII_PREM"/>
+		<result property="cumSecIIIPrem" 		column="CUM_SECIII_PREM"/>
+		<result property="cumTPrem" 			column="CUM_TPREM"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
@@ -259,6 +268,9 @@
 		<result property="premRt" 					column="PREM_RT"/>
 		<result property="premAmt" 					column="PREM_AMT"/>
 		<result property="addSi" 					column="ADD_SI"/>
+		<result property="discountTag" 				column="DISCOUNT_TAG"/>
+		<result property="cumSi" 					column="CUM_SI"/>
+		<result property="cumPrem" 					column="CUM_PREM"/>	
 		<result property="createUserSec" 			column="CREATE_USER_SEC"/>
 		<result property="createDateSec" 			column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUserSec" 			column="UPDATE_USER_SEC"/>
@@ -557,9 +569,14 @@
 	
 	<update id="savePolAlopItemMap" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deletePolAlopItemList" item="alopItem">
+			BEGIN
+		    	POL_ALOP_ITEM_PKG.del_pol_alop_item(#{policyId},#{alopItem.itemNo, jdbcType=INTEGER});
+			END;
+			</foreach>
 			<foreach collection="savePolAlopItemList" item="alopItem">
 			    	POL_ALOP_ITEM_PKG.save_pol_alop_item
-			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity, jdbcType=INTEGER},
 			    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 			    	#{alopItem.createUser},
 			    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -590,7 +607,8 @@
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml}, #{totalValue}, #{remarks}, #{createUser}, 
+										   #{pctPml}, #{totalValue}, #{remarks}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
@@ -599,7 +617,9 @@
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi},#{sectioncovers.createUserSec},
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag}, 
+													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
+													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
@@ -636,6 +656,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="polAttachmentOcMap">
 	    <result property="policyIdOc" 		column="POLICY_ID_OC"/> 
 		<result property="openPolicyNo" 	column="OPEN_POLICY_NO"/> 
+		
 		<association property="attachmentsOc" resultMap="assocAttachmentOcMap"></association>
 	</resultMap>
 	
@@ -853,7 +874,7 @@
 											   #{duration, jdbcType=VARCHAR},
 											   #{testing, jdbcType=VARCHAR},
 											   #{ipl, jdbcType=INTEGER},
-											   #{timeExec, jdbcType=INTEGER},
+											   #{timeExc, jdbcType=INTEGER},
 											   #{noClaimPd, jdbcType=INTEGER},
 											   #{prjCreateUser, jdbcType=VARCHAR},
 											   CAST(to_timestamp(#{prjCreateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -1042,19 +1063,215 @@
 	
 	<update id="savePDGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			POL_GEN_INFO_PKG.save_pd_gen_info(#{policyId, mode=OUT, jdbcType=INTEGER},
-											  #{policyNo, mode=OUT, jdbcType=VARCHAR},
-											  #{quotationNo, mode=OUT, jdbcType=VARCHAR},
-											  #{holdCoverNo, mode=OUT, jdbcType=VARCHAR},
-											  #{openPolicyNo, mode=OUT, jdbcType=VARCHAR},
-											  #{optionId, mode=OUT, jdbcType=INTEGER},
-											  CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-											  CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-											  #{createUser, jdbcType=VARCHAR},
-											  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-											  #{updateUser, jdbcType=VARCHAR},
-											  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-											 )
+			CONVERT_QU_TO_POL_PKG.save_pd_gen_info(#{policyId, mode=OUT, jdbcType=INTEGER},
+											  	   #{policyNo, mode=OUT, jdbcType=VARCHAR},
+											  	   #{lineCd, jdbcType=VARCHAR},
+											  	   #{quotationNo, jdbcType=VARCHAR},
+											  	   #{holdCoverNo, jdbcType=VARCHAR},
+												   #{openPolicyNo, jdbcType=VARCHAR},
+												   #{optionId, jdbcType=INTEGER},
+												   CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{createUser, jdbcType=VARCHAR},
+												   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{updateUser, jdbcType=VARCHAR},
+												   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												  );
+		END;
+	</update>
+	
+	<update id="savePDProject" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_project(#{policyId, jdbcType=INTEGER},
+												  #{quotationNo, jdbcType=VARCHAR},
+												  #{holdCoverNo, jdbcType=VARCHAR},
+												  #{openPolicyNo, jdbcType=VARCHAR},
+												  #{createUser, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{updateUser, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											     );
+		END;
+	</update>
+	
+	<update id="savePDCoverage" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_coverage(#{policyId, jdbcType=INTEGER},
+												   #{quotationNo, jdbcType=VARCHAR},
+												   #{holdCoverNo, jdbcType=VARCHAR},
+												   #{openPolicyNo, jdbcType=VARCHAR},
+												   #{optionId, jdbcType=INTEGER},
+												   #{createUser, jdbcType=VARCHAR},
+												   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{updateUser, jdbcType=VARCHAR},
+												   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											      );
+		END;
+	</update>
+	
+	<update id="savePDSecCovers" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_sec_cover(#{policyId, jdbcType=INTEGER},
+													#{quotationNo, jdbcType=VARCHAR},
+													#{holdCoverNo, jdbcType=VARCHAR},
+													#{openPolicyNo, jdbcType=VARCHAR},
+													#{optionId, jdbcType=INTEGER},
+													#{createUser, jdbcType=VARCHAR},
+													CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{updateUser, jdbcType=VARCHAR},
+													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											   		);
+		END;
+	</update>	
+	
+	<update id="savePDDeductibles" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_deductibles(#{policyId, jdbcType=INTEGER},
+											  		  #{quotationNo, jdbcType=VARCHAR},
+											  		  #{holdCoverNo, jdbcType=VARCHAR},
+											  		  #{openPolicyNo, jdbcType=VARCHAR},
+											  		  #{optionId, jdbcType=INTEGER},
+											  		  #{createUser, jdbcType=VARCHAR},
+											  		  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  		  #{updateUser, jdbcType=VARCHAR},
+											  		  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										     		  );
+		END;
+	</update>
+	
+	<update id="savePDAlop" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_alop(#{policyId, jdbcType=INTEGER},
+											   #{quotationNo, jdbcType=VARCHAR},
+											   #{holdCoverNo, jdbcType=VARCHAR},
+											   #{openPolicyNo, jdbcType=VARCHAR},
+											   #{optionId, jdbcType=INTEGER},
+											   #{createUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{updateUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										      );
+		END;
+	</update>
+	
+	<update id="savePDAlopItem" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_alop_item(#{policyId, jdbcType=INTEGER},
+												    #{quotationNo, jdbcType=VARCHAR},
+												    #{holdCoverNo, jdbcType=VARCHAR},
+												    #{openPolicyNo, jdbcType=VARCHAR},
+												    #{optionId, jdbcType=INTEGER},
+												    #{createUser, jdbcType=VARCHAR},
+												    CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												    #{updateUser, jdbcType=VARCHAR},
+												    CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											       );
+		END;
+	</update>
+	
+	<update id="savePDEndorsements" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_endorsements(#{policyId, jdbcType=INTEGER},
+													   #{quotationNo, jdbcType=VARCHAR},
+													   #{holdCoverNo, jdbcType=VARCHAR},
+													   #{openPolicyNo, jdbcType=VARCHAR},
+													   #{optionId, jdbcType=INTEGER},
+													   #{createUser, jdbcType=VARCHAR},
+													   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													   #{updateUser, jdbcType=VARCHAR},
+													   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												      );
+		END;
+	</update>
+	
+	<update id="saveSumInsOC" parameterType="java.util.Map">
+		BEGIN
+			POL_COVERAGE_OC_PKG.save_sum_ins_oc(#{policyId},#{pctShare},#{pctPml},#{totalValue},#{updateUser, jdbcType=VARCHAR},
+											  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<select id="retrievePolicyOcListing" parameterType="java.util.Map" resultMap="PolicyOcListingMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_OC_PKG.ret_pol_list_oc(#{policyNo, jdbcType=VARCHAR},
+															 #{cessionDesc, jdbcType=VARCHAR},
+															 #{cedingName, jdbcType=VARCHAR},
+															 #{lineClassDesc, jdbcType=VARCHAR},
+															 #{insuredDesc, jdbcType=VARCHAR},
+															 #{riskName, jdbcType=VARCHAR},
+															 #{objectDesc, jdbcType=VARCHAR},
+															 #{site, jdbcType=VARCHAR},
+															 #{currencyCd, jdbcType=VARCHAR},
+															 #{totalSiLess, jdbcType=DECIMAL},
+															 #{totalSiGrt, jdbcType=DECIMAL},
+															 #{totalPremLess, jdbcType=DECIMAL},
+															 #{totalPremGrt, jdbcType=DECIMAL},
+															 CAST(to_timestamp(#{issueDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{issueDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{statusDesc, jdbcType=VARCHAR},
+															 null,
+															 null,
+															 null,
+															 null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="PolicyOcListingMap">
+		<result property="policyIdOc"           column="POLICY_ID_OC"/>
+        <result property="openPolicyNo"         column="POLICY_NO"/>
+        <result property="cessionDesc"          column="CESSION_DESC"/>
+        <result property="cedingId"             column="CEDING_ID"/>
+        <result property="cedingName"           column="CEDING_NAME"/>
+        <result property="lineClassDesc"        column="LINE_CLASS_DESC"/>
+        <result property="insuredDesc"          column="INSURED_DESC"/>
+        <result property="currencyCd"           column="CURRENCY_CD"/>
+        <result property="issueDate"            column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate"           column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="inceptDate"           column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="acctDate"             column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="statusDesc"           column="STATUS_DESC"/>
+        <association property="project" resultMap="PolProjOcListingMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ProjectOc" id="PolProjOcListingMap">
+		<result property="riskName"           	column="RISK_NAME"/>
+        <result property="objectDesc"           column="OBJECT_DESC"/>
+        <result property="site"           		column="SITE"/>
+        <association property="coverageOc" resultMap="PolCovOcListingMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.CoverageOc" id="PolCovOcListingMap">
+		<result property="totalSi"          column="TOTAL_SI"/>
+        <result property="totalPrem"           column="TOTAL_PREM"/>
+	</resultMap>
+
+	<update id="updatePolHoldCoverStatus" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POL_HOLD_COVER_PKG.upd_hc_status(#{policyId, jdbcType=INTEGER},
+											 #{holdCovId, jdbcType=INTEGER},
+											 #{updateUser, jdbcType=VARCHAR},
+											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											 );
+		END;
+	</update>
+	
+	<update id="saveOpenPolDetails" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CONVERT_QU_TO_OPENPOL_PKG.save_opd(#{policyIdOc, mode=OUT, jdbcType=INTEGER},
+										 #{openPolNo, mode=OUT, jdbcType=VARCHAR},
+										 #{quotationNo, jdbcType=VARCHAR},
+										 #{optionId, jdbcType=INTEGER},
+										 CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 #{createUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										 #{updateUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										);
 		END;
 	</update>
 	

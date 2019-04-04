@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
@@ -23,147 +24,263 @@ public class SavePolCoverageRequest {
 	private  Integer pctPml;
 	private  Integer totalValue;
 	private  String remarks;
+	private Integer cumSecISi;
+	private Integer cumSecIISi;
+	private Integer cumSecIIISi;
+	private Integer cumTSi;
+	private Integer cumSecIPrem;
+	private Integer cumSecIIPrem;
+	private Integer cumSecIIIPrem;
+	private Integer cumTPrem;
 	private  String createUser;
 	private  String createDate;
 	private  String updateUser;
 	private  String updateDate;
 	
 	private List<SectionCoversUw> saveSectionCovers;
-	
-	
+
 	public Integer getPolicyId() {
 		return policyId;
 	}
+
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
+
 	public Integer getRiskId() {
 		return riskId;
 	}
+
 	public void setRiskId(Integer riskId) {
 		this.riskId = riskId;
 	}
+
 	public Integer getProjId() {
 		return projId;
 	}
+
 	public void setProjId(Integer projId) {
 		this.projId = projId;
 	}
+
 	public Integer getSectionISi() {
 		return sectionISi;
 	}
+
 	public void setSectionISi(Integer sectionISi) {
 		this.sectionISi = sectionISi;
 	}
+
 	public Integer getSectionIISi() {
 		return sectionIISi;
 	}
+
 	public void setSectionIISi(Integer sectionIISi) {
 		this.sectionIISi = sectionIISi;
 	}
+
 	public Integer getSectionIIISi() {
 		return sectionIIISi;
 	}
+
 	public void setSectionIIISi(Integer sectionIIISi) {
 		this.sectionIIISi = sectionIIISi;
 	}
+
 	public Integer getTotalSi() {
 		return totalSi;
 	}
+
 	public void setTotalSi(Integer totalSi) {
 		this.totalSi = totalSi;
 	}
+
 	public Integer getSectionIPrem() {
 		return sectionIPrem;
 	}
+
 	public void setSectionIPrem(Integer sectionIPrem) {
 		this.sectionIPrem = sectionIPrem;
 	}
+
 	public Integer getSectionIIPrem() {
 		return sectionIIPrem;
 	}
+
 	public void setSectionIIPrem(Integer sectionIIPrem) {
 		this.sectionIIPrem = sectionIIPrem;
 	}
+
 	public Integer getSectionIIIPrem() {
 		return sectionIIIPrem;
 	}
+
 	public void setSectionIIIPrem(Integer sectionIIIPrem) {
 		this.sectionIIIPrem = sectionIIIPrem;
 	}
+
 	public Integer getTotalPrem() {
 		return totalPrem;
 	}
+
 	public void setTotalPrem(Integer totalPrem) {
 		this.totalPrem = totalPrem;
 	}
+
 	public String getCurrencyCd() {
 		return currencyCd;
 	}
+
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
+
 	public Integer getCurrencyRt() {
 		return currencyRt;
 	}
+
 	public void setCurrencyRt(Integer currencyRt) {
 		this.currencyRt = currencyRt;
 	}
+
 	public Integer getPctShare() {
 		return pctShare;
 	}
+
 	public void setPctShare(Integer pctShare) {
 		this.pctShare = pctShare;
 	}
+
 	public Integer getPctPml() {
 		return pctPml;
 	}
+
 	public void setPctPml(Integer pctPml) {
 		this.pctPml = pctPml;
 	}
+
 	public Integer getTotalValue() {
 		return totalValue;
 	}
+
 	public void setTotalValue(Integer totalValue) {
 		this.totalValue = totalValue;
 	}
+
 	public String getRemarks() {
 		return remarks;
 	}
+
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
+	
+
+	public Integer getCumSecISi() {
+		return cumSecISi;
+	}
+
+	public void setCumSecISi(Integer cumSecISi) {
+		this.cumSecISi = cumSecISi;
+	}
+
+	public Integer getCumSecIISi() {
+		return cumSecIISi;
+	}
+
+	public void setCumSecIISi(Integer cumSecIISi) {
+		this.cumSecIISi = cumSecIISi;
+	}
+
+	public Integer getCumSecIIISi() {
+		return cumSecIIISi;
+	}
+
+	public void setCumSecIIISi(Integer cumSecIIISi) {
+		this.cumSecIIISi = cumSecIIISi;
+	}
+
+	public Integer getCumTSi() {
+		return cumTSi;
+	}
+
+	public void setCumTSi(Integer cumTSi) {
+		this.cumTSi = cumTSi;
+	}
+
+	public Integer getCumSecIPrem() {
+		return cumSecIPrem;
+	}
+
+	public void setCumSecIPrem(Integer cumSecIPrem) {
+		this.cumSecIPrem = cumSecIPrem;
+	}
+
+	public Integer getCumSecIIPrem() {
+		return cumSecIIPrem;
+	}
+
+	public void setCumSecIIPrem(Integer cumSecIIPrem) {
+		this.cumSecIIPrem = cumSecIIPrem;
+	}
+
+	public Integer getCumSecIIIPrem() {
+		return cumSecIIIPrem;
+	}
+
+	public void setCumSecIIIPrem(Integer cumSecIIIPrem) {
+		this.cumSecIIIPrem = cumSecIIIPrem;
+	}
+
+	public Integer getCumTPrem() {
+		return cumTPrem;
+	}
+
+	public void setCumTPrem(Integer cumTPrem) {
+		this.cumTPrem = cumTPrem;
+	}
+
 	public String getCreateUser() {
 		return createUser;
 	}
+
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
+
 	public String getCreateDate() {
 		return createDate;
 	}
+
 	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
+
 	public String getUpdateUser() {
 		return updateUser;
 	}
+
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	
+
 	public String getUpdateDate() {
 		return updateDate;
 	}
+
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+
 	public List<SectionCoversUw> getSaveSectionCovers() {
 		return saveSectionCovers;
 	}
+
 	public void setSaveSectionCovers(List<SectionCoversUw> saveSectionCovers) {
 		this.saveSectionCovers = saveSectionCovers;
 	}
+
 	@Override
 	public String toString() {
 		return "SavePolCoverageRequest [policyId=" + policyId + ", riskId=" + riskId + ", projId=" + projId
@@ -171,10 +288,13 @@ public class SavePolCoverageRequest {
 				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
-				+ totalValue + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveSectionCovers="
-				+ saveSectionCovers + "]";
+				+ totalValue + ", remarks=" + remarks + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi
+				+ ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem
+				+ ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", saveSectionCovers=" + saveSectionCovers + "]";
 	}
+	
 	
 }
 
@@ -188,6 +308,9 @@ class SectionCoversUw {
 	private Integer premRt;
 	private Integer premAmt;
 	private String addSi;
+	private String discountTag;
+	private String cumSi;
+	private String cumPrem;
 	private String createUserSec;
 	private String createDateSec;
 	private String updateUserSec;
@@ -240,13 +363,30 @@ class SectionCoversUw {
 	public void setAddSi(String addSi) {
 		this.addSi = addSi;
 	}
+	public String getDiscountTag() {
+		return discountTag;
+	}
+	public void setDiscountTag(String discountTag) {
+		this.discountTag = discountTag;
+	}
+	public String getCumSi() {
+		return cumSi;
+	}
+	public void setCumSi(String cumSi) {
+		this.cumSi = cumSi;
+	}
+	public String getCumPrem() {
+		return cumPrem;
+	}
+	public void setCumPrem(String cumPrem) {
+		this.cumPrem = cumPrem;
+	}
 	public String getCreateUserSec() {
 		return createUserSec;
 	}
 	public void setCreateUserSec(String createUserSec) {
 		this.createUserSec = createUserSec;
 	}
-	
 	public String getCreateDateSec() {
 		return createDateSec;
 	}
@@ -259,7 +399,6 @@ class SectionCoversUw {
 	public void setUpdateUserSec(String updateUserSec) {
 		this.updateUserSec = updateUserSec;
 	}
-	
 	public String getUpdateDateSec() {
 		return updateDateSec;
 	}
@@ -268,10 +407,11 @@ class SectionCoversUw {
 	}
 	@Override
 	public String toString() {
-		return "SectionCovers [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
+		return "SectionCoversUw [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
 				+ bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi="
-				+ addSi + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec=" + updateUserSec
-				+ ", updateDateSec=" + updateDateSec + "]";
+				+ addSi + ", discountTag=" + discountTag + ", cumSi=" + cumSi + ", cumPrem=" + cumPrem
+				+ ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
+				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
 	
 	
