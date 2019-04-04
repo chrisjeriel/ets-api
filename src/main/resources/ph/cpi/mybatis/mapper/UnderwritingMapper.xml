@@ -568,9 +568,14 @@
 	
 	<update id="savePolAlopItemMap" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deletePolAlopItemList" item="alopItem">
+			BEGIN
+		    	POL_ALOP_ITEM_PKG.del_pol_alop_item(#{policyId},#{alopItem.itemNo, jdbcType=INTEGER});
+			END;
+			</foreach>
 			<foreach collection="savePolAlopItemList" item="alopItem">
 			    	POL_ALOP_ITEM_PKG.save_pol_alop_item
-			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+			    	(#{policyId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity, jdbcType=INTEGER},
 			    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 			    	#{alopItem.createUser},
 			    	CAST(to_timestamp(#{alopItem.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
