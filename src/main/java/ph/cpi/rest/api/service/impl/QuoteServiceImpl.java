@@ -129,10 +129,12 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteListingParams.put("currencyCd", rqlp.getCurrencyCd());
 //		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate().isEmpty() ? rqlp.getIssueDate() : date.toDate(rqlp.getIssueDate()));
 //		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
-		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate());
+		retrieveQuoteListingParams.put("issueDateFrom", rqlp.getIssueDateFrom());
+		retrieveQuoteListingParams.put("issueDateTo", rqlp.getIssueDateTo());
 		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
 		retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
+		retrieveQuoteListingParams.put("line", rqlp.getLine());
 		/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
 		retrieveQuoteListingParams.put("count", rqlp.getPaginationRequest().getCount());
 		retrieveQuoteListingParams.put("sortKey", rqlp.getSortRequest().getSortKey());

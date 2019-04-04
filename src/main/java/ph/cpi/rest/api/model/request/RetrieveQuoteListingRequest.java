@@ -11,6 +11,7 @@ public class RetrieveQuoteListingRequest {
 	private Integer quoteId;
 	private String cessionDesc;
 	private String lineClassCdDesc;
+	private String line;
 	private String status;
 	private String cedingName;
 	private String principalName;
@@ -23,7 +24,8 @@ public class RetrieveQuoteListingRequest {
 	private String currencyCd;
 //	private LocalDateTime issueDate;
 //	private LocalDateTime expiryDate;
-	private String issueDate;
+	private String issueDateFrom;
+	private String issueDateTo;
 	private String expiryDate;
 	private String reqBy;
 	private String createUser;
@@ -109,11 +111,17 @@ public class RetrieveQuoteListingRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getIssueDate() {
-		return issueDate;
+	public String getIssueDateFrom() {
+		return issueDateFrom;
 	}
-	public void setIssueDate(String issueDate) {
-		this.issueDate = issueDate;
+	public void setIssueDateFrom(String issueDateFrom) {
+		this.issueDateFrom = issueDateFrom;
+	}
+	public String getIssueDateTo() {
+		return issueDateTo;
+	}
+	public void setIssueDateTo(String issueDateTo) {
+		this.issueDateTo = issueDateTo;
 	}
 	public String getExpiryDate() {
 		return expiryDate;
@@ -145,15 +153,22 @@ public class RetrieveQuoteListingRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public String getLine() {
+		return line;
+	}
+	public void setLine(String line) {
+		this.line = line;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
-				+ cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", status=" + status + ", cedingName="
-				+ cedingName + ", principalName=" + principalName + ", contractorName=" + contractorName
-				+ ", insuredDesc=" + insuredDesc + ", riskName=" + riskName + ", objectDesc=" + objectDesc + ", site="
-				+ site + ", currencyCd=" + currencyCd + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate
-				+ ", reqBy=" + reqBy + ", createUser=" + createUser + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+				+ cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", line=" + line + ", status=" + status
+				+ ", cedingName=" + cedingName + ", principalName=" + principalName + ", contractorName="
+				+ contractorName + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName + ", objectDesc="
+				+ objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom=" + issueDateFrom
+				+ ", issueDateTo=" + issueDateTo + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", createUser="
+				+ createUser + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 }
