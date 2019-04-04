@@ -890,17 +890,18 @@
 	</select>
 	
 	<select id="retrieveQuoteHoldCoverListing" resultMap="quotationListingMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{quotationNo,jdbcType=VARCHAR},
+			SELECT * FROM TABLE(QU_HOLD_COVER_PKG.ret_qu_hc_list(#{holdCoverNo,jdbcType=VARCHAR},
 																		      #{status,jdbcType=VARCHAR},
 																		      #{cedingName,jdbcType=VARCHAR},
-																		      #{holdCoverNo,jdbcType=VARCHAR},
+																		      #{quotationNo,jdbcType=VARCHAR},
 																		      #{riskName,jdbcType=VARCHAR},
 																		      #{insuredDesc,jdbcType=VARCHAR},
 																			  #{periodFrom,jdbcType=DATE},
 																			  #{periodTo,jdbcType=DATE},
 																			  #{compRefHoldCovNo,jdbcType=VARCHAR},
 																			  #{reqBy,jdbcType=VARCHAR},
-																			  #{reqDate,jdbcType=DATE},
+																			  #{reqDateFrom,jdbcType=DATE},
+																			  #{reqDateTo,jdbcType=DATE},
 																			  #{expiringInDays,jdbcType=INTEGER},
 																			  '',
 																			  '',
