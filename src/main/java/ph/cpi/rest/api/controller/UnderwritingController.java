@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
@@ -62,6 +63,7 @@ import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
@@ -337,5 +339,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/saveOpenPolDetails");
 		logger.info("SaveOpenPolDetailsRequest : " + sopdr.toString());
 		return underwritingService.saveOpenPolDetails(sopdr);
+	}
+	
+	@GetMapping(path="retrievePolicyApprover")
+	public @ResponseBody RetrievePolicyApproverResponse retrieveQuoteApprover(RetrievePolicyApproverRequest rqar) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolicyApprover");
+		logger.info("RetrievePolicyApproverRequest : " + rqar.toString());
+		return underwritingService.retrievePolicyApprover(rqar);
 	}
 }

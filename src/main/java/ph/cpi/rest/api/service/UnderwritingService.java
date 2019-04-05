@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
@@ -53,6 +54,7 @@ import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
@@ -113,4 +115,5 @@ public interface UnderwritingService {
 	public RetrievePolicyOCListingResponse retrievePolicyOCListing(RetrievePolicyOCListingRequest rplp) throws SQLException;
 	public UpdatePolHoldCoverStatusResponse updatePolHoldCoverStatus(UpdatePolHoldCoverStatusRequest uphcsr) throws SQLException;
 	public SaveOpenPolDetailsResponse saveOpenPolDetails(SaveOpenPolDetailsRequest sopdr) throws SQLException;
+	public RetrievePolicyApproverResponse retrievePolicyApprover(RetrievePolicyApproverRequest rpaRequest) throws SQLException;
 }

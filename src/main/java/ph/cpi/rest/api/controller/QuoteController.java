@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +17,7 @@ import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
@@ -60,6 +60,7 @@ import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
@@ -449,5 +450,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/renumberQuoteOptions");
 		logger.info("RenumberQuoteOptionsRequest : " + rqds.toString());
 		return quoteService.renumberQuoteOptions(rqds);
+	}
+	
+	@GetMapping(path="retrieveQuoteApprover")
+	public @ResponseBody RetrieveQuoteApproverResponse retrieveQuoteApprover(RetrieveQuoteApproverRequest rqar) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteApprover");
+		logger.info("RetrieveQuoteEndorsementsRequest : " + rqar.toString());
+		return quoteService.retrieveQuoteApprover(rqar);
 	}
 }

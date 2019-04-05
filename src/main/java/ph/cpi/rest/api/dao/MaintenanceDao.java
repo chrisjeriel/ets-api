@@ -65,4 +65,5 @@ public interface MaintenanceDao {
 	public List<MtnCharges> retrieveMtnCharges(final HashMap<String, Object> params) throws SQLException;
 	
 	public Integer saveMtnLine(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnDeductibles(final HashMap<String, Object> params) throws SQLException;
 }

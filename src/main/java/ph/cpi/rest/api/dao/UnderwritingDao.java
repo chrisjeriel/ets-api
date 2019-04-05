@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
@@ -45,5 +46,6 @@ public interface UnderwritingDao {
 	public List<PolicyOc> retrievePolicyOcListing(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolHoldCoverStatus(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveOpenPolDetails(final HashMap<String, Object> params) throws SQLException;
+	public List<Approver> retrievePolicyApprover(final HashMap<String, Object> params) throws SQLException;
 	
 }

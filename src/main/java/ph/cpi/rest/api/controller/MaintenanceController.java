@@ -42,6 +42,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -73,6 +74,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -319,5 +321,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnLine");
 		logger.info("SaveMtnLineRequest : " + smlr.toString());
 		return maintenanceService.saveMtnLine(smlr);
+	}
+	
+	@PostMapping(path="saveMtnDeductibles")
+	public @ResponseBody SaveMtnDeductiblesResponse saveMtnDeductibles(@RequestBody SaveMtnDeductiblesRequest smdr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnDeductibles");
+		logger.info("SaveMtnDeductiblesRequest : " + smdr.toString());
+		return maintenanceService.saveMtnDeductibles(smdr);
 	}
 }

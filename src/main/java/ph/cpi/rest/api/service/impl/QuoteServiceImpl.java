@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
@@ -57,6 +58,7 @@ import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
@@ -1159,6 +1161,18 @@ public class QuoteServiceImpl implements QuoteService{
 		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
 		
 		return uhcrResponse;
+	}
+
+	@Override
+	public RetrieveQuoteApproverResponse retrieveQuoteApprover(RetrieveQuoteApproverRequest rqaRequest) throws SQLException {
+		
+		RetrieveQuoteApproverResponse rqaResponse = new RetrieveQuoteApproverResponse();
+		HashMap<String, Object> rqaParams = new HashMap<String, Object>();
+		rqaParams.put("quoteId", rqaRequest.getQuoteId());
+		
+		rqaResponse.setApproverList(quoteDao.retrieveQuoteApprover(rqaParams));
+		logger.info("rqaResponse : " + rqaResponse.toString());
+		return rqaResponse;
 	}
 	
 
