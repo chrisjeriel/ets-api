@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.maintenance;
 import java.math.BigDecimal;
 
 import org.apache.ibatis.type.Alias;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
 @Alias("DeductiblesMtn")
@@ -10,8 +11,12 @@ public class Deductibles {
 
 	private String activeTag;
 	private String deductibleCd;
+	private Integer	coverCd;
+	private Integer endtCd;
+	private String defaultTag;
 	private String deductibleTitle;
 	private String deductibleType;
+	private String typeDesc;
 	private BigDecimal deductibleRate;
 	private BigDecimal deductibleAmt;
 	private String lineCd;
@@ -21,26 +26,38 @@ public class Deductibles {
 	private String deductibleText;
 	private String remarks;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
-	public String getLineCd() {
-		return lineCd;
+	private DateTime updateDate;
+	public String getActiveTag() {
+		return activeTag;
 	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
-	public String getLineDesc() {
-		return lineDesc;
-	}
-	public void setLineDesc(String lineDesc) {
-		this.lineDesc = lineDesc;
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getDeductibleCd() {
 		return deductibleCd;
 	}
 	public void setDeductibleCd(String deductibleCd) {
 		this.deductibleCd = deductibleCd;
+	}
+	public Integer getCoverCd() {
+		return coverCd;
+	}
+	public void setCoverCd(Integer coverCd) {
+		this.coverCd = coverCd;
+	}
+	public Integer getEndtCd() {
+		return endtCd;
+	}
+	public void setEndtCd(Integer endtCd) {
+		this.endtCd = endtCd;
+	}
+	public String getDefaultTag() {
+		return defaultTag;
+	}
+	public void setDefaultTag(String defaultTag) {
+		this.defaultTag = defaultTag;
 	}
 	public String getDeductibleTitle() {
 		return deductibleTitle;
@@ -54,6 +71,12 @@ public class Deductibles {
 	public void setDeductibleType(String deductibleType) {
 		this.deductibleType = deductibleType;
 	}
+	public String getTypeDesc() {
+		return typeDesc;
+	}
+	public void setTypeDesc(String typeDesc) {
+		this.typeDesc = typeDesc;
+	}
 	public BigDecimal getDeductibleRate() {
 		return deductibleRate;
 	}
@@ -65,6 +88,18 @@ public class Deductibles {
 	}
 	public void setDeductibleAmt(BigDecimal deductibleAmt) {
 		this.deductibleAmt = deductibleAmt;
+	}
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getLineDesc() {
+		return lineDesc;
+	}
+	public void setLineDesc(String lineDesc) {
+		this.lineDesc = lineDesc;
 	}
 	public BigDecimal getMinAmt() {
 		return minAmt;
@@ -84,12 +119,6 @@ public class Deductibles {
 	public void setDeductibleText(String deductibleText) {
 		this.deductibleText = deductibleText;
 	}
-	public String getActiveTag() {
-		return activeTag;
-	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
-	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -102,10 +131,10 @@ public class Deductibles {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -114,21 +143,21 @@ public class Deductibles {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "Deductibles [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", deductibleCd=" + deductibleCd
-				+ ", deductibleTitle=" + deductibleTitle + ", deductibleType=" + deductibleType + ", deductibleRate="
-				+ deductibleRate + ", deductibleAmt=" + deductibleAmt + ", minAmt=" + minAmt + ", maxAmt=" + maxAmt
-				+ ", deductibleText=" + deductibleText + ", activeTag=" + activeTag + ", remarks=" + remarks
+		return "Deductibles [activeTag=" + activeTag + ", deductibleCd=" + deductibleCd + ", coverCd=" + coverCd
+				+ ", endtCd=" + endtCd + ", defaultTag=" + defaultTag + ", deductibleTitle=" + deductibleTitle
+				+ ", deductibleType=" + deductibleType + ", typeDesc=" + typeDesc + ", deductibleRate=" + deductibleRate
+				+ ", deductibleAmt=" + deductibleAmt + ", lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", minAmt="
+				+ minAmt + ", maxAmt=" + maxAmt + ", deductibleText=" + deductibleText + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
-	
+
 }
