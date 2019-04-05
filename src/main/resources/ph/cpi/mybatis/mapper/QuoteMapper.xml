@@ -1536,13 +1536,13 @@
 					);
 					<foreach collection="otherRates.deductiblesList" item="deductible">
 						QU_DEDUCTIBLES_PKG.save_qu_deductible(
-			   				#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   				#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   			);
 					</foreach>
 		   	   </foreach>
 		   	   <foreach collection="quoteOption.deductiblesList" item="deductible">
 			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
-			   			#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   			#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 				</foreach>
 		 </foreach>
@@ -1552,7 +1552,7 @@
 		   </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
-			   			#{quoteId},#{deductible.optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   			#{quoteId},#{deductible.optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
 		END;
