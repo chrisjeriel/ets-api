@@ -607,10 +607,15 @@
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml}, #{totalValue}, #{remarks}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="deleteSectionCovers" item="sectioncovers">
+				POL_SEC_COVER_PKG.del_pol_cover(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd});
+			</foreach>
 			
 			<foreach collection="saveSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.save_pol_sec_cvrs(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
