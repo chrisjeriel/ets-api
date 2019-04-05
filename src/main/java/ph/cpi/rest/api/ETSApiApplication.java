@@ -24,7 +24,7 @@ public class ETSApiApplication extends SpringBootServletInitializer {
 	 @Bean
 	 CommandLineRunner init(StorageService storageService) { 
 	        return (args) -> {
-	            storageService.deleteAll();
+	            //storageService.deleteAll();  //commented out because this will delete the uploaded files when web service is restarted
 	            storageService.init();
 	 };
   }
