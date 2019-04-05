@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.dao.impl;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.QuoteDao;
+import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
@@ -375,6 +371,11 @@ public class QuoteDaoImpl implements QuoteDao{
 	public Integer renumberQuoteOptions(String quoteId) throws SQLException {
 		Integer errorCode = sqlSession.update("renumberQuoteOptions",quoteId);
 		return errorCode;
+	}
+
+	@Override
+	public List<Approver> retrieveQuoteApprover(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveQuoteApprover", params);
 	}
 		
 }

@@ -1726,4 +1726,17 @@
 	    END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.Approver" id="approverMap">
+        <result property="userId"  		column="USER_ID"/> 
+        <result property="userName"  	column="USER_NAME"/>
+	</resultMap>
+	
+	<select id="retrieveQuoteApprover" resultMap="approverMap" parameterType="java.util.Map"> <!-- DONT FORGET TO INCLUDE IN QU_PKG -->
+			SELECT * FROM TABLE(MTN_USERS_PKG.retrieve_quote_approver(#{quoteId,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
+	<select id="retrievePolicyApprover" resultMap="approverMap" parameterType="java.util.Map"> <!-- DONT FORGET TO INCLUDE IN POL_PKG -->
+			SELECT * FROM TABLE(MTN_USERS_PKG.retrieve_policy_approver(#{policyId,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
 </mapper>

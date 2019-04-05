@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
@@ -59,10 +60,12 @@ import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -894,5 +897,17 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return sopdResponse;
+	}
+
+	@Override
+	public RetrievePolicyApproverResponse retrievePolicyApprover(RetrievePolicyApproverRequest rpaRequest)
+			throws SQLException {
+		RetrievePolicyApproverResponse rqaResponse = new RetrievePolicyApproverResponse();
+		HashMap<String, Object> rqaParams = new HashMap<String, Object>();
+		rqaParams.put("policyId", rpaRequest.getPolicyId());
+		
+		rqaResponse.setApproverList(underwritingDao.retrievePolicyApprover(rqaParams));
+		logger.info("rqaResponse : " + rqaResponse.toString());
+		return rqaResponse;
 	}
 }

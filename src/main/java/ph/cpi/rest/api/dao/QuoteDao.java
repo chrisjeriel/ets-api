@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import ph.cpi.rest.api.model.quote.Alop;
+import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
@@ -74,5 +74,6 @@ public interface QuoteDao {
 	public Integer renumberQuoteOptions(final String quoteId) throws SQLException;
 	
 	public Integer updateHoldCoverStatus(final HashMap<String, Object> params) throws SQLException;
+	public List<Approver> retrieveQuoteApprover(final HashMap<String, Object> params) throws SQLException;	
 	
 }

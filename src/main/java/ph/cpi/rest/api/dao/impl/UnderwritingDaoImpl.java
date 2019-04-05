@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
+import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
@@ -277,6 +278,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("saveOpenPolDetails", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<Approver> retrievePolicyApprover(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("retrievePolicyApprover", params);
 	}
 	
 }
