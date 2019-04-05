@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -89,6 +90,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 
 
 @Service
@@ -142,6 +144,7 @@ public interface QuoteService {
 	public UpdateHoldCoverStatusResponse updateHoldCoverStatus(UpdateHoldCoverStatusRequest uhcr) throws SQLException;
 	public RenumberQuoteOptionsResponse renumberQuoteOptions(RenumberQuoteOptionsRequest rqds) throws SQLException;
 	
-	public RetrieveQuoteApproverResponse retrieveQuoteApprover(RetrieveQuoteApproverRequest retQuoteAlopItem) throws SQLException;	
+	public RetrieveQuoteApproverResponse retrieveQuoteApprover(RetrieveQuoteApproverRequest retQuoteAlopItem) throws SQLException;
+	public UpdateQuoteStatusResponse updateQuoteStatus(UpdateQuoteStatusRequest sqawr) throws SQLException;
 
 }

@@ -286,4 +286,9 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return sqlSession.selectList("retrievePolicyApprover", params);
 	}
 	
+	@Override
+	public Integer updatePolicyStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updatePolicyStatus", params);
+		return errorCode;
+	}
 }

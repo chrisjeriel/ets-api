@@ -1739,4 +1739,23 @@
 			SELECT * FROM TABLE(MTN_USERS_PKG.retrieve_policy_approver(#{policyId,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
+	<update id="updateQuoteStatus" parameterType="java.util.Map"> <!-- DONT FORGET TO INCLUDE IN QU_PKG -->
+		BEGIN
+			MTN_USERS_PKG.update_quote_status(
+				#{quoteId,jdbcType=INTEGER},
+				#{status,jdbcType=VARCHAR},
+				#{approvedBy,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
+	
+	<update id="updatePolicyStatus" parameterType="java.util.Map"> <!-- DONT FORGET TO INCLUDE IN QU_PKG -->
+		BEGIN
+			MTN_USERS_PKG.update_policy_status(
+				#{policyId,jdbcType=INTEGER},
+				#{status,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
+	
 </mapper>

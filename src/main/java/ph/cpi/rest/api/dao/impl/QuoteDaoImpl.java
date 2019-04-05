@@ -377,5 +377,11 @@ public class QuoteDaoImpl implements QuoteDao{
 	public List<Approver> retrieveQuoteApprover(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveQuoteApprover", params);
 	}
+
+	@Override
+	public Integer updateQuoteStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateQuoteStatus", params);
+		return errorCode;
+	}
 		
 }
