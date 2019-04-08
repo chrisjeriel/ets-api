@@ -18,6 +18,8 @@ public class PolicyOc {
 	private DateTime inceptDate;
 	private DateTime acctDate;
 	private String statusDesc;
+	private Integer optionId;
+	private String condition;
 	
 	private ProjectOc project;
 	private List<AttachmentOc> attachmentsOc;
@@ -101,6 +103,18 @@ public class PolicyOc {
 	public void setStatusDesc(String statusDesc) {
 		this.statusDesc = statusDesc;
 	}
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
 	public List<AttachmentOc> getAttachmentsOc() {
 		return attachmentsOc;
 	}
@@ -126,8 +140,8 @@ public class PolicyOc {
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", lineClassDesc=" + lineClassDesc
 				+ ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd + ", issueDate=" + issueDate
 				+ ", expiryDate=" + expiryDate + ", inceptDate=" + inceptDate + ", acctDate=" + acctDate
-				+ ", statusDesc=" + statusDesc + ", project=" + project + ", attachmentsOc=" + attachmentsOc
-				+ ", endorsementsOc=" + endorsementsOc + "]";
+				+ ", statusDesc=" + statusDesc + ", optionId=" + optionId + ", condition=" + condition + ", project="
+				+ project + ", attachmentsOc=" + attachmentsOc + ", endorsementsOc=" + endorsementsOc + "]";
 	}
 	
 }
