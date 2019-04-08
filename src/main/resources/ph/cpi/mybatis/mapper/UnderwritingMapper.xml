@@ -622,7 +622,7 @@
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi}, #{sectioncovers.discountTag}, 
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
