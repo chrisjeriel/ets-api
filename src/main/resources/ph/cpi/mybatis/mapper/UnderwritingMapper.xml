@@ -1255,6 +1255,8 @@
         <result property="inceptDate"           column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="acctDate"             column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="statusDesc"           column="STATUS_DESC"/>
+        <result property="optionId"             column="OPTION_ID"/>
+        <result property="condition"            column="CONDITION"/>
         <association property="project" resultMap="PolProjOcListingMap"></association>
 	</resultMap>
 	
