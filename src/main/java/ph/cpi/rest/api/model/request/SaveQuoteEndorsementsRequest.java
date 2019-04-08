@@ -11,8 +11,8 @@ public class SaveQuoteEndorsementsRequest {
 	private String optionId;
 	private List<Endorsementss> saveEndorsements;
 	private List<Endorsementss> deleteEndorsements;
-	private List<UwDeductibles> saveDeductibleList;
-	private List<UwDeductibles> deleteDeductibleList;
+	private List<Deductibles> saveDeductibleList;
+	private List<Deductibles> deleteDeductibleList;
 	public String getQuoteId() {
 		return quoteId;
 	}
@@ -37,16 +37,16 @@ public class SaveQuoteEndorsementsRequest {
 	public void setDeleteEndorsements(List<Endorsementss> deleteEndorsements) {
 		this.deleteEndorsements = deleteEndorsements;
 	}
-	public List<UwDeductibles> getSaveDeductibleList() {
+	public List<Deductibles> getSaveDeductibleList() {
 		return saveDeductibleList;
 	}
-	public void setSaveDeductibleList(List<UwDeductibles> saveDeductibleList) {
+	public void setSaveDeductibleList(List<Deductibles> saveDeductibleList) {
 		this.saveDeductibleList = saveDeductibleList;
 	}
-	public List<UwDeductibles> getDeleteDeductibleList() {
+	public List<Deductibles> getDeleteDeductibleList() {
 		return deleteDeductibleList;
 	}
-	public void setDeleteDeductibleList(List<UwDeductibles> deleteDeductibleList) {
+	public void setDeleteDeductibleList(List<Deductibles> deleteDeductibleList) {
 		this.deleteDeductibleList = deleteDeductibleList;
 	}
 	@Override

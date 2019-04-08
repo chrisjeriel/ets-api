@@ -13,6 +13,7 @@ public class AlterationHist {
 	private BigDecimal sumInsured;
 	private BigDecimal premAmt;
 	private String status;
+	private String insured;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -61,11 +62,17 @@ public class AlterationHist {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getInsured() {
+		return insured;
+	}
+	public void setInsured(String insured) {
+		this.insured = insured;
+	}
 	@Override
 	public String toString() {
 		return "AlterationHist [policyId=" + policyId + ", policyNo=" + policyNo + ", effDate=" + effDate
 				+ ", issueDate=" + issueDate + ", quotationNo=" + quotationNo + ", sumInsured=" + sumInsured
-				+ ", premAmt=" + premAmt + ", status=" + status + "]";
+				+ ", premAmt=" + premAmt + ", status=" + status + ", insured=" + insured + "]";
 	}
 	
 	
