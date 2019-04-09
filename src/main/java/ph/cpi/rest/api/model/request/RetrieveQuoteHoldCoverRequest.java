@@ -8,7 +8,6 @@ public class RetrieveQuoteHoldCoverRequest {
 	private String holdCoverNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
 	public String getHoldCoverId() {
 		return holdCoverId;
 	}
@@ -38,4 +37,5 @@ public class RetrieveQuoteHoldCoverRequest {
 		return "RetrieveQuoteHoldCoverRequest [holdCoverId=" + holdCoverId + ", holdCoverNo=" + holdCoverNo
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 }
