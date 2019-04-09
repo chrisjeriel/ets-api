@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
+import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -924,5 +926,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		upsResponse.setReturnCode(underwritingDao.updatePolicyStatus(upsParams));
 		return upsResponse;
+	}
+
+	@Override
+	public RetrieveWfmApprovalsResponse retrieveWfmApprovals(RetrieveWfmApprovalsRequest rwar) throws SQLException {
+		RetrieveWfmApprovalsResponse rwaResponse = new RetrieveWfmApprovalsResponse();
+		HashMap<String, Object> rwarParams = new HashMap<String, Object>();
+		rwarParams.put("userId", rwar.getUserId());
+		
+		rwaResponse.setApprovalList(underwritingDao.retrieveWfmApprovals(rwarParams));
+		logger.info("rqaResponse : " + rwaResponse.toString());
+		return rwaResponse;
 	}
 }

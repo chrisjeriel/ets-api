@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.workflowmanager.Approval;
 
 @Component
 public class UnderwritingDaoImpl implements UnderwritingDao {
@@ -290,5 +291,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Integer updatePolicyStatus(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updatePolicyStatus", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<Approval> retrieveWfmApprovals(HashMap<String, Object> params) throws SQLException {
+		List<Approval> approvalList = sqlSession.selectList("retrieveWfmApprovals",params);
+		return approvalList;
 	}
 }

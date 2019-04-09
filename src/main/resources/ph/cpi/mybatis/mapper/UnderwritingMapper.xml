@@ -1280,4 +1280,19 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.workflowmanager.Approval" id="wfmApprovalsMap">
+		<result property="referenceId"		column="REFERENCE_ID" />		
+		<result property="module"			column="MODULE" />			
+		<result property="quotationNo"		column="QUOTATION_NO" />		
+		<result property="preparedBy"		column="PREPARED_BY" />		
+		<result property="createDate"		column="CREATE_DATE" />
+	
+	</resultMap>
+	
+	<select id="retrieveWfmApprovals" parameterType="java.util.Map" resultMap="wfmApprovalsMap">
+		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.CREATE_DATE  FROM QUOTE_GEN_INFO a
+		 WHERE a.status = 'P'
+		   AND a.approved_by = #{userId, jdbcType=VARCHAR}
+	</select>
+	
 </mapper>

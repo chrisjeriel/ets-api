@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -119,4 +121,7 @@ public interface UnderwritingService {
 	public SaveOpenPolDetailsResponse saveOpenPolDetails(SaveOpenPolDetailsRequest sopdr) throws SQLException;
 	public RetrievePolicyApproverResponse retrievePolicyApprover(RetrievePolicyApproverRequest rpaRequest) throws SQLException;
 	public UpdatePolicyStatusResponse updatePolicyStatus(UpdatePolicyStatusRequest sqawr) throws SQLException;
+
+
+	public RetrieveWfmApprovalsResponse retrieveWfmApprovals(RetrieveWfmApprovalsRequest rwar) throws SQLException;
 }
