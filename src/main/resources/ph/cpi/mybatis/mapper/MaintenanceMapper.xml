@@ -369,7 +369,7 @@
 		<result property="updateDate" 			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveMtnDeductibles" resultMap="deductibles">
+	<select id="retrieveMtnDeductibles" resultMap="deductibles" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_DEDUCTIBLES_PKG.ret_mtn_deductibles(
 										#{lineCd, jdbcType=VARCHAR},
 										#{coverCd, jdbcType=VARCHAR},

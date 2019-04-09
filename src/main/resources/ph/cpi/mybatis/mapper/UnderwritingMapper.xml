@@ -129,6 +129,7 @@
 		<result property="sumInsured"   column="ALT_TOTAL_SI"/>
 		<result property="premAmt"  column="ALT_TOTAL_PREM"/>
 		<result property="status"   column="ALT_STATUS_DESC"/>
+		<result property="insured"   column="ALT_INSURED"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
@@ -1025,16 +1026,31 @@
 	
 	<update id="savePolEndtOc" parameterType="java.util.Map">
 		BEGIN
-			POL_ENDT_OC_PKG.save_pol_endt_oc( #{policyIdOc}, #{endtCd}, #{changeTag}, #{remarks},
-											  #{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-											  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-			
-			<foreach collection="savedeductiblesOc" item="deductibles">
-				POL_ENDT_OC_PKG.save_pol_endt_dedt_oc(#{policyIdOc},#{deductibles.coverCd},#{deductibles.endtCdDedt}, #{deductibles.deductibleCd}, 
-													  #{deductibles.deductibleRt}, #{deductibles.deductibleAmt}, 
-													  #{deductibles.deductibleTxt}, #{deductibles.createUser}, CAST(to_timestamp(#{deductibles.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-													  #{deductibles.updateUser}, CAST(to_timestamp(#{deductibles.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			<foreach collection="deleteEndorsements" item="endo">
+				POL_ENDT_OC_PKG.del_pol_endt_dedt_oc(#{policyId},#{endo.endtCd});
 			</foreach>
+			<foreach collection="saveEndorsements" item="endo">
+				POL_ENDT_OC_PKG.save_pol_endt_oc(
+					#{policyId},#{endo.endtCd},#{endo.changeTag},
+					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser},
+		   			CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		   			#{endo.updateUser},
+				   	CAST(to_timestamp(#{endo.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+				);
+			</foreach>
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.del_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.save_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
 		END;
 	</update>
 	

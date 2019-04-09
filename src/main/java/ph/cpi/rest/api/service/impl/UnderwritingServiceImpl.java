@@ -599,15 +599,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		SavePolEndtOcResponse speResponse = new SavePolEndtOcResponse();
 		try{
 			HashMap<String, Object> savePolEndtOcParams = new HashMap<String, Object>();
-			savePolEndtOcParams.put("policyIdOc",speoc.getPolicyIdOc());
-			savePolEndtOcParams.put("endtCd",speoc.getEndtCd());
-			savePolEndtOcParams.put("changeTag",speoc.getChangeTag());
-			savePolEndtOcParams.put("remarks",speoc.getRemarks());
-			savePolEndtOcParams.put("createUser",speoc.getCreateUser());
-			savePolEndtOcParams.put("createDate",speoc.getCreateDate());
-			savePolEndtOcParams.put("updateUser",speoc.getUpdateUser());
-			savePolEndtOcParams.put("updateDate",speoc.getUpdateDate());
-			savePolEndtOcParams.put("savedeductiblesOc",speoc.getSavedeductiblesOc());
+			savePolEndtOcParams.put("policyId",speoc.getPolicyId());
+			savePolEndtOcParams.put("saveEndorsements", speoc.getSaveEndorsements());
+			savePolEndtOcParams.put("deleteEndorsements", speoc.getDeleteEndorsements());
+	
+			savePolEndtOcParams.put("saveDeductibleList" , speoc.getSaveDeductibleList());
+			savePolEndtOcParams.put("deleteDeductibleList" , speoc.getDeleteDeductibleList());
 			
 			HashMap<String, Object> res = underwritingDao.savePolEndtOc(savePolEndtOcParams);
 			speResponse.setReturnCode((Integer) res.get("errorCode"));
