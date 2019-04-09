@@ -62,6 +62,7 @@
 		<result property="cessionDesc" 			column="CESSION_DESC"/>
 		<result property="lineClassCd" 			column="LINE_CLASS_CD"/>
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="insuredDesc" 			column="INSURED_DESC"/>
 		<result property="quoteId" 				column="QUOTE_ID"/>
 		<result property="quotationNo" 			column="QUOTATION_NO"/>
 		<result property="holdCoverNo" 			column="HOLD_COV_NO"/>
@@ -78,9 +79,9 @@
 		<result property="intmId" 				column="INTM_ID"/>
 		<result property="intmName" 			column="INTM_NAME"/>
 		<result property="principalId" 			column="PRIN_ID"/>
-		<result property="principalName" 		column="INSURED_NAME"/>
+		<result property="principalName" 		column="PRINCIPAL_NAME"/>
 		<result property="contractorId" 		column="CONTRACTOR_ID"/>
-		<result property="contractorName" 		column="INSURED_NAME"/>
+		<result property="contractorName" 		column="CONTRACTOR_NAME"/>
 		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lapseFrom" 			column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -195,6 +196,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Project" id="projectMap">
 		<result property="projId" 		column="PROJ_ID"/>
+		<result property="projDesc" 	column="PROJ_DESC"/>
 		<result property="riskId" 		column="RISK_ID"/>
 		<result property="riskName" 	column="RISK_NAME"/>
 		<result property="regionCd" 	column="REGION_CD"/>
@@ -1189,6 +1191,20 @@
 		END;
 	</update>
 	
+	<update id="savePDAttachments" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_attachments(#{policyId, jdbcType=INTEGER},
+													  #{quotationNo, jdbcType=VARCHAR},
+													  #{holdCoverNo, jdbcType=VARCHAR},
+													  #{openPolicyNo, jdbcType=VARCHAR},
+													  #{createUser, jdbcType=VARCHAR},
+													  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  #{updateUser, jdbcType=VARCHAR},
+													  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												     );
+		END;
+	</update>
+	
 	<update id="saveSumInsOC" parameterType="java.util.Map">
 		BEGIN
 			POL_COVERAGE_OC_PKG.save_sum_ins_oc(#{policyId},#{pctShare},#{pctPml},#{totalValue},#{updateUser, jdbcType=VARCHAR},
@@ -1239,6 +1255,8 @@
         <result property="inceptDate"           column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="acctDate"             column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="statusDesc"           column="STATUS_DESC"/>
+        <result property="optionId"             column="OPTION_ID"/>
+        <result property="condition"            column="CONDITION"/>
         <association property="project" resultMap="PolProjOcListingMap"></association>
 	</resultMap>
 	
