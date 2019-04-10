@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
@@ -298,5 +299,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<Approval> retrieveWfmApprovals(HashMap<String, Object> params) throws SQLException {
 		List<Approval> approvalList = sqlSession.selectList("retrieveWfmApprovals",params);
 		return approvalList;
+	}
+
+	@Override
+	public List<Policy> retrievePolHoldCoverListing(HashMap<String, Object> params) throws SQLException {
+		List<Policy> polHcListing = sqlSession.selectList("retrievePolHoldCoverListing", params);
+		return polHcListing;
 	}
 }

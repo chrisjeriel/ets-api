@@ -1329,4 +1329,27 @@
 		   AND a.approved_by = #{userId, jdbcType=VARCHAR}
 	</select>
 	
+	<select id="retrievePolHoldCoverListing" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_HOLD_COVER_PKG_TEST.ret_pol_hc_list(
+			#{holdCovNo,jdbcType=VARCHAR},
+			#{status,jdbcType=VARCHAR},
+			#{cedingName,jdbcType=VARCHAR},
+			#{policyNo,jdbcType=VARCHAR},
+			#{riskName,jdbcType=VARCHAR},
+			#{insuredName,jdbcType=VARCHAR},
+			#{periodFrom,jdbcType=DATE},
+			#{periodTo,jdbcType=DATE},
+			#{compRefHoldCovNo,jdbcType=VARCHAR},
+			#{reqBy,jdbcType=VARCHAR},
+			#{reqDateFrom,jdbcType=DATE},
+			#{reqDateTo,jdbcType=DATE},
+			#{expiringInDays,jdbcType=INTEGER},
+			'',
+			'',
+			'',
+			''
+		))
+	</select>
+	
+	
 </mapper>

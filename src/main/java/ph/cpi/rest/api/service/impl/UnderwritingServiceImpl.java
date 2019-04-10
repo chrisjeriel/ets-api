@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
+import ph.cpi.rest.api.model.request.RetrievePolHoldCoverListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
@@ -89,6 +90,7 @@ import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
+import ph.cpi.rest.api.utils.DateUtility;
 
 @Component
 public class UnderwritingServiceImpl implements UnderwritingService {
@@ -934,5 +936,34 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rwaResponse.setApprovalList(underwritingDao.retrieveWfmApprovals(rwarParams));
 		logger.info("rqaResponse : " + rwaResponse.toString());
 		return rwaResponse;
+	}
+
+	@Override
+	public RetrievePolHoldCoverResponse retrievePolHoldCoverListing(RetrievePolHoldCoverListingRequest rphclp)
+			throws SQLException {
+		RetrievePolHoldCoverResponse rphcResponse = new RetrievePolHoldCoverResponse();
+		try {
+			DateUtility date = new DateUtility();
+			HashMap<String, Object> retrievePolHoldCoverListParams = new HashMap<String, Object>();
+			retrievePolHoldCoverListParams.put("holdCovNo", rphclp.getHoldCovNo());
+			retrievePolHoldCoverListParams.put("status", rphclp.getStatus());
+			retrievePolHoldCoverListParams.put("cedingName", rphclp.getCedingName());
+			retrievePolHoldCoverListParams.put("policyNo", rphclp.getPolicyNo());
+			retrievePolHoldCoverListParams.put("riskName", rphclp.getRiskName());
+			retrievePolHoldCoverListParams.put("insuredDesc", rphclp.getInsuredDesc());
+			retrievePolHoldCoverListParams.put("periodFrom",(rphclp.getPeriodFrom() == null  || rphclp.getPeriodFrom().isEmpty()) ? "" : date.toDate(rphclp.getPeriodFrom()));
+			retrievePolHoldCoverListParams.put("periodTo", (rphclp.getPeriodTo() == null || rphclp.getPeriodTo().isEmpty()) ? "" : date.toDate(rphclp.getPeriodTo()));
+			retrievePolHoldCoverListParams.put("compRefHoldCovNo", rphclp.getCompRefHoldCovNo());
+			retrievePolHoldCoverListParams.put("reqBy", rphclp.getReqBy());
+			retrievePolHoldCoverListParams.put("reqDateFrom", (rphclp.getReqDateFrom() == null || rphclp.getReqDateFrom().isEmpty()) ? "" : date.toDate(rphclp.getReqDateFrom()));
+			retrievePolHoldCoverListParams.put("reqDateTo", (rphclp.getReqDateTo() == null || rphclp.getReqDateTo().isEmpty()) ? "" : date.toDate(rphclp.getReqDateTo()));
+			retrievePolHoldCoverListParams.put("expiringInDays", rphclp.getExpiringInDays());
+			rphcResponse.setPolicyList(underwritingDao.retrievePolHoldCoverListing(retrievePolHoldCoverListParams));
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rphcResponse;
 	}
 }

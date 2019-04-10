@@ -299,7 +299,6 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteHoldCoverParams.put("reqDateTo", (rqhclp.getReqDateTo() == null || rqhclp.getReqDateTo().isEmpty()) ? "" : date.toDate(rqhclp.getReqDateTo()));
 			retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
 			rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
-			
 		} catch (SQLException sqlex) {
 			sqlex.printStackTrace();
 		} catch (Exception ex) {
