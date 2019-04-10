@@ -1330,4 +1330,24 @@
 		   AND a.approved_by = #{userId, jdbcType=VARCHAR}
 	</select>
 	
+	
+	<update id="savePolAttachmentOC" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="savePolAttachments" item="attachment">
+		   	   POL_ATTACHMENT_OC_PKG.save_pol_attchmnt_oc(#{policyId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description, jdbcType=VARCHAR},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		   <foreach collection="deletePolAttachments" item="attachment">
+		   		POL_ATTACHMENT_OC_PKG.del_pol_attchmnt_oc(#{policyId},
+		   											#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		END;
+	</update>
+	
 </mapper>

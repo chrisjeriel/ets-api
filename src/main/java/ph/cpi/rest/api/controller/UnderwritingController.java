@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
@@ -364,5 +366,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveWfmApprovals");
 		logger.info("RetrieveWfmApprovalsRequest : " + rwar.toString());
 		return underwritingService.retrieveWfmApprovals(rwar);
+	}
+	
+	@PostMapping(path="savePolAttachmentOc")
+	public @ResponseBody SavePolAttachmentOcResponse savePolAttachmentOc(@RequestBody SavePolAttachmentOcRequest spaocr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolAttachmentOc");
+		logger.info("SavePolAttachmentOcRequest : " + spaocr.toString());
+		return underwritingService.savePolAttachmentOc(spaocr);
 	}
 }

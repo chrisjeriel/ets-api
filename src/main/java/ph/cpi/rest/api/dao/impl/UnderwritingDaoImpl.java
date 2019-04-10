@@ -299,4 +299,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<Approval> approvalList = sqlSession.selectList("retrieveWfmApprovals",params);
 		return approvalList;
 	}
+
+	@Override
+	public Integer savePolAttachmentsOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
+		return errorCode;
+	}
 }

@@ -50,4 +50,5 @@ public interface UnderwritingDao {
 	public List<Approver> retrievePolicyApprover(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolicyStatus(final HashMap<String, Object> params) throws SQLException;
 	public List<Approval> retrieveWfmApprovals(final HashMap<String, Object> params) throws SQLException;
+	public Integer savePolAttachmentsOc(final HashMap<String, Object> params) throws SQLException;
 }
