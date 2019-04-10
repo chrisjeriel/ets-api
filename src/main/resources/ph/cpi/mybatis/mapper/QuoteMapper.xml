@@ -78,8 +78,14 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteOptionMap">
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
+		<association property="project"		resultMap="retQuOptProjnMap"/>
 		<association property="optionsList" resultMap="assocOptions"/>
 	<!-- <association property="otherRatesList" 	resultMap="assocOtherRates"/>	 -->
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="retQuOptProjnMap">
+		<result property="projId" 			column="PROJ_ID"/>
+		<result property="riskId" 			column="RISK_ID"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Project" id="assocProject">
@@ -1474,7 +1480,7 @@
 		   		QU_OPTION_PKG.del_qu_opt(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveQuoteOptionsList" item="quoteOption">
-		   	   QU_OPTION_PKG.save_qu_opt(#{quoteId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
+		   	   QU_OPTION_PKG.save_qu_opt(#{quoteId},#{projId},#{riskId},#{quoteOption.optionId,jdbcType=VARCHAR},#{quoteOption.optionRt},
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1514,7 +1520,7 @@
 		 
 		 <foreach collection="newOptions" item="quoteOption">
 		 	   v_option_id := #{quoteOption.optionId , jdbcType=VARCHAR};
-		   	   QU_OPTION_PKG.save_qu_opt(#{quoteId},v_option_id,#{quoteOption.optionRt},
+		   	   QU_OPTION_PKG.save_qu_opt(#{quoteId},#{projId},#{riskId},v_option_id,#{quoteOption.optionRt},
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
