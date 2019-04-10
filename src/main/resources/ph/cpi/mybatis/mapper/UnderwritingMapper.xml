@@ -1292,6 +1292,7 @@
 		BEGIN
 			POL_HOLD_COVER_PKG.upd_hc_status(#{policyId, jdbcType=INTEGER},
 											 #{holdCovId, jdbcType=INTEGER},
+											 #{updateType, jdbcType=VARCHAR},
 											 #{updateUser, jdbcType=VARCHAR},
 											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 											 );
