@@ -141,7 +141,7 @@
 		<result property    ="contractorName"        column  ="CONTRACTOR_NAME"/>
 		<result property    ="insuredDesc"          column  ="INSURED_DESC"/>
 		<result property    ="status"               column  ="STATUS"/>
-		<result property    ="statusDesc"           column  ="STATUS_DESC"/>
+		<result property    ="statusDesc"           column  ="DESCRIPTION_STATUS"/>
 		<result property    ="reinsurerId"          column  ="REINSURER_ID"/>
 		<result property    ="reinsurerName"        column  ="REINSURER_NAME"/>
 		<result property    ="intmId"               column  ="INTM_ID"/>
