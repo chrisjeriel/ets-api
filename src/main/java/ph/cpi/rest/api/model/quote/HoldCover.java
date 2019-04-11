@@ -12,6 +12,7 @@ public class HoldCover {
 	private Integer holdCoverSeqNo;
 	private Integer holdCoverRevNo;
 	private Integer optionId;
+	private Integer condition;
 	private DateTime periodFrom;
 	private DateTime periodTo;
 	private String compRefHoldCovNo;
@@ -144,15 +145,22 @@ public class HoldCover {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getCondition() {
+		return condition;
+	}
+	public void setCondition(Integer condition) {
+		this.condition = condition;
+	}
 	@Override
 	public String toString() {
 		return "HoldCover [holdCoverId=" + holdCoverId + ", holdCoverNo=" + holdCoverNo + ", lineCd=" + lineCd
 				+ ", lineCdDesc=" + lineCdDesc + ", holdCoverYear=" + holdCoverYear + ", holdCoverSeqNo="
-				+ holdCoverSeqNo + ", holdCoverRevNo=" + holdCoverRevNo + ", optionId=" + optionId + ", periodFrom="
-				+ periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo=" + compRefHoldCovNo + ", status="
-				+ status + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", preparedBy=" + preparedBy + ", approvedBy="
-				+ approvedBy + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ holdCoverSeqNo + ", holdCoverRevNo=" + holdCoverRevNo + ", optionId=" + optionId + ", condition="
+				+ condition + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo="
+				+ compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy + ", reqDate=" + reqDate
+				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

@@ -228,6 +228,7 @@
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
 		<result property = "optionId"			 column = "OPTION_ID"/>
+		<result property = "condition"			 column = "CONDITION"/>
 		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
