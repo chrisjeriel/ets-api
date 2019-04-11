@@ -1330,7 +1330,7 @@
 	</select>
 	
 	<select id="retrievePolHoldCoverListing" resultMap="policyMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(POL_HOLD_COVER_PKG_TEST.ret_pol_hc_list(
+		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.ret_pol_hc_list(
 			#{holdCovNo,jdbcType=VARCHAR},
 			#{status,jdbcType=VARCHAR},
 			#{cedingName,jdbcType=VARCHAR},
