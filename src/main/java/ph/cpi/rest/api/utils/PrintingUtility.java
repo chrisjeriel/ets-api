@@ -55,6 +55,9 @@ public class PrintingUtility {
 		mapRptParam.put("P_HOLD_COV_ID", reportParams.get("HOLD_COV_ID"));
 		mapRptParam.put("pHoldCovId", reportParams.get("HOLD_COV_ID"));
 		
+		mapRptParam.put("P_USER_ID", reportParams.get("USER_ID"));
+		mapRptParam.put("pUserId", reportParams.get("USER_ID"));
+		
 		logger.info("generateJasperReport outputPath : " + outputPath);
 		JasperPrint jasperPrint = jasperPrint(conn, reportPath, mapRptParam);
 		

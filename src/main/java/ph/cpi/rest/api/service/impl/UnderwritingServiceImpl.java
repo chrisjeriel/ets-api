@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
@@ -956,5 +958,23 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		logger.info("retrievePolCoverageAltResponse : " + rpcResponse.toString());
 		
 		return rpcResponse;
+	}
+
+	@Override
+	public SavePolAttachmentOcResponse savePolAttachmentOc(SavePolAttachmentOcRequest spaocr) throws SQLException {
+		SavePolAttachmentOcResponse spaocrResponse = new SavePolAttachmentOcResponse();
+		try{
+			HashMap<String, Object> savePolAttachmentOcParams = new HashMap<String, Object>();
+			savePolAttachmentOcParams.put("policyId", spaocr.getPolicyId());
+			savePolAttachmentOcParams.put("savePolAttachments", spaocr.getSavePolAttachments());
+			savePolAttachmentOcParams.put("deletePolAttachments", spaocr.getDeletePolAttachments());
+			
+			spaocrResponse.setReturnCode(underwritingDao.savePolAttachmentsOc(savePolAttachmentOcParams));
+		}catch(Exception ex){
+			spaocrResponse.setReturnCode(0);
+			spaocrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return spaocrResponse;
 	}
 }
