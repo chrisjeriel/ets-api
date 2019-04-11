@@ -560,7 +560,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
 		<result property="section" 			column="SECTION" />
 		<result property="coverCd" 			column="COVER_CD" />
-		<result property="coverCdAbbr" 		column="COVER_CD_ABBR" />
+		<result property="description" 		column="COVER_CD_ABBR" />
 		<result property="bulletNo" 		column="BULLET_NO" />
 		<result property="sumInsured" 		column="SUM_INSURED" />
 		<result property="addSi" 			column="ADD_SI" />
