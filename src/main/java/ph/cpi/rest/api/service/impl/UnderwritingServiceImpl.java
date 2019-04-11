@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
@@ -58,6 +59,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
@@ -935,5 +937,21 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rwaResponse.setApprovalList(underwritingDao.retrieveWfmApprovals(rwarParams));
 		logger.info("rqaResponse : " + rwaResponse.toString());
 		return rwaResponse;
+	}
+
+	@Override
+	public RetrievePolGenInfoOcResponse retrievePolGenInfoOc(RetrievePolGenInfoOcRequest rpgior) throws SQLException {
+		RetrievePolGenInfoOcResponse rpgioResponse = new RetrievePolGenInfoOcResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", rpgior.getPolicyIdOc());
+		params.put("openPolicyNo", rpgior.getOpenPolicyNo());
+		/*params.put("position", rpgior.getPaginationRequest().getPosition());
+		params.put("count", rpgior.getPaginationRequest().getCount());
+		params.put("sortKey", rpgior.getSortRequest().getSortKey());
+		params.put("order", rpgior.getSortRequest().getOrder());*/
+		rpgioResponse.setPolicyOc(underwritingDao.retrievePolGenInfoOc(params));
+		//rpgioResponse.setPaginationResponse(paginationResponse);;
+		logger.info("RetrievePolGenInfoOcResponse : " + rpgioResponse.toString());
+		return rpgioResponse;
 	}
 }

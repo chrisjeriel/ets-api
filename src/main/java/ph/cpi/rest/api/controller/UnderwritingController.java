@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
@@ -61,6 +62,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
@@ -92,7 +94,7 @@ import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888"})
 @RequestMapping(path="/underwriting-service")
 public class UnderwritingController {
 
@@ -364,5 +366,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveWfmApprovals");
 		logger.info("RetrieveWfmApprovalsRequest : " + rwar.toString());
 		return underwritingService.retrieveWfmApprovals(rwar);
+	}
+	
+	@GetMapping(path="retrievePolGenInfoOc")
+	public @ResponseBody RetrievePolGenInfoOcResponse retrievePolGenInfoOc(RetrievePolGenInfoOcRequest rpgior) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolGenInfoOc");
+		logger.info("RetrievePolGenInfoOcRequest : " + rpgior.toString());
+		return underwritingService.retrievePolGenInfoOc(rpgior);
 	}
 }
