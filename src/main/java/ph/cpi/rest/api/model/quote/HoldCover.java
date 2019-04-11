@@ -12,7 +12,7 @@ public class HoldCover {
 	private Integer holdCoverSeqNo;
 	private Integer holdCoverRevNo;
 	private Integer optionId;
-	private Integer condition;
+	private String condition;
 	private DateTime periodFrom;
 	private DateTime periodTo;
 	private String compRefHoldCovNo;
@@ -145,10 +145,10 @@ public class HoldCover {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public Integer getCondition() {
+	public String getCondition() {
 		return condition;
 	}
-	public void setCondition(Integer condition) {
+	public void setCondition(String condition) {
 		this.condition = condition;
 	}
 	@Override
