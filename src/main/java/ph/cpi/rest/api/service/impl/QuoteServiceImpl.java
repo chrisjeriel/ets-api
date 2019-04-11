@@ -998,6 +998,8 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			HashMap<String, Object> saveQuoteOptionsAllParams = new HashMap<String, Object>(); 
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
+			saveQuoteOptionsAllParams.put("projId" , sqor.getProjId());
+			saveQuoteOptionsAllParams.put("riskId" , sqor.getRiskId());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
