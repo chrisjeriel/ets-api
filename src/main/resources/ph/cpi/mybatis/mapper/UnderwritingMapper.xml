@@ -116,7 +116,7 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
-		<association property="holdCoverList" 		resultMap="holdCoverMap"/>
+		<association property="holdCoverList"	resultMap="holdCoverMap"/>
 		<association property="alterationHist" 	resultMap="AlterationHistMap"/>
 	</resultMap>
 	
