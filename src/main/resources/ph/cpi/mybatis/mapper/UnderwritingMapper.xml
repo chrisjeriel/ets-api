@@ -116,7 +116,7 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
-		<association property="holdCoverList" 		resultMap="holdCoverMap"/>
+		<association property="holdCoverList"	resultMap="holdCoverMap"/>
 		<association property="alterationHist" 	resultMap="AlterationHistMap"/>
 	</resultMap>
 	
@@ -553,7 +553,7 @@
 		    </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
-		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
 		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
@@ -1225,6 +1225,17 @@
 		END;
 	</update>
 	
+	<update id="savePDPolInwardBal" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_pol_inw(#{policyId, jdbcType=INTEGER},											  
+												  #{createUser, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{updateUser, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												 );
+		END;
+	</update>
+	
 	<update id="saveSumInsOC" parameterType="java.util.Map">
 		BEGIN
 			POL_COVERAGE_OC_PKG.save_sum_ins_oc(#{policyId},#{pctShare},#{pctPml},#{totalValue},#{updateUser, jdbcType=VARCHAR},
@@ -1341,5 +1352,25 @@
 																	   #{sortKey, jdbcType=VARCHAR}, 
 																	   #{order, jdbcType=VARCHAR}))
 	</select>
+	
+	
+	<update id="savePolAttachmentOC" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="savePolAttachments" item="attachment">
+		   	   POL_ATTACHMENT_OC_PKG.save_pol_attchmnt_oc(#{policyId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description, jdbcType=VARCHAR},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		   <foreach collection="deletePolAttachments" item="attachment">
+		   		POL_ATTACHMENT_OC_PKG.del_pol_attchmnt_oc(#{policyId},
+		   											#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		END;
+	</update>
 	
 </mapper>
