@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ph.cpi.mybatis.mapper.WorkflowMapper">
+
+	<resultMap type="ph.cpi.rest.api.model.workflow.DashboardTran" id="dashboardTranMap">
+     	<result property="tranTitle"            	column="TRAN_TITLE"/>
+		<result property="tranText"          		column="TRAN_TEXT"/>
+		<result property="tranCount"            	column="TRAN_COUNT"/>
+     </resultMap>
+     
+     <select id="retrieveTransactions" resultMap="dashboardTranMap" parameterType="java.util.Map">
+    	SELECT * FROM WFM_TRANSACTIONS_PKG.retrieve_transactions(#{tranTitle, jdbcType=VARCHAR},
+												  #{position, jdbcType=VARCHAR}, 
+												  #{count, jdbcType=VARCHAR}, 
+												  #{sortKey, jdbcType=VARCHAR}, 
+												  #{order, jdbcType=VARCHAR})
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.workflow.Reminders" id="remindersMap">
+     	<result property="reminderId"				column="REMINDER_ID"/>
+		<result property="title"					column="TITLE"/>
+		<result property="reminder"					column="REMINDER"/>
+		<result property="alarmTime"				column="ALARM_TIME"/>
+		<result property="assignedTo"				column="ASSIGNED_TO"/>
+		<result property="status"					column="STATUS"/>
+		<result property="createUser"				column="CREATE_USER"/>
+		<result property="createDate"				column="CREATE_DATE"		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"				column="UPDATE_USER"/>
+		<result property="updateDate"				column="UPDATE_DATE"		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveReminders" resultMap="remindersMap" parameterType="java.util.Map">
+    	SELECT * FROM WFM_REMINDERS_PKG.retrieve_reminders(#{reminderId, jdbcType=INTEGER},
+    											  #{assignedTo, jdbcType=VARCHAR},
+    											  #{createUser, jdbcType=VARCHAR},
+												  #{position, jdbcType=VARCHAR}, 
+												  #{count, jdbcType=VARCHAR}, 
+												  #{sortKey, jdbcType=VARCHAR}, 
+												  #{order, jdbcType=VARCHAR})
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.workflow.Notes" id="notesMap">
+     	<result property="noteId"					column="NOTE_ID"/>
+		<result property="title"					column="TITLE"/>
+		<result property="note"						column="NOTE"/>
+		<result property="assignedTo"				column="ASSIGNED_TO"/>
+		<result property="status"					column="STATUS"/>
+		<result property="createUser"				column="CREATE_USER"/>
+		<result property="createDate"				column="CREATE_DATE"		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"				column="UPDATE_USER"/>
+		<result property="updateDate"				column="UPDATE_DATE"		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveNotes" resultMap="notesMap" parameterType="java.util.Map">
+    	SELECT * FROM WFM_NOTES_PKG.retrieve_notes(#{noteId, jdbcType=INTEGER},
+    											  #{assignedTo, jdbcType=VARCHAR},
+    											  #{createUser, jdbcType=VARCHAR},
+												  #{position, jdbcType=VARCHAR}, 
+												  #{count, jdbcType=VARCHAR}, 
+												  #{sortKey, jdbcType=VARCHAR}, 
+												  #{order, jdbcType=VARCHAR})
+     </select>
+</mapper>
