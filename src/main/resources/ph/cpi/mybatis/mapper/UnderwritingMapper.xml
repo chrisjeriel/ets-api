@@ -136,7 +136,6 @@
 		<result property="policyId" 			column="POLICY_ID"/>
 		<result property="policyNo" 			column="POLICY_NO"/>
 		<result property="cessionDesc" 			column="CESSION_DESC"/>
-		<result property="cedingId" 			column="CEDING_ID"/>		
 		<result property="cedingName" 			column="CEDING_NAME"/>		
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
 		<result property="insuredDesc" 			column="INSURED_DESC"/>

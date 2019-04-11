@@ -782,7 +782,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqhcrResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
 		}
-	
+		
 		
 		return sqhcrResponse;
 	}
