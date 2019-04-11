@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
+import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
@@ -54,6 +55,7 @@ import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
+import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
@@ -934,5 +936,25 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rwaResponse.setApprovalList(underwritingDao.retrieveWfmApprovals(rwarParams));
 		logger.info("rqaResponse : " + rwaResponse.toString());
 		return rwaResponse;
+	}
+
+	@Override
+	public RetrievePolCoverageAltResponse retrivePolCoverageAlt(RetrievePolCoverageAltRequest rpcar)
+			throws SQLException {
+		RetrievePolCoverageAltResponse rpcResponse = new RetrievePolCoverageAltResponse();
+		
+		HashMap<String, Object> retrievePolCoverageAltParams = new HashMap<String, Object>();
+		retrievePolCoverageAltParams.put("lineCd", rpcar.getLineCd());
+		retrievePolCoverageAltParams.put("polYear", rpcar.getPolYear());
+		retrievePolCoverageAltParams.put("seqNo", rpcar.getSeqNo());
+		retrievePolCoverageAltParams.put("cedingId", rpcar.getCedingId());
+		retrievePolCoverageAltParams.put("coSeriesNo", rpcar.getCoSeriesNo());
+		retrievePolCoverageAltParams.put("altNo", rpcar.getAltNo());
+		
+		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverageAlt(retrievePolCoverageAltParams));
+		
+		logger.info("retrievePolCoverageAltResponse : " + rpcResponse.toString());
+		
+		return rpcResponse;
 	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 public class SaveQuoteOptionAllRequest {
 	private Integer quoteId;
+	private String projId;
+	private String riskId;
 	private List<QuoteOption> saveQuoteOptionsList;
 	private List<QuoteOption> deleteQuoteOptionsList;
 	
@@ -18,6 +20,18 @@ public class SaveQuoteOptionAllRequest {
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
+	}
+	public String getProjId() {
+		return projId;
+	}
+	public void setProjId(String projId) {
+		this.projId = projId;
+	}
+	public String getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(String riskId) {
+		this.riskId = riskId;
 	}
 	public List<QuoteOption> getSaveQuoteOptionsList() {
 		return saveQuoteOptionsList;
@@ -59,10 +73,10 @@ public class SaveQuoteOptionAllRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteOptionAllRequest [quoteId=" + quoteId + ", saveQuoteOptionsList=" + saveQuoteOptionsList
-				+ ", deleteQuoteOptionsList=" + deleteQuoteOptionsList + ", otherRates=" + otherRates
-				+ ", newQuoteOptionsList=" + newQuoteOptionsList + ", saveDeductibleList=" + saveDeductibleList
-				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
+		return "SaveQuoteOptionAllRequest [quoteId=" + quoteId + ", projId=" + projId + ", riskId=" + riskId
+				+ ", saveQuoteOptionsList=" + saveQuoteOptionsList + ", deleteQuoteOptionsList="
+				+ deleteQuoteOptionsList + ", otherRates=" + otherRates + ", newQuoteOptionsList=" + newQuoteOptionsList
+				+ ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
 	
 }
