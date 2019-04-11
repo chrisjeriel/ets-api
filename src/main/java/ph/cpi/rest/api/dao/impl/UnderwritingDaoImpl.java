@@ -241,6 +241,7 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		sqlSession.update("savePDAlopItem",params);
 		sqlSession.update("savePDEndorsements",params);
 		sqlSession.update("savePDAttachments",params);
+		sqlSession.update("savePDPolInwardBal",params);		
 		
 		return params;
 	}
