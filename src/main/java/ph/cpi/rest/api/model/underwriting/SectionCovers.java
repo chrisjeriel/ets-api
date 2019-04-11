@@ -13,6 +13,9 @@ public class SectionCovers {
 	private String coverCd ; 
 	private String description;
 	private String bulletNo;
+	private BigDecimal prevSumInsured;
+	private BigDecimal prevPremRt;
+	private BigDecimal prevPremAmt;
 	private BigDecimal sumInsured;
 	private BigDecimal premRt;
 	private BigDecimal premAmt;
@@ -126,14 +129,36 @@ public class SectionCovers {
 	public void setUpdateDateSec(DateTime updateDateSec) {
 		this.updateDateSec = updateDateSec;
 	}
+	
+	public BigDecimal getPrevSumInsured() {
+		return prevSumInsured;
+	}
+	public void setPrevSumInsured(BigDecimal prevSumInsured) {
+		this.prevSumInsured = prevSumInsured;
+	}
+	public BigDecimal getPrevPremRt() {
+		return prevPremRt;
+	}
+	public void setPrevPremRt(BigDecimal prevPremRt) {
+		this.prevPremRt = prevPremRt;
+	}
+	public BigDecimal getPrevPremAmt() {
+		return prevPremAmt;
+	}
+	public void setPrevPremAmt(BigDecimal prevPremAmt) {
+		this.prevPremAmt = prevPremAmt;
+	}
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", section=" + section + ", coverCd="
-				+ coverCd + ", description=" + description + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured
-				+ ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag
-				+ ", cumSi=" + cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec="
-				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + "]";
+				+ coverCd + ", description=" + description + ", bulletNo=" + bulletNo + ", prevSumInsured="
+				+ prevSumInsured + ", prevPremRt=" + prevPremRt + ", prevPremAmt=" + prevPremAmt + ", sumInsured="
+				+ sumInsured + ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag="
+				+ discountTag + ", cumSi=" + cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec
+				+ ", createDateSec=" + createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec="
+				+ updateDateSec + "]";
 	}
+	
 	
 	
 }

@@ -268,6 +268,9 @@
 		<result property="coverCd" 					column="COVER_CD"/>
 		<result property="description" 				column="DESCRIPTION"/>
 		<result property="bulletNo" 				column="BULLET_NO"/>
+		<result property="prevSumInsured" 			column="PREV_SUM_INSURED"/>
+		<result property="prevPremRt" 				column="PREV_PREM_RT"/>
+		<result property="prevPremAmt" 				column="PREV_PREM_AMT"/>
 		<result property="sumInsured" 				column="SUM_INSURED"/>
 		<result property="premRt" 					column="PREM_RT"/>
 		<result property="premAmt" 					column="PREM_AMT"/>
@@ -1315,6 +1318,7 @@
 		END;
 	</update>
 	
+
 	<resultMap type="ph.cpi.rest.api.model.workflowmanager.Approval" id="wfmApprovalsMap">
 		<result property="referenceId"		column="REFERENCE_ID" />		
 		<result property="module"			column="MODULE" />			
@@ -1328,6 +1332,14 @@
 		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.CREATE_DATE  FROM QUOTE_GEN_INFO a
 		 WHERE a.status = 'P'
 		   AND a.approved_by = #{userId, jdbcType=VARCHAR}
+	</select>
+
+	<select id="retrievePolCoverageAlt" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_COVERAGE_ALT_PKG.ret_pol_cover_alt(#{lineCd},#{polYear},#{seqNo},#{cedingId},#{coSeriesNo},#{altNo},
+																	   #{position, jdbcType=VARCHAR}, 
+																	   #{count, jdbcType=VARCHAR}, 
+																	   #{sortKey, jdbcType=VARCHAR}, 
+																	   #{order, jdbcType=VARCHAR}))
 	</select>
 	
 </mapper>
