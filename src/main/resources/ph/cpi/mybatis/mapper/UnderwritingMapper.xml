@@ -154,6 +154,8 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
 		<!-- <result property="policyNo"		column="POLICY_NO"/> -->
+		<result property="policyId" 	column="POLICY_ID"/>
+		<result property="policyNo" 	column="POLICY_NO"/>
 		<result property="coRefNo"		column="CO_REF_NO"/>
 		<result property="cedingId"		column="CEDING_ID"/>
 		<result property="cedingName"	column="CEDING_NAME"/>
@@ -170,7 +172,7 @@
 		SELECT * FROM TABLE(POL_INWARD_PKG.ret_pol_inward(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
-	<select id="retrievePolCoInsurance" resultMap="retrievePolCoinsuranceMap" parameterType="java.util.Map">
+	<select id="retrievePolCoInsurance" resultMap="coInsuranceMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INSURANCE_PKG.ret_pol_insurance(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
