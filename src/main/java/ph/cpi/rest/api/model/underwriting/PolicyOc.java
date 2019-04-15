@@ -19,11 +19,13 @@ public class PolicyOc {
 	private DateTime acctDate;
 	private String statusDesc;
 	private Integer optionId;
+	private Float optionRt;
 	private String condition;
 	
 	private ProjectOc project;
 	private List<AttachmentOc> attachmentsOc;
 	private List<EndtOc> endorsementsOc;
+	
 	public Integer getPolicyIdOc() {
 		return policyIdOc;
 	}
@@ -66,7 +68,6 @@ public class PolicyOc {
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
-	
 	public String getCurrencyCd() {
 		return currencyCd;
 	}
@@ -109,11 +110,23 @@ public class PolicyOc {
 	public void setOptionId(Integer optionId) {
 		this.optionId = optionId;
 	}
+	public Float getOptionRt() {
+		return optionRt;
+	}
+	public void setOptionRt(Float optionRt) {
+		this.optionRt = optionRt;
+	}
 	public String getCondition() {
 		return condition;
 	}
 	public void setCondition(String condition) {
 		this.condition = condition;
+	}
+	public ProjectOc getProject() {
+		return project;
+	}
+	public void setProject(ProjectOc project) {
+		this.project = project;
 	}
 	public List<AttachmentOc> getAttachmentsOc() {
 		return attachmentsOc;
@@ -127,21 +140,14 @@ public class PolicyOc {
 	public void setEndorsementsOc(List<EndtOc> endorsementsOc) {
 		this.endorsementsOc = endorsementsOc;
 	}
-	
-	public ProjectOc getProject() {
-		return project;
-	}
-	public void setProject(ProjectOc project) {
-		this.project = project;
-	}
 	@Override
 	public String toString() {
 		return "PolicyOc [policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo + ", cessionDesc=" + cessionDesc
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", lineClassDesc=" + lineClassDesc
 				+ ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd + ", issueDate=" + issueDate
 				+ ", expiryDate=" + expiryDate + ", inceptDate=" + inceptDate + ", acctDate=" + acctDate
-				+ ", statusDesc=" + statusDesc + ", optionId=" + optionId + ", condition=" + condition + ", project="
-				+ project + ", attachmentsOc=" + attachmentsOc + ", endorsementsOc=" + endorsementsOc + "]";
+				+ ", statusDesc=" + statusDesc + ", optionId=" + optionId + ", optionRt=" + optionRt + ", condition="
+				+ condition + ", project=" + project + ", attachmentsOc=" + attachmentsOc + ", endorsementsOc="
+				+ endorsementsOc + "]";
 	}
-	
 }
