@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
@@ -64,6 +65,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
@@ -116,5 +118,7 @@ public interface MaintenanceService {
 	public RetrieveMtnChargesResponse retrieveMtnCharges (RetrieveMtnChargesRequest rmcr) throws SQLException;
 	public SaveMtnLineResponse saveMtnLine(SaveMtnLineRequest smlr) throws SQLException;
 	public SaveMtnDeductiblesResponse saveMtnDeductibles(SaveMtnDeductiblesRequest smdr) throws SQLException;
+
+	public RetrieveMtnSpoilageReasonResponse retrieveMtnSpoilageReason (RetrieveMtnSpoilageReasonRequest rmcr) throws SQLException;
 
 }

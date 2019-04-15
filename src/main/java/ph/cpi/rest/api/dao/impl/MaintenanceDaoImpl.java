@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
+import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
 
 @Component
@@ -286,4 +287,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnDeductibles",params);
 		return errorCode;
 	}
+
+	@Override
+	public List<Spoil> retrieveMtnSpoilageReason(HashMap<String, Object> params) throws SQLException {
+		List<Spoil> spoilList = sqlSession.selectList("retrieveMtnSpoilageReason",params);
+		return spoilList;
+	}
+	
 }
