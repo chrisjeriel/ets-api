@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
+import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
@@ -34,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
@@ -55,6 +57,7 @@ import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
+import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
@@ -73,6 +76,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
@@ -965,5 +969,43 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			e.printStackTrace();
 		}
 		return rphcResponse;
+	}
+	
+	@Override
+	public RetrievePolCoverageAltResponse retrivePolCoverageAlt(RetrievePolCoverageAltRequest rpcar)
+			throws SQLException {
+		RetrievePolCoverageAltResponse rpcResponse = new RetrievePolCoverageAltResponse();
+		
+		HashMap<String, Object> retrievePolCoverageAltParams = new HashMap<String, Object>();
+		retrievePolCoverageAltParams.put("lineCd", rpcar.getLineCd());
+		retrievePolCoverageAltParams.put("polYear", rpcar.getPolYear());
+		retrievePolCoverageAltParams.put("seqNo", rpcar.getSeqNo());
+		retrievePolCoverageAltParams.put("cedingId", rpcar.getCedingId());
+		retrievePolCoverageAltParams.put("coSeriesNo", rpcar.getCoSeriesNo());
+		retrievePolCoverageAltParams.put("altNo", rpcar.getAltNo());
+		
+		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverageAlt(retrievePolCoverageAltParams));
+		
+		logger.info("retrievePolCoverageAltResponse : " + rpcResponse.toString());
+		
+		return rpcResponse;
+	}
+
+	@Override
+	public SavePolAttachmentOcResponse savePolAttachmentOc(SavePolAttachmentOcRequest spaocr) throws SQLException {
+		SavePolAttachmentOcResponse spaocrResponse = new SavePolAttachmentOcResponse();
+		try{
+			HashMap<String, Object> savePolAttachmentOcParams = new HashMap<String, Object>();
+			savePolAttachmentOcParams.put("policyId", spaocr.getPolicyId());
+			savePolAttachmentOcParams.put("savePolAttachments", spaocr.getSavePolAttachments());
+			savePolAttachmentOcParams.put("deletePolAttachments", spaocr.getDeletePolAttachments());
+			
+			spaocrResponse.setReturnCode(underwritingDao.savePolAttachmentsOc(savePolAttachmentOcParams));
+		}catch(Exception ex){
+			spaocrResponse.setReturnCode(0);
+			spaocrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return spaocrResponse;
 	}
 }
