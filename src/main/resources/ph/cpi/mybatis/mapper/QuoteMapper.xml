@@ -147,7 +147,7 @@
 		<result property    ="contractorName"        column  ="CONTRACTOR_NAME"/>
 		<result property    ="insuredDesc"          column  ="INSURED_DESC"/>
 		<result property    ="status"               column  ="STATUS"/>
-		<result property    ="statusDesc"           column  ="STATUS_DESC"/>
+		<result property    ="statusDesc"           column  ="DESCRIPTION_STATUS"/>
 		<result property    ="reinsurerId"          column  ="REINSURER_ID"/>
 		<result property    ="reinsurerName"        column  ="REINSURER_NAME"/>
 		<result property    ="intmId"               column  ="INTM_ID"/>
@@ -566,7 +566,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
 		<result property="section" 			column="SECTION" />
 		<result property="coverCd" 			column="COVER_CD" />
-		<result property="coverCdAbbr" 		column="COVER_CD_ABBR" />
+		<result property="description" 		column="COVER_CD_ABBR" />
 		<result property="bulletNo" 		column="BULLET_NO" />
 		<result property="sumInsured" 		column="SUM_INSURED" />
 		<result property="addSi" 			column="ADD_SI" />
@@ -1094,7 +1094,7 @@
 		BEGIN
 		   <foreach collection="saveAttachmentsList" item="attachment">
 		   	   QU_ATTACHMENT_PKG.save_qu_attachment
-			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description},#{attachment.createUser},
+			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description, jdbcType=VARCHAR},#{attachment.createUser},
 			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{attachment.updateUser},
 			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			   
@@ -1380,7 +1380,7 @@
 			
 			<foreach collection="saveDeductibleList" item="deductible">
 			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
-			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
 		END;

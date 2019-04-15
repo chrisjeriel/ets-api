@@ -241,6 +241,7 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		sqlSession.update("savePDAlopItem",params);
 		sqlSession.update("savePDEndorsements",params);
 		sqlSession.update("savePDAttachments",params);
+		sqlSession.update("savePDPolInwardBal",params);		
 		
 		return params;
 	}
@@ -305,5 +306,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		PolicyOc policyOc = sqlSession.selectOne("retrievePolGenInfoOc", params);
 		logger.info("retrievePolGenInfoOc DAOImpl : " + policyOc);
 		return policyOc;
+	}
+	
+	@Override
+	public Policy retrievePolicyCoverageAlt(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolCoverageAlt",params);
+		logger.info("retrievePolCoverageAlt DAOImpl : " + policy);
+		return policy;
+	}
+	
+	@Override
+	public Integer savePolAttachmentsOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
+		return errorCode;
 	}
 }
