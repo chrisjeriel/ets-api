@@ -30,6 +30,7 @@ public class PolicyOc {
 	private String status;
 	private String statusDesc;
 	private String reinsurerId;
+	private String reinsurerName;
 	private Integer intmId;
 	private String intmName;
 	private DateTime inceptDate;
@@ -252,6 +253,14 @@ public class PolicyOc {
 	public void setReinsurerId(String reinsurerId) {
 		this.reinsurerId = reinsurerId;
 	}
+	
+	public String getReinsurerName() {
+		return reinsurerName;
+	}
+
+	public void setReinsurerName(String reinsurerName) {
+		this.reinsurerName = reinsurerName;
+	}
 
 	public Integer getIntmId() {
 		return intmId;
@@ -430,13 +439,14 @@ public class PolicyOc {
 				+ ", quoteId=" + quoteId + ", quoteNo=" + quoteNo + ", lineClassDesc=" + lineClassDesc + ", refOpPolNo="
 				+ refOpPolNo + ", prinId=" + prinId + ", prinName=" + prinName + ", contractorId=" + contractorId
 				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", status=" + status
-				+ ", statusDesc=" + statusDesc + ", reinsurerId=" + reinsurerId + ", intmId=" + intmId + ", intmName="
-				+ intmName + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom
-				+ ", lapseTo=" + lapseTo + ", issueDate=" + issueDate + ", effDate=" + effDate + ", distDate="
-				+ distDate + ", acctDate=" + acctDate + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", optionId=" + optionId + ", condition=" + condition + ", project="
-				+ project + ", attachmentsOc=" + attachmentsOc + ", endorsementsOc=" + endorsementsOc + "]";
+				+ ", statusDesc=" + statusDesc + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName
+				+ ", intmId=" + intmId + ", intmName=" + intmName + ", inceptDate=" + inceptDate + ", expiryDate="
+				+ expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", issueDate=" + issueDate
+				+ ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd="
+				+ currencyCd + ", currencyRt=" + currencyRt + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", optionId=" + optionId
+				+ ", condition=" + condition + ", project=" + project + ", attachmentsOc=" + attachmentsOc
+				+ ", endorsementsOc=" + endorsementsOc + "]";
 	}
 	
 }

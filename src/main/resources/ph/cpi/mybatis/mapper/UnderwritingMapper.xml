@@ -1400,6 +1400,7 @@
 		<result property="status" 			column="STATUS" />
 		<result property="statusDesc" 		column="STATUS_DESC" />
 		<result property="reinsurerId" 		column="REINSURER_ID" />
+		<result property="reinsurerName"    column="REINSURER_NAME" />
 		<result property="intmId" 			column="INTM_ID" />
 		<result property="intmName" 		column="INTM_NAME" />
 		<result property="inceptDate" 		column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
