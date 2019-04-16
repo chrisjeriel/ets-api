@@ -1049,7 +1049,7 @@
 		    </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_OC_PKG.save_pol_deductibles(
-		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
 		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
@@ -1079,7 +1079,7 @@
 		    </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
-		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
 		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
