@@ -941,6 +941,7 @@
 				</foreach>
 			</foreach>
 			POL_INWARD_PKG.chk_inst_tag(#{policyId});
+			POL_INWARD_PKG.add_inst_endt(#{policyId},#{user});
 		END;
 	</update>
 
@@ -1376,7 +1377,22 @@
 	<update id="savePolGenInfoOc" parameterType="java.util.Map">
 		BEGIN
 			POL_GEN_INFO_OC_PKG.save_pol_gen_info_oc(
-				#{policyIdOc},#{lineCd},#{ocYear},#{ocSeqNo},#{cedingId},#{coSeriesNo;},#{riBinderNo},#{coRefNo},#{altNo},#{cessionId},#{lineClassCd},#{quoteId},#{refOpPolNo},#{prinId},#{contractorId},#{insuredDesc},#{status},#{reinsurerId},#{intmId},CAST(to_timestamp(#{inceptDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{lapseFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{lapseTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{effDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{distDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),CAST(to_timestamp(#{acctDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{currencyCd},#{currencyRt},#{createUser},CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projId},#{projDesc},#{riskId},#{maxSi},#{objectId},#{site},#{duration},#{testing},#{projCreateUser},CAST(to_timestamp(#{projCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projCpdateUser},CAST(to_timestamp(#{projCpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				#{policyIdOc},#{lineCd},#{ocYear},#{ocSeqNo},#{cedingId},#{coSeriesNo},#{riBinderNo, jdbcType=VARCHAR},
+				#{coRefNo, jdbcType=VARCHAR},#{altNo},#{cessionId},#{lineClassCd},#{quoteId},#{refOpPolNo, jdbcType=VARCHAR},#{prinId},#{contractorId},
+				#{insuredDesc},#{status},#{reinsurerId, jdbcType=VARCHAR},#{intmId, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{inceptDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{lapseFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{lapseTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{effDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{distDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{acctDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{currencyCd},#{currencyRt},
+				#{createUser},CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projId},#{projDesc},
+				#{riskId},#{maxSi},#{objectId},#{site},#{duration, jdbcType=VARCHAR},#{testing, jdbcType=VARCHAR},#{projCreateUser},
+				CAST(to_timestamp(#{projCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projUpdateUser},
+				CAST(to_timestamp(#{projUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
