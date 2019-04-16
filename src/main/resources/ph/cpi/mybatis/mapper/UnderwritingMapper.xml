@@ -1488,4 +1488,12 @@
 																#{order, jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrieveAlterationsPerPolicy" parameterType="java.util.Map" resultMap="policyMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_alt_listing(#{policyId, jdbcType=INTEGER},
+															 #{position, jdbcType=VARCHAR}, 
+															 #{count, jdbcType=INTEGER}, 
+															 #{sortKey, jdbcType=VARCHAR}, 
+															 #{order, jdbcType=VARCHAR}))
+	</select>
+	
 </mapper>

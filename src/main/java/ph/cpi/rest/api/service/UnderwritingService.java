@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -49,6 +50,7 @@ import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -136,4 +138,5 @@ public interface UnderwritingService {
 	public RetrievePolGenInfoOcResponse retrievePolGenInfoOc(RetrievePolGenInfoOcRequest rpgior) throws SQLException;
 	public RetrievePolCoverageAltResponse retrivePolCoverageAlt (RetrievePolCoverageAltRequest rpcar)throws SQLException;
 	public SavePolAttachmentOcResponse savePolAttachmentOc(SavePolAttachmentOcRequest spaocr) throws SQLException;
+	public RetrieveAlterationsPerPolicyResponse retrieveAlterationsPerPolicy(RetrieveAlterationsPerPolicyRequest rappr) throws SQLException;
 }

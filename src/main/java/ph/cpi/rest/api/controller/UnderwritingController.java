@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -55,6 +56,7 @@ import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -404,4 +406,10 @@ public class UnderwritingController {
 		return underwritingService.savePolAttachmentOc(spaocr);
 	}
 	
+	@GetMapping(path="retrieveAlterationsPerPolicy")
+	public @ResponseBody RetrieveAlterationsPerPolicyResponse retrieveAlterationsPerPolicy(RetrieveAlterationsPerPolicyRequest rappr) throws SQLException {
+		logger.info("GET: /api/Policy-service/retrieveAlterationsPerPolicy");
+		logger.info("RetrieveAlterationsPerPolicyRequest : " + rappr.toString());
+		return underwritingService.retrieveAlterationsPerPolicy(rappr);
+	}
 }
