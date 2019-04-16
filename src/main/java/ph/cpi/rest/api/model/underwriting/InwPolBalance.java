@@ -12,6 +12,8 @@ public class InwPolBalance {
 	private BigDecimal premAmt;
 	private BigDecimal otherChargesInw;
 	private BigDecimal amtDue;
+	private BigDecimal commAmt;
+	private BigDecimal commRt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -53,6 +55,18 @@ public class InwPolBalance {
 	public void setAmtDue(BigDecimal amtDue) {
 		this.amtDue = amtDue;
 	}
+	public BigDecimal getCommAmt() {
+		return commAmt;
+	}
+	public void setCommAmt(BigDecimal commAmt) {
+		this.commAmt = commAmt;
+	}
+	public BigDecimal getCommRt() {
+		return commRt;
+	}
+	public void setCommRt(BigDecimal commRt) {
+		this.commRt = commRt;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -86,10 +100,8 @@ public class InwPolBalance {
 	@Override
 	public String toString() {
 		return "InwPolBalance [instNo=" + instNo + ", dueDate=" + dueDate + ", bookingDate=" + bookingDate
-				+ ", premAmt=" + premAmt + ", otherChargesInw=" + otherChargesInw + ", amtDue=" + amtDue
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", otherCharges=" + otherCharges + "]";
+				+ ", premAmt=" + premAmt + ", otherChargesInw=" + otherChargesInw + ", amtDue=" + amtDue + ", commAmt="
+				+ commAmt + ", commRt=" + commRt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", otherCharges=" + otherCharges + "]";
 	}
-	
-
 }

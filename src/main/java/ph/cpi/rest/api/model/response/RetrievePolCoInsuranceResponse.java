@@ -8,14 +8,14 @@ import ph.cpi.rest.api.model.SortRequest;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolCoInsuranceResponse {
-	private Policy policy;
+	private List<Policy> policy;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public Policy getPolicy() {
+	public List<Policy> getPolicy() {
 		return policy;
 	}
-	public void setPolicy(Policy policy) {
+	public void setPolicy(List<Policy> policy) {
 		this.policy = policy;
 	}
 	public PaginationRequest getPaginationRequest() {

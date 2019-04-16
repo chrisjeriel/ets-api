@@ -47,8 +47,8 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 
 	@Override
-	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
-		Policy policy = sqlSession.selectOne("retrievePolCoInsurance",params);
+	public List<Policy> retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policy = sqlSession.selectList("retrievePolCoInsurance",params);
 		logger.info("retrievePolCoInsurance DAOImpl : " + policy);
 		return policy;
 	}
