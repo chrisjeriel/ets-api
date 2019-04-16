@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -98,6 +99,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
 
 @Controller
@@ -457,5 +459,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteApprover");
 		logger.info("RetrieveQuoteEndorsementsRequest : " + rqar.toString());
 		return quoteService.retrieveQuoteApprover(rqar);
+	}
+	
+	@PostMapping(path="updateQuoteStatus")
+	public @ResponseBody UpdateQuoteStatusResponse updateQuoteStatus(@RequestBody UpdateQuoteStatusRequest uqsr) throws SQLException {
+		logger.info("GET: /api/quote-service/updateQuoteStatus");
+		logger.info("UpdateQuoteStatusRequest : " + uqsr.toString());
+		return quoteService.updateQuoteStatus(uqsr);
 	}
 }

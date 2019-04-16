@@ -54,6 +54,7 @@ import ph.cpi.rest.api.model.request.SaveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteOtherRatesRequest;
 import ph.cpi.rest.api.model.request.SearchQuoteInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
@@ -96,6 +97,7 @@ import ph.cpi.rest.api.model.response.SaveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteOtherRatesResponse;
 import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
 import ph.cpi.rest.api.utils.DateUtility;
 
@@ -997,6 +999,8 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			HashMap<String, Object> saveQuoteOptionsAllParams = new HashMap<String, Object>(); 
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
+			saveQuoteOptionsAllParams.put("projId" , sqor.getProjId());
+			saveQuoteOptionsAllParams.put("riskId" , sqor.getRiskId());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
@@ -1173,6 +1177,20 @@ public class QuoteServiceImpl implements QuoteService{
 		rqaResponse.setApproverList(quoteDao.retrieveQuoteApprover(rqaParams));
 		logger.info("rqaResponse : " + rqaResponse.toString());
 		return rqaResponse;
+	}
+
+	@Override
+	public UpdateQuoteStatusResponse updateQuoteStatus(UpdateQuoteStatusRequest uqsr) throws SQLException {
+		UpdateQuoteStatusResponse uqsResponse = new UpdateQuoteStatusResponse();
+		
+		HashMap<String, Object> uqsParams = new HashMap<String, Object>();
+		uqsParams.put("quoteId", uqsr.getQuoteId());
+		uqsParams.put("status", uqsr.getStatus());
+		uqsParams.put("approvedBy", uqsr.getApprovedBy());
+		
+		uqsResponse.setReturnCode(quoteDao.updateQuoteStatus(uqsParams));
+		logger.info("UpdateQuoteStatusResponse : " + uqsResponse.toString());
+		return uqsResponse;
 	}
 	
 

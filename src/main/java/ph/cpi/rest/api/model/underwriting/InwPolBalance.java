@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -8,9 +9,9 @@ public class InwPolBalance {
 	private Integer instNo;
 	private DateTime dueDate;
 	private DateTime bookingDate;
-	private Integer premAmt;
-	private Integer otherChargesInw;
-	private Integer amtDue;
+	private BigDecimal premAmt;
+	private BigDecimal otherChargesInw;
+	private BigDecimal amtDue;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -34,22 +35,22 @@ public class InwPolBalance {
 	public void setBookingDate(DateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-	public Integer getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(Integer premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public Integer getOtherChargesInw() {
+	public BigDecimal getOtherChargesInw() {
 		return otherChargesInw;
 	}
-	public void setOtherChargesInw(Integer otherChargesInw) {
+	public void setOtherChargesInw(BigDecimal otherChargesInw) {
 		this.otherChargesInw = otherChargesInw;
 	}
-	public Integer getAmtDue() {
+	public BigDecimal getAmtDue() {
 		return amtDue;
 	}
-	public void setAmtDue(Integer amtDue) {
+	public void setAmtDue(BigDecimal amtDue) {
 		this.amtDue = amtDue;
 	}
 	public String getCreateUser() {

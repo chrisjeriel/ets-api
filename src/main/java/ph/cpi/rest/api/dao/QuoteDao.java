@@ -74,6 +74,8 @@ public interface QuoteDao {
 	public Integer renumberQuoteOptions(final String quoteId) throws SQLException;
 	
 	public Integer updateHoldCoverStatus(final HashMap<String, Object> params) throws SQLException;
-	public List<Approver> retrieveQuoteApprover(final HashMap<String, Object> params) throws SQLException;	
+	public List<Approver> retrieveQuoteApprover(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer updateQuoteStatus(final HashMap<String, Object> params) throws SQLException;
 	
 }

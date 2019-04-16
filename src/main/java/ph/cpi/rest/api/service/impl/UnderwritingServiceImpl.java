@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
+import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
@@ -29,9 +30,11 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentOcRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SavePolCATPerilRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
@@ -46,12 +49,14 @@ import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
+import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
@@ -66,9 +71,11 @@ import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
+import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentOcResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SavePolCATPerilResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
@@ -83,6 +90,8 @@ import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Component
@@ -408,7 +417,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("updateUser",spcr.getUpdateUser());
 			savePolCoverageParams.put("updateDate",spcr.getUpdateDate());
 			savePolCoverageParams.put("saveSectionCovers",spcr.getSaveSectionCovers());
-			
+			savePolCoverageParams.put("deleteSectionCovers",spcr.getDeleteSectionCovers());
 			
 			HashMap<String, Object> res = underwritingDao.savePolCoverage(savePolCoverageParams);
 			spcResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -594,15 +603,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		SavePolEndtOcResponse speResponse = new SavePolEndtOcResponse();
 		try{
 			HashMap<String, Object> savePolEndtOcParams = new HashMap<String, Object>();
-			savePolEndtOcParams.put("policyIdOc",speoc.getPolicyIdOc());
-			savePolEndtOcParams.put("endtCd",speoc.getEndtCd());
-			savePolEndtOcParams.put("changeTag",speoc.getChangeTag());
-			savePolEndtOcParams.put("remarks",speoc.getRemarks());
-			savePolEndtOcParams.put("createUser",speoc.getCreateUser());
-			savePolEndtOcParams.put("createDate",speoc.getCreateDate());
-			savePolEndtOcParams.put("updateUser",speoc.getUpdateUser());
-			savePolEndtOcParams.put("updateDate",speoc.getUpdateDate());
-			savePolEndtOcParams.put("savedeductiblesOc",speoc.getSavedeductiblesOc());
+			savePolEndtOcParams.put("policyId",speoc.getPolicyId());
+			savePolEndtOcParams.put("saveEndorsements", speoc.getSaveEndorsements());
+			savePolEndtOcParams.put("deleteEndorsements", speoc.getDeleteEndorsements());
+	
+			savePolEndtOcParams.put("saveDeductibleList" , speoc.getSaveDeductibleList());
+			savePolEndtOcParams.put("deleteDeductibleList" , speoc.getDeleteDeductibleList());
 			
 			HashMap<String, Object> res = underwritingDao.savePolEndtOc(savePolEndtOcParams);
 			speResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -909,5 +915,66 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rqaResponse.setApproverList(underwritingDao.retrievePolicyApprover(rqaParams));
 		logger.info("rqaResponse : " + rqaResponse.toString());
 		return rqaResponse;
+	}
+
+	@Override
+	public UpdatePolicyStatusResponse updatePolicyStatus(UpdatePolicyStatusRequest upsr) throws SQLException {
+		UpdatePolicyStatusResponse upsResponse = new UpdatePolicyStatusResponse();
+		
+		HashMap<String, Object> upsParams = new HashMap<String, Object>();
+		upsParams.put("policyId", upsr.getPolicyId());
+		upsParams.put("status", upsr.getStatus());
+		
+		upsResponse.setReturnCode(underwritingDao.updatePolicyStatus(upsParams));
+		return upsResponse;
+	}
+
+	@Override
+	public RetrieveWfmApprovalsResponse retrieveWfmApprovals(RetrieveWfmApprovalsRequest rwar) throws SQLException {
+		RetrieveWfmApprovalsResponse rwaResponse = new RetrieveWfmApprovalsResponse();
+		HashMap<String, Object> rwarParams = new HashMap<String, Object>();
+		rwarParams.put("userId", rwar.getUserId());
+		
+		rwaResponse.setApprovalList(underwritingDao.retrieveWfmApprovals(rwarParams));
+		logger.info("rqaResponse : " + rwaResponse.toString());
+		return rwaResponse;
+	}
+
+	@Override
+	public RetrievePolCoverageAltResponse retrivePolCoverageAlt(RetrievePolCoverageAltRequest rpcar)
+			throws SQLException {
+		RetrievePolCoverageAltResponse rpcResponse = new RetrievePolCoverageAltResponse();
+		
+		HashMap<String, Object> retrievePolCoverageAltParams = new HashMap<String, Object>();
+		retrievePolCoverageAltParams.put("lineCd", rpcar.getLineCd());
+		retrievePolCoverageAltParams.put("polYear", rpcar.getPolYear());
+		retrievePolCoverageAltParams.put("seqNo", rpcar.getSeqNo());
+		retrievePolCoverageAltParams.put("cedingId", rpcar.getCedingId());
+		retrievePolCoverageAltParams.put("coSeriesNo", rpcar.getCoSeriesNo());
+		retrievePolCoverageAltParams.put("altNo", rpcar.getAltNo());
+		
+		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverageAlt(retrievePolCoverageAltParams));
+		
+		logger.info("retrievePolCoverageAltResponse : " + rpcResponse.toString());
+		
+		return rpcResponse;
+	}
+
+	@Override
+	public SavePolAttachmentOcResponse savePolAttachmentOc(SavePolAttachmentOcRequest spaocr) throws SQLException {
+		SavePolAttachmentOcResponse spaocrResponse = new SavePolAttachmentOcResponse();
+		try{
+			HashMap<String, Object> savePolAttachmentOcParams = new HashMap<String, Object>();
+			savePolAttachmentOcParams.put("policyId", spaocr.getPolicyId());
+			savePolAttachmentOcParams.put("savePolAttachments", spaocr.getSavePolAttachments());
+			savePolAttachmentOcParams.put("deletePolAttachments", spaocr.getDeletePolAttachments());
+			
+			spaocrResponse.setReturnCode(underwritingDao.savePolAttachmentsOc(savePolAttachmentOcParams));
+		}catch(Exception ex){
+			spaocrResponse.setReturnCode(0);
+			spaocrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return spaocrResponse;
 	}
 }

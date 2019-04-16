@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.workflowmanager.Approval;
 
 @Component
 public class UnderwritingDaoImpl implements UnderwritingDao {
@@ -239,6 +240,8 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		sqlSession.update("savePDAlop",params);
 		sqlSession.update("savePDAlopItem",params);
 		sqlSession.update("savePDEndorsements",params);
+		sqlSession.update("savePDAttachments",params);
+		sqlSession.update("savePDPolInwardBal",params);		
 		
 		return params;
 	}
@@ -286,4 +289,28 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return sqlSession.selectList("retrievePolicyApprover", params);
 	}
 	
+	@Override
+	public Integer updatePolicyStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updatePolicyStatus", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<Approval> retrieveWfmApprovals(HashMap<String, Object> params) throws SQLException {
+		List<Approval> approvalList = sqlSession.selectList("retrieveWfmApprovals",params);
+		return approvalList;
+	}
+	
+	@Override
+	public Policy retrievePolicyCoverageAlt(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolCoverageAlt",params);
+		logger.info("retrievePolCoverageAlt DAOImpl : " + policy);
+		return policy;
+	}
+	
+	@Override
+	public Integer savePolAttachmentsOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
+		return errorCode;
+	}
 }

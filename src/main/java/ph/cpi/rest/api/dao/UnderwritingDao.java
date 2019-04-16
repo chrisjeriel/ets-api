@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.workflowmanager.Approval;
 
 public interface UnderwritingDao {
 	
@@ -47,5 +48,9 @@ public interface UnderwritingDao {
 	public Integer updatePolHoldCoverStatus(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveOpenPolDetails(final HashMap<String, Object> params) throws SQLException;
 	public List<Approver> retrievePolicyApprover(final HashMap<String, Object> params) throws SQLException;
-	
+	public Integer updatePolicyStatus(final HashMap<String, Object> params) throws SQLException;
+	public List<Approval> retrieveWfmApprovals(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolicyCoverageAlt(final HashMap<String, Object> params) throws SQLException;
+	public Integer savePolAttachmentsOc(final HashMap<String, Object> params) throws SQLException;
+
 }

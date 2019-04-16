@@ -14,7 +14,7 @@ public class Coverage {
 	private BigDecimal sectionIIISi;
 	private BigDecimal totalSi;
 	private String currencyCd;
-	private Integer currencyRt;
+	private BigDecimal currencyRt;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
@@ -67,10 +67,10 @@ public class Coverage {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrencyRt() {
+	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(Integer currencyRt) {
+	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
 	public String getRemarks() {

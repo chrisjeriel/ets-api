@@ -142,7 +142,7 @@ class SectionCovers {
 	private String section ;
 	private Integer coverCd  ;
 	private String bulletNo ;
-	private Integer sumInsured ;
+	private BigDecimal sumInsured ;
 	private String addSi ;
 	private String createUser ;
 	private String createDate ;
@@ -174,10 +174,10 @@ class SectionCovers {
 	public void setBulletNo(String bulletNo) {
 		this.bulletNo = bulletNo;
 	}
-	public Integer getSumInsured() {
+	public BigDecimal getSumInsured() {
 		return sumInsured;
 	}
-	public void setSumInsured(Integer sumInsured) {
+	public void setSumInsured(BigDecimal sumInsured) {
 		this.sumInsured = sumInsured;
 	}
 	public String getAddSi() {

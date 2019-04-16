@@ -62,6 +62,7 @@
 		<result property="cessionDesc" 			column="CESSION_DESC"/>
 		<result property="lineClassCd" 			column="LINE_CLASS_CD"/>
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
+		<result property="insuredDesc" 			column="INSURED_DESC"/>
 		<result property="quoteId" 				column="QUOTE_ID"/>
 		<result property="quotationNo" 			column="QUOTATION_NO"/>
 		<result property="holdCoverNo" 			column="HOLD_COV_NO"/>
@@ -78,9 +79,9 @@
 		<result property="intmId" 				column="INTM_ID"/>
 		<result property="intmName" 			column="INTM_NAME"/>
 		<result property="principalId" 			column="PRIN_ID"/>
-		<result property="principalName" 		column="INSURED_NAME"/>
+		<result property="principalName" 		column="PRINCIPAL_NAME"/>
 		<result property="contractorId" 		column="CONTRACTOR_ID"/>
-		<result property="contractorName" 		column="INSURED_NAME"/>
+		<result property="contractorName" 		column="CONTRACTOR_NAME"/>
 		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lapseFrom" 			column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -115,7 +116,7 @@
 		<association property="deductibles" 	resultMap="PolDeductiblesMap"/>
 		<association property="project" 		resultMap="projectMap"/>
 		<association property="alop" 			resultMap="assocAlop"/>
-		<association property="holdCoverList" 		resultMap="holdCoverMap"/>
+		<association property="holdCoverList"	resultMap="holdCoverMap"/>
 		<association property="alterationHist" 	resultMap="AlterationHistMap"/>
 	</resultMap>
 	
@@ -128,12 +129,14 @@
 		<result property="sumInsured"   column="ALT_TOTAL_SI"/>
 		<result property="premAmt"  column="ALT_TOTAL_PREM"/>
 		<result property="status"   column="ALT_STATUS_DESC"/>
+		<result property="insured"   column="ALT_INSURED"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
 		<result property="policyId" 			column="POLICY_ID"/>
 		<result property="policyNo" 			column="POLICY_NO"/>
 		<result property="cessionDesc" 			column="CESSION_DESC"/>
+		<result property="cedingId" 			column="CEDING_ID"/>		
 		<result property="cedingName" 			column="CEDING_NAME"/>		
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
 		<result property="insuredDesc" 			column="INSURED_DESC"/>
@@ -195,6 +198,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Project" id="projectMap">
 		<result property="projId" 		column="PROJ_ID"/>
+		<result property="projDesc" 	column="PROJ_DESC"/>
 		<result property="riskId" 		column="RISK_ID"/>
 		<result property="riskName" 	column="RISK_NAME"/>
 		<result property="regionCd" 	column="REGION_CD"/>
@@ -264,6 +268,9 @@
 		<result property="coverCd" 					column="COVER_CD"/>
 		<result property="description" 				column="DESCRIPTION"/>
 		<result property="bulletNo" 				column="BULLET_NO"/>
+		<result property="prevSumInsured" 			column="PREV_SUM_INSURED"/>
+		<result property="prevPremRt" 				column="PREV_PREM_RT"/>
+		<result property="prevPremAmt" 				column="PREV_PREM_AMT"/>
 		<result property="sumInsured" 				column="SUM_INSURED"/>
 		<result property="premRt" 					column="PREM_RT"/>
 		<result property="premAmt" 					column="PREM_AMT"/>
@@ -546,7 +553,7 @@
 		    </foreach>
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
-		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
 		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
@@ -607,17 +614,22 @@
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml}, #{totalValue}, #{remarks}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="deleteSectionCovers" item="sectioncovers">
+				POL_SEC_COVER_PKG.del_pol_cover(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd});
+			</foreach>
 			
 			<foreach collection="saveSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.save_pol_sec_cvrs(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi}, #{sectioncovers.discountTag}, 
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -1018,16 +1030,31 @@
 	
 	<update id="savePolEndtOc" parameterType="java.util.Map">
 		BEGIN
-			POL_ENDT_OC_PKG.save_pol_endt_oc( #{policyIdOc}, #{endtCd}, #{changeTag}, #{remarks},
-											  #{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-											  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-			
-			<foreach collection="savedeductiblesOc" item="deductibles">
-				POL_ENDT_OC_PKG.save_pol_endt_dedt_oc(#{policyIdOc},#{deductibles.coverCd},#{deductibles.endtCdDedt}, #{deductibles.deductibleCd}, 
-													  #{deductibles.deductibleRt}, #{deductibles.deductibleAmt}, 
-													  #{deductibles.deductibleTxt}, #{deductibles.createUser}, CAST(to_timestamp(#{deductibles.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-													  #{deductibles.updateUser}, CAST(to_timestamp(#{deductibles.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			<foreach collection="deleteEndorsements" item="endo">
+				POL_ENDT_OC_PKG.del_pol_endt_dedt_oc(#{policyId},#{endo.endtCd});
 			</foreach>
+			<foreach collection="saveEndorsements" item="endo">
+				POL_ENDT_OC_PKG.save_pol_endt_oc(
+					#{policyId},#{endo.endtCd},#{endo.changeTag},
+					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser},
+		   			CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		   			#{endo.updateUser},
+				   	CAST(to_timestamp(#{endo.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+				);
+			</foreach>
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.del_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.save_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
 		END;
 	</update>
 	
@@ -1184,6 +1211,31 @@
 		END;
 	</update>
 	
+	<update id="savePDAttachments" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_attachments(#{policyId, jdbcType=INTEGER},
+													  #{quotationNo, jdbcType=VARCHAR},
+													  #{holdCoverNo, jdbcType=VARCHAR},
+													  #{openPolicyNo, jdbcType=VARCHAR},
+													  #{createUser, jdbcType=VARCHAR},
+													  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  #{updateUser, jdbcType=VARCHAR},
+													  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												     );
+		END;
+	</update>
+	
+	<update id="savePDPolInwardBal" parameterType="java.util.Map">
+		BEGIN
+			CONVERT_QU_TO_POL_PKG.save_pd_pol_inw(#{policyId, jdbcType=INTEGER},											  
+												  #{createUser, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{updateUser, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												 );
+		END;
+	</update>
+	
 	<update id="saveSumInsOC" parameterType="java.util.Map">
 		BEGIN
 			POL_COVERAGE_OC_PKG.save_sum_ins_oc(#{policyId},#{pctShare},#{pctPml},#{totalValue},#{updateUser, jdbcType=VARCHAR},
@@ -1234,6 +1286,8 @@
         <result property="inceptDate"           column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="acctDate"             column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="statusDesc"           column="STATUS_DESC"/>
+        <result property="optionId"             column="OPTION_ID"/>
+        <result property="condition"            column="CONDITION"/>
         <association property="project" resultMap="PolProjOcListingMap"></association>
 	</resultMap>
 	
@@ -1272,6 +1326,50 @@
 										 #{updateUser, jdbcType=VARCHAR},
 										 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 										);
+		END;
+	</update>
+	
+
+	<resultMap type="ph.cpi.rest.api.model.workflowmanager.Approval" id="wfmApprovalsMap">
+		<result property="referenceId"		column="REFERENCE_ID" />		
+		<result property="module"			column="MODULE" />			
+		<result property="quotationNo"		column="QUOTATION_NO" />		
+		<result property="preparedBy"		column="PREPARED_BY" />		
+		<result property="createDate"		column="CREATE_DATE" />
+	
+	</resultMap>
+	
+	<select id="retrieveWfmApprovals" parameterType="java.util.Map" resultMap="wfmApprovalsMap">
+		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.CREATE_DATE  FROM QUOTE_GEN_INFO a
+		 WHERE a.status = 'P'
+		   AND a.approved_by = #{userId, jdbcType=VARCHAR}
+	</select>
+
+	<select id="retrievePolCoverageAlt" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POL_COVERAGE_ALT_PKG.ret_pol_cover_alt(#{lineCd},#{polYear},#{seqNo},#{cedingId},#{coSeriesNo},#{altNo},
+																	   #{position, jdbcType=VARCHAR}, 
+																	   #{count, jdbcType=VARCHAR}, 
+																	   #{sortKey, jdbcType=VARCHAR}, 
+																	   #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	
+	<update id="savePolAttachmentOC" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="savePolAttachments" item="attachment">
+		   	   POL_ATTACHMENT_OC_PKG.save_pol_attchmnt_oc(#{policyId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description, jdbcType=VARCHAR},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		   <foreach collection="deletePolAttachments" item="attachment">
+		   		POL_ATTACHMENT_OC_PKG.del_pol_attchmnt_oc(#{policyId},
+		   											#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
 		END;
 	</update>
 	

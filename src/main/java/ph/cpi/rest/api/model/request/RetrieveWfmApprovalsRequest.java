@@ -3,22 +3,15 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveQuoteHoldCoverRequest {
-	private String holdCoverId;
-	private String holdCoverNo;
+public class RetrieveWfmApprovalsRequest {
+	private String userId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getHoldCoverId() {
-		return holdCoverId;
+	public String getUserId() {
+		return userId;
 	}
-	public void setHoldCoverId(String holdCoverId) {
-		this.holdCoverId = holdCoverId;
-	}
-	public String getHoldCoverNo() {
-		return holdCoverNo;
-	}
-	public void setHoldCoverNo(String holdCoverNo) {
-		this.holdCoverNo = holdCoverNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,8 +27,8 @@ public class RetrieveQuoteHoldCoverRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteHoldCoverRequest [holdCoverId=" + holdCoverId + ", holdCoverNo=" + holdCoverNo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveWfmApprovalsRequest [userId=" + userId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 	
 }
