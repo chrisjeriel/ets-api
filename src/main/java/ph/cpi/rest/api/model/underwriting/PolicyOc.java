@@ -43,6 +43,8 @@ public class PolicyOc {
 	private DateTime acctDate;
 	private String currencyCd;
 	private String currencyRt;
+	private String coRefNo;
+	private String riBinderNo;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -261,6 +263,22 @@ public class PolicyOc {
 	public void setReinsurerName(String reinsurerName) {
 		this.reinsurerName = reinsurerName;
 	}
+	
+	public String getCoRefNo() {
+		return coRefNo;
+	}
+
+	public void setCoRefNo(String coRefNo) {
+		this.coRefNo = coRefNo;
+	}
+
+	public String getRiBinderNo() {
+		return riBinderNo;
+	}
+
+	public void setRiBinderNo(String riBinderNo) {
+		this.riBinderNo = riBinderNo;
+	}
 
 	public Integer getIntmId() {
 		return intmId;
@@ -443,10 +461,10 @@ public class PolicyOc {
 				+ ", intmId=" + intmId + ", intmName=" + intmName + ", inceptDate=" + inceptDate + ", expiryDate="
 				+ expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", issueDate=" + issueDate
 				+ ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd="
-				+ currencyCd + ", currencyRt=" + currencyRt + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", optionId=" + optionId
-				+ ", condition=" + condition + ", project=" + project + ", attachmentsOc=" + attachmentsOc
-				+ ", endorsementsOc=" + endorsementsOc + "]";
+				+ currencyCd + ", currencyRt=" + currencyRt + ", coRefNo=" + coRefNo + ", riBinderNo=" + riBinderNo
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", optionId=" + optionId + ", condition=" + condition + ", project="
+				+ project + ", attachmentsOc=" + attachmentsOc + ", endorsementsOc=" + endorsementsOc + "]";
 	}
 	
 }
