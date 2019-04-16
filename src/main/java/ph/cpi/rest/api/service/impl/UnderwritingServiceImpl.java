@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
@@ -62,6 +63,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
@@ -869,6 +871,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("policyId",uphcsr.getPolicyId());
 			params.put("holdCovId", uphcsr.getHoldCovId());
+			params.put("updateType", uphcsr.getUpdateType());
 			params.put("updateUser", uphcsr.getUpdateUser());
 			params.put("updateDate" , uphcsr.getUpdateDate());
 			uphcsResponse.setReturnCode(underwritingDao.updatePolHoldCoverStatus(params));
@@ -969,6 +972,22 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			e.printStackTrace();
 		}
 		return rphcResponse;
+	}
+
+	@Override
+	public RetrievePolGenInfoOcResponse retrievePolGenInfoOc(RetrievePolGenInfoOcRequest rpgior) throws SQLException {
+		RetrievePolGenInfoOcResponse rpgioResponse = new RetrievePolGenInfoOcResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", rpgior.getPolicyIdOc());
+		params.put("openPolicyNo", rpgior.getOpenPolicyNo());
+		/*params.put("position", rpgior.getPaginationRequest().getPosition());
+		params.put("count", rpgior.getPaginationRequest().getCount());
+		params.put("sortKey", rpgior.getSortRequest().getSortKey());
+		params.put("order", rpgior.getSortRequest().getOrder());*/
+		rpgioResponse.setPolicyOc(underwritingDao.retrievePolGenInfoOc(params));
+		//rpgioResponse.setPaginationResponse(paginationResponse);;
+		logger.info("RetrievePolGenInfoOcResponse : " + rpgioResponse.toString());
+		return rpgioResponse;
 	}
 	
 	@Override

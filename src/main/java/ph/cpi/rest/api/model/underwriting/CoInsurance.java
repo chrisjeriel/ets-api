@@ -3,6 +3,8 @@ package ph.cpi.rest.api.model.underwriting;
 import org.joda.time.DateTime;
 
 public class CoInsurance {
+	private Integer policyId;
+	private String policyNo;
 	private String coRefNo;
 	private String cedingId ;
 	private String cedingName;
@@ -14,6 +16,18 @@ public class CoInsurance {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
 	public String getCoRefNo() {
 		return coRefNo;
 	}

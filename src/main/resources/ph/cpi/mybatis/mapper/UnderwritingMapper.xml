@@ -27,6 +27,8 @@
 		<result property="dueDate" 				column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="bookingDate" 			column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="premAmt" 				column="PREM_AMT"/>
+		<result property="commRt"               column="COMM_RT"/>
+		<result property="commAmt"              column="COMM_AMT"/>
 		<result property="otherChargesInw" 		column="OTHER_CHARGES"/>
 		<result property="amtDue" 				column="AMT_DUE"/>
 		<result property="createUser" 			column="CREATE_USER"/>
@@ -153,6 +155,8 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
 		<!-- <result property="policyNo"		column="POLICY_NO"/> -->
+		<result property="policyId" 	column="POLICY_ID"/>
+		<result property="policyNo" 	column="POLICY_NO"/>
 		<result property="coRefNo"		column="CO_REF_NO"/>
 		<result property="cedingId"		column="CEDING_ID"/>
 		<result property="cedingName"	column="CEDING_NAME"/>
@@ -169,7 +173,7 @@
 		SELECT * FROM TABLE(POL_INWARD_PKG.ret_pol_inward(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
-	<select id="retrievePolCoInsurance" resultMap="retrievePolCoinsuranceMap" parameterType="java.util.Map">
+	<select id="retrievePolCoInsurance" resultMap="coInsuranceMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_INSURANCE_PKG.ret_pol_insurance(#{policyId,jdbcType=INTEGER},#{policyNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
@@ -1307,6 +1311,7 @@
 		BEGIN
 			POL_HOLD_COVER_PKG.upd_hc_status(#{policyId, jdbcType=INTEGER},
 											 #{holdCovId, jdbcType=INTEGER},
+											 #{updateType, jdbcType=VARCHAR},
 											 #{updateUser, jdbcType=VARCHAR},
 											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 											 );
@@ -1373,6 +1378,7 @@
 		END;
 	</update>
 	
+
 	<select id="retrievePolHoldCoverListing" resultMap="policyMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.ret_pol_hc_list(
 			#{holdCovNo,jdbcType=VARCHAR},
@@ -1394,6 +1400,92 @@
 			''
 		))
 	</select>
+
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyOc" id="polGenInfoOcMap">
+		<result property="policyIdOc" 		column="POLICY_ID_OC" />
+		<result property="openPolicyNo" 	column="OPEN_POLICY_NO" />
+		<result property="lineCd" 			column="LINE_CD" />
+		<result property="lineCdDesc" 		column="LINE_CD_DESC" />
+		<result property="ocYear" 			column="OC_YEAR" />
+		<result property="ocSeqNo" 			column="OC_SEQ_NO" />
+		<result property="cedingId" 		column="CEDING_ID" />
+		<result property="cedingName" 		column="CEDING_NAME" />
+		<result property="coSeriesNo" 		column="CO_SERIES_NO" />
+		<result property="altNo" 			column="ALT_NO" />
+		<result property="cessionId" 		column="CESSION_ID" />
+		<result property="cessionDesc" 		column="CESSION_DESC" />
+		<result property="lineClassCd" 		column="LINE_CLASS_CD" />
+		<result property="quoteId" 			column="QUOTE_ID" />
+		<result property="quoteNo" 			column="QUOTE_NO" />
+		<result property="lineClassDesc" 	column="LINE_CLASS_DESC" />
+		<result property="refOpPolNo" 		column="REF_OP_POL_NO" />
+		<result property="prinId" 			column="PRIN_ID" />
+		<result property="prinName" 		column="PRIN_NAME" />
+		<result property="contractorId" 	column="CONTRACTOR_ID" />
+		<result property="contractorName" 	column="CONTRACTOR_NAME" />
+		<result property="insuredDesc" 		column="INSURED_DESC" />
+		<result property="status" 			column="STATUS" />
+		<result property="statusDesc" 		column="STATUS_DESC" />
+		<result property="reinsurerId" 		column="REINSURER_ID" />
+		<result property="reinsurerName"    column="REINSURER_NAME" />
+		<result property="intmId" 			column="INTM_ID" />
+		<result property="intmName" 		column="INTM_NAME" />
+		<result property="inceptDate" 		column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="lapseFrom" 		column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="lapseTo" 			column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="effDate" 			column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="distDate" 		column="DIST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctDate" 		column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="currencyCd" 		column="CURRENCY_CD" />
+		<result property="currencyRt" 		column="CURRENCY_RT" />
+		<result property="coRefNo" 			column="CO_REF_NO" />
+		<result property="riBinderNo" 		column="RI_BINDER_NO" />
+		<result property="createUser" 		column="CREATE_USER" />
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER" />
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="project"		resultMap="assocProjOcMap" />
+	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ProjectOc" id="assocProjOcMap">
+		<result property="projId"				column="PROJ_ID" />
+		<result property="projDesc"				column="PROJ_DESC" />
+		<result property="riskId"				column="RISK_ID" />
+		<result property="riskName"				column="RISK_NAME" />
+		<result property="regionCd"				column="REGION_CD" />
+		<result property="regionDesc"			column="REGION_DESC" />
+		<result property="provinceCd"			column="PROVINCE_CD" />
+		<result property="provinceDesc"			column="PROVINCE_DESC" />
+		<result property="cityCd"				column="CITY_CD" />
+		<result property="cityDesc"				column="CITY_DESC" />
+		<result property="districtCd"			column="DISTRICT_CD" />
+		<result property="districtDesc"			column="DISTRICT_DESC" />
+		<result property="blockCd"				column="BLOCK_CD" />
+		<result property="blockDesc"			column="BLOCK_DESC" />
+		<result property="latitude"				column="LATITUDE" />
+		<result property="longitude"			column="LONGITUDE" />
+		<result property="totalSi"				column="TOTAL_SI" />
+		<result property="objectId"				column="OBJECT_ID" />
+		<result property="objectDesc"			column="OBJ_DESC" />
+		<result property="site"					column="SITE" />
+		<result property="duration"				column="DURATION" />
+		<result property="testing"				column="TESTING" />
+		<result property="prCreateUser"			column="PR_CREATE_USER" />
+		<result property="prCreateDate"			column="PR_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="prUpdateUser"			column="PR_UPDATE_USER" />
+		<result property="prUpdateDate"			column="PR_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrievePolGenInfoOc" parameterType="java.util.Map" resultMap="polGenInfoOcMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_OC_PKG.ret_pol_gi_oc(
+																#{policyIdOc, jdbcType=INTEGER},
+																#{openPolicyNo, jdbcType=VARCHAR},
+																#{position, jdbcType=VARCHAR}, 
+																#{count, jdbcType=VARCHAR}, 
+																#{sortKey, jdbcType=VARCHAR}, 
+																#{order, jdbcType=VARCHAR}))
+	</select>
 	
 </mapper>
