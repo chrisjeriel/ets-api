@@ -6,6 +6,7 @@ import java.util.List;
 public class SavePolInwardBalRequest {
 	
 	private String policyId; 
+	private String user;
 	private List<savePolInward> savePolInward;
 	private List<savePolInward> delPolInward;
 	private List<savePolOtherCharges> saveOtherCharges;
@@ -17,6 +18,12 @@ public class SavePolInwardBalRequest {
 	}
 	public void setPolicyId(String policyId) {
 		this.policyId = policyId;
+	}
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
 	}
 	public List<savePolInward> getSavePolInward() {
 		return savePolInward;
@@ -52,9 +59,9 @@ public class SavePolInwardBalRequest {
 	}
 	@Override
 	public String toString() {
-		return "SavePolInwardBalRequest [policyId=" + policyId + ", savePolInward=" + savePolInward + ", delPolInward="
-				+ delPolInward + ", saveOtherCharges=" + saveOtherCharges + ", delOtherCharges=" + delOtherCharges
-				+ ", newSavePolInward=" + newSavePolInward + "]";
+		return "SavePolInwardBalRequest [policyId=" + policyId + ", user=" + user + ", savePolInward=" + savePolInward
+				+ ", delPolInward=" + delPolInward + ", saveOtherCharges=" + saveOtherCharges + ", delOtherCharges="
+				+ delOtherCharges + ", newSavePolInward=" + newSavePolInward + "]";
 	}
 	
 }

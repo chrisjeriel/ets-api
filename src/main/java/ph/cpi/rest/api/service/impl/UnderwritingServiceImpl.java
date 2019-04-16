@@ -762,6 +762,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		SavePolInwardBalResponse spibrResponse = new SavePolInwardBalResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId", spibr.getPolicyId());
+		params.put("user", spibr.getUser());
 		params.put("savePolInward", spibr.getSavePolInward());
 		params.put("delPolInward",spibr.getDelPolInward());
 		params.put("saveOtherCharges", spibr.getSaveOtherCharges());
@@ -991,7 +992,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("cedingId",spgip.getCedingId());
 		params.put("riBinderNo",spgip.getRiBinderNo());
 		params.put("coRefNo",spgip.getCoRefNo());
-		params.put("cedingName",spgip.getCedingName());
 		params.put("coSeriesNo",spgip.getCoSeriesNo());
 		params.put("altNo",spgip.getAltNo());
 		params.put("cessionId",spgip.getCessionId());
@@ -1029,8 +1029,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("testing",spgip.getTesting());
 		params.put("projCreateUser",spgip.getProjCreateUser());
 		params.put("projCreateDate",spgip.getProjCreateDate());
-		params.put("projCpdateUser",spgip.getProjCpdateUser());
-		params.put("projCpdateDate",spgip.getProjCpdateDate());
+		params.put("projUpdateUser",spgip.getProjUpdateUser());
+		params.put("projUpdateDate",spgip.getProjUpdateDate());
 		try{
 			spgipResponse.setReturnCode(underwritingDao.savePolGenInfoOc(params));
 		}catch(Exception ex){ 
