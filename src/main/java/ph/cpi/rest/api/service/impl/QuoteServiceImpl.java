@@ -1160,6 +1160,7 @@ public class QuoteServiceImpl implements QuoteService{
 		HashMap<String, Object> updateHoldCoverStatusParams = new HashMap<String, Object>();
 		updateHoldCoverStatusParams.put("quoteId", uhcr.getQuoteId());
 		updateHoldCoverStatusParams.put("holdCoverId", uhcr.getHoldCoverId());
+		updateHoldCoverStatusParams.put("updateUser", uhcr.getUpdateUser());
 		uhcrResponse.setReturnCode(quoteDao.updateHoldCoverStatus(updateHoldCoverStatusParams));
 		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
 		
