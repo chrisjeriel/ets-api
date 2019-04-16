@@ -1287,6 +1287,7 @@
         <result property="statusDesc"           column="STATUS_DESC"/>
         <result property="optionId"             column="OPTION_ID"/>
         <result property="condition"            column="CONDITION"/>
+        <result property="optionRt"             column="OPTION_RT"/>
         <association property="project" resultMap="PolProjOcListingMap"></association>
 	</resultMap>
 	
