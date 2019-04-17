@@ -320,4 +320,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer savePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolGenInfoOc", params);
+		return errorCode;
+	}
 }
