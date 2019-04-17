@@ -16,6 +16,7 @@ public class Endorsements {
 	private String updateUser;
 	private DateTime updateDate;
 	private List<Deductibles> deductibles;
+	private EndtText endtText;
 	
 	public String getEndtCd() {
 		return endtCd;
@@ -72,10 +73,17 @@ public class Endorsements {
 		this.deductibles = deductibles;
 	}
 	
+	public EndtText getEndtText() {
+		return endtText;
+	}
+	public void setEndtText(EndtText endtText) {
+		this.endtText = endtText;
+	}
 	@Override
 	public String toString() {
 		return "Endorsements [endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", changeTag=" + changeTag + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + "]";
+				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", endtText=" + endtText + "]";
 	}
+	
 }
