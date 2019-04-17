@@ -766,8 +766,8 @@
 		<result property="policyNo" 			column="POLICY_NO"/>
 		<result property="cedingName" 			column="CEDING_NAME"/>
 		<result property="principalName" 		column="INSURED_NAME"/>
-<!-- 		<association property="project" 		resultMap="projectMap"/> -->
-		<collection property="holdCoverList" javaType="ArrayList" column="{policyId = POLICY_ID, policyNo = POLICY_NO}" ofType="holdCoverMap" select="retrievePolHoldCover"/>
+		<association property="project" 		resultMap="projectMap"/>
+		<collection property="holdCoverList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="holdCoverMap" select="retrievePolHoldCover"/>
 	</resultMap>
 	
 	<select id="retrievePolHoldCoverMain" resultMap="retPolHoldCoverMap" parameterType="java.util.Map">
