@@ -75,7 +75,7 @@ public class Policy {
 	private List<Attachment> attachments;
 	private List<InwPolBalance> inwPolBalance;
 	private List<CoInsurance> coInsurance;
-	private List<Alop> alop;
+	private Alop alop;
 	private List<HoldCover> holdCoverList;
 	private List<CATPeril> catPeril;
 	private List<AlterationHist> alterationHist;
@@ -487,10 +487,11 @@ public class Policy {
 	public void setCoInsurance(List<CoInsurance> coInsurance) {
 		this.coInsurance = coInsurance;
 	}
-	public List<Alop> getAlop() {
+	
+	public Alop getAlop() {
 		return alop;
 	}
-	public void setAlop(List<Alop> alop) {
+	public void setAlop(Alop alop) {
 		this.alop = alop;
 	}
 	public List<HoldCover> getHoldCoverList() {
@@ -535,7 +536,8 @@ public class Policy {
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
 				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril
-				+ ", alterationHist=" + alterationHist + "]";
+				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
+				+ alterationHist + "]";
 	}
+	
 }

@@ -564,10 +564,10 @@
 	
 	<update id="savePolAlopMap" parameterType="java.util.Map">
 		BEGIN
-			POL_ALOP_PKG.save_pol_alop(#{policyId},#{insId},#{insuredDesc},#{address},#{insBusiness},#{annSi},#{maxIndemPdSi},
-			   CAST(to_timestamp(#{issueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-			   CAST(to_timestamp(#{expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{maxIndemPd}, 
-			   CAST(to_timestamp(#{indemFromDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			POL_ALOP_PKG.save_pol_alop(#{policyId},#{insId},#{insuredDesc},#{address},#{insBusiness,jdbcType=VARCHAR},#{annSi},#{maxIndemPdSi},
+			   CAST(to_timestamp(#{issueDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+			   CAST(to_timestamp(#{expiryDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{maxIndemPd}, 
+			   CAST(to_timestamp(#{indemFromDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   #{timeExc}, #{repInterval}, #{createUser},
 			   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
 			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
@@ -635,6 +635,21 @@
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
+			
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_PKG.del_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+		    
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
 		END;
 	</update>
 	

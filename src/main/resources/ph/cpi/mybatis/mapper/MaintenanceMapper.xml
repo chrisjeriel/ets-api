@@ -61,7 +61,7 @@
 		<result property="lineDesc" 		column="LINE_DESCRIPTION"/>
 		<result property="coverCd" 			column="COVER_CD"/>
 		<result property="coverCdAbbr" 		column="COVER_CD_ABBR"/>
-		<result property="description" 		column="COVERS_DESCRIPTION"/>
+		<result property="coverName" 		column="COVERS_DESCRIPTION"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="section" 			column="SECTION"/>
 		<result property="sortSeq" 			column="SORT_SEQ"/>
