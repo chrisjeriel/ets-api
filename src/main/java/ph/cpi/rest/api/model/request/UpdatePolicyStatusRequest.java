@@ -4,6 +4,7 @@ public class UpdatePolicyStatusRequest {
 
 	private Integer policyId;
 	private String status;
+	private String updateUser;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -16,9 +17,16 @@ public class UpdatePolicyStatusRequest {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
 	@Override
 	public String toString() {
-		return "UpdatePolicyStatusRequest [policyId=" + policyId + ", status=" + status + "]";
+		return "UpdatePolicyStatusRequest [policyId=" + policyId + ", status=" + status + ", updateUser=" + updateUser
+				+ "]";
 	}
 	
 }

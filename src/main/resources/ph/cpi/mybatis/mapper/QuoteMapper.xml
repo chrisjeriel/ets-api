@@ -1761,7 +1761,8 @@
 		BEGIN
 			MTN_USERS_PKG.update_policy_status(
 				#{policyId,jdbcType=INTEGER},
-				#{status,jdbcType=VARCHAR}
+				#{status,jdbcType=VARCHAR},
+				#{updateUser,jdbcType=VARCHAR}
 			);
 		END;
 	</update>

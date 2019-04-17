@@ -929,6 +929,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> upsParams = new HashMap<String, Object>();
 		upsParams.put("policyId", upsr.getPolicyId());
 		upsParams.put("status", upsr.getStatus());
+		upsParams.put("updateUser", upsr.getUpdateUser());
 		
 		upsResponse.setReturnCode(underwritingDao.updatePolicyStatus(upsParams));
 		return upsResponse;
