@@ -300,6 +300,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<Approval> approvalList = sqlSession.selectList("retrieveWfmApprovals",params);
 		return approvalList;
 	}
+
+	@Override
+	public PolicyOc retrievePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
+		PolicyOc policyOc = sqlSession.selectOne("retrievePolGenInfoOc", params);
+		logger.info("retrievePolGenInfoOc DAOImpl : " + policyOc);
+		return policyOc;
+	}
 	
 	@Override
 	public Policy retrievePolicyCoverageAlt(HashMap<String, Object> params) throws SQLException {
