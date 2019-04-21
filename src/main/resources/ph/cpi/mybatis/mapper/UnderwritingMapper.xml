@@ -118,6 +118,10 @@
 		<association property="alop" 			resultMap="assocAlop"/>
 		<association property="holdCoverList"	resultMap="holdCoverMap"/>
 		<association property="alterationHist" 	resultMap="AlterationHistMap"/>
+		
+		
+		
+		
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.AlterationHist" id="AlterationHistMap" >
@@ -1372,5 +1376,24 @@
 		   </foreach>
 		END;
 	</update>
+	
+	<update id="updatePolGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POL_GEN_INFO_PKG.update_gen_info(#{policyId, jdbcType=INTEGER},
+											 #{riskId, jdbcType=INTEGER},
+											 #{coRefNo, jdbcType=VARCHAR},
+											 #{riBinderNo, jdbcType=VARCHAR},
+											 #{insuredDesc, jdbcType=VARCHAR},
+											 #{latitude, jdbcType=VARCHAR},
+											 #{longtitude, jdbcType=VARCHAR},
+											 #{updateUser, jdbcType=VARCHAR},
+											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											 );
+		END;
+	</update>
+	
+	
+	
+	
 	
 </mapper>
