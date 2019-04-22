@@ -328,4 +328,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
 		return errorCode;
 	}
+
+	@Override
+	public List<Policy> retrieveAlterationsPerPolicy(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrieveAlterationsPerPolicy", params);
+		
+		return policyList;
+	}
 }

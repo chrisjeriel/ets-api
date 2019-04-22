@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -52,6 +53,7 @@ import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -1027,5 +1029,17 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spaocrResponse;
+	}
+
+	@Override
+	public RetrieveAlterationsPerPolicyResponse retrieveAlterationsPerPolicy(RetrieveAlterationsPerPolicyRequest rappr)
+			throws SQLException {
+		RetrieveAlterationsPerPolicyResponse rappResponse = new RetrieveAlterationsPerPolicyResponse();
+		
+		HashMap<String, Object> retrieveAlterationsPerPolicyParams = new HashMap<String, Object>();
+		retrieveAlterationsPerPolicyParams.put("policyId", rappr.getPolicyId());
+		
+		rappResponse.setPolicyList(underwritingDao.retrieveAlterationsPerPolicy(retrieveAlterationsPerPolicyParams));
+		return rappResponse;
 	}
 }
