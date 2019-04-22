@@ -64,6 +64,8 @@ class savePolInward{
 	private String dueDate;
 	private String bookingDate;
 	private String premAmt;
+	private String commRt;
+	private String commAmt;
 	private String otherChargesInw;
 	private String amtDue;
 	private String createUser;
@@ -94,6 +96,18 @@ class savePolInward{
 	}
 	public void setPremAmt(String premAmt) {
 		this.premAmt = premAmt;
+	}
+	public String getCommRt() {
+		return commRt;
+	}
+	public void setCommRt(String commRt) {
+		this.commRt = commRt;
+	}
+	public String getCommAmt() {
+		return commAmt;
+	}
+	public void setCommAmt(String commAmt) {
+		this.commAmt = commAmt;
 	}
 	public String getOtherChargesInw() {
 		return otherChargesInw;
@@ -140,10 +154,11 @@ class savePolInward{
 	@Override
 	public String toString() {
 		return "savePolInward [instNo=" + instNo + ", dueDate=" + dueDate + ", bookingDate=" + bookingDate
-				+ ", premAmt=" + premAmt + ", otherChargesInw=" + otherChargesInw + ", amtDue=" + amtDue
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", otherCharges=" + otherCharges + "]";
+				+ ", premAmt=" + premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", otherChargesInw="
+				+ otherChargesInw + ", amtDue=" + amtDue + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", otherCharges=" + otherCharges + "]";
 	}
+
 	
 	
 		
