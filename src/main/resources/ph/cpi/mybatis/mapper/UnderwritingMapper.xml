@@ -1478,7 +1478,9 @@
 				CAST(to_timestamp(#{acctDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{currencyCd},#{currencyRt},
 				#{createUser},CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projId},#{projDesc},
-				#{riskId},#{maxSi},#{objectId},#{site},#{duration, jdbcType=VARCHAR},#{testing, jdbcType=VARCHAR},#{projCreateUser},
+				#{riskId},#{maxSi},#{objectId},#{site},#{duration, jdbcType=VARCHAR},#{testing, jdbcType=VARCHAR},
+				#{regionCd},#{provinceCd},#{cityCd},#{districtCd},#{blockCd},#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},
+				#{projCreateUser},
 				CAST(to_timestamp(#{projCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projUpdateUser},
 				CAST(to_timestamp(#{projUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);

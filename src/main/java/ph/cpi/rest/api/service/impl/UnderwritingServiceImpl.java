@@ -1046,6 +1046,13 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("site",spgip.getSite());
 		params.put("duration",spgip.getDuration());
 		params.put("testing",spgip.getTesting());
+		params.put("regionCd",spgip.getRegionCd());
+		params.put("provinceCd",spgip.getProvinceCd());
+		params.put("cityCd",spgip.getCityCd());
+		params.put("districtCd",spgip.getDistrictCd());
+		params.put("blockCd",spgip.getBlockCd());
+		params.put("latitude",spgip.getLatitude());
+		params.put("longitude",spgip.getLongitude());
 		params.put("projCreateUser",spgip.getProjCreateUser());
 		params.put("projCreateDate",spgip.getProjCreateDate());
 		params.put("projUpdateUser",spgip.getProjUpdateUser());

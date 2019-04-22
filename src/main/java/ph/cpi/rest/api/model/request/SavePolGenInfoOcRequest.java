@@ -43,6 +43,13 @@ public class SavePolGenInfoOcRequest {
 	private String site;
 	private String duration;
 	private String testing;
+	private String regionCd;
+	private String provinceCd;
+	private String cityCd;
+	private String districtCd;
+	private String blockCd;
+	private String latitude;
+	private String longitude;
 	private String projCreateUser;
 	private String projCreateDate;
 	private String projUpdateUser;
@@ -293,6 +300,48 @@ public class SavePolGenInfoOcRequest {
 	public void setTesting(String testing) {
 		this.testing = testing;
 	}
+	public String getRegionCd() {
+		return regionCd;
+	}
+	public void setRegionCd(String regionCd) {
+		this.regionCd = regionCd;
+	}
+	public String getProvinceCd() {
+		return provinceCd;
+	}
+	public void setProvinceCd(String provinceCd) {
+		this.provinceCd = provinceCd;
+	}
+	public String getCityCd() {
+		return cityCd;
+	}
+	public void setCityCd(String cityCd) {
+		this.cityCd = cityCd;
+	}
+	public String getDistrictCd() {
+		return districtCd;
+	}
+	public void setDistrictCd(String districtCd) {
+		this.districtCd = districtCd;
+	}
+	public String getBlockCd() {
+		return blockCd;
+	}
+	public void setBlockCd(String blockCd) {
+		this.blockCd = blockCd;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 	public String getProjCreateUser() {
 		return projCreateUser;
 	}
@@ -330,9 +379,11 @@ public class SavePolGenInfoOcRequest {
 				+ currencyCd + ", currencyRt=" + currencyRt + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId
 				+ ", projDesc=" + projDesc + ", riskId=" + riskId + ", maxSi=" + maxSi + ", objectId=" + objectId
-				+ ", site=" + site + ", duration=" + duration + ", testing=" + testing + ", projCreateUser="
-				+ projCreateUser + ", projCreateDate=" + projCreateDate + ", projUpdateUser=" + projUpdateUser
-				+ ", projUpdateDate=" + projUpdateDate + "]";
+				+ ", site=" + site + ", duration=" + duration + ", testing=" + testing + ", regionCd=" + regionCd
+				+ ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd="
+				+ blockCd + ", latitude=" + latitude + ", longitude=" + longitude + ", projCreateUser=" + projCreateUser
+				+ ", projCreateDate=" + projCreateDate + ", projUpdateUser=" + projUpdateUser + ", projUpdateDate="
+				+ projUpdateDate + "]";
 	}
 	
 	
