@@ -66,6 +66,7 @@
 		<result property="lineClassDesc" 		column="LINE_CLASS_DESC"/>
 		<result property="insuredDesc" 			column="INSURED_DESC"/>
 		<result property="quoteId" 				column="QUOTE_ID"/>
+		<result property="optionId" 			column="OPTION_ID"/>
 		<result property="quotationNo" 			column="QUOTATION_NO"/>
 		<result property="holdCoverNo" 			column="HOLD_COV_NO"/>
 		<result property="status" 				column="STATUS"/>
@@ -831,6 +832,8 @@
 		BEGIN
 			POL_GEN_INFO_PKG.save_pol_gen_info(#{policyNo, mode=OUT, jdbcType=VARCHAR},
 											   #{outPolicyId, mode=OUT, jdbcType=INTEGER},
+											   #{savingType, jdbcType=VARCHAR},
+											   #{refPolicyId, jdbcType=INTEGER},
 											   #{policyId, jdbcType=INTEGER},
 											   #{lineCd, jdbcType=VARCHAR},
 											   #{polYear, jdbcType=INTEGER},
@@ -841,6 +844,7 @@
 											   #{cessionId, jdbcType=INTEGER},
 											   #{lineClassCd, jdbcType=VARCHAR},
 											   #{quoteId, jdbcType=INTEGER},
+											   #{optionId, jdbcType=INTEGER},
 											   #{status, jdbcType=VARCHAR},
 											   #{coRefNo, jdbcType=VARCHAR},
 											   #{reinsurerId, jdbcType=VARCHAR},

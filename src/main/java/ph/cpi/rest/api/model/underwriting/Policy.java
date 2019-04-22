@@ -21,6 +21,7 @@ public class Policy {
 	private String lineClassCd;
 	private String lineClassDesc;
 	private Integer quoteId;
+	private Integer optionId;
 	private String quotationNo;
 	private String holdCoverNo;
 	private String status;
@@ -79,6 +80,7 @@ public class Policy {
 	private List<HoldCover> holdCoverList;
 	private List<CATPeril> catPeril;
 	private List<AlterationHist> alterationHist;
+	
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -168,6 +170,12 @@ public class Policy {
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
+	}
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
 	}
 	public String getQuotationNo() {
 		return quotationNo;
@@ -517,12 +525,12 @@ public class Policy {
 				+ lineCdDesc + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId
 				+ ", cedingName=" + cedingName + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", cessionId="
 				+ cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd + ", lineClassDesc="
-				+ lineClassDesc + ", quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", holdCoverNo="
-				+ holdCoverNo + ", status=" + status + ", statusDesc=" + statusDesc + ", coRefNo=" + coRefNo
-				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo
-				+ ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo
-				+ ", refOpenPolNo=" + refOpenPolNo + ", intmId=" + intmId + ", intmName=" + intmName + ", principalId="
-				+ principalId + ", principalName=" + principalName + ", contractorId=" + contractorId
+				+ lineClassDesc + ", quoteId=" + quoteId + ", optionId=" + optionId + ", quotationNo=" + quotationNo
+				+ ", holdCoverNo=" + holdCoverNo + ", status=" + status + ", statusDesc=" + statusDesc + ", coRefNo="
+				+ coRefNo + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo="
+				+ riBinderNo + ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", openPolicyNo="
+				+ openPolicyNo + ", refOpenPolNo=" + refOpenPolNo + ", intmId=" + intmId + ", intmName=" + intmName
+				+ ", principalId=" + principalId + ", principalName=" + principalName + ", contractorId=" + contractorId
 				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate
 				+ ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
 				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", issueDate="
@@ -535,7 +543,7 @@ public class Policy {
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
 				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril
-				+ ", alterationHist=" + alterationHist + "]";
+				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
+				+ alterationHist + "]";
 	}
 }

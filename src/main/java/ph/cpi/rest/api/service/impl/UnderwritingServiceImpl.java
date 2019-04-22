@@ -635,6 +635,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			savePolGenInfoParams.put("policyNo", "");
 			savePolGenInfoParams.put("outPolicyId", "");
+			savePolGenInfoParams.put("savingType", spgip.getSavingType());
+			savePolGenInfoParams.put("refPolicyId", spgip.getRefPolicyId());
 			savePolGenInfoParams.put("policyId", spgip.getPolicyId());
 			savePolGenInfoParams.put("lineCd", spgip.getLineCd());
 			savePolGenInfoParams.put("polYear", spgip.getPolYear());
@@ -645,6 +647,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("cessionId", spgip.getCessionId());
 			savePolGenInfoParams.put("lineClassCd", spgip.getLineClassCd());
 			savePolGenInfoParams.put("quoteId", spgip.getQuoteId());
+			savePolGenInfoParams.put("optionId", spgip.getOptionId());
 			savePolGenInfoParams.put("status", spgip.getStatus());
 			savePolGenInfoParams.put("coRefNo", spgip.getCoRefNo());
 			savePolGenInfoParams.put("reinsurerId", spgip.getReinsurerId());
