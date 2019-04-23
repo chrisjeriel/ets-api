@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
+import ph.cpi.rest.api.model.underwriting.EndtText;
+
 public class SavePolEndorsementRequest {
 	
 	private String policyId;
@@ -59,6 +61,7 @@ class PolEndorsements {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private EndtText endtText;
 	public String getEndtCd() {
 		return endtCd;
 	}
@@ -101,10 +104,17 @@ class PolEndorsements {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public EndtText getEndtText() {
+		return endtText;
+	}
+	public void setEndtText(EndtText endtText) {
+		this.endtText = endtText;
+	}
 	@Override
 	public String toString() {
-		return "Endorsements [endtCd=" + endtCd + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "PolEndorsements [endtCd=" + endtCd + ", changeTag=" + changeTag + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", endtText=" + endtText + "]";
 	}
 	
 	
