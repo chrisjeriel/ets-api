@@ -42,4 +42,11 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 		logger.info("retrieveReminders DAOImpl : " + reminderList);
 		return reminderList;
 	}
+
+	@Override
+	public Integer saveReminders(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveReminders", params);
+		return errorCode;
+	}
 }

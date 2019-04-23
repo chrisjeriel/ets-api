@@ -9,4 +9,5 @@ import ph.cpi.rest.api.model.workflowmanager.Reminder;
 public interface WorkFlowDao {
 
 	public List<Reminder> retrieveReminders(final HashMap<String, Object> params) throws SQLException;	
+	public Integer saveReminders(final HashMap<String, Object> params ) throws SQLException;
 }

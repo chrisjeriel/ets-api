@@ -29,5 +29,23 @@
 												  #{sortKey, jdbcType=VARCHAR},
 												  #{order, jdbcType=VARCHAR}))
      </select>
+     
+    <update id="saveReminders" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			WFM_REMINDERS_PKG.save_reminders(
+											   #{reminderId, jdbcType=INTEGER},
+											   #{title, jdbcType=VARCHAR},
+											   #{reminder, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{reminderDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{alarmTime, jdbcType=VARCHAR},
+											   #{assignedTo, jdbcType=VARCHAR},
+											   #{status, jdbcType=VARCHAR},
+											   #{createUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{updateUser, jdbcType=VARCHAR},
+											   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)										  
+			);
+		END;
+	</update>
 
 </mapper>

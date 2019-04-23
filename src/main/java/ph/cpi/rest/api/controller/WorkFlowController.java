@@ -8,13 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
+import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveRemindersRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.service.WorkFlowService;
 
 @Controller
@@ -31,6 +37,13 @@ public class WorkFlowController {
 		logger.info("GET: /api/work-flow-service/retReminders");
 		logger.info("RetrieveRemindersRequest : " + rrrq.toString());
 		return workFlowService.retrieveReminders(rrrq);
+	}
+	
+	@PostMapping(path="saveReminders")
+	public @ResponseBody SaveRemindersResponse saveReminders(@RequestBody SaveRemindersRequest srreq) throws SQLException {
+		logger.info("POST: /api/work-flow-service/saveReminders");
+		logger.info("SaveRemindersRequest : " + srreq.toString());
+		return workFlowService.saveRemindersResponse(srreq);
 	}
 
 	 
