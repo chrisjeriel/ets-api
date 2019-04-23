@@ -335,4 +335,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		
 		return policyList;
 	}
+
+	@Override
+	public Integer retrieveAlterationsPerCoIns(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("retrieveAlterationsPerCoIns", params);
+		
+		return (Integer) params.get("coInsAlt");
+	}
 }

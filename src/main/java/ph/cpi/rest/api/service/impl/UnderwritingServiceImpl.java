@@ -1039,8 +1039,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrieveAlterationsPerPolicyResponse rappResponse = new RetrieveAlterationsPerPolicyResponse();
 		
 		HashMap<String, Object> retrieveAlterationsPerPolicyParams = new HashMap<String, Object>();
+		retrieveAlterationsPerPolicyParams.put("coInsAlt", "");
 		retrieveAlterationsPerPolicyParams.put("policyId", rappr.getPolicyId());
 		
+		rappResponse.setCoInsAlt(underwritingDao.retrieveAlterationsPerCoIns(retrieveAlterationsPerPolicyParams));
 		rappResponse.setPolicyList(underwritingDao.retrieveAlterationsPerPolicy(retrieveAlterationsPerPolicyParams));
 		return rappResponse;
 	}

@@ -1492,12 +1492,22 @@
 																#{order, jdbcType=VARCHAR}))
 	</select>
 	
-	<select id="retrieveAlterationsPerPolicy" parameterType="java.util.Map" resultMap="policyMap">
+	<select id="retrieveAlterationsPerPolicy" parameterType="java.util.Map" resultMap="policyMap">		
 		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_alt_listing(#{policyId, jdbcType=INTEGER},
 															 #{position, jdbcType=VARCHAR}, 
 															 #{count, jdbcType=INTEGER}, 
 															 #{sortKey, jdbcType=VARCHAR}, 
-															 #{order, jdbcType=VARCHAR}))
+															 #{order, jdbcType=VARCHAR}))		
 	</select>
+	
+	<update id="retrieveAlterationsPerCoIns" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{coInsAlt, mode=OUT, javaType=Integer, jdbcType=INTEGER} := POL_GEN_INFO_PKG.ret_coins_alt(#{policyId, jdbcType=INTEGER},
+																						  				#{position, jdbcType=VARCHAR}, 
+																						  				#{count, jdbcType=INTEGER}, 
+																										#{sortKey, jdbcType=VARCHAR}, 
+																										#{order, jdbcType=VARCHAR})
+		}	
+	</update>
 	
 </mapper>
