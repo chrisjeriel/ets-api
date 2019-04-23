@@ -342,4 +342,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		
 		return (Integer) params.get("coInsAlt");
 	}
+	
+	@Override
+	public Integer savePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolGenInfoOc", params);
+		return errorCode;
+	}
 }

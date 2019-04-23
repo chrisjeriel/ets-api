@@ -1000,6 +1000,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
 			saveQuoteOptionsAllParams.put("projId" , sqor.getProjId());
 			saveQuoteOptionsAllParams.put("riskId" , sqor.getRiskId());
+			saveQuoteOptionsAllParams.put("user" , sqor.getUser());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());
