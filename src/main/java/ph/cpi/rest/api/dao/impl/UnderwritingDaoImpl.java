@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
@@ -47,8 +48,8 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 
 	@Override
-	public Policy retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
-		Policy policy = sqlSession.selectOne("retrievePolCoInsurance",params);
+	public List<Policy> retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policy = sqlSession.selectList("retrievePolCoInsurance",params);
 		logger.info("retrievePolCoInsurance DAOImpl : " + policy);
 		return policy;
 	}
@@ -300,6 +301,20 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<Approval> approvalList = sqlSession.selectList("retrieveWfmApprovals",params);
 		return approvalList;
 	}
+
+	
+	@Override
+	public List<Policy> retrievePolHoldCoverListing(HashMap<String, Object> params) throws SQLException {
+		List<Policy> polHcListing = sqlSession.selectList("retrievePolHoldCoverListing", params);
+		return polHcListing;
+	}
+	
+	@Override
+	public PolicyOc retrievePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
+		PolicyOc policyOc = sqlSession.selectOne("retrievePolGenInfoOc", params);
+		logger.info("retrievePolGenInfoOc DAOImpl : " + policyOc);
+		return policyOc;
+	}
 	
 	@Override
 	public Policy retrievePolicyCoverageAlt(HashMap<String, Object> params) throws SQLException {
@@ -311,6 +326,19 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Integer savePolAttachmentsOc(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<Policy> retrieveAlterationsPerPolicy(HashMap<String, Object> params) throws SQLException {
+		List<Policy> policyList = sqlSession.selectList("retrieveAlterationsPerPolicy", params);
+		
+		return policyList;
+	}
+	
+	@Override
+	public Integer savePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolGenInfoOc", params);
 		return errorCode;
 	}
 }

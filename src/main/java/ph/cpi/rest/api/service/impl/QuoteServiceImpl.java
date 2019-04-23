@@ -299,7 +299,6 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteHoldCoverParams.put("reqDateTo", (rqhclp.getReqDateTo() == null || rqhclp.getReqDateTo().isEmpty()) ? "" : date.toDate(rqhclp.getReqDateTo()));
 			retrieveQuoteHoldCoverParams.put("expiringInDays", rqhclp.getExpiringInDays());
 			rqhcResponse.setQuotationList(quoteDao.retrieveQuoteHoldCoverListing(retrieveQuoteHoldCoverParams));
-			
 		} catch (SQLException sqlex) {
 			sqlex.printStackTrace();
 		} catch (Exception ex) {
@@ -783,7 +782,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqhcrResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
 		}
-	
+		
 		
 		return sqhcrResponse;
 	}
@@ -1001,6 +1000,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteOptionsAllParams.put("quoteId" , sqor.getQuoteId());
 			saveQuoteOptionsAllParams.put("projId" , sqor.getProjId());
 			saveQuoteOptionsAllParams.put("riskId" , sqor.getRiskId());
+			saveQuoteOptionsAllParams.put("user" , sqor.getUser());
 			saveQuoteOptionsAllParams.put("saveQuoteOptionsList" , sqor.getSaveQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("deleteQuoteOptionsList" , sqor.getDeleteQuoteOptionsList());
 			saveQuoteOptionsAllParams.put("saveDeductibleList" , sqor.getSaveDeductibleList());

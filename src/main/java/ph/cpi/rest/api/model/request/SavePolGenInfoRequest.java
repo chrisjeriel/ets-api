@@ -2,6 +2,8 @@ package ph.cpi.rest.api.model.request;
 
 public class SavePolGenInfoRequest {
 	
+	private String savingType;
+	private String refPolicyId;
 	private String policyId;
 	private String lineCd;
 	private String polYear;
@@ -12,6 +14,7 @@ public class SavePolGenInfoRequest {
 	private String cessionId;
 	private String lineClassCd;
 	private String quoteId;
+	private String optionId;
 	private String status;
 	private String coRefNo;
 	private String reinsurerId;
@@ -67,6 +70,18 @@ public class SavePolGenInfoRequest {
 	private String prjUpdateUser;
 	private String prjUpdateDate;
 	
+	public String getSavingType() {
+		return savingType;
+	}
+	public void setSavingType(String savingType) {
+		this.savingType = savingType;
+	}
+	public String getRefPolicyId() {
+		return refPolicyId;
+	}
+	public void setRefPolicyId(String refPolicyId) {
+		this.refPolicyId = refPolicyId;
+	}
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -126,6 +141,12 @@ public class SavePolGenInfoRequest {
 	}
 	public void setQuoteId(String quoteId) {
 		this.quoteId = quoteId;
+	}
+	public String getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(String optionId) {
+		this.optionId = optionId;
 	}
 	public String getStatus() {
 		return status;
@@ -453,25 +474,26 @@ public class SavePolGenInfoRequest {
 	}
 	@Override
 	public String toString() {
-		return "SavePolGenInfoRequest [policyId=" + policyId + ", lineCd=" + lineCd + ", polYear=" + polYear
-				+ ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo="
-				+ altNo + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", quoteId=" + quoteId
-				+ ", status=" + status + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", riBinderNo="
-				+ riBinderNo + ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", refOpenPolNo="
-				+ refOpenPolNo + ", intmId=" + intmId + ", principalId=" + principalId + ", contractorId="
-				+ contractorId + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate + ", expiryDate="
-				+ expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom="
-				+ maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", issueDate=" + issueDate + ", effDate="
-				+ effDate + ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", bookedTag=" + bookedTag + ", govtTag=" + govtTag + ", openCoverTag="
-				+ openCoverTag + ", holdCoverTag=" + holdCoverTag + ", declarationTag=" + declarationTag
-				+ ", minDepTag=" + minDepTag + ", altTag=" + altTag + ", specialPolicyTag=" + specialPolicyTag
-				+ ", instTag=" + instTag + ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag
-				+ ", wordings=" + wordings + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc="
-				+ projDesc + ", riskId=" + riskId + ", totalSi=" + totalSi + ", objectId=" + objectId + ", site=" + site
-				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
-				+ ", noClaimPd=" + noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
-				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
+		return "SavePolGenInfoRequest [savingType=" + savingType + ", refPolicyId=" + refPolicyId + ", policyId="
+				+ policyId + ", lineCd=" + lineCd + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId="
+				+ cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", cessionId=" + cessionId
+				+ ", lineClassCd=" + lineClassCd + ", quoteId=" + quoteId + ", optionId=" + optionId + ", status="
+				+ status + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo
+				+ ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", refOpenPolNo=" + refOpenPolNo
+				+ ", intmId=" + intmId + ", principalId=" + principalId + ", contractorId=" + contractorId
+				+ ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
+				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
+				+ ", maintenanceTo=" + maintenanceTo + ", issueDate=" + issueDate + ", effDate=" + effDate
+				+ ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd=" + currencyCd + ", currencyRt="
+				+ currencyRt + ", bookedTag=" + bookedTag + ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag
+				+ ", holdCoverTag=" + holdCoverTag + ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag
+				+ ", altTag=" + altTag + ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag
+				+ ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag + ", wordings=" + wordings
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
+				+ ", totalSi=" + totalSi + ", objectId=" + objectId + ", site=" + site + ", duration=" + duration
+				+ ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd
+				+ ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser="
+				+ prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
 	}
 }

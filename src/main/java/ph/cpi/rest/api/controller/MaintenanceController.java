@@ -39,6 +39,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
@@ -81,7 +83,7 @@ import ph.cpi.rest.api.service.MaintenanceService;
 
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080"})
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888"})
 @RequestMapping(path="/maintenance-service")
 public class MaintenanceController {
 	
@@ -328,5 +330,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnDeductibles");
 		logger.info("SaveMtnDeductiblesRequest : " + smdr.toString());
 		return maintenanceService.saveMtnDeductibles(smdr);
+	}
+	
+	@GetMapping(path="retrieveMtnSpoilageReason")
+	public @ResponseBody RetrieveMtnSpoilageReasonResponse retrieveMtnSpoilReason(RetrieveMtnSpoilageReasonRequest rmsrr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnSpoilageReason");
+		logger.info("RetrieveMtnSpoilageReasonRequest : " + rmsrr.toString());
+		return maintenanceService.retrieveMtnSpoilageReason(rmsrr);
 	}
 }

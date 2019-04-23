@@ -6,12 +6,14 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveQuoteHoldCoverResponse {
-	private List<Error> errorList = new ArrayList<Error>();
-	private List<Message> messageList = new ArrayList<Message>();
+public class SavePolGenInfoOcResponse {
+	private List<Error> errorList;
+	private List<Message> messageList;
 	private Integer returnCode;
-	private String holdCoverNo;
 	public List<Error> getErrorList() {
+		if (errorList == null) {
+			errorList = new ArrayList<Error>();
+		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -29,18 +31,11 @@ public class SaveQuoteHoldCoverResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	public String getHoldCoverNo() {
-		return holdCoverNo;
-	}
-	public void setHoldCoverNo(String holdCoverNo) {
-		this.holdCoverNo = holdCoverNo;
-	}
 	@Override
 	public String toString() {
-		return "SaveQuoteHoldCoverResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", holdCoverNo=" + holdCoverNo + "]";
+		return "SavePolGenInfoOcResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + "]";
 	}
 	
-	
-	
 }
+

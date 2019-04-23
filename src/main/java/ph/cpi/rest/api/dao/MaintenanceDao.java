@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
+import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
 
 public interface MaintenanceDao {
@@ -66,4 +67,7 @@ public interface MaintenanceDao {
 	
 	public Integer saveMtnLine(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnDeductibles(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<Spoil> retrieveMtnSpoilageReason(final HashMap<String, Object> params ) throws SQLException;
+
 }

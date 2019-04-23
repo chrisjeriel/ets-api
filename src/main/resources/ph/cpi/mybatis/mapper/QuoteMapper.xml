@@ -234,6 +234,7 @@
 		<result property = "holdCoverSeqNo"      column = "HOLD_COV_SEQ_NO"/>
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
 		<result property = "optionId"			 column = "OPTION_ID"/>
+		<result property = "optionRt"			 column = "OPTION_RT"/>
 		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
@@ -1564,6 +1565,7 @@
 			   			#{quoteId},#{deductible.optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 			</foreach>
+			QU_ENDT_PKG.add_vib_endt(#{quoteId},#{user});
 		END;
 	</update>
 	

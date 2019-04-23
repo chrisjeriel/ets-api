@@ -4,19 +4,17 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.maintenance.Spoil;
 
-public class RetrievePolHoldCoverResponse {
-
-	private Policy policy;
+public class RetrieveMtnSpoilageReasonResponse {
+	private List<Spoil> spoilageReason;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	private List<Policy> policyList;  //pol hold cover listing
-	public Policy getPolicy() {
-		return policy;
+	public List<Spoil> getSpoilageReason() {
+		return spoilageReason;
 	}
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
+	public void setSpoilageReason(List<Spoil> spoilageReason) {
+		this.spoilageReason = spoilageReason;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -30,17 +28,10 @@ public class RetrievePolHoldCoverResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	public List<Policy> getPolicyList() {
-		return policyList;
-	}
-	public void setPolicyList(List<Policy> policyList) {
-		this.policyList = policyList;
-	}
 	@Override
 	public String toString() {
-		return "RetrievePolHoldCoverResponse [policy=" + policy + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + ", policyList=" + policyList + "]";
+		return "RetrieveMtnSpoilageReasonResponse [spoilageReason=" + spoilageReason + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-
-		
+	
 }

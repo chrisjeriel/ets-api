@@ -37,6 +37,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
@@ -633,24 +635,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	public SaveMtnLineResponse saveMtnLine(SaveMtnLineRequest smlr) throws SQLException {
 		SaveMtnLineResponse smlResponse = new SaveMtnLineResponse();
 		HashMap<String, Object> saveMtnLineParams = new HashMap<String, Object>();
-//		saveMtnLineParams.put("lineCd", smlr.getLineCd()) ;
-//        saveMtnLineParams.put("description", smlr.getDescription()) ;
-//        System.out.println(smlr.getCutOffTime() + " >> before");
-//        saveMtnLineParams.put("cutOffTime", smlr.getCutOffTime());
-//        System.out.println(smlr.getCutOffTime() + " >> after");
-//        saveMtnLineParams.put("activeTag", smlr.getActiveTag()) ;
-//        saveMtnLineParams.put("catTag", smlr.getCatTag()) ;
-//        saveMtnLineParams.put("renewalTag", smlr.getRenewalTag()) ;
-//        saveMtnLineParams.put("openCoverTag", smlr.getOpenCoverTag()) ;
-//        saveMtnLineParams.put("referenceNo", smlr.getReferenceNo()) ;
-//        saveMtnLineParams.put("sortSeq", smlr.getSortSeq()) ;
-//        saveMtnLineParams.put("remarks", smlr.getRemarks()) ;
-//        saveMtnLineParams.put("createUser", smlr.getCreateUser()) ;
-//        saveMtnLineParams.put("createDate", smlr.getCreateDate()) ;
-//        saveMtnLineParams.put("updateUser", smlr.getUpdateUser()) ;
-//        saveMtnLineParams.put("updateDate", smlr.getUpdateDate()) ;
-//        saveMtnLineParams.put("alopTag", smlr.getAlopTag()) ;
-//        saveMtnLineParams.put("deleteMtnLine",smlr.getDeleteMtnLine());
 		saveMtnLineParams.put("saveLine", smlr.getSaveLine());
 		saveMtnLineParams.put("deleteLine",smlr.getDeleteLine());
         smlResponse.setReturnCode(maintenanceDao.saveMtnLine(saveMtnLineParams));
@@ -694,5 +678,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smdResponse.setReturnCode(maintenanceDao.saveMtnDeductibles(saveMtnDeductiblesParams));
 		logger.info("SaveMtnDeductiblesResponse : " + smdResponse.toString());
 		return smdResponse;
+	}
+
+	@Override
+	public RetrieveMtnSpoilageReasonResponse retrieveMtnSpoilageReason(RetrieveMtnSpoilageReasonRequest rmsrr)
+			throws SQLException {
+		RetrieveMtnSpoilageReasonResponse rsrResponse = new RetrieveMtnSpoilageReasonResponse();
+		HashMap<String, Object> retrieveMtnSpoilageReasonParams = new HashMap<String, Object>();
+		retrieveMtnSpoilageReasonParams.put("spoilCd", rmsrr.getSpoilCd());
+		rsrResponse.setSpoilageReason(maintenanceDao.retrieveMtnSpoilageReason(retrieveMtnSpoilageReasonParams));
+		logger.info("RetrieveMtnSpoilageReasonResponse : " + rsrResponse.toString());
+		return rsrResponse;
 	}
 }

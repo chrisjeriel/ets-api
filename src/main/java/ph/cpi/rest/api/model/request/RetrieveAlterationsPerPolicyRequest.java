@@ -1,22 +1,19 @@
-
-package ph.cpi.rest.api.model.response;
-
-import java.util.List;
+package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
-import ph.cpi.rest.api.model.underwriting.Policy;
 
-public class RetrievePolCoInsuranceResponse {
-	private List<Policy> policy;
+public class RetrieveAlterationsPerPolicyRequest {
+	
+	private Integer policyId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public List<Policy> getPolicy() {
-		return policy;
+	public Integer getPolicyId() {
+		return policyId;
 	}
-	public void setPolicy(List<Policy> policy) {
-		this.policy = policy;
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -32,8 +29,7 @@ public class RetrievePolCoInsuranceResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrievePolCoInsuranceResponse [policy=" + policy + ", paginationRequest=" + paginationRequest
+		return "RetrieveAlterationsPerPolicyRequest [policyId=" + policyId + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

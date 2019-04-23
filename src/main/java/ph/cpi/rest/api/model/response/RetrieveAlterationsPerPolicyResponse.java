@@ -6,17 +6,17 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
-public class RetrievePolHoldCoverResponse {
-
-	private Policy policy;
+public class RetrieveAlterationsPerPolicyResponse {
+	
+	private List<Policy> policyList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	private List<Policy> policyList;  //pol hold cover listing
-	public Policy getPolicy() {
-		return policy;
+	
+	public List<Policy> getPolicyList() {
+		return policyList;
 	}
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
+	public void setPolicyList(List<Policy> policyList) {
+		this.policyList = policyList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -30,17 +30,9 @@ public class RetrievePolHoldCoverResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	public List<Policy> getPolicyList() {
-		return policyList;
-	}
-	public void setPolicyList(List<Policy> policyList) {
-		this.policyList = policyList;
-	}
 	@Override
 	public String toString() {
-		return "RetrievePolHoldCoverResponse [policy=" + policy + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + ", policyList=" + policyList + "]";
+		return "RetrieveAlterationsPerPolicyResponse [policyList=" + policyList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-
-		
 }
