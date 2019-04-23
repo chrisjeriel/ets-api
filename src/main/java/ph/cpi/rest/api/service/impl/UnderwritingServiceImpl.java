@@ -1051,8 +1051,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		UpdatePolGenInfoSpoilageResponse upgisResponse = new UpdatePolGenInfoSpoilageResponse();
 		HashMap<String, Object> updatePolGenInfoSpoilageParams = new HashMap<String, Object>();
 		updatePolGenInfoSpoilageParams.put("policyId", upgisr.getPolicyId());
-		updatePolGenInfoSpoilageParams.put("spldUser", upgisr.getSpldUser());
 		updatePolGenInfoSpoilageParams.put("status", upgisr.getStatus());
+		updatePolGenInfoSpoilageParams.put("spoilCd", upgisr.getSpoilCd());
+		updatePolGenInfoSpoilageParams.put("spldUser", upgisr.getSpldUser());
 		updatePolGenInfoSpoilageParams.put("updateUser", upgisr.getUpdateUser());
 		upgisResponse.setReturnCode(underwritingDao.updatePolGenInfoSpoilage(updatePolGenInfoSpoilageParams));
 		return upgisResponse;

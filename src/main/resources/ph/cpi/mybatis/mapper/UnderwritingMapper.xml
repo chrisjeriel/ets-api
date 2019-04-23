@@ -1500,6 +1500,7 @@
 		BEGIN
 			MTN_SPOIL_PKG.up_pol_gen_info(#{policyId, jdbcType=INTEGER},
 										  #{status, jdbcType=VARCHAR},
+										  #{spoilCd, jdbcType=VARCHAR},
 										  #{spldUser, jdbcType=VARCHAR},
 										  #{updateUser, jdbcType=VARCHAR}
 										  );
