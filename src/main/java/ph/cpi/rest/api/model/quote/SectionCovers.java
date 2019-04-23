@@ -7,7 +7,7 @@ import org.joda.time.LocalDateTime;
 
 public class SectionCovers {
 	private Integer coverCd;
-	private String description;
+	private String coverName;
 	private String section;
 	private String bulletNo;
 	private BigDecimal sumInsured;
@@ -23,11 +23,11 @@ public class SectionCovers {
 		this.coverCd = coverCd;
 	}
 	
-	public String getDescription() {
-		return description;
+	public String getCoverName() {
+		return coverName;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCoverName(String coverName) {
+		this.coverName = coverName;
 	}
 	public String getSection() {
 		return section;
@@ -79,10 +79,9 @@ public class SectionCovers {
 	}
 	@Override
 	public String toString() {
-		return "SectionCovers [coverCd=" + coverCd + ", description=" + description + ", section=" + section
-				+ ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "SectionCovers [coverCd=" + coverCd + ", coverName=" + coverName + ", section=" + section + ", bulletNo="
+				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 	

@@ -11,7 +11,7 @@ public class SectionCovers {
 	private String lineDesc;
 	private String coverCd ;
 	private String coverCdAbbr;
-	private String description;
+	private String coverName;
 	private String activeTag;
 	private String section;
 	private Integer sortSeq;
@@ -48,11 +48,12 @@ public class SectionCovers {
 	public void setCoverCdAbbr(String coverCdAbbr) {
 		this.coverCdAbbr = coverCdAbbr;
 	}
-	public String getDescription() {
-		return description;
+	
+	public String getCoverName() {
+		return coverName;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCoverName(String coverName) {
+		this.coverName = coverName;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -123,9 +124,10 @@ public class SectionCovers {
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", coverCd=" + coverCd + ", coverCdAbbr="
-				+ coverCdAbbr + ", description=" + description + ", activeTag=" + activeTag + ", section=" + section
+				+ coverCdAbbr + ", coverName=" + coverName + ", activeTag=" + activeTag + ", section=" + section
 				+ ", sortSeq=" + sortSeq + ", defaultTag=" + defaultTag + ", bulletNo=" + bulletNo + ", addSi=" + addSi
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }
