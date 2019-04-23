@@ -44,6 +44,7 @@ import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
+import ph.cpi.rest.api.model.request.SavePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
@@ -87,6 +88,7 @@ import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
+import ph.cpi.rest.api.model.response.SavePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
@@ -769,6 +771,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		SavePolInwardBalResponse spibrResponse = new SavePolInwardBalResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId", spibr.getPolicyId());
+		params.put("user", spibr.getUser());
 		params.put("savePolInward", spibr.getSavePolInward());
 		params.put("delPolInward",spibr.getDelPolInward());
 		params.put("saveOtherCharges", spibr.getSaveOtherCharges());
@@ -1043,5 +1046,72 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rappResponse.setPolicyList(underwritingDao.retrieveAlterationsPerPolicy(retrieveAlterationsPerPolicyParams));
 		return rappResponse;
+	}
+	
+	@Override
+	public SavePolGenInfoOcResponse savePolGenInfoOc(SavePolGenInfoOcRequest spgip) throws SQLException {
+		SavePolGenInfoOcResponse spgipResponse = new SavePolGenInfoOcResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc",spgip.getPolicyIdOc());
+		params.put("lineCd",spgip.getLineCd());
+		params.put("ocYear",spgip.getOcYear());
+		params.put("ocSeqNo",spgip.getOcSeqNo());
+		params.put("cedingId",spgip.getCedingId());
+		params.put("riBinderNo",spgip.getRiBinderNo());
+		params.put("coRefNo",spgip.getCoRefNo());
+		params.put("coSeriesNo",spgip.getCoSeriesNo());
+		params.put("altNo",spgip.getAltNo());
+		params.put("cessionId",spgip.getCessionId());
+		params.put("lineClassCd",spgip.getLineClassCd());
+		params.put("quoteId",spgip.getQuoteId());
+		params.put("refOpPolNo",spgip.getRefOpPolNo());
+		params.put("prinId",spgip.getPrinId());
+		params.put("contractorId",spgip.getContractorId());
+		params.put("insuredDesc",spgip.getInsuredDesc());
+		params.put("status",spgip.getStatus());
+		params.put("reinsurerId",spgip.getReinsurerId());
+		params.put("intmId",spgip.getIntmId());
+		params.put("inceptDate",spgip.getInceptDate());
+		params.put("expiryDate",spgip.getExpiryDate());
+		params.put("lapseFrom",spgip.getLapseFrom());
+		params.put("lapseTo",spgip.getLapseTo());
+		params.put("issueDate",spgip.getIssueDate());
+		params.put("effDate",spgip.getEffDate());
+		params.put("distDate",spgip.getDistDate());
+		params.put("acctDate",spgip.getAcctDate());
+		params.put("currencyCd",spgip.getCurrencyCd());
+		params.put("currencyRt",spgip.getCurrencyRt());
+		params.put("createUser",spgip.getCreateUser());
+		params.put("createDate",spgip.getCreateDate());
+		params.put("updateUser",spgip.getUpdateUser());
+		params.put("updateDate",spgip.getUpdateDate());
+
+		params.put("projId",spgip.getProjId());
+		params.put("projDesc",spgip.getProjDesc());
+		params.put("riskId",spgip.getRiskId());
+		params.put("maxSi",spgip.getMaxSi());
+		params.put("objectId",spgip.getObjectId());
+		params.put("site",spgip.getSite());
+		params.put("duration",spgip.getDuration());
+		params.put("testing",spgip.getTesting());
+		params.put("regionCd",spgip.getRegionCd());
+		params.put("provinceCd",spgip.getProvinceCd());
+		params.put("cityCd",spgip.getCityCd());
+		params.put("districtCd",spgip.getDistrictCd());
+		params.put("blockCd",spgip.getBlockCd());
+		params.put("latitude",spgip.getLatitude());
+		params.put("longitude",spgip.getLongitude());
+		params.put("projCreateUser",spgip.getProjCreateUser());
+		params.put("projCreateDate",spgip.getProjCreateDate());
+		params.put("projUpdateUser",spgip.getProjUpdateUser());
+		params.put("projUpdateDate",spgip.getProjUpdateDate());
+		try{
+			spgipResponse.setReturnCode(underwritingDao.savePolGenInfoOc(params));
+		}catch(Exception ex){ 
+			spgipResponse.setReturnCode(0);
+			spgipResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return spgipResponse;
 	}
 }
