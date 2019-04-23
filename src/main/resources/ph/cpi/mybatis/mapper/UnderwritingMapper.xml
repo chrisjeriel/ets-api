@@ -1564,6 +1564,16 @@
 		}	
 	</update>
 	
+	<update id="retrieveCoInsStatus" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{coInsStatus, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CONVERT_QU_TO_POL_PKG.ret_coins_status(#{quotationNo, jdbcType=VARCHAR},
+																									  			   #{position, jdbcType=VARCHAR}, 
+																									  			   #{count, jdbcType=INTEGER}, 
+																												   #{sortKey, jdbcType=VARCHAR}, 
+																												   #{order, jdbcType=VARCHAR})
+		}	
+	</update>
+	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.EndtText" id="EndtTextMapper">
 		<result property="endtText01" column="ENDT_TEXT01"/>
 		<result property="endtText02" column="ENDT_TEXT02"/>

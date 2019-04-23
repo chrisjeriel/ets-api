@@ -8,12 +8,19 @@ import ph.cpi.rest.api.model.Message;
 
 public class SavePolicyDetailsResponse {
 
+	private Integer coInsStatus;
 	private Integer returnCode;
 	private Integer policyId;
 	private String policyNo; 
 	private List<Error> errorList = new ArrayList<Error>();
 	private List<Message> messageList = new ArrayList<Message>();
 	
+	public Integer getCoInsStatus() {
+		return coInsStatus;
+	}
+	public void setCoInsStatus(Integer coInsStatus) {
+		this.coInsStatus = coInsStatus;
+	}
 	public Integer getReturnCode() {
 		return returnCode;
 	}
@@ -46,7 +53,8 @@ public class SavePolicyDetailsResponse {
 	}
 	@Override
 	public String toString() {
-		return "SavePolicyDetailsResponse [returnCode=" + returnCode + ", policyId=" + policyId + ", policyNo="
-				+ policyNo + ", errorList=" + errorList + ", messageList=" + messageList + "]";
+		return "SavePolicyDetailsResponse [coInsStatus=" + coInsStatus + ", returnCode=" + returnCode + ", policyId="
+				+ policyId + ", policyNo=" + policyNo + ", errorList=" + errorList + ", messageList=" + messageList
+				+ "]";
 	}
 }
