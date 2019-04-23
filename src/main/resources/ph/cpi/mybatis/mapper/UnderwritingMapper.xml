@@ -108,6 +108,7 @@
 		<result property="instTag" 				column="INST_TAG"/>
 		<result property="extensionTag" 		column="EXTENSION_TAG"/>
 		<result property="excludeDistTag" 		column="EXCLUDE_DIST_TAG"/>
+		<result property="coinsGrpId" 			column="COINS_GRP_ID"/>
 		<result property="wordings" 			column="WORDINGS"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -896,6 +897,7 @@
 											   #{instTag, jdbcType=VARCHAR},
 											   #{extensionTag, jdbcType=VARCHAR},
 											   #{excludeDistTag, jdbcType=VARCHAR},
+											   #{coinsGrpId, jdbcType=INTEGER},
 											   #{wordings, jdbcType=VARCHAR},
 											   #{createUser, jdbcType=VARCHAR},
 											   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),

@@ -686,6 +686,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("instTag", spgip.getInstTag());
 			savePolGenInfoParams.put("extensionTag", spgip.getExtensionTag());
 			savePolGenInfoParams.put("excludeDistTag", spgip.getExcludeDistTag());
+			savePolGenInfoParams.put("coinsGrpId", spgip.getCoinsGrpId());
 			savePolGenInfoParams.put("wordings", spgip.getWordings());
 			savePolGenInfoParams.put("createUser", spgip.getCreateUser());
 			savePolGenInfoParams.put("createDate", spgip.getCreateDate());
