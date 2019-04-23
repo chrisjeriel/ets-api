@@ -54,6 +54,8 @@ import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
+import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
@@ -97,6 +99,8 @@ import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
+import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
@@ -411,5 +415,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/Policy-service/retrieveAlterationsPerPolicy");
 		logger.info("RetrieveAlterationsPerPolicyRequest : " + rappr.toString());
 		return underwritingService.retrieveAlterationsPerPolicy(rappr);
+	}
+	
+	@PostMapping(path="updatePolGenInfoSpoilage")
+	public @ResponseBody UpdatePolGenInfoSpoilageResponse updatePolGenInfoSpoilage(@RequestBody UpdatePolGenInfoSpoilageRequest upgisr) throws SQLException {
+		logger.info("GET: /api/underwriting-service/updatePolGenInfoSpoilage");
+		logger.info("UpdatePolGenInfoSpoilageRequest : " + upgisr.toString());
+		return underwritingService.updatePolGenInfoSpoilage(upgisr);
 	}
 }

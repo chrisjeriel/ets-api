@@ -51,6 +51,7 @@ import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
+import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
@@ -94,6 +95,7 @@ import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
+import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
@@ -1041,5 +1043,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rappResponse.setPolicyList(underwritingDao.retrieveAlterationsPerPolicy(retrieveAlterationsPerPolicyParams));
 		return rappResponse;
+	}
+
+	@Override
+	public UpdatePolGenInfoSpoilageResponse updatePolGenInfoSpoilage(UpdatePolGenInfoSpoilageRequest upgisr)
+			throws SQLException {
+		UpdatePolGenInfoSpoilageResponse upgisResponse = new UpdatePolGenInfoSpoilageResponse();
+		HashMap<String, Object> updatePolGenInfoSpoilageParams = new HashMap<String, Object>();
+		updatePolGenInfoSpoilageParams.put("policyId", upgisr.getPolicyId());
+		updatePolGenInfoSpoilageParams.put("spldUser", upgisr.getSpldUser());
+		updatePolGenInfoSpoilageParams.put("status", upgisr.getStatus());
+		updatePolGenInfoSpoilageParams.put("updateUser", upgisr.getUpdateUser());
+		upgisResponse.setReturnCode(underwritingDao.updatePolGenInfoSpoilage(updatePolGenInfoSpoilageParams));
+		return upgisResponse;
 	}
 }

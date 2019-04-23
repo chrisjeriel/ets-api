@@ -1496,4 +1496,14 @@
 															 #{order, jdbcType=VARCHAR}))
 	</select>
 	
+	<update id="updatePolGenInfoSpoilage" parameterType="java.util.Map">
+		BEGIN
+			MTN_SPOIL_PKG.up_pol_gen_info(#{policyId, jdbcType=INTEGER},
+										  #{status, jdbcType=VARCHAR},
+										  #{spldUser, jdbcType=VARCHAR},
+										  #{updateUser, jdbcType=VARCHAR}
+										  );
+		END;
+	</update>
+	
 </mapper>
