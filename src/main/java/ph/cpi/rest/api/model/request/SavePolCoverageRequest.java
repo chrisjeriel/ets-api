@@ -330,6 +330,7 @@ class SectionCoversUw {
 	private String lineCd;
 	private String section;  
 	private String coverCd; 
+	private String coverName;
 	private String bulletNo;
 	private BigDecimal sumInsured;
 	private BigDecimal premRt;
@@ -342,6 +343,7 @@ class SectionCoversUw {
 	private String createDateSec;
 	private String updateUserSec;
 	private String updateDateSec;
+	
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -359,6 +361,12 @@ class SectionCoversUw {
 	}
 	public void setCoverCd(String coverCd) {
 		this.coverCd = coverCd;
+	}
+	String getCoverName() {
+		return coverName;
+	}
+	void setCoverName(String coverName) {
+		this.coverName = coverName;
 	}
 	public String getBulletNo() {
 		return bulletNo;
@@ -432,17 +440,14 @@ class SectionCoversUw {
 	public void setUpdateDateSec(String updateDateSec) {
 		this.updateDateSec = updateDateSec;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "SectionCoversUw [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
-				+ bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi="
-				+ addSi + ", discountTag=" + discountTag + ", cumSi=" + cumSi + ", cumPrem=" + cumPrem
-				+ ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
-				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
+		return "SectionCoversUw [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", coverName="
+				+ coverName + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt
+				+ ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag + ", cumSi=" + cumSi
+				+ ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec
+				+ ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
-	
 }
 
 @Alias("SavePolicyDeductible")

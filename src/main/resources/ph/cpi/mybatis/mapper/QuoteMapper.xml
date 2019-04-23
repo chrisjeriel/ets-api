@@ -1235,6 +1235,9 @@
 	   SYSDATE);
 	   </foreach>
 	   
+	   
+		QU_ENDT_PKG.add_vib_endt(#{quoteId},#{updateUser});
+	   
 	END;
 	</update>
 	

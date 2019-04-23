@@ -266,7 +266,7 @@
 		<result property="lineCdDesc" 				column="LINE_DESC"/>
 		<result property="section" 					column="SECTION"/>
 		<result property="coverCd" 					column="COVER_CD"/>
-		<result property="description" 				column="DESCRIPTION"/>
+		<result property="coverName" 				column="COVER_NAME"/>
 		<result property="bulletNo" 				column="BULLET_NO"/>
 		<result property="prevSumInsured" 			column="PREV_SUM_INSURED"/>
 		<result property="prevPremRt" 				column="PREV_PREM_RT"/>
@@ -626,7 +626,7 @@
 			
 			<foreach collection="saveSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.save_pol_sec_cvrs(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
-													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd} , #{sectioncovers.coverName},
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
 													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 

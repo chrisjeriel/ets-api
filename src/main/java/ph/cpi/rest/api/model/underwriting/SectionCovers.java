@@ -11,7 +11,7 @@ public class SectionCovers {
 	private String lineCdDesc;
 	private String section  ;  
 	private String coverCd ; 
-	private String description;
+	private String coverName;
 	private String bulletNo;
 	private BigDecimal prevSumInsured;
 	private BigDecimal prevPremRt;
@@ -21,8 +21,8 @@ public class SectionCovers {
 	private BigDecimal premAmt;
 	private String addSi;
 	private String discountTag;
-	private String cumSi;
-	private String cumPrem;
+	private BigDecimal cumSi;
+	private BigDecimal cumPrem;
 	private String createUserSec;
 	private DateTime createDateSec;
 	private String updateUserSec;
@@ -51,11 +51,12 @@ public class SectionCovers {
 	public void setCoverCd(String coverCd) {
 		this.coverCd = coverCd;
 	}
-	public String getDescription() {
-		return description;
+	
+	public String getCoverName() {
+		return coverName;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCoverName(String coverName) {
+		this.coverName = coverName;
 	}
 	public String getBulletNo() {
 		return bulletNo;
@@ -93,16 +94,16 @@ public class SectionCovers {
 	public void setDiscountTag(String discountTag) {
 		this.discountTag = discountTag;
 	}
-	public String getCumSi() {
+	public BigDecimal getCumSi() {
 		return cumSi;
 	}
-	public void setCumSi(String cumSi) {
+	public void setCumSi(BigDecimal cumSi) {
 		this.cumSi = cumSi;
 	}
-	public String getCumPrem() {
+	public BigDecimal getCumPrem() {
 		return cumPrem;
 	}
-	public void setCumPrem(String cumPrem) {
+	public void setCumPrem(BigDecimal cumPrem) {
 		this.cumPrem = cumPrem;
 	}
 	public String getCreateUserSec() {
@@ -151,14 +152,11 @@ public class SectionCovers {
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", section=" + section + ", coverCd="
-				+ coverCd + ", description=" + description + ", bulletNo=" + bulletNo + ", prevSumInsured="
-				+ prevSumInsured + ", prevPremRt=" + prevPremRt + ", prevPremAmt=" + prevPremAmt + ", sumInsured="
-				+ sumInsured + ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag="
-				+ discountTag + ", cumSi=" + cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec
-				+ ", createDateSec=" + createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec="
-				+ updateDateSec + "]";
+				+ coverCd + ", coverName=" + coverName + ", bulletNo=" + bulletNo + ", prevSumInsured=" + prevSumInsured
+				+ ", prevPremRt=" + prevPremRt + ", prevPremAmt=" + prevPremAmt + ", sumInsured=" + sumInsured
+				+ ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag
+				+ ", cumSi=" + cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec="
+				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
-	
-	
 	
 }
