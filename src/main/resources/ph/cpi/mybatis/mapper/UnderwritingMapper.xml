@@ -675,7 +675,7 @@
 				 #{compRefHoldCovNo, jdbcType=VARCHAR},
 				 #{status, jdbcType=VARCHAR},
 				 #{reqBy, jdbcType=VARCHAR},
-				 CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 CAST(to_timestamp(#{reqDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				 #{preparedBy, jdbcType=VARCHAR},
 				 #{approvedBy, jdbcType=VARCHAR},
 				 #{createUser},
