@@ -510,6 +510,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		retrievePolHoldCoverParams.put("policyId", rphc.getPolicyId());
 		retrievePolHoldCoverParams.put("policyNo", rphc.getPolicyNo());
+		retrievePolHoldCoverParams.put("holdCovId", rphc.getHoldCovId());
 		
 		rphcResponse.setPolicy(underwritingDao.retrievePolHoldCover(retrievePolHoldCoverParams));
 		
