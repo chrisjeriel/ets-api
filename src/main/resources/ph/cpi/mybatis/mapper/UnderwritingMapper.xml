@@ -676,7 +676,7 @@
 				 #{compRefHoldCovNo, jdbcType=VARCHAR},
 				 #{status, jdbcType=VARCHAR},
 				 #{reqBy, jdbcType=VARCHAR},
-				 CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 CAST(to_timestamp(#{reqDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				 #{preparedBy, jdbcType=VARCHAR},
 				 #{approvedBy, jdbcType=VARCHAR},
 				 #{createUser},
@@ -789,12 +789,13 @@
 		<result property="cedingName" 			column="CEDING_NAME"/>
 		<result property="principalName" 		column="INSURED_NAME"/>
 		<association property="project" 		resultMap="projectMap"/>
-		<collection property="holdCoverList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="holdCoverMap" select="retrievePolHoldCover"/>
+		<collection property="holdCoverList" javaType="ArrayList" column="{policyId = POLICY_ID, holdCovId = HOLD_COV_ID}" ofType="holdCoverMap" select="retrievePolHoldCover"/>
 	</resultMap>
 	
 	<select id="retrievePolHoldCoverMain" resultMap="retPolHoldCoverMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.RET_POL_HOLD_COVER(#{policyId, jdbcType=VARCHAR},
 															      #{policyNo, jdbcType=VARCHAR},
+															      #{holdCovId, jdbcType=VARCHAR},
 															      #{position, jdbcType=VARCHAR}, 
 																  #{count, jdbcType=VARCHAR}, 
 																  #{sortKey, jdbcType=VARCHAR}, 
@@ -805,6 +806,7 @@
 	<select id="retrievePolHoldCover" resultMap="holdCoverMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POL_HOLD_COVER_PKG.RET_POL_HOLD_COVER(#{policyId, jdbcType=VARCHAR},
 															      #{policyNo, jdbcType=VARCHAR},
+															      #{holdCovId, jdbcType=VARCHAR},
 															      #{position, jdbcType=VARCHAR}, 
 																  #{count, jdbcType=VARCHAR}, 
 																  #{sortKey, jdbcType=VARCHAR}, 
