@@ -686,6 +686,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("instTag", spgip.getInstTag());
 			savePolGenInfoParams.put("extensionTag", spgip.getExtensionTag());
 			savePolGenInfoParams.put("excludeDistTag", spgip.getExcludeDistTag());
+			savePolGenInfoParams.put("coinsGrpId", spgip.getCoinsGrpId());
 			savePolGenInfoParams.put("wordings", spgip.getWordings());
 			savePolGenInfoParams.put("createUser", spgip.getCreateUser());
 			savePolGenInfoParams.put("createDate", spgip.getCreateDate());
@@ -729,6 +730,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try {
 			HashMap<String, Object> savePolicyDetailsParams = new HashMap<String, Object>();
 			
+			savePolicyDetailsParams.put("checkingType", spdp.getCheckingType());
+			savePolicyDetailsParams.put("coInsStatus", "");
 			savePolicyDetailsParams.put("policyId", "");
 			savePolicyDetailsParams.put("policyNo", "");
 			savePolicyDetailsParams.put("lineCd", spdp.getLineCd());
@@ -741,9 +744,21 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolicyDetailsParams.put("createUser", spdp.getCreateUser());
 			savePolicyDetailsParams.put("createDate", spdp.getCreateDate());
 			savePolicyDetailsParams.put("updateUser", spdp.getUpdateUser());
-			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());
+			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());			
 			
-			HashMap<String, Object> res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+			HashMap<String, Object> res = new HashMap<String, Object>();
+			
+			if(!savePolicyDetailsParams.get("quotationNo").toString().equals("")) {
+				Integer x = underwritingDao.retrieveCoInsStatus(savePolicyDetailsParams);
+				
+				if(x == 0) {
+					res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+				} else {
+					spdResponse.setCoInsStatus(x);
+				}
+			} else {
+				res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+			}			 
 			
 			spdResponse.setReturnCode((Integer) res.get("errorCode"));
 			spdResponse.setPolicyId((Integer) res.get("policyId"));
@@ -1044,8 +1059,13 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrieveAlterationsPerPolicyResponse rappResponse = new RetrieveAlterationsPerPolicyResponse();
 		
 		HashMap<String, Object> retrieveAlterationsPerPolicyParams = new HashMap<String, Object>();
+		
+		retrieveAlterationsPerPolicyParams.put("checkingType", rappr.getCheckingType());
+		retrieveAlterationsPerPolicyParams.put("coInsAlt", "");
 		retrieveAlterationsPerPolicyParams.put("policyId", rappr.getPolicyId());
 		
+		rappResponse.setCoInsStatus(underwritingDao.retrieveCoInsStatus(retrieveAlterationsPerPolicyParams));
+		rappResponse.setCoInsAlt(underwritingDao.retrieveAlterationsPerCoIns(retrieveAlterationsPerPolicyParams));
 		rappResponse.setPolicyList(underwritingDao.retrieveAlterationsPerPolicy(retrieveAlterationsPerPolicyParams));
 		return rappResponse;
 	}

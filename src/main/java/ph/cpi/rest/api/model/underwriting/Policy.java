@@ -64,6 +64,7 @@ public class Policy {
 	private String instTag;
 	private String extensionTag;
 	private String excludeDistTag;
+	private Integer coinsGrpId;
 	private String wordings;
 	private String createUser;
 	private DateTime createDate;
@@ -429,6 +430,12 @@ public class Policy {
 	public void setExcludeDistTag(String excludeDistTag) {
 		this.excludeDistTag = excludeDistTag;
 	}
+	public Integer getCoinsGrpId() {
+		return coinsGrpId;
+	}
+	public void setCoinsGrpId(Integer coinsGrpId) {
+		this.coinsGrpId = coinsGrpId;
+	}
 	public String getWordings() {
 		return wordings;
 	}
@@ -495,7 +502,6 @@ public class Policy {
 	public void setCoInsurance(List<CoInsurance> coInsurance) {
 		this.coInsurance = coInsurance;
 	}
-	
 	public Alop getAlop() {
 		return alop;
 	}
@@ -540,12 +546,11 @@ public class Policy {
 				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
 				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
 				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
-				+ ", excludeDistTag=" + excludeDistTag + ", wordings=" + wordings + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
-				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
-				+ alterationHist + "]";
+				+ ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId + ", wordings=" + wordings
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
+				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
+				+ ", coInsurance=" + coInsurance + ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril="
+				+ catPeril + ", alterationHist=" + alterationHist + "]";
 	}
-	
 }

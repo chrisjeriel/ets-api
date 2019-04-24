@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class SavePolicyDetailsRequest {
 
+	private String checkingType;
 	private String lineCd;
 	private String quotationNo;
 	private String holdCoverNo;
@@ -14,6 +15,12 @@ public class SavePolicyDetailsRequest {
 	private String updateUser;
 	private String updateDate;
 	
+	public String getCheckingType() {
+		return checkingType;
+	}
+	public void setCheckingType(String checkingType) {
+		this.checkingType = checkingType;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -82,9 +89,9 @@ public class SavePolicyDetailsRequest {
 	}
 	@Override
 	public String toString() {
-		return "SavePolicyDetailsRequest [lineCd=" + lineCd + ", quotationNo=" + quotationNo + ", holdCoverNo="
-				+ holdCoverNo + ", openPolicyNo=" + openPolicyNo + ", optionId=" + optionId + ", inceptDate="
-				+ inceptDate + ", expiryDate=" + expiryDate + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "SavePolicyDetailsRequest [checkingType=" + checkingType + ", lineCd=" + lineCd + ", quotationNo="
+				+ quotationNo + ", holdCoverNo=" + holdCoverNo + ", openPolicyNo=" + openPolicyNo + ", optionId="
+				+ optionId + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

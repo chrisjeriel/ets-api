@@ -410,7 +410,7 @@ public class UnderwritingController {
 	
 	@GetMapping(path="retrieveAlterationsPerPolicy")
 	public @ResponseBody RetrieveAlterationsPerPolicyResponse retrieveAlterationsPerPolicy(RetrieveAlterationsPerPolicyRequest rappr) throws SQLException {
-		logger.info("GET: /api/Policy-service/retrieveAlterationsPerPolicy");
+		logger.info("GET: /api/underwriting-service/retrieveAlterationsPerPolicy");
 		logger.info("RetrieveAlterationsPerPolicyRequest : " + rappr.toString());
 		return underwritingService.retrieveAlterationsPerPolicy(rappr);
 	}

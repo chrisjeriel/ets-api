@@ -5,10 +5,17 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveAlterationsPerPolicyRequest {
 	
+	private String checkingType;
 	private Integer policyId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
+	public String getCheckingType() {
+		return checkingType;
+	}
+	public void setCheckingType(String checkingType) {
+		this.checkingType = checkingType;
+	}
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -29,7 +36,7 @@ public class RetrieveAlterationsPerPolicyRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAlterationsPerPolicyRequest [policyId=" + policyId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAlterationsPerPolicyRequest [checkingType=" + checkingType + ", policyId=" + policyId
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

@@ -108,6 +108,7 @@
 		<result property="instTag" 				column="INST_TAG"/>
 		<result property="extensionTag" 		column="EXTENSION_TAG"/>
 		<result property="excludeDistTag" 		column="EXCLUDE_DIST_TAG"/>
+		<result property="coinsGrpId" 			column="COINS_GRP_ID"/>
 		<result property="wordings" 			column="WORDINGS"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -896,6 +897,7 @@
 											   #{instTag, jdbcType=VARCHAR},
 											   #{extensionTag, jdbcType=VARCHAR},
 											   #{excludeDistTag, jdbcType=VARCHAR},
+											   #{coinsGrpId, jdbcType=INTEGER},
 											   #{wordings, jdbcType=VARCHAR},
 											   #{createUser, jdbcType=VARCHAR},
 											   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -1519,12 +1521,12 @@
 																#{order, jdbcType=VARCHAR}))
 	</select>
 	
-	<select id="retrieveAlterationsPerPolicy" parameterType="java.util.Map" resultMap="policyMap">
+	<select id="retrieveAlterationsPerPolicy" parameterType="java.util.Map" resultMap="policyMap">		
 		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_alt_listing(#{policyId, jdbcType=INTEGER},
 															 #{position, jdbcType=VARCHAR}, 
 															 #{count, jdbcType=INTEGER}, 
 															 #{sortKey, jdbcType=VARCHAR}, 
-															 #{order, jdbcType=VARCHAR}))
+															 #{order, jdbcType=VARCHAR}))		
 	</select>
 
 	<update id="savePolGenInfoOc" parameterType="java.util.Map">
@@ -1550,6 +1552,28 @@
 				CAST(to_timestamp(#{projUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
+	</update>
+	
+	<update id="retrieveAlterationsPerCoIns" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{coInsAlt, mode=OUT, javaType=Integer, jdbcType=INTEGER} := POL_GEN_INFO_PKG.ret_coins_alt(#{policyId, jdbcType=INTEGER},
+																						  				#{position, jdbcType=VARCHAR}, 
+																						  				#{count, jdbcType=INTEGER}, 
+																										#{sortKey, jdbcType=VARCHAR}, 
+																										#{order, jdbcType=VARCHAR})
+		}	
+	</update>
+	
+	<update id="retrieveCoInsStatus" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{coInsStatus, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CONVERT_QU_TO_POL_PKG.ret_coins_status(#{checkingType, jdbcType=VARCHAR},
+																												   #{policyId, jdbcType=INTEGER},	
+																												   #{quotationNo, jdbcType=VARCHAR},
+																									  			   #{position, jdbcType=VARCHAR}, 
+																									  			   #{count, jdbcType=INTEGER}, 
+																												   #{sortKey, jdbcType=VARCHAR}, 
+																												   #{order, jdbcType=VARCHAR})
+		}	
 	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.EndtText" id="EndtTextMapper">

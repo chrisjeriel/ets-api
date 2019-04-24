@@ -49,6 +49,7 @@ public class SavePolGenInfoRequest {
 	private String instTag;
 	private String extensionTag;
 	private String excludeDistTag;
+	private String coinsGrpId;
 	private String wordings;
 	private String createUser;
 	private String createDate;
@@ -352,6 +353,12 @@ public class SavePolGenInfoRequest {
 	public void setExcludeDistTag(String excludeDistTag) {
 		this.excludeDistTag = excludeDistTag;
 	}
+	public String getCoinsGrpId() {
+		return coinsGrpId;
+	}
+	public void setCoinsGrpId(String coinsGrpId) {
+		this.coinsGrpId = coinsGrpId;
+	}
 	public String getWordings() {
 		return wordings;
 	}
@@ -488,12 +495,12 @@ public class SavePolGenInfoRequest {
 				+ currencyRt + ", bookedTag=" + bookedTag + ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag
 				+ ", holdCoverTag=" + holdCoverTag + ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag
 				+ ", altTag=" + altTag + ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag
-				+ ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag + ", wordings=" + wordings
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
-				+ ", totalSi=" + totalSi + ", objectId=" + objectId + ", site=" + site + ", duration=" + duration
-				+ ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd
-				+ ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser="
-				+ prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
+				+ ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId
+				+ ", wordings=" + wordings + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc="
+				+ projDesc + ", riskId=" + riskId + ", totalSi=" + totalSi + ", objectId=" + objectId + ", site=" + site
+				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
+				+ ", noClaimPd=" + noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
+				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
 	}
 }
