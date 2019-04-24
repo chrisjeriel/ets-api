@@ -730,6 +730,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try {
 			HashMap<String, Object> savePolicyDetailsParams = new HashMap<String, Object>();
 			
+			savePolicyDetailsParams.put("checkingType", spdp.getCheckingType());
 			savePolicyDetailsParams.put("coInsStatus", "");
 			savePolicyDetailsParams.put("policyId", "");
 			savePolicyDetailsParams.put("policyNo", "");
@@ -1058,9 +1059,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrieveAlterationsPerPolicyResponse rappResponse = new RetrieveAlterationsPerPolicyResponse();
 		
 		HashMap<String, Object> retrieveAlterationsPerPolicyParams = new HashMap<String, Object>();
+		
+		retrieveAlterationsPerPolicyParams.put("checkingType", rappr.getCheckingType());
 		retrieveAlterationsPerPolicyParams.put("coInsAlt", "");
 		retrieveAlterationsPerPolicyParams.put("policyId", rappr.getPolicyId());
 		
+		rappResponse.setCoInsStatus(underwritingDao.retrieveCoInsStatus(retrieveAlterationsPerPolicyParams));
 		rappResponse.setCoInsAlt(underwritingDao.retrieveAlterationsPerCoIns(retrieveAlterationsPerPolicyParams));
 		rappResponse.setPolicyList(underwritingDao.retrieveAlterationsPerPolicy(retrieveAlterationsPerPolicyParams));
 		return rappResponse;

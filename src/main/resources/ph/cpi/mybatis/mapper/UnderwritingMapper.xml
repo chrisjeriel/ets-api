@@ -1566,7 +1566,9 @@
 	
 	<update id="retrieveCoInsStatus" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
-			#{coInsStatus, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CONVERT_QU_TO_POL_PKG.ret_coins_status(#{quotationNo, jdbcType=VARCHAR},
+			#{coInsStatus, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CONVERT_QU_TO_POL_PKG.ret_coins_status(#{checkingType, jdbcType=VARCHAR},
+																												   #{policyId, jdbcType=INTEGER},	
+																												   #{quotationNo, jdbcType=VARCHAR},
 																									  			   #{position, jdbcType=VARCHAR}, 
 																									  			   #{count, jdbcType=INTEGER}, 
 																												   #{sortKey, jdbcType=VARCHAR}, 
