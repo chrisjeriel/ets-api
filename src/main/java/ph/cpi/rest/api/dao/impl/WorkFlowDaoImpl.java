@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.WorkFlowDao;
+import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
 
 @Component
@@ -47,6 +48,21 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	public Integer saveReminders(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveReminders", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<Note> retrieveNotes(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Note> noteList = sqlSession.selectList("retrieveNotes", params);
+		logger.info("retrieveNotes DAOImpl : " + noteList);
+		return noteList;
+	}
+
+	@Override
+	public Integer saveNotes(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveNotes", params);
 		return errorCode;
 	}
 }

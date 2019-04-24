@@ -9,9 +9,13 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
+import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
+import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
+import ph.cpi.rest.api.model.response.SaveNotesResponse;
 import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.service.WorkFlowService;
 
@@ -41,7 +45,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 	}
 
 	@Override
-	public SaveRemindersResponse saveRemindersResponse(SaveRemindersRequest srreq) throws SQLException {
+	public SaveRemindersResponse saveReminders(SaveRemindersRequest srreq) throws SQLException {
 		// TODO Auto-generated method stub
 		SaveRemindersResponse srResponse = new SaveRemindersResponse();
 		
@@ -67,6 +71,49 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			
 
 		return srResponse;
+	}
+
+	@Override
+	public RetrieveNotesResponse retrieveNotes(RetrieveNotesRequest rnrq) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveNotesResponse rnResponse = new RetrieveNotesResponse();
+		HashMap<String, Object> retrieveNotesParams = new HashMap<String, Object>();
+		
+		retrieveNotesParams.put("noteId",rnrq.getNoteId());
+		retrieveNotesParams.put("assignedTo", rnrq.getAssignedTo());
+		retrieveNotesParams.put("createUser", rnrq.getCreateUser());
+		
+		rnResponse.setNoteList(workFlowDao.retrieveNotes(retrieveNotesParams));
+		logger.info("retrieveReminderResponse : " + rnResponse.toString());
+		
+		return rnResponse;
+	}
+
+	@Override
+	public SaveNotesResponse saveNotes(SaveNotesRequest snreq) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveNotesResponse snResponse = new SaveNotesResponse();
+		
+		try {
+			HashMap<String, Object> saveNotesParams = new HashMap<String, Object>();
+			saveNotesParams.put("noteId", snreq.getNoteId());
+			saveNotesParams.put("title", snreq.getTitle());
+			saveNotesParams.put("note", snreq.getNote());
+			saveNotesParams.put("assignedTo", snreq.getAssignedTo());
+			saveNotesParams.put("status", snreq.getStatus());
+			saveNotesParams.put("createUser", snreq.getCreateUser());
+			saveNotesParams.put("createDate", snreq.getCreateDate());
+			saveNotesParams.put("updateUser", snreq.getUpdateUser());
+			saveNotesParams.put("updateDate", snreq.getUpdateDate());
+			snResponse.setReturnCode(workFlowDao.saveNotes(saveNotesParams));
+		} catch (Exception ex) {
+			snResponse.setReturnCode(0);
+			snResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		
+		return snResponse;
 	}
 
 }

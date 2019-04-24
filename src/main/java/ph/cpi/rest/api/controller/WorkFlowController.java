@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
+import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
+import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
+import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
+import ph.cpi.rest.api.model.response.SaveNotesResponse;
 import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.service.WorkFlowService;
@@ -43,7 +47,21 @@ public class WorkFlowController {
 	public @ResponseBody SaveRemindersResponse saveReminders(@RequestBody SaveRemindersRequest srreq) throws SQLException {
 		logger.info("POST: /api/work-flow-service/saveReminders");
 		logger.info("SaveRemindersRequest : " + srreq.toString());
-		return workFlowService.saveRemindersResponse(srreq);
+		return workFlowService.saveReminders(srreq);
+	}
+	
+	@GetMapping(path="retNotes")
+	public @ResponseBody RetrieveNotesResponse retrieveNotes(RetrieveNotesRequest rnrq) throws SQLException {
+		logger.info("GET: /api/work-flow-service/retNotes");
+		logger.info("RetrieveNotessRequest : " + rnrq.toString());
+		return workFlowService.retrieveNotes(rnrq);
+	}
+	
+	@PostMapping(path="saveNotes")
+	public @ResponseBody SaveNotesResponse saveNotes(@RequestBody SaveNotesRequest snreq) throws SQLException {
+		logger.info("POST: /api/work-flow-service/saveNotes");
+		logger.info("SaveNotesRequest : " + snreq.toString());
+		return workFlowService.saveNotes(snreq);
 	}
 
 	 
