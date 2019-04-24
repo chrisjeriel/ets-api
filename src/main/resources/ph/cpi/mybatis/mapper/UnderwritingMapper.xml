@@ -762,7 +762,8 @@
 															 null,
 															 null,
 															 null))
-	</select>
+	</select> 
+	
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retPolHoldCoverMap">
 		<result property="policyId" 			column="POLICY_ID"/>
