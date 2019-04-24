@@ -8,14 +8,15 @@ import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolAlopResponse {
 	
-	private List<Policy> policy;
+	private Policy policy;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<Policy> getPolicy() {
+	
+	public Policy getPolicy() {
 		return policy;
 	}
-	public void setPolicy(List<Policy> policy) {
+	public void setPolicy(Policy policy) {
 		this.policy = policy;
 	}
 	public PaginationResponse getPaginationResponse() {
@@ -30,11 +31,12 @@ public class RetrievePolAlopResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
 	@Override
 	public String toString() {
 		return "RetrievePolAlopResponse [policy=" + policy + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
+	
 	
 }

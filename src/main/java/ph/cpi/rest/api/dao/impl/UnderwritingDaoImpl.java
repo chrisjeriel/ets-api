@@ -109,8 +109,8 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public List<Policy> retrievePolAlop(final HashMap<String, Object> params) throws SQLException {
-		List<Policy> policyList = sqlSession.selectList("retrievePolAlop", params);
+	public Policy retrievePolAlop(final HashMap<String, Object> params) throws SQLException {
+		Policy policyList = sqlSession.selectOne("retrievePolAlop", params);
 		return policyList;
 	}
 	
@@ -340,5 +340,24 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Integer updatePolGenInfoSpoilage(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updatePolGenInfoSpoilage", params);
 		return errorCode;
+	}
+	@Override
+	public Integer retrieveAlterationsPerCoIns(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("retrieveAlterationsPerCoIns", params);
+		
+		return (Integer) params.get("coInsAlt");
+	}
+	
+	@Override
+	public Integer savePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolGenInfoOc", params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer retrieveCoInsStatus(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("retrieveCoInsStatus", params);
+		
+		return (Integer) params.get("coInsStatus");
 	}
 }

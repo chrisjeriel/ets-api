@@ -21,6 +21,7 @@ public class Policy {
 	private String lineClassCd;
 	private String lineClassDesc;
 	private Integer quoteId;
+	private Integer optionId;
 	private String quotationNo;
 	private String holdCoverNo;
 	private String status;
@@ -63,6 +64,7 @@ public class Policy {
 	private String instTag;
 	private String extensionTag;
 	private String excludeDistTag;
+	private Integer coinsGrpId;
 	private String wordings;
 	private String createUser;
 	private DateTime createDate;
@@ -75,10 +77,11 @@ public class Policy {
 	private List<Attachment> attachments;
 	private List<InwPolBalance> inwPolBalance;
 	private List<CoInsurance> coInsurance;
-	private List<Alop> alop;
+	private Alop alop;
 	private List<HoldCover> holdCoverList;
 	private List<CATPeril> catPeril;
 	private List<AlterationHist> alterationHist;
+	
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -168,6 +171,12 @@ public class Policy {
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
+	}
+	public Integer getOptionId() {
+		return optionId;
+	}
+	public void setOptionId(Integer optionId) {
+		this.optionId = optionId;
 	}
 	public String getQuotationNo() {
 		return quotationNo;
@@ -421,6 +430,12 @@ public class Policy {
 	public void setExcludeDistTag(String excludeDistTag) {
 		this.excludeDistTag = excludeDistTag;
 	}
+	public Integer getCoinsGrpId() {
+		return coinsGrpId;
+	}
+	public void setCoinsGrpId(Integer coinsGrpId) {
+		this.coinsGrpId = coinsGrpId;
+	}
 	public String getWordings() {
 		return wordings;
 	}
@@ -487,10 +502,10 @@ public class Policy {
 	public void setCoInsurance(List<CoInsurance> coInsurance) {
 		this.coInsurance = coInsurance;
 	}
-	public List<Alop> getAlop() {
+	public Alop getAlop() {
 		return alop;
 	}
-	public void setAlop(List<Alop> alop) {
+	public void setAlop(Alop alop) {
 		this.alop = alop;
 	}
 	public List<HoldCover> getHoldCoverList() {
@@ -517,12 +532,12 @@ public class Policy {
 				+ lineCdDesc + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId
 				+ ", cedingName=" + cedingName + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", cessionId="
 				+ cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd + ", lineClassDesc="
-				+ lineClassDesc + ", quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", holdCoverNo="
-				+ holdCoverNo + ", status=" + status + ", statusDesc=" + statusDesc + ", coRefNo=" + coRefNo
-				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo
-				+ ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo
-				+ ", refOpenPolNo=" + refOpenPolNo + ", intmId=" + intmId + ", intmName=" + intmName + ", principalId="
-				+ principalId + ", principalName=" + principalName + ", contractorId=" + contractorId
+				+ lineClassDesc + ", quoteId=" + quoteId + ", optionId=" + optionId + ", quotationNo=" + quotationNo
+				+ ", holdCoverNo=" + holdCoverNo + ", status=" + status + ", statusDesc=" + statusDesc + ", coRefNo="
+				+ coRefNo + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo="
+				+ riBinderNo + ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", openPolicyNo="
+				+ openPolicyNo + ", refOpenPolNo=" + refOpenPolNo + ", intmId=" + intmId + ", intmName=" + intmName
+				+ ", principalId=" + principalId + ", principalName=" + principalName + ", contractorId=" + contractorId
 				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate
 				+ ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
 				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", issueDate="
@@ -531,11 +546,11 @@ public class Policy {
 				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
 				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
 				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
-				+ ", excludeDistTag=" + excludeDistTag + ", wordings=" + wordings + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
-				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril
-				+ ", alterationHist=" + alterationHist + "]";
+				+ ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId + ", wordings=" + wordings
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
+				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
+				+ ", coInsurance=" + coInsurance + ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril="
+				+ catPeril + ", alterationHist=" + alterationHist + "]";
 	}
 }

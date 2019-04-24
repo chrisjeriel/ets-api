@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SaveQuoteOptionAllRequest {
 	private Integer quoteId;
+	private String user;
 	private String projId;
 	private String riskId;
 	private List<QuoteOption> saveQuoteOptionsList;
@@ -20,6 +21,12 @@ public class SaveQuoteOptionAllRequest {
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
+	}
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
 	}
 	public String getProjId() {
 		return projId;
@@ -73,11 +80,12 @@ public class SaveQuoteOptionAllRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuoteOptionAllRequest [quoteId=" + quoteId + ", projId=" + projId + ", riskId=" + riskId
-				+ ", saveQuoteOptionsList=" + saveQuoteOptionsList + ", deleteQuoteOptionsList="
+		return "SaveQuoteOptionAllRequest [quoteId=" + quoteId + ", user=" + user + ", projId=" + projId + ", riskId="
+				+ riskId + ", saveQuoteOptionsList=" + saveQuoteOptionsList + ", deleteQuoteOptionsList="
 				+ deleteQuoteOptionsList + ", otherRates=" + otherRates + ", newQuoteOptionsList=" + newQuoteOptionsList
 				+ ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
+	
 	
 }
 

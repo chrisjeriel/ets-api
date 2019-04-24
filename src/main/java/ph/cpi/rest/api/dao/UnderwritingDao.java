@@ -18,7 +18,7 @@ public interface UnderwritingDao {
 	public Policy retrievePolAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolEndtList(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolGenInfo(final HashMap<String, Object> params) throws SQLException;
-	public List<Policy> retrievePolAlop(final HashMap<String, Object> params) throws SQLException;
+	public Policy retrievePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolAttachments(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolInwardBal(final HashMap<String, Object> params) throws SQLException;
@@ -57,4 +57,8 @@ public interface UnderwritingDao {
 	public Integer savePolAttachmentsOc(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrieveAlterationsPerPolicy(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolGenInfoSpoilage(final HashMap<String, Object> params) throws SQLException;
+	public Integer retrieveAlterationsPerCoIns(final HashMap<String, Object> params) throws SQLException;
+	public Integer retrieveCoInsStatus(final HashMap<String, Object> params) throws SQLException;
+	public Integer savePolGenInfoOc(final HashMap<String, Object> params) throws SQLException;
+	
 }

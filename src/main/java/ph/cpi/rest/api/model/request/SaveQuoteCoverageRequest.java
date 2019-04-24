@@ -141,6 +141,7 @@ class SectionCovers {
 	private String lineCd  ;
 	private String section ;
 	private Integer coverCd  ;
+	private String coverName;
 	private String bulletNo ;
 	private BigDecimal sumInsured ;
 	private String addSi ;
@@ -170,6 +171,13 @@ class SectionCovers {
 	}
 	public String getBulletNo() {
 		return bulletNo;
+	}
+	
+	public String getCoverName() {
+		return coverName;
+	}
+	public void setCoverName(String coverName) {
+		this.coverName = coverName;
 	}
 	public void setBulletNo(String bulletNo) {
 		this.bulletNo = bulletNo;
@@ -212,13 +220,10 @@ class SectionCovers {
 	}
 	@Override
 	public String toString() {
-		return "SectionCovers [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
-				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "SectionCovers [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", coverName="
+				+ coverName + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
-
-	
-	
 	
 }
