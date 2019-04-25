@@ -81,6 +81,7 @@ public class Policy {
 	private List<HoldCover> holdCoverList;
 	private List<CATPeril> catPeril;
 	private List<AlterationHist> alterationHist;
+	private PolWordings polWordings;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -526,6 +527,12 @@ public class Policy {
 	public void setAlterationHist(List<AlterationHist> alterationHist) {
 		this.alterationHist = alterationHist;
 	}
+	public PolWordings getPolWordings() {
+		return polWordings;
+	}
+	public void setPolWordings(PolWordings polWordings) {
+		this.polWordings = polWordings;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd + ", lineCdDesc="
@@ -551,6 +558,7 @@ public class Policy {
 				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
 				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
 				+ ", coInsurance=" + coInsurance + ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril="
-				+ catPeril + ", alterationHist=" + alterationHist + "]";
+				+ catPeril + ", alterationHist=" + alterationHist + ", polWordings=" + polWordings + "]";
 	}
+	
 }

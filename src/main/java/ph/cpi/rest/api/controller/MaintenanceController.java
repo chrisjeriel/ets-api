@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
@@ -46,6 +47,7 @@ import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
@@ -337,5 +339,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnSpoilageReason");
 		logger.info("RetrieveMtnSpoilageReasonRequest : " + rmsrr.toString());
 		return maintenanceService.retrieveMtnSpoilageReason(rmsrr);
+	}
+	
+	@GetMapping(path="retMtnPolWordings")
+	public @ResponseBody RetMtnPolWordingsResponse retMtnPolWordings(RetMtnPolWordingsRequest rmpwr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retMtnPolWordings");
+		logger.info("RetMtnPolWordings : " + rmpwr.toString());
+		return maintenanceService.retMtnPolWordings(rmpwr);
 	}
 }
