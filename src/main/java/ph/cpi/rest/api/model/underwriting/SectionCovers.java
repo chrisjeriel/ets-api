@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
@@ -27,6 +28,9 @@ public class SectionCovers {
 	private DateTime createDateSec;
 	private String updateUserSec;
 	private DateTime updateDateSec;
+	
+	private List<Deductibles> deductiblesSec;
+	
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -149,6 +153,12 @@ public class SectionCovers {
 	public void setPrevPremAmt(BigDecimal prevPremAmt) {
 		this.prevPremAmt = prevPremAmt;
 	}
+	public List<Deductibles> getDeductiblesSec() {
+		return deductiblesSec;
+	}
+	public void setDeductiblesSec(List<Deductibles> deductiblesSec) {
+		this.deductiblesSec = deductiblesSec;
+	}
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", section=" + section + ", coverCd="
@@ -156,7 +166,7 @@ public class SectionCovers {
 				+ ", prevPremRt=" + prevPremRt + ", prevPremAmt=" + prevPremAmt + ", sumInsured=" + sumInsured
 				+ ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag
 				+ ", cumSi=" + cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec="
-				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + "]";
+				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec
+				+ ", deductiblesSec=" + deductiblesSec + "]";
 	}
-	
 }
