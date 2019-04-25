@@ -6,6 +6,7 @@ public class Insured {
 	private Integer insuredId;
 	private String insuredName;
 	private String insuredAbbr;
+	private String insuredType;
 	private String firstName;
 	private String middleInitial;
 	private String lastName;
@@ -24,7 +25,6 @@ public class Insured {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getInsuredId() {
 		return insuredId;
 	}
@@ -42,6 +42,12 @@ public class Insured {
 	}
 	public void setInsuredAbbr(String insuredAbbr) {
 		this.insuredAbbr = insuredAbbr;
+	}
+	public String getInsuredType() {
+		return insuredType;
+	}
+	public void setInsuredType(String insuredType) {
+		this.insuredType = insuredType;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -134,7 +140,7 @@ public class Insured {
 		this.createUser = createUser;
 	}
 	public DateTime getCreateDate() {
-		return this.createDate;
+		return createDate;
 	}
 	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
@@ -154,11 +160,11 @@ public class Insured {
 	@Override
 	public String toString() {
 		return "Insured [insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredAbbr=" + insuredAbbr
-				+ ", firstName=" + firstName + ", middleInitial=" + middleInitial + ", lastName=" + lastName
-				+ ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd="
-				+ zipCd + ", address=" + address + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd
-				+ ", activeTag=" + activeTag + ", corpTag=" + corpTag + ", vatTag=" + vatTag + ", oldInsId=" + oldInsId
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", insuredType=" + insuredType + ", firstName=" + firstName + ", middleInitial=" + middleInitial
+				+ ", lastName=" + lastName + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3="
+				+ addrLine3 + ", zipCd=" + zipCd + ", address=" + address + ", contactNo=" + contactNo + ", emailAdd="
+				+ emailAdd + ", activeTag=" + activeTag + ", corpTag=" + corpTag + ", vatTag=" + vatTag + ", oldInsId="
+				+ oldInsId + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
 	

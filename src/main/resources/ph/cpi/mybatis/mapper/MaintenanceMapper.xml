@@ -249,6 +249,7 @@
 		<result property="insuredId" 	column="INSURED_ID"/>
 		<result property="insuredName" 	column="INSURED_NAME"/>
 		<result property="insuredAbbr" 	column="INSURED_ABBR"/>
+		<result property="insuredType" 	column="INSURED_TYPE"/>
 		<result property="firstName" 	column="FIRST_NAME"/>
 		<result property="middleInitial" 	column="MIDDLE_INITIAL"/>
 		<result property="lastName" 	column="LAST_NAME"/>
