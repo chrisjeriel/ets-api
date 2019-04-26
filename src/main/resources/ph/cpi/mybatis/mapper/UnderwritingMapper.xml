@@ -863,6 +863,7 @@
 				CAST(to_timestamp(#{Items.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 			</foreach>
+			POL_ITEM_PKG.renumber_pol_itm(#{policyId},#{projId});
 		END;
 	</update>
 	
