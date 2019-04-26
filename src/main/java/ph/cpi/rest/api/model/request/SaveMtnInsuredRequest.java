@@ -1,13 +1,30 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class Insured {
+public class SaveMtnInsuredRequest {
+	private List<Insureds> saveMtnInsured;
+
+	public List<Insureds> getSaveMtnInsured() {
+		return saveMtnInsured;
+	}
+
+	public void setSaveMtnInsured(List<Insureds> saveMtnInsured) {
+		this.saveMtnInsured = saveMtnInsured;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveMtnInsuredRequest [saveMtnInsured=" + saveMtnInsured + "]";
+	}
+	
+}
+
+class Insureds{
 	private Integer insuredId;
 	private String insuredName;
 	private String insuredAbbr;
 	private String insuredType;
-	private String insuredTypeDesc;
 	private String firstName;
 	private String middleInitial;
 	private String lastName;
@@ -15,20 +32,17 @@ public class Insured {
 	private String addrLine2;
 	private String addrLine3;
 	private String zipCd;
-	private String address;
 	private String contactNo;
 	private String emailAdd;
 	private String activeTag;
 	private String corpTag;
-	private String corpTagDesc;
 	private String vatTag;
-	private String vatTagDesc;
 	private String oldInsId;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
 	public Integer getInsuredId() {
 		return insuredId;
 	}
@@ -52,12 +66,6 @@ public class Insured {
 	}
 	public void setInsuredType(String insuredType) {
 		this.insuredType = insuredType;
-	}
-	public String getInsuredTypeDesc() {
-		return insuredTypeDesc;
-	}
-	public void setInsuredTypeDesc(String insuredTypeDesc) {
-		this.insuredTypeDesc = insuredTypeDesc;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -101,12 +109,6 @@ public class Insured {
 	public void setZipCd(String zipCd) {
 		this.zipCd = zipCd;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getContactNo() {
 		return contactNo;
 	}
@@ -131,23 +133,11 @@ public class Insured {
 	public void setCorpTag(String corpTag) {
 		this.corpTag = corpTag;
 	}
-	public String getCorpTagDesc() {
-		return corpTagDesc;
-	}
-	public void setCorpTagDesc(String corpTagDesc) {
-		this.corpTagDesc = corpTagDesc;
-	}
 	public String getVatTag() {
 		return vatTag;
 	}
 	public void setVatTag(String vatTag) {
 		this.vatTag = vatTag;
-	}
-	public String getVatTagDesc() {
-		return vatTagDesc;
-	}
-	public void setVatTagDesc(String vatTagDesc) {
-		this.vatTagDesc = vatTagDesc;
 	}
 	public String getOldInsId() {
 		return oldInsId;
@@ -167,10 +157,10 @@ public class Insured {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -179,22 +169,22 @@ public class Insured {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "Insured [insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredAbbr=" + insuredAbbr
-				+ ", insuredType=" + insuredType + ", insuredTypeDesc=" + insuredTypeDesc + ", firstName=" + firstName
-				+ ", middleInitial=" + middleInitial + ", lastName=" + lastName + ", addrLine1=" + addrLine1
-				+ ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd=" + zipCd + ", address=" + address
-				+ ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", corpTag="
-				+ corpTag + ", corpTagDesc=" + corpTagDesc + ", vatTag=" + vatTag + ", vatTagDesc=" + vatTagDesc
-				+ ", oldInsId=" + oldInsId + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Insureds [insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredAbbr=" + insuredAbbr
+				+ ", insuredType=" + insuredType + ", firstName=" + firstName + ", middleInitial=" + middleInitial
+				+ ", lastName=" + lastName + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3="
+				+ addrLine3 + ", zipCd=" + zipCd + ", address=" + ", contactNo=" + contactNo + ", emailAdd="
+				+ emailAdd + ", activeTag=" + activeTag + ", corpTag=" + corpTag + ", vatTag=" + vatTag + ", oldInsId="
+				+ oldInsId + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
+
 }

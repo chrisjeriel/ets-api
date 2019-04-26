@@ -293,5 +293,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Spoil> spoilList = sqlSession.selectList("retrieveMtnSpoilageReason",params);
 		return spoilList;
 	}
+
+	@Override
+	public Integer saveMtnInsured(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnInsured",params);
+		return errorCode;
+	}
 	
 }

@@ -42,6 +42,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -76,6 +77,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -689,5 +691,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rsrResponse.setSpoilageReason(maintenanceDao.retrieveMtnSpoilageReason(retrieveMtnSpoilageReasonParams));
 		logger.info("RetrieveMtnSpoilageReasonResponse : " + rsrResponse.toString());
 		return rsrResponse;
+	}
+
+	@Override
+	public SaveMtnInsuredResponse saveMtnInsured(SaveMtnInsuredRequest smir) throws SQLException {
+		SaveMtnInsuredResponse smiResponse = new SaveMtnInsuredResponse();
+		HashMap<String, Object> retrieveMtnInsuredParams = new HashMap<String, Object>();
+		retrieveMtnInsuredParams.put("saveMtnInsured", smir.getSaveMtnInsured());
+		smiResponse.setReturnCode(maintenanceDao.saveMtnInsured(retrieveMtnInsuredParams));
+		logger.info("SaveMtnInsuredResponse : " + smiResponse.toString());
+		return smiResponse;
 	}
 }

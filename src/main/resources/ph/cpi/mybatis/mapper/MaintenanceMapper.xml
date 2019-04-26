@@ -250,6 +250,7 @@
 		<result property="insuredName" 	column="INSURED_NAME"/>
 		<result property="insuredAbbr" 	column="INSURED_ABBR"/>
 		<result property="insuredType" 	column="INSURED_TYPE"/>
+		<result property="insuredTypeDesc" 	column="INSURED_TYPE_DESC"/>
 		<result property="firstName" 	column="FIRST_NAME"/>
 		<result property="middleInitial" 	column="MIDDLE_INITIAL"/>
 		<result property="lastName" 	column="LAST_NAME"/>
@@ -262,8 +263,11 @@
 		<result property="emailAdd" 	column="EMAIL_ADD"/>
 		<result property="activeTag" 	column="ACTIVE_TAG"/>
 		<result property="corpTag" 	column="CORP_TAG"/>
+		<result property="corpTagDesc" 	column="CORP_TAG_DESC"/>
 		<result property="vatTag" 	column="VAT_TAG"/>
+		<result property="vatTagDesc" 	column="VAT_TAG_DESC"/>
 		<result property="oldInsId" 	column="OLD_INS_ID"/>
+		<result property="remarks" 	column="REMARKS"/>
 		<result property="createUser" 	column="CREATE_USER"/>
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 	column="UPDATE_USER"/>
@@ -867,6 +871,36 @@
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
 												  #{order, jdbcType=VARCHAR})
-     </select>
+    </select>
     
+    <update id="saveMtnInsured" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveMtnInsured" item="saveIns">
+    			MTN_INSURED_PKG.save_mtn_insured(
+    				#{saveIns.insuredId,jdbcType=INTEGER},
+					#{saveIns.insuredName,jdbcType=VARCHAR},
+					#{saveIns.insuredAbbr,jdbcType=VARCHAR},
+					#{saveIns.insuredType,jdbcType=VARCHAR},
+					#{saveIns.firstName,jdbcType=VARCHAR},
+					#{saveIns.middleInitial,jdbcType=VARCHAR},
+					#{saveIns.lastName,jdbcType=VARCHAR},
+					#{saveIns.addrLine1,jdbcType=VARCHAR},
+					#{saveIns.addrLine2,jdbcType=VARCHAR},
+					#{saveIns.addrLine3,jdbcType=VARCHAR},
+					#{saveIns.zipCd,jdbcType=VARCHAR},
+					#{saveIns.contactNo,jdbcType=VARCHAR},
+					#{saveIns.emailAdd,jdbcType=VARCHAR},
+					#{saveIns.activeTag,jdbcType=VARCHAR},
+					#{saveIns.corpTag,jdbcType=VARCHAR},
+					#{saveIns.vatTag,jdbcType=VARCHAR},
+					#{saveIns.oldInsId,jdbcType=INTEGER},
+					#{saveIns.remarks,jdbcType=VARCHAR},
+					#{saveIns.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveIns.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveIns.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveIns.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+    </update>
 </mapper>
