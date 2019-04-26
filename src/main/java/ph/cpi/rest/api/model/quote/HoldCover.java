@@ -13,6 +13,7 @@ public class HoldCover {
 	private Integer holdCoverRevNo;
 	private Integer optionId;
 	private Float optionRt;
+	private String condition;
 	private DateTime periodFrom;
 	private DateTime periodTo;
 	private String compRefHoldCovNo;
@@ -25,7 +26,6 @@ public class HoldCover {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getHoldCoverId() {
 		return holdCoverId;
 	}
@@ -79,6 +79,12 @@ public class HoldCover {
 	}
 	public void setOptionRt(Float optionRt) {
 		this.optionRt = optionRt;
+	}
+	public String getCondition() {
+		return condition;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 	public DateTime getPeriodFrom() {
 		return periodFrom;
@@ -157,9 +163,10 @@ public class HoldCover {
 		return "HoldCover [holdCoverId=" + holdCoverId + ", holdCoverNo=" + holdCoverNo + ", lineCd=" + lineCd
 				+ ", lineCdDesc=" + lineCdDesc + ", holdCoverYear=" + holdCoverYear + ", holdCoverSeqNo="
 				+ holdCoverSeqNo + ", holdCoverRevNo=" + holdCoverRevNo + ", optionId=" + optionId + ", optionRt="
-				+ optionRt + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + ", compRefHoldCovNo="
-				+ compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy + ", reqDate=" + reqDate
-				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser=" + createUser
+				+ optionRt + ", condition=" + condition + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo
+				+ ", compRefHoldCovNo=" + compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy + ", reqDate="
+				+ reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

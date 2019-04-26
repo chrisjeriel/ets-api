@@ -49,6 +49,7 @@
 		<result property="reqBy" 			column="REQ_BY"/>
 		<result property="openCoverTag" 	column="OP_COV_TAG"/>  <!-- Added by Neco, 04/02/2019, Reason: For create open pol LOV -->
 		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="approvedBy" 		column="APPROVED_BY"/>
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
@@ -235,6 +236,7 @@
 		<result property = "holdCoverRevNo"      column = "HOLD_COV_REV_NO"/>
 		<result property = "optionId"			 column = "OPTION_ID"/>
 		<result property = "optionRt"			 column = "OPTION_RT"/>
+		<result property = "condition"			 column = "CONDITION"/>
 		<result property = "periodFrom"          column = "PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "periodTo"            column = "PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "compRefHoldCovNo"    column = "COMP_REF_HOLD_COV_NO"/>
