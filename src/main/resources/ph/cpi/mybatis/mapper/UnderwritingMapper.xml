@@ -937,7 +937,9 @@
 											   #{prjCreateUser, jdbcType=VARCHAR},
 											   CAST(to_timestamp(#{prjCreateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											   #{prjUpdateUser, jdbcType=VARCHAR},
-											   CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											   CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR},
+											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR}
 			);
 			
 			POL_WORDINGS_PKG.save_pol_wordings(

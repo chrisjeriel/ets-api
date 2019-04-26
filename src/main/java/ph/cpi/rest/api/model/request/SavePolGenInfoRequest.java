@@ -71,6 +71,13 @@ public class SavePolGenInfoRequest {
 	private String prjCreateDate;
 	private String prjUpdateUser;
 	private String prjUpdateDate;
+	private String regionCd;
+	private String provinceCd;
+	private String cityCd;
+	private String districtCd;
+	private String blockCd;
+	private String latitude;
+	private String longitude;
 	private SavePolWordings polWordings;
 	
 	public String getSavingType() {
@@ -481,6 +488,48 @@ public class SavePolGenInfoRequest {
 	public void setPrjUpdateDate(String prjUpdateDate) {
 		this.prjUpdateDate = prjUpdateDate;
 	}
+	public String getRegionCd() {
+		return regionCd;
+	}
+	public void setRegionCd(String regionCd) {
+		this.regionCd = regionCd;
+	}
+	public String getProvinceCd() {
+		return provinceCd;
+	}
+	public void setProvinceCd(String provinceCd) {
+		this.provinceCd = provinceCd;
+	}
+	public String getCityCd() {
+		return cityCd;
+	}
+	public void setCityCd(String cityCd) {
+		this.cityCd = cityCd;
+	}
+	public String getDistrictCd() {
+		return districtCd;
+	}
+	public void setDistrictCd(String districtCd) {
+		this.districtCd = districtCd;
+	}
+	public String getBlockCd() {
+		return blockCd;
+	}
+	public void setBlockCd(String blockCd) {
+		this.blockCd = blockCd;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 	public SavePolWordings getPolWordings() {
 		return polWordings;
 	}
@@ -509,9 +558,12 @@ public class SavePolGenInfoRequest {
 				+ projDesc + ", riskId=" + riskId + ", totalSi=" + totalSi + ", objectId=" + objectId + ", site=" + site
 				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
 				+ ", noClaimPd=" + noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
-				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + ", polWordings="
-				+ polWordings + "]";
+				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + ", regionCd=" + regionCd
+				+ ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd="
+				+ blockCd + ", latitude=" + latitude + ", longitude=" + longitude + ", polWordings=" + polWordings
+				+ "]";
 	}
+	
 	
 }
 
