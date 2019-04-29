@@ -821,7 +821,7 @@
 																  #{count, jdbcType=VARCHAR}, 
 																  #{sortKey, jdbcType=VARCHAR}, 
 																  #{order, jdbcType=VARCHAR}))
-		 WHERE rownum = 1
+	   ORDER BY HOLD_COV_ID DESC
 	</select>
 	
 	<select id="retrievePolHoldCover" resultMap="holdCoverMap" parameterType="java.util.Map">
