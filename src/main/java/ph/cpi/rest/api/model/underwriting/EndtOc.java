@@ -16,6 +16,7 @@ public class EndtOc {
 	private String updateUser;
 	private DateTime updateDate;
 	private List<DeductiblesOc> deductiblesOc;
+	private EndtText endtText;
 	
 	public String getEndtCd() {
 		return endtCd;
@@ -71,11 +72,17 @@ public class EndtOc {
 	public void setDeductiblesOc(List<DeductiblesOc> deductiblesOc) {
 		this.deductiblesOc = deductiblesOc;
 	}
-	
+	public EndtText getEndtText() {
+		return endtText;
+	}
+	public void setEndtText(EndtText endtText) {
+		this.endtText = endtText;
+	}
 	@Override
 	public String toString() {
 		return "EndtOc [endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", changeTag=" + changeTag + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", deductiblesOc=" + deductiblesOc + "]";
+				+ ", updateDate=" + updateDate + ", deductiblesOc=" + deductiblesOc + ", endtText=" + endtText + "]";
 	}
+	
 }
