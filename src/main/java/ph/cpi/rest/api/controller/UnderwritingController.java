@@ -224,7 +224,7 @@ public class UnderwritingController {
 	
 	@PostMapping(path="savePolCoverage")
 	public @ResponseBody SavePolCoverageResponse savePolCoverage(@RequestBody SavePolCoverageRequest sqcr) throws SQLException {
-		logger.info("GET: /api/underwriting-service/savePolCoverage");
+		logger.info("POST: /api/underwriting-service/savePolCoverage");
 		logger.info("SavePolCoverageRequest : " + sqcr.toString());
 		return underwritingService.savePolCoverage(sqcr);
 	}
