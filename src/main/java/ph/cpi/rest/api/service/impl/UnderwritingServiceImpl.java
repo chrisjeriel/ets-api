@@ -52,6 +52,7 @@ import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
+import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
@@ -77,7 +78,6 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
-import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -97,10 +97,10 @@ import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
+import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
-import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 import ph.cpi.rest.api.utils.DateUtility;
 
@@ -1153,5 +1153,28 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spgipResponse;
+	}
+	
+	@Override
+	public UpdatePolGenInfoResponse updatePolGenInfo(UpdatePolGenInfoRequest uppgif) throws SQLException {
+		UpdatePolGenInfoResponse uppgifResponse = new UpdatePolGenInfoResponse();
+		try{
+			HashMap<String, Object> updatePolGenInfoParams = new HashMap<String, Object>();
+			updatePolGenInfoParams.put("policyId",uppgif.getPolicyId());
+			updatePolGenInfoParams.put("riskId",uppgif.getRiskId());
+			updatePolGenInfoParams.put("coRefNo",uppgif.getCoRefNo());
+			updatePolGenInfoParams.put("riBinderNo",uppgif.getRiBinderNo());
+			updatePolGenInfoParams.put("insuredDesc",uppgif.getInsuredDesc());
+			updatePolGenInfoParams.put("latitude",uppgif.getLatitude());
+			updatePolGenInfoParams.put("longtitude", uppgif.getLongitude());
+			updatePolGenInfoParams.put("updateUser",uppgif.getUpdateUser());
+			updatePolGenInfoParams.put("updateDate",uppgif.getUpdateDate());
+			uppgifResponse.setReturnCode(underwritingDao.updatePolGenInfo(updatePolGenInfoParams));
+		}catch(Exception ex){
+			uppgifResponse.setReturnCode(0);
+			uppgifResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return uppgifResponse;
 	}
 }

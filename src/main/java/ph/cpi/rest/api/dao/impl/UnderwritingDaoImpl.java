@@ -360,4 +360,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		
 		return (Integer) params.get("coInsStatus");
 	}
+
+	@Override
+	public Integer updatePolGenInfo(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("updatePolGenInfo", params);
+		return errorCode;
+	}
 }
