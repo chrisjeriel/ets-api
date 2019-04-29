@@ -710,6 +710,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("prjCreateDate", spgip.getPrjCreateDate());
 			savePolGenInfoParams.put("prjUpdateUser", spgip.getPrjUpdateUser());
 			savePolGenInfoParams.put("prjUpdateDate", spgip.getPrjUpdateDate());
+			savePolGenInfoParams.put("polWordings", spgip.getPolWordings());
+			
+			savePolGenInfoParams.put("regionCd" ,spgip.getRegionCd());
+			savePolGenInfoParams.put("provinceCd" ,spgip.getProvinceCd());
+			savePolGenInfoParams.put("cityCd" ,spgip.getCityCd());
+			savePolGenInfoParams.put("districtCd" ,spgip.getDistrictCd());
+			savePolGenInfoParams.put("blockCd" ,spgip.getBlockCd());
+			savePolGenInfoParams.put("latitude" ,spgip.getLatitude());
+			savePolGenInfoParams.put("longitude" ,spgip.getLongitude());
 			
 			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
 			
