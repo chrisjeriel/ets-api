@@ -943,7 +943,7 @@
 											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR}
 			);
 			
-			POL_WORDINGS_PKG.save_pol_wordings(
+			<!-- POL_WORDINGS_PKG.save_pol_wordings(
 				#{policyId, jdbcType=INTEGER},
 				#{polWordings.wordingCd, jdbcType=VARCHAR},
 				#{polWordings.polwText01, jdbcType=VARCHAR},
@@ -967,7 +967,37 @@
 			   CAST(to_timestamp(#{polWordings.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   #{updateUser, jdbcType=VARCHAR},
 			   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-			);
+			); -->
+		END;
+	</update>
+		
+	<update id="savePolGenInfoWordings" parameterType="java.util.Map">
+		BEGIN
+			POL_WORDINGS_PKG.save_pol_wordings(
+					#{policyId, jdbcType=INTEGER},
+					#{polWordings.wordingCd, jdbcType=VARCHAR},
+					#{polWordings.polwText01, jdbcType=VARCHAR},
+					#{polWordings.polwText02, jdbcType=VARCHAR},
+					#{polWordings.polwText03, jdbcType=VARCHAR},
+					#{polWordings.polwText04, jdbcType=VARCHAR},
+					#{polWordings.polwText05, jdbcType=VARCHAR},
+					#{polWordings.polwText06, jdbcType=VARCHAR},
+					#{polWordings.polwText07, jdbcType=VARCHAR},
+					#{polWordings.polwText08, jdbcType=VARCHAR},
+					#{polWordings.polwText09, jdbcType=VARCHAR},
+					#{polWordings.polwText10, jdbcType=VARCHAR},
+					#{polWordings.polwText11, jdbcType=VARCHAR},
+					#{polWordings.polwText12, jdbcType=VARCHAR},
+					#{polWordings.polwText13, jdbcType=VARCHAR},
+					#{polWordings.polwText14, jdbcType=VARCHAR},
+					#{polWordings.polwText15, jdbcType=VARCHAR},
+					#{polWordings.polwText16, jdbcType=VARCHAR},
+					#{polWordings.polwText17, jdbcType=VARCHAR},
+					#{polWordings.createUser, jdbcType=VARCHAR},
+				   CAST(to_timestamp(#{polWordings.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				   #{updateUser, jdbcType=VARCHAR},
+				   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
 		END;
 	</update>
 
