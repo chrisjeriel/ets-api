@@ -1,27 +1,9 @@
 package ph.cpi.rest.api.model.request;
 
-import java.util.List;
 
 public class SaveMtnInsuredRequest {
-	private List<Insureds> saveMtnInsured;
-
-	public List<Insureds> getSaveMtnInsured() {
-		return saveMtnInsured;
-	}
-
-	public void setSaveMtnInsured(List<Insureds> saveMtnInsured) {
-		this.saveMtnInsured = saveMtnInsured;
-	}
-
-	@Override
-	public String toString() {
-		return "SaveMtnInsuredRequest [saveMtnInsured=" + saveMtnInsured + "]";
-	}
 	
-}
-
-class Insureds{
-	private Integer insuredId;
+	private String insuredId;
 	private String insuredName;
 	private String insuredAbbr;
 	private String insuredType;
@@ -43,10 +25,10 @@ class Insureds{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	public Integer getInsuredId() {
+	public String getInsuredId() {
 		return insuredId;
 	}
-	public void setInsuredId(Integer insuredId) {
+	public void setInsuredId(String insuredId) {
 		this.insuredId = insuredId;
 	}
 	public String getInsuredName() {
@@ -177,14 +159,15 @@ class Insureds{
 	}
 	@Override
 	public String toString() {
-		return "Insureds [insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredAbbr=" + insuredAbbr
-				+ ", insuredType=" + insuredType + ", firstName=" + firstName + ", middleInitial=" + middleInitial
-				+ ", lastName=" + lastName + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3="
-				+ addrLine3 + ", zipCd=" + zipCd + ", address=" + ", contactNo=" + contactNo + ", emailAdd="
+		return "SaveMtnInsuredRequest [insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredAbbr="
+				+ insuredAbbr + ", insuredType=" + insuredType + ", firstName=" + firstName + ", middleInitial="
+				+ middleInitial + ", lastName=" + lastName + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2
+				+ ", addrLine3=" + addrLine3 + ", zipCd=" + zipCd + ", contactNo=" + contactNo + ", emailAdd="
 				+ emailAdd + ", activeTag=" + activeTag + ", corpTag=" + corpTag + ", vatTag=" + vatTag + ", oldInsId="
 				+ oldInsId + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
-
 }
+
+

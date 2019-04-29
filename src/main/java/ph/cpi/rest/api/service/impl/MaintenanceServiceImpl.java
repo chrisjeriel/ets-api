@@ -696,10 +696,39 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnInsuredResponse saveMtnInsured(SaveMtnInsuredRequest smir) throws SQLException {
 		SaveMtnInsuredResponse smiResponse = new SaveMtnInsuredResponse();
-		HashMap<String, Object> retrieveMtnInsuredParams = new HashMap<String, Object>();
-		retrieveMtnInsuredParams.put("saveMtnInsured", smir.getSaveMtnInsured());
-		smiResponse.setReturnCode(maintenanceDao.saveMtnInsured(retrieveMtnInsuredParams));
+		HashMap<String, Object> saveMtnInsuredParams = new HashMap<String, Object>();
+		saveMtnInsuredParams.put("insuredIdOut", "");
+		saveMtnInsuredParams.put("insuredId",smir.getInsuredId());
+		saveMtnInsuredParams.put("insuredName",smir.getInsuredName());
+		saveMtnInsuredParams.put("insuredAbbr",smir.getInsuredAbbr());
+		saveMtnInsuredParams.put("insuredType",smir.getInsuredType());
+		saveMtnInsuredParams.put("firstName",smir.getFirstName());
+		saveMtnInsuredParams.put("middleInitial",smir.getMiddleInitial());
+		saveMtnInsuredParams.put("lastName",smir.getLastName());
+		saveMtnInsuredParams.put("addrLine1",smir.getAddrLine1());
+		saveMtnInsuredParams.put("addrLine2",smir.getAddrLine2());
+		saveMtnInsuredParams.put("addrLine3",smir.getAddrLine3());
+		saveMtnInsuredParams.put("zipCd",smir.getZipCd());
+		saveMtnInsuredParams.put("contactNo",smir.getContactNo());
+		saveMtnInsuredParams.put("emailAdd",smir.getEmailAdd());
+		saveMtnInsuredParams.put("activeTag",smir.getActiveTag());
+		saveMtnInsuredParams.put("corpTag",smir.getCorpTag());
+		saveMtnInsuredParams.put("vatTag",smir.getVatTag());
+		saveMtnInsuredParams.put("oldInsId",smir.getOldInsId());
+		saveMtnInsuredParams.put("remarks",smir.getRemarks());
+		saveMtnInsuredParams.put("createUser",smir.getCreateUser());
+		saveMtnInsuredParams.put("createDate",smir.getCreateDate());
+		saveMtnInsuredParams.put("updateUser",smir.getUpdateUser());
+		saveMtnInsuredParams.put("updateDate",smir.getUpdateDate());
+		
+		HashMap<String, Object> result = maintenanceDao.saveMtnInsured(saveMtnInsuredParams);
+		
+		smiResponse.setReturnCode((Integer) result.get("errorCode"));
+		smiResponse.setInsuredIdOut((Integer) result.get("insuredIdOut"));
+		
 		logger.info("SaveMtnInsuredResponse : " + smiResponse.toString());
+		System.out.println(saveMtnInsuredParams);
+
 		return smiResponse;
 	}
 }

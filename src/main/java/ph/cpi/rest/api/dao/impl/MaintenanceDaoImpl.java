@@ -295,9 +295,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public Integer saveMtnInsured(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveMtnInsured(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveMtnInsured",params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
+
+
 	
 }

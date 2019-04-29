@@ -873,34 +873,33 @@
 												  #{order, jdbcType=VARCHAR})
     </select>
     
-    <update id="saveMtnInsured" parameterType="java.util.Map">
+    <update id="saveMtnInsured" parameterType="java.util.Map" statementType="CALLABLE">
     	BEGIN
-    		<foreach collection="saveMtnInsured" item="saveIns">
     			MTN_INSURED_PKG.save_mtn_insured(
-    				#{saveIns.insuredId,jdbcType=INTEGER},
-					#{saveIns.insuredName,jdbcType=VARCHAR},
-					#{saveIns.insuredAbbr,jdbcType=VARCHAR},
-					#{saveIns.insuredType,jdbcType=VARCHAR},
-					#{saveIns.firstName,jdbcType=VARCHAR},
-					#{saveIns.middleInitial,jdbcType=VARCHAR},
-					#{saveIns.lastName,jdbcType=VARCHAR},
-					#{saveIns.addrLine1,jdbcType=VARCHAR},
-					#{saveIns.addrLine2,jdbcType=VARCHAR},
-					#{saveIns.addrLine3,jdbcType=VARCHAR},
-					#{saveIns.zipCd,jdbcType=VARCHAR},
-					#{saveIns.contactNo,jdbcType=VARCHAR},
-					#{saveIns.emailAdd,jdbcType=VARCHAR},
-					#{saveIns.activeTag,jdbcType=VARCHAR},
-					#{saveIns.corpTag,jdbcType=VARCHAR},
-					#{saveIns.vatTag,jdbcType=VARCHAR},
-					#{saveIns.oldInsId,jdbcType=INTEGER},
-					#{saveIns.remarks,jdbcType=VARCHAR},
-					#{saveIns.createUser,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{saveIns.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					#{saveIns.updateUser,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{saveIns.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    				#{insuredId,jdbcType=INTEGER},
+    				#{insuredIdOut,mode=OUT,jdbcType=INTEGER},
+					#{insuredName,jdbcType=VARCHAR},
+					#{insuredAbbr,jdbcType=VARCHAR},
+					#{insuredType,jdbcType=VARCHAR},
+					#{firstName,jdbcType=VARCHAR},
+					#{middleInitial,jdbcType=VARCHAR},
+					#{lastName,jdbcType=VARCHAR},
+					#{addrLine1,jdbcType=VARCHAR},
+					#{addrLine2,jdbcType=VARCHAR},
+					#{addrLine3,jdbcType=VARCHAR},
+					#{zipCd,jdbcType=VARCHAR},
+					#{contactNo,jdbcType=VARCHAR},
+					#{emailAdd,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{oldInsId,jdbcType=INTEGER},
+					#{remarks,jdbcType=VARCHAR},
+					#{createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
-    		</foreach>
     	END;
     </update>
 </mapper>

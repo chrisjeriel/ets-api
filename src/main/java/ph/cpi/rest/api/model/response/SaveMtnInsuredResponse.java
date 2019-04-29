@@ -9,6 +9,7 @@ public class SaveMtnInsuredResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private Integer insuredIdOut;
 	public List<Error> getErrorList() {
 		return errorList;
 	}
@@ -27,9 +28,15 @@ public class SaveMtnInsuredResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
+	public Integer getInsuredIdOut() {
+		return insuredIdOut;
+	}
+	public void setInsuredIdOut(Integer insuredIdOut) {
+		this.insuredIdOut = insuredIdOut;
+	}
 	@Override
 	public String toString() {
-		return "SaveMtnLineResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+		return "SaveMtnInsuredResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + ", insuredIdOut=" + insuredIdOut + "]";
 	}
 }
