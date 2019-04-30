@@ -995,6 +995,23 @@
 					#{polWordings.polwText15, jdbcType=VARCHAR},
 					#{polWordings.polwText16, jdbcType=VARCHAR},
 					#{polWordings.polwText17, jdbcType=VARCHAR},
+					#{polWordings.altwText01, jdbcType=VARCHAR},
+					#{polWordings.altwText02, jdbcType=VARCHAR},
+					#{polWordings.altwText03, jdbcType=VARCHAR},
+					#{polWordings.altwText04, jdbcType=VARCHAR},
+					#{polWordings.altwText05, jdbcType=VARCHAR},
+					#{polWordings.altwText06, jdbcType=VARCHAR},
+					#{polWordings.altwText07, jdbcType=VARCHAR},
+					#{polWordings.altwText08, jdbcType=VARCHAR},
+					#{polWordings.altwText09, jdbcType=VARCHAR},
+					#{polWordings.altwText10, jdbcType=VARCHAR},
+					#{polWordings.altwText11, jdbcType=VARCHAR},
+					#{polWordings.altwText12, jdbcType=VARCHAR},
+					#{polWordings.altwText13, jdbcType=VARCHAR},
+					#{polWordings.altwText14, jdbcType=VARCHAR},
+					#{polWordings.altwText15, jdbcType=VARCHAR},
+					#{polWordings.altwText16, jdbcType=VARCHAR},
+					#{polWordings.altwText17, jdbcType=VARCHAR},
 					#{polWordings.createUser, jdbcType=VARCHAR},
 				   CAST(to_timestamp(#{polWordings.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				   #{updateUser, jdbcType=VARCHAR},
@@ -1758,6 +1775,23 @@
 		<result property="polwText15" column="POLW_TEXT15"/>
 		<result property="polwText16" column="POLW_TEXT16"/>
 		<result property="polwText17" column="POLW_TEXT17"/>
+		<result property="altwText01" column="ALTW_TEXT01"/>
+		<result property="altwText02" column="ALTW_TEXT02"/>
+		<result property="altwText03" column="ALTW_TEXT03"/>
+		<result property="altwText04" column="ALTW_TEXT04"/>
+		<result property="altwText05" column="ALTW_TEXT05"/>
+		<result property="altwText06" column="ALTW_TEXT06"/>
+		<result property="altwText07" column="ALTW_TEXT07"/>
+		<result property="altwText08" column="ALTW_TEXT08"/>
+		<result property="altwText09" column="ALTW_TEXT09"/>
+		<result property="altwText10" column="ALTW_TEXT10"/>
+		<result property="altwText11" column="ALTW_TEXT11"/>
+		<result property="altwText12" column="ALTW_TEXT12"/>
+		<result property="altwText13" column="ALTW_TEXT13"/>
+		<result property="altwText14" column="ALTW_TEXT14"/>
+		<result property="altwText15" column="ALTW_TEXT15"/>
+		<result property="altwText16" column="ALTW_TEXT16"/>
+		<result property="altwText17" column="ALTW_TEXT17"/>
 		<result property="createUser" column="POLW_CREATE_USER"/>
 		<result property="createDate" column="POLW_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="POLW_UPDATE_USER"/>
