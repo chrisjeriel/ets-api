@@ -676,7 +676,7 @@
 		   		);
 		   	</foreach>
 		   	
-		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag});
+		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag,jdbcType=VARCHAR});
 		END;
 	</update>
 	
