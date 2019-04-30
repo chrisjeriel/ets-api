@@ -186,7 +186,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnInsuredParams = new HashMap<String, Object>();
 		retrieveMtnInsuredParams.put("insuredId", rmir.getInsuredId());
-		
+		retrieveMtnInsuredParams.put("insuredName",rmir.getInsuredName());
+		retrieveMtnInsuredParams.put("insuredAbbr",rmir.getInsuredAbbr());
+		retrieveMtnInsuredParams.put("activeTag",rmir.getActiveTag());
+		retrieveMtnInsuredParams.put("insuredType",rmir.getInsuredType());
+		retrieveMtnInsuredParams.put("corpTag",rmir.getCorpTag());
+		retrieveMtnInsuredParams.put("vatTag",rmir.getVatTag());
+		retrieveMtnInsuredParams.put("address",rmir.getAddress());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
 		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
 		
