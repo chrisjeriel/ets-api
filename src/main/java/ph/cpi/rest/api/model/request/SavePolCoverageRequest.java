@@ -7,23 +7,23 @@ import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
 public class SavePolCoverageRequest {
-	private  BigDecimal policyId;
-	private  BigDecimal riskId;
-	private  BigDecimal projId;
-	private  BigDecimal sectionISi;
-	private  BigDecimal sectionIISi;
-	private  BigDecimal sectionIIISi;
-	private  BigDecimal totalSi;
-	private  BigDecimal sectionIPrem;
-	private  BigDecimal sectionIIPrem;
-	private  BigDecimal sectionIIIPrem;
-	private  BigDecimal totalPrem;
-	private  String currencyCd;
-	private  BigDecimal currencyRt;
-	private  BigDecimal pctShare;
-	private  BigDecimal pctPml;
-	private  BigDecimal totalValue;
-	private  String remarks;
+	private BigDecimal policyId;
+	private BigDecimal riskId;
+	private BigDecimal projId;
+	private BigDecimal sectionISi;
+	private BigDecimal sectionIISi;
+	private BigDecimal sectionIIISi;
+	private BigDecimal totalSi;
+	private BigDecimal sectionIPrem;
+	private BigDecimal sectionIIPrem;
+	private BigDecimal sectionIIIPrem;
+	private BigDecimal totalPrem;
+	private String currencyCd;
+	private BigDecimal currencyRt;
+	private BigDecimal pctShare;
+	private BigDecimal pctPml;
+	private BigDecimal totalValue;
+	private String remarks;
 	private BigDecimal cumSecISi;
 	private BigDecimal cumSecIISi;
 	private BigDecimal cumSecIIISi;
@@ -32,10 +32,11 @@ public class SavePolCoverageRequest {
 	private BigDecimal cumSecIIPrem;
 	private BigDecimal cumSecIIIPrem;
 	private BigDecimal cumTPrem;
-	private  String createUser;
-	private  String createDate;
-	private  String updateUser;
-	private  String updateDate;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	private String changeTag;
 	
 	private List<SectionCoversUw> saveSectionCovers;
 	private List<SectionCoversUw> deleteSectionCovers;
@@ -307,6 +308,14 @@ public class SavePolCoverageRequest {
 	public void setDeleteDeductibleList(List<UwDeductible> deleteDeductibleList) {
 		this.deleteDeductibleList = deleteDeductibleList;
 	}
+	
+	public String getChangeTag() {
+		return changeTag;
+	}
+
+	public void setChangeTag(String changeTag) {
+		this.changeTag = changeTag;
+	}
 
 	@Override
 	public String toString() {
@@ -319,10 +328,12 @@ public class SavePolCoverageRequest {
 				+ ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem
 				+ ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers="
-				+ deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList="
-				+ deleteDeductibleList + "]";
+				+ ", updateDate=" + updateDate + ", changeTag=" + changeTag + ", saveSectionCovers=" + saveSectionCovers
+				+ ", deleteSectionCovers=" + deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList
+				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
+
+	
 }
 
 @Alias ("UWSaveSec")
