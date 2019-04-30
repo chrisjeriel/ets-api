@@ -882,6 +882,42 @@
 												  #{order, jdbcType=VARCHAR})
     </select>
     
+    <resultMap type="ph.cpi.rest.api.model.maintenance.MtnPolWordings" id="MtnPolWordingsMap">
+    	<result property="lineCd"	column="LINE_CD"/>
+		<result property="wordingCd"	column="WORDING_CD"/>
+		<result property="wordingTitle"	column="WORDING_TITLE"/>
+		<result property="wordType"	column="WORD_TYPE"/>
+		<result property="activeTag"	column="ACTIVE_TAG"/>
+		<result property="defaultTag"	column="DEFAULT_TAG"/>
+		<result property="ocTag"	column="OC_TAG"/>
+		<result property="wordText01"	column="WORD_TEXT01"/>
+		<result property="wordText02"	column="WORD_TEXT02"/>
+		<result property="wordText03"	column="WORD_TEXT03"/>
+		<result property="wordText04"	column="WORD_TEXT04"/>
+		<result property="wordText05"	column="WORD_TEXT05"/>
+		<result property="wordText06"	column="WORD_TEXT06"/>
+		<result property="wordText07"	column="WORD_TEXT07"/>
+		<result property="wordText08"	column="WORD_TEXT08"/>
+		<result property="wordText09"	column="WORD_TEXT09"/>
+		<result property="wordText10"	column="WORD_TEXT10"/>
+		<result property="wordText11"	column="WORD_TEXT11"/>
+		<result property="wordText12"	column="WORD_TEXT12"/>
+		<result property="wordText13"	column="WORD_TEXT13"/>
+		<result property="wordText14"	column="WORD_TEXT14"/>
+		<result property="wordText15"	column="WORD_TEXT15"/>
+		<result property="wordText16"	column="WORD_TEXT16"/>
+		<result property="wordText17"	column="WORD_TEXT17"/>
+		<result property="remarks"	column="REMARKS"/>
+		<result property="createUser"	column="CREATE_USER"/>
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER"/>
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retMtnPolWordings" resultMap="MtnPolWordingsMap" parameterType="java.util.Map">
+    	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
+     </select>
+     
     <update id="saveMtnInsured" parameterType="java.util.Map" statementType="CALLABLE">
     	BEGIN
     			MTN_INSURED_PKG.save_mtn_insured(

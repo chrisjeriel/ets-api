@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -295,12 +296,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public List<MtnPolWordings> retMtnPolWordings(HashMap<String, Object> params) throws SQLException {
+		List<MtnPolWordings> mtnPolWordings = sqlSession.selectList("retMtnPolWordings",params);
+		return mtnPolWordings;
+	}
+	
+	@Override
 	public HashMap<String, Object> saveMtnInsured(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveMtnInsured",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
-
-
 	
 }

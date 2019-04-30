@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
@@ -699,6 +701,20 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return rsrResponse;
 	}
 
+	@Override
+	public RetMtnPolWordingsResponse retMtnPolWordings(RetMtnPolWordingsRequest rmpwr) throws SQLException {
+		RetMtnPolWordingsResponse rmpwrResponse = new RetMtnPolWordingsResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lineCd" , rmpwr.getLineCd());
+		params.put("wordingCd" , rmpwr.getWordingCd());
+		params.put("activeTag" , rmpwr.getActiveTag());
+		params.put("defaultTag" , rmpwr.getDefaultTag());
+		params.put("ocTag" , rmpwr.getOcTag());
+		rmpwrResponse.setMtnPolWordings(maintenanceDao.retMtnPolWordings(params));
+		logger.info("RetMtnPolWordingsResponse : " + rmpwrResponse.toString());
+		return rmpwrResponse;
+	}
+	
 	@Override
 	public SaveMtnInsuredResponse saveMtnInsured(SaveMtnInsuredRequest smir) throws SQLException {
 		SaveMtnInsuredResponse smiResponse = new SaveMtnInsuredResponse();

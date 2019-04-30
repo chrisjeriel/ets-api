@@ -214,9 +214,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return params;
 	}
 	
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public HashMap<String, Object> savePolGenInfo(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("savePolGenInfo",params);
+		Integer errorCode = sqlSession.update("savePolGenInfo", params);
+		params.put("policyId", params.get("outPolicyId"));
+		sqlSession.update("savePolGenInfoWordings", params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
@@ -242,7 +245,9 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		sqlSession.update("savePDAlopItem",params);
 		sqlSession.update("savePDEndorsements",params);
 		sqlSession.update("savePDAttachments",params);
-		sqlSession.update("savePDPolInwardBal",params);		
+		sqlSession.update("savePDPolInwardBal",params);
+		sqlSession.update("savePDWordings",params);
+		sqlSession.update("savePDCatPeril",params);
 		
 		return params;
 	}
@@ -359,5 +364,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		sqlSession.update("retrieveCoInsStatus", params);
 		
 		return (Integer) params.get("coInsStatus");
+	}
+
+	@Override
+	public Integer updatePolGenInfo(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("updatePolGenInfo", params);
+		return errorCode;
 	}
 }
