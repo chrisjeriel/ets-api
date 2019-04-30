@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -59,6 +60,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -437,5 +439,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/updatePolGenInfo");
 		logger.info("UpdatePolGenInfoRequest : " + uppgif.toString());
 		return underwritingService.updatePolGenInfo(uppgif);
+	}
+	
+	@PostMapping(path="postPolicy")
+	public @ResponseBody PostPolicyResponse postPolicy(@RequestBody PostPolicyRequest ppr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/postPolicy");
+		logger.info("postPolicy : " + ppr.toString());
+		return underwritingService.postPolicy(ppr);
 	}
 }

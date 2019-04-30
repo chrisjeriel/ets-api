@@ -1,11 +1,13 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class OtherCharges {
 	private Integer instNo ;
 	private Integer chargeCd;
-	private Integer amount;
+	private BigDecimal amount;
 	private String chargeDesc;
 	private String createUser;
 	private DateTime createDate;
@@ -23,10 +25,10 @@ public class OtherCharges {
 	public void setChargeCd(Integer chargeCd) {
 		this.chargeCd = chargeCd;
 	}
-	public Integer getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
-	public void setAmount(Integer amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 	
