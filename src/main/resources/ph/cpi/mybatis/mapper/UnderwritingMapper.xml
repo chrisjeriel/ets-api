@@ -675,6 +675,8 @@
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
 		   	</foreach>
+		   	
+		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag});
 		END;
 	</update>
 	
