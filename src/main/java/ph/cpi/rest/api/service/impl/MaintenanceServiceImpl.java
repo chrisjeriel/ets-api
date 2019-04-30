@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -78,6 +79,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -705,5 +707,44 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmpwrResponse.setMtnPolWordings(maintenanceDao.retMtnPolWordings(params));
 		logger.info("RetMtnPolWordingsResponse : " + rmpwrResponse.toString());
 		return rmpwrResponse;
+	}
+	
+	@Override
+	public SaveMtnInsuredResponse saveMtnInsured(SaveMtnInsuredRequest smir) throws SQLException {
+		SaveMtnInsuredResponse smiResponse = new SaveMtnInsuredResponse();
+		HashMap<String, Object> saveMtnInsuredParams = new HashMap<String, Object>();
+		saveMtnInsuredParams.put("insuredIdOut", "");
+		saveMtnInsuredParams.put("insuredId",smir.getInsuredId());
+		saveMtnInsuredParams.put("insuredName",smir.getInsuredName());
+		saveMtnInsuredParams.put("insuredAbbr",smir.getInsuredAbbr());
+		saveMtnInsuredParams.put("insuredType",smir.getInsuredType());
+		saveMtnInsuredParams.put("firstName",smir.getFirstName());
+		saveMtnInsuredParams.put("middleInitial",smir.getMiddleInitial());
+		saveMtnInsuredParams.put("lastName",smir.getLastName());
+		saveMtnInsuredParams.put("addrLine1",smir.getAddrLine1());
+		saveMtnInsuredParams.put("addrLine2",smir.getAddrLine2());
+		saveMtnInsuredParams.put("addrLine3",smir.getAddrLine3());
+		saveMtnInsuredParams.put("zipCd",smir.getZipCd());
+		saveMtnInsuredParams.put("contactNo",smir.getContactNo());
+		saveMtnInsuredParams.put("emailAdd",smir.getEmailAdd());
+		saveMtnInsuredParams.put("activeTag",smir.getActiveTag());
+		saveMtnInsuredParams.put("corpTag",smir.getCorpTag());
+		saveMtnInsuredParams.put("vatTag",smir.getVatTag());
+		saveMtnInsuredParams.put("oldInsId",smir.getOldInsId());
+		saveMtnInsuredParams.put("remarks",smir.getRemarks());
+		saveMtnInsuredParams.put("createUser",smir.getCreateUser());
+		saveMtnInsuredParams.put("createDate",smir.getCreateDate());
+		saveMtnInsuredParams.put("updateUser",smir.getUpdateUser());
+		saveMtnInsuredParams.put("updateDate",smir.getUpdateDate());
+		
+		HashMap<String, Object> result = maintenanceDao.saveMtnInsured(saveMtnInsuredParams);
+		
+		smiResponse.setReturnCode((Integer) result.get("errorCode"));
+		smiResponse.setInsuredIdOut((Integer) result.get("insuredIdOut"));
+		
+		logger.info("SaveMtnInsuredResponse : " + smiResponse.toString());
+		System.out.println(saveMtnInsuredParams);
+
+		return smiResponse;
 	}
 }

@@ -249,6 +249,8 @@
 		<result property="insuredId" 	column="INSURED_ID"/>
 		<result property="insuredName" 	column="INSURED_NAME"/>
 		<result property="insuredAbbr" 	column="INSURED_ABBR"/>
+		<result property="insuredType" 	column="INSURED_TYPE"/>
+		<result property="insuredTypeDesc" 	column="INSURED_TYPE_DESC"/>
 		<result property="firstName" 	column="FIRST_NAME"/>
 		<result property="middleInitial" 	column="MIDDLE_INITIAL"/>
 		<result property="lastName" 	column="LAST_NAME"/>
@@ -261,8 +263,11 @@
 		<result property="emailAdd" 	column="EMAIL_ADD"/>
 		<result property="activeTag" 	column="ACTIVE_TAG"/>
 		<result property="corpTag" 	column="CORP_TAG"/>
+		<result property="corpTagDesc" 	column="CORP_TAG_DESC"/>
 		<result property="vatTag" 	column="VAT_TAG"/>
+		<result property="vatTagDesc" 	column="VAT_TAG_DESC"/>
 		<result property="oldInsId" 	column="OLD_INS_ID"/>
+		<result property="remarks" 	column="REMARKS"/>
 		<result property="createUser" 	column="CREATE_USER"/>
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 	column="UPDATE_USER"/>
@@ -866,7 +871,7 @@
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
 												  #{order, jdbcType=VARCHAR})
-     </select>
+    </select>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.MtnPolWordings" id="MtnPolWordingsMap">
     	<result property="lineCd"	column="LINE_CD"/>
@@ -903,4 +908,34 @@
     <select id="retMtnPolWordings" resultMap="MtnPolWordingsMap" parameterType="java.util.Map">
     	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
      </select>
+     
+    <update id="saveMtnInsured" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    			MTN_INSURED_PKG.save_mtn_insured(
+    				#{insuredId,jdbcType=INTEGER},
+    				#{insuredIdOut,mode=OUT,jdbcType=INTEGER},
+					#{insuredName,jdbcType=VARCHAR},
+					#{insuredAbbr,jdbcType=VARCHAR},
+					#{insuredType,jdbcType=VARCHAR},
+					#{firstName,jdbcType=VARCHAR},
+					#{middleInitial,jdbcType=VARCHAR},
+					#{lastName,jdbcType=VARCHAR},
+					#{addrLine1,jdbcType=VARCHAR},
+					#{addrLine2,jdbcType=VARCHAR},
+					#{addrLine3,jdbcType=VARCHAR},
+					#{zipCd,jdbcType=VARCHAR},
+					#{contactNo,jdbcType=VARCHAR},
+					#{emailAdd,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{oldInsId,jdbcType=INTEGER},
+					#{remarks,jdbcType=VARCHAR},
+					#{createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    	END;
+    </update>
 </mapper>
