@@ -1799,4 +1799,10 @@
 		<result property="updateUser" column="POLW_UPDATE_USER"/>
 		<result property="updateDate" column="POLW_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
+	
+	<update id="postPolicy" parameterType="java.util.Map">
+		BEGIN
+			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser});
+		END;
+	</update>
 </mapper>
