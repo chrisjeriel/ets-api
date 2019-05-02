@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
@@ -46,6 +47,7 @@ import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -752,5 +754,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		System.out.println(saveMtnInsuredParams);
 
 		return smiResponse;
+	}
+
+	@Override
+	public RetMtnInsuredLovResponse retMtnInsuredLov(RetMtnInsuredLovRequest rmil) throws SQLException {
+		RetMtnInsuredLovResponse rmilResponse = new RetMtnInsuredLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lovParam", rmil.getLovParam());
+		params.put("page", rmil.getPaginationRequest());
+		params.put("sort", rmil.getSortRequest());
+		rmilResponse.setList(maintenanceDao.retMtnInsuredLov(params));
+		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
+		
+		return rmilResponse;
 	}
 }
