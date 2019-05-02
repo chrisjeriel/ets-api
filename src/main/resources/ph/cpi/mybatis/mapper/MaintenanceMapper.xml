@@ -275,7 +275,16 @@
 	</resultMap>
 	
 	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'',''))
+			SELECT * FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(
+					#{insuredId,jdbcType=INTEGER},
+					#{insuredName,jdbcType=VARCHAR},
+					#{insuredAbbr,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{insuredType,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{address,jdbcType=VARCHAR},
+					'',1,'',''))
 	</select>
 	
 	
