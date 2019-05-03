@@ -676,7 +676,7 @@
 		   		);
 		   	</foreach>
 		   	
-		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag});
+		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag,jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -1164,7 +1164,7 @@
 			</foreach>
 			<foreach collection="saveEndorsements" item="endo">
 				POL_ENDT_OC_PKG.save_pol_endt_oc(
-					#{policyId},#{endo.endtCd},#{endo.changeTag},
+					#{policyId},#{endo.endtCd},#{endo.changeTag,jdbcType=VARCHAR},
 					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser},
 		   			CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		   			#{endo.updateUser},
@@ -1203,7 +1203,7 @@
 			</foreach>
 			<foreach collection="saveEndorsements" item="endo">
 				POL_ENDT_PKG.save_pol_endt(
-					#{policyId},#{endo.endtCd},#{endo.changeTag},
+					#{policyId},#{endo.endtCd},#{endo.changeTag,jdbcType=VARCHAR},
 					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser},
 		   			CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		   			#{endo.updateUser},

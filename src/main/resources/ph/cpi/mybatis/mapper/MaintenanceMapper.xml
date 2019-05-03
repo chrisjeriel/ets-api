@@ -915,7 +915,7 @@
     </resultMap>
     
     <select id="retMtnPolWordings" resultMap="MtnPolWordingsMap" parameterType="java.util.Map">
-    	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
+    	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{wordType, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
      </select>
      
     <update id="saveMtnInsured" parameterType="java.util.Map" statementType="CALLABLE">

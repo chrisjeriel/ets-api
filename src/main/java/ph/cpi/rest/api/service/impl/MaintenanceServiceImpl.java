@@ -709,6 +709,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lineCd" , rmpwr.getLineCd());
 		params.put("wordingCd" , rmpwr.getWordingCd());
+		params.put("wordType", rmpwr.getWordType());
 		params.put("activeTag" , rmpwr.getActiveTag());
 		params.put("defaultTag" , rmpwr.getDefaultTag());
 		params.put("ocTag" , rmpwr.getOcTag());
