@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -83,6 +84,7 @@ import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -355,5 +357,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnInsured");
 		logger.info("SaveMtnInsuredRequest : " + smir.toString());
 		return maintenanceService.saveMtnInsured(smir);
+	}
+	
+	@PostMapping(path="saveMtnTypeOfCession")
+	public @ResponseBody SaveMtnTypeOfCessionResponse saveMtnTypeOfCession(@RequestBody SaveMtnTypeOfCessionRequest smtocr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnTypeOfCession");
+		logger.info("SaveMtnTypeOfCessionRequest : " + smtocr.toString());
+		return maintenanceService.saveMtnTypeOfCession(smtocr);
 	}
 }

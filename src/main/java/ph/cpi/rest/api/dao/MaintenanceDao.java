@@ -68,5 +68,6 @@ public interface MaintenanceDao {
 	public List<Spoil> retrieveMtnSpoilageReason(final HashMap<String, Object> params ) throws SQLException;
 	public List<MtnPolWordings> retMtnPolWordings(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> saveMtnInsured(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnTypeOfCession(final HashMap<String, Object> params) throws SQLException;	
 
 }

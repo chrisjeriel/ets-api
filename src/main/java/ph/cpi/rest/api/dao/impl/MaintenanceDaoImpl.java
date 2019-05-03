@@ -307,5 +307,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Integer saveMtnTypeOfCession(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnTypeOfCession",params);
+		return errorCode;
+	}
 	
 }

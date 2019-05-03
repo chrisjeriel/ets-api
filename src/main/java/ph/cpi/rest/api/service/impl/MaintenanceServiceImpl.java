@@ -46,6 +46,7 @@ import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -82,6 +83,7 @@ import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -753,5 +755,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		System.out.println(saveMtnInsuredParams);
 
 		return smiResponse;
+	}
+
+	@Override
+	public SaveMtnTypeOfCessionResponse saveMtnTypeOfCession(SaveMtnTypeOfCessionRequest smtocr) throws SQLException {
+		SaveMtnTypeOfCessionResponse smtocResponse =  new SaveMtnTypeOfCessionResponse();
+		HashMap<String, Object> saveMtnTypeOfCessionParams = new HashMap<String, Object>();
+		saveMtnTypeOfCessionParams.put("saveTypeOfCession", smtocr.getSaveTypeOfCession());
+		saveMtnTypeOfCessionParams.put("deleteTypeOfCession", smtocr.getDeleteTypeOfCession());
+		smtocResponse.setReturnCode(maintenanceDao.saveMtnTypeOfCession(saveMtnTypeOfCessionParams));
+		logger.info("SaveMtnTypeOfCessionResponse : " + smtocResponse.toString());
+		return smtocResponse;
 	}
 }
