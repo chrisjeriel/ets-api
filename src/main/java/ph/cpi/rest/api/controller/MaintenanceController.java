@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
@@ -49,6 +50,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -359,10 +361,18 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnInsured(smir);
 	}
 	
+
 	@PostMapping(path="saveMtnTypeOfCession")
 	public @ResponseBody SaveMtnTypeOfCessionResponse saveMtnTypeOfCession(@RequestBody SaveMtnTypeOfCessionRequest smtocr) throws SQLException {
 		logger.info("POST: /api/maintenance-service/saveMtnTypeOfCession");
 		logger.info("SaveMtnTypeOfCessionRequest : " + smtocr.toString());
 		return maintenanceService.saveMtnTypeOfCession(smtocr);
+	}
+	
+	@GetMapping(path="retMtnInsuredLov")
+	public @ResponseBody RetMtnInsuredLovResponse retMtnInsuredLov(RetMtnInsuredLovRequest rmil) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retMtnInsuredLov");
+		logger.info("RetMtnInsuredLov : " + rmil.toString());
+		return maintenanceService.retMtnInsuredLov(rmil);
 	}
 }

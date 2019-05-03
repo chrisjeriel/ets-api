@@ -314,4 +314,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 	
+	@Override
+	public List<Insured> retMtnInsuredLov(HashMap<String, Object> params) throws SQLException {
+		List<Insured> list = sqlSession.selectList("retMtnInsuredLov",params);
+		return list;
+	}
+
+	@Override
+	public Integer retMtnInsuredLovCount(HashMap<String, Object> params) throws SQLException {
+		Integer count = sqlSession.selectOne("retMtnInsuredLovCount", params);
+		return count;
+	}
+	
 }
