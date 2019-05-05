@@ -43,6 +43,13 @@ public class SaveQuoteGeneralInfoRequest {
 	private String projId;
 	private String projDesc;
 	private String riskId;
+	private String regionCd;
+	private String provinceCd;
+	private String cityCd;
+	private String districtCd;
+	private String blockCd;
+	private String latitude;
+	private String longitude;
 	private String totalSi;
 	private String pctShare;
 	private String totalValue;
@@ -310,6 +317,48 @@ public class SaveQuoteGeneralInfoRequest {
 	public void setRiskId(String riskId) {
 		this.riskId = riskId;
 	}
+	public String getRegionCd() {
+		return regionCd;
+	}
+	public void setRegionCd(String regionCd) {
+		this.regionCd = regionCd;
+	}
+	public String getProvinceCd() {
+		return provinceCd;
+	}
+	public void setProvinceCd(String provinceCd) {
+		this.provinceCd = provinceCd;
+	}
+	public String getCityCd() {
+		return cityCd;
+	}
+	public void setCityCd(String cityCd) {
+		this.cityCd = cityCd;
+	}
+	public String getDistrictCd() {
+		return districtCd;
+	}
+	public void setDistrictCd(String districtCd) {
+		this.districtCd = districtCd;
+	}
+	public String getBlockCd() {
+		return blockCd;
+	}
+	public void setBlockCd(String blockCd) {
+		this.blockCd = blockCd;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 	public String getTotalSi() {
 		return totalSi;
 	}
@@ -409,10 +458,12 @@ public class SaveQuoteGeneralInfoRequest {
 				+ printedBy + ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag="
 				+ closingParag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc
-				+ ", riskId=" + riskId + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue="
-				+ totalValue + ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing="
-				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
+				+ ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd
+				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude="
+				+ longitude + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue=" + totalValue
+				+ ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing=" + testing
+				+ ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
 				+ prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser=" + prjUpdateUser
 				+ ", prjUpdateDate=" + prjUpdateDate + "]";
-	}	
+	}
 }
