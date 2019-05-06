@@ -6,11 +6,13 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetMtnPolWordingsRequest {
     private String lineCd;
     private String wordingCd;
+    private String wordType;
     private String activeTag;
     private String defaultTag;
     private String ocTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -22,6 +24,12 @@ public class RetMtnPolWordingsRequest {
 	}
 	public void setWordingCd(String wordingCd) {
 		this.wordingCd = wordingCd;
+	}
+	public String getWordType() {
+		return wordType;
+	}
+	public void setWordType(String wordType) {
+		this.wordType = wordType;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -55,10 +63,8 @@ public class RetMtnPolWordingsRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetMtnPolWordingsRequest [lineCd=" + lineCd + ", wordingCd=" + wordingCd + ", activeTag=" + activeTag
-				+ ", defaultTag=" + defaultTag + ", ocTag=" + ocTag + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetMtnPolWordingsRequest [lineCd=" + lineCd + ", wordingCd=" + wordingCd + ", wordType=" + wordType
+				+ ", activeTag=" + activeTag + ", defaultTag=" + defaultTag + ", ocTag=" + ocTag
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
-	
-	
 }

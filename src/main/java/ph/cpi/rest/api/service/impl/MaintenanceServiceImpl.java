@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
@@ -46,6 +47,7 @@ import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -188,7 +190,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnInsuredParams = new HashMap<String, Object>();
 		retrieveMtnInsuredParams.put("insuredId", rmir.getInsuredId());
-		
+		retrieveMtnInsuredParams.put("insuredName",rmir.getInsuredName());
+		retrieveMtnInsuredParams.put("insuredAbbr",rmir.getInsuredAbbr());
+		retrieveMtnInsuredParams.put("activeTag",rmir.getActiveTag());
+		retrieveMtnInsuredParams.put("insuredType",rmir.getInsuredType());
+		retrieveMtnInsuredParams.put("corpTag",rmir.getCorpTag());
+		retrieveMtnInsuredParams.put("vatTag",rmir.getVatTag());
+		retrieveMtnInsuredParams.put("address",rmir.getAddress());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
 		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
 		
@@ -701,6 +709,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lineCd" , rmpwr.getLineCd());
 		params.put("wordingCd" , rmpwr.getWordingCd());
+		params.put("wordType", rmpwr.getWordType());
 		params.put("activeTag" , rmpwr.getActiveTag());
 		params.put("defaultTag" , rmpwr.getDefaultTag());
 		params.put("ocTag" , rmpwr.getOcTag());
@@ -746,5 +755,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		System.out.println(saveMtnInsuredParams);
 
 		return smiResponse;
+	}
+
+	@Override
+	public RetMtnInsuredLovResponse retMtnInsuredLov(RetMtnInsuredLovRequest rmil) throws SQLException {
+		RetMtnInsuredLovResponse rmilResponse = new RetMtnInsuredLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lovParam", rmil.getLovParam());
+		params.put("page", rmil.getPaginationRequest());
+		params.put("sort", rmil.getSortRequest());
+		rmilResponse.setList(maintenanceDao.retMtnInsuredLov(params));
+		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
+		
+		return rmilResponse;
 	}
 }

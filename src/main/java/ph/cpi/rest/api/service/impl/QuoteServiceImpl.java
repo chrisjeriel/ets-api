@@ -705,6 +705,13 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("projId", sqgip.getProjId());
 			saveQuoteGeneralInfoParams.put("projDesc", sqgip.getProjDesc());
 			saveQuoteGeneralInfoParams.put("riskId", sqgip.getRiskId());
+			saveQuoteGeneralInfoParams.put("regionCd", sqgip.getRegionCd());
+			saveQuoteGeneralInfoParams.put("provinceCd", sqgip.getProvinceCd());
+			saveQuoteGeneralInfoParams.put("cityCd", sqgip.getCityCd());
+			saveQuoteGeneralInfoParams.put("districtCd", sqgip.getDistrictCd());
+			saveQuoteGeneralInfoParams.put("blockCd", sqgip.getBlockCd());
+			saveQuoteGeneralInfoParams.put("latitude", sqgip.getLatitude());
+			saveQuoteGeneralInfoParams.put("longitude", sqgip.getLongitude());
 			saveQuoteGeneralInfoParams.put("totalSi", sqgip.getTotalSi());
 			saveQuoteGeneralInfoParams.put("pctShare", sqgip.getPctShare());
 			saveQuoteGeneralInfoParams.put("totalValue", sqgip.getTotalValue());

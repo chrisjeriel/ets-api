@@ -61,4 +61,6 @@ public interface UnderwritingDao {
 	public Integer retrieveCoInsStatus(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolGenInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolGenInfo(final HashMap<String, Object> params ) throws SQLException;
+	
+	public Integer postPolicy(final HashMap<String, Object> params ) throws SQLException;
 }

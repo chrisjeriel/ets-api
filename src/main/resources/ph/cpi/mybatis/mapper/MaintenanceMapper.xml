@@ -275,7 +275,16 @@
 	</resultMap>
 	
 	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(#{insuredId, jdbcType=VARCHAR},'',1,'',''))
+			SELECT * FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(
+					#{insuredId,jdbcType=INTEGER},
+					#{insuredName,jdbcType=VARCHAR},
+					#{insuredAbbr,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{insuredType,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{address,jdbcType=VARCHAR},
+					'',1,'',''))
 	</select>
 	
 	
@@ -906,7 +915,7 @@
     </resultMap>
     
     <select id="retMtnPolWordings" resultMap="MtnPolWordingsMap" parameterType="java.util.Map">
-    	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
+    	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{wordType, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
      </select>
      
     <update id="saveMtnInsured" parameterType="java.util.Map" statementType="CALLABLE">
@@ -938,4 +947,12 @@
     			);
     	END;
     </update>
+    
+    <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}) total_count from dual
+     </select>
+     
+     <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
+     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
+     </select>
 </mapper>
