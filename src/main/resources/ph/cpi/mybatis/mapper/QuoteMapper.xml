@@ -1115,9 +1115,9 @@
 			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   <foreach collection="alopDetails" item="alopDetails">
 		   	   QU_ALOP_PKG.save_qu_alop(#{quoteId},#{alopDetails.optionId, jdbcType=VARCHAR},#{alopDetails.annSi},#{alopDetails.maxIndemPdSi},
-			   CAST(to_timestamp(#{alopDetails.issueDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-			   CAST(to_timestamp(#{alopDetails.expiryDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.maxIndemPd},
-			   CAST(to_timestamp(#{alopDetails.indemFromDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.timeExc},#{alopDetails.repInterval},#{alopDetails.createUserAlop},
+			   CAST(to_timestamp(#{alopDetails.issueDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   CAST(to_timestamp(#{alopDetails.expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.maxIndemPd},
+			   CAST(to_timestamp(#{alopDetails.indemFromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.timeExc},#{alopDetails.repInterval},#{alopDetails.createUserAlop},
 			   CAST(to_timestamp(#{alopDetails.createDateAlop}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.updateUserAlop},
 			   CAST(to_timestamp(#{alopDetails.updateDateAlop}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   </foreach>

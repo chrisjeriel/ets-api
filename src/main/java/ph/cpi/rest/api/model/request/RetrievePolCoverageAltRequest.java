@@ -7,7 +7,7 @@ public class RetrievePolCoverageAltRequest {
 	private String lineCd;
 	private Integer polYear;
 	private Integer seqNo;
-	private Integer cedingId;
+	private String cedingId;
 	private Integer coSeriesNo;
 	private Integer altNo;
 	private PaginationRequest paginationRequest;
@@ -31,10 +31,10 @@ public class RetrievePolCoverageAltRequest {
 	public void setSeqNo(Integer seqNo) {
 		this.seqNo = seqNo;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public Integer getCoSeriesNo() {
