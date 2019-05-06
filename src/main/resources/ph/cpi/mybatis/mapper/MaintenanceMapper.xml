@@ -160,7 +160,9 @@
 		<result property="emailAdd" 		column="EMAIL_ADD"/> 
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="corpTag" 			column="CORP_TAG"/>
-		<result property="vatTag" 			column="VAT_TAG"/> 
+		<result property="corpTagDesc" 		column="CORP_TAG_DESC"/>
+		<result property="vatTag" 			column="VAT_TAG"/>
+		<result property="vatTagDesc" 		column="VAT_TAG_DESC"/> 
 		<result property="oldIntmId" 		column="OLD_INTM_ID"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -202,7 +204,16 @@
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
+			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(
+								#{intmId,jdbcType=INTEGER},
+								#{intmName,jdbcType=VARCHAR},
+								#{address,jdbcType=VARCHAR},
+								#{contactNo,jdbcType=VARCHAR},
+								#{activeTag,jdbcType=VARCHAR},
+								#{corpTag,jdbcType=VARCHAR},
+								#{vatTag,jdbcType=VARCHAR},
+								#{oldIntmId,jdbcType=VARCHAR},
+								 '', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">

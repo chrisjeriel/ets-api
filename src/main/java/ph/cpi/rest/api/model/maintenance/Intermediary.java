@@ -19,14 +19,15 @@ public class Intermediary {
 	private String emailAdd;
 	private String activeTag;
 	private String corpTag;
+	private String corpTagDesc;
 	private String vatTag;
+	private String vatTagDesc;
 	private Integer oldIntmId;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getIntmId() {
 		return intmId;
 	}
@@ -111,11 +112,23 @@ public class Intermediary {
 	public void setCorpTag(String corpTag) {
 		this.corpTag = corpTag;
 	}
+	public String getCorpTagDesc() {
+		return corpTagDesc;
+	}
+	public void setCorpTagDesc(String corpTagDesc) {
+		this.corpTagDesc = corpTagDesc;
+	}
 	public String getVatTag() {
 		return vatTag;
 	}
 	public void setVatTag(String vatTag) {
 		this.vatTag = vatTag;
+	}
+	public String getVatTagDesc() {
+		return vatTagDesc;
+	}
+	public void setVatTagDesc(String vatTagDesc) {
+		this.vatTagDesc = vatTagDesc;
 	}
 	public Integer getOldIntmId() {
 		return oldIntmId;
@@ -153,15 +166,15 @@ public class Intermediary {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "Intermediary [intmName=" + intmName + ", firstName=" + firstName + ", middleInitial=" + middleInitial
-				+ ", lastName=" + lastName + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3="
-				+ addrLine3 + ", zipCd=" + zipCd + ", address=" + address + ", contactNo=" + contactNo + ", emailAdd="
-				+ emailAdd + ", activeTag=" + activeTag + ", corpTag=" + corpTag + ", vatTag=" + vatTag + ", oldIntmId="
-				+ oldIntmId + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", intmId=" + intmId + "]";
-	}
+		return "Intermediary [intmId=" + intmId + ", intmName=" + intmName + ", firstName=" + firstName
+				+ ", middleInitial=" + middleInitial + ", lastName=" + lastName + ", addrLine1=" + addrLine1
+				+ ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd=" + zipCd + ", address=" + address
+				+ ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", corpTag="
+				+ corpTag + ", corpTagDesc=" + corpTagDesc + ", vatTag=" + vatTag + ", vatTagDesc=" + vatTagDesc
+				+ ", oldIntmId=" + oldIntmId + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+	}	
 
 }

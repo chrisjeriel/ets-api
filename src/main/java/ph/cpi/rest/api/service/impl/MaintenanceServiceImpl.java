@@ -505,7 +505,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnIntermediaryParams = new HashMap<String, Object>();
 		retrieveMtnIntermediaryParams.put("intmId", rmip.getIntmId());
-		
+		retrieveMtnIntermediaryParams.put("intmName",rmip.getIntmName());
+		retrieveMtnIntermediaryParams.put("address",rmip.getAddress());
+		retrieveMtnIntermediaryParams.put("contactNo",rmip.getContactNo());
+		retrieveMtnIntermediaryParams.put("activeTag",rmip.getActiveTag());
+		retrieveMtnIntermediaryParams.put("corpTag",rmip.getCorpTag());
+		retrieveMtnIntermediaryParams.put("vatTag",rmip.getVatTag());
+		retrieveMtnIntermediaryParams.put("oldIntmId",rmip.getOldIntmId());
+
 		rmiResponse.setIntermediary(maintenanceDao.retrieveMntIntermediary(retrieveMtnIntermediaryParams));
 			
 		logger.info("retrieveMtnIntermediaryResponse : " + rmiResponse.toString());
