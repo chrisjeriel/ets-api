@@ -947,4 +947,12 @@
     			);
     	END;
     </update>
+    
+    <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}) total_count from dual
+     </select>
+     
+     <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
+     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
+     </select>
 </mapper>
