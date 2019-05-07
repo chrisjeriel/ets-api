@@ -51,9 +51,9 @@
 		<result property="activeTag"		column="ACTIVE_TAG"/>
 		<result property="remarks"			column="REMARKS"/>
 		<result property="createUser"		column="CREATE_USER"/>
-		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
-		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.SectionCovers" id="retrieveMtnSectionCoversMap">
@@ -658,9 +658,9 @@
   									   #{activeTag},
   									   #{remarks, jdbcType=VARCHAR},
   									   #{createUser},
-  									   to_date(#{createDate}, 'YYYY-MM-DD'),
+  									   CAST(to_timestamp(#{createDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
   									   #{updateUser},
-  									   to_date(#{updateDate}, 'YYYY-MM-DD'),
+  									   CAST(to_timestamp(#{updateDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
   									   #{blockCd, jdbcType=VARCHAR}
   				);
   		END;
