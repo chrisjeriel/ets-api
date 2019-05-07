@@ -218,6 +218,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		System.out.println("retrieveMntLineClassDao : " + lineClass);
 		return lineClass;
 	}
+	
+	@Override 
+	public Integer saveMtnLineClass(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnLineClassDAOImpl : " + params);
+		Integer errorCode = sqlSession.update("saveMtnLineClass", params);
+		return errorCode;
+	}
 
 	@Override
 	public HashMap<String, Object> saveMtnRisk(HashMap<String, Object> params) throws SQLException {

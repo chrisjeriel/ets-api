@@ -840,6 +840,28 @@
     	END;
     </update>
     
+    <update id="saveMtnLineClass" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveLineClass" item="lineClass">
+    			MTN_LINE_CLASS_PKG.save_mtn_line_class(
+    				#{lineClass.lineCd, jdbcType=VARCHAR},
+    				#{lineClass.lineClassCd, jdbcType=VARCHAR},
+    				#{lineClass.lineCdDesc, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{lineClass.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    				#{lineClass.activeTag, jdbcType=VARCHAR},
+    				#{lineClass.remarks, jdbcType=VARCHAR},
+    				#{lineClass.createUser, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{lineClass.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    				#{lineClass.updateUser, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{lineClass.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    		<foreach collection="deleteLineClass" item="lineClass">
+    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineClassCd});
+    		</foreach>
+    	END;
+    </update>
+    
     
      <update id="saveMtnDeductibles" parameterType="java.util.Map">
     	BEGIN
