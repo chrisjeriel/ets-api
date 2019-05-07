@@ -45,6 +45,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
+import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
@@ -83,6 +84,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -788,5 +790,41 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
 		
 		return rmilResponse;
+	}
+
+	@Override
+	public SaveMtnIntermediaryResponse saveMtnIntermediary(SaveMtnIntermediaryRequest smir) throws SQLException {
+		SaveMtnIntermediaryResponse smiResponse = new SaveMtnIntermediaryResponse();
+		HashMap<String, Object> saveMtnIntmParams = new HashMap<String, Object>();
+		saveMtnIntmParams.put("intmIdOut", "");
+		saveMtnIntmParams.put("intmId", smir.getIntmId());
+		saveMtnIntmParams.put("intmName", smir.getIntmName());
+		saveMtnIntmParams.put("firstName", smir.getFirstName());
+		saveMtnIntmParams.put("middleInitial", smir.getMiddleInitial());
+		saveMtnIntmParams.put("lastName", smir.getLastName());
+		saveMtnIntmParams.put("addrLine1", smir.getAddrLine1());
+		saveMtnIntmParams.put("addrLine2", smir.getAddrLine2());
+		saveMtnIntmParams.put("addrLine3", smir.getAddrLine3());
+		saveMtnIntmParams.put("zipCd", smir.getZipCd());
+		saveMtnIntmParams.put("contactNo", smir.getContactNo());
+		saveMtnIntmParams.put("emailAdd", smir.getEmailAdd());
+		saveMtnIntmParams.put("activeTag", smir.getActiveTag());
+		saveMtnIntmParams.put("corpTag", smir.getCorpTag());
+		saveMtnIntmParams.put("vatTag", smir.getVatTag());
+		saveMtnIntmParams.put("oldIntmId", smir.getOldIntmId());
+		saveMtnIntmParams.put("remarks", smir.getRemarks());          
+		saveMtnIntmParams.put("createUser", smir.getCreateUser());
+		saveMtnIntmParams.put("createDate", smir.getCreateDate());
+		saveMtnIntmParams.put("updateUser", smir.getUpdateUser());
+		saveMtnIntmParams.put("updateDate", smir.getUpdateDate());
+		
+		HashMap<String, Object> result = maintenanceDao.saveMtnIntermediary(saveMtnIntmParams);
+		
+		smiResponse.setReturnCode((Integer) result.get("errorCode"));
+		smiResponse.setIntmIdOut((Integer) result.get("intmIdOut"));
+		
+		logger.info("SaveMtnIntermediaryResponse : " + smiResponse.toString());
+		
+		return smiResponse;
 	}
 }

@@ -989,4 +989,32 @@
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
      	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
      </select>
+     
+     <update id="saveMtnIntermediary" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    			MTN_INTM_PKG.save_mtn_intm(
+    				#{intmId,jdbcType=INTEGER},
+    				#{intmIdOut,mode=OUT,jdbcType=INTEGER},
+					#{intmName,jdbcType=VARCHAR},
+					#{firstName,jdbcType=VARCHAR},
+					#{middleInitial,jdbcType=VARCHAR},
+					#{lastName,jdbcType=VARCHAR},
+					#{addrLine1,jdbcType=VARCHAR},
+					#{addrLine2,jdbcType=VARCHAR},
+					#{addrLine3,jdbcType=VARCHAR},
+					#{zipCd,jdbcType=VARCHAR},
+					#{contactNo,jdbcType=VARCHAR},
+					#{emailAdd,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{oldIntmId,jdbcType=INTEGER},
+					#{remarks,jdbcType=VARCHAR},
+					#{createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    	END;
+    </update>
 </mapper>
