@@ -5,20 +5,20 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnIntermediaryRequest {
 
-	private Integer intmId;
-	private String  intmName;
-	private String  address;
-	private String  contactNo;
-	private String  activeTag;
-	private String  corpTag;
-	private String  vatTag;
-	private String  oldIntmId;
+	private String intmId;
+	private String intmName;
+	private String address;
+	private String contactNo;
+	private String activeTag;
+	private String corpTag;
+	private String vatTag;
+	private String oldIntmId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getIntmId() {
+	public String getIntmId() {
 		return intmId;
 	}
-	public void setIntmId(Integer intmId) {
+	public void setIntmId(String intmId) {
 		this.intmId = intmId;
 	}
 	public String getIntmName() {

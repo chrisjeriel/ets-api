@@ -12,20 +12,12 @@ public class RetrieveMtnIntermediaryResponse extends Response {
 	private List<Intermediary> intermediary;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
 	public List<Intermediary> getIntermediary() {
 		return intermediary;
 	}
 	public void setIntermediary(List<Intermediary> intermediary) {
 		this.intermediary = intermediary;
 	}
-	
-	/*public Intermediary getIntermediary() {
-		return intermediary;
-	}
-	public void setIntermediary(Intermediary intermediary) {
-		this.intermediary = intermediary;
-	}*/
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
 	}
@@ -38,15 +30,10 @@ public class RetrieveMtnIntermediaryResponse extends Response {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
 	@Override
 	public String toString() {
 		return "RetrieveMtnIntermediaryResponse [intermediary=" + intermediary + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
 
-	
-	
 }

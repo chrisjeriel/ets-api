@@ -207,11 +207,11 @@
 			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(
 								#{intmId,jdbcType=INTEGER},
 								#{intmName,jdbcType=VARCHAR},
-								#{address,jdbcType=VARCHAR},
-								#{contactNo,jdbcType=VARCHAR},
 								#{activeTag,jdbcType=VARCHAR},
 								#{corpTag,jdbcType=VARCHAR},
 								#{vatTag,jdbcType=VARCHAR},
+								#{address,jdbcType=VARCHAR},
+								#{contactNo,jdbcType=VARCHAR},
 								#{oldIntmId,jdbcType=VARCHAR},
 								 '', '', '', ''))
 	</select>
