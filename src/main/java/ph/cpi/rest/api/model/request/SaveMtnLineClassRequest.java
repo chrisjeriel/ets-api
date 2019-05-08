@@ -50,10 +50,10 @@ class LineClass {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
-	public String getDescription() {
+	public String getLineCdDesc() {
 		return lineCdDesc;
 	}
-	public void setDescription(String lineCdDesc) {
+	public void setLineCdDesc(String lineCdDesc) {
 		this.lineCdDesc = lineCdDesc;
 	}
 	public String getActiveTag() {

@@ -192,7 +192,6 @@
 		<result property="lineCdDesc" 		column="DESCRIPTION"/> 
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/> 
 		<result property="lineClassCdDesc" 	column="DESCRIPTION"/> 
-		<result property="cutOffTime" 		column="CUT_OFF_TIME"/> 
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -847,7 +846,6 @@
     				#{lineClass.lineCd, jdbcType=VARCHAR},
     				#{lineClass.lineClassCd, jdbcType=VARCHAR},
     				#{lineClass.lineCdDesc, jdbcType=VARCHAR},
-    				CAST(to_timestamp(#{lineClass.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     				#{lineClass.activeTag, jdbcType=VARCHAR},
     				#{lineClass.remarks, jdbcType=VARCHAR},
     				#{lineClass.createUser, jdbcType=VARCHAR},
