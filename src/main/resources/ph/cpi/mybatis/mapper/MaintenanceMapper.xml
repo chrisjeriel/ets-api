@@ -972,8 +972,8 @@
 		    			);
     		</foreach>
     		<foreach collection="deleteAdvWordList" item="del">
-	    			MTN_ADV_WORD_PKG.save_adv_word(
-			    				#{del.adviceWordId},
+	    			MTN_ADV_WORD_PKG.del_adv_word(
+			    				#{del.adviceWordId}
 			    		);
     		</foreach>
     	END;
