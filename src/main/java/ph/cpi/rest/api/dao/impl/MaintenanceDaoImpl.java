@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
+import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -25,6 +26,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -36,6 +38,7 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -318,6 +321,26 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer retMtnInsuredLovCount(HashMap<String, Object> params) throws SQLException {
 		Integer count = sqlSession.selectOne("retMtnInsuredLovCount", params);
 		return count;
+	}
+
+	@Override
+	public List<MtnCurrency> retrieveMtnCurrencyListing(HashMap<String, Object> params) throws SQLException {
+		List<MtnCurrency> currencyList = sqlSession.selectList("retrieveMtnCurrencyList",params);
+		return currencyList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCurrency(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCurrency",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<CurrencyRt> retrieveMtnCurrencyRt(HashMap<String, Object> params) throws SQLException {
+		List<CurrencyRt> currencyRt = sqlSession.selectList("retrieveMtnCurrencyRt",params);
+		logger.info("retrieveMtnCurrencyRt DAOImpl : " + currencyRt);
+		return currencyRt;
 	}
 	
 }

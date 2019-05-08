@@ -955,4 +955,64 @@
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
      	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
      </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.MtnCurrency" id="currencyList">
+		<result property="currencyCd"			column="CURRENCY_CD"/>
+		<result property="currencyWord"			column="CURRENCY_WORD"/>
+		<result property="description"			column="CURRENCY_DESC"/>
+		<result property="activeTag"			column="ACTIVE_TAG"/> 
+		<result property="remarks"				column="REMARKS"/>
+		<result property="createUser"			column="CREATE_USER"/>
+		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"        	column="UPDATE_USER"/>
+		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveMtnCurrencyList" resultMap="currencyList" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_CURR_SAMP_PKG.ret_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+																			#{position, jdbcType=VARCHAR}, 
+																			#{count, jdbcType=VARCHAR}, 
+																			#{sortKey, jdbcType=VARCHAR}, 
+																			#{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnCurrency" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveCurrency" item="saveCurr">
+    			MTN_CURR_SAMP_PKG.save_mtn_curr(
+    				#{saveCurr.currencyCd},
+    				#{saveCurr.currencyWord},
+    				#{saveCurr.description},
+    				#{saveCurr.remarks,jdbcType=VARCHAR},
+					#{saveCurr.activeTag},
+					#{saveCurr.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveCurr.createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveCurr.updateUser},
+					CAST(to_timestamp(#{saveCurr.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+    </update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.CurrencyRt" id="currencyRt">
+		<result property="currencyCd"			column="CURRENCY_CD"/>
+		<result property="histNo"				column="HIST_NO"/>
+		<result property="currencyRt"			column="CURRENCY_RT"/>
+		<result property="effDateFrom"			column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="effDateTo"			column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag"			column="ACTIVE_TAG"/>
+		<result property="remarks"				column="REMARKS"/>
+		<result property="createUser"			column="CREATE_USER"/>
+		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"        	column="UPDATE_USER"/>
+		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+    <select id="retrieveMtnCurrencyRt" resultMap="currencyRt" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_CURR_RT_PKG.ret_mtn_curr_rt(#{currencyCd, jdbcType=VARCHAR},
+																			#{position, jdbcType=VARCHAR}, 
+																			#{count, jdbcType=VARCHAR}, 
+																			#{sortKey, jdbcType=VARCHAR}, 
+																			#{order, jdbcType=VARCHAR}))
+	</select>
 </mapper>
