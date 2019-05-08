@@ -1,12 +1,33 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
+public class SaveMtnEndorsementRequest {
+	List<SaveEndtCode> saveEndorsement;
+	List<SaveEndtCode> delEndorsement;
+	public List<SaveEndtCode> getSaveEndorsement() {
+		return saveEndorsement;
+	}
+	public void setSaveEndorsement(List<SaveEndtCode> saveEndorsement) {
+		this.saveEndorsement = saveEndorsement;
+	}
+	public List<SaveEndtCode> getDelEndorsement() {
+		return delEndorsement;
+	}
+	public void setDelEndorsement(List<SaveEndtCode> delEndorsement) {
+		this.delEndorsement = delEndorsement;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnEndorsementRequest [saveEndorsement=" + saveEndorsement + ", delEndorsement=" + delEndorsement
+				+ "]";
+	}
+	
+	
+}
 
-public class EndtCode {
-	private String lineCd;
-	private String lineDesc;
+class SaveEndtCode{
+	private String lineCd;	
 	private String endtCd;
 	private String endtTitle;
 	private String description;
@@ -31,22 +52,14 @@ public class EndtCode {
 	private String endtText17;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
-	private List<Deductibles> deductibles;
+	private String updateDate;
 	public String getLineCd() {
 		return lineCd;
 	}
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
-	}
-	public String getLineDesc() {
-		return lineDesc;
-	}
-	public void setLineDesc(String lineDesc) {
-		this.lineDesc = lineDesc;
 	}
 	public String getEndtCd() {
 		return endtCd;
@@ -192,10 +205,10 @@ public class EndtCode {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -204,35 +217,25 @@ public class EndtCode {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
-	public List<Deductibles> getDeductibles() {
-		return deductibles;
-	}
-	public void setDeductibles(List<Deductibles> deductibles) {
-		this.deductibles = deductibles;
 	}
 	@Override
 	public String toString() {
-		return "EndtCode [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", endtCd=" + endtCd + ", endtTitle="
-				+ endtTitle + ", description=" + description + ", defaultTag=" + defaultTag + ", activeTag=" + activeTag
-				+ ", endtText01=" + endtText01 + ", endtText02=" + endtText02 + ", endtText03=" + endtText03
-				+ ", endtText04=" + endtText04 + ", endtText05=" + endtText05 + ", endtText06=" + endtText06
-				+ ", endtText07=" + endtText07 + ", endtText08=" + endtText08 + ", endtText09=" + endtText09
-				+ ", endtText10=" + endtText10 + ", endtText11=" + endtText11 + ", endtText12=" + endtText12
-				+ ", endtText13=" + endtText13 + ", endtText14=" + endtText14 + ", endtText15=" + endtText15
-				+ ", endtText16=" + endtText16 + ", endtText17=" + endtText17 + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", okDelete=" + okDelete + ", deductibles=" + deductibles + "]";
+		return "SaveEndtCode [lineCd=" + lineCd + ", endtCd=" + endtCd + ", endtTitle=" + endtTitle + ", description="
+				+ description + ", defaultTag=" + defaultTag + ", activeTag=" + activeTag + ", endtText01=" + endtText01
+				+ ", endtText02=" + endtText02 + ", endtText03=" + endtText03 + ", endtText04=" + endtText04
+				+ ", endtText05=" + endtText05 + ", endtText06=" + endtText06 + ", endtText07=" + endtText07
+				+ ", endtText08=" + endtText08 + ", endtText09=" + endtText09 + ", endtText10=" + endtText10
+				+ ", endtText11=" + endtText11 + ", endtText12=" + endtText12 + ", endtText13=" + endtText13
+				+ ", endtText14=" + endtText14 + ", endtText15=" + endtText15 + ", endtText16=" + endtText16
+				+ ", endtText17=" + endtText17 + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
+	
 }
