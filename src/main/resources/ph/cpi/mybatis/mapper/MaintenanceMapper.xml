@@ -576,14 +576,14 @@
 		<result property="govtTag" 			column="GOVT_TAG"/>
 		<result property="oldCedingId" 		column="OLD_CEDING_ID"/>
 		<result property="membershipTag" 	column="MEMBERSHIP_TAG"/>
-		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="terminationDate" 	column="TERMINATION_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-		<result property="inactiveDate" 	column="INACTIVE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="terminationDate" 	column="TERMINATION_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="inactiveDate" 	column="INACTIVE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
-		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
-		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
