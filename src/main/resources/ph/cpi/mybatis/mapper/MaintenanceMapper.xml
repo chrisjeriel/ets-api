@@ -958,6 +958,11 @@
      
      <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
     	BEGIN
+    		<foreach collection="deleteAdvWordList" item="del">
+	    			MTN_ADV_WORD_PKG.del_adv_word(
+			    				#{del.adviceWordId}
+			    		);
+    		</foreach>
     		<foreach collection="saveAdvWordList" item="save">
 		    		MTN_ADV_WORD_PKG.save_adv_word(
 		    				#{save.adviceWordId},
@@ -970,11 +975,6 @@
 							#{save.updateUser,jdbcType=VARCHAR},
 							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    			);
-    		</foreach>
-    		<foreach collection="deleteAdvWordList" item="del">
-	    			MTN_ADV_WORD_PKG.del_adv_word(
-			    				#{del.adviceWordId}
-			    		);
     		</foreach>
     	END;
     </update>
