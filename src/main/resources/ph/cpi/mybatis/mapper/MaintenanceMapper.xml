@@ -497,9 +497,9 @@
 		<result property="wordings" 		column="WORDINGS"/>
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retMtnAdviceWordings" resultMap="adviceWordingsMap" parameterType="java.util.Map">
@@ -955,4 +955,27 @@
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
      	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
      </select>
+     
+     <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="saveAdvWordList" item="save">
+		    		MTN_ADV_WORD_PKG.save_adv_word(
+		    				#{save.adviceWordId},
+		    				#{save.description, jdbcType=VARCHAR},
+		    				#{save.activeTag, jdbcType=VARCHAR},
+		    				#{save.wordings},
+		    				#{save.remarks, jdbcType=VARCHAR},
+							#{save.createUser,jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							#{save.updateUser,jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    			);
+    		</foreach>
+    		<foreach collection="deleteAdvWordList" item="del">
+	    			MTN_ADV_WORD_PKG.save_adv_word(
+			    				#{del.adviceWordId},
+			    		);
+    		</foreach>
+    	END;
+    </update>
 </mapper>
