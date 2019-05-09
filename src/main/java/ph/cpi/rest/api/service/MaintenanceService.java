@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
@@ -43,6 +44,7 @@ import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
@@ -84,6 +86,7 @@ import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
@@ -142,5 +145,5 @@ public interface MaintenanceService {
 	public SaveMtnCurrencyResponse saveMtnCurrency (SaveMtnCurrencyRequest smcr) throws SQLException;
 	public RetrieveMtnCurrencyRtResponse retrieveMtnCurrencyRate (RetrieveMtnCurrencyRtRequest rmcrr) throws SQLException;
 	public SaveMtnCurrencyRtResponse saveMtnCurrencyRt (SaveMtnCurrencyRtRequest smcrr) throws SQLException;
-	
+	public SaveMtnEndorsementResponse saveMtnEndorsement(SaveMtnEndorsementRequest smer) throws SQLException;
 }

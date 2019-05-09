@@ -50,6 +50,7 @@ import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
@@ -90,6 +91,7 @@ import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
@@ -375,6 +377,7 @@ public class MaintenanceController {
 		return maintenanceService.retMtnInsuredLov(rmil);
 	}
 	
+
 	@GetMapping(path="retrieveMtnCurrencyList")
 	public @ResponseBody RetrieveMtnCurrencyListResponse retrieveMtnCurrencyList(RetrieveMtnCurrencyListRequest rmcr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCurrencyList");
@@ -401,5 +404,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnCurrencyRt");
 		logger.info("SaveMtnCurrencyRtRequest : " + smcr.toString());
 		return maintenanceService.saveMtnCurrencyRt(smcr);
+
+	@PostMapping(path="saveMtnEndorsement")
+	public @ResponseBody SaveMtnEndorsementResponse saveMtnEndorsement(@RequestBody SaveMtnEndorsementRequest smer) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnEndorsement");
+		logger.info("SaveMtnEndorsementRequest : " + smer.toString());
+		return maintenanceService.saveMtnEndorsement(smer);
+
 	}
 }

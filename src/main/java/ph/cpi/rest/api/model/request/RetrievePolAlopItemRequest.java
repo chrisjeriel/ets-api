@@ -35,8 +35,9 @@ public class RetrievePolAlopItemRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrievePolAlopRequest [policyId=" + policyId + ", policyNo=" + policyNo + ", paginationRequest="
+		return "RetrievePolAlopItemRequest [policyId=" + policyId + ", policyNo=" + policyNo + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 
 }

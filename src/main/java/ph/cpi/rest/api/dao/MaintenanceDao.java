@@ -77,5 +77,5 @@ public interface MaintenanceDao {
 	public HashMap<String, Object> saveMtnCurrency(final HashMap<String, Object> params) throws SQLException;	
 	public List<CurrencyRt> retrieveMtnCurrencyRt(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnCurrencyRt(final HashMap<String, Object> params) throws SQLException;	
-	
+	public Integer saveMtnEndorsement(final HashMap<String, Object> params) throws SQLException;
 }
