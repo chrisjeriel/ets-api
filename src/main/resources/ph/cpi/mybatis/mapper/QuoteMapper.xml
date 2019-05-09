@@ -35,6 +35,7 @@
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
+		<result property="lineClassCd"      column="LINE_CLASS_CD"/>
 		<result property="status" 			column="STATUS"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="principalName" 	column="PRINCIPAL_NAME"/>
