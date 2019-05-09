@@ -46,6 +46,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
@@ -83,6 +84,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
@@ -374,5 +376,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retMtnInsuredLov");
 		logger.info("RetMtnInsuredLov : " + rmil.toString());
 		return maintenanceService.retMtnInsuredLov(rmil);
+	}
+	
+	@PostMapping(path="saveMtnEndorsement")
+	public @ResponseBody SaveMtnEndorsementResponse saveMtnEndorsement(@RequestBody SaveMtnEndorsementRequest smer) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnEndorsement");
+		logger.info("SaveMtnEndorsementRequest : " + smer.toString());
+		return maintenanceService.saveMtnEndorsement(smer);
 	}
 }
