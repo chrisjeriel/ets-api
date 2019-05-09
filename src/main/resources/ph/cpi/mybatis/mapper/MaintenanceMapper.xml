@@ -51,9 +51,9 @@
 		<result property="activeTag"		column="ACTIVE_TAG"/>
 		<result property="remarks"			column="REMARKS"/>
 		<result property="createUser"		column="CREATE_USER"/>
-		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
-		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.SectionCovers" id="retrieveMtnSectionCoversMap">
@@ -508,9 +508,9 @@
 		<result property="wordings" 		column="WORDINGS"/>
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
-		<result property="createDate" 		column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="createDate" 		column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
-		<result property="updateDate" 		column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retMtnAdviceWordings" resultMap="adviceWordingsMap" parameterType="java.util.Map">
@@ -669,9 +669,9 @@
   									   #{activeTag},
   									   #{remarks, jdbcType=VARCHAR},
   									   #{createUser},
-  									   to_date(#{createDate}, 'YYYY-MM-DD'),
+  									   CAST(to_timestamp(#{createDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
   									   #{updateUser},
-  									   to_date(#{updateDate}, 'YYYY-MM-DD'),
+  									   CAST(to_timestamp(#{updateDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
   									   #{blockCd, jdbcType=VARCHAR}
   				);
   		END;
@@ -1015,6 +1015,28 @@
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
+	</update>
+	
+     <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteAdvWordList" item="del">
+	    			MTN_ADV_WORD_PKG.del_adv_word(
+			    				#{del.adviceWordId}
+			    		);
+    		</foreach>
+    		<foreach collection="saveAdvWordList" item="save">
+		    		MTN_ADV_WORD_PKG.save_adv_word(
+		    				#{save.adviceWordId},
+		    				#{save.description, jdbcType=VARCHAR},
+		    				#{save.activeTag, jdbcType=VARCHAR},
+		    				#{save.wordings},
+		    				#{save.remarks, jdbcType=VARCHAR},
+							#{save.createUser,jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							#{save.updateUser,jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    			);
+    		</foreach>
     	END;
     </update>
 </mapper>

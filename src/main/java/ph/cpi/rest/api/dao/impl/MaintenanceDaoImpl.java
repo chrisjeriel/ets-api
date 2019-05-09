@@ -333,4 +333,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return params;
 	}
 	
+	@Override
+	public Integer saveMtnAdviceWordings(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer count = sqlSession.update("saveMtnAdvWord", params);
+		return count;
+	}
+	
 }
