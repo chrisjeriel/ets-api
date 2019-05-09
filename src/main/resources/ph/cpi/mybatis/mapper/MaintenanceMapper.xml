@@ -971,6 +971,7 @@
 		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	column="UPDATE_USER"/>
 		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     	<result property="okDelete"  			column="OK_DELETE"/>
      </resultMap>
      
      <select id="retrieveMtnCurrencyList" resultMap="currencyList" parameterType="java.util.Map">
@@ -983,6 +984,11 @@
 	
 	<update id="saveMtnCurrency" parameterType="java.util.Map">
     	BEGIN
+    		<foreach collection="delCurrency" item="delCurr">
+    			MTN_CURR_SAMP_PKG.del_mtn_curr(
+    				#{delCurr.currencyCd}
+    			);
+    		</foreach>
     		<foreach collection="saveCurrency" item="saveCurr">
     			MTN_CURR_SAMP_PKG.save_mtn_curr(
     				#{saveCurr.currencyCd},
@@ -1023,10 +1029,16 @@
 	
 	<update id="saveMtnCurrencyRt" parameterType="java.util.Map">
     	BEGIN
+    		<foreach collection="delCurrencyRt" item="delCurrRt">
+    			MTN_CURR_RT_PKG.del_mtn_curr_rt(
+    				#{delCurrRt.currencyCd},
+    				#{delCurrRt.histNo}
+    			);
+    		</foreach>
     		<foreach collection="saveCurrencyRt" item="saveCurrRt">
     			MTN_CURR_RT_PKG.save_mtn_curr_rt(
     				#{saveCurrRt.currencyCd},
-    				#{saveCurrRt.histNo},
+    				#{saveCurrRt.histNo,jdbcType=VARCHAR},
     				#{saveCurrRt.currencyRt},
     				CAST(to_timestamp(#{saveCurrRt.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     				CAST(to_timestamp(#{saveCurrRt.effDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),

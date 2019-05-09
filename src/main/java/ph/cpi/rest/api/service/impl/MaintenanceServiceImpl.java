@@ -801,6 +801,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		try{
 			HashMap<String, Object> saveMtnCurrParams = new HashMap<String, Object>();
 			saveMtnCurrParams.put("saveCurrency",smcr.getSaveCurrency());
+			saveMtnCurrParams.put("delCurrency",smcr.getDelCurrency());
 			
 			HashMap<String, Object> res = maintenanceDao.saveMtnCurrency(saveMtnCurrParams);
 			smcResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -832,6 +833,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		SaveMtnCurrencyRtResponse smcrResponse = new SaveMtnCurrencyRtResponse();
 		try{
 			HashMap<String, Object> saveMtnCurrRtParams = new HashMap<String, Object>();
+			saveMtnCurrRtParams.put("delCurrencyRt",smcrr.getDelCurrencyRt());
 			saveMtnCurrRtParams.put("saveCurrencyRt",smcrr.getSaveCurrencyRt());
 			
 			HashMap<String, Object> res = maintenanceDao.saveMtnCurrencyRt(saveMtnCurrRtParams);

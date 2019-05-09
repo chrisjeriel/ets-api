@@ -5,7 +5,17 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveMtnCurrencyRequest {
+	private List<MtnCurrency> delCurrency;
 	private List<MtnCurrency> saveCurrency;
+	
+	
+	public List<MtnCurrency> getDelCurrency() {
+		return delCurrency;
+	}
+
+	public void setDelCurrency(List<MtnCurrency> delCurrency) {
+		this.delCurrency = delCurrency;
+	}
 
 	public List<MtnCurrency> getSaveCurrency() {
 		return saveCurrency;
@@ -17,8 +27,10 @@ public class SaveMtnCurrencyRequest {
 
 	@Override
 	public String toString() {
-		return "SaveMtnCurrencyRequest [saveCurrency=" + saveCurrency + "]";
+		return "SaveMtnCurrencyRequest [delCurrency=" + delCurrency + ", saveCurrency=" + saveCurrency + "]";
 	}
+
+	
 	
 	
 	

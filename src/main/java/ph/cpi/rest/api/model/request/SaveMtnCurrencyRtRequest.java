@@ -7,7 +7,17 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveMtnCurrencyRtRequest {
 	
+	private List<MtnCurrencyRt> delCurrencyRt;
 	private List<MtnCurrencyRt> saveCurrencyRt;
+	
+	
+	public List<MtnCurrencyRt> getDelCurrencyRt() {
+		return delCurrencyRt;
+	}
+
+	public void setDelCurrencyRt(List<MtnCurrencyRt> delCurrencyRt) {
+		this.delCurrencyRt = delCurrencyRt;
+	}
 
 	public List<MtnCurrencyRt> getSaveCurrencyRt() {
 		return saveCurrencyRt;
@@ -19,8 +29,10 @@ public class SaveMtnCurrencyRtRequest {
 
 	@Override
 	public String toString() {
-		return "SaveMtnCurrencyRtRequest [saveCurrencyRt=" + saveCurrencyRt + "]";
+		return "SaveMtnCurrencyRtRequest [delCurrencyRt=" + delCurrencyRt + ", saveCurrencyRt=" + saveCurrencyRt + "]";
 	}
+
+	
 	
 }
 @Alias ("MtnSaveCurrRt")

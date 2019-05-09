@@ -404,6 +404,7 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnCurrencyRt");
 		logger.info("SaveMtnCurrencyRtRequest : " + smcr.toString());
 		return maintenanceService.saveMtnCurrencyRt(smcr);
+	}
 
 	@PostMapping(path="saveMtnEndorsement")
 	public @ResponseBody SaveMtnEndorsementResponse saveMtnEndorsement(@RequestBody SaveMtnEndorsementRequest smer) throws SQLException {
