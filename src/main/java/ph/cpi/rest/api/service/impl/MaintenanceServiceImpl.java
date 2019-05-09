@@ -778,6 +778,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("saveEndt", smer.getSaveEndorsement());
 		params.put("delEndt", smer.getDelEndorsement());
+		params.put("saveDeductibles", smer.getSaveDeductibles());
+		params.put("deleteDeductibles", smer.getDeleteDeductibles());
 		try{
 			smerResponse.setReturnCode(maintenanceDao.saveMtnEndorsement(params));
 		}catch (Exception ex) {

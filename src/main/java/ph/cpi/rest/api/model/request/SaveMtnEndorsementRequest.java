@@ -5,6 +5,10 @@ import java.util.List;
 public class SaveMtnEndorsementRequest {
 	List<SaveEndtCode> saveEndorsement;
 	List<SaveEndtCode> delEndorsement;
+	
+	List<Deductibless> saveDeductibles;
+	List<Deductibless> deleteDeductibles;
+	
 	public List<SaveEndtCode> getSaveEndorsement() {
 		return saveEndorsement;
 	}
@@ -17,10 +21,22 @@ public class SaveMtnEndorsementRequest {
 	public void setDelEndorsement(List<SaveEndtCode> delEndorsement) {
 		this.delEndorsement = delEndorsement;
 	}
+	public List<Deductibless> getSaveDeductibles() {
+		return saveDeductibles;
+	}
+	public void setSaveDeductibles(List<Deductibless> saveDeductibles) {
+		this.saveDeductibles = saveDeductibles;
+	}
+	public List<Deductibless> getDeleteDeductibles() {
+		return deleteDeductibles;
+	}
+	public void setDeleteDeductibles(List<Deductibless> deleteDeductibles) {
+		this.deleteDeductibles = deleteDeductibles;
+	}
 	@Override
 	public String toString() {
 		return "SaveMtnEndorsementRequest [saveEndorsement=" + saveEndorsement + ", delEndorsement=" + delEndorsement
-				+ "]";
+				+ ", saveDeductibles=" + saveDeductibles + ", deleteDeductibles=" + deleteDeductibles + "]";
 	}
 	
 	

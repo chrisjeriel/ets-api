@@ -870,7 +870,9 @@
     		<foreach collection="deleteDeductibles" item="deleteD">
     			MTN_DEDUCTIBLES_PKG.del_mtn_deductibles(
 	    			#{deleteD.lineCd,jdbcType=VARCHAR},
-					#{deleteD.deductibleCd,jdbcType=VARCHAR}
+					#{deleteD.deductibleCd,jdbcType=VARCHAR},
+					#{deleteD.coverCd,jdbcType=INTEGER},
+					#{deleteD.endtCd,jdbcType=VARCHAR}
 	    		);
     		</foreach>
     	END;
@@ -975,6 +977,38 @@
      				CAST(to_timestamp(#{endt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
      			);
      		</foreach>
+     		
+     		
+    		<foreach collection="deleteDeductibles" item="deleteD">
+    			MTN_DEDUCTIBLES_PKG.del_mtn_deductibles(
+	    			#{deleteD.lineCd,jdbcType=VARCHAR},
+					#{deleteD.deductibleCd,jdbcType=VARCHAR},
+					#{deleteD.coverCd,jdbcType=INTEGER},
+					#{deleteD.endtCd,jdbcType=VARCHAR}
+	    		);
+    		</foreach>
+     		<foreach collection="saveDeductibles" item="saveD">
+	    		MTN_DEDUCTIBLES_PKG.save_mtn_deductibles(
+	    			#{saveD.lineCd,jdbcType=VARCHAR},
+					#{saveD.coverCd,jdbcType=INTEGER},
+					#{saveD.endtCd,jdbcType=VARCHAR},
+					#{saveD.deductibleCd,jdbcType=VARCHAR},
+					#{saveD.deductibleTitle,jdbcType=VARCHAR},
+					#{saveD.deductibleText,jdbcType=VARCHAR},
+					#{saveD.deductibleType,jdbcType=VARCHAR},
+					#{saveD.deductibleRate,jdbcType=INTEGER},
+					#{saveD.deductibleAmt,jdbcType=INTEGER},
+					#{saveD.minAmt,jdbcType=INTEGER},
+					#{saveD.maxAmt,jdbcType=INTEGER},
+					#{saveD.activeTag,jdbcType=VARCHAR},
+					#{saveD.defaultTag,jdbcType=VARCHAR},
+					#{saveD.remarks,jdbcType=VARCHAR},
+					#{saveD.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveD.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveD.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveD.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
      	END;
      </update>
      
