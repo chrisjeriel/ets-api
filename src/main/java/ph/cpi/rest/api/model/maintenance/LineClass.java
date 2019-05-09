@@ -13,6 +13,7 @@ public class LineClass {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
 	public String getLineCd() {
 		return lineCd;
@@ -74,12 +75,17 @@ public class LineClass {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "LineClass [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", lineClassCd=" + lineClassCd
-				+ ", lineClassCdDesc=" + lineClassCdDesc + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", lineClassCdDesc=" + lineClassCdDesc + ", activeTag=" + activeTag + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
