@@ -342,5 +342,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		logger.info("retrieveMtnCurrencyRt DAOImpl : " + currencyRt);
 		return currencyRt;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCurrencyRt(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCurrencyRt",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 }

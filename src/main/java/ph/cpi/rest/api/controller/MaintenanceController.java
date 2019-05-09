@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
@@ -87,6 +88,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
@@ -392,5 +394,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCurrencyRt");
 		logger.info("RetrieveMtnCurrencyRtRequest : " + rmcr.toString());
 		return maintenanceService.retrieveMtnCurrencyRate(rmcr);
+	}
+	
+	@PostMapping(path="saveMtnCurrencyRt")
+	public @ResponseBody SaveMtnCurrencyRtResponse saveMtnCurrencyRt(@RequestBody SaveMtnCurrencyRtRequest smcr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCurrencyRt");
+		logger.info("SaveMtnCurrencyRtRequest : " + smcr.toString());
+		return maintenanceService.saveMtnCurrencyRt(smcr);
 	}
 }

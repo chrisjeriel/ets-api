@@ -1015,4 +1015,25 @@
 																			#{sortKey, jdbcType=VARCHAR}, 
 																			#{order, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveMtnCurrencyRt" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveCurrencyRt" item="saveCurrRt">
+    			MTN_CURR_RT_PKG.save_mtn_curr_rt(
+    				#{saveCurrRt.currencyCd},
+    				#{saveCurrRt.histNo},
+    				#{saveCurrRt.currencyRt},
+    				CAST(to_timestamp(#{saveCurrRt.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    				CAST(to_timestamp(#{saveCurrRt.effDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    				#{saveCurrRt.activeTag},
+    				#{saveCurrRt.remarks,jdbcType=VARCHAR},
+					#{saveCurrRt.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveCurrRt.createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveCurrRt.updateUser},
+					CAST(to_timestamp(#{saveCurrRt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+    </update>
+    
 </mapper>

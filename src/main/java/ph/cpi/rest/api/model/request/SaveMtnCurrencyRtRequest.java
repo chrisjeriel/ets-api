@@ -1,21 +1,42 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class CurrencyRt {
+import org.apache.ibatis.type.Alias;
+
+public class SaveMtnCurrencyRtRequest {
 	
+	private List<MtnCurrencyRt> saveCurrencyRt;
+
+	public List<MtnCurrencyRt> getSaveCurrencyRt() {
+		return saveCurrencyRt;
+	}
+
+	public void setSaveCurrencyRt(List<MtnCurrencyRt> saveCurrencyRt) {
+		this.saveCurrencyRt = saveCurrencyRt;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveMtnCurrencyRtRequest [saveCurrencyRt=" + saveCurrencyRt + "]";
+	}
+	
+}
+@Alias ("MtnSaveCurrRt")
+class MtnCurrencyRt {
 	private String currencyCd;
 	private Integer histNo;
 	private BigDecimal currencyRt;
-	private DateTime effDateFrom;
-	private DateTime effDateTo;
+	private String effDateFrom;
+	private String effDateTo;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
+	
 	public String getCurrencyCd() {
 		return currencyCd;
 	}
@@ -34,16 +55,16 @@ public class CurrencyRt {
 	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
-	public DateTime getEffDateFrom() {
+	public String getEffDateFrom() {
 		return effDateFrom;
 	}
-	public void setEffDateFrom(DateTime effDateFrom) {
+	public void setEffDateFrom(String effDateFrom) {
 		this.effDateFrom = effDateFrom;
 	}
-	public DateTime getEffDateTo() {
+	public String getEffDateTo() {
 		return effDateTo;
 	}
-	public void setEffDateTo(DateTime effDateTo) {
+	public void setEffDateTo(String effDateTo) {
 		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
@@ -64,10 +85,10 @@ public class CurrencyRt {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -76,19 +97,17 @@ public class CurrencyRt {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "CurrencyRt [currencyCd=" + currencyCd + ", histNo=" + histNo + ", currencyRt=" + currencyRt
+		return "SaveMtnCurrencyRtRequest [currencyCd=" + currencyCd + ", histNo=" + histNo + ", currencyRt=" + currencyRt
 				+ ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo + ", activeTag=" + activeTag
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
-	
 }
