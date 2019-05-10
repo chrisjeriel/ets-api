@@ -326,5 +326,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer count = sqlSession.update("saveMtnAdvWord", params);
 		return count;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCedingCompany(HashMap<String, Object> params) throws SQLException {
+		Integer count = sqlSession.update("saveMtnCedingCompany",params);
+		params.put("errorCode", count);
+		return params;
+	}
 	
 }

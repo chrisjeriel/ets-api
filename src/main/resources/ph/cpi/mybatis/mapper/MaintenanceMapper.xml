@@ -603,6 +603,8 @@
 		<result property="address" 			column="ADDRESS"/>
 		<result property="contactNo" 		column="CONTACT_NO"/>
 		<result property="emailAdd" 		column="EMAIL_ADD"/>
+		<result property="bussTypeId" 		column="BUSS_TYPE_ID"/>
+		<result property="tinNo" 			column="TIN_NO"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="govtTag"			column="GOVT_TAG"/>
 		<result property="oldCedingId" 		column="OLD_CEDING_ID"/>
@@ -648,7 +650,7 @@
   			MTN_RISK_PKG.save_mtn_risk(#{riskId, mode=INOUT, jdbcType=VARCHAR},
   									   #{riskAbbr},
   									   #{riskName},
-  									   #{regionCd},
+  									   #{regionCd}, 
   									   #{provinceCd},
   									   #{cityCd},
   									   #{districtCd, jdbcType=VARCHAR},
@@ -975,6 +977,68 @@
 							#{save.updateUser,jdbcType=VARCHAR},
 							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    			);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="saveMtnCedingCompany" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    	 v_ceding_id MTN_CEDING_REPRESENTATIVE.CEDING_ID%TYPE;
+    	BEGIN
+    		MTN_CED_COM_PKG.save_mtn_ced_co(
+    						v_ceding_id,
+    						#{cedingId, jdbcType=VARCHAR},
+    						#{cedingName},
+    						#{cedingAbbr},
+    						#{addrLine1},
+    						#{addrLine2, jdbcType=VARCHAR},
+    						#{addrLine3, jdbcType=VARCHAR},
+    						#{zipCd, jdbcType=VARCHAR},
+    						#{contactNo, jdbcType=VARCHAR},
+    						#{emailAdd, jdbcType=VARCHAR},
+    						#{bussTypeId, jdbcType=VARCHAR},
+    						#{tinNo, jdbcType=VARCHAR},
+    						#{activeTag, jdbcType=VARCHAR},
+    						#{govtTag, jdbcType=VARCHAR},
+    						#{oldCedingId, jdbcType=VARCHAR},
+    						#{membershipTag, jdbcType=VARCHAR},
+    						CAST(to_timestamp(#{membershipDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						CAST(to_timestamp(#{terminationDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						CAST(to_timestamp(#{inactiveDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						#{remarks, jdbcType=VARCHAR},
+    						#{createUser},
+    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						#{updateUser},
+    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    		);
+    		
+    		#{outCedingId, mode=OUT, jdbcType=VARCHAR} := v_ceding_id;
+    		
+   			<foreach collection="delCedingRepList" item="del">
+    			MTN_CED_REP_PKG.del_mtn_ced_rep(
+    								v_ceding_id,
+    								#{del.cedingRepId}
+    						);
+    		</foreach>
+    		<foreach collection="saveCedingRepList" item="save">
+		    		MTN_CED_REP_PKG.save_mtn_ced_rep(
+		    							v_ceding_id,
+		    							#{save.cedingRepId, jdbcType=VARCHAR},
+		    							#{save.designation, jdbcType=VARCHAR},
+		    							#{save.firstName},
+		    							#{save.middleInitial, jdbcType=VARCHAR},
+		    							#{save.lastName},
+		    							#{save.defaultTag, jdbcType=VARCHAR},
+		    							#{save.position, jdbcType=VARCHAR},
+		    							#{save.department, jdbcType=VARCHAR},
+		    							#{save.contactNo, jdbcType=VARCHAR},
+		    							#{save.emailAdd, jdbcType=VARCHAR},
+		    							#{save.eSignature, jdbcType=VARCHAR},
+		    							#{createUser},
+			    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    						#{updateUser},
+			    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		            );
     		</foreach>
     	END;
     </update>
