@@ -29,6 +29,7 @@ public class Deductibles {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public String getActiveTag() {
 		return activeTag;
 	}
@@ -149,6 +150,12 @@ public class Deductibles {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "Deductibles [activeTag=" + activeTag + ", deductibleCd=" + deductibleCd + ", coverCd=" + coverCd
@@ -157,7 +164,7 @@ public class Deductibles {
 				+ ", deductibleAmt=" + deductibleAmt + ", lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", minAmt="
 				+ minAmt + ", maxAmt=" + maxAmt + ", deductibleText=" + deductibleText + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
-
+	
 }

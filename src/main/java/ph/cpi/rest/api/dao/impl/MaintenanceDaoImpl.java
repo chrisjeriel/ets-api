@@ -340,4 +340,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return count;
 	}
 	
+	@Override
+	public Integer saveMtnEndorsement(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnEndorsement",params);
+		return code;
+	}
+	
 }
