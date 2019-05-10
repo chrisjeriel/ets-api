@@ -135,14 +135,15 @@
 		 <result property   ="lineDesc"    column  =   "DESCRIPTION"/> 
 		 <result property   ="wordingId"   column  =   "WORDING_ID"/>    
 		 <result property   ="wording"     column  =   "WORDING"/>  
-		 <result property   ="type"        column  =   "TYPE"/> 
+		 <result property   ="wordType"    column  =   "WORD_TYPE"/> 
 		 <result property   ="activeTag"   column  =   "ACTIVE_TAG"/>    
-		 <result property   ="defaultTag"  column  =   "DEFAULT_TAG"/>   
+		 <result property   ="defaultTag"  column  =   "DEFAULT_TAG"/>
+		 <result property   ="ocTag"  	   column  =   "OC_TAG"/>   
 		 <result property   ="remarks"     column  =   "REMARKS"/>  
 		 <result property   ="createUser"  column  =   "CREATE_USER"/>   
-		 <result property   ="createDate"  column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>   
+		 <result property   ="createDate"  column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>   
 		 <result property   ="updateUser"  column  =   "UPDATE_USER"/>   
-		 <result property   ="updateDate"  column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>  
+		 <result property   ="updateDate"  column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>  
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Intermediary" id="mntIntMap">
@@ -424,7 +425,7 @@
 	</select>
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_QUOTE_WORDINGS_PKG.ret_mtn_qu_wordings(#{lineCd},#{type},null,null,null,null))
+			SELECT * FROM TABLE(MTN_QUOTE_WORDINGS_PKG.ret_mtn_qu_wordings(#{lineCd, jdbcType=VARCHAR},#{wordType, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="cityMap">

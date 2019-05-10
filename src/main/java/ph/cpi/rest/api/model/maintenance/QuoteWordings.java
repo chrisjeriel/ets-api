@@ -1,20 +1,22 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class QuoteWordings {
 	private String lineCd;
 	private String lineDesc;
 	private Integer wordingId;
 	private String wording;
-	private String type;
+	private String wordType;
 	private String activeTag;
 	private String defaultTag;
+	private String ocTag;
 	private String remarks;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
+	
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -39,11 +41,11 @@ public class QuoteWordings {
 	public void setWording(String wording) {
 		this.wording = wording;
 	}
-	public String getType() {
-		return type;
+	public String getWordType() {
+		return wordType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setWordType(String wordType) {
+		this.wordType = wordType;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -57,6 +59,12 @@ public class QuoteWordings {
 	public void setDefaultTag(String defaultTag) {
 		this.defaultTag = defaultTag;
 	}
+	public String getOcTag() {
+		return ocTag;
+	}
+	public void setOcTag(String ocTag) {
+		this.ocTag = ocTag;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -69,10 +77,10 @@ public class QuoteWordings {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -81,18 +89,17 @@ public class QuoteWordings {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
 		return "QuoteWordings [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", wordingId=" + wordingId + ", wording="
-				+ wording + ", type=" + type + ", activeTag=" + activeTag + ", defaultTag=" + defaultTag + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ wording + ", wordType=" + wordType + ", activeTag=" + activeTag + ", defaultTag=" + defaultTag
+				+ ", ocTag=" + ocTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-
 }

@@ -297,7 +297,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnQuoteWordingsResponse rmqwResponse = new RetrieveMtnQuoteWordingsResponse();
 		HashMap<String, Object> retrieveMtnQuoteWordingsParams = new HashMap<String, Object>();
 		retrieveMtnQuoteWordingsParams.put("lineCd", rmqwp.getLineCd());
-		retrieveMtnQuoteWordingsParams.put("type",rmqwp.getType());
+		retrieveMtnQuoteWordingsParams.put("wordType", rmqwp.getWordType());
 		rmqwResponse.setQuoteWordings(maintenanceDao.retrieveMtnQuoteWordings(retrieveMtnQuoteWordingsParams));
 		logger.info("retrieveMtnQuoteWordingsResponse :" + rmqwResponse.toString());
 

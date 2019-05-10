@@ -5,20 +5,21 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnQuoteWordingsRequest {
 	private String lineCd;
-	private String type;
+	private String wordType;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
 	public String getLineCd() {
 		return lineCd;
 	}
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
-	public String getType() {
-		return type;
+	public String getWordType() {
+		return wordType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setWordType(String wordType) {
+		this.wordType = wordType;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,7 +35,7 @@ public class RetrieveMtnQuoteWordingsRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnQuoteWordingsRequest [lineCd=" + lineCd + ", type=" + type + ", paginationRequest="
+		return "RetrieveMtnQuoteWordingsRequest [lineCd=" + lineCd + ", wordType=" + wordType + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }
