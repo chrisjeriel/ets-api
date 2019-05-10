@@ -125,10 +125,22 @@
 		<result property = "activeTag"      column  =   "ACTIVE_TAG"/>
 		<result property = "remarks"        column  =   "REMARKS"/>
 		<result property = "createUser"     column  =   "CREATE_USER"/>
-		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"     column  =   "UPDATE_USER"/>
-		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="catPerilList"	resultMap="catPerilMapObj"/>
 	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.CATPeril" id="catPerilMapObj">
+		<result property="catPerilId"			column="C_CAT_PERIL_ID"/>
+		<result property="catPerilAbbr"			column="C_CAT_PERIL_ABBR"/>
+		<result property="catPerilName"			column="C_CAT_PERIL_NAME"/>
+		<result property="pctSharePrem"			column="C_PCT_SHARE_PREM"/>
+		<result property="createUser"			column="C_CREATE_USER"/>
+		<result property="createDate"        	column="C_CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"        	column="C_UPDATE_USER"/>
+		<result property="updateDate"			column="C_UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.QuoteWordings" id="quoteWordingsMap">
 		 <result property   ="lineCd"      column  =   "LINE_CD"/>   
@@ -422,7 +434,7 @@
 	</select>
 	
 	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_OBJECT_PKG.ret_mtn_obj(#{lineCd},#{objectId},null,null,null,null))
+			SELECT * FROM TABLE(MTN_OBJECT_PKG.ret_mtn_obj(#{lineCd},'',null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">

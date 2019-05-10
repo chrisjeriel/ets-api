@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.math.BigDecimal;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
@@ -11,7 +13,7 @@ public class CATPeril {
 	private Integer catPerilId;
 	private String catPerilAbbr;
 	private String catPerilName;
-	private Integer pctSharePrem;
+	private BigDecimal pctSharePrem;
 	private String defaultTag;
 	private String activeTag; 
 	private String remarks;
@@ -56,10 +58,10 @@ public class CATPeril {
 	public void setCatPerilName(String catPerilName) {
 		this.catPerilName = catPerilName;
 	}
-	public Integer getPctSharePrem() {
+	public BigDecimal getPctSharePrem() {
 		return pctSharePrem;
 	}
-	public void setPctSharePrem(Integer pctSharePrem) {
+	public void setPctSharePrem(BigDecimal pctSharePrem) {
 		this.pctSharePrem = pctSharePrem;
 	}
 	public String getDefaultTag() {
