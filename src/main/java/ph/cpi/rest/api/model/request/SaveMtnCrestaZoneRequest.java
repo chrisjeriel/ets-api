@@ -1,24 +1,43 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
+import java.util.List;
 
-public class CrestaZone {
-	private Integer zoneCd;
+import org.apache.ibatis.type.Alias;
+
+
+public class SaveMtnCrestaZoneRequest {
+	private List<MtnCrestaZone> saveCrestaZone;
+	private List<MtnCrestaZone> delCrestaZone;
+	public List<MtnCrestaZone> getSaveCrestaZone() {
+		return saveCrestaZone;
+	}
+	public void setSaveCrestaZone(List<MtnCrestaZone> saveCrestaZone) {
+		this.saveCrestaZone = saveCrestaZone;
+	}
+	public List<MtnCrestaZone> getDelCrestaZone() {
+		return delCrestaZone;
+	}
+	public void setDelCrestaZone(List<MtnCrestaZone> delCrestaZone) {
+		this.delCrestaZone = delCrestaZone;
+	}
+	
+	
+}
+
+@Alias ("saveMtnCresta")
+class MtnCrestaZone {
+	private String zoneCd;
 	private String zoneDesc;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	
-	private String okDelete;
-	
-	public Integer getZoneCd() {
+	private String updateDate;
+	public String getZoneCd() {
 		return zoneCd;
 	}
-	public void setZoneCd(Integer zoneCd) {
+	public void setZoneCd(String zoneCd) {
 		this.zoneCd = zoneCd;
 	}
 	public String getZoneDesc() {
@@ -45,10 +64,10 @@ public class CrestaZone {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -57,26 +76,17 @@ public class CrestaZone {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	
-	
-	
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
 		return "CrestaZone [zoneCd=" + zoneCd + ", zoneDesc=" + zoneDesc + ", activeTag=" + activeTag + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

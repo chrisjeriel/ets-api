@@ -461,6 +461,7 @@
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER" />
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 		column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnCrestaZone" resultMap="crestaZoneMap" parameterType="java.util.Map">
@@ -1151,6 +1152,28 @@
 					CAST(to_timestamp(#{saveCat.createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{saveCat.updateUser},
 					CAST(to_timestamp(#{saveCat.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="saveMtnCresta" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delCrestaZone" item="delCresta">
+    			MTN_CRESTA_PKG.del_mtn_cresta(
+    				#{delCresta.zoneCd}
+    			);
+    		</foreach>
+    		<foreach collection="saveCrestaZone" item="saveCresta">
+    			MTN_CRESTA_PKG.save_mtn_cresta(
+    				#{saveCresta.zoneCd},
+    				#{saveCresta.zoneDesc},
+    				#{saveCresta.activeTag,jdbcType=VARCHAR},
+    				#{saveCresta.remarks,jdbcType=VARCHAR},
+					#{saveCresta.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveCresta.createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveCresta.updateUser},
+					CAST(to_timestamp(#{saveCresta.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
     		</foreach>
     	END;

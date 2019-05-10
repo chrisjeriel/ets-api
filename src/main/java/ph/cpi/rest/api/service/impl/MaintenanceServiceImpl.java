@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
@@ -91,6 +92,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
@@ -882,5 +884,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smcpResponse;
+	}
+
+	@Override
+	public SaveMtnCrestaZoneResponse saveMtnCrestaZone(SaveMtnCrestaZoneRequest smczr) throws SQLException {
+		SaveMtnCrestaZoneResponse smczResponse = new SaveMtnCrestaZoneResponse();
+		try{
+			HashMap<String, Object> saveMtnCrestaParams = new HashMap<String, Object>();
+			saveMtnCrestaParams.put("delCrestaZone",smczr.getDelCrestaZone());
+			saveMtnCrestaParams.put("saveCrestaZone",smczr.getSaveCrestaZone());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnCrestaZone(saveMtnCrestaParams);
+			smczResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smczResponse.setReturnCode(0);
+			smczResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smczResponse;
 	}
 }
