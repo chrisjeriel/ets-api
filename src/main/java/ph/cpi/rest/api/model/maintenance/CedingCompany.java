@@ -2,7 +2,7 @@ package ph.cpi.rest.api.model.maintenance;
 
 import java.util.List;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class CedingCompany {
 	private String cedingId ;
@@ -19,14 +19,14 @@ public class CedingCompany {
 	private String govtTag;
 	private String oldCedingId;
 	private String membershipTag;
-	private LocalDateTime membershipDate;
-	private LocalDateTime terminationDate;
-	private LocalDateTime inactiveDate;
+	private DateTime membershipDate;
+	private DateTime terminationDate;
+	private DateTime inactiveDate;
 	private String remarks;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	private List<CedingRepresentative> cedingRepresentative;
 	
 	public String getCedingId() {
@@ -113,22 +113,22 @@ public class CedingCompany {
 	public void setMembershipTag(String membershipTag) {
 		this.membershipTag = membershipTag;
 	}
-	public LocalDateTime getMembershipDate() {
+	public DateTime getMembershipDate() {
 		return membershipDate;
 	}
-	public void setMembershipDate(LocalDateTime membershipDate) {
+	public void setMembershipDate(DateTime membershipDate) {
 		this.membershipDate = membershipDate;
 	}
-	public LocalDateTime getTerminationDate() {
+	public DateTime getTerminationDate() {
 		return terminationDate;
 	}
-	public void setTerminationDate(LocalDateTime terminationDate) {
+	public void setTerminationDate(DateTime terminationDate) {
 		this.terminationDate = terminationDate;
 	}
-	public LocalDateTime getInactiveDate() {
+	public DateTime getInactiveDate() {
 		return inactiveDate;
 	}
-	public void setInactiveDate(LocalDateTime inactiveDate) {
+	public void setInactiveDate(DateTime inactiveDate) {
 		this.inactiveDate = inactiveDate;
 	}
 	public String getRemarks() {
@@ -143,10 +143,10 @@ public class CedingCompany {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -155,10 +155,10 @@ public class CedingCompany {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	
