@@ -356,5 +356,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return code;
 
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCatPeril(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCatPeril",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 }

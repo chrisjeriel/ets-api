@@ -1127,4 +1127,32 @@
 		<result property="updateDate" 			column="D_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="okDelete" 		    column="D_OK_DELETE"/>
 	</resultMap>
+	
+	<update id="saveMtnCatPeril" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delCatPeril" item="delCat">
+    			MTN_CAT_PERIL_PKG.del_mtn_cat(
+    				#{delCat.lineCd},
+    				#{delCat.objectId},
+    				#{delCat.catPerilId}
+    			);
+    		</foreach>
+    		<foreach collection="saveCatPeril" item="saveCat">
+    			MTN_CAT_PERIL_PKG.save_mtn_cat(
+    				#{saveCat.lineCd},
+    				#{saveCat.objectId},
+    				#{saveCat.catPerilId,jdbcType=VARCHAR},
+    				#{saveCat.catPerilName},
+    				#{saveCat.catPerilAbbr},
+    				#{saveCat.pctSharePrem,jdbcType=VARCHAR},
+    				#{saveCat.activeTag,jdbcType=VARCHAR},
+    				#{saveCat.remarks,jdbcType=VARCHAR},
+					#{saveCat.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveCat.createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveCat.updateUser},
+					CAST(to_timestamp(#{saveCat.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+    </update>
 </mapper>

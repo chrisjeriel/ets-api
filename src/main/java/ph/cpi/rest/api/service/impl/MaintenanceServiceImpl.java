@@ -46,6 +46,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
@@ -89,6 +90,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
@@ -862,5 +864,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smerResponse;
+	}
+
+	@Override
+	public SaveMtnCatPerilResponse saveMtnCatPeril(SaveMtnCatPerilRequest smcpr) throws SQLException {
+		SaveMtnCatPerilResponse smcpResponse = new SaveMtnCatPerilResponse();
+		try{
+			HashMap<String, Object> saveMtnCatParams = new HashMap<String, Object>();
+			saveMtnCatParams.put("delCatPeril",smcpr.getDelCatPeril());
+			saveMtnCatParams.put("saveCatPeril",smcpr.getSaveCatPeril());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnCatPeril(saveMtnCatParams);
+			smcpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smcpResponse.setReturnCode(0);
+			smcpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smcpResponse;
 	}
 }
