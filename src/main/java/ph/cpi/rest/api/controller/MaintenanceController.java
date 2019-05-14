@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
@@ -90,6 +91,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
@@ -428,5 +430,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnDistrict");
 		logger.info("SaveMtnDistrictRequest : " + smqrr.toString());
 		return maintenanceService.saveMtnDistrict(smqrr);
+	}
+	
+	@PostMapping(path="saveMtnBlock")
+	public @ResponseBody SaveMtnBlockResponse saveMtnBlock(@RequestBody SaveMtnBlockRequest smqrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBlock");
+		logger.info("SaveMtnBlockRequest : " + smqrr.toString());
+		return maintenanceService.saveMtnBlock(smqrr);
 	}
 }

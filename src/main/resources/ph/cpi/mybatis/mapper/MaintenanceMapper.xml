@@ -1221,4 +1221,21 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveMtnBlock">
+		BEGIN
+			<foreach collection="saveBlock" item="block">
+				MTN_BLOCK_PKG.save_mtn_block(
+					#{block.blockCd},#{block.blockDesc,jdbcType=VARCHAR},#{districtCd},#{regionCd},#{provinceCd},
+					#{cityCd},#{block.activeTag},#{block.remarks,jdbcType=VARCHAR},#{block.createUser},
+					CAST(to_timestamp(#{block.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{block.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{block.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			<foreach collection="delBlock" item="block">
+				MTN_BLOCK_PKG.del_mtn_block(#{block.blockCd},#{districtCd},#{regionCd},#{provinceCd},#{cityCd});
+			</foreach>
+		END;
+	</update>
 </mapper>

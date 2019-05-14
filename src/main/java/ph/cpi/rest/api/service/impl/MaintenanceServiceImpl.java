@@ -45,6 +45,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
@@ -89,6 +90,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
@@ -892,6 +894,26 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("delDistrict", smqrr.getDelDistrict());
 		try{
 			smqrrResponse.setReturnCode(maintenanceDao.saveMtnDistrict(params));
+		}catch (Exception ex) {
+			smqrrResponse.setReturnCode(0);
+			smqrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smqrrResponse;
+	}
+
+	@Override
+	public SaveMtnBlockResponse saveMtnBlock(SaveMtnBlockRequest smqrr) throws SQLException {
+		SaveMtnBlockResponse smqrrResponse = new SaveMtnBlockResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("districtCd", smqrr.getDistrictCd());
+		params.put("regionCd", smqrr.getRegionCd());
+		params.put("provinceCd", smqrr.getProvinceCd());
+		params.put("cityCd", smqrr.getCityCd());
+		params.put("saveBlock", smqrr.getSaveBlock());
+		params.put("delBlock", smqrr.getDelBlock());
+		try{
+			smqrrResponse.setReturnCode(maintenanceDao.saveMtnBlock(params));
 		}catch (Exception ex) {
 			smqrrResponse.setReturnCode(0);
 			smqrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));

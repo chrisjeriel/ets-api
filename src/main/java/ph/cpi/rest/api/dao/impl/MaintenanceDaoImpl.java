@@ -363,5 +363,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer code = sqlSession.update("saveMtnDistrict",params);
 		return code;
 	}
+
+	@Override
+	public Integer saveMtnBlock(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnBlock",params);
+		return code;
+	}
 	
 }

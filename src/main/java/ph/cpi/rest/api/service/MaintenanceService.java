@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
@@ -85,6 +86,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
@@ -154,4 +156,5 @@ public interface MaintenanceService {
 	public SaveMtnQuoteReasonResponse saveMtnQuoteReason(SaveMtnQuoteReasonRequest smqrr) throws SQLException;
 	public SaveMtnSpoilageReasonResponse saveMtnSpoilageReason(SaveMtnSpoilageReasonRequest smqrr) throws SQLException;
 	public SaveMtnDistrictResponse saveMtnDistrict(SaveMtnDistrictRequest smqrr) throws SQLException;
+	public SaveMtnBlockResponse saveMtnBlock(SaveMtnBlockRequest smqrr) throws SQLException;
 }
