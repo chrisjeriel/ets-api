@@ -50,8 +50,10 @@ import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
+import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -89,8 +91,10 @@ import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -365,12 +369,26 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnInsured(smir);
 	}
 	
+
+	@PostMapping(path="saveMtnTypeOfCession")
+	public @ResponseBody SaveMtnTypeOfCessionResponse saveMtnTypeOfCession(@RequestBody SaveMtnTypeOfCessionRequest smtocr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnTypeOfCession");
+		logger.info("SaveMtnTypeOfCessionRequest : " + smtocr.toString());
+		return maintenanceService.saveMtnTypeOfCession(smtocr);
+	}
 	
 	@GetMapping(path="retMtnInsuredLov")
 	public @ResponseBody RetMtnInsuredLovResponse retMtnInsuredLov(RetMtnInsuredLovRequest rmil) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retMtnInsuredLov");
 		logger.info("RetMtnInsuredLov : " + rmil.toString());
 		return maintenanceService.retMtnInsuredLov(rmil); 	
+	}
+	
+	@PostMapping(path="saveMtnIntermediary")
+	public @ResponseBody SaveMtnIntermediaryResponse saveMtnIntermediary(@RequestBody SaveMtnIntermediaryRequest smir) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnIntermediary");
+		logger.info("SaveMtnIntermediaryRequest : " + smir.toString());
+		return maintenanceService.saveMtnIntermediary(smir);
 	}
 	
 	@PostMapping(path="saveMtnAdviceWordings")

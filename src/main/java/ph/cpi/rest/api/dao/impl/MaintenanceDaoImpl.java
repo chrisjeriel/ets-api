@@ -311,6 +311,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public Integer saveMtnTypeOfCession(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnTypeOfCession",params);
+		return errorCode;
+	}
+	
+	@Override
 	public List<Insured> retMtnInsuredLov(HashMap<String, Object> params) throws SQLException {
 		List<Insured> list = sqlSession.selectList("retMtnInsuredLov",params);
 		return list;
@@ -323,11 +329,19 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public HashMap<String, Object> saveMtnIntermediary(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnIntermediary",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
 	public Integer saveMtnAdviceWordings(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer count = sqlSession.update("saveMtnAdvWord", params);
 		return count;
 	}
+
 
 	@Override
 	public HashMap<String, Object> saveMtnCedingCompany(HashMap<String, Object> params) throws SQLException {

@@ -33,6 +33,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingMap">
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
 		<result property="quoteId" 			column="QUOTE_ID"/>
+		<result property="lineCd" 			column="LINE_CD"/>
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
 		<result property="status" 			column="STATUS"/>

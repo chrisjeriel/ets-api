@@ -161,7 +161,9 @@
 		<result property="emailAdd" 		column="EMAIL_ADD"/> 
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="corpTag" 			column="CORP_TAG"/>
-		<result property="vatTag" 			column="VAT_TAG"/> 
+		<result property="corpTagDesc" 		column="CORP_TAG_DESC"/>
+		<result property="vatTag" 			column="VAT_TAG"/>
+		<result property="vatTagDesc" 		column="VAT_TAG_DESC"/> 
 		<result property="oldIntmId" 		column="OLD_INTM_ID"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
@@ -203,7 +205,16 @@
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(#{intmId , jdbcType=VARCHAR }, '', '', '', ''))
+			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(
+								#{intmId,jdbcType=INTEGER},
+								#{intmName,jdbcType=VARCHAR},
+								#{activeTag,jdbcType=VARCHAR},
+								#{corpTag,jdbcType=VARCHAR},
+								#{vatTag,jdbcType=VARCHAR},
+								#{address,jdbcType=VARCHAR},
+								#{contactNo,jdbcType=VARCHAR},
+								#{oldIntmId,jdbcType=VARCHAR},
+								 '', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
@@ -955,6 +966,29 @@
     			);
     	END;
     </update>
+
+	<update id="saveMtnTypeOfCession" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveTypeOfCession" item="saveToc">
+	    		MTN_CESSION_PKG.save_mtn_cession(
+	    			#{saveToc.cessionId, jdbcType=INTEGER},
+					#{saveToc.cessionAbbr, jdbcType=VARCHAR},
+					#{saveToc.description, jdbcType=VARCHAR},
+					#{saveToc.activeTag, jdbcType=VARCHAR},
+					#{saveToc.remarks, jdbcType=VARCHAR},
+					#{saveToc.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveToc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveToc.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveToc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteTypeOfCession" item="deleteToc">
+    			MTN_CESSION_PKG.del_mtn_cession(
+	    			#{deleteToc.cessionId,jdbcType=INTEGER}
+	    		);
+    		</foreach>
+    	END;
+    </update>
     
     <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
     	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}) total_count from dual
@@ -964,7 +998,34 @@
      	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
      </select>
      
-     <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
+     <update id="saveMtnIntermediary" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    			MTN_INTM_PKG.save_mtn_intm(
+    				#{intmId,jdbcType=INTEGER},
+    				#{intmIdOut,mode=OUT,jdbcType=INTEGER},
+					#{intmName,jdbcType=VARCHAR},
+					#{firstName,jdbcType=VARCHAR},
+					#{middleInitial,jdbcType=VARCHAR},
+					#{lastName,jdbcType=VARCHAR},
+					#{addrLine1,jdbcType=VARCHAR},
+					#{addrLine2,jdbcType=VARCHAR},
+					#{addrLine3,jdbcType=VARCHAR},
+					#{zipCd,jdbcType=VARCHAR},
+					#{contactNo,jdbcType=VARCHAR},
+					#{emailAdd,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{oldIntmId,jdbcType=INTEGER},
+					#{remarks,jdbcType=VARCHAR},
+					#{createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+	</update>
+	
+    <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
     	BEGIN
     		<foreach collection="deleteAdvWordList" item="del">
 	    			MTN_ADV_WORD_PKG.del_adv_word(
@@ -1078,8 +1139,8 @@
     		</foreach>
     	END;
     </update>
-    
-     <update id="saveMtnEndorsement" parameterType="java.util.Map">
+
+    <update id="saveMtnEndorsement" parameterType="java.util.Map">
      	BEGIN
      		<foreach collection="delEndt" item="endt">
      			MTN_ENDT_PKG.del_endt_code(#{endt.lineCd},	#{endt.endtCd});
@@ -1153,7 +1214,7 @@
 		<result property="updateDate" 			column="D_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="okDelete" 		    column="D_OK_DELETE"/>
 	</resultMap>
-	
+
 	<update id="saveMtnCatPeril" parameterType="java.util.Map">
     	BEGIN
     		<foreach collection="delCatPeril" item="delCat">
