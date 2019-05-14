@@ -333,4 +333,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return res;
 	}
 	
+	@Override
+	public Integer saveMtnEndorsement(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnEndorsement",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnPolicyWordings(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnPolicyWordings", params);
+		return res;
+	}
+	
 }

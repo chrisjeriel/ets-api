@@ -45,8 +45,10 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
@@ -84,8 +86,10 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -800,5 +804,34 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smqwResponse.setReturnCode(maintenanceDao.saveMtnQuoteWordings(saveMtnQuoteWordingsParams));
 		
 		return smqwResponse;
+	}
+
+	@Override
+	public SaveMtnEndorsementResponse saveMtnEndorsement(SaveMtnEndorsementRequest smer) throws SQLException {
+		SaveMtnEndorsementResponse smerResponse = new SaveMtnEndorsementResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveEndt", smer.getSaveEndorsement());
+		params.put("delEndt", smer.getDelEndorsement());
+		params.put("saveDeductibles", smer.getSaveDeductibles());
+		params.put("deleteDeductibles", smer.getDeleteDeductibles());
+		try{
+			smerResponse.setReturnCode(maintenanceDao.saveMtnEndorsement(params));
+		}catch (Exception ex) {
+			smerResponse.setReturnCode(0);
+			smerResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smerResponse;
+	}
+
+	@Override
+	public SaveMtnPolicyWordingsResponse saveMtnPolicyWordings(SaveMtnPolicyWordingsRequest smpwr) throws SQLException {
+		SaveMtnPolicyWordingsResponse smpwResponse = new SaveMtnPolicyWordingsResponse();
+		HashMap<String, Object> saveMtnPolicyWordingsParams = new HashMap<String, Object>();
+		saveMtnPolicyWordingsParams.put("savePW", smpwr.getSavePW());
+		saveMtnPolicyWordingsParams.put("deletePW",smpwr.getDeletePW());
+		smpwResponse.setReturnCode(maintenanceDao.saveMtnPolicyWordings(saveMtnPolicyWordingsParams));
+		
+		return smpwResponse;
 	}
 }
