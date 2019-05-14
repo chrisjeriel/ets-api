@@ -46,6 +46,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
@@ -84,6 +85,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
@@ -374,7 +376,7 @@ public class MaintenanceController {
 	@PostMapping(path="saveMtnAdviceWordings")
 	public @ResponseBody SaveMtnAdviceWordingsResponse saveMtnAdviceWordings(@RequestBody SaveMtnAdviceWordingsRequest smawr) throws SQLException {
 		logger.info("POST: /api/maintenance-service/saveMtnAdviceWordings");
-		logger.info("saveMtnAdviceWordings : " + smawr.toString());
+		logger.info("saveMtnAdviceWordingsRequest : " + smawr.toString());
 		return maintenanceService.saveMtnAdviceWordings(smawr);
 	}
 	
@@ -383,5 +385,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnEndorsement");
 		logger.info("SaveMtnEndorsementRequest : " + smer.toString());
 		return maintenanceService.saveMtnEndorsement(smer);
+	}
+	
+	@PostMapping(path="saveMtnCedingCompany")
+	public @ResponseBody SaveMtnCedingCompanyResponse saveMtnCedingCompany(@RequestBody SaveMtnCedingCompanyRequest smccr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCedingCompany");
+		logger.info("saveMtnCedingCompanyRequest : " + smccr.toString());
+		return maintenanceService.saveMtnCedingCompany(smccr);
 	}
 }

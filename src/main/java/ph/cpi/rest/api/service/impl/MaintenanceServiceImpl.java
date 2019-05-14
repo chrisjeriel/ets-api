@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
@@ -92,6 +93,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
@@ -918,5 +920,46 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smczResponse;
+	}
+	
+	@Override
+	public SaveMtnCedingCompanyResponse saveMtnCedingCompany(SaveMtnCedingCompanyRequest smccr) throws SQLException {
+		SaveMtnCedingCompanyResponse response = new SaveMtnCedingCompanyResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("cedingId", smccr.getCedingId());
+			params.put("cedingName", smccr.getCedingName());
+			params.put("cedingAbbr", smccr.getCedingAbbr());
+			params.put("addrLine1", smccr.getAddrLine1());
+			params.put("addrLine2", smccr.getAddrLine2());
+			params.put("addrLine3", smccr.getAddrLine3());
+			params.put("zipCd", smccr.getZipCd());
+			params.put("contactNo", smccr.getContactNo());
+			params.put("emailAdd", smccr.getEmailAdd());
+			params.put("bussTypeId", smccr.getBussTypeId());
+			params.put("tinNo", smccr.getTinNo());
+			params.put("activeTag", smccr.getActiveTag());
+			params.put("govtTag", smccr.getGovtTag());
+			params.put("oldCedingId", smccr.getOldCedingId());
+			params.put("membershipTag", smccr.getMembershipTag());
+			params.put("membershipDate", smccr.getMembershipDate());
+			params.put("terminationDate", smccr.getTerminationDate());
+			params.put("inactiveDate", smccr.getInactiveDate());
+			params.put("remarks", smccr.getRemarks());
+			params.put("createUser", smccr.getCreateUser());
+			params.put("createDate", smccr.getCreateDate());
+			params.put("updateUser", smccr.getUpdateUser());
+			params.put("updateDate", smccr.getUpdateDate());
+			params.put("saveCedingRepList", smccr.getSaveCedingRepList());
+			params.put("delCedingRepList", smccr.getDelCedingRepList());
+			HashMap<String, Object> res = maintenanceDao.saveMtnCedingCompany(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setOutCedingId((String) res.get("outCedingId"));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }
