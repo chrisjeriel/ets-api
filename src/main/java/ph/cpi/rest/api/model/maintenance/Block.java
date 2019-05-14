@@ -11,6 +11,7 @@ public class Block {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
 	public String getBlockCd() {
 		return blockCd;
@@ -60,11 +61,18 @@ public class Block {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
+	
 	@Override
 	public String toString() {
 		return "Block [blockCd=" + blockCd + ", blockDesc=" + blockDesc + ", activeTag=" + activeTag + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 	
 	

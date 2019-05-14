@@ -44,6 +44,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
@@ -87,6 +88,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
@@ -307,7 +309,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnQuoteWordingsResponse rmqwResponse = new RetrieveMtnQuoteWordingsResponse();
 		HashMap<String, Object> retrieveMtnQuoteWordingsParams = new HashMap<String, Object>();
 		retrieveMtnQuoteWordingsParams.put("lineCd", rmqwp.getLineCd());
-		retrieveMtnQuoteWordingsParams.put("type",rmqwp.getType());
+		retrieveMtnQuoteWordingsParams.put("wordType", rmqwp.getWordType());
 		rmqwResponse.setQuoteWordings(maintenanceDao.retrieveMtnQuoteWordings(retrieveMtnQuoteWordingsParams));
 		logger.info("retrieveMtnQuoteWordingsResponse :" + rmqwResponse.toString());
 
@@ -781,6 +783,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
 		
 		return rmilResponse;
+	}
+
+	@Override
+	public SaveMtnAdviceWordingsResponse saveMtnAdviceWordings(SaveMtnAdviceWordingsRequest smawr) throws SQLException {
+		SaveMtnAdviceWordingsResponse response = new SaveMtnAdviceWordingsResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveAdvWordList", smawr.getSaveAdvWordList());
+			params.put("deleteAdvWordList", smawr.getDeleteAdvWordList());
+			Integer res = maintenanceDao.saveMtnAdviceWordings(params);
+			response.setReturnCode(res);
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	@Override
