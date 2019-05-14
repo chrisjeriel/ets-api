@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public class Block {
 	private String blockCd; 
@@ -8,9 +8,9 @@ public class Block {
 	private String activeTag;   
 	private String remarks;
 	private String createUser;
-	private LocalDateTime createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private LocalDateTime updateDate;
+	private DateTime updateDate;
 	
 	public String getBlockCd() {
 		return blockCd;
@@ -42,10 +42,10 @@ public class Block {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public LocalDateTime getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(LocalDateTime createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -54,10 +54,10 @@ public class Block {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public LocalDateTime getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(LocalDateTime updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override

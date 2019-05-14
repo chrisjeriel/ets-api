@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
@@ -73,4 +74,11 @@ public interface MaintenanceDao {
 	public Integer retMtnInsuredLovCount(final HashMap<String, Object> params) throws SQLException;
 	
 	public Integer saveMtnEndorsement(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnSectionCover(final HashMap<String, Object> params) throws SQLException;
+	public List<QuoteStatusReason> retMtnQuoteReason(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer saveMtnQuoteReason(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnSpoilageReason(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnDistrict(final HashMap<String, Object> params) throws SQLException;
+	
 }

@@ -2,21 +2,21 @@ package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
 
-public class Spoil {
-	private String spoilCd;
+public class QuoteStatusReason {
+	private String reasonCd;
 	private String description;
-	private String activeTag;
 	private String remarks;
+	private String activeTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
-	public String getSpoilCd() {
-		return spoilCd;
+	public String getReasonCd() {
+		return reasonCd;
 	}
-	public void setSpoilCd(String spoilCd) {
-		this.spoilCd = spoilCd;
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
 	}
 	public String getDescription() {
 		return description;
@@ -24,17 +24,17 @@ public class Spoil {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getActiveTag() {
-		return activeTag;
-	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
-	}
 	public String getRemarks() {
 		return remarks;
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -68,10 +68,9 @@ public class Spoil {
 	}
 	@Override
 	public String toString() {
-		return "Spoil [spoilCd=" + spoilCd + ", description=" + description + ", activeTag=" + activeTag + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+		return "QuoteStatusReason [reasonCd=" + reasonCd + ", description=" + description + ", remarks=" + remarks
+				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
-	
 	
 }
