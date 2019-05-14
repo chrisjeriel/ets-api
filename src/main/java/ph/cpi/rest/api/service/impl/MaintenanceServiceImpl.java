@@ -55,6 +55,7 @@ import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
+import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
@@ -103,6 +104,7 @@ import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
+import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -563,6 +565,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmlcResponse.setLineClass(maintenanceDao.retrieveMntLineClass(retrieveMtnLineClassParams));
 		logger.info("retrieveMtnLineClassResponse : " + rmlcResponse.toString());
 		return rmlcResponse;
+	}
+	
+	@Override
+	public SaveMtnLineClassResponse saveMtnLineClass(SaveMtnLineClassRequest smlcr) throws SQLException {
+		SaveMtnLineClassResponse smlcrResponse = new SaveMtnLineClassResponse();
+		HashMap<String, Object> saveMtnLineClassParams = new HashMap<String, Object>();
+		saveMtnLineClassParams.put("saveLineClass", smlcr.getSaveLineClass());
+		saveMtnLineClassParams.put("deleteLineClass", smlcr.getDeleteLineClass());
+		smlcrResponse.setReturnCode(maintenanceDao.saveMtnLineClass(saveMtnLineClassParams));
+		logger.info("SaveMtnLineClassResponse : " + smlcrResponse.toString());
+		return smlcrResponse;
 	}
 
 	@Override
