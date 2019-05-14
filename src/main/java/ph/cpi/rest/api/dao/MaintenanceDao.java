@@ -11,6 +11,7 @@ import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
+import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -18,6 +19,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -71,5 +73,13 @@ public interface MaintenanceDao {
 	public List<Insured> retMtnInsuredLov(final HashMap<String, Object> params) throws SQLException;
 	public Integer retMtnInsuredLovCount(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnAdviceWordings(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnCurrency> retrieveMtnCurrencyListing(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnCurrency(final HashMap<String, Object> params) throws SQLException;	
+	public List<CurrencyRt> retrieveMtnCurrencyRt(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnCurrencyRt(final HashMap<String, Object> params) throws SQLException;	
 	public Integer saveMtnEndorsement(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnCatPeril(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnCrestaZone(final HashMap<String, Object> params) throws SQLException;
+	
+	
 }

@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
+import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -25,6 +26,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -328,9 +330,51 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 	
 	@Override
+	public List<MtnCurrency> retrieveMtnCurrencyListing(HashMap<String, Object> params) throws SQLException {
+		List<MtnCurrency> currencyList = sqlSession.selectList("retrieveMtnCurrencyList",params);
+		return currencyList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCurrency(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCurrency",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<CurrencyRt> retrieveMtnCurrencyRt(HashMap<String, Object> params) throws SQLException {
+		List<CurrencyRt> currencyRt = sqlSession.selectList("retrieveMtnCurrencyRt",params);
+		logger.info("retrieveMtnCurrencyRt DAOImpl : " + currencyRt);
+		return currencyRt;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCurrencyRt(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCurrencyRt",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public Integer saveMtnEndorsement(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("saveMtnEndorsement",params);
 		return code;
+
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCatPeril(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCatPeril",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnCrestaZone(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnCresta",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 	
 }

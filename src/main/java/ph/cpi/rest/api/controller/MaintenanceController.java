@@ -368,7 +368,7 @@ public class MaintenanceController {
 	public @ResponseBody RetMtnInsuredLovResponse retMtnInsuredLov(RetMtnInsuredLovRequest rmil) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retMtnInsuredLov");
 		logger.info("RetMtnInsuredLov : " + rmil.toString());
-		return maintenanceService.retMtnInsuredLov(rmil);
+		return maintenanceService.retMtnInsuredLov(rmil); 	
 	}
 	
 	@PostMapping(path="saveMtnAdviceWordings")
