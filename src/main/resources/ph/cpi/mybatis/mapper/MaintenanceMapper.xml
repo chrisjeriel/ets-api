@@ -316,9 +316,11 @@
 		<result property="endtText17" column="ENDT_TEXT17"/>
 		<result property="remarks" 	column="REMARKS"/>
 		<result property="createUser" column="CREATE_USER"/>
-		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 	column="OK_DELETE"/>
+		<association property="deductibles" resultMap="endt_ded"></association>
 	</resultMap>
 	
 	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
@@ -869,7 +871,9 @@
     		<foreach collection="deleteDeductibles" item="deleteD">
     			MTN_DEDUCTIBLES_PKG.del_mtn_deductibles(
 	    			#{deleteD.lineCd,jdbcType=VARCHAR},
-					#{deleteD.deductibleCd,jdbcType=VARCHAR}
+					#{deleteD.deductibleCd,jdbcType=VARCHAR},
+					#{deleteD.coverCd,jdbcType=INTEGER},
+					#{deleteD.endtCd,jdbcType=VARCHAR}
 	    		);
     		</foreach>
     	END;
@@ -979,4 +983,81 @@
     		</foreach>
     	END;
     </update>
+    
+    
+     <update id="saveMtnEndorsement" parameterType="java.util.Map">
+     	BEGIN
+     		<foreach collection="delEndt" item="endt">
+     			MTN_ENDT_PKG.del_endt_code(#{endt.lineCd},	#{endt.endtCd});
+     		</foreach>
+     		<foreach collection="saveEndt" item="endt">
+     			MTN_ENDT_PKG.save_endt_code(
+     				#{endt.lineCd, jdbcType=VARCHAR},	#{endt.endtCd, jdbcType=VARCHAR},	#{endt.endtTitle, jdbcType=VARCHAR}, #{endt.description, jdbcType=VARCHAR},	
+     				#{endt.defaultTag, jdbcType=VARCHAR},	#{endt.activeTag, jdbcType=VARCHAR},	#{endt.endtText01, jdbcType=VARCHAR},	#{endt.endtText02, jdbcType=VARCHAR},	
+     				#{endt.endtText03, jdbcType=VARCHAR},	#{endt.endtText04, jdbcType=VARCHAR},	#{endt.endtText05, jdbcType=VARCHAR},	#{endt.endtText06, jdbcType=VARCHAR},	
+     				#{endt.endtText07, jdbcType=VARCHAR},	#{endt.endtText08, jdbcType=VARCHAR},	#{endt.endtText09, jdbcType=VARCHAR},	#{endt.endtText10, jdbcType=VARCHAR},	
+     				#{endt.endtText11, jdbcType=VARCHAR},	#{endt.endtText12, jdbcType=VARCHAR},	#{endt.endtText13, jdbcType=VARCHAR},	#{endt.endtText14, jdbcType=VARCHAR},	
+     				#{endt.endtText15, jdbcType=VARCHAR},	#{endt.endtText16, jdbcType=VARCHAR},	#{endt.endtText17, jdbcType=VARCHAR},	#{endt.remarks, jdbcType=VARCHAR}, 
+     				#{endt.createUser},	CAST(to_timestamp(#{endt.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),	#{endt.updateUser},	
+     				CAST(to_timestamp(#{endt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+     			);
+     		</foreach>
+     		
+     		
+    		<foreach collection="deleteDeductibles" item="deleteD">
+    			MTN_DEDUCTIBLES_PKG.del_mtn_deductibles(
+	    			#{deleteD.lineCd,jdbcType=VARCHAR},
+					#{deleteD.deductibleCd,jdbcType=VARCHAR},
+					#{deleteD.coverCd,jdbcType=INTEGER},
+					#{deleteD.endtCd,jdbcType=VARCHAR}
+	    		);
+    		</foreach>
+     		<foreach collection="saveDeductibles" item="saveD">
+	    		MTN_DEDUCTIBLES_PKG.save_mtn_deductibles(
+	    			#{saveD.lineCd,jdbcType=VARCHAR},
+					#{saveD.coverCd,jdbcType=INTEGER},
+					#{saveD.endtCd,jdbcType=VARCHAR},
+					#{saveD.deductibleCd,jdbcType=VARCHAR},
+					#{saveD.deductibleTitle,jdbcType=VARCHAR},
+					#{saveD.deductibleText,jdbcType=VARCHAR},
+					#{saveD.deductibleType,jdbcType=VARCHAR},
+					#{saveD.deductibleRate,jdbcType=INTEGER},
+					#{saveD.deductibleAmt,jdbcType=INTEGER},
+					#{saveD.minAmt,jdbcType=INTEGER},
+					#{saveD.maxAmt,jdbcType=INTEGER},
+					#{saveD.activeTag,jdbcType=VARCHAR},
+					#{saveD.defaultTag,jdbcType=VARCHAR},
+					#{saveD.remarks,jdbcType=VARCHAR},
+					#{saveD.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveD.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveD.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveD.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+     	END;
+     </update>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.Deductibles" id="endt_ded">
+		<result property="lineCd" 				column="LINE_CD"/>
+		<result property="coverCd"	 			column="COVER_CD"/>
+		<result property="endtCd" 				column="ENDT_CD"/>
+		<result property="deductibleCd" 		column="DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" 		column="DEDUCTIBLE_TITLE"/>
+		<result property="deductibleType" 		column="DEDUCTIBLE_TYPE"/>
+		<result property="typeDesc" 			column="TYPE_DESC"/>
+		<result property="deductibleRate" 		column="DEDUCTIBLE_RATE"/>
+		<result property="deductibleAmt" 		column="DEDUCTIBLE_AMT"/>
+		<result property="minAmt" 				column="MIN_AMT"/>
+		<result property="maxAmt" 				column="MAX_AMT"/>
+		<result property="deductibleText" 		column="DEDUCTIBLE_TEXT"/>
+		<result property="activeTag" 			column="D_ACTIVE_TAG"/>
+		<result property="defaultTag" 			column="D_DEFAULT_TAG"/>
+		<result property="remarks" 				column="D_REMARKS"/>
+		<result property="createUser" 			column="D_CREATE_USER"/>
+		<result property="createDate" 			column="D_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 			column="D_UPDATE_USER"/>
+		<result property="updateDate" 			column="D_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 		    column="D_OK_DELETE"/>
+	</resultMap>
+	
 </mapper>
