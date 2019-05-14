@@ -83,6 +83,7 @@ public interface MaintenanceDao {
 	public HashMap<String, Object> saveMtnCrestaZone(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnCedingCompany(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnTypeOfCession(final HashMap<String, Object> params) throws SQLException;	
+	public Integer saveMtnObject(final HashMap<String, Object> params) throws SQLException;
 
 	public HashMap<String, Object> saveMtnIntermediary(final HashMap<String, Object> params) throws SQLException;
 }

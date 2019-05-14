@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
@@ -95,6 +96,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -188,6 +190,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnObject");
 		logger.info("RetrieveMtnObjectRequest : " + rmop.toString());
 		return maintenanceService.retrieveMtnObject(rmop);
+	}
+	
+	@PostMapping(path="saveMtnObject")
+	public @ResponseBody SaveMtnObjectResponse saveMtnObject(@RequestBody SaveMtnObjectRequest smor) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnObject");
+		logger.info("SaveMtnObject : " + smor.toString());
+		return maintenanceService.saveMtnObject(smor);
 	}
 	
 	@GetMapping(path="retrieveMtnQuotationWordings")

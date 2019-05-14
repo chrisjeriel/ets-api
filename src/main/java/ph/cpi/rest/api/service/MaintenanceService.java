@@ -51,6 +51,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
@@ -100,6 +101,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 
@@ -164,4 +166,5 @@ public interface MaintenanceService {
 	public SaveMtnCrestaZoneResponse saveMtnCrestaZone (SaveMtnCrestaZoneRequest smczr) throws SQLException;
 	public SaveMtnCedingCompanyResponse saveMtnCedingCompany(SaveMtnCedingCompanyRequest smccr) throws SQLException;
 	public SaveMtnIntermediaryResponse saveMtnIntermediary(SaveMtnIntermediaryRequest smir) throws SQLException;
+	public SaveMtnObjectResponse saveMtnObject(SaveMtnObjectRequest smor) throws SQLException;
 }

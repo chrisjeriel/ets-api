@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
@@ -106,6 +107,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -973,6 +975,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smcpResponse;
+	}
+	
+	@Override
+	public SaveMtnObjectResponse saveMtnObject(SaveMtnObjectRequest smor) throws SQLException {
+		SaveMtnObjectResponse smoResponse = new SaveMtnObjectResponse();
+		try {
+			HashMap<String, Object> saveMtnObjectParams = new HashMap<String, Object>();
+			saveMtnObjectParams.put("deleteObject", smor.getDeleteObject());
+			saveMtnObjectParams.put("saveObject", smor.getSaveObject());
+			smoResponse.setReturnCode(maintenanceDao.saveMtnObject(saveMtnObjectParams));
+			logger.info("SaveMtnLineObjectResponse : " + smoResponse.toString());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			smoResponse.setReturnCode(0);
+			smoResponse.getErrorList().add(new Error("SQLException", "Please check the field values."));
+		}
+		return smoResponse;
 	}
 
 	@Override
