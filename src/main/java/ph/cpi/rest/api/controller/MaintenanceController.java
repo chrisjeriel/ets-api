@@ -49,6 +49,7 @@ import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -86,6 +87,7 @@ import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -374,5 +376,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnAdviceWordings");
 		logger.info("saveMtnAdviceWordings : " + smawr.toString());
 		return maintenanceService.saveMtnAdviceWordings(smawr);
+	}
+	
+	@PostMapping(path="saveMtnQuoteWordings")
+	public @ResponseBody SaveMtnQuoteWordingsResponse saveMtnQuoteWordings(@RequestBody SaveMtnQuoteWordingsRequest smqwr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnQuoteWordings");
+		logger.info("SaveMtnQuoteWordingsRequest : " + smqwr.toString());
+		return maintenanceService.saveMtnQuoteWordings(smqwr);
 	}
 }

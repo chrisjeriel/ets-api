@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -85,6 +86,7 @@ import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -787,5 +789,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			e.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public SaveMtnQuoteWordingsResponse saveMtnQuoteWordings(SaveMtnQuoteWordingsRequest smqwr) throws SQLException {
+		SaveMtnQuoteWordingsResponse smqwResponse = new SaveMtnQuoteWordingsResponse();
+		HashMap<String, Object> saveMtnQuoteWordingsParams = new HashMap<String, Object>();
+		saveMtnQuoteWordingsParams.put("saveQW", smqwr.getSaveQW());
+		saveMtnQuoteWordingsParams.put("deleteQW",smqwr.getDeleteQW());
+		smqwResponse.setReturnCode(maintenanceDao.saveMtnQuoteWordings(saveMtnQuoteWordingsParams));
+		
+		return smqwResponse;
 	}
 }

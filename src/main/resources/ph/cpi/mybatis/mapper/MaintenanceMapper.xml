@@ -979,4 +979,30 @@
     		</foreach>
     	END;
     </update>
+    
+    <update id="saveMtnQuoteWordings" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteQW" item="del">
+	    			MTN_QUOTE_WORDINGS_PKG.del_qu_word(
+			    		#{del.wordingId}
+			    	);
+    		</foreach>
+    		<foreach collection="saveQW" item="save">
+		    		MTN_QUOTE_WORDINGS_PKG.save_qu_word(
+		    				#{save.lineCd, jdbcType=VARCHAR},
+		    				#{save.wordingId, jdbcType=INTEGER},		    				
+		    				#{save.wording, jdbcType=VARCHAR},
+		    				#{save.wordType, jdbcType=VARCHAR},
+		    				#{save.activeTag, jdbcType=VARCHAR},
+		    				#{save.defaultTag, jdbcType=VARCHAR},
+		    				#{save.ocTag, jdbcType=VARCHAR},
+		    				#{save.remarks, jdbcType=VARCHAR},
+							#{save.createUser,jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							#{save.updateUser,jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    			);
+    		</foreach>
+    	END;
+    </update>
 </mapper>
