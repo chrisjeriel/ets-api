@@ -979,7 +979,7 @@
 		BEGIN
 			POL_WORDINGS_PKG.save_pol_wordings(
 					#{policyId, jdbcType=INTEGER},
-					#{polWordings.wordingCd, jdbcType=VARCHAR},
+					<!-- #{polWordings.wordingCd, jdbcType=VARCHAR}, -->
 					#{polWordings.polwText01, jdbcType=VARCHAR},
 					#{polWordings.polwText02, jdbcType=VARCHAR},
 					#{polWordings.polwText03, jdbcType=VARCHAR},
