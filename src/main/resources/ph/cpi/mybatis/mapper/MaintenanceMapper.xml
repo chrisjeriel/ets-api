@@ -73,6 +73,8 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 	    column="OK_DELETE"/>
+		<association property="deductibles" resultMap="endt_ded"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Cession" id="retrieveTypeOfCessionMap">
@@ -356,9 +358,10 @@
 		<result property="activeTag" column="ACTIVE_TAG" />
 		<result property="remarks" column="REMARKS" />
 		<result property="createUser" column="CREATE_USER" />
-		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER" />
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="DIS_OK_DELETE"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.City" id="city">
@@ -568,9 +571,10 @@
 		<result property="activeTag" 	column="ACTIVE_TAG"/>   
 		<result property="remarks" 		column="REMARKS"/>
 		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate" 	column="CREATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate" 	column="UPDATE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     	<result property="okDelete"		column="OK_DELETE"/>
      </resultMap>
      
      <select id="retrieveMtnBlock" resultMap="maintenanceRegionMap" parameterType="java.util.Map">
@@ -580,11 +584,13 @@
      <resultMap type="ph.cpi.rest.api.model.maintenance.Spoil" id="spoilMap">
      	<result property="spoilCd"			column="SPOIL_CD"/>
 		<result property="description"		column="DESCRIPTION"/>
+		<result property="activeTag"		column="ACTIVE_TAG"/>
 		<result property="remarks"			column="REMARKS"/>
 		<result property="createUser"		column="CREATE_USER"/>
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
      </resultMap>
      
      
@@ -928,6 +934,7 @@
     
     <select id="retrieveMtnSpoilageReason" resultMap="spoilMap" parameterType="java.util.Map">
     	SELECT * FROM MTN_SPOIL_PKG.ret_mtn_spoil(#{spoilCd, jdbcType=VARCHAR},
+    											  #{activeTag, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
@@ -1360,4 +1367,177 @@
     	END;
     </update>
 
+	<update id="saveMtnSectionCover" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_cover_cd	MTN_SECTION_COVERS.COVER_CD%TYPE;
+		BEGIN
+			<foreach collection="addSec" item="sec">
+				MTN_SEC_COVER_PKG.save_mtn_sec_cov(
+					#{sec.lineCd,jdbcType=VARCHAR},v_cover_cd,#{sec.coverCdAbbr,jdbcType=VARCHAR},
+                                        #{sec.coverName,jdbcType=VARCHAR},#{sec.activeTag,jdbcType=VARCHAR},#{sec.section,jdbcType=VARCHAR},
+                                        #{sec.sortSeq,jdbcType=VARCHAR},#{sec.defaultTag,jdbcType=VARCHAR},#{sec.bulletNo,jdbcType=VARCHAR},
+                                        #{sec.addSi,jdbcType=VARCHAR},#{sec.remarks,jdbcType=VARCHAR},#{sec.createUser,jdbcType=VARCHAR},
+                                        CAST(to_timestamp(#{sec.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                        #{sec.updateUser,jdbcType=VARCHAR},
+                                        CAST(to_timestamp(#{sec.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+                                        
+				);
+				<foreach collection="sec.deductibles" item="saveD">
+		    		MTN_DEDUCTIBLES_PKG.save_mtn_deductibles(
+		    			#{saveD.lineCd,jdbcType=VARCHAR},
+						v_cover_cd,
+						#{saveD.endtCd,jdbcType=VARCHAR},
+						#{saveD.deductibleCd,jdbcType=VARCHAR},
+						#{saveD.deductibleTitle,jdbcType=VARCHAR},
+						#{saveD.deductibleText,jdbcType=VARCHAR},
+						#{saveD.deductibleType,jdbcType=VARCHAR},
+						#{saveD.deductibleRate,jdbcType=INTEGER},
+						#{saveD.deductibleAmt,jdbcType=INTEGER},
+						#{saveD.minAmt,jdbcType=INTEGER},
+						#{saveD.maxAmt,jdbcType=INTEGER},
+						#{saveD.activeTag,jdbcType=VARCHAR},
+						#{saveD.defaultTag,jdbcType=VARCHAR},
+						#{saveD.remarks,jdbcType=VARCHAR},
+						#{saveD.createUser,jdbcType=VARCHAR},
+						CAST(to_timestamp(#{saveD.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{saveD.updateUser,jdbcType=VARCHAR},
+						CAST(to_timestamp(#{saveD.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+	    		</foreach>
+			</foreach>
+			
+			<foreach collection="saveSec" item="sec">
+				MTN_SEC_COVER_PKG.save_mtn_sec_cov(
+					#{sec.lineCd,jdbcType=VARCHAR},#{sec.coverCd,jdbcType=VARCHAR},#{sec.coverCdAbbr,jdbcType=VARCHAR},
+                                        #{sec.coverName,jdbcType=VARCHAR},#{sec.activeTag,jdbcType=VARCHAR},#{sec.section,jdbcType=VARCHAR},
+                                        #{sec.sortSeq,jdbcType=VARCHAR},#{sec.defaultTag,jdbcType=VARCHAR},#{sec.bulletNo,jdbcType=VARCHAR},
+                                        #{sec.addSi,jdbcType=VARCHAR},#{sec.remarks,jdbcType=VARCHAR},#{sec.createUser,jdbcType=VARCHAR},
+                                        CAST(to_timestamp(#{sec.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                        #{sec.updateUser,jdbcType=VARCHAR},
+                                        CAST(to_timestamp(#{sec.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+                                        
+				);
+			</foreach>
+			<foreach collection="delSec" item="sec">
+				MTN_SEC_COVER_PKG.del_mtn_sec_cov(
+					#{sec.lineCd,jdbcType=VARCHAR},
+					#{sec.coverCd,jdbcType=VARCHAR}
+				);
+			</foreach>
+			<foreach collection="deleteDeductibles" item="deleteD">
+    			MTN_DEDUCTIBLES_PKG.del_mtn_deductibles(
+	    			#{deleteD.lineCd,jdbcType=VARCHAR},
+					#{deleteD.deductibleCd,jdbcType=VARCHAR},
+					#{deleteD.coverCd,jdbcType=INTEGER},
+					#{deleteD.endtCd,jdbcType=VARCHAR}
+	    		);
+    		</foreach>
+     		<foreach collection="saveDeductibles" item="saveD">
+	    		MTN_DEDUCTIBLES_PKG.save_mtn_deductibles(
+	    			#{saveD.lineCd,jdbcType=VARCHAR},
+					#{saveD.coverCd,jdbcType=INTEGER},
+					#{saveD.endtCd,jdbcType=VARCHAR},
+					#{saveD.deductibleCd,jdbcType=VARCHAR},
+					#{saveD.deductibleTitle,jdbcType=VARCHAR},
+					#{saveD.deductibleText,jdbcType=VARCHAR},
+					#{saveD.deductibleType,jdbcType=VARCHAR},
+					#{saveD.deductibleRate,jdbcType=INTEGER},
+					#{saveD.deductibleAmt,jdbcType=INTEGER},
+					#{saveD.minAmt,jdbcType=INTEGER},
+					#{saveD.maxAmt,jdbcType=INTEGER},
+					#{saveD.activeTag,jdbcType=VARCHAR},
+					#{saveD.defaultTag,jdbcType=VARCHAR},
+					#{saveD.remarks,jdbcType=VARCHAR},
+					#{saveD.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveD.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{saveD.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{saveD.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.QuoteStatusReason" id="quoteStatusReasonMap">
+		<result property="reasonCd" column="REASON_CD"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="OK_DELETE"/>
+	</resultMap>
+	
+	<select id="retMtnQuoteReason" resultMap="quoteStatusReasonMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_QUOTE_REASON_PKG.ret_mtn_qu_reason(#{reasonCd, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
+	<update id="saveMtnQuoteReason" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delQuReason" item="reason">
+				MTN_QUOTE_REASON_PKG.del_mtn_qu_reason(#{reason.reasonCd});
+			</foreach>
+			<foreach collection="saveQuReason" item="reason">
+				MTN_QUOTE_REASON_PKG.save_mtn_qu_reason(#{reason.reasonCd,jdbcType=VARCHAR},#{reason.description,jdbcType=VARCHAR},
+														#{reason.remarks,jdbcType=VARCHAR},#{reason.activeTag,jdbcType=VARCHAR},
+														#{reason.createUser,jdbcType=VARCHAR},
+														CAST(to_timestamp(#{reason.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{reason.updateUser,jdbcType=VARCHAR},
+														CAST(to_timestamp(#{reason.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnSpoilageReason" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delSpoilReason" item="reason">
+				MTN_SPOIL_PKG.del_mtn_spoil(#{reason.spoilCd});
+			</foreach>
+			<foreach collection="saveSpoilReason" item="reason">
+				MTN_SPOIL_PKG.save_mtn_spoil(#{reason.spoilCd,jdbcType=VARCHAR},#{reason.description,jdbcType=VARCHAR},
+														#{reason.remarks,jdbcType=VARCHAR},#{reason.activeTag,jdbcType=VARCHAR},
+														#{reason.createUser,jdbcType=VARCHAR},
+														CAST(to_timestamp(#{reason.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{reason.updateUser,jdbcType=VARCHAR},
+														CAST(to_timestamp(#{reason.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnDistrict">
+		BEGIN
+			<foreach collection="saveDistrict" item="district">
+				MTN_DISTRICT_PKG.save_mtn_district(
+					#{district.districtCd},#{district.districtDesc,jdbcType=VARCHAR},#{regionCd},#{provinceCd},
+					#{cityCd},#{district.activeTag},#{district.remarks,jdbcType=VARCHAR},#{district.createUser},
+					CAST(to_timestamp(#{district.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{district.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{district.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			<foreach collection="delDistrict" item="district">
+				MTN_DISTRICT_PKG.del_mtn_district(#{district.districtCd},#{regionCd},#{provinceCd},#{cityCd});
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnBlock">
+		BEGIN
+			<foreach collection="saveBlock" item="block">
+				MTN_BLOCK_PKG.save_mtn_block(
+					#{block.blockCd},#{block.blockDesc,jdbcType=VARCHAR},#{districtCd},#{regionCd},#{provinceCd},
+					#{cityCd},#{block.activeTag},#{block.remarks,jdbcType=VARCHAR},#{block.createUser},
+					CAST(to_timestamp(#{block.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{block.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{block.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			<foreach collection="delBlock" item="block">
+				MTN_BLOCK_PKG.del_mtn_block(#{block.blockCd},#{districtCd},#{regionCd},#{provinceCd},#{cityCd});
+			</foreach>
+		END;
+	</update>
+	
+	
 </mapper>

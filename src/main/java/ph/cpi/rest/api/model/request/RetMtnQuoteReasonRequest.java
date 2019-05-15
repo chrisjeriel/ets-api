@@ -3,16 +3,16 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnSpoilageReasonRequest {
-	private String spoilCd;
+public class RetMtnQuoteReasonRequest {
+	private String reasonCd;
 	private String activeTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getSpoilCd() {
-		return spoilCd;
+	public String getReasonCd() {
+		return reasonCd;
 	}
-	public void setSpoilCd(String spoilCd) {
-		this.spoilCd = spoilCd;
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -34,7 +34,8 @@ public class RetrieveMtnSpoilageReasonRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnSpoilageReasonRequest [spoilCd=" + spoilCd + ", activeTag=" + activeTag
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetMtnQuoteReasonRequest [reasonCd=" + reasonCd + ", activeTag=" + activeTag + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 }
