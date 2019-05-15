@@ -5,6 +5,13 @@ public class Message {
 	private String messageCode;
 	private String message;
 	
+	
+	public Message(String messageCode, String message) {
+		super();
+		this.messageCode = messageCode;
+		this.message = message;
+	}
+	
 	public String getMessageCode() {
 		return messageCode;
 	}

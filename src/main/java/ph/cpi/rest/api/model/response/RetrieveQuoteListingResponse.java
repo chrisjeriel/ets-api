@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
@@ -14,6 +15,10 @@ public class RetrieveQuoteListingResponse extends Response{
 	private SortResponse sortResponse;
 	
 	public List<Quotation> getQuotationList() {
+		if (quotationList == null) {
+			quotationList = new ArrayList<Quotation>();
+		}
+		
 		return quotationList;
 	}
 	public void setQuotationList(List<Quotation> quotationList) {
