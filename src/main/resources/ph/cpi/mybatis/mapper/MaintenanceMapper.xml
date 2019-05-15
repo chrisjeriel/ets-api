@@ -885,7 +885,7 @@
     			);
     		</foreach>
     		<foreach collection="deleteLineClass" item="lineClass">
-    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineClassCd});
+    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineCd}, #{lineClass.lineClassCd});
     		</foreach>
     	END;
     </update>

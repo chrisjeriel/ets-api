@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 public class Object_ {
 	private String lineCd;
 	private String lineDesc;
-	private Integer objectId ;
+	private String objectId ;
 	private String description;
 	private String activeTag;
 	private String remarks;
@@ -28,10 +28,10 @@ public class Object_ {
 	public void setLineDesc(String lineDesc) {
 		this.lineDesc = lineDesc;
 	}
-	public Integer getObjectId() {
+	public String getObjectId() {
 		return objectId;
 	}
-	public void setObjectId(Integer objectId) {
+	public void setObjectId(String objectId) {
 		this.objectId = objectId;
 	}
 	public String getDescription() {

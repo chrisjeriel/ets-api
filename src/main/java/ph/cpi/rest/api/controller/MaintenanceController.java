@@ -46,6 +46,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
@@ -89,6 +90,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
@@ -336,6 +338,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCATPeril");
 		logger.info("RetrieveMtnCATPerilResponse : " + rmcatpr.toString());
 		return maintenanceService.retrieveMtnCATPeril(rmcatpr);
+	}
+	
+	@PostMapping(path="saveMtnCatPeril")
+	public @ResponseBody SaveMtnCatPerilResponse saveMtnCatPeril(@RequestBody SaveMtnCatPerilRequest smcpr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCatPeril");
+		logger.info("SaveMtnCatPeril : " + smcpr.toString());
+		return maintenanceService.saveMtnCatPeril(smcpr);
 	}
 	
 	@GetMapping(path="retrieveMtnCharges")
