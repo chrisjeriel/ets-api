@@ -825,9 +825,12 @@
      <resultMap type="ph.cpi.rest.api.model.maintenance.MtnCharges" id="chargesMap">
 		<result property="chargeCd"				column="CHARGE_CD"/>
 		<result property="chargeDesc"			column="CHARGE_DESC"/>
+		<result property="chargeType"			column="CHARGE_TYPE"/>
+		<result property="premRt"				column="PREM_RT"/>
 		<result property="defaultAmt"			column="DEFAULT_AMT"/>
 		<result property="activeTag"			column="ACTIVE_TAG"/> 
 		<result property="remarks"				column="REMARKS"/>
+		<result property="deleteTag"			column="DELETE_TAG"/>
 		<result property="createUser"			column="CREATE_USER"/>
 		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	column="UPDATE_USER"/>
