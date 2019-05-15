@@ -851,4 +851,30 @@
     	END;
     </update>
     
+     <update id="saveMtnRegion" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveRegion" item="region">
+	    		MTN_REGION_PKG.save_mtn_region(
+	    			#{region.regionCd,jdbcType=VARCHAR},
+			        #{region.description,jdbcType=VARCHAR},
+			        #{region.activeTag,jdbcType=VARCHAR},
+			        #{region.remarks,jdbcType=VARCHAR},
+			        #{region.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{region.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{region.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{region.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteRegion" item="regionDel">
+    			MTN_REGION_PKG.del_mtn_region(#{regionDel.regionCd,jdbcType=VARCHAR});
+    		</foreach>
+    	END;
+    </update>
+    
+    
+    
+    
+    
+    
+    
 </mapper>

@@ -16,6 +16,12 @@ public class Region {
 	private String updateUser;
 	private DateTime updateDate;
 	private Province province;
+	
+	
+	
+	
+	
+	
 	public Integer getRegionCd() {
 		return regionCd;
 	}

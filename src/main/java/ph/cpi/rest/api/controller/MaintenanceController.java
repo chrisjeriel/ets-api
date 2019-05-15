@@ -44,6 +44,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
@@ -76,6 +77,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -328,5 +330,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnDeductibles");
 		logger.info("SaveMtnDeductiblesRequest : " + smdr.toString());
 		return maintenanceService.saveMtnDeductibles(smdr);
+	}
+	
+	@PostMapping(path="saveMtnRegion")
+	public @ResponseBody SaveMtnRegionResponse saveMtnRegion(@RequestBody SaveMtnRegionRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRegion");
+		logger.info("SaveRegionRequest : " + smrr.toString());
+		return maintenanceService.saveMtnRegion(smrr);
 	}
 }
