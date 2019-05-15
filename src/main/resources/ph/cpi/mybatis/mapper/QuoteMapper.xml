@@ -33,6 +33,7 @@
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="retrieveQuoteListingMap">
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
 		<result property="quoteId" 			column="QUOTE_ID"/>
+		<result property="lineCd" 			column="LINE_CD"/>
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
 		<result property="status" 			column="STATUS"/>
@@ -1115,9 +1116,9 @@
 			   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   <foreach collection="alopDetails" item="alopDetails">
 		   	   QU_ALOP_PKG.save_qu_alop(#{quoteId},#{alopDetails.optionId, jdbcType=VARCHAR},#{alopDetails.annSi},#{alopDetails.maxIndemPdSi},
-			   CAST(to_timestamp(#{alopDetails.issueDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-			   CAST(to_timestamp(#{alopDetails.expiryDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.maxIndemPd},
-			   CAST(to_timestamp(#{alopDetails.indemFromDate, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.timeExc},#{alopDetails.repInterval},#{alopDetails.createUserAlop},
+			   CAST(to_timestamp(#{alopDetails.issueDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   CAST(to_timestamp(#{alopDetails.expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.maxIndemPd},
+			   CAST(to_timestamp(#{alopDetails.indemFromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.timeExc},#{alopDetails.repInterval},#{alopDetails.createUserAlop},
 			   CAST(to_timestamp(#{alopDetails.createDateAlop}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{alopDetails.updateUserAlop},
 			   CAST(to_timestamp(#{alopDetails.updateDateAlop}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   </foreach>
@@ -1561,7 +1562,7 @@
 		   	   </foreach>
 		   	   <foreach collection="quoteOption.deductiblesList" item="deductible">
 			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
-			   			#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   			#{quoteId},v_option_id,#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
 			   		);
 				</foreach>
 		 </foreach>

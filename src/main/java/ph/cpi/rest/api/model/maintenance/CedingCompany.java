@@ -14,6 +14,8 @@ public class CedingCompany {
 	private String zipCd;
 	private String address;
 	private String contactNo;
+	private Integer bussTypeId;
+	private String tinNo;
 	private String emailAdd;
 	private String activeTag;
 	private String govtTag;
@@ -82,6 +84,18 @@ public class CedingCompany {
 	}
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
+	}
+	public Integer getBussTypeId() {
+		return bussTypeId;
+	}
+	public void setBussTypeId(Integer bussTypeId) {
+		this.bussTypeId = bussTypeId;
+	}
+	public String getTinNo() {
+		return tinNo;
+	}
+	public void setTinNo(String tinNo) {
+		this.tinNo = tinNo;
 	}
 	public String getEmailAdd() {
 		return emailAdd;
@@ -161,26 +175,22 @@ public class CedingCompany {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	
 	public List<CedingRepresentative> getCedingRepresentative() {
 		return cedingRepresentative;
 	}
 	public void setCedingRepresentative(List<CedingRepresentative> cedingRepresentative) {
 		this.cedingRepresentative = cedingRepresentative;
 	}
+	
 	@Override
 	public String toString() {
 		return "CedingCompany [cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr
 				+ ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd="
-				+ zipCd + ", address=" + address + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd
-				+ ", activeTag=" + activeTag + ", govtTag=" + govtTag + ", oldCedingId=" + oldCedingId
-				+ ", membershipTag=" + membershipTag + ", membershipDate=" + membershipDate + ", terminationDate="
-				+ terminationDate + ", inactiveDate=" + inactiveDate + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", cedingRepresentative=" + cedingRepresentative + "]";
+				+ zipCd + ", address=" + address + ", contactNo=" + contactNo + ", bussTypeId=" + bussTypeId
+				+ ", tinNo=" + tinNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", govtTag=" + govtTag
+				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
+				+ membershipDate + ", terminationDate=" + terminationDate + ", inactiveDate=" + inactiveDate
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", cedingRepresentative=" + cedingRepresentative + "]";
 	}
-	
-	
-	
 }

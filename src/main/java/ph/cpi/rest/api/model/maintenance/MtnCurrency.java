@@ -1,38 +1,29 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
 
-public class Object_ {
-	private String lineCd;
-	private String lineDesc;
-	private Integer objectId ;
+public class MtnCurrency {
+	private String currencyCd;
+	private String currencyWord;
 	private String description;
-	private String activeTag;
 	private String remarks;
+	private String activeTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private List<CATPeril> catPerilList;
-	public String getLineCd() {
-		return lineCd;
+	private String okDelete;
+	public String getCurrencyCd() {
+		return currencyCd;
 	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
 	}
-	public String getLineDesc() {
-		return lineDesc;
+	public String getCurrencyWord() {
+		return currencyWord;
 	}
-	public void setLineDesc(String lineDesc) {
-		this.lineDesc = lineDesc;
-	}
-	public Integer getObjectId() {
-		return objectId;
-	}
-	public void setObjectId(Integer objectId) {
-		this.objectId = objectId;
+	public void setCurrencyWord(String currencyWord) {
+		this.currencyWord = currencyWord;
 	}
 	public String getDescription() {
 		return description;
@@ -40,17 +31,17 @@ public class Object_ {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getActiveTag() {
-		return activeTag;
-	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
-	}
 	public String getRemarks() {
 		return remarks;
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -76,18 +67,17 @@ public class Object_ {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<CATPeril> getCatPerilList() {
-		return catPerilList;
+	public String getOkDelete() {
+		return okDelete;
 	}
-	public void setCatPerilList(List<CATPeril> catPerilList) {
-		this.catPerilList = catPerilList;
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
-		return "Object_ [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", objectId=" + objectId + ", description="
-				+ description + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser
+		return "MtnCurrency [currencyCd=" + currencyCd + ", currencyWord=" + currencyWord + ", description="
+				+ description + ", remarks=" + remarks + ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", catPerilList=" + catPerilList + "]";
+				+ ", okDelete=" + okDelete + "]";
 	}
-	
 }

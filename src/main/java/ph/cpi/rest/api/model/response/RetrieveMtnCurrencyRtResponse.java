@@ -3,20 +3,20 @@ package ph.cpi.rest.api.model.response;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.Intermediary;
+import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 
-public class RetrieveMtnIntermediaryResponse extends Response {
-
-	private List<Intermediary> intermediary;
+public class RetrieveMtnCurrencyRtResponse {
+	private List<CurrencyRt> currencyCd;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<Intermediary> getIntermediary() {
-		return intermediary;
+	
+	
+	public List<CurrencyRt> getCurrencyCd() {
+		return currencyCd;
 	}
-	public void setIntermediary(List<Intermediary> intermediary) {
-		this.intermediary = intermediary;
+	public void setCurrencyCd(List<CurrencyRt> currencyCd) {
+		this.currencyCd = currencyCd;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,8 +32,8 @@ public class RetrieveMtnIntermediaryResponse extends Response {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnIntermediaryResponse [intermediary=" + intermediary + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnCurrencyRtResponse [currencyCd=" + currencyCd + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
-
+	
 }

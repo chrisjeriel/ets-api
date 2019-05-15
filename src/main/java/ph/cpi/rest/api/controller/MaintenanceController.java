@@ -46,13 +46,17 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
+import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
+import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
@@ -86,13 +90,17 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
+import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
+import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -339,6 +347,13 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnLine(smlr);
 	}
 	
+	@PostMapping(path="saveMtnLineClass")
+	public @ResponseBody SaveMtnLineClassResponse saveMtnLineClass(@RequestBody SaveMtnLineClassRequest smlcr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnLineClass");
+		logger.info("SaveMtnLineRequest : " + smlcr.toString());
+		return maintenanceService.saveMtnLineClass(smlcr);
+	}
+	
 	@PostMapping(path="saveMtnDeductibles")
 	public @ResponseBody SaveMtnDeductiblesResponse saveMtnDeductibles(@RequestBody SaveMtnDeductiblesRequest smdr) throws SQLException {
 		logger.info("POST: /api/maintenance-service/saveMtnDeductibles");
@@ -367,18 +382,32 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnInsured(smir);
 	}
 	
+
+	@PostMapping(path="saveMtnTypeOfCession")
+	public @ResponseBody SaveMtnTypeOfCessionResponse saveMtnTypeOfCession(@RequestBody SaveMtnTypeOfCessionRequest smtocr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnTypeOfCession");
+		logger.info("SaveMtnTypeOfCessionRequest : " + smtocr.toString());
+		return maintenanceService.saveMtnTypeOfCession(smtocr);
+	}
 	
 	@GetMapping(path="retMtnInsuredLov")
 	public @ResponseBody RetMtnInsuredLovResponse retMtnInsuredLov(RetMtnInsuredLovRequest rmil) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retMtnInsuredLov");
 		logger.info("RetMtnInsuredLov : " + rmil.toString());
-		return maintenanceService.retMtnInsuredLov(rmil);
+		return maintenanceService.retMtnInsuredLov(rmil); 	
+	}
+	
+	@PostMapping(path="saveMtnIntermediary")
+	public @ResponseBody SaveMtnIntermediaryResponse saveMtnIntermediary(@RequestBody SaveMtnIntermediaryRequest smir) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnIntermediary");
+		logger.info("SaveMtnIntermediaryRequest : " + smir.toString());
+		return maintenanceService.saveMtnIntermediary(smir);
 	}
 	
 	@PostMapping(path="saveMtnAdviceWordings")
 	public @ResponseBody SaveMtnAdviceWordingsResponse saveMtnAdviceWordings(@RequestBody SaveMtnAdviceWordingsRequest smawr) throws SQLException {
 		logger.info("POST: /api/maintenance-service/saveMtnAdviceWordings");
-		logger.info("saveMtnAdviceWordings : " + smawr.toString());
+		logger.info("saveMtnAdviceWordingsRequest : " + smawr.toString());
 		return maintenanceService.saveMtnAdviceWordings(smawr);
 	}
 	
@@ -401,5 +430,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnPolicyWordings");
 		logger.info("SaveMtnPolicyWordingsRequest : " + smpwr.toString());
 		return maintenanceService.saveMtnPolicyWordings(smpwr);
+	}
+	
+	@PostMapping(path="saveMtnCedingCompany")
+	public @ResponseBody SaveMtnCedingCompanyResponse saveMtnCedingCompany(@RequestBody SaveMtnCedingCompanyRequest smccr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCedingCompany");
+		logger.info("saveMtnCedingCompanyRequest : " + smccr.toString());
+		return maintenanceService.saveMtnCedingCompany(smccr);
 	}
 }

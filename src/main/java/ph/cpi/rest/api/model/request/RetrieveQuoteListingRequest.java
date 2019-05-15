@@ -12,6 +12,7 @@ public class RetrieveQuoteListingRequest {
 	private String cessionDesc;
 	private String lineClassCdDesc;
 	private String line;
+	private String lineClassCd;
 	private String status;
 	private String cedingName;
 	private String principalName;
@@ -56,6 +57,12 @@ public class RetrieveQuoteListingRequest {
 	}
 	public void setLineClassCdDesc(String lineClassCdDesc) {
 		this.lineClassCdDesc = lineClassCdDesc;
+	}
+	public String getLineClassCd() {
+		return lineClassCd;
+	}
+	public void setLineClassCd(String lineClassCd) {
+		this.lineClassCd = lineClassCd;
 	}
 	public String getStatus() {
 		return status;
@@ -162,13 +169,13 @@ public class RetrieveQuoteListingRequest {
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
-				+ cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", line=" + line + ", status=" + status
-				+ ", cedingName=" + cedingName + ", principalName=" + principalName + ", contractorName="
-				+ contractorName + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName + ", objectDesc="
-				+ objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom=" + issueDateFrom
-				+ ", issueDateTo=" + issueDateTo + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", createUser="
-				+ createUser + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", line=" + line + ", lineClassCd="
+				+ lineClassCd + ", status=" + status + ", cedingName=" + cedingName + ", principalName=" + principalName
+				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName
+				+ ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom="
+				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy
+				+ ", createUser=" + createUser + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
-	
 	
 }

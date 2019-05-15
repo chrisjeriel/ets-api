@@ -1,37 +1,30 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
-
-public class Intermediary {
-
-	private Integer intmId;
-	private String intmName;
-	private String firstName;
-	private String middleInitial;
-	private String lastName;
-	private String addrLine1;
-	private String addrLine2;
-	private String addrLine3;
-	private String zipCd;
-	private String address;
-	private String contactNo;
-	private String emailAdd;
-	private String activeTag;
-	private String corpTag;
-	private String corpTagDesc;
-	private String vatTag;
-	private String vatTagDesc;
-	private Integer oldIntmId;
-	private String remarks;
-	private String createUser;
-	private DateTime createDate;
-	private String updateUser;
-	private DateTime updateDate;
-	public Integer getIntmId() {
+public class SaveMtnIntermediaryRequest {
+	private String intmId;
+    private String intmName;
+    private String firstName;
+    private String middleInitial;
+    private String lastName;
+    private String addrLine1;
+    private String addrLine2;
+    private String addrLine3;
+    private String zipCd;
+    private String contactNo;
+    private String emailAdd;
+    private String activeTag;
+    private String corpTag;
+    private String vatTag;
+    private String oldIntmId;
+    private String remarks;        
+    private String createUser;
+    private String createDate;
+    private String updateUser;
+    private String updateDate;
+	public String getIntmId() {
 		return intmId;
 	}
-	public void setIntmId(Integer intmId) {
+	public void setIntmId(String intmId) {
 		this.intmId = intmId;
 	}
 	public String getIntmName() {
@@ -82,12 +75,6 @@ public class Intermediary {
 	public void setZipCd(String zipCd) {
 		this.zipCd = zipCd;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getContactNo() {
 		return contactNo;
 	}
@@ -112,28 +99,16 @@ public class Intermediary {
 	public void setCorpTag(String corpTag) {
 		this.corpTag = corpTag;
 	}
-	public String getCorpTagDesc() {
-		return corpTagDesc;
-	}
-	public void setCorpTagDesc(String corpTagDesc) {
-		this.corpTagDesc = corpTagDesc;
-	}
 	public String getVatTag() {
 		return vatTag;
 	}
 	public void setVatTag(String vatTag) {
 		this.vatTag = vatTag;
 	}
-	public String getVatTagDesc() {
-		return vatTagDesc;
-	}
-	public void setVatTagDesc(String vatTagDesc) {
-		this.vatTagDesc = vatTagDesc;
-	}
-	public Integer getOldIntmId() {
+	public String getOldIntmId() {
 		return oldIntmId;
 	}
-	public void setOldIntmId(Integer oldIntmId) {
+	public void setOldIntmId(String oldIntmId) {
 		this.oldIntmId = oldIntmId;
 	}
 	public String getRemarks() {
@@ -148,10 +123,10 @@ public class Intermediary {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -160,21 +135,20 @@ public class Intermediary {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "Intermediary [intmId=" + intmId + ", intmName=" + intmName + ", firstName=" + firstName
+		return "SaveMtnIntermediaryRequest [intmId=" + intmId + ", intmName=" + intmName + ", firstName=" + firstName
 				+ ", middleInitial=" + middleInitial + ", lastName=" + lastName + ", addrLine1=" + addrLine1
-				+ ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd=" + zipCd + ", address=" + address
-				+ ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", corpTag="
-				+ corpTag + ", corpTagDesc=" + corpTagDesc + ", vatTag=" + vatTag + ", vatTagDesc=" + vatTagDesc
-				+ ", oldIntmId=" + oldIntmId + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
-	}	
-
+				+ ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd=" + zipCd + ", contactNo="
+				+ contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", corpTag=" + corpTag
+				+ ", vatTag=" + vatTag + ", oldIntmId=" + oldIntmId + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
+	}
 }
