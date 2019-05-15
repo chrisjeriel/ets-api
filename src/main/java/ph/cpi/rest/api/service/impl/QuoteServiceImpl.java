@@ -195,7 +195,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			logger.info("retrieveQuoteListingOcResponse : " + rqloResponse.toString());
 		} catch (Exception ex) {
-			rqloResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_1010, ExceptionCodes.QUEX_1010_MSG));
+			rqloResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
 		}
 		
 		return rqloResponse;
