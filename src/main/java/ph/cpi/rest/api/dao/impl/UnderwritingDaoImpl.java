@@ -378,4 +378,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("postPolicy",params);
 		return errorCode;
 	}
+
+	@Override
+	public Policy retrievePolicyFullCoverage(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolFullCoverage",params);
+		logger.info("retrievePolFullCoverage DAOImpl : " + policy);
+		return policy;
+	}
 }
