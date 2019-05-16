@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.condition.ParamsRequestCondition;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
@@ -58,6 +59,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
@@ -1205,5 +1207,29 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return pprResponse;
+	}
+
+	@Override
+	public GenHundredValPolPrintingResponse genHundredValPolPrinting(GenHundredValPolPrintingRequest ghvppr)
+			throws SQLException {
+		GenHundredValPolPrintingResponse response = new GenHundredValPolPrintingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", ghvppr.getPolicyId());
+		params.put("projId", ghvppr.getProjId());
+		params.put("riskId", ghvppr.getRiskId());
+		params.put("lineCd", ghvppr.getLineCd());
+		params.put("treatyShare", ghvppr.getTreatyShare());
+		params.put("createUser", ghvppr.getCreateUser());
+		params.put("createDate", ghvppr.getCreateDate());
+		params.put("updateUser", ghvppr.getUpdateUser());
+		params.put("updateDate", ghvppr.getUpdateDate());
+		try{
+			response.setReturnCode(underwritingDao.genHundredValPolPrinting(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }
