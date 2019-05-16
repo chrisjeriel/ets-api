@@ -57,7 +57,9 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -106,7 +108,9 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -421,11 +425,25 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnAdviceWordings(smawr);
 	}
 	
+	@PostMapping(path="saveMtnQuoteWordings")
+	public @ResponseBody SaveMtnQuoteWordingsResponse saveMtnQuoteWordings(@RequestBody SaveMtnQuoteWordingsRequest smqwr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnQuoteWordings");
+		logger.info("SaveMtnQuoteWordingsRequest : " + smqwr.toString());
+		return maintenanceService.saveMtnQuoteWordings(smqwr);
+	}
+
 	@PostMapping(path="saveMtnEndorsement")
 	public @ResponseBody SaveMtnEndorsementResponse saveMtnEndorsement(@RequestBody SaveMtnEndorsementRequest smer) throws SQLException {
 		logger.info("POST: /api/maintenance-service/saveMtnEndorsement");
 		logger.info("SaveMtnEndorsementRequest : " + smer.toString());
 		return maintenanceService.saveMtnEndorsement(smer);
+	}
+	
+	@PostMapping(path="saveMtnPolicyWordings")
+	public @ResponseBody SaveMtnPolicyWordingsResponse saveMtnPolicyWordings(@RequestBody SaveMtnPolicyWordingsRequest smpwr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPolicyWordings");
+		logger.info("SaveMtnPolicyWordingsRequest : " + smpwr.toString());
+		return maintenanceService.saveMtnPolicyWordings(smpwr);
 	}
 	
 	@PostMapping(path="saveMtnCedingCompany")

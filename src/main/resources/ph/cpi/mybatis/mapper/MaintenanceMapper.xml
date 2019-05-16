@@ -831,9 +831,12 @@
      <resultMap type="ph.cpi.rest.api.model.maintenance.MtnCharges" id="chargesMap">
 		<result property="chargeCd"				column="CHARGE_CD"/>
 		<result property="chargeDesc"			column="CHARGE_DESC"/>
+		<result property="chargeType"			column="CHARGE_TYPE"/>
+		<result property="premRt"				column="PREM_RT"/>
 		<result property="defaultAmt"			column="DEFAULT_AMT"/>
 		<result property="activeTag"			column="ACTIVE_TAG"/> 
 		<result property="remarks"				column="REMARKS"/>
+		<result property="deleteTag"			column="DELETE_TAG"/>
 		<result property="createUser"			column="CREATE_USER"/>
 		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	column="UPDATE_USER"/>
@@ -1132,6 +1135,32 @@
     	END;
     </update>
     
+    <update id="saveMtnQuoteWordings" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteQW" item="del">
+	    			MTN_QUOTE_WORDINGS_PKG.del_qu_word(
+			    		#{del.wordingId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveQW" item="save">
+		    		MTN_QUOTE_WORDINGS_PKG.save_qu_word(
+		    				#{save.lineCd, jdbcType=VARCHAR},
+		    				#{save.wordingId, jdbcType=INTEGER},		    				
+		    				#{save.wording, jdbcType=VARCHAR},
+		    				#{save.wordType, jdbcType=VARCHAR},
+		    				#{save.activeTag, jdbcType=VARCHAR},
+		    				#{save.defaultTag, jdbcType=VARCHAR},
+		    				#{save.ocTag, jdbcType=VARCHAR},
+		    				#{save.remarks, jdbcType=VARCHAR},
+							#{save.createUser, jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							#{save.updateUser, jdbcType=VARCHAR},
+							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    			);
+    		</foreach>
+    	END;
+    </update>
+    
     <resultMap type="ph.cpi.rest.api.model.maintenance.CurrencyRt" id="currencyRt">
 		<result property="currencyCd"			column="CURRENCY_CD"/>
 		<result property="histNo"				column="HIST_NO"/>
@@ -1254,7 +1283,51 @@
 		<result property="updateDate" 			column="D_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="okDelete" 		    column="D_OK_DELETE"/>
 	</resultMap>
-
+	
+	<update id="saveMtnPolicyWordings" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deletePW" item="del">
+	    			MTN_POL_WORDINGS_PKG.del_pol_word(
+	    				#{del.lineCd, jdbcType=VARCHAR},
+			    		#{del.wordingCd, jdbcType=VARCHAR}
+			    	);
+    		</foreach>
+    		<foreach collection="savePW" item="save">
+		    		MTN_POL_WORDINGS_PKG.save_pol_word(
+		    			#{save.lineCd, jdbcType=VARCHAR},
+		    			#{save.wordingCd, jdbcType=VARCHAR},
+		    			#{save.wordingTitle, jdbcType=VARCHAR},
+		    			#{save.wordType, jdbcType=VARCHAR},
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.defaultTag, jdbcType=VARCHAR},
+		    			#{save.ocTag, jdbcType=VARCHAR},
+		    			#{save.wordText01, jdbcType=VARCHAR},
+						#{save.wordText02, jdbcType=VARCHAR},
+						#{save.wordText03, jdbcType=VARCHAR},
+						#{save.wordText04, jdbcType=VARCHAR},
+						#{save.wordText05, jdbcType=VARCHAR},
+						#{save.wordText06, jdbcType=VARCHAR},
+						#{save.wordText07, jdbcType=VARCHAR},
+						#{save.wordText08, jdbcType=VARCHAR},
+						#{save.wordText09, jdbcType=VARCHAR},
+						#{save.wordText10, jdbcType=VARCHAR},
+						#{save.wordText11, jdbcType=VARCHAR},
+						#{save.wordText12, jdbcType=VARCHAR},
+						#{save.wordText13, jdbcType=VARCHAR},
+						#{save.wordText14, jdbcType=VARCHAR},
+						#{save.wordText15, jdbcType=VARCHAR},
+						#{save.wordText16, jdbcType=VARCHAR},
+						#{save.wordText17, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+	
 	<update id="saveMtnCatPeril" parameterType="java.util.Map">
     	BEGIN
     		<foreach collection="delCatPeril" item="delCat">
