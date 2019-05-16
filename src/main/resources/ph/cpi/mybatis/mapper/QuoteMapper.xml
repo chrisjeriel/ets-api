@@ -1230,7 +1230,7 @@
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 	BEGIN
-	   QU_COVERAGE_PKG.save_qu_cover(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
+	   QU_COVERAGE_PKG.save_qu_cover(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks,jdbcType=VARCHAR},#{createUser},
 	   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
 	   SYSDATE);
 	   
