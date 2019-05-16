@@ -3,22 +3,22 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnSpoilageReasonRequest {
-	private String spoilCd;
-	private String activeTag;
+public class RetrievePolFullCoverageRequest {
+	private Integer policyId;
+	private String policyNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getSpoilCd() {
-		return spoilCd;
+	public Integer getPolicyId() {
+		return policyId;
 	}
-	public void setSpoilCd(String spoilCd) {
-		this.spoilCd = spoilCd;
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
 	}
-	public String getActiveTag() {
-		return activeTag;
+	public String getPolicyNo() {
+		return policyNo;
 	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,7 +34,9 @@ public class RetrieveMtnSpoilageReasonRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnSpoilageReasonRequest [spoilCd=" + spoilCd + ", activeTag=" + activeTag
+		return "RetrievePolFullCoverageRequest [policyId=" + policyId + ", policyNo=" + policyNo
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
 }

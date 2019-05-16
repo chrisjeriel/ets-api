@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
@@ -220,6 +221,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		System.out.println("retrieveMntLineClassDao : " + lineClass);
 		return lineClass;
 	}
+	
+	@Override 
+	public Integer saveMtnLineClass(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnLineClassDAOImpl : " + params);
+		Integer errorCode = sqlSession.update("saveMtnLineClass", params);
+		return errorCode;
+	}
 
 	@Override
 	public HashMap<String, Object> saveMtnRisk(HashMap<String, Object> params) throws SQLException {
@@ -342,6 +350,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return count;
 	}
 
+	@Override
+	public Integer saveMtnQuoteWordings(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnQuoteWordings", params);
+		return res;
+	}
 
 	@Override
 	public HashMap<String, Object> saveMtnCedingCompany(HashMap<String, Object> params) throws SQLException {
@@ -396,6 +409,48 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnCresta",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public Integer saveMtnSectionCover(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnSectionCover",params);
+		return code;
+	}
+
+	@Override
+	public List<QuoteStatusReason> retMtnQuoteReason(HashMap<String, Object> params) throws SQLException {
+		List<QuoteStatusReason> list = sqlSession.selectList("retMtnQuoteReason",params);
+		return list;
+	}
+
+	@Override
+	public Integer saveMtnQuoteReason(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnQuoteReason",params);
+		return code;
+	}
+	
+	@Override
+	public Integer saveMtnSpoilageReason(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnSpoilageReason",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnDistrict(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnDistrict",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnBlock(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnBlock",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnPolicyWordings(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnPolicyWordings", params);
+		return res;
 	}
 	
 }

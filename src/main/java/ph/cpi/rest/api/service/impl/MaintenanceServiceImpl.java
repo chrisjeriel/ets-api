@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
+import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
@@ -46,20 +47,29 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
 import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
+import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
+import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
+import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
@@ -94,17 +104,25 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
 import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
+import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
+import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
@@ -564,6 +582,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("retrieveMtnLineClassResponse : " + rmlcResponse.toString());
 		return rmlcResponse;
 	}
+	
+	@Override
+	public SaveMtnLineClassResponse saveMtnLineClass(SaveMtnLineClassRequest smlcr) throws SQLException {
+		SaveMtnLineClassResponse smlcrResponse = new SaveMtnLineClassResponse();
+		HashMap<String, Object> saveMtnLineClassParams = new HashMap<String, Object>();
+		saveMtnLineClassParams.put("saveLineClass", smlcr.getSaveLineClass());
+		saveMtnLineClassParams.put("deleteLineClass", smlcr.getDeleteLineClass());
+		smlcrResponse.setReturnCode(maintenanceDao.saveMtnLineClass(saveMtnLineClassParams));
+		logger.info("SaveMtnLineClassResponse : " + smlcrResponse.toString());
+		return smlcrResponse;
+	}
 
 	@Override
 	public SaveMtnRiskResponse saveMtnRisk(SaveMtnRiskRequest smrr) throws SQLException {
@@ -727,6 +756,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnSpoilageReasonResponse rsrResponse = new RetrieveMtnSpoilageReasonResponse();
 		HashMap<String, Object> retrieveMtnSpoilageReasonParams = new HashMap<String, Object>();
 		retrieveMtnSpoilageReasonParams.put("spoilCd", rmsrr.getSpoilCd());
+		retrieveMtnSpoilageReasonParams.put("activeTag", rmsrr.getActiveTag());
 		rsrResponse.setSpoilageReason(maintenanceDao.retrieveMtnSpoilageReason(retrieveMtnSpoilageReasonParams));
 		logger.info("RetrieveMtnSpoilageReasonResponse : " + rsrResponse.toString());
 		return rsrResponse;
@@ -927,6 +957,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public SaveMtnQuoteWordingsResponse saveMtnQuoteWordings(SaveMtnQuoteWordingsRequest smqwr) throws SQLException {
+		SaveMtnQuoteWordingsResponse smqwResponse = new SaveMtnQuoteWordingsResponse();
+		HashMap<String, Object> saveMtnQuoteWordingsParams = new HashMap<String, Object>();
+		saveMtnQuoteWordingsParams.put("saveQW", smqwr.getSaveQW());
+		saveMtnQuoteWordingsParams.put("deleteQW",smqwr.getDeleteQW());
+		smqwResponse.setReturnCode(maintenanceDao.saveMtnQuoteWordings(saveMtnQuoteWordingsParams));
+		
+		return smqwResponse;
+	}
+
+	@Override
 	public SaveMtnEndorsementResponse saveMtnEndorsement(SaveMtnEndorsementRequest smer) throws SQLException {
 		SaveMtnEndorsementResponse smerResponse = new SaveMtnEndorsementResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -942,6 +983,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smerResponse;
+	}
+
+	@Override
+	public SaveMtnPolicyWordingsResponse saveMtnPolicyWordings(SaveMtnPolicyWordingsRequest smpwr) throws SQLException {
+		SaveMtnPolicyWordingsResponse smpwResponse = new SaveMtnPolicyWordingsResponse();
+		HashMap<String, Object> saveMtnPolicyWordingsParams = new HashMap<String, Object>();
+		saveMtnPolicyWordingsParams.put("savePW", smpwr.getSavePW());
+		saveMtnPolicyWordingsParams.put("deletePW",smpwr.getDeletePW());
+		smpwResponse.setReturnCode(maintenanceDao.saveMtnPolicyWordings(saveMtnPolicyWordingsParams));
+		
+		return smpwResponse;
 	}
 
 	@Override
@@ -1019,5 +1071,105 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			e.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public SaveMtnSectionCoverResponse saveMtnSectionCover(SaveMtnSectionCoverRequest smscr) throws SQLException {
+		SaveMtnSectionCoverResponse smscrResponse = new SaveMtnSectionCoverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveSec", smscr.getSaveSectionCover());
+		params.put("delSec", smscr.getDelSectionCover());
+		params.put("addSec", smscr.getAddSectionCover());
+		params.put("saveDeductibles", smscr.getSaveDeductibles());
+		params.put("deleteDeductibles", smscr.getDeleteDeductibles());
+		try{
+			smscrResponse.setReturnCode(maintenanceDao.saveMtnSectionCover(params));
+		}catch (Exception ex) {
+			smscrResponse.setReturnCode(0);
+			smscrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smscrResponse;
+	}
+
+	@Override
+	public RetMtnQuoteReasonResponse retMtnQuoteReason(RetMtnQuoteReasonRequest rmqrr) throws SQLException {
+		RetMtnQuoteReasonResponse rmqrrResponse = new RetMtnQuoteReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("reasonCd", rmqrr.getReasonCd());
+		params.put("activeTag", rmqrr.getActiveTag());
+		rmqrrResponse.setReasonList(maintenanceDao.retMtnQuoteReason(params));
+		return rmqrrResponse;
+	}
+
+	@Override
+	public SaveMtnQuoteReasonResponse saveMtnQuoteReason(SaveMtnQuoteReasonRequest smqrr) throws SQLException {
+		SaveMtnQuoteReasonResponse smqrrResponse = new SaveMtnQuoteReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveQuReason", smqrr.getSaveQuReason());
+		params.put("delQuReason", smqrr.getDelQuReason());
+		try{
+			smqrrResponse.setReturnCode(maintenanceDao.saveMtnQuoteReason(params));
+		}catch (Exception ex) {
+			smqrrResponse.setReturnCode(0);
+			smqrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smqrrResponse;
+	}
+
+	@Override
+	public SaveMtnSpoilageReasonResponse saveMtnSpoilageReason(SaveMtnSpoilageReasonRequest smqrr) throws SQLException {
+		SaveMtnSpoilageReasonResponse smqrrResponse = new SaveMtnSpoilageReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveSpoilReason", smqrr.getSaveSpoilReason());
+		params.put("delSpoilReason", smqrr.getDelSpoilReason());
+		try{
+			smqrrResponse.setReturnCode(maintenanceDao.saveMtnSpoilageReason(params));
+		}catch (Exception ex) {
+			smqrrResponse.setReturnCode(0);
+			smqrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smqrrResponse;
+	}
+
+	@Override
+	public SaveMtnDistrictResponse saveMtnDistrict(SaveMtnDistrictRequest smqrr) throws SQLException {
+		SaveMtnDistrictResponse smqrrResponse = new SaveMtnDistrictResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("regionCd", smqrr.getRegionCd());
+		params.put("provinceCd", smqrr.getProvinceCd());
+		params.put("cityCd", smqrr.getCityCd());
+		params.put("saveDistrict", smqrr.getSaveDistrict());
+		params.put("delDistrict", smqrr.getDelDistrict());
+		try{
+			smqrrResponse.setReturnCode(maintenanceDao.saveMtnDistrict(params));
+		}catch (Exception ex) {
+			smqrrResponse.setReturnCode(0);
+			smqrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smqrrResponse;
+	}
+
+	@Override
+	public SaveMtnBlockResponse saveMtnBlock(SaveMtnBlockRequest smqrr) throws SQLException {
+		SaveMtnBlockResponse smqrrResponse = new SaveMtnBlockResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("districtCd", smqrr.getDistrictCd());
+		params.put("regionCd", smqrr.getRegionCd());
+		params.put("provinceCd", smqrr.getProvinceCd());
+		params.put("cityCd", smqrr.getCityCd());
+		params.put("saveBlock", smqrr.getSaveBlock());
+		params.put("delBlock", smqrr.getDelBlock());
+		try{
+			smqrrResponse.setReturnCode(maintenanceDao.saveMtnBlock(params));
+		}catch (Exception ex) {
+			smqrrResponse.setReturnCode(0);
+			smqrrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smqrrResponse;
 	}
 }

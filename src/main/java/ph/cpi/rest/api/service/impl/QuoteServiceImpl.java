@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.constants.ExceptionCodes;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
@@ -116,36 +117,47 @@ public class QuoteServiceImpl implements QuoteService{
 		RetrieveQuoteListingResponse rqlResponse = new RetrieveQuoteListingResponse();
 		DateUtility date = new DateUtility();
 		
-		HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
-		retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
-		retrieveQuoteListingParams.put("quoteId", rqlp.getQuoteId());
-		retrieveQuoteListingParams.put("cessionDesc", rqlp.getCessionDesc());
-		retrieveQuoteListingParams.put("lineClassCdDesc", rqlp.getLineClassCdDesc());
-		retrieveQuoteListingParams.put("status", rqlp.getStatus());
-		retrieveQuoteListingParams.put("cedingName", rqlp.getCedingName());
-		retrieveQuoteListingParams.put("principalName", rqlp.getPrincipalName());
-		retrieveQuoteListingParams.put("contractorName", rqlp.getContractorName());
-		retrieveQuoteListingParams.put("insuredDesc", rqlp.getInsuredDesc());
-		retrieveQuoteListingParams.put("riskName", rqlp.getRiskName());
-		retrieveQuoteListingParams.put("objectDesc", rqlp.getObjectDesc());
-		retrieveQuoteListingParams.put("site", rqlp.getSite());
-		retrieveQuoteListingParams.put("policyNo", ""); //from policy table
-		retrieveQuoteListingParams.put("currencyCd", rqlp.getCurrencyCd());
-//		retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate().isEmpty() ? rqlp.getIssueDate() : date.toDate(rqlp.getIssueDate()));
-//		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
-		retrieveQuoteListingParams.put("issueDateFrom", rqlp.getIssueDateFrom());
-		retrieveQuoteListingParams.put("issueDateTo", rqlp.getIssueDateTo());
-		retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
-		retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
-		retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
-		retrieveQuoteListingParams.put("line", rqlp.getLine());
-		/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
-		retrieveQuoteListingParams.put("count", rqlp.getPaginationRequest().getCount());
-		retrieveQuoteListingParams.put("sortKey", rqlp.getSortRequest().getSortKey());
-		retrieveQuoteListingParams.put("order", rqlp.getSortRequest().getOrder());*/
-		
-		rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
-		logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
+		try {
+			HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
+			retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
+			retrieveQuoteListingParams.put("quoteId", rqlp.getQuoteId());
+			retrieveQuoteListingParams.put("cessionDesc", rqlp.getCessionDesc());
+			retrieveQuoteListingParams.put("lineClassCdDesc", rqlp.getLineClassCdDesc());
+			retrieveQuoteListingParams.put("status", rqlp.getStatus());
+			retrieveQuoteListingParams.put("cedingName", rqlp.getCedingName());
+			retrieveQuoteListingParams.put("principalName", rqlp.getPrincipalName());
+			retrieveQuoteListingParams.put("contractorName", rqlp.getContractorName());
+			retrieveQuoteListingParams.put("insuredDesc", rqlp.getInsuredDesc());
+			retrieveQuoteListingParams.put("riskName", rqlp.getRiskName());
+			retrieveQuoteListingParams.put("objectDesc", rqlp.getObjectDesc());
+			retrieveQuoteListingParams.put("site", rqlp.getSite());
+			retrieveQuoteListingParams.put("policyNo", ""); //from policy table
+			retrieveQuoteListingParams.put("currencyCd", rqlp.getCurrencyCd());
+//			retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate().isEmpty() ? rqlp.getIssueDate() : date.toDate(rqlp.getIssueDate()));
+//			retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
+			retrieveQuoteListingParams.put("issueDateFrom", rqlp.getIssueDateFrom());
+			retrieveQuoteListingParams.put("issueDateTo", rqlp.getIssueDateTo());
+			retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
+			retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
+			retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
+			retrieveQuoteListingParams.put("line", rqlp.getLine());
+			/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
+			retrieveQuoteListingParams.put("count", rqlp.getPaginationRequest().getCount());
+			retrieveQuoteListingParams.put("sortKey", rqlp.getSortRequest().getSortKey());
+			retrieveQuoteListingParams.put("order", rqlp.getSortRequest().getOrder());*/
+			
+			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
+			logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
+			
+			if (rqlResponse.getQuotationList().size() == 0) {
+				rqlResponse.getMessageList().add(new Message(ExceptionCodes.QUEX_GEN_000, ExceptionCodes.QUEX_GEN_000_MSG));
+			}
+			
+		} catch (SQLException sqle) {
+			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
+		} catch (NullPointerException npe) {
+			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_GEN_001, ExceptionCodes.QUEX_GEN_001_MSG));
+		} 
 		
 		return rqlResponse;
 	}
@@ -183,7 +195,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			logger.info("retrieveQuoteListingOcResponse : " + rqloResponse.toString());
 		} catch (Exception ex) {
-			rqloResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_1010, ExceptionCodes.QUEX_1010_MSG));
+			rqloResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
 		}
 		
 		return rqloResponse;

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
-import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
@@ -377,5 +376,25 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Integer postPolicy(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("postPolicy",params);
 		return errorCode;
+	}
+
+	@Override
+	public Integer genHundredValPolPrinting(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("genHundredValPolPrinting", params);
+		return errorCode;
+	}
+	
+	@Override
+	public Policy retrievePolicyFullCoverage(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolFullCoverage",params);
+		logger.info("retrievePolFullCoverage DAOImpl : " + policy);
+		return policy;
+	}
+
+	@Override
+	public HashMap<String, Object> savePolFullCoverage(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolFullCoverage",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }
