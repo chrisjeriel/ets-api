@@ -1940,7 +1940,6 @@
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
 		   	</foreach>
-		   	
 		END;
 	</update>
 </mapper>

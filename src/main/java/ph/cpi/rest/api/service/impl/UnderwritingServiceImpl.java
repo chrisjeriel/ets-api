@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.mvc.condition.ParamsRequestCondition;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
@@ -1237,7 +1236,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		return response;
 	}
 
-    @Override
+	@Override
 	public RetrievePolFullCoverageResponse retrievePolFullCoverage(RetrievePolFullCoverageRequest rpcr)
 			throws SQLException {
 		RetrievePolFullCoverageResponse rpfcResponse = new RetrievePolFullCoverageResponse();

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Approver;
-import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
