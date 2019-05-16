@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
@@ -108,6 +109,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
@@ -500,5 +502,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCurrencyRt");
 		logger.info("RetrieveMtnCurrencyRtResponse : " + rmil.toString());
 		return maintenanceService.retrieveMtnCurrencyRate(rmil); 	
+	}
+	
+	@PostMapping(path="saveMtnOtherCharge")
+	public @ResponseBody SaveMtnOtherChargeResponse saveMtnOtherCharge(@RequestBody SaveMtnOtherChargeRequest smocr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnOtherCharge");
+		logger.info("SaveMtnOtherChargeRequest : " + smocr.toString());
+		return maintenanceService.saveMtnOtherCharge(smocr);
 	}
 }

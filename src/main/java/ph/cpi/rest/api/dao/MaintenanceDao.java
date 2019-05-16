@@ -95,5 +95,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnSpoilageReason(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnDistrict(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBlock(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnOtherCharge(final HashMap<String, Object> params) throws SQLException;
 	
 }

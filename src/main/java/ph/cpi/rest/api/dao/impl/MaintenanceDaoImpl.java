@@ -452,5 +452,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer res = sqlSession.update("saveMtnPolicyWordings", params);
 		return res;
 	}
+
+	@Override
+	public Integer saveMtnOtherCharge(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnOtherCharge", params);
+		return res;
+	}
 	
 }

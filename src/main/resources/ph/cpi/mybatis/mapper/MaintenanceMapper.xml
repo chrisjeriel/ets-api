@@ -837,11 +837,11 @@
 		<result property="defaultAmt"			column="DEFAULT_AMT"/>
 		<result property="activeTag"			column="ACTIVE_TAG"/> 
 		<result property="remarks"				column="REMARKS"/>
-		<result property="deleteTag"			column="DELETE_TAG"/>
 		<result property="createUser"			column="CREATE_USER"/>
 		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	column="UPDATE_USER"/>
 		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"				column="OK_DELETE"/>
      </resultMap>
      
      <select id="retrieveMtnCharges" resultMap="chargesMap" parameterType="java.util.Map">
@@ -1613,5 +1613,29 @@
 		END;
 	</update>
 	
-	
+	<update id="saveMtnOtherCharge" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteOChrg" item="del">
+	    			MTN_CHARGES_PKG.del_charge(
+			    		#{del.chargeCd, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveOChrg" item="save">
+		    		MTN_CHARGES_PKG.save_charge(
+		    			#{save.chargeCd, jdbcType=INTEGER},
+		    			#{save.chargeDesc, jdbcType=VARCHAR},		    				
+		    			#{save.chargeType, jdbcType=VARCHAR},
+		    			#{save.premRt, jdbcType=DECIMAL},
+		    			#{save.defaultAmt, jdbcType=DECIMAL},
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
 </mapper>

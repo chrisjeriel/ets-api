@@ -1,22 +1,45 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import java.math.BigDecimal;
+import java.util.List;
 
-import org.joda.time.DateTime;
+import org.apache.ibatis.type.Alias;
 
-public class MtnCharges {
+public class SaveMtnOtherChargeRequest {
+
+	private List<OtherCharge> saveOChrg;
+	private List<OtherCharge> deleteOChrg;
+	
+	public List<OtherCharge> getSaveOChrg() {
+		return saveOChrg;
+	}
+	public void setSaveOChrg(List<OtherCharge> saveOChrg) {
+		this.saveOChrg = saveOChrg;
+	}
+	public List<OtherCharge> getDeleteOChrg() {
+		return deleteOChrg;
+	}
+	public void setDeleteOChrg(List<OtherCharge> deleteOChrg) {
+		this.deleteOChrg = deleteOChrg;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnOtherChargeRequest []";
+	}
+}
+
+@Alias("SaveMtnOtherCharge")
+class OtherCharge {
 	private Integer chargeCd; 
 	private String chargeDesc;
 	private String chargeType;
-	private BigDecimal premRt;	
-	private BigDecimal defaultAmt;
+	private String premRt;	
+	private String defaultAmt;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
+	private String updateDate;
 	
 	public Integer getChargeCd() {
 		return chargeCd;
@@ -36,16 +59,16 @@ public class MtnCharges {
 	public void setChargeType(String chargeType) {
 		this.chargeType = chargeType;
 	}
-	public BigDecimal getPremRt() {
+	public String getPremRt() {
 		return premRt;
 	}
-	public void setPremRt(BigDecimal premRt) {
+	public void setPremRt(String premRt) {
 		this.premRt = premRt;
 	}
-	public BigDecimal getDefaultAmt() {
+	public String getDefaultAmt() {
 		return defaultAmt;
 	}
-	public void setDefaultAmt(BigDecimal defaultAmt) {
+	public void setDefaultAmt(String defaultAmt) {
 		this.defaultAmt = defaultAmt;
 	}
 	public String getActiveTag() {
@@ -66,10 +89,10 @@ public class MtnCharges {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -78,23 +101,17 @@ public class MtnCharges {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
-		return "MtnCharges [chargeCd=" + chargeCd + ", chargeDesc=" + chargeDesc + ", chargeType=" + chargeType
+		return "OtherCharge [chargeCd=" + chargeCd + ", chargeDesc=" + chargeDesc + ", chargeType=" + chargeType
 				+ ", premRt=" + premRt + ", defaultAmt=" + defaultAmt + ", activeTag=" + activeTag + ", remarks="
 				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
