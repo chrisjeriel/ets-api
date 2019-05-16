@@ -202,6 +202,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.LineClass" id="mntLineClassMap">
@@ -857,7 +858,7 @@
 	    		MTN_LINE_PKG.save_mtn_line(
 	    			#{line.lineCd,jdbcType=VARCHAR},
 			        #{line.description,jdbcType=VARCHAR},
-			        CAST(to_timestamp(#{line.cutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        CAST(to_timestamp(#{line.saveCutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			        #{line.activeTag,jdbcType=VARCHAR},
 			        #{line.catTag,jdbcType=VARCHAR},
 			        #{line.renewalTag,jdbcType=VARCHAR},
