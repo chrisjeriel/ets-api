@@ -15,6 +15,7 @@ public class Object_ {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	private List<CATPeril> catPerilList;
 	public String getLineCd() {
 		return lineCd;
@@ -82,12 +83,18 @@ public class Object_ {
 	public void setCatPerilList(List<CATPeril> catPerilList) {
 		this.catPerilList = catPerilList;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "Object_ [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", objectId=" + objectId + ", description="
 				+ description + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", catPerilList=" + catPerilList + "]";
+				+ ", okDelete=" + okDelete + ", catPerilList=" + catPerilList + "]";
 	}
 	
 }
