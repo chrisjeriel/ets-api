@@ -378,4 +378,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("postPolicy",params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer genHundredValPolPrinting(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("genHundredValPolPrinting", params);
+		return errorCode;
+	}
 }

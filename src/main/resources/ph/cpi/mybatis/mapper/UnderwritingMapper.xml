@@ -1805,4 +1805,35 @@
 			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser});
 		END;
 	</update>
+	
+	<update id="genHundredValPolPrinting" parameterType="java.util.Map">
+		BEGIN
+			GEN_POL_PRINT_PKG.to_full_cov(
+											#{policyId},
+											#{projId},
+											#{riskId},
+											#{treatyShare},
+											#{createUser, jdbcType=VARCHAR},
+										    CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{updateUser, jdbcType=VARCHAR},
+										    CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+										  );
+		    GEN_POL_PRINT_PKG.to_full_sec(
+		    								#{policyId},
+											#{projId},
+											#{riskId},
+											#{lineCd},
+											#{treatyShare},
+											#{createUser, jdbcType=VARCHAR},
+										    CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{updateUser, jdbcType=VARCHAR},
+										    CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    							 );
+		    GEN_POL_PRINT_PKG.update_full_cov(
+		    									#{policyId},
+		    									#{treatyShare}
+		    								  );
+
+		END;
+	</update>
 </mapper>
