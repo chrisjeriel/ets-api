@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
@@ -23,6 +25,8 @@ public class SectionCovers {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
+	private List<Deductibles> deductibles;
 	
 	public String getLineCd() {
 		return lineCd;
@@ -121,13 +125,26 @@ public class SectionCovers {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
+	public List<Deductibles> getDeductibles() {
+		return deductibles;
+	}
+	public void setDeductibles(List<Deductibles> deductibles) {
+		this.deductibles = deductibles;
+	}
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", coverCd=" + coverCd + ", coverCdAbbr="
 				+ coverCdAbbr + ", coverName=" + coverName + ", activeTag=" + activeTag + ", section=" + section
 				+ ", sortSeq=" + sortSeq + ", defaultTag=" + defaultTag + ", bulletNo=" + bulletNo + ", addSi=" + addSi
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", deductibles=" + deductibles
+				+ "]";
 	}
 	
 }

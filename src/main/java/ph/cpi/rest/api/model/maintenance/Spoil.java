@@ -5,11 +5,13 @@ import org.joda.time.DateTime;
 public class Spoil {
 	private String spoilCd;
 	private String description;
+	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public String getSpoilCd() {
 		return spoilCd;
 	}
@@ -21,6 +23,12 @@ public class Spoil {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -52,11 +60,18 @@ public class Spoil {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
-		return "Spoil [spoilCd=" + spoilCd + ", description=" + description + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "Spoil [spoilCd=" + spoilCd + ", description=" + description + ", activeTag=" + activeTag + ", remarks="
+				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
+	
 	
 }

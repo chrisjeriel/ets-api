@@ -2,40 +2,39 @@ package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
 
-public class Block {
-	private String blockCd; 
-	private String blockDesc;
-	private String activeTag;   
+public class QuoteStatusReason {
+	private String reasonCd;
+	private String description;
 	private String remarks;
+	private String activeTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
-	
-	public String getBlockCd() {
-		return blockCd;
+	public String getReasonCd() {
+		return reasonCd;
 	}
-	public void setBlockCd(String blockCd) {
-		this.blockCd = blockCd;
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
 	}
-	public String getBlockDesc() {
-		return blockDesc;
+	public String getDescription() {
+		return description;
 	}
-	public void setBlockDesc(String blockDesc) {
-		this.blockDesc = blockDesc;
-	}
-	public String getActiveTag() {
-		return activeTag;
-	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getRemarks() {
 		return remarks;
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -67,13 +66,11 @@ public class Block {
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
-	
 	@Override
 	public String toString() {
-		return "Block [blockCd=" + blockCd + ", blockDesc=" + blockDesc + ", activeTag=" + activeTag + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+		return "QuoteStatusReason [reasonCd=" + reasonCd + ", description=" + description + ", remarks=" + remarks
+				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
-	
 	
 }

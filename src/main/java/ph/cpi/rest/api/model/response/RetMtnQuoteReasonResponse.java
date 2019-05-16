@@ -1,28 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
-import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 
-public class RetrieveQuoteListingResponse extends Response{
-
-	private List<Quotation> quotationList;
+public class RetMtnQuoteReasonResponse {
+	private List<QuoteStatusReason> reasonList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public List<Quotation> getQuotationList() {
-		if (quotationList == null) {
-			quotationList = new ArrayList<Quotation>();
-		}
-		
-		return quotationList;
+	public List<QuoteStatusReason> getReasonList() {
+		return reasonList;
 	}
-	public void setQuotationList(List<Quotation> quotationList) {
-		this.quotationList = quotationList;
+	public void setReasonList(List<QuoteStatusReason> reasonList) {
+		this.reasonList = reasonList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -38,7 +30,8 @@ public class RetrieveQuoteListingResponse extends Response{
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteListingResponse [quotationList=" + quotationList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetMtnQuoteReasonResponse [reasonList=" + reasonList + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
 }
