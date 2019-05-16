@@ -38,6 +38,7 @@ public class Project {
 	
 	private List<Item> items;
 	private Coverage coverage;
+	private FullCoverage fullCoverage;
 
 	public Integer getProjId() {
 		return projId;
@@ -287,6 +288,15 @@ public class Project {
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	
+	
+	public FullCoverage getFullCoverage() {
+		return fullCoverage;
+	}
+
+	public void setFullCoverage(FullCoverage fullCoverage) {
+		this.fullCoverage = fullCoverage;
+	}
 
 	@Override
 	public String toString() {
@@ -298,8 +308,6 @@ public class Project {
 				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", items=" + items + ", coverage=" + coverage + "]";
+				+ updateDate + ", items=" + items + ", coverage=" + coverage + ", fullCoverage=" + fullCoverage + "]";
 	}
-
-	
 }
