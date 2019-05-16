@@ -49,6 +49,7 @@ import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
+import ph.cpi.rest.api.model.request.SavePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
@@ -96,6 +97,7 @@ import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
+import ph.cpi.rest.api.model.response.SavePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
@@ -455,5 +457,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolFullCoverage");
 		logger.info("RetrievePolFullCoverageRequest : " + rpcr.toString());
 		return underwritingService.retrievePolFullCoverage(rpcr);
+	}
+	
+	@PostMapping(path="savePolFullCoverage")
+	public @ResponseBody SavePolFullCoverageResponse savePolFullCoverage(@RequestBody SavePolFullCoverageRequest sqcr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolFullCoverage");
+		logger.info("SavePolFullCoverageRequest : " + sqcr.toString());
+		return underwritingService.savePolFullCoverage(sqcr);
 	}
 }

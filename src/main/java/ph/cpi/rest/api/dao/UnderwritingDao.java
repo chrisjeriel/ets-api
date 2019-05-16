@@ -64,4 +64,6 @@ public interface UnderwritingDao {
 	
 	public Integer postPolicy(final HashMap<String, Object> params ) throws SQLException;
 	public Policy retrievePolicyFullCoverage(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolFullCoverage(final HashMap<String, Object> params ) throws SQLException;
+	
 }

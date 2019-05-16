@@ -1869,4 +1869,48 @@
 																	   #{order, jdbcType=VARCHAR}))
 	</select>
 	
+	<update id="savePolFullCoverage" parameterType="java.util.Map">
+		BEGIN
+			POL_FULLCOVERAGE_PKG.save_pol_cover_value( #{policyId},#{projId},#{riskId},#{treatyShare},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
+										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
+										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
+										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser,jdbcType=VARCHAR}, 
+										    CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="deleteFullSectionCovers" item="sectioncovers">
+				POL_FULLCOVERAGE_PKG.del_pol_cover_value(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd});
+			</foreach>
+			
+			<foreach collection="saveFullSectionCovers" item="sectioncovers">
+				POL_FULLCOVERAGE_PKG.save_pol_sec_cvrs_value(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
+													#{sectioncovers.section}  ,#{sectioncovers.coverCd} , #{sectioncovers.coverName},
+													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
+													#{sectioncovers.premRt},#{sectioncovers.premAmt},
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
+													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
+													#{sectioncovers.createUserSec},
+													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_PKG.del_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+		    
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
+		   	
+		END;
+	</update>
 </mapper>
