@@ -130,6 +130,7 @@
 		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"     column  =   "UPDATE_USER"/>
 		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property = "okDelete"       column  =   "OK_DELETE"/>
 		<association property="catPerilList"	resultMap="catPerilMapObj"/>
 	</resultMap>
 	
@@ -895,7 +896,28 @@
     			);
     		</foreach>
     		<foreach collection="deleteLineClass" item="lineClass">
-    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineClassCd});
+    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineCd}, #{lineClass.lineClassCd});
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="saveMtnObject" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveObject" item="obj">
+    			MTN_OBJECT_PKG.save_mtn_object(
+    				#{obj.lineCd, jdbcType=VARCHAR},
+    				#{obj.objectId, jdbcType=VARCHAR},
+    				#{obj.description, jdbcType=VARCHAR},
+    				#{obj.activeTag, jdbcType=VARCHAR},
+    				#{obj.remarks, jdbcType=VARCHAR},
+    				#{obj.createUser, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{obj.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    				#{obj.updateUser, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{obj.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    		<foreach collection="deleteObject" item="obj">
+    			MTN_OBJECT_PKG.del_mtn_object(#{obj.objectId}, #{obj.lineCd});
     		</foreach>
     	END;
     </update>
