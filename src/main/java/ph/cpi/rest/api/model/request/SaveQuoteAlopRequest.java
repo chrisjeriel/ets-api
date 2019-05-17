@@ -94,7 +94,7 @@ class AlopDetails {
 	private String expiryDate;
 	private Integer maxIndemPd;
 	private String indemFromDate;
-	private Integer timeExc;
+	private String timeExc;
 	private Integer repInterval;
 	private String createUserAlop;
 	private String createDateAlop;
@@ -143,10 +143,10 @@ class AlopDetails {
 	public void setIndemFromDate(String indemFromDate) {
 		this.indemFromDate = indemFromDate;
 	}
-	public Integer getTimeExc() {
+	public String getTimeExc() {
 		return timeExc;
 	}
-	public void setTimeExc(Integer timeExc) {
+	public void setTimeExc(String timeExc) {
 		this.timeExc = timeExc;
 	}
 	public Integer getRepInterval() {
