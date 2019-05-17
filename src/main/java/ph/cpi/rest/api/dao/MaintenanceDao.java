@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 public interface MaintenanceDao {
 
@@ -96,5 +97,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnSpoilageReason(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnDistrict(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBlock(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<UserAmtLimit> retMtnUserAmtLimit(final HashMap<String, Object> params) throws SQLException;
 	
 }

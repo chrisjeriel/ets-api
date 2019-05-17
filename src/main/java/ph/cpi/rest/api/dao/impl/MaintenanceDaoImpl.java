@@ -39,6 +39,7 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -459,6 +460,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnObject", params);
 		System.out.println(errorCode);
 		return errorCode;
+	}
+
+	@Override
+	public List<UserAmtLimit> retMtnUserAmtLimit(HashMap<String, Object> params) throws SQLException {
+		List<UserAmtLimit> list = sqlSession.selectList("retMtnUserAmtLimit", params);
+		return list;
 	}
 	
 }
