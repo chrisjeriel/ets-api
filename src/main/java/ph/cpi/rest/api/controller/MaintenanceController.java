@@ -62,6 +62,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
@@ -118,6 +119,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
@@ -216,6 +218,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnObject");
 		logger.info("RetrieveMtnObjectRequest : " + rmop.toString());
 		return maintenanceService.retrieveMtnObject(rmop);
+	}
+	
+	@PostMapping(path="saveMtnObject")
+	public @ResponseBody SaveMtnObjectResponse saveMtnObject(@RequestBody SaveMtnObjectRequest smor) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnObject");
+		logger.info("SaveMtnObject : " + smor.toString());
+		return maintenanceService.saveMtnObject(smor);
 	}
 	
 	@GetMapping(path="retrieveMtnQuotationWordings")
@@ -355,6 +364,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCATPeril");
 		logger.info("RetrieveMtnCATPerilResponse : " + rmcatpr.toString());
 		return maintenanceService.retrieveMtnCATPeril(rmcatpr);
+	}
+	
+	@PostMapping(path="saveMtnCatPeril")
+	public @ResponseBody SaveMtnCatPerilResponse saveMtnCatPeril(@RequestBody SaveMtnCatPerilRequest smcpr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCatPeril");
+		logger.info("SaveMtnCatPeril : " + smcpr.toString());
+		return maintenanceService.saveMtnCatPeril(smcpr);
 	}
 	
 	@GetMapping(path="retrieveMtnCharges")
@@ -531,13 +547,6 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnCrestaZone");
 		logger.info("SaveMtnCrestaZoneRequest : " + smqrr.toString());
 		return maintenanceService.saveMtnCrestaZone(smqrr);
-	}
-	
-	@PostMapping(path="saveMtnCatPeril")
-	public @ResponseBody SaveMtnCatPerilResponse saveMtnCatPeril(@RequestBody SaveMtnCatPerilRequest smqrr) throws SQLException {
-		logger.info("POST: /api/maintenance-service/saveMtnCatPeril");
-		logger.info("SaveMtnCatPerilRequest : " + smqrr.toString());
-		return maintenanceService.saveMtnCatPeril(smqrr);
 	}
 	
 	@GetMapping(path="retrieveMtnCurrencyList")

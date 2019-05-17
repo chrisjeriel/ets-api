@@ -453,4 +453,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return res;
 	}
 	
+	@Override
+	public Integer saveMtnObject(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnObjectDAOImpl : " + params);
+		Integer errorCode = sqlSession.update("saveMtnObject", params);
+		System.out.println(errorCode);
+		return errorCode;
+	}
+	
 }

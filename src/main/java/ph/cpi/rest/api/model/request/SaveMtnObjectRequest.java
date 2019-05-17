@@ -1,33 +1,48 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
+import org.apache.ibatis.type.Alias;
 
-public class Object_ {
+public class SaveMtnObjectRequest {
+	
+	private List<Object_> saveObject;
+	private List<Object_> deleteObject;
+	
+	public List<Object_> getSaveObject() {
+		return saveObject;
+	}
+	public void setSaveObject(List<Object_> saveObject) {
+		this.saveObject = saveObject;
+	}
+	public List<Object_> getDeleteObject() {
+		return deleteObject;
+	}
+	public void setDeleteObject(List<Object_> deleteObject) {
+		this.deleteObject = deleteObject;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnObjectRequest [saveObject=" + saveObject + ", deleteObject=" + deleteObject + "]";
+	}
+}
+
+@Alias("SaveMtnObject")
+class Object_ {
 	private String lineCd;
-	private String lineDesc;
-	private String objectId ;
+	private String objectId;
 	private String description;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
-	private List<CATPeril> catPerilList;
+	private String updateDate;
 	public String getLineCd() {
 		return lineCd;
 	}
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
-	}
-	public String getLineDesc() {
-		return lineDesc;
-	}
-	public void setLineDesc(String lineDesc) {
-		this.lineDesc = lineDesc;
 	}
 	public String getObjectId() {
 		return objectId;
@@ -59,10 +74,10 @@ public class Object_ {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -71,30 +86,17 @@ public class Object_ {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	public List<CATPeril> getCatPerilList() {
-		return catPerilList;
-	}
-	public void setCatPerilList(List<CATPeril> catPerilList) {
-		this.catPerilList = catPerilList;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
-		return "Object_ [lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", objectId=" + objectId + ", description="
-				+ description + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", okDelete=" + okDelete + ", catPerilList=" + catPerilList + "]";
+		return "Object_ [lineCd=" + lineCd + ", objectId=" + objectId + ", description=" + description + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
+
 }
