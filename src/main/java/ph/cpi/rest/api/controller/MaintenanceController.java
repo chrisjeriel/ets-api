@@ -25,7 +25,9 @@ import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
@@ -48,7 +50,11 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
 import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
@@ -56,7 +62,9 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -73,7 +81,9 @@ import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
@@ -96,7 +106,11 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
 import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
@@ -104,7 +118,9 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -419,11 +435,25 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnAdviceWordings(smawr);
 	}
 	
+	@PostMapping(path="saveMtnQuoteWordings")
+	public @ResponseBody SaveMtnQuoteWordingsResponse saveMtnQuoteWordings(@RequestBody SaveMtnQuoteWordingsRequest smqwr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnQuoteWordings");
+		logger.info("SaveMtnQuoteWordingsRequest : " + smqwr.toString());
+		return maintenanceService.saveMtnQuoteWordings(smqwr);
+	}
+
 	@PostMapping(path="saveMtnEndorsement")
 	public @ResponseBody SaveMtnEndorsementResponse saveMtnEndorsement(@RequestBody SaveMtnEndorsementRequest smer) throws SQLException {
 		logger.info("POST: /api/maintenance-service/saveMtnEndorsement");
 		logger.info("SaveMtnEndorsementRequest : " + smer.toString());
 		return maintenanceService.saveMtnEndorsement(smer);
+	}
+	
+	@PostMapping(path="saveMtnPolicyWordings")
+	public @ResponseBody SaveMtnPolicyWordingsResponse saveMtnPolicyWordings(@RequestBody SaveMtnPolicyWordingsRequest smpwr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPolicyWordings");
+		logger.info("SaveMtnPolicyWordingsRequest : " + smpwr.toString());
+		return maintenanceService.saveMtnPolicyWordings(smpwr);
 	}
 	
 	@PostMapping(path="saveMtnCedingCompany")
@@ -473,5 +503,47 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnBlock");
 		logger.info("SaveMtnBlockRequest : " + smqrr.toString());
 		return maintenanceService.saveMtnBlock(smqrr);
+	}
+
+	@GetMapping(path="retrieveMtnCurrencyRt")
+	public @ResponseBody RetrieveMtnCurrencyRtResponse retMtnCurrencyRt(RetrieveMtnCurrencyRtRequest rmil) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCurrencyRt");
+		logger.info("RetrieveMtnCurrencyRtResponse : " + rmil.toString());
+		return maintenanceService.retrieveMtnCurrencyRate(rmil); 	
+	}
+	
+	@PostMapping(path="saveMtnCurrency")
+	public @ResponseBody SaveMtnCurrencyResponse saveMtnCurrency(@RequestBody SaveMtnCurrencyRequest smqrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCurrency");
+		logger.info("SaveMtnCurrencyRequest : " + smqrr.toString());
+		return maintenanceService.saveMtnCurrency(smqrr);
+	}
+	
+	@PostMapping(path="saveMtnCurrencyRt")
+	public @ResponseBody SaveMtnCurrencyRtResponse saveMtnCurrencyRt(@RequestBody SaveMtnCurrencyRtRequest smqrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCurrencyRt");
+		logger.info("SaveMtnCurrencyRtRequest : " + smqrr.toString());
+		return maintenanceService.saveMtnCurrencyRt(smqrr);
+	}
+	
+	@PostMapping(path="saveMtnCrestaZone")
+	public @ResponseBody SaveMtnCrestaZoneResponse saveMtnCrestaZone(@RequestBody SaveMtnCrestaZoneRequest smqrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCrestaZone");
+		logger.info("SaveMtnCrestaZoneRequest : " + smqrr.toString());
+		return maintenanceService.saveMtnCrestaZone(smqrr);
+	}
+	
+	@PostMapping(path="saveMtnCatPeril")
+	public @ResponseBody SaveMtnCatPerilResponse saveMtnCatPeril(@RequestBody SaveMtnCatPerilRequest smqrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCatPeril");
+		logger.info("SaveMtnCatPerilRequest : " + smqrr.toString());
+		return maintenanceService.saveMtnCatPeril(smqrr);
+	}
+	
+	@GetMapping(path="retrieveMtnCurrencyList")
+	public @ResponseBody RetrieveMtnCurrencyListResponse retMtnCurrencyList(RetrieveMtnCurrencyListRequest rmil) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCurrencyList");
+		logger.info("RetrieveMtnCurrencyListResponse : " + rmil.toString());
+		return maintenanceService.retMtnCurrencyList(rmil); 	
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
@@ -26,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverListingRequest;
@@ -48,6 +50,7 @@ import ph.cpi.rest.api.model.request.SavePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.SavePolCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolEndorsementRequest;
 import ph.cpi.rest.api.model.request.SavePolEndtOcRequest;
+import ph.cpi.rest.api.model.request.SavePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.SavePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.SavePolHoldCoverRequest;
@@ -60,6 +63,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
@@ -73,6 +77,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
@@ -94,6 +99,7 @@ import ph.cpi.rest.api.model.response.SavePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.SavePolCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolEndorsementResponse;
 import ph.cpi.rest.api.model.response.SavePolEndtOcResponse;
+import ph.cpi.rest.api.model.response.SavePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.SavePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.SavePolHoldCoverResponse;
@@ -446,5 +452,26 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/postPolicy");
 		logger.info("postPolicy : " + ppr.toString());
 		return underwritingService.postPolicy(ppr);
+	}
+	
+	@PostMapping(path="generateHundredValuePolPrinting")
+	public @ResponseBody GenHundredValPolPrintingResponse genHundredValPolPrinting(@RequestBody GenHundredValPolPrintingRequest ghvppr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/generateHundredValuePolPrinting");
+		logger.info("genHundredValPolPrinting : " + ghvppr.toString());
+		return underwritingService.genHundredValPolPrinting(ghvppr);
+	}
+
+	@GetMapping(path="retrievePolFullCoverage")
+	public @ResponseBody RetrievePolFullCoverageResponse retrievePolFullCoverage(RetrievePolFullCoverageRequest rpcr) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolFullCoverage");
+		logger.info("RetrievePolFullCoverageRequest : " + rpcr.toString());
+		return underwritingService.retrievePolFullCoverage(rpcr);
+	}
+	
+	@PostMapping(path="savePolFullCoverage")
+	public @ResponseBody SavePolFullCoverageResponse savePolFullCoverage(@RequestBody SavePolFullCoverageRequest sqcr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/savePolFullCoverage");
+		logger.info("SavePolFullCoverageRequest : " + sqcr.toString());
+		return underwritingService.savePolFullCoverage(sqcr);
 	}
 }

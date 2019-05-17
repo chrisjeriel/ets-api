@@ -60,7 +60,9 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -115,7 +117,9 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -953,6 +957,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public SaveMtnQuoteWordingsResponse saveMtnQuoteWordings(SaveMtnQuoteWordingsRequest smqwr) throws SQLException {
+		SaveMtnQuoteWordingsResponse smqwResponse = new SaveMtnQuoteWordingsResponse();
+		HashMap<String, Object> saveMtnQuoteWordingsParams = new HashMap<String, Object>();
+		saveMtnQuoteWordingsParams.put("saveQW", smqwr.getSaveQW());
+		saveMtnQuoteWordingsParams.put("deleteQW",smqwr.getDeleteQW());
+		smqwResponse.setReturnCode(maintenanceDao.saveMtnQuoteWordings(saveMtnQuoteWordingsParams));
+		
+		return smqwResponse;
+	}
+
+	@Override
 	public SaveMtnEndorsementResponse saveMtnEndorsement(SaveMtnEndorsementRequest smer) throws SQLException {
 		SaveMtnEndorsementResponse smerResponse = new SaveMtnEndorsementResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -968,6 +983,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smerResponse;
+	}
+
+	@Override
+	public SaveMtnPolicyWordingsResponse saveMtnPolicyWordings(SaveMtnPolicyWordingsRequest smpwr) throws SQLException {
+		SaveMtnPolicyWordingsResponse smpwResponse = new SaveMtnPolicyWordingsResponse();
+		HashMap<String, Object> saveMtnPolicyWordingsParams = new HashMap<String, Object>();
+		saveMtnPolicyWordingsParams.put("savePW", smpwr.getSavePW());
+		saveMtnPolicyWordingsParams.put("deletePW",smpwr.getDeletePW());
+		smpwResponse.setReturnCode(maintenanceDao.saveMtnPolicyWordings(saveMtnPolicyWordingsParams));
+		
+		return smpwResponse;
 	}
 
 	@Override
