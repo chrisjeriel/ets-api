@@ -1182,7 +1182,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			updatePolGenInfoParams.put("riskId",uppgif.getRiskId());
 			updatePolGenInfoParams.put("coRefNo",uppgif.getCoRefNo());
 			updatePolGenInfoParams.put("riBinderNo",uppgif.getRiBinderNo());
-			updatePolGenInfoParams.put("insuredDesc",uppgif.getInsuredDesc());
+			updatePolGenInfoParams.put("intmId",uppgif.getIntmId());
+			updatePolGenInfoParams.put("projDesc",uppgif.getProjDesc());
 			updatePolGenInfoParams.put("latitude",uppgif.getLatitude());
 			updatePolGenInfoParams.put("longtitude", uppgif.getLongitude());
 			updatePolGenInfoParams.put("updateUser",uppgif.getUpdateUser());

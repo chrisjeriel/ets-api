@@ -6,7 +6,8 @@ public class UpdatePolGenInfoRequest {
 	private String riskId;
 	private String coRefNo;
 	private String riBinderNo;
-	private String insuredDesc;
+	private String intmId;
+	private String projDesc;
 	private String latitude;
 	private String longitude;
 	private String updateUser;
@@ -36,11 +37,17 @@ public class UpdatePolGenInfoRequest {
 	public void setRiBinderNo(String riBinderNo) {
 		this.riBinderNo = riBinderNo;
 	}
-	public String getInsuredDesc() {
-		return insuredDesc;
+	public String getIntmId() {
+		return intmId;
 	}
-	public void setInsuredDesc(String insuredDesc) {
-		this.insuredDesc = insuredDesc;
+	public void setIntmId(String intmId) {
+		this.intmId = intmId;
+	}
+	public String getProjDesc() {
+		return projDesc;
+	}
+	public void setProjDesc(String projDesc) {
+		this.projDesc = projDesc;
 	}
 	public String getLatitude() {
 		return latitude;
@@ -66,11 +73,11 @@ public class UpdatePolGenInfoRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "UpdatePolGenInfoRequest [policyId=" + policyId + ", riskId=" + riskId + ", coRefNo=" + coRefNo
-				+ ", riBinderNo=" + riBinderNo + ", insuredDesc=" + insuredDesc + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", riBinderNo=" + riBinderNo + ", intmId=" + intmId + ", projDesc=" + projDesc + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ "]";
 	}
 }
