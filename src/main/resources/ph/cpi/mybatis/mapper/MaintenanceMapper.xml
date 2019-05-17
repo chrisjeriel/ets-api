@@ -105,9 +105,9 @@
 		<result property = "activeTag"         column   ="ACTIVE_TAG"/>
 		<result property = "remarks"           column   ="REMARKS"/>
 		<result property = "createUser"        column   ="CREATE_USER"/>
-		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"        column   ="UPDATE_USER"/>
-		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="cityList"	   resultMap="cityMap"/>
 	</resultMap>
 	
@@ -871,6 +871,26 @@
     	END;
     </update>
     
+    <update id="saveMtnProvince" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveProvince" item="province">
+	    		MTN_PROVINCE_PKG.save_mtn_province(
+	    			#{province.provinceCd,jdbcType=VARCHAR},
+			        #{province.description,jdbcType=VARCHAR},
+			        #{province.regionCd,jdbcType=VARCHAR},
+			        #{province.activeTag,jdbcType=VARCHAR},
+			        #{province.remarks,jdbcType=VARCHAR},
+			        #{province.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{province.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{province.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{province.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteProvince" item="provinceDel">
+    			MTN_PROVINCE_PKG.del_mtn_province(#{provinceDel.provinceCd,jdbcType=VARCHAR});
+    		</foreach>
+    	END;
+    </update>
     
     
     
