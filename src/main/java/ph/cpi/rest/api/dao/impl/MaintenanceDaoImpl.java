@@ -350,6 +350,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return count;
 	}
 
+	@Override
+	public Integer saveMtnQuoteWordings(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnQuoteWordings", params);
+		return res;
+	}
 
 	@Override
 	public HashMap<String, Object> saveMtnCedingCompany(HashMap<String, Object> params) throws SQLException {
@@ -440,6 +445,20 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer saveMtnBlock(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("saveMtnBlock",params);
 		return code;
+	}
+
+	@Override
+	public Integer saveMtnPolicyWordings(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnPolicyWordings", params);
+		return res;
+	}
+	
+	@Override
+	public Integer saveMtnObject(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnObjectDAOImpl : " + params);
+		Integer errorCode = sqlSession.update("saveMtnObject", params);
+		System.out.println(errorCode);
+		return errorCode;
 	}
 	
 }

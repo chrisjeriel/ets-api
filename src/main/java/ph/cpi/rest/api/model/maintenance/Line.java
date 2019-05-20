@@ -18,6 +18,7 @@ public class Line {
 	private String updateUser;
 	private DateTime updateDate;
 	private String alopTag;
+	private String okDelete;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -108,13 +109,19 @@ public class Line {
 	public void setAlopTag(String alopTag) {
 		this.alopTag = alopTag;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "Line [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime + ", activeTag="
 				+ activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag
 				+ ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", alopTag=" + alopTag + "]";
+				+ updateDate + ", alopTag=" + alopTag + ", okDelete=" + okDelete + "]";
 	}
 	
 }

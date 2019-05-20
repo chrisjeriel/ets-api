@@ -32,7 +32,7 @@ public class SaveMtnLineRequest {
 class Lines {
 	private String lineCd ;
     private String description ;
-    private String cutOffTime;
+    private String saveCutOffTime;
     private String activeTag ;
     private String catTag ;
     private String renewalTag ;
@@ -57,11 +57,11 @@ class Lines {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCutOffTime() {
-		return cutOffTime;
+	public String getSaveCutOffTime() {
+		return saveCutOffTime;
 	}
-	public void setCutOffTime(String cutOffTime) {
-		this.cutOffTime = cutOffTime;
+	public void setSaveCutOffTime(String saveCutOffTime) {
+		this.saveCutOffTime = saveCutOffTime;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -137,11 +137,12 @@ class Lines {
 	}
 	@Override
 	public String toString() {
-		return "Lines [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime
+		return "Lines [lineCd=" + lineCd + ", description=" + description + ", saveCutOffTime=" + saveCutOffTime
 				+ ", activeTag=" + activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag="
 				+ openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", alopTag=" + alopTag + "]";
 	}
+	
     
 }
