@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
@@ -123,6 +124,8 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
 
 @Service
 public interface MaintenanceService {
@@ -198,4 +201,5 @@ public interface MaintenanceService {
 	public SaveMtnObjectResponse saveMtnObject(SaveMtnObjectRequest smor) throws SQLException;
 	
 	public RetMtnUserAmtLimitResponse retMtnUserAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException;
+	public SaveMtnUserAmtLimitResponse saveMtnUserAmtLimit(SaveMtnUserAmtLimitRequest smualr) throws SQLException;
 }

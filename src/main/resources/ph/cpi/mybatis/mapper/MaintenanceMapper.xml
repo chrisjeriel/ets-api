@@ -1652,5 +1652,17 @@
 		SELECT * FROM TABLE(MTN_USR_AMT_LMT_PKG.ret_mtn_usr_amt_lmt(#{userGrp,jdbcType=VARCHAR},#{lineCd,jdbcType=VARCHAR},null,null,null,null))
 	</select>
 	
-	
+	<update id="saveMtnUserAmtLimit" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delUserAmtLmt" item="userAmtLmt">
+				MTN_USR_AMT_LMT_PKG.del_mtn_usr_amt_lmt(#{userAmtLmt.userGrp},#{userAmtLmt.lineCd});
+			</foreach>
+			<foreach collection="saveUserAmtLmt" item="userAmtLmt">
+				MTN_USR_AMT_LMT_PKG.save_mtn_usr_amt_lmt(#{userAmtLmt.userGrp,jdbcType=VARCHAR},#{userAmtLmt.lineCd,jdbcType=VARCHAR},
+						#{userAmtLmt.allAmtSw,jdbcType=VARCHAR},#{userAmtLmt.amtLimit,jdbcType=VARCHAR},#{userAmtLmt.remarks,jdbcType=VARCHAR},
+						#{userAmtLmt.createUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{userAmtLmt.updateUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

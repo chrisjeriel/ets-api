@@ -128,6 +128,8 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -1202,5 +1204,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("lineCd", rmil.getLineCd());
 		rmqrrResponse.setUserAmtLimit(maintenanceDao.retMtnUserAmtLimit(params));
 		return rmqrrResponse;
+	}
+
+	@Override
+	public SaveMtnUserAmtLimitResponse saveMtnUserAmtLimit(SaveMtnUserAmtLimitRequest smualr) throws SQLException {
+		SaveMtnUserAmtLimitResponse smualrResponse = new SaveMtnUserAmtLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveUserAmtLmt", smualr.getSaveUserAmtLmt());
+		params.put("delUserAmtLmt", smualr.getDelUserAmtLmt());
+		try{
+			smualrResponse.setReturnCode(maintenanceDao.saveMtnUserAmtLimit(params));
+		}catch (Exception ex) {
+			smualrResponse.setReturnCode(0);
+			smualrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smualrResponse;
 	}
 }

@@ -467,5 +467,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<UserAmtLimit> list = sqlSession.selectList("retMtnUserAmtLimit", params);
 		return list;
 	}
+
+	@Override
+	public Integer saveMtnUserAmtLimit(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnUserAmtLimit", params);
+		return code;
+	}
 	
 }

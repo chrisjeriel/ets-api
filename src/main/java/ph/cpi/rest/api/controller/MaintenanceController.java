@@ -129,6 +129,8 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -563,5 +565,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retMtnUserAmtLimit");
 		logger.info("RetMtnUserAmtLimit : " + rmil.toString());
 		return maintenanceService.retMtnUserAmtLimit(rmil); 	
+	}
+	
+	@PostMapping(path="saveMtnUserAmtLimit")
+	public @ResponseBody SaveMtnUserAmtLimitResponse saveMtnUserAmtLimit(@RequestBody SaveMtnUserAmtLimitRequest smualr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnUserAmtLimit");
+		logger.info("SaveMtnUserAmtLimitRequest : " + smualr.toString());
+		return maintenanceService.saveMtnUserAmtLimit(smualr);
 	}
 }
