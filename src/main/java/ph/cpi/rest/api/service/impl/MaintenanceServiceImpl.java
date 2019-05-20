@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
@@ -89,6 +91,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
@@ -118,6 +121,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
@@ -1190,5 +1194,43 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smqrrResponse;
+	}
+
+	@Override
+	public RetrieveMtnNonRenewalReasonResponse retriveMtnNonRenewalReason(RetrieveMtnNonRenewalReasonRequest rmnrrr)
+			throws SQLException {
+		RetrieveMtnNonRenewalReasonResponse response = new RetrieveMtnNonRenewalReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("reasonCd", rmnrrr.getReasonCd());
+		params.put("activeTag", rmnrrr.getActiveTag());
+		params.put("position", rmnrrr.getPaginationRequest().getPosition());
+		params.put("count", rmnrrr.getPaginationRequest().getCount());
+		params.put("sortKey", rmnrrr.getSortRequest().getSortKey());
+		params.put("order", rmnrrr.getSortRequest().getOrder());
+		
+		response.setNonRenewalReason(maintenanceDao.retriveMtnNonRenewalReason(params));
+		response.getPaginationResponse().setPosition(rmnrrr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmnrrr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmnrrr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmnrrr.getSortRequest().getOrder());
+		
+		return response;
+	}
+
+	@Override
+	public SaveMtnNonRenewalReasonResponse saveMtnNonRenewalReason(SaveMtnNonRenewalReasonRequest smnrrr)
+			throws SQLException {
+		SaveMtnNonRenewalReasonResponse response = new SaveMtnNonRenewalReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveNonRenewalReasonList", smnrrr.getSaveNonRenewalReasonList());
+		params.put("delNonRenewalReasonList", smnrrr.getDelNonRenewalReasonList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnNonRenewalReason(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }
