@@ -1071,6 +1071,7 @@
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
+    	END;
 	</update>
 	
     <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
