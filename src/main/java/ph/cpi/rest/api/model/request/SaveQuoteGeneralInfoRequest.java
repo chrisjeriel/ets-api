@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.request;
 public class SaveQuoteGeneralInfoRequest {
 	private String savingType;
 	private String tempQuoteIdInternalComp;
+	private String tempQuoteIdModification;
 	private String quoteId;
 	private String lineCd;
 	private String quoteYear;
@@ -36,6 +37,7 @@ public class SaveQuoteGeneralInfoRequest {
 	private String printDate;
 	private String openingParag;
 	private String closingParag;
+	private String altWordings;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -76,6 +78,12 @@ public class SaveQuoteGeneralInfoRequest {
 	}
 	public void setTempQuoteIdInternalComp(String tempQuoteIdInternalComp) {
 		this.tempQuoteIdInternalComp = tempQuoteIdInternalComp;
+	}
+	public String getTempQuoteIdModification() {
+		return tempQuoteIdModification;
+	}
+	public void setTempQuoteIdModification(String tempQuoteIdModification) {
+		this.tempQuoteIdModification = tempQuoteIdModification;
 	}
 	public String getQuoteId() {
 		return quoteId;
@@ -275,6 +283,12 @@ public class SaveQuoteGeneralInfoRequest {
 	public void setClosingParag(String closingParag) {
 		this.closingParag = closingParag;
 	}
+	public String getAltWordings() {
+		return altWordings;
+	}
+	public void setAltWordings(String altWordings) {
+		this.altWordings = altWordings;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -446,24 +460,25 @@ public class SaveQuoteGeneralInfoRequest {
 	@Override
 	public String toString() {
 		return "SaveQuoteGeneralInfoRequest [savingType=" + savingType + ", tempQuoteIdInternalComp="
-				+ tempQuoteIdInternalComp + ", quoteId=" + quoteId + ", lineCd=" + lineCd + ", quoteYear=" + quoteYear
-				+ ", quoteSeqNo=" + quoteSeqNo + ", quoteRevNo=" + quoteRevNo + ", cedingId=" + cedingId
-				+ ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", prinId=" + prinId + ", contractorId="
-				+ contractorId + ", insuredDesc=" + insuredDesc + ", policyId=" + policyId + ", status=" + status
-				+ ", reinsurerId=" + reinsurerId + ", intmId=" + intmId + ", issueDate=" + issueDate + ", expiryDate="
-				+ expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo="
-				+ mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag
+				+ tempQuoteIdInternalComp + ", tempQuoteIdModification=" + tempQuoteIdModification + ", quoteId="
+				+ quoteId + ", lineCd=" + lineCd + ", quoteYear=" + quoteYear + ", quoteSeqNo=" + quoteSeqNo
+				+ ", quoteRevNo=" + quoteRevNo + ", cedingId=" + cedingId + ", cessionId=" + cessionId
+				+ ", lineClassCd=" + lineClassCd + ", prinId=" + prinId + ", contractorId=" + contractorId
+				+ ", insuredDesc=" + insuredDesc + ", policyId=" + policyId + ", status=" + status + ", reinsurerId="
+				+ reinsurerId + ", intmId=" + intmId + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate
+				+ ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo
+				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag
 				+ ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag + ", declarationTag="
 				+ declarationTag + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy="
 				+ printedBy + ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag="
-				+ closingParag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc
-				+ ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd
-				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", totalSi=" + totalSi + ", pctShare=" + pctShare + ", totalValue=" + totalValue
-				+ ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing=" + testing
-				+ ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
-				+ prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser=" + prjUpdateUser
-				+ ", prjUpdateDate=" + prjUpdateDate + "]";
+				+ closingParag + ", altWordings=" + altWordings + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId
+				+ ", projDesc=" + projDesc + ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd="
+				+ provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd=" + blockCd
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", totalSi=" + totalSi + ", pctShare="
+				+ pctShare + ", totalValue=" + totalValue + ", objectId=" + objectId + ", site=" + site + ", duration="
+				+ duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd="
+				+ noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
+				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
 	}
 }

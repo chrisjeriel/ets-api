@@ -677,6 +677,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("quotationNo", "");
 			saveQuoteGeneralInfoParams.put("outQuoteId", "");
 			saveQuoteGeneralInfoParams.put("savingType", sqgip.getSavingType());
+			saveQuoteGeneralInfoParams.put("quoteIdModif", sqgip.getTempQuoteIdModification());
 			saveQuoteGeneralInfoParams.put("quoteId", sqgip.getQuoteId());
 			saveQuoteGeneralInfoParams.put("lineCd", sqgip.getLineCd());
 			saveQuoteGeneralInfoParams.put("quoteYear", sqgip.getQuoteYear());
@@ -710,6 +711,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("printDate", sqgip.getPrintDate());
 			saveQuoteGeneralInfoParams.put("openingParag", sqgip.getOpeningParag());
 			saveQuoteGeneralInfoParams.put("closingParag", sqgip.getClosingParag());
+			saveQuoteGeneralInfoParams.put("altWordings", sqgip.getAltWordings());
 			saveQuoteGeneralInfoParams.put("createUser", sqgip.getCreateUser());
 			saveQuoteGeneralInfoParams.put("createDate", sqgip.getCreateDate());
 			saveQuoteGeneralInfoParams.put("updateUser", sqgip.getUpdateUser());
