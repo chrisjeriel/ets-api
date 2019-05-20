@@ -123,6 +123,7 @@
 		<association property="holdCoverList"	resultMap="holdCoverMap"/>
 		<association property="alterationHist" 	resultMap="AlterationHistMap"/>
 		<association property="polWordings" resultMap="PolWordingsMap"></association>
+		<association property="endtText" resultMap="assocEndorsementsMap"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.AlterationHist" id="AlterationHistMap" >
@@ -1730,7 +1731,8 @@
 											 #{riskId, jdbcType=INTEGER},
 											 #{coRefNo, jdbcType=VARCHAR},
 											 #{riBinderNo, jdbcType=VARCHAR},
-											 #{insuredDesc, jdbcType=VARCHAR},
+											 #{intmId, jdbcType=VARCHAR},
+											 #{projDesc, jdbcType=VARCHAR},
 											 #{latitude, jdbcType=VARCHAR},
 											 #{longtitude, jdbcType=VARCHAR},
 											 #{updateUser, jdbcType=VARCHAR},

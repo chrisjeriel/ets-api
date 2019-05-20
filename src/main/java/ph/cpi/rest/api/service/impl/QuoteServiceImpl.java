@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.constants.ExceptionCodes;
@@ -157,7 +158,9 @@ public class QuoteServiceImpl implements QuoteService{
 			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
 		} catch (NullPointerException npe) {
 			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_GEN_001, ExceptionCodes.QUEX_GEN_001_MSG));
-		} 
+		} catch (DataIntegrityViolationException dive){
+			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
+		}
 		
 		return rqlResponse;
 	}

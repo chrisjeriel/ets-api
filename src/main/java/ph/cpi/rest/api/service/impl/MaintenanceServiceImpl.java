@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
+import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
+import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
@@ -126,6 +128,8 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
+import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -1190,5 +1194,31 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smqrrResponse;
+	}
+
+	@Override
+	public RetMtnUserAmtLimitResponse retMtnUserAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException {
+		RetMtnUserAmtLimitResponse rmqrrResponse = new RetMtnUserAmtLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userGrp", rmil.getUserGrp());
+		params.put("lineCd", rmil.getLineCd());
+		rmqrrResponse.setUserAmtLimit(maintenanceDao.retMtnUserAmtLimit(params));
+		return rmqrrResponse;
+	}
+
+	@Override
+	public SaveMtnUserAmtLimitResponse saveMtnUserAmtLimit(SaveMtnUserAmtLimitRequest smualr) throws SQLException {
+		SaveMtnUserAmtLimitResponse smualrResponse = new SaveMtnUserAmtLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveUserAmtLmt", smualr.getSaveUserAmtLmt());
+		params.put("delUserAmtLmt", smualr.getDelUserAmtLmt());
+		try{
+			smualrResponse.setReturnCode(maintenanceDao.saveMtnUserAmtLimit(params));
+		}catch (Exception ex) {
+			smualrResponse.setReturnCode(0);
+			smualrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smualrResponse;
 	}
 }
