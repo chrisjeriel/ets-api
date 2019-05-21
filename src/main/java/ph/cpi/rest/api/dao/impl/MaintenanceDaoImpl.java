@@ -14,6 +14,8 @@ import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
+import ph.cpi.rest.api.model.maintenance.Approver;
+import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
@@ -510,6 +512,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public List<ApprovalFunction> retrieveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
 		List<ApprovalFunction> list = sqlSession.selectList("retrieveMtnApprovalFunction",params);
+		return list;
+	}
+
+	@Override
+	public List<Approver> retrieveApprover() throws SQLException {
+		List<Approver> list = sqlSession.selectList("retrieveApprover");
+		return list;
+	}
+
+	@Override
+	public List<ApproverFn> retrieveApproverFn(HashMap<String, Object> params) throws SQLException {
+		List<ApproverFn> list = sqlSession.selectList("retrieveApproverFn",params);
 		return list;
 	}
 

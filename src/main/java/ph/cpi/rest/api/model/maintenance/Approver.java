@@ -1,41 +1,55 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
-public class ApproverFn {
-	private String approvalCd;
+@Alias("MtnApprover")
+public class Approver {
 	private String userId;
 	private String userName;
-	private String description;
+	private String userGrp;
+	private String userGrpDesc;
+	private String emailAddress;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
-	public String getApprovalCd() {
-		return approvalCd;
-	}
-	public void setApprovalCd(String approvalCd) {
-		this.approvalCd = approvalCd;
-	}
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getDescription() {
-		return description;
+	public String getUserGrp() {
+		return userGrp;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setUserGrp(String userGrp) {
+		this.userGrp = userGrp;
+	}
+	public String getUserGrpDesc() {
+		return userGrpDesc;
+	}
+	public void setUserGrpDesc(String userGrpDesc) {
+		this.userGrpDesc = userGrpDesc;
+	}
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -63,8 +77,8 @@ public class ApproverFn {
 	}
 	@Override
 	public String toString() {
-		return "ApproverFn [approvalCd=" + approvalCd + ", userId=" + userId + ", userName=" + userName
-				+ ", description=" + description + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Approver [userId=" + userId + ", userName=" + userName + ", userGrp=" + userGrp + ", userGrpDesc="
+				+ userGrpDesc + ", emailAddress=" + emailAddress + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

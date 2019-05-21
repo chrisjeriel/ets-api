@@ -7,6 +7,8 @@ import java.util.List;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
+import ph.cpi.rest.api.model.maintenance.Approver;
+import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
@@ -112,4 +114,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
 	public List<ApprovalFunction> retrieveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
 	
+	public List<Approver> retrieveApprover() throws SQLException;
+	public List<ApproverFn> retrieveApproverFn(final HashMap<String, Object> params) throws SQLException;
 }
