@@ -64,6 +64,7 @@ import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
@@ -122,6 +123,7 @@ import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
@@ -572,5 +574,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnUserAmtLimit");
 		logger.info("SaveMtnUserAmtLimitRequest : " + smualr.toString());
 		return maintenanceService.saveMtnUserAmtLimit(smualr);
+	}
+
+	@PostMapping(path="saveMtnOtherCharge")
+	public @ResponseBody SaveMtnOtherChargeResponse saveMtnOtherCharge(@RequestBody SaveMtnOtherChargeRequest smocr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnOtherCharge");
+		logger.info("SaveMtnOtherChargeRequest : " + smocr.toString());
+		return maintenanceService.saveMtnOtherCharge(smocr);
 	}
 }

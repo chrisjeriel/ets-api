@@ -51,6 +51,7 @@ public class QuotationGeneralInfo {
 	private DateTime printDate;
 	private String openingParag;
 	private String closingParag;
+	private String altWordings;
 	private String reasonCd;
 	private String reasonDesc;
 	private String createUser;
@@ -334,6 +335,12 @@ public class QuotationGeneralInfo {
 	public void setClosingParag(String closingParag) {
 		this.closingParag = closingParag;
 	}
+	public String getAltWordings() {
+		return altWordings;
+	}
+	public void setAltWordings(String altWordings) {
+		this.altWordings = altWordings;
+	}
 	public String getReasonCd() {
 		return reasonCd;
 	}
@@ -387,8 +394,8 @@ public class QuotationGeneralInfo {
 				+ ocQuoted + ", openQuotationNo=" + openQuotationNo + ", declarationTag=" + declarationTag
 				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", altWordings=" + altWordings + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-
 }

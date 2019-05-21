@@ -62,6 +62,7 @@ import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
@@ -121,6 +122,7 @@ import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
@@ -996,7 +998,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		SaveMtnPolicyWordingsResponse smpwResponse = new SaveMtnPolicyWordingsResponse();
 		HashMap<String, Object> saveMtnPolicyWordingsParams = new HashMap<String, Object>();
 		saveMtnPolicyWordingsParams.put("savePW", smpwr.getSavePW());
-		saveMtnPolicyWordingsParams.put("deletePW",smpwr.getDeletePW());
+		saveMtnPolicyWordingsParams.put("deletePW", smpwr.getDeletePW());
 		smpwResponse.setReturnCode(maintenanceDao.saveMtnPolicyWordings(saveMtnPolicyWordingsParams));
 		
 		return smpwResponse;
@@ -1220,5 +1222,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smualrResponse;
+	}
+	
+	@Override
+	public SaveMtnOtherChargeResponse saveMtnOtherCharge(SaveMtnOtherChargeRequest smocr) throws SQLException {		
+		SaveMtnOtherChargeResponse smocResponse = new SaveMtnOtherChargeResponse();
+		HashMap<String, Object> saveMtnOtherChargeParams = new HashMap<String, Object>();
+		saveMtnOtherChargeParams.put("saveOChrg", smocr.getSaveOChrg());
+		saveMtnOtherChargeParams.put("deleteOChrg", smocr.getDeleteOChrg());
+		smocResponse.setReturnCode(maintenanceDao.saveMtnOtherCharge(saveMtnOtherChargeParams));
+		
+		return smocResponse;
 	}
 }
