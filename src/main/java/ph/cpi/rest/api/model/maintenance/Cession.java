@@ -14,7 +14,7 @@ public class Cession {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
+	private String okDelete;
 	public Integer getCessionId() {
 		return cessionId;
 	}
@@ -69,10 +69,18 @@ public class Cession {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "Cession [cessionId=" + cessionId + ", cessionAbbr=" + cessionAbbr + ", description=" + description
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ "]";
 	}
+	
 }
