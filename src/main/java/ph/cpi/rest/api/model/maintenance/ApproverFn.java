@@ -10,7 +10,6 @@ public class ApproverFn {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public String getApprovalCd() {
 		return approvalCd;
 	}
@@ -23,7 +22,6 @@ public class ApproverFn {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
 	public String getUserName() {
 		return userName;
 	}

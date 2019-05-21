@@ -4,17 +4,17 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
+import ph.cpi.rest.api.model.maintenance.ApproverFn;
 
-public class RetrieveMtnApprovalResponse {
-	private List<ApprovalFunction> approvalFunction;
+public class RetrieveMtnApprovalFunctionResponse {
+	private List<ApproverFn> approverFn;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<ApprovalFunction> getApprovalFunction() {
-		return approvalFunction;
+	public List<ApproverFn> getApproverFn() {
+		return approverFn;
 	}
-	public void setApprovalFunction(List<ApprovalFunction> approvalFunction) {
-		this.approvalFunction = approvalFunction;
+	public void setApproverFn(List<ApproverFn> approverFn) {
+		this.approverFn = approverFn;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -30,9 +30,7 @@ public class RetrieveMtnApprovalResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnApprovalResponse [approvalFunction=" + approvalFunction + ", paginationResponse="
+		return "RetrieveMtnApprovalFunctionResponse [approverFn=" + approverFn + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
-	
 }

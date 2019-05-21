@@ -1787,17 +1787,26 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.maintenance.ApproverFn" id="approverFnMap">
-		<result property="userId" 			column="APPROVAL_USER_ID"/>
-		<result property="userName" 		column="USERNAME"/>
-		<result property="createUser" 		column="APPROVAL_CREATE_USER"/>
-		<result property="createDate" 		column="APPROVAL_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" 		column="APPROVAL_UPDATE_USER"/>
-		<result property="updateDate" 		column="APPROVAL_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	<resultMap type="ph.cpi.rest.api.model.maintenance.ApproverFn" id="approvalFunctionMap">
+		<result property="approvalCd" 		column="APPROVAL_CD"/>
+		<result property="userId" 			column="USER_ID"/>
+		<result property="userName" 		column="USER_NAME"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
     <select id="retrieveMtnApproval" resultMap="approvalMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_APPROVAL_FUNCTION_PKG.retrieve_mtn_approval(#{approvalCd, jdbcType=VARCHAR},
+																					 #{position 	, jdbcType=VARCHAR},
+																				     #{count		, jdbcType=VARCHAR},
+																				     #{sortKey		, jdbcType=VARCHAR},
+																					 #{order		, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveMtnApprovalFunction" resultMap="approvalFunctionMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_APPROVAL_FUNCTION_PKG.retrieve_mtn_approval_function(#{approvalCd},
 																					 #{position 	, jdbcType=VARCHAR},
 																				     #{count		, jdbcType=VARCHAR},
 																				     #{sortKey		, jdbcType=VARCHAR},

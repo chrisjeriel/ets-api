@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
@@ -83,6 +84,7 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
@@ -622,9 +624,16 @@ public class MaintenanceController {
 	}
 	
 	@GetMapping(path="retrieveMtnApproval")
-	public @ResponseBody RetrieveMtnApprovalResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalRequest rmscp) throws SQLException {
+	public @ResponseBody RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmscp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnApproval");
 		logger.info("RetrieveMtnApprovalRequest : " + rmscp.toString());
+		return maintenanceService.retrieveMtnApproval(rmscp);
+	}
+	
+	@GetMapping(path="retrieveMtnApprovalFunction")
+	public @ResponseBody RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmscp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/RetrieveMtnApprovalFunctionRequest");
+		logger.info("RetrieveMtnApprovalFunctionRequest : " + rmscp.toString());
 		return maintenanceService.retrieveMtnApprovalFunction(rmscp);
 	}
 }
