@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
+import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.Cession;
@@ -504,6 +505,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnProvince", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<ApprovalFunction> retrieveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
+		List<ApprovalFunction> list = sqlSession.selectList("retrieveMtnApprovalFunction",params);
+		return list;
 	}
 
 }
