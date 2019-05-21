@@ -68,8 +68,10 @@ import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -129,8 +131,10 @@ import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -599,5 +603,19 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnNonRenewalReason");
 		logger.info("SaveMtnNonRenewalReasonRequest : " + smnrrr.toString());
 		return maintenanceService.saveMtnNonRenewalReason(smnrrr);
+	}
+
+	@PostMapping(path="saveMtnRegion")
+	public @ResponseBody SaveMtnRegionResponse saveMtnRegion(@RequestBody SaveMtnRegionRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRegion");
+		logger.info("SaveRegionRequest : " + smrr.toString());
+		return maintenanceService.saveMtnRegion(smrr);
+	}
+	
+	@PostMapping(path="saveMtnProvince")
+	public @ResponseBody SaveMtnProvinceResponse saveMtnProvince(@RequestBody SaveMtnProvinceRequest smpr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnProvince");
+		logger.info("SaveProvinceRequest : " + smpr.toString());
+		return maintenanceService.saveMtnProvince(smpr);
 	}
 }

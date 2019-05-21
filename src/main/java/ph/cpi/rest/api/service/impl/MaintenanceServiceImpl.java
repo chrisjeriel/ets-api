@@ -66,8 +66,10 @@ import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -128,8 +130,10 @@ import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -1275,5 +1279,29 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			e.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public SaveMtnRegionResponse saveMtnRegion(SaveMtnRegionRequest smrr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnRegionResponse smrResponse = new SaveMtnRegionResponse();
+		HashMap<String, Object> saveMtnRegionParams = new HashMap<String, Object>();
+		saveMtnRegionParams.put("saveRegion", smrr.getSaveRegion());
+		saveMtnRegionParams.put("deleteRegion", smrr.getDeleteRegion());
+		smrResponse.setReturnCode(maintenanceDao.saveMtnRegion(saveMtnRegionParams));
+		logger.info("SaveMtnRegionResponse : " + smrResponse.toString());
+		return smrResponse;
+	}
+
+	@Override
+	public SaveMtnProvinceResponse saveMtnProvince(SaveMtnProvinceRequest smpr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnProvinceResponse smpResponse = new SaveMtnProvinceResponse();
+		HashMap<String, Object> saveMtnProvinceParams = new HashMap<String, Object>();
+		saveMtnProvinceParams.put("saveProvince", smpr.getSaveProvince());
+		saveMtnProvinceParams.put("deleteProvince", smpr.getDeleteProvince());
+		smpResponse.setReturnCode(maintenanceDao.saveMtnProvince(saveMtnProvinceParams));
+		logger.info("SaveMtnProvinceResponse : " + smpResponse.toString());
+		return smpResponse;
 	}
 }

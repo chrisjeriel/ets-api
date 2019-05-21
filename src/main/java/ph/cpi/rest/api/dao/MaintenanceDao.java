@@ -70,6 +70,7 @@ public interface MaintenanceDao {
 	public List<CATPeril> retrieveMtnCATPeril(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnCharges> retrieveMtnCharges(final HashMap<String, Object> params) throws SQLException;	
 	public Integer saveMtnLine(final HashMap<String, Object> params) throws SQLException;
+
 	public Integer saveMtnDeductibles(final HashMap<String, Object> params) throws SQLException;	
 	public List<Spoil> retrieveMtnSpoilageReason(final HashMap<String, Object> params ) throws SQLException;
 	public List<MtnPolWordings> retMtnPolWordings(final HashMap<String, Object> params ) throws SQLException;
@@ -105,4 +106,7 @@ public interface MaintenanceDao {
 	
 	public List<NonRenewalReason> retriveMtnNonRenewalReason(final HashMap<String,Object> params) throws SQLException;
 	public Integer saveMtnNonRenewalReason(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer saveMtnRegion(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
 }

@@ -465,7 +465,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer saveMtnObject(HashMap<String, Object> params) throws SQLException {
 		logger.info("saveMtnObjectDAOImpl : " + params);
 		Integer errorCode = sqlSession.update("saveMtnObject", params);
-		System.out.println(errorCode);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer saveMtnRegion(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnRegion", params);
 		return errorCode;
 	}
 
@@ -493,4 +499,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 	
+	@Override
+	public Integer saveMtnProvince(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnProvince", params);
+		return errorCode;
+	}
+
 }
