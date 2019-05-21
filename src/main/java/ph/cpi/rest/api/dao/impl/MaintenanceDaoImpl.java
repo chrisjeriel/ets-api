@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -478,6 +479,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer saveMtnUserAmtLimit(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("saveMtnUserAmtLimit", params);
 		return code;
+	}
+	
+	@Override
+	public List<NonRenewalReason> retriveMtnNonRenewalReason(HashMap<String, Object> params) throws SQLException {
+		List<NonRenewalReason> nonRenewalReasonList = sqlSession.selectList("retMtnNonRenewReason", params);
+		return nonRenewalReasonList;
+	}
+
+	@Override
+	public Integer saveMtnNonRenewalReason(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnNonRenewalReason", params);
+		return errorCode;
 	}
 	
 }

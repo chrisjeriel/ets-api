@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -102,4 +103,6 @@ public interface MaintenanceDao {
 	public List<UserAmtLimit> retMtnUserAmtLimit(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnUserAmtLimit(final HashMap<String, Object> params) throws SQLException;
 	
+	public List<NonRenewalReason> retriveMtnNonRenewalReason(final HashMap<String,Object> params) throws SQLException;
+	public Integer saveMtnNonRenewalReason(final HashMap<String, Object> params) throws SQLException;
 }
