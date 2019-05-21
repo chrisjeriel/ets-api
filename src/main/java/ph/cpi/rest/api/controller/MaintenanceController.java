@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
@@ -63,10 +64,14 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -93,6 +98,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
@@ -121,10 +127,14 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -572,5 +582,40 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnUserAmtLimit");
 		logger.info("SaveMtnUserAmtLimitRequest : " + smualr.toString());
 		return maintenanceService.saveMtnUserAmtLimit(smualr);
+	}
+
+	@PostMapping(path="saveMtnOtherCharge")
+	public @ResponseBody SaveMtnOtherChargeResponse saveMtnOtherCharge(@RequestBody SaveMtnOtherChargeRequest smocr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnOtherCharge");
+		logger.info("SaveMtnOtherChargeRequest : " + smocr.toString());
+		return maintenanceService.saveMtnOtherCharge(smocr);
+	}
+	
+	@GetMapping(path="retrieveMtnNonRenewalReason")
+	public @ResponseBody RetrieveMtnNonRenewalReasonResponse retrieveMtnNonRenewalReason(RetrieveMtnNonRenewalReasonRequest rmnrrr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnNonRenewalReason");
+		logger.info("RetrieveMtnNonRenewalReasonRequest : " + rmnrrr.toString());
+		return maintenanceService.retriveMtnNonRenewalReason(rmnrrr);
+	}
+	
+	@PostMapping(path="saveMtnNonRenewalReason")
+	public @ResponseBody SaveMtnNonRenewalReasonResponse saveMtnNonRenewalReason(@RequestBody SaveMtnNonRenewalReasonRequest smnrrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnNonRenewalReason");
+		logger.info("SaveMtnNonRenewalReasonRequest : " + smnrrr.toString());
+		return maintenanceService.saveMtnNonRenewalReason(smnrrr);
+	}
+
+	@PostMapping(path="saveMtnRegion")
+	public @ResponseBody SaveMtnRegionResponse saveMtnRegion(@RequestBody SaveMtnRegionRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRegion");
+		logger.info("SaveRegionRequest : " + smrr.toString());
+		return maintenanceService.saveMtnRegion(smrr);
+	}
+	
+	@PostMapping(path="saveMtnProvince")
+	public @ResponseBody SaveMtnProvinceResponse saveMtnProvince(@RequestBody SaveMtnProvinceRequest smpr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnProvince");
+		logger.info("SaveProvinceRequest : " + smpr.toString());
+		return maintenanceService.saveMtnProvince(smpr);
 	}
 }

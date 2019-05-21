@@ -3,8 +3,6 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
@@ -28,6 +26,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
@@ -57,10 +56,14 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
@@ -87,6 +90,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
@@ -116,10 +120,14 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -173,6 +181,7 @@ public interface MaintenanceService {
 	public RetrieveMtnChargesResponse retrieveMtnCharges (RetrieveMtnChargesRequest rmcr) throws SQLException;
 	public SaveMtnLineResponse saveMtnLine(SaveMtnLineRequest smlr) throws SQLException;
 	public SaveMtnDeductiblesResponse saveMtnDeductibles(SaveMtnDeductiblesRequest smdr) throws SQLException;
+
 	public RetrieveMtnSpoilageReasonResponse retrieveMtnSpoilageReason (RetrieveMtnSpoilageReasonRequest rmcr) throws SQLException;
 	public RetMtnPolWordingsResponse retMtnPolWordings(RetMtnPolWordingsRequest rmpwr) throws SQLException;
 	public SaveMtnInsuredResponse saveMtnInsured(SaveMtnInsuredRequest smir) throws SQLException;
@@ -202,4 +211,11 @@ public interface MaintenanceService {
 	
 	public RetMtnUserAmtLimitResponse retMtnUserAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException;
 	public SaveMtnUserAmtLimitResponse saveMtnUserAmtLimit(SaveMtnUserAmtLimitRequest smualr) throws SQLException;
+	public SaveMtnOtherChargeResponse saveMtnOtherCharge(SaveMtnOtherChargeRequest smocr) throws SQLException;
+	public RetrieveMtnNonRenewalReasonResponse retriveMtnNonRenewalReason(RetrieveMtnNonRenewalReasonRequest rmnrrr) throws SQLException;
+	public SaveMtnNonRenewalReasonResponse saveMtnNonRenewalReason(SaveMtnNonRenewalReasonRequest smnrrr) throws SQLException;
+
+	public SaveMtnRegionResponse saveMtnRegion(SaveMtnRegionRequest smrr) throws SQLException;
+	public SaveMtnProvinceResponse saveMtnProvince(SaveMtnProvinceRequest smpr) throws SQLException;
+
 }

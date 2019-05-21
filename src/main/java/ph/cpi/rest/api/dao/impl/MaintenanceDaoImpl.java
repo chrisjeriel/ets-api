@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -453,12 +454,24 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer res = sqlSession.update("saveMtnPolicyWordings", params);
 		return res;
 	}
+
+	@Override
+	public Integer saveMtnOtherCharge(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnOtherCharge", params);
+		return res;
+	}
 	
 	@Override
 	public Integer saveMtnObject(HashMap<String, Object> params) throws SQLException {
 		logger.info("saveMtnObjectDAOImpl : " + params);
 		Integer errorCode = sqlSession.update("saveMtnObject", params);
-		System.out.println(errorCode);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer saveMtnRegion(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnRegion", params);
 		return errorCode;
 	}
 
@@ -474,4 +487,23 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return code;
 	}
 	
+	@Override
+	public List<NonRenewalReason> retriveMtnNonRenewalReason(HashMap<String, Object> params) throws SQLException {
+		List<NonRenewalReason> nonRenewalReasonList = sqlSession.selectList("retMtnNonRenewReason", params);
+		return nonRenewalReasonList;
+	}
+
+	@Override
+	public Integer saveMtnNonRenewalReason(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnNonRenewalReason", params);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer saveMtnProvince(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnProvince", params);
+		return errorCode;
+	}
+
 }

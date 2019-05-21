@@ -1,31 +1,23 @@
 package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
-public class Cession {
-
-	private Integer cessionId;
-	private String cessionAbbr;
+public class NonRenewalReason {
+	private String reasonCd;
 	private String description;
-	private String activeTag ;
+	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
-	public Integer getCessionId() {
-		return cessionId;
+	
+	public String getReasonCd() {
+		return reasonCd;
 	}
-	public void setCessionId(Integer cessionId) {
-		this.cessionId = cessionId;
-	}
-	public String getCessionAbbr() {
-		return cessionAbbr;
-	}
-	public void setCessionAbbr(String cessionAbbr) {
-		this.cessionAbbr = cessionAbbr;
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
 	}
 	public String getDescription() {
 		return description;
@@ -75,12 +67,11 @@ public class Cession {
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
+	
 	@Override
 	public String toString() {
-		return "Cession [cessionId=" + cessionId + ", cessionAbbr=" + cessionAbbr + ", description=" + description
-				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ "]";
+		return "NonRenewalReason [reasonCd=" + reasonCd + ", description=" + description + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
-	
 }
