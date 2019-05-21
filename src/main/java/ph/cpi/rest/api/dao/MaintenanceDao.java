@@ -68,4 +68,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnDeductibles(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnRegion(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnCity(final HashMap<String, Object> params) throws SQLException;
 }

@@ -300,4 +300,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnProvince", params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer saveMtnCity(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnCity", params);
+		return errorCode;
+	}
 }

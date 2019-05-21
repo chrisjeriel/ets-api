@@ -40,6 +40,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
 import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
@@ -75,6 +76,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
 import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
@@ -722,5 +724,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smpResponse.setReturnCode(maintenanceDao.saveMtnProvince(saveMtnProvinceParams));
 		logger.info("SaveMtnProvinceResponse : " + smpResponse.toString());
 		return smpResponse;
+	}
+
+	@Override
+	public SaveMtnCityResponse saveMtnCity(SaveMtnCityRequest smcr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnCityResponse smcResponse = new SaveMtnCityResponse();
+		HashMap<String, Object> saveMtnCityParams = new HashMap<String, Object>();
+		saveMtnCityParams.put("saveCity", smcr.getSaveCity());
+		saveMtnCityParams.put("deleteCity", smcr.getSaveCity());
+		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
+		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
+		return smcResponse;
 	}
 }
