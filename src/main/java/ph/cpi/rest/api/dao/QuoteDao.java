@@ -77,5 +77,5 @@ public interface QuoteDao {
 	public List<Approver> retrieveQuoteApprover(final HashMap<String, Object> params) throws SQLException;
 	
 	public Integer updateQuoteStatus(final HashMap<String, Object> params) throws SQLException;
-	
+	public Integer checkCompetition(final HashMap<String, Object> params) throws SQLException;
 }

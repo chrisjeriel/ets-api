@@ -1784,4 +1784,10 @@
 		END;
 	</update>
 	
+	<update id="checkCompetition" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{hasCompetition, mode=OUT, javaType=Integer, jdbcType=INTEGER} := QU_GEN_INFO.chk_competition(#{quoteIdModif, jdbcType=INTEGER})
+		}	
+	</update>
+	
 </mapper>

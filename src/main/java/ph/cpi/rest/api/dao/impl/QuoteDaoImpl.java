@@ -383,5 +383,10 @@ public class QuoteDaoImpl implements QuoteDao{
 		Integer errorCode = sqlSession.update("updateQuoteStatus", params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer checkCompetition(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("checkCompetition", params);
+	}
 		
 }
