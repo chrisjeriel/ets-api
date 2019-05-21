@@ -1636,5 +1636,33 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.UserAmtLimit" id="UserAmtLimitMap">
+		<result property="userGrp" column="USER_GRP"/>
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="allAmtSw" column="ALL_AMT_SW"/>
+		<result property="amtLimit" column="AMT_LIMIT"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
 	
+	<select id="retMtnUserAmtLimit" resultMap="UserAmtLimitMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_USR_AMT_LMT_PKG.ret_mtn_usr_amt_lmt(#{userGrp,jdbcType=VARCHAR},#{lineCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
+	<update id="saveMtnUserAmtLimit" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delUserAmtLmt" item="userAmtLmt">
+				MTN_USR_AMT_LMT_PKG.del_mtn_usr_amt_lmt(#{userAmtLmt.userGrp},#{userAmtLmt.lineCd});
+			</foreach>
+			<foreach collection="saveUserAmtLmt" item="userAmtLmt">
+				MTN_USR_AMT_LMT_PKG.save_mtn_usr_amt_lmt(#{userAmtLmt.userGrp,jdbcType=VARCHAR},#{userAmtLmt.lineCd,jdbcType=VARCHAR},
+						#{userAmtLmt.allAmtSw,jdbcType=VARCHAR},#{userAmtLmt.amtLimit,jdbcType=VARCHAR},#{userAmtLmt.remarks,jdbcType=VARCHAR},
+						#{userAmtLmt.createUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{userAmtLmt.updateUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>
