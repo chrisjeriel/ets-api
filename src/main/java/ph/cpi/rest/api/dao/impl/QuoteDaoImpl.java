@@ -386,7 +386,16 @@ public class QuoteDaoImpl implements QuoteDao{
 
 	@Override
 	public Integer checkCompetition(HashMap<String, Object> params) throws SQLException {
-		return sqlSession.selectOne("checkCompetition", params);
+		params.put("hasCompetition", "");
+		sqlSession.selectOne("checkCompetition", params);
+		Integer res = (Integer) params.get("hasCompetition");
+		return res;
+	}
+
+	@Override
+	public Integer copyCompetition(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("copyCompetition", params);
+		return errorCode;
 	}
 		
 }

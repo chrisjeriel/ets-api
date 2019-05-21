@@ -1787,8 +1787,21 @@
 	
 	<update id="checkCompetition" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
-			#{hasCompetition, mode=OUT, javaType=Integer, jdbcType=INTEGER} := QU_GEN_INFO.chk_competition(#{quoteIdModif, jdbcType=INTEGER})
+			#{hasCompetition, mode=OUT, javaType=Integer, jdbcType=INTEGER} := QU_GEN_INFO_PKG.chk_competition(#{quoteIdModif, jdbcType=INTEGER})
 		}	
+	</update>
+	
+	<update id="copyCompetition" parameterType="java.util.Map">
+		BEGIN
+			QU_GEN_INFO_PKG.copy_competition(
+				#{quoteId, jdbcType=INTEGER},
+				#{newQuoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
 	</update>
 	
 </mapper>

@@ -754,8 +754,14 @@ public class QuoteServiceImpl implements QuoteService{
 				quoteDao.copyInternalCompetition(saveQuoteGeneralInfoParams);
 			} else if(sqgip.getSavingType().equals("modification")) {
 				Integer comp = quoteDao.checkCompetition(saveQuoteGeneralInfoParams);
+				saveQuoteGeneralInfoParams.put("copyingType", "normal");
+				saveQuoteGeneralInfoParams.put("newQuoteId", res.get("outQuoteId"));
+				saveQuoteGeneralInfoParams.put("quoteId", res.get("quoteIdModif"));
+				
+				quoteDao.copyInternalCompetition(saveQuoteGeneralInfoParams);
+				
 				if(comp == 1) {
-					//procedure for copying internal comp
+					quoteDao.copyCompetition(saveQuoteGeneralInfoParams);
 				}
 			}
 			

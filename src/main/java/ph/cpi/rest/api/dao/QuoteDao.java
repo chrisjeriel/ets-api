@@ -78,4 +78,5 @@ public interface QuoteDao {
 	
 	public Integer updateQuoteStatus(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkCompetition(final HashMap<String, Object> params) throws SQLException;
+	public Integer copyCompetition(final HashMap<String, Object> params) throws SQLException;
 }
