@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
 
 public class ApprovalFunction {
@@ -13,7 +11,6 @@ public class ApprovalFunction {
 	private String updateUser;
 	private DateTime updateDate;
 	
-	private List<ApproverFn> approverFn;
 	public String getApprovalCd() {
 		return approvalCd;
 	}
@@ -56,19 +53,10 @@ public class ApprovalFunction {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	
-	public List<ApproverFn> getApproverFn() {
-		return approverFn;
-	}
-	public void setApproverFn(List<ApproverFn> approverFn) {
-		this.approverFn = approverFn;
-	}
 	@Override
 	public String toString() {
 		return "ApprovalFunction [approvalCd=" + approvalCd + ", description=" + description + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", approverFn=" + approverFn + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

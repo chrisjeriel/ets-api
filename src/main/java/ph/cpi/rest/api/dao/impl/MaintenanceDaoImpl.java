@@ -508,8 +508,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public List<ApprovalFunction> retrieveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
-		List<ApprovalFunction> list = sqlSession.selectList("retrieveMtnApprovalFunction",params);
+	public List<ApprovalFunction> retrieveMtnApproval(HashMap<String, Object> params) throws SQLException {
+		List<ApprovalFunction> list = sqlSession.selectList("retrieveMtnApproval",params);
 		return list;
 	}
 

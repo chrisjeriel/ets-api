@@ -110,6 +110,6 @@ public interface MaintenanceDao {
 	
 	public Integer saveMtnRegion(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
-	public List<ApprovalFunction> retrieveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
+	public List<ApprovalFunction> retrieveMtnApproval(final HashMap<String, Object> params) throws SQLException;
 	
 }

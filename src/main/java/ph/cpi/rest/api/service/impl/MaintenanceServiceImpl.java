@@ -16,7 +16,7 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -81,7 +81,7 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -1308,12 +1308,12 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
-	public RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmafr)
+	public RetrieveMtnApprovalResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalRequest rmafr)
 			throws SQLException {
-		RetrieveMtnApprovalFunctionResponse response = new RetrieveMtnApprovalFunctionResponse();
+		RetrieveMtnApprovalResponse response = new RetrieveMtnApprovalResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("approvalCd", rmafr.getApprovalCd());
-		response.setApprovalFunction(maintenanceDao.retrieveMtnApprovalFunction(params));
+		response.setApprovalFunction(maintenanceDao.retrieveMtnApproval(params));
 		return response;
 	}
 }

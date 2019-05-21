@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 
-public class RetrieveMtnApprovalFunctionResponse {
+public class RetrieveMtnApprovalResponse {
 	private List<ApprovalFunction> approvalFunction;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;

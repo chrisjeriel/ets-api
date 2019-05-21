@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnApprovalFunctionRequest {
+public class RetrieveMtnApprovalRequest {
 	private String approvalCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
