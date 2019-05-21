@@ -416,6 +416,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("sectionIIPrem",spcr.getSectionIIPrem());
 			savePolCoverageParams.put("sectionIIIPrem",spcr.getSectionIIIPrem());
 			savePolCoverageParams.put("totalPrem",spcr.getTotalPrem());
+			savePolCoverageParams.put("holdCoverPremAmt",spcr.getHoldCoverPremAmt());
 			savePolCoverageParams.put("currencyCd",spcr.getCurrencyCd());
 			savePolCoverageParams.put("currencyRt",spcr.getCurrencyRt());
 			savePolCoverageParams.put("pctShare",spcr.getPctShare());

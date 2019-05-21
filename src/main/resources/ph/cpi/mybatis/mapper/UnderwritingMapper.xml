@@ -249,6 +249,7 @@
 		<result property="sectionIIPrem" 		column="SECTION_II_PREM"/>
 		<result property="sectionIIIPrem" 		column="SECTION_III_PREM"/>
 		<result property="totalPrem" 			column="TOTAL_PREM"/>
+		<result property="holdCoverPremAmt" 	column="HOLD_COVER_PREM_AMT"/>
 		<result property="currencyCd" 			column="CURRENCY_CD"/>
 		<result property="currencyRt" 			column="CURRENCY_RT"/>
 		<result property="pctShare" 			column="PCT_SHARE"/>
@@ -267,6 +268,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="holdCoverTag" 		column="HOLD_COVER"/>
 		<association property="sectionCovers" resultMap ="sectionCoversMap"></association>
 	</resultMap>
 	
@@ -640,7 +642,7 @@
 		BEGIN
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
-										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
+										   #{totalPrem},#{holdCoverPremAmt,jdbcType=VARCHAR}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
 										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
