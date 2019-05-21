@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -80,6 +81,7 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -1303,5 +1305,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smpResponse.setReturnCode(maintenanceDao.saveMtnProvince(saveMtnProvinceParams));
 		logger.info("SaveMtnProvinceResponse : " + smpResponse.toString());
 		return smpResponse;
+	}
+
+	@Override
+	public RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmafr)
+			throws SQLException {
+		RetrieveMtnApprovalFunctionResponse response = new RetrieveMtnApprovalFunctionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("approvalCd", rmafr.getApprovalCd());
+		response.setApprovalFunction(maintenanceDao.retrieveMtnApprovalFunction(params));
+		return response;
 	}
 }
