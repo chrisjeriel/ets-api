@@ -12,7 +12,9 @@ public class Deductibles {
 	private String activeTag;
 	private String deductibleCd;
 	private Integer	coverCd;
+	private String sectionCover;
 	private Integer endtCd;
+	private String endorsement;
 	private String defaultTag;
 	private String deductibleTitle;
 	private String deductibleType;
@@ -48,11 +50,23 @@ public class Deductibles {
 	public void setCoverCd(Integer coverCd) {
 		this.coverCd = coverCd;
 	}
+	public String getSectionCover() {
+		return sectionCover;
+	}
+	public void setSectionCover(String sectionCover) {
+		this.sectionCover = sectionCover;
+	}
 	public Integer getEndtCd() {
 		return endtCd;
 	}
 	public void setEndtCd(Integer endtCd) {
 		this.endtCd = endtCd;
+	}
+	public String getEndorsement() {
+		return endorsement;
+	}
+	public void setEndorsement(String endorsement) {
+		this.endorsement = endorsement;
 	}
 	public String getDefaultTag() {
 		return defaultTag;
@@ -159,12 +173,13 @@ public class Deductibles {
 	@Override
 	public String toString() {
 		return "Deductibles [activeTag=" + activeTag + ", deductibleCd=" + deductibleCd + ", coverCd=" + coverCd
-				+ ", endtCd=" + endtCd + ", defaultTag=" + defaultTag + ", deductibleTitle=" + deductibleTitle
-				+ ", deductibleType=" + deductibleType + ", typeDesc=" + typeDesc + ", deductibleRate=" + deductibleRate
-				+ ", deductibleAmt=" + deductibleAmt + ", lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", minAmt="
-				+ minAmt + ", maxAmt=" + maxAmt + ", deductibleText=" + deductibleText + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", sectionCover=" + sectionCover + ", endtCd=" + endtCd + ", endorsement=" + endorsement
+				+ ", defaultTag=" + defaultTag + ", deductibleTitle=" + deductibleTitle + ", deductibleType="
+				+ deductibleType + ", typeDesc=" + typeDesc + ", deductibleRate=" + deductibleRate + ", deductibleAmt="
+				+ deductibleAmt + ", lineCd=" + lineCd + ", lineDesc=" + lineDesc + ", minAmt=" + minAmt + ", maxAmt="
+				+ maxAmt + ", deductibleText=" + deductibleText + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", okDelete=" + okDelete + "]";
 	}
 	
 }

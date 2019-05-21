@@ -87,6 +87,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
 	</resultMap>
 		
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Region" id="regionMap">
@@ -95,9 +96,9 @@
 		<result property = "activeTag"     	column  =  "ACTIVE_TAG"/> 
 		<result property = "remarks"        column  =  "REMARKS"/>
 		<result property = "createUser"     column  =  "CREATE_USER"/>
-		<result property = "createDate"     column  =  "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"     column  =  "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"     column  =  "UPDATE_USER"/>
-		<result property = "updateDate"     column  =  "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"     column  =  "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="provinceList"	resultMap="provinceMap"/>
 	</resultMap>
 	
@@ -107,9 +108,9 @@
 		<result property = "activeTag"         column   ="ACTIVE_TAG"/>
 		<result property = "remarks"           column   ="REMARKS"/>
 		<result property = "createUser"        column   ="CREATE_USER"/>
-		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"        column   ="UPDATE_USER"/>
-		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="cityList"	   resultMap="cityMap"/>
 	</resultMap>
 	
@@ -130,6 +131,7 @@
 		<result property = "createDate"     column  =   "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"     column  =   "UPDATE_USER"/>
 		<result property = "updateDate"     column  =   "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property = "okDelete"       column  =   "OK_DELETE"/>
 		<association property="catPerilList"	resultMap="catPerilMapObj"/>
 	</resultMap>
 	
@@ -394,7 +396,9 @@
 		<result property="lineCd" 				column="LINE_CD"/>
 		<result property="lineDesc" 			column="DESCRIPTION"/>
 		<result property="coverCd"	 			column="COVER_CD"/>
+		<result property="sectionCover"			column="SECTION_COVER"/>
 		<result property="endtCd" 				column="ENDT_CD"/>
+		<result property="endorsement" 			column="ENDORSEMENT"/>
 		<result property="deductibleCd" 		column="DEDUCTIBLE_CD"/>
 		<result property="deductibleTitle" 		column="DEDUCTIBLE_TITLE"/>
 		<result property="deductibleType" 		column="DEDUCTIBLE_TYPE"/>
@@ -411,6 +415,7 @@
 		<result property="createDate" 			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"				column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnDeductibles" resultMap="deductibles" parameterType="java.util.Map">
@@ -438,7 +443,7 @@
 	</select>
 	
 	<select id="retrieveMtnTypeOfCession" resultMap="retrieveTypeOfCessionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_CESSION_PKG.ret_mtn_cession(#{cessionId},null,null,null,null))
+		SELECT * FROM TABLE(MTN_CESSION_PKG.ret_mtn_cession(#{cessionId, jdbcType=INTEGER},null,null,null,null))
 	</select>
 
 	<select id="retrieveMtnRegion" resultMap="regionMap" parameterType="java.util.Map">
@@ -895,7 +900,28 @@
     			);
     		</foreach>
     		<foreach collection="deleteLineClass" item="lineClass">
-    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineClassCd});
+    			MTN_LINE_CLASS_PKG.del_mtn_line_class(#{lineClass.lineCd}, #{lineClass.lineClassCd});
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="saveMtnObject" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveObject" item="obj">
+    			MTN_OBJECT_PKG.save_mtn_object(
+    				#{obj.lineCd, jdbcType=VARCHAR},
+    				#{obj.objectId, jdbcType=VARCHAR},
+    				#{obj.description, jdbcType=VARCHAR},
+    				#{obj.activeTag, jdbcType=VARCHAR},
+    				#{obj.remarks, jdbcType=VARCHAR},
+    				#{obj.createUser, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{obj.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    				#{obj.updateUser, jdbcType=VARCHAR},
+    				CAST(to_timestamp(#{obj.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    		<foreach collection="deleteObject" item="obj">
+    			MTN_OBJECT_PKG.del_mtn_object(#{obj.objectId}, #{obj.lineCd});
     		</foreach>
     	END;
     </update>
@@ -1067,6 +1093,7 @@
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
+    	END;
 	</update>
 	
     <update id="saveMtnAdvWord" parameterType="java.util.Map" statementType="CALLABLE">
@@ -1158,6 +1185,26 @@
 							#{save.updateUser, jdbcType=VARCHAR},
 							CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    			);
+		    </foreach>
+    	END;
+    </update>
+    
+     <update id="saveMtnRegion" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveRegion" item="region">
+	    		MTN_REGION_PKG.save_mtn_region(
+	    			#{region.regionCd,jdbcType=VARCHAR},
+			        #{region.description,jdbcType=VARCHAR},
+			        #{region.activeTag,jdbcType=VARCHAR},
+			        #{region.remarks,jdbcType=VARCHAR},
+			        #{region.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{region.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{region.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{region.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteRegion" item="regionDel">
+    			MTN_REGION_PKG.del_mtn_region(#{regionDel.regionCd,jdbcType=VARCHAR});
     		</foreach>
     	END;
     </update>
@@ -1353,6 +1400,27 @@
 					#{saveCat.updateUser},
 					CAST(to_timestamp(#{saveCat.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="saveMtnProvince" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveProvince" item="province">
+	    		MTN_PROVINCE_PKG.save_mtn_province(
+	    			#{province.provinceCd,jdbcType=VARCHAR},
+			        #{province.description,jdbcType=VARCHAR},
+			        #{province.regionCd,jdbcType=VARCHAR},
+			        #{province.activeTag,jdbcType=VARCHAR},
+			        #{province.remarks,jdbcType=VARCHAR},
+			        #{province.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{province.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{province.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{province.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteProvince" item="provinceDel">
+    			MTN_PROVINCE_PKG.del_mtn_province(#{provinceDel.provinceCd,jdbcType=VARCHAR});
     		</foreach>
     	END;
     </update>
@@ -1609,6 +1677,77 @@
 			</foreach>
 			<foreach collection="delBlock" item="block">
 				MTN_BLOCK_PKG.del_mtn_block(#{block.blockCd},#{districtCd},#{regionCd},#{provinceCd},#{cityCd});
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.UserAmtLimit" id="UserAmtLimitMap">
+		<result property="userGrp" column="USER_GRP"/>
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="allAmtSw" column="ALL_AMT_SW"/>
+		<result property="amtLimit" column="AMT_LIMIT"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.NonRenewalReason" id="nonRenewReasonMap">
+		<result property="reasonCd" column="REASON_CD"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="OK_DELETE"/>
+	</resultMap>
+
+	<select id="retMtnUserAmtLimit" resultMap="UserAmtLimitMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_USR_AMT_LMT_PKG.ret_mtn_usr_amt_lmt(#{userGrp,jdbcType=VARCHAR},#{lineCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
+	<update id="saveMtnUserAmtLimit" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delUserAmtLmt" item="userAmtLmt">
+				MTN_USR_AMT_LMT_PKG.del_mtn_usr_amt_lmt(#{userAmtLmt.userGrp},#{userAmtLmt.lineCd});
+			</foreach>
+			<foreach collection="saveUserAmtLmt" item="userAmtLmt">
+				MTN_USR_AMT_LMT_PKG.save_mtn_usr_amt_lmt(#{userAmtLmt.userGrp,jdbcType=VARCHAR},#{userAmtLmt.lineCd,jdbcType=VARCHAR},
+						#{userAmtLmt.allAmtSw,jdbcType=VARCHAR},#{userAmtLmt.amtLimit,jdbcType=VARCHAR},#{userAmtLmt.remarks,jdbcType=VARCHAR},
+						#{userAmtLmt.createUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{userAmtLmt.updateUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<select id="retMtnNonRenewReason" resultMap="nonRenewReasonMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_NONRENEW_REASON_PKG.ret_nrnw_rsn(#{reasonCd, jdbcType=VARCHAR},
+																 #{activeTag, jdbcType=VARCHAR},
+																 #{position, jdbcType=VARCHAR},
+															     #{count, jdbcType=VARCHAR},
+															     #{sortKey, jdbcType=VARCHAR},
+																 #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnNonRenewalReason">
+		BEGIN
+			<foreach collection="saveNonRenewalReasonList" item="i">
+				MTN_NONRENEW_REASON_PKG.save_nrnw_rsn(
+					#{i.reasonCd},
+					#{i.description},
+					#{i.activeTag, jdbcType=VARCHAR},
+					#{i.remarks, jdbcType=VARCHAR},
+					#{i.createUser},
+					CAST(to_timestamp(#{i.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{i.updateUser},
+					CAST(to_timestamp(#{i.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			<foreach collection="delNonRenewalReasonList" item="i">
+				MTN_NONRENEW_REASON_PKG.del_nrnw_rsn(#{i.reasonCd});
 			</foreach>
 		END;
 	</update>

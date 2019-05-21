@@ -21,6 +21,8 @@ public class Coverage {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	private BigDecimal totalValue;
+	
 	private List<SectionCovers> sectionCovers;
 	
 	
@@ -103,18 +105,19 @@ public class Coverage {
 	public void setSectionCovers(List<SectionCovers> sectionCovers) {
 		this.sectionCovers = sectionCovers;
 	}
+	
+	public BigDecimal getTotalValue() {
+		return totalValue;
+	}
+	public void setTotalValue(BigDecimal totalValue) {
+		this.totalValue = totalValue;
+	}
 	@Override
 	public String toString() {
 		return "Coverage [riskId=" + riskId + ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi
 				+ ", sectionIIISi=" + sectionIIISi + ", totalSi=" + totalSi + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", sectionCovers="
-				+ sectionCovers + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", totalValue="
+				+ totalValue + ", sectionCovers=" + sectionCovers + "]";
 	}
-	
-
-	
-	
-	
-	
 }

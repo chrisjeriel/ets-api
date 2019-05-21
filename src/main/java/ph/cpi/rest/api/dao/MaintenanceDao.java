@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -32,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 public interface MaintenanceDao {
 
@@ -68,6 +70,7 @@ public interface MaintenanceDao {
 	public List<CATPeril> retrieveMtnCATPeril(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnCharges> retrieveMtnCharges(final HashMap<String, Object> params) throws SQLException;	
 	public Integer saveMtnLine(final HashMap<String, Object> params) throws SQLException;
+
 	public Integer saveMtnDeductibles(final HashMap<String, Object> params) throws SQLException;	
 	public List<Spoil> retrieveMtnSpoilageReason(final HashMap<String, Object> params ) throws SQLException;
 	public List<MtnPolWordings> retMtnPolWordings(final HashMap<String, Object> params ) throws SQLException;
@@ -86,6 +89,7 @@ public interface MaintenanceDao {
 	public HashMap<String, Object> saveMtnCrestaZone(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnCedingCompany(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnTypeOfCession(final HashMap<String, Object> params) throws SQLException;	
+	public Integer saveMtnObject(final HashMap<String, Object> params) throws SQLException;
 
 	public HashMap<String, Object> saveMtnIntermediary(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSectionCover(final HashMap<String, Object> params) throws SQLException;
@@ -97,4 +101,12 @@ public interface MaintenanceDao {
 	public Integer saveMtnBlock(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnOtherCharge(final HashMap<String, Object> params) throws SQLException;
 	
+	public List<UserAmtLimit> retMtnUserAmtLimit(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnUserAmtLimit(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<NonRenewalReason> retriveMtnNonRenewalReason(final HashMap<String,Object> params) throws SQLException;
+	public Integer saveMtnNonRenewalReason(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer saveMtnRegion(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
 }

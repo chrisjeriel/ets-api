@@ -18,6 +18,7 @@ public class SavePolCoverageRequest {
 	private BigDecimal sectionIIPrem;
 	private BigDecimal sectionIIIPrem;
 	private BigDecimal totalPrem;
+	private BigDecimal holdCoverPremAmt;
 	private String currencyCd;
 	private BigDecimal currencyRt;
 	private BigDecimal pctShare;
@@ -129,6 +130,16 @@ public class SavePolCoverageRequest {
 
 	public void setTotalPrem(BigDecimal totalPrem) {
 		this.totalPrem = totalPrem;
+	}
+	
+	
+
+	public BigDecimal getHoldCoverPremAmt() {
+		return holdCoverPremAmt;
+	}
+
+	public void setHoldCoverPremAmt(BigDecimal holdCoverPremAmt) {
+		this.holdCoverPremAmt = holdCoverPremAmt;
 	}
 
 	public String getCurrencyCd() {
@@ -322,17 +333,17 @@ public class SavePolCoverageRequest {
 		return "SavePolCoverageRequest [policyId=" + policyId + ", riskId=" + riskId + ", projId=" + projId
 				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
 				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
-				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
-				+ totalValue + ", remarks=" + remarks + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi
-				+ ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem
-				+ ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", changeTag=" + changeTag + ", saveSectionCovers=" + saveSectionCovers
-				+ ", deleteSectionCovers=" + deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList
-				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
+				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt="
+				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
+				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
+				+ ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
+				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
+				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", changeTag=" + changeTag + ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers="
+				+ deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList="
+				+ deleteDeductibleList + "]";
 	}
-
 	
 }
 

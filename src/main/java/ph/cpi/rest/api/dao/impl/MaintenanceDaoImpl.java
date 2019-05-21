@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -39,6 +40,7 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -459,4 +461,49 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return res;
 	}
 	
+	@Override
+	public Integer saveMtnObject(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnObjectDAOImpl : " + params);
+		Integer errorCode = sqlSession.update("saveMtnObject", params);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer saveMtnRegion(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnRegion", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<UserAmtLimit> retMtnUserAmtLimit(HashMap<String, Object> params) throws SQLException {
+		List<UserAmtLimit> list = sqlSession.selectList("retMtnUserAmtLimit", params);
+		return list;
+	}
+
+	@Override
+	public Integer saveMtnUserAmtLimit(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnUserAmtLimit", params);
+		return code;
+	}
+	
+	@Override
+	public List<NonRenewalReason> retriveMtnNonRenewalReason(HashMap<String, Object> params) throws SQLException {
+		List<NonRenewalReason> nonRenewalReasonList = sqlSession.selectList("retMtnNonRenewReason", params);
+		return nonRenewalReasonList;
+	}
+
+	@Override
+	public Integer saveMtnNonRenewalReason(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnNonRenewalReason", params);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer saveMtnProvince(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnProvince", params);
+		return errorCode;
+	}
+
 }

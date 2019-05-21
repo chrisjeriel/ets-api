@@ -593,6 +593,7 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="totalValue" 	column="TOTAL_VALUE"/>
 		<association property="sectionCovers" resultMap="sectionCovers"></association>
 	</resultMap>
 	
@@ -1233,7 +1234,7 @@
 	
 	<update id="saveQuoteCoverageMap" parameterType="java.util.Map">
 	BEGIN
-	   QU_COVERAGE_PKG.save_qu_cover(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks},#{createUser},
+	   QU_COVERAGE_PKG.save_qu_cover(#{quoteId},#{projId},#{riskId},#{sectionISi},#{sectionIISi},#{sectionIIISi},#{totalSi},#{currencyCd},#{currencyRt},#{remarks,jdbcType=VARCHAR},#{createUser},
 	   CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{updateUser},
 	   SYSDATE);
 	   
