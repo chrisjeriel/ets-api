@@ -17,7 +17,7 @@ public class AlopDetails {
 	private Double maxIndemPdSiD;
 	private Double maxIndemPdD;
 	private DateTime indemFromDate;
-	private Integer timeExc;
+	private String timeExc;
 	private Integer repInterval;
 	private String createUserAlop;
 	private DateTime createDateAlop;
@@ -80,10 +80,10 @@ public class AlopDetails {
 	public void setIndemFromDate(DateTime indemFromDate) {
 		this.indemFromDate = indemFromDate;
 	}
-	public Integer getTimeExc() {
+	public String getTimeExc() {
 		return timeExc;
 	}
-	public void setTimeExc(Integer timeExc) {
+	public void setTimeExc(String timeExc) {
 		this.timeExc = timeExc;
 	}
 	public Integer getRepInterval() {
