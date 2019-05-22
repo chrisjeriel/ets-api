@@ -1133,7 +1133,7 @@
      </resultMap>
      
      <select id="retrieveMtnCurrencyList" resultMap="currencyList" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_CURR_SAMP_PKG.ret_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+			SELECT * FROM TABLE(MTN_CURR_PKG.ret_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 
 																			#{sortKey, jdbcType=VARCHAR}, 
@@ -1143,12 +1143,12 @@
 	<update id="saveMtnCurrency" parameterType="java.util.Map">
     	BEGIN
     		<foreach collection="delCurrency" item="delCurr">
-    			MTN_CURR_SAMP_PKG.del_mtn_curr(
+    			MTN_CURR_PKG.del_mtn_curr(
     				#{delCurr.currencyCd}
     			);
     		</foreach>
     		<foreach collection="saveCurrency" item="saveCurr">
-    			MTN_CURR_SAMP_PKG.save_mtn_curr(
+    			MTN_CURR_PKG.save_mtn_curr(
     				#{saveCurr.currencyCd},
     				#{saveCurr.currencyWord},
     				#{saveCurr.description},
@@ -1785,6 +1785,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 		column="OK_DELETE"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.ApproverFn" id="approvalFunctionMap">
@@ -1812,4 +1813,46 @@
 																				     #{sortKey		, jdbcType=VARCHAR},
 																					 #{order		, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveMtnApproval" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="deleteMtnApproval" item="del">
+	    			MTN_APPROVAL_FUNCTION_PKG.del_mtn_approval(
+			    		#{del.approvalCd}
+			    	);
+    		</foreach>
+    		<foreach collection="saveMtnApproval" item="save">
+		    		MTN_APPROVAL_FUNCTION_PKG.save_mtn_approval(
+		    			#{save.approvalCd},
+		    			#{save.description, jdbcType=VARCHAR},	
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="saveMtnApprovalFunction" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="deleteMtnApprovalFn" item="del">
+	    			MTN_APPROVAL_FUNCTION_PKG.del_mtn_approval_function(
+			    		#{del.approvalCd},#{del.userId}
+			    	);
+    		</foreach>
+    		<foreach collection="saveMtnApprovalFn" item="save">
+		    		MTN_APPROVAL_FUNCTION_PKG.save_mtn_approval_function(
+		    			#{save.approvalCd},
+		    			#{save.userId},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
 </mapper>

@@ -10,6 +10,7 @@ public class ApprovalFunction {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
 	public String getApprovalCd() {
 		return approvalCd;
@@ -53,10 +54,18 @@ public class ApprovalFunction {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "ApprovalFunction [approvalCd=" + approvalCd + ", description=" + description + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
+	
 }

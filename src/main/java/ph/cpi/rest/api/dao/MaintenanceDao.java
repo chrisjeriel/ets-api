@@ -113,5 +113,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
 	public List<ApprovalFunction> retrieveMtnApproval(final HashMap<String, Object> params) throws SQLException;
 	public List<ApproverFn> retrieveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnApproval(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
 	
 }

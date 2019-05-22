@@ -51,6 +51,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
@@ -117,6 +119,8 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
@@ -1328,4 +1332,43 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setApproverFn(maintenanceDao.retrieveMtnApprovalFunction(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnApprovalResponse saveMtnApproval(SaveMtnApprovalRequest smrr) throws SQLException {
+		SaveMtnApprovalResponse smpResponse = new SaveMtnApprovalResponse();
+		try{
+			HashMap<String, Object> saveMtnApprovalParams = new HashMap<String, Object>();
+			saveMtnApprovalParams.put("saveMtnApproval", smrr.getSaveMtnApproval());
+			saveMtnApprovalParams.put("deleteMtnApproval", smrr.getDeleteMtnApproval());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnApproval(saveMtnApprovalParams);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
+
+	@Override
+	public SaveMtnApprovalFunctionResponse saveMtnApprovalFunction(SaveMtnApprovalFunctionRequest smrr)
+			throws SQLException {
+		SaveMtnApprovalFunctionResponse smpResponse = new SaveMtnApprovalFunctionResponse();
+		try{
+			HashMap<String, Object> saveMtnApprovalFnParams = new HashMap<String, Object>();
+			saveMtnApprovalFnParams.put("saveMtnApprovalFn", smrr.getSaveMtnApprovalFn());
+			saveMtnApprovalFnParams.put("deleteMtnApprovalFn", smrr.getDeleteMtnApprovalFn());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnApprovalFunction(saveMtnApprovalFnParams);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
+	
+	
 }
