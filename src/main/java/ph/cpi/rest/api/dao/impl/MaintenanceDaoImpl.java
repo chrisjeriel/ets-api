@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
+import ph.cpi.rest.api.model.maintenance.UsersLov;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -532,6 +533,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnApprovalFunction",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<UsersLov> retrieveMtnUsersLov(HashMap<String, Object> params) throws SQLException {
+		List<UsersLov> list = sqlSession.selectList("retrieveMtnUsersLov",params);
+		return list;
 	}
 
 }

@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
+import ph.cpi.rest.api.model.maintenance.UsersLov;
 
 public interface MaintenanceDao {
 
@@ -115,5 +116,6 @@ public interface MaintenanceDao {
 	public List<ApproverFn> retrieveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnApproval(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
+	public List<UsersLov> retrieveMtnUsersLov(final HashMap<String, Object> params) throws SQLException;
 	
 }

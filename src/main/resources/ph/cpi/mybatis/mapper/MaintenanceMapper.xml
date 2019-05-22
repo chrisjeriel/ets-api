@@ -1855,4 +1855,11 @@
     	END;
     </update>
     
+    <select id="retrieveMtnUsersLov" resultMap="approvalMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_USERS_PKG.retrieve_mtn_user_lov(#{userId, jdbcType=VARCHAR},
+																					 #{position 	, jdbcType=VARCHAR},
+																				     #{count		, jdbcType=VARCHAR},
+																				     #{sortKey		, jdbcType=VARCHAR},
+																					 #{order		, jdbcType=VARCHAR}))
+	</select>
 </mapper>
