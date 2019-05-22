@@ -421,9 +421,9 @@
 		<result property="zoneCd"			column="ZONE_CD"/>
 		<result property="zoneDesc"			column="ZONE_DESC"/>
 		<result property="createUser"		column="CREATE_USER"/>
-		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
-		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
@@ -892,9 +892,16 @@
     	END;
     </update>
     
-     <update id="saveMtnCity" parameterType="java.util.Map">
+    <update id="saveMtnCity" parameterType="java.util.Map">
     	BEGIN
-    		<foreach collection="saveCity" item="city">
+    	
+    	 <foreach collection="deleteCity" item="city">
+    			MTN_CITY_PKG.del_mtn_city(#{city.cityCd,jdbcType=VARCHAR},
+    									  #{city.regionCd,jdbcType=VARCHAR},
+    									  #{city.provinceCd,jdbcType=VARCHAR});
+         </foreach>
+         
+    	<foreach collection="saveCity" item="city">
 	    		MTN_CITY_PKG.save_mtn_city(
 	    			#{city.cityCd,jdbcType=VARCHAR},
 			        #{city.description,jdbcType=VARCHAR},
@@ -908,16 +915,11 @@
 			        #{city.updateUser,jdbcType=VARCHAR},
 			        CAST(to_timestamp(#{city.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 	    		);
-    		</foreach>
-    		<foreach collection="deleteCity" item="cityDel">
-    			MTN_CITY_PKG.del_mtn_city(#{cityDel.cityCd,jdbcType=VARCHAR});
-    		</foreach>
+    	</foreach>
+    		
+    		
+    		
     	END;
     </update>
-    
-    
-    
-    
-    
-    
+   
 </mapper>

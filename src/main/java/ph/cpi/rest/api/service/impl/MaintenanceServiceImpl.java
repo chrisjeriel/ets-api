@@ -732,7 +732,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		SaveMtnCityResponse smcResponse = new SaveMtnCityResponse();
 		HashMap<String, Object> saveMtnCityParams = new HashMap<String, Object>();
 		saveMtnCityParams.put("saveCity", smcr.getSaveCity());
-		saveMtnCityParams.put("deleteCity", smcr.getSaveCity());
+		saveMtnCityParams.put("deleteCity", smcr.getDeleteCity());
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
 		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
