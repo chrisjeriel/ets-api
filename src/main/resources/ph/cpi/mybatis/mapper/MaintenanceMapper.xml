@@ -1834,4 +1834,18 @@
 	<select id="retrieveApproverFn" resultMap="approverFnMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver_fn(#{userId},NULL,NULL,NULL,NULL))
 	</select>
+	
+	<update id="saveMtnApprover" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_APPROVER_PKG.del_mtn_approver(#{item.userId});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_APPROVER_PKG.save_mtn_approver(#{item.userId},#{item.remarks, jdbcType=VARCHAR},#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

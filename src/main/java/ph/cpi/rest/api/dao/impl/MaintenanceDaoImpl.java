@@ -527,4 +527,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return list;
 	}
 
+	@Override
+	public Integer saveMtnApprover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApprover", params);
+		return errorCode;
+	}
+
 }

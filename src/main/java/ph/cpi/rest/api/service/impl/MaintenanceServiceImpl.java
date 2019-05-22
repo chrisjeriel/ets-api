@@ -52,6 +52,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
@@ -119,6 +120,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
@@ -1335,5 +1337,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("userId", rafr.getUserId());
 		rafrResponse.setApproverFnList(maintenanceDao.retrieveApproverFn(params));
 		return rafrResponse;
+	}
+
+	@Override
+	public SaveMtnApproverResponse saveMtnApprover(SaveMtnApproverRequest smar) throws SQLException {
+		SaveMtnApproverResponse smarResponse = new SaveMtnApproverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smar.getSaveList());
+		params.put("delList", smar.getDelList());
+		try{
+			smarResponse.setReturnCode(maintenanceDao.saveMtnApprover(params));
+		}catch (Exception ex) {
+			smarResponse.setReturnCode(0);
+			smarResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smarResponse;
 	}
 }

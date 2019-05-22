@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
@@ -47,6 +48,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
@@ -114,6 +116,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
@@ -227,5 +230,6 @@ public interface MaintenanceService {
 	public RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmafr) throws SQLException;
 	
 	public RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException;
-	public  RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException;
+	public RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException;
+	public SaveMtnApproverResponse saveMtnApprover(SaveMtnApproverRequest smar) throws SQLException;
 }
