@@ -34,9 +34,11 @@
 		<result property="quotationNo" 		column="QUOTATION_NO"/>
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="cessionId" 		column="CESSION_ID"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="cessionDesc" 		column="CESSION_DESCRIPTION"/>
 		<result property="lineClassCdDesc" 	column="CLASS_DESCRIPTION"/>
 		<result property="status" 			column="STATUS"/>
+		<result property="cedingId" 		column="CEDING_ID"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="principalName" 	column="PRINCIPAL_NAME"/>
 		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
@@ -51,6 +53,7 @@
 		<result property="openCoverTag" 	column="OP_COV_TAG"/>  <!-- Added by Neco, 04/02/2019, Reason: For create open pol LOV -->
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="approvedBy" 		column="APPROVED_BY"/>
+		<result property="preparedBy"		column="PREPARED_BY"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
