@@ -18,6 +18,8 @@ import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -54,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
@@ -87,6 +90,8 @@ import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -123,6 +128,7 @@ import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
@@ -1380,6 +1386,36 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setUsers(maintenanceDao.retrieveMtnUsersLov(params));
 		return response;
 	}
-	
-	
+
+	@Override
+	public RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException {
+		RetrieveMtnApproverResponse rarResponse = new RetrieveMtnApproverResponse();
+		rarResponse.setApproverList(maintenanceDao.retrieveApprover());
+		return rarResponse;
+	}
+
+	@Override
+	public RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException {
+		RetrieveMtnApproverFnResponse rafrResponse = new RetrieveMtnApproverFnResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rafr.getUserId());
+		rafrResponse.setApproverFnList(maintenanceDao.retrieveApproverFn(params));
+		return rafrResponse;
+	}
+
+	@Override
+	public SaveMtnApproverResponse saveMtnApprover(SaveMtnApproverRequest smar) throws SQLException {
+		SaveMtnApproverResponse smarResponse = new SaveMtnApproverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smar.getSaveList());
+		params.put("delList", smar.getDelList());
+		try{
+			smarResponse.setReturnCode(maintenanceDao.saveMtnApprover(params));
+		}catch (Exception ex) {
+			smarResponse.setReturnCode(0);
+			smarResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smarResponse;
+	}
 }
