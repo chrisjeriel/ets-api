@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
@@ -128,6 +129,7 @@ import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
@@ -1411,6 +1413,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("delList", smar.getDelList());
 		try{
 			smarResponse.setReturnCode(maintenanceDao.saveMtnApprover(params));
+		}catch (Exception ex) {
+			smarResponse.setReturnCode(0);
+			smarResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smarResponse;
+	}
+
+	@Override
+	public SaveMtnApproverFnResponse saveMtnApproverFn(SaveMtnApproverFnRequest smar) throws SQLException {
+		SaveMtnApproverFnResponse smarResponse = new SaveMtnApproverFnResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", smar.getUserId());
+		params.put("saveList", smar.getSaveList());
+		params.put("delList", smar.getDelList());
+		try{
+			smarResponse.setReturnCode(maintenanceDao.saveMtnApproverFn(params));
 		}catch (Exception ex) {
 			smarResponse.setReturnCode(0);
 			smarResponse.getErrorList().add(new Error("General Exception","Please check the field values."));

@@ -1896,7 +1896,7 @@
 	</resultMap>
 	
 	<select id="retrieveApprover" resultMap="approverMap">
-		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(NULL,NULL,NULL,NULL,NULL))
 	</select>
 	
 	<select id="retrieveApproverFn" resultMap="approverFnMap" parameterType="java.util.Map">
@@ -1910,6 +1910,20 @@
 			</foreach>
 			<foreach collection="saveList" item="item">
 				MTN_APPROVER_PKG.save_mtn_approver(#{item.userId},#{item.remarks, jdbcType=VARCHAR},#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnApproverFn" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_APPROVER_PKG.del_approver_fn(#{item.approvalCd},#{userId});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_APPROVER_PKG.save_approver_fn(#{item.approvalCd},#{userId},#{item.createUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{item.updateUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));

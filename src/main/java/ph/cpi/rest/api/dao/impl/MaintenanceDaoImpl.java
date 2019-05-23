@@ -560,4 +560,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 
+	@Override
+	public Integer saveMtnApproverFn(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApproverFn", params);
+		return errorCode;
+	}
+
 }

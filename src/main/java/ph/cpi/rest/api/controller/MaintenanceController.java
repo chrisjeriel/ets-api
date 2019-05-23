@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
@@ -127,6 +128,7 @@ import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
@@ -680,5 +682,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveApprover");
 		logger.info("SaveMtnApproverRequest : " + smar.toString());
 		return maintenanceService.saveMtnApprover(smar);
+	}
+	
+	@PostMapping(path="saveApproverFunction")
+	public @ResponseBody SaveMtnApproverFnResponse saveMtnApproverFn(@RequestBody SaveMtnApproverFnRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveApproverFunction");
+		logger.info("SaveMtnApproverFunctionRequest : " + smar.toString());
+		return maintenanceService.saveMtnApproverFn(smar);
 	}
 }
