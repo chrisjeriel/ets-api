@@ -1088,6 +1088,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("membershipDate", smccr.getMembershipDate());
 			params.put("terminationDate", smccr.getTerminationDate());
 			params.put("inactiveDate", smccr.getInactiveDate());
+			params.put("treatyTag", smccr.getTreatyTag());
 			params.put("remarks", smccr.getRemarks());
 			params.put("createUser", smccr.getCreateUser());
 			params.put("createDate", smccr.getCreateDate());

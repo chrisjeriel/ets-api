@@ -651,6 +651,7 @@
 		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="terminationDate" 	column="TERMINATION_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="inactiveDate" 	column="INACTIVE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="treatyTag" 		column="TREATY_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -1471,6 +1472,7 @@
     						CAST(to_timestamp(#{membershipDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     						CAST(to_timestamp(#{terminationDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     						CAST(to_timestamp(#{inactiveDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						#{treatyTag, jdbcType=VARCHAR},
     						#{remarks, jdbcType=VARCHAR},
     						#{createUser},
     						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
