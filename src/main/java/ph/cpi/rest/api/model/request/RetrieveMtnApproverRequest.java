@@ -4,8 +4,16 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnApproverRequest {
+	private String userId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -20,8 +28,7 @@ public class RetrieveMtnApproverRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnApproverRequest [paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
-				+ "]";
+		return "RetrieveMtnApproverRequest [userId=" + userId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

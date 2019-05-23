@@ -1896,7 +1896,7 @@
 	</resultMap>
 	
 	<select id="retrieveApprover" resultMap="approverMap">
-		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(#{userId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
 	</select>
 	
 	<select id="retrieveApproverFn" resultMap="approverFnMap" parameterType="java.util.Map">

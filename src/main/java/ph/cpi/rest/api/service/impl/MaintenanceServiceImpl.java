@@ -1390,7 +1390,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException {
 		RetrieveMtnApproverResponse rarResponse = new RetrieveMtnApproverResponse();
-		rarResponse.setApproverList(maintenanceDao.retrieveApprover());
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rar.getUserId());
+		rarResponse.setApproverList(maintenanceDao.retrieveApprover(params));
 		return rarResponse;
 	}
 

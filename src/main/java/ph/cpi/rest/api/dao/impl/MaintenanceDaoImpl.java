@@ -543,8 +543,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public List<Approver> retrieveApprover() throws SQLException {
-		List<Approver> list = sqlSession.selectList("retrieveApprover");
+	public List<Approver> retrieveApprover(final HashMap<String, Object> params) throws SQLException {
+		List<Approver> list = sqlSession.selectList("retrieveApprover",params);
 		return list;
 	}
 
