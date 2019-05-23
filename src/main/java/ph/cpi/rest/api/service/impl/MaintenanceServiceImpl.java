@@ -40,6 +40,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReportsParamRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReportsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
@@ -73,6 +74,7 @@ import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -104,6 +106,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReportsParamResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReportsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
@@ -137,6 +140,7 @@ import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
@@ -1303,5 +1307,29 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smpResponse.setReturnCode(maintenanceDao.saveMtnProvince(saveMtnProvinceParams));
 		logger.info("SaveMtnProvinceResponse : " + smpResponse.toString());
 		return smpResponse;
+	}
+
+	@Override
+	public SaveMtnTreatyResponse saveMtnTreaty(SaveMtnTreatyRequest smtr) throws SQLException {
+		SaveMtnTreatyResponse smtResponse = new SaveMtnTreatyResponse();
+		HashMap<String, Object> saveMtnTreatyParams = new HashMap<String, Object>();
+		saveMtnTreatyParams.put("saveTreaty", smtr.getSaveTreaty());
+		saveMtnTreatyParams.put("deleteTreaty", smtr.getDeleteTreaty());
+		smtResponse.setReturnCode(maintenanceDao.saveMtnTreaty(saveMtnTreatyParams));
+		
+		return smtResponse;
+	}
+
+	@Override
+	public RetrieveMtnRetAmtResponse retrieveMtnRetAmt(RetrieveMtnRetAmtRequest rmrar) throws SQLException {
+		RetrieveMtnRetAmtResponse rmraResponse = new RetrieveMtnRetAmtResponse();
+		
+		HashMap<String, Object> retrieveMtnRetAmtParams = new HashMap<String, Object>();
+		retrieveMtnRetAmtParams.put("lineCd", rmrar.getLineCd());
+		retrieveMtnRetAmtParams.put("lineClassCd", rmrar.getLineClassCd());
+		
+		rmraResponse.setRetAmtList(maintenanceDao.retrieveMtnRetAmt(retrieveMtnRetAmtParams));
+		
+		return rmraResponse;
 	}
 }

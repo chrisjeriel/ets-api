@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
+import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
@@ -109,4 +110,6 @@ public interface MaintenanceDao {
 	
 	public Integer saveMtnRegion(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnTreaty(final HashMap<String, Object> params) throws SQLException;
+	public List<RetAmt> retrieveMtnRetAmt(final HashMap<String, Object> params ) throws SQLException;
 }

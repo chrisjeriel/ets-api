@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
+import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
@@ -504,6 +505,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnProvince", params);
 		return errorCode;
+	}
+
+	@Override
+	public Integer saveMtnTreaty(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreaty", params);
+		return res;
+	}
+
+	@Override
+	public List<RetAmt> retrieveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
+		List<RetAmt> res = sqlSession.selectList("retrieveMtnRetAmt", params);
+		return res;
 	}
 
 }

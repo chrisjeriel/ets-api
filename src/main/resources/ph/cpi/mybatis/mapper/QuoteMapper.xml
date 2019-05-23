@@ -1667,6 +1667,7 @@
 			QU_OPTION_PKG.copy_qu_opt(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
+				#{riskId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},

@@ -323,10 +323,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	public HashMap<String, Object> saveQuotationCopy(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("copyQuoteGenInfo", params);
 		params.put("errorCode", errorCode);
-		
-		sqlSession.update("copyQuoteProject", params);			
+		sqlSession.update("copyQuoteProject", params);
 		sqlSession.update("copyQuoteCoverage", params);
-		sqlSession.update("copyQuoteSectionCovers", params);		
+		sqlSession.update("copyQuoteSectionCovers", params);
 		sqlSession.update("copyQuoteOptions", params);
 		sqlSession.update("copyQuoteDeductibles", params);
 		sqlSession.update("copyQuoteOtherRates", params);
