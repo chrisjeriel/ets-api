@@ -239,6 +239,7 @@ public class QuoteDaoImpl implements QuoteDao{
 	public HashMap<String, Object>  saveQuoteHoldCover(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveQuoteHoldCover", params);
 		params.put("errorCode", errorCode);
+		System.out.println(params +  " from daoImpl" );
 		return params;
 	}
 
