@@ -9,6 +9,7 @@ public class Treaty {
 	private String treatyType;
 	private String activeTag;
 	private String remarks;
+	private Double comRate;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -51,6 +52,12 @@ public class Treaty {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public Double getComRate() {
+		return comRate;
+	}
+	public void setComRate(Double comRate) {
+		this.comRate = comRate;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -84,8 +91,8 @@ public class Treaty {
 	@Override
 	public String toString() {
 		return "Treaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", treatyAbbr=" + treatyAbbr
-				+ ", treatyType=" + treatyType + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", okDelete=" + okDelete + "]";
+				+ ", treatyType=" + treatyType + ", activeTag=" + activeTag + ", remarks=" + remarks + ", comRate="
+				+ comRate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
