@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 @Component
@@ -522,6 +523,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public List<RetAmt> retrieveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
 		List<RetAmt> res = sqlSession.selectList("retrieveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public List<TreatyShare> retrieveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
+		List<TreatyShare> res = sqlSession.selectList("retrieveMtnTreatyShare", params);
 		return res;
 	}
 

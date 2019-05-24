@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
@@ -115,6 +116,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
@@ -1356,5 +1358,19 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmraResponse.setRetAmtList(maintenanceDao.retrieveMtnRetAmt(retrieveMtnRetAmtParams));
 		
 		return rmraResponse;
+	}
+
+	@Override
+	public RetrieveMtnTreatyShareResponse retrieveMtnTreatyShare(RetrieveMtnTreatyShareRequest rmtsr)
+			throws SQLException {
+		RetrieveMtnTreatyShareResponse rmtsResponse = new RetrieveMtnTreatyShareResponse();
+		
+		HashMap<String, Object> retrieveMtnTreatyShareParams = new HashMap<String, Object>();
+		retrieveMtnTreatyShareParams.put("treatyYear", rmtsr.getTreatyYear());
+		retrieveMtnTreatyShareParams.put("treatyId", rmtsr.getTreatyId());
+		
+		rmtsResponse.setTreatyShareList(maintenanceDao.retrieveMtnTreatyShare(retrieveMtnTreatyShareParams));
+		
+		return rmtsResponse;
 	}
 }

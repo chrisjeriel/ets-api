@@ -782,9 +782,15 @@
     	<result property="treatyId" 		column="TREATY_ID"/>
     	<result property="treatyName" 		column="TREATY_NAME"/>
     	<result property="activeTag" 		column="ACTIVE_TAG"/>
-    	<result property="comRate" 			column="COMMISSION_RATE"/>
+    	<result property="commRate" 		column="COMMISSION_RATE"/>
     	<result property="treatyAbbr" 		column="TREATY_ABBR"/>
     	<result property="treatyType" 		column="TREATY_TYPE"/>
+    	<result property="treatyYear" 		column="TREATY_YEAR"/>
+    	<result property="sortSeq" 			column="SORT_SEQ"/>
+    	<result property="createUser" 		column="T_CREATE_USER"/>
+    	<result property="createDate" 		column="T_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="updateUser" 		column="T_UPDATE_USER"/>
+    	<result property="updateDate" 		column="T_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
     </resultMap>
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
@@ -1854,4 +1860,27 @@
 																	  ''))
 	</select>
     
+    <resultMap type="ph.cpi.rest.api.model.maintenance.TreatyShare" id="treatyShareMap">
+     	<result property="treatyYear" column="TREATY_YEAR"/>
+	    <result property="treatyId"   column="TREATY_ID"/>
+	    <result property="trtyCedId"  column="TRTY_CED_ID"/>
+	    <result property="cedingName" column="CEDING_NAME"/>
+	    <result property="cedingAbbr" column="CEDING_ABBR"/>
+	    <result property="pctShare"   column="PCT_SHARE"/>
+	    <result property="sortSeq"    column="SORT_SEQ"/>
+	    <result property="remarks"    column="REMARKS"/>
+	    <result property="createUser" column="CREATE_USER"/>
+	    <result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="updateUser" column="UPDATE_USER"/>
+	    <result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+    
+    <select id="retrieveMtnTreatyShare" resultMap="treatyShareMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_TREATY_SHARE_PKG.ret_mtn_treaty_share(#{treatyYear, jdbcType=INTEGER},
+																	  	  #{treatyId, jdbcType=INTEGER},
+																	      '',
+																	      '',
+																	      '',
+																	      ''))
+	</select>
 </mapper>

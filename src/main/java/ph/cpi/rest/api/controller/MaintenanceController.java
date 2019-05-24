@@ -50,6 +50,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
@@ -116,6 +117,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
@@ -644,5 +646,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnRetAmt");
 		logger.info("RetrieveMtnRetAmtRequest : " + rmrar.toString());
 		return maintenanceService.retrieveMtnRetAmt(rmrar);
+	}
+	
+	@GetMapping(path="retrieveMtnTreatyShare")
+	public @ResponseBody RetrieveMtnTreatyShareResponse retrieveMtnTreatyShare(RetrieveMtnTreatyShareRequest rmtsr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyShare");
+		logger.info("RetrieveMtnTreatyShareRequest : " + rmtsr.toString());
+		return maintenanceService.retrieveMtnTreatyShare(rmtsr);
 	}
 }
