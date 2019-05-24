@@ -773,6 +773,26 @@
     	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(NULL,NULL,NULL,NULL))
     </select>
     
+    <resultMap type="ph.cpi.rest.api.model.maintenance.Treaty" id="treatyComMap">
+    	<result property="treatyId" 		column="TREATY_ID"/>
+    	<result property="treatyName" 		column="TREATY_NAME"/>
+    	<result property="activeTag" 		column="ACTIVE_TAG"/>
+    	<result property="comRate" 			column="COMMISSION_RATE"/>
+    	<result property="treatyAbbr" 		column="TREATY_ABBR"/>
+    	<result property="treatyType" 		column="TREATY_TYPE"/>
+    </resultMap>
+    
+    <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
+    	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG.ret_mtn_treaty_com(
+    															   #{quoteYear, jdbcType=VARCHAR},
+    															   #{position, jdbcType=VARCHAR},
+    															   #{count, jdbcType=VARCHAR},
+    															   #{sortKey, jdbcType=VARCHAR},
+    															   #{order, jdbcType=VARCHAR}
+    															   )
+    					    )
+    </select>
+    
     <select id="retrieveMtnSectionCoversLov" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_SEC_COVER_PKG.ret_mtn_sec_cover_lov(#{lineCd, jdbcType=VARCHAR},
 																    #{cover, jdbcType=VARCHAR},

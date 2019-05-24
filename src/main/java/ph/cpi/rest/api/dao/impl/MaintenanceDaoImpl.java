@@ -506,4 +506,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 
+	@Override
+	public List<Treaty> retrieveMtnTreatyCommission(HashMap<String, Object> params) throws SQLException {
+		List<Treaty> list = sqlSession.selectList("retrieveMtnTreatyCom", params);
+		return list;
+	}
+
 }
