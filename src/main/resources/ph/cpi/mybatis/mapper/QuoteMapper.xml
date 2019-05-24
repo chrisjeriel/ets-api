@@ -1670,6 +1670,7 @@
 			QU_OPTION_PKG.copy_qu_opt(
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
+				#{riskId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},
@@ -1784,6 +1785,25 @@
 				#{policyId,jdbcType=INTEGER},
 				#{status,jdbcType=VARCHAR},
 				#{updateUser,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
+	
+	<update id="checkCompetition" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{hasCompetition, mode=OUT, javaType=Integer, jdbcType=INTEGER} := QU_GEN_INFO_PKG.chk_competition(#{quoteIdModif, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="copyCompetition" parameterType="java.util.Map">
+		BEGIN
+			QU_GEN_INFO_PKG.copy_competition(
+				#{quoteId, jdbcType=INTEGER},
+				#{newQuoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
