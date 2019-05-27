@@ -261,6 +261,7 @@
 		<result property="exSeciiiPrem" 		column="EX_SECIII_PREM"/>
 		<result property="exTprem" 				column="EX_TPREM"/>
 		<result property="exDays" 				column="EX_DAYS"/>
+		<result property="totalDays" 			column="TOTAL_DAYS"/>
 		<result property="cumSecISi" 			column="CUM_SECI_SI"/>
 		<result property="cumSecIISi" 			column="CUM_SECII_SI"/>
 		<result property="cumSecIIISi" 			column="CUM_SECIII_SI"/>
@@ -652,10 +653,14 @@
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem},#{holdCoverPremAmt,jdbcType=VARCHAR}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR},
+										   #{exSecIPrem, jdbcType=INTEGER}, #{exSecIIPrem, jdbcType=INTEGER}, 
+										   #{exSecIIIPrem, jdbcType=INTEGER}, #{extotalPrem, jdbcType=INTEGER}, 
+										   #{exDays, jdbcType=INTEGER}, #{totalDays, jdbcType=INTEGER}, #{cumSecISi}, 
+										   #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
 			<foreach collection="deleteSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.del_pol_cover(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
@@ -668,6 +673,7 @@
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
 													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
+													#{sectioncovers.exPremRt, jdbcType=INTEGER}, #{sectioncovers.exPremAmt, jdbcType=INTEGER},
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
