@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
+import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
@@ -248,8 +249,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return reason;
 	}
 	
-	public List<Treaty> retrieveMtnTreaty() throws SQLException {
-		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty");
+	public List<Treaty> retrieveMtnTreaty(HashMap<String, Object> params) throws SQLException {
+		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty",params);
 		logger.info("retrieveMtnTreaty treatyList : " + treatyList);
 		return treatyList;
 	}
@@ -529,6 +530,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public List<TreatyShare> retrieveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
 		List<TreatyShare> res = sqlSession.selectList("retrieveMtnTreatyShare", params);
+		return res;
+	}
+
+	@Override
+	public List<CedingRetention> retrieveMtnCedingRetention(HashMap<String, Object> params) throws SQLException {
+		List<CedingRetention> res = sqlSession.selectList("retrieveMtnCedingRetention", params);
 		return res;
 	}
 

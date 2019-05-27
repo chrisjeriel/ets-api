@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCedingRetentionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
@@ -88,6 +89,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCedingRetentionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
@@ -661,7 +663,11 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnTreatyResponse retrieveMtnTreaty(RetrieveMtnTreatyRequest rmtr) throws SQLException {
 		RetrieveMtnTreatyResponse retrieveMtnTreatyResponse = new RetrieveMtnTreatyResponse();
-		retrieveMtnTreatyResponse.setTreatyList(maintenanceDao.retrieveMtnTreaty());
+		
+		HashMap<String, Object> retrieveMtnTreatyParams =  new HashMap<String, Object>();
+		retrieveMtnTreatyParams.put("treatyId", rmtr.getTreatyId());
+		
+		retrieveMtnTreatyResponse.setTreatyList(maintenanceDao.retrieveMtnTreaty(retrieveMtnTreatyParams));
 		return retrieveMtnTreatyResponse;
 	}
 	
@@ -1372,5 +1378,20 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmtsResponse.setTreatyShareList(maintenanceDao.retrieveMtnTreatyShare(retrieveMtnTreatyShareParams));
 		
 		return rmtsResponse;
+	}
+
+	@Override
+	public RetrieveMtnCedingRetentionResponse retrieveMtnCedingRetention(RetrieveMtnCedingRetentionRequest rmcrr)
+			throws SQLException {
+		RetrieveMtnCedingRetentionResponse rmcrResponse = new RetrieveMtnCedingRetentionResponse();
+		
+		HashMap<String, Object> retrieveMtnCedRetParams = new HashMap<String, Object>();
+		retrieveMtnCedRetParams.put("treatyYear", rmcrr.getTreatyYear());
+		retrieveMtnCedRetParams.put("treatyId", rmcrr.getTreatyId());
+		retrieveMtnCedRetParams.put("trtyCedId", rmcrr.getTrtyCedId());
+		
+		rmcrResponse.setCedingRetentionList(maintenanceDao.retrieveMtnCedingRetention(retrieveMtnCedRetParams));
+		
+		return rmcrResponse;
 	}
 }

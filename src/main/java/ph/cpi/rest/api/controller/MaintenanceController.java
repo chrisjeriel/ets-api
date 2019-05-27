@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnCedingRetentionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
@@ -90,6 +91,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnCedingRetentionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
@@ -653,5 +655,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyShare");
 		logger.info("RetrieveMtnTreatyShareRequest : " + rmtsr.toString());
 		return maintenanceService.retrieveMtnTreatyShare(rmtsr);
+	}
+	
+	@GetMapping(path="retrieveMtnCedingRetention")
+	public @ResponseBody RetrieveMtnCedingRetentionResponse retrieveMtnCedingRetention(RetrieveMtnCedingRetentionRequest rmcrr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCedingRetention");
+		logger.info("RetrieveMtnCedingRetentionRequest : " + rmcrr.toString());
+		return maintenanceService.retrieveMtnCedingRetention(rmcrr);
 	}
 }
