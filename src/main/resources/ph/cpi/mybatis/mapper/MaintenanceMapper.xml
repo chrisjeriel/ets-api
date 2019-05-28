@@ -1933,8 +1933,32 @@
 	<select id="retrieveMtnParameters" resultMap="parametersMap">
 		SELECT * FROM TABLE(MTN_PARAMETER_PKG.retrieve_mtn_parameters(#{paramType, jdbcType=VARCHAR},
 																	  #{position , jdbcType=VARCHAR},
-																      #{count		, jdbcType=VARCHAR},
-																      #{sortKey		, jdbcType=VARCHAR},
-																	  #{order		, jdbcType=VARCHAR}))
+																      #{count , jdbcType=VARCHAR},
+																      #{sortKey	, jdbcType=VARCHAR},
+																	  #{order , jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveMtnParameters" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delParameters" item="del">
+	    			MTN_PARAMETER_PKG.del_mtn_parameters(
+			    		#{del.paramType},#{del.paramName}
+			    	);
+    		</foreach>
+    		<foreach collection="saveParameters" item="save">
+		    		MTN_PARAMETER_PKG.save_mtn_parameters(
+		    			#{save.paramType},
+		    			#{save.paramName},
+		    			#{save.paramValueN, jdbcType=VARCHAR},
+		    			#{save.paramValueV, jdbcType=VARCHAR},
+		    			#{save.paramValueD, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
 </mapper>

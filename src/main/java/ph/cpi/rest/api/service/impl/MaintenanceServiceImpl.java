@@ -74,6 +74,7 @@ import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnParametersRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
@@ -147,6 +148,7 @@ import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnParametersResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
@@ -1430,5 +1432,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("paramType", rafr.getParamType());
 		response.setParameters(maintenanceDao.retrieveParameters(params));
 		return response;
+	}
+
+	@Override
+	public SaveMtnParametersResponse saveMtnParameters(SaveMtnParametersRequest smrr) throws SQLException {
+		SaveMtnParametersResponse smpResponse = new SaveMtnParametersResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveParameters", smrr.getSaveParameters());
+			params.put("delParameters", smrr.getDelParameters());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnParameters(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
 	}
 }

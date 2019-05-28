@@ -75,6 +75,7 @@ import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnParametersRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
@@ -146,6 +147,7 @@ import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnParametersResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
@@ -689,5 +691,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnParameters");
 		logger.info("RetrieveMtnParametersRequest : " + rafr.toString());
 		return maintenanceService.retrieveMtnParameters(rafr); 	
+	}
+	
+	@PostMapping(path="saveMtnParameters")
+	public @ResponseBody SaveMtnParametersResponse saveMtnParameters(@RequestBody SaveMtnParametersRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnParameters");
+		logger.info("SaveMtnParametersRequest : " + smar.toString());
+		return maintenanceService.saveMtnParameters(smar);
 	}
 }

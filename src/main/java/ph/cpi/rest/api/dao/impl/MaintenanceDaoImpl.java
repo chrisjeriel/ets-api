@@ -566,4 +566,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Parameters> list = sqlSession.selectList("retrieveMtnParameters",params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnParameters(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnParameters",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
