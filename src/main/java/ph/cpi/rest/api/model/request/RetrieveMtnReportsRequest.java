@@ -6,8 +6,8 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveMtnReportsRequest {
 	
 	private String reportId;
-	private PaginationRequest paginationRequest;
-	private SortRequest sortRequest;
+	private PaginationRequest paginationRequest = new PaginationRequest();
+	private SortRequest sortRequest = new SortRequest();
 	public String getReportId() {
 		return reportId;
 	}

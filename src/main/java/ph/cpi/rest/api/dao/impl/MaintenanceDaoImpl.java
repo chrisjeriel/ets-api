@@ -255,7 +255,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 
 	@Override
 	public List<Reports> retrieveMtnReports(HashMap<String, Object> params) throws SQLException {
-		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
+		List<Reports> reports = sqlSession.selectList("retMtnReport",params);
 		return reports;
 	}
 
@@ -522,6 +522,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public List<RetAmt> retrieveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
 		List<RetAmt> res = sqlSession.selectList("retrieveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnReports(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnReports", params);
 		return res;
 	}
 
