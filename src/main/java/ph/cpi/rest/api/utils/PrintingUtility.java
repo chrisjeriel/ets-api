@@ -63,10 +63,11 @@ public class PrintingUtility {
 		
 		File file = new File(outputPath);
 		OutputStream out = new FileOutputStream(file);
-
+		
 		try {
 			logger.info("Generating " + file.getName());
-			
+			System.out.println(jasperPrint);
+			System.out.println(out);
 			if ("pdf".equalsIgnoreCase(outputType)) {
 				JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 			} else if ("jpeg".equalsIgnoreCase(outputType) || "jpg".equalsIgnoreCase(outputType)) {

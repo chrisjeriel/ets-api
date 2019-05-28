@@ -1744,7 +1744,9 @@
 			QU_HOLD_COVER_PKG.up_qu_hold_cover(
 				#{quoteId,jdbcType=INTEGER},
 				#{holdCoverId,jdbcType=INTEGER},
-				#{updateUser,jdbcType=VARCHAR}
+				#{updateUser,jdbcType=VARCHAR},
+				#{hcStatus,jdbcType=VARCHAR},
+				#{quoStatus,jdbcType=VARCHAR}
 			);
 	    END;
 	</update>

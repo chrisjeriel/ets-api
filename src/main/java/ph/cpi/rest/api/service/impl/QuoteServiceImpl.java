@@ -1186,6 +1186,8 @@ public class QuoteServiceImpl implements QuoteService{
 		updateHoldCoverStatusParams.put("quoteId", uhcr.getQuoteId());
 		updateHoldCoverStatusParams.put("holdCoverId", uhcr.getHoldCoverId());
 		updateHoldCoverStatusParams.put("updateUser", uhcr.getUpdateUser());
+		updateHoldCoverStatusParams.put("hcStatus", uhcr.getHcStatus());
+		updateHoldCoverStatusParams.put("quoStatus", uhcr.getQuoStatus());
 		uhcrResponse.setReturnCode(quoteDao.updateHoldCoverStatus(updateHoldCoverStatusParams));
 		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
 		
