@@ -1916,4 +1916,25 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Parameters" id="parametersMap">
+		<result property="paramType" 		column="PARAM_TYPE"/>
+		<result property="paramName" 		column="PARAM_NAME"/>
+		<result property="paramValueN" 		column="PARAM_VALUE_N"/>
+		<result property="paramValueV" 		column="PARAM_VALUE_V"/>
+		<result property="paramValueD" 		column="PARAM_VALUE_D"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnParameters" resultMap="parametersMap">
+		SELECT * FROM TABLE(MTN_PARAMETER_PKG.retrieve_mtn_parameters(#{paramType, jdbcType=VARCHAR},
+																	  #{position , jdbcType=VARCHAR},
+																      #{count		, jdbcType=VARCHAR},
+																      #{sortKey		, jdbcType=VARCHAR},
+																	  #{order		, jdbcType=VARCHAR}))
+	</select>
 </mapper>

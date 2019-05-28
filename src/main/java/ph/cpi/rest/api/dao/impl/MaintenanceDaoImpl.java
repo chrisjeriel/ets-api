@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -560,4 +561,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 
+	@Override
+	public List<Parameters> retrieveParameters(HashMap<String, Object> params) throws SQLException {
+		List<Parameters> list = sqlSession.selectList("retrieveMtnParameters",params);
+		return list;
+	}
 }
