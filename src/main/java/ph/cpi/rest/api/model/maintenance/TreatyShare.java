@@ -16,6 +16,7 @@ public class TreatyShare {
     private DateTime createDate;
     private String updateUser;
     private DateTime updateDate;
+    private String okDelete;
     
 	public Integer getTreatyYear() {
 		return treatyYear;
@@ -89,11 +90,17 @@ public class TreatyShare {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "TreatyShare [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId
 				+ ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr + ", pctShare=" + pctShare + ", sortSeq="
 				+ sortSeq + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 }

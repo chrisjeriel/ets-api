@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.dao.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
@@ -536,6 +538,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public List<CedingRetention> retrieveMtnCedingRetention(HashMap<String, Object> params) throws SQLException {
 		List<CedingRetention> res = sqlSession.selectList("retrieveMtnCedingRetention", params);
+		return res;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer saveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreatyComm", params);
+		sqlSession.update("saveMtnTreatyShare", params);
+		sqlSession.update("saveMtnCedRetention", params);
+		
 		return res;
 	}
 

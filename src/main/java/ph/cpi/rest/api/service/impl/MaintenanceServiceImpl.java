@@ -78,6 +78,7 @@ import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -147,6 +148,7 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
@@ -1393,5 +1395,20 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmcrResponse.setCedingRetentionList(maintenanceDao.retrieveMtnCedingRetention(retrieveMtnCedRetParams));
 		
 		return rmcrResponse;
+	}
+
+	@Override
+	public SaveMtnTreatyShareResponse saveMtnTreatyShare(SaveMtnTreatyShareRequest smtsr) throws SQLException {
+		SaveMtnTreatyShareResponse smtsResponse = new SaveMtnTreatyShareResponse();
+		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
+		saveMtnTreatyShareParams.put("saveTreatyComm", smtsr.getSaveTreatyComm());
+		saveMtnTreatyShareParams.put("deleteTreatyComm", smtsr.getDeleteTreatyComm());
+		saveMtnTreatyShareParams.put("saveTreatyShare", smtsr.getSaveTreatyShare());
+		saveMtnTreatyShareParams.put("deleteTreatyShare", smtsr.getDeleteTreatyShare());
+		saveMtnTreatyShareParams.put("saveCedRetention", smtsr.getSaveCedRetention());
+		saveMtnTreatyShareParams.put("deleteCedRetention", smtsr.getDeleteCedRetention());
+		smtsResponse.setReturnCode(maintenanceDao.saveMtnTreatyShare(saveMtnTreatyShareParams));
+		
+		return smtsResponse;
 	}
 }

@@ -80,6 +80,7 @@ import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -148,6 +149,7 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
@@ -662,5 +664,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCedingRetention");
 		logger.info("RetrieveMtnCedingRetentionRequest : " + rmcrr.toString());
 		return maintenanceService.retrieveMtnCedingRetention(rmcrr);
+	}
+	
+	@PostMapping(path="saveMtnTreatyShare")
+	public @ResponseBody SaveMtnTreatyShareResponse saveMtnTreatyShare(@RequestBody SaveMtnTreatyShareRequest smtsr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnTreatyShare");
+		logger.info("SaveMtnTreatyShareRequest : " + smtsr.toString());
+		return maintenanceService.saveMtnTreatyShare(smtsr);
 	}
 }

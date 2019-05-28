@@ -791,6 +791,7 @@
     	<result property="createDate" 		column="T_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
     	<result property="updateUser" 		column="T_UPDATE_USER"/>
     	<result property="updateDate" 		column="T_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete" 		column="OK_DELETE"/>
     </resultMap>
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
@@ -1873,6 +1874,7 @@
 	    <result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	    <result property="updateUser" column="UPDATE_USER"/>
 	    <result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="okDelete"	  column="OK_DELETE"/>
      </resultMap>
     
     <select id="retrieveMtnTreatyShare" resultMap="treatyShareMap" parameterType="java.util.Map">
@@ -1911,4 +1913,120 @@
 																		       '',
 																		       ''))
 	</select>
+	
+	<!-- <update id="saveMtnTreatyComm" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteTreatyComm" item="del">
+	    			MTN_TREATY_COMM_PKG.del_treaty_com(
+	    				#{del.treatyYear, jdbcType=INTEGER},
+			    		#{del.treatyId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveTreatyComm" item="save">
+		    		MTN_TREATY_COMM_PKG.save_treaty_com(
+		    			#{save.treatyYear, jdbcType=INTEGER},
+		    			#{save.treatyId, jdbcType=INTEGER},
+		    			#{save.commRate, jdbcType=DECIMAL},
+		    			#{save.sortSeq, jdbcType=INTEGER},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update> -->
+    
+    <update id="saveMtnTreatyComm" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_count NUMBER;
+    	BEGIN
+    		<foreach collection="deleteTreatyComm" item="del">
+	    			MTN_TREATY_COMM_PKG.del_treaty_com(
+			    		#{del.treatyYear, jdbcType=INTEGER},
+			    		#{del.treatyId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveTreatyComm" item="save">
+		    		MTN_TREATY_COMM_PKG.save_treaty_com(
+		    			#{save.treatyYear, jdbcType=INTEGER},
+		    			#{save.treatyId, jdbcType=INTEGER},
+		    			#{save.commRate, jdbcType=DECIMAL},
+		    			#{save.sortSeq, jdbcType=INTEGER},
+		    			#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    		SELECT COUNT(*)
+    		  INTO v_count
+    		FROM MTN_TREATY_COMM;
+    	END;
+    </update>
+    
+    <update id="saveMtnTreatyShare" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_count NUMBER;
+    	BEGIN
+		    <foreach collection="deleteTreatyShare" item="del">
+			   	MTN_TREATY_SHARE_PKG.del_treaty_share(
+			   		#{del.treatyYear, jdbcType=INTEGER},
+					#{del.treatyId, jdbcType=INTEGER},
+					#{del.trtyCedId, jdbcType=VARCHAR}
+				);
+		    </foreach>
+		    <foreach collection="saveTreatyShare" item="save">
+			    MTN_TREATY_SHARE_PKG.save_treaty_share(
+			    	#{save.treatyYear, jdbcType=INTEGER},
+			    	#{save.treatyId, jdbcType=INTEGER},
+			    	#{save.trtyCedId, jdbcType=VARCHAR},
+			    	#{save.pctShare, jdbcType=FLOAT},
+			    	#{save.sortSeq, jdbcType=INTEGER},
+			    	#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    );
+		    </foreach>
+	    	SELECT COUNT(*)
+	    	  INTO v_count
+	    	FROM MTN_TREATY_SHARE;
+    	END;
+    </update>
+    
+    <update id="saveMtnCedRetention" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_count NUMBER;
+    	BEGIN
+    		<foreach collection="deleteCedRetention" item="del">
+	    		MTN_CEDING_RETENTION_PKG.del_mtn_ced_retention(
+	    			#{del.treatyYear, jdbcType=INTEGER},
+			   		#{del.treatyId, jdbcType=INTEGER},
+			   		#{del.trtyCedId, jdbcType=VARCHAR},
+			   		#{del.cedingId, jdbcType=VARCHAR}
+			   	);
+    		</foreach>
+    		<foreach collection="saveCedRetention" item="save">
+		    	MTN_CEDING_RETENTION_PKG.save_mtn_ced_retention(
+		    		#{save.treatyYear, jdbcType=INTEGER},
+		    		#{save.treatyId, jdbcType=INTEGER},
+		    		#{save.trtyCedId, jdbcType=VARCHAR},
+		    		#{save.cedingId, jdbcType=VARCHAR},
+		    		#{save.retLine1, jdbcType=INTEGER},
+		    		#{save.retLine2, jdbcType=INTEGER},
+		    		#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    	);
+    		</foreach>
+    		SELECT COUNT(*)
+    		  INTO v_count
+    		FROM MTN_CEDING_RETENTION;
+    	END;
+    </update>
+    
 </mapper>
