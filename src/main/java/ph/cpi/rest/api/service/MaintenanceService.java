@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnReportParamRequest;
 import ph.cpi.rest.api.model.request.SaveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
@@ -136,6 +137,7 @@ import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnReportParamResponse;
 import ph.cpi.rest.api.model.response.SaveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
@@ -231,4 +233,5 @@ public interface MaintenanceService {
 	public SaveMtnTreatyResponse saveMtnTreaty(SaveMtnTreatyRequest smtr) throws SQLException;
 	public RetrieveMtnRetAmtResponse retrieveMtnRetAmt(RetrieveMtnRetAmtRequest rmrar) throws SQLException;
 	public SaveMtnReportsResponse saveMtnReports(SaveMtnReportsRequest smrr) throws SQLException;
+	public SaveMtnReportParamResponse saveMtnReportParam(SaveMtnReportParamRequest smrpr) throws SQLException;
 }

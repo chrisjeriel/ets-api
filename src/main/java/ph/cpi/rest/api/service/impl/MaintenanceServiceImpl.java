@@ -72,6 +72,7 @@ import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnReportParamRequest;
 import ph.cpi.rest.api.model.request.SaveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
@@ -140,6 +141,7 @@ import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnReportParamResponse;
 import ph.cpi.rest.api.model.response.SaveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
@@ -1373,6 +1375,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("saveReports", smrr.getSaveReports());
 		try{
 			response.setReturnCode(maintenanceDao.saveMtnReports(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnReportParamResponse saveMtnReportParam(SaveMtnReportParamRequest smrpr) throws SQLException {
+		SaveMtnReportParamResponse response = new SaveMtnReportParamResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("delReportParam", smrpr.getDelReportParam());
+		params.put("saveReportParam", smrpr.getSaveReportParam());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnReportParam(params));
 		}catch(Exception e){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));

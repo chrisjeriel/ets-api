@@ -114,4 +114,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnTreaty(final HashMap<String, Object> params) throws SQLException;
 	public List<RetAmt> retrieveMtnRetAmt(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveMtnReports(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnReportParam(final HashMap<String, Object> params) throws SQLException; 
 }

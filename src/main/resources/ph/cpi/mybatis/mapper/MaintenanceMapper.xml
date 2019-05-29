@@ -1898,5 +1898,29 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveMtnReportParam" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="delReportParam" item="del">
+				MTN_REP_PARAM_PKG.del_mtn_rep_param(
+					#{del.reportId},
+					#{del.title}
+				);
+			</foreach>
+			<foreach collection="saveReportParam" item="save">
+				MTN_REP_PARAM_PKG.save_mtn_rep_param(
+										#{save.reportId},
+										#{save.title},
+										#{save.text},
+										#{save.lineCd, jdbcType=VARCHAR},
+										#{save.remarks, jdbcType=VARCHAR},
+										#{save.createUser, jdbcType=VARCHAR},
+										CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										#{save.updateUser, jdbcType=VARCHAR},
+										CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					);
+			</foreach>
+		END;
+	</update>
     
 </mapper>

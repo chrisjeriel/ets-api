@@ -531,4 +531,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return res;
 	}
 
+	@Override
+	public Integer saveMtnReportParam(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnReportParam", params);
+		return res;
+	}
+
 }
