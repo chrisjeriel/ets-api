@@ -4,14 +4,15 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnRoundingErrorRequest {
-	private String cedingId;
+	private String companyId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getCedingId() {
-		return cedingId;
+	
+	public String getCompanyId() {
+		return companyId;
 	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -27,9 +28,10 @@ public class RetrieveMtnRoundingErrorRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnRoundingErrorRequest [cedingId=" + cedingId + ", paginationRequest=" + paginationRequest
+		return "RetrieveMtnRoundingErrorRequest [companyId=" + companyId + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 	
 }

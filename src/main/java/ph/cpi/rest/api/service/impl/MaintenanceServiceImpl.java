@@ -1459,7 +1459,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			throws SQLException {
 		RetrieveMtnRoundingErrorResponse response = new RetrieveMtnRoundingErrorResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("cedingId", rafr.getCedingId());
+		params.put("companyId", rafr.getCompanyId());
 		response.setRoundingError(maintenanceDao.retrieveMtnRoundingError(params));
 		return response;
 	}

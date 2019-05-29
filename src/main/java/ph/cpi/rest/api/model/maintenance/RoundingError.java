@@ -3,8 +3,9 @@ package ph.cpi.rest.api.model.maintenance;
 import org.joda.time.DateTime;
 
 public class RoundingError {
-	private String cedingId;
+	private String companyId;
 	private String companyName;
+	private String abbreviation;
 	private DateTime effDateFrom;
 	private DateTime effDateTo;
 	private String activeTag;
@@ -13,17 +14,25 @@ public class RoundingError {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public String getCedingId() {
-		return cedingId;
+	
+	public String getCompanyId() {
+		return companyId;
 	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	public String getCompanyName() {
 		return companyName;
 	}
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+	
+	public String getAbbreviation() {
+		return abbreviation;
+	}
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
 	}
 	public DateTime getEffDateFrom() {
 		return effDateFrom;
@@ -75,9 +84,9 @@ public class RoundingError {
 	}
 	@Override
 	public String toString() {
-		return "RoundingError [cedingId=" + cedingId + ", companyName=" + companyName + ", effDateFrom=" + effDateFrom
-				+ ", effDateTo=" + effDateTo + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "RoundingError [companyId=" + companyId + ", companyName=" + companyName + ", abbreviation="
+				+ abbreviation + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

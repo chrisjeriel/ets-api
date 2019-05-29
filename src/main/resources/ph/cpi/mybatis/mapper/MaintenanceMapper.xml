@@ -1963,8 +1963,9 @@
     </update>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.RoundingError" id="roundingErrorMap">
-    	<result property="cedingId" 		column="CEDING_ID"/>
+    	<result property="companyId" 		column="CEDING_ID"/>
 		<result property="companyName" 		column="COMPANY_NAME"/>
+		<result property="abbreviation" 	column="ABBREVIATION"/>
 		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
@@ -1976,7 +1977,7 @@
     </resultMap>
 	
 	<select id="retrieveMtnRoundingError" resultMap="roundingErrorMap">
-		SELECT * FROM TABLE(MTN_ROUNDING_ERROR_PKG.retrieve_mtn_rounding_errors(#{cedingId, jdbcType=VARCHAR },
+		SELECT * FROM TABLE(MTN_ROUNDING_ERROR_PKG.retrieve_mtn_rounding_errors(#{companyId, jdbcType=VARCHAR },
 																	  #{position , jdbcType=VARCHAR},
 																      #{count , jdbcType=VARCHAR},
 																      #{sortKey	, jdbcType=VARCHAR},
