@@ -49,6 +49,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReportsParamRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
@@ -121,6 +122,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReportsParamResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
@@ -698,5 +700,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnParameters");
 		logger.info("SaveMtnParametersRequest : " + smar.toString());
 		return maintenanceService.saveMtnParameters(smar);
+	}
+	
+	@GetMapping(path="retrieveMtnRoundingError")
+	public @ResponseBody RetrieveMtnRoundingErrorResponse retrieveMtnRoundingError(RetrieveMtnRoundingErrorRequest rafr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnRoundingError");
+		logger.info("RetrieveMtnRoundingErrorRequest : " + rafr.toString());
+		return maintenanceService.retrieveMtnRoundingError(rafr); 	
 	}
 }

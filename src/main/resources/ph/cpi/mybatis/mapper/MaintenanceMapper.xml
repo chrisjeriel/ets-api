@@ -1961,4 +1961,25 @@
     		</foreach>
     	END;
     </update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.RoundingError" id="roundingErrorMap">
+    	<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="companyName" 		column="COMPANY_NAME"/>
+		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+	
+	<select id="retrieveMtnRoundingError" resultMap="roundingErrorMap">
+		SELECT * FROM TABLE(MTN_ROUNDING_ERROR_PKG.retrieve_mtn_rounding_errors(#{cedingId, jdbcType=VARCHAR },
+																	  #{position , jdbcType=VARCHAR},
+																      #{count , jdbcType=VARCHAR},
+																      #{sortKey	, jdbcType=VARCHAR},
+																	  #{order , jdbcType=VARCHAR}))
+	</select>
 </mapper>

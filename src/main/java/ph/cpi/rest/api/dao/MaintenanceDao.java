@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.Risk;
+import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -124,5 +125,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnApprover(final HashMap<String, Object> params) throws SQLException;
 	public List<Parameters> retrieveParameters(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnParameters(final HashMap<String, Object> params) throws SQLException;
+	public List<RoundingError> retrieveMtnRoundingError(final HashMap<String, Object> params) throws SQLException;
 	
 }

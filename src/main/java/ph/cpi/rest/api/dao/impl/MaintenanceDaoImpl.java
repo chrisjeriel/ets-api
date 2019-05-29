@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.Risk;
+import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -572,5 +573,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnParameters",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<RoundingError> retrieveMtnRoundingError(HashMap<String, Object> params) throws SQLException {
+		List<RoundingError> list = sqlSession.selectList("retrieveMtnRoundingError",params);
+		return list;
 	}
 }
