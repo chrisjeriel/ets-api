@@ -23,6 +23,7 @@ public class SaveMtnCedingCompanyRequest {
 	private String membershipDate;
 	private String terminationDate;
 	private String inactiveDate;
+	private String treatyTag;
 	private String remarks;
 	private String createUser;
 	private String createDate;
@@ -139,6 +140,12 @@ public class SaveMtnCedingCompanyRequest {
 	public void setInactiveDate(String inactiveDate) {
 		this.inactiveDate = inactiveDate;
 	}
+	public String getTreatyTag() {
+		return treatyTag;
+	}
+	public void setTreatyTag(String treatyTag) {
+		this.treatyTag = treatyTag;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -190,9 +197,9 @@ public class SaveMtnCedingCompanyRequest {
 				+ bussTypeId + ", tinNo=" + tinNo + ", activeTag=" + activeTag + ", govtTag=" + govtTag
 				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
 				+ membershipDate + ", terminationDate=" + terminationDate + ", inactiveDate=" + inactiveDate
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", saveCedingRepList=" + saveCedingRepList
-				+ ", delCedingRepList=" + delCedingRepList + "]";
+				+ ", treatyTag=" + treatyTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveCedingRepList="
+				+ saveCedingRepList + ", delCedingRepList=" + delCedingRepList + "]";
 	}
 	
 }

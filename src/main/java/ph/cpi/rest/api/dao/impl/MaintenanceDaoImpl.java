@@ -40,6 +40,7 @@ import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
+import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
@@ -260,7 +261,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 
 	@Override
 	public List<Reports> retrieveMtnReports(HashMap<String, Object> params) throws SQLException {
-		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
+		List<Reports> reports = sqlSession.selectList("retMtnReport",params);
 		return reports;
 	}
 
@@ -586,5 +587,29 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnRoundingError",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<Treaty> retrieveMtnTreatyCommission(HashMap<String, Object> params) throws SQLException {
+		List<Treaty> list = sqlSession.selectList("retrieveMtnTreatyCom", params);
+		return list;
+	}
+	
+	@Override
+	public Integer saveMtnTreaty(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreaty", params);
+		return res;
+	}
+
+	@Override
+	public List<RetAmt> retrieveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
+		List<RetAmt> res = sqlSession.selectList("retrieveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnReports(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnReports", params);
+		return res;
 	}
 }

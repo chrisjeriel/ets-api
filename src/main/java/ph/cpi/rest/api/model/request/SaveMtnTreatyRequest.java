@@ -1,20 +1,44 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class Treaty {
+import org.apache.ibatis.type.Alias;
+
+public class SaveMtnTreatyRequest {
+
+	private List<Treaty> saveTreaty;
+	private List<Treaty> deleteTreaty;
+	
+	public List<Treaty> getSaveTreaty() {
+		return saveTreaty;
+	}
+	public void setSaveTreaty(List<Treaty> saveTreaty) {
+		this.saveTreaty = saveTreaty;
+	}
+	public List<Treaty> getDeleteTreaty() {
+		return deleteTreaty;
+	}
+	public void setDeleteTreaty(List<Treaty> deleteTreaty) {
+		this.deleteTreaty = deleteTreaty;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnTreatyRequest [saveTreaty=" + saveTreaty + ", deleteTreaty=" + deleteTreaty + "]";
+	}
+}
+
+@Alias("SaveMtnTreaty")
+class Treaty {
 	private Integer treatyId;
 	private String treatyName;
 	private String treatyAbbr;
 	private String treatyType;
 	private String activeTag;
 	private String remarks;
-	private Double comRate;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
+	private String updateDate;
 	
 	public Integer getTreatyId() {
 		return treatyId;
@@ -52,22 +76,16 @@ public class Treaty {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public Double getComRate() {
-		return comRate;
-	}
-	public void setComRate(Double comRate) {
-		this.comRate = comRate;
-	}
 	public String getCreateUser() {
 		return createUser;
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -76,23 +94,17 @@ public class Treaty {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
 		return "Treaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", treatyAbbr=" + treatyAbbr
-				+ ", treatyType=" + treatyType + ", activeTag=" + activeTag + ", remarks=" + remarks + ", comRate="
-				+ comRate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", treatyType=" + treatyType + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }
