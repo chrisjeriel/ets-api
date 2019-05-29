@@ -82,6 +82,7 @@ import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
@@ -157,6 +158,7 @@ import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -1462,5 +1464,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("companyId", rafr.getCompanyId());
 		response.setRoundingError(maintenanceDao.retrieveMtnRoundingError(params));
 		return response;
+	}
+
+	@Override
+	public SaveMtnRoundingErrorResponse saveMtnRoundingError(SaveMtnRoundingErrorRequest smrr) throws SQLException {
+		SaveMtnRoundingErrorResponse smpResponse = new SaveMtnRoundingErrorResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveRoundingError", smrr.getSaveRoundingError());
+			params.put("delRoundingError", smrr.getDelRoundingError());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnRoundingError(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
 	}
 }

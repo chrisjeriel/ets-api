@@ -83,6 +83,7 @@ import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
@@ -156,6 +157,7 @@ import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -707,5 +709,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnRoundingError");
 		logger.info("RetrieveMtnRoundingErrorRequest : " + rafr.toString());
 		return maintenanceService.retrieveMtnRoundingError(rafr); 	
+	}
+	
+	@PostMapping(path="saveMtnRoundingError")
+	public @ResponseBody SaveMtnRoundingErrorResponse saveMtnRoundingError(@RequestBody SaveMtnRoundingErrorRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRoundingError");
+		logger.info("SaveMtnRoundingErrorRequest : " + smar.toString());
+		return maintenanceService.saveMtnRoundingError(smar);
 	}
 }

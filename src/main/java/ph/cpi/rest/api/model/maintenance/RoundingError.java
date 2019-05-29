@@ -14,6 +14,7 @@ public class RoundingError {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
 	public String getCompanyId() {
 		return companyId;
@@ -82,11 +83,19 @@ public class RoundingError {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "RoundingError [companyId=" + companyId + ", companyName=" + companyName + ", abbreviation="
 				+ abbreviation + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo + ", activeTag="
 				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
+	
 }

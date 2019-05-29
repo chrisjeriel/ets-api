@@ -1974,6 +1974,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"			column="OK_DELETE"/>
     </resultMap>
 	
 	<select id="retrieveMtnRoundingError" resultMap="roundingErrorMap">
@@ -1983,4 +1984,29 @@
 																      #{sortKey	, jdbcType=VARCHAR},
 																	  #{order , jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveMtnRoundingError" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delRoundingError" item="del">
+	    			MTN_ROUNDING_ERROR_PKG.del_mtn_rounding_error(
+			    		#{del.companyId},
+			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{del.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    	);
+    		</foreach>
+    		<foreach collection="saveRoundingError" item="save">
+		    		MTN_ROUNDING_ERROR_PKG.save_mtn_rounding_error(
+		    			#{save.companyId},
+		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
 </mapper>

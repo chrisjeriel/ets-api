@@ -580,4 +580,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<RoundingError> list = sqlSession.selectList("retrieveMtnRoundingError",params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnRoundingError(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnRoundingError",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
