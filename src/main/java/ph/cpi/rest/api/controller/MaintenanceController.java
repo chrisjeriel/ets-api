@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
@@ -76,12 +78,15 @@ import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
@@ -145,6 +150,7 @@ import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -671,5 +677,26 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnTreatyShare");
 		logger.info("SaveMtnTreatyShareRequest : " + smtsr.toString());
 		return maintenanceService.saveMtnTreatyShare(smtsr);
+	}
+	
+	@PostMapping(path="copyTreatyShareSetup")
+	public @ResponseBody CopyTreatyShareSetupResponse copyTreatyShareSetup(@RequestBody CopyTreatyShareSetupRequest ctssr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyTreatyShareSetup");
+		logger.info("CopyTreatyShareSetupRequest : " + ctssr.toString());
+		return maintenanceService.copyTreatyShareSetup(ctssr);
+	}
+	
+	@PostMapping(path="saveMtnRetAmt")
+	public @ResponseBody SaveMtnRetAmtResponse saveMtnRetAmt(@RequestBody SaveMtnRetAmtRequest smrar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRetAmt");
+		logger.info("SaveMtnRetAmtRequest : " + smrar.toString());
+		return maintenanceService.saveMtnRetAmt(smrar);
+	}
+	
+	@PostMapping(path="copyRetAmtSetup")
+	public @ResponseBody CopyRetAmtSetupResponse copyRetAmtSetup(@RequestBody CopyRetAmtSetupRequest crasr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyRetAmtSetup");
+		logger.info("CopyRetAmtSetupRequest : " + crasr.toString());
+		return maintenanceService.copyRetAmtSetup(crasr);
 	}
 }

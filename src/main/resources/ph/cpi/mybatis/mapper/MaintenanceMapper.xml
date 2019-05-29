@@ -1913,29 +1913,6 @@
 																		       '',
 																		       ''))
 	</select>
-	
-	<!-- <update id="saveMtnTreatyComm" parameterType="java.util.Map" statementType="CALLABLE">
-    	BEGIN
-    		<foreach collection="deleteTreatyComm" item="del">
-	    			MTN_TREATY_COMM_PKG.del_treaty_com(
-	    				#{del.treatyYear, jdbcType=INTEGER},
-			    		#{del.treatyId, jdbcType=INTEGER}
-			    	);
-    		</foreach>
-    		<foreach collection="saveTreatyComm" item="save">
-		    		MTN_TREATY_COMM_PKG.save_treaty_com(
-		    			#{save.treatyYear, jdbcType=INTEGER},
-		    			#{save.treatyId, jdbcType=INTEGER},
-		    			#{save.commRate, jdbcType=DECIMAL},
-		    			#{save.sortSeq, jdbcType=INTEGER},
-						#{save.createUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						#{save.updateUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-		    		);
-    		</foreach>
-    	END;
-    </update> -->
     
     <update id="saveMtnTreatyComm" parameterType="java.util.Map" statementType="CALLABLE">
     	DECLARE
@@ -2028,5 +2005,100 @@
     		FROM MTN_CEDING_RETENTION;
     	END;
     </update>
+    
+    <update id="checkTreatyYear" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_COMM_PKG.check_year(#{copyToYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="copyMtnTreatyComm" parameterType="java.util.Map">
+		BEGIN
+			MTN_TREATY_COMM_PKG.copy_treaty_com(
+				#{copyFromYear, jdbcType=INTEGER},
+				#{copyToYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyMtnTreatyShare" parameterType="java.util.Map">
+		BEGIN
+			MTN_TREATY_SHARE_PKG.copy_treaty_share(
+				#{copyFromYear, jdbcType=INTEGER},
+				#{copyToYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyMtnCedRetention" parameterType="java.util.Map">
+		BEGIN
+			MTN_CEDING_RETENTION_PKG.copy_mtn_ced_retention(
+				#{copyFromYear, jdbcType=INTEGER},
+				#{copyToYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+    
+    <update id="saveMtnRetAmt" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteRetAmt" item="del">
+	    			MTN_RETENTION_AMT_PKG.del_ret_amt(
+			    		#{del.retentionId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveRetAmt" item="save">
+		    		MTN_RETENTION_AMT_PKG.save_ret_amt(
+		    			#{save.retentionId, jdbcType=INTEGER},
+		    			#{save.lineCd, jdbcType=VARCHAR},
+		    			#{save.lineClassCd, jdbcType=VARCHAR},
+		    			#{save.retLineAmt, jdbcType=DECIMAL},
+		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="checkRetAmt" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_RETENTION_AMT_PKG.check_ret_amt(
+																				#{copyFromRetentionId, jdbcType=INTEGER},
+																				#{copyToLineCd, jdbcType=VARCHAR},
+																				#{copyToLineClassCd, jdbcType=VARCHAR}
+																			)
+		}	
+	</update>
+	
+	<update id="copyRetAmtSetup" parameterType="java.util.Map">
+		BEGIN
+			MTN_RETENTION_AMT_PKG.copy_ret_amt(
+				#{copyFromRetentionId, jdbcType=INTEGER},
+				#{copyToLineCd, jdbcType=VARCHAR},
+				#{copyToLineClassCd, jdbcType=VARCHAR},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
     
 </mapper>

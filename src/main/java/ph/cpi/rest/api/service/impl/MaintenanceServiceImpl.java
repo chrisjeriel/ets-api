@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
@@ -74,12 +76,15 @@ import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
@@ -144,6 +149,7 @@ import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
@@ -1410,5 +1416,70 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smtsResponse.setReturnCode(maintenanceDao.saveMtnTreatyShare(saveMtnTreatyShareParams));
 		
 		return smtsResponse;
+	}
+
+	@Override
+	public CopyTreatyShareSetupResponse copyTreatyShareSetup(CopyTreatyShareSetupRequest ctssr) throws SQLException {
+		CopyTreatyShareSetupResponse ctssResponse = new CopyTreatyShareSetupResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("checker", ctssr.getChecker());
+		params.put("copyFromYear", ctssr.getCopyFromYear());
+		params.put("copyToYear", ctssr.getCopyToYear());
+		params.put("createUser", ctssr.getCreateUser());
+		params.put("createDate", ctssr.getCreateDate());
+		params.put("updateUser", ctssr.getUpdateUser());
+		params.put("updateDate", ctssr.getUpdateDate());
+		
+		Integer res = 0;
+		Integer chkr = (Integer) params.get("checker");
+		
+		if(chkr == 0) {
+			res = maintenanceDao.checkTreatyYear(params);
+		}
+		
+		if(res == 1 || chkr == 1) {
+			ctssResponse.setReturnCode(maintenanceDao.copyTreatyShareSetup(params));
+		} else if(res == 2) {
+			ctssResponse.setReturnCode(2);
+		} else if(res == 3) {
+			ctssResponse.setReturnCode(3);
+		}
+		
+		return ctssResponse;
+	}
+
+	@Override
+	public SaveMtnRetAmtResponse saveMtnRetAmt(SaveMtnRetAmtRequest smrar) throws SQLException {
+		SaveMtnRetAmtResponse smraResponse = new SaveMtnRetAmtResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveRetAmt", smrar.getSaveRetAmt());
+		params.put("deleteRetAmt", smrar.getDeleteRetAmt());
+		
+		smraResponse.setReturnCode(maintenanceDao.saveMtnRetAmt(params));
+		
+		return smraResponse;
+	}
+
+	@Override
+	public CopyRetAmtSetupResponse copyRetAmtSetup(CopyRetAmtSetupRequest crasr) throws SQLException {
+		CopyRetAmtSetupResponse crasResponse = new CopyRetAmtSetupResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromRetentionId", crasr.getCopyFromRetentionId());
+		params.put("copyToLineCd", crasr.getCopyToLineCd());
+		params.put("copyToLineClassCd", crasr.getCopyToLineClassCd());
+		params.put("createUser", crasr.getCreateUser());
+		params.put("createDate", crasr.getCreateDate());
+		params.put("updateUser", crasr.getUpdateUser());
+		params.put("updateDate", crasr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkRetAmt(params);
+		
+		if(res == 1) {
+			crasResponse.setReturnCode(2);
+		} else if(res == 0) {
+			crasResponse.setReturnCode(maintenanceDao.copyRetAmtSetup(params));
+		}
+		
+		return crasResponse;
 	}
 }

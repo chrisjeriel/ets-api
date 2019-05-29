@@ -547,7 +547,43 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer res = sqlSession.update("saveMtnTreatyComm", params);
 		sqlSession.update("saveMtnTreatyShare", params);
 		sqlSession.update("saveMtnCedRetention", params);
-		
+		return res;
+	}
+
+	@Override
+	public Integer checkTreatyYear(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkTreatyYear", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer copyTreatyShareSetup(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyMtnTreatyComm", params);
+		sqlSession.update("copyMtnTreatyShare", params);
+		sqlSession.update("copyMtnCedRetention", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkRetAmt", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Override
+	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyRetAmtSetup", params);
 		return res;
 	}
 

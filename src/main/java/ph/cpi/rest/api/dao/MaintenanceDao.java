@@ -118,4 +118,9 @@ public interface MaintenanceDao {
 	public List<TreatyShare> retrieveMtnTreatyShare(final HashMap<String, Object> params ) throws SQLException;
 	public List<CedingRetention> retrieveMtnCedingRetention(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveMtnTreatyShare(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkTreatyYear(HashMap<String, Object> params) throws SQLException;
+	public Integer copyTreatyShareSetup(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnRetAmt(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException;
+	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException;
 }
