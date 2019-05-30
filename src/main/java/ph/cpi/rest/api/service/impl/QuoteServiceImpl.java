@@ -138,7 +138,8 @@ public class QuoteServiceImpl implements QuoteService{
 //			retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
 			retrieveQuoteListingParams.put("issueDateFrom", rqlp.getIssueDateFrom());
 			retrieveQuoteListingParams.put("issueDateTo", rqlp.getIssueDateTo());
-			retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate());
+			retrieveQuoteListingParams.put("expiryDateFrom", rqlp.getExpiryDateFrom());
+			retrieveQuoteListingParams.put("expiryDateTo", rqlp.getExpiryDateTo());
 			retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 			retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
 			retrieveQuoteListingParams.put("line", rqlp.getLine());
