@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveMtnUserAccessRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnUserAmountLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnUserAmountLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
@@ -87,6 +89,14 @@ public class UserController {
 		logger.info("RetrieveMtnUserGroupRequest : " + rmugr.toString());
 		
 		return userService.retrieveMtnUserGroup(rmugr);
+	}
+	
+	@GetMapping(path="retrieveMtnUserAmountLimit")
+	public @ResponseBody RetrieveMtnUserAmountLimitResponse retrieveMtnUserAmountLimit(RetrieveMtnUserAmountLimitRequest rmualr) throws SQLException {
+		logger.info("GET: /api/user-service/retrieveMtnUserAmountLimit");
+		logger.info("RetrieveMtnUserAmountLimitRequest : " + rmualr.toString());
+		
+		return userService.retrieveMtnUserAmountLimit(rmualr);
 	}
 	
 	@GetMapping(path="retrieveMtnUserGroupAccess")

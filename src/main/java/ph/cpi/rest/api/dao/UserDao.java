@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UserGrp;
 import ph.cpi.rest.api.model.maintenance.Users;
 
@@ -15,7 +16,7 @@ public interface UserDao {
 	public List<Users> retrieveMtnUserAccess(final HashMap<String, Object> params) throws SQLException;
 	public List<UserGrp> retrieveMtnUserGroup(final HashMap<String, Object> params) throws SQLException;
 	public List<UserGrp> retrieveMtnUserGroupAccess(final HashMap<String, Object> params) throws SQLException;
-	
+	public List<UserAmtLimit> retrieveMtnUserAmountLimit(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveApproval(final HashMap<String, Object> params) throws SQLException;
 
 }

@@ -5,19 +5,20 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class UserAmtLimit {
-	private String userGrp;
+
+	private Integer userGrp;
 	private String lineCd;
 	private String allAmtSw;
 	private BigDecimal amtLimit;
-	private String remarks;
+	private String remarks;    
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public String getUserGrp() {
+	public Integer getUserGrp() {
 		return userGrp;
 	}
-	public void setUserGrp(String userGrp) {
+	public void setUserGrp(Integer userGrp) {
 		this.userGrp = userGrp;
 	}
 	public String getLineCd() {
