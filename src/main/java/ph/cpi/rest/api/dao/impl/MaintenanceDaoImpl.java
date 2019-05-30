@@ -9,12 +9,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
+import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
+import ph.cpi.rest.api.model.maintenance.Approver;
+import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
+import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
@@ -30,6 +35,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -38,10 +44,13 @@ import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
+import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
+import ph.cpi.rest.api.model.maintenance.UsersLov;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -247,8 +256,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return reason;
 	}
 	
-	public List<Treaty> retrieveMtnTreaty() throws SQLException {
-		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty");
+	public List<Treaty> retrieveMtnTreaty(HashMap<String, Object> params) throws SQLException {
+		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty",params);
 		logger.info("retrieveMtnTreaty treatyList : " + treatyList);
 		return treatyList;
 	}
@@ -526,6 +535,146 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public List<TreatyShare> retrieveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
+		List<TreatyShare> res = sqlSession.selectList("retrieveMtnTreatyShare", params);
+		return res;
+	}
+
+	@Override
+	public List<CedingRetention> retrieveMtnCedingRetention(HashMap<String, Object> params) throws SQLException {
+		List<CedingRetention> res = sqlSession.selectList("retrieveMtnCedingRetention", params);
+		return res;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer saveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreatyComm", params);
+		sqlSession.update("saveMtnTreatyShare", params);
+		sqlSession.update("saveMtnCedRetention", params);
+		return res;
+	}
+
+	@Override
+	public Integer checkTreatyYear(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkTreatyYear", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer copyTreatyShareSetup(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyMtnTreatyComm", params);
+		sqlSession.update("copyMtnTreatyShare", params);
+		sqlSession.update("copyMtnCedRetention", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkRetAmt", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Override
+	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyRetAmtSetup", params);
+		return res;
+	}
+	
+	@Override
+	public List<ApprovalFunction> retrieveMtnApproval(HashMap<String, Object> params) throws SQLException {
+		List<ApprovalFunction> list = sqlSession.selectList("retrieveMtnApproval",params);
+		return list;
+	}
+
+	@Override
+	public List<ApproverFn> retrieveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
+		List<ApproverFn> list = sqlSession.selectList("retrieveMtnApprovalFunction",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnApproval(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApproval",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApprovalFunction",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<UsersLov> retrieveMtnUsersLov(HashMap<String, Object> params) throws SQLException {
+		List<UsersLov> list = sqlSession.selectList("retrieveMtnUsersLov",params);
+		return list;
+	}
+
+	@Override
+	public List<Approver> retrieveApprover(final HashMap<String, Object> params) throws SQLException {
+		List<Approver> list = sqlSession.selectList("retrieveApprover",params);
+		return list;
+	}
+
+	@Override
+	public List<ApproverFn> retrieveApproverFn(HashMap<String, Object> params) throws SQLException {
+		List<ApproverFn> list = sqlSession.selectList("retrieveApproverFn",params);
+		return list;
+	}
+
+	@Override
+	public Integer saveMtnApprover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApprover", params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveMtnApproverFn(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApproverFn", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<Parameters> retrieveParameters(HashMap<String, Object> params) throws SQLException {
+		List<Parameters> list = sqlSession.selectList("retrieveMtnParameters",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnParameters(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnParameters",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<RoundingError> retrieveMtnRoundingError(HashMap<String, Object> params) throws SQLException {
+		List<RoundingError> list = sqlSession.selectList("retrieveMtnRoundingError",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnRoundingError(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnRoundingError",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public Integer saveMtnReports(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnReports", params);
 		return res;
@@ -537,4 +686,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return res;
 	}
 
+	@Override
+	public Integer saveMtnCity(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnCity", params);
+		return errorCode;
+	}
 }

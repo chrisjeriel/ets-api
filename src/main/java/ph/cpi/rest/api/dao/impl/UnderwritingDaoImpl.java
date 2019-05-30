@@ -17,6 +17,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
@@ -413,5 +414,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		logger.info("retrieveExpPolList DAO params:" + params);
 		List<ExpPolicy> expPolicyList = sqlSession.selectList("retrieveExpPolList", params);
 		return expPolicyList;
+	}
+
+	@Override
+	public PolDistribution retrievePolDist(HashMap<String, Object> params) throws SQLException {
+		PolDistribution polDistribution = sqlSession.selectOne("retrievePolDist",params);
+		return polDistribution;
 	}
 }

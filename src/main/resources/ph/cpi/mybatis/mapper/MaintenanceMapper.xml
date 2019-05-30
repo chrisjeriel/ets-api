@@ -470,9 +470,9 @@
 		<result property="zoneCd"			column="ZONE_CD"/>
 		<result property="zoneDesc"			column="ZONE_DESC"/>
 		<result property="createUser"		column="CREATE_USER"/>
-		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
-		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
@@ -774,17 +774,24 @@
 		<result property="okDelete"			column="OK_DELETE"/>
     </resultMap>
     
-    <select id="retrieveMtnTreaty" resultMap="treatyMap">
-    	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(NULL,NULL,NULL,NULL))
+    <select id="retrieveMtnTreaty" parameterType="java.util.Map" resultMap="treatyMap">
+    	SELECT * FROM TABLE(MTN_TREATY_PKG.ret_mtn_treaty(#{treatyId, jdbcType=INTEGER},NULL,NULL,NULL,NULL))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.Treaty" id="treatyComMap">
     	<result property="treatyId" 		column="TREATY_ID"/>
     	<result property="treatyName" 		column="TREATY_NAME"/>
     	<result property="activeTag" 		column="ACTIVE_TAG"/>
-    	<result property="comRate" 			column="COMMISSION_RATE"/>
+    	<result property="commRate" 		column="COMMISSION_RATE"/>
     	<result property="treatyAbbr" 		column="TREATY_ABBR"/>
     	<result property="treatyType" 		column="TREATY_TYPE"/>
+    	<result property="treatyYear" 		column="TREATY_YEAR"/>
+    	<result property="sortSeq" 			column="SORT_SEQ"/>
+    	<result property="createUser" 		column="T_CREATE_USER"/>
+    	<result property="createDate" 		column="T_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="updateUser" 		column="T_UPDATE_USER"/>
+    	<result property="updateDate" 		column="T_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete" 		column="OK_DELETE"/>
     </resultMap>
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
@@ -1160,7 +1167,7 @@
      </resultMap>
      
      <select id="retrieveMtnCurrencyList" resultMap="currencyList" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_CURR_SAMP_PKG.ret_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
+			SELECT * FROM TABLE(MTN_CURR_PKG.ret_mtn_currency(#{currencyCd, jdbcType=VARCHAR},
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 
 																			#{sortKey, jdbcType=VARCHAR}, 
@@ -1170,12 +1177,12 @@
 	<update id="saveMtnCurrency" parameterType="java.util.Map">
     	BEGIN
     		<foreach collection="delCurrency" item="delCurr">
-    			MTN_CURR_SAMP_PKG.del_mtn_curr(
+    			MTN_CURR_PKG.del_mtn_curr(
     				#{delCurr.currencyCd}
     			);
     		</foreach>
     		<foreach collection="saveCurrency" item="saveCurr">
-    			MTN_CURR_SAMP_PKG.save_mtn_curr(
+    			MTN_CURR_PKG.save_mtn_curr(
     				#{saveCurr.currencyCd},
     				#{saveCurr.currencyWord},
     				#{saveCurr.description},
@@ -1824,6 +1831,74 @@
 						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{save.updateUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+						);
+    		</foreach>
+    	END;
+    </update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.ApprovalFunction" id="approvalMap">
+		<result property="approvalCd" 		column="APPROVAL_CD"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 		column="OK_DELETE"/>
+	</resultMap>
+	
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.ApproverFn" id="approvalFunctionMap">
+		<result property="approvalCd" 		column="APPROVAL_CD"/>
+		<result property="userId" 			column="USER_ID"/>
+		<result property="userName" 		column="USER_NAME"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.ApproverFn" id="approvalFnMap">
+		<result property="userId" 			column="APPROVAL_USER_ID"/>
+		<result property="userName" 		column="USERNAME"/>
+		<result property="createUser" 		column="APPROVAL_CREATE_USER"/>
+		<result property="createDate" 		column="APPROVAL_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="APPROVAL_UPDATE_USER"/>
+		<result property="updateDate" 		column="APPROVAL_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+    <select id="retrieveMtnApproval" resultMap="approvalMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_APPROVAL_FUNCTION_PKG.retrieve_mtn_approval(#{approvalCd, jdbcType=VARCHAR},
+																					 #{position 	, jdbcType=VARCHAR},
+																				     #{count		, jdbcType=VARCHAR},
+																				     #{sortKey		, jdbcType=VARCHAR},
+																					 #{order		, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveMtnApprovalFunction" resultMap="approvalFunctionMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_APPROVAL_FUNCTION_PKG.retrieve_mtn_approval_function(#{approvalCd},
+																					 #{position 	, jdbcType=VARCHAR},
+																				     #{count		, jdbcType=VARCHAR},
+																				     #{sortKey		, jdbcType=VARCHAR},
+																					 #{order		, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnApproval" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="deleteMtnApproval" item="del">
+	    			MTN_APPROVAL_FUNCTION_PKG.del_mtn_approval(
+			    		#{del.approvalCd}
+			    	);
+    		</foreach>
+    		<foreach collection="saveMtnApproval" item="save">
+		    		MTN_APPROVAL_FUNCTION_PKG.save_mtn_approval(
+		    			#{save.approvalCd},
+		    			#{save.description, jdbcType=VARCHAR},	
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    		);
     		</foreach>
     	END;
@@ -1853,6 +1928,425 @@
 																	  '',
 																	  ''))
 	</select>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.TreatyShare" id="treatyShareMap">
+     	<result property="treatyYear" column="TREATY_YEAR"/>
+	    <result property="treatyId"   column="TREATY_ID"/>
+	    <result property="trtyCedId"  column="TRTY_CED_ID"/>
+	    <result property="cedingName" column="CEDING_NAME"/>
+	    <result property="cedingAbbr" column="CEDING_ABBR"/>
+	    <result property="pctShare"   column="PCT_SHARE"/>
+	    <result property="sortSeq"    column="SORT_SEQ"/>
+	    <result property="remarks"    column="REMARKS"/>
+	    <result property="createUser" column="CREATE_USER"/>
+	    <result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="updateUser" column="UPDATE_USER"/>
+	    <result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="okDelete"	  column="OK_DELETE"/>
+     </resultMap>
+    
+    <select id="retrieveMtnTreatyShare" resultMap="treatyShareMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_TREATY_SHARE_PKG.ret_mtn_treaty_share(#{treatyYear, jdbcType=INTEGER},
+																	  	  #{treatyId, jdbcType=INTEGER},
+																	      '',
+																	      '',
+																	      '',
+																	      ''))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.CedingRetention" id="cedingRetentionMap">
+     	<result property="treatyYear" 	 column="TREATY_YEAR"/>
+		<result property="treatyId" 	 column="TREATY_ID"/>
+		<result property="trtyCedId" 	 column="TRTY_CED_ID"/>
+		<result property="cedingId" 	 column="CEDING_ID"/>
+		<result property="cedingName" 	 column="CEDING_NAME"/>
+		<result property="membershipTag" column="MEMBERSHIP_TAG"/>
+		<result property="inactiveDate"  column="INACTIVE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="retLine1" 	 column="RET_LINE1"/>
+		<result property="retLine2" 	 column="RET_LINE2"/>
+		<result property="remarks" 		 column="REMARKS"/>
+		<result property="createUser" 	 column="CREATE_USER"/>
+		<result property="createDate" 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	 column="UPDATE_USER"/>
+		<result property="updateDate" 	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 	 column="OK_DELETE"/>
+     </resultMap>
+    
+    <select id="retrieveMtnCedingRetention" resultMap="cedingRetentionMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_CEDING_RETENTION_PKG.ret_mtn_ced_retention(#{treatyYear, jdbcType=INTEGER},
+																		  	   #{treatyId, jdbcType=INTEGER},
+																		  	   #{trtyCedId, jdbcType=VARCHAR},
+																		       '',
+																		       '',
+																		       '',
+																		       ''))
+	</select>
+    
+    <update id="saveMtnTreatyComm" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_count NUMBER;
+    	BEGIN
+    		<foreach collection="deleteTreatyComm" item="del">
+	    			MTN_TREATY_COMM_PKG.del_treaty_com(
+			    		#{del.treatyYear, jdbcType=INTEGER},
+			    		#{del.treatyId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveTreatyComm" item="save">
+		    		MTN_TREATY_COMM_PKG.save_treaty_com(
+		    			#{save.treatyYear, jdbcType=INTEGER},
+		    			#{save.treatyId, jdbcType=INTEGER},
+		    			#{save.commRate, jdbcType=DECIMAL},
+		    			#{save.sortSeq, jdbcType=INTEGER},
+		    			#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    		SELECT COUNT(*)
+    		  INTO v_count
+    		FROM MTN_TREATY_COMM;
+    	END;
+    </update>
+    
+    <update id="saveMtnTreatyShare" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_count NUMBER;
+    	BEGIN
+		    <foreach collection="deleteTreatyShare" item="del">
+			   	MTN_TREATY_SHARE_PKG.del_treaty_share(
+			   		#{del.treatyYear, jdbcType=INTEGER},
+					#{del.treatyId, jdbcType=INTEGER},
+					#{del.trtyCedId, jdbcType=VARCHAR}
+				);
+		    </foreach>
+		    <foreach collection="saveTreatyShare" item="save">
+			    MTN_TREATY_SHARE_PKG.save_treaty_share(
+			    	#{save.treatyYear, jdbcType=INTEGER},
+			    	#{save.treatyId, jdbcType=INTEGER},
+			    	#{save.trtyCedId, jdbcType=VARCHAR},
+			    	#{save.pctShare, jdbcType=FLOAT},
+			    	#{save.sortSeq, jdbcType=INTEGER},
+			    	#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    );
+		    </foreach>
+	    	SELECT COUNT(*)
+	    	  INTO v_count
+	    	FROM MTN_TREATY_SHARE;
+    	END;
+    </update>
+    
+    <update id="saveMtnCedRetention" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_count NUMBER;
+    	BEGIN
+    		<foreach collection="deleteCedRetention" item="del">
+	    		MTN_CEDING_RETENTION_PKG.del_mtn_ced_retention(
+	    			#{del.treatyYear, jdbcType=INTEGER},
+			   		#{del.treatyId, jdbcType=INTEGER},
+			   		#{del.trtyCedId, jdbcType=VARCHAR},
+			   		#{del.cedingId, jdbcType=VARCHAR}
+			   	);
+    		</foreach>
+    		<foreach collection="saveCedRetention" item="save">
+		    	MTN_CEDING_RETENTION_PKG.save_mtn_ced_retention(
+		    		#{save.treatyYear, jdbcType=INTEGER},
+		    		#{save.treatyId, jdbcType=INTEGER},
+		    		#{save.trtyCedId, jdbcType=VARCHAR},
+		    		#{save.cedingId, jdbcType=VARCHAR},
+		    		#{save.retLine1, jdbcType=INTEGER},
+		    		#{save.retLine2, jdbcType=INTEGER},
+		    		#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    	);
+    		</foreach>
+    		SELECT COUNT(*)
+    		  INTO v_count
+    		FROM MTN_CEDING_RETENTION;
+    	END;
+    </update>
+    
+    <update id="checkTreatyYear" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_COMM_PKG.check_year(#{copyToYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="copyMtnTreatyComm" parameterType="java.util.Map">
+		BEGIN
+			MTN_TREATY_COMM_PKG.copy_treaty_com(
+				#{copyFromYear, jdbcType=INTEGER},
+				#{copyToYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyMtnTreatyShare" parameterType="java.util.Map">
+		BEGIN
+			MTN_TREATY_SHARE_PKG.copy_treaty_share(
+				#{copyFromYear, jdbcType=INTEGER},
+				#{copyToYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyMtnCedRetention" parameterType="java.util.Map">
+		BEGIN
+			MTN_CEDING_RETENTION_PKG.copy_mtn_ced_retention(
+				#{copyFromYear, jdbcType=INTEGER},
+				#{copyToYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+    
+    <update id="saveMtnRetAmt" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteRetAmt" item="del">
+	    			MTN_RETENTION_AMT_PKG.del_ret_amt(
+			    		#{del.retentionId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveRetAmt" item="save">
+		    		MTN_RETENTION_AMT_PKG.save_ret_amt(
+		    			#{save.retentionId, jdbcType=INTEGER},
+		    			#{save.lineCd, jdbcType=VARCHAR},
+		    			#{save.lineClassCd, jdbcType=VARCHAR},
+		    			#{save.retLineAmt, jdbcType=DECIMAL},
+		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="checkRetAmt" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_RETENTION_AMT_PKG.check_ret_amt(
+																				#{copyFromRetentionId, jdbcType=INTEGER},
+																				#{copyToLineCd, jdbcType=VARCHAR},
+																				#{copyToLineClassCd, jdbcType=VARCHAR}
+																			)
+		}	
+	</update>
+	
+	<update id="copyRetAmtSetup" parameterType="java.util.Map">
+		BEGIN
+			MTN_RETENTION_AMT_PKG.copy_ret_amt(
+				#{copyFromRetentionId, jdbcType=INTEGER},
+				#{copyToLineCd, jdbcType=VARCHAR},
+				#{copyToLineClassCd, jdbcType=VARCHAR},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+    
+    <update id="saveMtnApprovalFunction" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="deleteMtnApprovalFn" item="del">
+	    			MTN_APPROVAL_FUNCTION_PKG.del_mtn_approval_function(
+			    		#{del.approvalCd},#{del.userId}
+			    	);
+    		</foreach>
+    		<foreach collection="saveMtnApprovalFn" item="save">
+		    		MTN_APPROVAL_FUNCTION_PKG.save_mtn_approval_function(
+		    			#{save.approvalCd},
+		    			#{save.userId},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <select id="retrieveMtnUsersLov" resultMap="approvalMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_USERS_PKG.retrieve_mtn_user_lov(#{userId, jdbcType=VARCHAR},
+																					 #{position 	, jdbcType=VARCHAR},
+																				     #{count		, jdbcType=VARCHAR},
+																				     #{sortKey		, jdbcType=VARCHAR},
+																					 #{order		, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Approver" id="approverMap">
+		<result property="userId" column="USER_ID"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="userGrp" column="USER_GRP"/>
+		<result property="userGrpDesc" column="USER_GRP_DESC"/>
+		<result property="emailAddress" column="EMAIL_ADDRESS"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.ApproverFn" id="approverFnMap">
+		<result property="approvalCd" 		column="APPROVAL_CD"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveApprover" resultMap="approverMap">
+		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(#{userId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<select id="retrieveApproverFn" resultMap="approverFnMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver_fn(#{userId},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<update id="saveMtnApprover" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_APPROVER_PKG.del_mtn_approver(#{item.userId});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_APPROVER_PKG.save_mtn_approver(#{item.userId},#{item.remarks, jdbcType=VARCHAR},#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnApproverFn" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_APPROVER_PKG.del_approver_fn(#{item.approvalCd},#{userId});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_APPROVER_PKG.save_approver_fn(#{item.approvalCd},#{userId},#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Parameters" id="parametersMap">
+		<result property="paramType" 		column="PARAM_TYPE"/>
+		<result property="paramName" 		column="PARAM_NAME"/>
+		<result property="paramValueN" 		column="PARAM_VALUE_N"/>
+		<result property="paramValueV" 		column="PARAM_VALUE_V"/>
+		<result property="paramValueD" 		column="PARAM_VALUE_D"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnParameters" resultMap="parametersMap">
+		SELECT * FROM TABLE(MTN_PARAMETER_PKG.retrieve_mtn_parameters(#{paramType, jdbcType=VARCHAR},
+																	  #{position , jdbcType=VARCHAR},
+																      #{count , jdbcType=VARCHAR},
+																      #{sortKey	, jdbcType=VARCHAR},
+																	  #{order , jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnParameters" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delParameters" item="del">
+	    			MTN_PARAMETER_PKG.del_mtn_parameters(
+			    		#{del.paramType},#{del.paramName}
+			    	);
+    		</foreach>
+    		<foreach collection="saveParameters" item="save">
+		    		MTN_PARAMETER_PKG.save_mtn_parameters(
+		    			#{save.paramType},
+		    			#{save.paramName},
+		    			#{save.paramValueN, jdbcType=VARCHAR},
+		    			#{save.paramValueV, jdbcType=VARCHAR},
+		    			#{save.paramValueD, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.RoundingError" id="roundingErrorMap">
+    	<result property="companyId" 		column="CEDING_ID"/>
+		<result property="companyName" 		column="COMPANY_NAME"/>
+		<result property="abbreviation" 	column="ABBREVIATION"/>
+		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"			column="OK_DELETE"/>
+    </resultMap>
+	
+	<select id="retrieveMtnRoundingError" resultMap="roundingErrorMap">
+		SELECT * FROM TABLE(MTN_ROUNDING_ERROR_PKG.retrieve_mtn_rounding_errors(#{companyId, jdbcType=VARCHAR },
+																	  #{position , jdbcType=VARCHAR},
+																      #{count , jdbcType=VARCHAR},
+																      #{sortKey	, jdbcType=VARCHAR},
+																	  #{order , jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnRoundingError" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delRoundingError" item="del">
+	    			MTN_ROUNDING_ERROR_PKG.del_mtn_rounding_error(
+			    		#{del.companyId},
+			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{del.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    	);
+    		</foreach>
+    		<foreach collection="saveRoundingError" item="save">
+		    		MTN_ROUNDING_ERROR_PKG.save_mtn_rounding_error(
+		    			#{save.companyId},
+		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Reports" id="reportsMap">
      		 <result property="reportId"		column="REPORT_ID" />
@@ -1898,7 +2392,7 @@
 			</foreach>
 		END;
 	</update>
-	
+
 	<update id="saveMtnReportParam" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			<foreach collection="delReportParam" item="del">
@@ -1923,4 +2417,32 @@
 		END;
 	</update>
     
+    <update id="saveMtnCity" parameterType="java.util.Map">
+    	BEGIN
+    	
+    	 <foreach collection="deleteCity" item="city">
+    			MTN_CITY_PKG.del_mtn_city(#{city.cityCd,jdbcType=VARCHAR},
+    									  #{city.regionCd,jdbcType=VARCHAR},
+    									  #{city.provinceCd,jdbcType=VARCHAR});
+         </foreach>
+         
+    	<foreach collection="saveCity" item="city">
+	    		MTN_CITY_PKG.save_mtn_city(
+	    			#{city.cityCd,jdbcType=VARCHAR},
+			        #{city.description,jdbcType=VARCHAR},
+			        #{city.regionCd,jdbcType=VARCHAR},
+			        #{city.provinceCd,jdbcType=VARCHAR},
+			        #{city.activeTag,jdbcType=VARCHAR},
+			        #{city.remarks,jdbcType=VARCHAR},
+			        #{city.zoneCd,jdbcType=VARCHAR},
+			        #{city.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{city.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{city.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{city.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    	</foreach>
+    	
+    	END;
+    </update>
+   
 </mapper>

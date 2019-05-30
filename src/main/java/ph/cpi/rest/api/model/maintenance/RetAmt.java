@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 public class RetAmt {
 	
-	private String retentionId;
+	private Integer retentionId;
     private String lineCd;
     private String lineClassCd;
     private String retLineAmt;
@@ -18,10 +18,10 @@ public class RetAmt {
     private DateTime updateDate;
     private String okDelete;
     
-	public String getRetentionId() {
+	public Integer getRetentionId() {
 		return retentionId;
 	}
-	public void setRetentionId(String retentionId) {
+	public void setRetentionId(Integer retentionId) {
 		this.retentionId = retentionId;
 	}
 	public String getLineCd() {

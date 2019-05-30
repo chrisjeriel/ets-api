@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserAccessRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnUserAmountLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnUserAmountLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
@@ -142,6 +144,17 @@ public class UserServiceImpl implements UserService {
 		uaResponse.setUser(userDao.userAuthenticate(params));
 		
 		return uaResponse;
+	}
+
+	@Override
+	public RetrieveMtnUserAmountLimitResponse retrieveMtnUserAmountLimit(RetrieveMtnUserAmountLimitRequest rmualr)
+			throws SQLException {
+		RetrieveMtnUserAmountLimitResponse rmualResponse = new RetrieveMtnUserAmountLimitResponse();
+		HashMap<String, Object> userAmtLmtParams = new HashMap<String, Object>();
+		userAmtLmtParams.put("userGrp", rmualr.getUserGrp());
+		userAmtLmtParams.put("lineCd", rmualr.getLineCd());
+		rmualResponse.setUserAmtLmtList(userDao.retrieveMtnUserAmountLimit(userAmtLmtParams));
+		return rmualResponse;
 	}
 
 }

@@ -781,7 +781,7 @@ public class QuoteServiceImpl implements QuoteService{
 	public SaveQuoteHoldCoverResponse saveQuoteHoldCover(SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
 		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
-		
+		System.out.println(" from service impl");
 		try {
 			saveQuoteHoldCoverParams.put("holdCoverNo", "");
 			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
@@ -804,10 +804,16 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
 			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
 			
+			System.out.println(" inside try");
+			System.out.println(saveQuoteHoldCoverParams);
+			
 			HashMap<String, Object> response = quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams);
 			
 			sqhcrResponse.setReturnCode((Integer) response.get("errorCode"));
 			sqhcrResponse.setHoldCoverNo((String) response.get("holdCoverNo"));
+			
+			System.out.println(response);
+
 		} catch (SQLException sqlex) {
 			sqhcrResponse.setReturnCode(0);
 			sqhcrResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -817,7 +823,6 @@ public class QuoteServiceImpl implements QuoteService{
 			sqhcrResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
 		}
-		
 		
 		return sqhcrResponse;
 	}
@@ -1197,6 +1202,8 @@ public class QuoteServiceImpl implements QuoteService{
 		updateHoldCoverStatusParams.put("quoteId", uhcr.getQuoteId());
 		updateHoldCoverStatusParams.put("holdCoverId", uhcr.getHoldCoverId());
 		updateHoldCoverStatusParams.put("updateUser", uhcr.getUpdateUser());
+		updateHoldCoverStatusParams.put("hcStatus", uhcr.getHcStatus());
+		updateHoldCoverStatusParams.put("quoStatus", uhcr.getQuoStatus());
 		uhcrResponse.setReturnCode(quoteDao.updateHoldCoverStatus(updateHoldCoverStatusParams));
 		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
 		

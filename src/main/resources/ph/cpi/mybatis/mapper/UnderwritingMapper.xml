@@ -256,6 +256,12 @@
 		<result property="pctPml" 				column="PCT_PML"/>
 		<result property="totalValue" 			column="TOTAL_VALUE"/>
 		<result property="remarks" 				column="REMARKS"/>
+		<result property="exSeciPrem" 			column="EX_SECI_PREM"/>
+		<result property="exSeciiPrem" 			column="EX_SECII_PREM"/>
+		<result property="exSeciiiPrem" 		column="EX_SECIII_PREM"/>
+		<result property="exTprem" 				column="EX_TPREM"/>
+		<result property="exDays" 				column="EX_DAYS"/>
+		<result property="totalDays" 			column="TOTAL_DAYS"/>
 		<result property="cumSecISi" 			column="CUM_SECI_SI"/>
 		<result property="cumSecIISi" 			column="CUM_SECII_SI"/>
 		<result property="cumSecIIISi" 			column="CUM_SECIII_SI"/>
@@ -269,6 +275,7 @@
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="holdCoverTag" 		column="HOLD_COVER"/>
+		<result property="extensionTag" 		column="EXTENSION_TAG"/>
 		<association property="sectionCovers" resultMap ="sectionCoversMap"></association>
 	</resultMap>
 	
@@ -287,6 +294,9 @@
 		<result property="premAmt" 					column="PREM_AMT"/>
 		<result property="addSi" 					column="ADD_SI"/>
 		<result property="discountTag" 				column="DISCOUNT_TAG"/>
+		<result property="exPremRt" 				column="EX_PREM_RT"/>
+		<result property="exPremAmt" 				column="EX_PREM_AMT"/>
+		<result property="exDiscTag" 				column="EX_DISC_TAG"/>
 		<result property="cumSi" 					column="CUM_SI"/>
 		<result property="cumPrem" 					column="CUM_PREM"/>	
 		<result property="createUserSec" 			column="CREATE_USER_SEC"/>
@@ -643,10 +653,14 @@
 			POL_COVERAGE_PKG.save_pol_cover( #{policyId},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem},#{holdCoverPremAmt,jdbcType=VARCHAR}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{cumSecISi}, #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
+										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR},
+										   #{exSecIPrem, jdbcType=INTEGER}, #{exSecIIPrem, jdbcType=INTEGER}, 
+										   #{exSecIIIPrem, jdbcType=INTEGER}, #{extotalPrem, jdbcType=INTEGER}, 
+										   #{exDays, jdbcType=INTEGER}, #{totalDays, jdbcType=INTEGER}, #{cumSecISi}, 
+										   #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
 			<foreach collection="deleteSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.del_pol_cover(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
@@ -659,6 +673,7 @@
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
 													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
+													#{sectioncovers.exPremRt, jdbcType=INTEGER}, #{sectioncovers.exPremAmt, jdbcType=INTEGER},
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
