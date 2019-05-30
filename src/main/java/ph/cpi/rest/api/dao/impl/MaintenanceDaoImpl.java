@@ -48,7 +48,6 @@ import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
-import ph.cpi.rest.api.model.maintenance.TreatyLayer;
 import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
@@ -689,12 +688,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public List<TreatyLayer> retrieveMtnTreatyLayer(HashMap<String, Object> params) throws SQLException {
-		List<TreatyLayer> res = sqlSession.selectList("retrieveMtnTreatyLayer", params);
-		return res;
-	}
-
-	@Override
 	public Integer saveMtnReportParam(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnReportParam", params);
 		return res;
@@ -705,5 +698,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnCity", params);
 		return errorCode;
+	}
+
+	@Override
+	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
+		return res;
 	}
 }

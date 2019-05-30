@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
@@ -19,6 +20,8 @@ public class TreatyLimit {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	List<TreatyLayer> treatyLayerList;
 	
 	public Integer getTreatyLimitId() {
 		return treatyLimitId;
@@ -98,12 +101,18 @@ public class TreatyLimit {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<TreatyLayer> getTreatyLayerList() {
+		return treatyLayerList;
+	}
+	public void setTreatyLayerList(List<TreatyLayer> treatyLayerList) {
+		this.treatyLayerList = treatyLayerList;
+	}
 	@Override
 	public String toString() {
 		return "TreatyLimit [treatyLimitId=" + treatyLimitId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
 				+ ", amount=" + amount + ", trtyLayerDesc=" + trtyLayerDesc + ", effDateFrom=" + effDateFrom
 				+ ", effDateTo=" + effDateTo + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", treatyLayerList=" + treatyLayerList + "]";
 	}
 }

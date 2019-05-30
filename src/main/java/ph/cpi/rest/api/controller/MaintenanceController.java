@@ -59,7 +59,6 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLayerRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
@@ -100,6 +99,7 @@ import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
@@ -149,7 +149,6 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLayerResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
@@ -190,6 +189,7 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -750,13 +750,6 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnTreatyLimitRequest : " + rmtlr.toString());
 		return maintenanceService.retrieveMtnTreatyLimit(rmtlr);
 	}
-	
-	@GetMapping(path="retrieveMtnTreatyLayer")
-	public @ResponseBody RetrieveMtnTreatyLayerResponse retrieveMtnTreatyLayer(RetrieveMtnTreatyLayerRequest rmtlr) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyLayer");
-		logger.info("RetrieveMtnTreatyLayerRequest : " + rmtlr.toString());
-		return maintenanceService.retrieveMtnTreatyLayer(rmtlr);
-	}
 		
 	@GetMapping(path="retrieveMtnApproval")
 	public @ResponseBody RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmscp) throws SQLException {
@@ -861,5 +854,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnCity");
 		logger.info("SaveCityRequest : " + smcr.toString());
 		return maintenanceService.saveMtnCity(smcr);
+	}
+	
+	@PostMapping(path="saveMtnTreatyLimit")
+	public @ResponseBody SaveMtnTreatyLimitResponse saveMtnTreatyLimit(@RequestBody SaveMtnTreatyLimitRequest smtlr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnTreatyLimit");
+		logger.info("SaveMtnTreatyLimitRequest : " + smtlr.toString());
+		return maintenanceService.saveMtnTreatyLimit(smtlr);
 	}
 }
