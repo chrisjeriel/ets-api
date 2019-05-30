@@ -35,6 +35,8 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyLayer;
+import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
@@ -123,4 +125,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnRetAmt(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException;
 	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException;
+	public List<TreatyLimit> retrieveMtnTreatyLimit(final HashMap<String, Object> params ) throws SQLException;
+	public List<TreatyLayer> retrieveMtnTreatyLayer(final HashMap<String, Object> params ) throws SQLException;
 }

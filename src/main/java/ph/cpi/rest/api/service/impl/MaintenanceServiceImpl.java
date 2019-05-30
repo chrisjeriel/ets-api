@@ -50,6 +50,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLayerRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
@@ -123,6 +125,8 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLayerResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
@@ -1481,5 +1485,30 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return crasResponse;
+	}
+
+	@Override
+	public RetrieveMtnTreatyLimitResponse retrieveMtnTreatyLimit(RetrieveMtnTreatyLimitRequest rmtlr)
+			throws SQLException {
+		RetrieveMtnTreatyLimitResponse rmtlResponse = new RetrieveMtnTreatyLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lineCd", rmtlr.getLineCd());
+		params.put("lineClassCd", rmtlr.getLineClassCd());
+		
+		rmtlResponse.setTreatyLimitList(maintenanceDao.retrieveMtnTreatyLimit(params));
+		
+		return rmtlResponse;
+	}
+
+	@Override
+	public RetrieveMtnTreatyLayerResponse retrieveMtnTreatyLayer(RetrieveMtnTreatyLayerRequest rmtlr)
+			throws SQLException {
+		RetrieveMtnTreatyLayerResponse rmtlResponse = new RetrieveMtnTreatyLayerResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("treatyLimitId", rmtlr.getTreatyLimitId());
+		
+		rmtlResponse.setTreatyLayerList(maintenanceDao.retrieveMtnTreatyLayer(params));
+		
+		return rmtlResponse;
 	}
 }

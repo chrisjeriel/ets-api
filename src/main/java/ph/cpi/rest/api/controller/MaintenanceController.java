@@ -52,6 +52,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLayerRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
@@ -124,6 +126,8 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLayerResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
@@ -698,5 +702,19 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/copyRetAmtSetup");
 		logger.info("CopyRetAmtSetupRequest : " + crasr.toString());
 		return maintenanceService.copyRetAmtSetup(crasr);
+	}
+	
+	@GetMapping(path="retrieveMtnTreatyLimit")
+	public @ResponseBody RetrieveMtnTreatyLimitResponse retrieveMtnTreatyLimit(RetrieveMtnTreatyLimitRequest rmtlr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyLimit");
+		logger.info("RetrieveMtnTreatyLimitRequest : " + rmtlr.toString());
+		return maintenanceService.retrieveMtnTreatyLimit(rmtlr);
+	}
+	
+	@GetMapping(path="retrieveMtnTreatyLayer")
+	public @ResponseBody RetrieveMtnTreatyLayerResponse retrieveMtnTreatyLayer(RetrieveMtnTreatyLayerRequest rmtlr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyLayer");
+		logger.info("RetrieveMtnTreatyLayerRequest : " + rmtlr.toString());
+		return maintenanceService.retrieveMtnTreatyLayer(rmtlr);
 	}
 }

@@ -4,27 +4,27 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class RetAmt {
+public class TreatyLimit {
+
+	private Integer treatyLimitId;
+	private String lineCd;
+	private String lineClassCd;
+	private BigDecimal amount;
+	private String trtyLayerDesc;
+	private DateTime effDateFrom;
+	private DateTime effDateTo;
+	private String activeTag;
+	private String remarks;
+	private String createUser;
+	private DateTime createDate;
+	private String updateUser;
+	private DateTime updateDate;
 	
-	private Integer retentionId;
-    private String lineCd;
-    private String lineClassCd;
-    private BigDecimal retLineAmt;
-    private DateTime effDateFrom;
-    private DateTime effDateTo;
-    private String activeTag;
-    private String remarks;
-    private String createUser;
-    private DateTime createDate;
-    private String updateUser;
-    private DateTime updateDate;
-    private String okDelete;
-    
-	public Integer getRetentionId() {
-		return retentionId;
+	public Integer getTreatyLimitId() {
+		return treatyLimitId;
 	}
-	public void setRetentionId(Integer retentionId) {
-		this.retentionId = retentionId;
+	public void setTreatyLimitId(Integer treatyLimitId) {
+		this.treatyLimitId = treatyLimitId;
 	}
 	public String getLineCd() {
 		return lineCd;
@@ -38,11 +38,17 @@ public class RetAmt {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
-	public BigDecimal getRetLineAmt() {
-		return retLineAmt;
+	public BigDecimal getAmount() {
+		return amount;
 	}
-	public void setRetLineAmt(BigDecimal retLineAmt) {
-		this.retLineAmt = retLineAmt;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+	public String getTrtyLayerDesc() {
+		return trtyLayerDesc;
+	}
+	public void setTrtyLayerDesc(String trtyLayerDesc) {
+		this.trtyLayerDesc = trtyLayerDesc;
 	}
 	public DateTime getEffDateFrom() {
 		return effDateFrom;
@@ -92,18 +98,12 @@ public class RetAmt {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
 	@Override
 	public String toString() {
-		return "RetAmt [retentionId=" + retentionId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
-				+ ", retLineAmt=" + retLineAmt + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo
-				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ "]";
+		return "TreatyLimit [treatyLimitId=" + treatyLimitId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
+				+ ", amount=" + amount + ", trtyLayerDesc=" + trtyLayerDesc + ", effDateFrom=" + effDateFrom
+				+ ", effDateTo=" + effDateTo + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }

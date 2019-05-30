@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.dao.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,6 +43,8 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyLayer;
+import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
@@ -584,6 +585,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("copyRetAmtSetup", params);
+		return res;
+	}
+
+	@Override
+	public List<TreatyLimit> retrieveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		List<TreatyLimit> res = sqlSession.selectList("retrieveMtnTreatyLimit", params);
+		return res;
+	}
+
+	@Override
+	public List<TreatyLayer> retrieveMtnTreatyLayer(HashMap<String, Object> params) throws SQLException {
+		List<TreatyLayer> res = sqlSession.selectList("retrieveMtnTreatyLayer", params);
 		return res;
 	}
 
