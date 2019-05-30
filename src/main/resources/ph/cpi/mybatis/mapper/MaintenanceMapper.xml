@@ -455,7 +455,7 @@
 	</select>
 	
 	<select id="retrieveMtnObject" resultMap="objectMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_OBJECT_PKG.ret_mtn_obj(#{lineCd},'',null,null,null,null))
+			SELECT * FROM TABLE(MTN_OBJECT_PKG.ret_mtn_obj(#{lineCd},#{objectId},null,null,null,null))
 	</select>
 	
 	<select id="retrieveMtnQuoteWordings" resultMap="quoteWordingsMap" parameterType="java.util.Map">
@@ -2220,7 +2220,7 @@
 	</resultMap>
 	
 	<select id="retrieveApprover" resultMap="approverMap">
-		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(NULL,NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE(MTN_APPROVER_PKG.ret_approver(#{userId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
 	</select>
 	
 	<select id="retrieveApproverFn" resultMap="approverFnMap" parameterType="java.util.Map">
@@ -2251,6 +2251,144 @@
 						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{item.updateUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Parameters" id="parametersMap">
+		<result property="paramType" 		column="PARAM_TYPE"/>
+		<result property="paramName" 		column="PARAM_NAME"/>
+		<result property="paramValueN" 		column="PARAM_VALUE_N"/>
+		<result property="paramValueV" 		column="PARAM_VALUE_V"/>
+		<result property="paramValueD" 		column="PARAM_VALUE_D"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnParameters" resultMap="parametersMap">
+		SELECT * FROM TABLE(MTN_PARAMETER_PKG.retrieve_mtn_parameters(#{paramType, jdbcType=VARCHAR},
+																	  #{position , jdbcType=VARCHAR},
+																      #{count , jdbcType=VARCHAR},
+																      #{sortKey	, jdbcType=VARCHAR},
+																	  #{order , jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnParameters" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delParameters" item="del">
+	    			MTN_PARAMETER_PKG.del_mtn_parameters(
+			    		#{del.paramType},#{del.paramName}
+			    	);
+    		</foreach>
+    		<foreach collection="saveParameters" item="save">
+		    		MTN_PARAMETER_PKG.save_mtn_parameters(
+		    			#{save.paramType},
+		    			#{save.paramName},
+		    			#{save.paramValueN, jdbcType=VARCHAR},
+		    			#{save.paramValueV, jdbcType=VARCHAR},
+		    			#{save.paramValueD, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.RoundingError" id="roundingErrorMap">
+    	<result property="companyId" 		column="CEDING_ID"/>
+		<result property="companyName" 		column="COMPANY_NAME"/>
+		<result property="abbreviation" 	column="ABBREVIATION"/>
+		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"			column="OK_DELETE"/>
+    </resultMap>
+	
+	<select id="retrieveMtnRoundingError" resultMap="roundingErrorMap">
+		SELECT * FROM TABLE(MTN_ROUNDING_ERROR_PKG.retrieve_mtn_rounding_errors(#{companyId, jdbcType=VARCHAR },
+																	  #{position , jdbcType=VARCHAR},
+																      #{count , jdbcType=VARCHAR},
+																      #{sortKey	, jdbcType=VARCHAR},
+																	  #{order , jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnRoundingError" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="delRoundingError" item="del">
+	    			MTN_ROUNDING_ERROR_PKG.del_mtn_rounding_error(
+			    		#{del.companyId},
+			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{del.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    	);
+    		</foreach>
+    		<foreach collection="saveRoundingError" item="save">
+		    		MTN_ROUNDING_ERROR_PKG.save_mtn_rounding_error(
+		    			#{save.companyId},
+		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Reports" id="reportsMap">
+     		 <result property="reportId"		column="REPORT_ID" />
+			 <result property="reportTitle"		column="REPORT_TITLE" />
+			 <result property="fileName"		column="FILE_NAME" />
+			 <result property="reportGrp"		column="REPORT_GRP" />
+			 <result property="genFreq"			column="GEN_FREQ" />
+			 <result property="remarks"			column="REMARKS" />
+			 <result property="createUser"		column="CREATE_USER" />
+			 <result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+			 <result property="updateUser"		column="UPDATE_USER" />
+			 <result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+     </resultMap>
+     
+     <select id="retMtnReport" resultMap="reportsMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_REPORTS_PKG.ret_mtn_reports(#{reportId, jdbcType=VARCHAR},
+																 #{position, jdbcType=VARCHAR},
+															     #{count, jdbcType=VARCHAR},
+															     #{sortKey, jdbcType=VARCHAR},
+																 #{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnReports" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="delReports" item="del">
+				MTN_REPORTS_PKG.del_mtn_reports(
+					#{del.reportId}
+				);
+			</foreach>
+			<foreach collection="saveReports" item="save">
+				MTN_REPORTS_PKG.save_mtn_reports(
+										#{save.reportId},
+										#{save.reportTitle},
+										#{save.fileName, jdbcType=VARCHAR},
+										#{save.reportGrp},
+										#{save.genFreq},
+										#{save.remarks, jdbcType=VARCHAR},
+										#{save.createUser, jdbcType=VARCHAR},
+										CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										#{save.updateUser, jdbcType=VARCHAR},
+										CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					);
 			</foreach>
 		END;
 	</update>

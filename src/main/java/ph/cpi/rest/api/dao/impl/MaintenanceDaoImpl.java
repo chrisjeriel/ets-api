@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -43,6 +44,7 @@ import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
+import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -262,7 +264,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 
 	@Override
 	public List<Reports> retrieveMtnReports(HashMap<String, Object> params) throws SQLException {
-		List<Reports> reports = sqlSession.selectList("retrieveMtnReports",params);
+		List<Reports> reports = sqlSession.selectList("retMtnReport",params);
 		return reports;
 	}
 
@@ -623,8 +625,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-	public List<Approver> retrieveApprover() throws SQLException {
-		List<Approver> list = sqlSession.selectList("retrieveApprover");
+	public List<Approver> retrieveApprover(final HashMap<String, Object> params) throws SQLException {
+		List<Approver> list = sqlSession.selectList("retrieveApprover",params);
 		return list;
 	}
 
@@ -646,4 +648,35 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 
+	@Override
+	public List<Parameters> retrieveParameters(HashMap<String, Object> params) throws SQLException {
+		List<Parameters> list = sqlSession.selectList("retrieveMtnParameters",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnParameters(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnParameters",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<RoundingError> retrieveMtnRoundingError(HashMap<String, Object> params) throws SQLException {
+		List<RoundingError> list = sqlSession.selectList("retrieveMtnRoundingError",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnRoundingError(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnRoundingError",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Integer saveMtnReports(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnReports", params);
+		return res;
+	}
 }

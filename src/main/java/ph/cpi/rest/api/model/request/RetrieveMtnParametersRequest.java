@@ -3,16 +3,15 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnApproverRequest {
-	private String userId;
+public class RetrieveMtnParametersRequest {
+	private String paramType;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
-	public String getUserId() {
-		return userId;
+	public String getParamType() {
+		return paramType;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setParamType(String paramType) {
+		this.paramType = paramType;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -28,7 +27,9 @@ public class RetrieveMtnApproverRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnApproverRequest [userId=" + userId + ", paginationRequest=" + paginationRequest
+		return "RetrieveMtnParametersRequest [paramType=" + paramType + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
 }

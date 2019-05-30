@@ -3,16 +3,16 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnApproverRequest {
-	private String userId;
+public class RetrieveMtnRoundingErrorRequest {
+	private String companyId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public String getUserId() {
-		return userId;
+	public String getCompanyId() {
+		return companyId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -28,7 +28,10 @@ public class RetrieveMtnApproverRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnApproverRequest [userId=" + userId + ", paginationRequest=" + paginationRequest
+		return "RetrieveMtnRoundingErrorRequest [companyId=" + companyId + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
+	
 }
