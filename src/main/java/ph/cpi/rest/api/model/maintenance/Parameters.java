@@ -13,6 +13,8 @@ public class Parameters {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
+	
 	public String getParamType() {
 		return paramType;
 	}
@@ -73,11 +75,18 @@ public class Parameters {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "Parameters [paramType=" + paramType + ", paramName=" + paramName + ", paramValueN=" + paramValueN
 				+ ", paramValueV=" + paramValueV + ", paramValueD=" + paramValueD + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
