@@ -143,4 +143,5 @@ public interface MaintenanceDao {
 	public List<RoundingError> retrieveMtnRoundingError(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnRoundingError(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnReports(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnReportParam(final HashMap<String, Object> params) throws SQLException; 
 }
