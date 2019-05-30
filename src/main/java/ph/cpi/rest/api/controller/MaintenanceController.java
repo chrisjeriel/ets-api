@@ -21,6 +21,10 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -57,6 +61,10 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
@@ -93,6 +101,10 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -129,6 +141,10 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
@@ -698,5 +714,61 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/copyRetAmtSetup");
 		logger.info("CopyRetAmtSetupRequest : " + crasr.toString());
 		return maintenanceService.copyRetAmtSetup(crasr);
+	}
+		
+	@GetMapping(path="retrieveMtnApproval")
+	public @ResponseBody RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmscp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnApproval");
+		logger.info("RetrieveMtnApprovalRequest : " + rmscp.toString());
+		return maintenanceService.retrieveMtnApproval(rmscp);
+	}
+	
+	@GetMapping(path="retrieveMtnApprovalFunction")
+	public @ResponseBody RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmscp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/RetrieveMtnApprovalFunctionRequest");
+		logger.info("RetrieveMtnApprovalFunctionRequest : " + rmscp.toString());
+		return maintenanceService.retrieveMtnApprovalFunction(rmscp);
+	}
+	
+	@PostMapping(path="saveMtnApproval")
+	public @ResponseBody SaveMtnApprovalResponse saveMtnApproval(@RequestBody SaveMtnApprovalRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnApproval");
+		logger.info("SaveMtnApprovalRequest : " + smrr.toString());
+		return maintenanceService.saveMtnApproval(smrr);
+	}
+	
+	@PostMapping(path="saveMtnApprovalFunction")
+	public @ResponseBody SaveMtnApprovalFunctionResponse saveMtnApprovalFunction(@RequestBody SaveMtnApprovalFunctionRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnApprovalFunction");
+		logger.info("SaveMtnApprovalFunctionRequest : " + smrr.toString());
+		return maintenanceService.saveMtnApprovalFunction(smrr);
+ 	}
+
+	@GetMapping(path="retrieveApprover")
+	public @ResponseBody RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveApprover");
+		logger.info("RetrieveApprover : " + rar.toString());
+		return maintenanceService.retrieveApprover(rar); 	
+	}
+	
+	@GetMapping(path="retrieveApproverFunction")
+	public @ResponseBody RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveApproverFunction");
+		logger.info("RetrieveApproverFunction : " + rafr.toString());
+		return maintenanceService.retrieveApproverFn(rafr); 	
+	}
+	
+	@PostMapping(path="saveApprover")
+	public @ResponseBody SaveMtnApproverResponse saveMtnApprover(@RequestBody SaveMtnApproverRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveApprover");
+		logger.info("SaveMtnApproverRequest : " + smar.toString());
+		return maintenanceService.saveMtnApprover(smar);
+	}
+	
+	@PostMapping(path="saveApproverFunction")
+	public @ResponseBody SaveMtnApproverFnResponse saveMtnApproverFn(@RequestBody SaveMtnApproverFnRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveApproverFunction");
+		logger.info("SaveMtnApproverFunctionRequest : " + smar.toString());
+		return maintenanceService.saveMtnApproverFn(smar);
 	}
 }

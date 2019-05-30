@@ -3,6 +3,8 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
 import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
@@ -12,6 +14,10 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -47,8 +53,13 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnUsersLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
@@ -85,6 +96,10 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -120,8 +135,13 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnUsersLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
@@ -156,7 +176,6 @@ import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
 @Service
 public interface MaintenanceService {
 
-//	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException;
 	public RetrieveMtnRiskResponse retrieveMtnRisk(RetrieveMtnRiskRequest rmrp) throws SQLException;
 	public RetrieveMtnSectionCoversResponse retrieveMtnSectionCovers(RetrieveMtnSectionCoversRequest rmscp) throws SQLException;
 	public RetrieveMtnTypeOfCessionResponse retrieveMtnTypeOfCession(RetrieveMtnTypeOfCessionRequest rmtcp) throws SQLException;
@@ -165,25 +184,17 @@ public interface MaintenanceService {
 	public RetrieveEndtCodeResponse retrieveEndtCode(RetrieveEndtCodeRequest recr) throws SQLException;
 	public RetrieveMtnDistrictResponse retrieveMtnDistrict(RetrieveMtnDistrictRequest rmdr) throws SQLException;
 	public RetrieveMtnDeductiblesResponse retrieveMtnDeductibles(RetrieveMtnDeductiblesRequest rmdr) throws SQLException;
-//	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException;
 	public RetrieveMtnRegionResponse retrieveMtnRegion(RetrieveMtnRegionRequest rmrp) throws SQLException;
 	public RetrieveMtnProvinceResponse retrieveMtnProvince(RetrieveMtnProvinceRequest rmpp) throws SQLException;
 	public RetrieveMtnObjectResponse retrieveMtnObject(RetrieveMtnObjectRequest rmop) throws SQLException;
 	public RetrieveMtnQuoteWordingsResponse retrieveMtnQuoteWordings(RetrieveMtnQuoteWordingsRequest rmqwp) throws SQLException;
-//	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException;
 	public RetrieveMtnCityResponse retrieveMtnCity(RetrieveMtnCityRequest rmcr) throws SQLException;
 	public RetrieveMtnCrestaZoneResponse retrieveMtnCrestaZone(RetrieveMtnCrestaZoneRequest rmczr) throws SQLException;
 	public RetrieveMtnCurrencyResponse retrieveMtnCurrency(RetrieveMtnCurrencyRequest rmcr) throws SQLException;
-	//public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException;
 	public RetrieveMtnAdviceWordingsResponse retrieveMaintenanceAdviceWordings(RetrieveMtnAdviceWordingsRequest retMtnAdviceWordings) throws SQLException;
 	public RetrieveMtnBlockResponse retrieveMaintenanceBlock(RetrieveMtnBlockRequest retMtnBlock) throws SQLException;
 	public RetrieveMtnCedingCompanyListingResponse retrieveMaintenanceCedingCompanyListing(RetrieveMtnCedingCompanyListingRequest retMtnCedingCompanyListing) throws SQLException;
 	public RetrieveMtnCedingCompanyResponse retrieveMaintenanceCedingCompany(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException;
-	
-	/*public RetrieveMtnCedingCompanyResponse retrieveMaintenanceCedingCompany(RetrieveMtnCedingCompanyRequest retMtnCedingCompany) throws SQLException;
-	public RetrieveMtnCedingCompanyListingResponse retrieveMaintenanceCedingCompanyListing(RetrieveMtnCedingCompanyListingRequest retMtnCedingCompanyListing) throws SQLException;
-	*/
-//	public RetrieveQuoteAlopResponse retrieveQuoteAlop(RetrieveQuoteAlopRequest rqap) throws SQLException;
 	public RetrieveMtnIntermediaryResponse retrieveMtnIntermediary(RetrieveMtnIntermediaryRequest rmip) throws SQLException;
 	public RetrieveMtnLineResponse retrieveMtnLine(RetrieveMtnLineRequest rmlp ) throws SQLException;
 	public RetrieveMtnLineClassResponse retrieveMtnLineClass(RetrieveMtnLineClassRequest rmlcp ) throws SQLException;
@@ -199,7 +210,6 @@ public interface MaintenanceService {
 	public RetrieveMtnChargesResponse retrieveMtnCharges (RetrieveMtnChargesRequest rmcr) throws SQLException;
 	public SaveMtnLineResponse saveMtnLine(SaveMtnLineRequest smlr) throws SQLException;
 	public SaveMtnDeductiblesResponse saveMtnDeductibles(SaveMtnDeductiblesRequest smdr) throws SQLException;
-
 	public RetrieveMtnSpoilageReasonResponse retrieveMtnSpoilageReason (RetrieveMtnSpoilageReasonRequest rmcr) throws SQLException;
 	public RetMtnPolWordingsResponse retMtnPolWordings(RetMtnPolWordingsRequest rmpwr) throws SQLException;
 	public SaveMtnInsuredResponse saveMtnInsured(SaveMtnInsuredRequest smir) throws SQLException;
@@ -218,21 +228,17 @@ public interface MaintenanceService {
 	public SaveMtnCedingCompanyResponse saveMtnCedingCompany(SaveMtnCedingCompanyRequest smccr) throws SQLException;
 	public SaveMtnIntermediaryResponse saveMtnIntermediary(SaveMtnIntermediaryRequest smir) throws SQLException;
 	public SaveMtnSectionCoverResponse saveMtnSectionCover(SaveMtnSectionCoverRequest smscr) throws SQLException;
-	
 	public  RetMtnQuoteReasonResponse retMtnQuoteReason(RetMtnQuoteReasonRequest rmqrr) throws SQLException;
-	
 	public SaveMtnQuoteReasonResponse saveMtnQuoteReason(SaveMtnQuoteReasonRequest smqrr) throws SQLException;
 	public SaveMtnSpoilageReasonResponse saveMtnSpoilageReason(SaveMtnSpoilageReasonRequest smqrr) throws SQLException;
 	public SaveMtnDistrictResponse saveMtnDistrict(SaveMtnDistrictRequest smqrr) throws SQLException;
 	public SaveMtnBlockResponse saveMtnBlock(SaveMtnBlockRequest smqrr) throws SQLException;
 	public SaveMtnObjectResponse saveMtnObject(SaveMtnObjectRequest smor) throws SQLException;
-	
 	public RetMtnUserAmtLimitResponse retMtnUserAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException;
 	public SaveMtnUserAmtLimitResponse saveMtnUserAmtLimit(SaveMtnUserAmtLimitRequest smualr) throws SQLException;
 	public SaveMtnOtherChargeResponse saveMtnOtherCharge(SaveMtnOtherChargeRequest smocr) throws SQLException;
 	public RetrieveMtnNonRenewalReasonResponse retriveMtnNonRenewalReason(RetrieveMtnNonRenewalReasonRequest rmnrrr) throws SQLException;
 	public SaveMtnNonRenewalReasonResponse saveMtnNonRenewalReason(SaveMtnNonRenewalReasonRequest smnrrr) throws SQLException;
-
 	public SaveMtnRegionResponse saveMtnRegion(SaveMtnRegionRequest smrr) throws SQLException;
 	public SaveMtnProvinceResponse saveMtnProvince(SaveMtnProvinceRequest smpr) throws SQLException;
 	public RetrieveMtnTreatyCommissionResponse retrieveMtnTreatyCommission(RetrieveMtnTreatyCommissionRequest rmtcr) throws SQLException;
@@ -244,4 +250,13 @@ public interface MaintenanceService {
 	public CopyTreatyShareSetupResponse copyTreatyShareSetup(CopyTreatyShareSetupRequest ctssr) throws SQLException;
 	public SaveMtnRetAmtResponse saveMtnRetAmt(SaveMtnRetAmtRequest smrar) throws SQLException;
 	public CopyRetAmtSetupResponse copyRetAmtSetup(CopyRetAmtSetupRequest crasr) throws SQLException;
+	public RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmafr) throws SQLException;
+	public RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmar) throws SQLException;
+	public SaveMtnApprovalResponse saveMtnApproval(SaveMtnApprovalRequest smrr) throws SQLException;
+	public SaveMtnApprovalFunctionResponse saveMtnApprovalFunction(SaveMtnApprovalFunctionRequest smrr) throws SQLException;
+	public RetrieveMtnUsersLovResponse retrieveMtnUsersLov(RetrieveMtnUsersLovRequest rmar) throws SQLException;
+	public RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException;
+	public RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException;
+	public SaveMtnApproverResponse saveMtnApprover(SaveMtnApproverRequest smar) throws SQLException;
+	public SaveMtnApproverFnResponse saveMtnApproverFn(SaveMtnApproverFnRequest smar) throws SQLException;
 }

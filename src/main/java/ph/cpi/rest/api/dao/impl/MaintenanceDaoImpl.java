@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.dao.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
+import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
+import ph.cpi.rest.api.model.maintenance.Approver;
+import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -46,6 +48,7 @@ import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
+import ph.cpi.rest.api.model.maintenance.UsersLov;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao{
@@ -585,6 +588,62 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("copyRetAmtSetup", params);
 		return res;
+	}
+	
+	@Override
+	public List<ApprovalFunction> retrieveMtnApproval(HashMap<String, Object> params) throws SQLException {
+		List<ApprovalFunction> list = sqlSession.selectList("retrieveMtnApproval",params);
+		return list;
+	}
+
+	@Override
+	public List<ApproverFn> retrieveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
+		List<ApproverFn> list = sqlSession.selectList("retrieveMtnApprovalFunction",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnApproval(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApproval",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnApprovalFunction(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApprovalFunction",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<UsersLov> retrieveMtnUsersLov(HashMap<String, Object> params) throws SQLException {
+		List<UsersLov> list = sqlSession.selectList("retrieveMtnUsersLov",params);
+		return list;
+	}
+
+	@Override
+	public List<Approver> retrieveApprover() throws SQLException {
+		List<Approver> list = sqlSession.selectList("retrieveApprover");
+		return list;
+	}
+
+	@Override
+	public List<ApproverFn> retrieveApproverFn(HashMap<String, Object> params) throws SQLException {
+		List<ApproverFn> list = sqlSession.selectList("retrieveApproverFn",params);
+		return list;
+	}
+
+	@Override
+	public Integer saveMtnApprover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApprover", params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveMtnApproverFn(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnApproverFn", params);
+		return errorCode;
 	}
 
 }

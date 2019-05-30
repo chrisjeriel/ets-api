@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
@@ -76,6 +77,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
@@ -1347,5 +1349,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		logger.info("RetrieveExpPolListResponse : " + replResponse.toString());
 		
 		return replResponse;
+	}
+
+	@Override
+	public RetrievePolDistResponse retrievePolDist(RetrievePolDistRequest rpcr) throws SQLException {
+		RetrievePolDistResponse rpcrResponse = new RetrievePolDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpcr.getPolicyId());
+		params.put("distId", rpcr.getDistId());
+		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDist(params));
+		return rpcrResponse;
 	}
 }

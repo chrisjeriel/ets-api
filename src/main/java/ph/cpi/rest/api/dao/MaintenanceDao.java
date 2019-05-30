@@ -6,6 +6,9 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
+import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
+import ph.cpi.rest.api.model.maintenance.Approver;
+import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -37,6 +40,7 @@ import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
+import ph.cpi.rest.api.model.maintenance.UsersLov;
 
 public interface MaintenanceDao {
 
@@ -123,4 +127,14 @@ public interface MaintenanceDao {
 	public Integer saveMtnRetAmt(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException;
 	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException;
+	public List<ApprovalFunction> retrieveMtnApproval(final HashMap<String, Object> params) throws SQLException;
+	public List<ApproverFn> retrieveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnApproval(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
+	public List<UsersLov> retrieveMtnUsersLov(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<Approver> retrieveApprover() throws SQLException;
+	public List<ApproverFn> retrieveApproverFn(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnApprover(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnApproverFn(final HashMap<String, Object> params) throws SQLException;
 }
