@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UserDao;
+import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UserGrp;
 import ph.cpi.rest.api.model.maintenance.Users;
 
@@ -62,6 +63,12 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public Users userAuthenticate(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectOne("userAuthenticate", params);
+	}
+
+	@Override
+	public List<UserAmtLimit> retrieveMtnUserAmountLimit(HashMap<String, Object> params) throws SQLException {
+		List<UserAmtLimit> userAmtLmtList = sqlSession.selectList("retrieveMtnUserAmountLimit", params);
+		return userAmtLmtList;
 	}
 
 }

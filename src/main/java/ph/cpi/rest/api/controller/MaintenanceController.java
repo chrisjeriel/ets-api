@@ -21,6 +21,10 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -40,14 +44,17 @@ import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnParametersRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReportsParamRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
@@ -59,9 +66,14 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
@@ -75,13 +87,17 @@ import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnParametersRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnReportParamRequest;
+import ph.cpi.rest.api.model.request.SaveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
@@ -95,6 +111,10 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -114,14 +134,17 @@ import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnParametersResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReportsParamResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
@@ -133,9 +156,14 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
@@ -149,13 +177,17 @@ import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnParametersResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnReportParamResponse;
+import ph.cpi.rest.api.model.response.SaveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
@@ -394,6 +426,14 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnReportsParam : " + rmrp.toString());
 		return maintenanceService.retrieveMtnReportsParam(rmrp);
 	}
+	
+	@GetMapping(path="retrieveMtnReports")
+	public @ResponseBody RetrieveMtnReportsResponse retrieveMtnReports(RetrieveMtnReportsRequest rmrp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnReports");
+		logger.info("RetrieveMtnReportsRequest : " + rmrp.toString());
+		return maintenanceService.retrieveMtnReports(rmrp);
+	}
+
 
 	@GetMapping(path="retrieveMtnCATPeril")
 	public @ResponseBody RetrieveMtnCATPerilResponse retrieveMtnCATPeril(RetrieveMtnCATPerilRequest rmcatpr) throws SQLException {
@@ -716,5 +756,110 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyLayer");
 		logger.info("RetrieveMtnTreatyLayerRequest : " + rmtlr.toString());
 		return maintenanceService.retrieveMtnTreatyLayer(rmtlr);
+	}
+		
+	@GetMapping(path="retrieveMtnApproval")
+	public @ResponseBody RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmscp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnApproval");
+		logger.info("RetrieveMtnApprovalRequest : " + rmscp.toString());
+		return maintenanceService.retrieveMtnApproval(rmscp);
+	}
+	
+	@GetMapping(path="retrieveMtnApprovalFunction")
+	public @ResponseBody RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmscp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/RetrieveMtnApprovalFunctionRequest");
+		logger.info("RetrieveMtnApprovalFunctionRequest : " + rmscp.toString());
+		return maintenanceService.retrieveMtnApprovalFunction(rmscp);
+	}
+	
+	@PostMapping(path="saveMtnApproval")
+	public @ResponseBody SaveMtnApprovalResponse saveMtnApproval(@RequestBody SaveMtnApprovalRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnApproval");
+		logger.info("SaveMtnApprovalRequest : " + smrr.toString());
+		return maintenanceService.saveMtnApproval(smrr);
+	}
+	
+	@PostMapping(path="saveMtnApprovalFunction")
+	public @ResponseBody SaveMtnApprovalFunctionResponse saveMtnApprovalFunction(@RequestBody SaveMtnApprovalFunctionRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnApprovalFunction");
+		logger.info("SaveMtnApprovalFunctionRequest : " + smrr.toString());
+		return maintenanceService.saveMtnApprovalFunction(smrr);
+ 	}
+
+	@GetMapping(path="retrieveApprover")
+	public @ResponseBody RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveApprover");
+		logger.info("RetrieveApprover : " + rar.toString());
+		return maintenanceService.retrieveApprover(rar); 	
+	}
+	
+	@GetMapping(path="retrieveApproverFunction")
+	public @ResponseBody RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveApproverFunction");
+		logger.info("RetrieveApproverFunction : " + rafr.toString());
+		return maintenanceService.retrieveApproverFn(rafr); 	
+	}
+	
+	@PostMapping(path="saveApprover")
+	public @ResponseBody SaveMtnApproverResponse saveMtnApprover(@RequestBody SaveMtnApproverRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveApprover");
+		logger.info("SaveMtnApproverRequest : " + smar.toString());
+		return maintenanceService.saveMtnApprover(smar);
+	}
+	
+	@PostMapping(path="saveApproverFunction")
+	public @ResponseBody SaveMtnApproverFnResponse saveMtnApproverFn(@RequestBody SaveMtnApproverFnRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveApproverFunction");
+		logger.info("SaveMtnApproverFunctionRequest : " + smar.toString());
+		return maintenanceService.saveMtnApproverFn(smar);
+	}
+	
+	@GetMapping(path="retrieveMtnParameters")
+	public @ResponseBody RetrieveMtnParametersResponse retrieveMtnParameters(RetrieveMtnParametersRequest rafr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnParameters");
+		logger.info("RetrieveMtnParametersRequest : " + rafr.toString());
+		return maintenanceService.retrieveMtnParameters(rafr); 	
+	}
+	
+	@PostMapping(path="saveMtnParameters")
+	public @ResponseBody SaveMtnParametersResponse saveMtnParameters(@RequestBody SaveMtnParametersRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnParameters");
+		logger.info("SaveMtnParametersRequest : " + smar.toString());
+		return maintenanceService.saveMtnParameters(smar);
+	}
+	
+	@GetMapping(path="retrieveMtnRoundingError")
+	public @ResponseBody RetrieveMtnRoundingErrorResponse retrieveMtnRoundingError(RetrieveMtnRoundingErrorRequest rafr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnRoundingError");
+		logger.info("RetrieveMtnRoundingErrorRequest : " + rafr.toString());
+		return maintenanceService.retrieveMtnRoundingError(rafr); 	
+	}
+	
+	@PostMapping(path="saveMtnRoundingError")
+	public @ResponseBody SaveMtnRoundingErrorResponse saveMtnRoundingError(@RequestBody SaveMtnRoundingErrorRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnRoundingError");
+		logger.info("SaveMtnRoundingErrorRequest : " + smar.toString());
+		return maintenanceService.saveMtnRoundingError(smar);
+	}
+	
+	@PostMapping(path="saveMtnReports")
+	public @ResponseBody SaveMtnReportsResponse saveMtnReports(@RequestBody SaveMtnReportsRequest smrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnReports");
+		logger.info("SaveMtnReportsRequest : " + smrr.toString());
+		return maintenanceService.saveMtnReports(smrr);
+	}
+	
+	@PostMapping(path="saveMtnReportParam")
+	public @ResponseBody SaveMtnReportParamResponse saveMtnReportParam(@RequestBody SaveMtnReportParamRequest smrpr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnReportParam");
+		logger.info("SaveMtnReportParamRequest : " + smrpr.toString());
+		return maintenanceService.saveMtnReportParam(smrpr);
+	}
+	
+	@PostMapping(path="saveMtnCity")
+	public @ResponseBody SaveMtnCityResponse saveMtnCity(@RequestBody SaveMtnCityRequest smcr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnCity");
+		logger.info("SaveCityRequest : " + smcr.toString());
+		return maintenanceService.saveMtnCity(smcr);
 	}
 }

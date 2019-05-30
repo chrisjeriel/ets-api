@@ -25,6 +25,12 @@ public class SavePolCoverageRequest {
 	private BigDecimal pctPml;
 	private BigDecimal totalValue;
 	private String remarks;
+	private BigDecimal exSecIPrem;
+	private BigDecimal exSecIIPrem;
+	private BigDecimal exSecIIIPrem;
+	private BigDecimal extotalPrem;
+	private Integer exDays;
+	private Integer totalDays;
 	private BigDecimal cumSecISi;
 	private BigDecimal cumSecIISi;
 	private BigDecimal cumSecIIISi;
@@ -189,6 +195,55 @@ public class SavePolCoverageRequest {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	
+
+	public BigDecimal getExSecIPrem() {
+		return exSecIPrem;
+	}
+
+	public void setExSecIPrem(BigDecimal exSecIPrem) {
+		this.exSecIPrem = exSecIPrem;
+	}
+
+	public BigDecimal getExSecIIPrem() {
+		return exSecIIPrem;
+	}
+
+	public void setExSecIIPrem(BigDecimal exSecIIPrem) {
+		this.exSecIIPrem = exSecIIPrem;
+	}
+
+	public BigDecimal getExSecIIIPrem() {
+		return exSecIIIPrem;
+	}
+
+	public void setExSecIIIPrem(BigDecimal exSecIIIPrem) {
+		this.exSecIIIPrem = exSecIIIPrem;
+	}
+
+	public BigDecimal getExtotalPrem() {
+		return extotalPrem;
+	}
+
+	public void setExtotalPrem(BigDecimal extotalPrem) {
+		this.extotalPrem = extotalPrem;
+	}
+
+	public Integer getExDays() {
+		return exDays;
+	}
+
+	public void setExDays(Integer exDays) {
+		this.exDays = exDays;
+	}
+
+	public Integer getTotalDays() {
+		return totalDays;
+	}
+
+	public void setTotalDays(Integer totalDays) {
+		this.totalDays = totalDays;
+	}
 
 	public BigDecimal getCumSecISi() {
 		return cumSecISi;
@@ -336,15 +391,15 @@ public class SavePolCoverageRequest {
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt="
 				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
 				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
-				+ ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
-				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
-				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", changeTag=" + changeTag + ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers="
-				+ deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList="
-				+ deleteDeductibleList + "]";
+				+ ", exSecIPrem=" + exSecIPrem + ", exSecIIPrem=" + exSecIIPrem + ", exSecIIIPrem=" + exSecIIIPrem
+				+ ", extotalPrem=" + extotalPrem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
+				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
+				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
+				+ ", cumTPrem=" + cumTPrem + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", changeTag=" + changeTag
+				+ ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers=" + deleteSectionCovers
+				+ ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
-	
 }
 
 @Alias ("UWSaveSec")
@@ -359,6 +414,8 @@ class SectionCoversUw {
 	private BigDecimal premAmt;
 	private String addSi;
 	private String discountTag;
+	private BigDecimal exPremRt;
+	private BigDecimal exPremAmt;
 	private BigDecimal cumSi;
 	private BigDecimal cumPrem;
 	private String createUserSec;
@@ -426,6 +483,19 @@ class SectionCoversUw {
 	public void setDiscountTag(String discountTag) {
 		this.discountTag = discountTag;
 	}
+	
+	public BigDecimal getExPremRt() {
+		return exPremRt;
+	}
+	public void setExPremRt(BigDecimal exPremRt) {
+		this.exPremRt = exPremRt;
+	}
+	public BigDecimal getExPremAmt() {
+		return exPremAmt;
+	}
+	public void setExPremAmt(BigDecimal exPremAmt) {
+		this.exPremAmt = exPremAmt;
+	}
 	public BigDecimal getCumSi() {
 		return cumSi;
 	}
@@ -466,9 +536,10 @@ class SectionCoversUw {
 	public String toString() {
 		return "SectionCoversUw [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", coverName="
 				+ coverName + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt
-				+ ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag + ", cumSi=" + cumSi
-				+ ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec
-				+ ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + "]";
+				+ ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag + ", exPremRt="
+				+ exPremRt + ", exPremAmt=" + exPremAmt + ", cumSi=" + cumSi + ", cumPrem=" + cumPrem
+				+ ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
+				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
 }
 

@@ -24,6 +24,12 @@ public class Coverage {
 	private BigDecimal pctPml;
 	private BigDecimal totalValue;
 	private String remarks;
+	private BigDecimal exSeciPrem;
+	private BigDecimal exSeciiPrem;
+	private BigDecimal exSeciiiPrem;
+	private BigDecimal exTprem;
+	private BigDecimal exDays;
+	private BigDecimal totalDays;
 	private BigDecimal cumSecISi;
 	private BigDecimal cumSecIISi;
 	private BigDecimal cumSecIIISi;
@@ -37,6 +43,7 @@ public class Coverage {
 	private String updateUser;
 	private DateTime updateDate;
 	private String holdCoverTag;
+	private String extensionTag;
 	private List<SectionCovers> sectionCovers;
 
 	public BigDecimal getSectionISi() {
@@ -159,6 +166,55 @@ public class Coverage {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	
+	
+	public BigDecimal getExSeciPrem() {
+		return exSeciPrem;
+	}
+
+	public void setExSeciPrem(BigDecimal exSeciPrem) {
+		this.exSeciPrem = exSeciPrem;
+	}
+
+	public BigDecimal getExSeciiPrem() {
+		return exSeciiPrem;
+	}
+
+	public void setExSeciiPrem(BigDecimal exSeciiPrem) {
+		this.exSeciiPrem = exSeciiPrem;
+	}
+
+	public BigDecimal getExSeciiiPrem() {
+		return exSeciiiPrem;
+	}
+
+	public void setExSeciiiPrem(BigDecimal exSeciiiPrem) {
+		this.exSeciiiPrem = exSeciiiPrem;
+	}
+
+	public BigDecimal getExTprem() {
+		return exTprem;
+	}
+
+	public void setExTprem(BigDecimal exTprem) {
+		this.exTprem = exTprem;
+	}
+
+	public BigDecimal getExDays() {
+		return exDays;
+	}
+
+	public void setExDays(BigDecimal exDays) {
+		this.exDays = exDays;
+	}
+
+	public BigDecimal getTotalDays() {
+		return totalDays;
+	}
+
+	public void setTotalDays(BigDecimal totalDays) {
+		this.totalDays = totalDays;
+	}
 
 	public BigDecimal getCumSecISi() {
 		return cumSecISi;
@@ -264,6 +320,14 @@ public class Coverage {
 	public void setHoldCoverTag(String holdCoverTag) {
 		this.holdCoverTag = holdCoverTag;
 	}
+	
+	public String getExtensionTag() {
+		return extensionTag;
+	}
+
+	public void setExtensionTag(String extensionTag) {
+		this.extensionTag = extensionTag;
+	}
 
 	public List<SectionCovers> getSectionCovers() {
 		return sectionCovers;
@@ -280,12 +344,12 @@ public class Coverage {
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt="
 				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
 				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
-				+ ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
-				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
-				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", holdCoverTag=" + holdCoverTag + ", sectionCovers=" + sectionCovers + "]";
+				+ ", exSeciPrem=" + exSeciPrem + ", exSeciiPrem=" + exSeciiPrem + ", exSeciiiPrem=" + exSeciiiPrem
+				+ ", exTprem=" + exTprem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
+				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
+				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
+				+ ", cumTPrem=" + cumTPrem + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", holdCoverTag=" + holdCoverTag
+				+ ", extensionTag=" + extensionTag + ", sectionCovers=" + sectionCovers + "]";
 	}
-
-	
 }

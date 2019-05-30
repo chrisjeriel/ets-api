@@ -16,7 +16,6 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -25,6 +24,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
+
+
 
 public class PrintingUtility {
 
@@ -44,7 +45,13 @@ public class PrintingUtility {
 		reportPath = "C:\\ETS\\REPORTS\\" + reportName + "_MAIN.jrxml";
 		
 		String filename = reportName + "_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
-		outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
+		
+		if (outputPath == null){
+		    outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
+		} else {
+			outputPath = outputPath + filename;
+		}
+
 		outputType = "pdf";
 		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
 		mapRptParam.put("pQuoteId", reportParams.get("QUOTE_ID"));
@@ -63,10 +70,11 @@ public class PrintingUtility {
 		
 		File file = new File(outputPath);
 		OutputStream out = new FileOutputStream(file);
-
+		
 		try {
 			logger.info("Generating " + file.getName());
-			
+			System.out.println(jasperPrint);
+			System.out.println(out);
 			if ("pdf".equalsIgnoreCase(outputType)) {
 				JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 			} else if ("jpeg".equalsIgnoreCase(outputType) || "jpg".equalsIgnoreCase(outputType)) {
@@ -83,7 +91,6 @@ public class PrintingUtility {
 			out.close();
 		}
 		
-
 		return file.getAbsolutePath();
 	}
 
@@ -111,4 +118,12 @@ public class PrintingUtility {
 		}
 
 	}
+	
 }
+	
+	
+
+
+	
+	
+

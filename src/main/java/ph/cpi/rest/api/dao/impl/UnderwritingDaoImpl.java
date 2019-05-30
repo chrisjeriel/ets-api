@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
@@ -396,5 +398,27 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("savePolFullCoverage",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> extractExpiringPolicy(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("extractExpiringPolicy",params);
+		params.put("errorCode", errorCode);
+		
+		logger.info("extractExpiringPolicy DAO :" + params);
+		return params;
+	}
+
+	@Override
+	public List<ExpPolicy> retrieveExpPolList(HashMap<String, Object> params) throws SQLException {
+		logger.info("retrieveExpPolList DAO params:" + params);
+		List<ExpPolicy> expPolicyList = sqlSession.selectList("retrieveExpPolList", params);
+		return expPolicyList;
+	}
+
+	@Override
+	public PolDistribution retrievePolDist(HashMap<String, Object> params) throws SQLException {
+		PolDistribution polDistribution = sqlSession.selectOne("retrievePolDist",params);
+		return polDistribution;
 	}
 }

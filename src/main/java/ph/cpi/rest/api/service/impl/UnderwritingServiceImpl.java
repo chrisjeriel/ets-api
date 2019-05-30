@@ -10,9 +10,11 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
+import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -22,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
@@ -60,9 +63,11 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -72,6 +77,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
@@ -423,6 +429,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("pctPml",spcr.getPctPml());
 			savePolCoverageParams.put("totalValue",spcr.getTotalValue());
 			savePolCoverageParams.put("remarks",spcr.getRemarks());
+			savePolCoverageParams.put("exSecIPrem",spcr.getExSecIPrem());
+			savePolCoverageParams.put("exSecIIPrem",spcr.getExSecIIPrem());
+			savePolCoverageParams.put("exSecIIIPrem",spcr.getExSecIIIPrem());
+			savePolCoverageParams.put("extotalPrem",spcr.getExtotalPrem());
+			savePolCoverageParams.put("exDays",spcr.getExDays());
+			savePolCoverageParams.put("totalDays",spcr.getTotalDays());
 			savePolCoverageParams.put("cumSecISi",spcr.getCumSecISi());
 			savePolCoverageParams.put("cumSecIISi",spcr.getCumSecIISi());
 			savePolCoverageParams.put("cumSecIIISi",spcr.getCumSecIIISi());
@@ -1302,5 +1314,56 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spfcResponse;
+	}
+
+	@Override
+	public ExtractExpiringPolicyResponse extractExpiringPolicy(ExtractExpiringPolicyRequest eepr) throws SQLException {
+		ExtractExpiringPolicyResponse eepResponse = new ExtractExpiringPolicyResponse();
+		try{
+			HashMap<String, Object> eepParams = new HashMap<String, Object>();
+			eepParams.put("policyId", eepr.getPolicyId()); 
+			eepParams.put("policyNo", eepr.getPolicyNo()); 
+			eepParams.put("fromExpiryDate", eepr.getFromExpiryDate()); 
+			eepParams.put("toExpiryDate", eepr.getToExpiryDate()); 
+			eepParams.put("lineCd", eepr.getLineCd()); 
+			eepParams.put("cessionType", eepr.getCessionType()); 
+			eepParams.put("cedingId", eepr.getCedingId());
+			eepParams.put("extractUser", eepr.getExtractUser());
+			eepParams.put("recordCount", 0); 
+			
+			HashMap<String, Object> res = underwritingDao.extractExpiringPolicy(eepParams);
+			eepResponse.setReturnCode((Integer) res.get("errorCode"));
+			eepResponse.setRecordCount((Integer) eepParams.get("recordCount"));
+		} catch (Exception ex) {
+			eepResponse.setReturnCode(0);
+			eepResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return eepResponse;
+	}
+	
+	@Override
+	public RetrieveExpPolListResponse retrieveExpPolList(RetrieveExpPolListRequest replr) throws SQLException {
+		RetrieveExpPolListResponse replResponse = new RetrieveExpPolListResponse();
+		
+		HashMap<String, Object> retrieveExpPolListParams = new HashMap<String, Object>();
+		retrieveExpPolListParams.put("policyId", replr.getPolicyId());
+		retrieveExpPolListParams.put("extractUser", replr.getExtractUser());
+		
+		replResponse.setExpPolicyList(underwritingDao.retrieveExpPolList(retrieveExpPolListParams));
+		
+		logger.info("RetrieveExpPolListResponse : " + replResponse.toString());
+		
+		return replResponse;
+	}
+
+	@Override
+	public RetrievePolDistResponse retrievePolDist(RetrievePolDistRequest rpcr) throws SQLException {
+		RetrievePolDistResponse rpcrResponse = new RetrievePolDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpcr.getPolicyId());
+		params.put("distId", rpcr.getDistId());
+		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDist(params));
+		return rpcrResponse;
 	}
 }

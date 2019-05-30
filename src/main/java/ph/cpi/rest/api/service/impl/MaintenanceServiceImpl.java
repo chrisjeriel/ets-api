@@ -18,6 +18,10 @@ import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
@@ -37,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnParametersRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
@@ -46,6 +51,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
@@ -55,11 +61,17 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnUsersLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
+import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
+import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
@@ -73,13 +85,17 @@ import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnParametersRequest;
 import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
+import ph.cpi.rest.api.model.request.SaveMtnReportParamRequest;
+import ph.cpi.rest.api.model.request.SaveMtnReportsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRetAmtRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
+import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
@@ -93,6 +109,10 @@ import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
@@ -112,6 +132,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnParametersResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
@@ -121,6 +142,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
@@ -130,11 +152,17 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnUsersLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
+import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
+import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
@@ -148,13 +176,17 @@ import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnParametersResponse;
 import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
+import ph.cpi.rest.api.model.response.SaveMtnReportParamResponse;
+import ph.cpi.rest.api.model.response.SaveMtnReportsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRetAmtResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
+import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
@@ -701,8 +733,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnReportsParams = new HashMap<String, Object>();
 		retrieveMtnReportsParams.put("reportId", rmreport.getReportId());
+		retrieveMtnReportsParams.put("position", rmreport.getPaginationRequest().getPosition());
+		retrieveMtnReportsParams.put("count", rmreport.getPaginationRequest().getCount());
+		retrieveMtnReportsParams.put("sortKey", rmreport.getSortRequest().getSortKey());
+		retrieveMtnReportsParams.put("order", rmreport.getSortRequest().getOrder());
 		
 		rmreResponse.setReports(maintenanceDao.retrieveMtnReports(retrieveMtnReportsParams));
+		
 		return rmreResponse;
 	}
 
@@ -1333,6 +1370,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmafr)
+			throws SQLException {
+		RetrieveMtnApprovalResponse response = new RetrieveMtnApprovalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("approvalCd", rmafr.getApprovalCd());
+		response.setApprovalFunction(maintenanceDao.retrieveMtnApproval(params));
+		return response;
+	}
+
+	@Override
 	public RetrieveMtnTreatyCommissionResponse retrieveMtnTreatyCommission(RetrieveMtnTreatyCommissionRequest rmtcr)
 			throws SQLException {
 		RetrieveMtnTreatyCommissionResponse response = new RetrieveMtnTreatyCommissionResponse();
@@ -1510,5 +1557,211 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmtlResponse.setTreatyLayerList(maintenanceDao.retrieveMtnTreatyLayer(params));
 		
 		return rmtlResponse;
+	}
+	
+	@Override
+	public RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmar)
+			throws SQLException {
+		RetrieveMtnApprovalFunctionResponse response = new RetrieveMtnApprovalFunctionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("approvalCd", rmar.getApprovalCd());
+		response.setApproverFn(maintenanceDao.retrieveMtnApprovalFunction(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnApprovalResponse saveMtnApproval(SaveMtnApprovalRequest smrr) throws SQLException {
+		SaveMtnApprovalResponse smpResponse = new SaveMtnApprovalResponse();
+		try{
+			HashMap<String, Object> saveMtnApprovalParams = new HashMap<String, Object>();
+			saveMtnApprovalParams.put("saveMtnApproval", smrr.getSaveMtnApproval());
+			saveMtnApprovalParams.put("deleteMtnApproval", smrr.getDeleteMtnApproval());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnApproval(saveMtnApprovalParams);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
+
+	@Override
+	public SaveMtnApprovalFunctionResponse saveMtnApprovalFunction(SaveMtnApprovalFunctionRequest smrr)
+			throws SQLException {
+		SaveMtnApprovalFunctionResponse smpResponse = new SaveMtnApprovalFunctionResponse();
+		try{
+			HashMap<String, Object> saveMtnApprovalFnParams = new HashMap<String, Object>();
+			saveMtnApprovalFnParams.put("saveMtnApprovalFn", smrr.getSaveMtnApprovalFn());
+			saveMtnApprovalFnParams.put("deleteMtnApprovalFn", smrr.getDeleteMtnApprovalFn());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnApprovalFunction(saveMtnApprovalFnParams);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
+
+	@Override
+	public RetrieveMtnUsersLovResponse retrieveMtnUsersLov(RetrieveMtnUsersLovRequest rmar) throws SQLException {
+		RetrieveMtnUsersLovResponse response = new RetrieveMtnUsersLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rmar.getUserId());
+		response.setUsers(maintenanceDao.retrieveMtnUsersLov(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnApproverResponse retrieveApprover(RetrieveMtnApproverRequest rar) throws SQLException {
+		RetrieveMtnApproverResponse rarResponse = new RetrieveMtnApproverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rar.getUserId());
+		rarResponse.setApproverList(maintenanceDao.retrieveApprover(params));
+		return rarResponse;
+	}
+
+	@Override
+	public RetrieveMtnApproverFnResponse retrieveApproverFn(RetrieveMtnApproverFnRequest rafr) throws SQLException {
+		RetrieveMtnApproverFnResponse rafrResponse = new RetrieveMtnApproverFnResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rafr.getUserId());
+		rafrResponse.setApproverFnList(maintenanceDao.retrieveApproverFn(params));
+		return rafrResponse;
+	}
+
+	@Override
+	public SaveMtnApproverResponse saveMtnApprover(SaveMtnApproverRequest smar) throws SQLException {
+		SaveMtnApproverResponse smarResponse = new SaveMtnApproverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smar.getSaveList());
+		params.put("delList", smar.getDelList());
+		try{
+			smarResponse.setReturnCode(maintenanceDao.saveMtnApprover(params));
+		}catch (Exception ex) {
+			smarResponse.setReturnCode(0);
+			smarResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smarResponse;
+	}
+
+	@Override
+	public SaveMtnApproverFnResponse saveMtnApproverFn(SaveMtnApproverFnRequest smar) throws SQLException {
+		SaveMtnApproverFnResponse smarResponse = new SaveMtnApproverFnResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", smar.getUserId());
+		params.put("saveList", smar.getSaveList());
+		params.put("delList", smar.getDelList());
+		try{
+			smarResponse.setReturnCode(maintenanceDao.saveMtnApproverFn(params));
+		}catch (Exception ex) {
+			smarResponse.setReturnCode(0);
+			smarResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smarResponse;
+	}
+
+	@Override
+	public RetrieveMtnParametersResponse retrieveMtnParameters(RetrieveMtnParametersRequest rafr) throws SQLException {
+		RetrieveMtnParametersResponse response = new RetrieveMtnParametersResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("paramType", rafr.getParamType());
+		response.setParameters(maintenanceDao.retrieveParameters(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnParametersResponse saveMtnParameters(SaveMtnParametersRequest smrr) throws SQLException {
+		SaveMtnParametersResponse smpResponse = new SaveMtnParametersResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveParameters", smrr.getSaveParameters());
+			params.put("delParameters", smrr.getDelParameters());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnParameters(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
+
+	@Override
+	public RetrieveMtnRoundingErrorResponse retrieveMtnRoundingError(RetrieveMtnRoundingErrorRequest rafr)
+			throws SQLException {
+		RetrieveMtnRoundingErrorResponse response = new RetrieveMtnRoundingErrorResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("companyId", rafr.getCompanyId());
+		response.setRoundingError(maintenanceDao.retrieveMtnRoundingError(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnRoundingErrorResponse saveMtnRoundingError(SaveMtnRoundingErrorRequest smrr) throws SQLException {
+		SaveMtnRoundingErrorResponse smpResponse = new SaveMtnRoundingErrorResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveRoundingError", smrr.getSaveRoundingError());
+			params.put("delRoundingError", smrr.getDelRoundingError());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnRoundingError(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
+
+	@Override
+	public SaveMtnReportsResponse saveMtnReports(SaveMtnReportsRequest smrr) throws SQLException {
+		SaveMtnReportsResponse response = new SaveMtnReportsResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("delReports", smrr.getDelReports());
+		params.put("saveReports", smrr.getSaveReports());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnReports(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnReportParamResponse saveMtnReportParam(SaveMtnReportParamRequest smrpr) throws SQLException {
+		SaveMtnReportParamResponse response = new SaveMtnReportParamResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("delReportParam", smrpr.getDelReportParam());
+		params.put("saveReportParam", smrpr.getSaveReportParam());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnReportParam(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnCityResponse saveMtnCity(SaveMtnCityRequest smcr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnCityResponse smcResponse = new SaveMtnCityResponse();
+		HashMap<String, Object> saveMtnCityParams = new HashMap<String, Object>();
+		saveMtnCityParams.put("saveCity", smcr.getSaveCity());
+		saveMtnCityParams.put("deleteCity", smcr.getDeleteCity());
+		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
+		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
+		return smcResponse;
 	}
 }
