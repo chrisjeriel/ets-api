@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
+import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -63,9 +65,11 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -473,5 +477,19 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/savePolFullCoverage");
 		logger.info("SavePolFullCoverageRequest : " + sqcr.toString());
 		return underwritingService.savePolFullCoverage(sqcr);
+	}
+	
+	@PostMapping(path="extractExpiringPolicy")
+	public @ResponseBody ExtractExpiringPolicyResponse extractExpiringPolicy(@RequestBody ExtractExpiringPolicyRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/extractExpiringPolicy");
+		logger.info("ExtractExpiringPolicyRequest : " + eepr.toString());
+		return underwritingService.extractExpiringPolicy(eepr);
+	}
+	
+	@GetMapping(path="retrieveExpPolList")
+	public @ResponseBody RetrieveExpPolListResponse retrieveExpPolList(RetrieveExpPolListRequest replr) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrieveExpPolList");
+		logger.info("RetrieveExpPolListRequest : " + replr.toString());
+		return underwritingService.retrieveExpPolList(replr);
 	}
 }
