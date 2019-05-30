@@ -3,17 +3,16 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnTreatyRequest {
+public class RetrieveMtnTreatyCommissionRequest {
+	private Integer quoteYear;
+	private PaginationRequest paginationRequest = new PaginationRequest();
+	private SortRequest sortRequest = new SortRequest();
 	
-	private Integer treatyId;
-	private PaginationRequest paginationRequest;
-	private SortRequest sortRequest;
-	
-	public Integer getTreatyId() {
-		return treatyId;
+	public Integer getQuoteYear() {
+		return quoteYear;
 	}
-	public void setTreatyId(Integer treatyId) {
-		this.treatyId = treatyId;
+	public void setQuoteYear(Integer quoteYear) {
+		this.quoteYear = quoteYear;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -27,9 +26,10 @@ public class RetrieveMtnTreatyRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveMtnTreatyRequest [treatyId=" + treatyId + ", paginationRequest=" + paginationRequest
+		return "RetrieveMtnTreatyCommissionRequest [quoteYear=" + quoteYear + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.dao.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,12 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
+import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
@@ -36,10 +39,12 @@ import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
+import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 @Component
@@ -246,8 +251,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return reason;
 	}
 	
-	public List<Treaty> retrieveMtnTreaty() throws SQLException {
-		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty");
+	public List<Treaty> retrieveMtnTreaty(HashMap<String, Object> params) throws SQLException {
+		List<Treaty> treatyList = sqlSession.selectList("retrieveMtnTreaty",params);
 		logger.info("retrieveMtnTreaty treatyList : " + treatyList);
 		return treatyList;
 	}
@@ -504,6 +509,82 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnProvince", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<Treaty> retrieveMtnTreatyCommission(HashMap<String, Object> params) throws SQLException {
+		List<Treaty> list = sqlSession.selectList("retrieveMtnTreatyCom", params);
+		return list;
+	}
+	
+	@Override
+	public Integer saveMtnTreaty(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreaty", params);
+		return res;
+	}
+
+	@Override
+	public List<RetAmt> retrieveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
+		List<RetAmt> res = sqlSession.selectList("retrieveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public List<TreatyShare> retrieveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
+		List<TreatyShare> res = sqlSession.selectList("retrieveMtnTreatyShare", params);
+		return res;
+	}
+
+	@Override
+	public List<CedingRetention> retrieveMtnCedingRetention(HashMap<String, Object> params) throws SQLException {
+		List<CedingRetention> res = sqlSession.selectList("retrieveMtnCedingRetention", params);
+		return res;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer saveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreatyComm", params);
+		sqlSession.update("saveMtnTreatyShare", params);
+		sqlSession.update("saveMtnCedRetention", params);
+		return res;
+	}
+
+	@Override
+	public Integer checkTreatyYear(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkTreatyYear", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer copyTreatyShareSetup(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyMtnTreatyComm", params);
+		sqlSession.update("copyMtnTreatyShare", params);
+		sqlSession.update("copyMtnCedRetention", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnRetAmt(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnRetAmt", params);
+		return res;
+	}
+
+	@Override
+	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkRetAmt", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Override
+	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyRetAmtSetup", params);
+		return res;
 	}
 
 }

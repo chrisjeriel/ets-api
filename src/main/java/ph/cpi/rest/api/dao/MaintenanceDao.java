@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
+import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
@@ -29,10 +30,12 @@ import ph.cpi.rest.api.model.maintenance.Reason;
 import ph.cpi.rest.api.model.maintenance.Region;
 import ph.cpi.rest.api.model.maintenance.Reports;
 import ph.cpi.rest.api.model.maintenance.ReportsParam;
+import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 
 public interface MaintenanceDao {
@@ -62,7 +65,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnLineClass(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnRisk(final HashMap<String, Object> params ) throws SQLException;
 	public List<Reason> retrieveMtnReason(final HashMap<String, Object> params) throws SQLException;	
-	public List<Treaty> retrieveMtnTreaty() throws SQLException;
+	public List<Treaty> retrieveMtnTreaty(final HashMap<String, Object> params) throws SQLException;
 	public List<Reports> retrieveMtnReports(final HashMap<String, Object> params) throws SQLException;	
 	public List<SectionCovers> retrieveSectionCoversLov(final HashMap<String, Object> params) throws SQLException;
 	public List<RefCode> retrieveRefCode(final HashMap<String, Object> params) throws SQLException;
@@ -109,4 +112,15 @@ public interface MaintenanceDao {
 	
 	public Integer saveMtnRegion(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnProvince(final HashMap<String, Object> params) throws SQLException;
+	public List<Treaty> retrieveMtnTreatyCommission(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnTreaty(final HashMap<String, Object> params) throws SQLException;
+	public List<RetAmt> retrieveMtnRetAmt(final HashMap<String, Object> params ) throws SQLException;
+	public List<TreatyShare> retrieveMtnTreatyShare(final HashMap<String, Object> params ) throws SQLException;
+	public List<CedingRetention> retrieveMtnCedingRetention(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveMtnTreatyShare(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkTreatyYear(HashMap<String, Object> params) throws SQLException;
+	public Integer copyTreatyShareSetup(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnRetAmt(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException;
+	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException;
 }

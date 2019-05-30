@@ -324,10 +324,9 @@ public class QuoteDaoImpl implements QuoteDao{
 	public HashMap<String, Object> saveQuotationCopy(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("copyQuoteGenInfo", params);
 		params.put("errorCode", errorCode);
-		
-		sqlSession.update("copyQuoteProject", params);			
+		sqlSession.update("copyQuoteProject", params);
 		sqlSession.update("copyQuoteCoverage", params);
-		sqlSession.update("copyQuoteSectionCovers", params);		
+		sqlSession.update("copyQuoteSectionCovers", params);
 		sqlSession.update("copyQuoteOptions", params);
 		sqlSession.update("copyQuoteDeductibles", params);
 		sqlSession.update("copyQuoteOtherRates", params);
@@ -382,6 +381,20 @@ public class QuoteDaoImpl implements QuoteDao{
 	@Override
 	public Integer updateQuoteStatus(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updateQuoteStatus", params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer checkCompetition(HashMap<String, Object> params) throws SQLException {
+		params.put("hasCompetition", "");
+		sqlSession.selectOne("checkCompetition", params);
+		Integer res = (Integer) params.get("hasCompetition");
+		return res;
+	}
+
+	@Override
+	public Integer copyCompetition(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("copyCompetition", params);
 		return errorCode;
 	}
 		

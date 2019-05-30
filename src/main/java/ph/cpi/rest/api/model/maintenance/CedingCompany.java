@@ -24,6 +24,7 @@ public class CedingCompany {
 	private DateTime membershipDate;
 	private DateTime terminationDate;
 	private DateTime inactiveDate;
+	private String treatyTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
@@ -145,6 +146,12 @@ public class CedingCompany {
 	public void setInactiveDate(DateTime inactiveDate) {
 		this.inactiveDate = inactiveDate;
 	}
+	public String getTreatyTag() {
+		return treatyTag;
+	}
+	public void setTreatyTag(String treatyTag) {
+		this.treatyTag = treatyTag;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -190,7 +197,8 @@ public class CedingCompany {
 				+ ", tinNo=" + tinNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", govtTag=" + govtTag
 				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
 				+ membershipDate + ", terminationDate=" + terminationDate + ", inactiveDate=" + inactiveDate
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", cedingRepresentative=" + cedingRepresentative + "]";
+				+ ", treatyTag=" + treatyTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingRepresentative="
+				+ cedingRepresentative + "]";
 	}
 }
