@@ -4,8 +4,17 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnTreatyRequest {
+	
+	private Integer treatyId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
+	public Integer getTreatyId() {
+		return treatyId;
+	}
+	public void setTreatyId(Integer treatyId) {
+		this.treatyId = treatyId;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -20,8 +29,7 @@ public class RetrieveMtnTreatyRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnTreatyRequest [paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
-				+ "]";
+		return "RetrieveMtnTreatyRequest [treatyId=" + treatyId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

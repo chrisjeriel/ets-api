@@ -1961,4 +1961,267 @@
 		   	</foreach>
 		END;
 	</update>
+	
+	
+	<!-- 
+			eepParams.put("policyId", eepr.getPolicyId()); 
+			eepParams.put("policyNo", eepr.getPolicyNo()); 
+			eepParams.put("fromExpiryDate", eepr.getFromExpiryDate()); 
+			eepParams.put("toExpiryDate", eepr.getToExpiryDate()); 
+			eepParams.put("lineCd", eepr.getLineCd()); 
+			eepParams.put("cessionType", eepr.getCessionType()); 
+			eepParams.put("cedingId", eepr.getCedingId());
+			eepParams.put("extractUser", eepr.getExtractUser());
+			eepParams.put("recordCount", 0); 
+			 -->
+			
+	<update id="extractExpiringPolicy" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			DIST_EXT_PKG.extract_exp_policy(#{policyId}, 
+											#{policyNo}, 
+											CAST(to_timestamp(#{fromExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											CAST(to_timestamp(#{toExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											#{lineCd}, 
+											#{cessionType}, 
+											#{cedingId}, 
+											#{extractUser},
+											#{recordCount, mode=OUT, jdbcType=INTEGER}
+										   );
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpPolicy" id="retrieveExpPolListMap">
+		<result property="policyId"				column="POLICY_ID" /> 
+		<result property="policyNo"				column="POLICY_NO" /> 
+		<result property="extractUser"			column="EXTRACT_USER" /> 
+		<result property="extractDate"			column="EXTRACT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+		<result property="processTag"			column="PROCESS_TAG" /> 
+		<result property="processedBy"			column="PROCESSED_BY" /> 
+		<result property="processedDate"		column="PROCESSED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="renewalFlag"			column="RENEWAL_FLAG" /> 
+		<result property="summaryTag"			column="SUMMARY_TAG" /> 
+		<result property="balanceTag"			column="BALANCE_TAG" /> 
+		<result property="claimTag"				column="CLAIM_TAG" /> 
+		<result property="reminderTag"			column="REMINDER_TAG" /> 
+		<result property="nrReasonCd"			column="NR_REASON_CD" /> 
+		<result property="cessionId"			column="CESSION_ID" /> 
+		<result property="cessionDesc"			column="CESSION_DESC" /> 
+		<result property="cedingId"				column="CEDING_ID" /> 
+		<result property="cedingName"			column="CEDING_NAME" /> 
+		<result property="lineClassCd"			column="LINE_CLASS_CD" /> 
+		<result property="quoteId"				column="QUOTE_ID" /> 
+		<result property="optionId"				column="OPTION_ID" /> 
+		<result property="coRefNo"				column="CO_REF_NO" /> 
+		<result property="reinsurerId"			column="REINSURER_ID" /> 
+		<result property="riBinderNo"			column="RI_BINDER_NO" /> 
+		<result property="mbiRefNo"				column="MBI_REF_NO" /> 
+		<result property="intmId"				column="INTM_ID" /> 
+		<result property="prinId"				column="PRIN_ID" /> 
+		<result property="contractorId"			column="CONTRACTOR_ID" /> 
+		<result property="insuredDesc"			column="INSURED_DESC" /> 
+		<result property="inceptDate"			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="expiryDate"			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="lapseFrom"			column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="lapseTo"				column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="maintenanceFrom"		column="MAINTENANCE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="maintenanceTo"		column="MAINTENANCE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="issueDate"			column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="effDate"				column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="distDate"				column="DIST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="acctDate"				column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="currencyCd"			column="CURRENCY_CD" /> 
+		<result property="currencyRt"			column="CURRENCY_RT" /> 
+		<result property="bookedTag"			column="BOOKED_TAG" /> 
+		<result property="govtTag"				column="GOVT_TAG" /> 
+		<result property="openCoverTag"			column="OPEN_COVER_TAG" /> 
+		<result property="holdCoverTag"			column="HOLD_COVER_TAG" /> 
+		<result property="declarationTag"		column="DECLARATION_TAG" /> 
+		<result property="minDepTag"			column="MIN_DEP_TAG" /> 
+		<result property="altTag"				column="ALT_TAG" /> 
+		<result property="specialPolicyTag"		column="SPECIAL_POLICY_TAG" /> 
+		<result property="instTag"				column="INST_TAG" /> 
+		<result property="extensionTag"			column="EXTENSION_TAG" /> 
+		<result property="excludeDistTag"		column="EXCLUDE_DIST_TAG" />
+		
+		<collection property="projectList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expProjectMap" select="retrieveExpProject"/> 
+		<collection property="itemList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expItemMap" select="retrieveExpItem"/> 
+		<collection property="deductiblesList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expDeductiblesMap" select="retrieveExpDeductibles"/> 
+		<collection property="sectionCoverList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expSectionCoverMap" select="retrieveExpSectionCover"/> 
+		<collection property="coverageList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expCoverageMap" select="retrieveExpCoverage"/> 
+		<collection property="catPerilList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expCatPerilMap" select="retrieveExpCatPeril"/> 
+		<collection property="endorsementList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expEndorsementMap" select="retrieveExpEndorsement"/> 
+		
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpProject" id="expProjectMap">
+		<result property="policyId"			column="POLICY_ID" /> 
+		<result property="projId"			column="PROJ_ID" /> 
+		<result property="projDesc"			column="PROJ_DESC" /> 
+		<result property="riskId"			column="RISK_ID" /> 
+		<result property="regionCd"			column="REGION_CD" /> 
+		<result property="provinceCd"		column="PROVINCE_CD" /> 
+		<result property="cityCd"			column="CITY_CD" /> 
+		<result property="districtCd"		column="DISTRICT_CD" /> 
+		<result property="blockCd"			column="BLOCK_CD" /> 
+		<result property="latitude"			column="LATITUDE" /> 
+		<result property="longitude"		column="LONGITUDE" /> 
+		<result property="objectId"			column="OBJECT_ID" /> 
+		<result property="site"				column="SITE" /> 
+		<result property="duration"			column="DURATION" /> 
+		<result property="testing"			column="TESTING" /> 
+		<result property="ipl"				column="IPL" /> 
+		<result property="timeExc"			column="TIME_EXC" /> 
+		<result property="noClaimPd"		column="NO_CLAIM_PD" /> 
+		<result property="createUser"		column="CREATE_USER" /> 
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser"		column="UPDATE_USER" /> 
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpItem" id="expItemMap">
+		<result property="policyId"			column="POLICY_ID" /> 
+		<result property="projId"			column="PROJ_ID" /> 
+		<result property="itemNo"			column="ITEM_NO" /> 
+		<result property="quantity"			column="QUANTITY" /> 
+		<result property="itemDesc"			column="ITEM_DESC" /> 
+		<result property="makeYear"			column="MAKE_YEAR" /> 
+		<result property="deductibleTxt"	column="DEDUCTIBLE_TXT" /> 
+		<result property="sumInsured"		column="SUM_INSURED" /> 
+		<result property="stockType"		column="STOCK_TYPE" /> 
+		<result property="serialNo"			column="SERIAL_NO" /> 
+		<result property="location"			column="LOCATION" /> 
+		<result property="chamberNo"		column="CHAMBER_NO" /> 
+		<result property="noClaimPd"		column="NO_CLAIM_PD" /> 
+		<result property="ipl"				column="IPL" /> 
+		<result property="relativeImp"		column="RELATIVE_IMP" /> 
+		<result property="standbyUnit"		column="STANDBY_UNIT" /> 
+		<result property="createUser"		column="CREATE_USER" /> 
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser"		column="UPDATE_USER" /> 
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpDeductibles" id="expDeductiblesMap">
+		<result property="policyId"			column="POLICY_ID" /> 
+		<result property="coverCd"			column="COVER_CD" /> 
+		<result property="endtCd"			column="ENDT_CD" /> 
+		<result property="deductibleCd"		column="DEDUCTIBLE_CD" /> 
+		<result property="deductibleRt"		column="DEDUCTIBLE_RT" /> 
+		<result property="deductibleAmt"	column="DEDUCTIBLE_AMT" /> 
+		<result property="deductibleTxt"	column="DEDUCTIBLE_TXT" /> 
+		<result property="deductibleTitle"	column="DEDUCTIBLE_TITLE" /> 
+		<result property="createUser"		column="CREATE_USER" /> 
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+		<result property="updateUser"		column="UPDATE_USER" /> 
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpSectionCover" id="expSectionCoverMap">
+		<result property="policyId"		column="POLICY_ID" /> 
+		<result property="lineCd"		column="LINE_CD" /> 
+		<result property="projId"		column="PROJ_ID" /> 
+		<result property="riskId"		column="RISK_ID" /> 
+		<result property="section"		column="SECTION" /> 
+		<result property="coverCd"		column="COVER_CD" /> 
+		<result property="coverName"	column="COVER_NAME" /> 
+		<result property="bulletNo"		column="BULLET_NO" /> 
+		<result property="sumInsured"	column="SUM_INSURED" /> 
+		<result property="premRt"		column="PREM_RT" /> 
+		<result property="premAmt"		column="PREM_AMT" /> 
+		<result property="addSi"		column="ADD_SI" /> 
+		<result property="discountTag"	column="DISCOUNT_TAG" /> 
+		<result property="origSi"		column="ORIG_SI" /> 
+		<result property="origPremRt"	column="ORIG_PREM_RT" /> 
+		<result property="origPrem"		column="ORIG_PREM" /> 
+		<result property="createUser"	column="CREATE_USER" /> 
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+		<result property="updateUser"	column="UPDATE_USER" /> 
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpCoverage" id="expCoverageMap">
+		<result property="policyId"			column="POLICY_ID" />
+		<result property="projId"			column="PROJ_ID" />
+		<result property="riskId"			column="RISK_ID" />
+		<result property="sectionISi"		column="SECTION_I_SI" />
+		<result property="sectionIiSi"		column="SECTION_II_SI" />
+		<result property="sectionIiiSi"		column="SECTION_III_SI" />
+		<result property="totalSi"			column="TOTAL_SI" />
+		<result property="sectionIPrem"		column="SECTION_I_PREM" />
+		<result property="sectionIiPrem"	column="SECTION_II_PREM" />
+		<result property="sectionIiiPrem"	column="SECTION_III_PREM" />
+		<result property="totalPrem"		column="TOTAL_PREM" />
+		<result property="currencyCd"		column="CURRENCY_CD" />
+		<result property="currencyRt"		column="CURRENCY_RT" />
+		<result property="pctShare"			column="PCT_SHARE" />
+		<result property="pctPml"			column="PCT_PML" />
+		<result property="totalValue"		column="TOTAL_VALUE" />
+		<result property="remarks"			column="REMARKS" />
+		<result property="origSeciSi"		column="ORIG_SECI_SI" />
+		<result property="origSeciiSi"		column="ORIG_SECII_SI" />
+		<result property="origSeciiiSi"		column="ORIG_SECIII_SI" />
+		<result property="origTsi"			column="ORIG_TSI" />
+		<result property="origSeciPrem"		column="ORIG_SECI_PREM" />
+		<result property="origSeciiPrem"	column="ORIG_SECII_PREM" />
+		<result property="origSeciiiPrem"	column="ORIG_SECIII_PREM" />
+		<result property="origTprem"		column="ORIG_TPREM" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpCatPeril" id="expCatPerilMap">
+		<result property="policyId"			column="POLICY_ID" />
+		<result property="catPerilId"		column="CAT_PERIL_ID" />
+		<result property="pctSharePrem"		column="PCT_SHARE_PREM" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpEndorsement" id="expEndorsementMap">
+		<result property="policyId"		column="POLICY_ID" /> 
+		<result property="endtCd"		column="ENDT_CD" /> 
+		<result property="changeTag"	column="CHANGE_TAG" /> 
+		<result property="remarks"		column="REMARKS" /> 
+		<result property="createUser"	column="CREATE_USER" /> 
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+		<result property="updateUser"	column="UPDATE_USER" /> 
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+	</resultMap>
+	
+	<select id="retrieveExpPolList" resultMap="retrieveExpPolListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpProject" resultMap="expProjectMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_project(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpItem" resultMap="expItemMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.GET_EXP_ITEM(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpDeductibles" resultMap="expDeductiblesMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.GET_EXP_DEDUCTIBLES(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpSectionCover" resultMap="expSectionCoverMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.GET_EXP_SECT_COV(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpCoverage" resultMap="expCoverageMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.GET_EXP_COVERAGE(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpCatPeril" resultMap="expCatPerilMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.GET_EXP_CAT_PERIL(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveExpEndorsement" resultMap="expEndorsementMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_EXT_PKG.GET_EXP_ENDORSEMENTS(#{policyId, jdbcType=VARCHAR}))
+	</select>
+	
 </mapper>

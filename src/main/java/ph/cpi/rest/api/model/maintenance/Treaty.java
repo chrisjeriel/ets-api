@@ -7,9 +7,11 @@ public class Treaty {
 	private String treatyName;
 	private String treatyAbbr;
 	private String treatyType;
+	private Integer treatyYear;
 	private String activeTag;
 	private String remarks;
-	private Double comRate;
+	private Double commRate;
+	private Integer sortSeq;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -40,6 +42,12 @@ public class Treaty {
 	public void setTreatyType(String treatyType) {
 		this.treatyType = treatyType;
 	}
+	public Integer getTreatyYear() {
+		return treatyYear;
+	}
+	public void setTreatyYear(Integer treatyYear) {
+		this.treatyYear = treatyYear;
+	}
 	public String getActiveTag() {
 		return activeTag;
 	}
@@ -52,11 +60,17 @@ public class Treaty {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public Double getComRate() {
-		return comRate;
+	public Double getCommRate() {
+		return commRate;
 	}
-	public void setComRate(Double comRate) {
-		this.comRate = comRate;
+	public void setCommRate(Double commRate) {
+		this.commRate = commRate;
+	}
+	public Integer getSortSeq() {
+		return sortSeq;
+	}
+	public void setSortSeq(Integer sortSeq) {
+		this.sortSeq = sortSeq;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -91,8 +105,9 @@ public class Treaty {
 	@Override
 	public String toString() {
 		return "Treaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", treatyAbbr=" + treatyAbbr
-				+ ", treatyType=" + treatyType + ", activeTag=" + activeTag + ", remarks=" + remarks + ", comRate="
-				+ comRate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", treatyType=" + treatyType + ", treatyYear=" + treatyYear + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", commRate=" + commRate + ", sortSeq=" + sortSeq + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
