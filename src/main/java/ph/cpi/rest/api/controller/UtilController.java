@@ -4,8 +4,8 @@ package ph.cpi.rest.api.controller;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
@@ -42,7 +42,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.sf.jasperreports.engine.JRException;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
+import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
 
 @Controller
@@ -99,6 +101,82 @@ public class UtilController {
 		
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes", "unused" })
+	@PostMapping(path="mergePDF")
+	public ResponseEntity mergePDF(@RequestBody GenerateReportMergeRequest grmr ) throws SQLException, IOException {
+		logger.info("GET: /api/util-service/mergePDF");
+		PDFMergingUtility pdfMergingUtility = new PDFMergingUtility();
+	    String FOLDER ="C:\\ETS\\REPORTS\\Output\\" + DateTime.now().toLocalDateTime().toString().replace(':', '_') ;
+	    
+	    File newFolder = new File(FOLDER);
+	    boolean created =  newFolder.mkdirs();
+	   
+	    logger.info("generateFolder :");
+	    if(created) {
+	    	
+	    	HashMap dbParams = new HashMap<String, String>();
+			dbParams.put("dbUrl", dbUrl);
+			dbParams.put("username", username);
+			dbParams.put("password", password);
+			
+			PrintingUtility pu = new PrintingUtility();
+			HashMap reportParam = new HashMap<String, String>();
+			String fileName = "";
+			String 	outputPath = FOLDER + "\\";
+			
+			for(int i=0; i<grmr.getReportRequest().size(); i++){
+				
+				reportParam.put("QUOTE_ID", grmr.getReportRequest().get(i).getQuoteId());
+				reportParam.put("REPORT_NAME", grmr.getReportRequest().get(i).getReportName());
+				reportParam.put("ADVICE_NO", grmr.getReportRequest().get(i).getAdviceNo());
+				reportParam.put("HOLD_COV_ID", grmr.getReportRequest().get(i).getHoldCovId());
+				reportParam.put("USER_ID", grmr.getReportRequest().get(i).getUserId());
+				
+				try {
+					fileName = pu.generateJasperReport(reportParam, dbParams, null, outputPath, null);
+				} catch (JRException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e){  
+                    System.out.println(e.getMessage());  
+                }
+	       }
+			    try {
+			    	 pdfMergingUtility.merge(FOLDER,
+							FOLDER + "//BatchPrint.pdf", 
+							"", 
+							"", 
+							"", 0, 1000000000000l);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	    }  
+        else {
+            System.out.println("Error on merging PDF files unable to create temp directory");
+        }
+	    
+	    File file = new File(FOLDER + "//BatchPrint.pdf");
+	    logger.info("FILE filename: " + file);
+	    Path path = Paths.get(file.getAbsolutePath());
+	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+	    
+	    if (resource == null){
+	    	return null;
+	    }else {
+	        return ResponseEntity.ok()
+	 	            .contentType(MediaType.parseMediaType("application/pdf"))
+	 	            .body(resource);
+	    }
+	    
+	   
+	  
+	}
+		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(path="generateReport")
 	public ResponseEntity generateReport(GenerateReportRequest grr) throws SQLException, IOException {
@@ -140,6 +218,7 @@ public class UtilController {
 	            .body(resource);
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	@PostMapping(path="exportToCSV")
 	public ResponseEntity exportToCSV(@RequestBody ExportToCSVRequest etcr) throws SQLException, IOException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -148,15 +227,11 @@ public class UtilController {
 		String output = "";
 		File file = new File("C:\\ETS\\REPORTS\\CSV\\" + etcr.getExtractTitle() +"_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".csv");
 		try {
-
-			
-			
 			String params = "";
 			
 			for (String key : etcr.getParams().keySet()) {
 				params = params + key + "=" + etcr.getParams().get(key);
 			}
-			
 			
 			URL url = new URL("http://localhost:8888/api" + etcr.getMethodUrl() + 
 					"?" + params);
@@ -255,11 +330,6 @@ public class UtilController {
 			        	  }
 		        	  }
 		        	  
-		        	  
-		        	  
-		        	  
-		        	  
-		        	  
 		        	  writer.write(sb.toString());
 				      System.out.println("done!");
 
@@ -289,7 +359,4 @@ public class UtilController {
 	            .contentType(MediaType.parseMediaType("application/pdf"))
 	            .body(resource);
 	}
-	
-	
-	
 }

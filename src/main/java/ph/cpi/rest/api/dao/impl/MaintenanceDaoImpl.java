@@ -686,4 +686,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return res;
 	}
 
+	@Override
+	public Integer saveMtnCity(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnCity", params);
+		return errorCode;
+	}
 }
