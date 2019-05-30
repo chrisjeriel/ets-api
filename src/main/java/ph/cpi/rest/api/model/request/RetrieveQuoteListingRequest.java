@@ -27,7 +27,9 @@ public class RetrieveQuoteListingRequest {
 //	private LocalDateTime expiryDate;
 	private String issueDateFrom;
 	private String issueDateTo;
-	private String expiryDate;
+	//private String expiryDate;
+	private String expiryDateFrom;
+	private String expiryDateTo;
 	private String reqBy;
 	private String createUser;
 	private PaginationRequest paginationRequest;
@@ -130,11 +132,17 @@ public class RetrieveQuoteListingRequest {
 	public void setIssueDateTo(String issueDateTo) {
 		this.issueDateTo = issueDateTo;
 	}
-	public String getExpiryDate() {
-		return expiryDate;
+	public String getExpiryDateFrom() {
+		return expiryDateFrom;
 	}
-	public void setExpiryDate(String expiryDate) {
-		this.expiryDate = expiryDate;
+	public void setExpiryDateFrom(String expiryDateFrom) {
+		this.expiryDateFrom = expiryDateFrom;
+	}
+	public String getExpiryDateTo() {
+		return expiryDateTo;
+	}
+	public void setExpiryDateTo(String expiryDateTo) {
+		this.expiryDateTo = expiryDateTo;
 	}
 	public String getReqBy() {
 		return reqBy;
@@ -173,9 +181,8 @@ public class RetrieveQuoteListingRequest {
 				+ lineClassCd + ", status=" + status + ", cedingName=" + cedingName + ", principalName=" + principalName
 				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName
 				+ ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom="
-				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy
-				+ ", createUser=" + createUser + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDateFrom=" + expiryDateFrom
+				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
-	
 }
