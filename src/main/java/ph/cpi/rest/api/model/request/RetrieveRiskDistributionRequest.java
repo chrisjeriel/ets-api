@@ -1,0 +1,50 @@
+package ph.cpi.rest.api.model.request;
+
+import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SortRequest;
+
+public class RetrieveRiskDistributionRequest {
+	private Integer policyId;
+	private String lineCd;
+	private String lineClassCd;
+	private PaginationRequest paginationRequest = new PaginationRequest();
+	private SortRequest sortRequest = new SortRequest();
+	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getLineClassCd() {
+		return lineClassCd;
+	}
+	public void setLineClassCd(String lineClassCd) {
+		this.lineClassCd = lineClassCd;
+	}
+	public PaginationRequest getPaginationRequest() {
+		return paginationRequest;
+	}
+	public void setPaginationRequest(PaginationRequest paginationRequest) {
+		this.paginationRequest = paginationRequest;
+	}
+	public SortRequest getSortRequest() {
+		return sortRequest;
+	}
+	public void setSortRequest(SortRequest sortRequest) {
+		this.sortRequest = sortRequest;
+	}
+	
+	@Override
+	public String toString() {
+		return "RetrieveRiskDistributionRequest [policyId=" + policyId + ", lineCd=" + lineCd + ", lineClassCd="
+				+ lineClassCd + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+	}
+	
+}

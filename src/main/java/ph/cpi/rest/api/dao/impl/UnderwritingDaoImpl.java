@@ -15,11 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.underwriting.WriskLimit;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
 
 @Component
@@ -420,5 +422,17 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public PolDistribution retrievePolDist(HashMap<String, Object> params) throws SQLException {
 		PolDistribution polDistribution = sqlSession.selectOne("retrievePolDist",params);
 		return polDistribution;
+	}
+
+	@Override
+	public DistWrisk retrieveDistWrisk(HashMap<String, Object> params) throws SQLException {
+		DistWrisk res = sqlSession.selectOne("retrieveDistWrisk", params);
+		return res;
+	}
+
+	@Override
+	public List<WriskLimit> retrieveWriskLimit(HashMap<String, Object> params) throws SQLException {
+		List<WriskLimit> res = sqlSession.selectList("retrieveWriskLimit", params);
+		return res;
 	}
 }

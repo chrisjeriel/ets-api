@@ -39,6 +39,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -91,6 +92,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -1365,5 +1367,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("distId", rpcr.getDistId());
 		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDist(params));
 		return rpcrResponse;
+	}
+
+	@Override
+	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException {
+		RetrieveRiskDistributionResponse response = new RetrieveRiskDistributionResponse();
+		HashMap<String, Object> distWriskParam = new HashMap<String, Object>();
+		HashMap<String, Object> wriskLimitParam = new HashMap<String, Object>();
+		distWriskParam.put("policyId", rrdr.getPolicyId());
+		wriskLimitParam.put("lineCd", rrdr.getLineCd());
+		wriskLimitParam.put("lineClassCd", rrdr.getLineClassCd());
+		response.setDistWrisk(underwritingDao.retrieveDistWrisk(distWriskParam));
+		response.setWriskLimit(underwritingDao.retrieveWriskLimit(wriskLimitParam));
+		return response;
 	}
 }
