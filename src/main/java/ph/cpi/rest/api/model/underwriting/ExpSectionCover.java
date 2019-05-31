@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class ExpSectionCover {
@@ -11,14 +13,14 @@ public class ExpSectionCover {
 	private String coverCd;
 	private String coverName;
 	private String bulletNo;
-	private String sumInsured;
-	private String premRt;
-	private String premAmt;
+	private BigDecimal sumInsured;
+	private BigDecimal premRt;
+	private BigDecimal premAmt;
 	private String addSi;
 	private String discountTag;
-	private String origSi;
-	private String origPremRt;
-	private String origPrem;
+	private BigDecimal origSi;
+	private BigDecimal origPremRt;
+	private BigDecimal origPrem;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -71,22 +73,22 @@ public class ExpSectionCover {
 	public void setBulletNo(String bulletNo) {
 		this.bulletNo = bulletNo;
 	}
-	public String getSumInsured() {
+	public BigDecimal getSumInsured() {
 		return sumInsured;
 	}
-	public void setSumInsured(String sumInsured) {
+	public void setSumInsured(BigDecimal sumInsured) {
 		this.sumInsured = sumInsured;
 	}
-	public String getPremRt() {
+	public BigDecimal getPremRt() {
 		return premRt;
 	}
-	public void setPremRt(String premRt) {
+	public void setPremRt(BigDecimal premRt) {
 		this.premRt = premRt;
 	}
-	public String getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(String premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
 	public String getAddSi() {
@@ -101,22 +103,22 @@ public class ExpSectionCover {
 	public void setDiscountTag(String discountTag) {
 		this.discountTag = discountTag;
 	}
-	public String getOrigSi() {
+	public BigDecimal getOrigSi() {
 		return origSi;
 	}
-	public void setOrigSi(String origSi) {
+	public void setOrigSi(BigDecimal origSi) {
 		this.origSi = origSi;
 	}
-	public String getOrigPremRt() {
+	public BigDecimal getOrigPremRt() {
 		return origPremRt;
 	}
-	public void setOrigPremRt(String origPremRt) {
+	public void setOrigPremRt(BigDecimal origPremRt) {
 		this.origPremRt = origPremRt;
 	}
-	public String getOrigPrem() {
+	public BigDecimal getOrigPrem() {
 		return origPrem;
 	}
-	public void setOrigPrem(String origPrem) {
+	public void setOrigPrem(BigDecimal origPrem) {
 		this.origPrem = origPrem;
 	}
 	public String getCreateUser() {
