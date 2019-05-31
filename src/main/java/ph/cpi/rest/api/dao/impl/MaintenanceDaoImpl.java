@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
+import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
@@ -691,5 +692,17 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnCity", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<MtnClmEventType> retrieveMtnEventType(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEventType> eventTypeList = sqlSession.selectList("retrieveMtnClmEventType", params);
+		return eventTypeList;
+	}
+
+	@Override
+	public Integer saveMtnClmEventType(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnClmEventType = sqlSession.update("saveMtnClmEventType",params);
+		return saveMtnClmEventType;
 	}
 }

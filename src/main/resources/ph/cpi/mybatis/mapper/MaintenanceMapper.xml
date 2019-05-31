@@ -2445,4 +2445,44 @@
     	END;
     </update>
    
+   <resultMap type="ph.cpi.rest.api.model.maintenance.MtnClmEventType" id="mtnClmEventTypeMap">
+   		<result property="eventTypeCd" 		column="EVENT_TYPE_CD"/>
+		<result property="eventTypeDesc"	column="EVENT_TYPE_DESC"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+   </resultMap>
+   
+   <select id="retrieveMtnClmEventType" resultMap="mtnClmEventTypeMap" parameterType="java.util.Map">
+   		SELECT * FROM TABLE(MTN_CLM_EVENT_TYPE_PKG.ret_clm_eventtype(
+   					#{eventTypeCd, jdbcType=VARCHAR},
+					#{position, jdbcType=VARCHAR},
+					#{count, jdbcType=VARCHAR},
+					#{sortKey, jdbcType=VARCHAR},
+					#{order, jdbcType=VARCHAR}))
+   </select>
+   
+   <update id="saveMtnClmEventType" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveEventType" item="eventTypeSave">
+	    		MTN_CLM_EVENT_TYPE_PKG.save_clm_eventtype(
+	    			#{eventTypeSave.eventTypeCd,jdbcType=VARCHAR},
+			        #{eventTypeSave.eventTypeDesc,jdbcType=VARCHAR},
+			        #{eventTypeSave.activeTag,jdbcType=VARCHAR},
+			        #{eventTypeSave.remarks,jdbcType=VARCHAR},
+			        #{eventTypeSave.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{eventTypeSave.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{eventTypeSave.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{eventTypeSave.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteEventType" item="eventTypeDelete">
+    			MTN_CLM_EVENT_TYPE_PKG.del_clm_eventtype(#{eventTypeDelete.eventTypeCd,jdbcType=VARCHAR});
+    		</foreach>
+    	END;
+    </update>
+   
 </mapper>

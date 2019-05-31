@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingRetentionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnClmEventTypeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
+import ph.cpi.rest.api.model.request.SaveMtnClmEventTypeRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
@@ -118,6 +120,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingRetentionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnClmEventTypeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
@@ -159,6 +162,7 @@ import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
+import ph.cpi.rest.api.model.response.SaveMtnClmEventTypeResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
@@ -1734,5 +1738,27 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
 		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
+	}
+
+	@Override
+	public RetrieveMtnClmEventTypeResponse retrieveMtnClmEventType(RetrieveMtnClmEventTypeRequest rmcetr)
+			throws SQLException {
+		RetrieveMtnClmEventTypeResponse rmcetResponse = new RetrieveMtnClmEventTypeResponse();
+		HashMap<String, Object> retMtnClmEventTypeParams = new HashMap<String, Object>();
+		retMtnClmEventTypeParams.put("eventTypeCd", rmcetr.getEventTypeCd());
+		rmcetResponse.setEventTypeList(maintenanceDao.retrieveMtnEventType(retMtnClmEventTypeParams));
+		logger.info("RetrieveMtnClmEventTypeResponse: " + rmcetResponse.toString());
+		return rmcetResponse;
+	}
+
+	@Override
+	public SaveMtnClmEventTypeResponse saveMtnClmEventType(SaveMtnClmEventTypeRequest smcetr) throws SQLException {
+		SaveMtnClmEventTypeResponse smcetResponse = new SaveMtnClmEventTypeResponse();
+		HashMap<String, Object> smcetParams = new HashMap<String, Object>();
+		smcetParams.put("saveEventType", smcetr.getSaveEventType());
+		smcetParams.put("deleteEventType",smcetr.getDeleteEventType());
+		smcetResponse.setReturnCode(maintenanceDao.saveMtnClmEventType(smcetParams));
+		logger.info("SaveMtnClmEventTypeResponse : " + smcetResponse.toString());
+		return smcetResponse;
 	}
 }

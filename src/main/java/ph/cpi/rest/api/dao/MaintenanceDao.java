@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
+import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
@@ -145,4 +146,8 @@ public interface MaintenanceDao {
 	public Integer saveMtnReports(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnReportParam(final HashMap<String, Object> params) throws SQLException; 
 	public Integer saveMtnCity(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<MtnClmEventType> retrieveMtnEventType(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveMtnClmEventType(final HashMap<String, Object> params) throws SQLException;
+
 }
