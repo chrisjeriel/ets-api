@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
@@ -102,6 +103,7 @@ import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -1759,11 +1761,32 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("saveTreatyLimit", smtlr.getSaveTreatyLimit());
 		params.put("deleteTreatyLimit", smtlr.getDeleteTreatyLimit());
-		params.put("saveTreatyLayer", smtlr.getSaveTreatyLayer());
-		params.put("deleteTreatyLayer", smtlr.getDeleteTreatyLayer());
 		
 		smtlResponse.setReturnCode(maintenanceDao.saveMtnTreatyLimit(params));
 		
 		return smtlResponse;
+	}
+
+	@Override
+	public CopyTreatyLimitResponse copyTreatyLimit(CopyTreatyLimitRequest ctlr) throws SQLException {
+		CopyTreatyLimitResponse ctlResponse = new CopyTreatyLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromTreatyLimitId", ctlr.getCopyFromTreatyLimitId());
+		params.put("copyToLineCd", ctlr.getCopyToLineCd());
+		params.put("copyToLineClassCd", ctlr.getCopyToLineClassCd());
+		params.put("createUser", ctlr.getCreateUser());
+		params.put("createDate", ctlr.getCreateDate());
+		params.put("updateUser", ctlr.getUpdateUser());
+		params.put("updateDate", ctlr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkTreatyLimit(params);
+		
+		if(res == 1) {
+			ctlResponse.setReturnCode(2);
+		} else if(res == 0) {
+			ctlResponse.setReturnCode(maintenanceDao.copyTreatyLimit(params));
+		}
+		
+		return ctlResponse;
 	}
 }

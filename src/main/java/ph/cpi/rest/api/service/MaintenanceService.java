@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Service;
 
 import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
@@ -96,6 +97,7 @@ import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -284,4 +286,5 @@ public interface MaintenanceService {
 	public SaveMtnReportParamResponse saveMtnReportParam(SaveMtnReportParamRequest smrpr) throws SQLException;
 	public SaveMtnCityResponse saveMtnCity(SaveMtnCityRequest smcr) throws SQLException;
 	public SaveMtnTreatyLimitResponse saveMtnTreatyLimit(SaveMtnTreatyLimitRequest smtlr) throws SQLException;
+	public CopyTreatyLimitResponse copyTreatyLimit(CopyTreatyLimitRequest ctlr) throws SQLException;
 }

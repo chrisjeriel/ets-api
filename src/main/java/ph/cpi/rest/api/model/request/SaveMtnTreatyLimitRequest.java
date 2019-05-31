@@ -28,6 +28,7 @@ public class SaveMtnTreatyLimitRequest {
 
 @Alias("SaveMtnTreatyLimit")
 class TreatyLimit {
+	private Integer outId;
 	private Integer treatyLimitId;
 	private String lineCd;
 	private String lineClassCd;
@@ -43,6 +44,12 @@ class TreatyLimit {
 	private String updateDate;
 	private List<TreatyLayer> treatyLayerList;
 	
+	public Integer getOutId() {
+		return outId;
+	}
+	public void setOutId(Integer outId) {
+		this.outId = outId;
+	}
 	public Integer getTreatyLimitId() {
 		return treatyLimitId;
 	}

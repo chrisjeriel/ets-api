@@ -703,6 +703,21 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
+		System.out.println(params);
+		return res;
+	}
+
+	@Override
+	public Integer checkTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkTreatyLimit", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Override
+	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyTreatyLimit", params);
 		return res;
 	}
 }

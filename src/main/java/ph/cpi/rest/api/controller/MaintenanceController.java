@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
@@ -104,6 +105,7 @@ import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -861,5 +863,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnTreatyLimit");
 		logger.info("SaveMtnTreatyLimitRequest : " + smtlr.toString());
 		return maintenanceService.saveMtnTreatyLimit(smtlr);
+	}
+	
+	@PostMapping(path="copyTreatyLimit")
+	public @ResponseBody CopyTreatyLimitResponse copyTreatyLimit(@RequestBody CopyTreatyLimitRequest ctlr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyTreatyLimit");
+		logger.info("CopyTreatyLimitRequest : " + ctlr.toString());
+		return maintenanceService.copyTreatyLimit(ctlr);
 	}
 }

@@ -2480,5 +2480,75 @@
     	
     	END;
     </update>
+    
+    <update id="saveMtnTreatyLimit" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_treaty_limit_id MTN_TREATY_LIMIT.TREATY_LIMIT_ID%TYPE;
+    	BEGIN
+    	
+    		<foreach collection="saveTreatyLimit" item="save">
+    			IF #{save.treatyLimitId, jdbcType=INTEGER} IS NULL
+    			THEN
+    				SELECT NVL(MAX(TREATY_LIMIT_ID), 0) + 1
+		              INTO v_treaty_limit_id
+		            FROM MTN_TREATY_LIMIT;
+    			ELSE
+    				v_treaty_limit_id := #{save.treatyLimitId, jdbcType=INTEGER};
+    			END IF;
+    		
+	    		MTN_TREATY_LIMIT_PKG.save_treaty_limit(
+	    			v_treaty_limit_id,
+	    			#{save.lineCd, jdbcType=VARCHAR},
+	    			#{save.lineClassCd, jdbcType=VARCHAR},
+	    			#{save.amount, jdbcType=DECIMAL},
+	    			#{save.trtyLayerDesc, jdbcType=VARCHAR},
+	    			CAST(to_timestamp(#{save.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+	    			CAST(to_timestamp(#{save.effDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{save.activeTag, jdbcType=VARCHAR},
+			        #{save.remarks, jdbcType=VARCHAR},
+			        #{save.createUser, jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{save.updateUser, jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+	    		
+	    		<foreach collection="save.treatyLayerList" item="layer">
+	    			MTN_TREATY_LAYER_PKG.save_treaty_layer(
+		    			v_treaty_limit_id,
+		    			#{layer.treatyId, jdbcType=INTEGER},
+		    			#{layer.createUser, jdbcType=VARCHAR},
+				        CAST(to_timestamp(#{layer.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				        #{layer.updateUser, jdbcType=VARCHAR},
+				        CAST(to_timestamp(#{layer.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			        );
+	    		</foreach>
+    		</foreach>
+    	
+    	END;
+    </update>
+    
+    <update id="checkTreatyLimit" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_LIMIT_PKG.check_treaty_limit(
+																				#{copyFromTreatyLimitId, jdbcType=INTEGER},
+																				#{copyToLineCd, jdbcType=VARCHAR},
+																				#{copyToLineClassCd, jdbcType=VARCHAR}
+																			)
+		}	
+	</update>
+	
+	<update id="copyTreatyLimit" parameterType="java.util.Map">
+		BEGIN
+			MTN_TREATY_LIMIT_PKG.copy_treaty_limit(
+				#{copyFromTreatyLimitId, jdbcType=INTEGER},
+				#{copyToLineCd, jdbcType=VARCHAR},
+				#{copyToLineClassCd, jdbcType=VARCHAR},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
    
 </mapper>
