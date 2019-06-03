@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
@@ -704,5 +705,17 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer saveMtnClmEventType(HashMap<String, Object> params) throws SQLException {
 		Integer saveMtnClmEventType = sqlSession.update("saveMtnClmEventType",params);
 		return saveMtnClmEventType;
+	}
+
+	@Override
+	public List<MtnClmEvent> retrieveMtnEvent(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEvent> eventList = sqlSession.selectList("retrieveMtnClmEvent", params);
+		return eventList;
+	}
+
+	@Override
+	public Integer saveMtnClmEvent(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnClmEvent = sqlSession.update("saveMtnClmEvent",params);
+		return saveMtnClmEvent;
 	}
 }

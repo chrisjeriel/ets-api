@@ -2484,5 +2484,53 @@
     		</foreach>
     	END;
     </update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.MtnClmEvent" id="mtnClmEventMap">
+    	<result property="eventCd"		column="EVENT_CD"/>
+		<result property="eventDesc"	column="EVENT_DESC"/>
+		<result property="lossDateFrom"	column="LOSS_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lossDateTo"	column="LOSS_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lineCd"		column="LINE_CD"/>
+		<result property="eventTypeCd"	column="EVENT_TYPE_CD"/>
+		<result property="activeTag"	column="ACTIVE_TAG"/>
+		<result property="remarks"		column="REMARKS"/>
+		<result property="createUser"	column="CREATE_USER"/>
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER"/>
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
    
+   <select id="retrieveMtnClmEvent" resultMap="mtnClmEventMap" parameterType="java.util.Map">
+   		SELECT * FROM TABLE(MTN_CLM_EVENT_PKG.ret_mtn_clm_event(
+   					#{eventCd, jdbcType=VARCHAR},
+					#{position, jdbcType=VARCHAR},
+					#{count, jdbcType=VARCHAR},
+					#{sortKey, jdbcType=VARCHAR},
+					#{order, jdbcType=VARCHAR}))
+   </select>
+   
+   <update id="saveMtnClmEvent" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveEvent" item="eventSave">
+	    		MTN_CLM_EVENT_PKG.save_mtn_clm_event(
+	    			#{eventSave.eventCd,jdbcType=VARCHAR},
+					#{eventSave.eventDesc,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{eventSave.lossDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{eventSave.lossDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{eventSave.lineCd,jdbcType=VARCHAR},
+					#{eventSave.eventTypeCd,jdbcType=VARCHAR},
+					#{eventSave.activeTag,jdbcType=VARCHAR},
+					#{eventSave.remarks,jdbcType=VARCHAR},
+					#{eventSave.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{eventSave.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{eventSave.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{eventSave.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteEvent" item="eventDelete">
+    			MTN_CLM_EVENT_PKG.del_mtn_clm_event(#{eventDelete.eventCd,jdbcType=VARCHAR});
+    		</foreach>
+    	END;
+    </update>
+    
 </mapper>
