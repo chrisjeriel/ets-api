@@ -1823,6 +1823,7 @@
 	<update id="postPolicy" parameterType="java.util.Map">
 		BEGIN
 			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser});
+			DIST_PKG.dist_policy(#{policyId},#{updateUser},sysdate,#{updateUser},sysdate);
 		END;
 	</update>
 	
