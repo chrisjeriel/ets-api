@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
+import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -42,6 +43,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
@@ -71,6 +73,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -95,6 +98,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
@@ -509,5 +513,19 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveRiskDist");
 		logger.info("RetrieveRiskDistributionRequest : " + rrdr.toString());
 		return underwritingService.retrieveRiskDist(rrdr);
+	}
+	
+	@GetMapping(path="retrievePoolDist")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePoolDist");
+		logger.info("RetrievePoolDistributionRequest : " + rpdr.toString());
+		return underwritingService.retrievePoolDist(rpdr);
+	}
+	
+	@GetMapping(path="retrieveDistCoIns")
+	public @ResponseBody RetrieveDistCoInsResponse retrieveRiskDist(RetrieveDistCoInsRequest rdcir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveDistCoIns");
+		logger.info("RetrieveDistCoInsResponse : " + rdcir.toString());
+		return underwritingService.retrieveDistCoIns(rdcir);
 	}
 }

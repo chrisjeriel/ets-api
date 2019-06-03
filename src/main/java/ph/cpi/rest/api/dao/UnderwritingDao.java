@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.underwriting.PoolDistribution;
 import ph.cpi.rest.api.model.underwriting.WriskLimit;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
 
@@ -75,4 +77,6 @@ public interface UnderwritingDao {
 	public PolDistribution retrievePolDist(final HashMap<String, Object> params ) throws SQLException;
 	public DistWrisk retrieveDistWrisk(final HashMap<String, Object> params) throws SQLException;
 	public List<WriskLimit> retrieveWriskLimit(final HashMap<String, Object> params) throws SQLException;
+	public List<PoolDistribution> retrievePoolDist(final HashMap<String, Object> params) throws SQLException;
+	public List<DistCoIns> retrieveDistCoIns(final HashMap<String, Object> params) throws SQLException;
 }

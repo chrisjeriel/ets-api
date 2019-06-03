@@ -2286,4 +2286,46 @@
 		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{lineCd}, #{lineClassCd},null,null,null,null))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PoolDistribution" id="retPoolDistMap">
+		<result property="riskDistId"		column="RISK_DIST_ID" />
+		<result property="treatyId"			column="TREATY_ID" />
+		<result property="treatyAbbr"		column="TREATY_ABBR" />
+		<result property="trtyCedId"		column="TRTY_CED_ID" />
+		<result property="cedingId"			column="CEDING_ID" />
+		<result property="cedingName"	    column="CEDING_NAME" />
+		<result property="retOneLines"		column="RET1_LINES" />
+		<result property="retOneTsiAmt"		column="RET1_TSI_AMT" />
+		<result property="retOnePremAmt"	column="RET1_PREM_AMT" />
+		<result property="retTwoLines"		column="RET2_LINES" />
+		<result property="retTwoTsiAmt"		column="RET2_TSI_AMT" />
+		<result property="retTwoPremAmt"	column="RET2_PREM_AMT" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrievePoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},null,null,null,null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DistCoIns" id="retDistCoInsMap">
+		 <result property="riskDistId" 		column="RISK_DIST_ID" />
+		 <result property="distId" 			column="DIST_ID" />
+		 <result property="policyNo" 		column="POLICY_NO" />
+		 <result property="cedingId" 		column="CEDING_ID" />
+		 <result property="cedingName" 		column="CEDING_NAME" />
+		 <result property="pctShare" 		column="PCT_SHARE" />
+		 <result property="siAmt" 			column="SI_AMT" />
+		 <result property="premAmt" 		column="PREM_AMT" />
+		 <result property="createUser" 		column="CREATE_USER" />
+		 <result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		 <result property="updateUser" 		column="UPDATE_USER" />
+		 <result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveDistCoIns" resultMap="retDistCoInsMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
+	</select>
+	
 </mapper>
