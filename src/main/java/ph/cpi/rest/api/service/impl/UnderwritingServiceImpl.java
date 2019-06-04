@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
@@ -68,6 +69,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
@@ -1402,5 +1404,22 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("riskDistId", rdcir.getRiskDistId());
 		response.setDistCoInsList(underwritingDao.retrieveDistCoIns(params));
 		return response;
+	}
+
+	@Override
+	public PostDistributionResponse postDistribution(PostDistributionRequest pdr) throws SQLException {
+		PostDistributionResponse pdrResponse = new PostDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",pdr.getPolicyId());
+		params.put("riskDistId",pdr.getRiskDistId());
+		params.put("distId",pdr.getDistId());
+		try{
+			pdrResponse.setReturnCode(underwritingDao.postDistribution(params));
+		}catch(Exception ex){
+			pdrResponse.setReturnCode(0);
+			pdrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return pdrResponse;
 	}
 }

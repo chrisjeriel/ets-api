@@ -2329,4 +2329,9 @@
 		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
 	</select>
 	
+	<update id="postDistribution" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId});
+		END;
+	</update>
 </mapper>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
@@ -528,4 +530,12 @@ public class UnderwritingController {
 		logger.info("RetrieveDistCoInsResponse : " + rdcir.toString());
 		return underwritingService.retrieveDistCoIns(rdcir);
 	}
+	
+	@PostMapping(path="postDistribution")
+	public @ResponseBody PostDistributionResponse postDistribution(@RequestBody PostDistributionRequest pdr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/postDistribution");
+		logger.info("PostDistributionRequest : " + pdr.toString());
+		return underwritingService.postDistribution(pdr);
+	}
+	
 }

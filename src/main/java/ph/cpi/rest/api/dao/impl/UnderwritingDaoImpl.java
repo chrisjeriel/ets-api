@@ -449,4 +449,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<DistCoIns> res = sqlSession.selectList("retrieveDistCoIns", params);
 		return res;
 	}
+
+	@Override
+	public Integer postDistribution(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("postDistribution",params);
+		return code;
+	}
 }

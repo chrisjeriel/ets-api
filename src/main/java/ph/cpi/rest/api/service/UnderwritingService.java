@@ -3,9 +3,12 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
@@ -62,6 +65,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
@@ -177,4 +181,6 @@ public interface UnderwritingService {
 	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException;
 	public RetrievePoolDistributionResponse retrievePoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException;
 	public RetrieveDistCoInsResponse retrieveDistCoIns(RetrieveDistCoInsRequest rdcir) throws SQLException;
+
+	public PostDistributionResponse postDistribution(PostDistributionRequest pdr) throws SQLException;
 }
