@@ -2334,4 +2334,55 @@
 			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId});
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistribution" id="retPolDistMap">
+		<result property="distNo"			column="DIST_ID" />
+		<result property="policyNo"			column="POLICY_NO" />
+		<result property="cedingName"		column="CEDING_NAME" />
+		<result property="riskDistNo"		column="RISK_DIST_ID" />
+		<result property="status"			column="STATUS" />
+		<result property="insured"			column="INSURED_NAME" />
+		<result property="sumInsured"		column="TSI_AMT" />
+		<result property="premium"			column="PREM_AMT" />
+		<result property="riskName"			column="RISK_NAME" />
+		<result property="retLine"			column="RET_LINE_AMT" />
+		<result property="autoCalc"			column="AUTO_CALC" />
+		<result property="ret1SecI"			column="RET1_SECI" />
+		<result property="ret1SecII"		column="RET1_SECII" />
+		<result property="ret1SecIII"		column="RET1_SECIII" />
+		<result property="ret1Prem"		  	column="RET1_PREM" />
+		<result property="ret1CommAmt"		column="RET1_COMM_AMT" />
+		<result property="ret2SecI"			column="RET2_SECI" />
+		<result property="ret2SecII"		column="RET2_SECII" />
+		<result property="ret2SecIII"		column="RET2_SECIII" />
+		<result property="ret2Prem"			column="RET2_PREM" />
+		<result property="ret2CommAmt"		column="RET2_COMM_AMT" />
+		<result property="secITotal"		column="SECI_TOTAL" />
+		<result property="secIITotal"		column="SECII_TOTAL" />
+		<result property="secIIITotal"		column="SECIII_TOTAL" />
+		<result property="premTotal"		column="PREM_TOTAL" />
+		<result property="commAmtTotal"		column="COMM_AMT_TOTAL" />
+		<association property="trtyListPerSec"	resultMap="distPolWtreatyMap" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DistPolWtreaty" id="distPolWtreatyMap">
+		<result property="treatyId"			column="TREATY_ID" />
+		<result property="treatyAbbr"		column="TREATY_ABBR" />
+		<result property="section"			column="SECTION" />
+		<result property="trtyCedId"		column="TRTY_CED_ID" />
+		<result property="trtyCedName"		column="TRTY_CED_NAME" />
+		<result property="pctShare"			column="PCT_SHARE" />
+		<result property="siAmt"			column="SI_AMT" />
+		<result property="premAmt"			column="PREM_AMT" />
+		<result property="commShare"		column="COMM_SHARE" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrievePolDist" resultMap="retPolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
+	</select>
+	
 </mapper>
