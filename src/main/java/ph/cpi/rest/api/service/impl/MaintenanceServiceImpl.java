@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjRepresentativeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdjusterListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
@@ -107,6 +108,7 @@ import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjRepresentativeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdjusterListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
@@ -1764,6 +1766,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.getPaginationResponse().setCount(rmalr.getPaginationRequest().getCount());
 		response.getSortResponse().setSortKey(rmalr.getSortRequest().getSortKey());
 		response.getSortResponse().setOrder(rmalr.getSortRequest().getOrder());
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAdjRepresentativeResponse retrieveMtnAdjRepresentative(RetrieveMtnAdjRepresentativeRequest rmarr)
+			throws SQLException {
+		RetrieveMtnAdjRepresentativeResponse response = new RetrieveMtnAdjRepresentativeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("adjId", rmarr.getAdjId());
+		params.put("position", rmarr.getPaginationRequest().getPosition());
+		params.put("count", rmarr.getPaginationRequest().getCount());
+		params.put("sortKey", rmarr.getSortRequest().getSortKey());
+		params.put("order", rmarr.getSortRequest().getOrder());
+		response.setAdjuster(maintenanceDao.retrieveMtnAdjRepresentative(params));
+		response.getPaginationResponse().setPosition(rmarr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmarr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmarr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmarr.getSortRequest().getOrder());
 		return response;
 	}
 }

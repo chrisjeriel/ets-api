@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjRepresentativeRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdjusterListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
@@ -109,6 +110,7 @@ import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjRepresentativeResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdjusterListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
@@ -852,5 +854,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAdjusterList");
 		logger.info("RetrieveMtnAdjusterListRequest : " + rmalr.toString());
 		return maintenanceService.retrieveMtnAdjusterList(rmalr); 	
+	}
+	
+	@GetMapping(path="retrieveMtnAdjRepresentative")
+	public @ResponseBody RetrieveMtnAdjRepresentativeResponse retrieveMtnAdjRepresentative(RetrieveMtnAdjRepresentativeRequest rmarr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAdjRepresentative");
+		logger.info("RetrieveMtnAdjRepresentativeRequest : " + rmarr.toString());
+		return maintenanceService.retrieveMtnAdjRepresentative(rmarr); 	
 	}
 }

@@ -699,4 +699,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		List<Adjuster> res = sqlSession.selectList("retMtnAdjList", params);
 		return res;
 	}
+
+	@Override
+	public Adjuster retrieveMtnAdjRepresentative(HashMap<String, Object> params) throws SQLException {
+		Adjuster res = sqlSession.selectOne("retMtnAdj", params);
+		return res;
+	}
 }
