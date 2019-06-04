@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
@@ -691,5 +692,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnCity", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<Adjuster> retrieveMtnAdjusterList(HashMap<String, Object> params) throws SQLException {
+		List<Adjuster> res = sqlSession.selectList("retMtnAdjList", params);
+		return res;
 	}
 }

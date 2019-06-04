@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
@@ -145,4 +146,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnReports(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnReportParam(final HashMap<String, Object> params) throws SQLException; 
 	public Integer saveMtnCity(final HashMap<String, Object> params) throws SQLException;
+	public List<Adjuster> retrieveMtnAdjusterList(final HashMap<String, Object> params) throws SQLException;
 }

@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjusterListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
@@ -108,6 +109,7 @@ import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjusterListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
@@ -843,5 +845,12 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnCity");
 		logger.info("SaveCityRequest : " + smcr.toString());
 		return maintenanceService.saveMtnCity(smcr);
+	}
+	
+	@GetMapping(path="retrieveMtnAdjusterList")
+	public @ResponseBody RetrieveMtnAdjusterListResponse retrieveMtnAdjusterList(RetrieveMtnAdjusterListRequest rmalr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAdjusterList");
+		logger.info("RetrieveMtnAdjusterListRequest : " + rmalr.toString());
+		return maintenanceService.retrieveMtnAdjusterList(rmalr); 	
 	}
 }

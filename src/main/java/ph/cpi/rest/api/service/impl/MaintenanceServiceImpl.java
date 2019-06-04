@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjusterListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
@@ -106,6 +107,7 @@ import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjusterListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
@@ -1734,5 +1736,34 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
 		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
+	}
+
+	@Override
+	public RetrieveMtnAdjusterListResponse retrieveMtnAdjusterList(RetrieveMtnAdjusterListRequest rmalr)
+			throws SQLException {
+		RetrieveMtnAdjusterListResponse response = new RetrieveMtnAdjusterListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("adjName", rmalr.getAdjName());
+		params.put("adjRefNo", rmalr.getAdjRefNo());
+		params.put("fullAddress", rmalr.getFullAddress());
+		params.put("zipCd", rmalr.getZipCd());
+		params.put("contactNo", rmalr.getContactNo());
+		params.put("emailAdd", rmalr.getEmailAdd());
+		params.put("createUser", rmalr.getCreateUser());
+		params.put("createDateFrom", rmalr.getCreateDateFrom());
+		params.put("createDateTo", rmalr.getCreateDateTo());
+		params.put("updateUser", rmalr.getUpdateUser());
+		params.put("updateDateFrom", rmalr.getUpdateDateFrom());
+		params.put("updateDateTo", rmalr.getUpdateDateTo());
+		params.put("position", rmalr.getPaginationRequest().getPosition());
+		params.put("count", rmalr.getPaginationRequest().getCount());
+		params.put("sortKey", rmalr.getSortRequest().getSortKey());
+		params.put("order", rmalr.getSortRequest().getOrder());
+		response.setAdjusterList(maintenanceDao.retrieveMtnAdjusterList(params));
+		response.getPaginationResponse().setPosition(rmalr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmalr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmalr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmalr.getSortRequest().getOrder());
+		return response;
 	}
 }

@@ -2367,7 +2367,7 @@
 		<result property="trtyCedName"		column="TRTY_CED_NAME" />
 		<result property="pctShare"			column="PCT_SHARE" />
 		<result property="siAmt"			column="SI_AMT" />
-		<result property="premAmt"			column="PREM_AMT" />
+		<result property="premAmt"			column="W_PREM_AMT" />
 		<result property="commShare"		column="COMM_SHARE" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
