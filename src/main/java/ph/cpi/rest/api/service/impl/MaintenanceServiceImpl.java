@@ -39,6 +39,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnLossCdRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnParametersRequest;
@@ -80,6 +81,7 @@ import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
 import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
+import ph.cpi.rest.api.model.request.SaveMtnLossCdRequest;
 import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
 import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
 import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
@@ -128,6 +130,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnLossCdResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnParametersResponse;
@@ -169,6 +172,7 @@ import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
 import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
+import ph.cpi.rest.api.model.response.SaveMtnLossCdResponse;
 import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
 import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
 import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
@@ -1734,5 +1738,35 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
 		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
+	}
+
+	@Override
+	public RetrieveMtnLossCdResponse retrieveMtnLossCd(RetrieveMtnLossCdRequest rmlcr) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveMtnLossCdResponse response = new RetrieveMtnLossCdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();		
+		params.put("lossCd",rmlcr.getLossCd());
+		response.setLossCd(maintenanceDao.retrieveMtnLossCd(params));
+		return response;
+
+	}
+
+	@Override
+	public SaveMtnLossCdResponse saveMtnLossCd(SaveMtnLossCdRequest smcr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnLossCdResponse response = new SaveMtnLossCdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("deleteLossCd", smcr.getDeleteLossCd());
+		params.put("saveLossCd", smcr.getSaveLossCd());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnLossCd(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

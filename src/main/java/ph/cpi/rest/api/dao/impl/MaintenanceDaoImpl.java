@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
+import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
@@ -692,4 +693,20 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer errorCode = sqlSession.update("saveMtnCity", params);
 		return errorCode;
 	}
+
+	@Override
+	public List<MtnLossCd> retrieveMtnLossCd(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCd",params);
+		return list;
+	}
+
+	@Override
+	public Integer saveMtnLossCd(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnLossCd", params);
+		return errorCode;
+	}
+
+	
 }
