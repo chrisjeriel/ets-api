@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -145,4 +146,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnReports(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnReportParam(final HashMap<String, Object> params) throws SQLException; 
 	public Integer saveMtnCity(final HashMap<String, Object> params) throws SQLException;
+	public List<ClaimStatus> retrieveMtnClaimStatus(final HashMap<String, Object> params) throws SQLException;
 }
