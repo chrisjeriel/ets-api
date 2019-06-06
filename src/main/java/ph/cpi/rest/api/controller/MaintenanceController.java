@@ -65,6 +65,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
@@ -155,6 +156,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
@@ -861,5 +863,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAdjRepresentative");
 		logger.info("RetrieveMtnAdjRepresentativeRequest : " + rmarr.toString());
 		return maintenanceService.retrieveMtnAdjRepresentative(rmarr); 	
+	}
+	
+	@PostMapping(path="saveMtnAdjuster")
+	public @ResponseBody SaveMtnAdjusterResponse saveMtnAdjuster(@RequestBody SaveMtnAdjusterRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAdjuster");
+		logger.info("SaveMtnAdjusterRequest : " + smar.toString());
+		return maintenanceService.saveMtnAdjuster(smar);
 	}
 }

@@ -148,4 +148,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnCity(final HashMap<String, Object> params) throws SQLException;
 	public List<Adjuster> retrieveMtnAdjusterList(final HashMap<String, Object> params) throws SQLException;
 	public Adjuster retrieveMtnAdjRepresentative(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnAdjuster(final HashMap<String, Object> params) throws SQLException;
 }

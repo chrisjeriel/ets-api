@@ -705,4 +705,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Adjuster res = sqlSession.selectOne("retMtnAdj", params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnAdjuster(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnAdjuster", params);
+		params.put("errorCode", res);
+		return params;
+	}
 }

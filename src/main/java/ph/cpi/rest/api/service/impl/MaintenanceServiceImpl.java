@@ -63,6 +63,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
@@ -154,6 +155,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
@@ -1784,6 +1786,39 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.getPaginationResponse().setCount(rmarr.getPaginationRequest().getCount());
 		response.getSortResponse().setSortKey(rmarr.getSortRequest().getSortKey());
 		response.getSortResponse().setOrder(rmarr.getSortRequest().getOrder());
+		return response;
+	}
+
+	@Override
+	public SaveMtnAdjusterResponse saveMtnAdjuster(SaveMtnAdjusterRequest smar) throws SQLException {
+		SaveMtnAdjusterResponse response = new SaveMtnAdjusterResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("adjId", smar.getAdjId());
+			params.put("adjName", smar.getAdjName());
+			params.put("adjRefNo", smar.getAdjRefNo());
+			params.put("addrLine1", smar.getAddrLine1());
+			params.put("addrLine2", smar.getAddrLine2());
+			params.put("addrLine3", smar.getAddrLine3());
+			params.put("zipCd", smar.getZipCd());
+			params.put("contactNo", smar.getContactNo());
+			params.put("emailAdd", smar.getEmailAdd());
+			params.put("activeTag", smar.getActiveTag());
+			params.put("remarks", smar.getRemarks());
+			params.put("createUser", smar.getCreateUser());
+			params.put("createDate", smar.getCreateDate());
+			params.put("updateUser", smar.getUpdateUser());
+			params.put("updateDate", smar.getUpdateDate());
+			params.put("saveAdjRepList", smar.getSaveAdjRepList());
+			params.put("delAdjRepList", smar.getDelAdjRepList());
+			HashMap<String, Object> res = maintenanceDao.saveMtnAdjuster(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setOutAdjId((String) res.get("outAdjId"));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
 		return response;
 	}
 }

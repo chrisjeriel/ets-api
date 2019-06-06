@@ -2526,5 +2526,58 @@
 															       #{sortKey, jdbcType=VARCHAR},
 																   #{order, jdbcType=VARCHAR}))
 	 </select>
+	 
+	 <update id="saveMtnAdjuster" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    	 v_adj_id MTN_ADJ_REPRESENTATIVE.ADJ_ID%TYPE;
+    	BEGIN
+    		MTN_ADJUSTER_PKG.save_mtn_adjuster(
+    						v_adj_id,
+    						#{adjId, jdbcType=VARCHAR},
+    						#{adjName},
+    						#{adjRefNo, jdbcType=VARCHAR},
+    						#{addrLine1},
+    						#{addrLine2, jdbcType=VARCHAR},
+    						#{addrLine3, jdbcType=VARCHAR},
+    						#{zipCd, jdbcType=VARCHAR},
+    						#{contactNo, jdbcType=VARCHAR},
+    						#{emailAdd, jdbcType=VARCHAR},
+    						#{activeTag, jdbcType=VARCHAR},
+    						#{remarks, jdbcType=VARCHAR},
+    						#{createUser},
+    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						#{updateUser},
+    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    		);
+    		
+    		#{outAdjId, mode=OUT, jdbcType=VARCHAR} := v_adj_id;
+    		
+   			<foreach collection="delAdjRepList" item="del">
+    			MTN_ADJ_REPRESENTATIVE_PKG.del_mtn_adj_rep(
+    								v_adj_id,
+    								#{del.adjRepId}
+    						);
+    		</foreach>
+    		<foreach collection="saveAdjRepList" item="save">
+		    		MTN_ADJ_REPRESENTATIVE_PKG.save_mtn_adj_rep(
+		    							v_adj_id,
+		    							#{save.adjRepId, jdbcType=VARCHAR},
+		    							#{save.designation, jdbcType=VARCHAR},
+		    							#{save.firstName},
+		    							#{save.middleInitial, jdbcType=VARCHAR},
+		    							#{save.lastName},
+		    							#{save.defaultTag, jdbcType=VARCHAR},
+		    							#{save.position, jdbcType=VARCHAR},
+		    							#{save.department, jdbcType=VARCHAR},
+		    							#{save.contactNo, jdbcType=VARCHAR},
+		    							#{save.emailAdd, jdbcType=VARCHAR},
+		    							#{createUser},
+			    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    						#{updateUser},
+			    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		            );
+    		</foreach>
+    	END;
+    </update>
    
 </mapper>
