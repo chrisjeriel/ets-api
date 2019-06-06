@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
@@ -59,6 +60,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
@@ -98,10 +100,12 @@ import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -147,6 +151,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
@@ -186,6 +191,7 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -739,6 +745,13 @@ public class MaintenanceController {
 		logger.info("CopyRetAmtSetupRequest : " + crasr.toString());
 		return maintenanceService.copyRetAmtSetup(crasr);
 	}
+	
+	@GetMapping(path="retrieveMtnTreatyLimit")
+	public @ResponseBody RetrieveMtnTreatyLimitResponse retrieveMtnTreatyLimit(RetrieveMtnTreatyLimitRequest rmtlr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnTreatyLimit");
+		logger.info("RetrieveMtnTreatyLimitRequest : " + rmtlr.toString());
+		return maintenanceService.retrieveMtnTreatyLimit(rmtlr);
+	}
 		
 	@GetMapping(path="retrieveMtnApproval")
 	public @ResponseBody RetrieveMtnApprovalResponse retrieveMtnApproval(RetrieveMtnApprovalRequest rmscp) throws SQLException {
@@ -843,5 +856,19 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveMtnCity");
 		logger.info("SaveCityRequest : " + smcr.toString());
 		return maintenanceService.saveMtnCity(smcr);
+	}
+	
+	@PostMapping(path="saveMtnTreatyLimit")
+	public @ResponseBody SaveMtnTreatyLimitResponse saveMtnTreatyLimit(@RequestBody SaveMtnTreatyLimitRequest smtlr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnTreatyLimit");
+		logger.info("SaveMtnTreatyLimitRequest : " + smtlr.toString());
+		return maintenanceService.saveMtnTreatyLimit(smtlr);
+	}
+	
+	@PostMapping(path="copyTreatyLimit")
+	public @ResponseBody CopyTreatyLimitResponse copyTreatyLimit(@RequestBody CopyTreatyLimitRequest ctlr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyTreatyLimit");
+		logger.info("CopyTreatyLimitRequest : " + ctlr.toString());
+		return maintenanceService.copyTreatyLimit(ctlr);
 	}
 }

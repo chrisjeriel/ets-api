@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
+import ph.cpi.rest.api.model.request.CopyTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
 import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
 import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
@@ -56,6 +57,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
@@ -96,10 +98,12 @@ import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
 import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
+import ph.cpi.rest.api.model.request.SaveMtnTreatyLimitRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
+import ph.cpi.rest.api.model.response.CopyTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
 import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
 import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
@@ -145,6 +149,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
@@ -185,6 +190,7 @@ import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
 import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
+import ph.cpi.rest.api.model.response.SaveMtnTreatyLimitResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
@@ -1531,6 +1537,19 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public RetrieveMtnTreatyLimitResponse retrieveMtnTreatyLimit(RetrieveMtnTreatyLimitRequest rmtlr)
+			throws SQLException {
+		RetrieveMtnTreatyLimitResponse rmtlResponse = new RetrieveMtnTreatyLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lineCd", rmtlr.getLineCd());
+		params.put("lineClassCd", rmtlr.getLineClassCd());
+		
+		rmtlResponse.setTreatyLimitList(maintenanceDao.retrieveMtnTreatyLimit(params));
+		
+		return rmtlResponse;
+	}
+	
+	@Override
 	public RetrieveMtnApprovalFunctionResponse retrieveMtnApprovalFunction(RetrieveMtnApprovalFunctionRequest rmar)
 			throws SQLException {
 		RetrieveMtnApprovalFunctionResponse response = new RetrieveMtnApprovalFunctionResponse();
@@ -1734,5 +1753,40 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
 		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
+	}
+
+	@Override
+	public SaveMtnTreatyLimitResponse saveMtnTreatyLimit(SaveMtnTreatyLimitRequest smtlr) throws SQLException {
+		SaveMtnTreatyLimitResponse smtlResponse = new SaveMtnTreatyLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveTreatyLimit", smtlr.getSaveTreatyLimit());
+		params.put("deleteTreatyLimit", smtlr.getDeleteTreatyLimit());
+		
+		smtlResponse.setReturnCode(maintenanceDao.saveMtnTreatyLimit(params));
+		
+		return smtlResponse;
+	}
+
+	@Override
+	public CopyTreatyLimitResponse copyTreatyLimit(CopyTreatyLimitRequest ctlr) throws SQLException {
+		CopyTreatyLimitResponse ctlResponse = new CopyTreatyLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromTreatyLimitId", ctlr.getCopyFromTreatyLimitId());
+		params.put("copyToLineCd", ctlr.getCopyToLineCd());
+		params.put("copyToLineClassCd", ctlr.getCopyToLineClassCd());
+		params.put("createUser", ctlr.getCreateUser());
+		params.put("createDate", ctlr.getCreateDate());
+		params.put("updateUser", ctlr.getUpdateUser());
+		params.put("updateDate", ctlr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkTreatyLimit(params);
+		
+		if(res == 1) {
+			ctlResponse.setReturnCode(2);
+		} else if(res == 0) {
+			ctlResponse.setReturnCode(maintenanceDao.copyTreatyLimit(params));
+		}
+		
+		return ctlResponse;
 	}
 }
