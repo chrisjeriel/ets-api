@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class RetAmt {
@@ -7,7 +9,7 @@ public class RetAmt {
 	private Integer retentionId;
     private String lineCd;
     private String lineClassCd;
-    private String retLineAmt;
+    private BigDecimal retLineAmt;
     private DateTime effDateFrom;
     private DateTime effDateTo;
     private String activeTag;
@@ -36,10 +38,10 @@ public class RetAmt {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
-	public String getRetLineAmt() {
+	public BigDecimal getRetLineAmt() {
 		return retLineAmt;
 	}
-	public void setRetLineAmt(String retLineAmt) {
+	public void setRetLineAmt(BigDecimal retLineAmt) {
 		this.retLineAmt = retLineAmt;
 	}
 	public DateTime getEffDateFrom() {

@@ -49,6 +49,7 @@ import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
@@ -644,6 +645,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public List<TreatyLimit> retrieveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		List<TreatyLimit> res = sqlSession.selectList("retrieveMtnTreatyLimit", params);
+		return res;
+	}
+		
+	@Override
 	public Integer saveMtnApproverFn(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveMtnApproverFn", params);
 		return errorCode;
@@ -695,8 +702,29 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+
 	public List<ClaimStatus> retrieveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
 		List<ClaimStatus> list = sqlSession.selectList("retrieveMtnClaimStatus",params);
 		return list;
+	}
+
+	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
+		System.out.println(params);
+		return res;
+	}
+
+	@Override
+	public Integer checkTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkTreatyLimit", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Override
+	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyTreatyLimit", params);
+		return res;
 	}
 }
