@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
@@ -89,6 +90,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
@@ -536,5 +538,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveDistCoIns");
 		logger.info("RetrieveDistCoInsResponse : " + rdcir.toString());
 		return underwritingService.retrieveDistCoIns(rdcir);
+	}
+	
+	@GetMapping(path="retrievePolForPurging")
+	public @ResponseBody RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolForPurging");
+		logger.info("RetrievePolForPurgingRequest : " + rpfpr.toString());
+		return underwritingService.retrievePolForPurging(rpfpr);
 	}
 }

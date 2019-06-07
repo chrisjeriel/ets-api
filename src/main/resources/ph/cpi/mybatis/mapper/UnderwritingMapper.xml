@@ -2332,4 +2332,17 @@
 		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">
+		 <result property="policyId" 		column="POLICY_ID" />
+		 <result property="policyNo" 		column="POLICY_NO" />
+		 <result property="totalSi" 		column="TSI_AMOUNT" />
+		 <result property="totalPrem" 		column="TOTAL_PREM" />
+		 <result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		 <result property="processTag" 		column="PROCESS_TAG" />
+		 <result property="expiryTag" 		column="EXPIRY_TAG" />
+		 </resultMap>
+	
+	<select id="retrievePolForPurging" resultMap="purgingMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(PURGE_EXP_PKG.ret_purge_Exp(#{policyId, jdbcType=VARCHAR},null,null,null,null))
+	</select>
 </mapper>
