@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
+import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
@@ -75,6 +76,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
+import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -545,5 +547,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolForPurging");
 		logger.info("RetrievePolForPurgingRequest : " + rpfpr.toString());
 		return underwritingService.retrievePolForPurging(rpfpr);
+	}
+	
+	@PostMapping(path="purgeExpiringPol")
+	public @ResponseBody PurgeExpiringPolResponse purgeExpiryPol(@RequestBody PurgeExpiringPolRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/purgeExpiringPol");
+		logger.info("PurgeExpiringPolRequest : " + eepr.toString());
+		return underwritingService.purgeExpiryPol(eepr);
 	}
 }

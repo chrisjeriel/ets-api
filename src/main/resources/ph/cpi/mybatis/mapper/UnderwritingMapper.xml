@@ -2345,4 +2345,12 @@
 	<select id="retrievePolForPurging" resultMap="purgingMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(PURGE_EXP_PKG.ret_purge_Exp(#{policyId, jdbcType=VARCHAR},null,null,null,null))
 	</select>
+	
+	<update id="purgeExpiringPol" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="deletePurge" item="del">
+					PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
+			</foreach>
+		END;
+	</update>
 </mapper>

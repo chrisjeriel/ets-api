@@ -456,4 +456,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<PolForPurging> res = sqlSession.selectList("retrievePolForPurging",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> purgeExpiringPol(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("purgeExpiringPol",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

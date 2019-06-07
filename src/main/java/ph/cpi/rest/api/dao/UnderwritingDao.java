@@ -81,5 +81,6 @@ public interface UnderwritingDao {
 	public List<PoolDistribution> retrievePoolDist(final HashMap<String, Object> params) throws SQLException;
 	public List<DistCoIns> retrieveDistCoIns(final HashMap<String, Object> params) throws SQLException;
 	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;
 	
 }

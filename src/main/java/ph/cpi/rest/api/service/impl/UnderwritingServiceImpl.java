@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
+import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
@@ -72,6 +73,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
+import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -1406,7 +1408,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		
-		return null;
+		return prpResponse;
 	}
 	
 	@Override
@@ -1447,5 +1449,23 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("policyId", rpfpr.getPolicyId());
 		response.setPolForPurging(underwritingDao.retrievePolForPurging(params));
 		return response;
+	}
+
+	@Override
+	public PurgeExpiringPolResponse purgeExpiryPol(PurgeExpiringPolRequest spfcr) throws SQLException {
+		PurgeExpiringPolResponse prpResponse = new PurgeExpiringPolResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("deletePurge", spfcr.getDeletePurge());
+			
+			HashMap<String, Object> res = underwritingDao.purgeExpiringPol(params);
+			prpResponse.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			prpResponse.setReturnCode(0);
+			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		return prpResponse;
 	}
 }
