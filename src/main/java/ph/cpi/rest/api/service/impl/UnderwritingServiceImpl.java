@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
+import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
+import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -451,6 +453,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("cumSecIIPrem",spcr.getCumSecIIPrem());
 			savePolCoverageParams.put("cumSecIIIPrem",spcr.getCumSecIIIPrem());
 			savePolCoverageParams.put("cumTPrem",spcr.getCumTPrem());
+			savePolCoverageParams.put("commRtQuota",spcr.getCommRtQuota());
+			savePolCoverageParams.put("commRtSurplus",spcr.getCommRtSurplus());
+			savePolCoverageParams.put("commRtFac",spcr.getCommRtFac());
 			savePolCoverageParams.put("createUser",spcr.getCreateUser());
 			savePolCoverageParams.put("createDate",spcr.getCreateDate());
 			savePolCoverageParams.put("updateUser",spcr.getUpdateUser());
@@ -1329,13 +1334,20 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		ExtractExpiringPolicyResponse eepResponse = new ExtractExpiringPolicyResponse();
 		try{
 			HashMap<String, Object> eepParams = new HashMap<String, Object>();
-			eepParams.put("policyId", eepr.getPolicyId()); 
-			eepParams.put("policyNo", eepr.getPolicyNo()); 
-			eepParams.put("fromExpiryDate", eepr.getFromExpiryDate()); 
-			eepParams.put("toExpiryDate", eepr.getToExpiryDate()); 
-			eepParams.put("lineCd", eepr.getLineCd()); 
-			eepParams.put("cessionType", eepr.getCessionType()); 
+			eepParams.put("policyNo", "");
+			
+			eepParams.put("policyId", eepr.getPolicyId());
+			eepParams.put("polLineCd", eepr.getPolLineCd());
+			eepParams.put("polYear", eepr.getPolYear());
+			eepParams.put("polSeqNo", eepr.getPolSeqNo());
+			eepParams.put("polCedingId", eepr.getPolCedingId());
+			eepParams.put("coSeriesNo", eepr.getCoSeriesNo());
+			eepParams.put("altNo", eepr.getAltNo());
+			eepParams.put("fromExpiryDate", eepr.getFromExpiryDate());
+			eepParams.put("toExpiryDate", eepr.getToExpiryDate());
+			eepParams.put("lineCd", eepr.getLineCd());
 			eepParams.put("cedingId", eepr.getCedingId());
+			eepParams.put("cessionType", eepr.getCessionType());
 			eepParams.put("extractUser", eepr.getExtractUser());
 			eepParams.put("recordCount", 0); 
 			
@@ -1375,6 +1387,28 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		return rpcrResponse;
 	}
 
+	@Override
+	public ProcessRenewablePolicyResponse processRenewablePolicy(ProcessRenewablePolicyRequest prpr)
+			throws SQLException {
+		ProcessRenewablePolicyResponse prpResponse = new ProcessRenewablePolicyResponse();
+		try{
+			HashMap<String, Object> processRenewablePolicyParams = new HashMap<String, Object>();
+			processRenewablePolicyParams.put("renAsIsPolicyList", prpr.getRenAsIsPolicyList());
+			processRenewablePolicyParams.put("renWithChangesPolicyList", prpr.getRenWithChangesPolicyList());
+			processRenewablePolicyParams.put("nonRenPolicyList", prpr.getNonRenPolicyList());
+			
+			
+			logger.info(processRenewablePolicyParams.toString());
+			//spaResponse.setReturnCode(underwritingDao.savePolAttachments(processRenewablePolicyParams));
+		}catch(Exception ex){
+			prpResponse.setReturnCode(0);
+			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException {
 		RetrieveRiskDistributionResponse response = new RetrieveRiskDistributionResponse();

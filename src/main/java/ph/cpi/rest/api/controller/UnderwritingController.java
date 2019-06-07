@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
+import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
+import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -508,6 +510,13 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolDist");
 		logger.info("RetrievePolDistRequest : " + rpcr.toString());
 		return underwritingService.retrievePolDist(rpcr);
+	}
+	
+	@PostMapping(path="processRenewablePolicy")
+	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/processRenewablePolicy");
+		logger.info("processRenewablePolicy : " + eepr.toString());
+		return null;
 	}
 	
 	@GetMapping(path="retrieveRiskDist")

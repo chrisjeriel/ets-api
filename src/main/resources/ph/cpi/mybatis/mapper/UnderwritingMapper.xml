@@ -270,6 +270,9 @@
 		<result property="cumSecIIPrem" 		column="CUM_SECII_PREM"/>
 		<result property="cumSecIIIPrem" 		column="CUM_SECIII_PREM"/>
 		<result property="cumTPrem" 			column="CUM_TPREM"/>
+		<result property="commRtQuota"     		column="COMM_RT_QUOTA"/>
+		<result property="commRtSurplus" 		column="COMM_RT_SURPLUS"/>
+		<result property="commRtFac"			column="COMM_RT_FAC"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
@@ -658,7 +661,7 @@
 										   #{exSecIIIPrem, jdbcType=INTEGER}, #{extotalPrem, jdbcType=INTEGER}, 
 										   #{exDays, jdbcType=INTEGER}, #{totalDays, jdbcType=INTEGER}, #{cumSecISi}, 
 										   #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
-										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem},  #{createUser}, 
+										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem}, #{commRtQuota},#{commRtSurplus},#{commRtFac}, #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			

@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
+import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
+import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -178,6 +180,8 @@ public interface UnderwritingService {
 	public ExtractExpiringPolicyResponse extractExpiringPolicy(ExtractExpiringPolicyRequest eepr) throws SQLException;
 	public RetrieveExpPolListResponse retrieveExpPolList(RetrieveExpPolListRequest replr) throws SQLException;
 	public RetrievePolDistResponse retrievePolDist(RetrievePolDistRequest rpcr) throws SQLException;
+	
+	public ProcessRenewablePolicyResponse processRenewablePolicy (ProcessRenewablePolicyRequest prpr) throws SQLException; 
 	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException;
 	public RetrievePoolDistributionResponse retrievePoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException;
 	public RetrieveDistCoInsResponse retrieveDistCoIns(RetrieveDistCoInsRequest rdcir) throws SQLException;

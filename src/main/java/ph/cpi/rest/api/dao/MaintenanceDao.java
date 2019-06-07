@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -39,6 +40,7 @@ import ph.cpi.rest.api.model.maintenance.RoundingError;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
+import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
@@ -128,6 +130,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnRetAmt(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkRetAmt(HashMap<String, Object> params) throws SQLException;
 	public Integer copyRetAmtSetup(HashMap<String, Object> params) throws SQLException;
+	public List<TreatyLimit> retrieveMtnTreatyLimit(final HashMap<String, Object> params ) throws SQLException;
 	public List<ApprovalFunction> retrieveMtnApproval(final HashMap<String, Object> params) throws SQLException;
 	public List<ApproverFn> retrieveMtnApprovalFunction(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnApproval(final HashMap<String, Object> params) throws SQLException;
@@ -145,4 +148,8 @@ public interface MaintenanceDao {
 	public Integer saveMtnReports(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnReportParam(final HashMap<String, Object> params) throws SQLException; 
 	public Integer saveMtnCity(final HashMap<String, Object> params) throws SQLException;
+	public List<ClaimStatus> retrieveMtnClaimStatus(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnTreatyLimit(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkTreatyLimit(HashMap<String, Object> params) throws SQLException;
+	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException;
 }
