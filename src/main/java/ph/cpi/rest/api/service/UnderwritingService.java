@@ -183,4 +183,5 @@ public interface UnderwritingService {
 	public RetrieveDistCoInsResponse retrieveDistCoIns(RetrieveDistCoInsRequest rdcir) throws SQLException;
 
 	public PostDistributionResponse postDistribution(PostDistributionRequest pdr) throws SQLException;
+	public RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException;
 }

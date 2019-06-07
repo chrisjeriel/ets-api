@@ -538,4 +538,10 @@ public class UnderwritingController {
 		return underwritingService.postDistribution(pdr);
 	}
 	
+	@GetMapping(path="retrievePolPoolDist")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolPoolDist");
+		logger.info("RetrievePolPoolDistributionRequest : " + rpdr.toString());
+		return underwritingService.retrievePolPoolDist(rpdr);
+	}
 }

@@ -1422,4 +1422,14 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		return pdrResponse;
 	}
+
+	@Override
+	public RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr)
+			throws SQLException {
+		RetrievePoolDistributionResponse response = new RetrievePoolDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("distId", rpdr.getRiskDistId());
+		response.setPoolDistList(underwritingDao.retrievePolPoolDist(params));
+		return response;
+	}
 }
