@@ -1462,9 +1462,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
 		saveMtnTreatyShareParams.put("saveTreatyComm", smtsr.getSaveTreatyComm());
 		saveMtnTreatyShareParams.put("deleteTreatyComm", smtsr.getDeleteTreatyComm());
-		saveMtnTreatyShareParams.put("saveTreatyShare", smtsr.getSaveTreatyShare());
 		saveMtnTreatyShareParams.put("deleteTreatyShare", smtsr.getDeleteTreatyShare());
-		saveMtnTreatyShareParams.put("saveCedRetention", smtsr.getSaveCedRetention());
 		saveMtnTreatyShareParams.put("deleteCedRetention", smtsr.getDeleteCedRetention());
 		smtsResponse.setReturnCode(maintenanceDao.saveMtnTreatyShare(saveMtnTreatyShareParams));
 		
