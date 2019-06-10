@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class PolDistribution {
 	private String distNo;
@@ -14,6 +15,8 @@ public class PolDistribution {
 	private String riskName;
 	private BigDecimal retLine;
 	private String autoCalc;
+	
+	private List<DistPolWtreaty> trtyListPerSec;
 	
 	private BigDecimal ret1SecI;    
 	private BigDecimal ret1SecII;   
@@ -98,6 +101,12 @@ public class PolDistribution {
 	}
 	public void setAutoCalc(String autoCalc) {
 		this.autoCalc = autoCalc;
+	}
+	public List<DistPolWtreaty> getTrtyListPerSec() {
+		return trtyListPerSec;
+	}
+	public void setTrtyListPerSec(List<DistPolWtreaty> trtyListPerSec) {
+		this.trtyListPerSec = trtyListPerSec;
 	}
 	public BigDecimal getRet1SecI() {
 		return ret1SecI;
@@ -194,11 +203,12 @@ public class PolDistribution {
 		return "PolDistribution [distNo=" + distNo + ", policyNo=" + policyNo + ", cedingName=" + cedingName
 				+ ", riskDistNo=" + riskDistNo + ", status=" + status + ", insured=" + insured + ", sumInsured="
 				+ sumInsured + ", premium=" + premium + ", riskName=" + riskName + ", retLine=" + retLine
-				+ ", autoCalc=" + autoCalc + ", ret1SecI=" + ret1SecI + ", ret1SecII=" + ret1SecII + ", ret1SecIII="
-				+ ret1SecIII + ", ret1Prem=" + ret1Prem + ", ret1CommAmt=" + ret1CommAmt + ", ret2SecI=" + ret2SecI
-				+ ", ret2SecII=" + ret2SecII + ", ret2SecIII=" + ret2SecIII + ", ret2Prem=" + ret2Prem
-				+ ", ret2CommAmt=" + ret2CommAmt + ", secITotal=" + secITotal + ", secIITotal=" + secIITotal
-				+ ", secIIITotal=" + secIIITotal + ", premTotal=" + premTotal + ", commAmtTotal=" + commAmtTotal + "]";
+				+ ", autoCalc=" + autoCalc + ", trtyListPerSec=" + trtyListPerSec + ", ret1SecI=" + ret1SecI
+				+ ", ret1SecII=" + ret1SecII + ", ret1SecIII=" + ret1SecIII + ", ret1Prem=" + ret1Prem
+				+ ", ret1CommAmt=" + ret1CommAmt + ", ret2SecI=" + ret2SecI + ", ret2SecII=" + ret2SecII
+				+ ", ret2SecIII=" + ret2SecIII + ", ret2Prem=" + ret2Prem + ", ret2CommAmt=" + ret2CommAmt
+				+ ", secITotal=" + secITotal + ", secIITotal=" + secIITotal + ", secIIITotal=" + secIIITotal
+				+ ", premTotal=" + premTotal + ", commAmtTotal=" + commAmtTotal + "]";
 	}
     
     

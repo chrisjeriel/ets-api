@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
@@ -21,6 +22,7 @@ import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -31,7 +33,10 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
+import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
+import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
@@ -701,9 +706,28 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public List<ClaimStatus> retrieveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
+		List<ClaimStatus> list = sqlSession.selectList("retrieveMtnClaimStatus",params);
+		return list;
+	}
+
+	@Override
+	public List<MtnLossCd> retrieveMtnLossCd(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCd",params);
+		return list;
+	}
+
+	@Override
 	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
 		System.out.println(params);
+		return res;
+	}
+	
+	@Override
+	public List<Adjuster> retrieveMtnAdjusterList(HashMap<String, Object> params) throws SQLException {
+		List<Adjuster> res = sqlSession.selectList("retMtnAdjList", params);
 		return res;
 	}
 
@@ -716,8 +740,60 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public Adjuster retrieveMtnAdjRepresentative(HashMap<String, Object> params) throws SQLException {
+		Adjuster res = sqlSession.selectOne("retMtnAdj", params);
+		return res;
+	}
+
+	@Override
 	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("copyTreatyLimit", params);
 		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnAdjuster(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnAdjuster", params);
+		params.put("errorCode", res);
+		return params;
+	}
+	
+	@Override
+	public List<MtnClmEventType> retrieveMtnEventType(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEventType> eventTypeList = sqlSession.selectList("retrieveMtnClmEventType", params);
+		return eventTypeList;
+	}
+
+	@Override
+	public Integer saveMtnClmEventType(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnClmEventType = sqlSession.update("saveMtnClmEventType",params);
+		return saveMtnClmEventType;
+	}
+
+	@Override
+	public List<MtnClmEvent> retrieveMtnEvent(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEvent> eventList = sqlSession.selectList("retrieveMtnClmEvent", params);
+		return eventList;
+	}
+
+	@Override
+	public Integer saveMtnClmEvent(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnClmEvent = sqlSession.update("saveMtnClmEvent",params);
+		return saveMtnClmEvent;
+	}
+	
+	@Override
+	public Integer saveMtnLossCd(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnLossCd", params);
+		return errorCode;
+	}
+	
+
+	@Override
+	public HashMap<String, Object> saveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnClaimStatus",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

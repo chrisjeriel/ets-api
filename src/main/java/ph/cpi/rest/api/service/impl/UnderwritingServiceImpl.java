@@ -13,7 +13,10 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
+import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
+import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
+import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -27,6 +30,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
@@ -39,6 +43,8 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
+import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -66,7 +72,10 @@ import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
+import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
+import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -80,6 +89,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
@@ -91,6 +101,8 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
+import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -443,6 +455,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("cumSecIIPrem",spcr.getCumSecIIPrem());
 			savePolCoverageParams.put("cumSecIIIPrem",spcr.getCumSecIIIPrem());
 			savePolCoverageParams.put("cumTPrem",spcr.getCumTPrem());
+			savePolCoverageParams.put("commRtQuota",spcr.getCommRtQuota());
+			savePolCoverageParams.put("commRtSurplus",spcr.getCommRtSurplus());
+			savePolCoverageParams.put("commRtFac",spcr.getCommRtFac());
 			savePolCoverageParams.put("createUser",spcr.getCreateUser());
 			savePolCoverageParams.put("createDate",spcr.getCreateDate());
 			savePolCoverageParams.put("updateUser",spcr.getUpdateUser());
@@ -1321,13 +1336,20 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		ExtractExpiringPolicyResponse eepResponse = new ExtractExpiringPolicyResponse();
 		try{
 			HashMap<String, Object> eepParams = new HashMap<String, Object>();
-			eepParams.put("policyId", eepr.getPolicyId()); 
-			eepParams.put("policyNo", eepr.getPolicyNo()); 
-			eepParams.put("fromExpiryDate", eepr.getFromExpiryDate()); 
-			eepParams.put("toExpiryDate", eepr.getToExpiryDate()); 
-			eepParams.put("lineCd", eepr.getLineCd()); 
-			eepParams.put("cessionType", eepr.getCessionType()); 
+			eepParams.put("policyNo", "");
+			
+			eepParams.put("policyId", eepr.getPolicyId());
+			eepParams.put("polLineCd", eepr.getPolLineCd());
+			eepParams.put("polYear", eepr.getPolYear());
+			eepParams.put("polSeqNo", eepr.getPolSeqNo());
+			eepParams.put("polCedingId", eepr.getPolCedingId());
+			eepParams.put("coSeriesNo", eepr.getCoSeriesNo());
+			eepParams.put("altNo", eepr.getAltNo());
+			eepParams.put("fromExpiryDate", eepr.getFromExpiryDate());
+			eepParams.put("toExpiryDate", eepr.getToExpiryDate());
+			eepParams.put("lineCd", eepr.getLineCd());
 			eepParams.put("cedingId", eepr.getCedingId());
+			eepParams.put("cessionType", eepr.getCessionType());
 			eepParams.put("extractUser", eepr.getExtractUser());
 			eepParams.put("recordCount", 0); 
 			
@@ -1365,5 +1387,91 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("distId", rpcr.getDistId());
 		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDist(params));
 		return rpcrResponse;
+	}
+
+	@Override
+	public ProcessRenewablePolicyResponse processRenewablePolicy(ProcessRenewablePolicyRequest prpr)
+			throws SQLException {
+		ProcessRenewablePolicyResponse prpResponse = new ProcessRenewablePolicyResponse();
+		try{
+			HashMap<String, Object> processRenewablePolicyParams = new HashMap<String, Object>();
+			processRenewablePolicyParams.put("renAICount", prpr.getRenAsIsPolicyList().size());
+			processRenewablePolicyParams.put("renWCCount", prpr.getRenWithChangesPolicyList().size());
+			processRenewablePolicyParams.put("nrCount", prpr.getNonRenPolicyList().size());
+			
+			processRenewablePolicyParams.put("renAsIsPolicyList", prpr.getRenAsIsPolicyList());
+			processRenewablePolicyParams.put("renWithChangesPolicyList", prpr.getRenWithChangesPolicyList());
+			processRenewablePolicyParams.put("nonRenPolicyList", prpr.getNonRenPolicyList());
+			
+			
+			logger.info(processRenewablePolicyParams.toString());
+			
+			HashMap<String, Object> resp = new HashMap<String, Object>();
+			resp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
+		}catch(Exception ex){
+			prpResponse.setReturnCode(0);
+			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		return prpResponse;
+	}
+	
+	@Override
+	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException {
+		RetrieveRiskDistributionResponse response = new RetrieveRiskDistributionResponse();
+		HashMap<String, Object> distWriskParam = new HashMap<String, Object>();
+		HashMap<String, Object> wriskLimitParam = new HashMap<String, Object>();
+		distWriskParam.put("policyId", rrdr.getPolicyId());
+		wriskLimitParam.put("lineCd", rrdr.getLineCd());
+		wriskLimitParam.put("lineClassCd", rrdr.getLineClassCd());
+		response.setDistWrisk(underwritingDao.retrieveDistWrisk(distWriskParam));
+		response.setWriskLimit(underwritingDao.retrieveWriskLimit(wriskLimitParam));
+		return response;
+	}
+
+	@Override
+	public RetrievePoolDistributionResponse retrievePoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException {
+		RetrievePoolDistributionResponse response = new RetrievePoolDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("riskDistId", rpdr.getRiskDistId());
+		response.setPoolDistList(underwritingDao.retrievePoolDist(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveDistCoInsResponse retrieveDistCoIns(RetrieveDistCoInsRequest rdcir) throws SQLException {
+		RetrieveDistCoInsResponse response = new RetrieveDistCoInsResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("riskDistId", rdcir.getRiskDistId());
+		response.setDistCoInsList(underwritingDao.retrieveDistCoIns(params));
+		return response;
+	}
+
+	@Override
+	public RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr) throws SQLException {
+		RetrievePolForPurgingResponse response = new RetrievePolForPurgingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpfpr.getPolicyId());
+		response.setPolForPurging(underwritingDao.retrievePolForPurging(params));
+		return response;
+	}
+
+	@Override
+	public PurgeExpiringPolResponse purgeExpiryPol(PurgeExpiringPolRequest spfcr) throws SQLException {
+		PurgeExpiringPolResponse prpResponse = new PurgeExpiringPolResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("deletePurge", spfcr.getDeletePurge());
+			
+			HashMap<String, Object> res = underwritingDao.purgeExpiringPol(params);
+			prpResponse.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			prpResponse.setReturnCode(0);
+			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		return prpResponse;
 	}
 }

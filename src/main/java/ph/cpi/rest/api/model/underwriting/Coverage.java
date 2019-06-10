@@ -38,6 +38,9 @@ public class Coverage {
 	private BigDecimal cumSecIIPrem;
 	private BigDecimal cumSecIIIPrem;
 	private BigDecimal cumTPrem;
+	private BigDecimal commRtQuota;
+	private BigDecimal commRtSurplus;
+	private BigDecimal commRtFac;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -283,6 +286,30 @@ public class Coverage {
 	public String getCreateUser() {
 		return createUser;
 	}
+	
+	public BigDecimal getCommRtQuota() {
+		return commRtQuota;
+	}
+
+	public void setCommRtQuota(BigDecimal commRtQuota) {
+		this.commRtQuota = commRtQuota;
+	}
+
+	public BigDecimal getCommRtSurplus() {
+		return commRtSurplus;
+	}
+
+	public void setCommRtSurplus(BigDecimal commRtSurplus) {
+		this.commRtSurplus = commRtSurplus;
+	}
+
+	public BigDecimal getCommRtFac() {
+		return commRtFac;
+	}
+
+	public void setCommRtFac(BigDecimal commRtFac) {
+		this.commRtFac = commRtFac;
+	}
 
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
@@ -348,8 +375,11 @@ public class Coverage {
 				+ ", exTprem=" + exTprem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
 				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
 				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
-				+ ", cumTPrem=" + cumTPrem + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus
+				+ ", commRtFac=" + commRtFac + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", holdCoverTag=" + holdCoverTag
 				+ ", extensionTag=" + extensionTag + ", sectionCovers=" + sectionCovers + "]";
 	}
+
+	
 }

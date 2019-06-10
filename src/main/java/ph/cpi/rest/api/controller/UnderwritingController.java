@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
+import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
+import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
+import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
@@ -30,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
@@ -42,6 +46,8 @@ import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
+import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
+import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -69,7 +75,10 @@ import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
+import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
+import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -83,6 +92,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
@@ -94,6 +104,8 @@ import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
+import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
+import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -500,5 +512,47 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolDist");
 		logger.info("RetrievePolDistRequest : " + rpcr.toString());
 		return underwritingService.retrievePolDist(rpcr);
+	}
+	
+	@PostMapping(path="processRenewablePolicy")
+	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/processRenewablePolicy");
+		logger.info("processRenewablePolicy : " + eepr.toString());
+		return null;
+	}
+	
+	@GetMapping(path="retrieveRiskDist")
+	public @ResponseBody RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveRiskDist");
+		logger.info("RetrieveRiskDistributionRequest : " + rrdr.toString());
+		return underwritingService.retrieveRiskDist(rrdr);
+	}
+	
+	@GetMapping(path="retrievePoolDist")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePoolDist");
+		logger.info("RetrievePoolDistributionRequest : " + rpdr.toString());
+		return underwritingService.retrievePoolDist(rpdr);
+	}
+	
+	@GetMapping(path="retrieveDistCoIns")
+	public @ResponseBody RetrieveDistCoInsResponse retrieveRiskDist(RetrieveDistCoInsRequest rdcir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveDistCoIns");
+		logger.info("RetrieveDistCoInsResponse : " + rdcir.toString());
+		return underwritingService.retrieveDistCoIns(rdcir);
+	}
+	
+	@GetMapping(path="retrievePolForPurging")
+	public @ResponseBody RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolForPurging");
+		logger.info("RetrievePolForPurgingRequest : " + rpfpr.toString());
+		return underwritingService.retrievePolForPurging(rpfpr);
+	}
+	
+	@PostMapping(path="purgeExpiringPol")
+	public @ResponseBody PurgeExpiringPolResponse purgeExpiryPol(@RequestBody PurgeExpiringPolRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/purgeExpiringPol");
+		logger.info("PurgeExpiringPolRequest : " + eepr.toString());
+		return underwritingService.purgeExpiryPol(eepr);
 	}
 }

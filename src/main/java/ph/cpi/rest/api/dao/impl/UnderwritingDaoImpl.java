@@ -15,11 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
+import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.underwriting.PoolDistribution;
+import ph.cpi.rest.api.model.underwriting.WriskLimit;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
 
 @Component
@@ -420,5 +425,69 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public PolDistribution retrievePolDist(HashMap<String, Object> params) throws SQLException {
 		PolDistribution polDistribution = sqlSession.selectOne("retrievePolDist",params);
 		return polDistribution;
+	}
+
+	@Override
+	public DistWrisk retrieveDistWrisk(HashMap<String, Object> params) throws SQLException {
+		DistWrisk res = sqlSession.selectOne("retrieveDistWrisk", params);
+		return res;
+	}
+
+	@Override
+	public List<WriskLimit> retrieveWriskLimit(HashMap<String, Object> params) throws SQLException {
+		List<WriskLimit> res = sqlSession.selectList("retrieveWriskLimit", params);
+		return res;
+	}
+
+	@Override
+	public List<PoolDistribution> retrievePoolDist(HashMap<String, Object> params) throws SQLException {
+		List<PoolDistribution> res = sqlSession.selectList("retrievePoolDist", params);
+		return res;
+	}
+
+	@Override
+	public List<DistCoIns> retrieveDistCoIns(HashMap<String, Object> params) throws SQLException {
+		List<DistCoIns> res = sqlSession.selectList("retrieveDistCoIns", params);
+		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
+		
+		Integer errorCodeAI = null;
+		Integer errorCodeWC = null;
+		Integer errorCodeNR = null;
+		
+		if ((Integer) params.get("renAICount") > 0) {
+			errorCodeAI = sqlSession.update("processRenewablePolicyAI",params);
+		}
+		
+		if ((Integer) params.get("renWCCount") > 0) {
+			errorCodeWC = sqlSession.update("processRenewablePolicyWC",params);
+		}
+		
+		if ((Integer) params.get("nrCount") > 0) {
+			errorCodeNR = sqlSession.update("processRenewablePolicyNR",params);
+		}
+		
+		params.put("errorCodeAI", errorCodeAI);
+		params.put("errorCodeWC", errorCodeWC);
+		params.put("errorCodeNR", errorCodeNR);
+		
+		return params;
+	}
+		
+	@Override
+	public List<PolForPurging> retrievePolForPurging(HashMap<String, Object> params) throws SQLException {
+		List<PolForPurging> res = sqlSession.selectList("retrievePolForPurging",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> purgeExpiringPol(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("purgeExpiringPol",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }
