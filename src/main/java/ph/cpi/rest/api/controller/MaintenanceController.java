@@ -745,4 +745,19 @@ public class MaintenanceController {
 		logger.info("SaveMtnClmEventRequest : " + smcep.toString());
 		return maintenanceService.saveMtnClmEvent(smcep);
 	}
+	
+	@GetMapping(path="retrieveMtnLossCd")
+	public @ResponseBody RetrieveMtnLossCdResponse retrieveMtnLossCd(RetrieveMtnLossCdRequest rmlcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnLossCd");
+		logger.info("RetrieveMtnLossCdRequest : " + rmlcr.toString());
+		return maintenanceService.retrieveMtnLossCd(rmlcr);	
+	}
+	
+	@PostMapping(path="saveMtnLossCd")
+	public @ResponseBody SaveMtnLossCdResponse saveMtnLossCd(@RequestBody SaveMtnLossCdRequest smcr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnLossCd");
+		logger.info("SaveMtnLossCdRequest : " + smcr.toString());
+		return maintenanceService.saveMtnLossCd(smcr);
+	}
+	
 }

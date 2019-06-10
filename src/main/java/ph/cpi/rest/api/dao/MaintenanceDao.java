@@ -20,14 +20,15 @@ import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
-import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
+import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
+import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
@@ -156,5 +157,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnClmEventType(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnClmEvent> retrieveMtnEvent(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveMtnClmEvent(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnLossCd> retrieveMtnLossCd(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnLossCd(final HashMap<String, Object> params) throws SQLException;
 	
 }
