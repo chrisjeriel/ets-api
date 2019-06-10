@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class TreatyShare {
@@ -17,6 +19,7 @@ public class TreatyShare {
     private String updateUser;
     private DateTime updateDate;
     private String okDelete;
+    private List<CedingRetention> cedRetentionList;
     
 	public Integer getTreatyYear() {
 		return treatyYear;
@@ -96,11 +99,18 @@ public class TreatyShare {
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
+	public List<CedingRetention> getCedRetentionList() {
+		return cedRetentionList;
+	}
+	public void setCedRetentionList(List<CedingRetention> cedRetentionList) {
+		this.cedRetentionList = cedRetentionList;
+	}
 	@Override
 	public String toString() {
 		return "TreatyShare [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId
 				+ ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr + ", pctShare=" + pctShare + ", sortSeq="
 				+ sortSeq + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ ", cedRetentionList=" + cedRetentionList + "]";
 	}
 }

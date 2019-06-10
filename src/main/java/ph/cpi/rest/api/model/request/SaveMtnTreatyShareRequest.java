@@ -8,9 +8,7 @@ public class SaveMtnTreatyShareRequest {
 
 	List<TreatyComm> saveTreatyComm;
 	List<TreatyComm> deleteTreatyComm;
-	List<TreatyShare> saveTreatyShare;
 	List<TreatyShare> deleteTreatyShare;
-	List<CedingRetention> saveCedRetention;
 	List<CedingRetention> deleteCedRetention;
 	
 	public List<TreatyComm> getSaveTreatyComm() {
@@ -25,29 +23,22 @@ public class SaveMtnTreatyShareRequest {
 	public void setDeleteTreatyComm(List<TreatyComm> deleteTreatyComm) {
 		this.deleteTreatyComm = deleteTreatyComm;
 	}
-	public List<TreatyShare> getSaveTreatyShare() {
-		return saveTreatyShare;
-	}
-	public void setSaveTreatyShare(List<TreatyShare> saveTreatyShare) {
-		this.saveTreatyShare = saveTreatyShare;
-	}
 	public List<TreatyShare> getDeleteTreatyShare() {
 		return deleteTreatyShare;
 	}
 	public void setDeleteTreatyShare(List<TreatyShare> deleteTreatyShare) {
 		this.deleteTreatyShare = deleteTreatyShare;
 	}
-	public List<CedingRetention> getSaveCedRetention() {
-		return saveCedRetention;
-	}
-	public void setSaveCedRetention(List<CedingRetention> saveCedRetention) {
-		this.saveCedRetention = saveCedRetention;
-	}
 	public List<CedingRetention> getDeleteCedRetention() {
 		return deleteCedRetention;
 	}
 	public void setDeleteCedRetention(List<CedingRetention> deleteCedRetention) {
 		this.deleteCedRetention = deleteCedRetention;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnTreatyShareRequest [saveTreatyComm=" + saveTreatyComm + ", deleteTreatyComm=" + deleteTreatyComm
+				+ ", deleteTreatyShare=" + deleteTreatyShare + ", deleteCedRetention=" + deleteCedRetention + "]";
 	}
 }
 
@@ -61,6 +52,8 @@ class TreatyComm {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	private List<TreatyShare> treatyShareList;
 	
 	public Integer getTreatyYear() {
 		return treatyYear;
@@ -110,11 +103,17 @@ class TreatyComm {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<TreatyShare> getTreatyShareList() {
+		return treatyShareList;
+	}
+	public void setTreatyShareList(List<TreatyShare> treatyShareList) {
+		this.treatyShareList = treatyShareList;
+	}
 	@Override
 	public String toString() {
 		return "TreatyComm [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", commRate=" + commRate
 				+ ", sortSeq=" + sortSeq + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", treatyShareList=" + treatyShareList + "]";
 	}
 }
 
@@ -130,6 +129,8 @@ class TreatyShare {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	private List<CedingRetention> cedRetentionList;
 	
 	public Integer getTreatyYear() {
 		return treatyYear;
@@ -191,12 +192,18 @@ class TreatyShare {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<CedingRetention> getCedRetentionList() {
+		return cedRetentionList;
+	}
+	public void setCedRetentionList(List<CedingRetention> cedRetentionList) {
+		this.cedRetentionList = cedRetentionList;
+	}
 	@Override
 	public String toString() {
-		return "TreatyComm [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId
+		return "TreatyShare [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId
 				+ ", pctShare=" + pctShare + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", cedRetentionList=" + cedRetentionList + "]";
 	}
 }
 

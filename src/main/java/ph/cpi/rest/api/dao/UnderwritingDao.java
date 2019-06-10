@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
+import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PoolDistribution;
@@ -66,12 +67,10 @@ public interface UnderwritingDao {
 	public Integer retrieveCoInsStatus(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolGenInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolGenInfo(final HashMap<String, Object> params ) throws SQLException;
-	
 	public Integer postPolicy(final HashMap<String, Object> params ) throws SQLException;
 	public Integer genHundredValPolPrinting(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolicyFullCoverage(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolFullCoverage(final HashMap<String, Object> params ) throws SQLException;
-	
 	public HashMap<String, Object> extractExpiringPolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<ExpPolicy> retrieveExpPolList(final HashMap<String, Object> params) throws SQLException;
 	public PolDistribution retrievePolDist(final HashMap<String, Object> params ) throws SQLException;
@@ -82,4 +81,9 @@ public interface UnderwritingDao {
 	
 	public Integer postDistribution(final HashMap<String, Object> params ) throws SQLException;
 	public List<PoolDistribution> retrievePolPoolDist(final HashMap<String, Object> params) throws SQLException;
+	
+	public HashMap<String, Object> processRenewablePolicy(final HashMap<String, Object> params ) throws SQLException;
+	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;
+	
 }

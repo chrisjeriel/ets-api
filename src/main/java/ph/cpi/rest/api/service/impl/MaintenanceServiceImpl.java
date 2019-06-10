@@ -10,194 +10,8 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.request.CopyRetAmtSetupRequest;
-import ph.cpi.rest.api.model.request.CopyTreatyLimitRequest;
-import ph.cpi.rest.api.model.request.CopyTreatyShareSetupRequest;
-import ph.cpi.rest.api.model.request.RetMtnInsuredLovRequest;
-import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
-import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
-import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
-import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnApproverFnRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnApproverRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnBlockRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCATPerilRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyListingRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCedingRetentionRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnClmStatusRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyListRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRtRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnDistrictRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnInsuredRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnIntermediaryRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnLineClassRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnLineRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnNonRenewalReasonRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnObjectRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnParametersRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnProvinceRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnQuoteWordingsRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnReasonRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnRegionRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnReportsParamRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnReportsRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnRetAmtRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnRiskListingRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnRiskRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnRoundingErrorRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversLovRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnSectionCoversRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnSpoilageReasonRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTreatyCommissionRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTreatyLimitRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnUsersLovRequest;
-import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
-import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
-import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
-import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
-import ph.cpi.rest.api.model.request.SaveMtnApproverFnRequest;
-import ph.cpi.rest.api.model.request.SaveMtnApproverRequest;
-import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
-import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
-import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
-import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
-import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
-import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
-import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
-import ph.cpi.rest.api.model.request.SaveMtnDeductiblesRequest;
-import ph.cpi.rest.api.model.request.SaveMtnDistrictRequest;
-import ph.cpi.rest.api.model.request.SaveMtnEndorsementRequest;
-import ph.cpi.rest.api.model.request.SaveMtnInsuredRequest;
-import ph.cpi.rest.api.model.request.SaveMtnIntermediaryRequest;
-import ph.cpi.rest.api.model.request.SaveMtnLineClassRequest;
-import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
-import ph.cpi.rest.api.model.request.SaveMtnNonRenewalReasonRequest;
-import ph.cpi.rest.api.model.request.SaveMtnObjectRequest;
-import ph.cpi.rest.api.model.request.SaveMtnOtherChargeRequest;
-import ph.cpi.rest.api.model.request.SaveMtnParametersRequest;
-import ph.cpi.rest.api.model.request.SaveMtnPolicyWordingsRequest;
-import ph.cpi.rest.api.model.request.SaveMtnProvinceRequest;
-import ph.cpi.rest.api.model.request.SaveMtnQuoteReasonRequest;
-import ph.cpi.rest.api.model.request.SaveMtnQuoteWordingsRequest;
-import ph.cpi.rest.api.model.request.SaveMtnRegionRequest;
-import ph.cpi.rest.api.model.request.SaveMtnReportParamRequest;
-import ph.cpi.rest.api.model.request.SaveMtnReportsRequest;
-import ph.cpi.rest.api.model.request.SaveMtnRetAmtRequest;
-import ph.cpi.rest.api.model.request.SaveMtnRiskRequest;
-import ph.cpi.rest.api.model.request.SaveMtnRoundingErrorRequest;
-import ph.cpi.rest.api.model.request.SaveMtnSectionCoverRequest;
-import ph.cpi.rest.api.model.request.SaveMtnSpoilageReasonRequest;
-import ph.cpi.rest.api.model.request.SaveMtnTreatyLimitRequest;
-import ph.cpi.rest.api.model.request.SaveMtnTreatyRequest;
-import ph.cpi.rest.api.model.request.SaveMtnTreatyShareRequest;
-import ph.cpi.rest.api.model.request.SaveMtnTypeOfCessionRequest;
-import ph.cpi.rest.api.model.response.CopyRetAmtSetupResponse;
-import ph.cpi.rest.api.model.response.CopyTreatyLimitResponse;
-import ph.cpi.rest.api.model.response.CopyTreatyShareSetupResponse;
-import ph.cpi.rest.api.model.response.RetMtnInsuredLovResponse;
-import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
-import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
-import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
-import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnApproverFnResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnApproverResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnBlockResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCATPerilResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyListingResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCedingRetentionResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnClmStatusResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyListResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyRtResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnDistrictResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnInsuredResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnIntermediaryResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnLineClassResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnLineResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnNonRenewalReasonResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnObjectResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnParametersResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnProvinceResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnQuoteWordingsResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnReasonResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnRegionResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnReportsParamResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnReportsResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnRetAmtResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnRiskListingResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnRiskResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnRoundingErrorResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversLovResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnSectionCoversResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnSpoilageReasonResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTreatyCommissionResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTreatyLimitResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnUsersLovResponse;
-import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
-import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
-import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
-import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
-import ph.cpi.rest.api.model.response.SaveMtnApproverFnResponse;
-import ph.cpi.rest.api.model.response.SaveMtnApproverResponse;
-import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
-import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
-import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
-import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
-import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
-import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
-import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
-import ph.cpi.rest.api.model.response.SaveMtnDeductiblesResponse;
-import ph.cpi.rest.api.model.response.SaveMtnDistrictResponse;
-import ph.cpi.rest.api.model.response.SaveMtnEndorsementResponse;
-import ph.cpi.rest.api.model.response.SaveMtnInsuredResponse;
-import ph.cpi.rest.api.model.response.SaveMtnIntermediaryResponse;
-import ph.cpi.rest.api.model.response.SaveMtnLineClassResponse;
-import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
-import ph.cpi.rest.api.model.response.SaveMtnNonRenewalReasonResponse;
-import ph.cpi.rest.api.model.response.SaveMtnObjectResponse;
-import ph.cpi.rest.api.model.response.SaveMtnOtherChargeResponse;
-import ph.cpi.rest.api.model.response.SaveMtnParametersResponse;
-import ph.cpi.rest.api.model.response.SaveMtnPolicyWordingsResponse;
-import ph.cpi.rest.api.model.response.SaveMtnProvinceResponse;
-import ph.cpi.rest.api.model.response.SaveMtnQuoteReasonResponse;
-import ph.cpi.rest.api.model.response.SaveMtnQuoteWordingsResponse;
-import ph.cpi.rest.api.model.response.SaveMtnRegionResponse;
-import ph.cpi.rest.api.model.response.SaveMtnReportParamResponse;
-import ph.cpi.rest.api.model.response.SaveMtnReportsResponse;
-import ph.cpi.rest.api.model.response.SaveMtnRetAmtResponse;
-import ph.cpi.rest.api.model.response.SaveMtnRiskResponse;
-import ph.cpi.rest.api.model.response.SaveMtnRoundingErrorResponse;
-import ph.cpi.rest.api.model.response.SaveMtnSectionCoverResponse;
-import ph.cpi.rest.api.model.response.SaveMtnSpoilageReasonResponse;
-import ph.cpi.rest.api.model.response.SaveMtnTreatyLimitResponse;
-import ph.cpi.rest.api.model.response.SaveMtnTreatyResponse;
-import ph.cpi.rest.api.model.response.SaveMtnTreatyShareResponse;
-import ph.cpi.rest.api.model.response.SaveMtnTypeOfCessionResponse;
-import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitRequest;
-import ph.cpi.rest.api.model.response.SaveMtnUserAmtLimitResponse;
+import ph.cpi.rest.api.model.request.*;
+import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.MaintenanceService;
 
 
@@ -1464,9 +1278,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
 		saveMtnTreatyShareParams.put("saveTreatyComm", smtsr.getSaveTreatyComm());
 		saveMtnTreatyShareParams.put("deleteTreatyComm", smtsr.getDeleteTreatyComm());
-		saveMtnTreatyShareParams.put("saveTreatyShare", smtsr.getSaveTreatyShare());
 		saveMtnTreatyShareParams.put("deleteTreatyShare", smtsr.getDeleteTreatyShare());
-		saveMtnTreatyShareParams.put("saveCedRetention", smtsr.getSaveCedRetention());
 		saveMtnTreatyShareParams.put("deleteCedRetention", smtsr.getDeleteCedRetention());
 		smtsResponse.setReturnCode(maintenanceDao.saveMtnTreatyShare(saveMtnTreatyShareParams));
 		
@@ -1799,5 +1611,178 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return ctlResponse;
+	}
+
+	@Override
+	public RetrieveMtnAdjusterListResponse retrieveMtnAdjusterList(RetrieveMtnAdjusterListRequest rmalr)
+			throws SQLException {
+		RetrieveMtnAdjusterListResponse response = new RetrieveMtnAdjusterListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("adjName", rmalr.getAdjName());
+		params.put("adjRefNo", rmalr.getAdjRefNo());
+		params.put("fullAddress", rmalr.getFullAddress());
+		params.put("zipCd", rmalr.getZipCd());
+		params.put("contactNo", rmalr.getContactNo());
+		params.put("emailAdd", rmalr.getEmailAdd());
+		params.put("createUser", rmalr.getCreateUser());
+		params.put("createDateFrom", rmalr.getCreateDateFrom());
+		params.put("createDateTo", rmalr.getCreateDateTo());
+		params.put("updateUser", rmalr.getUpdateUser());
+		params.put("updateDateFrom", rmalr.getUpdateDateFrom());
+		params.put("updateDateTo", rmalr.getUpdateDateTo());
+		params.put("position", rmalr.getPaginationRequest().getPosition());
+		params.put("count", rmalr.getPaginationRequest().getCount());
+		params.put("sortKey", rmalr.getSortRequest().getSortKey());
+		params.put("order", rmalr.getSortRequest().getOrder());
+		response.setAdjusterList(maintenanceDao.retrieveMtnAdjusterList(params));
+		response.getPaginationResponse().setPosition(rmalr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmalr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmalr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmalr.getSortRequest().getOrder());
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAdjRepresentativeResponse retrieveMtnAdjRepresentative(RetrieveMtnAdjRepresentativeRequest rmarr)
+			throws SQLException {
+		RetrieveMtnAdjRepresentativeResponse response = new RetrieveMtnAdjRepresentativeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("adjId", rmarr.getAdjId());
+		params.put("position", rmarr.getPaginationRequest().getPosition());
+		params.put("count", rmarr.getPaginationRequest().getCount());
+		params.put("sortKey", rmarr.getSortRequest().getSortKey());
+		params.put("order", rmarr.getSortRequest().getOrder());
+		response.setAdjuster(maintenanceDao.retrieveMtnAdjRepresentative(params));
+		response.getPaginationResponse().setPosition(rmarr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmarr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmarr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmarr.getSortRequest().getOrder());
+		return response;
+	}
+
+	@Override
+	public SaveMtnAdjusterResponse saveMtnAdjuster(SaveMtnAdjusterRequest smar) throws SQLException {
+		SaveMtnAdjusterResponse response = new SaveMtnAdjusterResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("adjId", smar.getAdjId());
+			params.put("adjName", smar.getAdjName());
+			params.put("adjRefNo", smar.getAdjRefNo());
+			params.put("addrLine1", smar.getAddrLine1());
+			params.put("addrLine2", smar.getAddrLine2());
+			params.put("addrLine3", smar.getAddrLine3());
+			params.put("zipCd", smar.getZipCd());
+			params.put("contactNo", smar.getContactNo());
+			params.put("emailAdd", smar.getEmailAdd());
+			params.put("activeTag", smar.getActiveTag());
+			params.put("remarks", smar.getRemarks());
+			params.put("createUser", smar.getCreateUser());
+			params.put("createDate", smar.getCreateDate());
+			params.put("updateUser", smar.getUpdateUser());
+			params.put("updateDate", smar.getUpdateDate());
+			params.put("saveAdjRepList", smar.getSaveAdjRepList());
+			params.put("delAdjRepList", smar.getDelAdjRepList());
+			HashMap<String, Object> res = maintenanceDao.saveMtnAdjuster(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setOutAdjId((String) res.get("outAdjId"));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		
+		return response;
+	}
+	
+	@Override
+	public RetrieveMtnLossCdResponse retrieveMtnLossCd(RetrieveMtnLossCdRequest rmlcr) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveMtnLossCdResponse response = new RetrieveMtnLossCdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();		
+		params.put("lossCd",rmlcr.getLossCd());
+		response.setLossCd(maintenanceDao.retrieveMtnLossCd(params));
+		return response;
+
+	}
+
+	@Override
+	public SaveMtnLossCdResponse saveMtnLossCd(SaveMtnLossCdRequest smcr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnLossCdResponse response = new SaveMtnLossCdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("deleteLossCd", smcr.getDeleteLossCd());
+		params.put("saveLossCd", smcr.getSaveLossCd());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnLossCd(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	@Override
+	public RetrieveMtnClmEventTypeResponse retrieveMtnClmEventType(RetrieveMtnClmEventTypeRequest rmcetr)
+			throws SQLException {
+		RetrieveMtnClmEventTypeResponse rmcetResponse = new RetrieveMtnClmEventTypeResponse();
+		HashMap<String, Object> retMtnClmEventTypeParams = new HashMap<String, Object>();
+		retMtnClmEventTypeParams.put("eventTypeCd", rmcetr.getEventTypeCd());
+		rmcetResponse.setEventTypeList(maintenanceDao.retrieveMtnEventType(retMtnClmEventTypeParams));
+		logger.info("RetrieveMtnClmEventTypeResponse: " + rmcetResponse.toString());
+		return rmcetResponse;
+	}
+
+	@Override
+	public SaveMtnClmEventTypeResponse saveMtnClmEventType(SaveMtnClmEventTypeRequest smcetr) throws SQLException {
+		SaveMtnClmEventTypeResponse smcetResponse = new SaveMtnClmEventTypeResponse();
+		HashMap<String, Object> smcetParams = new HashMap<String, Object>();
+		smcetParams.put("saveEventType", smcetr.getSaveEventType());
+		smcetParams.put("deleteEventType",smcetr.getDeleteEventType());
+		smcetResponse.setReturnCode(maintenanceDao.saveMtnClmEventType(smcetParams));
+		logger.info("SaveMtnClmEventTypeResponse : " + smcetResponse.toString());
+		return smcetResponse;
+	}
+	
+	@Override
+	public RetrieveMtnClmEventResponse retrieveMtnClmEvent(RetrieveMtnClmEventRequest rmcer)
+			throws SQLException {
+		RetrieveMtnClmEventResponse rmceResponse = new RetrieveMtnClmEventResponse();
+		HashMap<String, Object> retMtnClmEventParams = new HashMap<String, Object>();
+		retMtnClmEventParams.put("eventCd", rmcer.getEventCd());
+		rmceResponse.setEventList(maintenanceDao.retrieveMtnEvent(retMtnClmEventParams));
+		logger.info("RetrieveMtnClmEventTypeResponse: " + rmceResponse.toString());
+		return rmceResponse;
+	}
+
+	@Override
+	public SaveMtnClmEventResponse saveMtnClmEvent(SaveMtnClmEventRequest smcer) throws SQLException {
+		SaveMtnClmEventResponse smceResponse = new SaveMtnClmEventResponse();
+		HashMap<String, Object> smceParams = new HashMap<String, Object>();
+		smceParams.put("saveEvent", smcer.getSaveEvent());
+		smceParams.put("deleteEvent",smcer.getDeleteEvent());
+		smceResponse.setReturnCode(maintenanceDao.saveMtnClmEvent(smceParams));
+		logger.info("SaveMtnClmEventTypeResponse : " + smceResponse.toString());
+		return smceResponse;
+	}
+	
+	@Override
+	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException {
+		SaveMtnClaimStatusResponse smpResponse = new SaveMtnClaimStatusResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveClaimStatus", smcsr.getSaveClaimStatus());
+			params.put("delClaimStatus", smcsr.getDelClaimStatus());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnClaimStatus(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
 	}
 }
