@@ -1436,6 +1436,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrieveDistCoInsResponse response = new RetrieveDistCoInsResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("riskDistId", rdcir.getRiskDistId());
+		params.put("policyId", rdcir.getPolicyId());
 		response.setDistCoInsList(underwritingDao.retrieveDistCoIns(params));
 		return response;
 	}

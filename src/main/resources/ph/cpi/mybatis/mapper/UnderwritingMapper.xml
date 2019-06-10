@@ -2330,7 +2330,7 @@
 	</resultMap>
 	
 	<select id="retrieveDistCoIns" resultMap="retDistCoInsMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},#{policyId},null,null,null,null))
 	</select>
 	
 	<update id="postDistribution" parameterType="java.util.Map">
