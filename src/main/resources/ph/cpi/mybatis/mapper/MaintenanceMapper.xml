@@ -797,7 +797,7 @@
     </resultMap>
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
-    	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG_TEST.ret_mtn_treaty_com(
+    	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG.ret_mtn_treaty_com(
     															   #{quoteYear, jdbcType=VARCHAR},
     															   #{position, jdbcType=VARCHAR},
     															   #{count, jdbcType=VARCHAR},
@@ -2025,22 +2025,71 @@
     		v_count NUMBER;
     	BEGIN
     		<foreach collection="deleteTreatyComm" item="del">
-	    			MTN_TREATY_COMM_PKG.del_treaty_com(
-			    		#{del.treatyYear, jdbcType=INTEGER},
-			    		#{del.treatyId, jdbcType=INTEGER}
-			    	);
+	    		MTN_TREATY_COMM_PKG.del_treaty_com(
+			    	#{del.treatyYear, jdbcType=INTEGER},
+			    	#{del.treatyId, jdbcType=INTEGER}
+			    );
     		</foreach>
+    		
+    		<foreach collection="deleteTreatyShare" item="del">
+    			MTN_TREATY_SHARE_PKG.del_treaty_share(
+			   		#{del.treatyYear, jdbcType=INTEGER},
+					#{del.treatyId, jdbcType=INTEGER},
+					#{del.trtyCedId, jdbcType=VARCHAR}
+				);
+    		</foreach>
+    		
+    		<foreach collection="deleteCedRetention" item="del">
+    			MTN_CEDING_RETENTION_PKG.del_mtn_ced_retention(
+	    			#{del.treatyYear, jdbcType=INTEGER},
+			   		#{del.treatyId, jdbcType=INTEGER},
+			   		#{del.trtyCedId, jdbcType=VARCHAR},
+			   		#{del.cedingId, jdbcType=VARCHAR}
+			   	);
+    		</foreach>
+    		
     		<foreach collection="saveTreatyComm" item="save">
-		    		MTN_TREATY_COMM_PKG.save_treaty_com(
-		    			#{save.treatyYear, jdbcType=INTEGER},
-		    			#{save.treatyId, jdbcType=INTEGER},
-		    			#{save.commRate, jdbcType=DECIMAL},
-		    			#{save.sortSeq, jdbcType=INTEGER},
-		    			#{save.createUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						#{save.updateUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-		    		);
+		    	MTN_TREATY_COMM_PKG.save_treaty_com(
+		    		#{save.treatyYear, jdbcType=INTEGER},
+		    		#{save.treatyId, jdbcType=INTEGER},
+		    		#{save.commRate, jdbcType=DECIMAL},
+		    		#{save.sortSeq, jdbcType=INTEGER},
+		    		#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    	);
+		    		
+		    	<foreach collection="save.treatyShareList" item="treatyShare">
+		    		MTN_TREATY_SHARE_PKG.save_treaty_share(
+				    	#{treatyShare.treatyYear, jdbcType=INTEGER},
+				    	#{treatyShare.treatyId, jdbcType=INTEGER},
+				    	#{treatyShare.trtyCedId, jdbcType=VARCHAR},
+				    	#{treatyShare.pctShare, jdbcType=FLOAT},
+				    	#{treatyShare.sortSeq, jdbcType=INTEGER},
+				    	#{treatyShare.remarks, jdbcType=VARCHAR},
+						#{treatyShare.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{treatyShare.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{treatyShare.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{treatyShare.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				    );
+					    
+				    <foreach collection="treatyShare.cedRetentionList" item="cedRet">
+				    	MTN_CEDING_RETENTION_PKG.save_mtn_ced_retention(
+				    		#{cedRet.treatyYear, jdbcType=INTEGER},
+				    		#{cedRet.treatyId, jdbcType=INTEGER},
+				    		#{cedRet.trtyCedId, jdbcType=VARCHAR},
+				    		#{cedRet.cedingId, jdbcType=VARCHAR},
+				    		#{cedRet.retLine1, jdbcType=INTEGER},
+				    		#{cedRet.retLine2, jdbcType=INTEGER},
+				    		#{cedRet.remarks, jdbcType=VARCHAR},
+							#{cedRet.createUser, jdbcType=VARCHAR},
+							CAST(to_timestamp(#{cedRet.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							#{cedRet.updateUser, jdbcType=VARCHAR},
+							CAST(to_timestamp(#{cedRet.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				    	);
+				    </foreach>
+		    	</foreach>
     		</foreach>
     		SELECT COUNT(*)
     		  INTO v_count
