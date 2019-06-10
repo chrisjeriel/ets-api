@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCedingRetentionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnChargesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCityRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnClmStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnCurrencyRequest;
@@ -127,6 +128,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCedingRetentionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnChargesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCityResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnClmStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnCurrencyResponse;
@@ -1759,6 +1761,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
 		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
+	}
+
+	@Override
+	public RetrieveMtnClmStatusResponse retrieveMtnClaimStatus(RetrieveMtnClmStatusRequest rafr) throws SQLException {
+		RetrieveMtnClmStatusResponse response = new RetrieveMtnClmStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("statusCode", rafr.getStatusCode());
+		response.setClaimStatus(maintenanceDao.retrieveMtnClaimStatus(params));
+		return response;
 	}
 
 	@Override

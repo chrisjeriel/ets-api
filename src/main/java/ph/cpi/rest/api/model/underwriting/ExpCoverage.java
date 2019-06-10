@@ -1,33 +1,35 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class ExpCoverage {
 	private String policyId;
 	private String projId;
 	private String riskId;
-	private String sectionISi;
-	private String sectionIiSi;
-	private String sectionIiiSi;
-	private String totalSi;
-	private String sectionIPrem;
-	private String sectionIiPrem;
-	private String sectionIiiPrem;
-	private String totalPrem;
+	private BigDecimal sectionISi;
+	private BigDecimal sectionIiSi;
+	private BigDecimal sectionIiiSi;
+	private BigDecimal totalSi;
+	private BigDecimal sectionIPrem;
+	private BigDecimal sectionIiPrem;
+	private BigDecimal sectionIiiPrem;
+	private BigDecimal totalPrem;
 	private String currencyCd;
-	private String currencyRt;
-	private String pctShare;
-	private String pctPml;
-	private String totalValue;
+	private BigDecimal currencyRt;
+	private BigDecimal pctShare;
+	private BigDecimal pctPml;
+	private BigDecimal totalValue;
 	private String remarks;
-	private String origSeciSi;
-	private String origSeciiSi;
-	private String origSeciiiSi;
-	private String origTsi;
-	private String origSeciPrem;
-	private String origSeciiPrem;
-	private String origSeciiiPrem;
-	private String origTprem;
+	private BigDecimal origSeciSi;
+	private BigDecimal origSeciiSi;
+	private BigDecimal origSeciiiSi;
+	private BigDecimal origTsi;
+	private BigDecimal origSeciPrem;
+	private BigDecimal origSeciiPrem;
+	private BigDecimal origSeciiiPrem;
+	private BigDecimal origTprem;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -50,52 +52,52 @@ public class ExpCoverage {
 	public void setRiskId(String riskId) {
 		this.riskId = riskId;
 	}
-	public String getSectionISi() {
+	public BigDecimal getSectionISi() {
 		return sectionISi;
 	}
-	public void setSectionISi(String sectionISi) {
+	public void setSectionISi(BigDecimal sectionISi) {
 		this.sectionISi = sectionISi;
 	}
-	public String getSectionIiSi() {
+	public BigDecimal getSectionIiSi() {
 		return sectionIiSi;
 	}
-	public void setSectionIiSi(String sectionIiSi) {
+	public void setSectionIiSi(BigDecimal sectionIiSi) {
 		this.sectionIiSi = sectionIiSi;
 	}
-	public String getSectionIiiSi() {
+	public BigDecimal getSectionIiiSi() {
 		return sectionIiiSi;
 	}
-	public void setSectionIiiSi(String sectionIiiSi) {
+	public void setSectionIiiSi(BigDecimal sectionIiiSi) {
 		this.sectionIiiSi = sectionIiiSi;
 	}
-	public String getTotalSi() {
+	public BigDecimal getTotalSi() {
 		return totalSi;
 	}
-	public void setTotalSi(String totalSi) {
+	public void setTotalSi(BigDecimal totalSi) {
 		this.totalSi = totalSi;
 	}
-	public String getSectionIPrem() {
+	public BigDecimal getSectionIPrem() {
 		return sectionIPrem;
 	}
-	public void setSectionIPrem(String sectionIPrem) {
+	public void setSectionIPrem(BigDecimal sectionIPrem) {
 		this.sectionIPrem = sectionIPrem;
 	}
-	public String getSectionIiPrem() {
+	public BigDecimal getSectionIiPrem() {
 		return sectionIiPrem;
 	}
-	public void setSectionIiPrem(String sectionIiPrem) {
+	public void setSectionIiPrem(BigDecimal sectionIiPrem) {
 		this.sectionIiPrem = sectionIiPrem;
 	}
-	public String getSectionIiiPrem() {
+	public BigDecimal getSectionIiiPrem() {
 		return sectionIiiPrem;
 	}
-	public void setSectionIiiPrem(String sectionIiiPrem) {
+	public void setSectionIiiPrem(BigDecimal sectionIiiPrem) {
 		this.sectionIiiPrem = sectionIiiPrem;
 	}
-	public String getTotalPrem() {
+	public BigDecimal getTotalPrem() {
 		return totalPrem;
 	}
-	public void setTotalPrem(String totalPrem) {
+	public void setTotalPrem(BigDecimal totalPrem) {
 		this.totalPrem = totalPrem;
 	}
 	public String getCurrencyCd() {
@@ -104,28 +106,28 @@ public class ExpCoverage {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getCurrencyRt() {
+	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(String currencyRt) {
+	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
-	public String getPctShare() {
+	public BigDecimal getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(String pctShare) {
+	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
 	}
-	public String getPctPml() {
+	public BigDecimal getPctPml() {
 		return pctPml;
 	}
-	public void setPctPml(String pctPml) {
+	public void setPctPml(BigDecimal pctPml) {
 		this.pctPml = pctPml;
 	}
-	public String getTotalValue() {
+	public BigDecimal getTotalValue() {
 		return totalValue;
 	}
-	public void setTotalValue(String totalValue) {
+	public void setTotalValue(BigDecimal totalValue) {
 		this.totalValue = totalValue;
 	}
 	public String getRemarks() {
@@ -134,52 +136,52 @@ public class ExpCoverage {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public String getOrigSeciSi() {
+	public BigDecimal getOrigSeciSi() {
 		return origSeciSi;
 	}
-	public void setOrigSeciSi(String origSeciSi) {
+	public void setOrigSeciSi(BigDecimal origSeciSi) {
 		this.origSeciSi = origSeciSi;
 	}
-	public String getOrigSeciiSi() {
+	public BigDecimal getOrigSeciiSi() {
 		return origSeciiSi;
 	}
-	public void setOrigSeciiSi(String origSeciiSi) {
+	public void setOrigSeciiSi(BigDecimal origSeciiSi) {
 		this.origSeciiSi = origSeciiSi;
 	}
-	public String getOrigSeciiiSi() {
+	public BigDecimal getOrigSeciiiSi() {
 		return origSeciiiSi;
 	}
-	public void setOrigSeciiiSi(String origSeciiiSi) {
+	public void setOrigSeciiiSi(BigDecimal origSeciiiSi) {
 		this.origSeciiiSi = origSeciiiSi;
 	}
-	public String getOrigTsi() {
+	public BigDecimal getOrigTsi() {
 		return origTsi;
 	}
-	public void setOrigTsi(String origTsi) {
+	public void setOrigTsi(BigDecimal origTsi) {
 		this.origTsi = origTsi;
 	}
-	public String getOrigSeciPrem() {
+	public BigDecimal getOrigSeciPrem() {
 		return origSeciPrem;
 	}
-	public void setOrigSeciPrem(String origSeciPrem) {
+	public void setOrigSeciPrem(BigDecimal origSeciPrem) {
 		this.origSeciPrem = origSeciPrem;
 	}
-	public String getOrigSeciiPrem() {
+	public BigDecimal getOrigSeciiPrem() {
 		return origSeciiPrem;
 	}
-	public void setOrigSeciiPrem(String origSeciiPrem) {
+	public void setOrigSeciiPrem(BigDecimal origSeciiPrem) {
 		this.origSeciiPrem = origSeciiPrem;
 	}
-	public String getOrigSeciiiPrem() {
+	public BigDecimal getOrigSeciiiPrem() {
 		return origSeciiiPrem;
 	}
-	public void setOrigSeciiiPrem(String origSeciiiPrem) {
+	public void setOrigSeciiiPrem(BigDecimal origSeciiiPrem) {
 		this.origSeciiiPrem = origSeciiiPrem;
 	}
-	public String getOrigTprem() {
+	public BigDecimal getOrigTprem() {
 		return origTprem;
 	}
-	public void setOrigTprem(String origTprem) {
+	public void setOrigTprem(BigDecimal origTprem) {
 		this.origTprem = origTprem;
 	}
 	public String getCreateUser() {
@@ -219,5 +221,4 @@ public class ExpCoverage {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

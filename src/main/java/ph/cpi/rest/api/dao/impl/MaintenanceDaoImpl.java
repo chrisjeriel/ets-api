@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -702,6 +703,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+
+	public List<ClaimStatus> retrieveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
+		List<ClaimStatus> list = sqlSession.selectList("retrieveMtnClaimStatus",params);
+		return list;
+	}
+
 	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
 		System.out.println(params);
