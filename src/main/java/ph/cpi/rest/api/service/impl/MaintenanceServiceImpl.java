@@ -1690,6 +1690,37 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			response.getErrorList().add(new Error("SQLException","Please check the field values."));
 			e.printStackTrace();
 		}
+		
+		return response;
+	}
+	
+	@Override
+	public RetrieveMtnLossCdResponse retrieveMtnLossCd(RetrieveMtnLossCdRequest rmlcr) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveMtnLossCdResponse response = new RetrieveMtnLossCdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();		
+		params.put("lossCd",rmlcr.getLossCd());
+		response.setLossCd(maintenanceDao.retrieveMtnLossCd(params));
+		return response;
+
+	}
+
+	@Override
+	public SaveMtnLossCdResponse saveMtnLossCd(SaveMtnLossCdRequest smcr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnLossCdResponse response = new SaveMtnLossCdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("deleteLossCd", smcr.getDeleteLossCd());
+		params.put("saveLossCd", smcr.getSaveLossCd());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnLossCd(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
 		return response;
 	}
 	
@@ -1735,5 +1766,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smceResponse.setReturnCode(maintenanceDao.saveMtnClmEvent(smceParams));
 		logger.info("SaveMtnClmEventTypeResponse : " + smceResponse.toString());
 		return smceResponse;
+	}
+	
+	@Override
+	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException {
+		SaveMtnClaimStatusResponse smpResponse = new SaveMtnClaimStatusResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveClaimStatus", smcsr.getSaveClaimStatus());
+			params.put("delClaimStatus", smcsr.getDelClaimStatus());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnClaimStatus(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
 	}
 }

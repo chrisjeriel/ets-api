@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
 import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
+import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
@@ -711,6 +712,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public List<MtnLossCd> retrieveMtnLossCd(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCd",params);
+		return list;
+	}
+
+	@Override
 	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
 		System.out.println(params);
@@ -772,5 +780,20 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	public Integer saveMtnClmEvent(HashMap<String, Object> params) throws SQLException {
 		Integer saveMtnClmEvent = sqlSession.update("saveMtnClmEvent",params);
 		return saveMtnClmEvent;
+	}
+	
+	@Override
+	public Integer saveMtnLossCd(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnLossCd", params);
+		return errorCode;
+	}
+	
+
+	@Override
+	public HashMap<String, Object> saveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnClaimStatus",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

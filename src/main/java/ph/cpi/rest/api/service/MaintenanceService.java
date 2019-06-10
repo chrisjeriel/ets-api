@@ -111,5 +111,7 @@ public interface MaintenanceService {
 	public SaveMtnClmEventTypeResponse saveMtnClmEventType(SaveMtnClmEventTypeRequest smcetr) throws SQLException;
 	public RetrieveMtnClmEventResponse retrieveMtnClmEvent(RetrieveMtnClmEventRequest rmcer) throws SQLException;
 	public SaveMtnClmEventResponse saveMtnClmEvent(SaveMtnClmEventRequest smcer) throws SQLException;
-
+	public RetrieveMtnLossCdResponse retrieveMtnLossCd(RetrieveMtnLossCdRequest rmlcr) throws SQLException;
+	public SaveMtnLossCdResponse saveMtnLossCd(SaveMtnLossCdRequest smcr) throws SQLException;
+	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException;
 }
