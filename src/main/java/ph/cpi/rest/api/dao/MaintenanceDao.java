@@ -152,4 +152,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnTreatyLimit(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkTreatyLimit(HashMap<String, Object> params) throws SQLException;
 	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnClaimStatus(final HashMap<String, Object> params) throws SQLException;
+	
 }

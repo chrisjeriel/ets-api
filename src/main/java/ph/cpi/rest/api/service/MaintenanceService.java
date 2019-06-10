@@ -67,6 +67,7 @@ import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
+import ph.cpi.rest.api.model.request.SaveMtnClaimStatusRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
@@ -160,6 +161,7 @@ import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
+import ph.cpi.rest.api.model.response.SaveMtnClaimStatusResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
@@ -290,4 +292,5 @@ public interface MaintenanceService {
 	public RetrieveMtnClmStatusResponse retrieveMtnClaimStatus(RetrieveMtnClmStatusRequest rafr) throws SQLException;
 	public SaveMtnTreatyLimitResponse saveMtnTreatyLimit(SaveMtnTreatyLimitRequest smtlr) throws SQLException;
 	public CopyTreatyLimitResponse copyTreatyLimit(CopyTreatyLimitRequest ctlr) throws SQLException;
+	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException;
 }

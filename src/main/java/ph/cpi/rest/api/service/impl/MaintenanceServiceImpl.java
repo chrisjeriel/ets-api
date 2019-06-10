@@ -73,6 +73,7 @@ import ph.cpi.rest.api.model.request.SaveMtnBlockRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCedingCompanyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCityRequest;
+import ph.cpi.rest.api.model.request.SaveMtnClaimStatusRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCrestaZoneRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRequest;
 import ph.cpi.rest.api.model.request.SaveMtnCurrencyRtRequest;
@@ -166,6 +167,7 @@ import ph.cpi.rest.api.model.response.SaveMtnBlockResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCedingCompanyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCityResponse;
+import ph.cpi.rest.api.model.response.SaveMtnClaimStatusResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCrestaZoneResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyResponse;
 import ph.cpi.rest.api.model.response.SaveMtnCurrencyRtResponse;
@@ -1799,5 +1801,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return ctlResponse;
+	}
+
+	@Override
+	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException {
+		SaveMtnClaimStatusResponse smpResponse = new SaveMtnClaimStatusResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveClaimStatus", smcsr.getSaveClaimStatus());
+			params.put("delClaimStatus", smcsr.getDelClaimStatus());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnClaimStatus(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
 	}
 }

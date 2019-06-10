@@ -727,4 +727,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer res = sqlSession.update("copyTreatyLimit", params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnClaimStatus",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
