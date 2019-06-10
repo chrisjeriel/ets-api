@@ -2293,6 +2293,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PoolDistribution" id="retPoolDistMap">
 		<result property="riskDistId"		column="RISK_DIST_ID" />
 		<result property="treatyId"			column="TREATY_ID" />
+		<result property="section"			column="SECTION" />
 		<result property="treatyAbbr"		column="TREATY_ABBR" />
 		<result property="trtyCedId"		column="TRTY_CED_ID" />
 		<result property="cedingId"			column="CEDING_ID" />
@@ -2329,8 +2330,14 @@
 	</resultMap>
 	
 	<select id="retrieveDistCoIns" resultMap="retDistCoInsMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},#{policyId},null,null,null,null))
 	</select>
+	
+	<update id="postDistribution" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId});
+		END;
+	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistribution" id="retPolDistMap">
 		<result property="distNo"			column="DIST_ID" />
@@ -2380,6 +2387,10 @@
 	
 	<select id="retrievePolDist" resultMap="retPolDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
@@ -540,6 +542,20 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveDistCoIns");
 		logger.info("RetrieveDistCoInsResponse : " + rdcir.toString());
 		return underwritingService.retrieveDistCoIns(rdcir);
+	}
+	
+	@PostMapping(path="postDistribution")
+	public @ResponseBody PostDistributionResponse postDistribution(@RequestBody PostDistributionRequest pdr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/postDistribution");
+		logger.info("PostDistributionRequest : " + pdr.toString());
+		return underwritingService.postDistribution(pdr);
+	}
+	
+	@GetMapping(path="retrievePolPoolDist")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolPoolDist");
+		logger.info("RetrievePolPoolDistributionRequest : " + rpdr.toString());
+		return underwritingService.retrievePolPoolDist(rpdr);
 	}
 	
 	@GetMapping(path="retrievePolForPurging")

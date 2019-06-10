@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class PoolDistribution {
 	private Integer riskDistId;
 	private Integer treatyId;
+	private String section;
 	private String treatyAbbr;
 	private String trtyCedId;
 	private String cedingId;
@@ -31,6 +32,12 @@ public class PoolDistribution {
 	}
 	public void setTreatyId(Integer treatyId) {
 		this.treatyId = treatyId;
+	}
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
 	}
 	public String getTreatyAbbr() {
 		return treatyAbbr;
@@ -116,14 +123,13 @@ public class PoolDistribution {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "PoolDistribution [riskDistId=" + riskDistId + ", treatyId=" + treatyId + ", treatyAbbr=" + treatyAbbr
-				+ ", trtyCedId=" + trtyCedId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", retOneLines=" + retOneLines + ", retOneTsiAmt=" + retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt
-				+ ", retTwoLines=" + retTwoLines + ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt=" + retTwoPremAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "PoolDistribution [riskDistId=" + riskDistId + ", treatyId=" + treatyId + ", section=" + section
+				+ ", treatyAbbr=" + treatyAbbr + ", trtyCedId=" + trtyCedId + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", retOneLines=" + retOneLines + ", retOneTsiAmt=" + retOneTsiAmt + ", retOnePremAmt="
+				+ retOnePremAmt + ", retTwoLines=" + retTwoLines + ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt="
+				+ retTwoPremAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

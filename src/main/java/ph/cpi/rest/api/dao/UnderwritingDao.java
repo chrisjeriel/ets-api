@@ -78,6 +78,10 @@ public interface UnderwritingDao {
 	public List<WriskLimit> retrieveWriskLimit(final HashMap<String, Object> params) throws SQLException;
 	public List<PoolDistribution> retrievePoolDist(final HashMap<String, Object> params) throws SQLException;
 	public List<DistCoIns> retrieveDistCoIns(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer postDistribution(final HashMap<String, Object> params ) throws SQLException;
+	public List<PoolDistribution> retrievePolPoolDist(final HashMap<String, Object> params) throws SQLException;
+	
 	public HashMap<String, Object> processRenewablePolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;

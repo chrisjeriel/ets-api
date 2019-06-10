@@ -451,6 +451,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return res;
 	}
 
+	@Override
+	public Integer postDistribution(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("postDistribution",params);
+		return code;
+	}
+
+	@Override
+	public List<PoolDistribution> retrievePolPoolDist(HashMap<String, Object> params) throws SQLException {
+		List<PoolDistribution> res = sqlSession.selectList("retrievePolPoolDist", params);
+		return res;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
