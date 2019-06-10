@@ -159,5 +159,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnClmEvent(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnLossCd> retrieveMtnLossCd(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnLossCd(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnClaimStatus(final HashMap<String, Object> params) throws SQLException;
 	
 }

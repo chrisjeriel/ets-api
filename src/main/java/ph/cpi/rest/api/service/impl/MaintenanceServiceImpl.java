@@ -1767,4 +1767,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("SaveMtnClmEventTypeResponse : " + smceResponse.toString());
 		return smceResponse;
 	}
+	
+	@Override
+	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException {
+		SaveMtnClaimStatusResponse smpResponse = new SaveMtnClaimStatusResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveClaimStatus", smcsr.getSaveClaimStatus());
+			params.put("delClaimStatus", smcsr.getDelClaimStatus());
+			
+			HashMap<String, Object> res = maintenanceDao.saveMtnClaimStatus(params);
+			smpResponse.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			smpResponse.setReturnCode(0);
+			smpResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smpResponse;
+	}
 }

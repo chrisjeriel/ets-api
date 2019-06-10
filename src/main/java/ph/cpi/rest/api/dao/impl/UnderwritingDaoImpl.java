@@ -15,12 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
-import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
+import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PoolDistribution;
@@ -475,6 +475,19 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCodeWC", errorCodeWC);
 		params.put("errorCodeNR", errorCodeNR);
 		
+		return params;
+	}
+		
+	@Override
+	public List<PolForPurging> retrievePolForPurging(HashMap<String, Object> params) throws SQLException {
+		List<PolForPurging> res = sqlSession.selectList("retrievePolForPurging",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> purgeExpiringPol(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("purgeExpiringPol",params);
+		params.put("errorCode", errorCode);
 		return params;
 	}
 }

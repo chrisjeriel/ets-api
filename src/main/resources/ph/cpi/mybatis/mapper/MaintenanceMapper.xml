@@ -2879,4 +2879,26 @@
     	END;
     </update>
     
+	<update id="saveMtnClaimStatus" parameterType="java.util.Map" >
+		BEGIN
+			<foreach collection="delClaimStatus" item="del">
+				MTN_CLAIM_STATUS_PKG.del_mtn_claim_status(
+				#{del.statusCode}
+			);
+			</foreach>
+			<foreach collection="saveClaimStatus" item="save">
+				MTN_CLAIM_STATUS_PKG.save_mtn_claim_status(
+				#{save.statusCode},
+				#{save.description},
+				#{save.activeTag, jdbcType=VARCHAR},
+				#{save.remarks, jdbcType=VARCHAR},
+				#{save.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{save.updateUser},
+				CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

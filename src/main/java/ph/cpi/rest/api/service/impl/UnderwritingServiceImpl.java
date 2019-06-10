@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
+import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
@@ -29,6 +30,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
+import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolFullCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
@@ -71,6 +73,7 @@ import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
+import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -86,6 +89,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
+import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
@@ -1410,7 +1414,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		
-		return null;
+		return prpResponse;
 	}
 	
 	@Override
@@ -1442,5 +1446,32 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("riskDistId", rdcir.getRiskDistId());
 		response.setDistCoInsList(underwritingDao.retrieveDistCoIns(params));
 		return response;
+	}
+
+	@Override
+	public RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr) throws SQLException {
+		RetrievePolForPurgingResponse response = new RetrievePolForPurgingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpfpr.getPolicyId());
+		response.setPolForPurging(underwritingDao.retrievePolForPurging(params));
+		return response;
+	}
+
+	@Override
+	public PurgeExpiringPolResponse purgeExpiryPol(PurgeExpiringPolRequest spfcr) throws SQLException {
+		PurgeExpiringPolResponse prpResponse = new PurgeExpiringPolResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("deletePurge", spfcr.getDeletePurge());
+			
+			HashMap<String, Object> res = underwritingDao.purgeExpiringPol(params);
+			prpResponse.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			prpResponse.setReturnCode(0);
+			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		
+		return prpResponse;
 	}
 }
