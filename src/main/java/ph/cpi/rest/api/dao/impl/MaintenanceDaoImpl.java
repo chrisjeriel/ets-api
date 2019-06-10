@@ -33,6 +33,8 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
+import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
@@ -703,12 +705,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
-
 	public List<ClaimStatus> retrieveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
 		List<ClaimStatus> list = sqlSession.selectList("retrieveMtnClaimStatus",params);
 		return list;
 	}
 
+	@Override
 	public Integer saveMtnTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnTreatyLimit", params);
 		System.out.println(params);
@@ -746,5 +748,29 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		Integer res = sqlSession.update("saveMtnAdjuster", params);
 		params.put("errorCode", res);
 		return params;
+	}
+	
+	@Override
+	public List<MtnClmEventType> retrieveMtnEventType(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEventType> eventTypeList = sqlSession.selectList("retrieveMtnClmEventType", params);
+		return eventTypeList;
+	}
+
+	@Override
+	public Integer saveMtnClmEventType(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnClmEventType = sqlSession.update("saveMtnClmEventType",params);
+		return saveMtnClmEventType;
+	}
+
+	@Override
+	public List<MtnClmEvent> retrieveMtnEvent(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEvent> eventList = sqlSession.selectList("retrieveMtnClmEvent", params);
+		return eventList;
+	}
+
+	@Override
+	public Integer saveMtnClmEvent(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnClmEvent = sqlSession.update("saveMtnClmEvent",params);
+		return saveMtnClmEvent;
 	}
 }
