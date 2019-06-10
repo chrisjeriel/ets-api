@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
@@ -706,6 +707,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		System.out.println(params);
 		return res;
 	}
+	
+	@Override
+	public List<Adjuster> retrieveMtnAdjusterList(HashMap<String, Object> params) throws SQLException {
+		List<Adjuster> res = sqlSession.selectList("retMtnAdjList", params);
+		return res;
+	}
 
 	@Override
 	public Integer checkTreatyLimit(HashMap<String, Object> params) throws SQLException {
@@ -716,8 +723,21 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	}
 
 	@Override
+	public Adjuster retrieveMtnAdjRepresentative(HashMap<String, Object> params) throws SQLException {
+		Adjuster res = sqlSession.selectOne("retMtnAdj", params);
+		return res;
+	}
+
+	@Override
 	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("copyTreatyLimit", params);
 		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnAdjuster(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnAdjuster", params);
+		params.put("errorCode", res);
+		return params;
 	}
 }

@@ -18,6 +18,8 @@ import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjRepresentativeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjusterListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
@@ -63,6 +65,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
@@ -110,6 +113,8 @@ import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjRepresentativeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjusterListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
@@ -155,6 +160,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
@@ -1788,5 +1794,85 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return ctlResponse;
+	}
+
+	@Override
+	public RetrieveMtnAdjusterListResponse retrieveMtnAdjusterList(RetrieveMtnAdjusterListRequest rmalr)
+			throws SQLException {
+		RetrieveMtnAdjusterListResponse response = new RetrieveMtnAdjusterListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("adjName", rmalr.getAdjName());
+		params.put("adjRefNo", rmalr.getAdjRefNo());
+		params.put("fullAddress", rmalr.getFullAddress());
+		params.put("zipCd", rmalr.getZipCd());
+		params.put("contactNo", rmalr.getContactNo());
+		params.put("emailAdd", rmalr.getEmailAdd());
+		params.put("createUser", rmalr.getCreateUser());
+		params.put("createDateFrom", rmalr.getCreateDateFrom());
+		params.put("createDateTo", rmalr.getCreateDateTo());
+		params.put("updateUser", rmalr.getUpdateUser());
+		params.put("updateDateFrom", rmalr.getUpdateDateFrom());
+		params.put("updateDateTo", rmalr.getUpdateDateTo());
+		params.put("position", rmalr.getPaginationRequest().getPosition());
+		params.put("count", rmalr.getPaginationRequest().getCount());
+		params.put("sortKey", rmalr.getSortRequest().getSortKey());
+		params.put("order", rmalr.getSortRequest().getOrder());
+		response.setAdjusterList(maintenanceDao.retrieveMtnAdjusterList(params));
+		response.getPaginationResponse().setPosition(rmalr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmalr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmalr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmalr.getSortRequest().getOrder());
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAdjRepresentativeResponse retrieveMtnAdjRepresentative(RetrieveMtnAdjRepresentativeRequest rmarr)
+			throws SQLException {
+		RetrieveMtnAdjRepresentativeResponse response = new RetrieveMtnAdjRepresentativeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("adjId", rmarr.getAdjId());
+		params.put("position", rmarr.getPaginationRequest().getPosition());
+		params.put("count", rmarr.getPaginationRequest().getCount());
+		params.put("sortKey", rmarr.getSortRequest().getSortKey());
+		params.put("order", rmarr.getSortRequest().getOrder());
+		response.setAdjuster(maintenanceDao.retrieveMtnAdjRepresentative(params));
+		response.getPaginationResponse().setPosition(rmarr.getPaginationRequest().getPosition());
+		response.getPaginationResponse().setCount(rmarr.getPaginationRequest().getCount());
+		response.getSortResponse().setSortKey(rmarr.getSortRequest().getSortKey());
+		response.getSortResponse().setOrder(rmarr.getSortRequest().getOrder());
+		return response;
+	}
+
+	@Override
+	public SaveMtnAdjusterResponse saveMtnAdjuster(SaveMtnAdjusterRequest smar) throws SQLException {
+		SaveMtnAdjusterResponse response = new SaveMtnAdjusterResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("adjId", smar.getAdjId());
+			params.put("adjName", smar.getAdjName());
+			params.put("adjRefNo", smar.getAdjRefNo());
+			params.put("addrLine1", smar.getAddrLine1());
+			params.put("addrLine2", smar.getAddrLine2());
+			params.put("addrLine3", smar.getAddrLine3());
+			params.put("zipCd", smar.getZipCd());
+			params.put("contactNo", smar.getContactNo());
+			params.put("emailAdd", smar.getEmailAdd());
+			params.put("activeTag", smar.getActiveTag());
+			params.put("remarks", smar.getRemarks());
+			params.put("createUser", smar.getCreateUser());
+			params.put("createDate", smar.getCreateDate());
+			params.put("updateUser", smar.getUpdateUser());
+			params.put("updateDate", smar.getUpdateDate());
+			params.put("saveAdjRepList", smar.getSaveAdjRepList());
+			params.put("delAdjRepList", smar.getDelAdjRepList());
+			HashMap<String, Object> res = maintenanceDao.saveMtnAdjuster(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setOutAdjId((String) res.get("outAdjId"));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

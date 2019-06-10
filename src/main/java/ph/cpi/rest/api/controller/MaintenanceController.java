@@ -21,6 +21,8 @@ import ph.cpi.rest.api.model.request.RetMtnPolWordingsRequest;
 import ph.cpi.rest.api.model.request.RetMtnQuoteReasonRequest;
 import ph.cpi.rest.api.model.request.RetMtnUserAmtLimitRequest;
 import ph.cpi.rest.api.model.request.RetrieveEndtCodeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjRepresentativeRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnAdjusterListRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnApprovalRequest;
@@ -65,6 +67,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnTreatyRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTreatyShareRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTypeOfCessionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRefCodeRequest;
+import ph.cpi.rest.api.model.request.SaveMtnAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveMtnAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalFunctionRequest;
 import ph.cpi.rest.api.model.request.SaveMtnApprovalRequest;
@@ -112,6 +115,8 @@ import ph.cpi.rest.api.model.response.RetMtnPolWordingsResponse;
 import ph.cpi.rest.api.model.response.RetMtnQuoteReasonResponse;
 import ph.cpi.rest.api.model.response.RetMtnUserAmtLimitResponse;
 import ph.cpi.rest.api.model.response.RetrieveEndtCodeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjRepresentativeResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnAdjusterListResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnApprovalResponse;
@@ -156,6 +161,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnTreatyResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTreatyShareResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTypeOfCessionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRefCodeResponse;
+import ph.cpi.rest.api.model.response.SaveMtnAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveMtnAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalFunctionResponse;
 import ph.cpi.rest.api.model.response.SaveMtnApprovalResponse;
@@ -870,5 +876,26 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/copyTreatyLimit");
 		logger.info("CopyTreatyLimitRequest : " + ctlr.toString());
 		return maintenanceService.copyTreatyLimit(ctlr);
+	}
+	
+	@GetMapping(path="retrieveMtnAdjusterList")
+	public @ResponseBody RetrieveMtnAdjusterListResponse retrieveMtnAdjusterList(RetrieveMtnAdjusterListRequest rmalr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAdjusterList");
+		logger.info("RetrieveMtnAdjusterListRequest : " + rmalr.toString());
+		return maintenanceService.retrieveMtnAdjusterList(rmalr); 	
+	}
+	
+	@GetMapping(path="retrieveMtnAdjRepresentative")
+	public @ResponseBody RetrieveMtnAdjRepresentativeResponse retrieveMtnAdjRepresentative(RetrieveMtnAdjRepresentativeRequest rmarr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAdjRepresentative");
+		logger.info("RetrieveMtnAdjRepresentativeRequest : " + rmarr.toString());
+		return maintenanceService.retrieveMtnAdjRepresentative(rmarr); 	
+	}
+	
+	@PostMapping(path="saveMtnAdjuster")
+	public @ResponseBody SaveMtnAdjusterResponse saveMtnAdjuster(@RequestBody SaveMtnAdjusterRequest smar) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAdjuster");
+		logger.info("SaveMtnAdjusterRequest : " + smar.toString());
+		return maintenanceService.saveMtnAdjuster(smar);
 	}
 }

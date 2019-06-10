@@ -3,8 +3,9 @@ package ph.cpi.rest.api.dao;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import ph.cpi.rest.api.model.maintenance.Parameters;
+
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
@@ -27,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
+import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -150,4 +152,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnTreatyLimit(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkTreatyLimit(HashMap<String, Object> params) throws SQLException;
 	public Integer copyTreatyLimit(HashMap<String, Object> params) throws SQLException;
+	public List<Adjuster> retrieveMtnAdjusterList(final HashMap<String, Object> params) throws SQLException;
+	public Adjuster retrieveMtnAdjRepresentative(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnAdjuster(final HashMap<String, Object> params) throws SQLException;
 }
