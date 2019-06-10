@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
@@ -448,5 +449,32 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<DistCoIns> retrieveDistCoIns(HashMap<String, Object> params) throws SQLException {
 		List<DistCoIns> res = sqlSession.selectList("retrieveDistCoIns", params);
 		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
+		
+		Integer errorCodeAI = null;
+		Integer errorCodeWC = null;
+		Integer errorCodeNR = null;
+		
+		if ((Integer) params.get("renAICount") > 0) {
+			errorCodeAI = sqlSession.update("processRenewablePolicyAI",params);
+		}
+		
+		if ((Integer) params.get("renWCCount") > 0) {
+			errorCodeWC = sqlSession.update("processRenewablePolicyWC",params);
+		}
+		
+		if ((Integer) params.get("nrCount") > 0) {
+			errorCodeNR = sqlSession.update("processRenewablePolicyNR",params);
+		}
+		
+		params.put("errorCodeAI", errorCodeAI);
+		params.put("errorCodeWC", errorCodeWC);
+		params.put("errorCodeNR", errorCodeNR);
+		
+		return params;
 	}
 }

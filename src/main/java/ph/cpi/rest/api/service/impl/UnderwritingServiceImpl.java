@@ -1391,13 +1391,19 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		ProcessRenewablePolicyResponse prpResponse = new ProcessRenewablePolicyResponse();
 		try{
 			HashMap<String, Object> processRenewablePolicyParams = new HashMap<String, Object>();
+			processRenewablePolicyParams.put("renAICount", prpr.getRenAsIsPolicyList().size());
+			processRenewablePolicyParams.put("renWCCount", prpr.getRenWithChangesPolicyList().size());
+			processRenewablePolicyParams.put("nrCount", prpr.getNonRenPolicyList().size());
+			
 			processRenewablePolicyParams.put("renAsIsPolicyList", prpr.getRenAsIsPolicyList());
 			processRenewablePolicyParams.put("renWithChangesPolicyList", prpr.getRenWithChangesPolicyList());
 			processRenewablePolicyParams.put("nonRenPolicyList", prpr.getNonRenPolicyList());
 			
 			
 			logger.info(processRenewablePolicyParams.toString());
-			//spaResponse.setReturnCode(underwritingDao.savePolAttachments(processRenewablePolicyParams));
+			
+			HashMap<String, Object> resp = new HashMap<String, Object>();
+			resp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
 		}catch(Exception ex){
 			prpResponse.setReturnCode(0);
 			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
