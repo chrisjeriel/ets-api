@@ -1408,12 +1408,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			HashMap<String, Object> resp = new HashMap<String, Object>();
 			resp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
+			prpResponse.setReturnCodeAI((Integer) resp.get("returnCodeAI"));
+			prpResponse.setReturnCodeWC((Integer) resp.get("returnCodeWC"));
+			prpResponse.setReturnCodeNR((Integer) resp.get("returnCodeAI"));
+			prpResponse.setPolicyId((Integer) resp.get("policyId"));
+			prpResponse.setPolicyNo((String) resp.get("policyNo"));
 		}catch(Exception ex){
-			prpResponse.setReturnCode(0);
+			prpResponse.setReturnCodeAI(0);
+			prpResponse.setReturnCodeWC(0);
+			prpResponse.setReturnCodeNR(0);
 			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
-		
 		return prpResponse;
 	}
 	
@@ -1453,6 +1459,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrievePolForPurgingResponse response = new RetrievePolForPurgingResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId", rpfpr.getPolicyId());
+		params.put("lineCd", rpfpr.getLineCd());
 		response.setPolForPurging(underwritingDao.retrievePolForPurging(params));
 		return response;
 	}

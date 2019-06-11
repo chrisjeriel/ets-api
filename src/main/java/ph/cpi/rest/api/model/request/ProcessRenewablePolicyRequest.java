@@ -70,6 +70,7 @@ class PolicyWithChanges {
 	private List<ExpSectionCover> secCovList;
 	private List<ExpDeductibles> deductiblesList;
 	private String summaryTag;
+	private String processBy;
 	
 	public String getPolicyId() {
 		return policyId;
@@ -101,13 +102,19 @@ class PolicyWithChanges {
 	public void setSummaryTag(String summaryTag) {
 		this.summaryTag = summaryTag;
 	}
+	
+	public String getProcessBy() {
+		return processBy;
+	}
+	public void setProcessBy(String processBy) {
+		this.processBy = processBy;
+	}
 	@Override
 	public String toString() {
 		return "PolicyWithChanges [policyId=" + policyId + ", projectList=" + projectList + ", secCovList=" + secCovList
-				+ ", deductiblesList=" + deductiblesList + ", summaryTag=" + summaryTag + "]";
+				+ ", deductiblesList=" + deductiblesList + ", summaryTag=" + summaryTag + ", processBy=" + processBy
+				+ "]";
 	}
-	
-	
 }
 
 class PolicyNonRenewal {

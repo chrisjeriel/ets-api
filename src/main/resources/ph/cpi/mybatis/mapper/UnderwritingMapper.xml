@@ -2399,9 +2399,17 @@
 	<update id="purgeExpiringPol" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deletePurge" item="del">
-					PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
+				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId},#{del.lineCd,jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>
+	
+	<update id="processRenewablePolicyWC" parameterType="java.util.Map">
+		BEGIN
+		   <foreach collection="renWithChangesPolicyList" item="renewal">
+		   	   DIST_EXT_PKG.gen_renewal_policy(#{renewal.policyId},#{policyId, mode=OUT, jdbcType=VARCHAR},#{policyNo,mode=OUT, jdbcType=VARCHAR},#{renewal.processBy});
+		   </foreach>
+		END;
+	</update> 
 	
 </mapper>
