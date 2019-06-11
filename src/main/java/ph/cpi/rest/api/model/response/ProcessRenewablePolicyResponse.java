@@ -10,14 +10,31 @@ import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
 
 public class ProcessRenewablePolicyResponse {
-
-	
 	private List<PolicyAsIs> renAsIsPolicyList;
 	private List<PolicyWithChanges> renWithChangesPolicyList;
 	private List<PolicyNonRenewal> nonRenPolicyList;
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	
+	public List<PolicyAsIs> getRenAsIsPolicyList() {
+		return renAsIsPolicyList;
+	}
+	public void setRenAsIsPolicyList(List<PolicyAsIs> renAsIsPolicyList) {
+		this.renAsIsPolicyList = renAsIsPolicyList;
+	}
+	public List<PolicyWithChanges> getRenWithChangesPolicyList() {
+		return renWithChangesPolicyList;
+	}
+	public void setRenWithChangesPolicyList(List<PolicyWithChanges> renWithChangesPolicyList) {
+		this.renWithChangesPolicyList = renWithChangesPolicyList;
+	}
+	public List<PolicyNonRenewal> getNonRenPolicyList() {
+		return nonRenPolicyList;
+	}
+	public void setNonRenPolicyList(List<PolicyNonRenewal> nonRenPolicyList) {
+		this.nonRenPolicyList = nonRenPolicyList;
+	}
 	public List<Error> getErrorList() {
 		if (errorList == null) {
 			errorList = new ArrayList<Error>();
@@ -28,9 +45,6 @@ public class ProcessRenewablePolicyResponse {
 		this.errorList = errorList;
 	}
 	public List<Message> getMessageList() {
-		if (messageList == null) {
-			messageList = new ArrayList<Message>();
-		}
 		return messageList;
 	}
 	public void setMessageList(List<Message> messageList) {
@@ -42,38 +56,11 @@ public class ProcessRenewablePolicyResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	
-	public List<PolicyAsIs> getRenAsIsPolicyList() {
-		if (renAsIsPolicyList == null) {
-			renAsIsPolicyList = new ArrayList<PolicyAsIs>();
-		}
-		return renAsIsPolicyList;
-	}
-	public void setRenAsIsPolicyList(List<PolicyAsIs> renAsIsPolicyList) {
-		this.renAsIsPolicyList = renAsIsPolicyList;
-	}
-	public List<PolicyWithChanges> getRenWithChangesPolicyList() {
-		if (renWithChangesPolicyList == null) {
-			renWithChangesPolicyList = new ArrayList<PolicyWithChanges>();
-		}
-		return renWithChangesPolicyList;
-	}
-	public void setRenWithChangesPolicyList(List<PolicyWithChanges> renWithChangesPolicyList) {
-		this.renWithChangesPolicyList = renWithChangesPolicyList;
-	}
-	public List<PolicyNonRenewal> getNonRenPolicyList() {
-		if (nonRenPolicyList == null) {
-			nonRenPolicyList = new ArrayList<PolicyNonRenewal>();
-		}
-		return nonRenPolicyList;
-	}
-	public void setNonRenPolicyList(List<PolicyNonRenewal> nonRenPolicyList) {
-		this.nonRenPolicyList = nonRenPolicyList;
-	}
 	@Override
 	public String toString() {
-		return "ProcessRenewablePolicyResponse [errorList=" + errorList + ", messageList=" + messageList
-				+ ", returnCode=" + returnCode + "]";
+		return "ProcessRenewablePolicyResponse [renAsIsPolicyList=" + renAsIsPolicyList + ", renWithChangesPolicyList="
+				+ renWithChangesPolicyList + ", nonRenPolicyList=" + nonRenPolicyList + ", errorList=" + errorList
+				+ ", messageList=" + messageList + ", returnCode=" + returnCode + "]";
 	}
 	
 }

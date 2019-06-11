@@ -478,9 +478,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		 
-		
-		
 		return params;
 	}
 		
@@ -493,6 +490,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public HashMap<String, Object> purgeExpiringPol(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("purgeExpiringPol",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveExpCov(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveExpCov",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

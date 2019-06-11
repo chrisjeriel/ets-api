@@ -2399,11 +2399,19 @@
 	<update id="purgeExpiringPol" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deletePurge" item="del">
-					PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
+				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId},#{del.lineCd,jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>
 	
+	<update id="processRenewablePolicyWC" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			{CALL
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, #{processBy, jdbcType=VARCHAR});
+			}	
+		END;
+	</update> 
+
 	<update id="processRenewablePolicyAI" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			{CALL
@@ -2420,4 +2428,28 @@
 		END;
 	</update>
 	
+	<update id="saveExpCov" parameterType="java.util.Map">
+		BEGIN
+			EXP_LISTING_PKG.save_exp_cov( #{policyId}, #{projId}, #{riskId}, #{sectionISi}, #{sectionIiSi}, 
+										  #{sectionIiiSi}, #{totalSi}, #{sectionIPrem}, #{sectionIiPrem}, 
+										  #{sectionIiiPrem}, #{totalPrem}, #{currencyCd}, #{currencyRt}, 
+										  #{pctShare}, #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{origSeciSi}, 
+										  #{origSeciiSi}, #{origSeciiiSi}, #{origTsi}, #{origSeciPrem}, 
+										  #{origSeciiPrem}, #{origSeciiiPrem}, #{origTprem}, #{createUser}, 
+										  CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+										  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="expSecCovers" item="sectioncovers">
+				EXP_LISTING_PKG.save_exp_sec_cov(#{sectioncovers.policyId}, #{sectioncovers.lineCd}, #{sectioncovers.projId}, 
+												 #{sectioncovers.riskId}, #{sectioncovers.section}, #{sectioncovers.coverCd}, 
+												 #{sectioncovers.coverName}, #{sectioncovers.bulletNo}, #{sectioncovers.sumInsured}, 
+												 #{sectioncovers.premRt}, #{sectioncovers.premAmt}, #{sectioncovers.addSi}, 
+												 #{sectioncovers.discountTag}, #{sectioncovers.origSi}, #{sectioncovers.origPremRt}, 
+												 #{sectioncovers.origPrem}, #{sectioncovers.createUser}, 
+												 CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 #{sectioncovers.updateUser}, 
+												 CAST(to_timestamp(#{sectioncovers.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>
