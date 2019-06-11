@@ -2310,6 +2310,16 @@
 		<result property="retTwoLines"		column="RET2_LINES" />
 		<result property="retTwoTsiAmt"		column="RET2_TSI_AMT" />
 		<result property="retTwoPremAmt"	column="RET2_PREM_AMT" />
+		<result property="commRt"           column="COMM_RT" />
+		<result property="retOneCommAmt"    column="RET1_COMM_AMT" />
+		<result property="retTwoCommAmt"    column="RET2_COMM_AMT" />
+		<result property="totalCommAmt"     column="TOTAL_COMM_AMT" />
+		<result property="retOneVatRiComm"  column="RET1_VAT_RI_COMM" />
+		<result property="retTwoVatRiComm"  column="RET2_VAT_RI_COMM" />
+		<result property="totalVatRiComm"   column="TOTAL_VAT_RI_COMM" />
+		<result property="retOneNetDue"     column="RET1_NET_DUE" />
+		<result property="retTwoNetDue"     column="RET2_NET_DUE" />
+		<result property="totalNetDue"      column="TOTAL_NET_DUE" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
