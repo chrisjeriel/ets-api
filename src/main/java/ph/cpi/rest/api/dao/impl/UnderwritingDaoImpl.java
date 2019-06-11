@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
@@ -507,5 +508,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("purgeExpiringPol",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<DistRiskWparam> retrieveDistRiskWparam(HashMap<String, Object> params) throws SQLException {
+		List<DistRiskWparam> res = sqlSession.selectList("retrieveDistRiskWparam", params);
+		return res;
 	}
 }

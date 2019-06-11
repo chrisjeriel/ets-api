@@ -10,12 +10,14 @@ public class DistRiskWtreaty {
 	private Double pctShare;
 	private Double siAmt;
 	private Double premAmt;
-	private Double commShare;
+	private Double commRt;
+	private Double commAmt;
+	private Double vatRiComm;
+	private Double netDue;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getTreatyId() {
 		return treatyId;
 	}
@@ -58,11 +60,29 @@ public class DistRiskWtreaty {
 	public void setPremAmt(Double premAmt) {
 		this.premAmt = premAmt;
 	}
-	public Double getCommShare() {
-		return commShare;
+	public Double getCommRt() {
+		return commRt;
 	}
-	public void setCommShare(Double commShare) {
-		this.commShare = commShare;
+	public void setCommRt(Double commRt) {
+		this.commRt = commRt;
+	}
+	public Double getCommAmt() {
+		return commAmt;
+	}
+	public void setCommAmt(Double commAmt) {
+		this.commAmt = commAmt;
+	}
+	public Double getVatRiComm() {
+		return vatRiComm;
+	}
+	public void setVatRiComm(Double vatRiComm) {
+		this.vatRiComm = vatRiComm;
+	}
+	public Double getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(Double netDue) {
+		this.netDue = netDue;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -88,12 +108,12 @@ public class DistRiskWtreaty {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "DistRiskWtreaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId
 				+ ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", siAmt=" + siAmt + ", premAmt="
-				+ premAmt + ", commShare=" + commShare + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", netDue="
+				+ netDue + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
