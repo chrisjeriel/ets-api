@@ -478,9 +478,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		 
-		
-		
 		return params;
 	}
 		

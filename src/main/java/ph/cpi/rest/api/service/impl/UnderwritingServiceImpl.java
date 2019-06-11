@@ -1409,22 +1409,14 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			processRenewablePolicyParams.put("renWithChangesPolicyList", prpr.getRenWithChangesPolicyList());
 			processRenewablePolicyParams.put("nonRenPolicyList", prpr.getNonRenPolicyList());
 			
-			
 			logger.info(processRenewablePolicyParams.toString());
 			
 			daoResp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
-			
 			prpResponse.setRenAsIsPolicyList((List<PolicyAsIs>) daoResp.get("renAsIsPolicyList"));
-			
 			prpResponse.setRenWithChangesPolicyList((List<PolicyWithChanges>) daoResp.get("renWithChangesPolicyList"));
-			
 			prpResponse.setNonRenPolicyList((List<PolicyNonRenewal>) daoResp.get("nonRenPolicyList"));
-			
-
 		}catch(Exception ex){
-			prpResponse.setReturnCodeAI(0);
-			prpResponse.setReturnCodeWC(0);
-			prpResponse.setReturnCodeNR(0);
+			prpResponse.setReturnCode(0);
 			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}

@@ -2404,11 +2404,11 @@
 		END;
 	</update>
 	
-	<update id="processRenewablePolicyWC" parameterType="java.util.Map">
+	<update id="processRenewablePolicyWC" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-		   <foreach collection="renWithChangesPolicyList" item="renewal">
-		   	   DIST_EXT_PKG.gen_renewal_policy(#{renewal.policyId},#{policyId, mode=OUT, jdbcType=VARCHAR},#{policyNo,mode=OUT, jdbcType=VARCHAR},#{renewal.processBy});
-		   </foreach>
+			{CALL
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, #{processBy, jdbcType=VARCHAR});
+			}	
 		END;
 	</update> 
 
