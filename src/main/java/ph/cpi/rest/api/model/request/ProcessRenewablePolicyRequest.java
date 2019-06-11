@@ -2,9 +2,9 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import ph.cpi.rest.api.model.underwriting.ExpDeductibles;
-import ph.cpi.rest.api.model.underwriting.ExpProject;
-import ph.cpi.rest.api.model.underwriting.ExpSectionCover;
+import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
+import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
+import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
 
 public class ProcessRenewablePolicyRequest {
 
@@ -35,9 +35,6 @@ public class ProcessRenewablePolicyRequest {
 		return "ProcessRenewablePolicyRequest [renAsIsPolicyList=" + renAsIsPolicyList + ", renWithChangesPolicyList="
 				+ renWithChangesPolicyList + ", nonRenPolicyList=" + nonRenPolicyList + "]";
 	}
-	
-	
-	
 }
 
 class PolicyAsIs {
@@ -115,27 +112,4 @@ class PolicyWithChanges {
 				+ ", deductiblesList=" + deductiblesList + ", summaryTag=" + summaryTag + ", processBy=" + processBy
 				+ "]";
 	}
-}
-
-class PolicyNonRenewal {
-	
-	private String policyId;
-	private String nrReasonCd;
-	public String getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(String policyId) {
-		this.policyId = policyId;
-	}
-	public String getNrReasonCd() {
-		return nrReasonCd;
-	}
-	public void setNrReasonCd(String nrReasonCd) {
-		this.nrReasonCd = nrReasonCd;
-	}
-	@Override
-	public String toString() {
-		return "PolicyNonRenewal [policyId=" + policyId + ", nrReasonCd=" + nrReasonCd + "]";
-	}
-	
 }

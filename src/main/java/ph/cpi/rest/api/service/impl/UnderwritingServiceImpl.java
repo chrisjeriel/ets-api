@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -127,6 +129,9 @@ import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
+import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
+import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
+import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
 import ph.cpi.rest.api.service.UnderwritingService;
 import ph.cpi.rest.api.utils.DateUtility;
 
@@ -1370,6 +1375,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		HashMap<String, Object> retrieveExpPolListParams = new HashMap<String, Object>();
 		retrieveExpPolListParams.put("policyId", replr.getPolicyId());
+		retrieveExpPolListParams.put("processTag", replr.getProcessTag());
+		retrieveExpPolListParams.put("renewalFlag", replr.getRenewalFlag());
 		retrieveExpPolListParams.put("extractUser", replr.getExtractUser());
 		
 		replResponse.setExpPolicyList(underwritingDao.retrieveExpPolList(retrieveExpPolListParams));
@@ -1389,15 +1396,14 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		return rpcrResponse;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ProcessRenewablePolicyResponse processRenewablePolicy(ProcessRenewablePolicyRequest prpr)
 			throws SQLException {
 		ProcessRenewablePolicyResponse prpResponse = new ProcessRenewablePolicyResponse();
+		HashMap<String, Object> daoResp = new HashMap<String, Object>();
 		try{
 			HashMap<String, Object> processRenewablePolicyParams = new HashMap<String, Object>();
-			processRenewablePolicyParams.put("renAICount", prpr.getRenAsIsPolicyList().size());
-			processRenewablePolicyParams.put("renWCCount", prpr.getRenWithChangesPolicyList().size());
-			processRenewablePolicyParams.put("nrCount", prpr.getNonRenPolicyList().size());
 			
 			processRenewablePolicyParams.put("renAsIsPolicyList", prpr.getRenAsIsPolicyList());
 			processRenewablePolicyParams.put("renWithChangesPolicyList", prpr.getRenWithChangesPolicyList());
@@ -1406,13 +1412,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			logger.info(processRenewablePolicyParams.toString());
 			
-			HashMap<String, Object> resp = new HashMap<String, Object>();
-			resp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
-			prpResponse.setReturnCodeAI((Integer) resp.get("returnCodeAI"));
-			prpResponse.setReturnCodeWC((Integer) resp.get("returnCodeWC"));
-			prpResponse.setReturnCodeNR((Integer) resp.get("returnCodeAI"));
-			prpResponse.setPolicyId((Integer) resp.get("policyId"));
-			prpResponse.setPolicyNo((String) resp.get("policyNo"));
+			daoResp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
+			
+			prpResponse.setRenAsIsPolicyList((List<PolicyAsIs>) daoResp.get("renAsIsPolicyList"));
+			
+			prpResponse.setRenWithChangesPolicyList((List<PolicyWithChanges>) daoResp.get("renWithChangesPolicyList"));
+			
+			prpResponse.setNonRenPolicyList((List<PolicyNonRenewal>) daoResp.get("nonRenPolicyList"));
+			
+
 		}catch(Exception ex){
 			prpResponse.setReturnCodeAI(0);
 			prpResponse.setReturnCodeWC(0);
@@ -1420,6 +1428,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
+		logger.info("POST DAO prpResponse : " + daoResp);
+		logger.info("POST prpResponse : " + prpResponse.toString());
 		return prpResponse;
 	}
 	

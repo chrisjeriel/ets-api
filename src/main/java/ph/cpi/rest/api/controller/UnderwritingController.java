@@ -515,10 +515,10 @@ public class UnderwritingController {
 	}
 	
 	@PostMapping(path="processRenewablePolicy")
-	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest eepr) throws SQLException {
+	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest prpr) throws SQLException {
 		logger.info("POST: /api/underwriting-service/processRenewablePolicy");
-		logger.info("processRenewablePolicy : " + eepr.toString());
-		return underwritingService.processRenewablePolicy(eepr);
+		logger.info("processRenewablePolicy : " + prpr.toString());
+		return underwritingService.processRenewablePolicy(prpr);
 	}
 	
 	@GetMapping(path="retrieveRiskDist")
