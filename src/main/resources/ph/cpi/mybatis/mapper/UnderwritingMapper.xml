@@ -2197,7 +2197,7 @@
 	</resultMap>
 	
 	<select id="retrieveExpPolList" resultMap="retrieveExpPolListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveExpProject" resultMap="expProjectMap" parameterType="java.util.Map">
@@ -2401,6 +2401,22 @@
 			<foreach collection="deletePurge" item="del">
 					PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
 			</foreach>
+		END;
+	</update>
+	
+	<update id="processRenewablePolicyAI" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			{CALL
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+			}	
+		END;
+	</update>
+	
+	<update id="processRenewablePolicyNR" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			{CALL
+				DIST_EXT_PKG.upd_non_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{nrReasonCd, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+			}	
 		END;
 	</update>
 	
