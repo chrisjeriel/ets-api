@@ -22,7 +22,10 @@ import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
+import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
+import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
 import ph.cpi.rest.api.model.underwriting.PoolDistribution;
 import ph.cpi.rest.api.model.underwriting.WriskLimit;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
@@ -418,6 +421,7 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<ExpPolicy> retrieveExpPolList(HashMap<String, Object> params) throws SQLException {
 		logger.info("retrieveExpPolList DAO params:" + params);
 		List<ExpPolicy> expPolicyList = sqlSession.selectList("retrieveExpPolList", params);
+		logger.info("expPolicyList: " + expPolicyList.size());
 		return expPolicyList;
 	}
 
@@ -466,26 +470,28 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
+		logger.info("processRenewablePolicy DAO : " + params);
 		
-		Integer errorCodeAI = null;
-		Integer errorCodeWC = null;
-		Integer errorCodeNR = null;
-		
-		if ((Integer) params.get("renAICount") > 0) {
-			errorCodeAI = sqlSession.update("processRenewablePolicyAI",params);
+		try {
+			for (PolicyAsIs renPol : ((List<PolicyAsIs>) params.get("renAsIsPolicyList"))) {
+				logger.info("renAsIsPolicyList renPol : " + renPol);
+				sqlSession.update("processRenewablePolicyAI",renPol);
+			}
+			
+			for (PolicyWithChanges renPol : ((List<PolicyWithChanges>) params.get("renWithChangesPolicyList"))) {
+				logger.info("renWithChangesPolicyList renPol : " + renPol);
+				sqlSession.update("processRenewablePolicyWC",renPol);
+			}
+			
+			for (PolicyNonRenewal renPol : ((List<PolicyNonRenewal>) params.get("nonRenPolicyList"))) {
+				logger.info("nonRenPolicyList renPol : " + renPol);
+				sqlSession.update("processRenewablePolicyNR",renPol);
+			}
+		} catch(Exception ex) {
+			ex.printStackTrace();
 		}
+		 
 		
-		if ((Integer) params.get("renWCCount") > 0) {
-			errorCodeWC = sqlSession.update("processRenewablePolicyWC",params);
-		}
-		
-		if ((Integer) params.get("nrCount") > 0) {
-			errorCodeNR = sqlSession.update("processRenewablePolicyNR",params);
-		}
-		
-		params.put("errorCodeAI", errorCodeAI);
-		params.put("errorCodeWC", errorCodeWC);
-		params.put("errorCodeNR", errorCodeNR);
 		
 		return params;
 	}
