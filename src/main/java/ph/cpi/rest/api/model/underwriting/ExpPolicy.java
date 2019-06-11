@@ -414,5 +414,28 @@ public class ExpPolicy {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
+	@Override
+	public String toString() {
+		return "ExpPolicy [policyId=" + policyId + ", policyNo=" + policyNo + ", extractUser=" + extractUser
+				+ ", extractDate=" + extractDate + ", processTag=" + processTag + ", processedBy=" + processedBy
+				+ ", processedDate=" + processedDate + ", renewalFlag=" + renewalFlag + ", summaryTag=" + summaryTag
+				+ ", balanceTag=" + balanceTag + ", claimTag=" + claimTag + ", reminderTag=" + reminderTag
+				+ ", nrReasonCd=" + nrReasonCd + ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", lineClassCd=" + lineClassCd
+				+ ", quoteId=" + quoteId + ", optionId=" + optionId + ", coRefNo=" + coRefNo + ", reinsurerId="
+				+ reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo + ", intmId=" + intmId
+				+ ", prinId=" + prinId + ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc
+				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom
+				+ ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo
+				+ ", issueDate=" + issueDate + ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate="
+				+ acctDate + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", bookedTag=" + bookedTag
+				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
+				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
+				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
+				+ ", excludeDistTag=" + excludeDistTag + ", projectList=" + projectList + ", itemList=" + itemList
+				+ ", deductiblesList=" + deductiblesList + ", sectionCoverList=" + sectionCoverList + ", coverageList="
+				+ coverageList + ", catPerilList=" + catPerilList + ", endorsementList=" + endorsementList + "]";
+	}
+	
 
 }
