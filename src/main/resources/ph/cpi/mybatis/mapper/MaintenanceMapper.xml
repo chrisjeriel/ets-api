@@ -2586,7 +2586,6 @@
     	DECLARE
     		v_treaty_limit_id MTN_TREATY_LIMIT.TREATY_LIMIT_ID%TYPE;
     	BEGIN
-    	
     		<foreach collection="saveTreatyLimit" item="save">
     			IF #{save.treatyLimitId, jdbcType=INTEGER} IS NULL
     			THEN
@@ -2624,7 +2623,10 @@
 			        );
 	    		</foreach>
     		</foreach>
-    	
+    		
+    		SELECT 1
+    		  INTO v_treaty_limit_id
+    		FROM DUAL;
     	END;
     </update>
     
