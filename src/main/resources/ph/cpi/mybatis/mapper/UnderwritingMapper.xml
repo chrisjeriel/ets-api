@@ -2428,4 +2428,28 @@
 		END;
 	</update>
 	
+	<update id="saveExpCov" parameterType="java.util.Map">
+		BEGIN
+			EXP_LISTING_PKG.save_exp_cov( #{policyId}, #{projId}, #{riskId}, #{sectionISi}, #{sectionIiSi}, 
+										  #{sectionIiiSi}, #{totalSi}, #{sectionIPrem}, #{sectionIiPrem}, 
+										  #{sectionIiiPrem}, #{totalPrem}, #{currencyCd}, #{currencyRt}, 
+										  #{pctShare}, #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{origSeciSi}, 
+										  #{origSeciiSi}, #{origSeciiiSi}, #{origTsi}, #{origSeciPrem}, 
+										  #{origSeciiPrem}, #{origSeciiiPrem}, #{origTprem}, #{createUser}, 
+										  CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+										  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="expSecCovers" item="sectioncovers">
+				EXP_LISTING_PKG.save_exp_sec_cov(#{sectioncovers.policyId}, #{sectioncovers.lineCd}, #{sectioncovers.projId}, 
+												 #{sectioncovers.riskId}, #{sectioncovers.section}, #{sectioncovers.coverCd}, 
+												 #{sectioncovers.coverName}, #{sectioncovers.bulletNo}, #{sectioncovers.sumInsured}, 
+												 #{sectioncovers.premRt}, #{sectioncovers.premAmt}, #{sectioncovers.addSi}, 
+												 #{sectioncovers.discountTag}, #{sectioncovers.origSi}, #{sectioncovers.origPremRt}, 
+												 #{sectioncovers.origPrem}, #{sectioncovers.createUser}, 
+												 CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 #{sectioncovers.updateUser}, 
+												 CAST(to_timestamp(#{sectioncovers.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

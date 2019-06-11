@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
+import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -106,6 +107,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
+import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -1482,5 +1484,51 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		
 		return prpResponse;
+	}
+
+	@Override
+	public SaveExpCovResponse saveExpCoverage(SaveExpCovRequest secr) throws SQLException {
+		SaveExpCovResponse response = new SaveExpCovResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("policyId", secr.getPolicyId());
+			params.put("projId", secr.getProjId());
+			params.put("riskId", secr.getRiskId());
+			params.put("sectionISi", secr.getSectionISi());
+			params.put("sectionIiSi", secr.getSectionIiSi());
+			params.put("sectionIiiSi", secr.getSectionIiiSi());
+			params.put("totalSi", secr.getTotalSi());
+			params.put("sectionIPrem", secr.getSectionIPrem());
+			params.put("sectionIiPrem", secr.getSectionIiiPrem());
+			params.put("sectionIiiPrem", secr.getSectionIiiPrem());
+			params.put("totalPrem", secr.getTotalPrem());
+			params.put("currencyCd", secr.getCurrencyCd());
+			params.put("currencyRt", secr.getCurrencyRt());
+			params.put("pctShare", secr.getPctShare());
+			params.put("pctPml", secr.getPctPml());
+			params.put("totalValue", secr.getTotalValue());
+			params.put("remarks", secr.getRemarks());
+			params.put("origSeciSi", secr.getOrigSeciSi());
+			params.put("origSeciiSi", secr.getOrigSeciiSi());
+			params.put("origSeciiiSi", secr.getOrigSeciiiSi());
+			params.put("origTsi", secr.getOrigTsi());
+			params.put("origSeciPrem", secr.getOrigSeciPrem());
+			params.put("origSeciiPrem", secr.getOrigSeciiPrem());
+			params.put("origSeciiiPrem", secr.getOrigSeciiiPrem());
+			params.put("origTprem", secr.getOrigTprem());
+			params.put("createUser", secr.getCreateUser());
+			params.put("createDate", secr.getCreateDate());
+			params.put("updateUser", secr.getUpdateUser());
+			params.put("updateDate", secr.getUpdateDate());
+			params.put("expSecCovers", secr.getExpSecCovers());
+			
+			HashMap<String, Object> res = underwritingDao.saveExpCov(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch (Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 }
