@@ -25,6 +25,7 @@ public class PolicyAsIs {
 	}
 	public void setNewPolicyId(String newPolicyId) {
 		this.newPolicyId = newPolicyId;
+		
 	}
 	public String getNewPolicyNo() {
 		return newPolicyNo;
