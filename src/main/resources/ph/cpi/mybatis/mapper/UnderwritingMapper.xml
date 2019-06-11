@@ -2439,6 +2439,10 @@
 										  CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
+			<foreach collection="delexpSecCovers" item="delsectioncovers">
+				EXP_LISTING_PKG.del_exp_edit(#{delsectioncovers.policyId}, #{delsectioncovers.lineCd}, #{delsectioncovers.projId}, 
+												 #{delsectioncovers.riskId}, #{delsectioncovers.section}, #{delsectioncovers.coverCd});
+			</foreach>
 			<foreach collection="expSecCovers" item="sectioncovers">
 				EXP_LISTING_PKG.save_exp_sec_cov(#{sectioncovers.policyId}, #{sectioncovers.lineCd}, #{sectioncovers.projId}, 
 												 #{sectioncovers.riskId}, #{sectioncovers.section}, #{sectioncovers.coverCd}, 

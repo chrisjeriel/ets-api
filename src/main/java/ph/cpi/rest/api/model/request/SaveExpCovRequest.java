@@ -38,7 +38,7 @@ public class SaveExpCovRequest {
 	private String updateDate;
 	
 	private List<ExpSecCovers> expSecCovers;
-
+	private List<ExpSecCovers> delexpSecCovers;
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -280,6 +280,16 @@ public class SaveExpCovRequest {
 	public void setExpSecCovers(List<ExpSecCovers> expSecCovers) {
 		this.expSecCovers = expSecCovers;
 	}
+	
+	
+
+	public List<ExpSecCovers> getDelexpSecCovers() {
+		return delexpSecCovers;
+	}
+
+	public void setDelexpSecCovers(List<ExpSecCovers> delexpSecCovers) {
+		this.delexpSecCovers = delexpSecCovers;
+	}
 
 	@Override
 	public String toString() {
@@ -292,7 +302,8 @@ public class SaveExpCovRequest {
 				+ ", origSeciiiSi=" + origSeciiiSi + ", origTsi=" + origTsi + ", origSeciPrem=" + origSeciPrem
 				+ ", origSeciiPrem=" + origSeciiPrem + ", origSeciiiPrem=" + origSeciiiPrem + ", origTprem=" + origTprem
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", expSecCovers=" + expSecCovers + "]";
+				+ ", updateDate=" + updateDate + ", expSecCovers=" + expSecCovers + ", delexpSecCovers="
+				+ delexpSecCovers + "]";
 	}
 	
 }
