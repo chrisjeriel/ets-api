@@ -1521,6 +1521,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			params.put("updateUser", secr.getUpdateUser());
 			params.put("updateDate", secr.getUpdateDate());
 			params.put("expSecCovers", secr.getExpSecCovers());
+			params.put("delexpSecCovers", secr.getDelexpSecCovers());
 			
 			HashMap<String, Object> res = underwritingDao.saveExpCov(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
