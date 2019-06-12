@@ -2406,9 +2406,9 @@
 	
 	<update id="processRenewablePolicyWC" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			{CALL
-				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, #{processBy, jdbcType=VARCHAR});
-			}	
+			{CALL 
+				DIST_EXT_PKG.upd_wc_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+			}
 		END;
 	</update> 
 

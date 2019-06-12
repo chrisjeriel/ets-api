@@ -468,7 +468,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 			
 			for (PolicyWithChanges renPol : ((List<PolicyWithChanges>) params.get("renWithChangesPolicyList"))) {
 				logger.info("renWithChangesPolicyList renPol : " + renPol);
+				sqlSession.update("processRenewablePolicyAI",renPol);
+				logger.info("renWithChangesPolicyList renPol after AI : " + renPol);
 				sqlSession.update("processRenewablePolicyWC",renPol);
+				logger.info("renWithChangesPolicyList renPol after WC: " + renPol);
 			}
 			
 			for (PolicyNonRenewal renPol : ((List<PolicyNonRenewal>) params.get("nonRenPolicyList"))) {
