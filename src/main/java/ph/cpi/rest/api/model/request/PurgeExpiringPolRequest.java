@@ -40,7 +40,17 @@ public class PurgeExpiringPolRequest {
 
 @Alias ("PurgeExpiry")
 class Purge {
+	
 	private String policyId;
+	private String lineCd;
+
+	public String getLineCd() {
+		return lineCd;
+	}
+
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
 
 	public String getPolicyId() {
 		return policyId;
@@ -52,7 +62,7 @@ class Purge {
 
 	@Override
 	public String toString() {
-		return "Purge [policyId=" + policyId + "]";
+		return "Purge [policyId=" + policyId + ", lineCd=" + lineCd + "]";
 	}
-	
+
 }
