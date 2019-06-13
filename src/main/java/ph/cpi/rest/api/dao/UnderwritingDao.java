@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -87,5 +88,6 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> processRenewablePolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;
+	public List<PolDistList> retrievePolDistList(final HashMap<String, Object> params) throws SQLException;
 	
 }

@@ -810,7 +810,7 @@
     </resultMap>
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
-    	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG_TEST.ret_mtn_treaty_com(
+    	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG.ret_mtn_treaty_com(
     															   #{quoteYear, jdbcType=VARCHAR},
     															   #{position, jdbcType=VARCHAR},
     															   #{count, jdbcType=VARCHAR},
