@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveRiskDistRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
@@ -128,6 +129,7 @@ import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveRiskDistResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
@@ -1448,6 +1450,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrievePoolDistributionResponse response = new RetrievePoolDistributionResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("riskDistId", rpdr.getRiskDistId());
+		params.put("altNo", rpdr.getAltNo());
 		response.setPoolDistList(underwritingDao.retrievePoolDist(params));
 		return response;
 	}
@@ -1517,7 +1520,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		return prpResponse;
 	}
-
+	
 	@Override
 	public SaveExpCovResponse saveExpCoverage(SaveExpCovRequest secr) throws SQLException {
 		SaveExpCovResponse response = new SaveExpCovResponse();
@@ -1563,5 +1566,23 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public SaveRiskDistResponse saveRiskDist(SaveRiskDistRequest srdr) throws SQLException {
+		SaveRiskDistResponse srdrResponse = new SaveRiskDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("riskDistId",srdr.getRiskDistId());
+		params.put("altNo",srdr.getAltNo());
+		params.put("retLineAmt",srdr.getRetLineAmt());
+		params.put("autoCalc",srdr.getAutoCalc());
+		params.put("updateUser",srdr.getUpdateUser());	
+		if(srdr.getAutoCalc().equals('Y')){
+			srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
+		}else{
+			srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
+		}
+		
+		return srdrResponse;
 	}
 }

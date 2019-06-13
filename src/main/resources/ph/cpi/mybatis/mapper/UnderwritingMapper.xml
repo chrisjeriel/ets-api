@@ -2333,7 +2333,7 @@
 	</resultMap>
 	
 	<select id="retrievePoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},#{altNo},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistCoIns" id="retDistCoInsMap">
@@ -2510,6 +2510,22 @@
 												 #{sectioncovers.updateUser}, 
 												 CAST(to_timestamp(#{sectioncovers.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
+		END;
+	</update>
+	
+	<update id="autoCalcDist" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.dist_policy(#{policyId},#{updateUser},sysdate,#{updateUser},sysdate);
+		END;
+	</update>
+	
+	<update id="saveRiskDist" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},#{wparam.createDate},#{wparam.updateUser},#{wparam.updateDate});
+			</foreach>
+			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{updateUser});
+			DIST_PKG.dist_not_auto(#{riskDistId},#{altNo},#{updateUser});
 		END;
 	</update>
 </mapper>
