@@ -1492,6 +1492,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrievePoolDistributionResponse response = new RetrievePoolDistributionResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("distId", rpdr.getRiskDistId());
+		params.put("policyId", rpdr.getPolicyId());
 		response.setPoolDistList(underwritingDao.retrievePolPoolDist(params));
 		return response;
 	}

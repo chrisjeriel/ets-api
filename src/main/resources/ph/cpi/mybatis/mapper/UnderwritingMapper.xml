@@ -2427,7 +2427,7 @@
 	</select>
 	
 	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">
