@@ -2460,4 +2460,15 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveExpCatPeril" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="expCatPeril" item="cat">
+				EXP_LISTING_PKG.save_exp_cat_peril(#{cat.policyId},#{cat.catPerilId},#{cat.pctSharePrem},#{cat.createUser},
+												   CAST(to_timestamp(#{cat.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{cat.updateUser},
+												   CAST(to_timestamp(#{cat.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>
