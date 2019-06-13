@@ -14,6 +14,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
@@ -1431,11 +1433,13 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrieveRiskDistributionResponse response = new RetrieveRiskDistributionResponse();
 		HashMap<String, Object> distWriskParam = new HashMap<String, Object>();
 		HashMap<String, Object> wriskLimitParam = new HashMap<String, Object>();
+		HashMap<String, Object> riskDistWparamParam = new HashMap<String, Object>();
 		distWriskParam.put("policyId", rrdr.getPolicyId());
-		wriskLimitParam.put("lineCd", rrdr.getLineCd());
-		wriskLimitParam.put("lineClassCd", rrdr.getLineClassCd());
 		response.setDistWrisk(underwritingDao.retrieveDistWrisk(distWriskParam));
-		response.setWriskLimit(underwritingDao.retrieveWriskLimit(wriskLimitParam));
+		response.setWriskLimit(underwritingDao.retrieveWriskLimit(distWriskParam));
+		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
+		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
+		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
 		return response;
 	}
 
@@ -1453,10 +1457,39 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrieveDistCoInsResponse response = new RetrieveDistCoInsResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("riskDistId", rdcir.getRiskDistId());
+		params.put("policyId", rdcir.getPolicyId());
 		response.setDistCoInsList(underwritingDao.retrieveDistCoIns(params));
 		return response;
 	}
 
+	@Override
+	public PostDistributionResponse postDistribution(PostDistributionRequest pdr) throws SQLException {
+		PostDistributionResponse pdrResponse = new PostDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",pdr.getPolicyId());
+		params.put("riskDistId",pdr.getRiskDistId());
+		params.put("distId",pdr.getDistId());
+		try{
+			pdrResponse.setReturnCode(underwritingDao.postDistribution(params));
+		}catch(Exception ex){
+			pdrResponse.setReturnCode(0);
+			pdrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return pdrResponse;
+	}
+
+	@Override
+	public RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr)
+			throws SQLException {
+		RetrievePoolDistributionResponse response = new RetrievePoolDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("distId", rpdr.getRiskDistId());
+		params.put("policyId", rpdr.getPolicyId());
+		response.setPoolDistList(underwritingDao.retrievePolPoolDist(params));
+		return response;
+	}
+	
 	@Override
 	public RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr) throws SQLException {
 		RetrievePolForPurgingResponse response = new RetrievePolForPurgingResponse();

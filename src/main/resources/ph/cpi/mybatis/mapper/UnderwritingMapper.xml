@@ -2236,6 +2236,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistWrisk" id="retRiskDist">
 		<result property="riskDistId" 		column="RISK_DIST_ID" />
+		<result property="altNo"	 		column="ALT_NO" />
 		<result property="coinsGrpId" 		column="COINS_GRP_ID" />
 		<result property="status" 			column="STATUS" />
 		<result property="retLineAmt" 		column="RET_LINE_AMT" />
@@ -2244,8 +2245,10 @@
 		<result property="autoCalc" 		column="AUTO_CALC" />
 		<result property="tsiAmt" 			column="TSI_AMT" />
 		<result property="premAmt" 			column="PREM_AMT" />
+		<result property="vatRiRt"			column="VAT_RI_RT" />
 		<result property="negateDate" 		column="NEGATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="negateUser" 		column="NEGATE_USER" />
+		<result property="trtyLimitSec2"	column="TRTY_LIMIT_SECII" />
 		<result property="createUser" 		column="CREATE_USER" />
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER" />
@@ -2267,7 +2270,10 @@
 		<result property="pctShare"     column="PCT_SHARE" />
 		<result property="siAmt"        column="SI_AMT" />
 		<result property="premAmt"      column="T_PREM_AMT" />
-		<result property="commShare"    column="COMM_SHARE" />
+		<result property="commRt"    	column="COMM_RT" />
+		<result property="commAmt"    	column="COMM_AMT" />
+		<result property="vatRiComm"    column="VAT_RI_COMM" />
+		<result property="netDue"    	column="NET_DUE" />
 		<result property="createUser"   column="T_CREATE_USER" />
 		<result property="createDate"   column="T_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"   column="T_UPDATE_USER" />
@@ -2293,12 +2299,13 @@
 	</resultMap>
 	
 	<select id="retrieveWriskLimit" resultMap="retWriskLimit" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{lineCd}, #{lineClassCd},null,null,null,null))
+		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PoolDistribution" id="retPoolDistMap">
 		<result property="riskDistId"		column="RISK_DIST_ID" />
 		<result property="treatyId"			column="TREATY_ID" />
+		<result property="section"			column="SECTION" />
 		<result property="treatyAbbr"		column="TREATY_ABBR" />
 		<result property="trtyCedId"		column="TRTY_CED_ID" />
 		<result property="cedingId"			column="CEDING_ID" />
@@ -2309,6 +2316,16 @@
 		<result property="retTwoLines"		column="RET2_LINES" />
 		<result property="retTwoTsiAmt"		column="RET2_TSI_AMT" />
 		<result property="retTwoPremAmt"	column="RET2_PREM_AMT" />
+		<result property="commRt"           column="COMM_RT" />
+		<result property="retOneCommAmt"    column="RET1_COMM_AMT" />
+		<result property="retTwoCommAmt"    column="RET2_COMM_AMT" />
+		<result property="totalCommAmt"     column="TOTAL_COMM_AMT" />
+		<result property="retOneVatRiComm"  column="RET1_VAT_RI_COMM" />
+		<result property="retTwoVatRiComm"  column="RET2_VAT_RI_COMM" />
+		<result property="totalVatRiComm"   column="TOTAL_VAT_RI_COMM" />
+		<result property="retOneNetDue"     column="RET1_NET_DUE" />
+		<result property="retTwoNetDue"     column="RET2_NET_DUE" />
+		<result property="totalNetDue"      column="TOTAL_NET_DUE" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
@@ -2335,8 +2352,32 @@
 	</resultMap>
 	
 	<select id="retrieveDistCoIns" resultMap="retDistCoInsMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},#{policyId},null,null,null,null))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DistRiskWparam" id="retDistRiskWparamMap">
+		<result property="treatyYear"        column="TREATY_YEAR" />
+		<result property="treatyId"          column="WP_TREATY_ID" />
+		<result property="treatyName"        column="WP_TREATY_NAME" />
+		<result property="trtyCedId"         column="WP_TRTY_CED_ID" />
+		<result property="trtyCedName"       column="WP_TRTY_CED_NAME" />
+		<result property="pctShare"          column="WP_PCT_SHARE" />
+		<result property="commRt"            column="WP_COMM_RT" />
+		<result property="createUser"        column="WP_CREATE_USER" />
+		<result property="createDate"        column="WP_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"        column="WP_UPDATE_USER" />
+		<result property="updateDate"        column="WP_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveDistRiskWparam" resultMap="retDistRiskWparamMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_RISK_WPARAM_PKG.ret_dr_wparam(#{riskDistId}, #{altNo},null,null,null,null))
+	</select>
+	
+	<update id="postDistribution" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId});
+		END;
+	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistribution" id="retPolDistMap">
 		<result property="distNo"			column="DIST_ID" />
@@ -2377,7 +2418,10 @@
 		<result property="pctShare"			column="PCT_SHARE" />
 		<result property="siAmt"			column="SI_AMT" />
 		<result property="premAmt"			column="W_PREM_AMT" />
-		<result property="commShare"		column="COMM_SHARE" />
+		<result property="commRt"			column="COMM_RT" />
+		<result property="commAmt"			column="COMM_AMT" />
+		<result property="vatRiComm"		column="VAT_RI_COMM" />
+		<result property="netDue"			column="NET_DUE" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
@@ -2386,6 +2430,10 @@
 	
 	<select id="retrievePolDist" resultMap="retPolDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">

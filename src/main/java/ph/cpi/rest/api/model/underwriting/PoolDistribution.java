@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class PoolDistribution {
 	private Integer riskDistId;
 	private Integer treatyId;
+	private String section;
 	private String treatyAbbr;
 	private String trtyCedId;
 	private String cedingId;
@@ -15,6 +16,16 @@ public class PoolDistribution {
 	private Double retTwoLines;
 	private Double retTwoTsiAmt;
 	private Double retTwoPremAmt;
+	private Double commRt;
+	private Double retOneCommAmt;
+	private Double retTwoCommAmt;
+	private Double totalCommAmt;
+	private Double retOneVatRiComm;
+	private Double retTwoVatRiComm;
+	private Double totalVatRiComm;
+	private Double retOneNetDue;
+	private Double retTwoNetDue;
+	private Double totalNetDue;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -31,6 +42,12 @@ public class PoolDistribution {
 	}
 	public void setTreatyId(Integer treatyId) {
 		this.treatyId = treatyId;
+	}
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
 	}
 	public String getTreatyAbbr() {
 		return treatyAbbr;
@@ -92,6 +109,66 @@ public class PoolDistribution {
 	public void setRetTwoPremAmt(Double retTwoPremAmt) {
 		this.retTwoPremAmt = retTwoPremAmt;
 	}
+	public Double getCommRt() {
+		return commRt;
+	}
+	public void setCommRt(Double commRt) {
+		this.commRt = commRt;
+	}
+	public Double getRetOneCommAmt() {
+		return retOneCommAmt;
+	}
+	public void setRetOneCommAmt(Double retOneCommAmt) {
+		this.retOneCommAmt = retOneCommAmt;
+	}
+	public Double getRetTwoCommAmt() {
+		return retTwoCommAmt;
+	}
+	public void setRetTwoCommAmt(Double retTwoCommAmt) {
+		this.retTwoCommAmt = retTwoCommAmt;
+	}
+	public Double getTotalCommAmt() {
+		return totalCommAmt;
+	}
+	public void setTotalCommAmt(Double totalCommAmt) {
+		this.totalCommAmt = totalCommAmt;
+	}
+	public Double getRetOneVatRiComm() {
+		return retOneVatRiComm;
+	}
+	public void setRetOneVatRiComm(Double retOneVatRiComm) {
+		this.retOneVatRiComm = retOneVatRiComm;
+	}
+	public Double getRetTwoVatRiComm() {
+		return retTwoVatRiComm;
+	}
+	public void setRetTwoVatRiComm(Double retTwoVatRiComm) {
+		this.retTwoVatRiComm = retTwoVatRiComm;
+	}
+	public Double getTotalVatRiComm() {
+		return totalVatRiComm;
+	}
+	public void setTotalVatRiComm(Double totalVatRiComm) {
+		this.totalVatRiComm = totalVatRiComm;
+	}
+	public Double getRetOneNetDue() {
+		return retOneNetDue;
+	}
+	public void setRetOneNetDue(Double retOneNetDue) {
+		this.retOneNetDue = retOneNetDue;
+	}
+	public Double getRetTwoNetDue() {
+		return retTwoNetDue;
+	}
+	public void setRetTwoNetDue(Double retTwoNetDue) {
+		this.retTwoNetDue = retTwoNetDue;
+	}
+	public Double getTotalNetDue() {
+		return totalNetDue;
+	}
+	public void setTotalNetDue(Double totalNetDue) {
+		this.totalNetDue = totalNetDue;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -116,14 +193,17 @@ public class PoolDistribution {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "PoolDistribution [riskDistId=" + riskDistId + ", treatyId=" + treatyId + ", treatyAbbr=" + treatyAbbr
-				+ ", trtyCedId=" + trtyCedId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", retOneLines=" + retOneLines + ", retOneTsiAmt=" + retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt
-				+ ", retTwoLines=" + retTwoLines + ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt=" + retTwoPremAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "PoolDistribution [riskDistId=" + riskDistId + ", treatyId=" + treatyId + ", section=" + section
+				+ ", treatyAbbr=" + treatyAbbr + ", trtyCedId=" + trtyCedId + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", retOneLines=" + retOneLines + ", retOneTsiAmt=" + retOneTsiAmt + ", retOnePremAmt="
+				+ retOnePremAmt + ", retTwoLines=" + retTwoLines + ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt="
+				+ retTwoPremAmt + ", commRt=" + commRt + ", retOneCommAmt=" + retOneCommAmt + ", retTwoCommAmt="
+				+ retTwoCommAmt + ", totalCommAmt=" + totalCommAmt + ", retOneVatRiComm=" + retOneVatRiComm
+				+ ", retTwoVatRiComm=" + retTwoVatRiComm + ", totalVatRiComm=" + totalVatRiComm + ", retOneNetDue="
+				+ retOneNetDue + ", retTwoNetDue=" + retTwoNetDue + ", totalNetDue=" + totalNetDue + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }

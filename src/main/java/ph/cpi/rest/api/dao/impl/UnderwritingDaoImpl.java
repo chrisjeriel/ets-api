@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
@@ -455,6 +456,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return res;
 	}
 
+	@Override
+	public Integer postDistribution(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("postDistribution",params);
+		return code;
+	}
+
+	@Override
+	public List<PoolDistribution> retrievePolPoolDist(HashMap<String, Object> params) throws SQLException {
+		List<PoolDistribution> res = sqlSession.selectList("retrievePolPoolDist", params);
+		return res;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
@@ -502,5 +515,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer errorCode = sqlSession.update("saveExpCov",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public List<DistRiskWparam> retrieveDistRiskWparam(HashMap<String, Object> params) throws SQLException {
+		List<DistRiskWparam> res = sqlSession.selectList("retrieveDistRiskWparam", params);
+		return res;
 	}
 }

@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrievePoolDistributionRequest {
 	private Integer riskDistId;
+	private Integer policyId;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
@@ -13,6 +14,12 @@ public class RetrievePoolDistributionRequest {
 	}
 	public void setRiskDistId(Integer riskDistId) {
 		this.riskDistId = riskDistId;
+	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -26,10 +33,9 @@ public class RetrievePoolDistributionRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
-	
 	@Override
 	public String toString() {
-		return "RetrievePoolDistributionRequest [riskDistId=" + riskDistId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrievePoolDistributionRequest [riskDistId=" + riskDistId + ", policyId=" + policyId
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

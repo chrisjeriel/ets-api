@@ -4,12 +4,14 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.WriskLimit;
 
 public class RetrieveRiskDistributionResponse {
 	private DistWrisk distWrisk;
 	private List<WriskLimit> wriskLimit;
+	private List<DistRiskWparam> distRiskWparam;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortReponse = new SortResponse();
 	
@@ -24,6 +26,12 @@ public class RetrieveRiskDistributionResponse {
 	}
 	public void setWriskLimit(List<WriskLimit> wriskLimit) {
 		this.wriskLimit = wriskLimit;
+	}
+	public List<DistRiskWparam> getDistRiskWparam() {
+		return distRiskWparam;
+	}
+	public void setDistRiskWparam(List<DistRiskWparam> distRiskWparam) {
+		this.distRiskWparam = distRiskWparam;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -41,6 +49,7 @@ public class RetrieveRiskDistributionResponse {
 	@Override
 	public String toString() {
 		return "RetrieveRiskDistributionResponse [distWrisk=" + distWrisk + ", wriskLimit=" + wriskLimit
-				+ ", paginationResponse=" + paginationResponse + ", sortReponse=" + sortReponse + "]";
+				+ ", distRiskWparam=" + distRiskWparam + ", paginationResponse=" + paginationResponse + ", sortReponse="
+				+ sortReponse + "]";
 	}
 }
