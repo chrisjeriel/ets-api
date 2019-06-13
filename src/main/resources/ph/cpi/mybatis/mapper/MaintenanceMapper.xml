@@ -111,6 +111,7 @@
 		<result property = "createDate"        column   ="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"        column   ="UPDATE_USER"/>
 		<result property = "updateDate"        column   ="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			   column="OK_DELETE"/>
 		<association property="cityList"	   resultMap="cityMap"/>
 	</resultMap>
 	
@@ -235,16 +236,7 @@
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(
-								#{intmId,jdbcType=INTEGER},
-								#{intmName,jdbcType=VARCHAR},
-								#{activeTag,jdbcType=VARCHAR},
-								#{corpTag,jdbcType=VARCHAR},
-								#{vatTag,jdbcType=VARCHAR},
-								#{address,jdbcType=VARCHAR},
-								#{contactNo,jdbcType=VARCHAR},
-								#{oldIntmId,jdbcType=VARCHAR},
-								 '', '', '', ''))
+			MTN_PROVINCE_PKGMTN_PROVINCE_PKG
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
@@ -486,6 +478,7 @@
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnCity" resultMap="regionMap" parameterType="java.util.Map">
@@ -575,6 +568,7 @@
         <result property="cityDesc" column="CITY_DESC"/>
         <result property="zoneCd" column="ZONE_CD" />
 		<result property="zoneDesc" column="ZONE_DESC" />
+		
         <association property="districtList" resultMap="maintenanceDistrictMap"></association>
 	</resultMap>
 	
@@ -1469,7 +1463,9 @@
 	    		);
     		</foreach>
     		<foreach collection="deleteProvince" item="provinceDel">
-    			MTN_PROVINCE_PKG.del_mtn_province(#{provinceDel.provinceCd,jdbcType=VARCHAR});
+    			MTN_PROVINCE_PKG.del_mtn_province(
+    											  #{provinceDel.provinceCd,jdbcType=VARCHAR},
+    											  #{provinceDel.regionCd,jdbcType=VARCHAR});
     		</foreach>
     	END;
     </update>
