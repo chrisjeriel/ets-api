@@ -1442,10 +1442,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> wriskLimitParam = new HashMap<String, Object>();
 		HashMap<String, Object> riskDistWparamParam = new HashMap<String, Object>();
 		distWriskParam.put("policyId", rrdr.getPolicyId());
-		wriskLimitParam.put("lineCd", rrdr.getLineCd());
-		wriskLimitParam.put("lineClassCd", rrdr.getLineClassCd());
 		response.setDistWrisk(underwritingDao.retrieveDistWrisk(distWriskParam));
-		response.setWriskLimit(underwritingDao.retrieveWriskLimit(wriskLimitParam));
+		response.setWriskLimit(underwritingDao.retrieveWriskLimit(distWriskParam));
 		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
 		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
 		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));

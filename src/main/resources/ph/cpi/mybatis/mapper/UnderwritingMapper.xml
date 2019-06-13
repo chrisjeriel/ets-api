@@ -2293,7 +2293,7 @@
 	</resultMap>
 	
 	<select id="retrieveWriskLimit" resultMap="retWriskLimit" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{lineCd}, #{lineClassCd},null,null,null,null))
+		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PoolDistribution" id="retPoolDistMap">
