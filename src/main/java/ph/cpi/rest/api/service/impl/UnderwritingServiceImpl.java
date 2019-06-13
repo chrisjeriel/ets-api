@@ -1380,6 +1380,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrieveExpPolListParams.put("processTag", replr.getProcessTag());
 		retrieveExpPolListParams.put("renewalFlag", replr.getRenewalFlag());
 		retrieveExpPolListParams.put("extractUser", replr.getExtractUser());
+		retrieveExpPolListParams.put("renewable", replr.getRenewable());
 		
 		replResponse.setExpPolicyList(underwritingDao.retrieveExpPolList(retrieveExpPolListParams));
 		

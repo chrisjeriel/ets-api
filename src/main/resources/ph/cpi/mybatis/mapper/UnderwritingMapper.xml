@@ -2198,7 +2198,7 @@
 	</resultMap>
 	
 	<select id="retrieveExpPolList" resultMap="retrieveExpPolListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{renewable, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveExpProject" resultMap="expProjectMap" parameterType="java.util.Map">
