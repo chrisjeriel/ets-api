@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveRiskDistRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
@@ -127,6 +128,7 @@ import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveRiskDistResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
@@ -570,5 +572,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/purgeExpiringPol");
 		logger.info("PurgeExpiringPolRequest : " + eepr.toString());
 		return underwritingService.purgeExpiryPol(eepr);
+	}
+	
+	@PostMapping(path="saveRiskDist")
+	public @ResponseBody SaveRiskDistResponse saveRiskDist(@RequestBody SaveRiskDistRequest srdr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveRiskDist");
+		logger.info("SaveRiskDistRequest : " + srdr.toString());
+		return underwritingService.saveRiskDist(srdr);
 	}
 }

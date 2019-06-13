@@ -522,4 +522,16 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<DistRiskWparam> res = sqlSession.selectList("retrieveDistRiskWparam", params);
 		return res;
 	}
+
+	@Override
+	public Integer autoCalcDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("autoCalcDist",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveRiskDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveRiskDist",params);
+		return code;
+	}
 }
