@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -579,5 +581,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/saveRiskDist");
 		logger.info("SaveRiskDistRequest : " + srdr.toString());
 		return underwritingService.saveRiskDist(srdr);
+	}
+	
+	@PostMapping(path="distributeRiskDist")
+	public @ResponseBody DistRiskResponse distributeRiskDist(@RequestBody DistRiskRequest drr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/distributeRiskDist");
+		logger.info("SaveRiskDistRequest : " + drr.toString());
+		return underwritingService.distributeRiskDist(drr);
 	}
 }

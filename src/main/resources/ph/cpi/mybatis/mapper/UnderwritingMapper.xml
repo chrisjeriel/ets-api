@@ -2520,10 +2520,16 @@
 	<update id="saveRiskDist" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="saveWParam" item="wparam">
-				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},#{wparam.createDate},#{wparam.updateUser},#{wparam.updateDate});
+				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
 			</foreach>
 			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{updateUser});
 			DIST_PKG.dist_not_auto(#{riskDistId},#{altNo},#{updateUser});
+		END;
+	</update>
+	
+	<update id="distributeRiskDist" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.distribute(#{riskDistId},#{altNo},#{updateUser});
 		END;
 	</update>
 </mapper>

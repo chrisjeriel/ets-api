@@ -91,5 +91,6 @@ public interface UnderwritingDao {
 	
 	public Integer autoCalcDist(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public Integer distributeRiskDist(final HashMap<String, Object> params ) throws SQLException;
 	
 }

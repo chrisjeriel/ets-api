@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SaveRiskDistRequest {
 	private List<WParam> saveWParam;
+	private String policyId;
 	private String riskDistId;
 	private String altNo;
 	private String retLineAmt;
@@ -14,6 +15,12 @@ public class SaveRiskDistRequest {
 	}
 	public void setSaveWParam(List<WParam> saveWParam) {
 		this.saveWParam = saveWParam;
+	}
+	public String getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
 	}
 	public String getRiskDistId() {
 		return riskDistId;
@@ -47,8 +54,9 @@ public class SaveRiskDistRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveRiskDistRequest [saveWParam=" + saveWParam + ", riskDistId=" + riskDistId + ", altNo=" + altNo
-				+ ", retLineAmt=" + retLineAmt + ", autoCalc=" + autoCalc + ", updateUser=" + updateUser + "]";
+		return "SaveRiskDistRequest [saveWParam=" + saveWParam + ", policyId=" + policyId + ", riskDistId=" + riskDistId
+				+ ", altNo=" + altNo + ", retLineAmt=" + retLineAmt + ", autoCalc=" + autoCalc + ", updateUser="
+				+ updateUser + "]";
 	}
 }
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -68,6 +69,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -202,4 +204,5 @@ public interface UnderwritingService {
 	public SaveExpCovResponse saveExpCoverage(SaveExpCovRequest secr)throws SQLException;
 	
 	public SaveRiskDistResponse saveRiskDist(SaveRiskDistRequest srdr) throws SQLException;
+	public DistRiskResponse distributeRiskDist(DistRiskRequest drr) throws SQLException;
 }

@@ -534,4 +534,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer code = sqlSession.update("saveRiskDist",params);
 		return code;
 	}
+
+	@Override
+	public Integer distributeRiskDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("distributeRiskDist",params);
+		return code;
+	}
 }

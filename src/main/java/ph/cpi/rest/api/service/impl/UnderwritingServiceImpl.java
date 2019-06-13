@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -1572,17 +1574,41 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	public SaveRiskDistResponse saveRiskDist(SaveRiskDistRequest srdr) throws SQLException {
 		SaveRiskDistResponse srdrResponse = new SaveRiskDistResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveWParam", srdr.getSaveWParam());
+		params.put("policyId", srdr.getPolicyId());
 		params.put("riskDistId",srdr.getRiskDistId());
 		params.put("altNo",srdr.getAltNo());
 		params.put("retLineAmt",srdr.getRetLineAmt());
 		params.put("autoCalc",srdr.getAutoCalc());
-		params.put("updateUser",srdr.getUpdateUser());	
-		if(srdr.getAutoCalc().equals('Y')){
-			srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
-		}else{
-			srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
+		params.put("updateUser",srdr.getUpdateUser());
+		try {
+			if(srdr.getAutoCalc().equals("Y")){
+				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
+			}else{
+				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
+			}
+		}catch (Exception ex){
+			srdrResponse.setReturnCode(0);
+			srdrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
 		}
-		
 		return srdrResponse;
+	}
+
+	@Override
+	public DistRiskResponse distributeRiskDist(DistRiskRequest drr) throws SQLException {
+		DistRiskResponse drrResponse = new DistRiskResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("riskDistId",drr.getRiskDistId());
+		params.put("altNo",drr.getAltNo());
+		params.put("updateUser",drr.getUpdateUser());
+		try{
+			drrResponse.setReturnCode(underwritingDao.distributeRiskDist(params));
+		}catch (Exception ex){
+			drrResponse.setReturnCode(0);
+			drrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return drrResponse;
 	}
 }
