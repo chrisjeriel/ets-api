@@ -2179,6 +2179,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpCatPeril" id="expCatPerilMap">
 		<result property="policyId"			column="POLICY_ID" />
 		<result property="catPerilId"		column="CAT_PERIL_ID" />
+		<result property="catPerilName" 	column="CAT_PERIL_NAME"/>
 		<result property="pctSharePrem"		column="PCT_SHARE_PREM" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -2386,6 +2387,8 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">
 		 <result property="policyId" 		column="POLICY_ID" />
 		 <result property="policyNo" 		column="POLICY_NO" />
+		 <result property="cessionId" 		column="CESSION_ID"/>
+		 <result property="cedingId" 		column="CEDING_ID"/>
 		 <result property="totalSi" 		column="TSI_AMOUNT" />
 		 <result property="totalPrem" 		column="TOTAL_PREM" />
 		 <result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>

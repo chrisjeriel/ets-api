@@ -7,6 +7,8 @@ import org.joda.time.DateTime;
 public class PolForPurging {
 	private String policyId;
 	private String policyNo;
+	private String cessionId;
+	private String cedingId;
 	private BigDecimal totalSi;
 	private BigDecimal totalPrem;
 	private DateTime expiryDate;
@@ -23,6 +25,19 @@ public class PolForPurging {
 	}
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
+	}
+	
+	public String getCessionId() {
+		return cessionId;
+	}
+	public void setCessionId(String cessionId) {
+		this.cessionId = cessionId;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
 	}
 	public BigDecimal getTotalSi() {
 		return totalSi;
@@ -56,10 +71,8 @@ public class PolForPurging {
 	}
 	@Override
 	public String toString() {
-		return "PolForPurging [policyId=" + policyId + ", policyNo=" + policyNo + ", totalSi=" + totalSi
-				+ ", totalPrem=" + totalPrem + ", expiryDate=" + expiryDate + ", processTag=" + processTag
-				+ ", expiryTag=" + expiryTag + "]";
+		return "PolForPurging [policyId=" + policyId + ", policyNo=" + policyNo + ", cessionId=" + cessionId
+				+ ", cedingId=" + cedingId + ", totalSi=" + totalSi + ", totalPrem=" + totalPrem + ", expiryDate="
+				+ expiryDate + ", processTag=" + processTag + ", expiryTag=" + expiryTag + "]";
 	}
-	
-	
 }
