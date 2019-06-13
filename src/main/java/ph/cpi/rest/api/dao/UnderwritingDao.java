@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -91,5 +92,7 @@ public interface UnderwritingDao {
 	
 	public Integer autoCalcDist(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public Integer distributeRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public List<PolDistList> retrievePolDistList(final HashMap<String, Object> params) throws SQLException;
 	
 }

@@ -2522,10 +2522,50 @@
 	<update id="saveRiskDist" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="saveWParam" item="wparam">
-				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},#{wparam.createDate},#{wparam.updateUser},#{wparam.updateDate});
+				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
 			</foreach>
 			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{updateUser});
 			DIST_PKG.dist_not_auto(#{riskDistId},#{altNo},#{updateUser});
 		END;
 	</update>
+	
+	<update id="distributeRiskDist" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.distribute(#{riskDistId},#{altNo},#{updateUser});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistList" id="polDistListMap">
+		<result property="distId"        column="DIST_ID" />
+		<result property="riskDistId"    column="RISK_DIST_ID" />
+		<result property="status"        column="STATUS" />
+		<result property="lineCd"        column="LINE_CD" />
+		<result property="lineClassCd"   column="LINE_CLASS_CD" />
+		<result property="policyId"      column="POLICY_ID" />
+		<result property="policyNo"      column="POLICY_NO" />
+		<result property="cedingName"    column="CEDING_NAME" />
+		<result property="insuredDesc"   column="INSURED_DESC" />
+		<result property="riskName"      column="RISK_NAME" />
+		<result property="currencyCd"    column="CURRENCY_CD" />
+		<result property="totalSi"       column="TOTAL_SI" />
+		<result property="distDate"      column="DIST_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctDate"      column="ACCT_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrievePolDistList" resultMap="polDistListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist_list(#{distId, jdbcType=VARCHAR},
+															#{riskDistId, jdbcType=VARCHAR},
+															#{status, jdbcType=VARCHAR},
+															#{policyNo, jdbcType=VARCHAR},
+															#{cedingName, jdbcType=VARCHAR},
+															#{insuredDesc, jdbcType=VARCHAR},
+															#{riskName, jdbcType=VARCHAR},
+															#{currencyCd, jdbcType=VARCHAR},
+															CAST(to_timestamp(#{distDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{distDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{acctDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{acctDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														    null,null,null,null))
+	</select>
+	
 </mapper>
