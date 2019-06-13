@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -539,5 +540,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Integer distributeRiskDist(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("distributeRiskDist",params);
 		return code;
+	}
+	@Override
+	public List<PolDistList> retrievePolDistList(HashMap<String, Object> params) throws SQLException {
+		List<PolDistList> res = sqlSession.selectList("retrievePolDistList", params);
+		return res;
 	}
 }

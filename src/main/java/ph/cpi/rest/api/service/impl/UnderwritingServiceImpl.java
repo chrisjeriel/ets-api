@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
@@ -94,6 +95,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
@@ -1610,5 +1612,24 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return drrResponse;
+	}
+
+	@Override
+	public RetrievePolDistListResponse retrievePolDistList(RetrievePolDistListRequest rpdlr) throws SQLException {
+		RetrievePolDistListResponse response = new RetrievePolDistListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("distId", rpdlr.getDistId());
+		params.put("riskDistId", rpdlr.getRiskDistId());
+		params.put("status", rpdlr.getStatus());
+		params.put("policyNo", rpdlr.getPolicyNo());
+		params.put("cedingName", rpdlr.getCedingName());
+		params.put("insuredDesc", rpdlr.getInsuredDesc());
+		params.put("riskName", rpdlr.getRiskName());
+		params.put("distDateFrom", rpdlr.getDistDateFrom());
+		params.put("distDateTo", rpdlr.getDistDateTo());
+		params.put("acctDateFrom", rpdlr.getAcctDateFrom());
+		params.put("acctDateTo", rpdlr.getAcctDateTo());
+		response.setPolDistList(underwritingDao.retrievePolDistList(params));
+		return response;
 	}
 }

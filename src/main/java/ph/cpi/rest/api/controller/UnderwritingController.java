@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
@@ -94,6 +95,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
@@ -588,5 +590,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/distributeRiskDist");
 		logger.info("SaveRiskDistRequest : " + drr.toString());
 		return underwritingService.distributeRiskDist(drr);
+	}
+	
+	@GetMapping(path="retrievePolDistList")
+	public @ResponseBody RetrievePolDistListResponse retrievePolDistList(RetrievePolDistListRequest rpdlr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolDistList");
+		logger.info("RetrievePolDistListRequest : " + rpdlr.toString());
+		return underwritingService.retrievePolDistList(rpdlr);
 	}
 }
