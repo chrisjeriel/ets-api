@@ -2008,6 +2008,7 @@
 		<result property="claimTag"				column="CLAIM_TAG" /> 
 		<result property="reminderTag"			column="REMINDER_TAG" /> 
 		<result property="nrReasonCd"			column="NR_REASON_CD" /> 
+		<result property="nrReasonDesc"			column="NR_REASON_DESC" /> 
 		<result property="cessionId"			column="CESSION_ID" /> 
 		<result property="cessionDesc"			column="CESSION_DESC" /> 
 		<result property="cedingId"				column="CEDING_ID" /> 
