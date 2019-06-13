@@ -2327,7 +2327,7 @@
 	</resultMap>
 	
 	<select id="retrievePoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},#{altNo},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistCoIns" id="retDistCoInsMap">
