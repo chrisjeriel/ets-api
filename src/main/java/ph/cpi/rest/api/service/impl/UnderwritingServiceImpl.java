@@ -51,6 +51,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
+import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -114,6 +115,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
+import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -1630,6 +1632,24 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("acctDateFrom", rpdlr.getAcctDateFrom());
 		params.put("acctDateTo", rpdlr.getAcctDateTo());
 		response.setPolDistList(underwritingDao.retrievePolDistList(params));
+		
+		return response;
+	}
+	
+	@Override
+	public SaveExpCatPerilResponse saveExpCatPeril(SaveExpCatPerilRequest scpr) throws SQLException {
+		SaveExpCatPerilResponse response = new SaveExpCatPerilResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("expCatPeril", scpr.getExpcatPeril());
+			
+			HashMap<String, Object> res = underwritingDao.saveExpCatPeril(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch (Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }

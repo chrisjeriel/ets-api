@@ -89,6 +89,7 @@ public interface UnderwritingDao {
 	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> saveExpCov(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveExpCatPeril(final HashMap<String, Object> params ) throws SQLException;
 	
 	public Integer autoCalcDist(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveRiskDist(final HashMap<String, Object> params ) throws SQLException;

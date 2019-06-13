@@ -546,4 +546,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<PolDistList> res = sqlSession.selectList("retrievePolDistList", params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveExpCatPeril(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveExpCatPeril",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
