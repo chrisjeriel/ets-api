@@ -1982,7 +1982,12 @@
 	<update id="extractExpiringPolicy" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			DIST_EXT_PKG.extract_exp_policy(#{policyId}, 
-											#{policyNo}, 
+											#{polLineCd},
+											#{polYear},
+											#{polSeqNo},
+											#{polCedingId},
+											#{coSeriesNo},
+											#{altNo},
 											CAST(to_timestamp(#{fromExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 											CAST(to_timestamp(#{toExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 											#{lineCd}, 

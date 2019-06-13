@@ -1342,9 +1342,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	public ExtractExpiringPolicyResponse extractExpiringPolicy(ExtractExpiringPolicyRequest eepr) throws SQLException {
 		ExtractExpiringPolicyResponse eepResponse = new ExtractExpiringPolicyResponse();
 		try{
-			HashMap<String, Object> eepParams = new HashMap<String, Object>();
-			eepParams.put("policyNo", "");
-			
+			HashMap<String, Object> eepParams = new HashMap<String, Object>();			
 			eepParams.put("policyId", eepr.getPolicyId());
 			eepParams.put("polLineCd", eepr.getPolLineCd());
 			eepParams.put("polYear", eepr.getPolYear());
