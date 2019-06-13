@@ -1,25 +1,27 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class ClaimHistory {
-	private Integer  claimId;
-	private Integer  projId;
-	private Integer  histNo;
-	private String 	 histCategory;
-	private String 	 histType;
-	private String 	 exGratia;
-	private String 	 currencyCd;
-	private Integer  currencyRt;
-	private Integer  reserveAmt;
-	private Integer  paytAmt;
-	private String 	 refNo;
-	private DateTime refDate;
-	private String 	 remarks;
-	private String 	 createUser;
-	private DateTime createDate;
-	private String 	 updateUser;
-	private DateTime updateDate;
+	private Integer 	claimId;
+	private Integer  	projId;
+	private Integer  	histNo;
+	private String 	 	histCategory;
+	private String 	 	histType;
+	private String 	 	exGratia;
+	private String 	 	currencyCd;
+	private Integer  	currencyRt;
+	private BigDecimal  reserveAmt;
+	private BigDecimal  paytAmt;
+	private String 	 	refNo;
+	private DateTime 	refDate;
+	private String 	 	remarks;
+	private String 	 	createUser;
+	private DateTime 	createDate;
+	private String 	 	updateUser;
+	private DateTime 	updateDate;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -68,16 +70,16 @@ public class ClaimHistory {
 	public void setCurrencyRt(Integer currencyRt) {
 		this.currencyRt = currencyRt;
 	}
-	public Integer getReserveAmt() {
+	public BigDecimal getReserveAmt() {
 		return reserveAmt;
 	}
-	public void setReserveAmt(Integer reserveAmt) {
+	public void setReserveAmt(BigDecimal reserveAmt) {
 		this.reserveAmt = reserveAmt;
 	}
-	public Integer getPaytAmt() {
+	public BigDecimal getPaytAmt() {
 		return paytAmt;
 	}
-	public void setPaytAmt(Integer paytAmt) {
+	public void setPaytAmt(BigDecimal paytAmt) {
 		this.paytAmt = paytAmt;
 	}
 	public String getRefNo() {
@@ -130,4 +132,5 @@ public class ClaimHistory {
 				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+
 }
