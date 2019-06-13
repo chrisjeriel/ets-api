@@ -1982,7 +1982,12 @@
 	<update id="extractExpiringPolicy" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			DIST_EXT_PKG.extract_exp_policy(#{policyId}, 
-											#{policyNo}, 
+											#{polLineCd},
+											#{polYear},
+											#{polSeqNo},
+											#{polCedingId},
+											#{coSeriesNo},
+											#{altNo},
 											CAST(to_timestamp(#{fromExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 											CAST(to_timestamp(#{toExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 											#{lineCd}, 
@@ -2008,6 +2013,7 @@
 		<result property="claimTag"				column="CLAIM_TAG" /> 
 		<result property="reminderTag"			column="REMINDER_TAG" /> 
 		<result property="nrReasonCd"			column="NR_REASON_CD" /> 
+		<result property="nrReasonDesc"			column="NR_REASON_DESC" /> 
 		<result property="cessionId"			column="CESSION_ID" /> 
 		<result property="cessionDesc"			column="CESSION_DESC" /> 
 		<result property="cedingId"				column="CEDING_ID" /> 
@@ -2197,7 +2203,7 @@
 	</resultMap>
 	
 	<select id="retrieveExpPolList" resultMap="retrieveExpPolListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{renewable, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveExpProject" resultMap="expProjectMap" parameterType="java.util.Map">
@@ -2447,11 +2453,19 @@
 	<update id="purgeExpiringPol" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deletePurge" item="del">
-					PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
+				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId},#{del.lineCd,jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>
 	
+	<update id="processRenewablePolicyWC" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			{CALL 
+				DIST_EXT_PKG.upd_wc_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+			}
+		END;
+	</update> 
+
 	<update id="processRenewablePolicyAI" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			{CALL
@@ -2468,4 +2482,32 @@
 		END;
 	</update>
 	
+	<update id="saveExpCov" parameterType="java.util.Map">
+		BEGIN
+			EXP_LISTING_PKG.save_exp_cov( #{policyId}, #{projId}, #{riskId}, #{sectionISi}, #{sectionIiSi}, 
+										  #{sectionIiiSi}, #{totalSi}, #{sectionIPrem}, #{sectionIiPrem}, 
+										  #{sectionIiiPrem}, #{totalPrem}, #{currencyCd}, #{currencyRt}, 
+										  #{pctShare}, #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{origSeciSi}, 
+										  #{origSeciiSi}, #{origSeciiiSi}, #{origTsi}, #{origSeciPrem}, 
+										  #{origSeciiPrem}, #{origSeciiiPrem}, #{origTprem}, #{createUser}, 
+										  CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+										  #{updateUser}, CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+			<foreach collection="delexpSecCovers" item="delsectioncovers">
+				EXP_LISTING_PKG.del_exp_edit(#{delsectioncovers.policyId}, #{delsectioncovers.lineCd}, #{delsectioncovers.projId}, 
+												 #{delsectioncovers.riskId}, #{delsectioncovers.section}, #{delsectioncovers.coverCd});
+			</foreach>
+			<foreach collection="expSecCovers" item="sectioncovers">
+				EXP_LISTING_PKG.save_exp_sec_cov(#{sectioncovers.policyId}, #{sectioncovers.lineCd}, #{sectioncovers.projId}, 
+												 #{sectioncovers.riskId}, #{sectioncovers.section}, #{sectioncovers.coverCd}, 
+												 #{sectioncovers.coverName}, #{sectioncovers.bulletNo}, #{sectioncovers.sumInsured}, 
+												 #{sectioncovers.premRt}, #{sectioncovers.premAmt}, #{sectioncovers.addSi}, 
+												 #{sectioncovers.discountTag}, #{sectioncovers.origSi}, #{sectioncovers.origPremRt}, 
+												 #{sectioncovers.origPrem}, #{sectioncovers.createUser}, 
+												 CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 #{sectioncovers.updateUser}, 
+												 CAST(to_timestamp(#{sectioncovers.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

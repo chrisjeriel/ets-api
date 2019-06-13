@@ -35,5 +35,5 @@ public class ProcessRenewablePolicyRequest {
 		return "ProcessRenewablePolicyRequest [renAsIsPolicyList=" + renAsIsPolicyList + ", renWithChangesPolicyList="
 				+ renWithChangesPolicyList + ", nonRenPolicyList=" + nonRenPolicyList + "]";
 	}
-	
 }
+

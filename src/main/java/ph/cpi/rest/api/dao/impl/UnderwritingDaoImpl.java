@@ -481,7 +481,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 			
 			for (PolicyWithChanges renPol : ((List<PolicyWithChanges>) params.get("renWithChangesPolicyList"))) {
 				logger.info("renWithChangesPolicyList renPol : " + renPol);
+				sqlSession.update("processRenewablePolicyAI",renPol);
+				logger.info("renWithChangesPolicyList renPol after AI : " + renPol);
 				sqlSession.update("processRenewablePolicyWC",renPol);
+				logger.info("renWithChangesPolicyList renPol after WC: " + renPol);
 			}
 			
 			for (PolicyNonRenewal renPol : ((List<PolicyNonRenewal>) params.get("nonRenPolicyList"))) {
@@ -491,9 +494,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		 
-		
-		
 		return params;
 	}
 		
@@ -510,6 +510,13 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return params;
 	}
 
+	@Override
+	public HashMap<String, Object> saveExpCov(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveExpCov",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
 	@Override
 	public List<DistRiskWparam> retrieveDistRiskWparam(HashMap<String, Object> params) throws SQLException {
 		List<DistRiskWparam> res = sqlSession.selectList("retrieveDistRiskWparam", params);

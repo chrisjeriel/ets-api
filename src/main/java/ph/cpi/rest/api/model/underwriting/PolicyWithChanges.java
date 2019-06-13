@@ -4,11 +4,33 @@ import java.util.List;
 
 public class PolicyWithChanges {
 	private String policyId;
+	private String newPolicyId;
+	private String newPolicyNo;
 	private List<ExpProject> projectList;
 	private List<ExpSectionCover> secCovList;
 	private List<ExpDeductibles> deductiblesList;
 	private String summaryTag;
+	private String procBy;
 	
+	
+	public String getNewPolicyId() {
+		return newPolicyId;
+	}
+	public void setNewPolicyId(String newPolicyId) {
+		this.newPolicyId = newPolicyId;
+	}
+	public String getNewPolicyNo() {
+		return newPolicyNo;
+	}
+	public void setNewPolicyNo(String newPolicyNo) {
+		this.newPolicyNo = newPolicyNo;
+	}
+	public String getProcBy() {
+		return procBy;
+	}
+	public void setProcBy(String procBy) {
+		this.procBy = procBy;
+	}
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -41,7 +63,8 @@ public class PolicyWithChanges {
 	}
 	@Override
 	public String toString() {
-		return "PolicyWithChanges [policyId=" + policyId + ", projectList=" + projectList + ", secCovList=" + secCovList
-				+ ", deductiblesList=" + deductiblesList + ", summaryTag=" + summaryTag + "]";
+		return "PolicyWithChanges [policyId=" + policyId + ", newPolicyId=" + newPolicyId + ", newPolicyNo="
+				+ newPolicyNo + ", projectList=" + projectList + ", secCovList=" + secCovList + ", deductiblesList="
+				+ deductiblesList + ", summaryTag=" + summaryTag + ", procBy=" + procBy + "]";
 	}
 }

@@ -6,6 +6,7 @@ public class RetrieveExpPolListRequest {
 	private String processTag;
 	private String renewalFlag;
 	private String extractUser;
+	private String renewable;
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -30,10 +31,15 @@ public class RetrieveExpPolListRequest {
 	public void setExtractUser(String extractUser) {
 		this.extractUser = extractUser;
 	}
+	public String getRenewable() {
+		return renewable;
+	}
+	public void setRenewable(String renewable) {
+		this.renewable = renewable;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExpPolListRequest [policyId=" + policyId + ", processTag=" + processTag + ", renewalFlag="
-				+ renewalFlag + ", extractUser=" + extractUser + "]";
+				+ renewalFlag + ", extractUser=" + extractUser + ", renewable=" + renewable + "]";
 	}
-	
 }
