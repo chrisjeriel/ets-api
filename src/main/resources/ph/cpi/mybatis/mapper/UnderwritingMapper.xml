@@ -2389,6 +2389,8 @@
 		 <result property="policyNo" 		column="POLICY_NO" />
 		 <result property="cessionId" 		column="CESSION_ID"/>
 		 <result property="cedingId" 		column="CEDING_ID"/>
+		 <result property="cedingName" 		column="CEDING_NAME"/>
+		 <result property="insuredName" 	column="INSURED_NAME"/>
 		 <result property="totalSi" 		column="TSI_AMOUNT" />
 		 <result property="totalPrem" 		column="TOTAL_PREM" />
 		 <result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -2403,7 +2405,7 @@
 	<update id="purgeExpiringPol" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deletePurge" item="del">
-				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId},#{del.lineCd,jdbcType=VARCHAR});
+				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
 			</foreach>
 		END;
 	</update>

@@ -9,6 +9,8 @@ public class PolForPurging {
 	private String policyNo;
 	private String cessionId;
 	private String cedingId;
+	private String cedingName;
+	private String insuredName;
 	private BigDecimal totalSi;
 	private BigDecimal totalPrem;
 	private DateTime expiryDate;
@@ -38,6 +40,19 @@ public class PolForPurging {
 	}
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
+	}
+	
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
+	public String getInsuredName() {
+		return insuredName;
+	}
+	public void setInsuredName(String insuredName) {
+		this.insuredName = insuredName;
 	}
 	public BigDecimal getTotalSi() {
 		return totalSi;
@@ -72,7 +87,9 @@ public class PolForPurging {
 	@Override
 	public String toString() {
 		return "PolForPurging [policyId=" + policyId + ", policyNo=" + policyNo + ", cessionId=" + cessionId
-				+ ", cedingId=" + cedingId + ", totalSi=" + totalSi + ", totalPrem=" + totalPrem + ", expiryDate="
-				+ expiryDate + ", processTag=" + processTag + ", expiryTag=" + expiryTag + "]";
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", insuredName=" + insuredName
+				+ ", totalSi=" + totalSi + ", totalPrem=" + totalPrem + ", expiryDate=" + expiryDate + ", processTag="
+				+ processTag + ", expiryTag=" + expiryTag + "]";
 	}
+	
 }
