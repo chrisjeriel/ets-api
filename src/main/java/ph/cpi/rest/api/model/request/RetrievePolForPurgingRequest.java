@@ -5,7 +5,6 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrievePolForPurgingRequest {
 	private String policyId;
-	private String lineCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getPolicyId() {
@@ -15,12 +14,6 @@ public class RetrievePolForPurgingRequest {
 		this.policyId = policyId;
 	}
 	
-	public String getLineCd() {
-		return lineCd;
-	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -35,9 +28,10 @@ public class RetrievePolForPurgingRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrievePolForPurgingRequest [policyId=" + policyId + ", lineCd=" + lineCd + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrievePolForPurgingRequest [policyId=" + policyId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 	
 }
