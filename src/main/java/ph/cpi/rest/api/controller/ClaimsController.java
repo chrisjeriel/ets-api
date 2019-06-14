@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
@@ -46,5 +48,12 @@ public class ClaimsController {
 		logger.info("POST: /api/maintenance-service/saveClaimHistory");
 		logger.info("SaveClaimHistoryRequest : " + schr.toString());
 		return claimsService.saveClaimHistory(schr);
+	}
+	
+	@GetMapping(path="retrieveClaimListing")
+	public @ResponseBody RetrieveClaimListingResponse retrieveClaimListing(RetrieveClaimListingRequest rclr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveClaimListing");
+		logger.info("RetrieveClaimListingRequest : " + rclr.toString());
+		return claimsService.retrieveClaimListing(rclr);
 	}
 }
