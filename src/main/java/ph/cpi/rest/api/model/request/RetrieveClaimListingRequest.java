@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveClaimListingRequest {
-	private Integer claimNo;
+	private String claimNo;
 	private String cedingName;
 	private String clmStatus;
 	private String policyNo;
@@ -19,10 +19,10 @@ public class RetrieveClaimListingRequest {
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
-	public Integer getClaimNo() {
+	public String getClaimNo() {
 		return claimNo;
 	}
-	public void setClaimNo(Integer claimNo) {
+	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
 	}
 	public String getCedingName() {
