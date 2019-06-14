@@ -58,4 +58,48 @@
     	END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.claims.Claims" id="claimsListingMap">
+		<result property="claimId"     		column="CLAIM_ID" />
+		<result property="claimNo"     		column="CLAIM_NO" />
+		<result property="cedingId"     	column="CEDING_ID" />
+		<result property="cedingName"     	column="CEDING_NAME" />
+		<result property="clmStatCd"     	column="CLM_STAT_CD" />
+		<result property="clmStatus"     	column="CLM_STATUS" />
+		<result property="policyNo"     	column="POLICY_NO" />
+		<result property="insuredDesc"     	column="INSURED_DESC" />
+		<result property="riskId"     		column="RISK_ID" />
+		<result property="riskName"     	column="RISK_NAME" />
+		<result property="lossDate"     	column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="lossDtl"     		column="LOSS_DTL" />
+		<result property="currencyCd"     	column="CURRENCY_CD" />
+		<result property="totalLossExpRes"  column="T_LOSS_EXP_RES" />
+		<result property="totalLossExpPd"   column="T_LOSS_EXP_PD" />
+		<result property="processedBy"     	column="PROCESSED_BY" />
+		<result property="createUser"     	column="CREATE_USER" />
+		<result property="createDate"     	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"     	column="UPDATE_USER" />
+		<result property="updateDate"     	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimAdjuster" id="clmAdjusterListAssoc">
+		<result property="adjName"     		column="ADJ_NAME" />
+	</resultMap>
+	
+	<select id="retrieveClaimListing" resultMap="claimsListingMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLM_GEN_INFO_PKG.ret_clm_list(
+														#{claimNo,jdbcType=VARCHAR},
+														#{cedingName,jdbcType=VARCHAR},
+														#{clmStatus,jdbcType=VARCHAR},
+														#{policyNo,jdbcType=VARCHAR},
+														#{insuredDesc,jdbcType=VARCHAR},
+														#{riskName,jdbcType=VARCHAR},
+														CAST(to_timestamp(#{lossDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														CAST(to_timestamp(#{lossDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{currencyCd,jdbcType=VARCHAR},
+														#{processedBy,jdbcType=VARCHAR}, 
+														'', '', '','')
+						 )
+		
+	</select>
 </mapper>
