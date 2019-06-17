@@ -138,10 +138,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public Integer savePolAttachments(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> savePolAttachments(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("savePolAttachment",params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 	
 	@Override
@@ -340,9 +341,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
-	public Integer savePolAttachmentsOc(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> savePolAttachmentsOc(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolAttachmentOC", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override

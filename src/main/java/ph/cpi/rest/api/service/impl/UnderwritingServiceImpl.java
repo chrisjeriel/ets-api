@@ -405,7 +405,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolAttachmentParams.put("savePolAttachments", spar.getSavePolAttachments());
 			savePolAttachmentParams.put("deletePolAttachments", spar.getDeletePolAttachments());
 			
-			spaResponse.setReturnCode(underwritingDao.savePolAttachments(savePolAttachmentParams));
+			HashMap<String, Object> res = underwritingDao.savePolAttachments(savePolAttachmentParams);
+			spaResponse.setReturnCode((Integer) res.get("errorCode"));
+			spaResponse.setUploadDate((String) res.get("uploadDate"));
 		}catch(Exception ex){
 			spaResponse.setReturnCode(0);
 			spaResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
@@ -1111,7 +1113,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolAttachmentOcParams.put("savePolAttachments", spaocr.getSavePolAttachments());
 			savePolAttachmentOcParams.put("deletePolAttachments", spaocr.getDeletePolAttachments());
 			
-			spaocrResponse.setReturnCode(underwritingDao.savePolAttachmentsOc(savePolAttachmentOcParams));
+			HashMap<String, Object> res = underwritingDao.savePolAttachmentsOc(savePolAttachmentOcParams);
+			spaocrResponse.setReturnCode((Integer) res.get("errorCode"));
+			spaocrResponse.setUploadDate((String) res.get("uploadDate"));
 		}catch(Exception ex){
 			spaocrResponse.setReturnCode(0);
 			spaocrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
