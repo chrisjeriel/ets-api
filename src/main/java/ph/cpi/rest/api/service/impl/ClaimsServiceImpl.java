@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -62,6 +64,16 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("currencyCd", rclr.getCurrencyCd());
 		params.put("processedBy", rclr.getProcessedBy());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveClaimSecCoverResponse retrieveClaimSecCover(RetrieveClaimSecCoverRequest rcsr) throws SQLException {
+		RetrieveClaimSecCoverResponse response = new RetrieveClaimSecCoverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId", rcsr.getClaimId());
+		params.put("claimNo", rcsr.getClaimNo());
+		response.setClaims(claimsDao.retrieveClaimSecCover(params));
 		return response;
 	}
 }

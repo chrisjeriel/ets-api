@@ -27,6 +27,8 @@ public class Claims {
 	private DateTime updateDate;
 	
 	private List<ClaimAdjuster> clmAdjusterList;
+	private ClaimProject clmProject;
+	private List<ClaimDeductibles> clmDeductibles;
 
 	public Integer getClaimId() {
 		return claimId;
@@ -195,6 +197,23 @@ public class Claims {
 	public void setClmAdjusterList(List<ClaimAdjuster> clmAdjusterList) {
 		this.clmAdjusterList = clmAdjusterList;
 	}
+	
+	public ClaimProject getClmProject() {
+		return clmProject;
+	}
+
+	public void setClmProject(ClaimProject clmProject) {
+		this.clmProject = clmProject;
+	}
+	
+
+	public List<ClaimDeductibles> getClmDeductibles() {
+		return clmDeductibles;
+	}
+
+	public void setClmDeductibles(List<ClaimDeductibles> clmDeductibles) {
+		this.clmDeductibles = clmDeductibles;
+	}
 
 	@Override
 	public String toString() {
@@ -204,8 +223,9 @@ public class Claims {
 				+ lossDate + ", lossDtl=" + lossDtl + ", currencyCd=" + currencyCd + ", totalLossExpRes="
 				+ totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd + ", processedBy=" + processedBy
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", clmAdjusterList=" + clmAdjusterList + "]";
+				+ ", updateDate=" + updateDate + ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject
+				+ ", clmDeductibles=" + clmDeductibles + "]";
 	}
-	
+
 	
 }
