@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.claims.ClaimHistory;
+import ph.cpi.rest.api.model.claims.Claims;
 
 public interface ClaimsDao {
 	public List<ClaimHistory> retrieveClaimHistory(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveClaimHistory(final HashMap<String, Object> params) throws SQLException;
+	public Claims retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
 }

@@ -280,32 +280,32 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">
-		<result property="insuredId" 	column="INSURED_ID"/>
-		<result property="insuredName" 	column="INSURED_NAME"/>
-		<result property="insuredAbbr" 	column="INSURED_ABBR"/>
-		<result property="insuredType" 	column="INSURED_TYPE"/>
+		<result property="insuredId" 		column="INSURED_ID"/>
+		<result property="insuredName" 		column="INSURED_NAME"/>
+		<result property="insuredAbbr" 		column="INSURED_ABBR"/>
+		<result property="insuredType" 		column="INSURED_TYPE"/>
 		<result property="insuredTypeDesc" 	column="INSURED_TYPE_DESC"/>
-		<result property="firstName" 	column="FIRST_NAME"/>
+		<result property="firstName" 		column="FIRST_NAME"/>
 		<result property="middleInitial" 	column="MIDDLE_INITIAL"/>
-		<result property="lastName" 	column="LAST_NAME"/>
-		<result property="addrLine1" 	column="ADDR_LINE1"/>
-		<result property="addrLine2" 	column="ADDR_LINE2"/>
-		<result property="addrLine3" 	column="ADDR_LINE3"/>
-		<result property="zipCd" 	column="ZIP_CD"/>
-		<result property="address" 	column="ADDRESS"/>
-		<result property="contactNo" 	column="CONTACT_NO"/>
-		<result property="emailAdd" 	column="EMAIL_ADD"/>
-		<result property="activeTag" 	column="ACTIVE_TAG"/>
-		<result property="corpTag" 	column="CORP_TAG"/>
-		<result property="corpTagDesc" 	column="CORP_TAG_DESC"/>
-		<result property="vatTag" 	column="VAT_TAG"/>
-		<result property="vatTagDesc" 	column="VAT_TAG_DESC"/>
-		<result property="oldInsId" 	column="OLD_INS_ID"/>
-		<result property="remarks" 	column="REMARKS"/>
-		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
-		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="lastName" 		column="LAST_NAME"/>
+		<result property="addrLine1" 		column="ADDR_LINE1"/>
+		<result property="addrLine2" 		column="ADDR_LINE2"/>
+		<result property="addrLine3" 		column="ADDR_LINE3"/>
+		<result property="zipCd" 			column="ZIP_CD"/>
+		<result property="address" 			column="ADDRESS"/>
+		<result property="contactNo" 		column="CONTACT_NO"/>
+		<result property="emailAdd" 		column="EMAIL_ADD"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="corpTag" 			column="CORP_TAG"/>
+		<result property="corpTagDesc" 		column="CORP_TAG_DESC"/>
+		<result property="vatTag" 			column="VAT_TAG"/>
+		<result property="vatTagDesc" 		column="VAT_TAG_DESC"/>
+		<result property="oldInsId" 		column="OLD_INS_ID"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 	</resultMap>
 	
 	<select id="retrieveMtnInsured" resultMap="insuredMap" parameterType="java.util.Map">
@@ -323,35 +323,35 @@
 	
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.EndtCode" id="endtCode">
-		<result property="lineCd" column="LINE_CD"/>
-		<result property="lineDesc" column="LINE_DESCRIPTION"/>
-		<result property="endtCd" column="ENDT_CD"/>
-		<result property="endtTitle" column="ENDT_TITLE"/>
-		<result property="description" column="ENDT_DESCRIPTION"/>
-		<result property="defaultTag" column="DEFAULT_TAG"/>
-		<result property="activeTag" column="ACTIVE_TAG"/>
-		<result property="endtText01" column="ENDT_TEXT01"/>
-		<result property="endtText02" column="ENDT_TEXT02"/>
-		<result property="endtText03" column="ENDT_TEXT03"/>
-		<result property="endtText04" column="ENDT_TEXT04"/>
-		<result property="endtText05" column="ENDT_TEXT05"/>
-		<result property="endtText06" column="ENDT_TEXT06"/>
-		<result property="endtText07" column="ENDT_TEXT07"/>
-		<result property="endtText08" column="ENDT_TEXT08"/>
-		<result property="endtText09" column="ENDT_TEXT09"/>
-		<result property="endtText10" column="ENDT_TEXT10"/>
-		<result property="endtText11" column="ENDT_TEXT11"/>
-		<result property="endtText12" column="ENDT_TEXT12"/>
-		<result property="endtText13" column="ENDT_TEXT13"/>
-		<result property="endtText14" column="ENDT_TEXT14"/>
-		<result property="endtText15" column="ENDT_TEXT15"/>
-		<result property="endtText16" column="ENDT_TEXT16"/>
-		<result property="endtText17" column="ENDT_TEXT17"/>
-		<result property="remarks" 	column="REMARKS"/>
-		<result property="createUser" column="CREATE_USER"/>
-		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" column="UPDATE_USER"/>
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lineCd" 		column="LINE_CD"/>
+		<result property="lineDesc" 	column="LINE_DESCRIPTION"/>
+		<result property="endtCd" 		column="ENDT_CD"/>
+		<result property="endtTitle" 	column="ENDT_TITLE"/>
+		<result property="description" 	column="ENDT_DESCRIPTION"/>
+		<result property="defaultTag" 	column="DEFAULT_TAG"/>
+		<result property="activeTag"  	column="ACTIVE_TAG"/>
+		<result property="endtText01" 	column="ENDT_TEXT01"/>
+		<result property="endtText02" 	column="ENDT_TEXT02"/>
+		<result property="endtText03" 	column="ENDT_TEXT03"/>
+		<result property="endtText04" 	column="ENDT_TEXT04"/>
+		<result property="endtText05" 	column="ENDT_TEXT05"/>
+		<result property="endtText06" 	column="ENDT_TEXT06"/>
+		<result property="endtText07" 	column="ENDT_TEXT07"/>
+		<result property="endtText08" 	column="ENDT_TEXT08"/>
+		<result property="endtText09" 	column="ENDT_TEXT09"/>
+		<result property="endtText10" 	column="ENDT_TEXT10"/>
+		<result property="endtText11" 	column="ENDT_TEXT11"/>
+		<result property="endtText12" 	column="ENDT_TEXT12"/>
+		<result property="endtText13" 	column="ENDT_TEXT13"/>
+		<result property="endtText14" 	column="ENDT_TEXT14"/>
+		<result property="endtText15" 	column="ENDT_TEXT15"/>
+		<result property="endtText16" 	column="ENDT_TEXT16"/>
+		<result property="endtText17" 	column="ENDT_TEXT17"/>
+		<result property="remarks" 	  	column="REMARKS"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="okDelete" 	column="OK_DELETE"/>
 		<association property="deductibles" resultMap="endt_ded"></association>
 	</resultMap>
@@ -568,7 +568,6 @@
         <result property="cityDesc" column="CITY_DESC"/>
         <result property="zoneCd" column="ZONE_CD" />
 		<result property="zoneDesc" column="ZONE_DESC" />
-		
         <association property="districtList" resultMap="maintenanceDistrictMap"></association>
 	</resultMap>
 	

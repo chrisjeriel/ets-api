@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -46,5 +50,20 @@ public class ClaimsController {
 		logger.info("POST: /api/maintenance-service/saveClaimHistory");
 		logger.info("SaveClaimHistoryRequest : " + schr.toString());
 		return claimsService.saveClaimHistory(schr);
+	}
+	
+	@GetMapping(path="retrieveClaimsAttachment")
+	public @ResponseBody RetrieveClaimsAttachmentResponse retrieveClaimsAttachment(RetrieveClaimsAttachmentRequest rcar) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClaimsAttachment");
+		logger.info("RetrieveClaimsAttachment : " + rcar.toString());
+		return claimsService.retrieveClaimsAttachment(rcar);
+	}
+	
+	@PostMapping(path="saveClaimsAttachment")
+	public  @ResponseBody SaveClaimsAttachmentResponse saveClaimAttachment(@RequestBody SaveClaimsAttachmentRequest scar) throws SQLException {
+		logger.info("POST: /api/claims-service/saveClaimsAttachment");
+		logger.info("SaveClaimsAttachmentRequest : " + scar.toString());
+		return claimsService.saveClaimAttachment(scar);
+		
 	}
 }
