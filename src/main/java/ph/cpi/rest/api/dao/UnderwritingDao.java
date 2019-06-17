@@ -6,10 +6,13 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
+import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PoolDistribution;
@@ -66,12 +69,10 @@ public interface UnderwritingDao {
 	public Integer retrieveCoInsStatus(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolGenInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolGenInfo(final HashMap<String, Object> params ) throws SQLException;
-	
 	public Integer postPolicy(final HashMap<String, Object> params ) throws SQLException;
 	public Integer genHundredValPolPrinting(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolicyFullCoverage(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolFullCoverage(final HashMap<String, Object> params ) throws SQLException;
-	
 	public HashMap<String, Object> extractExpiringPolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<ExpPolicy> retrieveExpPolList(final HashMap<String, Object> params) throws SQLException;
 	public PolDistribution retrievePolDist(final HashMap<String, Object> params ) throws SQLException;
@@ -79,4 +80,20 @@ public interface UnderwritingDao {
 	public List<WriskLimit> retrieveWriskLimit(final HashMap<String, Object> params) throws SQLException;
 	public List<PoolDistribution> retrievePoolDist(final HashMap<String, Object> params) throws SQLException;
 	public List<DistCoIns> retrieveDistCoIns(final HashMap<String, Object> params) throws SQLException;
+	public List<DistRiskWparam> retrieveDistRiskWparam(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer postDistribution(final HashMap<String, Object> params ) throws SQLException;
+	public List<PoolDistribution> retrievePolPoolDist(final HashMap<String, Object> params) throws SQLException;
+	
+	public HashMap<String, Object> processRenewablePolicy(final HashMap<String, Object> params ) throws SQLException;
+	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveExpCov(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveExpCatPeril(final HashMap<String, Object> params ) throws SQLException;
+	
+	public Integer autoCalcDist(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public Integer distributeRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public List<PolDistList> retrievePolDistList(final HashMap<String, Object> params) throws SQLException;
+	
 }

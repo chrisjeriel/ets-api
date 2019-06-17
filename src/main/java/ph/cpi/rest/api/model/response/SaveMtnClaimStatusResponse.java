@@ -6,7 +6,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class PostPolicyResponse {
+public class SaveMtnClaimStatusResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
@@ -21,9 +21,6 @@ public class PostPolicyResponse {
 		this.errorList = errorList;
 	}
 	public List<Message> getMessageList() {
-		if (messageList == null) {
-			messageList = new ArrayList<Message>();
-		}
 		return messageList;
 	}
 	public void setMessageList(List<Message> messageList) {
@@ -37,7 +34,9 @@ public class PostPolicyResponse {
 	}
 	@Override
 	public String toString() {
-		return "PostPolicyResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "SaveMtnClaimStatusResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
+	
+	
 }

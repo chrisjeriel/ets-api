@@ -556,8 +556,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 	@Override
 	public Integer saveMtnTreatyShare(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveMtnTreatyComm", params);
-		sqlSession.update("saveMtnTreatyShare", params);
-		sqlSession.update("saveMtnCedRetention", params);
+//		sqlSession.update("saveMtnTreatyShare", params);
+//		sqlSession.update("saveMtnCedRetention", params);
 		return res;
 	}
 
@@ -789,4 +789,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao{
 		return errorCode;
 	}
 	
+
+	@Override
+	public HashMap<String, Object> saveMtnClaimStatus(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnClaimStatus",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

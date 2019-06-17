@@ -9,7 +9,7 @@ public class CoInsurance {
 	private String cedingId ;
 	private String cedingName;
 	private Integer pctShare;
-	private Integer shareSiAmt;
+	private Double shareSiAmt;
 	private Integer sharePremAmt;
 	private String createUser;
 	private DateTime createDate;
@@ -52,10 +52,11 @@ public class CoInsurance {
 	public void setPctShare(Integer pctShare) {
 		this.pctShare = pctShare;
 	}
-	public Integer getShareSiAmt() {
+	
+	public Double getShareSiAmt() {
 		return shareSiAmt;
 	}
-	public void setShareSiAmt(Integer shareSiAmt) {
+	public void setShareSiAmt(Double shareSiAmt) {
 		this.shareSiAmt = shareSiAmt;
 	}
 	public Integer getSharePremAmt() {

@@ -760,4 +760,11 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnLossCd(smcr);
 	}
 	
+	@PostMapping(path="saveMtnClaimStatus")
+	public @ResponseBody SaveMtnClaimStatusResponse saveMtnClaimStatus(@RequestBody SaveMtnClaimStatusRequest ctlr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnClaimStatus");
+		logger.info("SaveMtnClaimStatusRequest : " + ctlr.toString());
+		return maintenanceService.saveMtnClaimStatus(ctlr);
+	}
+	
 }

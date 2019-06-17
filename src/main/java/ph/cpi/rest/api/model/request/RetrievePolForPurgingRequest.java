@@ -3,23 +3,23 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveDistCoInsRequest {
-	private Integer riskDistId;
-	private Integer policyId;
-	private PaginationRequest paginationRequest = new PaginationRequest();
-	private SortRequest sortRequest = new SortRequest();
-	
-	public Integer getRiskDistId() {
-		return riskDistId;
-	}
-	public void setRiskDistId(Integer riskDistId) {
-		this.riskDistId = riskDistId;
-	}
-	public Integer getPolicyId() {
+public class RetrievePolForPurgingRequest {
+	private String policyId;
+	private String lineCd;
+	private PaginationRequest paginationRequest;
+	private SortRequest sortRequest;
+	public String getPolicyId() {
 		return policyId;
 	}
-	public void setPolicyId(Integer policyId) {
+	public void setPolicyId(String policyId) {
 		this.policyId = policyId;
+	}
+	
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -35,7 +35,9 @@ public class RetrieveDistCoInsRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveDistCoInsRequest [riskDistId=" + riskDistId + ", policyId=" + policyId + ", paginationRequest="
+		return "RetrievePolForPurgingRequest [policyId=" + policyId + ", lineCd=" + lineCd + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
+	
 }
