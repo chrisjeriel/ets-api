@@ -15,16 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
-import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
-import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
-import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
-import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.service.ClaimsService;
-import ph.cpi.rest.api.service.MaintenanceService;
 
 @Controller
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888"})
@@ -55,5 +52,12 @@ public class ClaimsController {
 		logger.info("GET: /api/maintenance-service/retrieveClaimListing");
 		logger.info("RetrieveClaimListingRequest : " + rclr.toString());
 		return claimsService.retrieveClaimListing(rclr);
+	}
+	
+	@GetMapping(path="retrieveClmGenInfo")
+	public @ResponseBody RetrieveClmGenInfoResponse retrieveClmGenInfo(RetrieveClmGenInfoRequest rcgir) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveClmGenInfo");
+		logger.info("RetrieveClmGenInfoRequest : " + rcgir.toString());
+		return claimsService.retrieveClmGenInfo(rcgir);
 	}
 }

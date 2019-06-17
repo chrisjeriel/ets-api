@@ -39,4 +39,10 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		List<Claims> res = sqlSession.selectList("retrieveClaimListing", params);
 		return res;
 	}
+
+	@Override
+	public Claims retrieveClmGenInfo(HashMap<String, Object> params) throws SQLException {
+		Claims claim = sqlSession.selectOne("retrieveClmGenInfo", params);
+		return claim;
+	}
 }

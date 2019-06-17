@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -63,5 +65,18 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("processedBy", rclr.getProcessedBy());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
 		return response;
+	}
+
+	@Override
+	public RetrieveClmGenInfoResponse retrieveClmGenInfo(RetrieveClmGenInfoRequest rcgir) throws SQLException {
+		RetrieveClmGenInfoResponse rcgiResponse = new RetrieveClmGenInfoResponse();
+		HashMap<String, Object> retrieveClmGenInfoParams = new HashMap<String, Object>();
+		
+		retrieveClmGenInfoParams.put("claimId", rcgir.getClaimId());
+		retrieveClmGenInfoParams.put("claimNo", rcgir.getClaimNo());
+		
+		rcgiResponse.setClaim(claimsDao.retrieveClmGenInfo(retrieveClmGenInfoParams));
+		
+		return rcgiResponse;
 	}
 }
