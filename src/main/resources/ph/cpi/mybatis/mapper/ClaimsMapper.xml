@@ -200,4 +200,19 @@
 	<select id="retrieveClaimSecCover" resultMap="claimsListingMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(CLM_COVERAGE_PKG.ret_clm_cover(null,null,null,null,null,null))
 	</select>
+	
+	<update id="saveClaimSecCover" parameterType="java.util.Map">
+		BEGIN
+			CLM_COVERAGE_PKG.save_clm_sec_cov( #{claimId}, #{projId}, #{riskId}, #{sectionISi}, 
+												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag}, 
+												#{secIISiTag}, #{secIIISiTag}, #{allowMaxSi}, #{sectionIPrem}, 
+												#{sectionIIPrem}, #{sectionIIIPrem}, #{totalPrem}, 
+												#{currencyCd}, #{currencyRt}, #{pctShare}, #{pctPml}, 
+												#{totalValue}, #{createUser}, 
+												CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{updateUser}, 
+												CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+		END;
+	</update>
 </mapper>

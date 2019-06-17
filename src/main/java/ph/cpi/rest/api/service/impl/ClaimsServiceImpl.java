@@ -9,14 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
+import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Component
@@ -74,6 +78,46 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("claimId", rcsr.getClaimId());
 		params.put("claimNo", rcsr.getClaimNo());
 		response.setClaims(claimsDao.retrieveClaimSecCover(params));
+		return response;
+	}
+
+	@Override
+	public SaveClaimSecCoverResponse saveClaimSecCover(SaveClaimSecCoverRequest scsr) throws SQLException {
+		SaveClaimSecCoverResponse response = new SaveClaimSecCoverResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("claimId",scsr.getClaimId());
+			params.put("projId",scsr.getProjId());
+			params.put("riskId",scsr.getRiskId());
+			params.put("sectionISi",scsr.getSectionISi());
+			params.put("sectionIISi",scsr.getSectionIISi());
+			params.put("sectionIIISi",scsr.getSectionIIISi());
+			params.put("totalSi",scsr.getTotalSi());
+			params.put("secISiTag",scsr.getSecISiTag());
+			params.put("secIISiTag",scsr.getSecIISiTag());
+			params.put("secIIISiTag",scsr.getSecIIISiTag());
+			params.put("allowMaxSi",scsr.getAllowMaxSi());
+			params.put("sectionIPrem",scsr.getSectionIPrem());
+			params.put("sectionIIPrem",scsr.getSectionIIPrem());
+			params.put("sectionIIIPrem",scsr.getSectionIIIPrem());
+			params.put("totalPrem",scsr.getTotalPrem());
+			params.put("currencyCd",scsr.getCurrencyCd());
+			params.put("currencyRt",scsr.getCurrencyRt());
+			params.put("pctShare",scsr.getPctShare());
+			params.put("pctPml",scsr.getPctPml());
+			params.put("totalValue",scsr.getTotalValue());
+			params.put("createUser",scsr.getCreateUser());
+			params.put("createDate",scsr.getCreateDate());
+			params.put("updateUser",scsr.getUpdateUser());
+			params.put("updateDate",scsr.getUpdateDate());
+			
+			HashMap<String, Object> res = claimsDao.saveClaimSecCover(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch (Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }

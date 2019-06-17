@@ -18,12 +18,14 @@ import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveMtnLineRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveMtnLineResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -65,4 +67,12 @@ public class ClaimsController {
 		logger.info("RetrieveClaimSecCoverRequest : " + rcsr.toString());
 		return claimsService.retrieveClaimSecCover(rcsr);
 	}
+	
+	@PostMapping(path="saveClaimSecCover")
+	public @ResponseBody SaveClaimSecCoverResponse saveClaimSecCover(@RequestBody SaveClaimSecCoverRequest scsr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveClaimSecCover");
+		logger.info("SaveClaimSecCoverRequest : " + scsr.toString());
+		return claimsService.saveClaimSecCover(scsr);
+	}
+	
 }

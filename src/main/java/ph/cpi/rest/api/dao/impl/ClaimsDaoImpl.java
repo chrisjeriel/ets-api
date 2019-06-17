@@ -45,4 +45,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		Claims claims = sqlSession.selectOne("retrieveClaimSecCover",params);
 		return claims;
 	}
+
+	@Override
+	public HashMap<String, Object> saveClaimSecCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimSecCover",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
