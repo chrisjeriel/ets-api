@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -337,6 +338,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqarResponse.setUploadDate((String) res.get("uploadDate"));
 		} catch(Exception ex){
 			sqarResponse.setReturnCode(0);
 			sqarResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
