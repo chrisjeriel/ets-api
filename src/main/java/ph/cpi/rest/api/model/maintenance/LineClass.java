@@ -6,7 +6,7 @@ public class LineClass {
 	private String lineCd;
 	private String lineCdDesc;
 	private String lineClassCd;
-	private String lineClassCdDesc;
+	private String description;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -14,7 +14,6 @@ public class LineClass {
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
-	
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -33,11 +32,11 @@ public class LineClass {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
-	public String getLineClassCdDesc() {
-		return lineClassCdDesc;
+	public String getDescription() {
+		return description;
 	}
-	public void setLineClassCdDesc(String lineClassCdDesc) {
-		this.lineClassCdDesc = lineClassCdDesc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -84,8 +83,8 @@ public class LineClass {
 	@Override
 	public String toString() {
 		return "LineClass [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", lineClassCd=" + lineClassCd
-				+ ", lineClassCdDesc=" + lineClassCdDesc + ", activeTag=" + activeTag + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", description=" + description + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
