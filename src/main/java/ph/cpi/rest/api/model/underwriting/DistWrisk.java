@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 
 public class DistWrisk {
 	private Integer riskDistId;
+	private Integer altNo;
 	private Integer coinsGrpId;
 	private String status;
 	private Double retLineAmt;
@@ -14,8 +15,10 @@ public class DistWrisk {
 	private String autoCalc;
 	private Double tsiAmt;
 	private Double premAmt;
+	private Double vatRiRt;
 	private DateTime negateDate;
 	private String negateUser;
+	private Double trtyLimitSec2;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -35,6 +38,12 @@ public class DistWrisk {
 	}
 	public void setRiskDistId(Integer riskDistId) {
 		this.riskDistId = riskDistId;
+	}
+	public Integer getAltNo() {
+		return altNo;
+	}
+	public void setAltNo(Integer altNo) {
+		this.altNo = altNo;
 	}
 	public Integer getCoinsGrpId() {
 		return coinsGrpId;
@@ -84,6 +93,12 @@ public class DistWrisk {
 	public void setPremAmt(Double premAmt) {
 		this.premAmt = premAmt;
 	}
+	public Double getVatRiRt() {
+		return vatRiRt;
+	}
+	public void setVatRiRt(Double vatRiRt) {
+		this.vatRiRt = vatRiRt;
+	}
 	public DateTime getNegateDate() {
 		return negateDate;
 	}
@@ -95,6 +110,12 @@ public class DistWrisk {
 	}
 	public void setNegateUser(String negateUser) {
 		this.negateUser = negateUser;
+	}
+	public Double getTrtyLimitSec2() {
+		return trtyLimitSec2;
+	}
+	public void setTrtyLimitSec2(Double trtyLimitSec2) {
+		this.trtyLimitSec2 = trtyLimitSec2;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -162,16 +183,18 @@ public class DistWrisk {
 	public void setTotalPremAmt(Double totalPremAmt) {
 		this.totalPremAmt = totalPremAmt;
 	}
-	
 	@Override
 	public String toString() {
-		return "DistWrisk [riskDistId=" + riskDistId + ", coinsGrpId=" + coinsGrpId + ", status=" + status
-				+ ", retLineAmt=" + retLineAmt + ", retOneLines=" + retOneLines + ", retTwoLines=" + retTwoLines
-				+ ", autoCalc=" + autoCalc + ", tsiAmt=" + tsiAmt + ", premAmt=" + premAmt + ", negateDate="
-				+ negateDate + ", negateUser=" + negateUser + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", distRiskWtreaty="
-				+ distRiskWtreaty + ", retOneTsiAmt=" + retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt
-				+ ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt=" + retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt
-				+ ", totalPremAmt=" + totalPremAmt + "]";
+		return "DistWrisk [riskDistId=" + riskDistId + ", altNo=" + altNo + ", coinsGrpId=" + coinsGrpId + ", status="
+				+ status + ", retLineAmt=" + retLineAmt + ", retOneLines=" + retOneLines + ", retTwoLines="
+				+ retTwoLines + ", autoCalc=" + autoCalc + ", tsiAmt=" + tsiAmt + ", premAmt=" + premAmt + ", vatRiRt="
+				+ vatRiRt + ", negateDate=" + negateDate + ", negateUser=" + negateUser + ", trtyLimitSec2="
+				+ trtyLimitSec2 + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", distRiskWtreaty=" + distRiskWtreaty + ", retOneTsiAmt="
+				+ retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt + ", retTwoTsiAmt=" + retTwoTsiAmt
+				+ ", retTwoPremAmt=" + retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt + ", totalPremAmt=" + totalPremAmt
+				+ "]";
 	}
+	
+	
 }

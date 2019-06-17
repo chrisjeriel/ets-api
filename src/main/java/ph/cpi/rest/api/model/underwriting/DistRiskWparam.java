@@ -1,23 +1,27 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
-public class DistRiskWtreaty {
+public class DistRiskWparam {
+	private Integer treatyYear;
 	private Integer treatyId;
 	private String treatyName;
 	private String trtyCedId;
 	private String trtyCedName;
-	private Double pctShare;
-	private Double siAmt;
-	private Double premAmt;
-	private Double commRt;
-	private Double commAmt;
-	private Double vatRiComm;
-	private Double netDue;
+	private String pctShare;
+	private BigDecimal commRt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	public Integer getTreatyYear() {
+		return treatyYear;
+	}
+	public void setTreatyYear(Integer treatyYear) {
+		this.treatyYear = treatyYear;
+	}
 	public Integer getTreatyId() {
 		return treatyId;
 	}
@@ -42,47 +46,17 @@ public class DistRiskWtreaty {
 	public void setTrtyCedName(String trtyCedName) {
 		this.trtyCedName = trtyCedName;
 	}
-	public Double getPctShare() {
+	public String getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(Double pctShare) {
+	public void setPctShare(String pctShare) {
 		this.pctShare = pctShare;
 	}
-	public Double getSiAmt() {
-		return siAmt;
-	}
-	public void setSiAmt(Double siAmt) {
-		this.siAmt = siAmt;
-	}
-	public Double getPremAmt() {
-		return premAmt;
-	}
-	public void setPremAmt(Double premAmt) {
-		this.premAmt = premAmt;
-	}
-	public Double getCommRt() {
+	public BigDecimal getCommRt() {
 		return commRt;
 	}
-	public void setCommRt(Double commRt) {
+	public void setCommRt(BigDecimal commRt) {
 		this.commRt = commRt;
-	}
-	public Double getCommAmt() {
-		return commAmt;
-	}
-	public void setCommAmt(Double commAmt) {
-		this.commAmt = commAmt;
-	}
-	public Double getVatRiComm() {
-		return vatRiComm;
-	}
-	public void setVatRiComm(Double vatRiComm) {
-		this.vatRiComm = vatRiComm;
-	}
-	public Double getNetDue() {
-		return netDue;
-	}
-	public void setNetDue(Double netDue) {
-		this.netDue = netDue;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -110,10 +84,10 @@ public class DistRiskWtreaty {
 	}
 	@Override
 	public String toString() {
-		return "DistRiskWtreaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId
-				+ ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", siAmt=" + siAmt + ", premAmt="
-				+ premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", netDue="
-				+ netDue + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+		return "DistRiskWparam [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", treatyName=" + treatyName
+				+ ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", commRt="
+				+ commRt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }

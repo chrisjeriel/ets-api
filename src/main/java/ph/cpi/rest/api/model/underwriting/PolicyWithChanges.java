@@ -11,6 +11,8 @@ public class PolicyWithChanges {
 	private List<ExpDeductibles> deductiblesList;
 	private String summaryTag;
 	private String procBy;
+	private String remarks;
+	private String renewalFlag;
 	
 	
 	public String getNewPolicyId() {
@@ -61,10 +63,24 @@ public class PolicyWithChanges {
 	public void setSummaryTag(String summaryTag) {
 		this.summaryTag = summaryTag;
 	}
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public String getRenewalFlag() {
+		return renewalFlag;
+	}
+	public void setRenewalFlag(String renewalFlag) {
+		this.renewalFlag = renewalFlag;
+	}
 	@Override
 	public String toString() {
 		return "PolicyWithChanges [policyId=" + policyId + ", newPolicyId=" + newPolicyId + ", newPolicyNo="
 				+ newPolicyNo + ", projectList=" + projectList + ", secCovList=" + secCovList + ", deductiblesList="
-				+ deductiblesList + ", summaryTag=" + summaryTag + ", procBy=" + procBy + "]";
+				+ deductiblesList + ", summaryTag=" + summaryTag + ", procBy=" + procBy + ", remarks=" + remarks
+				+ ", renewalFlag=" + renewalFlag + "]";
 	}
 }

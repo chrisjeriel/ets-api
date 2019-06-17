@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
+import ph.cpi.rest.api.model.claims.Claims;
 
 @Component
 public class ClaimsDaoImpl implements ClaimsDao {
@@ -31,5 +32,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	public Integer saveClaimHistory(HashMap<String, Object> params) throws SQLException {
 		Integer saveClaimHistory = sqlSession.update("saveClaimHistory",params);
 		return saveClaimHistory;
+	}
+
+	@Override
+	public List<Claims> retrieveClaimListing(HashMap<String, Object> params) throws SQLException {
+		List<Claims> res = sqlSession.selectList("retrieveClaimListing", params);
+		return res;
 	}
 }

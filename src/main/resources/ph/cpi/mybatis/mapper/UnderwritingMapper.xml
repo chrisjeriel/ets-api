@@ -1982,7 +1982,12 @@
 	<update id="extractExpiringPolicy" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			DIST_EXT_PKG.extract_exp_policy(#{policyId}, 
-											#{policyNo}, 
+											#{polLineCd},
+											#{polYear},
+											#{polSeqNo},
+											#{polCedingId},
+											#{coSeriesNo},
+											#{altNo},
 											CAST(to_timestamp(#{fromExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 											CAST(to_timestamp(#{toExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 											#{lineCd}, 
@@ -2179,6 +2184,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.ExpCatPeril" id="expCatPerilMap">
 		<result property="policyId"			column="POLICY_ID" />
 		<result property="catPerilId"		column="CAT_PERIL_ID" />
+		<result property="catPerilName" 	column="CAT_PERIL_NAME"/>
 		<result property="pctSharePrem"		column="PCT_SHARE_PREM" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -2198,7 +2204,7 @@
 	</resultMap>
 	
 	<select id="retrieveExpPolList" resultMap="retrieveExpPolListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_exp_policy(#{policyId, jdbcType=VARCHAR}, #{processTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{renewable, jdbcType=VARCHAR}, #{extractUser, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveExpProject" resultMap="expProjectMap" parameterType="java.util.Map">
@@ -2231,6 +2237,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistWrisk" id="retRiskDist">
 		<result property="riskDistId" 		column="RISK_DIST_ID" />
+		<result property="altNo"	 		column="ALT_NO" />
 		<result property="coinsGrpId" 		column="COINS_GRP_ID" />
 		<result property="status" 			column="STATUS" />
 		<result property="retLineAmt" 		column="RET_LINE_AMT" />
@@ -2239,8 +2246,10 @@
 		<result property="autoCalc" 		column="AUTO_CALC" />
 		<result property="tsiAmt" 			column="TSI_AMT" />
 		<result property="premAmt" 			column="PREM_AMT" />
+		<result property="vatRiRt"			column="VAT_RI_RT" />
 		<result property="negateDate" 		column="NEGATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="negateUser" 		column="NEGATE_USER" />
+		<result property="trtyLimitSec2"	column="TRTY_LIMIT_SECII" />
 		<result property="createUser" 		column="CREATE_USER" />
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER" />
@@ -2262,7 +2271,10 @@
 		<result property="pctShare"     column="PCT_SHARE" />
 		<result property="siAmt"        column="SI_AMT" />
 		<result property="premAmt"      column="T_PREM_AMT" />
-		<result property="commShare"    column="COMM_SHARE" />
+		<result property="commRt"    	column="COMM_RT" />
+		<result property="commAmt"    	column="COMM_AMT" />
+		<result property="vatRiComm"    column="VAT_RI_COMM" />
+		<result property="netDue"    	column="NET_DUE" />
 		<result property="createUser"   column="T_CREATE_USER" />
 		<result property="createDate"   column="T_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"   column="T_UPDATE_USER" />
@@ -2288,12 +2300,13 @@
 	</resultMap>
 	
 	<select id="retrieveWriskLimit" resultMap="retWriskLimit" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{lineCd}, #{lineClassCd},null,null,null,null))
+		SELECT * FROM TABLE(DIST_WRISK_PKG.wrisk_limit(#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PoolDistribution" id="retPoolDistMap">
 		<result property="riskDistId"		column="RISK_DIST_ID" />
 		<result property="treatyId"			column="TREATY_ID" />
+		<result property="section"			column="SECTION" />
 		<result property="treatyAbbr"		column="TREATY_ABBR" />
 		<result property="trtyCedId"		column="TRTY_CED_ID" />
 		<result property="cedingId"			column="CEDING_ID" />
@@ -2304,6 +2317,16 @@
 		<result property="retTwoLines"		column="RET2_LINES" />
 		<result property="retTwoTsiAmt"		column="RET2_TSI_AMT" />
 		<result property="retTwoPremAmt"	column="RET2_PREM_AMT" />
+		<result property="commRt"           column="COMM_RT" />
+		<result property="retOneCommAmt"    column="RET1_COMM_AMT" />
+		<result property="retTwoCommAmt"    column="RET2_COMM_AMT" />
+		<result property="totalCommAmt"     column="TOTAL_COMM_AMT" />
+		<result property="retOneVatRiComm"  column="RET1_VAT_RI_COMM" />
+		<result property="retTwoVatRiComm"  column="RET2_VAT_RI_COMM" />
+		<result property="totalVatRiComm"   column="TOTAL_VAT_RI_COMM" />
+		<result property="retOneNetDue"     column="RET1_NET_DUE" />
+		<result property="retTwoNetDue"     column="RET2_NET_DUE" />
+		<result property="totalNetDue"      column="TOTAL_NET_DUE" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
@@ -2311,7 +2334,7 @@
 	</resultMap>
 	
 	<select id="retrievePoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCEDING_PKG.ret_risk_wceding(#{riskDistId},#{altNo},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistCoIns" id="retDistCoInsMap">
@@ -2330,8 +2353,32 @@
 	</resultMap>
 	
 	<select id="retrieveDistCoIns" resultMap="retDistCoInsMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WCO_INS_PKG.ret_risk_wco_ins(#{riskDistId},#{policyId},null,null,null,null))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DistRiskWparam" id="retDistRiskWparamMap">
+		<result property="treatyYear"        column="TREATY_YEAR" />
+		<result property="treatyId"          column="WP_TREATY_ID" />
+		<result property="treatyName"        column="WP_TREATY_NAME" />
+		<result property="trtyCedId"         column="WP_TRTY_CED_ID" />
+		<result property="trtyCedName"       column="WP_TRTY_CED_NAME" />
+		<result property="pctShare"          column="WP_PCT_SHARE" />
+		<result property="commRt"            column="WP_COMM_RT" />
+		<result property="createUser"        column="WP_CREATE_USER" />
+		<result property="createDate"        column="WP_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"        column="WP_UPDATE_USER" />
+		<result property="updateDate"        column="WP_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveDistRiskWparam" resultMap="retDistRiskWparamMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_RISK_WPARAM_PKG.ret_dr_wparam(#{riskDistId}, #{altNo},null,null,null,null))
+	</select>
+	
+	<update id="postDistribution" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId});
+		END;
+	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistribution" id="retPolDistMap">
 		<result property="distNo"			column="DIST_ID" />
@@ -2372,7 +2419,10 @@
 		<result property="pctShare"			column="PCT_SHARE" />
 		<result property="siAmt"			column="SI_AMT" />
 		<result property="premAmt"			column="W_PREM_AMT" />
-		<result property="commShare"		column="COMM_SHARE" />
+		<result property="commRt"			column="COMM_RT" />
+		<result property="commAmt"			column="COMM_AMT" />
+		<result property="vatRiComm"		column="VAT_RI_COMM" />
+		<result property="netDue"			column="NET_DUE" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
@@ -2383,9 +2433,17 @@
 		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},#{policyId},null,null,null,null))
+	</select>
+	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">
 		 <result property="policyId" 		column="POLICY_ID" />
 		 <result property="policyNo" 		column="POLICY_NO" />
+		 <result property="cessionId" 		column="CESSION_ID"/>
+		 <result property="cedingId" 		column="CEDING_ID"/>
+		 <result property="cedingName" 		column="CEDING_NAME"/>
+		 <result property="insuredName" 	column="INSURED_NAME"/>
 		 <result property="totalSi" 		column="TSI_AMOUNT" />
 		 <result property="totalPrem" 		column="TOTAL_PREM" />
 		 <result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -2400,23 +2458,25 @@
 	<update id="purgeExpiringPol" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="deletePurge" item="del">
-				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId},#{del.lineCd,jdbcType=VARCHAR});
+				PURGE_EXP_PKG.purge_ext_policy(#{del.policyId});
 			</foreach>
 		END;
 	</update>
 	
 	<update id="processRenewablePolicyWC" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			{CALL 
-				DIST_EXT_PKG.upd_wc_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
-			}
+			{CALL
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
+												#{procBy, jdbcType=VARCHAR}, #{summaryTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{remarks, jdbcType=VARCHAR});
+			}	
 		END;
 	</update> 
 
 	<update id="processRenewablePolicyAI" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			{CALL
-				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
+												#{procBy, jdbcType=VARCHAR}, #{summaryTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{remarks, jdbcType=VARCHAR});
 			}	
 		END;
 	</update>
@@ -2457,4 +2517,71 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="autoCalcDist" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.dist_policy(#{policyId},#{updateUser},sysdate,#{updateUser},sysdate);
+		END;
+	</update>
+	
+	<update id="saveRiskDist" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
+			</foreach>
+			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{updateUser});
+			DIST_PKG.dist_not_auto(#{riskDistId},#{altNo},#{updateUser});
+		END;
+	</update>
+	
+	<update id="distributeRiskDist" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.distribute(#{riskDistId},#{altNo},#{updateUser});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistList" id="polDistListMap">
+		<result property="distId"        column="DIST_ID" />
+		<result property="riskDistId"    column="RISK_DIST_ID" />
+		<result property="status"        column="STATUS" />
+		<result property="lineCd"        column="LINE_CD" />
+		<result property="lineClassCd"   column="LINE_CLASS_CD" />
+		<result property="policyId"      column="POLICY_ID" />
+		<result property="policyNo"      column="POLICY_NO" />
+		<result property="cedingName"    column="CEDING_NAME" />
+		<result property="insuredDesc"   column="INSURED_DESC" />
+		<result property="riskName"      column="RISK_NAME" />
+		<result property="currencyCd"    column="CURRENCY_CD" />
+		<result property="totalSi"       column="TOTAL_SI" />
+		<result property="distDate"      column="DIST_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctDate"      column="ACCT_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrievePolDistList" resultMap="polDistListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist_list(#{distId, jdbcType=VARCHAR},
+															#{riskDistId, jdbcType=VARCHAR},
+															#{status, jdbcType=VARCHAR},
+															#{policyNo, jdbcType=VARCHAR},
+															#{cedingName, jdbcType=VARCHAR},
+															#{insuredDesc, jdbcType=VARCHAR},
+															#{riskName, jdbcType=VARCHAR},
+															#{currencyCd, jdbcType=VARCHAR},
+															CAST(to_timestamp(#{distDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{distDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{acctDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{acctDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														    null,null,null,null))
+	</select>
+	
+	<update id="saveExpCatPeril" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="expCatPeril" item="cat">
+				EXP_LISTING_PKG.save_exp_cat_peril(#{cat.policyId},#{cat.catPerilId},#{cat.pctSharePrem},#{cat.createUser},
+												   CAST(to_timestamp(#{cat.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{cat.updateUser},
+												   CAST(to_timestamp(#{cat.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+
 </mapper>

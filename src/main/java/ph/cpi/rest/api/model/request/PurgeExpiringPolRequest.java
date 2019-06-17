@@ -42,15 +42,7 @@ public class PurgeExpiringPolRequest {
 class Purge {
 	
 	private String policyId;
-	private String lineCd;
 
-	public String getLineCd() {
-		return lineCd;
-	}
-
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
 
 	public String getPolicyId() {
 		return policyId;
@@ -62,7 +54,9 @@ class Purge {
 
 	@Override
 	public String toString() {
-		return "Purge [policyId=" + policyId + ", lineCd=" + lineCd + "]";
+		return "Purge [policyId=" + policyId + "]";
 	}
+	
+	
 
 }

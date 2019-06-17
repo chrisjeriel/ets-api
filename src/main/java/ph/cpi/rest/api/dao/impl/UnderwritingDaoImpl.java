@@ -16,9 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -455,6 +457,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return res;
 	}
 
+	@Override
+	public Integer postDistribution(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("postDistribution",params);
+		return code;
+	}
+
+	@Override
+	public List<PoolDistribution> retrievePolPoolDist(HashMap<String, Object> params) throws SQLException {
+		List<PoolDistribution> res = sqlSession.selectList("retrievePolPoolDist", params);
+		return res;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
@@ -500,6 +514,42 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public HashMap<String, Object> saveExpCov(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveExpCov",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public List<DistRiskWparam> retrieveDistRiskWparam(HashMap<String, Object> params) throws SQLException {
+		List<DistRiskWparam> res = sqlSession.selectList("retrieveDistRiskWparam", params);
+		return res;
+	}
+
+	@Override
+	public Integer autoCalcDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("autoCalcDist",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveRiskDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveRiskDist",params);
+		return code;
+	}
+
+	@Override
+	public Integer distributeRiskDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("distributeRiskDist",params);
+		return code;
+	}
+	@Override
+	public List<PolDistList> retrievePolDistList(HashMap<String, Object> params) throws SQLException {
+		List<PolDistList> res = sqlSession.selectList("retrievePolDistList", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveExpCatPeril(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveExpCatPeril",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
