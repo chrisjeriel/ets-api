@@ -10,8 +10,12 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -43,5 +47,36 @@ public class ClaimsServiceImpl implements ClaimsService {
 		schResponse.setReturnCode(claimsDao.saveClaimHistory(saveClmHistoryParams));
 		logger.info("SaveClaimHistoryResponse : " + schResponse.toString());
 		return schResponse;
+	}
+
+	@Override
+	public RetrieveClaimListingResponse retrieveClaimListing(RetrieveClaimListingRequest rclr) throws SQLException {
+		RetrieveClaimListingResponse response = new RetrieveClaimListingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimNo", rclr.getClaimNo());
+		params.put("cedingName", rclr.getCedingName());
+		params.put("clmStatus", rclr.getClmStatus());
+		params.put("policyNo", rclr.getPolicyNo());
+		params.put("insuredDesc", rclr.getInsuredDesc());
+		params.put("riskName", rclr.getRiskName());
+		params.put("lossDateFrom", rclr.getLossDateFrom());
+		params.put("lossDateTo", rclr.getLossDateTo());
+		params.put("currencyCd", rclr.getCurrencyCd());
+		params.put("processedBy", rclr.getProcessedBy());
+		response.setClaimsList(claimsDao.retrieveClaimListing(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveClmGenInfoResponse retrieveClmGenInfo(RetrieveClmGenInfoRequest rcgir) throws SQLException {
+		RetrieveClmGenInfoResponse rcgiResponse = new RetrieveClmGenInfoResponse();
+		HashMap<String, Object> retrieveClmGenInfoParams = new HashMap<String, Object>();
+		
+		retrieveClmGenInfoParams.put("claimId", rcgir.getClaimId());
+		retrieveClmGenInfoParams.put("claimNo", rcgir.getClaimNo());
+		
+		rcgiResponse.setClaim(claimsDao.retrieveClmGenInfo(retrieveClmGenInfoParams));
+		
+		return rcgiResponse;
 	}
 }
