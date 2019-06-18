@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Controller
@@ -60,4 +64,19 @@ public class ClaimsController {
 		logger.info("RetrieveClmGenInfoRequest : " + rcgir.toString());
 		return claimsService.retrieveClmGenInfo(rcgir);
 	}
+	
+	@GetMapping(path="retrieveClaimSecCover")
+	public @ResponseBody RetrieveClaimSecCoverResponse retrieveClaimSecCover(RetrieveClaimSecCoverRequest rcsr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveClaimSecCover");
+		logger.info("RetrieveClaimSecCoverRequest : " + rcsr.toString());
+		return claimsService.retrieveClaimSecCover(rcsr);
+	}
+	
+	@PostMapping(path="saveClaimSecCover")
+	public @ResponseBody SaveClaimSecCoverResponse saveClaimSecCover(@RequestBody SaveClaimSecCoverRequest scsr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveClaimSecCover");
+		logger.info("SaveClaimSecCoverRequest : " + scsr.toString());
+		return claimsService.saveClaimSecCover(scsr);
+	}
+	
 }

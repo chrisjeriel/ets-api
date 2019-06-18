@@ -66,6 +66,9 @@ public class Claims {
 	private Project project;
 	private List<ClaimAdjuster> clmAdjusterList;
 	
+	private ClaimProject clmProject;
+	private List<ClaimDeductibles> clmDeductibles;
+
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -414,6 +417,24 @@ public class Claims {
 	public void setClmAdjusterList(List<ClaimAdjuster> clmAdjusterList) {
 		this.clmAdjusterList = clmAdjusterList;
 	}
+
+	
+	public ClaimProject getClmProject() {
+		return clmProject;
+	}
+
+	public void setClmProject(ClaimProject clmProject) {
+		this.clmProject = clmProject;
+	}
+	
+
+	public List<ClaimDeductibles> getClmDeductibles() {
+		return clmDeductibles;
+	}
+
+	public void setClmDeductibles(List<ClaimDeductibles> clmDeductibles) {
+		this.clmDeductibles = clmDeductibles;
+	}
 	@Override
 	public String toString() {
 		return "Claims [claimId=" + claimId + ", claimNo=" + claimNo + ", lineCd=" + lineCd + ", polYear=" + polYear
@@ -434,6 +455,10 @@ public class Claims {
 				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
 				+ ", totalLossExpPd=" + totalLossExpPd + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
-				+ ", clmAdjusterList=" + clmAdjusterList + "]";
+				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
+				+ clmDeductibles + "]";
 	}
+	
+	
+	
 }

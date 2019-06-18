@@ -1504,7 +1504,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrievePolForPurgingResponse response = new RetrievePolForPurgingResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId", rpfpr.getPolicyId());
-		params.put("lineCd", rpfpr.getLineCd());
 		response.setPolForPurging(underwritingDao.retrievePolForPurging(params));
 		return response;
 	}

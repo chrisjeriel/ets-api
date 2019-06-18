@@ -101,8 +101,8 @@
 					#{ch.exGratia,jdbcType=VARCHAR},
 					#{ch.currencyCd,jdbcType=VARCHAR},
 					#{ch.currencyRt,jdbcType=VARCHAR},
-					#{ch.reserveAmt,jdbcType=VARCHAR},
-					#{ch.paytAmt,jdbcType=VARCHAR},
+					#{ch.reserveAmt,jdbcType=INTEGER},
+					#{ch.paytAmt,jdbcType=INTEGER},
 					#{ch.refNo,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{ch.remarks,jdbcType=VARCHAR},
@@ -137,6 +137,8 @@
 		<result property="updateUser"     	column="UPDATE_USER" />
 		<result property="updateDate"     	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
+		<association property="clmProject" resultMap="claimProjectMap"></association>
+		<association property="clmDeductibles" resultMap="claimDeductiblesMap"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.Project" id="clmProjectAssoc">
@@ -203,5 +205,116 @@
 															  #{claimNo, jdbcType=VARCHAR},
 															  '', '', '',''))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimDeductibles" id="claimDeductiblesMap">
+		<result property="claimId" column="DEDT_CLAIM_ID"/>
+		<result property="coverCd" column="DEDT_COVER_CD"/>
+		<result property="endtCd" column="ENDT_CD"/>
+		<result property="deductibleCd" column="DEDUCTIBLE_CD"/>
+		<result property="deductibleTitle" column="DEDUCTIBLE_TITLE"/>
+		<result property="deductibleRt" column="DEDUCTIBLE_RT"/>
+		<result property="deductibleAmt" column="DEDUCTIBLE_AMT"/>
+		<result property="deductibleTxt" column="DEDUCTIBLE_TXT"/>
+		<result property="createUser" column="DEDT_CREATE_USER"/>
+		<result property="createDate" column="DEDT_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="DEDT_UPDATE_USER"/>
+		<result property="updateDate" column="DEDT_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimProject" id="claimProjectMap">
+		<result property="claimId" 		column="CLAIM_ID"/>
+		<result property="projId" 		column="PROJ_ID"/>
+		<result property="projDesc" 	column="PROJ_DESC"/>
+		<result property="riskId" 		column="RISK_ID"/>
+		<result property="riskName"     column="RISK_NAME"/>
+		<result property="regionCd" 	column="REGION_CD "/>
+		<result property="provinceCd" 	column="PROVINCE_CD "/>
+		<result property="cityCd" 		column="CITY_CD "/>
+		<result property="districtCd" 	column="DISTRICT_CD"/>
+		<result property="blockCd" 		column="BLOCK_CD "/>
+		<result property="latitude" 	column="LATITUDE"/>
+		<result property="longitude" 	column="LONGITUDE"/>
+		<result property="objectId" 	column="OBJECT_ID"/>
+		<result property="site" 		column="SITE"/>
+		<result property="duration" 	column="DURATION"/>
+		<result property="testing" 		column="TESTING"/>
+		<result property="ipl" 			column="IPL"/>
+		<result property="timeExc" 		column="TIME_EXC"/>
+		<result property="noClaimPd" 	column="NO_CLAIM_PD"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="clmCoverage" resultMap="claimCoverageMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimCoverage" id="claimCoverageMap">
+		<result property="claimId" 				column="CLAIM_ID"/>
+		<result property="claimNo"				column="CLAIM_NO"/>
+		<result property="projId" 				column="PROJ_ID"/>
+		<result property="riskId" 				column="RISK_ID"/>
+		<result property="sectionISi" 			column="SECTION_I_SI"/>
+		<result property="sectionIISi" 			column="SECTION_II_SI"/>
+		<result property="sectionIIISi" 		column="SECTION_III_SI"/>
+		<result property="totalSi" 				column="TOTAL_SI"/>
+		<result property="secISiTag" 			column="SECI_SI_TAG"/>
+		<result property="secIISiTag" 			column="SECII_SI_TAG"/>
+		<result property="secIIISiTag" 			column="SECIII_SI_TAG"/>
+		<result property="allowMaxSi" 			column="ALLOW_MAX_SI"/>
+		<result property="sectionIPrem" 		column="SECTION_I_PREM"/>
+		<result property="sectionIIPrem" 		column="SECTION_II_PREM"/>
+		<result property="sectionIIIPrem" 		column="SECTION_III_PREM"/>
+		<result property="totalPrem" 			column="TOTAL_PREM"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="currencyRt" 			column="CURRENCY_RT"/>
+		<result property="pctShare" 			column="PCT_SHARE"/>
+		<result property="pctPml" 				column="PCT_PML"/>
+		<result property="totalValue" 			column="TOTAL_VALUE"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="clmClaimSecCover" resultMap="claimSecCoverMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimSecCover" id="claimSecCoverMap">
+		<result property="claimId" 			column="SEC_CLAIM_ID"/>
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="projId" 			column="SEC_PROJ_ID"/>
+		<result property="riskId" 			column="SEC_RISK_ID"/>
+		<result property="section" 			column="SECTION"/>
+		<result property="coverCd" 			column="COVER_CD"/>
+		<result property="coverName" 		column="COVER_NAME"/>
+		<result property="bulletNo" 		column="BULLET_NO"/>
+		<result property="sumInsured" 		column="SUM_INSURED"/>
+		<result property="premRt" 			column="PREM_RT"/>
+		<result property="premAmt" 			column="PREM_AMT"/>
+		<result property="addSi" 			column="ADD_SI"/>
+		<result property="discountTag" 		column="DISCOUNT_TAG"/>
+		<result property="createUser" 		column="SEC_CREATE_USER"/>
+		<result property="createDate" 		column="SEC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="SEC_UPDATE_USER"/>
+		<result property="updateDate" 		column="SEC_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="claimDeductible" resultMap="claimDeductiblesMap"></association>
+	</resultMap>
+	
+	<select id="retrieveClaimSecCover" resultMap="claimsListingMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLM_COVERAGE_PKG.ret_clm_cover(null,null,null,null,null,null))
+	</select>
+	
+	<update id="saveClaimSecCover" parameterType="java.util.Map">
+		BEGIN
+			CLM_COVERAGE_PKG.save_clm_sec_cov( #{claimId}, #{projId}, #{riskId}, #{sectionISi}, 
+												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag}, 
+												#{secIISiTag}, #{secIIISiTag}, #{allowMaxSi}, #{sectionIPrem}, 
+												#{sectionIIPrem}, #{sectionIIIPrem}, #{totalPrem}, 
+												#{currencyCd}, #{currencyRt}, #{pctShare}, #{pctPml}, 
+												#{totalValue}, #{createUser}, 
+												CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{updateUser}, 
+												CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+		END;
+	</update>
 	
 </mapper>
