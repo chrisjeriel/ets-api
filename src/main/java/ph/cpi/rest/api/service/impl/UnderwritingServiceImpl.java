@@ -1582,6 +1582,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		SaveRiskDistResponse srdrResponse = new SaveRiskDistResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("saveWParam", srdr.getSaveWParam());
+		params.put("delWParam", srdr.getDelWParam());
 		params.put("policyId", srdr.getPolicyId());
 		params.put("riskDistId",srdr.getRiskDistId());
 		params.put("altNo",srdr.getAltNo());
