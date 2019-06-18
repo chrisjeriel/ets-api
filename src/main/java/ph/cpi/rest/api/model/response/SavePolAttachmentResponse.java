@@ -10,6 +10,7 @@ public class SavePolAttachmentResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private String uploadDate;
 	
 	public List<Error> getErrorList() {
 		if (errorList == null) {
@@ -32,10 +33,15 @@ public class SavePolAttachmentResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	
+	public String getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(String uploadDate) {
+		this.uploadDate = uploadDate;
+	}
 	@Override
 	public String toString() {
 		return "SavePolAttachmentResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+				+ returnCode + ", uploadDate=" + uploadDate + "]";
 	}
 }

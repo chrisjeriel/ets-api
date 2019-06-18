@@ -1103,17 +1103,17 @@
 			SELECT * FROM TABLE(QU_ALOP_PKG.ret_qu_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null))
     </select>
   
-	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map">
+	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
+		   <foreach collection="deleteAttachmentsList" item="attachment">
+		   		QU_ATTACHMENT_PKG.del_qu_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
 		   <foreach collection="saveAttachmentsList" item="attachment">
-		   	   QU_ATTACHMENT_PKG.save_qu_attachment
-			   (#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description, jdbcType=VARCHAR},#{attachment.createUser},
+		   	   QU_ATTACHMENT_PKG.save_qu_attachment(
+			   #{uploadDate, mode=OUT, jdbcType=VARCHAR},#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR},#{attachment.fileName},#{attachment.description, jdbcType=VARCHAR},#{attachment.createUser},
 			   CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{attachment.updateUser},
 			   CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			   
-		   </foreach>
-		   <foreach collection="deleteAttachmentsList" item="attachment">
-		   		QU_ATTACHMENT_PKG.del_qu_attachment(#{quoteId},#{attachment.fileNo, jdbcType=VARCHAR});
 		   </foreach>
 		END;
 	</update>
