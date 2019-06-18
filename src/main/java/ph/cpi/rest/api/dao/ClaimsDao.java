@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.Claims;
 
@@ -18,4 +19,7 @@ public interface ClaimsDao {
 	
 	public Claims retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
+	public List<ClaimApprovedAmt> retrieveClaimApprovedAmt(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveClaimApprovedAmt(final HashMap<String, Object> params) throws SQLException;
+
 }

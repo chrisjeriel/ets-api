@@ -210,8 +210,8 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.LineClass" id="mntLineClassMap">
 		<result property="lineCd" 			column="LINE_CD"/> 
-		<result property="lineClassCd" 		column="LINE_CLASS_CD"/> 
-		<result property="description" 		column="DESCRIPTION"/> 
+		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
+		<result property="lineClassCdDesc" 	column="DESCRIPTION"/> 
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="remarks" 			column="REMARKS"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 

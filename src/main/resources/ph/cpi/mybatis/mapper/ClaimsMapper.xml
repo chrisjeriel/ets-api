@@ -360,5 +360,52 @@
 		   </foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimApprovedAmt" id="claimApprovedAmtMap">
+		<result property="claimId"		column="CLAIM_ID"/>
+		<result property="histNo"		column="HIST_NO"/>
+		<result property="approvedAmt"	column="APPROVED_AMT"/>
+		<result property="approvedBy"	column="APPROVED_BY"/>
+		<result property="approvedDate"	column="APPROVED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="remarks"		column="REMARKS"/>
+		<result property="activeTag"	column="ACTIVE_TAG"/>
+		<result property="createUser"	column="CREATE_USER"/>
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER"/>
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveClaimApprovedAmt" resultMap="claimApprovedAmtMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLM_APPROVAL_HIST_PKG.ret_approval_hist(
+					#{claimId,jdbcType=INTEGER},
+					#{histNo,jdbcType=INTEGER}, 
+					'', '', '',''))
+	</select>
+	
+	<update id="saveClaimApprovedAmt" parameterType="java.util.Map">
+		BEGIN
+    		<foreach collection="saveClaimApprovedAmt" item="scaa">
+    			CLM_RES_HIST_PKG.save_clm_res_hist(
+    				#{ch.claimId,jdbcType=VARCHAR},
+					#{ch.projId,jdbcType=VARCHAR},
+					#{ch.histNo,jdbcType=VARCHAR},
+					#{ch.histCategory,jdbcType=VARCHAR},
+					#{ch.histType,jdbcType=VARCHAR},
+					#{ch.exGratia,jdbcType=VARCHAR},
+					#{ch.currencyCd,jdbcType=VARCHAR},
+					#{ch.currencyRt,jdbcType=VARCHAR},
+					#{ch.reserveAmt,jdbcType=INTEGER},
+					#{ch.paytAmt,jdbcType=INTEGER},
+					#{ch.refNo,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{ch.remarks,jdbcType=VARCHAR},
+					#{ch.createUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{ch.updateUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+	</update>
 		
 </mapper>
