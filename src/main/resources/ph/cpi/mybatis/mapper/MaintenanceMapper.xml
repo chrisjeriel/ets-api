@@ -1914,12 +1914,12 @@
     </update>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.RetAmt" id="retAmtMap">
-     	<result property="retentionId" 	column="RETENTION_ID"/>
-	    <result property="lineCd" 		column="LINE_CD"/>
+     	<result property="lineCd" 		column="LINE_CD"/>
 	    <result property="lineClassCd" 	column="LINE_CLASS_CD"/>
+	    <result property="currencyCd" 	column="CURRENCY_CD"/>
+     	<result property="retentionId" 	column="RETENTION_ID"/>
 	    <result property="retLineAmt" 	column="RET_LINE_AMT"/>
 	    <result property="effDateFrom" 	column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-	    <result property="effDateTo" 	column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	    <result property="activeTag" 	column="ACTIVE_TAG"/>
 	    <result property="remarks" 		column="REMARKS"/>
 	    <result property="createUser" 	column="CREATE_USER"/>
@@ -1932,6 +1932,8 @@
      <select id="retrieveMtnRetAmt" resultMap="retAmtMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(MTN_RETENTION_AMT_PKG.ret_mtn_ret_amt(#{lineCd, jdbcType=VARCHAR},
 																	  #{lineClassCd, jdbcType=VARCHAR},
+																	  #{currencyCd, jdbcType=VARCHAR},
+																	  #{retentionId, jdbcType=INTEGER},
 																	  '',
 																	  '',
 																	  '',
@@ -2222,12 +2224,12 @@
     		</foreach>
     		<foreach collection="saveRetAmt" item="save">
 		    		MTN_RETENTION_AMT_PKG.save_ret_amt(
-		    			#{save.retentionId, jdbcType=INTEGER},
 		    			#{save.lineCd, jdbcType=VARCHAR},
 		    			#{save.lineClassCd, jdbcType=VARCHAR},
+		    			#{save.currencyCd, jdbcType=VARCHAR},
+		    			#{save.retentionId, jdbcType=INTEGER},
 		    			#{save.retLineAmt, jdbcType=DECIMAL},
 		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		    			#{save.activeTag, jdbcType=VARCHAR},
 		    			#{save.remarks, jdbcType=VARCHAR},
 						#{save.createUser, jdbcType=VARCHAR},

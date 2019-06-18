@@ -7,6 +7,8 @@ public class RetrieveMtnRetAmtRequest {
 
 	private String lineCd;
 	private String lineClassCd;
+	private String currencyCd;
+	private Integer retentionId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -22,6 +24,18 @@ public class RetrieveMtnRetAmtRequest {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
+	public Integer getRetentionId() {
+		return retentionId;
+	}
+	public void setRetentionId(Integer retentionId) {
+		this.retentionId = retentionId;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -36,7 +50,8 @@ public class RetrieveMtnRetAmtRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnRetAmtRequest [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnRetAmtRequest [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd="
+				+ currencyCd + ", retentionId=" + retentionId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

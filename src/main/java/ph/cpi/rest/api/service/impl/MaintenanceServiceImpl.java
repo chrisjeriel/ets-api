@@ -1237,6 +1237,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveMtnRetAmtParams = new HashMap<String, Object>();
 		retrieveMtnRetAmtParams.put("lineCd", rmrar.getLineCd());
 		retrieveMtnRetAmtParams.put("lineClassCd", rmrar.getLineClassCd());
+		retrieveMtnRetAmtParams.put("currencyCd", rmrar.getCurrencyCd());
+		retrieveMtnRetAmtParams.put("retentionId", rmrar.getRetentionId());
 		
 		rmraResponse.setRetAmtList(maintenanceDao.retrieveMtnRetAmt(retrieveMtnRetAmtParams));
 		

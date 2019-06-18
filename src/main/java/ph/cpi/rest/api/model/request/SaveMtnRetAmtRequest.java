@@ -29,12 +29,12 @@ public class SaveMtnRetAmtRequest {
 
 @Alias("SaveMtnRetAmt")
 class RetAmt {
-	private Integer retentionId;
-    private String lineCd;
+	private String lineCd;
     private String lineClassCd;
+    private String currencyCd;
+	private Integer retentionId;
     private String retLineAmt;
     private String effDateFrom;
-    private String effDateTo;
     private String activeTag;
     private String remarks;
     private String createUser;
@@ -42,12 +42,6 @@ class RetAmt {
     private String updateUser;
     private String updateDate;
     
-	public Integer getRetentionId() {
-		return retentionId;
-	}
-	public void setRetentionId(Integer retentionId) {
-		this.retentionId = retentionId;
-	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -60,6 +54,18 @@ class RetAmt {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
+	public Integer getRetentionId() {
+		return retentionId;
+	}
+	public void setRetentionId(Integer retentionId) {
+		this.retentionId = retentionId;
+	}
 	public String getRetLineAmt() {
 		return retLineAmt;
 	}
@@ -71,12 +77,6 @@ class RetAmt {
 	}
 	public void setEffDateFrom(String effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public String getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(String effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -116,8 +116,8 @@ class RetAmt {
 	}
 	@Override
 	public String toString() {
-		return "RetAmt [retentionId=" + retentionId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
-				+ ", retLineAmt=" + retLineAmt + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo
+		return "RetAmt [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", retentionId=" + retentionId + ", retLineAmt=" + retLineAmt + ", effDateFrom=" + effDateFrom
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
