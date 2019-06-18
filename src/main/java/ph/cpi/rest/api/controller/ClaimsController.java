@@ -97,5 +97,12 @@ public class ClaimsController {
 		return claimsService.saveClaimAttachment(scar);
 		
 	}
+//	
+//	@GetMapping(path="retrieveClaimApprovedAmt")
+//	public @ResponseBody RetrieveClaimHistoryResponse retrieveClaimHistory(RetrieveClaimHistoryRequest rchr) throws SQLException {
+//		logger.info("GET: /api/maintenance-service/retrieveClaimHistory");
+//		logger.info("RetrieveClaimHistoryRequest : " + rchr.toString());
+//		return claimsService.retrieveClaimHistory(rchr);
+//	}
 
 }
