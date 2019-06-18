@@ -16,15 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
+import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
+import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Controller
@@ -79,4 +83,19 @@ public class ClaimsController {
 		return claimsService.saveClaimSecCover(scsr);
 	}
 	
+	@GetMapping(path="retrieveClaimsAttachment")
+	public @ResponseBody RetrieveClaimsAttachmentResponse retrieveClaimsAttachment(RetrieveClaimsAttachmentRequest rcar) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClaimsAttachment");
+		logger.info("RetrieveClaimsAttachment : " + rcar.toString());
+		return claimsService.retrieveClaimsAttachment(rcar);
+	}
+	
+	@PostMapping(path="saveClaimsAttachment")
+	public  @ResponseBody SaveClaimsAttachmentResponse saveClaimAttachment(@RequestBody SaveClaimsAttachmentRequest scar) throws SQLException {
+		logger.info("POST: /api/claims-service/saveClaimsAttachment");
+		logger.info("SaveClaimsAttachmentRequest : " + scar.toString());
+		return claimsService.saveClaimAttachment(scar);
+		
+	}
+
 }

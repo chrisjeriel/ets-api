@@ -16,4 +16,6 @@ public interface ClaimsDao {
 	public Claims retrieveClaimSecCover(final HashMap<String, Object> params)throws SQLException;
 	public HashMap<String, Object> saveClaimSecCover(final HashMap<String, Object> params ) throws SQLException;
 	
+	public Claims retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
 }

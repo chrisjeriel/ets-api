@@ -3,9 +3,10 @@ package ph.cpi.rest.api.model.claims;
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
-@Alias("ClaimProject")
+@Alias("ClaimsProject")
 public class Project {
 
+	private Integer claimId;
 	private Integer projId;
 	private String projDesc;
 	private Integer riskId;
@@ -34,7 +35,12 @@ public class Project {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
+	public Integer getClaimId() {
+		return claimId;
+	}
+	public void setClaimId(Integer claimId) {
+		this.claimId = claimId;
+	}
 	public Integer getProjId() {
 		return projId;
 	}
@@ -205,13 +211,15 @@ public class Project {
 	}
 	@Override
 	public String toString() {
-		return "Project [projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId + ", riskName=" + riskName
-				+ ", regionCd=" + regionCd + ", regionDesc=" + regionDesc + ", provinceCd=" + provinceCd
-				+ ", provinceDesc=" + provinceDesc + ", cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtCd="
-				+ districtCd + ", districtDesc=" + districtDesc + ", blockCd=" + blockCd + ", blockDesc=" + blockDesc
-				+ ", latitude=" + latitude + ", longitude=" + longitude + ", objectId=" + objectId + ", objectDesc="
-				+ objectDesc + ", site=" + site + ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl
-				+ ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Project [claimId=" + claimId + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
+				+ ", riskName=" + riskName + ", regionCd=" + regionCd + ", regionDesc=" + regionDesc + ", provinceCd="
+				+ provinceCd + ", provinceDesc=" + provinceDesc + ", cityCd=" + cityCd + ", cityDesc=" + cityDesc
+				+ ", districtCd=" + districtCd + ", districtDesc=" + districtDesc + ", blockCd=" + blockCd
+				+ ", blockDesc=" + blockDesc + ", latitude=" + latitude + ", longitude=" + longitude + ", objectId="
+				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
+				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
+	
 }

@@ -58,4 +58,18 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Claims retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Claims claimsAttachmentList = sqlSession.selectOne("retrieveClaimsAttachment", params);
+		return claimsAttachmentList;
+	}
+
+	@Override
+	public Integer saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
+		return errorCode;
+	}
 }

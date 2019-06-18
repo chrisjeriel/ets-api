@@ -13,15 +13,19 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
+import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
+import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Component
@@ -133,5 +137,37 @@ public class ClaimsServiceImpl implements ClaimsService {
 			ex.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public RetrieveClaimsAttachmentResponse retrieveClaimsAttachment(RetrieveClaimsAttachmentRequest rcar)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveClaimsAttachmentResponse rcaResponse = new RetrieveClaimsAttachmentResponse();
+		HashMap<String, Object> retrieveClaimsAttachmentParams = new HashMap<String, Object>();
+		retrieveClaimsAttachmentParams.put("claimId",rcar.getClaimId());
+		retrieveClaimsAttachmentParams.put("claimNo", rcar.getClaimNo());
+		rcaResponse.setClmAttachmentList(claimsDao.retrieveClaimsAttachmentList(retrieveClaimsAttachmentParams));
+		logger.info("retrieveClaimsAttachmentResponse : " + rcaResponse.toString());
+		return rcaResponse;
+	}
+
+	@Override
+	public SaveClaimsAttachmentResponse saveClaimAttachment(SaveClaimsAttachmentRequest scar) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveClaimsAttachmentResponse scaResponse = new SaveClaimsAttachmentResponse();
+		try{
+			HashMap<String, Object> saveClmAttachmentParams = new HashMap<String, Object>();
+			saveClmAttachmentParams.put("claimId", scar.getClaimId());
+			saveClmAttachmentParams.put("saveClmAttachments", scar.getSaveClaimsAttachments());
+			saveClmAttachmentParams.put("deleteClmAttachments", scar.getDeleteClaimsAttachments());
+			logger.info("retrieveClaimsAttachmentResponse : " + saveClmAttachmentParams.toString());
+			scaResponse.setReturnCode(claimsDao.saveClaimsAttachment(saveClmAttachmentParams));
+		}catch(Exception ex){
+			scaResponse.setReturnCode(0);
+			scaResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
+		}
+		return scaResponse;
 	}
 }

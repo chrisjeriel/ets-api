@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.claims;
 import org.joda.time.DateTime;
 
 public class ClaimProject {
+	
 	private Integer claimId;
 	private Integer projId;
 	private String projDesc;
