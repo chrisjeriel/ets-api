@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,6 +72,16 @@ public class FileUploadController {
 	                "You successfully uploaded " + file.getOriginalFilename() + "!");
 	     logger.info("You successfully uploaded " + file.getOriginalFilename() + "!");
 	     return "redirect:/";
+	    }
+	 
+	 @DeleteMapping("/")
+	    public @ResponseBody String deleteFile(@RequestParam String fileNames) {
+		 
+		 logger.info("POST: /api/file-upload-service/files/");
+	     
+		 Integer errorCode = storageService.delete(fileNames);
+	     logger.info("You successfully deleted " + fileNames + "!");
+	     return errorCode.toString();
 	    }
 	 
 	 @ExceptionHandler(StorageFileNotFoundException.class)
