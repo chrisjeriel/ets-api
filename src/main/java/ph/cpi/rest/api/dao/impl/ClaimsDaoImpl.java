@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
+import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.Claims;
 
@@ -70,6 +71,18 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	public Integer saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
+		return errorCode;
+	}
+
+	@Override
+	public List<ClaimApprovedAmt> retrieveClaimApprovedAmt(HashMap<String, Object> params) throws SQLException {
+		List<ClaimApprovedAmt> clmApprovedAmt = sqlSession.selectList("retrieveClaimApprovedAmt", params);
+		return clmApprovedAmt;
+	}
+
+	@Override
+	public Integer saveClaimApprovedAmt(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimApprovedAmt",params);
 		return errorCode;
 	}
 }
