@@ -35,9 +35,9 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	}
 
 	@Override
-	public Claims retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+	public List<Claims> retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Claims claimsAttachmentList = sqlSession.selectOne("retrieveClaimsAttachment", params);
+		List<Claims> claimsAttachmentList = sqlSession.selectList("retrieveClaimsAttachment", params);
 		return claimsAttachmentList;
 	}
 
