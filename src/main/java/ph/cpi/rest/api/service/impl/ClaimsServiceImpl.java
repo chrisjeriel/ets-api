@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,23 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
@@ -169,5 +174,27 @@ public class ClaimsServiceImpl implements ClaimsService {
 			ex.printStackTrace();
 		}
 		return scaResponse;
+	}
+
+	@Override
+	public RetrieveClaimApprovedAmtResponse retrieveClaimApprovedAmt(RetrieveClaimApprovedAmtRequest rcaap)
+			throws SQLException {
+		RetrieveClaimApprovedAmtResponse rcaaResponse = new RetrieveClaimApprovedAmtResponse();
+		HashMap<String, Object> clmApprovedAmtParams = new HashMap<String, Object>();
+		clmApprovedAmtParams.put("claimId",rcaap.getClaimId());
+		clmApprovedAmtParams.put("histNo",rcaap.getHistNo());
+		rcaaResponse.setClaimApprovedAmtList(claimsDao.retrieveClaimApprovedAmt(clmApprovedAmtParams));
+		logger.info("RetrieveClaimApprovedAmtResponse : " + rcaaResponse.toString());
+		return rcaaResponse;
+	}
+
+	@Override
+	public SaveClaimApprovedAmtResponse saveClaimApprovedAmt(SaveClaimApprovedAmtRequest scaar) throws SQLException {
+		SaveClaimApprovedAmtResponse scaaResponse = new SaveClaimApprovedAmtResponse();
+		HashMap<String, Object> saveClmApprovedAmtParams = new HashMap<String, Object>();
+		saveClmApprovedAmtParams.put("", scaar.getSaveClaimApprovedAmt());
+		scaaResponse.setReturnCode(claimsDao.saveClaimApprovedAmt(saveClmApprovedAmtParams));
+		logger.info("SaveClaimApprovedAmtResponse : " + scaaResponse.toString());
+		return scaaResponse;
 	}
 }

@@ -23,20 +23,20 @@ class ClmHist {
 	private String  claimId;
 	private String  projId;
 	private String  histNo;
-	private String 	 histCategory;
-	private String 	 histType;
-	private String 	 exGratia;
-	private String 	 currencyCd;
+	private String 	histCategory;
+	private String 	histType;
+	private String 	exGratia;
+	private String 	currencyCd;
 	private String  currencyRt;
 	private String  reserveAmt;
 	private String  paytAmt;
-	private String 	 refNo;
-	private String refDate;
-	private String 	 remarks;
-	private String 	 createUser;
-	private String createDate;
-	private String 	 updateUser;
-	private String updateDate;
+	private String 	refNo;
+	private String  refDate;
+	private String 	remarks;
+	private String 	createUser;
+	private String  createDate;
+	private String 	updateUser;
+	private String  updateDate;
 	public String getClaimId() {
 		return claimId;
 	}

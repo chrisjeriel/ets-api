@@ -6,7 +6,7 @@ public class LineClass {
 	private String lineCd;
 	private String lineCdDesc;
 	private String lineClassCd;
-	private String description;
+	private String lineClassCdDesc;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -32,11 +32,11 @@ public class LineClass {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
-	public String getDescription() {
-		return description;
+	public String getLineClassCdDesc() {
+		return lineClassCdDesc;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setLineClassCdDesc(String lineClassCdDesc) {
+		this.lineClassCdDesc = lineClassCdDesc;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -83,8 +83,8 @@ public class LineClass {
 	@Override
 	public String toString() {
 		return "LineClass [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", lineClassCd=" + lineClassCd
-				+ ", description=" + description + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", okDelete=" + okDelete + "]";
+				+ ", lineClassCdDesc=" + lineClassCdDesc + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
