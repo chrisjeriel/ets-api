@@ -18,7 +18,14 @@ public class City {
 	private String updateUser;
 	private DateTime updateDate;
 	private District district;
+	private String okDelete;
 	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public Integer getCityCd() {
 		return cityCd;
 	}
@@ -97,7 +104,7 @@ public class City {
 		return "City [cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtList=" + districtList + ", activeTag="
 				+ activeTag + ", remarks=" + remarks + ", zoneCd=" + zoneCd + ", zoneDesc=" + zoneDesc + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", district=" + district + "]";
+				+ updateDate + ", district=" + district + ", okDelete=" + okDelete + "]";
 	}
 	
 	

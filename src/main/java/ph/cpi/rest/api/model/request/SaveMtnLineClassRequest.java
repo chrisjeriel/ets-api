@@ -6,32 +6,32 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveMtnLineClassRequest {
 	
-	private List<LineClass> saveLineClass;
-	private List<LineClass> deleteLineClass;
-	
-	public List<LineClass> getSaveLineClass() {
+	private List<LineClasses> saveLineClass;
+	private List<LineClasses> deleteLineClass;
+	public List<LineClasses> getSaveLineClass() {
 		return saveLineClass;
 	}
-	public void setSaveLineClass(List<LineClass> saveLineClass) {
+	public void setSaveLineClass(List<LineClasses> saveLineClass) {
 		this.saveLineClass = saveLineClass;
 	}
-	public List<LineClass> getDeleteLineClass() {
+	public List<LineClasses> getDeleteLineClass() {
 		return deleteLineClass;
 	}
-	public void setDeleteLineClass(List<LineClass> deleteLineClass) {
+	public void setDeleteLineClass(List<LineClasses> deleteLineClass) {
 		this.deleteLineClass = deleteLineClass;
 	}
 	@Override
 	public String toString() {
 		return "SaveMtnLineClassRequest [saveLineClass=" + saveLineClass + ", deleteLineClass=" + deleteLineClass + "]";
 	}
+	
 }
 
 @Alias("SaveMtnLineClass")
-class LineClass {
+class LineClasses {
 	private String lineCd;
 	private String lineClassCd;
-	private String lineCdDesc;
+	private String description;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -50,11 +50,11 @@ class LineClass {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
-	public String getLineCdDesc() {
-		return lineCdDesc;
+	public String getDescription() {
+		return description;
 	}
-	public void setLineCdDesc(String lineCdDesc) {
-		this.lineCdDesc = lineCdDesc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -94,9 +94,8 @@ class LineClass {
 	}
 	@Override
 	public String toString() {
-		return "LineClass [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", lineCdDesc=" + lineCdDesc
+		return "LineClasses [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", description=" + description
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

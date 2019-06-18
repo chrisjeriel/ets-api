@@ -39,4 +39,37 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		List<Claims> res = sqlSession.selectList("retrieveClaimListing", params);
 		return res;
 	}
+
+	@Override
+	public Claims retrieveClmGenInfo(HashMap<String, Object> params) throws SQLException {
+		Claims claim = sqlSession.selectOne("retrieveClmGenInfo", params);
+		return claim;
+	}
+	
+	@Override
+	public Claims retrieveClaimSecCover(HashMap<String, Object> params) throws SQLException {
+		Claims claims = sqlSession.selectOne("retrieveClaimSecCover",params);
+		return claims;
+	}
+
+	@Override
+	public HashMap<String, Object> saveClaimSecCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimSecCover",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Claims retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Claims claimsAttachmentList = sqlSession.selectOne("retrieveClaimsAttachment", params);
+		return claimsAttachmentList;
+	}
+
+	@Override
+	public Integer saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
+		return errorCode;
+	}
 }

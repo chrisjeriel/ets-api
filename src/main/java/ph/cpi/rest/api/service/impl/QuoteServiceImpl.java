@@ -784,7 +784,6 @@ public class QuoteServiceImpl implements QuoteService{
 	public SaveQuoteHoldCoverResponse saveQuoteHoldCover(SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
 		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
-		System.out.println(" from service impl");
 		try {
 			saveQuoteHoldCoverParams.put("holdCoverNo", "");
 			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
@@ -806,9 +805,6 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
 			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
 			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
-			
-			System.out.println(" inside try");
-			System.out.println(saveQuoteHoldCoverParams);
 			
 			HashMap<String, Object> response = quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams);
 			

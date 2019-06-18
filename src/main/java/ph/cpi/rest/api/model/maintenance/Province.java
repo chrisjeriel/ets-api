@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
 public class Province {
+	
 	private Integer provinceCd;
 	private String provinceDesc;
 	private List<City> cityList;
@@ -16,6 +17,15 @@ public class Province {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
+	
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	private City city;
 	public Integer getProvinceCd() {
 		return provinceCd;
@@ -77,11 +87,13 @@ public class Province {
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
 	@Override
 	public String toString() {
 		return "Province [provinceCd=" + provinceCd + ", provinceDesc=" + provinceDesc + ", cityList=" + cityList
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", city=" + city + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ ", city=" + city + "]";
 	}
 	
 }

@@ -3,17 +3,25 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrievePolForPurgingRequest {
-	private String policyId;
+public class RetrieveClaimsAttachmentRequest {
+	
+	private Integer claimId;
+	private String  claimNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getPolicyId() {
-		return policyId;
+
+	public Integer getClaimId() {
+		return claimId;
 	}
-	public void setPolicyId(String policyId) {
-		this.policyId = policyId;
+	public void setClaimId(Integer claimId) {
+		this.claimId = claimId;
 	}
-	
+	public String getClaimNo() {
+		return claimNo;
+	}
+	public void setClaimNo(String claimNo) {
+		this.claimNo = claimNo;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -26,12 +34,11 @@ public class RetrievePolForPurgingRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrievePolForPurgingRequest [policyId=" + policyId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveClaimsAttachmentRequest [claimId=" + claimId + ", claimNo=" + claimNo + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
-	
-	
 	
 }

@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
+import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -116,6 +117,7 @@ import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
+import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -606,5 +608,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/saveExpCatPeril");
 		logger.info("SaveExpCatPerilRequest : " + eepr.toString());
 		return underwritingService.saveExpCatPeril(eepr);
+	}
+	
+	@PostMapping(path="saveExpCoverage")
+	public @ResponseBody SaveExpCovResponse saveExpCoverage(@RequestBody SaveExpCovRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveExpCoverage");
+		logger.info("SaveExpCovRequest : " + eepr.toString());
+		return underwritingService.saveExpCoverage(eepr);
 	}
 }
