@@ -57,6 +57,8 @@ public class Quotation {
 	private String closingParag;
 	private String reasonCd;
 	private String reasonDesc;
+	private BigDecimal firstOptionRt;   //added by Neco 06/19/2019 for new columns in quote listing
+	private BigDecimal sumInsured;		//added by Neco 06/19/2019 for new columns in quote listing
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -361,6 +363,18 @@ public class Quotation {
 	public void setReasonDesc(String reasonDesc) {
 		this.reasonDesc = reasonDesc;
 	}
+	public BigDecimal getFirstOptionRt() {
+		return firstOptionRt;
+	}
+	public void setFirstOptionRt(BigDecimal firstOptionRt) {
+		this.firstOptionRt = firstOptionRt;
+	}
+	public BigDecimal getSumInsured() {
+		return sumInsured;
+	}
+	public void setSumInsured(BigDecimal sumInsured) {
+		this.sumInsured = sumInsured;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -452,22 +466,22 @@ public class Quotation {
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", cessionId=" + cessionId
 				+ ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", lineClassCd="
 				+ lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId + ", principalName="
-				+ principalName + ", contractorId=" + contractorId
-				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", status=" + status + ", reinsurerId=" + reinsurerId + ", reinsurerName="
-				+ reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate=" + issueDate
-				+ ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode
-				+ ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag="
-				+ govtTag + ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId="
-				+ ocQuoteId + ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
+				+ principalName + ", contractorId=" + contractorId + ", contractorName=" + contractorName
+				+ ", insuredDesc=" + insuredDesc + ", policyId=" + policyId + ", policyNo=" + policyNo + ", status="
+				+ status + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId
+				+ ", intmName=" + intmName + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
+				+ reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd="
+				+ currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag="
+				+ indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId=" + ocQuoteId
+				+ ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
 				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", project=" + project + ", options=" + options + ", otherRates=" + otherRates + ", attachmentsList="
-				+ attachmentsList + ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList
-				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment="
-				+ attachment + "]";
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt
+				+ ", sumInsured=" + sumInsured + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project + ", options="
+				+ options + ", otherRates=" + otherRates + ", attachmentsList=" + attachmentsList
+				+ ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList + ", optionsList="
+				+ optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment=" + attachment + "]";
 	}
 	
 	
