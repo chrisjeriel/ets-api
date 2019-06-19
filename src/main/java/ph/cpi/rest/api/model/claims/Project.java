@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
@@ -35,6 +37,8 @@ public class Project {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private ClaimHistory clmHistoryList;
+	private ClaimReserve clmReserve;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -209,6 +213,18 @@ public class Project {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public ClaimHistory getClmHistoryList() {
+		return clmHistoryList;
+	}
+	public void setClmHistoryList(ClaimHistory clmHistoryList) {
+		this.clmHistoryList = clmHistoryList;
+	}
+	public ClaimReserve getClmReserve() {
+		return clmReserve;
+	}
+	public void setClmReserve(ClaimReserve clmReserve) {
+		this.clmReserve = clmReserve;
+	}
 	@Override
 	public String toString() {
 		return "Project [claimId=" + claimId + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
@@ -219,7 +235,8 @@ public class Project {
 				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", clmHistoryList=" + clmHistoryList + ", clmReserve=" + clmReserve + "]";
 	}
+	
 	
 }

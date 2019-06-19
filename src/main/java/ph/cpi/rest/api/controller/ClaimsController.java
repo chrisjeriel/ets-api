@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
@@ -26,6 +27,7 @@ import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
@@ -114,6 +116,13 @@ public class ClaimsController {
 		logger.info("POST: /api/claims-service/saveClaimApprovedAmt");
 		logger.info("SaveClaimApprovedAmtRequest : " + scaar.toString());
 		return claimsService.saveClaimApprovedAmt(scaar);
+	}
+	
+	@GetMapping(path="retrieveClaimReserve")
+	public @ResponseBody RetrieveClaimReserveResponse retrieveClaimReserve(RetrieveClaimReserveRequest rcrr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClaimReserve");
+		logger.info("RetrieveClaimReserveRequest : " + rcrr.toString());
+		return claimsService.retrieveClaimReserve(rcrr);
 	}
 
 }

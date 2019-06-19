@@ -23,10 +23,16 @@ public class ClaimsDaoImpl implements ClaimsDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClaimsDaoImpl.class);
 
+//	@Override
+//	public List<ClaimHistory> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+//		List<ClaimHistory> clmHistory = sqlSession.selectList("retrieveClaimHistory", params);
+//		return clmHistory;
+//	}
+	
 	@Override
-	public List<ClaimHistory> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
-		List<ClaimHistory> clmHistory = sqlSession.selectList("retrieveClaimHistory", params);
-		return clmHistory;
+	public Claims retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+		Claims clmHistoryList = sqlSession.selectOne("retrieveClaimHistory", params);
+		return clmHistoryList;
 	}
 
 	@Override
@@ -84,5 +90,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	public Integer saveClaimApprovedAmt(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveClaimApprovedAmt",params);
 		return errorCode;
+	}
+
+	@Override
+	public Claims retrieveClaimReserve(HashMap<String, Object> params) throws SQLException {
+		Claims clmReserve = sqlSession.selectOne("retrieveClaimReserve", params);
+		return clmReserve;
 	}
 }

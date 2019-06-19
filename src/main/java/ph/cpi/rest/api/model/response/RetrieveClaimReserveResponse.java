@@ -1,14 +1,10 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.Claims;
 
-public class RetrieveClaimHistoryResponse {
-	//private List<ClaimHistory> claimHistoryList;
+public class RetrieveClaimReserveResponse {
 	private Claims claims;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
@@ -32,7 +28,8 @@ public class RetrieveClaimHistoryResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimHistoryResponse [claims=" + claims + ", paginationResponse=" + paginationResponse
+		return "RetrieveClaimReserveResponse [claims=" + claims + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
 }
