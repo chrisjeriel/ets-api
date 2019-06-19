@@ -29,13 +29,13 @@ public class SaveMtnTreatyLimitRequest {
 @Alias("SaveMtnTreatyLimit")
 class TreatyLimit {
 	private Integer outId;
-	private Integer treatyLimitId;
 	private String lineCd;
 	private String lineClassCd;
+	private String currencyCd;
+	private Integer treatyLimitId;
 	private String amount;
 	private String trtyLayerDesc;
 	private String effDateFrom;
-	private String effDateTo;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -50,12 +50,6 @@ class TreatyLimit {
 	public void setOutId(Integer outId) {
 		this.outId = outId;
 	}
-	public Integer getTreatyLimitId() {
-		return treatyLimitId;
-	}
-	public void setTreatyLimitId(Integer treatyLimitId) {
-		this.treatyLimitId = treatyLimitId;
-	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -67,6 +61,18 @@ class TreatyLimit {
 	}
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
+	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
+	public Integer getTreatyLimitId() {
+		return treatyLimitId;
+	}
+	public void setTreatyLimitId(Integer treatyLimitId) {
+		this.treatyLimitId = treatyLimitId;
 	}
 	public String getAmount() {
 		return amount;
@@ -85,12 +91,6 @@ class TreatyLimit {
 	}
 	public void setEffDateFrom(String effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public String getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(String effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -136,24 +136,44 @@ class TreatyLimit {
 	}
 	@Override
 	public String toString() {
-		return "TreatyLimit [treatyLimitId=" + treatyLimitId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
-				+ ", amount=" + amount + ", trtyLayerDesc=" + trtyLayerDesc + ", effDateFrom=" + effDateFrom
-				+ ", effDateTo=" + effDateTo + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", treatyLayerList=" + treatyLayerList + "]";
+		return "TreatyLimit [outId=" + outId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd="
+				+ currencyCd + ", treatyLimitId=" + treatyLimitId + ", amount=" + amount + ", trtyLayerDesc="
+				+ trtyLayerDesc + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", treatyLayerList=" + treatyLayerList + "]";
 	}
 }
 
 @Alias("SaveMtnTreatyLayer")
 class TreatyLayer {
+	private String lineCd;
+	private String lineClassCd;
+	private String currencyCd;
 	private Integer treatyLimitId;
 	private Integer treatyId;
-	private String treatyName;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
 	
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getLineClassCd() {
+		return lineClassCd;
+	}
+	public void setLineClassCd(String lineClassCd) {
+		this.lineClassCd = lineClassCd;
+	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getTreatyLimitId() {
 		return treatyLimitId;
 	}
@@ -165,12 +185,6 @@ class TreatyLayer {
 	}
 	public void setTreatyId(Integer treatyId) {
 		this.treatyId = treatyId;
-	}
-	public String getTreatyName() {
-		return treatyName;
-	}
-	public void setTreatyName(String treatyName) {
-		this.treatyName = treatyName;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -198,8 +212,8 @@ class TreatyLayer {
 	}
 	@Override
 	public String toString() {
-		return "TreatyLayer [treatyLimitId=" + treatyLimitId + ", treatyId=" + treatyId + ", treatyName=" + treatyName
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "TreatyLayer [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", treatyLimitId=" + treatyLimitId + ", treatyId=" + treatyId + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

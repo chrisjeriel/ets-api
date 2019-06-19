@@ -1334,6 +1334,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		CopyRetAmtSetupResponse crasResponse = new CopyRetAmtSetupResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("copyFromRetentionId", crasr.getCopyFromRetentionId());
+		params.put("copyFromLineCd", crasr.getCopyFromLineCd());
+		params.put("copyFromLineClassCd", crasr.getCopyFromLineClassCd());
+		params.put("copyFromCurrencyCd", crasr.getCopyFromCurrencyCd());
 		params.put("copyToLineCd", crasr.getCopyToLineCd());
 		params.put("copyToLineClassCd", crasr.getCopyToLineClassCd());
 		params.put("copyToCurrencyCd", crasr.getCopyToCurrencyCd());
@@ -1360,6 +1363,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lineCd", rmtlr.getLineCd());
 		params.put("lineClassCd", rmtlr.getLineClassCd());
+		params.put("currencyCd", rmtlr.getCurrencyCd());
+		params.put("treatyLimitId", rmtlr.getTreatyLimitId());
 		
 		rmtlResponse.setTreatyLimitList(maintenanceDao.retrieveMtnTreatyLimit(params));
 		
@@ -1598,8 +1603,12 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		CopyTreatyLimitResponse ctlResponse = new CopyTreatyLimitResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("copyFromTreatyLimitId", ctlr.getCopyFromTreatyLimitId());
+		params.put("copyFromLineCd", ctlr.getCopyFromLineCd());
+		params.put("copyFromLineClassCd", ctlr.getCopyFromLineClassCd());
+		params.put("copyFromCurrencyCd", ctlr.getCopyFromCurrencyCd());
 		params.put("copyToLineCd", ctlr.getCopyToLineCd());
 		params.put("copyToLineClassCd", ctlr.getCopyToLineClassCd());
+		params.put("copyToCurrencyCd", ctlr.getCopyToCurrencyCd());
 		params.put("createUser", ctlr.getCreateUser());
 		params.put("createDate", ctlr.getCreateDate());
 		params.put("updateUser", ctlr.getUpdateUser());

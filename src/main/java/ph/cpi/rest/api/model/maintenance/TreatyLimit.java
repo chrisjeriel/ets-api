@@ -7,13 +7,13 @@ import org.joda.time.DateTime;
 
 public class TreatyLimit {
 
-	private Integer treatyLimitId;
 	private String lineCd;
 	private String lineClassCd;
+	private String currencyCd;
+	private Integer treatyLimitId;
 	private BigDecimal amount;
 	private String trtyLayerDesc;
 	private DateTime effDateFrom;
-	private DateTime effDateTo;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -23,12 +23,6 @@ public class TreatyLimit {
 	
 	List<TreatyLayer> treatyLayerList;
 	
-	public Integer getTreatyLimitId() {
-		return treatyLimitId;
-	}
-	public void setTreatyLimitId(Integer treatyLimitId) {
-		this.treatyLimitId = treatyLimitId;
-	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -40,6 +34,18 @@ public class TreatyLimit {
 	}
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
+	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
+	public Integer getTreatyLimitId() {
+		return treatyLimitId;
+	}
+	public void setTreatyLimitId(Integer treatyLimitId) {
+		this.treatyLimitId = treatyLimitId;
 	}
 	public BigDecimal getAmount() {
 		return amount;
@@ -58,12 +64,6 @@ public class TreatyLimit {
 	}
 	public void setEffDateFrom(DateTime effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public DateTime getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(DateTime effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -109,9 +109,9 @@ public class TreatyLimit {
 	}
 	@Override
 	public String toString() {
-		return "TreatyLimit [treatyLimitId=" + treatyLimitId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
-				+ ", amount=" + amount + ", trtyLayerDesc=" + trtyLayerDesc + ", effDateFrom=" + effDateFrom
-				+ ", effDateTo=" + effDateTo + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+		return "TreatyLimit [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", treatyLimitId=" + treatyLimitId + ", amount=" + amount + ", trtyLayerDesc=" + trtyLayerDesc
+				+ ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + ", treatyLayerList=" + treatyLayerList + "]";
 	}

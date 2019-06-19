@@ -2254,6 +2254,9 @@
 		{CALL
 			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_RETENTION_AMT_PKG.check_ret_amt(
 																				#{copyFromRetentionId, jdbcType=INTEGER},
+																				#{copyFromLineCd, jdbcType=VARCHAR},
+																				#{copyFromLineClassCd, jdbcType=VARCHAR},
+																				#{copyFromCurrencyCd, jdbcType=VARCHAR},
 																				#{copyToLineCd, jdbcType=VARCHAR},
 																				#{copyToLineClassCd, jdbcType=VARCHAR},
 																				#{copyToCurrencyCd, jdbcType=VARCHAR}
@@ -2265,8 +2268,12 @@
 		BEGIN
 			MTN_RETENTION_AMT_PKG.copy_ret_amt(
 				#{copyFromRetentionId, jdbcType=INTEGER},
+				#{copyFromLineCd, jdbcType=VARCHAR},
+				#{copyFromLineClassCd, jdbcType=VARCHAR},
+				#{copyFromCurrencyCd, jdbcType=VARCHAR},
 				#{copyToLineCd, jdbcType=VARCHAR},
 				#{copyToLineClassCd, jdbcType=VARCHAR},
+				#{copyToLineCurrencyCd, jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},
@@ -2276,13 +2283,13 @@
 	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.TreatyLimit" id="treatyLimitMap">
-     	<result property="treatyLimitId" 	column="TREATY_LIMIT_ID"/>
 		<result property="lineCd" 			column="LINE_CD"/>
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="treatyLimitId" 	column="TREATY_LIMIT_ID"/>
 		<result property="amount" 			column="AMOUNT"/>
 		<result property="trtyLayerDesc" 	column="TRTY_LAYER_DESC"/>
 		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -2295,6 +2302,8 @@
     <select id="retrieveMtnTreatyLimit" resultMap="treatyLimitMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_TREATY_LIMIT_PKG.ret_mtn_treaty_limit(#{lineCd, jdbcType=VARCHAR},
 																	  #{lineClassCd, jdbcType=VARCHAR},
+																	  #{currencyCd, jdbcType=VARCHAR},
+																	  #{treatyLimitId, jdbcType=INTEGER},
 																	  '',
 																	  '',
 																	  '',
@@ -2449,6 +2458,9 @@
     </resultMap>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.TreatyLayer" id="assocTreatyLayer">
+    	<result property="lineCd" 			column="LINE_CD"/>
+    	<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
+    	<result property="currencyCd" 		column="CURRENCY_CD"/>
      	<result property="treatyLimitId" 	column="TREATY_LIMIT_ID"/>
 		<result property="treatyId" 		column="TREATY_ID"/>
 		<result property="treatyName" 		column="TREATY_NAME"/>
@@ -2595,21 +2607,24 @@
     		<foreach collection="saveTreatyLimit" item="save">
     			IF #{save.treatyLimitId, jdbcType=INTEGER} IS NULL
     			THEN
-    				SELECT NVL(MAX(TREATY_LIMIT_ID), 0) + 1
+		            SELECT NVL(MAX(TREATY_LIMIT_ID), 0) + 1
 		              INTO v_treaty_limit_id
-		            FROM MTN_TREATY_LIMIT;
+		            FROM MTN_TREATY_LIMIT
+		            WHERE LINE_CD = #{save.lineCd, jdbcType=VARCHAR}
+		              AND LINE_CLASS_CD = #{save.lineClassCd, jdbcType=VARCHAR}
+		              AND CURRENCY_CD = #{save.currencyCd, jdbcType=VARCHAR};
     			ELSE
     				v_treaty_limit_id := #{save.treatyLimitId, jdbcType=INTEGER};
     			END IF;
     		
 	    		MTN_TREATY_LIMIT_PKG.save_treaty_limit(
-	    			v_treaty_limit_id,
 	    			#{save.lineCd, jdbcType=VARCHAR},
 	    			#{save.lineClassCd, jdbcType=VARCHAR},
+	    			#{save.currencyCd, jdbcType=VARCHAR},
+	    			v_treaty_limit_id,
 	    			#{save.amount, jdbcType=DECIMAL},
 	    			#{save.trtyLayerDesc, jdbcType=VARCHAR},
 	    			CAST(to_timestamp(#{save.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-	    			CAST(to_timestamp(#{save.effDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			        #{save.activeTag, jdbcType=VARCHAR},
 			        #{save.remarks, jdbcType=VARCHAR},
 			        #{save.createUser, jdbcType=VARCHAR},
@@ -2620,6 +2635,9 @@
 	    		
 	    		<foreach collection="save.treatyLayerList" item="layer">
 	    			MTN_TREATY_LAYER_PKG.save_treaty_layer(
+	    				#{layer.lineCd, jdbcType=VARCHAR},
+	    				#{layer.lineClassCd, jdbcType=VARCHAR},
+	    				#{layer.currencyCd, jdbcType=VARCHAR},
 		    			v_treaty_limit_id,
 		    			#{layer.treatyId, jdbcType=INTEGER},
 		    			#{layer.createUser, jdbcType=VARCHAR},
