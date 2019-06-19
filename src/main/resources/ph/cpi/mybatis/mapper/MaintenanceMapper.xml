@@ -2255,7 +2255,8 @@
 			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_RETENTION_AMT_PKG.check_ret_amt(
 																				#{copyFromRetentionId, jdbcType=INTEGER},
 																				#{copyToLineCd, jdbcType=VARCHAR},
-																				#{copyToLineClassCd, jdbcType=VARCHAR}
+																				#{copyToLineClassCd, jdbcType=VARCHAR},
+																				#{copyToCurrencyCd, jdbcType=VARCHAR}
 																			)
 		}	
 	</update>

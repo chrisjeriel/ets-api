@@ -1336,6 +1336,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("copyFromRetentionId", crasr.getCopyFromRetentionId());
 		params.put("copyToLineCd", crasr.getCopyToLineCd());
 		params.put("copyToLineClassCd", crasr.getCopyToLineClassCd());
+		params.put("copyToCurrencyCd", crasr.getCopyToCurrencyCd());
 		params.put("createUser", crasr.getCreateUser());
 		params.put("createDate", crasr.getCreateDate());
 		params.put("updateUser", crasr.getUpdateUser());

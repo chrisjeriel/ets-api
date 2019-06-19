@@ -5,6 +5,7 @@ public class CopyRetAmtSetupRequest {
 	private Integer copyFromRetentionId;
 	private String copyToLineCd;
 	private String copyToLineClassCd;
+	private String copyToCurrencyCd;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -27,6 +28,12 @@ public class CopyRetAmtSetupRequest {
 	}
 	public void setCopyToLineClassCd(String copyToLineClassCd) {
 		this.copyToLineClassCd = copyToLineClassCd;
+	}
+	public String getCopyToCurrencyCd() {
+		return copyToCurrencyCd;
+	}
+	public void setCopyToCurrencyCd(String copyToCurrencyCd) {
+		this.copyToCurrencyCd = copyToCurrencyCd;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -55,7 +62,8 @@ public class CopyRetAmtSetupRequest {
 	@Override
 	public String toString() {
 		return "CopyRetAmtSetupRequest [copyFromRetentionId=" + copyFromRetentionId + ", copyToLineCd=" + copyToLineCd
-				+ ", copyToLineClassCd=" + copyToLineClassCd + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", copyToLineClassCd=" + copyToLineClassCd + ", copyToCurrencyCd=" + copyToCurrencyCd
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
