@@ -30,7 +30,6 @@ public class SaveMtnRoundingErrorRequest {
 class MtnRoundingError{
 	private String companyId;
 	private String effDateFrom;
-	private String effDateTo;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -49,12 +48,6 @@ class MtnRoundingError{
 	}
 	public void setEffDateFrom(String effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public String getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(String effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -94,8 +87,7 @@ class MtnRoundingError{
 	}
 	@Override
 	public String toString() {
-		return "MtnRoundingError [companyId=" + companyId + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo
-				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+		return "MtnRoundingError [companyId=" + companyId + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 
