@@ -260,6 +260,7 @@
 		<result property="exSeciiPrem" 			column="EX_SECII_PREM"/>
 		<result property="exSeciiiPrem" 		column="EX_SECIII_PREM"/>
 		<result property="exTprem" 				column="EX_TPREM"/>
+		<result property="exCumTprem" 			column="EX_CUM_TPREM"/>
 		<result property="exDays" 				column="EX_DAYS"/>
 		<result property="totalDays" 			column="TOTAL_DAYS"/>
 		<result property="cumSecISi" 			column="CUM_SECI_SI"/>
@@ -659,7 +660,7 @@
 										   #{totalPrem},#{holdCoverPremAmt,jdbcType=VARCHAR}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
 										   #{pctPml, jdbcType=VARCHAR}, #{totalValue}, #{remarks, jdbcType=VARCHAR},
 										   #{exSecIPrem, jdbcType=INTEGER}, #{exSecIIPrem, jdbcType=INTEGER}, 
-										   #{exSecIIIPrem, jdbcType=INTEGER}, #{extotalPrem, jdbcType=INTEGER}, 
+										   #{exSecIIIPrem, jdbcType=INTEGER}, #{extotalPrem, jdbcType=INTEGER}, #{exCumTprem, jdbcType=INTEGER},
 										   #{exDays, jdbcType=INTEGER}, #{totalDays, jdbcType=INTEGER}, #{cumSecISi}, 
 										   #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem}, #{commRtQuota},#{commRtSurplus},#{commRtFac}, #{createUser}, 
