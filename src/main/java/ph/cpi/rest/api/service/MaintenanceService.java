@@ -117,4 +117,5 @@ public interface MaintenanceService {
 	public RetrieveMtnSecIITrtyLimitResponse retrieveMtnSecIITrtyLimit(RetrieveMtnSecIITrtyLimitRequest rmstr) throws SQLException;
 	public SaveMtnSecIITrtyLimitResponse saveMtnSecIITrtyLimit(SaveMtnSecIITrtyLimitRequest smstr) throws SQLException;
 	public CopySecIITrtyLimitResponse copySecIITrtyLimit(CopySecIITrtyLimitRequest cstr) throws SQLException;
+	public RetrieveMtnPoolRetHistResponse retrieveMtnPoolRetHist(RetrieveMtnPoolRetHistRequest rmprhr) throws SQLException;
 }

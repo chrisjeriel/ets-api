@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -165,4 +166,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnSecIITrtyLimit(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkSecIITrtyLimit(HashMap<String, Object> params) throws SQLException;
 	public Integer copySecIITrtyLimit(HashMap<String, Object> params) throws SQLException;
+	public List<PoolRetHist> retrieveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
 }

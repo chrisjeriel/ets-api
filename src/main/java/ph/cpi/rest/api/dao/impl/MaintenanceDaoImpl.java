@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -821,6 +822,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer copySecIITrtyLimit(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("copySecIITrtyLimit", params);
+		return res;
+	}
+
+	@Override
+	public List<PoolRetHist> retrieveMtnPoolRetHist(HashMap<String, Object> params) throws SQLException {
+		List<PoolRetHist> res = sqlSession.selectList("retrieveMtnPoolRetHist", params);
 		return res;
 	}
 }

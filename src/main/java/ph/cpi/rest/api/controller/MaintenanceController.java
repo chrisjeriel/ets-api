@@ -787,4 +787,11 @@ public class MaintenanceController {
 		logger.info("CopySecIITrtyLimitRequest : " + cstr.toString());
 		return maintenanceService.copySecIITrtyLimit(cstr);
 	}
+	
+	@GetMapping(path="retrieveMtnPoolRetHist")
+	public @ResponseBody RetrieveMtnPoolRetHistResponse retrieveMtnPoolRetHist(RetrieveMtnPoolRetHistRequest rmprhr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPoolRetHist");
+		logger.info("RetrieveMtnPoolRetHistRequest : " + rmprhr.toString());
+		return maintenanceService.retrieveMtnPoolRetHist(rmprhr);
+	}
 }

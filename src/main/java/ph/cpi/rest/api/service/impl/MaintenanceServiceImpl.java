@@ -1854,4 +1854,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		return cstResponse;
 	}
+
+	@Override
+	public RetrieveMtnPoolRetHistResponse retrieveMtnPoolRetHist(RetrieveMtnPoolRetHistRequest rmprhr)
+			throws SQLException {
+		RetrieveMtnPoolRetHistResponse rmprhResponse = new RetrieveMtnPoolRetHistResponse();
+		
+		HashMap<String, Object> retrieveMtnPoolRetHistParams = new HashMap<String, Object>();
+		retrieveMtnPoolRetHistParams.put("retHistId", rmprhr.getRetHistId());
+		
+		rmprhResponse.setPoolRetHistList(maintenanceDao.retrieveMtnPoolRetHist(retrieveMtnPoolRetHistParams));
+		
+		return rmprhResponse;
+	}
 }
