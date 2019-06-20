@@ -21,9 +21,10 @@ public class SaveMtnCedingCompanyRequest {
 	private String oldCedingId;
 	private String membershipTag;
 	private String membershipDate;
-	private String terminationDate;
+	private String withdrawDate;
 	private String inactiveDate;
 	private String treatyTag;
+	private String withdrawTag;
 	private String remarks;
 	private String createUser;
 	private String createDate;
@@ -128,11 +129,11 @@ public class SaveMtnCedingCompanyRequest {
 	public void setMembershipDate(String membershipDate) {
 		this.membershipDate = membershipDate;
 	}
-	public String getTerminationDate() {
-		return terminationDate;
+	public String getWithdrawDate() {
+		return withdrawDate;
 	}
-	public void setTerminationDate(String terminationDate) {
-		this.terminationDate = terminationDate;
+	public void setWithdrawDate(String withdrawDate) {
+		this.withdrawDate = withdrawDate;
 	}
 	public String getInactiveDate() {
 		return inactiveDate;
@@ -145,6 +146,12 @@ public class SaveMtnCedingCompanyRequest {
 	}
 	public void setTreatyTag(String treatyTag) {
 		this.treatyTag = treatyTag;
+	}
+	public String getWithdrawTag() {
+		return withdrawTag;
+	}
+	public void setWithdrawTag(String withdrawTag) {
+		this.withdrawTag = withdrawTag;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -196,12 +203,11 @@ public class SaveMtnCedingCompanyRequest {
 				+ ", zipCd=" + zipCd + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", bussTypeId="
 				+ bussTypeId + ", tinNo=" + tinNo + ", activeTag=" + activeTag + ", govtTag=" + govtTag
 				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
-				+ membershipDate + ", terminationDate=" + terminationDate + ", inactiveDate=" + inactiveDate
-				+ ", treatyTag=" + treatyTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveCedingRepList="
-				+ saveCedingRepList + ", delCedingRepList=" + delCedingRepList + "]";
+				+ membershipDate + ", withdrawDate=" + withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag="
+				+ treatyTag + ", withdrawTag=" + withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", saveCedingRepList=" + saveCedingRepList + ", delCedingRepList=" + delCedingRepList + "]";
 	}
-	
 }
 
 @Alias("SaveCedingRep")
