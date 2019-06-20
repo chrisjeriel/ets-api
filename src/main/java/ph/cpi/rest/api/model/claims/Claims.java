@@ -67,6 +67,7 @@ public class Claims {
 	private ClaimProject clmProject;
 	private List<ClaimDeductibles> clmDeductibles;
 	private List<Attachment> attachments;
+	private List<ClaimReserve> clmReserve;
 	
 	public Integer getClaimId() {
 		return claimId;

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
+import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.Claims;
 
 @Component
@@ -30,8 +31,8 @@ public class ClaimsDaoImpl implements ClaimsDao {
 //	}
 	
 	@Override
-	public Claims retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
-		Claims clmHistoryList = sqlSession.selectOne("retrieveClaimHistory", params);
+	public List<ClaimReserve> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+		List<ClaimReserve> clmHistoryList = sqlSession.selectList("retrieveClaimHistory", params);
 		return clmHistoryList;
 	}
 
@@ -93,8 +94,8 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	}
 
 	@Override
-	public Claims retrieveClaimReserve(HashMap<String, Object> params) throws SQLException {
-		Claims clmReserve = sqlSession.selectOne("retrieveClaimReserve", params);
+	public List<Claims> retrieveClaimReserve(HashMap<String, Object> params) throws SQLException {
+		List<Claims> clmReserve = sqlSession.selectList("retrieveClaimReserve", params);
 		return clmReserve;
 	}
 }

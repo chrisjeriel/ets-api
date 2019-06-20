@@ -1,18 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.claims.Claims;
 
 public class RetrieveClaimReserveResponse {
-	private Claims claims;
+	private List<Claims> claims;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public Claims getClaims() {
+	public List<Claims> getClaims() {
 		return claims;
 	}
-	public void setClaims(Claims claims) {
-		this.claims = claims;
+	public void setClaims(List<Claims> list) {
+		this.claims = list;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;

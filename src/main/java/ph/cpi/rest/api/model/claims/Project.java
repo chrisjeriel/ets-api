@@ -37,8 +37,7 @@ public class Project {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private ClaimHistory clmHistoryList;
-	private ClaimReserve clmReserve;
+	private List<ClaimReserve> clmReserve;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -213,16 +212,10 @@ public class Project {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public ClaimHistory getClmHistoryList() {
-		return clmHistoryList;
-	}
-	public void setClmHistoryList(ClaimHistory clmHistoryList) {
-		this.clmHistoryList = clmHistoryList;
-	}
-	public ClaimReserve getClmReserve() {
+	public List<ClaimReserve> getClmReserve() {
 		return clmReserve;
 	}
-	public void setClmReserve(ClaimReserve clmReserve) {
+	public void setClmReserve(List<ClaimReserve> clmReserve) {
 		this.clmReserve = clmReserve;
 	}
 	@Override
@@ -235,8 +228,6 @@ public class Project {
 				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", clmHistoryList=" + clmHistoryList + ", clmReserve=" + clmReserve + "]";
+				+ updateDate + ", clmReserve=" + clmReserve + "]";
 	}
-	
-	
 }

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class ClaimReserve {
@@ -15,6 +17,8 @@ public class ClaimReserve {
 	private DateTime createDate;
 	private String 	 updateUser;
 	private DateTime updateDate;
+	private List<ClaimHistory> clmHistory;
+	
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -87,11 +91,17 @@ public class ClaimReserve {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<ClaimHistory> getClmHistory() {
+		return clmHistory;
+	}
+	public void setClmHistory(List<ClaimHistory> clmHistory) {
+		this.clmHistory = clmHistory;
+	}
 	@Override
 	public String toString() {
 		return "ClaimReserve [claimId=" + claimId + ", projId=" + projId + ", lossResAmt=" + lossResAmt + ", lossPdAmt="
 				+ lossPdAmt + ", lossStatCd=" + lossStatCd + ", expResAmt=" + expResAmt + ", expPdAmt=" + expPdAmt
 				+ ", expStatCd=" + expStatCd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", clmHistory=" + clmHistory + "]";
 	}
 }

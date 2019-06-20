@@ -81,12 +81,11 @@
 		<result property="updateDate"	column="HIST_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveClaimHistory" resultMap="claimsMap" parameterType="java.util.Map">
+	<select id="retrieveClaimHistory" resultMap="claimHistoryMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(CLM_RES_HIST_PKG.ret_clm_res_hist(
 					#{claimId,jdbcType=INTEGER},
 					#{claimNo,jdbcType=VARCHAR},
 					'', '', '',''))
-					<!-- #{histNo,jdbcType=INTEGER},  -->
 	</select>
 	
 	<update id="saveClaimHistory" parameterType="java.util.Map">
@@ -170,7 +169,6 @@
 		<result property="createDate" 		column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="PRJ_UPDATE_USER"/>
 		<result property="updateDate" 		column="PRJ_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<association property="clmHistoryList" resultMap="claimHistoryMap" />
 		<association property="clmReserve" resultMap="claimReserveMap" />
 	</resultMap>
 	
@@ -187,9 +185,22 @@
 		<result property="createDate" 		column="RES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="RES_UPDATE_USER"/>
 		<result property="updateDate" 		column="RES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="clmHistory"  resultMap="claimHistoryMap" />
 	</resultMap>
 	
-	<select id="retrieveClaimReserve" resultMap="claimsMap" parameterType="java.util.Map">
+	<resultMap type="ph.cpi.rest.api.model.claims.Claims" id="claimsForReserveMap">
+		<result property="claimId" 			column="GEN_CLAIM_ID"/>
+		<result property="claimNo" 			column="CLAIM_NO"/>
+		<association property="project" resultMap="projForReserveMap" /> 
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.Project" id="projForReserveMap">
+		<result property="claimId" 			column="PROJ_CLAIM_ID"/>
+		<result property="projId" 			column="PROJ_PROJ_ID"/>
+		<association property="clmReserve" resultMap="claimReserveMap" />
+	</resultMap>
+	
+	<select id="retrieveClaimReserve" resultMap="claimsForReserveMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(CLM_RESERVE_PKG.ret_clm_reserve(
 				#{claimId,jdbcType=INTEGER},
 				#{claimNo,jdbcType=VARCHAR},'','','',''))
