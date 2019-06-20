@@ -6,9 +6,11 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
+import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -26,7 +28,7 @@ public interface UnderwritingDao {
 	public Policy retrievePolGenInfo(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolAlopItem(final HashMap<String, Object> params) throws SQLException;
-	public Integer savePolAttachments(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolAttachments(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolInwardBal(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrievePolCoInsurance(final HashMap<String, Object> params) throws SQLException;
 	public Integer savePolicyDeductibles(final HashMap<String, Object> params ) throws SQLException;
@@ -60,7 +62,7 @@ public interface UnderwritingDao {
 	public List<Policy> retrievePolHoldCoverListing(final HashMap<String, Object> params) throws SQLException;
 	public PolicyOc retrievePolGenInfoOc(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolicyCoverageAlt(final HashMap<String, Object> params) throws SQLException;
-	public Integer savePolAttachmentsOc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> savePolAttachmentsOc(final HashMap<String, Object> params) throws SQLException;
 	public List<Policy> retrieveAlterationsPerPolicy(final HashMap<String, Object> params) throws SQLException;
 	public Integer updatePolGenInfoSpoilage(final HashMap<String, Object> params) throws SQLException;
 	public Integer retrieveAlterationsPerCoIns(final HashMap<String, Object> params) throws SQLException;
@@ -78,8 +80,20 @@ public interface UnderwritingDao {
 	public List<WriskLimit> retrieveWriskLimit(final HashMap<String, Object> params) throws SQLException;
 	public List<PoolDistribution> retrievePoolDist(final HashMap<String, Object> params) throws SQLException;
 	public List<DistCoIns> retrieveDistCoIns(final HashMap<String, Object> params) throws SQLException;
+	public List<DistRiskWparam> retrieveDistRiskWparam(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer postDistribution(final HashMap<String, Object> params ) throws SQLException;
+	public List<PoolDistribution> retrievePolPoolDist(final HashMap<String, Object> params) throws SQLException;
+	
 	public HashMap<String, Object> processRenewablePolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> purgeExpiringPol(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveExpCov(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveExpCatPeril(final HashMap<String, Object> params ) throws SQLException;
+	
+	public Integer autoCalcDist(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public Integer distributeRiskDist(final HashMap<String, Object> params ) throws SQLException;
+	public List<PolDistList> retrievePolDistList(final HashMap<String, Object> params) throws SQLException;
 	
 }

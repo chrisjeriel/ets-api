@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class ExpCatPeril {
 	private String policyId;
 	private String catPerilId;
+	private String catPerilName;
 	private String pctSharePrem;
 	private String createUser;
 	private DateTime createDate;
@@ -21,6 +22,13 @@ public class ExpCatPeril {
 	}
 	public void setCatPerilId(String catPerilId) {
 		this.catPerilId = catPerilId;
+	}
+	
+	public String getCatPerilName() {
+		return catPerilName;
+	}
+	public void setCatPerilName(String catPerilName) {
+		this.catPerilName = catPerilName;
 	}
 	public String getPctSharePrem() {
 		return pctSharePrem;
@@ -54,9 +62,10 @@ public class ExpCatPeril {
 	}
 	@Override
 	public String toString() {
-		return "ExpCatPeril [policyId=" + policyId + ", catPerilId=" + catPerilId + ", pctSharePrem=" + pctSharePrem
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "ExpCatPeril [policyId=" + policyId + ", catPerilId=" + catPerilId + ", catPerilName=" + catPerilName
+				+ ", pctSharePrem=" + pctSharePrem + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

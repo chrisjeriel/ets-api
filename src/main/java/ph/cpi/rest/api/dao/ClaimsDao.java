@@ -4,12 +4,20 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.claims.Attachment;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.Claims;
+import ph.cpi.rest.api.model.quote.Quotation;
+import ph.cpi.rest.api.model.underwriting.Policy;
 
 public interface ClaimsDao {
+	
 	public List<ClaimHistory> retrieveClaimHistory(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveClaimHistory(final HashMap<String, Object> params) throws SQLException;
-	public List<Claims> retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
-	public Integer saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
+	public List<Claims> retrieveClaimListing(final HashMap<String, Object> params) throws SQLException;
+	public Claims retrieveClmGenInfo(final HashMap<String, Object> params) throws SQLException;
+	public Claims retrieveClaimSecCover(final HashMap<String, Object> params)throws SQLException;
+	public HashMap<String, Object> saveClaimSecCover(final HashMap<String, Object> params ) throws SQLException;
+	public List<Attachment> retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object>saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
 }

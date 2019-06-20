@@ -13,6 +13,7 @@ public class RetrievePolForPurgingRequest {
 	public void setPolicyId(String policyId) {
 		this.policyId = policyId;
 	}
+	
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -30,6 +31,7 @@ public class RetrievePolForPurgingRequest {
 		return "RetrievePolForPurgingRequest [policyId=" + policyId + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
+import ph.cpi.rest.api.model.claims.Attachment;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.Claims;
 
@@ -34,17 +35,43 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return saveClaimHistory;
 	}
 
-	@Override
-	public List<Claims> retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		List<Claims> claimsAttachmentList = sqlSession.selectList("retrieveClaimsAttachment", params);
-		return claimsAttachmentList;
+	public List<Claims> retrieveClaimListing(HashMap<String, Object> params) throws SQLException {
+		List<Claims> res = sqlSession.selectList("retrieveClaimListing", params);
+		return res;
 	}
 
 	@Override
-	public Integer saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
+	public Claims retrieveClmGenInfo(HashMap<String, Object> params) throws SQLException {
+		Claims claim = sqlSession.selectOne("retrieveClmGenInfo", params);
+		return claim;
+	}
+	
+	@Override
+	public Claims retrieveClaimSecCover(HashMap<String, Object> params) throws SQLException {
+		Claims claims = sqlSession.selectOne("retrieveClaimSecCover",params);
+		return claims;
+	}
+
+	@Override
+	public HashMap<String, Object> saveClaimSecCover(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimSecCover",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+
+	@Override
+	public HashMap<String, Object> saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<Attachment> retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Attachment> claimsAttachmentList = sqlSession.selectList("retrieveClaimsAttachment", params);
+		return claimsAttachmentList;
 	}
 }

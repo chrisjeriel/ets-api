@@ -3,6 +3,8 @@ package ph.cpi.rest.api.model.response;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
@@ -10,6 +12,7 @@ public class SaveQuoteAttachmentResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private String uploadDate;
 	
 	public List<Error> getErrorList() {
 		if (errorList == null) {
@@ -32,10 +35,16 @@ public class SaveQuoteAttachmentResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
+	public String getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(String uploadDate) {
+		this.uploadDate = uploadDate;
+	}
 	@Override
 	public String toString() {
 		return "SaveQuoteAttachmentResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+				+ returnCode + ", uploadDate=" + uploadDate + "]";
 	}
 	
 	

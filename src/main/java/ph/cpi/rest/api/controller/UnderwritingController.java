@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
@@ -30,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
@@ -49,6 +52,8 @@ import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
+import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
+import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -67,13 +72,16 @@ import ph.cpi.rest.api.model.request.SavePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.SavePolItemRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.SavePolicyDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveRiskDistRequest;
 import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
@@ -89,6 +97,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
@@ -107,6 +116,8 @@ import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
+import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
+import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -125,6 +136,7 @@ import ph.cpi.rest.api.model.response.SavePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.SavePolicyDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveRiskDistResponse;
 import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
@@ -515,10 +527,10 @@ public class UnderwritingController {
 	}
 	
 	@PostMapping(path="processRenewablePolicy")
-	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest eepr) throws SQLException {
+	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest prpr) throws SQLException {
 		logger.info("POST: /api/underwriting-service/processRenewablePolicy");
-		logger.info("processRenewablePolicy : " + eepr.toString());
-		return null;
+		logger.info("processRenewablePolicy : " + prpr.toString());
+		return underwritingService.processRenewablePolicy(prpr);
 	}
 	
 	@GetMapping(path="retrieveRiskDist")
@@ -542,6 +554,20 @@ public class UnderwritingController {
 		return underwritingService.retrieveDistCoIns(rdcir);
 	}
 	
+	@PostMapping(path="postDistribution")
+	public @ResponseBody PostDistributionResponse postDistribution(@RequestBody PostDistributionRequest pdr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/postDistribution");
+		logger.info("PostDistributionRequest : " + pdr.toString());
+		return underwritingService.postDistribution(pdr);
+	}
+	
+	@GetMapping(path="retrievePolPoolDist")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolPoolDist");
+		logger.info("RetrievePolPoolDistributionRequest : " + rpdr.toString());
+		return underwritingService.retrievePolPoolDist(rpdr);
+	}
+	
 	@GetMapping(path="retrievePolForPurging")
 	public @ResponseBody RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr) throws SQLException{
 		logger.info("GET: /api/underwriting-service/retrievePolForPurging");
@@ -554,5 +580,40 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/purgeExpiringPol");
 		logger.info("PurgeExpiringPolRequest : " + eepr.toString());
 		return underwritingService.purgeExpiryPol(eepr);
+	}
+	
+	@PostMapping(path="saveRiskDist")
+	public @ResponseBody SaveRiskDistResponse saveRiskDist(@RequestBody SaveRiskDistRequest srdr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveRiskDist");
+		logger.info("SaveRiskDistRequest : " + srdr.toString());
+		return underwritingService.saveRiskDist(srdr);
+	}
+	
+	@PostMapping(path="distributeRiskDist")
+	public @ResponseBody DistRiskResponse distributeRiskDist(@RequestBody DistRiskRequest drr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/distributeRiskDist");
+		logger.info("SaveRiskDistRequest : " + drr.toString());
+		return underwritingService.distributeRiskDist(drr);
+	}
+	
+	@GetMapping(path="retrievePolDistList")
+	public @ResponseBody RetrievePolDistListResponse retrievePolDistList(RetrievePolDistListRequest rpdlr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolDistList");
+		logger.info("RetrievePolDistListRequest : " + rpdlr.toString());
+		return underwritingService.retrievePolDistList(rpdlr);
+	}
+	
+	@PostMapping(path="saveExpCatPeril")
+	public @ResponseBody SaveExpCatPerilResponse saveExpCatPeril(@RequestBody SaveExpCatPerilRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveExpCatPeril");
+		logger.info("SaveExpCatPerilRequest : " + eepr.toString());
+		return underwritingService.saveExpCatPeril(eepr);
+	}
+	
+	@PostMapping(path="saveExpCoverage")
+	public @ResponseBody SaveExpCovResponse saveExpCoverage(@RequestBody SaveExpCovRequest eepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveExpCoverage");
+		logger.info("SaveExpCovRequest : " + eepr.toString());
+		return underwritingService.saveExpCoverage(eepr);
 	}
 }

@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -337,6 +338,7 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAttachment(saveQuoteAttachmentParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
+			sqarResponse.setUploadDate((String) res.get("uploadDate"));
 		} catch(Exception ex){
 			sqarResponse.setReturnCode(0);
 			sqarResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
@@ -782,7 +784,6 @@ public class QuoteServiceImpl implements QuoteService{
 	public SaveQuoteHoldCoverResponse saveQuoteHoldCover(SaveQuoteHoldCoverRequest sqhcr) throws SQLException {
 		SaveQuoteHoldCoverResponse sqhcrResponse = new SaveQuoteHoldCoverResponse();
 		HashMap<String, Object> saveQuoteHoldCoverParams = new HashMap<String, Object>();
-		System.out.println(" from service impl");
 		try {
 			saveQuoteHoldCoverParams.put("holdCoverNo", "");
 			saveQuoteHoldCoverParams.put("quoteId" , sqhcr.getQuoteId() );
@@ -804,9 +805,6 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("createDate", sqhcr.getCreateDate());
 			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
 			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
-			
-			System.out.println(" inside try");
-			System.out.println(saveQuoteHoldCoverParams);
 			
 			HashMap<String, Object> response = quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams);
 			
