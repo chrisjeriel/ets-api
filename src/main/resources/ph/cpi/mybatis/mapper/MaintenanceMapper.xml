@@ -2984,4 +2984,89 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.SecIITreatyLimit" id="seciiTrtyLimitMap">
+     	<result property="lineCd" 			column="LINE_CD"/>
+	    <result property="lineClassCd" 		column="LINE_CLASS_CD"/>
+	    <result property="currencyCd" 		column="CURRENCY_CD"/>
+     	<result property="seciiTrtyLimId" 	column="SECII_TRTY_LIM_ID"/>
+	    <result property="amount" 			column="AMOUNT"/>
+	    <result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="activeTag" 		column="ACTIVE_TAG"/>
+	    <result property="remarks" 			column="REMARKS"/>
+	    <result property="createUser" 		column="CREATE_USER"/>
+	    <result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="updateUser" 		column="UPDATE_USER"/>
+	    <result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="okDelete" 		column="OK_DELETE"/>
+     </resultMap>
+     
+     <select id="retrieveMtnSecIITrtyLimit" resultMap="seciiTrtyLimitMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_SECII_TRTY_LIMIT_PKG.ret_mtn_secii_trty_limit(#{lineCd, jdbcType=VARCHAR},
+																	  			  #{lineClassCd, jdbcType=VARCHAR},
+																	  			  #{currencyCd, jdbcType=VARCHAR},
+																				  #{seciiTrtyLimId, jdbcType=INTEGER},
+																				  '',
+																				  '',
+																				  '',
+																				  ''))
+	</select>
+	
+	<update id="saveMtnSecIITrtyLimit" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		<foreach collection="deleteSecIITrtyLimit" item="del">
+	    			MTN_SECII_TRTY_LIMIT_PKG.del_secii_trty_limit(
+			    		#{del.retentionId, jdbcType=INTEGER}
+			    	);
+    		</foreach>
+    		<foreach collection="saveSecIITrtyLimit" item="save">
+		    		MTN_SECII_TRTY_LIMIT_PKG.save_secii_trty_limit(
+		    			#{save.lineCd, jdbcType=VARCHAR},
+		    			#{save.lineClassCd, jdbcType=VARCHAR},
+		    			#{save.currencyCd, jdbcType=VARCHAR},
+		    			#{save.seciiTrtyLimId, jdbcType=INTEGER},
+		    			#{save.amount, jdbcType=DECIMAL},
+		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    			#{save.activeTag, jdbcType=VARCHAR},
+		    			#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+    		</foreach>
+    	END;
+    </update>
+    
+    <update id="checkSecIITrtyLimit" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_SECII_TRTY_LIMIT_PKG.check_secii_trty_limit(
+																				#{copyFromSeciiTrtyLimId, jdbcType=INTEGER},
+																				#{copyFromLineCd, jdbcType=VARCHAR},
+																				#{copyFromLineClassCd, jdbcType=VARCHAR},
+																				#{copyFromCurrencyCd, jdbcType=VARCHAR},
+																				#{copyToLineCd, jdbcType=VARCHAR},
+																				#{copyToLineClassCd, jdbcType=VARCHAR},
+																				#{copyToCurrencyCd, jdbcType=VARCHAR}
+																			)
+		}	
+	</update>
+	
+	<update id="copySecIITrtyLimit" parameterType="java.util.Map">
+		BEGIN
+			MTN_SECII_TRTY_LIMIT_PKG.copy_secii_trty_limit(
+				#{copyFromSeciiTrtyLimId, jdbcType=INTEGER},
+				#{copyFromLineCd, jdbcType=VARCHAR},
+				#{copyFromLineClassCd, jdbcType=VARCHAR},
+				#{copyFromCurrencyCd, jdbcType=VARCHAR},
+				#{copyToLineCd, jdbcType=VARCHAR},
+				#{copyToLineClassCd, jdbcType=VARCHAR},
+				#{copyToLineCurrencyCd, jdbcType=VARCHAR},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+    
 </mapper>

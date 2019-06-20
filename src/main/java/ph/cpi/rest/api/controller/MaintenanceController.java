@@ -767,4 +767,24 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnClaimStatus(ctlr);
 	}
 	
+	@GetMapping(path="retrieveMtnSecIITrtyLimit")
+	public @ResponseBody RetrieveMtnSecIITrtyLimitResponse retrieveMtnSecIITrtyLimit(RetrieveMtnSecIITrtyLimitRequest rmstr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnSecIITrtyLimit");
+		logger.info("RetrieveMtnSecIITrtyLimitRequest : " + rmstr.toString());
+		return maintenanceService.retrieveMtnSecIITrtyLimit(rmstr);
+	}
+	
+	@PostMapping(path="saveMtnSecIITrtyLimit")
+	public @ResponseBody SaveMtnSecIITrtyLimitResponse saveMtnSecIITrtyLimit(@RequestBody SaveMtnSecIITrtyLimitRequest smstr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnSecIITrtyLimit");
+		logger.info("SaveMtnSecIITrtyLimitRequest : " + smstr.toString());
+		return maintenanceService.saveMtnSecIITrtyLimit(smstr);
+	}
+	
+	@PostMapping(path="copySecIITrtyLimit")
+	public @ResponseBody CopySecIITrtyLimitResponse copySecIITrtyLimit(@RequestBody CopySecIITrtyLimitRequest cstr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copySecIITrtyLimit");
+		logger.info("CopySecIITrtyLimitRequest : " + cstr.toString());
+		return maintenanceService.copySecIITrtyLimit(cstr);
+	}
 }

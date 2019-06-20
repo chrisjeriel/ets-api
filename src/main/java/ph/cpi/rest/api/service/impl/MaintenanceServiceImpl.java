@@ -1797,4 +1797,61 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return smpResponse;
 	}
+
+	@Override
+	public RetrieveMtnSecIITrtyLimitResponse retrieveMtnSecIITrtyLimit(RetrieveMtnSecIITrtyLimitRequest rmstr)
+			throws SQLException {
+		RetrieveMtnSecIITrtyLimitResponse rmstResponse = new RetrieveMtnSecIITrtyLimitResponse();
+		
+		HashMap<String, Object> retrieveMtnSecIITrtyLimitParams = new HashMap<String, Object>();
+		retrieveMtnSecIITrtyLimitParams.put("lineCd", rmstr.getLineCd());
+		retrieveMtnSecIITrtyLimitParams.put("lineClassCd", rmstr.getLineClassCd());
+		retrieveMtnSecIITrtyLimitParams.put("currencyCd", rmstr.getCurrencyCd());
+		retrieveMtnSecIITrtyLimitParams.put("seciiTrtyLimId", rmstr.getSeciiTrtyLimId());
+		
+		rmstResponse.setSecIITreatyLimList(maintenanceDao.retrieveMtnSecIITrtyLimit(retrieveMtnSecIITrtyLimitParams));
+		
+		return rmstResponse;
+	}
+
+	@Override
+	public SaveMtnSecIITrtyLimitResponse saveMtnSecIITrtyLimit(SaveMtnSecIITrtyLimitRequest smstr) throws SQLException {
+		SaveMtnSecIITrtyLimitResponse smstResponse = new SaveMtnSecIITrtyLimitResponse();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveSecIITrtyLimit", smstr.getSaveSecIITrtyLimit());
+		params.put("deleteSecIITrtyLimit", smstr.getDeleteSecIITrtyLimit());
+		
+		smstResponse.setReturnCode(maintenanceDao.saveMtnSecIITrtyLimit(params));
+		
+		return smstResponse;
+	}
+
+	@Override
+	public CopySecIITrtyLimitResponse copySecIITrtyLimit(CopySecIITrtyLimitRequest cstr) throws SQLException {
+		CopySecIITrtyLimitResponse cstResponse = new CopySecIITrtyLimitResponse();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromSeciiTrtyLimId", cstr.getCopyFromSeciiTrtyLimId());
+		params.put("copyFromLineCd", cstr.getCopyFromLineCd());
+		params.put("copyFromLineClassCd", cstr.getCopyFromLineClassCd());
+		params.put("copyFromCurrencyCd", cstr.getCopyFromCurrencyCd());
+		params.put("copyToLineCd", cstr.getCopyToLineCd());
+		params.put("copyToLineClassCd", cstr.getCopyToLineClassCd());
+		params.put("copyToCurrencyCd", cstr.getCopyToCurrencyCd());
+		params.put("createUser", cstr.getCreateUser());
+		params.put("createDate", cstr.getCreateDate());
+		params.put("updateUser", cstr.getUpdateUser());
+		params.put("updateDate", cstr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkSecIITrtyLimit(params);
+		
+		if(res == 1) {
+			cstResponse.setReturnCode(2);
+		} else if(res == 0) {
+			cstResponse.setReturnCode(maintenanceDao.copySecIITrtyLimit(params));
+		}
+		
+		return cstResponse;
+	}
 }
