@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
@@ -18,6 +19,7 @@ import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
@@ -169,5 +171,19 @@ public class ClaimsServiceImpl implements ClaimsService {
 			ex.printStackTrace();
 		}
 		return scaResponse;
+	}
+
+	@Override
+	public RetrieveChangeClaimStatusResponse retrieveChangeClmStatus(RetrieveChangeClaimStatusRequest rccsr)
+			throws SQLException {
+		RetrieveChangeClaimStatusResponse response = new RetrieveChangeClaimStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId", rccsr.getClaimId());
+		params.put("policyId", rccsr.getPolicyId());
+		params.put("cessionId", rccsr.getCessionId());
+		params.put("cedingId", rccsr.getCedingId());
+		params.put("riskId", rccsr.getRiskId());
+		response.setClaimList(claimsDao.retrieveChangeClmStatus(params));
+		return response;
 	}
 }

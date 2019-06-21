@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
@@ -21,6 +22,7 @@ import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
@@ -96,6 +98,13 @@ public class ClaimsController {
 		logger.info("SaveClaimsAttachmentRequest : " + scar.toString());
 		return claimsService.saveClaimAttachment(scar);
 		
+	}
+	
+	@GetMapping(path="retrieveChangeClmStatus")
+	public @ResponseBody RetrieveChangeClaimStatusResponse retrieveChangeClmStatus(RetrieveChangeClaimStatusRequest rccsr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveChangeClmStatus");
+		logger.info("retrieveChangeClmStatus : " + rccsr.toString());
+		return claimsService.retrieveChangeClmStatus(rccsr);
 	}
 
 }

@@ -72,4 +72,10 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
 		return errorCode;
 	}
+
+	@Override
+	public List<Claims> retrieveChangeClmStatus(HashMap<String, Object> params) throws SQLException {
+		List<Claims> res = sqlSession.selectList("retrieveChangeClmStatus", params);
+		return res;
+	}
 }

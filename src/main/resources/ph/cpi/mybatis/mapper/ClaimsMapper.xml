@@ -360,5 +360,38 @@
 		   </foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.Claims" id="changeClmStatusMap">
+		<result property="claimId"			column="CLAIM_ID" />
+		<result property="claimNo"			column="CLAIM_NO" />
+		<result property="cedingName"		column="CEDING_NAME" />
+		<result property="clmStatus"		column="CLM_STATUS" />
+		<result property="policyNo"			column="POLICY_NO" />
+		<result property="insuredDesc"		column="INSURED_DESC" />
+		<result property="riskName"			column="RISK_NAME" />
+		<result property="lossDate"			column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="lossDtl"			column="LOSS_DTL" />
+		<result property="currencyCd"		column="CURRENCY_CD" />
+		<result property="totalLossExpRes"	column="T_LOSS_EXP_RES" />
+		<result property="totalLossExpPd"	column="T_LOSS_EXP_PD" />
+		<result property="processedBy"		column="PROCESSED_BY" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
+	</resultMap>
+	
+	<select id="retrieveChangeClmStatus" resultMap="changeClmStatusMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(CLM_CHANGE_STATUS_PKG.ret_change_stat(#{claimId, jdbcType=VARCHAR},
+																	  #{policyId, jdbcType=VARCHAR},
+																	  #{cessionId, jdbcType=VARCHAR},
+																	  #{cedingId, jdbcType=VARCHAR},
+																	  #{riskId, jdbcType=VARCHAR},
+																	  #{position, jdbcType=VARCHAR}, 
+																	  #{count, jdbcType=VARCHAR}, 
+																	  #{sortKey, jdbcType=VARCHAR}, 
+																	  #{order, jdbcType=VARCHAR}))
+	</select>
 		
 </mapper>
