@@ -1867,4 +1867,39 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		return rmprhResponse;
 	}
+
+	@Override
+	public SaveMtnPoolRetHistResponse saveMtnPoolRetHist(SaveMtnPoolRetHistRequest smprhr) throws SQLException {
+		SaveMtnPoolRetHistResponse smprhResponse = new SaveMtnPoolRetHistResponse();
+		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
+		saveMtnTreatyShareParams.put("savePoolRetHist", smprhr.getSavePoolRetHist());
+		saveMtnTreatyShareParams.put("deletePoolRetHist", smprhr.getDeletePoolRetHist());
+		saveMtnTreatyShareParams.put("deletePoolMember", smprhr.getDeletePoolMember());
+		
+		smprhResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnTreatyShareParams));
+		
+		return smprhResponse;
+	}
+
+	@Override
+	public CopyPoolRetHistResponse copyPoolRetHist(CopyPoolRetHistRequest cprhr) throws SQLException {
+		CopyPoolRetHistResponse cprhResponse = new CopyPoolRetHistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromRetHistId", cprhr.getCopyFromRetHistId());
+		params.put("copyToEffDateFrom", cprhr.getCopyToEffDateFrom());
+		params.put("createUser", cprhr.getCreateUser());
+		params.put("createDate", cprhr.getCreateDate());
+		params.put("updateUser", cprhr.getUpdateUser());
+		params.put("updateDate", cprhr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkPoolRetHist(params);
+		
+		if(res == 1) {
+			cprhResponse.setReturnCode(2);
+		} else if(res == 0) {
+			cprhResponse.setReturnCode(maintenanceDao.copyPoolRetHist(params));
+		}
+		
+		return cprhResponse;
+	}
 }

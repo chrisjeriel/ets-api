@@ -830,4 +830,24 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<PoolRetHist> res = sqlSession.selectList("retrieveMtnPoolRetHist", params);
 		return res;
 	}
+
+	@Override
+	public Integer saveMtnPoolRetHist(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnPoolRetHist", params);
+		return res;
+	}
+
+	@Override
+	public Integer checkPoolRetHist(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkPoolRetHist", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
+
+	@Override
+	public Integer copyPoolRetHist(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("copyPoolRetHist", params);
+		return res;
+	}
 }
