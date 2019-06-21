@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class Line {
 	private String lineCd;
 	private String description;
+	private String menuLineCd;
 	private String cutOffTime;
 	private String activeTag;
 	private String catTag;
@@ -13,6 +14,7 @@ public class Line {
 	private Integer referenceNo;
 	private Integer sortSeq;
 	private String remarks;
+	private String menuLineTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -30,6 +32,12 @@ public class Line {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getMenuLineCd() {
+		return menuLineCd;
+	}
+	public void setMenuLineCd(String menuLineCd) {
+		this.menuLineCd = menuLineCd;
 	}
 	public String getCutOffTime() {
 		return cutOffTime;
@@ -79,6 +87,12 @@ public class Line {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public String getMenuLineTag() {
+		return menuLineTag;
+	}
+	public void setMenuLineTag(String menuLineTag) {
+		this.menuLineTag = menuLineTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -117,11 +131,11 @@ public class Line {
 	}
 	@Override
 	public String toString() {
-		return "Line [lineCd=" + lineCd + ", description=" + description + ", cutOffTime=" + cutOffTime + ", activeTag="
-				+ activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag
-				+ ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", alopTag=" + alopTag + ", okDelete=" + okDelete + "]";
+		return "Line [lineCd=" + lineCd + ", description=" + description + ", menuLineCd=" + menuLineCd
+				+ ", cutOffTime=" + cutOffTime + ", activeTag=" + activeTag + ", catTag=" + catTag + ", renewalTag="
+				+ renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq="
+				+ sortSeq + ", remarks=" + remarks + ", menuLineTag=" + menuLineTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", alopTag=" + alopTag + ", okDelete=" + okDelete + "]";
 	}
-	
 }

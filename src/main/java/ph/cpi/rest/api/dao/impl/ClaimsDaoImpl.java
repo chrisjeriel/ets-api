@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimHistory;
+import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.Claims;
 
 @Component
@@ -23,10 +24,16 @@ public class ClaimsDaoImpl implements ClaimsDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClaimsDaoImpl.class);
 
+//	@Override
+//	public List<ClaimHistory> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+//		List<ClaimHistory> clmHistory = sqlSession.selectList("retrieveClaimHistory", params);
+//		return clmHistory;
+//	}
+	
 	@Override
-	public List<ClaimHistory> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
-		List<ClaimHistory> clmHistory = sqlSession.selectList("retrieveClaimHistory", params);
-		return clmHistory;
+	public List<ClaimReserve> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+		List<ClaimReserve> clmHistoryList = sqlSession.selectList("retrieveClaimHistory", params);
+		return clmHistoryList;
 	}
 
 	@Override
@@ -84,5 +91,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	public Integer saveClaimApprovedAmt(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveClaimApprovedAmt",params);
 		return errorCode;
+	}
+
+	@Override
+	public List<Claims> retrieveClaimReserve(HashMap<String, Object> params) throws SQLException {
+		List<Claims> clmReserve = sqlSession.selectList("retrieveClaimReserve", params);
+		return clmReserve;
 	}
 }

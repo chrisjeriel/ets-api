@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveClaimHistoryRequest {
+public class RetrieveClaimReserveRequest {
 	private String  claimId;
 	private String  claimNo;
 	private PaginationRequest paginationRequest;
@@ -34,7 +34,7 @@ public class RetrieveClaimHistoryRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimHistoryRequest [claimId=" + claimId + ", claimNo=" + claimNo + ", paginationRequest="
+		return "RetrieveClaimReserveRequest [claimId=" + claimId + ", claimNo=" + claimNo + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

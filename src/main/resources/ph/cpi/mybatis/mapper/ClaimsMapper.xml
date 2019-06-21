@@ -62,9 +62,9 @@
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimHistory" id="claimHistoryMap">
-		<result property="claimId"		column="CLAIM_ID"/>
-		<result property="projId"		column="PROJ_ID"/>
-		<result property="histNo"		column="HIST_NO"/>
+		<result property="claimId"		column="HIST_CLAIM_ID"/>
+		<result property="projId"		column="HIST_PROJ_ID"/>
+		<result property="histNo"		column="HIST_HIST_NO"/>
 		<result property="histCategory"	column="HIST_CATEGORY"/>
 		<result property="histType"		column="HIST_TYPE"/>
 		<result property="exGratia"		column="EX_GRATIA"/>
@@ -74,18 +74,17 @@
 		<result property="paytAmt"		column="PAYT_AMT"/>
 		<result property="refNo"		column="REF_NO"/>
 		<result property="refDate"		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="remarks"		column="REMARKS"/>
-		<result property="createUser"	column="CREATE_USER"/>
-		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"	column="UPDATE_USER"/>
-		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="remarks"		column="HIST_REMARKS"/>
+		<result property="createUser"	column="HIST_CREATE_USER"/>
+		<result property="createDate"	column="HIST_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="HIST_UPDATE_USER"/>
+		<result property="updateDate"	column="HIST_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveClaimHistory" resultMap="claimHistoryMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(CLM_RES_HIST_PKG.ret_clm_res_hist(
 					#{claimId,jdbcType=INTEGER},
-					#{projId,jdbcType=INTEGER},
-					#{histNo,jdbcType=INTEGER}, 
+					#{claimNo,jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 	
@@ -170,7 +169,42 @@
 		<result property="createDate" 		column="PRJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="PRJ_UPDATE_USER"/>
 		<result property="updateDate" 		column="PRJ_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="clmReserve" resultMap="claimReserveMap" />
 	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimReserve" id="claimReserveMap">
+		<result property="claimId" 			column="RES_CLAIM_ID"/>
+		<result property="projId" 			column="RES_PROJ_ID"/>
+		<result property="lossResAmt" 		column="LOSS_RES_AMT"/>
+		<result property="lossPdAmt" 		column="LOSS_PD_AMT"/>
+		<result property="lossStatCd" 		column="LOSS_STAT_CD"/>
+		<result property="expResAmt" 		column="EXP_RES_AMT"/>
+		<result property="expPdAmt" 		column="EXP_PD_AMT"/>
+		<result property="expStatCd" 		column="EXP_STAT_CD"/>
+		<result property="createUser" 		column="RES_CREATE_USER"/>
+		<result property="createDate" 		column="RES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="RES_UPDATE_USER"/>
+		<result property="updateDate" 		column="RES_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="clmHistory"  resultMap="claimHistoryMap" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.Claims" id="claimsForReserveMap">
+		<result property="claimId" 			column="GEN_CLAIM_ID"/>
+		<result property="claimNo" 			column="CLAIM_NO"/>
+		<association property="project" resultMap="projForReserveMap" /> 
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.Project" id="projForReserveMap">
+		<result property="claimId" 			column="PROJ_CLAIM_ID"/>
+		<result property="projId" 			column="PROJ_PROJ_ID"/>
+		<association property="clmReserve" resultMap="claimReserveMap" />
+	</resultMap>
+	
+	<select id="retrieveClaimReserve" resultMap="claimsForReserveMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLM_RESERVE_PKG.ret_clm_reserve(
+				#{claimId,jdbcType=INTEGER},
+				#{claimNo,jdbcType=VARCHAR},'','','',''))
+	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimAdjuster" id="clmAdjusterListAssoc">
 		<result property="claimId"			column="CLAIM_ID" />
@@ -385,24 +419,18 @@
 	<update id="saveClaimApprovedAmt" parameterType="java.util.Map">
 		BEGIN
     		<foreach collection="saveClaimApprovedAmt" item="scaa">
-    			CLM_RES_HIST_PKG.save_clm_res_hist(
-    				#{ch.claimId,jdbcType=VARCHAR},
-					#{ch.projId,jdbcType=VARCHAR},
-					#{ch.histNo,jdbcType=VARCHAR},
-					#{ch.histCategory,jdbcType=VARCHAR},
-					#{ch.histType,jdbcType=VARCHAR},
-					#{ch.exGratia,jdbcType=VARCHAR},
-					#{ch.currencyCd,jdbcType=VARCHAR},
-					#{ch.currencyRt,jdbcType=VARCHAR},
-					#{ch.reserveAmt,jdbcType=INTEGER},
-					#{ch.paytAmt,jdbcType=INTEGER},
-					#{ch.refNo,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					#{ch.remarks,jdbcType=VARCHAR},
-					#{ch.createUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				    #{ch.updateUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			CLM_APPROVAL_HIST_PKG.save_approval_hist(
+    				#{scaa.claimId, jdbcType=VARCHAR},
+					#{scaa.histNo, jdbcType=VARCHAR},
+					#{scaa.approvedAmt, jdbcType=VARCHAR},
+					#{scaa.approvedBy, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{scaa.approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{scaa.remarks, jdbcType=VARCHAR},
+					#{scaa.activeTag, jdbcType=VARCHAR},
+					#{scaa.createUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{scaa.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{scaa.updateUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{scaa.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
     		</foreach>
     	END;
