@@ -45,6 +45,8 @@
 		<result property="contractorId" 	column="CONTRACTOR_ID"/> <!-- Added by Neco, 06/10/2019, Reason: For Quotation Inquiry -->
 		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="sumInsured" 		column="SUM_INSURED"/>
+		<result property="optionRt" 		column="OPTION_RT"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
 		<result property="reasonCd"			column="REASON_CD"/>
