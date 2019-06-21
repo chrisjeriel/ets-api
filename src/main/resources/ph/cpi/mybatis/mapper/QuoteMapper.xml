@@ -58,6 +58,8 @@
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="approvedBy" 		column="APPROVED_BY"/>
 		<result property="preparedBy"		column="PREPARED_BY"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
+		<result property="sumInsured"		column="TOTAL_SI"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
+		<result property="firstOptionRt"	column="OPTION_RT"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	

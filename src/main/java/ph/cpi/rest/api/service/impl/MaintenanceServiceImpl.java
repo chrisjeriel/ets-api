@@ -967,9 +967,10 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("oldCedingId", smccr.getOldCedingId());
 			params.put("membershipTag", smccr.getMembershipTag());
 			params.put("membershipDate", smccr.getMembershipDate());
-			params.put("terminationDate", smccr.getTerminationDate());
+			params.put("withdrawDate", smccr.getWithdrawDate());
 			params.put("inactiveDate", smccr.getInactiveDate());
 			params.put("treatyTag", smccr.getTreatyTag());
+			params.put("withdrawTag", smccr.getWithdrawTag());
 			params.put("remarks", smccr.getRemarks());
 			params.put("createUser", smccr.getCreateUser());
 			params.put("createDate", smccr.getCreateDate());
@@ -980,6 +981,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			HashMap<String, Object> res = maintenanceDao.saveMtnCedingCompany(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setOutCedingId((String) res.get("outCedingId"));
+			response.setUploadDate((String) res.get("uploadDate"));
 		}catch(Exception e){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Please check the field values."));

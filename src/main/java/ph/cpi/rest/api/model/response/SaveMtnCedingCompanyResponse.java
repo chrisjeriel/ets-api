@@ -11,6 +11,7 @@ public class SaveMtnCedingCompanyResponse {
 	private List<Message> messageList = new ArrayList<Message>();
 	private Integer returnCode;
 	private String outCedingId;
+	private String uploadDate;
 	
 	public List<Error> getErrorList() {
 		return errorList;
@@ -36,10 +37,16 @@ public class SaveMtnCedingCompanyResponse {
 	public void setOutCedingId(String outCedingId) {
 		this.outCedingId = outCedingId;
 	}
+	public String getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(String uploadDate) {
+		this.uploadDate = uploadDate;
+	}
 	
 	@Override
 	public String toString() {
 		return "SaveMtnCedingCompanyResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", outCedingId=" + outCedingId + "]";
+				+ returnCode + ", outCedingId=" + outCedingId + ", uploadDate=" + uploadDate + "]";
 	}
 }

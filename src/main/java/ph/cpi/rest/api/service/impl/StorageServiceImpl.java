@@ -94,7 +94,19 @@ public class StorageServiceImpl implements StorageService {
 		 	@Override
 		    public void deleteAll() {
 		        FileSystemUtils.deleteRecursively(rootLocation.toFile());
+		        
 		    }
+		 	
+		 	@Override
+		 	public Integer delete(String fileNames){
+		 		Path path = Paths.get(rootLocation + "\\" + fileNames);
+		 		System.out.println(path);
+		 		if(FileSystemUtils.deleteRecursively(path.toFile())){
+		 			return 1;
+		 		}else{
+		 			return 0;
+		 		}
+		 	}
 
 		    @Override
 		    public void init() {
