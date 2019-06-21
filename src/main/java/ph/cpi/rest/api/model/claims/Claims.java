@@ -66,9 +66,12 @@ public class Claims {
 	private List<ClaimAdjuster> clmAdjusterList;
 	private ClaimProject clmProject;
 	private List<ClaimDeductibles> clmDeductibles;
-	private List<Attachment> attachments;
+
+//	private List<Attachment> attachments; --Replced with 'clmAttachments' only
 	private List<ClaimReserve> clmReserve;
 	
+	private List<Attachment> clmAttachments; 
+
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -429,13 +432,18 @@ public class Claims {
 	public void setClmDeductibles(List<ClaimDeductibles> clmDeductibles) {
 		this.clmDeductibles = clmDeductibles;
 	}
-	public List<Attachment> getAttachments() {
-		return attachments;
+	public List<ClaimReserve> getClmReserve() {
+		return clmReserve;
 	}
-	public void setAttachments(List<Attachment> attachments) {
-		this.attachments = attachments;
+	public void setClmReserve(List<ClaimReserve> clmReserve) {
+		this.clmReserve = clmReserve;
 	}
-
+	public List<Attachment> getClmAttachments() {
+		return clmAttachments;
+	}
+	public void setClmAttachments(List<Attachment> clmAttachments) {
+		this.clmAttachments = clmAttachments;
+	}
 	@Override
 	public String toString() {
 		return "Claims [claimId=" + claimId + ", claimNo=" + claimNo + ", lineCd=" + lineCd + ", polYear=" + polYear
@@ -457,6 +465,7 @@ public class Claims {
 				+ ", totalLossExpPd=" + totalLossExpPd + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
 				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
-				+ clmDeductibles + ", attachments=" + attachments + "]";
+				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
 	}
+
 }

@@ -11,6 +11,7 @@ public class SaveClaimsAttachmentResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private String uploadDate;
 	
 	public List<Error> getErrorList() {
 		if (errorList == null) {
@@ -34,10 +35,17 @@ public class SaveClaimsAttachmentResponse {
 		this.returnCode = returnCode;
 	}
 	
+	public String getUploadDate() {
+		return uploadDate;
+	}
+	public void setUploadDate(String uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "SaveClaimsAttachmentResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+				+ returnCode + ", uploadDate=" + uploadDate + "]";
 	}
 
 }

@@ -1,21 +1,24 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.claims.Claims;
+import ph.cpi.rest.api.model.claims.Attachment;
 
 public class RetrieveClaimsAttachmentResponse {
 
-	private Claims clmAttachmentList;
+	private List<Attachment> claimsAttachmentList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public Claims getClmAttachmentList() {
-		return clmAttachmentList;
+	public List<Attachment> getClaimsAttachmentList() {
+		return claimsAttachmentList;
 	}
-	public void setClmAttachmentList(Claims clmAttachmentList) {
-		this.clmAttachmentList = clmAttachmentList;
+	public void setClaimsAttachmentList(List<Attachment> claimsAttachmentList) {
+		this.claimsAttachmentList = claimsAttachmentList;
 	}
+	
 	public PaginationResponse getPaginationResponse() {
 		if(paginationResponse == null){
 			paginationResponse = new PaginationResponse();
@@ -37,8 +40,10 @@ public class RetrieveClaimsAttachmentResponse {
 	
 	@Override
 	public String toString() {
-		return "RetrieveClaimsAttachmentResponse [clmAttachmentList=" + clmAttachmentList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveClaimsAttachmentResponse [claimsAttachmentList=" + claimsAttachmentList
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 	
+	
+		
 }

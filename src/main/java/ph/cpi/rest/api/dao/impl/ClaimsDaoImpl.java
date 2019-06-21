@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
+import ph.cpi.rest.api.model.claims.Attachment;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
-import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.Claims;
 
@@ -42,7 +42,6 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return saveClaimHistory;
 	}
 
-	@Override
 	public List<Claims> retrieveClaimListing(HashMap<String, Object> params) throws SQLException {
 		List<Claims> res = sqlSession.selectList("retrieveClaimListing", params);
 		return res;
@@ -67,18 +66,20 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return params;
 	}
 
+
 	@Override
-	public Claims retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Claims claimsAttachmentList = sqlSession.selectOne("retrieveClaimsAttachment", params);
-		return claimsAttachmentList;
+		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
-	public Integer saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
+	public List<Attachment> retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
-		return errorCode;
+		List<Attachment> claimsAttachmentList = sqlSession.selectList("retrieveClaimsAttachment", params);
+		return claimsAttachmentList;
 	}
 
 	@Override

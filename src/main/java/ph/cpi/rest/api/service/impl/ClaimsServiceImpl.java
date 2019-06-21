@@ -153,7 +153,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> retrieveClaimsAttachmentParams = new HashMap<String, Object>();
 		retrieveClaimsAttachmentParams.put("claimId",rcar.getClaimId());
 		retrieveClaimsAttachmentParams.put("claimNo", rcar.getClaimNo());
-		rcaResponse.setClmAttachmentList(claimsDao.retrieveClaimsAttachmentList(retrieveClaimsAttachmentParams));
+		rcaResponse.setClaimsAttachmentList(claimsDao.retrieveClaimsAttachmentList(retrieveClaimsAttachmentParams));
 		logger.info("retrieveClaimsAttachmentResponse : " + rcaResponse.toString());
 		return rcaResponse;
 	}
@@ -167,11 +167,18 @@ public class ClaimsServiceImpl implements ClaimsService {
 			saveClmAttachmentParams.put("claimId", scar.getClaimId());
 			saveClmAttachmentParams.put("saveClmAttachments", scar.getSaveClaimsAttachments());
 			saveClmAttachmentParams.put("deleteClmAttachments", scar.getDeleteClaimsAttachments());
-			logger.info("retrieveClaimsAttachmentResponse : " + saveClmAttachmentParams.toString());
-			scaResponse.setReturnCode(claimsDao.saveClaimsAttachment(saveClmAttachmentParams));
-		}catch(Exception ex){
+			
+			HashMap<String, Object> res = claimsDao.saveClaimsAttachment(saveClmAttachmentParams);
+			scaResponse.setReturnCode((Integer) res.get("errorCode"));
+			scaResponse.setUploadDate((String) res.get("uploadDate"));
+			logger.info("retrieveClaimsAttachmentResponse : " + scaResponse.toString());
+		}catch (SQLException ex) {
 			scaResponse.setReturnCode(0);
-			scaResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			scaResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			scaResponse.setReturnCode(0);
+			scaResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
 		}
 		return scaResponse;

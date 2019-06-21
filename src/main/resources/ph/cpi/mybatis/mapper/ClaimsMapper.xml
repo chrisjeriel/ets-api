@@ -59,6 +59,8 @@
 		
 		<association property="project" resultMap="clmProjectAssoc" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
+		<association property="clmAttachments" resultMap="assocAttachmentMap"></association>
+		
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimHistory" id="claimHistoryMap">
@@ -354,10 +356,10 @@
 	<resultMap type="ph.cpi.rest.api.model.claims.Claims" id="claimsAttachmentMap">
 	    <result property="claimId" 		column="POLICY_ID"/> 
 		<result property="claimNo" 		column="POLICY_NO"/> 
-		<association property="attachments" resultMap="assocAttachmentMap"></association>
+		<association property="clmAttachments" resultMap="assocAttachmentMap"></association>
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.underwriting.Attachment" id="assocAttachmentMap">
+	<resultMap type="ph.cpi.rest.api.model.claims.Attachment" id="assocAttachmentMap">
 		<result property="fileNo" 			column="FILE_NO"/> 
 		<result property="fileName" 		column="FILE_NAME"/> 
 		<result property="description" 		column="DESCRIPTION"/> 
@@ -367,7 +369,7 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveClaimsAttachment" resultMap="claimsAttachmentMap" parameterType="java.util.Map">
+	<select id="retrieveClaimsAttachment" resultMap="assocAttachmentMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(CLM_ATTACHMENT_PKG.ret_clm_attchmnt(#{claimId, jdbcType=INTEGER},
 																	#{claimNo, jdbcType=VARCHAR},
 																	#{position, jdbcType=VARCHAR}, 
@@ -376,10 +378,11 @@
 																	#{order, jdbcType=VARCHAR}))
 	</select>
 	
-	<update id="saveClaimsAttachment" parameterType="java.util.Map">
+	<update id="saveClaimsAttachment" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 		   <foreach collection="saveClmAttachments" item="attachment">
-		   	   CLM_ATTACHMENT_PKG.save_clm_attchmnt(#{claimId},
+		   	   CLM_ATTACHMENT_PKG.save_clm_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
+		   	   										#{claimId},
 		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
 		   	   										#{attachment.fileName},
 		   	   										#{attachment.description, jdbcType=VARCHAR},
@@ -389,7 +392,7 @@
 			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   </foreach>
 		   <foreach collection="deleteClmAttachments" item="attachment">
-		   		POL_ATTACHMENT_PKG.del_clm_attchmnt(#{claimId},
+		   		CLM_ATTACHMENT_PKG.del_clm_attchmnt(#{claimId},
 		   											#{attachment.fileNo, jdbcType=VARCHAR});
 		   </foreach>
 		END;
