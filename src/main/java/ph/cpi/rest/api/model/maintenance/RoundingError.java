@@ -7,7 +7,6 @@ public class RoundingError {
 	private String companyName;
 	private String abbreviation;
 	private DateTime effDateFrom;
-	private DateTime effDateTo;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -40,12 +39,6 @@ public class RoundingError {
 	}
 	public void setEffDateFrom(DateTime effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public DateTime getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(DateTime effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -93,7 +86,7 @@ public class RoundingError {
 	@Override
 	public String toString() {
 		return "RoundingError [companyId=" + companyId + ", companyName=" + companyName + ", abbreviation="
-				+ abbreviation + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo + ", activeTag="
+				+ abbreviation + ", effDateFrom=" + effDateFrom  + ", activeTag="
 				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}

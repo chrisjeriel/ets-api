@@ -2454,7 +2454,6 @@
 		<result property="companyName" 		column="COMPANY_NAME"/>
 		<result property="abbreviation" 	column="ABBREVIATION"/>
 		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -2490,15 +2489,13 @@
     		<foreach collection="delRoundingError" item="del">
 	    			MTN_ROUNDING_ERROR_PKG.del_mtn_rounding_error(
 			    		#{del.companyId},
-			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		    			CAST(to_timestamp(#{del.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			    	);
     		</foreach>
     		<foreach collection="saveRoundingError" item="save">
 		    		MTN_ROUNDING_ERROR_PKG.save_mtn_rounding_error(
 		    			#{save.companyId},
 		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		    			#{save.activeTag, jdbcType=VARCHAR},
 		    			#{save.remarks, jdbcType=VARCHAR},
 						#{save.createUser, jdbcType=VARCHAR},
