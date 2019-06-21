@@ -1,39 +1,41 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
-public class SaveMtnRetAmtRequest {
+public class SaveMtnSecIITrtyLimitRequest {
 
-	List<RetAmt> saveRetAmt;
-	List<RetAmt> deleteRetAmt;
+	List<SecIITreatyLimit> saveSecIITrtyLimit;
+	List<SecIITreatyLimit> deleteSecIITrtyLimit;
 	
-	public List<RetAmt> getSaveRetAmt() {
-		return saveRetAmt;
+	public List<SecIITreatyLimit> getSaveSecIITrtyLimit() {
+		return saveSecIITrtyLimit;
 	}
-	public void setSaveRetAmt(List<RetAmt> saveRetAmt) {
-		this.saveRetAmt = saveRetAmt;
+	public void setSaveSecIITrtyLimit(List<SecIITreatyLimit> saveSecIITrtyLimit) {
+		this.saveSecIITrtyLimit = saveSecIITrtyLimit;
 	}
-	public List<RetAmt> getDeleteRetAmt() {
-		return deleteRetAmt;
+	public List<SecIITreatyLimit> getDeleteSecIITrtyLimit() {
+		return deleteSecIITrtyLimit;
 	}
-	public void setDeleteRetAmt(List<RetAmt> deleteRetAmt) {
-		this.deleteRetAmt = deleteRetAmt;
+	public void setDeleteSecIITrtyLimit(List<SecIITreatyLimit> deleteSecIITrtyLimit) {
+		this.deleteSecIITrtyLimit = deleteSecIITrtyLimit;
 	}
 	@Override
 	public String toString() {
-		return "SaveMtnRetAmtRequest [saveRetAmt=" + saveRetAmt + ", deleteRetAmt=" + deleteRetAmt + "]";
+		return "SaveMtnSecIITrtyLimitRequest [saveSecIITrtyLimit=" + saveSecIITrtyLimit + ", deleteSecIITrtyLimit="
+				+ deleteSecIITrtyLimit + "]";
 	}
 }
 
-@Alias("SaveMtnRetAmt")
-class RetAmt {
+@Alias("SaveMtnSecIITrtyLimit")
+class SecIITreatyLimit {
 	private String lineCd;
-    private String lineClassCd;
-    private String currencyCd;
-	private Integer retentionId;
-    private String retLineAmt;
+	private String lineClassCd;
+	private String currencyCd;
+	private Integer seciiTrtyLimId;
+    private BigDecimal amount;
     private String effDateFrom;
     private String activeTag;
     private String remarks;
@@ -60,17 +62,17 @@ class RetAmt {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getRetentionId() {
-		return retentionId;
+	public Integer getSeciiTrtyLimId() {
+		return seciiTrtyLimId;
 	}
-	public void setRetentionId(Integer retentionId) {
-		this.retentionId = retentionId;
+	public void setSeciiTrtyLimId(Integer seciiTrtyLimId) {
+		this.seciiTrtyLimId = seciiTrtyLimId;
 	}
-	public String getRetLineAmt() {
-		return retLineAmt;
+	public BigDecimal getAmount() {
+		return amount;
 	}
-	public void setRetLineAmt(String retLineAmt) {
-		this.retLineAmt = retLineAmt;
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
 	}
 	public String getEffDateFrom() {
 		return effDateFrom;
@@ -116,8 +118,8 @@ class RetAmt {
 	}
 	@Override
 	public String toString() {
-		return "RetAmt [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
-				+ ", retentionId=" + retentionId + ", retLineAmt=" + retLineAmt + ", effDateFrom=" + effDateFrom
+		return "SecIITreatyLimit [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", seciiTrtyLimId=" + seciiTrtyLimId + ", amount=" + amount + ", effDateFrom=" + effDateFrom
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}

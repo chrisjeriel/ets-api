@@ -3,12 +3,12 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnRetAmtRequest {
+public class RetrieveMtnSecIITrtyLimitRequest {
 
 	private String lineCd;
 	private String lineClassCd;
 	private String currencyCd;
-	private Integer retentionId;
+	private Integer seciiTrtyLimId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -30,11 +30,11 @@ public class RetrieveMtnRetAmtRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getRetentionId() {
-		return retentionId;
+	public Integer getSeciiTrtyLimId() {
+		return seciiTrtyLimId;
 	}
-	public void setRetentionId(Integer retentionId) {
-		this.retentionId = retentionId;
+	public void setSeciiTrtyLimId(Integer seciiTrtyLimId) {
+		this.seciiTrtyLimId = seciiTrtyLimId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -50,8 +50,8 @@ public class RetrieveMtnRetAmtRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnRetAmtRequest [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd="
-				+ currencyCd + ", retentionId=" + retentionId + ", paginationRequest=" + paginationRequest
+		return "RetrieveMtnSecIITrtyLimitRequest [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd="
+				+ currencyCd + ", seciiTrtyLimId=" + seciiTrtyLimId + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

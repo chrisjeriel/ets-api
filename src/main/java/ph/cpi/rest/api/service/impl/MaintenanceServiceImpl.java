@@ -1237,6 +1237,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveMtnRetAmtParams = new HashMap<String, Object>();
 		retrieveMtnRetAmtParams.put("lineCd", rmrar.getLineCd());
 		retrieveMtnRetAmtParams.put("lineClassCd", rmrar.getLineClassCd());
+		retrieveMtnRetAmtParams.put("currencyCd", rmrar.getCurrencyCd());
+		retrieveMtnRetAmtParams.put("retentionId", rmrar.getRetentionId());
 		
 		rmraResponse.setRetAmtList(maintenanceDao.retrieveMtnRetAmt(retrieveMtnRetAmtParams));
 		
@@ -1332,8 +1334,12 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		CopyRetAmtSetupResponse crasResponse = new CopyRetAmtSetupResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("copyFromRetentionId", crasr.getCopyFromRetentionId());
+		params.put("copyFromLineCd", crasr.getCopyFromLineCd());
+		params.put("copyFromLineClassCd", crasr.getCopyFromLineClassCd());
+		params.put("copyFromCurrencyCd", crasr.getCopyFromCurrencyCd());
 		params.put("copyToLineCd", crasr.getCopyToLineCd());
 		params.put("copyToLineClassCd", crasr.getCopyToLineClassCd());
+		params.put("copyToCurrencyCd", crasr.getCopyToCurrencyCd());
 		params.put("createUser", crasr.getCreateUser());
 		params.put("createDate", crasr.getCreateDate());
 		params.put("updateUser", crasr.getUpdateUser());
@@ -1357,6 +1363,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("lineCd", rmtlr.getLineCd());
 		params.put("lineClassCd", rmtlr.getLineClassCd());
+		params.put("currencyCd", rmtlr.getCurrencyCd());
+		params.put("treatyLimitId", rmtlr.getTreatyLimitId());
 		
 		rmtlResponse.setTreatyLimitList(maintenanceDao.retrieveMtnTreatyLimit(params));
 		
@@ -1595,8 +1603,12 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		CopyTreatyLimitResponse ctlResponse = new CopyTreatyLimitResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("copyFromTreatyLimitId", ctlr.getCopyFromTreatyLimitId());
+		params.put("copyFromLineCd", ctlr.getCopyFromLineCd());
+		params.put("copyFromLineClassCd", ctlr.getCopyFromLineClassCd());
+		params.put("copyFromCurrencyCd", ctlr.getCopyFromCurrencyCd());
 		params.put("copyToLineCd", ctlr.getCopyToLineCd());
 		params.put("copyToLineClassCd", ctlr.getCopyToLineClassCd());
+		params.put("copyToCurrencyCd", ctlr.getCopyToCurrencyCd());
 		params.put("createUser", ctlr.getCreateUser());
 		params.put("createDate", ctlr.getCreateDate());
 		params.put("updateUser", ctlr.getUpdateUser());
@@ -1784,5 +1796,75 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return smpResponse;
+	}
+
+	@Override
+	public RetrieveMtnSecIITrtyLimitResponse retrieveMtnSecIITrtyLimit(RetrieveMtnSecIITrtyLimitRequest rmstr)
+			throws SQLException {
+		RetrieveMtnSecIITrtyLimitResponse rmstResponse = new RetrieveMtnSecIITrtyLimitResponse();
+		
+		HashMap<String, Object> retrieveMtnSecIITrtyLimitParams = new HashMap<String, Object>();
+		retrieveMtnSecIITrtyLimitParams.put("lineCd", rmstr.getLineCd());
+		retrieveMtnSecIITrtyLimitParams.put("lineClassCd", rmstr.getLineClassCd());
+		retrieveMtnSecIITrtyLimitParams.put("currencyCd", rmstr.getCurrencyCd());
+		retrieveMtnSecIITrtyLimitParams.put("seciiTrtyLimId", rmstr.getSeciiTrtyLimId());
+		
+		rmstResponse.setSecIITreatyLimList(maintenanceDao.retrieveMtnSecIITrtyLimit(retrieveMtnSecIITrtyLimitParams));
+		
+		return rmstResponse;
+	}
+
+	@Override
+	public SaveMtnSecIITrtyLimitResponse saveMtnSecIITrtyLimit(SaveMtnSecIITrtyLimitRequest smstr) throws SQLException {
+		SaveMtnSecIITrtyLimitResponse smstResponse = new SaveMtnSecIITrtyLimitResponse();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveSecIITrtyLimit", smstr.getSaveSecIITrtyLimit());
+		params.put("deleteSecIITrtyLimit", smstr.getDeleteSecIITrtyLimit());
+		
+		smstResponse.setReturnCode(maintenanceDao.saveMtnSecIITrtyLimit(params));
+		
+		return smstResponse;
+	}
+
+	@Override
+	public CopySecIITrtyLimitResponse copySecIITrtyLimit(CopySecIITrtyLimitRequest cstr) throws SQLException {
+		CopySecIITrtyLimitResponse cstResponse = new CopySecIITrtyLimitResponse();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromSeciiTrtyLimId", cstr.getCopyFromSeciiTrtyLimId());
+		params.put("copyFromLineCd", cstr.getCopyFromLineCd());
+		params.put("copyFromLineClassCd", cstr.getCopyFromLineClassCd());
+		params.put("copyFromCurrencyCd", cstr.getCopyFromCurrencyCd());
+		params.put("copyToLineCd", cstr.getCopyToLineCd());
+		params.put("copyToLineClassCd", cstr.getCopyToLineClassCd());
+		params.put("copyToCurrencyCd", cstr.getCopyToCurrencyCd());
+		params.put("createUser", cstr.getCreateUser());
+		params.put("createDate", cstr.getCreateDate());
+		params.put("updateUser", cstr.getUpdateUser());
+		params.put("updateDate", cstr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkSecIITrtyLimit(params);
+		
+		if(res == 1) {
+			cstResponse.setReturnCode(2);
+		} else if(res == 0) {
+			cstResponse.setReturnCode(maintenanceDao.copySecIITrtyLimit(params));
+		}
+		
+		return cstResponse;
+	}
+
+	@Override
+	public RetrieveMtnPoolRetHistResponse retrieveMtnPoolRetHist(RetrieveMtnPoolRetHistRequest rmprhr)
+			throws SQLException {
+		RetrieveMtnPoolRetHistResponse rmprhResponse = new RetrieveMtnPoolRetHistResponse();
+		
+		HashMap<String, Object> retrieveMtnPoolRetHistParams = new HashMap<String, Object>();
+		retrieveMtnPoolRetHistParams.put("retHistId", rmprhr.getRetHistId());
+		
+		rmprhResponse.setPoolRetHistList(maintenanceDao.retrieveMtnPoolRetHist(retrieveMtnPoolRetHistParams));
+		
+		return rmprhResponse;
 	}
 }

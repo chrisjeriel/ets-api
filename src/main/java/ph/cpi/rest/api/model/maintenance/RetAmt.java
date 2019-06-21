@@ -6,12 +6,12 @@ import org.joda.time.DateTime;
 
 public class RetAmt {
 	
+	private String lineCd;
+	private String lineClassCd;
+	private String currencyCd;
 	private Integer retentionId;
-    private String lineCd;
-    private String lineClassCd;
     private BigDecimal retLineAmt;
     private DateTime effDateFrom;
-    private DateTime effDateTo;
     private String activeTag;
     private String remarks;
     private String createUser;
@@ -20,12 +20,6 @@ public class RetAmt {
     private DateTime updateDate;
     private String okDelete;
     
-	public Integer getRetentionId() {
-		return retentionId;
-	}
-	public void setRetentionId(Integer retentionId) {
-		this.retentionId = retentionId;
-	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -38,6 +32,18 @@ public class RetAmt {
 	public void setLineClassCd(String lineClassCd) {
 		this.lineClassCd = lineClassCd;
 	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
+	public Integer getRetentionId() {
+		return retentionId;
+	}
+	public void setRetentionId(Integer retentionId) {
+		this.retentionId = retentionId;
+	}
 	public BigDecimal getRetLineAmt() {
 		return retLineAmt;
 	}
@@ -49,12 +55,6 @@ public class RetAmt {
 	}
 	public void setEffDateFrom(DateTime effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public DateTime getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(DateTime effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -100,8 +100,8 @@ public class RetAmt {
 	}
 	@Override
 	public String toString() {
-		return "RetAmt [retentionId=" + retentionId + ", lineCd=" + lineCd + ", lineClassCd=" + lineClassCd
-				+ ", retLineAmt=" + retLineAmt + ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo
+		return "RetAmt [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", retentionId=" + retentionId + ", retLineAmt=" + retLineAmt + ", effDateFrom=" + effDateFrom
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
 				+ "]";
