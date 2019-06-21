@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SaveRiskDistRequest {
 	private List<WParam> saveWParam;
+	private List<WParam> delWParam;
 	private String policyId;
 	private String riskDistId;
 	private String altNo;
@@ -15,6 +16,12 @@ public class SaveRiskDistRequest {
 	}
 	public void setSaveWParam(List<WParam> saveWParam) {
 		this.saveWParam = saveWParam;
+	}
+	public List<WParam> getDelWParam() {
+		return delWParam;
+	}
+	public void setDelWParam(List<WParam> delWParam) {
+		this.delWParam = delWParam;
 	}
 	public String getPolicyId() {
 		return policyId;
@@ -54,9 +61,9 @@ public class SaveRiskDistRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveRiskDistRequest [saveWParam=" + saveWParam + ", policyId=" + policyId + ", riskDistId=" + riskDistId
-				+ ", altNo=" + altNo + ", retLineAmt=" + retLineAmt + ", autoCalc=" + autoCalc + ", updateUser="
-				+ updateUser + "]";
+		return "SaveRiskDistRequest [saveWParam=" + saveWParam + ", delWParam=" + delWParam + ", policyId=" + policyId
+				+ ", riskDistId=" + riskDistId + ", altNo=" + altNo + ", retLineAmt=" + retLineAmt + ", autoCalc="
+				+ autoCalc + ", updateUser=" + updateUser + "]";
 	}
 }
 
@@ -137,6 +144,13 @@ class WParam{
 	}
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
+	}
+	@Override
+	public String toString() {
+		return "WParam [riskDistId=" + riskDistId + ", altNo=" + altNo + ", treatyYear=" + treatyYear + ", treatyId="
+				+ treatyId + ", trtyCedId=" + trtyCedId + ", pctShare=" + pctShare + ", commRt=" + commRt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 	

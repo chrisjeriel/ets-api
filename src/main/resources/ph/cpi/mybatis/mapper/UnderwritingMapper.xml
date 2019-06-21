@@ -2530,6 +2530,9 @@
 	
 	<update id="saveRiskDist" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="delWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.del_dr_wparam(#{wparam.riskDistId},#{wparam.altNo});
+			</foreach>
 			<foreach collection="saveWParam" item="wparam">
 				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
 			</foreach>
