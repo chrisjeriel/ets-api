@@ -464,6 +464,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("exSecIIPrem",spcr.getExSecIIPrem());
 			savePolCoverageParams.put("exSecIIIPrem",spcr.getExSecIIIPrem());
 			savePolCoverageParams.put("extotalPrem",spcr.getExtotalPrem());
+			savePolCoverageParams.put("exCumTprem", spcr.getExCumTprem());
 			savePolCoverageParams.put("exDays",spcr.getExDays());
 			savePolCoverageParams.put("totalDays",spcr.getTotalDays());
 			savePolCoverageParams.put("cumSecISi",spcr.getCumSecISi());
@@ -1582,6 +1583,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		SaveRiskDistResponse srdrResponse = new SaveRiskDistResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("saveWParam", srdr.getSaveWParam());
+		params.put("delWParam", srdr.getDelWParam());
 		params.put("policyId", srdr.getPolicyId());
 		params.put("riskDistId",srdr.getRiskDistId());
 		params.put("altNo",srdr.getAltNo());

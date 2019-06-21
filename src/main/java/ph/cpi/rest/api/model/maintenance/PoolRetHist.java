@@ -1,11 +1,15 @@
 package ph.cpi.rest.api.model.maintenance;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
-public class RoundingError {
-	private String companyId;
-	private String companyName;
-	private String abbreviation;
+public class PoolRetHist {
+
+	private Integer retHistId;
+	private Integer retLine1;
+	private Integer retLine2;
+	private Integer totalRetLine;
 	private DateTime effDateFrom;
 	private String activeTag;
 	private String remarks;
@@ -15,24 +19,31 @@ public class RoundingError {
 	private DateTime updateDate;
 	private String okDelete;
 	
-	public String getCompanyId() {
-		return companyId;
-	}
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
-	}
-	public String getCompanyName() {
-		return companyName;
-	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
+	private List<PoolMember> poolMemberList;
 	
-	public String getAbbreviation() {
-		return abbreviation;
+	public Integer getRetHistId() {
+		return retHistId;
 	}
-	public void setAbbreviation(String abbreviation) {
-		this.abbreviation = abbreviation;
+	public void setRetHistId(Integer retHistId) {
+		this.retHistId = retHistId;
+	}
+	public Integer getRetLine1() {
+		return retLine1;
+	}
+	public void setRetLine1(Integer retLine1) {
+		this.retLine1 = retLine1;
+	}
+	public Integer getRetLine2() {
+		return retLine2;
+	}
+	public void setRetLine2(Integer retLine2) {
+		this.retLine2 = retLine2;
+	}
+	public Integer getTotalRetLine() {
+		return totalRetLine;
+	}
+	public void setTotalRetLine(Integer totalRetLine) {
+		this.totalRetLine = totalRetLine;
 	}
 	public DateTime getEffDateFrom() {
 		return effDateFrom;
@@ -76,19 +87,24 @@ public class RoundingError {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	public String getOkDelete() {
 		return okDelete;
 	}
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
+	public List<PoolMember> getPoolMemberList() {
+		return poolMemberList;
+	}
+	public void setPoolMemberList(List<PoolMember> poolMemberList) {
+		this.poolMemberList = poolMemberList;
+	}
 	@Override
 	public String toString() {
-		return "RoundingError [companyId=" + companyId + ", companyName=" + companyName + ", abbreviation="
-				+ abbreviation + ", effDateFrom=" + effDateFrom  + ", activeTag="
-				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+		return "PoolRetHist [retHistId=" + retHistId + ", retLine1=" + retLine1 + ", retLine2=" + retLine2
+				+ ", totalRetLine=" + totalRetLine + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", poolMemberList="
+				+ poolMemberList + "]";
 	}
-	
 }

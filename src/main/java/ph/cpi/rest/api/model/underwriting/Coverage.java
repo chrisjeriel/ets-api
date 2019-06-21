@@ -28,6 +28,7 @@ public class Coverage {
 	private BigDecimal exSeciiPrem;
 	private BigDecimal exSeciiiPrem;
 	private BigDecimal exTprem;
+	private BigDecimal exCumTprem;
 	private BigDecimal exDays;
 	private BigDecimal totalDays;
 	private BigDecimal cumSecISi;
@@ -202,6 +203,14 @@ public class Coverage {
 	public void setExTprem(BigDecimal exTprem) {
 		this.exTprem = exTprem;
 	}
+	
+	public BigDecimal getExCumTprem() {
+		return exCumTprem;
+	}
+
+	public void setExCumTprem(BigDecimal exCumTprem) {
+		this.exCumTprem = exCumTprem;
+	}
 
 	public BigDecimal getExDays() {
 		return exDays;
@@ -372,14 +381,13 @@ public class Coverage {
 				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
 				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
 				+ ", exSeciPrem=" + exSeciPrem + ", exSeciiPrem=" + exSeciiPrem + ", exSeciiiPrem=" + exSeciiiPrem
-				+ ", exTprem=" + exTprem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
-				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
-				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
-				+ ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus
-				+ ", commRtFac=" + commRtFac + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", holdCoverTag=" + holdCoverTag
-				+ ", extensionTag=" + extensionTag + ", sectionCovers=" + sectionCovers + "]";
+				+ ", exTprem=" + exTprem + ", exCumTprem=" + exCumTprem + ", exDays=" + exDays + ", totalDays="
+				+ totalDays + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
+				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
+				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota
+				+ ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", holdCoverTag=" + holdCoverTag + ", extensionTag=" + extensionTag + ", sectionCovers="
+				+ sectionCovers + "]";
 	}
-
-	
 }

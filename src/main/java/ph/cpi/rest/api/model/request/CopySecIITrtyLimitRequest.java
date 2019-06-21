@@ -1,8 +1,8 @@
 package ph.cpi.rest.api.model.request;
 
-public class CopyTreatyLimitRequest {
+public class CopySecIITrtyLimitRequest {
 
-	private Integer copyFromTreatyLimitId;
+	private Integer copyFromSeciiTrtyLimId;
 	private String copyFromLineCd;
 	private String copyFromLineClassCd;
 	private String copyFromCurrencyCd;
@@ -14,11 +14,11 @@ public class CopyTreatyLimitRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	public Integer getCopyFromTreatyLimitId() {
-		return copyFromTreatyLimitId;
+	public Integer getCopyFromSeciiTrtyLimId() {
+		return copyFromSeciiTrtyLimId;
 	}
-	public void setCopyFromTreatyLimitId(Integer copyFromTreatyLimitId) {
-		this.copyFromTreatyLimitId = copyFromTreatyLimitId;
+	public void setCopyFromSeciiTrtyLimId(Integer copyFromSeciiTrtyLimId) {
+		this.copyFromSeciiTrtyLimId = copyFromSeciiTrtyLimId;
 	}
 	public String getCopyFromLineCd() {
 		return copyFromLineCd;
@@ -82,7 +82,7 @@ public class CopyTreatyLimitRequest {
 	}
 	@Override
 	public String toString() {
-		return "CopyTreatyLimitRequest [copyFromTreatyLimitId=" + copyFromTreatyLimitId + ", copyFromLineCd="
+		return "CopySecIITrtyLimitRequest [copyFromSeciiTrtyLimId=" + copyFromSeciiTrtyLimId + ", copyFromLineCd="
 				+ copyFromLineCd + ", copyFromLineClassCd=" + copyFromLineClassCd + ", copyFromCurrencyCd="
 				+ copyFromCurrencyCd + ", copyToLineCd=" + copyToLineCd + ", copyToLineClassCd=" + copyToLineClassCd
 				+ ", copyToCurrencyCd=" + copyToCurrencyCd + ", createUser=" + createUser + ", createDate=" + createDate

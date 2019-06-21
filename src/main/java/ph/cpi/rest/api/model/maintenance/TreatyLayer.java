@@ -4,6 +4,9 @@ import org.joda.time.DateTime;
 
 public class TreatyLayer {
 
+	private String lineCd;
+	private String lineClassCd;
+	private String currencyCd;
 	private Integer treatyLimitId;
 	private Integer treatyId;
 	private String treatyName;
@@ -12,6 +15,24 @@ public class TreatyLayer {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getLineClassCd() {
+		return lineClassCd;
+	}
+	public void setLineClassCd(String lineClassCd) {
+		this.lineClassCd = lineClassCd;
+	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getTreatyLimitId() {
 		return treatyLimitId;
 	}
@@ -56,7 +77,8 @@ public class TreatyLayer {
 	}
 	@Override
 	public String toString() {
-		return "TreatyLayer [treatyLimitId=" + treatyLimitId + ", treatyId=" + treatyId + ", treatyName=" + treatyName
+		return "TreatyLayer [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", treatyLimitId=" + treatyLimitId + ", treatyId=" + treatyId + ", treatyName=" + treatyName
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}

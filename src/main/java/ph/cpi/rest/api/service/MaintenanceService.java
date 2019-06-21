@@ -114,4 +114,8 @@ public interface MaintenanceService {
 	public RetrieveMtnLossCdResponse retrieveMtnLossCd(RetrieveMtnLossCdRequest rmlcr) throws SQLException;
 	public SaveMtnLossCdResponse saveMtnLossCd(SaveMtnLossCdRequest smcr) throws SQLException;
 	public SaveMtnClaimStatusResponse saveMtnClaimStatus(SaveMtnClaimStatusRequest smcsr) throws SQLException;
+	public RetrieveMtnSecIITrtyLimitResponse retrieveMtnSecIITrtyLimit(RetrieveMtnSecIITrtyLimitRequest rmstr) throws SQLException;
+	public SaveMtnSecIITrtyLimitResponse saveMtnSecIITrtyLimit(SaveMtnSecIITrtyLimitRequest smstr) throws SQLException;
+	public CopySecIITrtyLimitResponse copySecIITrtyLimit(CopySecIITrtyLimitRequest cstr) throws SQLException;
+	public RetrieveMtnPoolRetHistResponse retrieveMtnPoolRetHist(RetrieveMtnPoolRetHistRequest rmprhr) throws SQLException;
 }

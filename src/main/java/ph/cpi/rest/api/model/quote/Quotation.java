@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 public class Quotation {
 	
@@ -28,6 +27,8 @@ public class Quotation {
 	private Integer contractorId;
 	private String contractorName;
 	private String insuredDesc;
+	private BigDecimal sumInsured;
+	private BigDecimal optionRt;
 	private Integer policyId;
 	private String policyNo;
 	private String status;
@@ -58,7 +59,6 @@ public class Quotation {
 	private String reasonCd;
 	private String reasonDesc;
 	private BigDecimal firstOptionRt;   //added by Neco 06/19/2019 for new columns in quote listing
-	private BigDecimal sumInsured;		//added by Neco 06/19/2019 for new columns in quote listing
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -459,6 +459,12 @@ public class Quotation {
 	public void setAttachment(Attachment attachment) {
 		this.attachment = attachment;
 	}
+	public BigDecimal getOptionRt() {
+		return optionRt;
+	}
+	public void setOptionRt(BigDecimal optionRt) {
+		this.optionRt = optionRt;
+	}
 	@Override
 	public String toString() {
 		return "Quotation [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
@@ -467,21 +473,22 @@ public class Quotation {
 				+ ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", lineClassCd="
 				+ lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId + ", principalName="
 				+ principalName + ", contractorId=" + contractorId + ", contractorName=" + contractorName
-				+ ", insuredDesc=" + insuredDesc + ", policyId=" + policyId + ", policyNo=" + policyNo + ", status="
-				+ status + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId
-				+ ", intmName=" + intmName + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
-				+ reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd="
-				+ currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag="
-				+ indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId=" + ocQuoteId
-				+ ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
-				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
-				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt
-				+ ", sumInsured=" + sumInsured + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project + ", options="
-				+ options + ", otherRates=" + otherRates + ", attachmentsList=" + attachmentsList
-				+ ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList + ", optionsList="
-				+ optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment=" + attachment + "]";
+				+ ", insuredDesc=" + insuredDesc + ", sumInsured=" + sumInsured + ", optionRt=" + optionRt
+				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", status=" + status + ", reinsurerId="
+				+ reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName
+				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate="
+				+ reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd
+				+ ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag=" + indicativeTag
+				+ ", openCoverTag=" + openCoverTag + ", ocQuoteId=" + ocQuoteId + ", openCoverQuotationNo="
+				+ openCoverQuotationNo + ", declarationTag=" + declarationTag + ", preparedBy=" + preparedBy
+				+ ", approvedBy=" + approvedBy + ", printedBy=" + printedBy + ", printDate=" + printDate
+				+ ", openingParag=" + openingParag + ", closingParag=" + closingParag + ", reasonCd=" + reasonCd
+				+ ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", project=" + project + ", options=" + options + ", otherRates=" + otherRates + ", attachmentsList="
+				+ attachmentsList + ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList
+				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment="
+				+ attachment + "]";
 	}
 	
 	

@@ -3,22 +3,17 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveClaimHistoryRequest {
-	private String  claimId;
-	private String  claimNo;
+public class RetrieveMtnPoolRetHistRequest {
+
+	private Integer retHistId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getClaimId() {
-		return claimId;
+	
+	public Integer getRetHistId() {
+		return retHistId;
 	}
-	public void setClaimId(String claimId) {
-		this.claimId = claimId;
-	}
-	public String getClaimNo() {
-		return claimNo;
-	}
-	public void setClaimNo(String claimNo) {
-		this.claimNo = claimNo;
+	public void setRetHistId(Integer retHistId) {
+		this.retHistId = retHistId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,7 +29,7 @@ public class RetrieveClaimHistoryRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimHistoryRequest [claimId=" + claimId + ", claimNo=" + claimNo + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnPoolRetHistRequest [retHistId=" + retHistId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

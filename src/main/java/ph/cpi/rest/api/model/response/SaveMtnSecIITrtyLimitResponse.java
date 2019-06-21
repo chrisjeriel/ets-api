@@ -1,22 +1,17 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveClaimsAttachmentResponse {
-	
+public class SaveMtnSecIITrtyLimitResponse {
+
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
-	private String uploadDate;
 	
 	public List<Error> getErrorList() {
-		if (errorList == null) {
-			errorList = new ArrayList<Error>();
-		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -34,18 +29,9 @@ public class SaveClaimsAttachmentResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	
-	public String getUploadDate() {
-		return uploadDate;
-	}
-	public void setUploadDate(String uploadDate) {
-		this.uploadDate = uploadDate;
-	}
-	
 	@Override
 	public String toString() {
-		return "SaveClaimsAttachmentResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", uploadDate=" + uploadDate + "]";
+		return "SaveMtnSecIITrtyLimitResponse [errorList=" + errorList + ", messageList=" + messageList
+				+ ", returnCode=" + returnCode + "]";
 	}
-
 }

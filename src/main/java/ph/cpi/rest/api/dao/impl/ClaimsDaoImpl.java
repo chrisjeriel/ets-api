@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
-import ph.cpi.rest.api.model.claims.ClaimHistory;
+import ph.cpi.rest.api.model.claims.Attachment;
+import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
+import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.Claims;
 
 @Component
@@ -22,10 +24,16 @@ public class ClaimsDaoImpl implements ClaimsDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(ClaimsDaoImpl.class);
 
+//	@Override
+//	public List<ClaimHistory> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+//		List<ClaimHistory> clmHistory = sqlSession.selectList("retrieveClaimHistory", params);
+//		return clmHistory;
+//	}
+	
 	@Override
-	public List<ClaimHistory> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
-		List<ClaimHistory> clmHistory = sqlSession.selectList("retrieveClaimHistory", params);
-		return clmHistory;
+	public List<ClaimReserve> retrieveClaimHistory(HashMap<String, Object> params) throws SQLException {
+		List<ClaimReserve> clmHistoryList = sqlSession.selectList("retrieveClaimHistory", params);
+		return clmHistoryList;
 	}
 
 	@Override
@@ -34,7 +42,6 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return saveClaimHistory;
 	}
 
-	@Override
 	public List<Claims> retrieveClaimListing(HashMap<String, Object> params) throws SQLException {
 		List<Claims> res = sqlSession.selectList("retrieveClaimListing", params);
 		return res;
@@ -59,17 +66,31 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return params;
 	}
 
+
 	@Override
-	public Claims retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
-		Claims claimsAttachmentList = sqlSession.selectOne("retrieveClaimsAttachment", params);
+		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<Attachment> retrieveClaimsAttachmentList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Attachment> claimsAttachmentList = sqlSession.selectList("retrieveClaimsAttachment", params);
 		return claimsAttachmentList;
 	}
 
 	@Override
-	public Integer saveClaimsAttachment(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		Integer errorCode = sqlSession.update("saveClaimsAttachment",params);
+	public List<ClaimApprovedAmt> retrieveClaimApprovedAmt(HashMap<String, Object> params) throws SQLException {
+		List<ClaimApprovedAmt> clmApprovedAmt = sqlSession.selectList("retrieveClaimApprovedAmt", params);
+		return clmApprovedAmt;
+	}
+
+	@Override
+	public Integer saveClaimApprovedAmt(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimApprovedAmt",params);
 		return errorCode;
 	}
 
@@ -77,5 +98,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	public List<Claims> retrieveChangeClmStatus(HashMap<String, Object> params) throws SQLException {
 		List<Claims> res = sqlSession.selectList("retrieveChangeClmStatus", params);
 		return res;
+	}
+
+	@Override
+	public List<Claims> retrieveClaimReserve(HashMap<String, Object> params) throws SQLException {
+		List<Claims> clmReserve = sqlSession.selectList("retrieveClaimReserve", params);
+		return clmReserve;
 	}
 }

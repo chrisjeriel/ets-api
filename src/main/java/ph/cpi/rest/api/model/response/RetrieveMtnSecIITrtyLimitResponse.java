@@ -4,19 +4,19 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.claims.ClaimHistory;
-import ph.cpi.rest.api.model.claims.ClaimReserve;
-import ph.cpi.rest.api.model.claims.Claims;
+import ph.cpi.rest.api.model.maintenance.SecIITreatyLimit;
 
-public class RetrieveClaimHistoryResponse {
-	private List<ClaimReserve> claimReserveList;
+public class RetrieveMtnSecIITrtyLimitResponse {
+
+	private List<SecIITreatyLimit> secIITreatyLimList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<ClaimReserve> getClaimReserveList() {
-		return claimReserveList;
+	
+	public List<SecIITreatyLimit> getSecIITreatyLimList() {
+		return secIITreatyLimList;
 	}
-	public void setClaimReserveList(List<ClaimReserve> claimReserveList) {
-		this.claimReserveList = claimReserveList;
+	public void setSecIITreatyLimList(List<SecIITreatyLimit> secIITreatyLimList) {
+		this.secIITreatyLimList = secIITreatyLimList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,7 +32,7 @@ public class RetrieveClaimHistoryResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimHistoryResponse [claimReserveList=" + claimReserveList + ", paginationResponse="
+		return "RetrieveMtnSecIITrtyLimitResponse [secIITreatyLimList=" + secIITreatyLimList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -42,6 +43,7 @@ import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.RoundingError;
+import ph.cpi.rest.api.model.maintenance.SecIITreatyLimit;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
 import ph.cpi.rest.api.model.maintenance.Treaty;
@@ -160,5 +162,9 @@ public interface MaintenanceDao {
 	public List<MtnLossCd> retrieveMtnLossCd(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnLossCd(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnClaimStatus(final HashMap<String, Object> params) throws SQLException;
-	
+	public List<SecIITreatyLimit> retrieveMtnSecIITrtyLimit(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnSecIITrtyLimit(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkSecIITrtyLimit(HashMap<String, Object> params) throws SQLException;
+	public Integer copySecIITrtyLimit(HashMap<String, Object> params) throws SQLException;
+	public List<PoolRetHist> retrieveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
 }

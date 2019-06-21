@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
@@ -35,6 +37,7 @@ public class Project {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private List<ClaimReserve> clmReserve;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -209,6 +212,12 @@ public class Project {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<ClaimReserve> getClmReserve() {
+		return clmReserve;
+	}
+	public void setClmReserve(List<ClaimReserve> clmReserve) {
+		this.clmReserve = clmReserve;
+	}
 	@Override
 	public String toString() {
 		return "Project [claimId=" + claimId + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
@@ -219,7 +228,6 @@ public class Project {
 				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", clmReserve=" + clmReserve + "]";
 	}
-	
 }

@@ -3,8 +3,12 @@ package ph.cpi.rest.api.model.request;
 public class CopyRetAmtSetupRequest {
 
 	private Integer copyFromRetentionId;
+	private String copyFromLineCd;
+	private String copyFromLineClassCd;
+	private String copyFromCurrencyCd;
 	private String copyToLineCd;
 	private String copyToLineClassCd;
+	private String copyToCurrencyCd;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -15,6 +19,24 @@ public class CopyRetAmtSetupRequest {
 	}
 	public void setCopyFromRetentionId(Integer copyFromRetentionId) {
 		this.copyFromRetentionId = copyFromRetentionId;
+	}
+	public String getCopyFromLineCd() {
+		return copyFromLineCd;
+	}
+	public void setCopyFromLineCd(String copyFromLineCd) {
+		this.copyFromLineCd = copyFromLineCd;
+	}
+	public String getCopyFromLineClassCd() {
+		return copyFromLineClassCd;
+	}
+	public void setCopyFromLineClassCd(String copyFromLineClassCd) {
+		this.copyFromLineClassCd = copyFromLineClassCd;
+	}
+	public String getCopyFromCurrencyCd() {
+		return copyFromCurrencyCd;
+	}
+	public void setCopyFromCurrencyCd(String copyFromCurrencyCd) {
+		this.copyFromCurrencyCd = copyFromCurrencyCd;
 	}
 	public String getCopyToLineCd() {
 		return copyToLineCd;
@@ -27,6 +49,12 @@ public class CopyRetAmtSetupRequest {
 	}
 	public void setCopyToLineClassCd(String copyToLineClassCd) {
 		this.copyToLineClassCd = copyToLineClassCd;
+	}
+	public String getCopyToCurrencyCd() {
+		return copyToCurrencyCd;
+	}
+	public void setCopyToCurrencyCd(String copyToCurrencyCd) {
+		this.copyToCurrencyCd = copyToCurrencyCd;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -54,8 +82,10 @@ public class CopyRetAmtSetupRequest {
 	}
 	@Override
 	public String toString() {
-		return "CopyRetAmtSetupRequest [copyFromRetentionId=" + copyFromRetentionId + ", copyToLineCd=" + copyToLineCd
-				+ ", copyToLineClassCd=" + copyToLineClassCd + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "CopyRetAmtSetupRequest [copyFromRetentionId=" + copyFromRetentionId + ", copyFromLineCd="
+				+ copyFromLineCd + ", copyFromLineClassCd=" + copyFromLineClassCd + ", copyFromCurrencyCd="
+				+ copyFromCurrencyCd + ", copyToLineCd=" + copyToLineCd + ", copyToLineClassCd=" + copyToLineClassCd
+				+ ", copyToCurrencyCd=" + copyToCurrencyCd + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

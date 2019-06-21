@@ -4,19 +4,19 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.claims.ClaimHistory;
-import ph.cpi.rest.api.model.claims.ClaimReserve;
-import ph.cpi.rest.api.model.claims.Claims;
+import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 
-public class RetrieveClaimHistoryResponse {
-	private List<ClaimReserve> claimReserveList;
+public class RetrieveMtnPoolRetHistResponse {
+
+	private List<PoolRetHist> poolRetHistList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<ClaimReserve> getClaimReserveList() {
-		return claimReserveList;
+	
+	public List<PoolRetHist> getPoolRetHistList() {
+		return poolRetHistList;
 	}
-	public void setClaimReserveList(List<ClaimReserve> claimReserveList) {
-		this.claimReserveList = claimReserveList;
+	public void setPoolRetHistList(List<PoolRetHist> poolRetHistList) {
+		this.poolRetHistList = poolRetHistList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,7 +32,7 @@ public class RetrieveClaimHistoryResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimHistoryResponse [claimReserveList=" + claimReserveList + ", paginationResponse="
+		return "RetrieveMtnPoolRetHistResponse [poolRetHistList=" + poolRetHistList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

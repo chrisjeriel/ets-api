@@ -45,6 +45,8 @@
 		<result property="contractorId" 	column="CONTRACTOR_ID"/> <!-- Added by Neco, 06/10/2019, Reason: For Quotation Inquiry -->
 		<result property="contractorName" 	column="CONTRACTOR_NAME"/>
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="sumInsured" 		column="SUM_INSURED"/>
+		<result property="optionRt" 		column="OPTION_RT"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
 		<result property="reasonCd"			column="REASON_CD"/>
@@ -209,7 +211,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
 		<result property 	= "quoteId" 			column	= "QUOTE_ID" />
-		<result property 	= "quotationNo" 		column	= "QUOTE_NO" /> <!-- CHANGED FROM QUOTATION_NO -->
+		<result property 	= "quotationNo" 		column	= "QUOTE_NO" />
 		<result property 	= "cedingName" 			column	= "CEDING_NAME" />
 		<result property 	= "insuredDesc" 		column	= "INSURED_DESC" />
 		<association property 	= "holdCover" 		resultMap 	= "holdCoverMap"/>
@@ -529,29 +531,6 @@
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_listing(#{quotationNo, jdbcType=VARCHAR},
-																	 #{cessionDesc, jdbcType=VARCHAR},
-																	 #{lineClassCdDesc, jdbcType=VARCHAR},
-																	 #{status, jdbcType=INTEGER},
-																	 #{cedingName, jdbcType=VARCHAR},
-																	 #{principalName, jdbcType=VARCHAR},
-																	 #{contractorName, jdbcType=VARCHAR},
-																	 #{insuredDesc, jdbcType=VARCHAR},
-																	 #{riskName, jdbcType=VARCHAR},
-																	 #{objectDesc, jdbcType=VARCHAR},
-																	 #{site, jdbcType=VARCHAR},
-																	 #{policyNo, jdbcType=VARCHAR},
-																	 #{currencyCd, jdbcType=VARCHAR},
-																	 #{issueDateFrom, jdbcType=DATE},
-																	 #{issueDateTo, jdbcType=DATE},
-																	 #{expiryDate, jdbcType=DATE},
-																	 #{reqBy, jdbcType=VARCHAR},
-																	 #{createUser, jdbcType=VARCHAR},
-																	 '',
-																	 '',
-																	 '',
-																	 '')) -->
-																	 
 		SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 														   #{cessionDesc, jdbcType=VARCHAR},
 														   #{lineClassCdDesc, jdbcType=VARCHAR},
@@ -885,9 +864,9 @@
 		<association property="attachment" resultMap="attachment"></association>
 	</resultMap>
 	
-	<select id="retrieveQuoteDetailsOc" resultMap="quotationOc" parameterType="java.util.Map">
+<!-- 	<select id="retrieveQuoteDetailsOc" resultMap="quotationOc" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_details_oc(#{openQuotationNo, jdbcType=VARCHAR},#{quoteIdOc, jdbcType=VARCHAR},'',1,'',''))
-	</select>
+	</select> -->
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competition">
 		<result property="adviceNo" column="ADVICE_NO"/>
@@ -1023,30 +1002,18 @@
 		<association property="alopDetails" resultMap="alopDetailsMap"></association>
 	</resultMap>
 	
-	<select id="retrieveQuoteDetails" resultMap="quotation" parameterType="java.util.Map">
+<!-- 	<select id="retrieveQuoteDetails" resultMap="quotation" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ETS_QUOTE_PKG_PCPCR.retrieve_quote_details(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	<select id="retrieveQuoteListingOc" resultMap="retrieveQuoteListingOcMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order}) -->
+		SELECT * FROM ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},#{position},#{count},#{sortKey},#{order})
 		SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_listing_oc(#{quotationNo},#{cessionDesc},#{lineClassCdDesc},#{status},#{cedingName},#{principalName},#{contractorName},#{insuredDesc},#{riskName},#{objectDesc},#{site},#{policyNo},#{currencyCd},#{issueDate},#{expiryDate},#{reqBy},#{createUser},null,null,null,null))
-	</select>
+	</select> -->
 	
 	<select id="retrieveQuoteOption" resultMap="retrieveQuoteOptionMap" parameterType="java.util.Map">
-		<!-- SELECT * FROM TABLE(ETS_QUOTE_PKG_MBM.retrieve_quote_option(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null)) -->
 		SELECT * FROM TABLE(QU_OPTION_PKG.ret_qu_opt(#{quoteId,jdbcType=VARCHAR},#{quotationNo,jdbcType=VARCHAR},null,null,null,null))
 	</select>
-	
-<!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMap">
-        <result property="quoteId" 	column="QUOTE_ID"/>
-        <result property="quotationNo" 	column="QUOTATION_NO"/>
-        <association property="alop" resultMap="alopMap"></association>
-	</resultMap> --> <!-- REMOVED DUPLICATE ID-->
-	
-<!-- 	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
-        <result property="alopId" column="ALOP_ID"/>
-        <association property="alopItem" resultMap="alopItemMap"></association>
-	</resultMap> --> <!-- REMOVED DUPLICATE ID -->
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItemMap">
         <result property="itemNo" 	column="ITEM_NO"/>
@@ -1082,16 +1049,6 @@
 		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
     	<result property="optionId" 		column="OPTION_ID"/>
     </resultMap>  
-
-    <!-- <resultMap type="AliasSaveQuoteEndorsements" id="aliasEndorsements">
-	<result property="endtCd" 	column="ENDT_CD"/> 
-	<result property="remarks" 	column="REMARKS"/> 
-	<result property="createUser" 	column="CREATE_USER"/> 
-	<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/> 
-	<result property="updateUser" 	column="UPDATE_USER"/> 
-	<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
-    </resultMap> -->
-    
     
     <resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="RetQuotationMap">
     
@@ -1440,7 +1397,7 @@
 		END;
 	</update> 
 	
-	<update id="saveQuoteGeneralInfoOc" parameterType="java.util.Map" statementType="CALLABLE">
+	<!-- <update id="saveQuoteGeneralInfoOc" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ETS_QUOTE_PKG_MBM.save_quote_general_info_oc(
 				#{openQuotationNo, mode=OUT, jdbcType=VARCHAR},
@@ -1497,7 +1454,7 @@
 				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
-	</update>
+	</update> -->
 	
 	<update id="saveQuoteOptionsAll" parameterType="java.util.Map">
 		DECLARE

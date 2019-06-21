@@ -1,28 +1,25 @@
 package ph.cpi.rest.api.model.maintenance;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class TreatyLimit {
+public class SecIITreatyLimit {
 
 	private String lineCd;
 	private String lineClassCd;
 	private String currencyCd;
-	private Integer treatyLimitId;
-	private BigDecimal amount;
-	private String trtyLayerDesc;
-	private DateTime effDateFrom;
-	private String activeTag;
-	private String remarks;
-	private String createUser;
-	private DateTime createDate;
-	private String updateUser;
-	private DateTime updateDate;
-	
-	List<TreatyLayer> treatyLayerList;
-	
+	private Integer seciiTrtyLimId;
+    private BigDecimal amount;
+    private DateTime effDateFrom;
+    private String activeTag;
+    private String remarks;
+    private String createUser;
+    private DateTime createDate;
+    private String updateUser;
+    private DateTime updateDate;
+    private String okDelete;
+    
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -41,23 +38,17 @@ public class TreatyLimit {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getTreatyLimitId() {
-		return treatyLimitId;
+	public Integer getSeciiTrtyLimId() {
+		return seciiTrtyLimId;
 	}
-	public void setTreatyLimitId(Integer treatyLimitId) {
-		this.treatyLimitId = treatyLimitId;
+	public void setSeciiTrtyLimId(Integer seciiTrtyLimId) {
+		this.seciiTrtyLimId = seciiTrtyLimId;
 	}
 	public BigDecimal getAmount() {
 		return amount;
 	}
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
-	}
-	public String getTrtyLayerDesc() {
-		return trtyLayerDesc;
-	}
-	public void setTrtyLayerDesc(String trtyLayerDesc) {
-		this.trtyLayerDesc = trtyLayerDesc;
 	}
 	public DateTime getEffDateFrom() {
 		return effDateFrom;
@@ -101,18 +92,18 @@ public class TreatyLimit {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<TreatyLayer> getTreatyLayerList() {
-		return treatyLayerList;
+	public String getOkDelete() {
+		return okDelete;
 	}
-	public void setTreatyLayerList(List<TreatyLayer> treatyLayerList) {
-		this.treatyLayerList = treatyLayerList;
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
-		return "TreatyLimit [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
-				+ ", treatyLimitId=" + treatyLimitId + ", amount=" + amount + ", trtyLayerDesc=" + trtyLayerDesc
-				+ ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", treatyLayerList=" + treatyLayerList + "]";
+		return "SecIITreatyLimit [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
+				+ ", seciiTrtyLimId=" + seciiTrtyLimId + ", amount=" + amount + ", effDateFrom=" + effDateFrom
+				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ "]";
 	}
 }
