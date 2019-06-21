@@ -1,19 +1,21 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class ClaimApprovedAmt {
-	private Integer  claimId;
-	private Integer  histNo;
-	private Integer  approvedAmt;
-	private String   approvedBy;
-	private DateTime approvedDate;
-	private String   remarks;
-	private String 	 activeTag;
-	private String 	 createUser;
-	private DateTime createDate;
-	private String 	 updateUser;
-	private DateTime updateDate;
+	private Integer  	claimId;
+	private Integer  	histNo;
+	private BigDecimal  approvedAmt;
+	private String   	approvedBy;
+	private DateTime 	approvedDate;
+	private String   	remarks;
+	private String 	 	activeTag;
+	private String 	 	createUser;
+	private DateTime 	createDate;
+	private String 	 	updateUser;
+	private DateTime 	updateDate;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -26,10 +28,10 @@ public class ClaimApprovedAmt {
 	public void setHistNo(Integer histNo) {
 		this.histNo = histNo;
 	}
-	public Integer getApprovedAmt() {
+	public BigDecimal getApprovedAmt() {
 		return approvedAmt;
 	}
-	public void setApprovedAmt(Integer approvedAmt) {
+	public void setApprovedAmt(BigDecimal approvedAmt) {
 		this.approvedAmt = approvedAmt;
 	}
 	public String getApprovedBy() {

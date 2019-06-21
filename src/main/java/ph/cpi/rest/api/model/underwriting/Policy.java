@@ -66,6 +66,7 @@ public class Policy {
 	private String excludeDistTag;
 	private Integer coinsGrpId;
 	private String wordings;
+	private String distStatDesc;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -444,6 +445,12 @@ public class Policy {
 	public void setWordings(String wordings) {
 		this.wordings = wordings;
 	}
+	public String getDistStatDesc() {
+		return distStatDesc;
+	}
+	public void setDistStatDesc(String distStatDesc) {
+		this.distStatDesc = distStatDesc;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -561,12 +568,12 @@ public class Policy {
 				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
 				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
 				+ ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId + ", wordings=" + wordings
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", project=" + project
-				+ ", endorsements=" + endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance
-				+ ", coInsurance=" + coInsurance + ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril="
-				+ catPeril + ", alterationHist=" + alterationHist + ", polWordings=" + polWordings + ", endtText="
-				+ endtText + "]";
+				+ ", distStatDesc=" + distStatDesc + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", deductibles=" + deductibles
+				+ ", project=" + project + ", endorsements=" + endorsements + ", attachments=" + attachments
+				+ ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance + ", alop=" + alop
+				+ ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist=" + alterationHist
+				+ ", polWordings=" + polWordings + ", endtText=" + endtText + "]";
 	}
 	
 	

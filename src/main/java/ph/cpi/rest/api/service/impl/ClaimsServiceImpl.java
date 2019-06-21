@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
+import ph.cpi.rest.api.model.request.RetrieveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
@@ -24,6 +25,7 @@ import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
+import ph.cpi.rest.api.model.response.RetrieveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
@@ -46,9 +48,8 @@ public class ClaimsServiceImpl implements ClaimsService {
 		RetrieveClaimHistoryResponse rchResponse = new RetrieveClaimHistoryResponse();
 		HashMap<String, Object> retClmHistoryParams = new HashMap<String, Object>();
 		retClmHistoryParams.put("claimId", rchp.getClaimId());
-		retClmHistoryParams.put("projId", rchp.getProjId());
-		retClmHistoryParams.put("histNo", rchp.getHistNo());
-		rchResponse.setClaimHistoryList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
+		retClmHistoryParams.put("claimNo", rchp.getClaimNo());
+		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
 	}
@@ -152,7 +153,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> retrieveClaimsAttachmentParams = new HashMap<String, Object>();
 		retrieveClaimsAttachmentParams.put("claimId",rcar.getClaimId());
 		retrieveClaimsAttachmentParams.put("claimNo", rcar.getClaimNo());
-		rcaResponse.setClmAttachmentList(claimsDao.retrieveClaimsAttachmentList(retrieveClaimsAttachmentParams));
+		rcaResponse.setClaimsAttachmentList(claimsDao.retrieveClaimsAttachmentList(retrieveClaimsAttachmentParams));
 		logger.info("retrieveClaimsAttachmentResponse : " + rcaResponse.toString());
 		return rcaResponse;
 	}
@@ -166,11 +167,18 @@ public class ClaimsServiceImpl implements ClaimsService {
 			saveClmAttachmentParams.put("claimId", scar.getClaimId());
 			saveClmAttachmentParams.put("saveClmAttachments", scar.getSaveClaimsAttachments());
 			saveClmAttachmentParams.put("deleteClmAttachments", scar.getDeleteClaimsAttachments());
-			logger.info("retrieveClaimsAttachmentResponse : " + saveClmAttachmentParams.toString());
-			scaResponse.setReturnCode(claimsDao.saveClaimsAttachment(saveClmAttachmentParams));
-		}catch(Exception ex){
+			
+			HashMap<String, Object> res = claimsDao.saveClaimsAttachment(saveClmAttachmentParams);
+			scaResponse.setReturnCode((Integer) res.get("errorCode"));
+			scaResponse.setUploadDate((String) res.get("uploadDate"));
+			logger.info("retrieveClaimsAttachmentResponse : " + scaResponse.toString());
+		}catch (SQLException ex) {
 			scaResponse.setReturnCode(0);
-			scaResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			scaResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			scaResponse.setReturnCode(0);
+			scaResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
 		}
 		return scaResponse;
@@ -192,9 +200,20 @@ public class ClaimsServiceImpl implements ClaimsService {
 	public SaveClaimApprovedAmtResponse saveClaimApprovedAmt(SaveClaimApprovedAmtRequest scaar) throws SQLException {
 		SaveClaimApprovedAmtResponse scaaResponse = new SaveClaimApprovedAmtResponse();
 		HashMap<String, Object> saveClmApprovedAmtParams = new HashMap<String, Object>();
-		saveClmApprovedAmtParams.put("", scaar.getSaveClaimApprovedAmt());
+		saveClmApprovedAmtParams.put("saveClaimApprovedAmt", scaar.getSaveClaimApprovedAmt());
 		scaaResponse.setReturnCode(claimsDao.saveClaimApprovedAmt(saveClmApprovedAmtParams));
 		logger.info("SaveClaimApprovedAmtResponse : " + scaaResponse.toString());
 		return scaaResponse;
+	}
+
+	@Override
+	public RetrieveClaimReserveResponse retrieveClaimReserve(RetrieveClaimReserveRequest rchp) throws SQLException {
+		RetrieveClaimReserveResponse rcrResponse = new RetrieveClaimReserveResponse();
+		HashMap<String, Object> retClmReserveParams = new HashMap<String, Object>();
+		retClmReserveParams.put("claimId", rchp.getClaimId());
+		retClmReserveParams.put("claimNo", rchp.getClaimNo());
+		rcrResponse.setClaims(claimsDao.retrieveClaimReserve(retClmReserveParams));
+		logger.info("RetrieveClaimReserveResponse : " + rcrResponse.toString());
+		return rcrResponse;
 	}
 }

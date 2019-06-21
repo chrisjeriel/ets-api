@@ -29,6 +29,7 @@ public class SavePolCoverageRequest {
 	private BigDecimal exSecIIPrem;
 	private BigDecimal exSecIIIPrem;
 	private BigDecimal extotalPrem;
+	private BigDecimal exCumTprem;
 	private Integer exDays;
 	private Integer totalDays;
 	private BigDecimal cumSecISi;
@@ -231,6 +232,14 @@ public class SavePolCoverageRequest {
 	public void setExtotalPrem(BigDecimal extotalPrem) {
 		this.extotalPrem = extotalPrem;
 	}
+	
+	public BigDecimal getExCumTprem() {
+		return exCumTprem;
+	}
+
+	public void setExCumTprem(BigDecimal exCumTprem) {
+		this.exCumTprem = exCumTprem;
+	}
 
 	public Integer getExDays() {
 		return exDays;
@@ -420,17 +429,16 @@ public class SavePolCoverageRequest {
 				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
 				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
 				+ ", exSecIPrem=" + exSecIPrem + ", exSecIIPrem=" + exSecIIPrem + ", exSecIIIPrem=" + exSecIIIPrem
-				+ ", extotalPrem=" + extotalPrem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
-				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
-				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
-				+ ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus
-				+ ", commRtFac=" + commRtFac + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", changeTag=" + changeTag
-				+ ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers=" + deleteSectionCovers
-				+ ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
+				+ ", extotalPrem=" + extotalPrem + ", exCumTprem=" + exCumTprem + ", exDays=" + exDays + ", totalDays="
+				+ totalDays + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
+				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
+				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota
+				+ ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", changeTag=" + changeTag + ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers="
+				+ deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList="
+				+ deleteDeductibleList + "]";
 	}
-
-	
 }
 
 @Alias ("UWSaveSec")

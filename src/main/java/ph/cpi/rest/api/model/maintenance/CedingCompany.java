@@ -22,9 +22,10 @@ public class CedingCompany {
 	private String oldCedingId;
 	private String membershipTag;
 	private DateTime membershipDate;
-	private DateTime terminationDate;
+	private DateTime withdrawDate;
 	private DateTime inactiveDate;
 	private String treatyTag;
+	private String withdrawTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
@@ -134,11 +135,11 @@ public class CedingCompany {
 	public void setMembershipDate(DateTime membershipDate) {
 		this.membershipDate = membershipDate;
 	}
-	public DateTime getTerminationDate() {
-		return terminationDate;
+	public DateTime getWithdrawDate() {
+		return withdrawDate;
 	}
-	public void setTerminationDate(DateTime terminationDate) {
-		this.terminationDate = terminationDate;
+	public void setWithdrawDate(DateTime withdrawDate) {
+		this.withdrawDate = withdrawDate;
 	}
 	public DateTime getInactiveDate() {
 		return inactiveDate;
@@ -151,6 +152,12 @@ public class CedingCompany {
 	}
 	public void setTreatyTag(String treatyTag) {
 		this.treatyTag = treatyTag;
+	}
+	public String getWithdrawTag() {
+		return withdrawTag;
+	}
+	public void setWithdrawTag(String withdrawTag) {
+		this.withdrawTag = withdrawTag;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -196,9 +203,9 @@ public class CedingCompany {
 				+ zipCd + ", address=" + address + ", contactNo=" + contactNo + ", bussTypeId=" + bussTypeId
 				+ ", tinNo=" + tinNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", govtTag=" + govtTag
 				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
-				+ membershipDate + ", terminationDate=" + terminationDate + ", inactiveDate=" + inactiveDate
-				+ ", treatyTag=" + treatyTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingRepresentative="
-				+ cedingRepresentative + "]";
+				+ membershipDate + ", withdrawDate=" + withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag="
+				+ treatyTag + ", withdrawTag=" + withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", cedingRepresentative=" + cedingRepresentative + "]";
 	}
 }

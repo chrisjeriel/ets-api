@@ -220,20 +220,20 @@ public class QuoteController {
 	}
 	
 	
-	@GetMapping(path="retrieveQuoteDetailsOc")
+	/*@GetMapping(path="retrieveQuoteDetailsOc")
 	public @ResponseBody RetrieveQuoteDetailsOcResponse retrieveQuoteDetailsOc(RetrieveQuoteDetailsOcRequest rqdocr) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteDetailsOc");
 		logger.info("RetrieveQuoteDetailsOcRequest : " + rqdocr.toString());
 		return quoteService.retrieveQuoteDetailsOc(rqdocr);
-	}
+	}*/
 	
 	
-	@GetMapping(path="retrieveQuoteDetails")
+	/*@GetMapping(path="retrieveQuoteDetails")
 	public @ResponseBody RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest sqar) throws SQLException {
 		logger.info("GET: /api/quote-service/retrieveQuoteDetails");
 		logger.info("RetrieveQuoteDetailsRequest : " + sqar.toString());
 		return quoteService.retrieveQuoteDetails(sqar);
-	}
+	}*/
 	
 	
 	@GetMapping(path="retrieveQuoteAlop")

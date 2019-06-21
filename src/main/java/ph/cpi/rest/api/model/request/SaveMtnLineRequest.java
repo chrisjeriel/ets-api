@@ -32,6 +32,7 @@ public class SaveMtnLineRequest {
 class Lines {
 	private String lineCd ;
     private String description ;
+    private String menuLineCd;
     private String saveCutOffTime;
     private String activeTag ;
     private String catTag ;
@@ -56,6 +57,12 @@ class Lines {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getMenuLineCd() {
+		return menuLineCd;
+	}
+	public void setMenuLineCd(String menuLineCd) {
+		this.menuLineCd = menuLineCd;
 	}
 	public String getSaveCutOffTime() {
 		return saveCutOffTime;
@@ -137,12 +144,11 @@ class Lines {
 	}
 	@Override
 	public String toString() {
-		return "Lines [lineCd=" + lineCd + ", description=" + description + ", saveCutOffTime=" + saveCutOffTime
-				+ ", activeTag=" + activeTag + ", catTag=" + catTag + ", renewalTag=" + renewalTag + ", openCoverTag="
-				+ openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq=" + sortSeq + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", alopTag=" + alopTag + "]";
+		return "Lines [lineCd=" + lineCd + ", description=" + description + ", menuLineCd=" + menuLineCd
+				+ ", saveCutOffTime=" + saveCutOffTime + ", activeTag=" + activeTag + ", catTag=" + catTag
+				+ ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo=" + referenceNo
+				+ ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", alopTag=" + alopTag
+				+ "]";
 	}
-	
-    
 }

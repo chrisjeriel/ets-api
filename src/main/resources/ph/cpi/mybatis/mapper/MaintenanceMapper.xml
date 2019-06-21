@@ -192,6 +192,7 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Line" id="mntLineMap">
 		<result property="lineCd" 			column="LINE_CD"/> 
 		<result property="description" 		column="DESCRIPTION"/>
+		<result property="menuLineCd"		column="MENU_LINE_CD"/>
 		<result property="cutOffTime" 		column="CUT_OFF_TIME"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/> 
 		<result property="catTag" 			column="CAT_TAG"/> 
@@ -200,7 +201,8 @@
 		<result property="alopTag" 			column="ALOP_TAG"/>
 		<result property="referenceNo"		column="REFERENCE_NO"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
-		<result property="remarks" 			column="REMARKS"/> 
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="menuLineTag"		column="MENU_LINE_TAG"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
@@ -236,15 +238,15 @@
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(MTN_INTM_PKG.ret_mtn_intm(
-								#{intmId,jdbcType=INTEGER},
-								#{intmName,jdbcType=VARCHAR},
-								#{activeTag,jdbcType=VARCHAR},
-								#{corpTag,jdbcType=VARCHAR},
-								#{vatTag,jdbcType=VARCHAR},
-								#{address,jdbcType=VARCHAR},
-								#{contactNo,jdbcType=VARCHAR},
-								#{oldIntmId,jdbcType=VARCHAR},
-								 '', '', '', ''))
+															#{intmId,jdbcType=INTEGER},
+															#{intmName,jdbcType=VARCHAR},
+															#{activeTag,jdbcType=VARCHAR},
+															#{corpTag,jdbcType=VARCHAR},
+															#{vatTag,jdbcType=VARCHAR},
+															#{address,jdbcType=VARCHAR},
+															#{contactNo,jdbcType=VARCHAR},
+															#{oldIntmId,jdbcType=VARCHAR},
+															'', '', '', ''))
 	</select>
 	
 	<select id="retrieveMntLine" resultMap="mntLineMap" parameterType="java.util.Map">
@@ -630,9 +632,10 @@
 		<result property="oldCedingId" 		column="OLD_CEDING_ID"/>
 		<result property="membershipTag" 	column="MEMBERSHIP_TAG"/>
 		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="terminationDate" 	column="TERMINATION_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="withdrawDate" 	column="WITHDRAW_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="inactiveDate" 	column="INACTIVE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="treatyTag" 		column="TREATY_TAG"/>
+		<result property="withdrawTag"		column="WITHDRAW_TAG" />
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -664,9 +667,10 @@
 		<result property="oldCedingId" 		column="OLD_CEDING_ID"/>
 		<result property="membershipTag" 	column="MEMBERSHIP_TAG"/>
 		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="terminationDate" 	column="TERMINATION_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="withdrawDate" 	column="WITHDRAW_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="inactiveDate" 	column="INACTIVE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="treatyTag" 		column="TREATY_TAG"/>
+		<result property="withdrawTag" 		column="WITHDRAW_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -913,6 +917,7 @@
 	    		MTN_LINE_PKG.save_mtn_line(
 	    			#{line.lineCd,jdbcType=VARCHAR},
 			        #{line.description,jdbcType=VARCHAR},
+			        #{line.menuLineCd,jdbcType=VARCHAR},
 			        CAST(to_timestamp(#{line.saveCutOffTime}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			        #{line.activeTag,jdbcType=VARCHAR},
 			        #{line.catTag,jdbcType=VARCHAR},
@@ -1521,9 +1526,10 @@
     						#{oldCedingId, jdbcType=VARCHAR},
     						#{membershipTag, jdbcType=VARCHAR},
     						CAST(to_timestamp(#{membershipDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-    						CAST(to_timestamp(#{terminationDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						CAST(to_timestamp(#{withdrawDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     						CAST(to_timestamp(#{inactiveDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     						#{treatyTag, jdbcType=VARCHAR},
+    						#{withdrawTag, jdbcType=VARCHAR},
     						#{remarks, jdbcType=VARCHAR},
     						#{createUser},
     						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -1541,6 +1547,7 @@
     		</foreach>
     		<foreach collection="saveCedingRepList" item="save">
 		    		MTN_CED_REP_PKG.save_mtn_ced_rep(
+		    							#{uploadDate, mode=OUT, jdbcType=VARCHAR},
 		    							v_ceding_id,
 		    							#{save.cedingRepId, jdbcType=VARCHAR},
 		    							#{save.designation, jdbcType=VARCHAR},
@@ -2447,7 +2454,6 @@
 		<result property="companyName" 		column="COMPANY_NAME"/>
 		<result property="abbreviation" 	column="ABBREVIATION"/>
 		<result property="effDateFrom" 		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="effDateTo" 		column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -2483,15 +2489,13 @@
     		<foreach collection="delRoundingError" item="del">
 	    			MTN_ROUNDING_ERROR_PKG.del_mtn_rounding_error(
 			    		#{del.companyId},
-			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		    			CAST(to_timestamp(#{del.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    		CAST(to_timestamp(#{del.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			    	);
     		</foreach>
     		<foreach collection="saveRoundingError" item="save">
 		    		MTN_ROUNDING_ERROR_PKG.save_mtn_rounding_error(
 		    			#{save.companyId},
 		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		    			CAST(to_timestamp(#{save.effDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		    			#{save.activeTag, jdbcType=VARCHAR},
 		    			#{save.remarks, jdbcType=VARCHAR},
 						#{save.createUser, jdbcType=VARCHAR},
