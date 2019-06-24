@@ -9,6 +9,7 @@ public class RetrieveChangeClaimStatusRequest {
 	private Integer cessionId;
 	private String cedingId;
 	private Integer riskId;
+	private String batchOpt;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
@@ -42,6 +43,12 @@ public class RetrieveChangeClaimStatusRequest {
 	public void setRiskId(Integer riskId) {
 		this.riskId = riskId;
 	}
+	public String getBatchOpt() {
+		return batchOpt;
+	}
+	public void setBatchOpt(String batchOpt) {
+		this.batchOpt = batchOpt;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -58,7 +65,7 @@ public class RetrieveChangeClaimStatusRequest {
 	@Override
 	public String toString() {
 		return "RetrieveChangeClaimStatusRequest [claimId=" + claimId + ", policyId=" + policyId + ", cessionId="
-				+ cessionId + ", cedingId=" + cedingId + ", riskId=" + riskId + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ cessionId + ", cedingId=" + cedingId + ", riskId=" + riskId + ", batchOpt=" + batchOpt
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

@@ -196,6 +196,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("cessionId", rccsr.getCessionId());
 		params.put("cedingId", rccsr.getCedingId());
 		params.put("riskId", rccsr.getRiskId());
+		params.put("batchOpt", rccsr.getBatchOpt());
 		response.setClaimList(claimsDao.retrieveChangeClmStatus(params));
 		return response;
 	}
