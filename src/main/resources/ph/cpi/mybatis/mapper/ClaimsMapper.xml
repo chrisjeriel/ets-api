@@ -246,6 +246,7 @@
 		<result property="claimId" column="DEDT_CLAIM_ID"/>
 		<result property="coverCd" column="DEDT_COVER_CD"/>
 		<result property="endtCd" column="ENDT_CD"/>
+		<result property="deductibleLevel" column="DEDUCTIBLE_LEVEL"/>
 		<result property="deductibleCd" column="DEDUCTIBLE_CD"/>
 		<result property="deductibleTitle" column="DEDUCTIBLE_TITLE"/>
 		<result property="deductibleRt" column="DEDUCTIBLE_RT"/>

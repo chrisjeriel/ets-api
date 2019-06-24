@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 public class ClaimCoverage {
 	private String claimId;
 	private String claimNo;
+	private String policyId;
+	private String quoteId;
 	private String projId;
 	private String riskId;
 	private BigDecimal sectionISi;
@@ -45,6 +47,19 @@ public class ClaimCoverage {
 	}
 	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
+	}
+	
+	public String getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
+	}
+	public String getQuoteId() {
+		return quoteId;
+	}
+	public void setQuoteId(String quoteId) {
+		this.quoteId = quoteId;
 	}
 	public String getProjId() {
 		return projId;
