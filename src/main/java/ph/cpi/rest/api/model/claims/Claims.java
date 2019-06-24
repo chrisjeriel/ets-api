@@ -29,6 +29,10 @@ public class Claims {
 	private String lineClassCd;
 	private String lineClassDesc;
 	private String coRefNo;
+	private String reinsurerId;
+	private String reinsurerName;
+	private String riBinderNo;
+	private String mbiRefNo; 
 	private DateTime inceptDate;
 	private DateTime expiryDate;
 	private String coClaimNo;
@@ -209,6 +213,30 @@ public class Claims {
 	}
 	public void setCoRefNo(String coRefNo) {
 		this.coRefNo = coRefNo;
+	}
+	public String getReinsurerId() {
+		return reinsurerId;
+	}
+	public void setReinsurerId(String reinsurerId) {
+		this.reinsurerId = reinsurerId;
+	}
+	public String getReinsurerName() {
+		return reinsurerName;
+	}
+	public void setReinsurerName(String reinsurerName) {
+		this.reinsurerName = reinsurerName;
+	}
+	public String getRiBinderNo() {
+		return riBinderNo;
+	}
+	public void setRiBinderNo(String riBinderNo) {
+		this.riBinderNo = riBinderNo;
+	}
+	public String getMbiRefNo() {
+		return mbiRefNo;
+	}
+	public void setMbiRefNo(String mbiRefNo) {
+		this.mbiRefNo = mbiRefNo;
 	}
 	public DateTime getInceptDate() {
 		return inceptDate;
@@ -453,19 +481,20 @@ public class Claims {
 				+ contractorName + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd=" + clmStatCd
 				+ ", clmStatus=" + clmStatus + ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc
 				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", coRefNo=" + coRefNo
-				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo
-				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossDesc=" + lossDesc + ", lossPeriod="
-				+ lossPeriod + ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc="
-				+ eventTypeDesc + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc
-				+ ", reportDate=" + reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy
-				+ ", oldStatCd=" + oldStatCd + ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate
-				+ ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
-				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", riskId=" + riskId
-				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
-				+ ", totalLossExpPd=" + totalLossExpPd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
-				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
-				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
+				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo
+				+ ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
+				+ ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossDesc="
+				+ lossDesc + ", lossPeriod=" + lossPeriod + ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd
+				+ ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc
+				+ ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate + ", reportedBy=" + reportedBy
+				+ ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd + ", oldClmStatus=" + oldClmStatus
+				+ ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom + ", lapseTo="
+				+ lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", riskId="
+				+ riskId + ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes="
+				+ totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", project=" + project + ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject
+				+ ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments="
+				+ clmAttachments + "]";
 	}
-
 }

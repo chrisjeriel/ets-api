@@ -28,6 +28,10 @@
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
 		<result property="lineClassDesc" 	column="LINE_CLASS_DESC"/>
 		<result property="coRefNo" 			column="CO_REF_NO"/>
+		<result property="reinsurerId"		column="REINSURER_ID"/>
+		<result property="reinsurerName"	column="REINSURER_NAME"/>
+		<result property="riBinderNo"		column="RI_BINDER_NO"/>
+		<result property="mbiRefNo"			column="MBI_REF_NO"/>
 		<result property="inceptDate" 		column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="coClaimNo" 		column="CO_CLM_NO"/>
