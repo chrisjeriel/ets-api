@@ -3088,7 +3088,8 @@
      </resultMap>
      
      <select id="retrieveMtnClmReason" resultMap="clmReasonMap" parameterType="java.util.Map">
-     	SELECT * FROM TABLE(MTN_CLM_REASON_PKG.ret_mtn_clm_rsn(#{clmStatCd, jdbcType=VARCHAR},
+     	SELECT * FROM TABLE(MTN_CLM_REASON_PKG.ret_mtn_clm_rsn(#{reasonCd, jdbcType=VARCHAR},
+     														   #{clmStatCd, jdbcType=VARCHAR},
      														   #{activeTag, jdbcType=VARCHAR},
      														   NULL,NULL,NULL,NULL))
      </select>

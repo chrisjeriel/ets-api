@@ -1875,6 +1875,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			throws SQLException {
 		RetrieveMtnClaimReasonResponse response = new RetrieveMtnClaimReasonResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("reasonCd", rmcrr.getReasonCd());
 		params.put("clmStatCd", rmcrr.getClmStatCd());
 		params.put("activeTag", rmcrr.getActiveTag());
 		response.setClmReasonList(maintenanceDao.retrieveMtnClaimReason(params));

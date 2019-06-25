@@ -4,10 +4,18 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnClaimReasonRequest {
+	private String reasonCd;
 	private String clmStatCd;
 	private String activeTag;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
+	
+	public String getReasonCd() {
+		return reasonCd;
+	}
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
+	}
 	public String getClmStatCd() {
 		return clmStatCd;
 	}
@@ -32,9 +40,10 @@ public class RetrieveMtnClaimReasonRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveMtnClaimReasonRequest [clmStatCd=" + clmStatCd + ", activeTag=" + activeTag
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnClaimReasonRequest [reasonCd=" + reasonCd + ", clmStatCd=" + clmStatCd + ", activeTag="
+				+ activeTag + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }
