@@ -58,6 +58,8 @@ public class Claims {
 	private String currencyCd;
 	private String totalLossExpRes;
 	private String totalLossExpPd;
+	private String reasonCd;
+	private String reasonDesc;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -387,6 +389,18 @@ public class Claims {
 	public String getCreateUser() {
 		return createUser;
 	}
+	public String getReasonCd() {
+		return reasonCd;
+	}
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
+	}
+	public String getReasonDesc() {
+		return reasonDesc;
+	}
+	public void setReasonDesc(String reasonDesc) {
+		this.reasonDesc = reasonDesc;
+	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
@@ -462,10 +476,11 @@ public class Claims {
 				+ ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
 				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", riskId=" + riskId
 				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
-				+ ", totalLossExpPd=" + totalLossExpPd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
-				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
-				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
+				+ ", totalLossExpPd=" + totalLossExpPd + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
+				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
+				+ ", clmAttachments=" + clmAttachments + "]";
 	}
 
 }

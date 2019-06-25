@@ -23,4 +23,5 @@ public interface ClaimsDao {
 	public List<Claims> retrieveClaimReserve(final HashMap<String, Object> params ) throws SQLException;
 	public List<Attachment> retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object>saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
+	public Integer updateClaimStatus(final HashMap<String, Object> params) throws SQLException;
 }

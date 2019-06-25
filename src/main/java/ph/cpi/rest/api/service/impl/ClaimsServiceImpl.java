@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -35,6 +36,7 @@ import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Component
@@ -232,5 +234,20 @@ public class ClaimsServiceImpl implements ClaimsService {
 		rcrResponse.setClaims(claimsDao.retrieveClaimReserve(retClmReserveParams));
 		logger.info("RetrieveClaimReserveResponse : " + rcrResponse.toString());
 		return rcrResponse;
+	}
+
+	@Override
+	public UpdateClaimStatusResponse updateClaimStatus(UpdateClaimStatusRequest ucsr) throws SQLException {
+		UpdateClaimStatusResponse response = new UpdateClaimStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("updateClaim", ucsr.getUpdateClaim());
+		try{
+			response.setReturnCode(claimsDao.updateClaimStatus(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

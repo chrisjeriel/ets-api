@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -37,6 +38,7 @@ import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Controller
@@ -132,6 +134,13 @@ public class ClaimsController {
 		logger.info("GET: /api/claims-service/retrieveClaimReserve");
 		logger.info("RetrieveClaimReserveRequest : " + rcrr.toString());
 		return claimsService.retrieveClaimReserve(rcrr);
+	}
+	
+	@PostMapping(path="updateClaimStatus")
+	public @ResponseBody UpdateClaimStatusResponse updateClaimStatus(@RequestBody UpdateClaimStatusRequest ucsr) throws SQLException {
+		logger.info("POST: /api/claims-service/updateClaimStatus");
+		logger.info("UpdateClaimStatusRequest : " + ucsr.toString());
+		return claimsService.updateClaimStatus(ucsr);
 	}
 
 }

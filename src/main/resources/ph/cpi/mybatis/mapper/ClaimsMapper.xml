@@ -413,6 +413,8 @@
 		<result property="totalLossExpRes"	column="T_LOSS_EXP_RES" />
 		<result property="totalLossExpPd"	column="T_LOSS_EXP_PD" />
 		<result property="processedBy"		column="PROCESSED_BY" />
+		<result property="reasonCd"			column="REASON_CD" />
+		<result property="reasonDesc"		column="REASON_DESC" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
@@ -469,6 +471,20 @@
 				    CAST(to_timestamp(#{scaa.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				    #{scaa.updateUser,jdbcType=VARCHAR},
 				    CAST(to_timestamp(#{scaa.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+	</update>
+	
+	<update id="updateClaimStatus" parameterType="java.util.Map">
+		BEGIN
+    		<foreach collection="updateClaim" item="u">
+    			CLM_CHANGE_STATUS_PKG.upd_clm_stat(
+    				#{u.claimId},
+					#{u.clmStatCd},
+					#{u.reasonCd, jdbcType=VARCHAR},
+				    #{u.updateUser},
+				    CAST(to_timestamp(#{u.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
     		</foreach>
     	END;

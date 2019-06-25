@@ -105,4 +105,10 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		List<Claims> clmReserve = sqlSession.selectList("retrieveClaimReserve", params);
 		return clmReserve;
 	}
+
+	@Override
+	public Integer updateClaimStatus(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("updateClaimStatus",params);
+		return res;
+	}
 }
