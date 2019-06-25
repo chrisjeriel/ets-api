@@ -794,4 +794,18 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnPoolRetHistRequest : " + rmprhr.toString());
 		return maintenanceService.retrieveMtnPoolRetHist(rmprhr);
 	}
+	
+	@GetMapping(path="retrieveMtnClaimReason")
+	public @ResponseBody RetrieveMtnClaimReasonResponse retrieveMtnClaimReason(RetrieveMtnClaimReasonRequest rmcrr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClaimReason");
+		logger.info("RetrieveMtnClaimReasonRequest : " + rmcrr.toString());
+		return maintenanceService.retrieveMtnClaimReason(rmcrr);
+	}
+	
+	@PostMapping(path="saveMtnClaimReason")
+	public @ResponseBody SaveMtnClaimReasonResponse saveMtnClaimReason(@RequestBody SaveMtnClaimReasonRequest smcrr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnClaimReason");
+		logger.info("SaveMtnClaimReasonRequest : " + smcrr.toString());
+		return maintenanceService.saveMtnClaimReason(smcrr);
+	}
 }
