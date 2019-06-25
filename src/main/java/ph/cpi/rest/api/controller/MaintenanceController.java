@@ -808,4 +808,18 @@ public class MaintenanceController {
 		logger.info("SaveMtnClaimReasonRequest : " + smcrr.toString());
 		return maintenanceService.saveMtnClaimReason(smcrr);
 	}
+
+	@PostMapping(path="saveMtnPoolRetHist")
+	public @ResponseBody SaveMtnPoolRetHistResponse saveMtnPoolRetHist(@RequestBody SaveMtnPoolRetHistRequest smprhr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPoolRetHist");
+		logger.info("SaveMtnPoolRetHistRequest : " + smprhr.toString());
+		return maintenanceService.saveMtnPoolRetHist(smprhr);
+	}
+	
+	@PostMapping(path="copyPoolRetHist")
+	public @ResponseBody CopyPoolRetHistResponse copyPoolRetHist(@RequestBody CopyPoolRetHistRequest cprhr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyPoolRetHist");
+		logger.info("CopyPoolRetHistRequest : " + cprhr.toString());
+		return maintenanceService.copyPoolRetHist(cprhr);
+	}
 }

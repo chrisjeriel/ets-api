@@ -120,4 +120,6 @@ public interface MaintenanceService {
 	public RetrieveMtnPoolRetHistResponse retrieveMtnPoolRetHist(RetrieveMtnPoolRetHistRequest rmprhr) throws SQLException;
 	public RetrieveMtnClaimReasonResponse retrieveMtnClaimReason(RetrieveMtnClaimReasonRequest rmcrr) throws SQLException;
 	public SaveMtnClaimReasonResponse saveMtnClaimReason(SaveMtnClaimReasonRequest smcrr) throws SQLException;
+	public SaveMtnPoolRetHistResponse saveMtnPoolRetHist(SaveMtnPoolRetHistRequest smprhr) throws SQLException;
+	public CopyPoolRetHistResponse copyPoolRetHist(CopyPoolRetHistRequest cprhr) throws SQLException;
 }

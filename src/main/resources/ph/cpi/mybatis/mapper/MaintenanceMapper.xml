@@ -3116,5 +3116,123 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PoolRetHist" id="poolRetHistMap">
+     	<result property="retHistId" 	column="RET_HIST_ID"/>
+		<result property="retLine1" 	column="RET_LINE1"/>
+		<result property="retLine2" 	column="RET_LINE2"/>
+		<result property="totalRetLine" column="TOTAL_RET_LINE"/>
+		<result property="effDateFrom" 	column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag" 	column="ACTIVE_TAG"/>
+		<result property="remarks" 		column="REMARKS"/>
+	    <result property="createUser" 	column="CREATE_USER"/>
+	    <result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="updateUser" 	column="UPDATE_USER"/>
+	    <result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="okDelete" 	column="OK_DELETE"/>
+	    
+	    <association property="poolMemberList" resultMap="poolMemberMap"/>
+     </resultMap>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.PoolMember" id="poolMemberMap">
+    	<result property="retHistId" 	column="RET_HIST_ID"/>
+		<result property="cedingId" 	column="CEDING_ID"/>
+		<result property="cedingName" 	column="CEDING_NAME"/>
+		<result property="retLine1" 	column="PM_RET_LINE1"/>
+		<result property="retLine2" 	column="PM_RET_LINE2"/>
+		<result property="createUser" 	column="PM_CREATE_USER"/>
+		<result property="createDate" 	column="PM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="PM_UPDATE_USER"/>
+		<result property="updateDate" 	column="PM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 	column="OK_DELETE"/>
+	</resultMap>
+     
+     
+     
+     <select id="retrieveMtnPoolRetHist" resultMap="poolRetHistMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_POOL_RET_HIST_PKG.ret_mtn_pool_ret_hist(#{retHistId, jdbcType=INTEGER},
+																		    '',
+																		    '',
+																		    '',
+																		    ''))
+	</select>
+    
+    <update id="saveMtnPoolRetHist" parameterType="java.util.Map" statementType="CALLABLE">
+    	DECLARE
+    		v_ret_hist_id MTN_POOL_RET_HIST.RET_HIST_ID%TYPE;
+    	BEGIN
+    		<foreach collection="deletePoolRetHist" item="del">
+    			MTN_POOL_RET_HIST_PKG.del_mtn_pool_ret_hist(
+    				#{del.retHistId, jdbcType=INTEGER}
+    			);
+    		</foreach>
+    		
+    		<foreach collection="deletePoolMember" item="del">
+    			MTN_POOL_RETENTION_PKG.del_mtn_pool_retention(
+    				#{del.retHistId, jdbcType=INTEGER},
+    				#{del.cedingId, jdbcType=VARCHAR}
+    			);
+    		</foreach>
+    	
+    		<foreach collection="savePoolRetHist" item="save">
+    			IF #{save.retHistId, jdbcType=INTEGER} IS NULL
+    			THEN
+		            SELECT NVL(MAX(RET_HIST_ID), 0) + 1
+		              INTO v_ret_hist_id
+		            FROM MTN_POOL_RET_HIST;
+    			ELSE
+    				v_ret_hist_id := #{save.retHistId, jdbcType=INTEGER};
+    			END IF;
+    		
+	    		MTN_POOL_RET_HIST_PKG.save_mtn_pool_ret_hist(
+	    			v_ret_hist_id,
+	    			#{save.retLine1, jdbcType=INTEGER},
+	    			#{save.retLine2, jdbcType=INTEGER},
+	    			#{save.totalRetLine, jdbcType=INTEGER},
+	    			CAST(to_timestamp(#{save.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{save.activeTag, jdbcType=VARCHAR},
+			        #{save.remarks, jdbcType=VARCHAR},
+			        #{save.createUser, jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{save.updateUser, jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+	    		
+	    		<foreach collection="save.poolMemberList" item="poolMember">
+	    			MTN_POOL_RETENTION_PKG.save_mtn_pool_retention(
+	    				v_ret_hist_id,
+	    				#{poolMember.cedingId, jdbcType=VARCHAR},
+	    				#{poolMember.retLine1, jdbcType=INTEGER},
+	    				#{poolMember.retLine2, jdbcType=INTEGER},
+	    				#{poolMember.createUser, jdbcType=VARCHAR},
+				        CAST(to_timestamp(#{poolMember.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				        #{poolMember.updateUser, jdbcType=VARCHAR},
+				        CAST(to_timestamp(#{poolMember.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    			);
+	    		</foreach>
+	    	</foreach>
+    	END;
+    </update>
+    
+    <update id="checkPoolRetHist" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_POOL_RET_HIST_PKG.check_pool_ret_hist(
+																				CAST(to_timestamp(#{copyToEffDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+																			)
+		}	
+	</update>
+	
+	<update id="copyPoolRetHist" parameterType="java.util.Map">
+		BEGIN
+			MTN_POOL_RET_HIST_PKG.copy_pool_ret_hist(
+				#{copyFromRetHistId, jdbcType=INTEGER},
+				CAST(to_timestamp(#{copyToEffDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
     
 </mapper>

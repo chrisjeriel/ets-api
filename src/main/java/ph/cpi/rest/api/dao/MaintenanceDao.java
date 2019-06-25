@@ -170,4 +170,7 @@ public interface MaintenanceDao {
 	public List<PoolRetHist> retrieveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
 	public List<ClaimReason> retrieveMtnClaimReason(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnClaimReason(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
+	public Integer checkPoolRetHist(HashMap<String, Object> params) throws SQLException;
+	public Integer copyPoolRetHist(HashMap<String, Object> params) throws SQLException;
 }
