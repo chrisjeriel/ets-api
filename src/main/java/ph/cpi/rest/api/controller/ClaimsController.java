@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
@@ -38,6 +39,7 @@ import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -142,5 +144,11 @@ public class ClaimsController {
 		logger.info("UpdateClaimStatusRequest : " + ucsr.toString());
 		return claimsService.updateClaimStatus(ucsr);
 	}
-
+	
+	@PostMapping(path="saveClmAdjuster")
+	public @ResponseBody SaveClmAdjusterResponse saveClmAdjuster(@RequestBody SaveClmAdjusterRequest scar) throws SQLException {
+		logger.info("POST: /api/claims-service/saveClmAdjuster");
+		logger.info("SaveClmAdjusterRequest : " + scar.toString());
+		return claimsService.saveClmAdjuster(scar);
+	}
 }

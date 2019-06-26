@@ -499,5 +499,28 @@
     		</foreach>
     	END;
 	</update>
+	
+	<update id="saveClmAdjuster" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+		   <foreach collection="deleteAdjuster" item="del">
+		   		CLM_ADJUSTER_PKG.del_adjuster(
+		   			#{del.claimId, jdbcType=INTEGER},
+		   			#{del.adjId, jdbcType=VARCHAR}
+		   		);
+		   </foreach>
+		   
+		   <foreach collection="saveAdjuster" item="save">
+		   		CLM_ADJUSTER_PKG.save_adjuster(
+		   			#{save.claimId, jdbcType=INTEGER},
+		   			#{save.adjId, jdbcType=VARCHAR},
+		   			#{save.adjRefNo, jdbcType=VARCHAR},
+		   			#{save.createUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{save.updateUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		   		);
+		   </foreach>
+		END;
+	</update>
 		
 </mapper>

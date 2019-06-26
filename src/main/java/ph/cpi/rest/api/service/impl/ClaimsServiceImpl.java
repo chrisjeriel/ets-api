@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
@@ -35,6 +36,7 @@ import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -248,5 +250,17 @@ public class ClaimsServiceImpl implements ClaimsService {
 			e.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public SaveClmAdjusterResponse saveClmAdjuster(SaveClmAdjusterRequest scar) throws SQLException {
+		SaveClmAdjusterResponse scaResponse = new SaveClmAdjusterResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveAdjuster", scar.getSaveAdjuster());
+		params.put("deleteAdjuster", scar.getDeleteAdjuster());
+		
+		scaResponse.setReturnCode(claimsDao.saveClmAdjuster(params));
+		
+		return scaResponse;
 	}
 }
