@@ -28,13 +28,18 @@
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
 		<result property="lineClassDesc" 	column="LINE_CLASS_DESC"/>
 		<result property="coRefNo" 			column="CO_REF_NO"/>
+		<result property="reinsurerId"		column="REINSURER_ID"/>
+		<result property="reinsurerName"	column="REINSURER_NAME"/>
+		<result property="riBinderNo"		column="RI_BINDER_NO"/>
+		<result property="mbiRefNo"			column="MBI_REF_NO"/>
 		<result property="inceptDate" 		column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="coClaimNo" 		column="CO_CLM_NO"/>
 		<result property="lossDate" 		column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lossCd" 			column="LOSS_CD"/>
-		<result property="lossDesc" 		column="LOSS_DESC"/>
+		<result property="lossAbbr" 		column="LOSS_ABBR"/>
 		<result property="lossPeriod" 		column="LOSS_PERIOD"/>
+		<result property="lossPdAbbr" 		column="LOSS_PD_ABBR"/>
 		<result property="lossDtl" 			column="LOSS_DTL"/>
 		<result property="eventTypeCd" 		column="EVENT_TYPE_CD"/>
 		<result property="eventTypeDesc" 	column="EVENT_TYPE_DESC"/>
@@ -52,6 +57,10 @@
 		<result property="lapseTo" 			column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="maintenanceFrom" 	column="MAINTENANCE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="maintenanceTo" 	column="MAINTENANCE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="pctShare" 		column="PCT_SHARE"/>
+		<result property="totalSi" 			column="TOTAL_SI"/>
+		<result property="totalValue" 		column="TOTAL_VALUE"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>

@@ -3019,11 +3019,10 @@
     	BEGIN
     		<foreach collection="deleteSecIITrtyLimit" item="del">
 	    			MTN_SECII_TRTY_LIMIT_PKG.del_secii_trty_limit(
-			    		#{del.retentionId, jdbcType=INTEGER}
+			    		#{del.seciiTrtyLimId, jdbcType=INTEGER}
 			    	);
     		</foreach>
     		<foreach collection="saveSecIITrtyLimit" item="save">
-		    		MTN_SECII_TRTY_LIMIT_PKG.save_secii_trty_limit(
 		    			#{save.lineCd, jdbcType=VARCHAR},
 		    			#{save.lineClassCd, jdbcType=VARCHAR},
 		    			#{save.currencyCd, jdbcType=VARCHAR},
@@ -3064,7 +3063,7 @@
 				#{copyFromCurrencyCd, jdbcType=VARCHAR},
 				#{copyToLineCd, jdbcType=VARCHAR},
 				#{copyToLineClassCd, jdbcType=VARCHAR},
-				#{copyToLineCurrencyCd, jdbcType=VARCHAR},
+				#{copyToCurrencyCd, jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},

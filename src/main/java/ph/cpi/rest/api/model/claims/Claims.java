@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -29,13 +30,18 @@ public class Claims {
 	private String lineClassCd;
 	private String lineClassDesc;
 	private String coRefNo;
+	private String reinsurerId;
+	private String reinsurerName;
+	private String riBinderNo;
+	private String mbiRefNo; 
 	private DateTime inceptDate;
 	private DateTime expiryDate;
 	private String coClaimNo;
 	private DateTime lossDate;
 	private String lossCd;
-	private String lossDesc;
+	private String lossAbbr;
 	private String lossPeriod;
+	private String lossPdAbbr;
 	private String lossDtl;
 	private String eventTypeCd;
 	private String eventTypeDesc;
@@ -53,6 +59,9 @@ public class Claims {
 	private DateTime lapseTo;
 	private DateTime maintenanceFrom;
 	private DateTime maintenanceTo;
+	private Double pctShare;
+	private BigDecimal totalSi;
+	private BigDecimal totalValue;
 	private Integer riskId;
 	private String riskName;
 	private String currencyCd;
@@ -66,12 +75,12 @@ public class Claims {
 	private List<ClaimAdjuster> clmAdjusterList;
 	private ClaimProject clmProject;
 	private List<ClaimDeductibles> clmDeductibles;
-
+	
 //	private List<Attachment> attachments; --Replced with 'clmAttachments' only
 	private List<ClaimReserve> clmReserve;
 	
-	private List<Attachment> clmAttachments; 
-
+	private List<Attachment> clmAttachments;
+	
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -210,6 +219,30 @@ public class Claims {
 	public void setCoRefNo(String coRefNo) {
 		this.coRefNo = coRefNo;
 	}
+	public String getReinsurerId() {
+		return reinsurerId;
+	}
+	public void setReinsurerId(String reinsurerId) {
+		this.reinsurerId = reinsurerId;
+	}
+	public String getReinsurerName() {
+		return reinsurerName;
+	}
+	public void setReinsurerName(String reinsurerName) {
+		this.reinsurerName = reinsurerName;
+	}
+	public String getRiBinderNo() {
+		return riBinderNo;
+	}
+	public void setRiBinderNo(String riBinderNo) {
+		this.riBinderNo = riBinderNo;
+	}
+	public String getMbiRefNo() {
+		return mbiRefNo;
+	}
+	public void setMbiRefNo(String mbiRefNo) {
+		this.mbiRefNo = mbiRefNo;
+	}
 	public DateTime getInceptDate() {
 		return inceptDate;
 	}
@@ -240,17 +273,23 @@ public class Claims {
 	public void setLossCd(String lossCd) {
 		this.lossCd = lossCd;
 	}
-	public String getLossDesc() {
-		return lossDesc;
+	public String getLossAbbr() {
+		return lossAbbr;
 	}
-	public void setLossDesc(String lossDesc) {
-		this.lossDesc = lossDesc;
+	public void setLossAbbr(String lossAbbr) {
+		this.lossAbbr = lossAbbr;
 	}
 	public String getLossPeriod() {
 		return lossPeriod;
 	}
 	public void setLossPeriod(String lossPeriod) {
 		this.lossPeriod = lossPeriod;
+	}
+	public String getLossPdAbbr() {
+		return lossPdAbbr;
+	}
+	public void setLossPdAbbr(String lossPdAbbr) {
+		this.lossPdAbbr = lossPdAbbr;
 	}
 	public String getLossDtl() {
 		return lossDtl;
@@ -354,6 +393,24 @@ public class Claims {
 	public void setMaintenanceTo(DateTime maintenanceTo) {
 		this.maintenanceTo = maintenanceTo;
 	}
+	public Double getPctShare() {
+		return pctShare;
+	}
+	public void setPctShare(Double pctShare) {
+		this.pctShare = pctShare;
+	}
+	public BigDecimal getTotalSi() {
+		return totalSi;
+	}
+	public void setTotalSi(BigDecimal totalSi) {
+		this.totalSi = totalSi;
+	}
+	public BigDecimal getTotalValue() {
+		return totalValue;
+	}
+	public void setTotalValue(BigDecimal totalValue) {
+		this.totalValue = totalValue;
+	}
 	public Integer getRiskId() {
 		return riskId;
 	}
@@ -453,19 +510,21 @@ public class Claims {
 				+ contractorName + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd=" + clmStatCd
 				+ ", clmStatus=" + clmStatus + ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc
 				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", coRefNo=" + coRefNo
-				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo
-				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossDesc=" + lossDesc + ", lossPeriod="
-				+ lossPeriod + ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc="
-				+ eventTypeDesc + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc
-				+ ", reportDate=" + reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy
-				+ ", oldStatCd=" + oldStatCd + ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate
-				+ ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
-				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", riskId=" + riskId
-				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
-				+ ", totalLossExpPd=" + totalLossExpPd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
-				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
-				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
+				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo
+				+ ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
+				+ ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr="
+				+ lossAbbr + ", lossPeriod=" + lossPeriod + ", lossPdAbbr=" + lossPdAbbr + ", lossDtl=" + lossDtl
+				+ ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd
+				+ ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate
+				+ ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd
+				+ ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
+				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
+				+ ", maintenanceTo=" + maintenanceTo + ", pctShare=" + pctShare + ", totalSi=" + totalSi
+				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
+				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
+				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
+				+ ", clmAttachments=" + clmAttachments + "]";
 	}
-
 }
