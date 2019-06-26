@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
@@ -24,6 +25,8 @@ import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
+import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
@@ -35,6 +38,7 @@ import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Controller
@@ -104,6 +108,13 @@ public class ClaimsController {
 		
 	}
 	
+	@GetMapping(path="retrieveChangeClmStatus")
+	public @ResponseBody RetrieveChangeClaimStatusResponse retrieveChangeClmStatus(RetrieveChangeClaimStatusRequest rccsr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveChangeClmStatus");
+		logger.info("retrieveChangeClmStatus : " + rccsr.toString());
+		return claimsService.retrieveChangeClmStatus(rccsr);
+	}
+
 	@GetMapping(path="retrieveClaimApprovedAmt")
 	public @ResponseBody RetrieveClaimApprovedAmtResponse retrieveClaimApprovedAmt(RetrieveClaimApprovedAmtRequest rcaar) throws SQLException {
 		logger.info("GET: /api/claims-service/retrieveClaimApprovedAmt");
@@ -123,6 +134,13 @@ public class ClaimsController {
 		logger.info("GET: /api/claims-service/retrieveClaimReserve");
 		logger.info("RetrieveClaimReserveRequest : " + rcrr.toString());
 		return claimsService.retrieveClaimReserve(rcrr);
+	}
+	
+	@PostMapping(path="updateClaimStatus")
+	public @ResponseBody UpdateClaimStatusResponse updateClaimStatus(@RequestBody UpdateClaimStatusRequest ucsr) throws SQLException {
+		logger.info("POST: /api/claims-service/updateClaimStatus");
+		logger.info("UpdateClaimStatusRequest : " + ucsr.toString());
+		return claimsService.updateClaimStatus(ucsr);
 	}
 
 }

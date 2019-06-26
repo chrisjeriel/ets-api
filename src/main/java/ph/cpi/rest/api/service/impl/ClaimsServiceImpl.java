@@ -3,7 +3,6 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
@@ -22,6 +22,8 @@ import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
+import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
@@ -33,6 +35,7 @@ import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Component
@@ -185,6 +188,21 @@ public class ClaimsServiceImpl implements ClaimsService {
 	}
 
 	@Override
+	public RetrieveChangeClaimStatusResponse retrieveChangeClmStatus(RetrieveChangeClaimStatusRequest rccsr)
+			throws SQLException {
+		RetrieveChangeClaimStatusResponse response = new RetrieveChangeClaimStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId", rccsr.getClaimId());
+		params.put("policyId", rccsr.getPolicyId());
+		params.put("cessionId", rccsr.getCessionId());
+		params.put("cedingId", rccsr.getCedingId());
+		params.put("riskId", rccsr.getRiskId());
+		params.put("batchOpt", rccsr.getBatchOpt());
+		response.setClaimList(claimsDao.retrieveChangeClmStatus(params));
+		return response;
+	}
+
+	@Override
 	public RetrieveClaimApprovedAmtResponse retrieveClaimApprovedAmt(RetrieveClaimApprovedAmtRequest rcaap)
 			throws SQLException {
 		RetrieveClaimApprovedAmtResponse rcaaResponse = new RetrieveClaimApprovedAmtResponse();
@@ -215,5 +233,20 @@ public class ClaimsServiceImpl implements ClaimsService {
 		rcrResponse.setClaims(claimsDao.retrieveClaimReserve(retClmReserveParams));
 		logger.info("RetrieveClaimReserveResponse : " + rcrResponse.toString());
 		return rcrResponse;
+	}
+
+	@Override
+	public UpdateClaimStatusResponse updateClaimStatus(UpdateClaimStatusRequest ucsr) throws SQLException {
+		UpdateClaimStatusResponse response = new UpdateClaimStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("updateClaim", ucsr.getUpdateClaim());
+		try{
+			response.setReturnCode(claimsDao.updateClaimStatus(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

@@ -1871,6 +1871,34 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public RetrieveMtnClaimReasonResponse retrieveMtnClaimReason(RetrieveMtnClaimReasonRequest rmcrr)
+			throws SQLException {
+		RetrieveMtnClaimReasonResponse response = new RetrieveMtnClaimReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("reasonCd", rmcrr.getReasonCd());
+		params.put("clmStatCd", rmcrr.getClmStatCd());
+		params.put("activeTag", rmcrr.getActiveTag());
+		response.setClmReasonList(maintenanceDao.retrieveMtnClaimReason(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnClaimReasonResponse saveMtnClaimReason(SaveMtnClaimReasonRequest smcrr) throws SQLException {
+		SaveMtnClaimReasonResponse response = new SaveMtnClaimReasonResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveClmReason", smcrr.getSaveClmReason());
+		params.put("delClmReason", smcrr.getDelClmReason());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnClaimReason(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	@Override
 	public SaveMtnPoolRetHistResponse saveMtnPoolRetHist(SaveMtnPoolRetHistRequest smprhr) throws SQLException {
 		SaveMtnPoolRetHistResponse smprhResponse = new SaveMtnPoolRetHistResponse();
 		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
