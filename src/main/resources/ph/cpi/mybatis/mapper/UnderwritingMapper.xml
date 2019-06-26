@@ -1070,7 +1070,7 @@
 						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
 			<foreach collection="saveOtherCharges" item="otherCharges">
-					POL_INWARD_PKG.save_oth_charges(#{policyId},#{otherCharges.instNo},#{otherCharges.chargeCd},#{otherCharges.amount},
+					POL_INWARD_PKG.save_oth_charges(#{policyId},#{otherCharges.instNo},#{otherCharges.chargeCd},#{otherCharges.amount,jdbcType=VARCHAR},
 							#{otherCharges.createUser},
 							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
 							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
@@ -1086,7 +1086,7 @@
 						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
 						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				<foreach collection="polInward.otherCharges" item="otherCharges">
-					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount},
+					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount,jdbcType=VARCHAR},
 							#{otherCharges.createUser},
 							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
 							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
