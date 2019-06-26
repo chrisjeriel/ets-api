@@ -52,7 +52,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> retClmHistoryParams = new HashMap<String, Object>();
 		retClmHistoryParams.put("claimId", rchp.getClaimId());
 		retClmHistoryParams.put("claimNo", rchp.getClaimNo());
-		retClmHistoryParams.put("projId", rchp.getProj_id());
+		retClmHistoryParams.put("projId", rchp.getProjId());
 		retClmHistoryParams.put("histNo", rchp.getHistNo());
 		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
