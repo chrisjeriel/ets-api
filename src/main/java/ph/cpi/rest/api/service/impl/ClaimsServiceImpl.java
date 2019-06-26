@@ -51,9 +51,8 @@ public class ClaimsServiceImpl implements ClaimsService {
 		RetrieveClaimHistoryResponse rchResponse = new RetrieveClaimHistoryResponse();
 		HashMap<String, Object> retClmHistoryParams = new HashMap<String, Object>();
 		retClmHistoryParams.put("claimId", rchp.getClaimId());
-		retClmHistoryParams.put("projId", rchp.getProjId());
-		retClmHistoryParams.put("histNo", rchp.getHistNo());
-		rchResponse.setClaimHistoryList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
+		retClmHistoryParams.put("claimNo", rchp.getClaimNo());
+		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
 	}
@@ -171,6 +170,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 			saveClmAttachmentParams.put("claimId", scar.getClaimId());
 			saveClmAttachmentParams.put("saveClmAttachments", scar.getSaveClaimsAttachments());
 			saveClmAttachmentParams.put("deleteClmAttachments", scar.getDeleteClaimsAttachments());
+			
 			HashMap<String, Object> res = claimsDao.saveClaimsAttachment(saveClmAttachmentParams);
 			scaResponse.setReturnCode((Integer) res.get("errorCode"));
 			scaResponse.setUploadDate((String) res.get("uploadDate"));
@@ -205,20 +205,34 @@ public class ClaimsServiceImpl implements ClaimsService {
 	@Override
 	public RetrieveClaimApprovedAmtResponse retrieveClaimApprovedAmt(RetrieveClaimApprovedAmtRequest rcaap)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RetrieveClaimApprovedAmtResponse rcaaResponse = new RetrieveClaimApprovedAmtResponse();
+		HashMap<String, Object> clmApprovedAmtParams = new HashMap<String, Object>();
+		clmApprovedAmtParams.put("claimId",rcaap.getClaimId());
+		clmApprovedAmtParams.put("histNo",rcaap.getHistNo());
+		rcaaResponse.setClaimApprovedAmtList(claimsDao.retrieveClaimApprovedAmt(clmApprovedAmtParams));
+		logger.info("RetrieveClaimApprovedAmtResponse : " + rcaaResponse.toString());
+		return rcaaResponse;
 	}
 
 	@Override
 	public SaveClaimApprovedAmtResponse saveClaimApprovedAmt(SaveClaimApprovedAmtRequest scaar) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		SaveClaimApprovedAmtResponse scaaResponse = new SaveClaimApprovedAmtResponse();
+		HashMap<String, Object> saveClmApprovedAmtParams = new HashMap<String, Object>();
+		saveClmApprovedAmtParams.put("saveClaimApprovedAmt", scaar.getSaveClaimApprovedAmt());
+		scaaResponse.setReturnCode(claimsDao.saveClaimApprovedAmt(saveClmApprovedAmtParams));
+		logger.info("SaveClaimApprovedAmtResponse : " + scaaResponse.toString());
+		return scaaResponse;
 	}
 
 	@Override
 	public RetrieveClaimReserveResponse retrieveClaimReserve(RetrieveClaimReserveRequest rchp) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RetrieveClaimReserveResponse rcrResponse = new RetrieveClaimReserveResponse();
+		HashMap<String, Object> retClmReserveParams = new HashMap<String, Object>();
+		retClmReserveParams.put("claimId", rchp.getClaimId());
+		retClmReserveParams.put("claimNo", rchp.getClaimNo());
+		rcrResponse.setClaims(claimsDao.retrieveClaimReserve(retClmReserveParams));
+		logger.info("RetrieveClaimReserveResponse : " + rcrResponse.toString());
+		return rcrResponse;
 	}
 
 	@Override
