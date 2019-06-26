@@ -1269,7 +1269,6 @@
 		<result property="histNo"				column="HIST_NO"/>
 		<result property="currencyRt"			column="CURRENCY_RT"/>
 		<result property="effDateFrom"			column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
-		<result property="effDateTo"			column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag"			column="ACTIVE_TAG"/>
 		<result property="remarks"				column="REMARKS"/>
 		<result property="createUser"			column="CREATE_USER"/>
@@ -1300,7 +1299,6 @@
     				#{saveCurrRt.histNo,jdbcType=VARCHAR},
     				#{saveCurrRt.currencyRt},
     				CAST(to_timestamp(#{saveCurrRt.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-    				CAST(to_timestamp(#{saveCurrRt.effDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     				#{saveCurrRt.activeTag},
     				#{saveCurrRt.remarks,jdbcType=VARCHAR},
 					#{saveCurrRt.createUser,jdbcType=VARCHAR},
