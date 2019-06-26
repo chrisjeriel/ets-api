@@ -95,8 +95,20 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	}
 
 	@Override
+	public List<Claims> retrieveChangeClmStatus(HashMap<String, Object> params) throws SQLException {
+		List<Claims> res = sqlSession.selectList("retrieveChangeClmStatus", params);
+		return res;
+	}
+
+	@Override
 	public List<Claims> retrieveClaimReserve(HashMap<String, Object> params) throws SQLException {
 		List<Claims> clmReserve = sqlSession.selectList("retrieveClaimReserve", params);
 		return clmReserve;
+	}
+
+	@Override
+	public Integer updateClaimStatus(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("updateClaimStatus",params);
+		return res;
 	}
 }
