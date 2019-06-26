@@ -3072,6 +3072,50 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.ClaimReason" id="clmReasonMap">
+     	<result property="reasonCd"			column="REASON_CD" />
+		<result property="description"		column="DESCRIPTION" />
+		<result property="clmStatCd"		column="CLM_STAT_CD" />
+		<result property="clmStatDesc"		column="CLM_STAT_DESC" />
+		<result property="activeTag"		column="ACTIVE_TAG" />
+		<result property="remarks"			column="REMARKS" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	    <result property="okDelete" 		column="OK_DELETE"/>
+     </resultMap>
+     
+     <select id="retrieveMtnClmReason" resultMap="clmReasonMap" parameterType="java.util.Map">
+     	SELECT * FROM TABLE(MTN_CLM_REASON_PKG.ret_mtn_clm_rsn(#{reasonCd, jdbcType=VARCHAR},
+     														   #{clmStatCd, jdbcType=VARCHAR},
+     														   #{activeTag, jdbcType=VARCHAR},
+     														   NULL,NULL,NULL,NULL))
+     </select>
+     
+     <update id="saveMtnClmReason" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delClmReason" item="d">
+			MTN_CLM_REASON_PKG.del_mtn_clm_rsn(
+												#{d.reasonCd}
+			);
+			</foreach>
+			<foreach collection="saveClmReason" item="s">
+			MTN_CLM_REASON_PKG.save_mtn_clm_rsn(
+													#{s.reasonCd},
+													#{s.description},
+													#{s.clmStatCd, jdbcType=VARCHAR},
+													#{s.activeTag, jdbcType=VARCHAR},
+													#{s.remarks, jdbcType=VARCHAR},
+													#{s.createUser, jdbcType=VARCHAR},
+													CAST(to_timestamp(#{s.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{s.updateUser, jdbcType=VARCHAR},
+													CAST(to_timestamp(#{s.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+			</foreach>
+		END;
+	</update>
+	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.PoolRetHist" id="poolRetHistMap">
      	<result property="retHistId" 	column="RET_HIST_ID"/>
 		<result property="retLine1" 	column="RET_LINE1"/>
