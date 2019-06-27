@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimResStatRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
@@ -27,6 +28,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimResStatResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
@@ -46,4 +48,6 @@ public interface ClaimsService {
 	public SaveClaimApprovedAmtResponse saveClaimApprovedAmt(SaveClaimApprovedAmtRequest scaar) throws SQLException;
 	public RetrieveClaimReserveResponse retrieveClaimReserve(RetrieveClaimReserveRequest rchp ) throws SQLException;
 	public UpdateClaimStatusResponse updateClaimStatus(UpdateClaimStatusRequest ucsr) throws SQLException;
+	public SaveClaimResStatResponse saveClaimResStat(SaveClaimResStatRequest scrsr) throws SQLException;
+
 }

@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimResStatRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
@@ -33,6 +34,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimResStatResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
@@ -250,5 +252,32 @@ public class ClaimsServiceImpl implements ClaimsService {
 			e.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public SaveClaimResStatResponse saveClaimResStat(SaveClaimResStatRequest scrsr) throws SQLException {
+		SaveClaimResStatResponse scrsResponse = new SaveClaimResStatResponse();
+		HashMap<String, Object> scrsParams = new HashMap<String, Object>();
+		try {
+			scrsParams.put("claimId", scrsr.getClaimId());
+			scrsParams.put("projId", scrsr.getProjId());
+			scrsParams.put("lossStatCd", scrsr.getLossStatCd());
+			scrsParams.put("expStatCd", scrsr.getExpStatCd());
+			scrsParams.put("updateUser", scrsr.getUpdateUser());
+			
+			HashMap<String, Object> response = claimsDao.saveClaimResStat(scrsParams);
+			
+			scrsResponse.setReturnCode((Integer) response.get("errorCode"));
+			logger.info("SaveClaimResStatResponse : " + scrsResponse.toString());
+		}catch (SQLException ex) {
+			scrsResponse.setReturnCode(0);
+			scrsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			scrsResponse.setReturnCode(0);
+			scrsResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return scrsResponse;
 	}
 }

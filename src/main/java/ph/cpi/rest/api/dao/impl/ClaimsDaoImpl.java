@@ -111,4 +111,13 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		Integer res = sqlSession.update("updateClaimStatus",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveClaimResStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimResStat",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+
 }

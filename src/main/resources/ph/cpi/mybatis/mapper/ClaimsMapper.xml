@@ -504,5 +504,17 @@
     		</foreach>
     	END;
 	</update>
+	
+	<update id="saveClaimResStat" parameterType="java.util.Map">
+		BEGIN
+			CLM_RESERVE_PKG.save_clm_res_stat(
+				#{claimId,jdbcType=INTEGER},
+				#{projId,jdbcType=INTEGER},
+				#{lossStatCd,jdbcType=VARCHAR},
+				#{expStatCd,jdbcType=VARCHAR},
+				#{updateUser,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
 		
 </mapper>

@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimResStatRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
@@ -36,6 +37,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimResStatResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
@@ -141,6 +143,13 @@ public class ClaimsController {
 		logger.info("POST: /api/claims-service/updateClaimStatus");
 		logger.info("UpdateClaimStatusRequest : " + ucsr.toString());
 		return claimsService.updateClaimStatus(ucsr);
+	}
+	
+	@PostMapping(path="saveClaimResStat")
+	public @ResponseBody SaveClaimResStatResponse saveClaimResStat(@RequestBody SaveClaimResStatRequest scrsr) throws SQLException {
+		logger.info("POST: /api/claims-service/saveClaimResStat");
+		logger.info("SaveClaimResStatRequest : " + scrsr.toString());
+		return claimsService.saveClaimResStat(scrsr);
 	}
 
 }
