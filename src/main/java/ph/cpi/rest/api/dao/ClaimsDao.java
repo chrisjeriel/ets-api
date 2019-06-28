@@ -25,4 +25,5 @@ public interface ClaimsDao {
 	public HashMap<String, Object>saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
 	public Integer updateClaimStatus(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveClmAdjuster(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveClmGenInfo (final HashMap<String, Object> params ) throws SQLException;
 }

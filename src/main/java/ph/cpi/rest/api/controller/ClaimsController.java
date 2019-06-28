@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
+import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
@@ -40,6 +41,7 @@ import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
+import ph.cpi.rest.api.model.response.SaveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -150,5 +152,12 @@ public class ClaimsController {
 		logger.info("POST: /api/claims-service/saveClmAdjuster");
 		logger.info("SaveClmAdjusterRequest : " + scar.toString());
 		return claimsService.saveClmAdjuster(scar);
+	}
+	
+	@PostMapping(path="saveClmGenInfo")
+	public @ResponseBody SaveClmGenInfoResponse saveClmGenInfo(@RequestBody SaveClmGenInfoRequest scgir) throws SQLException {
+		logger.info("POST: /api/claims-service/saveClmGenInfo");
+		logger.info("SaveClmGenInfoRequest : " + scgir.toString());
+		return claimsService.saveClmGenInfo(scgir);
 	}
 }

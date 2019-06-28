@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
+import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
@@ -37,6 +38,7 @@ import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
+import ph.cpi.rest.api.model.response.SaveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
@@ -262,5 +264,88 @@ public class ClaimsServiceImpl implements ClaimsService {
 		scaResponse.setReturnCode(claimsDao.saveClmAdjuster(params));
 		
 		return scaResponse;
+	}
+
+	@Override
+	public SaveClmGenInfoResponse saveClmGenInfo(SaveClmGenInfoRequest scgir) throws SQLException {
+		SaveClmGenInfoResponse scgiResponse = new SaveClmGenInfoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("claimNo", "");
+		params.put("claimId", scgir.getClaimId());
+		params.put("lineCd", scgir.getLineCd());
+		params.put("polYear", scgir.getPolYear());
+		params.put("polSeqNo", scgir.getPolSeqNo());
+		params.put("cedingId", scgir.getCedingId());
+		params.put("coSeriesNo", scgir.getCoSeriesNo());
+		params.put("altNo", scgir.getAltNo());
+		params.put("clmYear", scgir.getClmYear());
+		params.put("clmSeqNo", scgir.getClmSeqNo());
+		params.put("clmStatCd", scgir.getClmStatCd());
+		params.put("cessionId", scgir.getCessionId());
+		params.put("lineClassCd", scgir.getLineClassCd());
+		params.put("coRefNo", scgir.getCoRefNo());
+		params.put("reinsurerId", scgir.getReinsurerId());
+		params.put("riBinderNo", scgir.getRiBinderNo());
+		params.put("mbiRefNo", scgir.getMbiRefNo());
+		params.put("inceptDate", scgir.getInceptDate());
+		params.put("expiryDate", scgir.getExpiryDate());
+		params.put("reasonCd", scgir.getReasonCd());
+		params.put("coClmNo", scgir.getCoClmNo());
+		params.put("lossDate", scgir.getLossDate());
+		params.put("lossCd", scgir.getLossCd());
+		params.put("lossPeriod", scgir.getLossPeriod());
+		params.put("lossDtl", scgir.getLossDtl());
+		params.put("eventTypeCd", scgir.getEventTypeCd());
+		params.put("eventCd", scgir.getEventCd());
+		params.put("reportDate", scgir.getReportDate());
+		params.put("reportedBy", scgir.getReportedBy());
+		params.put("processedBy", scgir.getProcessedBy());
+		params.put("oldStatCd", scgir.getOldStatCd());
+		params.put("closeDate", scgir.getCloseDate());
+		params.put("refreshSw", scgir.getRefreshSw());
+		params.put("lapseFrom", scgir.getLapseFrom());
+		params.put("lapseTo", scgir.getLapseTo());
+		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
+		params.put("maintenanceTo", scgir.getMaintenanceTo());
+		params.put("createUser", scgir.getCreateUser());
+		params.put("createDate", scgir.getCreateDate());
+		params.put("updateUser", scgir.getUpdateUser());
+		params.put("updateDate", scgir.getUpdateDate());
+		params.put("projId", scgir.getProjId());
+		params.put("projDesc", scgir.getProjDesc());
+		params.put("riskId", scgir.getRiskId());
+		params.put("regionCd", scgir.getRegionCd());
+		params.put("provinceCd", scgir.getProvinceCd());
+		params.put("cityCd", scgir.getCityCd());
+		params.put("districtCd", scgir.getDistrictCd());
+		params.put("blockCd", scgir.getBlockCd());
+		params.put("latitude", scgir.getLatitude());
+		params.put("longitude", scgir.getLongitude());
+		params.put("objectId", scgir.getObjectId());
+		params.put("site", scgir.getSite());
+		params.put("duration", scgir.getDuration());
+		params.put("testing", scgir.getTesting());
+		params.put("ipl", scgir.getIpl());
+		params.put("timeExc", scgir.getTimeExc());
+		params.put("noClaimPd", scgir.getNoClaimPd());
+		params.put("prjCreateUser", scgir.getPrjCreateUser());
+		params.put("prjCreateDate", scgir.getPrjCreateDate());
+		params.put("prjUpdateUser", scgir.getPrjUpdateUser());
+		params.put("prjUpdateDate", scgir.getPrjUpdateDate());
+		
+		try {
+			HashMap<String, Object> res = claimsDao.saveClmGenInfo(params);
+			
+			scgiResponse.setReturnCode((Integer) res.get("errorCode"));
+			scgiResponse.setClaimId((Integer) res.get("claimId"));
+			scgiResponse.setClaimNo((String) res.get("claimNo"));
+		} catch (Exception e) {
+			scgiResponse.setReturnCode(0);
+			scgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		
+		return scgiResponse;
 	}
 }

@@ -117,4 +117,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		Integer res = sqlSession.update("saveClmAdjuster",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveClmGenInfo(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClmGenInfo", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
