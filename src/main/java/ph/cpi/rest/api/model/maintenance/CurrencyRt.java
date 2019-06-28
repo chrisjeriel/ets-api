@@ -15,6 +15,7 @@ public class CurrencyRt {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public String getCurrencyCd() {
 		return currencyCd;
 	}
@@ -75,11 +76,19 @@ public class CurrencyRt {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "CurrencyRt [currencyCd=" + currencyCd + ", histNo=" + histNo + ", currencyRt=" + currencyRt
 				+ ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", okDelete=" + okDelete + "]";
 	}
+	
 }
