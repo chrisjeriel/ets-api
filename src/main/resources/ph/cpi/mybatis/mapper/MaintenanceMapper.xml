@@ -403,7 +403,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnDistrict" resultMap="region" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_DISTRICT_PKG.ret_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_DISTRICT_PKG.ret_mtn_district(#{regionCd, jdbcType=VARCHAR},#{provinceCd, jdbcType=VARCHAR},#{cityCd, jdbcType=VARCHAR},#{districtCd, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},'',1,'',''))
 	</select>
 	
 	

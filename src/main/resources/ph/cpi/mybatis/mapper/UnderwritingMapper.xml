@@ -2590,5 +2590,11 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="negateDistribution" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.negate_dist(#{riskDistId},#{distId},#{policyId},#{updateUser});
+		END;
+	</update>
 
 </mapper>

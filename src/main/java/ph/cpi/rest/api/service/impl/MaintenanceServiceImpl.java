@@ -153,6 +153,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnDistrictParams.put("provinceCd", rmdr.getProvinceCd());
 		retrieveMtnDistrictParams.put("cityCd", rmdr.getCityCd());
 		retrieveMtnDistrictParams.put("districtCd", rmdr.getDistrictCd());
+		retrieveMtnDistrictParams.put("activeTag", rmdr.getActiveTag());
 		rmdrResponse.setRegion(maintenanceDao.retrieveMtnDistrict(retrieveMtnDistrictParams));
 		
 		logger.info("retrieveMtnDistrict : " + rmdrResponse.toString());

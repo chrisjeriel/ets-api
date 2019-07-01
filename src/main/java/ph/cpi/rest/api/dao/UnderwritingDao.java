@@ -96,4 +96,6 @@ public interface UnderwritingDao {
 	public Integer distributeRiskDist(final HashMap<String, Object> params ) throws SQLException;
 	public List<PolDistList> retrievePolDistList(final HashMap<String, Object> params) throws SQLException;
 	
+	public Integer negateDistribution(final HashMap<String, Object> params ) throws SQLException;
+	
 }
