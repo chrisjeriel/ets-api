@@ -69,7 +69,7 @@
 		<association property="project" resultMap="clmProjectAssoc" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
 		<association property="clmAttachments" resultMap="assocAttachmentMap"></association>
-		
+		<association property="clmReserve" resultMap="claimReserveMap" />
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimHistory" id="claimHistoryMap">
@@ -190,9 +190,13 @@
 		<result property="lossResAmt" 		column="LOSS_RES_AMT"/>
 		<result property="lossPdAmt" 		column="LOSS_PD_AMT"/>
 		<result property="lossStatCd" 		column="LOSS_STAT_CD"/>
+		<result property="lossStatus" 		column="LOSS_STATUS"/>
 		<result property="expResAmt" 		column="EXP_RES_AMT"/>
 		<result property="expPdAmt" 		column="EXP_PD_AMT"/>
 		<result property="expStatCd" 		column="EXP_STAT_CD"/>
+		<result property="expStatus" 		column="EXP_STATUS"/>
+		<result property="totalReserve"		column="TOTAL_RESERVE"/>
+		<result property="totalPayment"		column="TOTAL_PAYMENT"/>
 		<result property="createUser" 		column="RES_CREATE_USER"/>
 		<result property="createDate" 		column="RES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="RES_UPDATE_USER"/>
