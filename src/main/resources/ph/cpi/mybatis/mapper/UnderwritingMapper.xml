@@ -2596,5 +2596,9 @@
 			DIST_PKG.negate_dist(#{riskDistId},#{distId},#{policyId},#{updateUser});
 		END;
 	</update>
+	
+	<select id="getPostedCoIns" resultMap="retDistCoInsMap">
+		SELECT * FROM TABLE(DIST_PKG.GET_POSTED_COINS(#{riskDistId},#{policyId}))
+	</select>
 
 </mapper>

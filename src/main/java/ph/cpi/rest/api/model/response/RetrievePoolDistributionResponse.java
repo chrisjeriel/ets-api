@@ -29,10 +29,10 @@ public class RetrievePoolDistributionResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
 	@Override
 	public String toString() {
 		return "RetrievePoolDistributionResponse [poolDistList=" + poolDistList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
+	
 }

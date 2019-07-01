@@ -623,6 +623,8 @@ public class UnderwritingController {
 	public @ResponseBody NegateDistributionResponse negateDistribution(@RequestBody NegateDistributionRequest ndr) throws SQLException {
 		logger.info("POST: /api/underwriting-service/negateDistribution");
 		logger.info("NegateDistributionRequest : " + ndr.toString());
-		return underwritingService.negateDistribution(ndr);
+		NegateDistributionResponse test = underwritingService.negateDistribution(ndr);
+		logger.info("test response" + test.toString());
+		return test;
 	}
 }

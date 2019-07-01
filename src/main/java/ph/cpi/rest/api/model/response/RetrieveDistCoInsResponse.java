@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.underwriting.DistCoIns;
 
 public class RetrieveDistCoInsResponse {
 	private List<DistCoIns> distCoInsList;
+	private List<DistCoIns>	postedDist;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
 	
@@ -29,10 +30,15 @@ public class RetrieveDistCoInsResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
+	public List<DistCoIns> getPostedDist() {
+		return postedDist;
+	}
+	public void setPostedDist(List<DistCoIns> postedDist) {
+		this.postedDist = postedDist;
+	}
 	@Override
 	public String toString() {
-		return "RetrieveDistCoInsResponse [distCoInsList=" + distCoInsList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveDistCoInsResponse [distCoInsList=" + distCoInsList + ", postedDist=" + postedDist
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }
