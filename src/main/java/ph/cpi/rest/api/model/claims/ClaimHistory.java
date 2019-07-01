@@ -10,7 +10,9 @@ public class ClaimHistory {
 	private Integer  	projId;
 	private Integer  	histNo;
 	private String 	 	histCategory;
+	private String 	 	histCatDesc;
 	private String 	 	histType;
+	private String 	 	histTypeDesc;
 	private String 	 	exGratia;
 	private String 	 	currencyCd;
 	private Integer  	currencyRt;
@@ -53,11 +55,23 @@ public class ClaimHistory {
 	public void setHistCategory(String histCategory) {
 		this.histCategory = histCategory;
 	}
+	public String getHistCatDesc() {
+		return histCatDesc;
+	}
+	public void setHistCatDesc(String histCatDesc) {
+		this.histCatDesc = histCatDesc;
+	}
 	public String getHistType() {
 		return histType;
 	}
 	public void setHistType(String histType) {
 		this.histType = histType;
+	}
+	public String getHistTypeDesc() {
+		return histTypeDesc;
+	}
+	public void setHistTypeDesc(String histTypeDesc) {
+		this.histTypeDesc = histTypeDesc;
 	}
 	public String getExGratia() {
 		return exGratia;
@@ -134,10 +148,10 @@ public class ClaimHistory {
 	@Override
 	public String toString() {
 		return "ClaimHistory [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", histNo=" + histNo
-				+ ", histCategory=" + histCategory + ", histType=" + histType + ", exGratia=" + exGratia
-				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt
-				+ ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc + ", histType=" + histType
+				+ ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
+				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo="
+				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

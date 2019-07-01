@@ -80,7 +80,9 @@
 		<result property="projId"		column="PROJ_ID"/>
 		<result property="histNo"		column="HIST_NO"/>
 		<result property="histCategory"	column="HIST_CATEGORY"/>
+		<result property="histCatDesc"	column="HIST_CAT_DESC"/>
 		<result property="histType"		column="HIST_TYPE"/>
+		<result property="histTypeDesc" column="HIST_TYPE_DESC"/>
 		<result property="exGratia"		column="EX_GRATIA"/>
 		<result property="currencyCd"	column="CURRENCY_CD"/>
 		<result property="currencyRt"	column="CURRENCY_RT"/>
