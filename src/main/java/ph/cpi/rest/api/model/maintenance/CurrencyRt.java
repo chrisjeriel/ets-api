@@ -9,13 +9,13 @@ public class CurrencyRt {
 	private Integer histNo;
 	private BigDecimal currencyRt;
 	private DateTime effDateFrom;
-	private DateTime effDateTo;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public String getCurrencyCd() {
 		return currencyCd;
 	}
@@ -39,12 +39,6 @@ public class CurrencyRt {
 	}
 	public void setEffDateFrom(DateTime effDateFrom) {
 		this.effDateFrom = effDateFrom;
-	}
-	public DateTime getEffDateTo() {
-		return effDateTo;
-	}
-	public void setEffDateTo(DateTime effDateTo) {
-		this.effDateTo = effDateTo;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -82,13 +76,19 @@ public class CurrencyRt {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "CurrencyRt [currencyCd=" + currencyCd + ", histNo=" + histNo + ", currencyRt=" + currencyRt
-				+ ", effDateFrom=" + effDateFrom + ", effDateTo=" + effDateTo + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", okDelete=" + okDelete + "]";
 	}
-	
 	
 }

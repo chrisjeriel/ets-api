@@ -1986,19 +1986,19 @@
 			
 	<update id="extractExpiringPolicy" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			DIST_EXT_PKG.extract_exp_policy(#{policyId}, 
-											#{polLineCd},
-											#{polYear},
-											#{polSeqNo},
-											#{polCedingId},
-											#{coSeriesNo},
-											#{altNo},
-											CAST(to_timestamp(#{fromExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-											CAST(to_timestamp(#{toExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-											#{lineCd}, 
-											#{cessionType}, 
-											#{cedingId}, 
-											#{extractUser},
+			DIST_EXT_PKG.extract_exp_policy(#{policyId, jdbcType=VARCHAR}, 
+											#{polLineCd, jdbcType=VARCHAR},
+											#{polYear, jdbcType=VARCHAR},
+											#{polSeqNo, jdbcType=VARCHAR},
+											#{polCedingId, jdbcType=VARCHAR},
+											#{coSeriesNo, jdbcType=VARCHAR},
+											#{altNo, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{fromExpiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											CAST(to_timestamp(#{toExpiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											#{lineCd, jdbcType=VARCHAR}, 
+											#{cessionType, jdbcType=VARCHAR}, 
+											#{cedingId, jdbcType=VARCHAR}, 
+											#{extractUser, jdbcType=VARCHAR},
 											#{recordCount, mode=OUT, jdbcType=INTEGER}
 										   );
 		END;
