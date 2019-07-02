@@ -446,7 +446,9 @@
 	
 	<select id="retrieveChangeClmStatus" resultMap="changeClmStatusMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(CLM_CHANGE_STATUS_PKG.ret_change_stat(#{claimId, jdbcType=VARCHAR},
+																	  #{claimNo, jdbcType=VARCHAR},
 																	  #{policyId, jdbcType=VARCHAR},
+																	  #{policyNo, jdbcType=VARCHAR},
 																	  #{cessionId, jdbcType=VARCHAR},
 																	  #{cedingId, jdbcType=VARCHAR},
 																	  #{riskId, jdbcType=VARCHAR},

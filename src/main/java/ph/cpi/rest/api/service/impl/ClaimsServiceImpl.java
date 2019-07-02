@@ -201,7 +201,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		RetrieveChangeClaimStatusResponse response = new RetrieveChangeClaimStatusResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("claimId", rccsr.getClaimId());
+		params.put("claimNo", rccsr.getClaimNo());
 		params.put("policyId", rccsr.getPolicyId());
+		params.put("policyNo", rccsr.getPolicyNo());
 		params.put("cessionId", rccsr.getCessionId());
 		params.put("cedingId", rccsr.getCedingId());
 		params.put("riskId", rccsr.getRiskId());
