@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
@@ -81,6 +82,7 @@ import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
@@ -615,5 +617,14 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/saveExpCoverage");
 		logger.info("SaveExpCovRequest : " + eepr.toString());
 		return underwritingService.saveExpCoverage(eepr);
+	}
+	
+	@PostMapping(path="negateDistribution")
+	public @ResponseBody NegateDistributionResponse negateDistribution(@RequestBody NegateDistributionRequest ndr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/negateDistribution");
+		logger.info("NegateDistributionRequest : " + ndr.toString());
+		NegateDistributionResponse test = underwritingService.negateDistribution(ndr);
+		logger.info("test response" + test.toString());
+		return test;
 	}
 }

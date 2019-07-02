@@ -6,10 +6,13 @@ import org.joda.time.DateTime;
 
 public class ClaimHistory {
 	private Integer 	claimId;
+	private String 		claimNo;
 	private Integer  	projId;
 	private Integer  	histNo;
 	private String 	 	histCategory;
+	private String 	 	histCatDesc;
 	private String 	 	histType;
+	private String 	 	histTypeDesc;
 	private String 	 	exGratia;
 	private String 	 	currencyCd;
 	private Integer  	currencyRt;
@@ -27,6 +30,12 @@ public class ClaimHistory {
 	}
 	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
+	}
+	public String getClaimNo() {
+		return claimNo;
+	}
+	public void setClaimNo(String claimNo) {
+		this.claimNo = claimNo;
 	}
 	public Integer getProjId() {
 		return projId;
@@ -46,11 +55,23 @@ public class ClaimHistory {
 	public void setHistCategory(String histCategory) {
 		this.histCategory = histCategory;
 	}
+	public String getHistCatDesc() {
+		return histCatDesc;
+	}
+	public void setHistCatDesc(String histCatDesc) {
+		this.histCatDesc = histCatDesc;
+	}
 	public String getHistType() {
 		return histType;
 	}
 	public void setHistType(String histType) {
 		this.histType = histType;
+	}
+	public String getHistTypeDesc() {
+		return histTypeDesc;
+	}
+	public void setHistTypeDesc(String histTypeDesc) {
+		this.histTypeDesc = histTypeDesc;
 	}
 	public String getExGratia() {
 		return exGratia;
@@ -126,11 +147,11 @@ public class ClaimHistory {
 	}
 	@Override
 	public String toString() {
-		return "ClaimHistory [claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory="
-				+ histCategory + ", histType=" + histType + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
+		return "ClaimHistory [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", histNo=" + histNo
+				+ ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc + ", histType=" + histType
+				+ ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo="
 				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-
 }
