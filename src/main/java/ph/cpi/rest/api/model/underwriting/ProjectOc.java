@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
@@ -21,7 +23,7 @@ public class ProjectOc {
 	private String blockDesc;
 	private String latitude;
 	private String longitude;
-	private Integer totalSi;
+	private BigDecimal totalSi;
 	private String objectId;
 	private String objectDesc;
 	private String site;
@@ -162,11 +164,11 @@ public class ProjectOc {
 		this.longitude = longitude;
 	}
 
-	public Integer getTotalSi() {
+	public BigDecimal getTotalSi() {
 		return totalSi;
 	}
 
-	public void setTotalSi(Integer totalSi) {
+	public void setTotalSi(BigDecimal totalSi) {
 		this.totalSi = totalSi;
 	}
 
