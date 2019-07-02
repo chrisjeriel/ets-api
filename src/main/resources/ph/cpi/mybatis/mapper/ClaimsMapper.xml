@@ -154,7 +154,6 @@
 		<result property="updateUser"     	column="UPDATE_USER" />
 		<result property="updateDate"     	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
-		<association property="clmProject" resultMap="claimProjectMap"></association>
 		<association property="clmDeductibles" resultMap="claimDeductiblesMap"></association>
 	</resultMap>
 	
@@ -551,6 +550,7 @@
 		BEGIN
 			CLM_GEN_INFO_PKG.save_clm_gen_info(
 				#{claimNo, mode=OUT, jdbcType=VARCHAR},
+				#{refPolId, jdbcType=INTEGER},
 				#{claimId, mode=INOUT, jdbcType=INTEGER},
 				#{lineCd, jdbcType=VARCHAR},
 				#{polYear, jdbcType=INTEGER},

@@ -276,6 +276,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("claimNo", "");
+		params.put("refPolId", scgir.getRefPolId());
 		params.put("claimId", scgir.getClaimId());
 		params.put("lineCd", scgir.getLineCd());
 		params.put("polYear", scgir.getPolYear());

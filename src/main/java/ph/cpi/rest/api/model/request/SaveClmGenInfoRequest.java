@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class SaveClmGenInfoRequest {
 
+	private Integer refPolId;
 	private Integer claimId;
 	private String lineCd;
 	private Integer polYear;
@@ -64,6 +65,12 @@ public class SaveClmGenInfoRequest {
 	private String prjUpdateUser;
 	private String prjUpdateDate;
 	
+	public Integer getRefPolId() {
+		return refPolId;
+	}
+	public void setRefPolId(Integer refPolId) {
+		this.refPolId = refPolId;
+	}
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -432,10 +439,10 @@ public class SaveClmGenInfoRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveClmGenInfoRequest [claimId=" + claimId + ", lineCd=" + lineCd + ", polYear=" + polYear
-				+ ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo="
-				+ altNo + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd=" + clmStatCd
-				+ ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", coRefNo=" + coRefNo
+		return "SaveClmGenInfoRequest [refPolId=" + refPolId + ", claimId=" + claimId + ", lineCd=" + lineCd
+				+ ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId + ", coSeriesNo="
+				+ coSeriesNo + ", altNo=" + altNo + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd="
+				+ clmStatCd + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", coRefNo=" + coRefNo
 				+ ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
 				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd + ", coClmNo="
 				+ coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod=" + lossPeriod
