@@ -2280,7 +2280,7 @@
 				#{copyFromCurrencyCd, jdbcType=VARCHAR},
 				#{copyToLineCd, jdbcType=VARCHAR},
 				#{copyToLineClassCd, jdbcType=VARCHAR},
-				#{copyToLineCurrencyCd, jdbcType=VARCHAR},
+				#{copyToCurrencyCd, jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},

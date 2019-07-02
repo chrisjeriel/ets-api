@@ -79,7 +79,7 @@ public class Claims {
 	private List<ClaimDeductibles> clmDeductibles;
 	
 //	private List<Attachment> attachments; --Replced with 'clmAttachments' only
-	private List<ClaimReserve> clmReserve;
+	private ClaimReserve clmReserve;
 	
 	private List<Attachment> clmAttachments;
 	
@@ -443,9 +443,6 @@ public class Claims {
 	public void setTotalLossExpPd(String totalLossExpPd) {
 		this.totalLossExpPd = totalLossExpPd;
 	}
-	public String getCreateUser() {
-		return createUser;
-	}
 	public String getReasonCd() {
 		return reasonCd;
 	}
@@ -457,6 +454,9 @@ public class Claims {
 	}
 	public void setReasonDesc(String reasonDesc) {
 		this.reasonDesc = reasonDesc;
+	}
+	public String getCreateUser() {
+		return createUser;
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
@@ -503,10 +503,10 @@ public class Claims {
 	public void setClmDeductibles(List<ClaimDeductibles> clmDeductibles) {
 		this.clmDeductibles = clmDeductibles;
 	}
-	public List<ClaimReserve> getClmReserve() {
+	public ClaimReserve getClmReserve() {
 		return clmReserve;
 	}
-	public void setClmReserve(List<ClaimReserve> clmReserve) {
+	public void setClmReserve(ClaimReserve clmReserve) {
 		this.clmReserve = clmReserve;
 	}
 	public List<Attachment> getClmAttachments() {
@@ -542,5 +542,4 @@ public class Claims {
 				+ ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments="
 				+ clmAttachments + "]";
 	}
-
 }

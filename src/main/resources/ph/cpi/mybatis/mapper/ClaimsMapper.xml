@@ -69,7 +69,7 @@
 		<association property="project" resultMap="clmProjectAssoc" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
 		<association property="clmAttachments" resultMap="assocAttachmentMap"></association>
-		
+		<association property="clmReserve" resultMap="claimReserveMap" />
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimHistory" id="claimHistoryMap">
@@ -152,6 +152,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.Project" id="clmProjectAssoc">
+		<result property="claimId" 			column="CLAIM_ID"/>
 		<result property="projId" 			column="PROJ_ID"/>
 		<result property="projDesc" 		column="PROJ_DESC"/>
 		<result property="riskId" 			column="RISK_ID"/>
@@ -189,9 +190,13 @@
 		<result property="lossResAmt" 		column="LOSS_RES_AMT"/>
 		<result property="lossPdAmt" 		column="LOSS_PD_AMT"/>
 		<result property="lossStatCd" 		column="LOSS_STAT_CD"/>
+		<result property="lossStatus" 		column="LOSS_STATUS"/>
 		<result property="expResAmt" 		column="EXP_RES_AMT"/>
 		<result property="expPdAmt" 		column="EXP_PD_AMT"/>
 		<result property="expStatCd" 		column="EXP_STAT_CD"/>
+		<result property="expStatus" 		column="EXP_STATUS"/>
+		<result property="totalReserve"		column="TOTAL_RESERVE"/>
+		<result property="totalPayment"		column="TOTAL_PAYMENT"/>
 		<result property="createUser" 		column="RES_CREATE_USER"/>
 		<result property="createDate" 		column="RES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="RES_UPDATE_USER"/>
@@ -499,5 +504,96 @@
     		</foreach>
     	END;
 	</update>
+	
+	<update id="saveClmAdjuster" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+		   <foreach collection="deleteAdjuster" item="del">
+		   		CLM_ADJUSTER_PKG.del_adjuster(
+		   			#{del.claimId, jdbcType=INTEGER},
+		   			#{del.adjId, jdbcType=VARCHAR}
+		   		);
+		   </foreach>
+		   
+		   <foreach collection="saveAdjuster" item="save">
+		   		CLM_ADJUSTER_PKG.save_adjuster(
+		   			#{save.claimId, jdbcType=INTEGER},
+		   			#{save.adjId, jdbcType=VARCHAR},
+		   			#{save.adjRefNo, jdbcType=VARCHAR},
+		   			#{save.createUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{save.updateUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		   		);
+		   </foreach>
+		END;
+	</update>
 		
+	<update id="saveClmGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLM_GEN_INFO_PKG.save_clm_gen_info(
+				#{claimNo, mode=OUT, jdbcType=VARCHAR},
+				#{claimId, mode=INOUT, jdbcType=INTEGER},
+				#{lineCd, jdbcType=VARCHAR},
+				#{polYear, jdbcType=INTEGER},
+				#{polSeqNo, jdbcType=INTEGER},
+				#{cedingId, jdbcType=VARCHAR},
+				#{coSeriesNo, jdbcType=INTEGER},
+				#{altNo, jdbcType=INTEGER},
+				#{clmYear, jdbcType=INTEGER},
+				#{clmSeqNo, jdbcType=INTEGER},
+				#{clmStatCd, jdbcType=VARCHAR},
+				#{cessionId, jdbcType=INTEGER},
+				#{lineClassCd, jdbcType=VARCHAR},
+				#{coRefNo, jdbcType=VARCHAR},
+				#{reinsurerId, jdbcType=VARCHAR},
+				#{riBinderNo, jdbcType=VARCHAR},
+				#{mbiRefNo, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{reasonCd, jdbcType=VARCHAR},
+				#{coClmNo, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{lossCd, jdbcType=VARCHAR},
+				#{lossPeriod, jdbcType=VARCHAR},
+				#{lossDtl, jdbcType=VARCHAR},
+				#{eventTypeCd, jdbcType=VARCHAR},
+				#{eventCd, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{reportDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{reportedBy, jdbcType=VARCHAR},
+				#{processedBy, jdbcType=VARCHAR},
+				#{oldStatCd, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{closeDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{refreshSw, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{lapseFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{lapseTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{maintenanceFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{maintenanceTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{projId, jdbcType=INTEGER},
+				#{projDesc, jdbcType=VARCHAR},
+				#{riskId, jdbcType=INTEGER},
+				#{regionCd, jdbcType=INTEGER},
+				#{provinceCd, jdbcType=INTEGER},
+				#{cityCd, jdbcType=INTEGER},
+				#{districtCd, jdbcType=VARCHAR},
+				#{blockCd, jdbcType=VARCHAR},
+				#{latitude, jdbcType=VARCHAR},
+				#{longitude, jdbcType=VARCHAR},
+				#{objectId, jdbcType=VARCHAR},
+				#{site, jdbcType=VARCHAR},
+				#{duration, jdbcType=VARCHAR},
+				#{testing, jdbcType=VARCHAR},
+				#{ipl, jdbcType=INTEGER},
+				#{timeExc, jdbcType=INTEGER},
+				#{noClaimPd, jdbcType=INTEGER},
+				#{prjCreateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{prjCreateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{prjUpdateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 </mapper>
