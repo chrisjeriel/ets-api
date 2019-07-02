@@ -223,7 +223,7 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimAdjuster" id="clmAdjusterListAssoc">
-		<result property="claimId"			column="CLAIM_ID" />
+		<result property="claimId"			column="ADJ_CLAIM_ID" />
 		<result property="adjId"     		column="ADJ_ID" />
 		<result property="adjName"     		column="ADJ_NAME" />
 		<result property="adjRefNo"     	column="ADJ_REF_NO" />
