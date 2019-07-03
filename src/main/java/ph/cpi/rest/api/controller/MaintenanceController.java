@@ -822,4 +822,11 @@ public class MaintenanceController {
 		logger.info("CopyPoolRetHistRequest : " + cprhr.toString());
 		return maintenanceService.copyPoolRetHist(cprhr);
 	}
+	
+	@GetMapping(path="retrieveMtnLossCdLov")
+	public @ResponseBody RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnLossCdLov");
+		logger.info("RetrieveMtnLossCdLovRequest : " + rmlcl.toString());
+		return maintenanceService.retrieveMtnLossCdLov(rmlcl);
+	}
 }

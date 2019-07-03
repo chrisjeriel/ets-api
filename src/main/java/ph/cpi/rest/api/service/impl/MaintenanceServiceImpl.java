@@ -1933,4 +1933,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		return cprhResponse;
 	}
+
+	@Override
+	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
+		RetrieveMtnLossCdLovResponse rmlclResponse = new RetrieveMtnLossCdLovResponse();
+		HashMap<String, Object> searchParams = new HashMap<String, Object>();
+		
+		searchParams.put("lossCdType", rmlcl.getLossCdType());
+		searchParams.put("searchStr", rmlcl.getSearchStr());
+		
+		rmlclResponse.setLossCdList(maintenanceDao.retrieveMtnLossCdLov(searchParams));
+		
+		return rmlclResponse;
+	}
 }

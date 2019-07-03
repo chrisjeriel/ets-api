@@ -3232,5 +3232,15 @@
 			);
 		END;
 	</update>
+	
+	<select id="retrieveMtnLossCdLov" resultMap="mtnLossCdMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_LOSS_CD_PKG.ret_mtn_loss_cd_lov(#{lossCdType, jdbcType=VARCHAR},
+																#{searchStr, jdbcType=VARCHAR},
+																null,
+																null,
+																null,
+																null
+																))
+	</select>
     
 </mapper>
