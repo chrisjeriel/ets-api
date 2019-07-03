@@ -132,4 +132,10 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return params;
 	}
 
+	@Override
+	public Integer updateClmDetails(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("updateClmDetails",params);
+		return res;
+	}
+
 }

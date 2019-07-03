@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
+import ph.cpi.rest.api.model.request.UpdateClmDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -42,6 +43,7 @@ import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateClmDetailsResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Component
@@ -379,5 +381,28 @@ public class ClaimsServiceImpl implements ClaimsService {
 			ex.printStackTrace();
 		}
 		return scrsResponse;
+	}
+
+	@Override
+	public UpdateClmDetailsResponse updateClmDetails(UpdateClmDetailsRequest ucdr) throws SQLException {
+		UpdateClmDetailsResponse ucdResponse = new UpdateClmDetailsResponse();
+		HashMap<String, Object> ucdParams = new HashMap<String, Object>();
+		
+		ucdParams.put("claimId", ucdr.getClaimId());
+		ucdParams.put("refPolId", ucdr.getRefPolId());
+		ucdParams.put("createUser", ucdr.getCreateUser());
+		ucdParams.put("createDate", ucdr.getCreateDate());
+		ucdParams.put("updateUser", ucdr.getUpdateUser());
+		ucdParams.put("updateDate", ucdr.getUpdateDate());
+		
+		try {
+			ucdResponse.setReturnCode(claimsDao.updateClmDetails(ucdParams));
+		} catch (Exception e) {
+			ucdResponse.setReturnCode(0);
+			ucdResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + e.getCause()));
+			e.printStackTrace();
+		}
+		
+		return ucdResponse;
 	}
 }

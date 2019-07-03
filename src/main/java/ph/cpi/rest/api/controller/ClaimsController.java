@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
+import ph.cpi.rest.api.model.request.UpdateClmDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateClmDetailsResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Controller
@@ -170,4 +172,10 @@ public class ClaimsController {
 		return claimsService.saveClaimResStat(scrsr);
 	}
 
+	@PostMapping(path="updateClmDetails")
+	public @ResponseBody UpdateClmDetailsResponse updateClmDetails(@RequestBody UpdateClmDetailsRequest ucdr) throws SQLException {
+		logger.info("POST: /api/claims-service/updateClmDetails");
+		logger.info("UpdateClmDetailsRequest : " + ucdr.toString());
+		return claimsService.updateClmDetails(ucdr);
+	}
 }

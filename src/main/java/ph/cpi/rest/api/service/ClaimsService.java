@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
+import ph.cpi.rest.api.model.request.UpdateClmDetailsRequest;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -36,6 +37,7 @@ import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
 import ph.cpi.rest.api.model.response.SaveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
+import ph.cpi.rest.api.model.response.UpdateClmDetailsResponse;
 
 @Service
 public interface ClaimsService {
@@ -56,5 +58,6 @@ public interface ClaimsService {
 	public SaveClmAdjusterResponse saveClmAdjuster(SaveClmAdjusterRequest scar) throws SQLException;
 	public SaveClmGenInfoResponse saveClmGenInfo(SaveClmGenInfoRequest scgir) throws SQLException;
 	public SaveClaimResStatResponse saveClaimResStat(SaveClaimResStatRequest scrsr) throws SQLException;
+	public UpdateClmDetailsResponse updateClmDetails(UpdateClmDetailsRequest ucdr) throws SQLException;
 
 }

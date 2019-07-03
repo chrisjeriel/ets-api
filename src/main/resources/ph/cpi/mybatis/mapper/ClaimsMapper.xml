@@ -616,4 +616,17 @@
 		END;
 	</update>
 	
+	<update id="updateClmDetails" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLM_GEN_INFO_PKG.update_clm_dtls(
+				#{claimId, jdbcType=INTEGER},
+				#{refPolId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
 </mapper>
