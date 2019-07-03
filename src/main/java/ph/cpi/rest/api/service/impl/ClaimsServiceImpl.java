@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveMtnClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
@@ -47,9 +49,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		RetrieveClaimHistoryResponse rchResponse = new RetrieveClaimHistoryResponse();
 		HashMap<String, Object> retClmHistoryParams = new HashMap<String, Object>();
 		retClmHistoryParams.put("claimId", rchp.getClaimId());
-		retClmHistoryParams.put("projId", rchp.getProjId());
+		/*retClmHistoryParams.put("projId", rchp.getProjId());
 		retClmHistoryParams.put("histNo", rchp.getHistNo());
-		rchResponse.setClaimHistoryList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
+		rchResponse.setClaimHistoryList(claimsDao.retrieveClaimHistory(retClmHistoryParams));*/
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
 	}
@@ -201,4 +203,18 @@ public class ClaimsServiceImpl implements ClaimsService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/*@Override
+	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnClmCashCallResponse rccResponse = new RetrieveMtnClmCashCallResponse();
+		HashMap<String, Object> retrieveClmCashCallParams = new HashMap<String, Object>();
+		retrieveClmCashCallParams.put("treatyId", rccp.getTreatyId());
+		retrieveClmCashCallParams.put("TreatyCedId", rccp.getTreatyCedId());
+		retrieveClmCashCallParams.put("currCd", rccp.getCurrCd());
+		rccResponse.setCashCallList(cashCallList);
+		logger.info("retrieveMtnClmCashCallResponse : " + rccResponse.toString());
+		return rccResponse;
+	}*/
 }

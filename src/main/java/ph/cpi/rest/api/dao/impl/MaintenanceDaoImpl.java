@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
 import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
@@ -848,6 +849,20 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer copyPoolRetHist(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("copyPoolRetHist", params);
+		return res;
+	}
+
+	@Override
+	public List<MtnClmCashCall> retrieveMtnCashCall(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<MtnClmCashCall> res = sqlSession.selectList("retrieveMtnClmCashCall", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnClmCashCall(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer res = sqlSession.update("saveMtnClmCashCall", params);
 		return res;
 	}
 }

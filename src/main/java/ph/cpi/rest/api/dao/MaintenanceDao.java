@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
+import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
 import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
@@ -170,4 +171,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkPoolRetHist(HashMap<String, Object> params) throws SQLException;
 	public Integer copyPoolRetHist(HashMap<String, Object> params) throws SQLException;
+	public List<MtnClmCashCall> retrieveMtnCashCall(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveMtnClmCashCall(final HashMap<String, Object> params) throws SQLException;
 }
