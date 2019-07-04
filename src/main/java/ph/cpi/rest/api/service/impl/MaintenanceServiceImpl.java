@@ -331,7 +331,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         retrieveMtnBlockParams.put("cityCd", retMtnBlock.getCityCd());
         retrieveMtnBlockParams.put("districtCd", retMtnBlock.getDistrictCd());
         retrieveMtnBlockParams.put("blockCd", retMtnBlock.getBlockCd());
-        
+        retrieveMtnBlockParams.put("activeTag", retMtnBlock.getActiveTag());
         rmbResponse.setRegion(maintenanceDao.retrieveMaintenanceBlockList(retrieveMtnBlockParams));
         
         logger.info("retrieveMaintenanceBlockResponse : " + rmbResponse.toString());
