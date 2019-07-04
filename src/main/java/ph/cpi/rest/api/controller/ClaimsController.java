@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimResStatRequest;
@@ -38,6 +39,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimResStatResponse;
@@ -177,5 +179,12 @@ public class ClaimsController {
 		logger.info("POST: /api/claims-service/updateClmDetails");
 		logger.info("UpdateClmDetailsRequest : " + ucdr.toString());
 		return claimsService.updateClmDetails(ucdr);
+	}
+	
+	@GetMapping(path="retrieveClmPaytReq")
+	public @ResponseBody RetrieveClmPaytReqResponse retrieveClmPaytReq(RetrieveClmPaytReqRequest rcprr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClmPaytReq");
+		logger.info("RetrieveClmPaytReqRequest : " + rcprr.toString());
+		return claimsService.retrieveClmPaytReq(rcprr);
 	}
 }
