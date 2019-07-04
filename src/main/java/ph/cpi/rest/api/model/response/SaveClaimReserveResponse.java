@@ -1,12 +1,13 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
 public class SaveClaimReserveResponse {
-	private List<Error> errorList;
+	private List<Error> errorList = new ArrayList<Error>();
 	private List<Message> messageList;
 	private Integer returnCode;
 	public List<Error> getErrorList() {
