@@ -1,44 +1,42 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
-public class CurrencyRt {
-	
-	private String currencyCd;
-	private Integer histNo;
-	private BigDecimal currencyRt;
-	private DateTime effDateFrom;
+public class ClaimReason {
+	private String reasonCd;
+	private String description;
+	private String clmStatCd;
+	private String clmStatDesc;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private String okDelete;
-	public String getCurrencyCd() {
-		return currencyCd;
+	private Integer okDelete;
+	public String getReasonCd() {
+		return reasonCd;
 	}
-	public void setCurrencyCd(String currencyCd) {
-		this.currencyCd = currencyCd;
+	public void setReasonCd(String reasonCd) {
+		this.reasonCd = reasonCd;
 	}
-	public Integer getHistNo() {
-		return histNo;
+	public String getDescription() {
+		return description;
 	}
-	public void setHistNo(Integer histNo) {
-		this.histNo = histNo;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public BigDecimal getCurrencyRt() {
-		return currencyRt;
+	public String getClmStatCd() {
+		return clmStatCd;
 	}
-	public void setCurrencyRt(BigDecimal currencyRt) {
-		this.currencyRt = currencyRt;
+	public void setClmStatCd(String clmStatCd) {
+		this.clmStatCd = clmStatCd;
 	}
-	public DateTime getEffDateFrom() {
-		return effDateFrom;
+	public String getClmStatDesc() {
+		return clmStatDesc;
 	}
-	public void setEffDateFrom(DateTime effDateFrom) {
-		this.effDateFrom = effDateFrom;
+	public void setClmStatDesc(String clmStatDesc) {
+		this.clmStatDesc = clmStatDesc;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -76,19 +74,17 @@ public class CurrencyRt {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	public String getOkDelete() {
+	public Integer getOkDelete() {
 		return okDelete;
 	}
-	public void setOkDelete(String okDelete) {
+	public void setOkDelete(Integer okDelete) {
 		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
-		return "CurrencyRt [currencyCd=" + currencyCd + ", histNo=" + histNo + ", currencyRt=" + currencyRt
-				+ ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+		return "ClaimReason [reasonCd=" + reasonCd + ", description=" + description + ", clmStatCd=" + clmStatCd
+				+ ", clmStatDesc=" + clmStatDesc + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + ", okDelete=" + okDelete + "]";
 	}
-	
 }

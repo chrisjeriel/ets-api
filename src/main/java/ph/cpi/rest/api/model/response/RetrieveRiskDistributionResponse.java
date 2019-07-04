@@ -45,11 +45,10 @@ public class RetrieveRiskDistributionResponse {
 	public void setSortReponse(SortResponse sortReponse) {
 		this.sortReponse = sortReponse;
 	}
-	
 	@Override
 	public String toString() {
 		return "RetrieveRiskDistributionResponse [distWrisk=" + distWrisk + ", wriskLimit=" + wriskLimit
-				+ ", distRiskWparam=" + distRiskWparam + ", paginationResponse=" + paginationResponse + ", sortReponse="
-				+ sortReponse + "]";
+				+ ", distRiskWparam=" + distRiskWparam + ", paginationResponse="
+				+ paginationResponse + ", sortReponse=" + sortReponse + "]";
 	}
 }

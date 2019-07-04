@@ -8,6 +8,7 @@ public class ClaimDeductibles {
 	private String claimId;
 	private String coverCd; 
 	private String endtCd;
+	private String deductibleLevel;
 	private String deductibleCd;
 	private String deductibleTitle;
 	private BigDecimal deductibleRt;
@@ -34,6 +35,13 @@ public class ClaimDeductibles {
 	}
 	public void setEndtCd(String endtCd) {
 		this.endtCd = endtCd;
+	}
+	
+	public String getDeductibleLevel() {
+		return deductibleLevel;
+	}
+	public void setDeductibleLevel(String deductibleLevel) {
+		this.deductibleLevel = deductibleLevel;
 	}
 	public String getDeductibleCd() {
 		return deductibleCd;

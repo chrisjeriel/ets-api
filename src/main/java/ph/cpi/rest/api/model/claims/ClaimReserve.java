@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.claims;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -10,9 +11,13 @@ public class ClaimReserve {
 	private Integer  lossResAmt;
 	private Integer  lossPdAmt;
 	private String 	 lossStatCd;
+	private String 	 lossStatus;
 	private Integer  expResAmt;
 	private Integer  expPdAmt;
 	private String 	 expStatCd;
+	private String 	 expStatus;
+	private BigDecimal totalReserve;
+	private BigDecimal totalPayment;
 	private String 	 createUser;
 	private DateTime createDate;
 	private String 	 updateUser;
@@ -49,6 +54,12 @@ public class ClaimReserve {
 	public void setLossStatCd(String lossStatCd) {
 		this.lossStatCd = lossStatCd;
 	}
+	public String getLossStatus() {
+		return lossStatus;
+	}
+	public void setLossStatus(String lossStatus) {
+		this.lossStatus = lossStatus;
+	}
 	public Integer getExpResAmt() {
 		return expResAmt;
 	}
@@ -66,6 +77,24 @@ public class ClaimReserve {
 	}
 	public void setExpStatCd(String expStatCd) {
 		this.expStatCd = expStatCd;
+	}
+	public String getExpStatus() {
+		return expStatus;
+	}
+	public void setExpStatus(String expStatus) {
+		this.expStatus = expStatus;
+	}
+	public BigDecimal getTotalReserve() {
+		return totalReserve;
+	}
+	public void setTotalReserve(BigDecimal totalReserve) {
+		this.totalReserve = totalReserve;
+	}
+	public BigDecimal getTotalPayment() {
+		return totalPayment;
+	}
+	public void setTotalPayment(BigDecimal totalPayment) {
+		this.totalPayment = totalPayment;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -100,8 +129,10 @@ public class ClaimReserve {
 	@Override
 	public String toString() {
 		return "ClaimReserve [claimId=" + claimId + ", projId=" + projId + ", lossResAmt=" + lossResAmt + ", lossPdAmt="
-				+ lossPdAmt + ", lossStatCd=" + lossStatCd + ", expResAmt=" + expResAmt + ", expPdAmt=" + expPdAmt
-				+ ", expStatCd=" + expStatCd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", clmHistory=" + clmHistory + "]";
+				+ lossPdAmt + ", lossStatCd=" + lossStatCd + ", lossStatus=" + lossStatus + ", expResAmt=" + expResAmt
+				+ ", expPdAmt=" + expPdAmt + ", expStatCd=" + expStatCd + ", expStatus=" + expStatus + ", totalReserve="
+				+ totalReserve + ", totalPayment=" + totalPayment + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", clmHistory="
+				+ clmHistory + "]";
 	}
 }

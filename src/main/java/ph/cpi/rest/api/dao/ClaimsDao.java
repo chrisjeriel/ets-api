@@ -17,16 +17,15 @@ public interface ClaimsDao {
 	public Claims retrieveClmGenInfo(final HashMap<String, Object> params) throws SQLException;
 	public Claims retrieveClaimSecCover(final HashMap<String, Object> params)throws SQLException;
 	public HashMap<String, Object> saveClaimSecCover(final HashMap<String, Object> params ) throws SQLException;
-	
-//	public Claims retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
-//	public Integer saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
+	public List<Claims> retrieveChangeClmStatus(final HashMap<String, Object> params) throws SQLException;
 	public List<ClaimApprovedAmt> retrieveClaimApprovedAmt(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveClaimApprovedAmt(final HashMap<String, Object> params) throws SQLException;
-	
 	public List<Claims> retrieveClaimReserve(final HashMap<String, Object> params ) throws SQLException;
-
-
 	public List<Attachment> retrieveClaimsAttachmentList(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object>saveClaimsAttachment (final HashMap<String, Object> params ) throws SQLException;
+	public Integer updateClaimStatus(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveClmAdjuster(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveClmGenInfo (final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveClaimResStat(final HashMap<String, Object> params) throws SQLException;
 
 }

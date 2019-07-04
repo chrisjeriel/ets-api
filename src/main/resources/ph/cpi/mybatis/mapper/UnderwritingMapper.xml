@@ -151,6 +151,7 @@
 		<result property="expiryDate" 			column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="inceptDate" 			column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="acctDate" 			column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDate" 				column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="status"	 			column="STATUS"/>
 		<result property="statusDesc"	 		column="STATUS_DESC"/>
 		<result property="altNo"	 		    column="ALT_NO"/>
@@ -1070,7 +1071,7 @@
 						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
 			<foreach collection="saveOtherCharges" item="otherCharges">
-					POL_INWARD_PKG.save_oth_charges(#{policyId},#{otherCharges.instNo},#{otherCharges.chargeCd},#{otherCharges.amount},
+					POL_INWARD_PKG.save_oth_charges(#{policyId},#{otherCharges.instNo},#{otherCharges.chargeCd},#{otherCharges.amount,jdbcType=VARCHAR},
 							#{otherCharges.createUser},
 							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
 							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
@@ -1086,7 +1087,7 @@
 						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
 						CAST(to_timestamp(#{polInward.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				<foreach collection="polInward.otherCharges" item="otherCharges">
-					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount},
+					POL_INWARD_PKG.save_oth_charges(#{policyId},v_instNo,#{otherCharges.chargeCd},#{otherCharges.amount,jdbcType=VARCHAR},
 							#{otherCharges.createUser},
 							CAST(to_timestamp(#{otherCharges.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{otherCharges.updateUser},
 							CAST(to_timestamp(#{otherCharges.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
@@ -1985,19 +1986,19 @@
 			
 	<update id="extractExpiringPolicy" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			DIST_EXT_PKG.extract_exp_policy(#{policyId}, 
-											#{polLineCd},
-											#{polYear},
-											#{polSeqNo},
-											#{polCedingId},
-											#{coSeriesNo},
-											#{altNo},
-											CAST(to_timestamp(#{fromExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-											CAST(to_timestamp(#{toExpiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-											#{lineCd}, 
-											#{cessionType}, 
-											#{cedingId}, 
-											#{extractUser},
+			DIST_EXT_PKG.extract_exp_policy(#{policyId, jdbcType=VARCHAR}, 
+											#{polLineCd, jdbcType=VARCHAR},
+											#{polYear, jdbcType=VARCHAR},
+											#{polSeqNo, jdbcType=VARCHAR},
+											#{polCedingId, jdbcType=VARCHAR},
+											#{coSeriesNo, jdbcType=VARCHAR},
+											#{altNo, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{fromExpiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											CAST(to_timestamp(#{toExpiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+											#{lineCd, jdbcType=VARCHAR}, 
+											#{cessionType, jdbcType=VARCHAR}, 
+											#{cedingId, jdbcType=VARCHAR}, 
+											#{extractUser, jdbcType=VARCHAR},
 											#{recordCount, mode=OUT, jdbcType=INTEGER}
 										   );
 		END;
@@ -2590,5 +2591,15 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="negateDistribution" parameterType="java.util.Map">
+		BEGIN
+			DIST_PKG.negate_dist(#{riskDistId},#{distId},#{policyId},#{updateUser});
+		END;
+	</update>
+	
+	<select id="getPostedCoIns" resultMap="retDistCoInsMap">
+		SELECT * FROM TABLE(DIST_PKG.GET_POSTED_COINS(#{riskDistId},#{policyId}))
+	</select>
 
 </mapper>

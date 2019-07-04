@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
+import ph.cpi.rest.api.model.maintenance.ClaimReason;
 import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
@@ -168,6 +169,8 @@ public interface MaintenanceDao {
 	public Integer checkSecIITrtyLimit(HashMap<String, Object> params) throws SQLException;
 	public Integer copySecIITrtyLimit(HashMap<String, Object> params) throws SQLException;
 	public List<PoolRetHist> retrieveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
+	public List<ClaimReason> retrieveMtnClaimReason(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnClaimReason(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnPoolRetHist(final HashMap<String, Object> params) throws SQLException;
 	public Integer checkPoolRetHist(HashMap<String, Object> params) throws SQLException;
 	public Integer copyPoolRetHist(HashMap<String, Object> params) throws SQLException;

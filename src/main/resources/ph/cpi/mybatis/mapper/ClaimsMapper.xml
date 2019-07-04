@@ -28,13 +28,18 @@
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
 		<result property="lineClassDesc" 	column="LINE_CLASS_DESC"/>
 		<result property="coRefNo" 			column="CO_REF_NO"/>
+		<result property="reinsurerId"		column="REINSURER_ID"/>
+		<result property="reinsurerName"	column="REINSURER_NAME"/>
+		<result property="riBinderNo"		column="RI_BINDER_NO"/>
+		<result property="mbiRefNo"			column="MBI_REF_NO"/>
 		<result property="inceptDate" 		column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="coClaimNo" 		column="CO_CLM_NO"/>
 		<result property="lossDate" 		column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lossCd" 			column="LOSS_CD"/>
-		<result property="lossDesc" 		column="LOSS_DESC"/>
+		<result property="lossAbbr" 		column="LOSS_ABBR"/>
 		<result property="lossPeriod" 		column="LOSS_PERIOD"/>
+		<result property="lossPdAbbr" 		column="LOSS_PD_ABBR"/>
 		<result property="lossDtl" 			column="LOSS_DTL"/>
 		<result property="eventTypeCd" 		column="EVENT_TYPE_CD"/>
 		<result property="eventTypeDesc" 	column="EVENT_TYPE_DESC"/>
@@ -52,6 +57,10 @@
 		<result property="lapseTo" 			column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="maintenanceFrom" 	column="MAINTENANCE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="maintenanceTo" 	column="MAINTENANCE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="pctShare" 		column="PCT_SHARE"/>
+		<result property="totalSi" 			column="TOTAL_SI"/>
+		<result property="totalValue" 		column="TOTAL_VALUE"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
@@ -60,15 +69,20 @@
 		<association property="project" resultMap="clmProjectAssoc" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
 		<association property="clmAttachments" resultMap="assocAttachmentMap"></association>
-		
+		<association property="clmReserve" resultMap="claimReserveMap" />
 	</resultMap>
 
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimHistory" id="claimHistoryMap">
-		<result property="claimId"		column="HIST_CLAIM_ID"/>
-		<result property="projId"		column="HIST_PROJ_ID"/>
-		<result property="histNo"		column="HIST_HIST_NO"/>
+		<result property="claimNo" 		column="CLAIM_NO"/>
+		<result property="claimId" 		column="RES_CLAIM_ID"/>
+		<result property="projId" 		column="RES_PROJ_ID"/>
+		<result property="claimId"		column="CLAIM_ID"/>
+		<result property="projId"		column="PROJ_ID"/>
+		<result property="histNo"		column="HIST_NO"/>
 		<result property="histCategory"	column="HIST_CATEGORY"/>
+		<result property="histCatDesc"	column="HIST_CAT_DESC"/>
 		<result property="histType"		column="HIST_TYPE"/>
+		<result property="histTypeDesc" column="HIST_TYPE_DESC"/>
 		<result property="exGratia"		column="EX_GRATIA"/>
 		<result property="currencyCd"	column="CURRENCY_CD"/>
 		<result property="currencyRt"	column="CURRENCY_RT"/>
@@ -76,17 +90,19 @@
 		<result property="paytAmt"		column="PAYT_AMT"/>
 		<result property="refNo"		column="REF_NO"/>
 		<result property="refDate"		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="remarks"		column="HIST_REMARKS"/>
-		<result property="createUser"	column="HIST_CREATE_USER"/>
-		<result property="createDate"	column="HIST_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"	column="HIST_UPDATE_USER"/>
-		<result property="updateDate"	column="HIST_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="remarks"		column="REMARKS"/>
+		<result property="createUser"	column="CREATE_USER"/>
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER"/>
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveClaimHistory" resultMap="claimHistoryMap" parameterType="java.util.Map">
+	<select id="retrieveClaimHistory" resultMap="claimReserveMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(CLM_RES_HIST_PKG.ret_clm_res_hist(
 					#{claimId,jdbcType=INTEGER},
 					#{claimNo,jdbcType=VARCHAR},
+					#{projId,jdbcType=INTEGER},
+					#{histNo,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
 	
@@ -143,6 +159,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.Project" id="clmProjectAssoc">
+		<result property="claimId" 			column="CLAIM_ID"/>
 		<result property="projId" 			column="PROJ_ID"/>
 		<result property="projDesc" 		column="PROJ_DESC"/>
 		<result property="riskId" 			column="RISK_ID"/>
@@ -180,9 +197,13 @@
 		<result property="lossResAmt" 		column="LOSS_RES_AMT"/>
 		<result property="lossPdAmt" 		column="LOSS_PD_AMT"/>
 		<result property="lossStatCd" 		column="LOSS_STAT_CD"/>
+		<result property="lossStatus" 		column="LOSS_STATUS"/>
 		<result property="expResAmt" 		column="EXP_RES_AMT"/>
 		<result property="expPdAmt" 		column="EXP_PD_AMT"/>
 		<result property="expStatCd" 		column="EXP_STAT_CD"/>
+		<result property="expStatus" 		column="EXP_STATUS"/>
+		<result property="totalReserve"		column="TOTAL_RESERVE"/>
+		<result property="totalPayment"		column="TOTAL_PAYMENT"/>
 		<result property="createUser" 		column="RES_CREATE_USER"/>
 		<result property="createDate" 		column="RES_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="RES_UPDATE_USER"/>
@@ -246,6 +267,7 @@
 		<result property="claimId" column="DEDT_CLAIM_ID"/>
 		<result property="coverCd" column="DEDT_COVER_CD"/>
 		<result property="endtCd" column="ENDT_CD"/>
+		<result property="deductibleLevel" column="DEDUCTIBLE_LEVEL"/>
 		<result property="deductibleCd" column="DEDUCTIBLE_CD"/>
 		<result property="deductibleTitle" column="DEDUCTIBLE_TITLE"/>
 		<result property="deductibleRt" column="DEDUCTIBLE_RT"/>
@@ -335,7 +357,7 @@
 	</resultMap>
 	
 	<select id="retrieveClaimSecCover" resultMap="claimsListingMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(CLM_COVERAGE_PKG.ret_clm_cover(null,null,null,null,null,null))
+		SELECT * FROM TABLE(CLM_COVERAGE_PKG.ret_clm_cover(#{claimId, jdbcType=VARCHAR},#{claimNo, jdbcType=VARCHAR  },null,null,null,null))
 	</select>
 	
 	<update id="saveClaimSecCover" parameterType="java.util.Map">
@@ -398,6 +420,43 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.claims.Claims" id="changeClmStatusMap">
+		<result property="claimId"			column="CLAIM_ID" />
+		<result property="claimNo"			column="CLAIM_NO" />
+		<result property="cedingName"		column="CEDING_NAME" />
+		<result property="clmStatCd"		column="CLM_STAT_CD" />
+		<result property="clmStatus"		column="CLM_STATUS" />
+		<result property="policyNo"			column="POLICY_NO" />
+		<result property="insuredDesc"		column="INSURED_DESC" />
+		<result property="riskName"			column="RISK_NAME" />
+		<result property="lossDate"			column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="lossDtl"			column="LOSS_DTL" />
+		<result property="currencyCd"		column="CURRENCY_CD" />
+		<result property="totalLossExpRes"	column="T_LOSS_EXP_RES" />
+		<result property="totalLossExpPd"	column="T_LOSS_EXP_PD" />
+		<result property="processedBy"		column="PROCESSED_BY" />
+		<result property="reasonCd"			column="REASON_CD" />
+		<result property="reasonDesc"		column="REASON_DESC" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
+	</resultMap>
+	
+	<select id="retrieveChangeClmStatus" resultMap="changeClmStatusMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(CLM_CHANGE_STATUS_PKG.ret_change_stat(#{claimId, jdbcType=VARCHAR},
+																	  #{policyId, jdbcType=VARCHAR},
+																	  #{cessionId, jdbcType=VARCHAR},
+																	  #{cedingId, jdbcType=VARCHAR},
+																	  #{riskId, jdbcType=VARCHAR},
+																	  #{batchOpt, jdbcType=VARCHAR},
+																	  #{position, jdbcType=VARCHAR}, 
+																	  #{count, jdbcType=VARCHAR}, 
+																	  #{sortKey, jdbcType=VARCHAR}, 
+																	  #{order, jdbcType=VARCHAR}))
+	</select>
+
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimApprovedAmt" id="claimApprovedAmtMap">
 		<result property="claimId"		column="CLAIM_ID"/>
 		<result property="histNo"		column="HIST_NO"/>
@@ -438,5 +497,123 @@
     		</foreach>
     	END;
 	</update>
+	
+	<update id="updateClaimStatus" parameterType="java.util.Map">
+		BEGIN
+    		<foreach collection="updateClaim" item="u">
+    			CLM_CHANGE_STATUS_PKG.upd_clm_stat(
+    				#{u.claimId},
+					#{u.clmStatCd},
+					#{u.reasonCd, jdbcType=VARCHAR},
+				    #{u.updateUser},
+				    CAST(to_timestamp(#{u.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    		</foreach>
+    	END;
+	</update>
+	
+	<update id="saveClmAdjuster" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+		   <foreach collection="deleteAdjuster" item="del">
+		   		CLM_ADJUSTER_PKG.del_adjuster(
+		   			#{del.claimId, jdbcType=INTEGER},
+		   			#{del.adjId, jdbcType=VARCHAR}
+		   		);
+		   </foreach>
+		   
+		   <foreach collection="saveAdjuster" item="save">
+		   		CLM_ADJUSTER_PKG.save_adjuster(
+		   			#{save.claimId, jdbcType=INTEGER},
+		   			#{save.adjId, jdbcType=VARCHAR},
+		   			#{save.adjRefNo, jdbcType=VARCHAR},
+		   			#{save.createUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{save.updateUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		   		);
+		   </foreach>
+		END;
+	</update>
+
+	<update id="saveClaimResStat" parameterType="java.util.Map">
+		BEGIN
+			CLM_RESERVE_PKG.save_clm_res_stat(
+				#{claimId,jdbcType=INTEGER},
+				#{projId,jdbcType=INTEGER},
+				#{lossStatCd,jdbcType=VARCHAR},
+				#{expStatCd,jdbcType=VARCHAR},
+				#{updateUser,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
 		
+	<update id="saveClmGenInfo" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLM_GEN_INFO_PKG.save_clm_gen_info(
+				#{claimNo, mode=OUT, jdbcType=VARCHAR},
+				#{claimId, mode=INOUT, jdbcType=INTEGER},
+				#{lineCd, jdbcType=VARCHAR},
+				#{polYear, jdbcType=INTEGER},
+				#{polSeqNo, jdbcType=INTEGER},
+				#{cedingId, jdbcType=VARCHAR},
+				#{coSeriesNo, jdbcType=INTEGER},
+				#{altNo, jdbcType=INTEGER},
+				#{clmYear, jdbcType=INTEGER},
+				#{clmSeqNo, jdbcType=INTEGER},
+				#{clmStatCd, jdbcType=VARCHAR},
+				#{cessionId, jdbcType=INTEGER},
+				#{lineClassCd, jdbcType=VARCHAR},
+				#{coRefNo, jdbcType=VARCHAR},
+				#{reinsurerId, jdbcType=VARCHAR},
+				#{riBinderNo, jdbcType=VARCHAR},
+				#{mbiRefNo, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{inceptDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{expiryDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{reasonCd, jdbcType=VARCHAR},
+				#{coClmNo, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{lossCd, jdbcType=VARCHAR},
+				#{lossPeriod, jdbcType=VARCHAR},
+				#{lossDtl, jdbcType=VARCHAR},
+				#{eventTypeCd, jdbcType=VARCHAR},
+				#{eventCd, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{reportDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{reportedBy, jdbcType=VARCHAR},
+				#{processedBy, jdbcType=VARCHAR},
+				#{oldStatCd, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{closeDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{refreshSw, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{lapseFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{lapseTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{maintenanceFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{maintenanceTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{projId, jdbcType=INTEGER},
+				#{projDesc, jdbcType=VARCHAR},
+				#{riskId, jdbcType=INTEGER},
+				#{regionCd, jdbcType=INTEGER},
+				#{provinceCd, jdbcType=INTEGER},
+				#{cityCd, jdbcType=INTEGER},
+				#{districtCd, jdbcType=VARCHAR},
+				#{blockCd, jdbcType=VARCHAR},
+				#{latitude, jdbcType=VARCHAR},
+				#{longitude, jdbcType=VARCHAR},
+				#{objectId, jdbcType=VARCHAR},
+				#{site, jdbcType=VARCHAR},
+				#{duration, jdbcType=VARCHAR},
+				#{testing, jdbcType=VARCHAR},
+				#{ipl, jdbcType=INTEGER},
+				#{timeExc, jdbcType=INTEGER},
+				#{noClaimPd, jdbcType=INTEGER},
+				#{prjCreateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{prjCreateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{prjUpdateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
 </mapper>

@@ -4,18 +4,17 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.PoolDistribution;
+import ph.cpi.rest.api.model.maintenance.ClaimReason;
 
-public class RetrievePoolDistributionResponse {
-	private List<PoolDistribution> poolDistList;
+public class RetrieveMtnClaimReasonResponse {
+	private List<ClaimReason> clmReasonList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
-	
-	public List<PoolDistribution> getPoolDistList() {
-		return poolDistList;
+	public List<ClaimReason> getClmReasonList() {
+		return clmReasonList;
 	}
-	public void setPoolDistList(List<PoolDistribution> poolDistList) {
-		this.poolDistList = poolDistList;
+	public void setClmReasonList(List<ClaimReason> clmReasonList) {
+		this.clmReasonList = clmReasonList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -31,8 +30,7 @@ public class RetrievePoolDistributionResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrievePoolDistributionResponse [poolDistList=" + poolDistList + ", paginationResponse="
+		return "RetrieveMtnClaimReasonResponse [clmReasonList=" + clmReasonList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
 }

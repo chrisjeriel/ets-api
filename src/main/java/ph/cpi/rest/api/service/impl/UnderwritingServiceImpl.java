@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
+import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
 import ph.cpi.rest.api.model.request.PostPolicyRequest;
 import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
@@ -80,6 +81,7 @@ import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
+import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
 import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
@@ -1462,6 +1464,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("riskDistId", rpdr.getRiskDistId());
 		params.put("altNo", rpdr.getAltNo());
+		params.put("policyId", rpdr.getPolicyId());
 		response.setPoolDistList(underwritingDao.retrievePoolDist(params));
 		return response;
 	}
@@ -1473,6 +1476,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("riskDistId", rdcir.getRiskDistId());
 		params.put("policyId", rdcir.getPolicyId());
 		response.setDistCoInsList(underwritingDao.retrieveDistCoIns(params));
+		response.setPostedDist(underwritingDao.getPostedCoins(params));
 		return response;
 	}
 
@@ -1656,5 +1660,24 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public NegateDistributionResponse negateDistribution(NegateDistributionRequest ndr) throws SQLException {
+		NegateDistributionResponse ndrResponse = new NegateDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",ndr.getPolicyId());
+		params.put("riskDistId",ndr.getRiskDistId());
+		params.put("distId",ndr.getDistId());
+		params.put("updateUser", ndr.getUpdateUser());
+		try{
+			ndrResponse.setReturnCode(underwritingDao.negateDistribution(params));
+			ndrResponse.setPostedDist(underwritingDao.getPostedCoins(params));
+		}catch(Exception ex){
+			ndrResponse.setReturnCode(0);
+			ndrResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return ndrResponse;
 	}
 }

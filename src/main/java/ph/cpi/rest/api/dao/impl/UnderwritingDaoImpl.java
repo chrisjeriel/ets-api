@@ -555,4 +555,16 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Integer negateDistribution(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("negateDistribution",params);
+		return code;
+	}
+
+	@Override
+	public List<DistCoIns> getPostedCoins(HashMap<String, Object> params) throws SQLException {
+		List<DistCoIns> postedDist = sqlSession.selectList("getPostedCoIns",params);
+		return postedDist;
+	}
 }

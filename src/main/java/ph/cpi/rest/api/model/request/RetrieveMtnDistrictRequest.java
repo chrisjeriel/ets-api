@@ -4,16 +4,17 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnDistrictRequest {
-	private Integer regionCd;
+	private String regionCd;
 	private String provinceCd ;
-	private Integer cityCd;
+	private String cityCd;
 	private String districtCd;
+	private String activeTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getRegionCd() {
+	public String getRegionCd() {
 		return regionCd;
 	}
-	public void setRegionCd(Integer regionCd) {
+	public void setRegionCd(String regionCd) {
 		this.regionCd = regionCd;
 	}
 	public String getProvinceCd() {
@@ -22,10 +23,10 @@ public class RetrieveMtnDistrictRequest {
 	public void setProvinceCd(String provinceCd) {
 		this.provinceCd = provinceCd;
 	}
-	public Integer getCityCd() {
+	public String getCityCd() {
 		return cityCd;
 	}
-	public void setCityCd(Integer cityCd) {
+	public void setCityCd(String cityCd) {
 		this.cityCd = cityCd;
 	}
 	public String getDistrictCd() {
@@ -33,6 +34,12 @@ public class RetrieveMtnDistrictRequest {
 	}
 	public void setDistrictCd(String districtCd) {
 		this.districtCd = districtCd;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -49,7 +56,7 @@ public class RetrieveMtnDistrictRequest {
 	@Override
 	public String toString() {
 		return "RetrieveMtnDistrictRequest [regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd
-				+ ", districtCd=" + districtCd + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ ", districtCd=" + districtCd + ", activeTag=" + activeTag + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

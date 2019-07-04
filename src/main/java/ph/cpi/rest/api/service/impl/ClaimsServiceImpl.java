@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
@@ -20,8 +21,13 @@ import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimResStatRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
+import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
+import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
@@ -32,8 +38,12 @@ import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimResStatResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
+import ph.cpi.rest.api.model.response.SaveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.UpdateClaimStatusResponse;
 import ph.cpi.rest.api.service.ClaimsService;
 
 @Component
@@ -49,9 +59,10 @@ public class ClaimsServiceImpl implements ClaimsService {
 		RetrieveClaimHistoryResponse rchResponse = new RetrieveClaimHistoryResponse();
 		HashMap<String, Object> retClmHistoryParams = new HashMap<String, Object>();
 		retClmHistoryParams.put("claimId", rchp.getClaimId());
-		/*retClmHistoryParams.put("projId", rchp.getProjId());
+		retClmHistoryParams.put("claimNo", rchp.getClaimNo());
+		retClmHistoryParams.put("projId", rchp.getProjId());
 		retClmHistoryParams.put("histNo", rchp.getHistNo());
-		rchResponse.setClaimHistoryList(claimsDao.retrieveClaimHistory(retClmHistoryParams));*/
+		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
 	}
@@ -169,6 +180,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 			saveClmAttachmentParams.put("claimId", scar.getClaimId());
 			saveClmAttachmentParams.put("saveClmAttachments", scar.getSaveClaimsAttachments());
 			saveClmAttachmentParams.put("deleteClmAttachments", scar.getDeleteClaimsAttachments());
+			
 			HashMap<String, Object> res = claimsDao.saveClaimsAttachment(saveClmAttachmentParams);
 			scaResponse.setReturnCode((Integer) res.get("errorCode"));
 			scaResponse.setUploadDate((String) res.get("uploadDate"));
@@ -186,22 +198,188 @@ public class ClaimsServiceImpl implements ClaimsService {
 	}
 
 	@Override
+	public RetrieveChangeClaimStatusResponse retrieveChangeClmStatus(RetrieveChangeClaimStatusRequest rccsr)
+			throws SQLException {
+		RetrieveChangeClaimStatusResponse response = new RetrieveChangeClaimStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId", rccsr.getClaimId());
+		params.put("policyId", rccsr.getPolicyId());
+		params.put("cessionId", rccsr.getCessionId());
+		params.put("cedingId", rccsr.getCedingId());
+		params.put("riskId", rccsr.getRiskId());
+		params.put("batchOpt", rccsr.getBatchOpt());
+		response.setClaimList(claimsDao.retrieveChangeClmStatus(params));
+		return response;
+	}
+
+	@Override
 	public RetrieveClaimApprovedAmtResponse retrieveClaimApprovedAmt(RetrieveClaimApprovedAmtRequest rcaap)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RetrieveClaimApprovedAmtResponse rcaaResponse = new RetrieveClaimApprovedAmtResponse();
+		HashMap<String, Object> clmApprovedAmtParams = new HashMap<String, Object>();
+		clmApprovedAmtParams.put("claimId",rcaap.getClaimId());
+		clmApprovedAmtParams.put("histNo",rcaap.getHistNo());
+		rcaaResponse.setClaimApprovedAmtList(claimsDao.retrieveClaimApprovedAmt(clmApprovedAmtParams));
+		logger.info("RetrieveClaimApprovedAmtResponse : " + rcaaResponse.toString());
+		return rcaaResponse;
 	}
 
 	@Override
 	public SaveClaimApprovedAmtResponse saveClaimApprovedAmt(SaveClaimApprovedAmtRequest scaar) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		SaveClaimApprovedAmtResponse scaaResponse = new SaveClaimApprovedAmtResponse();
+		HashMap<String, Object> saveClmApprovedAmtParams = new HashMap<String, Object>();
+		saveClmApprovedAmtParams.put("saveClaimApprovedAmt", scaar.getSaveClaimApprovedAmt());
+		scaaResponse.setReturnCode(claimsDao.saveClaimApprovedAmt(saveClmApprovedAmtParams));
+		logger.info("SaveClaimApprovedAmtResponse : " + scaaResponse.toString());
+		return scaaResponse;
 	}
 
 	@Override
 	public RetrieveClaimReserveResponse retrieveClaimReserve(RetrieveClaimReserveRequest rchp) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		RetrieveClaimReserveResponse rcrResponse = new RetrieveClaimReserveResponse();
+		HashMap<String, Object> retClmReserveParams = new HashMap<String, Object>();
+		retClmReserveParams.put("claimId", rchp.getClaimId());
+		retClmReserveParams.put("claimNo", rchp.getClaimNo());
+		rcrResponse.setClaims(claimsDao.retrieveClaimReserve(retClmReserveParams));
+		logger.info("RetrieveClaimReserveResponse : " + rcrResponse.toString());
+		return rcrResponse;
+	}
+
+	@Override
+	public UpdateClaimStatusResponse updateClaimStatus(UpdateClaimStatusRequest ucsr) throws SQLException {
+		UpdateClaimStatusResponse response = new UpdateClaimStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("updateClaim", ucsr.getUpdateClaim());
+		try{
+			response.setReturnCode(claimsDao.updateClaimStatus(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveClmAdjusterResponse saveClmAdjuster(SaveClmAdjusterRequest scar) throws SQLException {
+		SaveClmAdjusterResponse scaResponse = new SaveClmAdjusterResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveAdjuster", scar.getSaveAdjuster());
+		params.put("deleteAdjuster", scar.getDeleteAdjuster());
+		
+		scaResponse.setReturnCode(claimsDao.saveClmAdjuster(params));
+		
+		return scaResponse;
+	}
+
+	@Override
+	public SaveClmGenInfoResponse saveClmGenInfo(SaveClmGenInfoRequest scgir) throws SQLException {
+		SaveClmGenInfoResponse scgiResponse = new SaveClmGenInfoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("claimNo", "");
+		params.put("claimId", scgir.getClaimId());
+		params.put("lineCd", scgir.getLineCd());
+		params.put("polYear", scgir.getPolYear());
+		params.put("polSeqNo", scgir.getPolSeqNo());
+		params.put("cedingId", scgir.getCedingId());
+		params.put("coSeriesNo", scgir.getCoSeriesNo());
+		params.put("altNo", scgir.getAltNo());
+		params.put("clmYear", scgir.getClmYear());
+		params.put("clmSeqNo", scgir.getClmSeqNo());
+		params.put("clmStatCd", scgir.getClmStatCd());
+		params.put("cessionId", scgir.getCessionId());
+		params.put("lineClassCd", scgir.getLineClassCd());
+		params.put("coRefNo", scgir.getCoRefNo());
+		params.put("reinsurerId", scgir.getReinsurerId());
+		params.put("riBinderNo", scgir.getRiBinderNo());
+		params.put("mbiRefNo", scgir.getMbiRefNo());
+		params.put("inceptDate", scgir.getInceptDate());
+		params.put("expiryDate", scgir.getExpiryDate());
+		params.put("reasonCd", scgir.getReasonCd());
+		params.put("coClmNo", scgir.getCoClmNo());
+		params.put("lossDate", scgir.getLossDate());
+		params.put("lossCd", scgir.getLossCd());
+		params.put("lossPeriod", scgir.getLossPeriod());
+		params.put("lossDtl", scgir.getLossDtl());
+		params.put("eventTypeCd", scgir.getEventTypeCd());
+		params.put("eventCd", scgir.getEventCd());
+		params.put("reportDate", scgir.getReportDate());
+		params.put("reportedBy", scgir.getReportedBy());
+		params.put("processedBy", scgir.getProcessedBy());
+		params.put("oldStatCd", scgir.getOldStatCd());
+		params.put("closeDate", scgir.getCloseDate());
+		params.put("refreshSw", scgir.getRefreshSw());
+		params.put("lapseFrom", scgir.getLapseFrom());
+		params.put("lapseTo", scgir.getLapseTo());
+		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
+		params.put("maintenanceTo", scgir.getMaintenanceTo());
+		params.put("createUser", scgir.getCreateUser());
+		params.put("createDate", scgir.getCreateDate());
+		params.put("updateUser", scgir.getUpdateUser());
+		params.put("updateDate", scgir.getUpdateDate());
+		params.put("projId", scgir.getProjId());
+		params.put("projDesc", scgir.getProjDesc());
+		params.put("riskId", scgir.getRiskId());
+		params.put("regionCd", scgir.getRegionCd());
+		params.put("provinceCd", scgir.getProvinceCd());
+		params.put("cityCd", scgir.getCityCd());
+		params.put("districtCd", scgir.getDistrictCd());
+		params.put("blockCd", scgir.getBlockCd());
+		params.put("latitude", scgir.getLatitude());
+		params.put("longitude", scgir.getLongitude());
+		params.put("objectId", scgir.getObjectId());
+		params.put("site", scgir.getSite());
+		params.put("duration", scgir.getDuration());
+		params.put("testing", scgir.getTesting());
+		params.put("ipl", scgir.getIpl());
+		params.put("timeExc", scgir.getTimeExc());
+		params.put("noClaimPd", scgir.getNoClaimPd());
+		params.put("prjCreateUser", scgir.getPrjCreateUser());
+		params.put("prjCreateDate", scgir.getPrjCreateDate());
+		params.put("prjUpdateUser", scgir.getPrjUpdateUser());
+		params.put("prjUpdateDate", scgir.getPrjUpdateDate());
+		
+		try {
+			HashMap<String, Object> res = claimsDao.saveClmGenInfo(params);
+			
+			scgiResponse.setReturnCode((Integer) res.get("errorCode"));
+			scgiResponse.setClaimId((Integer) res.get("claimId"));
+			scgiResponse.setClaimNo((String) res.get("claimNo"));
+		} catch (Exception e) {
+			scgiResponse.setReturnCode(0);
+			scgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
+			e.printStackTrace();
+		}
+		
+		return scgiResponse;
+	}
+	
+	@Override
+	public SaveClaimResStatResponse saveClaimResStat(SaveClaimResStatRequest scrsr) throws SQLException {
+		SaveClaimResStatResponse scrsResponse = new SaveClaimResStatResponse();
+		HashMap<String, Object> scrsParams = new HashMap<String, Object>();
+		try {
+			scrsParams.put("claimId", scrsr.getClaimId());
+			scrsParams.put("projId", scrsr.getProjId());
+			scrsParams.put("lossStatCd", scrsr.getLossStatCd());
+			scrsParams.put("expStatCd", scrsr.getExpStatCd());
+			scrsParams.put("updateUser", scrsr.getUpdateUser());
+			
+			HashMap<String, Object> response = claimsDao.saveClaimResStat(scrsParams);
+			
+			scrsResponse.setReturnCode((Integer) response.get("errorCode"));
+			logger.info("SaveClaimResStatResponse : " + scrsResponse.toString());
+		}catch (SQLException ex) {
+			scrsResponse.setReturnCode(0);
+			scrsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			scrsResponse.setReturnCode(0);
+			scrsResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return scrsResponse;
 	}
 
 	/*@Override
