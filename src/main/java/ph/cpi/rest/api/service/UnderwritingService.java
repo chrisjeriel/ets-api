@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
+import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -113,6 +114,7 @@ import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
+import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -216,5 +218,5 @@ public interface UnderwritingService {
 	public SaveExpCatPerilResponse saveExpCatPeril(SaveExpCatPerilRequest scpr)throws SQLException; 
 	
 	public NegateDistributionResponse negateDistribution(NegateDistributionRequest ndr) throws SQLException;
-
+	public SaveExpGenInfoResponse saveExpGenInfo(SaveExpGenInfoRequest segir)throws SQLException;
 }
