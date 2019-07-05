@@ -1094,6 +1094,12 @@
 
 	<update id="saveMtnTypeOfCession" parameterType="java.util.Map">
     	BEGIN
+    		<foreach collection="deleteTypeOfCession" item="deleteToc">
+    			MTN_CESSION_PKG.del_mtn_cession(
+	    			#{deleteToc.cessionId,jdbcType=INTEGER}
+	    		);
+    		</foreach>
+    		
     		<foreach collection="saveTypeOfCession" item="saveToc">
 	    		MTN_CESSION_PKG.save_mtn_cession(
 	    			#{saveToc.cessionId, jdbcType=INTEGER},
@@ -1105,11 +1111,6 @@
 					CAST(to_timestamp(#{saveToc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{saveToc.updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{saveToc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-	    		);
-    		</foreach>
-    		<foreach collection="deleteTypeOfCession" item="deleteToc">
-    			MTN_CESSION_PKG.del_mtn_cession(
-	    			#{deleteToc.cessionId,jdbcType=INTEGER}
 	    		);
     		</foreach>
     	END;
