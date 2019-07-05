@@ -21,7 +21,9 @@ import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
+import ph.cpi.rest.api.model.request.SaveClaimPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveClaimResStatRequest;
+import ph.cpi.rest.api.model.request.SaveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.SaveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.SaveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
@@ -39,7 +41,9 @@ import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
+import ph.cpi.rest.api.model.response.SaveClaimPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveClaimResStatResponse;
+import ph.cpi.rest.api.model.response.SaveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.SaveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.SaveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveClmAdjusterResponse;
@@ -421,5 +425,52 @@ public class ClaimsServiceImpl implements ClaimsService {
 		rcprResponse.setPaytReqList(claimsDao.retrieveClmPaytReq(rcprParams));
 		
 		return rcprResponse;
+	}
+
+	@Override
+	public SaveClaimReserveResponse saveClaimReserve(SaveClaimReserveRequest scrr) throws SQLException {
+		SaveClaimReserveResponse scrResponse = new SaveClaimReserveResponse(); 
+		HashMap<String, Object> scrParams = new HashMap<String, Object>();
+		try {
+			scrParams.put("claimId", scrr.getClaimId());
+			scrParams.put("projId", scrr.getProjId());
+			scrParams.put("lossResAmt", scrr.getLossResAmt());
+			scrParams.put("lossPdAmt", scrr.getLossPdAmt());
+			scrParams.put("lossStatCd", scrr.getLossStatCd());
+			scrParams.put("expResAmt", scrr.getExpResAmt());
+			scrParams.put("expPdAmt", scrr.getExpPdAmt());
+			scrParams.put("expStatCd", scrr.getExpStatCd());
+			scrParams.put("createUser", scrr.getCreateUser());
+			scrParams.put("createDate", scrr.getCreateDate());
+			scrParams.put("updateUser", scrr.getUpdateUser());
+			scrParams.put("updateDate", scrr.getUpdateDate());
+			
+			HashMap<String, Object> response = claimsDao.saveClaimReserve(scrParams);
+			scrResponse.setReturnCode((Integer) response.get("errorCode"));
+			logger.info("SaveClaimReserveResponse : " + scrResponse.toString());
+		}catch (Exception ex) {
+			scrResponse.setReturnCode(0);
+			scrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return scrResponse;
+	}
+
+	@Override
+	public SaveClaimPaytReqResponse saveClaimPaytReq(SaveClaimPaytReqRequest scrr) throws SQLException {
+		SaveClaimPaytReqResponse scprResponse = new SaveClaimPaytReqResponse(); 
+		HashMap<String, Object> scprParams = new HashMap<String, Object>();
+		try {
+			scprParams.put("saveClmPaytReq", scrr.getSaveClmPaytReq());
+			
+			HashMap<String, Object> response = claimsDao.saveClaimPaytReq(scprParams);
+			scprResponse.setReturnCode((Integer) response.get("errorCode"));
+			logger.info("SaveClaimPaytReqResponse : " + scprResponse.toString());
+		}catch (Exception ex) {
+			scprResponse.setReturnCode(0);
+			scprResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return scprResponse;
 	}
 }

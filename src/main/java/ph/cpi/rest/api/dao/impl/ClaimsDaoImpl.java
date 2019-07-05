@@ -145,4 +145,18 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return list;
 	}
 
+	@Override
+	public HashMap<String, Object> saveClaimReserve(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimReserve",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveClaimPaytReq(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimPaytReq",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
 }

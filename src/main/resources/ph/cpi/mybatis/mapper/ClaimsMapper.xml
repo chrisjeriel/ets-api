@@ -77,6 +77,8 @@
 		<result property="claimNo" 		column="CLAIM_NO"/>
 		<result property="claimId" 		column="RES_CLAIM_ID"/>
 		<result property="projId" 		column="RES_PROJ_ID"/>
+<!-- 		<result property="lossStatCd" 	column="LOSS_STAT_CD"/>
+		<result property="expStatCd" 	column="EXP_STAT_CD"/> -->
 		<result property="claimId"		column="CLAIM_ID"/>
 		<result property="projId"		column="PROJ_ID"/>
 		<result property="histNo"		column="HIST_NO"/>
@@ -666,4 +668,40 @@
 		
 	</select>
 	
+	<update id="saveClaimReserve" parameterType="java.util.Map">
+		BEGIN
+    			CLM_RESERVE_PKG.save_clm_reserve(
+    				#{claimId, jdbcType=INTEGER},
+					#{projId, jdbcType=INTEGER},
+					#{lossResAmt, jdbcType=INTEGER},
+					#{lossPdAmt, jdbcType=INTEGER},
+					#{lossStatCd, jdbcType=VARCHAR},
+					#{expResAmt, jdbcType=INTEGER},
+					#{expPdAmt, jdbcType=INTEGER},
+					#{expStatCd, jdbcType=VARCHAR},
+					#{createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+    	END;
+	</update>
+	
+	<update id="saveClaimPaytReq" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveClmPaytReq" item="save">
+				CLM_PAYT_REQ_PKG.save_payt_req(
+    				#{save.claimId, jdbcType=INTEGER},
+					#{save.projId, jdbcType=INTEGER},
+					#{save.histNo, jdbcType=INTEGER},
+					#{save.paytReqId, jdbcType=INTEGER},
+					#{save.paytReqStat, jdbcType=VARCHAR},
+					#{save.createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    			);
+			</foreach>
+    	END;
+	</update>
 </mapper>
