@@ -2057,7 +2057,8 @@
 		<result property="instTag"				column="INST_TAG" /> 
 		<result property="extensionTag"			column="EXTENSION_TAG" /> 
 		<result property="excludeDistTag"		column="EXCLUDE_DIST_TAG" />
-		
+		<result property="remarks"  			column="REMARKS"/>
+		<result property="changes"				column="CHANGES"/>
 		<collection property="projectList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expProjectMap" select="retrieveExpProject"/> 
 		<collection property="itemList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expItemMap" select="retrieveExpItem"/> 
 		<collection property="deductiblesList" javaType="ArrayList" column="{policyId = POLICY_ID}" ofType="expDeductiblesMap" select="retrieveExpDeductibles"/> 
@@ -2601,5 +2602,33 @@
 	<select id="getPostedCoIns" resultMap="retDistCoInsMap">
 		SELECT * FROM TABLE(DIST_PKG.GET_POSTED_COINS(#{riskDistId},#{policyId}))
 	</select>
-
+	
+	<update id="saveExpGenInfo" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveExpRenewable" item="save">
+				DIST_EXT_PKG.gen_renew_pol_save(#{save.policyId}, CAST(to_timestamp(#{save.expiryDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.extractUser}, CAST(to_timestamp(#{save.extractDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.processTag}, #{save.processedBy}, CAST(to_timestamp(#{save.processedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.renewalFlag}, #{save.summaryTag, jdbcType=VARCHAR}, #{save.balanceTag, jdbcType=VARCHAR}, 
+												#{save.claimTag, jdbcType=VARCHAR}, #{save.reminderTag, jdbcType=VARCHAR}, 
+												#{save.specialPolicyTag}, #{save.nrReasonCd, jdbcType=VARCHAR}, #{save.cessionId},#{save.cedingId}, #{save.lineClassCd}, 
+												#{save.quoteId}, #{save.optionId,jdbcType=VARCHAR}, #{save.coRefNo,jdbcType=VARCHAR}, #{save.reinsurerId,jdbcType=VARCHAR}, 
+												#{save.riBinderNo,jdbcType=VARCHAR}, #{save.mbiRefNo,jdbcType=VARCHAR}, #{save.intmId,jdbcType=VARCHAR}, #{save.prinId}, 
+												#{save.contractorId,jdbcType=VARCHAR}, #{save.insuredDesc}, CAST(to_timestamp(#{save.inceptDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												CAST(to_timestamp(#{save.lapseFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.lapseTo, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.maintenanceFrom, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												CAST(to_timestamp(#{save.maintenanceTo, jdbcType=VARCHAR},   'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.issueDate},    'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.effDate},     'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.distDate},    'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.acctDate},   'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{save.currencyCd}, 
+												#{save.currencyRt}, #{save.bookedTag, jdbcType=VARCHAR}, #{save.govtTag, jdbcType=VARCHAR}, #{save.openCoverTag, jdbcType=VARCHAR}, 
+												#{save.holdCoverTag, jdbcType=VARCHAR}, #{save.declarationTag, jdbcType=VARCHAR}, #{save.minDepTag, jdbcType=VARCHAR}, #{save.altTag, jdbcType=VARCHAR}, 
+												#{save.instTag, jdbcType=VARCHAR}, #{save.extensionTag, jdbcType=VARCHAR}, #{save.excludeDistTag, jdbcType=VARCHAR},#{save.remarks, jdbcType=VARCHAR},
+												#{save.changes, jdbcType=VARCHAR});
+			</foreach>
+		END;
+	</update>
 </mapper>

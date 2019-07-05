@@ -567,4 +567,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		List<DistCoIns> postedDist = sqlSession.selectList("getPostedCoIns",params);
 		return postedDist;
 	}
+
+	@Override
+	public HashMap<String, Object> saveExpGenInfo(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveExpGenInfo",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
