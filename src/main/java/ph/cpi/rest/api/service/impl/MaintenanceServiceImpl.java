@@ -331,7 +331,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         retrieveMtnBlockParams.put("cityCd", retMtnBlock.getCityCd());
         retrieveMtnBlockParams.put("districtCd", retMtnBlock.getDistrictCd());
         retrieveMtnBlockParams.put("blockCd", retMtnBlock.getBlockCd());
-        
+        retrieveMtnBlockParams.put("activeTag", retMtnBlock.getActiveTag());
         rmbResponse.setRegion(maintenanceDao.retrieveMaintenanceBlockList(retrieveMtnBlockParams));
         
         logger.info("retrieveMaintenanceBlockResponse : " + rmbResponse.toString());
@@ -1935,6 +1935,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+
 	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
 			throws SQLException {
 		// TODO Auto-generated method stub
@@ -1957,6 +1958,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnClmCashCallParams.put("delCashCall", smcccr.getDelCashCall());
 /*		smcccrResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnClmCashCallParams));*/
 		return smcccrResponse;
+	}
 		
+		
+	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
+		RetrieveMtnLossCdLovResponse rmlclResponse = new RetrieveMtnLossCdLovResponse();
+		HashMap<String, Object> searchParams = new HashMap<String, Object>();
+		
+		searchParams.put("lossCdType", rmlcl.getLossCdType());
+		searchParams.put("searchStr", rmlcl.getSearchStr());
+		
+		rmlclResponse.setLossCdList(maintenanceDao.retrieveMtnLossCdLov(searchParams));
+		
+		return rmlclResponse;
 	}
 }

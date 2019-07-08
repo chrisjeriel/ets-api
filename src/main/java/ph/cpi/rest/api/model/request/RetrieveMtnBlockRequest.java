@@ -14,6 +14,7 @@ public class RetrieveMtnBlockRequest {
 	private Integer cityCd;
 	private String districtCd;
 	private String blockCd;
+	private String activeTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public Integer getRegionCd() {
@@ -46,6 +47,12 @@ public class RetrieveMtnBlockRequest {
 	public void setBlockCd(String blockCd) {
 		this.blockCd = blockCd;
 	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -61,13 +68,7 @@ public class RetrieveMtnBlockRequest {
 	@Override
 	public String toString() {
 		return "RetrieveMtnBlockRequest [regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd
-				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", activeTag=" + activeTag
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
-	
-	
-	
-	
-	
-	
 }

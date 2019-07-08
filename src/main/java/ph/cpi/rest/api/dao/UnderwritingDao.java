@@ -98,5 +98,10 @@ public interface UnderwritingDao {
 	
 	public Integer negateDistribution(final HashMap<String, Object> params ) throws SQLException;
 	public List<DistCoIns> getPostedCoins(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String, Object> saveExpGenInfo(final HashMap<String, Object> params ) throws SQLException;
+	public List<DistCoIns> retrieveUndistAlt(final HashMap<String, Object> params ) throws SQLException;
+	public List<DistCoIns> retrieveDistAlt(final HashMap<String, Object> params ) throws SQLException;
 	
+	public List<DistCoIns> retrieveInProgCoins(final HashMap<String, Object> params ) throws SQLException;
+	public List<DistCoIns> retrieveMissingCoins(final HashMap<String, Object> params ) throws SQLException;
 }

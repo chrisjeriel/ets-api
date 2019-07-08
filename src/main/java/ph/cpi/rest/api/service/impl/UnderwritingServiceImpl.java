@@ -54,6 +54,7 @@ import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
+import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -119,6 +120,7 @@ import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
+import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -1411,6 +1413,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("policyId", rpcr.getPolicyId());
 		params.put("distId", rpcr.getDistId());
 		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDist(params));
+		rpcrResponse.setInProgCoins(underwritingDao.retrieveInProgCoins(params));
+		rpcrResponse.setMissingCoins(underwritingDao.retrieveMissingCoins(params));
 		return rpcrResponse;
 	}
 
@@ -1455,6 +1459,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
 		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
 		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
+		response.setUndistAlt(underwritingDao.retrieveUndistAlt(distWriskParam));
+		response.setDistAlt(underwritingDao.retrieveDistAlt(distWriskParam));
 		return response;
 	}
 
@@ -1679,5 +1685,21 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return ndrResponse;
+	}
+
+	@Override
+	public SaveExpGenInfoResponse saveExpGenInfo(SaveExpGenInfoRequest segir) throws SQLException {
+		SaveExpGenInfoResponse response = new SaveExpGenInfoResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveExpRenewable", segir.getSaveExpRenewable());
+			HashMap<String, Object> res = underwritingDao.saveExpGenInfo(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 }

@@ -38,6 +38,7 @@ public class Project {
 	private String updateUser;
 	private DateTime updateDate;
 	private List<ClaimReserve> clmReserve;
+	private ClaimCoverage clmCoverage;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -218,6 +219,13 @@ public class Project {
 	public void setClmReserve(List<ClaimReserve> clmReserve) {
 		this.clmReserve = clmReserve;
 	}
+	
+	public ClaimCoverage getClmCoverage() {
+		return clmCoverage;
+	}
+	public void setClmCoverage(ClaimCoverage clmCoverage) {
+		this.clmCoverage = clmCoverage;
+	}
 	@Override
 	public String toString() {
 		return "Project [claimId=" + claimId + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
@@ -228,6 +236,6 @@ public class Project {
 				+ objectId + ", objectDesc=" + objectDesc + ", site=" + site + ", duration=" + duration + ", testing="
 				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", clmReserve=" + clmReserve + "]";
+				+ updateDate + ", clmReserve=" + clmReserve + ", clmCoverage=" + clmCoverage + "]";
 	}
 }

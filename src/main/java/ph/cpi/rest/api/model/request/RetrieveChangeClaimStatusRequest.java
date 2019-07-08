@@ -5,7 +5,9 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveChangeClaimStatusRequest {
 	private Integer claimId;
+	private String claimNo;
 	private Integer policyId;
+	private String policyNo;
 	private Integer cessionId;
 	private String cedingId;
 	private Integer riskId;
@@ -19,11 +21,23 @@ public class RetrieveChangeClaimStatusRequest {
 	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
 	}
+	public String getClaimNo() {
+		return claimNo;
+	}
+	public void setClaimNo(String claimNo) {
+		this.claimNo = claimNo;
+	}
 	public Integer getPolicyId() {
 		return policyId;
 	}
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
 	}
 	public Integer getCessionId() {
 		return cessionId;
@@ -64,8 +78,9 @@ public class RetrieveChangeClaimStatusRequest {
 	
 	@Override
 	public String toString() {
-		return "RetrieveChangeClaimStatusRequest [claimId=" + claimId + ", policyId=" + policyId + ", cessionId="
-				+ cessionId + ", cedingId=" + cedingId + ", riskId=" + riskId + ", batchOpt=" + batchOpt
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveChangeClaimStatusRequest [claimId=" + claimId + ", claimNo=" + claimNo + ", policyId="
+				+ policyId + ", policyNo=" + policyNo + ", cessionId=" + cessionId + ", cedingId=" + cedingId
+				+ ", riskId=" + riskId + ", batchOpt=" + batchOpt + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

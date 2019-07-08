@@ -878,4 +878,9 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer res = sqlSession.update("saveMtnClmCashCall", params);
 		return res;
 	}
+	
+	public List<MtnLossCd> retrieveMtnLossCdLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCdLov", params);
+		return list;
+	}
 }

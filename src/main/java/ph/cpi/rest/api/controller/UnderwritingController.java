@@ -55,6 +55,7 @@ import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
+import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -120,6 +121,7 @@ import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
+import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -626,5 +628,12 @@ public class UnderwritingController {
 		NegateDistributionResponse test = underwritingService.negateDistribution(ndr);
 		logger.info("test response" + test.toString());
 		return test;
+	}
+	
+	@PostMapping(path="saveExpGenInfo")
+	public @ResponseBody SaveExpGenInfoResponse saveExpGenInfo(@RequestBody SaveExpGenInfoRequest segir) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveExpGenInfo");
+		logger.info("SaveExpGenInfoRequest : " + segir.toString());
+		return underwritingService.saveExpGenInfo(segir);
 	}
 }
