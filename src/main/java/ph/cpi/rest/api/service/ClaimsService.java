@@ -68,4 +68,5 @@ public interface ClaimsService {
 	public RetrieveClmPaytReqResponse retrieveClmPaytReq(RetrieveClmPaytReqRequest rcprr) throws SQLException;
 	public SaveClaimReserveResponse saveClaimReserve(SaveClaimReserveRequest scrr) throws SQLException;
 	public SaveClaimPaytReqResponse saveClaimPaytReq(SaveClaimPaytReqRequest scrr) throws SQLException;
+
 }

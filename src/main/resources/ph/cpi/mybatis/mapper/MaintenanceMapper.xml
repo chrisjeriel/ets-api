@@ -3244,5 +3244,58 @@
 																null
 																))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.MtnClmCashCall" id="mtnClaimmCashCallMap">
+   		<result property="treatyId" 		column="TREATY_ID"/>
+		<result property="treatyCedId"		column="TRTY_CED_ID"/>
+		<result property="currCd"			column="CURRENCY_CD"/>
+		<result property="histNo"			column="HIST_NO"/>
+		<result property="effDateFrom"		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retrieveMtnClmCashCall" resultMap="mtnClaimmCashCallMap" parameterType="java.util.Map">
+   		SELECT * FROM TABLE(MTN_CLM_CASHCALL_PKG.ret_mtn_clm_cashcall(
+   					#{treatyId, jdbcType=VARCHAR},
+   					#{treatyCedId, jdbcType=VARCHAR},
+   				    #{currCd, jdbcType=VARCHAR},
+					#{position, jdbcType=VARCHAR},
+					#{count, jdbcType=VARCHAR},
+					#{sortKey, jdbcType=VARCHAR},
+					#{order, jdbcType=VARCHAR}))
+   </select>
+   
+    <update id="saveMtnClmCashCall" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveCashCall" item="cashCall">
+	    		MTN_CLM_CASHCALL_PKG.save_mtn_clm_cashcall(
+	    			#{cashCall.treatyId,jdbcType=VARCHAR},
+			        #{cashCall.treatyCedId,jdbcType=VARCHAR},
+			        #{cashCall.currCd,jdbcType=VARCHAR},
+			        #{cashCall.histNo,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{cashCall.activeTag,jdbcType=VARCHAR},
+			        #{cashCall.remarks,jdbcType=VARCHAR},
+			        #{cashCall.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{cashCall.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="delCashCall" item="cashCall">
+    			MTN_CLM_CASHCALL_PKG.del_mtn_clm_cashcall(
+    				#{cashCall.treatyId,jdbcType=VARCHAR},
+    				#{cashCall.treatyCedId,jdbcType=VARCHAR},
+    				#{cashCall.currCd,jdbcType=VARCHAR},
+    				#{cashCall.histNo,jdbcType=VARCHAR}
+				);
+    		</foreach>
+    	END;
+    </update>
     
 </mapper>

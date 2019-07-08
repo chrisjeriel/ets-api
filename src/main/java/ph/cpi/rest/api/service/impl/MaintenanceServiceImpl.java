@@ -1946,4 +1946,30 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		return rmlclResponse;
 	}
+	
+	@Override
+	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnClmCashCallResponse rccResponse = new RetrieveMtnClmCashCallResponse();
+		HashMap<String, Object> retrieveClmCashCallParams = new HashMap<String, Object>();
+		retrieveClmCashCallParams.put("treatyId", rccp.getTreatyId());
+		retrieveClmCashCallParams.put("treatyCedId", rccp.getTreatyCedId());
+		retrieveClmCashCallParams.put("currCd", rccp.getCurrCd());
+		rccResponse.setCashCallList(maintenanceDao.retrieveMtnCashCall(retrieveClmCashCallParams));
+		logger.info("retrieveMtnClmCashCallResponse : " + rccResponse.toString());
+		return rccResponse;
+	}
+
+	@Override
+	public SaveMtnClmCashCallResponse saveMtnClmCashCall(SaveMtnClmCashCallRequest smcccr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnClmCashCallResponse smcccrResponse = new SaveMtnClmCashCallResponse();
+		HashMap<String, Object> saveMtnClmCashCallParams = new HashMap<String, Object>();
+		saveMtnClmCashCallParams.put("saveCashCall", smcccr.getSaveCashCall());
+		saveMtnClmCashCallParams.put("delCashCall", smcccr.getDelCashCall());
+/*		smcccrResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnClmCashCallParams));*/
+		return smcccrResponse;
+		
+	}
 }
