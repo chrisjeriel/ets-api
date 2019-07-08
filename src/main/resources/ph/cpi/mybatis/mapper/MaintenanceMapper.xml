@@ -3298,4 +3298,24 @@
     	END;
     </update>
     
+    <select id="retrieveMtnClmEventTypeLov" resultMap="mtnClmEventTypeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_CLM_EVENT_TYPE_PKG.ret_clm_eventtype_lov(#{searchStr, jdbcType=VARCHAR},
+																		 null,
+																		 null,
+																		 null,
+																		 null
+																		))
+	</select>
+	
+	<select id="retrieveMtnClmEventLov" resultMap="mtnClmEventMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_CLM_EVENT_PKG.ret_mtn_clm_event_lov(#{lineCd, jdbcType=VARCHAR},
+																	#{eventTypeCd, jdbcType=VARCHAR},
+																	#{searchStr, jdbcType=VARCHAR},
+																	null,
+																	null,
+																	null,
+																	null
+																   ))
+	</select>
+    
 </mapper>

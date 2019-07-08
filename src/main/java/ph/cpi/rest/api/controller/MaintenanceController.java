@@ -844,4 +844,17 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnClmCashCall(smcccr);
 	}
 	
+	@GetMapping(path="retrieveMtnClmEventTypeLov")
+	public @ResponseBody RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmEventTypeLov");
+		logger.info("RetrieveMtnClmEventTypeLovRequest : " + rmcel.toString());
+		return maintenanceService.retrieveMtnClmEventTypeLov(rmcel);
+	}
+	
+	@GetMapping(path="retrieveMtnClmEventLov")
+	public @ResponseBody RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmEventLov");
+		logger.info("RetrieveMtnClmEventLovRequest : " + rmcel.toString());
+		return maintenanceService.retrieveMtnClmEventLov(rmcel);
+	}
 }

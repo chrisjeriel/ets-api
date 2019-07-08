@@ -1972,4 +1972,30 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return smcccrResponse;
 		
 	}
+
+	@Override
+	public RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel)
+			throws SQLException {
+		RetrieveMtnClmEventTypeLovResponse rmcelResponse = new RetrieveMtnClmEventTypeLovResponse();
+		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
+		rmcelParams.put("searchStr", rmcel.getSearchStr());
+		
+		rmcelResponse.setClmEventTypeList(maintenanceDao.retrieveMtnClmEventTypeLov(rmcelParams));
+		
+		return rmcelResponse;
+	}
+
+	@Override
+	public RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel)
+			throws SQLException {
+		RetrieveMtnClmEventLovResponse rmcelResponse = new RetrieveMtnClmEventLovResponse();
+		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
+		rmcelParams.put("lineCd", rmcel.getLineCd());
+		rmcelParams.put("eventTypeCd", rmcel.getEventTypeCd());
+		rmcelParams.put("searchStr", rmcel.getSearchStr());
+		
+		rmcelResponse.setClmEventList(maintenanceDao.retrieveMtnClmEventLov(rmcelParams));
+		
+		return rmcelResponse;
+	}
 }

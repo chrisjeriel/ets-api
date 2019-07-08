@@ -13,6 +13,7 @@
 		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="coSeriesNo" 		column="CO_SERIES_NO"/>
 		<result property="altNo" 			column="ALT_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="prinId" 			column="PRIN_ID"/>

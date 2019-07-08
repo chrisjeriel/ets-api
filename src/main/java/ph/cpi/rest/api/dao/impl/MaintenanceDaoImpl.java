@@ -884,4 +884,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer res = sqlSession.update("saveMtnClmCashCall", params);
 		return res;
 	}
+
+	@Override
+	public List<MtnClmEventType> retrieveMtnClmEventTypeLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEventType> list = sqlSession.selectList("retrieveMtnClmEventTypeLov", params);
+		return list;
+	}
+
+	@Override
+	public List<MtnClmEvent> retrieveMtnClmEventLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEvent> list = sqlSession.selectList("retrieveMtnClmEventLov", params);
+		return list;
+	}
 }
