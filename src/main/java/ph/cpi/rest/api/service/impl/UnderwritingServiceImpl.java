@@ -1413,6 +1413,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("policyId", rpcr.getPolicyId());
 		params.put("distId", rpcr.getDistId());
 		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDist(params));
+		rpcrResponse.setInProgCoins(underwritingDao.retrieveInProgCoins(params));
+		rpcrResponse.setMissingCoins(underwritingDao.retrieveMissingCoins(params));
 		return rpcrResponse;
 	}
 
@@ -1457,6 +1459,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
 		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
 		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
+		response.setUndistAlt(underwritingDao.retrieveUndistAlt(distWriskParam));
+		response.setDistAlt(underwritingDao.retrieveDistAlt(distWriskParam));
 		return response;
 	}
 

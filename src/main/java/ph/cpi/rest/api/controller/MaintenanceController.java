@@ -829,4 +829,19 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnLossCdLovRequest : " + rmlcl.toString());
 		return maintenanceService.retrieveMtnLossCdLov(rmlcl);
 	}
+	
+	@GetMapping(path="retrieveMtnClmCashCall")
+	public @ResponseBody RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmCashCall");
+		logger.info("RetrieveMtnClmCashCallRequest : " + rccp.toString());
+		return maintenanceService.retrieveMtnClmCashCall(rccp);
+	}
+	
+	@PostMapping(path="saveMtnClmCashCall")
+	public @ResponseBody SaveMtnClmCashCallResponse saveMtnClmCashCall(@RequestBody SaveMtnClmCashCallRequest smcccr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnClmCashCall");
+		logger.info("SaveMtnClmCashCallRequest : " + smcccr.toString());
+		return maintenanceService.saveMtnClmCashCall(smcccr);
+	}
+	
 }
