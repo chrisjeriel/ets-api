@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.Attachment;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
+import ph.cpi.rest.api.model.claims.ClaimPaytRequest;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.Claims;
 
@@ -128,6 +129,32 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	@Override
 	public HashMap<String, Object> saveClaimResStat(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveClaimResStat",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Integer updateClmDetails(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("updateClmDetails",params);
+		return res;
+	}
+
+	@Override
+	public List<ClaimPaytRequest> retrieveClmPaytReq(HashMap<String, Object> params) throws SQLException {
+		List<ClaimPaytRequest> list = sqlSession.selectList("retrieveClmPaytReq", params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveClaimReserve(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimReserve",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveClaimPaytReq(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveClaimPaytReq",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

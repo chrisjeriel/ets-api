@@ -331,7 +331,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         retrieveMtnBlockParams.put("cityCd", retMtnBlock.getCityCd());
         retrieveMtnBlockParams.put("districtCd", retMtnBlock.getDistrictCd());
         retrieveMtnBlockParams.put("blockCd", retMtnBlock.getBlockCd());
-        
+        retrieveMtnBlockParams.put("activeTag", retMtnBlock.getActiveTag());
         rmbResponse.setRegion(maintenanceDao.retrieveMaintenanceBlockList(retrieveMtnBlockParams));
         
         logger.info("retrieveMaintenanceBlockResponse : " + rmbResponse.toString());
@@ -1932,5 +1932,44 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return cprhResponse;
+	}
+
+	@Override
+	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
+		RetrieveMtnLossCdLovResponse rmlclResponse = new RetrieveMtnLossCdLovResponse();
+		HashMap<String, Object> searchParams = new HashMap<String, Object>();
+		
+		searchParams.put("lossCdType", rmlcl.getLossCdType());
+		searchParams.put("searchStr", rmlcl.getSearchStr());
+		
+		rmlclResponse.setLossCdList(maintenanceDao.retrieveMtnLossCdLov(searchParams));
+		
+		return rmlclResponse;
+	}
+	
+	@Override
+	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnClmCashCallResponse rccResponse = new RetrieveMtnClmCashCallResponse();
+		HashMap<String, Object> retrieveClmCashCallParams = new HashMap<String, Object>();
+		retrieveClmCashCallParams.put("treatyId", rccp.getTreatyId());
+		retrieveClmCashCallParams.put("treatyCedId", rccp.getTreatyCedId());
+		retrieveClmCashCallParams.put("currCd", rccp.getCurrCd());
+		rccResponse.setCashCallList(maintenanceDao.retrieveMtnCashCall(retrieveClmCashCallParams));
+		logger.info("retrieveMtnClmCashCallResponse : " + rccResponse.toString());
+		return rccResponse;
+	}
+
+	@Override
+	public SaveMtnClmCashCallResponse saveMtnClmCashCall(SaveMtnClmCashCallRequest smcccr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnClmCashCallResponse smcccrResponse = new SaveMtnClmCashCallResponse();
+		HashMap<String, Object> saveMtnClmCashCallParams = new HashMap<String, Object>();
+		saveMtnClmCashCallParams.put("saveCashCall", smcccr.getSaveCashCall());
+		saveMtnClmCashCallParams.put("delCashCall", smcccr.getDelCashCall());
+/*		smcccrResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnClmCashCallParams));*/
+		return smcccrResponse;
+		
 	}
 }

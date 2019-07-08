@@ -599,7 +599,7 @@
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
 		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
-		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
@@ -695,7 +695,7 @@
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
 		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
-		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
@@ -1213,7 +1213,7 @@
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_OC_PKG.save_pol_deductibles(
 		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
-		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
@@ -1252,7 +1252,7 @@
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
 		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
-		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
@@ -1963,7 +1963,7 @@
 			<foreach collection="saveDeductibleList" item="deductible">
 		   		POL_DEDUCTIBLES_PKG.save_pol_deductibles(
 		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
-		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt},#{deductible.createUser},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
 		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
 				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
 		   		);
@@ -2533,7 +2533,7 @@
 	<update id="saveRiskDist" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="delWParam" item="wparam">
-				DIST_RISK_WPARAM_PKG.del_dr_wparam(#{wparam.riskDistId},#{wparam.altNo});
+				DIST_RISK_WPARAM_PKG.del_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
 			</foreach>
 			<foreach collection="saveWParam" item="wparam">
 				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
@@ -2631,4 +2631,21 @@
 			</foreach>
 		END;
 	</update>
+
+	<select id="getUndistAlt" resultMap="retDistCoInsMap">
+		SELECT * FROM TABLE(DIST_WRISK_PKG.get_undist_alt(#{policyId}))
+	</select>
+	
+	<select id="getDistAlt" resultMap="retDistCoInsMap">
+		SELECT * FROM TABLE(DIST_WRISK_PKG.get_dist_alt(#{policyId}))
+	</select>
+	
+	<select id="getInProgCoins" resultMap="retDistCoInsMap">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.get_in_prog_coins(#{policyId}))
+	</select>
+	
+	<select id="getMissingCoins" resultMap="retDistCoInsMap">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.get_mia_alt_coins(#{policyId}))
+	</select>
+	
 </mapper>

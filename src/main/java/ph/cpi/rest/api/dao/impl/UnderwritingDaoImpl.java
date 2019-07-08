@@ -574,4 +574,28 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public List<DistCoIns> retrieveUndistAlt(HashMap<String, Object> params) throws SQLException {
+		List<DistCoIns> postedDist = sqlSession.selectList("getUndistAlt",params);
+		return postedDist;
+	}
+
+	@Override
+	public List<DistCoIns> retrieveDistAlt(HashMap<String, Object> params) throws SQLException {
+		List<DistCoIns> postedDist = sqlSession.selectList("getDistAlt",params);
+		return postedDist;
+	}
+
+	@Override
+	public List<DistCoIns> retrieveInProgCoins(HashMap<String, Object> params) throws SQLException {
+		List<DistCoIns> postedDist = sqlSession.selectList("getInProgCoins",params);
+		return postedDist;
+	}
+
+	@Override
+	public List<DistCoIns> retrieveMissingCoins(HashMap<String, Object> params) throws SQLException {
+		List<DistCoIns> postedDist = sqlSession.selectList("getMissingCoins",params);
+		return postedDist;
+	}
 }
