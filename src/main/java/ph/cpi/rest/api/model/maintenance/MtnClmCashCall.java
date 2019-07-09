@@ -9,13 +9,21 @@ public class MtnClmCashCall {
 	private String currCd;
 	private Integer histNo;
 	private DateTime effDateFrom;
+	private Integer amount;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public Integer getTreatyId() {
 		return treatyId;
 	}
@@ -83,11 +91,19 @@ public class MtnClmCashCall {
 		this.updateDate = updateDate;
 	}
 	
+	public Integer getAmount() {
+		return amount;
+	}
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+	
 	@Override
 	public String toString() {
 		return "MtnClmCashCall [treatyId=" + treatyId + ", treatyCedId=" + treatyCedId + ", currCd=" + currCd
-				+ ", histNo=" + histNo + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", histNo=" + histNo + ", effDateFrom=" + effDateFrom + ", amount=" + amount + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
+
 }
