@@ -2879,6 +2879,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"			column="OK_DELETE"/>
     </resultMap>
 	
 	<select id="retrieveMtnClaimStatus" resultMap="clmStatMap" parameterType="java.util.Map">
@@ -2931,6 +2932,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"		column="OK_DELETE"/>
     </resultMap>
    
    <select id="retrieveMtnClmEvent" resultMap="mtnClmEventMap" parameterType="java.util.Map">
