@@ -843,4 +843,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnLossCdLovRequest : " + rmlcl.toString());
 		return maintenanceService.retrieveMtnLossCdLov(rmlcl);
 	}
+	
+	@PostMapping(path="copyMtnClmCashCall")
+	public @ResponseBody CopyMtnClmCashCallResponse copyPoolRetHist(@RequestBody CopyMtnClmCashCallRequest cpmccr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyMtnClmCashCall");
+		logger.info("CopyClmCashCallRequest : " + cpmccr.toString());
+		return maintenanceService.copyMtnClmCashCall(cpmccr);
+	}
 }

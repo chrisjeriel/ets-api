@@ -177,4 +177,6 @@ public interface MaintenanceDao {
 	public List<MtnClmCashCall> retrieveMtnCashCall(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveMtnClmCashCall(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnLossCd> retrieveMtnLossCdLov(final HashMap<String, Object> params) throws SQLException;
+	public Integer copyMtnClmCashCall(HashMap<String, Object> params) throws SQLException;
+	public Integer checkMtnClmCashCall(HashMap<String, Object> params) throws SQLException;
 }

@@ -125,4 +125,5 @@ public interface MaintenanceService {
 	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp ) throws SQLException;
 	public SaveMtnClmCashCallResponse saveMtnClmCashCall(SaveMtnClmCashCallRequest smcccr) throws SQLException;
 	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException;
+	public CopyMtnClmCashCallResponse copyMtnClmCashCall(CopyMtnClmCashCallRequest cpmccr) throws SQLException;
 }

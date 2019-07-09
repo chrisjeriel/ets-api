@@ -1956,7 +1956,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnClmCashCallParams = new HashMap<String, Object>();
 		saveMtnClmCashCallParams.put("saveCashCall", smcccr.getSaveCashCall());
 		saveMtnClmCashCallParams.put("delCashCall", smcccr.getDelCashCall());
-/*		smcccrResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnClmCashCallParams));*/
+		smcccrResponse.setReturnCode(maintenanceDao.saveMtnClmCashCall(saveMtnClmCashCallParams));
 		return smcccrResponse;
 	}
 		
@@ -1971,5 +1971,34 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmlclResponse.setLossCdList(maintenanceDao.retrieveMtnLossCdLov(searchParams));
 		
 		return rmlclResponse;
+	}
+
+	@Override
+	public CopyMtnClmCashCallResponse copyMtnClmCashCall(CopyMtnClmCashCallRequest cpmccr) throws SQLException {
+		// TODO Auto-generated method stub
+		CopyMtnClmCashCallResponse cpmccResponse = new CopyMtnClmCashCallResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromTreatyId", cpmccr.getCopyFromTreatyId());
+		params.put("copyToTreatyId", cpmccr.getCopyToTreatyId());
+		params.put("copyFromTreatyCedId", cpmccr.getCopyFromTreatyCedId());
+		params.put("copyToTreatyCedId", cpmccr.getCopyToTreatyCedId());
+		params.put("copyFromCurrCd", cpmccr.getCopyFromCurrCd());
+		params.put("copyToCurrCd", cpmccr.getCopyToCurrCd());
+		params.put("copyFromHistNo", cpmccr.getCopyFromHistNo());
+		params.put("createUser", cpmccr.getCreateUser());
+		params.put("createDate", cpmccr.getCreateDate());
+		params.put("updateUser", cpmccr.getUpdateUser());
+		params.put("updateDate", cpmccr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkMtnClmCashCall(params);
+		
+		if(res == 1) {
+			cpmccResponse.setReturnCode(2);
+		} else if(res == 0) {
+			cpmccResponse.setReturnCode(maintenanceDao.copyMtnClmCashCall(params));
+		}
+		
+		return cpmccResponse;
+	
 	}
 }
