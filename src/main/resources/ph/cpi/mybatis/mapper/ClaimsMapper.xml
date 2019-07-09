@@ -366,8 +366,8 @@
 	<update id="saveClaimSecCover" parameterType="java.util.Map">
 		BEGIN
 			CLM_COVERAGE_PKG.save_clm_sec_cov( #{claimId}, #{projId}, #{riskId}, #{sectionISi}, 
-												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag}, 
-												#{secIISiTag}, #{secIIISiTag}, #{allowMaxSi}, #{sectionIPrem}, 
+												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag, jdbcType=VARCHAR}, 
+												#{secIISiTag, jdbcType=VARCHAR}, #{secIIISiTag, jdbcType=VARCHAR}, #{allowMaxSi}, #{sectionIPrem}, 
 												#{sectionIIPrem}, #{sectionIIIPrem}, #{totalPrem}, 
 												#{currencyCd}, #{currencyRt}, #{pctShare}, #{pctPml, jdbcType=INTEGER}, 
 												#{totalValue}, #{createUser}, 
