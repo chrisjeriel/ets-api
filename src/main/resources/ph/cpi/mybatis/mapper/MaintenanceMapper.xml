@@ -2438,7 +2438,7 @@
 		    			#{save.paramName},
 		    			#{save.paramValueN, jdbcType=VARCHAR},
 		    			#{save.paramValueV, jdbcType=VARCHAR},
-		    			#{save.paramValueD, jdbcType=VARCHAR},
+		    			CAST(to_timestamp(#{save.paramValueD, jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		    			#{save.remarks, jdbcType=VARCHAR},
 						#{save.createUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
