@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 @Alias("UnderwritingItem")
@@ -9,7 +11,7 @@ public class Item {
 	private String	itemDesc;
 	private String	makeYear;
 	private String	deductibleTxt;
-	private Integer	sumInsured;
+	private BigDecimal	sumInsured;
 	private String	stockType;
 	private String	serialNo;
 	private String	location;
@@ -53,10 +55,11 @@ public class Item {
 	public void setDeductibleTxt(String deductibleTxt) {
 		this.deductibleTxt = deductibleTxt;
 	}
-	public Integer getSumInsured() {
+	
+	public BigDecimal getSumInsured() {
 		return sumInsured;
 	}
-	public void setSumInsured(Integer sumInsured) {
+	public void setSumInsured(BigDecimal sumInsured) {
 		this.sumInsured = sumInsured;
 	}
 	public String getStockType() {
