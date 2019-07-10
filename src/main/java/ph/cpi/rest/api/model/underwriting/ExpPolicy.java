@@ -57,6 +57,8 @@ public class ExpPolicy {
 	private String instTag; 
 	private String extensionTag; 
 	private String excludeDistTag;
+	private String remarks;
+	private String changes;
 	
 	private List<ExpProject> projectList;
 	private List<ExpItem> itemList;
@@ -366,6 +368,19 @@ public class ExpPolicy {
 	public void setExcludeDistTag(String excludeDistTag) {
 		this.excludeDistTag = excludeDistTag;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	
+	public String getChanges() {
+		return changes;
+	}
+	public void setChanges(String changes) {
+		this.changes = changes;
+	}
 	public List<ExpItem> getItemList() {
 		return itemList;
 	}
@@ -439,9 +454,9 @@ public class ExpPolicy {
 				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
 				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
 				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
-				+ ", excludeDistTag=" + excludeDistTag + ", projectList=" + projectList + ", itemList=" + itemList
-				+ ", deductiblesList=" + deductiblesList + ", sectionCoverList=" + sectionCoverList + ", coverageList="
-				+ coverageList + ", catPerilList=" + catPerilList + ", endorsementList=" + endorsementList + "]";
+				+ ", excludeDistTag=" + excludeDistTag + ", remarks=" + remarks + ", changes=" + changes
+				+ ", projectList=" + projectList + ", itemList=" + itemList + ", deductiblesList=" + deductiblesList
+				+ ", sectionCoverList=" + sectionCoverList + ", coverageList=" + coverageList + ", catPerilList="
+				+ catPerilList + ", endorsementList=" + endorsementList + "]";
 	}
-
 }

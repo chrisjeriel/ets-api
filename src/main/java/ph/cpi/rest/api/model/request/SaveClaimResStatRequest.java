@@ -1,21 +1,21 @@
 package ph.cpi.rest.api.model.request;
 
 public class SaveClaimResStatRequest {
-	private Integer claimId;
-	private Integer projId;
+	private String claimId;
+	private String projId;
 	private String lossStatCd;
 	private String expStatCd;
 	private String updateUser;
-	public Integer getClaimId() {
+	public String getClaimId() {
 		return claimId;
 	}
-	public void setClaimId(Integer claimId) {
+	public void setClaimId(String claimId) {
 		this.claimId = claimId;
 	}
-	public Integer getProjId() {
+	public String getProjId() {
 		return projId;
 	}
-	public void setProjId(Integer projId) {
+	public void setProjId(String projId) {
 		this.projId = projId;
 	}
 	public String getLossStatCd() {

@@ -1094,6 +1094,12 @@
 
 	<update id="saveMtnTypeOfCession" parameterType="java.util.Map">
     	BEGIN
+    		<foreach collection="deleteTypeOfCession" item="deleteToc">
+    			MTN_CESSION_PKG.del_mtn_cession(
+	    			#{deleteToc.cessionId,jdbcType=INTEGER}
+	    		);
+    		</foreach>
+    		
     		<foreach collection="saveTypeOfCession" item="saveToc">
 	    		MTN_CESSION_PKG.save_mtn_cession(
 	    			#{saveToc.cessionId, jdbcType=INTEGER},
@@ -1105,11 +1111,6 @@
 					CAST(to_timestamp(#{saveToc.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{saveToc.updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{saveToc.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-	    		);
-    		</foreach>
-    		<foreach collection="deleteTypeOfCession" item="deleteToc">
-    			MTN_CESSION_PKG.del_mtn_cession(
-	    			#{deleteToc.cessionId,jdbcType=INTEGER}
 	    		);
     		</foreach>
     	END;
@@ -3017,24 +3018,25 @@
 	<update id="saveMtnSecIITrtyLimit" parameterType="java.util.Map" statementType="CALLABLE">
     	BEGIN
     		<foreach collection="deleteSecIITrtyLimit" item="del">
-	    			MTN_SECII_TRTY_LIMIT_PKG.del_secii_trty_limit(
-			    		#{del.seciiTrtyLimId, jdbcType=INTEGER}
-			    	);
+	    		MTN_SECII_TRTY_LIMIT_PKG.del_secii_trty_limit(
+			    	#{del.seciiTrtyLimId, jdbcType=INTEGER}
+			    );
     		</foreach>
     		<foreach collection="saveSecIITrtyLimit" item="save">
-		    			#{save.lineCd, jdbcType=VARCHAR},
-		    			#{save.lineClassCd, jdbcType=VARCHAR},
-		    			#{save.currencyCd, jdbcType=VARCHAR},
-		    			#{save.seciiTrtyLimId, jdbcType=INTEGER},
-		    			#{save.amount, jdbcType=DECIMAL},
-		    			CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-		    			#{save.activeTag, jdbcType=VARCHAR},
-		    			#{save.remarks, jdbcType=VARCHAR},
-						#{save.createUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						#{save.updateUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-		    		);
+    			MTN_SECII_TRTY_LIMIT_PKG.save_secii_trty_limit(
+		    		#{save.lineCd, jdbcType=VARCHAR},
+		    		#{save.lineClassCd, jdbcType=VARCHAR},
+		    		#{save.currencyCd, jdbcType=VARCHAR},
+		    		#{save.seciiTrtyLimId, jdbcType=INTEGER},
+		    		#{save.amount, jdbcType=DECIMAL},
+		    		CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		    		#{save.activeTag, jdbcType=VARCHAR},
+		    		#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    	);
     		</foreach>
     	END;
     </update>
@@ -3232,5 +3234,68 @@
 			);
 		END;
 	</update>
+	
+	<select id="retrieveMtnLossCdLov" resultMap="mtnLossCdMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_LOSS_CD_PKG.ret_mtn_loss_cd_lov(#{lossCdType, jdbcType=VARCHAR},
+																#{searchStr, jdbcType=VARCHAR},
+																null,
+																null,
+																null,
+																null
+																))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.MtnClmCashCall" id="mtnClaimmCashCallMap">
+   		<result property="treatyId" 		column="TREATY_ID"/>
+		<result property="treatyCedId"		column="TRTY_CED_ID"/>
+		<result property="currCd"			column="CURRENCY_CD"/>
+		<result property="histNo"			column="HIST_NO"/>
+		<result property="effDateFrom"		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retrieveMtnClmCashCall" resultMap="mtnClaimmCashCallMap" parameterType="java.util.Map">
+   		SELECT * FROM TABLE(MTN_CLM_CASHCALL_PKG.ret_mtn_clm_cashcall(
+   					#{treatyId, jdbcType=VARCHAR},
+   					#{treatyCedId, jdbcType=VARCHAR},
+   				    #{currCd, jdbcType=VARCHAR},
+					#{position, jdbcType=VARCHAR},
+					#{count, jdbcType=VARCHAR},
+					#{sortKey, jdbcType=VARCHAR},
+					#{order, jdbcType=VARCHAR}))
+   </select>
+   
+    <update id="saveMtnClmCashCall" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveCashCall" item="cashCall">
+	    		MTN_CLM_CASHCALL_PKG.save_mtn_clm_cashcall(
+	    			#{cashCall.treatyId,jdbcType=VARCHAR},
+			        #{cashCall.treatyCedId,jdbcType=VARCHAR},
+			        #{cashCall.currCd,jdbcType=VARCHAR},
+			        #{cashCall.histNo,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{cashCall.activeTag,jdbcType=VARCHAR},
+			        #{cashCall.remarks,jdbcType=VARCHAR},
+			        #{cashCall.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{cashCall.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="delCashCall" item="cashCall">
+    			MTN_CLM_CASHCALL_PKG.del_mtn_clm_cashcall(
+    				#{cashCall.treatyId,jdbcType=VARCHAR},
+    				#{cashCall.treatyCedId,jdbcType=VARCHAR},
+    				#{cashCall.currCd,jdbcType=VARCHAR},
+    				#{cashCall.histNo,jdbcType=VARCHAR}
+				);
+    		</foreach>
+    	END;
+    </update>
     
 </mapper>
