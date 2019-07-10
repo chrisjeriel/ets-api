@@ -1598,6 +1598,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("retLineAmt",srdr.getRetLineAmt());
 		params.put("autoCalc",srdr.getAutoCalc());
 		params.put("updateUser",srdr.getUpdateUser());
+		params.put("trtyLimitSec2", srdr.getTrtyLimitSec2());
+		params.put("seciiPremTag", srdr.getSeciiPremTag());
 		try {
 			if(srdr.getAutoCalc().equals("Y")){
 				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));

@@ -18,6 +18,7 @@ public class DistWrisk {
 	private Double vatRiRt;
 	private DateTime negateDate;
 	private String negateUser;
+	private String seciiPremTag;
 	private Double trtyLimitSec2;
 	private String createUser;
 	private DateTime createDate;
@@ -183,18 +184,22 @@ public class DistWrisk {
 	public void setTotalPremAmt(Double totalPremAmt) {
 		this.totalPremAmt = totalPremAmt;
 	}
+	public String getSeciiPremTag() {
+		return seciiPremTag;
+	}
+	public void setSeciiPremTag(String seciiPremTag) {
+		this.seciiPremTag = seciiPremTag;
+	}
 	@Override
 	public String toString() {
 		return "DistWrisk [riskDistId=" + riskDistId + ", altNo=" + altNo + ", coinsGrpId=" + coinsGrpId + ", status="
 				+ status + ", retLineAmt=" + retLineAmt + ", retOneLines=" + retOneLines + ", retTwoLines="
 				+ retTwoLines + ", autoCalc=" + autoCalc + ", tsiAmt=" + tsiAmt + ", premAmt=" + premAmt + ", vatRiRt="
-				+ vatRiRt + ", negateDate=" + negateDate + ", negateUser=" + negateUser + ", trtyLimitSec2="
-				+ trtyLimitSec2 + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", distRiskWtreaty=" + distRiskWtreaty + ", retOneTsiAmt="
-				+ retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt + ", retTwoTsiAmt=" + retTwoTsiAmt
-				+ ", retTwoPremAmt=" + retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt + ", totalPremAmt=" + totalPremAmt
-				+ "]";
+				+ vatRiRt + ", negateDate=" + negateDate + ", negateUser=" + negateUser + ", seciiPremTag="
+				+ seciiPremTag + ", trtyLimitSec2=" + trtyLimitSec2 + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", distRiskWtreaty="
+				+ distRiskWtreaty + ", retOneTsiAmt=" + retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt
+				+ ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt=" + retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt
+				+ ", totalPremAmt=" + totalPremAmt + "]";
 	}
-	
-	
 }
