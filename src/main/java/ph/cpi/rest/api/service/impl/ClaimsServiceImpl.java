@@ -95,6 +95,11 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("riskName", rclr.getRiskName());
 		params.put("lossDateFrom", rclr.getLossDateFrom());
 		params.put("lossDateTo", rclr.getLossDateTo());
+		params.put("totalResFrom", rclr.getTotalResFrom());
+		params.put("totalResTo", rclr.getTotalResTo());
+		params.put("totalPaytFrom", rclr.getTotalPaytFrom());
+		params.put("totalPaytTo", rclr.getTotalPaytTo());
+		params.put("adjName", rclr.getAdjName());
 		params.put("currencyCd", rclr.getCurrencyCd());
 		params.put("processedBy", rclr.getProcessedBy());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
