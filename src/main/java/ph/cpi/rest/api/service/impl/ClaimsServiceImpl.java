@@ -473,18 +473,4 @@ public class ClaimsServiceImpl implements ClaimsService {
 		}
 		return scprResponse;
 	}
-
-	/*@Override
-	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		RetrieveMtnClmCashCallResponse rccResponse = new RetrieveMtnClmCashCallResponse();
-		HashMap<String, Object> retrieveClmCashCallParams = new HashMap<String, Object>();
-		retrieveClmCashCallParams.put("treatyId", rccp.getTreatyId());
-		retrieveClmCashCallParams.put("TreatyCedId", rccp.getTreatyCedId());
-		retrieveClmCashCallParams.put("currCd", rccp.getCurrCd());
-		rccResponse.setCashCallList(cashCallList);
-		logger.info("retrieveMtnClmCashCallResponse : " + rccResponse.toString());
-		return rccResponse;
-	}*/
 }
