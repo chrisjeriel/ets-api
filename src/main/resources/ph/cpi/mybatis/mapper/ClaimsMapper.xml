@@ -254,6 +254,11 @@
 														#{riskName,jdbcType=VARCHAR},
 														CAST(to_timestamp(#{lossDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														CAST(to_timestamp(#{lossDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{totalResFrom,jdbcType=VARCHAR},
+														#{totalResTo,jdbcType=VARCHAR},
+														#{totalPaytFrom,jdbcType=VARCHAR},
+														#{totalPaytTo,jdbcType=VARCHAR},
+														#{adjName,jdbcType=VARCHAR},
 														#{currencyCd,jdbcType=VARCHAR},
 														#{processedBy,jdbcType=VARCHAR}, 
 														'', '', '','')
