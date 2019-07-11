@@ -13,6 +13,7 @@
 		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="coSeriesNo" 		column="CO_SERIES_NO"/>
 		<result property="altNo" 			column="ALT_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="prinId" 			column="PRIN_ID"/>
@@ -366,8 +367,8 @@
 	<update id="saveClaimSecCover" parameterType="java.util.Map">
 		BEGIN
 			CLM_COVERAGE_PKG.save_clm_sec_cov( #{claimId}, #{projId}, #{riskId}, #{sectionISi}, 
-												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag}, 
-												#{secIISiTag}, #{secIIISiTag}, #{allowMaxSi}, #{sectionIPrem}, 
+												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag, jdbcType=VARCHAR}, 
+												#{secIISiTag, jdbcType=VARCHAR}, #{secIIISiTag, jdbcType=VARCHAR}, #{allowMaxSi}, #{sectionIPrem}, 
 												#{sectionIIPrem}, #{sectionIIIPrem}, #{totalPrem}, 
 												#{currencyCd}, #{currencyRt}, #{pctShare}, #{pctPml, jdbcType=INTEGER}, 
 												#{totalValue}, #{createUser}, 
