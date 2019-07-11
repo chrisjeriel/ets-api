@@ -11,6 +11,8 @@ public class SaveRiskDistRequest {
 	private String retLineAmt;
 	private String autoCalc;
 	private String updateUser;
+	private String seciiPremTag;
+	private String trtyLimitSec2;
 	public List<WParam> getSaveWParam() {
 		return saveWParam;
 	}
@@ -59,11 +61,24 @@ public class SaveRiskDistRequest {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
+	public String getSeciiPremTag() {
+		return seciiPremTag;
+	}
+	public void setSeciiPremTag(String seciiPremTag) {
+		this.seciiPremTag = seciiPremTag;
+	}
+	public String getTrtyLimitSec2() {
+		return trtyLimitSec2;
+	}
+	public void setTrtyLimitSec2(String trtyLimitSec2) {
+		this.trtyLimitSec2 = trtyLimitSec2;
+	}
 	@Override
 	public String toString() {
 		return "SaveRiskDistRequest [saveWParam=" + saveWParam + ", delWParam=" + delWParam + ", policyId=" + policyId
 				+ ", riskDistId=" + riskDistId + ", altNo=" + altNo + ", retLineAmt=" + retLineAmt + ", autoCalc="
-				+ autoCalc + ", updateUser=" + updateUser + "]";
+				+ autoCalc + ", updateUser=" + updateUser + ", seciiPremTag=" + seciiPremTag + ", trtyLimitSec2="
+				+ trtyLimitSec2 + "]";
 	}
 }
 
