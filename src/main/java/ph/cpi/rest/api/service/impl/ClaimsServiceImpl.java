@@ -95,6 +95,11 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("riskName", rclr.getRiskName());
 		params.put("lossDateFrom", rclr.getLossDateFrom());
 		params.put("lossDateTo", rclr.getLossDateTo());
+		params.put("totalResFrom", rclr.getTotalResFrom());
+		params.put("totalResTo", rclr.getTotalResTo());
+		params.put("totalPaytFrom", rclr.getTotalPaytFrom());
+		params.put("totalPaytTo", rclr.getTotalPaytTo());
+		params.put("adjName", rclr.getAdjName());
 		params.put("currencyCd", rclr.getCurrencyCd());
 		params.put("processedBy", rclr.getProcessedBy());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
@@ -323,6 +328,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("lapseTo", scgir.getLapseTo());
 		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
 		params.put("maintenanceTo", scgir.getMaintenanceTo());
+		params.put("prinId", scgir.getPrinId());
+		params.put("contractorId", scgir.getContractorId());
+		params.put("insuredDesc", scgir.getInsuredDesc());
 		params.put("createUser", scgir.getCreateUser());
 		params.put("createDate", scgir.getCreateDate());
 		params.put("updateUser", scgir.getUpdateUser());

@@ -39,6 +39,9 @@ public class SaveClmGenInfoRequest {
 	private String lapseTo;
 	private String maintenanceFrom;
 	private String maintenanceTo;
+	private Integer prinId;
+	private Integer contractorId;
+	private String insuredDesc;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -287,6 +290,24 @@ public class SaveClmGenInfoRequest {
 	public void setMaintenanceTo(String maintenanceTo) {
 		this.maintenanceTo = maintenanceTo;
 	}
+	public Integer getPrinId() {
+		return prinId;
+	}
+	public void setPrinId(Integer prinId) {
+		this.prinId = prinId;
+	}
+	public Integer getContractorId() {
+		return contractorId;
+	}
+	public void setContractorId(Integer contractorId) {
+		this.contractorId = contractorId;
+	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -450,6 +471,7 @@ public class SaveClmGenInfoRequest {
 				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
 				+ oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom
 				+ ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo
+				+ ", prinId=" + prinId + ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
 				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
