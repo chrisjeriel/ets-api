@@ -32,4 +32,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitPaytReq> acitPaytReqList  = sqlSession.selectList("retrieveAcitPaytReq", params);
 		return acitPaytReqList;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitPaytReq(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitPaytReq", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
