@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
@@ -52,5 +54,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitPaytReq");
 		logger.info("SaveAcitPaytReqRequest : " + saprr.toString());
 		return acctInTrustService.saveAcitPaytReq(saprr);
+	}
+	
+	@GetMapping(path="retrieveArList")
+	public @ResponseBody RetrieveAcitArListResponse retrieveArList(RetrieveAcitArListRequest raalr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveArList");
+		logger.info("RetrieveAcitArListRequest : " + raalr.toString());
+		return acctInTrustService.retrieveArList(raalr);
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -38,5 +39,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveAcitPaytReq", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcknowledgementReceipt> retrieveArList(HashMap<String, Object> params) throws SQLException {
+		List<AcknowledgementReceipt> res = sqlSession.selectList("retArList",params);
+		return res;
 	}
 }
