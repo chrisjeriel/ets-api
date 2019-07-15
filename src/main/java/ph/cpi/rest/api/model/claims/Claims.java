@@ -15,6 +15,7 @@ public class Claims {
 	private String cedingId;
 	private Integer coSeriesNo;
 	private Integer altNo;
+	private Integer policyId;
 	private String policyNo;
 	private String cedingName;
 	private Integer prinId;
@@ -130,6 +131,12 @@ public class Claims {
 	}
 	public void setAltNo(Integer altNo) {
 		this.altNo = altNo;
+	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
 	}
 	public String getPolicyNo() {
 		return policyNo;
@@ -519,19 +526,19 @@ public class Claims {
 	public String toString() {
 		return "Claims [claimId=" + claimId + ", claimNo=" + claimNo + ", lineCd=" + lineCd + ", polYear=" + polYear
 				+ ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo="
-				+ altNo + ", policyNo=" + policyNo + ", cedingName=" + cedingName + ", prinId=" + prinId
-				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contractorName="
-				+ contractorName + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd=" + clmStatCd
-				+ ", clmStatus=" + clmStatus + ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc
-				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", coRefNo=" + coRefNo
-				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo
-				+ ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
-				+ ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr="
-				+ lossAbbr + ", lossPeriod=" + lossPeriod + ", lossPdAbbr=" + lossPdAbbr + ", lossDtl=" + lossDtl
-				+ ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd
-				+ ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate
-				+ ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd
-				+ ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
+				+ altNo + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingName=" + cedingName
+				+ ", prinId=" + prinId + ", principalName=" + principalName + ", contractorId=" + contractorId
+				+ ", contractorName=" + contractorName + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo
+				+ ", clmStatCd=" + clmStatCd + ", clmStatus=" + clmStatus + ", cessionId=" + cessionId
+				+ ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc
+				+ ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName
+				+ ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate
+				+ ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd="
+				+ lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod=" + lossPeriod + ", lossPdAbbr=" + lossPdAbbr
+				+ ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc
+				+ ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate="
+				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
+				+ oldStatCd + ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
 				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
 				+ ", maintenanceTo=" + maintenanceTo + ", pctShare=" + pctShare + ", totalSi=" + totalSi
 				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="

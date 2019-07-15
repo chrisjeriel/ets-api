@@ -13,6 +13,7 @@
 		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="coSeriesNo" 		column="CO_SERIES_NO"/>
 		<result property="altNo" 			column="ALT_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="prinId" 			column="PRIN_ID"/>
@@ -598,6 +599,9 @@
 				CAST(to_timestamp(#{lapseTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{maintenanceFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{maintenanceTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{prinId, jdbcType=INTEGER},
+				#{contractorId, jdbcType=INTEGER},
+				#{insuredDesc, jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},

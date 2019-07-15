@@ -34,86 +34,120 @@ class CashCall {
 	private String treatyCedId;
 	private String currCd;
 	private Integer histNo;
-	private DateTime effDateFrom;
+	private Integer amount;
+	private String effDateFrom;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
 	
 	public Integer getTreatyId() {
 		return treatyId;
 	}
+
 	public void setTreatyId(Integer treatyId) {
 		this.treatyId = treatyId;
 	}
+
 	public String getTreatyCedId() {
 		return treatyCedId;
 	}
+
 	public void setTreatyCedId(String treatyCedId) {
 		this.treatyCedId = treatyCedId;
 	}
+
 	public String getCurrCd() {
 		return currCd;
 	}
+
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
+
 	public Integer getHistNo() {
 		return histNo;
 	}
+
 	public void setHistNo(Integer histNo) {
 		this.histNo = histNo;
 	}
-	public DateTime getEffDateFrom() {
+
+	public Integer getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
+	}
+
+	public String getEffDateFrom() {
 		return effDateFrom;
 	}
-	public void setEffDateFrom(DateTime effDateFrom) {
+
+	public void setEffDateFrom(String effDateFrom) {
 		this.effDateFrom = effDateFrom;
 	}
+
 	public String getActiveTag() {
 		return activeTag;
 	}
+
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+
 	public String getRemarks() {
 		return remarks;
 	}
+
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
 	public String getCreateUser() {
 		return createUser;
 	}
+
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
+
 	public String getUpdateUser() {
 		return updateUser;
 	}
+
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+
+	
 	
 	@Override
 	public String toString() {
 		return "CashCall [treatyId=" + treatyId + ", treatyCedId=" + treatyCedId + ", currCd=" + currCd + ", histNo="
-				+ histNo + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ histNo + ", amount=" + amount + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
+	
 }

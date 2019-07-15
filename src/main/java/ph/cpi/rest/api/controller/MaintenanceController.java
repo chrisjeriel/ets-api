@@ -844,4 +844,31 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnClmCashCall(smcccr);
 	}
 	
+	@GetMapping(path="retrieveMtnClmEventTypeLov")
+	public @ResponseBody RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmEventTypeLov");
+		logger.info("RetrieveMtnClmEventTypeLovRequest : " + rmcel.toString());
+		return maintenanceService.retrieveMtnClmEventTypeLov(rmcel);
+	}
+	
+	@GetMapping(path="retrieveMtnClmEventLov")
+	public @ResponseBody RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmEventLov");
+		logger.info("RetrieveMtnClmEventLovRequest : " + rmcel.toString());
+		return maintenanceService.retrieveMtnClmEventLov(rmcel);
+	}
+	
+	@PostMapping(path="copyMtnClmCashCall")
+	public @ResponseBody CopyMtnClmCashCallResponse copyPoolRetHist(@RequestBody CopyMtnClmCashCallRequest cpmccr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyMtnClmCashCall");
+		logger.info("CopyClmCashCallRequest : " + cpmccr.toString());
+		return maintenanceService.copyMtnClmCashCall(cpmccr);
+	}
+	
+	@GetMapping(path="retrieveMtnAcitTranType")
+	public @ResponseBody RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranType");
+		logger.info("RetrieveMtnAcitTranTypeRequest : " + rmattp.toString());
+		return maintenanceService.retrieveMtnAcitTranType(rmattp);
+	}
 }

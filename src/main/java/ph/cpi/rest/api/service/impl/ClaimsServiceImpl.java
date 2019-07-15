@@ -328,6 +328,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("lapseTo", scgir.getLapseTo());
 		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
 		params.put("maintenanceTo", scgir.getMaintenanceTo());
+		params.put("prinId", scgir.getPrinId());
+		params.put("contractorId", scgir.getContractorId());
+		params.put("insuredDesc", scgir.getInsuredDesc());
 		params.put("createUser", scgir.getCreateUser());
 		params.put("createDate", scgir.getCreateDate());
 		params.put("updateUser", scgir.getUpdateUser());
@@ -478,18 +481,4 @@ public class ClaimsServiceImpl implements ClaimsService {
 		}
 		return scprResponse;
 	}
-
-	/*@Override
-	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		RetrieveMtnClmCashCallResponse rccResponse = new RetrieveMtnClmCashCallResponse();
-		HashMap<String, Object> retrieveClmCashCallParams = new HashMap<String, Object>();
-		retrieveClmCashCallParams.put("treatyId", rccp.getTreatyId());
-		retrieveClmCashCallParams.put("TreatyCedId", rccp.getTreatyCedId());
-		retrieveClmCashCallParams.put("currCd", rccp.getCurrCd());
-		rccResponse.setCashCallList(cashCallList);
-		logger.info("retrieveMtnClmCashCallResponse : " + rccResponse.toString());
-		return rccResponse;
-	}*/
 }

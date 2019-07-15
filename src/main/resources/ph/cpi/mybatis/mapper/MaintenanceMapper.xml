@@ -2879,6 +2879,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"			column="OK_DELETE"/>
     </resultMap>
 	
 	<select id="retrieveMtnClaimStatus" resultMap="clmStatMap" parameterType="java.util.Map">
@@ -2931,6 +2932,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"		column="OK_DELETE"/>
     </resultMap>
    
    <select id="retrieveMtnClmEvent" resultMap="mtnClmEventMap" parameterType="java.util.Map">
@@ -3250,6 +3252,7 @@
 		<result property="treatyCedId"		column="TRTY_CED_ID"/>
 		<result property="currCd"			column="CURRENCY_CD"/>
 		<result property="histNo"			column="HIST_NO"/>
+		<result property="amount"			column="AMOUNT"/>
 		<result property="effDateFrom"		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
@@ -3257,6 +3260,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
     </resultMap>
     
     <select id="retrieveMtnClmCashCall" resultMap="mtnClaimmCashCallMap" parameterType="java.util.Map">
@@ -3278,13 +3282,14 @@
 			        #{cashCall.treatyCedId,jdbcType=VARCHAR},
 			        #{cashCall.currCd,jdbcType=VARCHAR},
 			        #{cashCall.histNo,jdbcType=VARCHAR},
-			        CAST(to_timestamp(#{cashCall.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{cashCall.amount,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{cashCall.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			        #{cashCall.activeTag,jdbcType=VARCHAR},
 			        #{cashCall.remarks,jdbcType=VARCHAR},
 			        #{cashCall.createUser,jdbcType=VARCHAR},
-			        CAST(to_timestamp(#{cashCall.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        CAST(to_timestamp(#{cashCall.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			        #{cashCall.updateUser,jdbcType=VARCHAR},
-			        CAST(to_timestamp(#{cashCall.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			        CAST(to_timestamp(#{cashCall.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 	    		);
     		</foreach>
     		<foreach collection="delCashCall" item="cashCall">
@@ -3297,5 +3302,85 @@
     		</foreach>
     	END;
     </update>
+    
+    <select id="retrieveMtnClmEventTypeLov" resultMap="mtnClmEventTypeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_CLM_EVENT_TYPE_PKG.ret_clm_eventtype_lov(#{searchStr, jdbcType=VARCHAR},
+																		 null,
+																		 null,
+																		 null,
+																		 null
+																		))
+	</select>
+	
+	<select id="retrieveMtnClmEventLov" resultMap="mtnClmEventMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_CLM_EVENT_PKG.ret_mtn_clm_event_lov(#{lineCd, jdbcType=VARCHAR},
+																	#{eventTypeCd, jdbcType=VARCHAR},
+																	#{searchStr, jdbcType=VARCHAR},
+																	null,
+																	null,
+																	null,
+																	null
+																   ))
+	</select>
+	
+	<update id="checkMtnClmCashCall" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_CLM_CASHCALL_PKG.check_mtn_clm_cashcall(
+																				#{copyFromTreatyId, jdbcType=INTEGER},
+																				#{copyFromTreatyCedId, jdbcType=INTEGER},
+																				#{copyFromCurrCd, jdbcType=INTEGER},
+																				#{copyToTreatyId, jdbcType=INTEGER},
+																				#{copyToTreatyCedId, jdbcType=INTEGER},
+																				#{copyToCurrCd, jdbcType=INTEGER},
+																			    #{copyFromHistNo, jdbcType=INTEGER}
+																			)
+		}	
+	</update>
+	
+	
+	<update id="copyClmCashCall" parameterType="java.util.Map">
+		BEGIN
+			MTN_CLM_CASHCALL_PKG.copy_mtn_clm_cashcall(
+				#{copyFromTreatyId, jdbcType=INTEGER},
+				#{copyFromTreatyCedId, jdbcType=INTEGER},
+				#{copyFromCurrCd, jdbcType=INTEGER},
+				#{copyToTreatyId, jdbcType=INTEGER},
+				#{copyToTreatyCedId, jdbcType=INTEGER},
+				#{copyToCurrCd, jdbcType=INTEGER},
+			    #{copyFromHistNo, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+    
+    <resultMap type="ph.cpi.rest.api.model.maintenance.MtnAcitTranType" id="mtnAcitTranTypeMap">
+    	<result property="tranClass" 			column="TRAN_CLASS"/>
+		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
+		<result property="typePrefix" 			column="TYPE_PREFIX"/>
+		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
+		<result property="defaultParticulars" 	column="DEFAULT_PARTICULARS"/>
+		<result property="masterTranType" 		column="MASTER_TRAN_TYPE"/>
+		<result property="remarks" 				column="REMARKS"/>
+		<result property="autoTag" 				column="AUTO_TAG"/>
+		<result property="baeTag" 				column="BAE_TAG"/>
+		<result property="activeTag" 			column="ACTIVE_TAG"/>
+		<result property="createUser" 			column="CREATE_USER"/> 
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 			column="UPDATE_USER"/> 
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retrieveMtnAcitTranType" resultMap="mtnAcitTranTypeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_mtn_acit_tran_type(#{tranClass, jdbcType=VARCHAR},
+				#{tranTypeCd, jdbcType=VARCHAR},
+				#{typePrefix, jdbcType=VARCHAR},
+				#{autoTag, jdbcType=VARCHAR},
+				#{baeTag, jdbcType=VARCHAR},
+				#{activeTag, jdbcType=VARCHAR},
+				'','','',''))
+	</select>
     
 </mapper>
