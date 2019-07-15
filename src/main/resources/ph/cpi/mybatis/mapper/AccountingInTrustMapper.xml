@@ -84,7 +84,7 @@
 				#{paytReqNo,mode=OUT,jdbcType=VARCHAR},
 				#{reqId, jdbcType=INTEGER},
 				#{reqPrefix, jdbcType=VARCHAR},
-				#{reqYear, jdbcType=INTEGER},
+				#{reqYear, jdbcType=VARCHAR},
 				#{reqMm, jdbcType=INTEGER},
 				#{reqSeqNo, jdbcType=VARCHAR},
 				#{tranTypeCd, jdbcType=VARCHAR},
