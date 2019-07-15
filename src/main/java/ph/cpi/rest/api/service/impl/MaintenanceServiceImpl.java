@@ -1935,7 +1935,19 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
-
+	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
+		RetrieveMtnLossCdLovResponse rmlclResponse = new RetrieveMtnLossCdLovResponse();
+		HashMap<String, Object> searchParams = new HashMap<String, Object>();
+		
+		searchParams.put("lossCdType", rmlcl.getLossCdType());
+		searchParams.put("searchStr", rmlcl.getSearchStr());
+		
+		rmlclResponse.setLossCdList(maintenanceDao.retrieveMtnLossCdLov(searchParams));
+		
+		return rmlclResponse;
+	}
+	
+	@Override
 	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp)
 			throws SQLException {
 		// TODO Auto-generated method stub
@@ -1960,19 +1972,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return smcccrResponse;
 	}
 		
-		
-	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
-		RetrieveMtnLossCdLovResponse rmlclResponse = new RetrieveMtnLossCdLovResponse();
-		HashMap<String, Object> searchParams = new HashMap<String, Object>();
-		
-		searchParams.put("lossCdType", rmlcl.getLossCdType());
-		searchParams.put("searchStr", rmlcl.getSearchStr());
-		
-		rmlclResponse.setLossCdList(maintenanceDao.retrieveMtnLossCdLov(searchParams));
-		
-		return rmlclResponse;
-	}
-
 	@Override
 	public CopyMtnClmCashCallResponse copyMtnClmCashCall(CopyMtnClmCashCallRequest cpmccr) throws SQLException {
 		// TODO Auto-generated method stub

@@ -823,6 +823,12 @@ public class MaintenanceController {
 		return maintenanceService.copyPoolRetHist(cprhr);
 	}
 	
+	@GetMapping(path="retrieveMtnLossCdLov")
+	public @ResponseBody RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnLossCdLov");
+		logger.info("RetrieveMtnLossCdLovRequest : " + rmlcl.toString());
+		return maintenanceService.retrieveMtnLossCdLov(rmlcl);
+	}
 	@GetMapping(path="retrieveMtnClmCashCall")
 	public @ResponseBody RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnClmCashCall");
@@ -836,14 +842,6 @@ public class MaintenanceController {
 		logger.info("SaveMtnClmCashCallRequest : " + smcccr.toString());
 		return maintenanceService.saveMtnClmCashCall(smcccr);
 	}
-	
-	@GetMapping(path="retrieveMtnLossCdLov")
-	public @ResponseBody RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMtnLossCdLov");
-		logger.info("RetrieveMtnLossCdLovRequest : " + rmlcl.toString());
-		return maintenanceService.retrieveMtnLossCdLov(rmlcl);
-	}
-	
 	@PostMapping(path="copyMtnClmCashCall")
 	public @ResponseBody CopyMtnClmCashCallResponse copyPoolRetHist(@RequestBody CopyMtnClmCashCallRequest cpmccr) throws SQLException {
 		logger.info("POST: /api/maintenance-service/copyMtnClmCashCall");

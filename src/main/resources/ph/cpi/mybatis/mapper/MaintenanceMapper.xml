@@ -3235,6 +3235,16 @@
 		END;
 	</update>
 	
+	<select id="retrieveMtnLossCdLov" resultMap="mtnLossCdMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_LOSS_CD_PKG.ret_mtn_loss_cd_lov(#{lossCdType, jdbcType=VARCHAR},
+																#{searchStr, jdbcType=VARCHAR},
+																null,
+																null,
+																null,
+																null
+																))
+	</select>
+
 	<resultMap type="ph.cpi.rest.api.model.maintenance.MtnClmCashCall" id="mtnClaimmCashCallMap">
    		<result property="treatyId" 		column="TREATY_ID"/>
 		<result property="treatyCedId"		column="TRTY_CED_ID"/>
@@ -3290,7 +3300,6 @@
     		</foreach>
     	END;
     </update>
-   
 	<select id="retrieveMtnLossCdLov" resultMap="mtnLossCdMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_LOSS_CD_PKG.ret_mtn_loss_cd_lov(#{lossCdType, jdbcType=VARCHAR},
 																#{searchStr, jdbcType=VARCHAR},
@@ -3333,5 +3342,4 @@
 			);
 		END;
 	</update>
-    
 </mapper>
