@@ -3300,16 +3300,7 @@
     		</foreach>
     	END;
     </update>
-	<select id="retrieveMtnLossCdLov" resultMap="mtnLossCdMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_LOSS_CD_PKG.ret_mtn_loss_cd_lov(#{lossCdType, jdbcType=VARCHAR},
-																#{searchStr, jdbcType=VARCHAR},
-																null,
-																null,
-																null,
-																null
-																))
-	</select>
-	
+
 	<update id="checkMtnClmCashCall" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_CLM_CASHCALL_PKG.check_mtn_clm_cashcall(
@@ -3323,7 +3314,6 @@
 																			)
 		}	
 	</update>
-	
 	
 	<update id="copyClmCashCall" parameterType="java.util.Map">
 		BEGIN
