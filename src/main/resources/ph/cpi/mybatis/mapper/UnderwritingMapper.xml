@@ -2256,6 +2256,7 @@
 		<result property="negateDate" 		column="NEGATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="negateUser" 		column="NEGATE_USER" />
 		<result property="trtyLimitSec2"	column="TRTY_LIMIT_SECII" />
+		<result property="seciiPremTag"		column="SECII_PREM_TAG" />
 		<result property="createUser" 		column="CREATE_USER" />
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER" />
@@ -2538,7 +2539,7 @@
 			<foreach collection="saveWParam" item="wparam">
 				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
 			</foreach>
-			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{updateUser});
+			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{trtyLimitSec2, jdbcType=VARCHAR},#{seciiPremTag, jdbcType=VARCHAR},#{updateUser});
 			DIST_PKG.dist_not_auto(#{riskDistId},#{altNo},#{updateUser});
 		END;
 	</update>

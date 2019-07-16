@@ -13,6 +13,7 @@
 		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="coSeriesNo" 		column="CO_SERIES_NO"/>
 		<result property="altNo" 			column="ALT_NO"/>
+		<result property="policyId" 		column="POLICY_ID"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="prinId" 			column="PRIN_ID"/>
@@ -253,6 +254,11 @@
 														#{riskName,jdbcType=VARCHAR},
 														CAST(to_timestamp(#{lossDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														CAST(to_timestamp(#{lossDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{totalResFrom,jdbcType=VARCHAR},
+														#{totalResTo,jdbcType=VARCHAR},
+														#{totalPaytFrom,jdbcType=VARCHAR},
+														#{totalPaytTo,jdbcType=VARCHAR},
+														#{adjName,jdbcType=VARCHAR},
 														#{currencyCd,jdbcType=VARCHAR},
 														#{processedBy,jdbcType=VARCHAR}, 
 														'', '', '','')
@@ -366,8 +372,8 @@
 	<update id="saveClaimSecCover" parameterType="java.util.Map">
 		BEGIN
 			CLM_COVERAGE_PKG.save_clm_sec_cov( #{claimId}, #{projId}, #{riskId}, #{sectionISi}, 
-												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag}, 
-												#{secIISiTag}, #{secIIISiTag}, #{allowMaxSi}, #{sectionIPrem}, 
+												#{sectionIISi}, #{sectionIIISi}, #{totalSi}, #{secISiTag, jdbcType=VARCHAR}, 
+												#{secIISiTag, jdbcType=VARCHAR}, #{secIIISiTag, jdbcType=VARCHAR}, #{allowMaxSi}, #{sectionIPrem}, 
 												#{sectionIIPrem}, #{sectionIIIPrem}, #{totalPrem}, 
 												#{currencyCd}, #{currencyRt}, #{pctShare}, #{pctPml, jdbcType=INTEGER}, 
 												#{totalValue}, #{createUser}, 
@@ -593,6 +599,9 @@
 				CAST(to_timestamp(#{lapseTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{maintenanceFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{maintenanceTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{prinId, jdbcType=INTEGER},
+				#{contractorId, jdbcType=INTEGER},
+				#{insuredDesc, jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},

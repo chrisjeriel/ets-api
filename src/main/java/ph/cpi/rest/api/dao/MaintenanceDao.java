@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
+import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -179,4 +180,9 @@ public interface MaintenanceDao {
 	public List<MtnLossCd> retrieveMtnLossCdLov(final HashMap<String, Object> params) throws SQLException;
 	public Integer copyMtnClmCashCall(HashMap<String, Object> params) throws SQLException;
 	public Integer checkMtnClmCashCall(HashMap<String, Object> params) throws SQLException;
-}
+	public List<MtnClmEventType> retrieveMtnClmEventTypeLov(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnClmEvent> retrieveMtnClmEventLov(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnAcitTranType> retrieveMtnAcitTranType(final HashMap<String, Object> params ) throws SQLException;
+
+	}
+

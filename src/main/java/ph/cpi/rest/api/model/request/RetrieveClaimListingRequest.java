@@ -12,8 +12,13 @@ public class RetrieveClaimListingRequest {
 	private String policyNo;
 	private String insuredDesc;
 	private String riskName;
-	private DateTime lossDateFrom;
-	private DateTime lossDateTo;
+	private String lossDateFrom;
+	private String lossDateTo;
+	private String totalResFrom;
+	private String totalResTo;
+	private String totalPaytFrom;
+	private String totalPaytTo;
+	private String adjName;
 	private String currencyCd;
 	private String processedBy;
 	private PaginationRequest paginationRequest = new PaginationRequest();
@@ -55,17 +60,47 @@ public class RetrieveClaimListingRequest {
 	public void setRiskName(String riskName) {
 		this.riskName = riskName;
 	}
-	public DateTime getLossDateFrom() {
+	public String getLossDateFrom() {
 		return lossDateFrom;
 	}
-	public void setLossDateFrom(DateTime lossDateFrom) {
+	public void setLossDateFrom(String lossDateFrom) {
 		this.lossDateFrom = lossDateFrom;
 	}
-	public DateTime getLossDateTo() {
+	public String getLossDateTo() {
 		return lossDateTo;
 	}
-	public void setLossDateTo(DateTime lossDateTo) {
+	public void setLossDateTo(String lossDateTo) {
 		this.lossDateTo = lossDateTo;
+	}
+	public String getTotalResFrom() {
+		return totalResFrom;
+	}
+	public void setTotalResFrom(String totalResFrom) {
+		this.totalResFrom = totalResFrom;
+	}
+	public String getTotalResTo() {
+		return totalResTo;
+	}
+	public void setTotalResTo(String totalResTo) {
+		this.totalResTo = totalResTo;
+	}
+	public String getTotalPaytFrom() {
+		return totalPaytFrom;
+	}
+	public void setTotalPaytFrom(String totalPaytFrom) {
+		this.totalPaytFrom = totalPaytFrom;
+	}
+	public String getTotalPaytTo() {
+		return totalPaytTo;
+	}
+	public void setTotalPaytTo(String totalPaytTo) {
+		this.totalPaytTo = totalPaytTo;
+	}
+	public String getAdjName() {
+		return adjName;
+	}
+	public void setAdjName(String adjName) {
+		this.adjName = adjName;
 	}
 	public String getCurrencyCd() {
 		return currencyCd;
@@ -95,8 +130,9 @@ public class RetrieveClaimListingRequest {
 	public String toString() {
 		return "RetrieveClaimListingRequest [claimNo=" + claimNo + ", cedingName=" + cedingName + ", clmStatus="
 				+ clmStatus + ", policyNo=" + policyNo + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName
-				+ ", lossDateFrom=" + lossDateFrom + ", lossDateTo=" + lossDateTo + ", currencyCd=" + currencyCd
-				+ ", processedBy=" + processedBy + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ ", lossDateFrom=" + lossDateFrom + ", lossDateTo=" + lossDateTo + ", totalResFrom=" + totalResFrom
+				+ ", totalResTo=" + totalResTo + ", totalPaytFrom=" + totalPaytFrom + ", totalPaytTo=" + totalPaytTo
+				+ ", adjName=" + adjName + ", currencyCd=" + currencyCd + ", processedBy=" + processedBy
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

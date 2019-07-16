@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
+import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -864,7 +865,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer res = sqlSession.update("copyPoolRetHist", params);
 		return res;
 	}
-	
+	@Override
+	public List<MtnLossCd> retrieveMtnLossCdLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCdLov", params);
+		return list;
+	}
 	@Override
 	public List<MtnClmCashCall> retrieveMtnCashCall(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
@@ -878,9 +883,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer res = sqlSession.update("saveMtnClmCashCall", params);
 		return res;
 	}
-	
-	public List<MtnLossCd> retrieveMtnLossCdLov(HashMap<String, Object> params) throws SQLException {
-		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCdLov", params);
+
+	@Override
+	public List<MtnClmEventType> retrieveMtnClmEventTypeLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEventType> list = sqlSession.selectList("retrieveMtnClmEventTypeLov", params);
+		return list;
+	}
+
+	@Override
+	public List<MtnClmEvent> retrieveMtnClmEventLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnClmEvent> list = sqlSession.selectList("retrieveMtnClmEventLov", params);
 		return list;
 	}
 
@@ -898,5 +910,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		sqlSession.selectOne("checkMtnClmCashCall", params);
 		Integer res = (Integer) params.get("checkResult");
 		return res;
+	}
+
+	@Override
+	public List<MtnAcitTranType> retrieveMtnAcitTranType(HashMap<String, Object> params) throws SQLException {
+		List<MtnAcitTranType> tranTypeList = sqlSession.selectList("retrieveMtnAcitTranType", params);
+		return tranTypeList;
 	}
 }
