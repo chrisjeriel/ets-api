@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
@@ -52,5 +56,19 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitPaytReq");
 		logger.info("SaveAcitPaytReqRequest : " + saprr.toString());
 		return acctInTrustService.saveAcitPaytReq(saprr);
+	}
+	
+	@GetMapping(path="retrieveAcitJVListing")
+	public @ResponseBody RetrieveAcitJVListingResponse retrieveAcitJVListing(RetrieveAcitJVListingRequest rajl) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVListing");
+		logger.info("RetrieveAcitJVListingRequest : " + rajl.toString());
+		return acctInTrustService.retrieveAcitJvListing(rajl);
+	}
+	
+	@GetMapping(path="retrieveAcitJVEntry")
+	public @ResponseBody RetrieveAcitJVEntryResponse retrieveAcitJVEntry(RetrieveAcitJVEntryRequest raje) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVEntry");
+		logger.info("RetrieveAcitJVEntryRequest : " + raje.toString());
+		return acctInTrustService.retrieveAcitJvEntry(raje);
 	}
 }

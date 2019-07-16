@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -38,5 +39,17 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveAcitPaytReq", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitTransactions> retrieveAcitJVListings(HashMap<String, Object> params) throws SQLException {
+		List<AcitTransactions> acitJVList  = sqlSession.selectList("retrieveAcitJvList", params);
+		return acitJVList;
+	}
+
+	@Override
+	public List<AcitTransactions> retrieveAcitJVEntry(HashMap<String, Object> params) throws SQLException {
+		List<AcitTransactions> acitJVEntry  = sqlSession.selectList("retrieveAcitJvEntry", params);
+		return acitJVEntry;
 	}
 }
