@@ -12,10 +12,14 @@ import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
 @Component
@@ -105,5 +109,43 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return saprResponse;
+	}
+
+
+	@Override
+	public UpdateAcitPaytReqStatResponse updateAcitPaytReqStat(UpdateAcitPaytReqStatRequest uaprsr)
+			throws SQLException {
+		UpdateAcitPaytReqStatResponse uaprsResponse = new UpdateAcitPaytReqStatResponse();
+		HashMap<String, Object> uaprsParams = new HashMap<String, Object>();
+		try {
+			uaprsParams.put("reqId", uaprsr.getReqId());
+			uaprsParams.put("reqStatus", uaprsr.getReqStatus());
+			uaprsParams.put("updateUser", uaprsr.getUpdateUser());
+			
+			HashMap<String, Object> response = acctITDao.updateAcitPaytReqStat(uaprsParams);
+			
+			uaprsResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			uaprsResponse.setReturnCode(0);
+			uaprsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			uaprsResponse.setReturnCode(0);
+			uaprsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return uaprsResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitPrqTransResponse retrieveAcitPrqTrans(RetrieveAcitPrqTransRequest raptp) throws SQLException {
+		RetrieveAcitPrqTransResponse raptResponse =  new RetrieveAcitPrqTransResponse();
+		HashMap<String, Object> raptParams = new HashMap<String, Object>();
+		raptParams.put("reqId", raptp.getReqId());
+		raptParams.put("itemNo", raptp.getItemNo());
+		raptResponse.setAcitPrqTrans(acctITDao.retrieveAcitPrqTrans(raptParams));
+		logger.info("RetrieveAcitPrqTransResponse : " + raptResponse.toString());
+		return raptResponse;
 	}
 }
