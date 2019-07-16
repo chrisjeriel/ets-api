@@ -46,4 +46,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcknowledgementReceipt> res = sqlSession.selectList("retArList",params);
 		return res;
 	}
+
+	@Override
+	public AcknowledgementReceipt retrieveArEntry(HashMap<String, Object> params) throws SQLException {
+		AcknowledgementReceipt res = sqlSession.selectOne("retArEntry", params);
+		return res;
+	}
 }

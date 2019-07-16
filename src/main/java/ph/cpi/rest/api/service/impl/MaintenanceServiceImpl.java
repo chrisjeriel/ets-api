@@ -2041,4 +2041,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("RetrieveMtnAcitTranTypeResponse : " + rmattResponse.toString());
 		return rmattResponse;
 	}
+
+	@Override
+	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveMtnBankResponse res = new RetrieveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		res.setBankList(maintenanceDao.retrieveMtnBank(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		RetrieveMtnBankAcctResponse res = new RetrieveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbar.getBankCd());
+		params.put("accountNo", rmbar.getAccountNo());
+		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
+		return res;
+	}
 }

@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
@@ -124,6 +126,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("arAmtFrom", raalr.getArAmtFrom());
 		params.put("arAmtTo", raalr.getArAmtTo());
 		response.setAr(acctITDao.retrieveArList(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArEntryResponse retrieveArEntry(RetrieveAcitArEntryRequest raaer) throws SQLException {
+		RetrieveAcitArEntryResponse response = new RetrieveAcitArEntryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaer.getTranId());
+		params.put("arNo", raaer.getArNo());
+		response.setAr(acctITDao.retrieveArEntry(params));
 		return response;
 	}
 }

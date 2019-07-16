@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
@@ -61,5 +63,12 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveArList");
 		logger.info("RetrieveAcitArListRequest : " + raalr.toString());
 		return acctInTrustService.retrieveArList(raalr);
+	}
+	
+	@GetMapping(path="retrieveArEntry")
+	public @ResponseBody RetrieveAcitArEntryResponse retrieveArEntry(RetrieveAcitArEntryRequest raaer) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveArEntry");
+		logger.info("RetrieveAcitArEntryRequest : " + raaer.toString());
+		return acctInTrustService.retrieveArEntry(raaer);
 	}
 }

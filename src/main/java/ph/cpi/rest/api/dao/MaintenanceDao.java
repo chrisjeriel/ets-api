@@ -10,6 +10,8 @@ import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
+import ph.cpi.rest.api.model.maintenance.Bank;
+import ph.cpi.rest.api.model.maintenance.BankAcct;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -183,5 +185,7 @@ public interface MaintenanceDao {
 	public List<MtnClmEventType> retrieveMtnClmEventTypeLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnClmEvent> retrieveMtnClmEventLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcitTranType> retrieveMtnAcitTranType(final HashMap<String, Object> params ) throws SQLException;
+	public List<Bank> retrieveMtnBank(final HashMap<String, Object> params) throws SQLException;
+	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 
 	}

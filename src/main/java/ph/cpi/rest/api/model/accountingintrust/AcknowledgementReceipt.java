@@ -11,7 +11,11 @@ public class AcknowledgementReceipt {
 	private DateTime arDate;
 	private String arStatus;
 	private String arStatDesc;
+	private Integer dcbYear;
+	private Integer dcbUserCd;
 	private Integer dcbNo;
+	private String dcbBank;
+	private String dcbBankAcct;
 	private String refNo;
 	private Integer tranTypeCd;
 	private String tranTypeName;
@@ -73,12 +77,44 @@ public class AcknowledgementReceipt {
 		this.arStatDesc = arStatDesc;
 	}
 
+	public Integer getDcbYear() {
+		return dcbYear;
+	}
+
+	public void setDcbYear(Integer dcbYear) {
+		this.dcbYear = dcbYear;
+	}
+
+	public Integer getDcbUserCd() {
+		return dcbUserCd;
+	}
+
+	public void setDcbUserCd(Integer dcbUserCd) {
+		this.dcbUserCd = dcbUserCd;
+	}
+
 	public Integer getDcbNo() {
 		return dcbNo;
 	}
 
 	public void setDcbNo(Integer dcbNo) {
 		this.dcbNo = dcbNo;
+	}
+
+	public String getDcbBank() {
+		return dcbBank;
+	}
+
+	public void setDcbBank(String dcbBank) {
+		this.dcbBank = dcbBank;
+	}
+
+	public String getDcbBankAcct() {
+		return dcbBankAcct;
+	}
+
+	public void setDcbBankAcct(String dcbBankAcct) {
+		this.dcbBankAcct = dcbBankAcct;
 	}
 
 	public String getRefNo() {
@@ -236,9 +272,10 @@ public class AcknowledgementReceipt {
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
-				+ arStatus + ", arStatDesc=" + arStatDesc + ", dcbNo=" + dcbNo + ", refNo=" + refNo + ", tranTypeCd="
-				+ tranTypeCd + ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate=" + prDate
-				+ ", prPreparedBy=" + prPreparedBy + ", payor=" + payor + ", mailAddress=" + mailAddress
+				+ arStatus + ", arStatDesc=" + arStatDesc + ", dcbYear=" + dcbYear + ", dcbUserCd=" + dcbUserCd
+				+ ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankAcct=" + dcbBankAcct + ", refNo=" + refNo
+				+ ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate="
+				+ prDate + ", prPreparedBy=" + prPreparedBy + ", payor=" + payor + ", mailAddress=" + mailAddress
 				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", currCd=" + currCd + ", arAmt=" + arAmt
 				+ ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate

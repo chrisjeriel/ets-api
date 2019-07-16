@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class ARPaymentDetails {
+	private Integer paytId;
 	private String paytMode;
 	private String currCd;
 	private BigDecimal currRate;
@@ -15,6 +16,13 @@ public class ARPaymentDetails {
 	private DateTime checkDate;
 	private String checkClass;
 	
+	
+	public Integer getPaytId() {
+		return paytId;
+	}
+	public void setPaytId(Integer paytId) {
+		this.paytId = paytId;
+	}
 	public String getPaytMode() {
 		return paytMode;
 	}
@@ -72,8 +80,8 @@ public class ARPaymentDetails {
 	
 	@Override
 	public String toString() {
-		return "ARPaymentDetails [paytMode=" + paytMode + ", currCd=" + currCd + ", currRate=" + currRate + ", paytAmt="
-				+ paytAmt + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo + ", checkDate="
-				+ checkDate + ", checkClass=" + checkClass + "]";
+		return "ARPaymentDetails [paytId=" + paytId + ", paytMode=" + paytMode + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", paytAmt=" + paytAmt + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo="
+				+ checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass + "]";
 	}
 }

@@ -871,4 +871,18 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcitTranTypeRequest : " + rmattp.toString());
 		return maintenanceService.retrieveMtnAcitTranType(rmattp);
 	}
+	
+	@GetMapping(path="retrieveMtnBank")
+	public @ResponseBody RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBank");
+		logger.info("RetrieveMtnBankRequest : " + rmbr.toString());
+		return maintenanceService.retrieveMtnBank(rmbr);
+	}
+	
+	@GetMapping(path="retrieveMtnBankAcct")
+	public @ResponseBody RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBankAcct");
+		logger.info("RetrieveMtnBankAcctRequest : " + rmbar.toString());
+		return maintenanceService.retrieveMtnBankAcct(rmbar);
+	}
 }
