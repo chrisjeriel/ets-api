@@ -7,13 +7,13 @@ import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 
 public class RetrieveAcitJVEntryResponse {
-	private List<AcitTransactions> transactions;
+	private AcitTransactions transactions;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<AcitTransactions> getTransactions() {
+	public AcitTransactions getTransactions() {
 		return transactions;
 	}
-	public void setTransactions(List<AcitTransactions> transactions) {
+	public void setTransactions(AcitTransactions transactions) {
 		this.transactions = transactions;
 	}
 	public PaginationResponse getPaginationResponse() {
