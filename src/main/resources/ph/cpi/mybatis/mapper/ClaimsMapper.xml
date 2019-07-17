@@ -99,6 +99,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="proceed"		column="PROCEED"/>
 	</resultMap>
 	
 	<select id="retrieveClaimHistory" resultMap="claimReserveMap" parameterType="java.util.Map">

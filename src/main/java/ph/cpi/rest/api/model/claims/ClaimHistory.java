@@ -25,6 +25,7 @@ public class ClaimHistory {
 	private DateTime 	createDate;
 	private String 	 	updateUser;
 	private DateTime 	updateDate;
+	private String		proceed;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -145,6 +146,12 @@ public class ClaimHistory {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getProceed() {
+		return proceed;
+	}
+	public void setProceed(String proceed) {
+		this.proceed = proceed;
+	}
 	@Override
 	public String toString() {
 		return "ClaimHistory [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", histNo=" + histNo
@@ -152,6 +159,7 @@ public class ClaimHistory {
 				+ ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo="
 				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", proceed=" + proceed + "]";
 	}
 }
