@@ -56,6 +56,8 @@ public class Claims {
 	private String oldClmStatus;
 	private DateTime closeDate;
 	private String refreshSw;
+	private DateTime issueDate;
+	private DateTime effDate;
 	private DateTime lapseFrom;
 	private DateTime lapseTo;
 	private DateTime maintenanceFrom;
@@ -70,6 +72,11 @@ public class Claims {
 	private String totalLossExpPd;
 	private String reasonCd;
 	private String reasonDesc;
+	private String lapsePdTag;
+	private String polTermTag;
+	private String remarks;
+	private String approvedBy;
+	private String approvedDate;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -378,6 +385,18 @@ public class Claims {
 	public void setRefreshSw(String refreshSw) {
 		this.refreshSw = refreshSw;
 	}
+	public DateTime getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(DateTime issueDate) {
+		this.issueDate = issueDate;
+	}
+	public DateTime getEffDate() {
+		return effDate;
+	}
+	public void setEffDate(DateTime effDate) {
+		this.effDate = effDate;
+	}
 	public DateTime getLapseFrom() {
 		return lapseFrom;
 	}
@@ -462,6 +481,36 @@ public class Claims {
 	public void setReasonDesc(String reasonDesc) {
 		this.reasonDesc = reasonDesc;
 	}
+	public String getLapsePdTag() {
+		return lapsePdTag;
+	}
+	public void setLapsePdTag(String lapsePdTag) {
+		this.lapsePdTag = lapsePdTag;
+	}
+	public String getPolTermTag() {
+		return polTermTag;
+	}
+	public void setPolTermTag(String polTermTag) {
+		this.polTermTag = polTermTag;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+	public String getApprovedDate() {
+		return approvedDate;
+	}
+	public void setApprovedDate(String approvedDate) {
+		this.approvedDate = approvedDate;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -539,14 +588,15 @@ public class Claims {
 				+ ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate="
 				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
 				+ oldStatCd + ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
-				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
-				+ ", maintenanceTo=" + maintenanceTo + ", pctShare=" + pctShare + ", totalSi=" + totalSi
-				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
-				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", project=" + project + ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject
-				+ ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments="
-				+ clmAttachments + "]";
+				+ ", issueDate=" + issueDate + ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo="
+				+ lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", pctShare="
+				+ pctShare + ", totalSi=" + totalSi + ", totalValue=" + totalValue + ", riskId=" + riskId
+				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
+				+ ", totalLossExpPd=" + totalLossExpPd + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
+				+ ", lapsePdTag=" + lapsePdTag + ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy="
+				+ approvedBy + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
+				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
+				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
 	}
 }

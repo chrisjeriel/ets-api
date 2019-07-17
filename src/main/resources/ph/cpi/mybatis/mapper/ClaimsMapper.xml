@@ -54,6 +54,8 @@
 		<result property="oldClmStatus" 	column="OLD_CLM_STATUS"/>
 		<result property="closeDate" 		column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="refreshSw" 		column="REFRESH_SW"/>
+		<result property="issueDate" 		column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDate" 			column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lapseFrom" 		column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lapseTo" 			column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="maintenanceFrom" 	column="MAINTENANCE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -62,6 +64,11 @@
 		<result property="pctShare" 		column="PCT_SHARE"/>
 		<result property="totalSi" 			column="TOTAL_SI"/>
 		<result property="totalValue" 		column="TOTAL_VALUE"/>
+		<result property="lapsePdTag" 		column="LAPSE_PD_TAG"/>
+		<result property="polTermTag" 		column="POL_TERM_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="approvedBy" 		column="APPROVED_BY"/>
+		<result property="approvedDate" 	column="APPROVED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
