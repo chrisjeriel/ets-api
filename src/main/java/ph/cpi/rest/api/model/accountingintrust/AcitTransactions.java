@@ -19,7 +19,7 @@ public class AcitTransactions {
 	private String updateUser;
 	private DateTime updateDate;
 	
-	private List<AcitJVListing> jvListings;
+	private AcitJVListing jvListings;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -98,10 +98,11 @@ public class AcitTransactions {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<AcitJVListing> getJvListings() {
+	
+	public AcitJVListing getJvListings() {
 		return jvListings;
 	}
-	public void setJvListings(List<AcitJVListing> jvListings) {
+	public void setJvListings(AcitJVListing jvListings) {
 		this.jvListings = jvListings;
 	}
 	@Override
