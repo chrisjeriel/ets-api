@@ -40,6 +40,7 @@ public class SaveMtnClaimStatusRequest {
 class ClaimStats {
 	private String statusCode;
 	private String description;
+	private String ocTag;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -57,6 +58,13 @@ class ClaimStats {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getOcTag() {
+		return ocTag;
+	}
+	public void setOcTag(String ocTag) {
+		this.ocTag = ocTag;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -96,8 +104,9 @@ class ClaimStats {
 	}
 	@Override
 	public String toString() {
-		return "ClaimStatus [statusCode=" + statusCode + ", description=" + description + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "ClaimStats [statusCode=" + statusCode + ", description=" + description + ", ocTag=" + ocTag
+				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

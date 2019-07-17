@@ -13,11 +13,15 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -128,6 +132,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setAr(acctITDao.retrieveArList(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcitJVListingResponse retrieveAcitJvListing(RetrieveAcitJVListingRequest rajl) throws SQLException {
+		RetrieveAcitJVListingResponse response = new RetrieveAcitJVListingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rajl.getTranId());
+		response.setTransactions(acctITDao.retrieveAcitJVListings(params));
+		return response;
+	}
 
 
 	@Override
@@ -137,6 +150,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranId", raaer.getTranId());
 		params.put("arNo", raaer.getArNo());
 		response.setAr(acctITDao.retrieveArEntry(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcitJVEntryResponse retrieveAcitJvEntry(RetrieveAcitJVEntryRequest raje) throws SQLException {
+		RetrieveAcitJVEntryResponse response = new RetrieveAcitJVEntryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raje.getTranId());
+		response.setTransactions(acctITDao.retrieveAcitJVEntry(params));
 		return response;
 	}
 }
