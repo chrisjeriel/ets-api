@@ -334,6 +334,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("lapseTo", scgir.getLapseTo());
 		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
 		params.put("maintenanceTo", scgir.getMaintenanceTo());
+		params.put("prinId", scgir.getPrinId());
+		params.put("contractorId", scgir.getContractorId());
+		params.put("insuredDesc", scgir.getInsuredDesc());
 		params.put("createUser", scgir.getCreateUser());
 		params.put("createDate", scgir.getCreateDate());
 		params.put("updateUser", scgir.getUpdateUser());
