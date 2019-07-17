@@ -2377,6 +2377,7 @@
 	
 	<update id="saveMtnApprover" parameterType="java.util.Map">
 		BEGIN
+			NULL;
 			<foreach collection="delList" item="item">
 				MTN_APPROVER_PKG.del_mtn_approver(#{item.userId});
 			</foreach>
