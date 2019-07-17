@@ -2862,7 +2862,7 @@
    <resultMap type="ph.cpi.rest.api.model.maintenance.ClaimStatus" id="clmStatMap">
     	<result property="statusCode" 		column="CLM_STAT_CD"/>
 		<result property="description" 		column="CLM_STAT_DESC"/>
-		<result property="ocTag" 			column="OC_TAG"/>
+		<result property="openTag" 			column="OPEN_TAG"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -2980,7 +2980,7 @@
 				MTN_CLAIM_STATUS_PKG.save_mtn_claim_status(
 				#{save.statusCode},
 				#{save.description},
-				#{save.ocTag, jdbcType=VARCHAR},
+				#{save.openTag, jdbcType=VARCHAR},
 				#{save.activeTag, jdbcType=VARCHAR},
 				#{save.remarks, jdbcType=VARCHAR},
 				#{save.createUser, jdbcType=VARCHAR},
