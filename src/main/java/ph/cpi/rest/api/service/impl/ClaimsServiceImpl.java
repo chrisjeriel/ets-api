@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.claims.UpdateClaim;
 import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
@@ -262,13 +265,32 @@ public class ClaimsServiceImpl implements ClaimsService {
 	public UpdateClaimStatusResponse updateClaimStatus(UpdateClaimStatusRequest ucsr) throws SQLException {
 		UpdateClaimStatusResponse response = new UpdateClaimStatusResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("updateClaim", ucsr.getUpdateClaim());
-		try{
-			response.setReturnCode(claimsDao.updateClaimStatus(params));
-		}catch(Exception e){
-			response.setReturnCode(0);
-			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
-			e.printStackTrace();
+		List<UpdateClaim> allowedUpdate = new ArrayList<UpdateClaim>();
+		Integer chkResult = 0;
+		for(UpdateClaim i : ucsr.getUpdateClaim()){
+			HashMap<String, Object> forChecking = new HashMap<String, Object>();
+			forChecking.put("claimId", i.getClaimId());
+			forChecking.put("clmStatCd", i.getClmStatCd());
+			chkResult = claimsDao.checkReserve(forChecking);
+			logger.info(chkResult.toString());
+			if(chkResult == 1){
+				i.setClmStatDesc("Unable to change the status of the claim. Please zero out the reserved amount first.");
+			}else if(chkResult == 2){
+				i.setClmStatDesc("Unable to change the status of the claim. Payment must be fully settled.");
+			}else if(chkResult == 0){
+				allowedUpdate.add(i);
+			}
+			response.getUpdateResult().add(i);
+		}
+		params.put("updateClaim", allowedUpdate);
+		if(allowedUpdate.size() != 0){
+			try{
+				response.setReturnCode(claimsDao.updateClaimStatus(params));
+			}catch(Exception e){
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+				e.printStackTrace();
+			}
 		}
 		return response;
 	}
