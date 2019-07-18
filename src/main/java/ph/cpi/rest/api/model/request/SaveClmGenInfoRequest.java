@@ -36,6 +36,8 @@ public class SaveClmGenInfoRequest {
 	private String oldStatCd;
 	private String closeDate;
 	private String refreshSw;
+	private String issueDate;
+	private String effDate;
 	private String lapseFrom;
 	private String lapseTo;
 	private String maintenanceFrom;
@@ -43,6 +45,9 @@ public class SaveClmGenInfoRequest {
 	private Integer prinId;
 	private Integer contractorId;
 	private String insuredDesc;
+	private String lapsePdTag;
+	private String polTermTag;
+	private String remarks;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -273,6 +278,18 @@ public class SaveClmGenInfoRequest {
 	public void setRefreshSw(String refreshSw) {
 		this.refreshSw = refreshSw;
 	}
+	public String getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(String issueDate) {
+		this.issueDate = issueDate;
+	}
+	public String getEffDate() {
+		return effDate;
+	}
+	public void setEffDate(String effDate) {
+		this.effDate = effDate;
+	}
 	public String getLapseFrom() {
 		return lapseFrom;
 	}
@@ -314,6 +331,24 @@ public class SaveClmGenInfoRequest {
 	}
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
+	}
+	public String getLapsePdTag() {
+		return lapsePdTag;
+	}
+	public void setLapsePdTag(String lapsePdTag) {
+		this.lapsePdTag = lapsePdTag;
+	}
+	public String getPolTermTag() {
+		return polTermTag;
+	}
+	public void setPolTermTag(String polTermTag) {
+		this.polTermTag = polTermTag;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -476,16 +511,17 @@ public class SaveClmGenInfoRequest {
 				+ ", coClmNo=" + coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod="
 				+ lossPeriod + ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd
 				+ ", reportDate=" + reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy
-				+ ", oldStatCd=" + oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", lapseFrom="
-				+ lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo="
-				+ maintenanceTo + ", prinId=" + prinId + ", contractorId=" + contractorId + ", insuredDesc="
-				+ insuredDesc + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc
-				+ ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd
-				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing="
-				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
-				+ prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser=" + prjUpdateUser
-				+ ", prjUpdateDate=" + prjUpdateDate + "]";
+				+ ", oldStatCd=" + oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate="
+				+ issueDate + ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
+				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", prinId=" + prinId
+				+ ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc + ", lapsePdTag=" + lapsePdTag
+				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId
+				+ ", projDesc=" + projDesc + ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd="
+				+ provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd=" + blockCd
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", objectId=" + objectId + ", site=" + site
+				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
+				+ ", noClaimPd=" + noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
+				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
 	}
 }

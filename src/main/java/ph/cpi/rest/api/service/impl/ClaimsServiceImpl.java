@@ -324,6 +324,8 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("oldStatCd", scgir.getOldStatCd());
 		params.put("closeDate", scgir.getCloseDate());
 		params.put("refreshSw", scgir.getRefreshSw());
+		params.put("issueDate", scgir.getIssueDate());
+		params.put("effDate", scgir.getIssueDate());
 		params.put("lapseFrom", scgir.getLapseFrom());
 		params.put("lapseTo", scgir.getLapseTo());
 		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
@@ -331,7 +333,10 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("prinId", scgir.getPrinId());
 		params.put("contractorId", scgir.getContractorId());
 		params.put("insuredDesc", scgir.getInsuredDesc());
+		params.put("lapsePdTag", scgir.getLapsePdTag());
+		params.put("polTermTag", scgir.getPolTermTag());
 		params.put("createUser", scgir.getCreateUser());
+		params.put("remarks", scgir.getRemarks());
 		params.put("createDate", scgir.getCreateDate());
 		params.put("updateUser", scgir.getUpdateUser());
 		params.put("updateDate", scgir.getUpdateDate());
