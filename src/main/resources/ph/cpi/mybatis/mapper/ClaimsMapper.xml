@@ -159,6 +159,7 @@
 		<result property="currencyCd"     	column="CURRENCY_CD" />
 		<result property="totalLossExpRes"  column="T_LOSS_EXP_RES" />
 		<result property="totalLossExpPd"   column="T_LOSS_EXP_PD" />
+		<result property="lossStatCd"   	column="LOSS_STAT_CD" />
 		<result property="processedBy"     	column="PROCESSED_BY" />
 		<result property="createUser"     	column="CREATE_USER" />
 		<result property="createDate"     	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
