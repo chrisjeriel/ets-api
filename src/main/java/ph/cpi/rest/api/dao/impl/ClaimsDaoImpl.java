@@ -159,4 +159,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return params;
 	}
 
+	@Override
+	public Integer checkReserve(HashMap<String, Object> params) throws SQLException {
+		params.put("checkResult", "");
+		sqlSession.selectOne("checkReserve", params);
+		Integer res = (Integer) params.get("checkResult");
+		return res;
+	}
 }

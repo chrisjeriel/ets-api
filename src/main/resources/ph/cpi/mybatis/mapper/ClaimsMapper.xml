@@ -720,4 +720,11 @@
 			</foreach>
     	END;
 	</update>
+	
+	<update id="checkReserve" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CLM_GEN_INFO_PKG.check_reserve(#{claimId, jdbcType=INTEGER},
+																										   #{clmStatCd, jdbcType=INTEGER})
+		}	
+	</update>
 </mapper>

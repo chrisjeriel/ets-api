@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class SaveClmGenInfoRequest {
 
+	private Integer statusChanged;
 	private Integer refPolId;
 	private Integer claimId;
 	private String lineCd;
@@ -68,6 +69,12 @@ public class SaveClmGenInfoRequest {
 	private String prjUpdateUser;
 	private String prjUpdateDate;
 	
+	public Integer getStatusChanged() {
+		return statusChanged;
+	}
+	public void setStatusChanged(Integer statusChanged) {
+		this.statusChanged = statusChanged;
+	}
 	public Integer getRefPolId() {
 		return refPolId;
 	}
@@ -460,24 +467,24 @@ public class SaveClmGenInfoRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveClmGenInfoRequest [refPolId=" + refPolId + ", claimId=" + claimId + ", lineCd=" + lineCd
-				+ ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId + ", coSeriesNo="
-				+ coSeriesNo + ", altNo=" + altNo + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd="
-				+ clmStatCd + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", coRefNo=" + coRefNo
-				+ ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
-				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd + ", coClmNo="
-				+ coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod=" + lossPeriod
-				+ ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd + ", reportDate="
-				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
-				+ oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom
-				+ ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo
-				+ ", prinId=" + prinId + ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
-				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
-				+ districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing=" + testing
-				+ ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
+		return "SaveClmGenInfoRequest [statusChanged=" + statusChanged + ", refPolId=" + refPolId + ", claimId="
+				+ claimId + ", lineCd=" + lineCd + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId="
+				+ cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", clmYear=" + clmYear + ", clmSeqNo="
+				+ clmSeqNo + ", clmStatCd=" + clmStatCd + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd
+				+ ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo="
+				+ mbiRefNo + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd
+				+ ", coClmNo=" + coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod="
+				+ lossPeriod + ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd
+				+ ", reportDate=" + reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy
+				+ ", oldStatCd=" + oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", lapseFrom="
+				+ lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo="
+				+ maintenanceTo + ", prinId=" + prinId + ", contractorId=" + contractorId + ", insuredDesc="
+				+ insuredDesc + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc
+				+ ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd
+				+ ", districtCd=" + districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude="
+				+ longitude + ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing="
+				+ testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
 				+ prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser=" + prjUpdateUser
 				+ ", prjUpdateDate=" + prjUpdateDate + "]";
 	}
