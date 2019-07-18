@@ -25,7 +25,10 @@ public class ClaimHistory {
 	private DateTime 	createDate;
 	private String 	 	updateUser;
 	private DateTime 	updateDate;
-	private String		proceed;
+	private String		val1;
+	private String		val2;
+	private String		val3;
+	private String		val4;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -146,11 +149,29 @@ public class ClaimHistory {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public String getProceed() {
-		return proceed;
+	public String getVal1() {
+		return val1;
 	}
-	public void setProceed(String proceed) {
-		this.proceed = proceed;
+	public void setVal1(String val1) {
+		this.val1 = val1;
+	}
+	public String getVal2() {
+		return val2;
+	}
+	public void setVal2(String val2) {
+		this.val2 = val2;
+	}
+	public String getVal3() {
+		return val3;
+	}
+	public void setVal3(String val3) {
+		this.val3 = val3;
+	}
+	public String getVal4() {
+		return val4;
+	}
+	public void setVal4(String val4) {
+		this.val4 = val4;
 	}
 	@Override
 	public String toString() {
@@ -159,7 +180,7 @@ public class ClaimHistory {
 				+ ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo="
 				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", proceed=" + proceed + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", val1="
+				+ val1 + ", val2=" + val2 + ", val3=" + val3 + ", val4=" + val4 + "]";
 	}
 }
