@@ -358,6 +358,14 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("prjUpdateDate", scgir.getPrjUpdateDate());
 		
 		try {
+			if(scgir.getStatusChanged() == 1) {
+				if(claimsDao.checkReserve(params) > 0) {
+					scgiResponse.setReturnCode(claimsDao.checkReserve(params));
+					
+					return scgiResponse;
+				}
+			}
+			
 			HashMap<String, Object> res = claimsDao.saveClmGenInfo(params);
 			
 			scgiResponse.setReturnCode((Integer) res.get("errorCode"));
