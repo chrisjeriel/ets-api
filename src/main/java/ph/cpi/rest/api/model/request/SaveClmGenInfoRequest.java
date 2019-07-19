@@ -48,6 +48,8 @@ public class SaveClmGenInfoRequest {
 	private String lapsePdTag;
 	private String polTermTag;
 	private String remarks;
+	private Integer adjId;
+	private String adjFileNo;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -350,6 +352,18 @@ public class SaveClmGenInfoRequest {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public Integer getAdjId() {
+		return adjId;
+	}
+	public void setAdjId(Integer adjId) {
+		this.adjId = adjId;
+	}
+	public String getAdjFileNo() {
+		return adjFileNo;
+	}
+	public void setAdjFileNo(String adjFileNo) {
+		this.adjFileNo = adjFileNo;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -515,13 +529,14 @@ public class SaveClmGenInfoRequest {
 				+ issueDate + ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
 				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", prinId=" + prinId
 				+ ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc + ", lapsePdTag=" + lapsePdTag
-				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId
-				+ ", projDesc=" + projDesc + ", riskId=" + riskId + ", regionCd=" + regionCd + ", provinceCd="
-				+ provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd=" + blockCd
-				+ ", latitude=" + latitude + ", longitude=" + longitude + ", objectId=" + objectId + ", site=" + site
-				+ ", duration=" + duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc
-				+ ", noClaimPd=" + noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
-				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
+				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", adjId=" + adjId + ", adjFileNo="
+				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
+				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
+				+ districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing=" + testing
+				+ ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd=" + noClaimPd + ", prjCreateUser="
+				+ prjCreateUser + ", prjCreateDate=" + prjCreateDate + ", prjUpdateUser=" + prjUpdateUser
+				+ ", prjUpdateDate=" + prjUpdateDate + "]";
 	}
 }

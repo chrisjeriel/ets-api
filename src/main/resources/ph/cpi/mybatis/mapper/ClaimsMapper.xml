@@ -69,6 +69,9 @@
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="approvedBy" 		column="APPROVED_BY"/>
 		<result property="approvedDate" 	column="APPROVED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="adjId" 			column="M_ADJ_ID"/>
+		<result property="adjName" 			column="M_ADJ_NAME"/>
+		<result property="adjFileNo" 		column="M_ADJ_FILE_NO"/>
 		<result property="createUser" 		column="CREATE_USER"/>
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
@@ -648,6 +651,8 @@
 				#{lapsePdTag, jdbcType=VARCHAR},
 				#{polTermTag, jdbcType=VARCHAR},
 				#{remarks, jdbcType=VARCHAR},
+				#{adjId, jdbcType=INTEGER},
+				#{adjFileNo, jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},

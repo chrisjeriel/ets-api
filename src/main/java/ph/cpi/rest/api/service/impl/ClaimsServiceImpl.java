@@ -363,8 +363,10 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("insuredDesc", scgir.getInsuredDesc());
 		params.put("lapsePdTag", scgir.getLapsePdTag());
 		params.put("polTermTag", scgir.getPolTermTag());
-		params.put("createUser", scgir.getCreateUser());
 		params.put("remarks", scgir.getRemarks());
+		params.put("adjId", scgir.getAdjId());
+		params.put("adjFileNo", scgir.getAdjFileNo());
+		params.put("createUser", scgir.getCreateUser());
 		params.put("createDate", scgir.getCreateDate());
 		params.put("updateUser", scgir.getUpdateUser());
 		params.put("updateDate", scgir.getUpdateDate());

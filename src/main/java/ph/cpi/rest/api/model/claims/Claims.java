@@ -81,6 +81,9 @@ public class Claims {
 	private String secISiTag;
 	private String secIISiTag;
 	private String secIIISiTag;
+	private Integer adjId;
+	private String adjName;
+	private String adjFileNo;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -539,6 +542,24 @@ public class Claims {
 	public void setSecIIISiTag(String secIIISiTag) {
 		this.secIIISiTag = secIIISiTag;
 	}
+	public Integer getAdjId() {
+		return adjId;
+	}
+	public void setAdjId(Integer adjId) {
+		this.adjId = adjId;
+	}
+	public String getAdjName() {
+		return adjName;
+	}
+	public void setAdjName(String adjName) {
+		this.adjName = adjName;
+	}
+	public String getAdjFileNo() {
+		return adjFileNo;
+	}
+	public void setAdjFileNo(String adjFileNo) {
+		this.adjFileNo = adjFileNo;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -624,9 +645,10 @@ public class Claims {
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
 				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy=" + approvedBy
 				+ ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag=" + secIISiTag
-				+ ", secIIISiTag=" + secIIISiTag + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
-				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
-				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
+				+ ", secIIISiTag=" + secIIISiTag + ", adjId=" + adjId + ", adjName=" + adjName + ", adjFileNo="
+				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
+				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
+				+ ", clmAttachments=" + clmAttachments + "]";
 	}
 }
