@@ -25,6 +25,8 @@ class ClmHist {
 	private String  histNo;
 	private String 	histCategory;
 	private String 	histType;
+	private String	bookingMth;
+	private String	bookingYear;
 	private String 	exGratia;
 	private String 	currencyCd;
 	private String  currencyRt;
@@ -66,6 +68,18 @@ class ClmHist {
 	}
 	public void setHistType(String histType) {
 		this.histType = histType;
+	}
+	public String getBookingMth() {
+		return bookingMth;
+	}
+	public void setBookingMth(String bookingMth) {
+		this.bookingMth = bookingMth;
+	}
+	public String getBookingYear() {
+		return bookingYear;
+	}
+	public void setBookingYear(String bookingYear) {
+		this.bookingYear = bookingYear;
 	}
 	public String getExGratia() {
 		return exGratia;
@@ -142,9 +156,10 @@ class ClmHist {
 	@Override
 	public String toString() {
 		return "ClmHist [claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory="
-				+ histCategory + ", histType=" + histType + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo="
-				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ histCategory + ", histType=" + histType + ", bookingMth=" + bookingMth + ", bookingYear="
+				+ bookingYear + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
+				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

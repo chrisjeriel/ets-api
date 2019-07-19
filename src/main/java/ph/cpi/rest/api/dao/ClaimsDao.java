@@ -32,4 +32,6 @@ public interface ClaimsDao {
 	public List<ClaimPaytRequest> retrieveClmPaytReq(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> saveClaimReserve(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveClaimPaytReq(final HashMap<String, Object> params) throws SQLException;
+	public Integer chkPoldistStat(Integer param) throws SQLException;
+
 }

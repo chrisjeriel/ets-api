@@ -87,6 +87,8 @@
 		<result property="histCatDesc"	column="HIST_CAT_DESC"/>
 		<result property="histType"		column="HIST_TYPE"/>
 		<result property="histTypeDesc" column="HIST_TYPE_DESC"/>
+		<result property="bookingMth" 	column="BOOKING_MTH"/>
+		<result property="bookingYear" 	column="BOOKING_YEAR"/>
 		<result property="exGratia"		column="EX_GRATIA"/>
 		<result property="currencyCd"	column="CURRENCY_CD"/>
 		<result property="currencyRt"	column="CURRENCY_RT"/>
@@ -123,6 +125,8 @@
 					#{ch.histNo,jdbcType=VARCHAR},
 					#{ch.histCategory,jdbcType=VARCHAR},
 					#{ch.histType,jdbcType=VARCHAR},
+					#{ch.bookingMth,jdbcType=VARCHAR},
+					#{ch.bookingYear,jdbcType=INTEGER},
 					#{ch.exGratia,jdbcType=VARCHAR},
 					#{ch.currencyCd,jdbcType=VARCHAR},
 					#{ch.currencyRt,jdbcType=VARCHAR},
@@ -716,5 +720,11 @@
     			);
 			</foreach>
     	END;
+	</update>
+	
+	<update id="chkPoldistStat" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkRes, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CLM_RES_HIST_PKG.chk_poldist_stat(#{claimId, jdbcType=INTEGER})
+		}	
 	</update>
 </mapper>

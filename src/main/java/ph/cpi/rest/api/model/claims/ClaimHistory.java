@@ -13,6 +13,8 @@ public class ClaimHistory {
 	private String 	 	histCatDesc;
 	private String 	 	histType;
 	private String 	 	histTypeDesc;
+	private String		bookingMth;
+	private Integer		bookingYear;
 	private String 	 	exGratia;
 	private String 	 	currencyCd;
 	private Integer  	currencyRt;
@@ -76,6 +78,18 @@ public class ClaimHistory {
 	}
 	public void setHistTypeDesc(String histTypeDesc) {
 		this.histTypeDesc = histTypeDesc;
+	}
+	public String getBookingMth() {
+		return bookingMth;
+	}
+	public void setBookingMth(String bookingMth) {
+		this.bookingMth = bookingMth;
+	}
+	public Integer getBookingYear() {
+		return bookingYear;
+	}
+	public void setBookingYear(Integer bookingYear) {
+		this.bookingYear = bookingYear;
 	}
 	public String getExGratia() {
 		return exGratia;
@@ -177,10 +191,11 @@ public class ClaimHistory {
 	public String toString() {
 		return "ClaimHistory [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", histNo=" + histNo
 				+ ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc + ", histType=" + histType
-				+ ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo="
-				+ refNo + ", refDate=" + refDate + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", val1="
-				+ val1 + ", val2=" + val2 + ", val3=" + val3 + ", val4=" + val4 + "]";
-	}
+				+ ", histTypeDesc=" + histTypeDesc + ", bookingMth=" + bookingMth + ", bookingYear=" + bookingYear
+				+ ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
+				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", val1=" + val1 + ", val2=" + val2 + ", val3=" + val3
+				+ ", val4=" + val4 + "]";
+	}	
 }

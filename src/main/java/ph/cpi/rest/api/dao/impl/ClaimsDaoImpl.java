@@ -159,4 +159,13 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return params;
 	}
 
+	@Override
+	public Integer chkPoldistStat(Integer param) throws SQLException {
+		HashMap<String, Object> par = new HashMap<String, Object>();
+		par.put("claimId", param);
+		par.put("checkRes", "");
+		sqlSession.selectOne("chkPoldistStat", par);
+		return (Integer) par.get("checkRes");
+	}
+
 }
