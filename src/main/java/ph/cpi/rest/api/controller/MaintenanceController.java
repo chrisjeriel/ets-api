@@ -864,4 +864,11 @@ public class MaintenanceController {
 		logger.info("CopyClmCashCallRequest : " + cpmccr.toString());
 		return maintenanceService.copyMtnClmCashCall(cpmccr);
 	}
+	
+	@GetMapping(path="retrieveMtnAcitTranType")
+	public @ResponseBody RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranType");
+		logger.info("RetrieveMtnAcitTranTypeRequest : " + rmattp.toString());
+		return maintenanceService.retrieveMtnAcitTranType(rmattp);
+	}
 }

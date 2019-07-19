@@ -10,11 +10,17 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
+import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
+import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -105,5 +111,85 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return saprResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitCMDMListResponse retrieveAcitCMDMList(RetrieveAcitCMDMListRequest racitcmdmlr)
+			throws SQLException {
+		RetrieveAcitCMDMListResponse response = new RetrieveAcitCMDMListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", racitcmdmlr.getTranId());
+		params.put("memoType", racitcmdmlr.getMemoType());
+		params.put("memoTranType", racitcmdmlr.getMemoTranType());
+		params.put("memoDate", racitcmdmlr.getMemoDate());
+		params.put("memoStatus", racitcmdmlr.getMemoStatus());
+		params.put("refNoDate", racitcmdmlr.getRefNoDate());
+		params.put("payee", racitcmdmlr.getPayee());
+		params.put("particulars", racitcmdmlr.getParticulars());
+		params.put("currCd", racitcmdmlr.getCurrCd());
+		params.put("cmdmAmt", racitcmdmlr.getCmdmAmt());
+		params.put("localAmt", racitcmdmlr.getLocalAmt());
+		
+		response.setCmdmList(acctITDao.retrieveAcitCMDMList(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitCMDMResponse saveAcitCMDM(SaveAcitCMDMRequest saprr) throws SQLException {
+		SaveAcitCMDMResponse response = new SaveAcitCMDMResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId",saprr.getTranId());
+		params.put("memoType",saprr.getMemoType());
+		params.put("memoTranType",saprr.getMemoTranType());
+		params.put("memoYear",saprr.getMemoYear());
+		params.put("memoMm",saprr.getMemoMm());
+		params.put("memoSeqNo",saprr.getMemoSeqNo());
+		params.put("tranTypeCd",saprr.getTranTypeCd());
+		params.put("autoTag",saprr.getAutoTag());
+		params.put("memoDate",saprr.getMemoDate());
+		params.put("memoStatus",saprr.getMemoStatus());
+		params.put("refNoTranId",saprr.getRefNoTranId());
+		params.put("refNoDate",saprr.getRefNoDate());
+		params.put("payeeNo",saprr.getPayeeNo());
+		params.put("payee",saprr.getPayee());
+		params.put("particulars",saprr.getParticulars());
+		params.put("currCd",saprr.getCurrCd());
+		params.put("currRate",saprr.getCurrRate());
+		params.put("cmdmAmt",saprr.getCmdmAmt());
+		params.put("localAmt",saprr.getLocalAmt());
+		params.put("createUser",saprr.getCreateUser());
+		params.put("createDate",saprr.getCreateDate());
+		params.put("updateUser",saprr.getUpdateUser());
+		params.put("updateDate",saprr.getUpdateDate());
+		try{
+			response.setReturnCode(acctITDao.saveAcitCMDM(params));
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitRefNoLOVResponse retrieveAcitRefNoLOV(RetrieveAcitRefNoLOVRequest racitcmdmlr)
+			throws SQLException {
+		RetrieveAcitRefNoLOVResponse reponse = new RetrieveAcitRefNoLOVResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("arTag", racitcmdmlr.getArTag());
+		params.put("cvTag", racitcmdmlr.getCvTag());
+		params.put("jvTag", racitcmdmlr.getJvTag());
+		params.put("cmTag", racitcmdmlr.getCmTag());
+		params.put("dmTag", racitcmdmlr.getDmTag());
+		params.put("tranStat", racitcmdmlr.getTranStat());
+		params.put("arStatus", racitcmdmlr.getArStatus());
+		params.put("cvStatus", racitcmdmlr.getCvStatus());
+		params.put("jvStatus", racitcmdmlr.getJvStatus());
+		params.put("memoStatus", racitcmdmlr.getMemoStatus());
+		reponse.setRefNoList(acctITDao.retrieveAcitRefNoLOV(params));
+		return reponse;
 	}
 }

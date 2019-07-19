@@ -1486,6 +1486,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnParametersResponse response = new RetrieveMtnParametersResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("paramType", rafr.getParamType());
+		params.put("paramName", rafr.getParamName());
 		response.setParameters(maintenanceDao.retrieveParameters(params));
 		return response;
 	}
@@ -2024,5 +2025,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return cpmccResponse;
+	}
+
+	@Override
+	public RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattr)
+			throws SQLException {
+		RetrieveMtnAcitTranTypeResponse rmattResponse =  new RetrieveMtnAcitTranTypeResponse();
+		HashMap<String, Object> rmattParams = new HashMap<String, Object>();
+		rmattParams.put("tranClass", rmattr.getTranClass());
+		rmattParams.put("tranTypeCd", rmattr.getTranTypeCd());
+		rmattParams.put("typePrefix", rmattr.getTypePrefix());
+		rmattParams.put("autoTag", rmattr.getAutoTag());
+		rmattParams.put("baeTag", rmattr.getBaeTag());
+		rmattParams.put("activeTag", rmattr.getActiveTag());
+		rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcitTranType(rmattParams));
+		logger.info("RetrieveMtnAcitTranTypeResponse : " + rmattResponse.toString());
+		return rmattResponse;
 	}
 }
