@@ -78,6 +78,9 @@ public class Claims {
 	private String remarks;
 	private String approvedBy;
 	private String approvedDate;
+	private String secISiTag;
+	private String secIISiTag;
+	private String secIIISiTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -518,6 +521,24 @@ public class Claims {
 	public void setApprovedDate(String approvedDate) {
 		this.approvedDate = approvedDate;
 	}
+	public String getSecISiTag() {
+		return secISiTag;
+	}
+	public void setSecISiTag(String secISiTag) {
+		this.secISiTag = secISiTag;
+	}
+	public String getSecIISiTag() {
+		return secIISiTag;
+	}
+	public void setSecIISiTag(String secIISiTag) {
+		this.secIISiTag = secIISiTag;
+	}
+	public String getSecIIISiTag() {
+		return secIIISiTag;
+	}
+	public void setSecIIISiTag(String secIIISiTag) {
+		this.secIIISiTag = secIIISiTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -602,7 +623,8 @@ public class Claims {
 				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
 				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy=" + approvedBy
-				+ ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag=" + secIISiTag
+				+ ", secIIISiTag=" + secIIISiTag + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
 				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
 				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
