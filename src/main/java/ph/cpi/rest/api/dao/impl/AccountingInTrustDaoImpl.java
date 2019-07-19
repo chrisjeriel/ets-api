@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
+import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -38,5 +41,23 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveAcitPaytReq", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitCMDM> retrieveAcitCMDMList(HashMap<String, Object> params) throws SQLException {
+		List<AcitCMDM> list = sqlSession.selectList("retrieveAcitCMDMList", params);
+		return list;
+	}
+
+	@Override
+	public Integer saveAcitCMDM(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCMDM", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<RefNoLov> retrieveAcitRefNoLOV(HashMap<String, Object> params) throws SQLException {
+		List<RefNoLov> list = sqlSession.selectList("retrieveAcitRefNoLOV", params);
+		return list;
 	}
 }

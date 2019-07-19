@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
+import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
+import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
 @Controller
@@ -52,5 +56,26 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitPaytReq");
 		logger.info("SaveAcitPaytReqRequest : " + saprr.toString());
 		return acctInTrustService.saveAcitPaytReq(saprr);
+	}
+	
+	@GetMapping(path="retrieveAcitCMDMList")
+	public @ResponseBody RetrieveAcitCMDMListResponse retrieveAcitCMDMList(RetrieveAcitCMDMListRequest racitcmdmlr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitCMDMList");
+		logger.info("RetrieveAcitCMDMListRequest : " + racitcmdmlr.toString());
+		return acctInTrustService.retrieveAcitCMDMList(racitcmdmlr);
+	}
+	
+	@PostMapping(path="saveAcitCMDM")
+	public @ResponseBody SaveAcitCMDMResponse saveAcitCMDM(@RequestBody SaveAcitCMDMRequest saprr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitCMDM");
+		logger.info("SaveAcitCMDMRequest : " + saprr.toString());
+		return acctInTrustService.saveAcitCMDM(saprr);
+	}
+	
+	@GetMapping(path="retrieveAcitRefNoLOV")
+	public @ResponseBody RetrieveAcitRefNoLOVResponse retrieveAcitRefNoLOV(RetrieveAcitRefNoLOVRequest racitcmdmlr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitRefNoLOV");
+		logger.info("RetrieveAcitRefNoLOVRequest : " + racitcmdmlr.toString());
+		return acctInTrustService.retrieveAcitRefNoLOV(racitcmdmlr);
 	}
 }
