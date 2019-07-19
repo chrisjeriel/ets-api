@@ -2693,7 +2693,6 @@
     <resultMap type="ph.cpi.rest.api.model.maintenance.Adjuster" id="mtnAdjusterListMap">
 		<result property="adjId"			column="ADJ_ID" />
 		<result property="adjName"			column="ADJ_NAME" />
-		<result property="adjRefNo"			column="ADJ_REF_NO" />
 		<result property="addrLine1"		column="ADDR_LINE1" />
 		<result property="addrLine2"		column="ADDR_LINE2" />
 		<result property="addrLine3"		column="ADDR_LINE3" />
@@ -2711,7 +2710,6 @@
      
      <select id="retMtnAdjList" resultMap="mtnAdjusterListMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_ADJUSTER_PKG.ret_mtn_adj_list(#{adjName, jdbcType=VARCHAR},
-															  #{adjRefNo, jdbcType=VARCHAR},
 															  #{fullAddress, jdbcType=VARCHAR},
 															  #{zipCd, jdbcType=VARCHAR},
 															  #{contactNo, jdbcType=VARCHAR},
@@ -2731,7 +2729,6 @@
 	 <resultMap type="ph.cpi.rest.api.model.maintenance.Adjuster" id="mtnAdjusterMap">
 		<result property="adjId"			column="ADJ_ID" />
 		<result property="adjName"			column="ADJ_NAME" />
-		<result property="adjRefNo"			column="ADJ_REF_NO" />
 		<result property="addrLine1"		column="ADDR_LINE1" />
 		<result property="addrLine2"		column="ADDR_LINE2" />
 		<result property="addrLine3"		column="ADDR_LINE3" />
@@ -2780,7 +2777,6 @@
     						v_adj_id,
     						#{adjId, jdbcType=VARCHAR},
     						#{adjName},
-    						#{adjRefNo, jdbcType=VARCHAR},
     						#{addrLine1},
     						#{addrLine2, jdbcType=VARCHAR},
     						#{addrLine3, jdbcType=VARCHAR},

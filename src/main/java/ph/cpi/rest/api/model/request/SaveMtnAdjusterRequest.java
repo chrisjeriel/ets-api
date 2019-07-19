@@ -7,7 +7,6 @@ import org.apache.ibatis.type.Alias;
 public class SaveMtnAdjusterRequest {
 	private String adjId;
 	private String adjName;
-	private String adjRefNo;
 	private String addrLine1;
 	private String addrLine2;
 	private String addrLine3;
@@ -35,12 +34,6 @@ public class SaveMtnAdjusterRequest {
 	}
 	public void setAdjName(String adjName) {
 		this.adjName = adjName;
-	}
-	public String getAdjRefNo() {
-		return adjRefNo;
-	}
-	public void setAdjRefNo(String adjRefNo) {
-		this.adjRefNo = adjRefNo;
 	}
 	public String getAddrLine1() {
 		return addrLine1;
@@ -129,7 +122,7 @@ public class SaveMtnAdjusterRequest {
 	
 	@Override
 	public String toString() {
-		return "SaveMtnAdjusterRequest [adjId=" + adjId + ", adjName=" + adjName + ", adjRefNo=" + adjRefNo
+		return "SaveMtnAdjusterRequest [adjId=" + adjId + ", adjName=" + adjName
 				+ ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd="
 				+ zipCd + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="

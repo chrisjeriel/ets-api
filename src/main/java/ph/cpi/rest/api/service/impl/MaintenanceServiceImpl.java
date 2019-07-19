@@ -1682,7 +1682,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		try{
 			params.put("adjId", smar.getAdjId());
 			params.put("adjName", smar.getAdjName());
-			params.put("adjRefNo", smar.getAdjRefNo());
 			params.put("addrLine1", smar.getAddrLine1());
 			params.put("addrLine2", smar.getAddrLine2());
 			params.put("addrLine3", smar.getAddrLine3());
