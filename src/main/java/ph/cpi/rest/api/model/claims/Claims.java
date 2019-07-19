@@ -44,6 +44,7 @@ public class Claims {
 	private String lossPeriod;
 	private String lossPdAbbr;
 	private String lossDtl;
+	private String lossStatCd;
 	private String eventTypeCd;
 	private String eventTypeDesc;
 	private String eventCd;
@@ -77,6 +78,9 @@ public class Claims {
 	private String remarks;
 	private String approvedBy;
 	private String approvedDate;
+	private String secISiTag;
+	private String secIISiTag;
+	private String secIIISiTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -313,6 +317,12 @@ public class Claims {
 	public void setLossDtl(String lossDtl) {
 		this.lossDtl = lossDtl;
 	}
+	public String getLossStatCd() {
+		return lossStatCd;
+	}
+	public void setLossStatCd(String lossStatCd) {
+		this.lossStatCd = lossStatCd;
+	}
 	public String getEventTypeCd() {
 		return eventTypeCd;
 	}
@@ -511,6 +521,24 @@ public class Claims {
 	public void setApprovedDate(String approvedDate) {
 		this.approvedDate = approvedDate;
 	}
+	public String getSecISiTag() {
+		return secISiTag;
+	}
+	public void setSecISiTag(String secISiTag) {
+		this.secISiTag = secISiTag;
+	}
+	public String getSecIISiTag() {
+		return secIISiTag;
+	}
+	public void setSecIISiTag(String secIISiTag) {
+		this.secIISiTag = secIISiTag;
+	}
+	public String getSecIIISiTag() {
+		return secIIISiTag;
+	}
+	public void setSecIIISiTag(String secIIISiTag) {
+		this.secIIISiTag = secIIISiTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -584,18 +612,20 @@ public class Claims {
 				+ ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate
 				+ ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd="
 				+ lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod=" + lossPeriod + ", lossPdAbbr=" + lossPdAbbr
-				+ ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc
-				+ ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate="
-				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
-				+ oldStatCd + ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
-				+ ", issueDate=" + issueDate + ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo="
-				+ lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", pctShare="
-				+ pctShare + ", totalSi=" + totalSi + ", totalValue=" + totalValue + ", riskId=" + riskId
-				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
-				+ ", totalLossExpPd=" + totalLossExpPd + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
-				+ ", lapsePdTag=" + lapsePdTag + ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy="
-				+ approvedBy + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
+				+ ", lossDtl=" + lossDtl + ", lossStatCd=" + lossStatCd + ", eventTypeCd=" + eventTypeCd
+				+ ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc
+				+ ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate + ", reportedBy=" + reportedBy
+				+ ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd + ", oldClmStatus=" + oldClmStatus
+				+ ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate=" + issueDate + ", effDate="
+				+ effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
+				+ ", maintenanceTo=" + maintenanceTo + ", pctShare=" + pctShare + ", totalSi=" + totalSi
+				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
+				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
+				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy=" + approvedBy
+				+ ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag=" + secIISiTag
+				+ ", secIIISiTag=" + secIIISiTag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
 				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
 				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
 	}

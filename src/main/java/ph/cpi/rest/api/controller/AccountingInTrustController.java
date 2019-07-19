@@ -14,13 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -77,5 +85,33 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitRefNoLOV");
 		logger.info("RetrieveAcitRefNoLOVRequest : " + racitcmdmlr.toString());
 		return acctInTrustService.retrieveAcitRefNoLOV(racitcmdmlr);
+	}
+
+	@GetMapping(path="retrieveArList")
+	public @ResponseBody RetrieveAcitArListResponse retrieveArList(RetrieveAcitArListRequest raalr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveArList");
+		logger.info("RetrieveAcitArListRequest : " + raalr.toString());
+		return acctInTrustService.retrieveArList(raalr);
+	}
+	
+	@GetMapping(path="retrieveArEntry")
+	public @ResponseBody RetrieveAcitArEntryResponse retrieveArEntry(RetrieveAcitArEntryRequest raaer) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveArEntry");
+		logger.info("RetrieveAcitArEntryRequest : " + raaer.toString());
+		return acctInTrustService.retrieveArEntry(raaer);
+	}
+
+	@GetMapping(path="retrieveAcitJVListing")
+	public @ResponseBody RetrieveAcitJVListingResponse retrieveAcitJVListing(RetrieveAcitJVListingRequest rajl) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVListing");
+		logger.info("RetrieveAcitJVListingRequest : " + rajl.toString());
+		return acctInTrustService.retrieveAcitJvListing(rajl);
+	}
+	
+	@GetMapping(path="retrieveAcitJVEntry")
+	public @ResponseBody RetrieveAcitJVEntryResponse retrieveAcitJVEntry(RetrieveAcitJVEntryRequest raje) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVEntry");
+		logger.info("RetrieveAcitJVEntryRequest : " + raje.toString());
+		return acctInTrustService.retrieveAcitJvEntry(raje);
 	}
 }

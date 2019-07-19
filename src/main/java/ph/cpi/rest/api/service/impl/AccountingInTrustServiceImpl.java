@@ -11,13 +11,21 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -135,7 +143,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public SaveAcitCMDMResponse saveAcitCMDM(SaveAcitCMDMRequest saprr) throws SQLException {
 		SaveAcitCMDMResponse response = new SaveAcitCMDMResponse();
@@ -172,6 +179,32 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcitArListResponse retrieveArList(RetrieveAcitArListRequest raalr) throws SQLException {
+		RetrieveAcitArListResponse response = new RetrieveAcitArListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("arNo", raalr.getArNo());
+		params.put("payor", raalr.getPayor());
+		params.put("arDateFrom", raalr.getArDateFrom());
+		params.put("arDateTo", raalr.getArDateTo());
+		params.put("tranTypeName", raalr.getTranTypeName());
+		params.put("arStatus", raalr.getArStatus());
+		params.put("particulars", raalr.getParticulars());
+		params.put("arAmtFrom", raalr.getArAmtFrom());
+		params.put("arAmtTo", raalr.getArAmtTo());
+		response.setAr(acctITDao.retrieveArList(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcitJVListingResponse retrieveAcitJvListing(RetrieveAcitJVListingRequest rajl) throws SQLException {
+		RetrieveAcitJVListingResponse response = new RetrieveAcitJVListingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rajl.getTranId());
+		response.setTransactions(acctITDao.retrieveAcitJVListings(params));
+		return response;
+	}
 
 
 	@Override
@@ -191,5 +224,24 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("memoStatus", racitcmdmlr.getMemoStatus());
 		reponse.setRefNoList(acctITDao.retrieveAcitRefNoLOV(params));
 		return reponse;
+	}
+
+	@Override
+	public RetrieveAcitArEntryResponse retrieveArEntry(RetrieveAcitArEntryRequest raaer) throws SQLException {
+		RetrieveAcitArEntryResponse response = new RetrieveAcitArEntryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaer.getTranId());
+		params.put("arNo", raaer.getArNo());
+		response.setAr(acctITDao.retrieveArEntry(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcitJVEntryResponse retrieveAcitJvEntry(RetrieveAcitJVEntryRequest raje) throws SQLException {
+		RetrieveAcitJVEntryResponse response = new RetrieveAcitJVEntryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raje.getTranId());
+		response.setTransactions(acctITDao.retrieveAcitJVEntry(params));
+		return response;
 	}
 }

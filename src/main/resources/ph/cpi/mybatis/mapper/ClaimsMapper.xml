@@ -177,7 +177,23 @@
 		<result property="currencyCd"     	column="CURRENCY_CD" />
 		<result property="totalLossExpRes"  column="T_LOSS_EXP_RES" />
 		<result property="totalLossExpPd"   column="T_LOSS_EXP_PD" />
+		<result property="lossStatCd"   	column="LOSS_STAT_CD" />
 		<result property="processedBy"     	column="PROCESSED_BY" />
+		<result property="coClaimNo"     	column="CO_CLM_NO" />
+		<result property="processedBy"     	column="PROCESSED_BY" />
+		<result property="cessionDesc"     	column="CESSION_DESC" />
+		<result property="lineClassDesc"    column="LINE_CLASS_DESC" />
+		<result property="coRefNo"     		column="CO_REF_NO" />
+		<result property="reportDate"     	column="REPORT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="reportedBy"     	column="REPORTED_BY" />
+		<result property="lossAbbr"     	column="LOSS_ABBR" />
+		<result property="lossPeriod"     	column="LOSS_PERIOD" />
+		<result property="eventTypeDesc"    column="EVENT_TYPE_DESC" />
+		<result property="eventDesc"     	column="EVENT_DESC" />
+		<result property="remarks"     		column="REMARKS" />
+		<result property="secISiTag"     	column="SECI_SI_TAG" />
+		<result property="secIISiTag"     	column="SECII_SI_TAG" />
+		<result property="secIIISiTag"     	column="SECIII_SI_TAG" />
 		<result property="createUser"     	column="CREATE_USER" />
 		<result property="createDate"     	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="UPDATE_USER" />

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class CoInsurance {
@@ -8,9 +10,9 @@ public class CoInsurance {
 	private String coRefNo;
 	private String cedingId ;
 	private String cedingName;
-	private Integer pctShare;
+	private BigDecimal pctShare;
 	private Double shareSiAmt;
-	private Integer sharePremAmt;
+	private BigDecimal sharePremAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -46,24 +48,25 @@ public class CoInsurance {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public Integer getPctShare() {
+	
+	
+	public BigDecimal getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(Integer pctShare) {
+	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
 	}
-	
+	public BigDecimal getSharePremAmt() {
+		return sharePremAmt;
+	}
+	public void setSharePremAmt(BigDecimal sharePremAmt) {
+		this.sharePremAmt = sharePremAmt;
+	}
 	public Double getShareSiAmt() {
 		return shareSiAmt;
 	}
 	public void setShareSiAmt(Double shareSiAmt) {
 		this.shareSiAmt = shareSiAmt;
-	}
-	public Integer getSharePremAmt() {
-		return sharePremAmt;
-	}
-	public void setSharePremAmt(Integer sharePremAmt) {
-		this.sharePremAmt = sharePremAmt;
 	}
 	public String getCreateUser() {
 		return createUser;

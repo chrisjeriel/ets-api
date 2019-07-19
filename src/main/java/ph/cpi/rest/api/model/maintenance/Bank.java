@@ -2,47 +2,46 @@ package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
 
-public class ClaimStatus {
-	private String statusCode;
-	private String description;
-	private String openTag;
-	private String activeTag;
+public class Bank {
+	private Integer bankCd;
+	private String shortName;
+	private String officialName;
 	private String remarks;
+	private String activeTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public String getStatusCode() {
-		return statusCode;
-	}
-	public void setStatusCode(String statusCode) {
-		this.statusCode = statusCode;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
-	
-	public String getOpenTag() {
-		return openTag;
+	public Integer getBankCd() {
+		return bankCd;
 	}
-	public void setOpenTag(String openTag) {
-		this.openTag = openTag;
+	public void setBankCd(Integer bankCd) {
+		this.bankCd = bankCd;
 	}
-	public String getActiveTag() {
-		return activeTag;
+	public String getShortName() {
+		return shortName;
 	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+	public String getOfficialName() {
+		return officialName;
+	}
+	public void setOfficialName(String officialName) {
+		this.officialName = officialName;
 	}
 	public String getRemarks() {
 		return remarks;
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -68,10 +67,11 @@ public class ClaimStatus {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "ClaimStatus [statusCode=" + statusCode + ", description=" + description + ", openTag=" + openTag
-				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Bank [bankCd=" + bankCd + ", shortName=" + shortName + ", officialName=" + officialName + ", remarks="
+				+ remarks + ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
