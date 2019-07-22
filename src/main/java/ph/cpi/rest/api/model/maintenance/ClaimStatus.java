@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class ClaimStatus {
 	private String statusCode;
 	private String description;
+	private String openTag;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
@@ -22,6 +23,14 @@ public class ClaimStatus {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	public String getOpenTag() {
+		return openTag;
+	}
+	public void setOpenTag(String openTag) {
+		this.openTag = openTag;
 	}
 	public String getActiveTag() {
 		return activeTag;
@@ -61,8 +70,8 @@ public class ClaimStatus {
 	}
 	@Override
 	public String toString() {
-		return "ClaimStatus [statusCode=" + statusCode + ", description=" + description + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "ClaimStatus [statusCode=" + statusCode + ", description=" + description + ", openTag=" + openTag
+				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

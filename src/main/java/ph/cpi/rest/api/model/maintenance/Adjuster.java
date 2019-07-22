@@ -7,7 +7,6 @@ import org.joda.time.DateTime;
 public class Adjuster {
 	private String adjId;
 	private String adjName;
-	private String adjRefNo;
 	private String addrLine1;
 	private String addrLine2;
 	private String addrLine3;
@@ -38,14 +37,6 @@ public class Adjuster {
 
 	public void setAdjName(String adjName) {
 		this.adjName = adjName;
-	}
-
-	public String getAdjRefNo() {
-		return adjRefNo;
-	}
-
-	public void setAdjRefNo(String adjRefNo) {
-		this.adjRefNo = adjRefNo;
 	}
 
 	public String getAddrLine1() {
@@ -162,7 +153,7 @@ public class Adjuster {
 
 	@Override
 	public String toString() {
-		return "Adjuster [adjId=" + adjId + ", adjName=" + adjName + ", adjRefNo=" + adjRefNo + ", addrLine1="
+		return "Adjuster [adjId=" + adjId + ", adjName=" + adjName + ", addrLine1="
 				+ addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", fullAddress=" + fullAddress
 				+ ", zipCd=" + zipCd + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag="
 				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate

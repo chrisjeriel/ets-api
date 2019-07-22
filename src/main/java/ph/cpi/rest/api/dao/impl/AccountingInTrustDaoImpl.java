@@ -11,8 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
+import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
+import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 
 @Component
@@ -41,6 +46,47 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return params;
 	}
 
+	@Override
+	public List<AcitCMDM> retrieveAcitCMDMList(HashMap<String, Object> params) throws SQLException {
+		List<AcitCMDM> list = sqlSession.selectList("retrieveAcitCMDMList", params);
+		return list;
+	}
+
+	@Override
+	public Integer saveAcitCMDM(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCMDM", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<RefNoLov> retrieveAcitRefNoLOV(HashMap<String, Object> params) throws SQLException {
+		List<RefNoLov> list = sqlSession.selectList("retrieveAcitRefNoLOV", params);
+		return list;
+	}
+	
+	@Override
+	public List<AcknowledgementReceipt> retrieveArList(HashMap<String, Object> params) throws SQLException {
+		List<AcknowledgementReceipt> res = sqlSession.selectList("retArList",params);
+		return res;
+	}
+
+	@Override
+	public AcknowledgementReceipt retrieveArEntry(HashMap<String, Object> params) throws SQLException {
+		AcknowledgementReceipt res = sqlSession.selectOne("retArEntry", params);
+		return res;
+	}
+
+	public List<AcitTransactions> retrieveAcitJVListings(HashMap<String, Object> params) throws SQLException {
+		List<AcitTransactions> acitJVList  = sqlSession.selectList("retrieveAcitJvList", params);
+		return acitJVList;
+	}
+
+	@Override
+	public AcitTransactions retrieveAcitJVEntry(HashMap<String, Object> params) throws SQLException {
+		AcitTransactions acitJVEntry  = sqlSession.selectOne("retrieveAcitJvEntry", params);
+		return acitJVEntry;
+	}
+	
 	@Override
 	public HashMap<String, Object> updateAcitPaytReqStat(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updateAcitPaytReqStat", params);

@@ -140,6 +140,224 @@
 		END;
 	</update>
 	
+	<select id="retrieveAcitCMDMList" resultMap="CMDMMapper">
+		SELECT * FROM TABLE(ACIT_CRDR_MEMO_PKG.ret_acit_crdr_memo_list(#{tranId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitCMDM" id="CMDMMapper">
+		<result property="tranId" column="CMDM_TRAN_ID"/>
+		<result property="memoType" column="MEMO_TYPE"/>
+		<result property="memoTranType" column="MEMO_TRAN_TYPE"/>
+		<result property="tranTypeName" column="TRAN_TYPE_NAME"/>
+		<result property="memoYear" column="MEMO_YEAR"/>
+		<result property="memoMm" column="MEMO_MM"/>
+		<result property="memoSeqNo" column="MEMO_SEQ_NO"/>
+		<result property="tranTypeCd" column="CMDM_TRAN_TYPE_CD"/>
+		<result property="autoTag" column="AUTO_TAG"/>
+		<result property="memoDate" column="MEMO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="memoStatus" column="MEMO_STATUS"/>
+		<result property="status" column="STATUS"/>
+		<result property="refNo" column="REF_NO"/>
+		<result property="refNoTranId" column="REF_NO_TRAN_ID"/>
+		<result property="refNoDate" column="REF_NO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="payeeNo" column="PAYEE_NO"/>
+		<result property="payee" column="PAYEE"/>
+		<result property="particulars" column="PARTICULARS"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		<result property="cmdmAmt" column="CMDM_AMT"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+		<result property="createUser" column="CMDM_CREATE_USER"/>
+		<result property="createDate" column="CMDM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="CMDM_UPDATE_USER"/>
+		<result property="updateDate" column="CMDM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<update id="saveAcitCMDM" parameterType="java.util.Map">
+		BEGIN
+			ACIT_CRDR_MEMO_PKG.save_acit_crdr_memo(#{tranId, jdbcType=VARCHAR},#{memoType},#{memoTranType, jdbcType=VARCHAR},#{memoYear, jdbcType=VARCHAR},#{memoMm, jdbcType=VARCHAR},#{memoSeqNo, jdbcType=VARCHAR},#{tranTypeCd},#{autoTag},
+				CAST(to_timestamp(#{memoDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				,#{memoStatus},#{refNoTranId},
+				CAST(to_timestamp(#{refNoDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				,#{payeeNo, jdbcType=VARCHAR},#{payee},#{particulars},#{currCd},#{currRate},#{cmdmAmt},#{localAmt},#{createUser},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				,
+				#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+		END;
+	</update>
+	
+	<select id="retrieveAcitRefNoLOV" resultMap="refNoLovMap">
+		SELECT * FROM TABLE(ACIT_CRDR_MEMO_PKG.get_ref_nos(#{arTag, jdbcType=VARCHAR},
+			#{cvTag, jdbcType=VARCHAR},
+			#{jvTag, jdbcType=VARCHAR},
+			#{cmTag, jdbcType=VARCHAR},
+			#{dmTag, jdbcType=VARCHAR},
+			#{tranStat, jdbcType=VARCHAR},
+			#{arStatus, jdbcType=VARCHAR},
+			#{cvStatus, jdbcType=VARCHAR},
+			#{jvStatus, jdbcType=VARCHAR},
+			#{memoStatus, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.RefNoLov" id="refNoLovMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranNo" column="TRAN_NO"/>
+		<result property="tranTypeName" column="TRAN_TYPE_NAME"/>
+		<result property="tranDate" column="TRAN_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranStat" column="TRAN_STAT"/>
+		<result property="particulars" column="PARTICULARS"/>
+		<result property="status" column="STATUS"/>
+		<result property="amount" column="AMOUNT"/>
+	</resultMap>
+
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arListMap">
+		<result property="tranId"			column="TRAN_ID" />
+		<result property="arNo"				column="AR_NO" />
+		<result property="arDate"			column="AR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="arStatDesc"		column="AR_STATUS" />
+		<result property="tranTypeName"		column="TRAN_TYPE_NAME" />
+		<result property="payor"			column="PAYOR" />
+		<result property="arAmt"			column="AR_AMT" />
+		<result property="particulars"		column="PARTICULARS" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retArList" resultMap="arListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ACKGT_RECEIPT_PKG.ret_ar_list(
+																#{arNo, jdbcType=VARCHAR},
+																#{payor, jdbcType=VARCHAR},
+																CAST(to_timestamp(#{arDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																CAST(to_timestamp(#{arDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{tranTypeName, jdbcType=VARCHAR},
+																#{arStatus, jdbcType=VARCHAR},
+																#{particulars, jdbcType=VARCHAR},
+																#{arAmtFrom, jdbcType=VARCHAR},
+																#{arAmtTo, jdbcType=VARCHAR},
+																NULL,
+																NULL,
+																NULL,
+																NULL
+															   )
+						   )
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arEntryMap">
+		<result property="tranId"        column="TRAN_ID"           />
+		<result property="arNo"          column="AR_NO"             />
+		<result property="arDate"        column="AR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="arStatus"      column="AR_STATUS"         />
+		<result property="arStatDesc"    column="AR_STAT_DESC"      />
+		<result property="dcbYear"       column="DCB_YEAR"          />
+		<result property="dcbUserCd"     column="DCB_USER_CD"       />
+		<result property="dcbNo"         column="DCB_NO"            />
+		<result property="dcbBank"       column="DCB_BANK"          />
+		<result property="dcbBankAcct"   column="DCB_BANK_ACCT"     />
+		<result property="refNo"         column="REF_NO"            />
+		<result property="tranTypeCd"    column="TRAN_TYPE_CD"      />
+		<result property="tranTypeName"  column="TRAN_TYPE_NAME"    />
+		<result property="prNo"          column="PR_NO"             />
+		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
+		<result property="payor"         column="PAYOR"             />
+		<result property="mailAddress"   column="MAIL_ADDRESS"      />
+		<result property="bussTypeCd"    column="BUSS_TYPE_CD"      />
+		<result property="tin"           column="TIN"               />
+		<result property="currCd"        column="AAR_CURR_CD"       />
+		<result property="arAmt"         column="AR_AMT"            />
+		<result property="currRate"      column="AAR_CURR_RATE"     />
+		<result property="particulars"   column="PARTICULARS"       />
+		<result property="createUser"    column="CREATE_USER"       />
+		<result property="createDate"    column="CREATE_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"    column="UPDATE_USER"       />
+		<result property="updateDate"    column="UPDATE_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.ARPaymentDetails" id="paytDtlAssoc">
+		<result property="paytId"          column="PAYT_ID" />
+		<result property="paytMode"        column="PAYT_MODE" />
+		<result property="currCd"          column="AAP_CURR_CD" />
+		<result property="currRate"        column="AAP_CURR_RATE" />
+		<result property="paytAmt"         column="PAYT_AMT" />
+		<result property="bank"            column="BANK" />
+		<result property="bankAcct"        column="BANK_ACCT" />
+		<result property="checkNo"         column="CHECK_NO" />
+		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="checkClass"      column="CHECK_CLASS" />
+	</resultMap>
+	
+	<select id="retArEntry" resultMap="arEntryMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ACKGT_RECEIPT_PKG.ret_ar_entry(
+																	#{tranId},
+																	#{arNo}
+															   )
+						   )
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitTransactions" id="transactionMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranYear" column="TRAN_YEAR"/>
+		<result property="tranClassNo" column="TRAN_CLASS_NO"/>
+		<result property="tranStat" column="TRAN_STAT"/>
+		<result property="closeDate" column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="deleteDate" column="DELETE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="postDate" column="POST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+
+		<association property="jvListings" resultMap="jvMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVListing" id="jvMap">
+		<result property="tranId" column="JV_TRAN_ID"/>
+		<result property="jvYear" column="JV_YEAR"/>
+		<result property="jvNo" column="JV_NO"/>
+		<result property="jvDate" column="JV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="jvStatus" column="JV_STATUS"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		<result property="tranTypeName" column="TRAN_TYPE"/>
+		<result property="autoTag" column="AUTO_TAG"/>
+		<result property="refnoTranId" column="REFNO_TRAN_ID"/>
+		<result property="refnoDate" column="REFNO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="particulars" column="PARTICULARS"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		<result property="jvAmt" column="JV_AMT"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+		<result property="allocTag" column="ALLOC_TAG"/>
+		<result property="allocTranId" column="ALLOC_TRAN_ID"/>
+		<result property="preparedBy" column="PREPARED_BY"/>
+		<result property="preparedDate" column="PREPARED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="approvedBy" column="APPROVED_BY"/>
+		<result property="approvedDate" column="APPROVED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="createUser" column="JV_CREATE_USER"/>
+		<result property="createDate" column="JV_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="JV_UPDATE_USER"/>
+		<result property="updateDate" column="JV_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitJvList" resultMap="transactionMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv(
+					#{tranId,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	
+	<select id="retrieveAcitJvEntry" resultMap="transactionMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_ent(
+					#{tranId,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+
 	<update id="updateAcitPaytReqStat" parameterType="java.util.Map">
 		BEGIN
 			ACIT_PAYMENT_REQUEST_PKG.up_acit_paytreqstat(
