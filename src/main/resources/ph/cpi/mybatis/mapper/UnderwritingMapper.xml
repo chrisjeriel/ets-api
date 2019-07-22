@@ -2383,7 +2383,7 @@
 	
 	<update id="postDistribution" parameterType="java.util.Map">
 		BEGIN
-			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId});
+			DIST_PKG.post_dist(#{riskDistId},#{distId},#{policyId},#{user});
 		END;
 	</update>
 	
