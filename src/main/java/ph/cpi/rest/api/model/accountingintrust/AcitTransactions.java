@@ -8,6 +8,7 @@ public class AcitTransactions {
 	private Integer tranId;
 	private DateTime tranDate;
 	private String tranClass;
+	private Integer tranTypeCd;
 	private Integer tranYear;
 	private Integer tranClassNo;
 	private String tranStat;
@@ -37,6 +38,13 @@ public class AcitTransactions {
 	}
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
+	}
+	
+	public Integer getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(Integer tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public Integer getTranYear() {
 		return tranYear;
@@ -108,11 +116,9 @@ public class AcitTransactions {
 	@Override
 	public String toString() {
 		return "AcitTransactions [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
-				+ ", tranYear=" + tranYear + ", tranClassNo=" + tranClassNo + ", tranStat=" + tranStat + ", closeDate="
-				+ closeDate + ", deleteDate=" + deleteDate + ", postDate=" + postDate + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", jvListings=" + jvListings + "]";
+				+ ", tranTypeCd=" + tranTypeCd + ", tranYear=" + tranYear + ", tranClassNo=" + tranClassNo
+				+ ", tranStat=" + tranStat + ", closeDate=" + closeDate + ", deleteDate=" + deleteDate + ", postDate="
+				+ postDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", jvListings=" + jvListings + "]";
 	}
-	
-	
 }

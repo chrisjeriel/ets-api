@@ -14,11 +14,13 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -128,6 +130,62 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", raje.getTranId());
 		response.setTransactions(acctITDao.retrieveAcitJVEntry(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVEntryResponse saveAcitJVEntry(SaveAcitJVEntryRequest raje) throws SQLException {
+		SaveAcitJVEntryResponse response = new SaveAcitJVEntryResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", raje.getTranId());
+			params.put("tranDate", raje.getTranDate());
+			params.put("tranClass", raje.getTranClass());
+			params.put("tranTypeCd", raje.getTranTypeCd());
+			params.put("tranYear", raje.getTranYear());
+			params.put("tranClassNo", raje.getTranClassNo());
+			params.put("tranStat", raje.getTranStat());
+			params.put("closeDate", raje.getCloseDate());
+			params.put("deleteDate", raje.getDeleteDate());
+			params.put("postDate", raje.getPostDate());
+			params.put("createUser", raje.getCreateUser());
+			params.put("createDate", raje.getCreateDate());
+			params.put("updateUser", raje.getUpdateUser());
+			params.put("updateDate", raje.getUpdateDate());
+			params.put("tranIdJv", raje.getTranIdJv());
+			params.put("jvYear", raje.getJvYear());
+			params.put("jvNo", raje.getJvNo());
+			params.put("jvDate", raje.getJvDate());
+			params.put("jvStatus", raje.getJvStatus());
+			params.put("jvTranTypeCd", raje.getJvTranTypeCd());
+			params.put("tranTypeName", raje.getTranTypeName());
+			params.put("autoTag", raje.getAutoTag());
+			params.put("refnoTranId", raje.getRefnoTranId());
+			params.put("refnoDate", raje.getRefnoDate());
+			params.put("particulars", raje.getParticulars());
+			params.put("currCd", raje.getCurrCd());
+			params.put("currRate", raje.getCurrRate());
+			params.put("jvAmt", raje.getJvAmt());
+			params.put("localAmt", raje.getLocalAmt());
+			params.put("allocTag", raje.getAllocTag());
+			params.put("allocTranId", raje.getAllocTranId());
+			params.put("preparedBy", raje.getPreparedBy());
+			params.put("preparedDate", raje.getPreparedDate());
+			params.put("approvedBy", raje.getApprovedBy());
+			params.put("approvedDate", raje.getApprovedDate());
+			params.put("createUserJv", raje.getCreateUserJv());
+			params.put("createDateJv", raje.getCreateDateJv());
+			params.put("updateUserJv", raje.getUpdateUser());
+			params.put("updateDateJv", raje.getUpdateDateJv());
+			HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setTranIdOut((Integer) res.get("tranIdOut"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
 		return response;
 	}
 }

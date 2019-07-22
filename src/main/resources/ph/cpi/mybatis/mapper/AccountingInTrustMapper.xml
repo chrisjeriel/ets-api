@@ -114,6 +114,7 @@
 		<result property="tranId" column="TRAN_ID"/>
 		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
 		<result property="tranYear" column="TRAN_YEAR"/>
 		<result property="tranClassNo" column="TRAN_CLASS_NO"/>
 		<result property="tranStat" column="TRAN_STAT"/>
@@ -134,7 +135,7 @@
 		<result property="jvNo" column="JV_NO"/>
 		<result property="jvDate" column="JV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="jvStatus" column="JV_STATUS"/>
-		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		<result property="tranTypeCd" column="JV_TRAN_TYPE_CD"/>
 		<result property="tranTypeName" column="TRAN_TYPE"/>
 		<result property="autoTag" column="AUTO_TAG"/>
 		<result property="refnoTranId" column="REFNO_TRAN_ID"/>
@@ -167,4 +168,30 @@
 					#{tranId,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
+	
+	<update id="saveAcitJVEntry" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_tran_id	ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+		BEGIN
+			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv(v_tran_id,#{tranId, jdbcType=VARCHAR}, 
+												  CAST(to_timestamp(#{tranDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{tranType,jdbcType=INTEGER},
+												  #{tranYear,jdbcType=VARCHAR}, #{tranClassNo,jdbcType=VARCHAR}, 
+												  #{tranStat}, CAST(to_timestamp(#{closeDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{deleteDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{postDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{createUser}, CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{updateUser},   
+												  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{tranIdJv,jdbcType=VARCHAR}, #{jvYear,jdbcType=VARCHAR},
+												  #{jvNo,jdbcType=VARCHAR}, CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{jvStatus}, #{jvTranTypeCd}, 
+												  #{autoTag}, #{refnoTranId,jdbcType=VARCHAR}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{particulars}, #{currCd}, #{currRate}, #{jvAmt}, #{localAmt}, #{allocTag,jdbcType=VARCHAR}, #{allocTranId,jdbcType=VARCHAR}, 
+												  #{preparedBy,jdbcType=VARCHAR}, 
+												  CAST(to_timestamp(#{preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{approvedBy,jdbcType=VARCHAR}, 
+												  CAST(to_timestamp(#{approvedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{createUserJv}, CAST(to_timestamp(#{createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{updateUserJv}, 
+												  CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
+		END;
+		
+	</update>
 </mapper>

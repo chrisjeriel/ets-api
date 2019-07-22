@@ -14,5 +14,5 @@ public interface AccountingInTrustDao {
 	public List<AcitTransactions> retrieveAcitJVListings(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitPaytReq(final HashMap<String, Object> params) throws SQLException;
 	public AcitTransactions retrieveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
-	
+	public HashMap<String, Object> saveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
 }

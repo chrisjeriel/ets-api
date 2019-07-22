@@ -17,12 +17,14 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -70,5 +72,12 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVEntry");
 		logger.info("RetrieveAcitJVEntryRequest : " + raje.toString());
 		return acctInTrustService.retrieveAcitJvEntry(raje);
+	}
+	
+	@PostMapping(path="saveAcitJVEntry")
+	public @ResponseBody SaveAcitJVEntryResponse saveAcitJVEntry(@RequestBody SaveAcitJVEntryRequest saprr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitJVEntry");
+		logger.info("SaveAcitJVEntryRequest : " + saprr.toString());
+		return acctInTrustService.saveAcitJVEntry(saprr);
 	}
 }
