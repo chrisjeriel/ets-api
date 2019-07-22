@@ -12,6 +12,8 @@ public class RetrieveClaimHistoryResponse {
 	private List<ClaimReserve> claimReserveList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
+	private Integer polDistStat;
+	private Float adjRate;
 	public List<ClaimReserve> getClaimReserveList() {
 		return claimReserveList;
 	}
@@ -30,9 +32,23 @@ public class RetrieveClaimHistoryResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	
+	public Integer getPolDistStat() {
+		return polDistStat;
+	}
+	public void setPolDistStat(Integer polDistStat) {
+		this.polDistStat = polDistStat;
+	}
+	public Float getAdjRate() {
+		return adjRate;
+	}
+	public void setAdjRate(Float adjRate) {
+		this.adjRate = adjRate;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveClaimHistoryResponse [claimReserveList=" + claimReserveList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+				+ paginationResponse + ", sortResponse=" + sortResponse + ", polDistStat=" + polDistStat + ", adjRate="
+				+ adjRate + "]";
 	}
 }

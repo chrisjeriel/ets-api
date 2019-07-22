@@ -131,4 +131,5 @@ public interface MaintenanceService {
 	public RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattr ) throws SQLException;
 	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException;
 	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException;
+	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr ) throws SQLException;
 }

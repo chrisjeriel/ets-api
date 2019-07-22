@@ -885,4 +885,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBankAcctRequest : " + rmbar.toString());
 		return maintenanceService.retrieveMtnBankAcct(rmbar);
 	}
+
+	@GetMapping(path="retrieveMtnBookingMonth")
+	public @ResponseBody RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBookingMonth");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnBookingMonth(rbmr);
+	}
 }

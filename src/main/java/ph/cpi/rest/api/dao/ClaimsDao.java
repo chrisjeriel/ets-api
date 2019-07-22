@@ -38,4 +38,6 @@ public interface ClaimsDao {
 	public List<ClaimDist> retrieveClmDist(final HashMap<String, Object> params ) throws SQLException;
 	public List<ClaimDistCeding> retrieveClmDistPool(final HashMap<String, Object> params ) throws SQLException;
 	public Integer redistributeClaimDist(final HashMap<String, Object> params) throws SQLException;
+	public Integer chkPoldistStat(Integer param) throws SQLException;
+	public Float chkAdjRate(Integer param) throws SQLException;
 }

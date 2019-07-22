@@ -26,6 +26,10 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
+import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
@@ -33,6 +37,10 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
 @Controller
@@ -113,5 +121,19 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVEntry");
 		logger.info("RetrieveAcitJVEntryRequest : " + raje.toString());
 		return acctInTrustService.retrieveAcitJvEntry(raje);
+	}
+
+	@PostMapping(path="updateAcitPaytReqStat")
+	public @ResponseBody UpdateAcitPaytReqStatResponse updateAcitPaytReqStat(@RequestBody UpdateAcitPaytReqStatRequest uaprsr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/updateAcitPaytReqStat");
+		logger.info("UpdateAcitPaytReqStatRequest : " + uaprsr.toString());
+		return acctInTrustService.updateAcitPaytReqStat(uaprsr);
+	}
+	
+	@GetMapping(path="retrieveAcitPrqTrans")
+	public @ResponseBody RetrieveAcitPrqTransResponse retrieveAcitPrqTrans(RetrieveAcitPrqTransRequest raptr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitPrqTrans");
+		logger.info("RetrieveAcitPrqTransRequest : " + raptr.toString());
+		return acctInTrustService.retrieveAcitPrqTrans(raptr);
 	}
 }
