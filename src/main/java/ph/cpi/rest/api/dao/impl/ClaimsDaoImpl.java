@@ -168,4 +168,13 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		return (Integer) par.get("checkRes");
 	}
 
+	@Override
+	public Float chkAdjRate(Integer param) throws SQLException {
+		HashMap<String, Object> par = new HashMap<String, Object>();
+		par.put("claimId", param);
+		par.put("chkAdjRate", "");
+		sqlSession.selectOne("chkAdjRate", par);
+		return (Float) par.get("chkAdjRate");
+	}
+
 }
