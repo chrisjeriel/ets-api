@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -38,5 +40,19 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveAcitPaytReq", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitProfCommSumm> retrieveProfCommSumm(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommSumm", params);
+		return acitProfCommSummList;
+	}
+
+	@Override
+	public List<AcitProfCommDtl> retrieveProfCommDtl(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
+		return acitProfCommDtlList;
 	}
 }

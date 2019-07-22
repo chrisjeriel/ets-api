@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -53,4 +57,19 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitPaytReqRequest : " + saprr.toString());
 		return acctInTrustService.saveAcitPaytReq(saprr);
 	}
+	
+	@GetMapping(path="retrieveAcitProfCommSumm")
+	public @ResponseBody RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitProfCommSumm");
+		logger.info("RetrieveAcitProfCommSummRequest : " + rapcsr.toString());
+		return acctInTrustService.retrieveAcitProfCommSumm(rapcsr);
+	}
+	
+	@GetMapping(path="retrieveAcitProfCommDtl")
+	public @ResponseBody RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitProfCommDtl");
+		logger.info("RetrieveAcitProfCommDtlRequest : " + rapcdr.toString());
+		return acctInTrustService.retrieveAcitProfCommDtl(rapcdr);
+	}
+	
 }

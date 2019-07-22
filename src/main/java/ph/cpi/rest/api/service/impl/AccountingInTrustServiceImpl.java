@@ -12,9 +12,13 @@ import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -105,5 +109,36 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return saprResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
+		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
+		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
+		rapcsrParams.put("cedingId", rapcsr.getCedingId());
+		rapcsrParams.put("month", rapcsr.getMonth());
+		rapcsrParams.put("year", rapcsr.getYear());
+		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
+		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
+		return rapcsrResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
+		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
+		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
+		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
+		return rapcdrResponse;
 	}
 }
