@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
@@ -37,6 +38,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
@@ -135,5 +137,12 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitPrqTrans");
 		logger.info("RetrieveAcitPrqTransRequest : " + raptr.toString());
 		return acctInTrustService.retrieveAcitPrqTrans(raptr);
+	}
+	
+	@PostMapping(path="saveAcitPrqTrans")
+	public @ResponseBody SaveAcitPrqTransResponse saveAcitPrqTrans(@RequestBody SaveAcitPrqTransRequest saptr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitPrqTrans");
+		logger.info("SaveAcitPrqTransRequest : " + saptr.toString());
+		return acctInTrustService.saveAcitPrqTrans(saptr);
 	}
 }

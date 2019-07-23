@@ -367,4 +367,38 @@
 			);
 		END;
 	</update>
+	
+	 <update id="saveAcitPrqTrans" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="savePrqTrans" item="save">
+	    		ACIT_PRQ_TRANS_PKG.save_acit_prq_trans(
+	    			#{save.reqId, jdbcType=INTEGER},
+					#{save.itemNo, jdbcType=INTEGER},
+					#{save.claimId, jdbcType=INTEGER},
+					#{save.projId, jdbcType=INTEGER},
+					#{save.histNo, jdbcType=INTEGER},
+					#{save.policyId, jdbcType=INTEGER},
+					#{save.instNo, jdbcType=INTEGER},
+					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.investmentId, jdbcType=INTEGER},
+					#{save.refNo, jdbcType=VARCHAR},
+					#{save.paymentFor, jdbcType=VARCHAR},
+					#{save.currCd, jdbcType=VARCHAR},
+					#{save.currRate, jdbcType=INTEGER},
+					#{save.currAmt, jdbcType=INTEGER},
+					#{save.localAmt, jdbcType=INTEGER},
+					#{save.remarks, jdbcType=VARCHAR},
+			        #{save.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{save.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deletePrqTrans" item="del">
+    			ACIT_PRQ_TRANS_PKG.del_acit_prq_trans(
+    				#{del.reqId, jdbcType=INTEGER},
+					#{del.itemNo, jdbcType=INTEGER});
+    		</foreach>
+    	END;
+    </update>
 </mapper>

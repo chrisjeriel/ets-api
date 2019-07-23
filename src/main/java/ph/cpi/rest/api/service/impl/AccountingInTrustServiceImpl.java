@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
@@ -34,6 +35,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -283,5 +285,28 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		raptResponse.setAcitPrqTrans(acctITDao.retrieveAcitPrqTrans(raptParams));
 		logger.info("RetrieveAcitPrqTransResponse : " + raptResponse.toString());
 		return raptResponse;
+	}
+
+
+	@Override
+	public SaveAcitPrqTransResponse saveAcitPrqTrans(SaveAcitPrqTransRequest saptr) throws SQLException {
+		SaveAcitPrqTransResponse saptResponse = new SaveAcitPrqTransResponse();
+		HashMap<String, Object> saptParams = new HashMap<String, Object>();
+		try {
+			saptParams.put("deletePrqTrans", saptr.getDeletePrqTrans());
+			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
+			
+			HashMap<String, Object> response = acctITDao.saveAcitPrqTrans(saptParams);
+			saptResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			saptResponse.setReturnCode(0);
+			saptResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			saptResponse.setReturnCode(0);
+			saptResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return saptResponse;
 	}
 }

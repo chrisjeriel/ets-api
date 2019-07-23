@@ -99,4 +99,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitPrqTrans> acitPrqTransList  = sqlSession.selectList("retrieveAcitPrqTrans", params);
 		return acitPrqTransList;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitPrqTrans(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitPrqTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

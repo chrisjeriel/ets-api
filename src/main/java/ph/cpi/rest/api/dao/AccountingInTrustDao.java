@@ -24,5 +24,7 @@ public interface AccountingInTrustDao {
 	public AcknowledgementReceipt retrieveArEntry(final HashMap<String, Object> params) throws SQLException;
 	public AcitTransactions retrieveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> updateAcitPaytReqStat(final HashMap<String, Object> params) throws SQLException;
-	public List<AcitPrqTrans> retrieveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitPrqTrans> retrieveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException; 
+	public HashMap<String, Object> saveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException;
+
 }
