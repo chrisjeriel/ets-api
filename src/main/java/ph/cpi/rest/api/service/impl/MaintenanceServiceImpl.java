@@ -2061,4 +2061,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
 		return res;
 	}
+
+	@Override
+	public RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		RetrieveMtnPayeeResponse reponse = new RetrieveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", rmbar.getPayeeNo());
+		params.put("payeeClassCd", rmbar.getPayeeClassCd());
+		reponse.setPayeeList(maintenanceDao.retrieveMtnPayee(params));
+		return reponse;
+	}
 }

@@ -14,6 +14,7 @@ public class RetrieveAcitRefNoLOVRequest {
 	private String cvStatus;
 	private String jvStatus;
 	private String memoStatus;
+	private String groupTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getArTag() {
@@ -88,12 +89,18 @@ public class RetrieveAcitRefNoLOVRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public String getGroupTag() {
+		return groupTag;
+	}
+	public void setGroupTag(String groupTag) {
+		this.groupTag = groupTag;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcitRefNoLOVRequest [arTag=" + arTag + ", cvTag=" + cvTag + ", jvTag=" + jvTag + ", cmTag="
 				+ cmTag + ", dmTag=" + dmTag + ", tranStat=" + tranStat + ", arStatus=" + arStatus + ", cvStatus="
-				+ cvStatus + ", jvStatus=" + jvStatus + ", memoStatus=" + memoStatus + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ cvStatus + ", jvStatus=" + jvStatus + ", memoStatus=" + memoStatus + ", groupTag=" + groupTag
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

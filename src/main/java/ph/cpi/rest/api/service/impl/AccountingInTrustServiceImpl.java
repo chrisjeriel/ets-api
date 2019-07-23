@@ -172,6 +172,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateDate",saprr.getUpdateDate());
 		try{
 			response.setReturnCode(acctITDao.saveAcitCMDM(params));
+			response.setCmdm(acctITDao.retrieveAcitCMDMList(params));
 		}catch (Exception ex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
@@ -217,6 +218,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("jvTag", racitcmdmlr.getJvTag());
 		params.put("cmTag", racitcmdmlr.getCmTag());
 		params.put("dmTag", racitcmdmlr.getDmTag());
+		params.put("groupTag", racitcmdmlr.getGroupTag());
 		params.put("tranStat", racitcmdmlr.getTranStat());
 		params.put("arStatus", racitcmdmlr.getArStatus());
 		params.put("cvStatus", racitcmdmlr.getCvStatus());

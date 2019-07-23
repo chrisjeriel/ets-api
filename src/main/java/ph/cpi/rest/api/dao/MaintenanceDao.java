@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -187,5 +188,5 @@ public interface MaintenanceDao {
 	public List<MtnAcitTranType> retrieveMtnAcitTranType(final HashMap<String, Object> params ) throws SQLException;
 	public List<Bank> retrieveMtnBank(final HashMap<String, Object> params) throws SQLException;
 	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
-
+	public List<Payee> retrieveMtnPayee(final HashMap<String, Object> params) throws SQLException;
 	}
