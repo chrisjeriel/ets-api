@@ -1486,6 +1486,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnParametersResponse response = new RetrieveMtnParametersResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("paramType", rafr.getParamType());
+		params.put("paramName", rafr.getParamName());
 		response.setParameters(maintenanceDao.retrieveParameters(params));
 		return response;
 	}
@@ -2100,5 +2101,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("userId", rmdur.getUserid());
 		response.setDcbUserList(maintenanceDao.retrieveMtnDCBUser(params));
 		return response;
+	}
+	
+	@Override
+	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)
+			throws SQLException {
+		RetrieveMtnBookingMonthResponse rmbmResponse = new RetrieveMtnBookingMonthResponse();
+		HashMap<String, Object> rmbmParams = new HashMap<String, Object>();
+		rmbmParams.put("bookingMm", rbmr.getBookingMm());
+		rmbmParams.put("bookingYear", rbmr.getBookingYear());
+		rmbmResponse.setBookingMonthList(maintenanceDao.retrieveMtnBookingMonth(rmbmParams));
+		logger.info("RetrieveMtnBookingMonthResponse : " + rmbmResponse.toString());
+		return rmbmResponse;
 	}
 }

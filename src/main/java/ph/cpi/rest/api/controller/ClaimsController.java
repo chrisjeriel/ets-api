@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RedistributeClaimDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
@@ -20,6 +21,8 @@ import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmDistPoolRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
@@ -33,6 +36,7 @@ import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.request.UpdateClmDetailsRequest;
+import ph.cpi.rest.api.model.response.RedistributeClaimDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -40,6 +44,8 @@ import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmDistPoolResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
@@ -204,5 +210,26 @@ public class ClaimsController {
 		logger.info("GET: /api/claims-service/retrieveClmPaytReq");
 		logger.info("RetrieveClmPaytReqRequest : " + rcprr.toString());
 		return claimsService.retrieveClmPaytReq(rcprr);
+	}
+	
+	@GetMapping(path="retrieveClmDist")
+	public @ResponseBody RetrieveClmDistResponse retrieveClmDist(RetrieveClmDistRequest rcprr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClmDist");
+		logger.info("RetrieveClmDistRequest : " + rcprr.toString());
+		return claimsService.retrieveClmDist(rcprr);
+	}
+	
+	@GetMapping(path="retrieveClmDistPool")
+	public @ResponseBody RetrieveClmDistPoolResponse retrieveClmDistPool(RetrieveClmDistPoolRequest rcprr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClmDistPool");
+		logger.info("RetrieveClmDistPoolRequest : " + rcprr.toString());
+		return claimsService.retrieveClmDistPool(rcprr);
+	}
+	
+	@PostMapping(path="redistributeClaimDist")
+	public @ResponseBody RedistributeClaimDistResponse redistributeClaimDist(@RequestBody RedistributeClaimDistRequest ucdr) throws SQLException {
+		logger.info("POST: /api/claims-service/redistributeClaimDist");
+		logger.info("RedistributeClaimDistRequest : " + ucdr.toString());
+		return claimsService.redistributeClaimDist(ucdr);
 	}
 }

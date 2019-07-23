@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.Attachment;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
+import ph.cpi.rest.api.model.claims.ClaimDist;
+import ph.cpi.rest.api.model.claims.ClaimDistCeding;
 import ph.cpi.rest.api.model.claims.ClaimPaytRequest;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.Claims;
@@ -165,5 +167,41 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		sqlSession.selectOne("checkReserve", params);
 		Integer res = (Integer) params.get("checkResult");
 		return res;
+	}
+
+	@Override
+	public List<ClaimDist> retrieveClmDist(HashMap<String, Object> params) throws SQLException {
+		List<ClaimDist> list = sqlSession.selectList("retrieveClmDist", params);
+		return list;
+	}
+
+	@Override
+	public List<ClaimDistCeding> retrieveClmDistPool(HashMap<String, Object> params) throws SQLException {
+		List<ClaimDistCeding> list = sqlSession.selectList("retrieveClmDistPool", params);
+		return list;
+	}
+
+	@Override
+	public Integer redistributeClaimDist(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("redistributeClaimDist",params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer chkPoldistStat(Integer param) throws SQLException {
+		HashMap<String, Object> par = new HashMap<String, Object>();
+		par.put("claimId", param);
+		par.put("checkRes", "");
+		sqlSession.selectOne("chkPoldistStat", par);
+		return (Integer) par.get("checkRes");
+	}
+
+	@Override
+	public Float chkAdjRate(Integer param) throws SQLException {
+		HashMap<String, Object> par = new HashMap<String, Object>();
+		par.put("claimId", param);
+		par.put("chkAdjRate", "");
+		sqlSession.selectOne("chkAdjRate", par);
+		return (Float) par.get("chkAdjRate");
 	}
 }

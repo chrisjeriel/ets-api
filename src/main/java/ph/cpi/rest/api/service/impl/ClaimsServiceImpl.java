@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RedistributeClaimDistRequest;
 import ph.cpi.rest.api.model.claims.UpdateClaim;
 import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
@@ -20,6 +21,8 @@ import ph.cpi.rest.api.model.request.RetrieveClaimListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimReserveRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimSecCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmDistPoolRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
@@ -33,6 +36,7 @@ import ph.cpi.rest.api.model.request.SaveClmAdjusterRequest;
 import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.request.UpdateClmDetailsRequest;
+import ph.cpi.rest.api.model.response.RedistributeClaimDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -40,6 +44,8 @@ import ph.cpi.rest.api.model.response.RetrieveClaimListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimReserveResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimSecCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmDistPoolResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
@@ -71,6 +77,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		retClmHistoryParams.put("claimNo", rchp.getClaimNo());
 		retClmHistoryParams.put("projId", rchp.getProjId());
 		retClmHistoryParams.put("histNo", rchp.getHistNo());
+		
+		rchResponse.setAdjRate(claimsDao.chkAdjRate(Integer.parseInt(rchp.getClaimId())));
+		rchResponse.setPolDistStat(claimsDao.chkPoldistStat(Integer.parseInt(rchp.getClaimId())));
 		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
@@ -346,6 +355,8 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("oldStatCd", scgir.getOldStatCd());
 		params.put("closeDate", scgir.getCloseDate());
 		params.put("refreshSw", scgir.getRefreshSw());
+		params.put("issueDate", scgir.getIssueDate());
+		params.put("effDate", scgir.getIssueDate());
 		params.put("lapseFrom", scgir.getLapseFrom());
 		params.put("lapseTo", scgir.getLapseTo());
 		params.put("maintenanceFrom", scgir.getMaintenanceFrom());
@@ -353,6 +364,11 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("prinId", scgir.getPrinId());
 		params.put("contractorId", scgir.getContractorId());
 		params.put("insuredDesc", scgir.getInsuredDesc());
+		params.put("lapsePdTag", scgir.getLapsePdTag());
+		params.put("polTermTag", scgir.getPolTermTag());
+		params.put("remarks", scgir.getRemarks());
+		params.put("adjId", scgir.getAdjId());
+		params.put("adjFileNo", scgir.getAdjFileNo());
 		params.put("createUser", scgir.getCreateUser());
 		params.put("createDate", scgir.getCreateDate());
 		params.put("updateUser", scgir.getUpdateUser());
@@ -510,5 +526,49 @@ public class ClaimsServiceImpl implements ClaimsService {
 			ex.printStackTrace();
 		}
 		return scprResponse;
+	}
+
+	@Override
+	public RetrieveClmDistResponse retrieveClmDist(RetrieveClmDistRequest rcprr) throws SQLException {
+		RetrieveClmDistResponse response = new RetrieveClmDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId", rcprr.getClaimId());
+		params.put("projId", rcprr.getProjId());
+		response.setClaimDist(claimsDao.retrieveClmDist(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveClmDistPoolResponse retrieveClmDistPool(RetrieveClmDistPoolRequest rcprr) throws SQLException {
+		RetrieveClmDistPoolResponse response = new RetrieveClmDistPoolResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId",rcprr.getClaimId());
+		params.put("projId",rcprr.getProjId());
+		params.put("histNo",rcprr.getHistNo());
+		params.put("clmDistNo",rcprr.getClmDistNo());
+		response.setClaimsDistCeding(claimsDao.retrieveClmDistPool(params));
+		return response;
+	}
+
+	@Override
+	public RedistributeClaimDistResponse redistributeClaimDist(RedistributeClaimDistRequest ucdr) throws SQLException {
+		RedistributeClaimDistResponse response = new RedistributeClaimDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimId",ucdr.getClaimId());
+		params.put("projId",ucdr.getProjId());
+		params.put("histNo",ucdr.getHistNo());
+		params.put("clmDistNo",ucdr.getClmDistNo());
+		params.put("createUser", ucdr.getCreateUser());
+		params.put("createDate", ucdr.getCreateDate());
+		params.put("updateUser", ucdr.getUpdateUser());
+		params.put("updateDate", ucdr.getUpdateDate());
+		try{
+			response.setReturnCode(claimsDao.redistributeClaimDist(params));
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 }

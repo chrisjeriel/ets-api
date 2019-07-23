@@ -3,22 +3,22 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnParametersRequest {
-	private String paramType;
-	private String paramName;
+public class RetrieveMtnBookingMonthRequest {
+	private String  	bookingMm;
+	private String 		bookingYear;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public String getParamType() {
-		return paramType;
+	public String getBookingMm() {
+		return bookingMm;
 	}
-	public void setParamType(String paramType) {
-		this.paramType = paramType;
+	public void setBookingMm(String bookingMm) {
+		this.bookingMm = bookingMm;
 	}
-	public String getParamName() {
-		return paramName;
+	public String getBookingYear() {
+		return bookingYear;
 	}
-	public void setParamName(String paramName) {
-		this.paramName = paramName;
+	public void setBookingYear(String bookingYear) {
+		this.bookingYear = bookingYear;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,7 +34,7 @@ public class RetrieveMtnParametersRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnParametersRequest [paramType=" + paramType + ", paramName=" + paramName
+		return "RetrieveMtnBookingMonthRequest [bookingMm=" + bookingMm + ", bookingYear=" + bookingYear
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

@@ -906,4 +906,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnDCBUserRequest : " + rmdur.toString());
 		return maintenanceService.retrieveMtnDCBUser(rmdur);
 	}
+
+	@GetMapping(path="retrieveMtnBookingMonth")
+	public @ResponseBody RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBookingMonth");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnBookingMonth(rbmr);
+	}
 }
