@@ -369,4 +369,16 @@
 			);
 		END;
 	</update>
+	
+	<update id="cancelCMDM" parameterType="java.util.Map">
+		BEGIN
+			ACIT_CRDR_MEMO_PKG.cancel_memo(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="printCMDM" parameterType="java.util.Map">
+		BEGIN
+			ACIT_CRDR_MEMO_PKG.print_memo(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>
