@@ -64,4 +64,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		AcitTransactions acitJVEntry  = sqlSession.selectOne("retrieveAcitJvEntry", params);
 		return acitJVEntry;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitArTrans(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitArTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

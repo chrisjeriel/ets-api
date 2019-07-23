@@ -2060,4 +2060,45 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
 		return res;
 	}
+
+	@Override
+	public RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException {
+		RetrieveMtnAcitDCBNoResponse response = new RetrieveMtnAcitDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dcbYear", rmaidcbr.getDcbYear());
+		params.put("dcbNo", rmaidcbr.getDcbNo());
+		params.put("dcbDate", rmaidcbr.getDcbDate());
+		params.put("dcbStatus", rmaidcbr.getDcbStatus());
+		response.setDcbNoList(maintenanceDao.retrieveMtnAcitDCBNo(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException {
+		SaveMtnAcitDCBNoResponse response = new SaveMtnAcitDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveDCBNo", smaidcbr.getSaveDCBNo());
+		params.put("delDCBNo", smaidcbr.getDelDCBNo());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnAcitDCBNo(params));
+		}catch(SQLException sqlex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQL Exception","Please check the field values."));
+			sqlex.printStackTrace();
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnDCBUserResponse retrieveMtnDCBUser(RetrieveMtnDCBUserRequest rmdur) throws SQLException {
+		RetrieveMtnDCBUserResponse response = new RetrieveMtnDCBUserResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rmdur.getUserid());
+		response.setDcbUserList(maintenanceDao.retrieveMtnDCBUser(params));
+		return response;
+	}
 }

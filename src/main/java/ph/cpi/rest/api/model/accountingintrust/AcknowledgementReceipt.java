@@ -14,14 +14,17 @@ public class AcknowledgementReceipt {
 	private Integer dcbYear;
 	private Integer dcbUserCd;
 	private Integer dcbNo;
-	private String dcbBank;
-	private String dcbBankAcct;
+	private Integer dcbBank;
+	private String dcbBankName;
+	private Integer dcbBankAcct;
+	private String dcbBankAcctNo;
 	private String refNo;
 	private Integer tranTypeCd;
 	private String tranTypeName;
 	private String prNo;
 	private DateTime prDate;
 	private String prPreparedBy;
+	private Integer payeeNo;
 	private String payor;
 	private String mailAddress;
 	private Integer bussTypeCd;
@@ -101,20 +104,36 @@ public class AcknowledgementReceipt {
 		this.dcbNo = dcbNo;
 	}
 
-	public String getDcbBank() {
+	public Integer getDcbBank() {
 		return dcbBank;
 	}
 
-	public void setDcbBank(String dcbBank) {
+	public void setDcbBank(Integer dcbBank) {
 		this.dcbBank = dcbBank;
 	}
 
-	public String getDcbBankAcct() {
+	public String getDcbBankName() {
+		return dcbBankName;
+	}
+
+	public void setDcbBankName(String dcbBankName) {
+		this.dcbBankName = dcbBankName;
+	}
+
+	public Integer getDcbBankAcct() {
 		return dcbBankAcct;
 	}
 
-	public void setDcbBankAcct(String dcbBankAcct) {
+	public void setDcbBankAcct(Integer dcbBankAcct) {
 		this.dcbBankAcct = dcbBankAcct;
+	}
+
+	public String getDcbBankAcctNo() {
+		return dcbBankAcctNo;
+	}
+
+	public void setDcbBankAcctNo(String dcbBankAcctNo) {
+		this.dcbBankAcctNo = dcbBankAcctNo;
 	}
 
 	public String getRefNo() {
@@ -163,6 +182,14 @@ public class AcknowledgementReceipt {
 
 	public void setPrPreparedBy(String prPreparedBy) {
 		this.prPreparedBy = prPreparedBy;
+	}
+
+	public Integer getPayeeNo() {
+		return payeeNo;
+	}
+
+	public void setPayeeNo(Integer payeeNo) {
+		this.payeeNo = payeeNo;
 	}
 
 	public String getPayor() {
@@ -273,9 +300,10 @@ public class AcknowledgementReceipt {
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
 				+ arStatus + ", arStatDesc=" + arStatDesc + ", dcbYear=" + dcbYear + ", dcbUserCd=" + dcbUserCd
-				+ ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankAcct=" + dcbBankAcct + ", refNo=" + refNo
-				+ ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate="
-				+ prDate + ", prPreparedBy=" + prPreparedBy + ", payor=" + payor + ", mailAddress=" + mailAddress
+				+ ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankName=" + dcbBankName + ", dcbBankAcct="
+				+ dcbBankAcct + ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo + ", tranTypeCd=" + tranTypeCd
+				+ ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy="
+				+ prPreparedBy + ", payeeNo=" + payeeNo + ", payor=" + payor + ", mailAddress=" + mailAddress
 				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", currCd=" + currCd + ", arAmt=" + arAmt
 				+ ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
