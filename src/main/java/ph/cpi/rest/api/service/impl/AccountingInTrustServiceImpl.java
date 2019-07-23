@@ -12,14 +12,18 @@ import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -186,6 +190,33 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
 		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitSOAAgingResponse retrieveAcitSOAAging(RetrieveAcitSOAAgingDetailsRequest rasd)
+			throws SQLException {
+		RetrieveAcitSOAAgingResponse response = new RetrieveAcitSOAAgingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rasd.getTranId());
+		params.put("policyId", rasd.getPolicyId());
+		params.put("instNo", rasd.getInstNo());
+		params.put("cedingId", rasd.getCedingId());
+		response.setSoaDetails(acctITDao.retrieveAcitSOAAging(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJVInwPolBalResponse retrieveAcitJVInwPolBal(RetrieveAcitJVInPolBalRequest rajpb)
+			throws SQLException {
+		RetrieveAcitJVInwPolBalResponse response = new RetrieveAcitJVInwPolBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rajpb.getTranId());
+		params.put("instNo", rajpb.getInstNo());
+		params.put("cedingCo", rajpb.getCedingCo());
+		response.setTransactions(acctITDao.retrieveAcitJVAdjInwPolBal(params));
 		return response;
 	}
 }

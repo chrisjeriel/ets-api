@@ -21,6 +21,7 @@ public class AcitTransactions {
 	private DateTime updateDate;
 	
 	private AcitJVListing jvListings;
+	
 	public Integer getTranId() {
 		return tranId;
 	}

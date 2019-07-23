@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 
 public interface AccountingInTrustDao {
@@ -15,4 +16,7 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitPaytReq(final HashMap<String, Object> params) throws SQLException;
 	public AcitTransactions retrieveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
+	public AcitTransactions retrieveAcitJVAdjInwPolBal (final HashMap<String, Object> params) throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveAcitSOAAging(final HashMap<String, Object> params) throws SQLException;
+	
 }
