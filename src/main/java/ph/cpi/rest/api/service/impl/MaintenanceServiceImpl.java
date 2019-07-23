@@ -2071,4 +2071,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		reponse.setPayeeList(maintenanceDao.retrieveMtnPayee(params));
 		return reponse;
 	}
+	
+	@Override
+	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)
+			throws SQLException {
+		RetrieveMtnBookingMonthResponse rmbmResponse = new RetrieveMtnBookingMonthResponse();
+		HashMap<String, Object> rmbmParams = new HashMap<String, Object>();
+		rmbmParams.put("bookingMm", rbmr.getBookingMm());
+		rmbmParams.put("bookingYear", rbmr.getBookingYear());
+		rmbmResponse.setBookingMonthList(maintenanceDao.retrieveMtnBookingMonth(rmbmParams));
+		logger.info("RetrieveMtnBookingMonthResponse : " + rmbmResponse.toString());
+		return rmbmResponse;
+	}
 }

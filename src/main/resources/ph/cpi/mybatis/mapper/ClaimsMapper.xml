@@ -97,6 +97,8 @@
 		<result property="histCatDesc"	column="HIST_CAT_DESC"/>
 		<result property="histType"		column="HIST_TYPE"/>
 		<result property="histTypeDesc" column="HIST_TYPE_DESC"/>
+		<result property="bookingMth" 	column="BOOKING_MTH"/>
+		<result property="bookingYear" 	column="BOOKING_YEAR"/>
 		<result property="exGratia"		column="EX_GRATIA"/>
 		<result property="currencyCd"	column="CURRENCY_CD"/>
 		<result property="currencyRt"	column="CURRENCY_RT"/>
@@ -109,6 +111,12 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+<!-- 		<result property="adjRate"		column="ADJ_RATE"/>
+ -->		
+ 		<result property="val1"			column="VAL1"/>
+		<result property="val2"			column="VAL2"/>
+		<result property="val3"			column="VAL3"/>
+		<result property="val4"			column="VAL4"/>
 	</resultMap>
 	
 	<select id="retrieveClaimHistory" resultMap="claimReserveMap" parameterType="java.util.Map">
@@ -134,6 +142,8 @@
 					v_hist_no,
 					#{ch.histCategory,jdbcType=VARCHAR},
 					#{ch.histType,jdbcType=VARCHAR},
+					#{ch.bookingMth,jdbcType=VARCHAR},
+					#{ch.bookingYear,jdbcType=INTEGER},
 					#{ch.exGratia,jdbcType=VARCHAR},
 					#{ch.currencyCd,jdbcType=VARCHAR},
 					#{ch.currencyRt,jdbcType=VARCHAR},
@@ -281,7 +291,7 @@
 		<result property="claimId"			column="ADJ_CLAIM_ID" />
 		<result property="adjId"     		column="ADJ_ID" />
 		<result property="adjName"     		column="ADJ_NAME" />
-		<result property="adjRefNo"     	column="ADJ_REF_NO" />
+		<result property="adjRefNo"     	column="ADJ_FILE_NO" />
 		<result property="createUser"     	column="ADJ_CREATE_USER" />
 		<result property="createDate"     	column="ADJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="ADJ_UPDATE_USER" />
@@ -821,5 +831,17 @@
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
+	</update>
+
+	<update id="chkPoldistStat" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkRes, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CLM_RES_HIST_PKG.chk_poldist_stat(#{claimId, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="chkAdjRate" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{chkAdjRate, mode=OUT, javaType=Float, jdbcType=FLOAT} := CLM_RES_HIST_PKG.chk_adj_rate(#{claimId, jdbcType=INTEGER})
+		}	
 	</update>
 </mapper>

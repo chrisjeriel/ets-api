@@ -3396,6 +3396,22 @@
 		<result property="updateUser"			column="UPDATE_USER" />
 		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
     </resultMap>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.BookingMonth" id="bookingMonthMap">
+		<result property="bookingMm" 	column="BOOKING_MM"/>
+		<result property="bookingYear" 	column="BOOKING_YEAR"/>
+		<result property="bookedTag" 	column="BOOKED_TAG"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="createUser" 	column="CREATE_USER"/> 
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 	column="UPDATE_USER"/> 
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnBookingMonth" resultMap="bookingMonthMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_BOOKING_MONTH_PKG.ret_booking_mth(#{bookingMm, jdbcType=VARCHAR},#{bookingYear, jdbcType=INTEGER},
+				'','','',''))
+	</select>
     
     <select id="retMtnBank" resultMap="bankMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_BANK_PKG.ret_mtn_bank(#{officialName, jdbcType=VARCHAR},

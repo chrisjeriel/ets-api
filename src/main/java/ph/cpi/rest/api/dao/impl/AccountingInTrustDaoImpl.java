@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -84,5 +85,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public AcitTransactions retrieveAcitJVEntry(HashMap<String, Object> params) throws SQLException {
 		AcitTransactions acitJVEntry  = sqlSession.selectOne("retrieveAcitJvEntry", params);
 		return acitJVEntry;
+	}
+	
+	@Override
+	public HashMap<String, Object> updateAcitPaytReqStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcitPaytReqStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitPrqTrans> retrieveAcitPrqTrans(HashMap<String, Object> params) throws SQLException {
+		List<AcitPrqTrans> acitPrqTransList  = sqlSession.selectList("retrieveAcitPrqTrans", params);
+		return acitPrqTransList;
 	}
 }

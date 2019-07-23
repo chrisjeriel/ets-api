@@ -12,6 +12,7 @@ import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -189,4 +190,5 @@ public interface MaintenanceDao {
 	public List<Bank> retrieveMtnBank(final HashMap<String, Object> params) throws SQLException;
 	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<Payee> retrieveMtnPayee(final HashMap<String, Object> params) throws SQLException;
-	}
+	public List<BookingMonth> retrieveMtnBookingMonth(final HashMap<String, Object> params) throws SQLException;
+}

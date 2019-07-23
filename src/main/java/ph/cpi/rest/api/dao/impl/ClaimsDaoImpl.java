@@ -186,4 +186,22 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		Integer errorCode = sqlSession.update("redistributeClaimDist",params);
 		return errorCode;
 	}
+
+	@Override
+	public Integer chkPoldistStat(Integer param) throws SQLException {
+		HashMap<String, Object> par = new HashMap<String, Object>();
+		par.put("claimId", param);
+		par.put("checkRes", "");
+		sqlSession.selectOne("chkPoldistStat", par);
+		return (Integer) par.get("checkRes");
+	}
+
+	@Override
+	public Float chkAdjRate(Integer param) throws SQLException {
+		HashMap<String, Object> par = new HashMap<String, Object>();
+		par.put("claimId", param);
+		par.put("chkAdjRate", "");
+		sqlSession.selectOne("chkAdjRate", par);
+		return (Float) par.get("chkAdjRate");
+	}
 }
