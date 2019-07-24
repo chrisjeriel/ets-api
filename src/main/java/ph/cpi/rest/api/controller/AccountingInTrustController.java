@@ -21,10 +21,13 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
@@ -38,10 +41,13 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
@@ -134,6 +140,27 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitArTrans");
 		logger.info("SaveAcitArTransRequest : " + saatr.toString());
 		return acctInTrustService.saveAcitArTrans(saatr);
+	}
+
+	@PostMapping(path="saveAcitJVEntry")
+	public @ResponseBody SaveAcitJVEntryResponse saveAcitJVEntry(@RequestBody SaveAcitJVEntryRequest saprr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitJVEntry");
+		logger.info("SaveAcitJVEntryRequest : " + saprr.toString());
+		return acctInTrustService.saveAcitJVEntry(saprr);
+	}
+	
+	@GetMapping(path="retrieveAcitSOAAging")
+	public @ResponseBody RetrieveAcitSOAAgingResponse retrieveAcitSOAAging(RetrieveAcitSOAAgingDetailsRequest rasa) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitSOAAging");
+		logger.info("RetrieveAcitSOAAgingDetailsRequest : " + rasa.toString());
+		return acctInTrustService.retrieveAcitSOAAging(rasa);
+	}
+	
+	@GetMapping(path="retrieveAcitJVInwPolBal")
+	public @ResponseBody RetrieveAcitJVInwPolBalResponse retrieveAcitJVInwPolBal(RetrieveAcitJVInPolBalRequest rasa) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVInwPolBal");
+		logger.info("RetrieveAcitJVInPolBalRequest : " + rasa.toString());
+		return acctInTrustService.retrieveAcitJvAdjstInwPolBal(rasa);
 	}
 
 	@PostMapping(path="updateAcitPaytReqStat")
