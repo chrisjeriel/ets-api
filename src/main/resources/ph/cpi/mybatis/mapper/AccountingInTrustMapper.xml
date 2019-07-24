@@ -378,6 +378,9 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="soaAgingMap">
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="cedingId" column="CEDING_ID"/>
+		<result property="refCd" column="REF_CD"/>
+		<result property="payeeNo" column="PAYEE_NO"/>
+		<result property="payeeName" column="PAYEE_NAME"/>
 		<result property="policyNo" column="POLICY_NO"/>
 		<result property="soaNo" column="SOA_NO"/>
 		<result property="coRefNo" column="CO_REF_NO"/>
