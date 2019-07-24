@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.Attachment;
@@ -146,7 +147,9 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		List<ClaimPaytRequest> list = sqlSession.selectList("retrieveClmPaytReq", params);
 		return list;
 	}
+	
 
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public HashMap<String, Object> saveClaimReserve(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveClaimReserve",params);

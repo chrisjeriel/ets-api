@@ -505,6 +505,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 			scrParams.put("createDate", scrr.getCreateDate());
 			scrParams.put("updateUser", scrr.getUpdateUser());
 			scrParams.put("updateDate", scrr.getUpdateDate());
+			scrParams.put("upUserGi", scrr.getUpUserGi());
 			
 			HashMap<String, Object> response = claimsDao.saveClaimReserve(scrParams);
 			scrResponse.setReturnCode((Integer) response.get("errorCode"));
