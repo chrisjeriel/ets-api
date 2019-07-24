@@ -3414,7 +3414,8 @@
 	</select>
     
     <select id="retMtnBank" resultMap="bankMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_BANK_PKG.ret_mtn_bank(#{officialName, jdbcType=VARCHAR},
+		SELECT * FROM TABLE(MTN_BANK_PKG.ret_mtn_bank(#{bankCd, jdbcType=VARCHAR},
+													  #{officialName, jdbcType=VARCHAR},
 													  #{activeTag, jdbcType=VARCHAR},
 													  '','','',''))
 	</select>
@@ -3430,8 +3431,8 @@
 		<result property="accountType"		column="ACCOUNT_TYPE" />
 		<result property="openDate"			column="OPEN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="closeDate"		column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="defaultAcitGl"	column="DEFAULT_ACIT_GL" />
-		<result property="defaultAcseGl"	column="DEFAULT_ACSE_GL" />
+		<result property="acItGlDepNo"		column="ACIT_GL_DEP_NO" />
+		<result property="acSeGlDepNo"	    column="ACSE_GL_DEP_NO" />
 		<result property="remarks"			column="REMARKS" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -3441,6 +3442,7 @@
 	
 	<select id="retMtnBankAcct" resultMap="bankAcctMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_BANK_ACCT_PKG.ret_mtn_bank_acct(#{bankCd, jdbcType=VARCHAR},
+																#{bankAcctCd, jdbcType=VARCHAR},
 													  			#{accountNo, jdbcType=VARCHAR},
 													  			'','','',''))
 	</select>
@@ -3461,7 +3463,7 @@
     <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_ACIT_DCB_NO_PKG.ret_mtn_acit_dcb_no(#{dcbYear, jdbcType=VARCHAR},
 													  				#{dcbNo, jdbcType=VARCHAR},
-													  				CAST(to_timestamp(#{dcbDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  				CAST(to_timestamp(#{dcbDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													  				#{dcbStatus, jdbcType=VARCHAR},
 													  				'','','',''))
 	</select>
@@ -3488,7 +3490,7 @@
 															CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
-			SELECT 1 FROM DUAL;
+			DBMS_OUTPUT.PUT_LINE('Placeholder');
 		END;
 	</update>
 	

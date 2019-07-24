@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnBankAcctRequest {
 	private String bankCd;
+	private String bankAcctCd;
 	private String accountNo;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
@@ -14,6 +15,12 @@ public class RetrieveMtnBankAcctRequest {
 	}
 	public void setBankCd(String bankCd) {
 		this.bankCd = bankCd;
+	}
+	public String getBankAcctCd() {
+		return bankAcctCd;
+	}
+	public void setBankAcctCd(String bankAcctCd) {
+		this.bankAcctCd = bankAcctCd;
 	}
 	public String getAccountNo() {
 		return accountNo;
@@ -36,7 +43,7 @@ public class RetrieveMtnBankAcctRequest {
 	
 	@Override
 	public String toString() {
-		return "RetrieveMtnBankAcctRequest [bankCd=" + bankCd + ", accountNo=" + accountNo + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnBankAcctRequest [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo="
+				+ accountNo + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

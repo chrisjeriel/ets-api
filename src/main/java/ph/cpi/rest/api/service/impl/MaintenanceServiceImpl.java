@@ -2046,6 +2046,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
 		RetrieveMtnBankResponse res = new RetrieveMtnBankResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbr.getBankCd());
 		params.put("officialName", rmbr.getOfficialName());
 		params.put("activeTag", rmbr.getActiveTag());
 		res.setBankList(maintenanceDao.retrieveMtnBank(params));
@@ -2057,6 +2058,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnBankAcctResponse res = new RetrieveMtnBankAcctResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("bankCd", rmbar.getBankCd());
+		params.put("bankAcctCd", rmbar.getBankAcctCd());
 		params.put("accountNo", rmbar.getAccountNo());
 		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
 		return res;

@@ -13,8 +13,8 @@ public class BankAcct {
 	private String accountType;
 	private DateTime openDate;
 	private DateTime closeDate;
-	private Integer defaultAcitGl;
-	private Integer defaultAcseGl;
+	private Integer acItGlDepNo;
+	private Integer acSeGlDepNo;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
@@ -81,17 +81,17 @@ public class BankAcct {
 	public void setCloseDate(DateTime closeDate) {
 		this.closeDate = closeDate;
 	}
-	public Integer getDefaultAcitGl() {
-		return defaultAcitGl;
+	public Integer getAcItGlDepNo() {
+		return acItGlDepNo;
 	}
-	public void setDefaultAcitGl(Integer defaultAcitGl) {
-		this.defaultAcitGl = defaultAcitGl;
+	public void setAcItGlDepNo(Integer acItGlDepNo) {
+		this.acItGlDepNo = acItGlDepNo;
 	}
-	public Integer getDefaultAcseGl() {
-		return defaultAcseGl;
+	public Integer getAcSeGlDepNo() {
+		return acSeGlDepNo;
 	}
-	public void setDefaultAcseGl(Integer defaultAcseGl) {
-		this.defaultAcseGl = defaultAcseGl;
+	public void setAcSeGlDepNo(Integer acSeGlDepNo) {
+		this.acSeGlDepNo = acSeGlDepNo;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -129,7 +129,7 @@ public class BankAcct {
 		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo=" + accountNo
 				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", currCd=" + currCd + ", bankBranch="
 				+ bankBranch + ", accountType=" + accountType + ", openDate=" + openDate + ", closeDate=" + closeDate
-				+ ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl=" + defaultAcseGl + ", remarks=" + remarks
+				+ ", acitGlDepNo=" + acItGlDepNo + ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
