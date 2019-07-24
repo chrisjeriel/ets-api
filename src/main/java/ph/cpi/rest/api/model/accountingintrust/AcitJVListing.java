@@ -201,4 +201,5 @@ public class AcitJVListing {
 				+ approvedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", inwPolBal=" + inwPolBal + "]";
 	}
+	
 }

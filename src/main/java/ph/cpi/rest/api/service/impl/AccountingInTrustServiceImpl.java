@@ -209,14 +209,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
-	public RetrieveAcitJVInwPolBalResponse retrieveAcitJVInwPolBal(RetrieveAcitJVInPolBalRequest rajpb)
+	public RetrieveAcitJVInwPolBalResponse retrieveAcitJvAdjstInwPolBal(RetrieveAcitJVInPolBalRequest rajipb)
 			throws SQLException {
 		RetrieveAcitJVInwPolBalResponse response = new RetrieveAcitJVInwPolBalResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("tranId", rajpb.getTranId());
-		params.put("instNo", rajpb.getInstNo());
-		params.put("cedingCo", rajpb.getCedingCo());
-		response.setTransactions(acctITDao.retrieveAcitJVAdjInwPolBal(params));
+		params.put("tranId", rajipb.getTranId());
+		params.put("instNo", rajipb.getInstNo());
+		params.put("cedingCo", rajipb.getCedingCo());
+		response.setInwPolBal(acctITDao.retrieveAcitJVAdjstInwPolBal(params));
 		return response;
 	}
+
 }

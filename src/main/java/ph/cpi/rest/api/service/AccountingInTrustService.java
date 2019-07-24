@@ -30,5 +30,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitJVEntryResponse retrieveAcitJvEntry(RetrieveAcitJVEntryRequest raje ) throws SQLException;
 	public SaveAcitJVEntryResponse saveAcitJVEntry(SaveAcitJVEntryRequest raje) throws SQLException;
 	public RetrieveAcitSOAAgingResponse retrieveAcitSOAAging(RetrieveAcitSOAAgingDetailsRequest rasd) throws SQLException;
-	public RetrieveAcitJVInwPolBalResponse retrieveAcitJVInwPolBal (RetrieveAcitJVInPolBalRequest rajpb) throws SQLException;
+	public RetrieveAcitJVInwPolBalResponse retrieveAcitJvAdjstInwPolBal(RetrieveAcitJVInPolBalRequest rajipb) throws SQLException;
 }

@@ -21,8 +21,8 @@ public class AcitJVAdjstInwPolBal {
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal payment;
-	private BigDecimal totalBalance;
+	private BigDecimal totalPayments;
+	private BigDecimal balAmtDue;
 	private BigDecimal prevPaytAmt;
 	private BigDecimal adjBalAmt;
 	private BigDecimal overdueInt;
@@ -30,7 +30,6 @@ public class AcitJVAdjstInwPolBal {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -127,17 +126,18 @@ public class AcitJVAdjstInwPolBal {
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getPayment() {
-		return payment;
+	public BigDecimal getTotalPayments() {
+		return totalPayments;
 	}
-	public void setPayment(BigDecimal payment) {
-		this.payment = payment;
+	public void setTotalPayments(BigDecimal totalPayments) {
+		this.totalPayments = totalPayments;
 	}
-	public BigDecimal getTotalBalance() {
-		return totalBalance;
+	
+	public BigDecimal getBalAmtDue() {
+		return balAmtDue;
 	}
-	public void setTotalBalance(BigDecimal totalBalance) {
-		this.totalBalance = totalBalance;
+	public void setBalAmtDue(BigDecimal balAmtDue) {
+		this.balAmtDue = balAmtDue;
 	}
 	public BigDecimal getPrevPaytAmt() {
 		return prevPaytAmt;
@@ -187,8 +187,10 @@ public class AcitJVAdjstInwPolBal {
 				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate
 				+ ", dueDate=" + dueDate + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
 				+ ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges
-				+ ", netDue=" + netDue + ", payment=" + payment + ", totalBalance=" + totalBalance + ", prevPaytAmt="
-				+ prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", netDue=" + netDue + ", totalPayments=" + totalPayments + ", balAmtDue=" + balAmtDue
+				+ ", prevPaytAmt=" + prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }

@@ -1,19 +1,23 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 
 public class RetrieveAcitJVInwPolBalResponse {
-	private AcitTransactions transactions;
+	private List<AcitJVAdjstInwPolBal> inwPolBal;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public AcitTransactions getTransactions() {
-		return transactions;
+	
+	public List<AcitJVAdjstInwPolBal> getInwPolBal() {
+		return inwPolBal;
 	}
-	public void setTransactions(AcitTransactions transactions) {
-		this.transactions = transactions;
+	public void setInwPolBal(List<AcitJVAdjstInwPolBal> inwPolBal) {
+		this.inwPolBal = inwPolBal;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -29,7 +33,8 @@ public class RetrieveAcitJVInwPolBalResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitJVInwPolBalResponse [transactions=" + transactions + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcitJVInwPolBalResponse [inwPolBal=" + inwPolBal + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
 }

@@ -93,9 +93,10 @@ public class AccountingInTrustController {
 	}
 	
 	@GetMapping(path="retrieveAcitJVInwPolBal")
-	public @ResponseBody RetrieveAcitJVInwPolBalResponse retrieveAcitJVInwPolBal(RetrieveAcitJVInPolBalRequest raipb) throws SQLException {
+	public @ResponseBody RetrieveAcitJVInwPolBalResponse retrieveAcitJVInwPolBal(RetrieveAcitJVInPolBalRequest rasa) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVInwPolBal");
-		logger.info("RetrieveAcitJVInPolBalRequest : " + raipb.toString());
-		return acctInTrustService.retrieveAcitJVInwPolBal(raipb);
+		logger.info("RetrieveAcitJVInPolBalRequest : " + rasa.toString());
+		return acctInTrustService.retrieveAcitJvAdjstInwPolBal(rasa);
 	}
+	
 }
