@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
@@ -24,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
@@ -386,6 +388,24 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateUser", saprr.getUpdateUser());
 		params.put("updateDate", saprr.getUpdateDate());
 		response.setReturnCode(acctITDao.printCMDM(params));
+		return response;
+	}
+
+
+	@Override
+	public CancelArResponse cancelAr(CancelArRequest car) throws SQLException {
+		CancelArResponse response = new CancelArResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId",car.getTranId());
+		params.put("updateUser", car.getUpdateUser());
+		params.put("updateDate", car.getUpdateDate());
+		try{
+			response.setReturnCode(acctITDao.cancelAr(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values"));
+			e.printStackTrace();
+		}
 		return response;
 	}
 }

@@ -119,4 +119,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer code = sqlSession.update("printCMDM",params);
 		return code;
 	}
+
+	@Override
+	public Integer cancelAr(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("cancelAr", params);
+		return errorCode;
+	}
 }

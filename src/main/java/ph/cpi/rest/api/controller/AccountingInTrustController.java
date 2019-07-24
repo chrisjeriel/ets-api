@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
@@ -29,6 +30,7 @@ import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
@@ -160,5 +162,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/printCMDM");
 		logger.info("PrintCMDMRequest : " + saprr.toString());
 		return acctInTrustService.printCMDM(saprr);
+	}
+	
+	@PostMapping(path="cancelAr")
+	public @ResponseBody CancelArResponse cancelAr(@RequestBody CancelArRequest car) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/cancelAr");
+		logger.info("CancelArRequest : " + car.toString());
+		return acctInTrustService.cancelAr(car);
 	}
 }
