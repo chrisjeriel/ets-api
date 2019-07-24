@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
@@ -30,6 +31,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
@@ -151,5 +153,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/printCMDM");
 		logger.info("PrintCMDMRequest : " + saprr.toString());
 		return acctInTrustService.printCMDM(saprr);
+	}
+	
+	@GetMapping(path="retrieveAcitAcctEntries")
+	public @ResponseBody RetrieveAcitAcctEntriesResponse retrieveAcitAcctEntries(RetrieveAcitAcctEntriesRequest racitcmdmlr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAcctEntries");
+		logger.info("RetrieveAcitAcctEntriesRequest : " + racitcmdmlr.toString());
+		return acctInTrustService.retrieveAcitAcctEntries(racitcmdmlr);
 	}
 }

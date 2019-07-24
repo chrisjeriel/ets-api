@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
@@ -25,6 +26,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
@@ -312,6 +314,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateUser", saprr.getUpdateUser());
 		params.put("updateDate", saprr.getUpdateDate());
 		response.setReturnCode(acctITDao.printCMDM(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAcctEntriesResponse retrieveAcitAcctEntries(RetrieveAcitAcctEntriesRequest racitcmdmlr)
+			throws SQLException {
+		RetrieveAcitAcctEntriesResponse response = new RetrieveAcitAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", racitcmdmlr.getTranId()) ;
+		params.put("entryId", racitcmdmlr.getEntryId()) ;
+		params.put("glAcctId", racitcmdmlr.getGlAcctId()) ;
+		params.put("slTypeCd", racitcmdmlr.getSlTypeCd()) ;
+		params.put("slCd", racitcmdmlr.getSlCd()) ;
+		response.setList(acctITDao.retrieveAcitAcctEntries(params));
 		return response;
 	}
 }

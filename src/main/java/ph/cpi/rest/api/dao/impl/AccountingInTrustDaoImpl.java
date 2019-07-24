@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -110,5 +111,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer printCMDM(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("printCMDM",params);
 		return code;
+	}
+
+	@Override
+	public List<AcitAcctEntries> retrieveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
+		List<AcitAcctEntries> list = sqlSession.selectList("retrieveAcitAcctEntries", params);
+		return list;
 	}
 }

@@ -381,4 +381,28 @@
 			ACIT_CRDR_MEMO_PKG.print_memo(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries" id="AcctEntriesMap">
+		<result property="tranId"  column="TRAN_ID"/>
+		<result property="entryId"  column="ENTRY_ID"/>
+		<result property="glAcctId"  column="GL_ACCT_ID"/>
+		<result property="glShortCd"  column="GL_SHORT_CD"/>
+		<result property="glShortDesc"  column="GL_SHORT_DESC"/>
+		<result property="slTypeCd"  column="SL_TYPE_CD"/>
+		<result property="slTypeName"  column="SL_TYPE_NAME"/>
+		<result property="slCd"  column="SL_CD"/>
+		<result property="slName"  column="SL_NAME"/>
+		<result property="creditAmt"  column="CREDIT_AMT"/>
+		<result property="debitAmt"  column="DEBIT_AMT"/>
+		<result property="autoTag"  column="AUTO_TAG"/>
+		<result property="createUser"  column="CREATE_USER"/>
+		<result property="createDate"  column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"  column="UPDATE_USER"/>
+		<result property="updateDate"  column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitAcctEntries" resultMap="AcctEntriesMap">
+		SELECT * FROM TABLE(ACIT_ACCT_ENTRIES_PKG.ret_acit_acc_entries(#{tranId, jdbcType=VARCHAR},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
+	</select>
+	
 </mapper>
