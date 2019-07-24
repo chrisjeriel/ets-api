@@ -17,6 +17,7 @@ public class MtnAcitTranType {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String groupTag;
 	public String getTranClass() {
 		return tranClass;
 	}
@@ -101,12 +102,18 @@ public class MtnAcitTranType {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getGroupTag() {
+		return groupTag;
+	}
+	public void setGroupTag(String groupTag) {
+		this.groupTag = groupTag;
+	}
 	@Override
 	public String toString() {
 		return "MtnAcitTranType [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", typePrefix=" + typePrefix
 				+ ", tranTypeName=" + tranTypeName + ", defaultParticulars=" + defaultParticulars + ", masterTranType="
 				+ masterTranType + ", remarks=" + remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag
 				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", groupTag=" + groupTag + "]";
 	}
 }

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
+import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
@@ -22,6 +24,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
+import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
@@ -179,6 +183,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateDate",saprr.getUpdateDate());
 		try{
 			response.setReturnCode(acctITDao.saveAcitCMDM(params));
+			response.setCmdm(acctITDao.retrieveAcitCMDMList(params));
 		}catch (Exception ex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
@@ -249,6 +254,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("jvTag", racitcmdmlr.getJvTag());
 		params.put("cmTag", racitcmdmlr.getCmTag());
 		params.put("dmTag", racitcmdmlr.getDmTag());
+		params.put("groupTag", racitcmdmlr.getGroupTag());
 		params.put("tranStat", racitcmdmlr.getTranStat());
 		params.put("arStatus", racitcmdmlr.getArStatus());
 		params.put("cvStatus", racitcmdmlr.getCvStatus());
@@ -357,5 +363,29 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		raptResponse.setAcitPrqTrans(acctITDao.retrieveAcitPrqTrans(raptParams));
 		logger.info("RetrieveAcitPrqTransResponse : " + raptResponse.toString());
 		return raptResponse;
+	}
+
+
+	@Override
+	public CancelCMDMCMDMResponse cancelCMDMCMDM(CancelCMDMCMDMRequest saprr) throws SQLException {
+		CancelCMDMCMDMResponse response = new CancelCMDMCMDMResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId",saprr.getTranId());
+		params.put("updateUser", saprr.getUpdateUser());
+		params.put("updateDate", saprr.getUpdateDate());
+		response.setReturnCode(acctITDao.cancelCMDM(params));
+		return response;
+	}
+
+
+	@Override
+	public PrintCMDMResponse printCMDM(PrintCMDMRequest saprr) throws SQLException {
+		PrintCMDMResponse response = new PrintCMDMResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId",saprr.getTranId());
+		params.put("updateUser", saprr.getUpdateUser());
+		params.put("updateDate", saprr.getUpdateDate());
+		response.setReturnCode(acctITDao.printCMDM(params));
+		return response;
 	}
 }

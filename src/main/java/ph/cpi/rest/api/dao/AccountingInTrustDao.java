@@ -26,4 +26,6 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitArTrans(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> updateAcitPaytReqStat(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitPrqTrans> retrieveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer cancelCMDM(final HashMap<String, Object> params) throws SQLException;
+	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
 }

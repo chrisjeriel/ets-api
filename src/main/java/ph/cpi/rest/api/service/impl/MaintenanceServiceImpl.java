@@ -2104,6 +2104,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setDcbUserList(maintenanceDao.retrieveMtnDCBUser(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		RetrieveMtnPayeeResponse reponse = new RetrieveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", rmbar.getPayeeNo());
+		params.put("payeeClassCd", rmbar.getPayeeClassCd());
+		reponse.setPayeeList(maintenanceDao.retrieveMtnPayee(params));
+		return reponse;
+	}
 	
 	@Override
 	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)

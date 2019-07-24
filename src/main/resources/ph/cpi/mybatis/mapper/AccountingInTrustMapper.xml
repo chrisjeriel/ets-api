@@ -153,6 +153,7 @@
 		<result property="memoMm" column="MEMO_MM"/>
 		<result property="memoSeqNo" column="MEMO_SEQ_NO"/>
 		<result property="tranTypeCd" column="CMDM_TRAN_TYPE_CD"/>
+		<result property="groupTag" column="GROUP_TAG"/>
 		<result property="autoTag" column="AUTO_TAG"/>
 		<result property="memoDate" column="MEMO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="memoStatus" column="MEMO_STATUS"/>
@@ -173,9 +174,9 @@
 		<result property="updateDate" column="CMDM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 	</resultMap>
 	
-	<update id="saveAcitCMDM" parameterType="java.util.Map">
+	<update id="saveAcitCMDM" parameterType="java.util.Map"  statementType="CALLABLE">
 		BEGIN
-			ACIT_CRDR_MEMO_PKG.save_acit_crdr_memo(#{tranId, jdbcType=VARCHAR},#{memoType},#{memoTranType, jdbcType=VARCHAR},#{memoYear, jdbcType=VARCHAR},#{memoMm, jdbcType=VARCHAR},#{memoSeqNo, jdbcType=VARCHAR},#{tranTypeCd},#{autoTag},
+			ACIT_CRDR_MEMO_PKG.save_acit_crdr_memo(#{tranId,  mode=INOUT, jdbcType=VARCHAR},#{memoType},#{memoTranType, jdbcType=VARCHAR},#{memoYear, jdbcType=VARCHAR},#{memoMm, jdbcType=VARCHAR},#{memoSeqNo, jdbcType=VARCHAR},#{tranTypeCd},#{autoTag},
 				CAST(to_timestamp(#{memoDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				,#{memoStatus},#{refNoTranId},
 				CAST(to_timestamp(#{refNoDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
@@ -194,6 +195,7 @@
 			#{jvTag, jdbcType=VARCHAR},
 			#{cmTag, jdbcType=VARCHAR},
 			#{dmTag, jdbcType=VARCHAR},
+			#{groupTag, jdbcType=VARCHAR},
 			#{tranStat, jdbcType=VARCHAR},
 			#{arStatus, jdbcType=VARCHAR},
 			#{cvStatus, jdbcType=VARCHAR},
@@ -446,6 +448,18 @@
 				#{reqStatus, jdbcType=VARCHAR},
 				#{updateUser, jdbcType=VARCHAR}
 			);
+		END;
+	</update>
+	
+	<update id="cancelCMDM" parameterType="java.util.Map">
+		BEGIN
+			ACIT_CRDR_MEMO_PKG.cancel_memo(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="printCMDM" parameterType="java.util.Map">
+		BEGIN
+			ACIT_CRDR_MEMO_PKG.print_memo(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
 </mapper>

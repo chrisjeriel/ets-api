@@ -885,7 +885,7 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBankAcctRequest : " + rmbar.toString());
 		return maintenanceService.retrieveMtnBankAcct(rmbar);
 	}
-	
+
 	@GetMapping(path="retrieveMtnAcitDCBNo")
 	public @ResponseBody RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcitDCBNo");
@@ -905,6 +905,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnDCBUser");
 		logger.info("RetrieveMtnDCBUserRequest : " + rmdur.toString());
 		return maintenanceService.retrieveMtnDCBUser(rmdur);
+	}
+	
+	@GetMapping(path="retrieveMtnPayee")
+	public @ResponseBody RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPayee");
+		logger.info("RetrieveMtnPayeeRequest : " + rmbar.toString());
+		return maintenanceService.retrieveMtnPayee(rmbar);
 	}
 
 	@GetMapping(path="retrieveMtnBookingMonth")

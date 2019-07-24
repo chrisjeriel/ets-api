@@ -107,4 +107,16 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitPrqTrans> acitPrqTransList  = sqlSession.selectList("retrieveAcitPrqTrans", params);
 		return acitPrqTransList;
 	}
+
+	@Override
+	public Integer cancelCMDM(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("cancelCMDM",params);
+		return code;
+	}
+
+	@Override
+	public Integer printCMDM(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("printCMDM",params);
+		return code;
+	}
 }
