@@ -1486,6 +1486,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnParametersResponse response = new RetrieveMtnParametersResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("paramType", rafr.getParamType());
+		params.put("paramName", rafr.getParamName());
 		response.setParameters(maintenanceDao.retrieveParameters(params));
 		return response;
 	}
@@ -1682,7 +1683,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		try{
 			params.put("adjId", smar.getAdjId());
 			params.put("adjName", smar.getAdjName());
-			params.put("adjRefNo", smar.getAdjRefNo());
 			params.put("addrLine1", smar.getAddrLine1());
 			params.put("addrLine2", smar.getAddrLine2());
 			params.put("addrLine3", smar.getAddrLine3());
@@ -2040,5 +2040,37 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcitTranType(rmattParams));
 		logger.info("RetrieveMtnAcitTranTypeResponse : " + rmattResponse.toString());
 		return rmattResponse;
+	}
+
+	@Override
+	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveMtnBankResponse res = new RetrieveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		res.setBankList(maintenanceDao.retrieveMtnBank(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		RetrieveMtnBankAcctResponse res = new RetrieveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbar.getBankCd());
+		params.put("accountNo", rmbar.getAccountNo());
+		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)
+			throws SQLException {
+		RetrieveMtnBookingMonthResponse rmbmResponse = new RetrieveMtnBookingMonthResponse();
+		HashMap<String, Object> rmbmParams = new HashMap<String, Object>();
+		rmbmParams.put("bookingMm", rbmr.getBookingMm());
+		rmbmParams.put("bookingYear", rbmr.getBookingYear());
+		rmbmResponse.setBookingMonthList(maintenanceDao.retrieveMtnBookingMonth(rmbmParams));
+		logger.info("RetrieveMtnBookingMonthResponse : " + rmbmResponse.toString());
+		return rmbmResponse;
 	}
 }

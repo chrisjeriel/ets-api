@@ -44,6 +44,7 @@ public class Claims {
 	private String lossPeriod;
 	private String lossPdAbbr;
 	private String lossDtl;
+	private String lossStatCd;
 	private String eventTypeCd;
 	private String eventTypeDesc;
 	private String eventCd;
@@ -56,6 +57,8 @@ public class Claims {
 	private String oldClmStatus;
 	private DateTime closeDate;
 	private String refreshSw;
+	private DateTime issueDate;
+	private DateTime effDate;
 	private DateTime lapseFrom;
 	private DateTime lapseTo;
 	private DateTime maintenanceFrom;
@@ -70,6 +73,17 @@ public class Claims {
 	private String totalLossExpPd;
 	private String reasonCd;
 	private String reasonDesc;
+	private String lapsePdTag;
+	private String polTermTag;
+	private String remarks;
+	private String approvedBy;
+	private String approvedDate;
+	private String secISiTag;
+	private String secIISiTag;
+	private String secIIISiTag;
+	private Integer adjId;
+	private String adjName;
+	private String adjFileNo;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -306,6 +320,12 @@ public class Claims {
 	public void setLossDtl(String lossDtl) {
 		this.lossDtl = lossDtl;
 	}
+	public String getLossStatCd() {
+		return lossStatCd;
+	}
+	public void setLossStatCd(String lossStatCd) {
+		this.lossStatCd = lossStatCd;
+	}
 	public String getEventTypeCd() {
 		return eventTypeCd;
 	}
@@ -377,6 +397,18 @@ public class Claims {
 	}
 	public void setRefreshSw(String refreshSw) {
 		this.refreshSw = refreshSw;
+	}
+	public DateTime getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(DateTime issueDate) {
+		this.issueDate = issueDate;
+	}
+	public DateTime getEffDate() {
+		return effDate;
+	}
+	public void setEffDate(DateTime effDate) {
+		this.effDate = effDate;
 	}
 	public DateTime getLapseFrom() {
 		return lapseFrom;
@@ -462,6 +494,72 @@ public class Claims {
 	public void setReasonDesc(String reasonDesc) {
 		this.reasonDesc = reasonDesc;
 	}
+	public String getLapsePdTag() {
+		return lapsePdTag;
+	}
+	public void setLapsePdTag(String lapsePdTag) {
+		this.lapsePdTag = lapsePdTag;
+	}
+	public String getPolTermTag() {
+		return polTermTag;
+	}
+	public void setPolTermTag(String polTermTag) {
+		this.polTermTag = polTermTag;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+	public String getApprovedDate() {
+		return approvedDate;
+	}
+	public void setApprovedDate(String approvedDate) {
+		this.approvedDate = approvedDate;
+	}
+	public String getSecISiTag() {
+		return secISiTag;
+	}
+	public void setSecISiTag(String secISiTag) {
+		this.secISiTag = secISiTag;
+	}
+	public String getSecIISiTag() {
+		return secIISiTag;
+	}
+	public void setSecIISiTag(String secIISiTag) {
+		this.secIISiTag = secIISiTag;
+	}
+	public String getSecIIISiTag() {
+		return secIIISiTag;
+	}
+	public void setSecIIISiTag(String secIIISiTag) {
+		this.secIIISiTag = secIIISiTag;
+	}
+	public Integer getAdjId() {
+		return adjId;
+	}
+	public void setAdjId(Integer adjId) {
+		this.adjId = adjId;
+	}
+	public String getAdjName() {
+		return adjName;
+	}
+	public void setAdjName(String adjName) {
+		this.adjName = adjName;
+	}
+	public String getAdjFileNo() {
+		return adjFileNo;
+	}
+	public void setAdjFileNo(String adjFileNo) {
+		this.adjFileNo = adjFileNo;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -535,18 +633,22 @@ public class Claims {
 				+ ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate
 				+ ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd="
 				+ lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod=" + lossPeriod + ", lossPdAbbr=" + lossPdAbbr
-				+ ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc
-				+ ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate="
-				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
-				+ oldStatCd + ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
-				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
+				+ ", lossDtl=" + lossDtl + ", lossStatCd=" + lossStatCd + ", eventTypeCd=" + eventTypeCd
+				+ ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc
+				+ ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate + ", reportedBy=" + reportedBy
+				+ ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd + ", oldClmStatus=" + oldClmStatus
+				+ ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate=" + issueDate + ", effDate="
+				+ effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
 				+ ", maintenanceTo=" + maintenanceTo + ", pctShare=" + pctShare + ", totalSi=" + totalSi
 				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
 				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", project=" + project + ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject
-				+ ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments="
-				+ clmAttachments + "]";
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
+				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy=" + approvedBy
+				+ ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag=" + secIISiTag
+				+ ", secIIISiTag=" + secIIISiTag + ", adjId=" + adjId + ", adjName=" + adjName + ", adjFileNo="
+				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
+				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
+				+ ", clmAttachments=" + clmAttachments + "]";
 	}
 }
