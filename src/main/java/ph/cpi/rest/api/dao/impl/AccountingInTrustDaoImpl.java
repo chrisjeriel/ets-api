@@ -100,7 +100,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public HashMap<String, Object> updateAcitPaytReqStat(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updateAcitPaytReqStat", params);
-		
+		params.put("errorCode", errorCode);
+		return params;
+	}	
 
 	@Override
 	public List<AcitPrqTrans> retrieveAcitPrqTrans(HashMap<String, Object> params) throws SQLException {
