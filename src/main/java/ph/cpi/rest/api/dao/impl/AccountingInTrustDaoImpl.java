@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -54,5 +55,19 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		// TODO Auto-generated method stub
 		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
 		return acitProfCommDtlList;
+	}
+
+	@Override
+	public List<AcitInvestments> retrieveInvestmentList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitInvestments> acitInvestmentsList = sqlSession.selectList("retrieveInvestmentList", params);
+		return acitInvestmentsList;
+	}
+
+	@Override
+	public Integer saveAcitInvestments(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcitInvestments",params);
+		return errorCode;
 	}
 }

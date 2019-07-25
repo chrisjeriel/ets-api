@@ -11,14 +11,18 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
+import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
+import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -140,5 +144,52 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentList(RetrieveAcitInvestmentsListRequest railr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitInvestmentsListResponse railrResponse = new RetrieveAcitInvestmentsListResponse();
+		HashMap<String, Object> railrParams = new HashMap<String, Object>();
+		railrParams.put("invtId", railr.getInvtId());
+		railrParams.put("invtCd", railr.getInvtCd());
+		railrParams.put("bank", railr.getBank());
+		railrParams.put("invtType", railr.getInvtType());
+		railrParams.put("invtSecCd", railr.getInvtSecCd());
+		railrParams.put("invtStatus", railr.getInvtStatus());
+		railrParams.put("matPeriod", railr.getMatPeriod());
+		railrParams.put("durUnit", railr.getDurUnit());
+		railrParams.put("purDate", railr.getPurDate());
+		railrParams.put("matDate", railr.getMatDate());
+		railrParams.put("currCd", railr.getCurrCd());
+		
+		railrResponse.setInvtList(acctITDao.retrieveInvestmentList(railrParams));
+		logger.info("RetrieveAcitInvestmentsListResponse : " + railrResponse.toString());
+		return railrResponse;
+	}
+
+
+	@Override
+	public SaveAcitInvestmentsResponse saveAcitInvestments(SaveAcitInvestmentsRequest rair) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcitInvestmentsResponse sairResponse = new SaveAcitInvestmentsResponse();
+		HashMap<String, Object> sairParams = new HashMap<String, Object>();
+		try {
+			sairParams.put("saveAcitInvestments",rair.getSaveAcitInvestments());
+			sairParams.put("delAcitInvestments", rair.getDelAcitInvestments());
+			sairResponse.setReturnCode(acctITDao.saveAcitInvestments(sairParams));
+			logger.info("SaveAcitInvestmentsResponse : " + sairResponse.toString());
+		} catch (SQLException sqlex) {
+			sairResponse.setReturnCode(0);
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sairResponse.setReturnCode(0);
+			sairResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return sairResponse;
 	}
 }
