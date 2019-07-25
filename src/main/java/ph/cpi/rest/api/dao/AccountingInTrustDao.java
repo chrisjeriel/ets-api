@@ -34,4 +34,5 @@ public interface AccountingInTrustDao {
 	public Integer cancelCMDM(final HashMap<String, Object> params) throws SQLException;
 	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
 	public Integer cancelAr(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveAgingSoaDtl(final HashMap<String, Object> params) throws SQLException;
 }

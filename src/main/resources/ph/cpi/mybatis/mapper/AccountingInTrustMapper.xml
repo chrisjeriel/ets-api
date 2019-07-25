@@ -573,4 +573,45 @@
 			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="agingSoaDtlMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="cedingId" 			column="CEDING_ID"/>
+		<result property="refCd" 				column="REF_CD"/>
+		<result property="payeeNo" 				column="PAYEE_NO"/>
+		<result property="payeeName" 			column="PAYEE_NAME"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="soaNo" 				column="SOA_NO"/>
+		<result property="coRefNo" 				column="CO_REF_NO"/>
+		<result property="instNo" 				column="INST_NO"/>
+		<result property="currCd" 				column="CURR_CD"/>
+		<result property="currRate" 			column="CURR_RATE"/>
+		<result property="totalAmtDue" 			column="TOTAL_AMT_DUE"/>
+		<result property="totalPayments" 		column="TOTAL_PAYMENTS"/>
+		<result property="tempPayments" 		column="TEMP_PAYMENTS"/>
+		<result property="balAmtDue" 			column="BAL_AMT_DUE"/>
+		<result property="balPremDue" 			column="BAL_PREM_DUE"/>
+		<result property="balChargesDue" 		column="BAL_CHARGES_DUE"/>
+		<result property="balRiComm" 			column="BAL_RI_COMM"/>
+		<result property="balRiCommVat" 		column="BAL_RI_COMM_VAT"/>
+		<result property="balOverdueInt" 		column="BAL_OVERDUE_INT"/>
+		<result property="effDate" 				column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dueDate" 				column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="bookingDate" 			column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="agingId" 				column="AGING_ID"/>
+		<result property="netDue" 				column="NET_DUE"/>
+		<result property="balance" 				column="BALANCE"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitAgingSoaDtl" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl(
+																	#{policyId, jdbcType=VARCHAR},
+																	#{instNo,jdbcType=VARCHAR},
+																	#{cedingId,jdbcType=VARCHAR},
+																	#{payeeNo, jdbcType=VARCHAR}))
+	</select>
 </mapper>

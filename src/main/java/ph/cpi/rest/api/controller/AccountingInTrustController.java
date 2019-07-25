@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
@@ -36,6 +37,7 @@ import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
@@ -196,5 +198,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/cancelAr");
 		logger.info("CancelArRequest : " + car.toString());
 		return acctInTrustService.cancelAr(car);
+	}
+	
+	@GetMapping(path="retrieveAcitAgingSoaDtl")
+	public @ResponseBody RetrieveAcitAgingSoaDtlResponse retrieveAcitAgingSoaDtl(RetrieveAcitAgingSoaDtlRequest ragsdr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAgingSoaDtl");
+		logger.info("RetrieveAcitAgingSoaDtlRequest : " + ragsdr.toString());
+		return acctInTrustService.retrieveAgingSoaDtl(ragsdr);
 	}
 }

@@ -145,4 +145,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJVAdjstInwPolBal>  acitJVAdjInwPolBal  = sqlSession.selectList("retrieveAcitJvInwPolBal", params);
 		return acitJVAdjInwPolBal;
 	}
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveAgingSoaDtl(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveAcitAgingSoaDtl", params);
+		return res;
+	}
 }
