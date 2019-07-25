@@ -364,8 +364,6 @@
 		<result property="riCommVat" column="AIPB_RI_COMM_VAT"/>
 		<result property="charges" column="AIPB_CHARGES"/>
 		<result property="netDue" column="AIPB_NET_DUE"/>
-		<result property="totalPayments" column="AIPB_TOTAL_PAYMENTS"/>
-		<result property="balAmtDue" column="AIPB_BALANCE"/>
 		<result property="prevPaytAmt" column="AIPB_PREV_PAYT_AMT"/>
 		<result property="adjBalAmt" column="AIPB_ADJ_BAL_AMT"/>
 		<result property="overdueInt" column="AIPB_OVERDUE_INT"/>
@@ -402,6 +400,29 @@
 		<result property="agingId" column="AGING_ID"/>
 		<result property="netDue" column="NET_DUE"/>
 		<result property="balance" column="BALANCE"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS" id="overDueMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="cedingId" column="CEDING_ID"/>
+		<result property="policyId" column="POLICY_ID"/>
+		<result property="policyNo" column="POLICY_NO"/>
+		<result property="soaNo" column="SOA_NO"/>
+		<result property="coRefNo" column="CO_REF_NO"/>
+		<result property="effDate" column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="instNo" column="INST_NO"/>
+		<result property="dueDate" column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="daysOverdue" column="DAYS_OVERDUE"/>
+		<result property="autoTag" column="AUTO_TAG"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		<result property="premAmt" column="PREM_AMT"/>
+		<result property="overdueInt" column="OVERDUE_INT"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
@@ -472,4 +493,12 @@
 			);
 		END;
 	</update>
+	
+	<select id="retrieveAcitJVIntOverdue" resultMap="overDueMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_ioams(
+					#{tranId},
+					#{instNo,jdbcType=INTEGER},
+					#{cedingId},
+					'', '', '',''))
+	</select>
 </mapper>

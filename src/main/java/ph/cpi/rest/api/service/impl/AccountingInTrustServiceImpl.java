@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
@@ -31,6 +32,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
@@ -373,6 +375,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		raptResponse.setAcitPrqTrans(acctITDao.retrieveAcitPrqTrans(raptParams));
 		logger.info("RetrieveAcitPrqTransResponse : " + raptResponse.toString());
 		return raptResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitJVIntOverdAcctMSResponse retrieveAcitJVIntOverdue(RetrieveAcitJVIntOverdAcctMSRequest rajvo)
+			throws SQLException {
+		RetrieveAcitJVIntOverdAcctMSResponse response = new RetrieveAcitJVIntOverdAcctMSResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rajvo.getTranId());
+		params.put("instNo", rajvo.getInstNo());
+		params.put("cedingId", rajvo.getCedingId());
+		response.setOverDueAccts(acctITDao.retrieveAcitJVIntOverdAcctsMS(params));
+		return response;
 	}
 
 }
