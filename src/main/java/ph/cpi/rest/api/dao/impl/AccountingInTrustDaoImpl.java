@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
@@ -86,13 +88,21 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		AcitTransactions acitJVEntry  = sqlSession.selectOne("retrieveAcitJvEntry", params);
 		return acitJVEntry;
 	}
+
+
+	@Override
+	public HashMap<String, Object> saveAcitJVEntry(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVEntry",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 	@Override
 	public HashMap<String, Object> updateAcitPaytReqStat(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updateAcitPaytReqStat", params);
 		params.put("errorCode", errorCode);
 		return params;
-	}
+	}	
 
 	@Override
 	public List<AcitPrqTrans> retrieveAcitPrqTrans(HashMap<String, Object> params) throws SQLException {
@@ -100,10 +110,23 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return acitPrqTransList;
 	}
 
+
 	@Override
 	public HashMap<String, Object> saveAcitPrqTrans(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitPrqTrans", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public List<AcitSOAAgingDetails> retrieveAcitSOAAging(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> acitSOAAging  = sqlSession.selectList("retrieveAcitSOAAging", params);
+		return acitSOAAging;
+	}
+
+	@Override
+	public List<AcitJVAdjstInwPolBal> retrieveAcitJVAdjstInwPolBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVAdjstInwPolBal>  acitJVAdjInwPolBal  = sqlSession.selectList("retrieveAcitJvInwPolBal", params);
+		return acitJVAdjInwPolBal;
 	}
 }
