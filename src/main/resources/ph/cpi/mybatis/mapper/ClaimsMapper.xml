@@ -834,15 +834,26 @@
 		END;
 	</update>
 
-	<update id="chkPoldistStat" parameterType="java.util.Map" statementType="CALLABLE">
+<!-- 	<update id="chkPoldistStat" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{checkRes, mode=OUT, javaType=Integer, jdbcType=INTEGER} := CLM_RES_HIST_PKG.chk_poldist_stat(#{claimId, jdbcType=INTEGER})
 		}	
-	</update>
+	</update> -->
 	
 	<update id="chkAdjRate" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{chkAdjRate, mode=OUT, javaType=Float, jdbcType=FLOAT} := CLM_RES_HIST_PKG.chk_adj_rate(#{claimId, jdbcType=INTEGER})
 		}	
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.CheckHist" id="checkHistMap">
+		<result property="distPolStat" 	 column="DIST_POL_STAT"/>
+		<result property="withinLapse"   column="WITHIN_LAPSE"/>
+		<result property="withinPolTerm" column="WITHIN_POL_TERM"/>
+		<result property="hasUnpaidPrem" column="HAS_UNPAID_PREM"/>
+	</resultMap>
+	
+	<select id="checkHist" resultMap="checkHistMap" parameterType="java.lang.Integer">
+		SELECT * FROM TABLE(CLM_RES_HIST_PKG.chk_hist(#{claimId}))
+	</select> 
 </mapper>

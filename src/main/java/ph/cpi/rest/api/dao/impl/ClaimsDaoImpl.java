@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.Attachment;
+import ph.cpi.rest.api.model.claims.CheckHist;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimDist;
 import ph.cpi.rest.api.model.claims.ClaimDistCeding;
@@ -191,12 +192,13 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	}
 
 	@Override
-	public Integer chkPoldistStat(Integer param) throws SQLException {
-		HashMap<String, Object> par = new HashMap<String, Object>();
-		par.put("claimId", param);
-		par.put("checkRes", "");
-		sqlSession.selectOne("chkPoldistStat", par);
-		return (Integer) par.get("checkRes");
+	public List<CheckHist> checkHist(Integer param) throws SQLException {
+//		HashMap<String, Object> par = new HashMap<String, Object>();
+//		par.put("claimId", param);
+//		sqlSession.selectOne("chkPoldistStat", par);
+//		return (Integer) par.get("checkRes");
+		List<CheckHist> listCheckHist = sqlSession.selectList("checkHist", param);
+		return listCheckHist;
 	}
 
 	@Override

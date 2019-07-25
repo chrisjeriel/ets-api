@@ -79,8 +79,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 			retClmHistoryParams.put("projId", rchp.getProjId());
 			retClmHistoryParams.put("histNo", rchp.getHistNo());
 			
+			rchResponse.setCheckHistList(claimsDao.checkHist(Integer.parseInt(rchp.getClaimId())));
 			rchResponse.setAdjRate(claimsDao.chkAdjRate(Float.parseFloat(rchp.getClaimId())));
-			rchResponse.setPolDistStat(claimsDao.chkPoldistStat(Integer.parseInt(rchp.getClaimId())));
+//			rchResponse.setPolDistStat(claimsDao.chkPoldistStat(Integer.parseInt(rchp.getClaimId())));
 			//rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		}catch(Exception e) {
 			System.out.println(rchp.getClaimId());
