@@ -1486,6 +1486,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnParametersResponse response = new RetrieveMtnParametersResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("paramType", rafr.getParamType());
+		params.put("paramName", rafr.getParamName());
 		response.setParameters(maintenanceDao.retrieveParameters(params));
 		return response;
 	}
@@ -1682,7 +1683,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		try{
 			params.put("adjId", smar.getAdjId());
 			params.put("adjName", smar.getAdjName());
-			params.put("adjRefNo", smar.getAdjRefNo());
 			params.put("addrLine1", smar.getAddrLine1());
 			params.put("addrLine2", smar.getAddrLine2());
 			params.put("addrLine3", smar.getAddrLine3());
@@ -2040,5 +2040,90 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcitTranType(rmattParams));
 		logger.info("RetrieveMtnAcitTranTypeResponse : " + rmattResponse.toString());
 		return rmattResponse;
+	}
+
+	@Override
+	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveMtnBankResponse res = new RetrieveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbr.getBankCd());
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		res.setBankList(maintenanceDao.retrieveMtnBank(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		RetrieveMtnBankAcctResponse res = new RetrieveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbar.getBankCd());
+		params.put("bankAcctCd", rmbar.getBankAcctCd());
+		params.put("accountNo", rmbar.getAccountNo());
+		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException {
+		RetrieveMtnAcitDCBNoResponse response = new RetrieveMtnAcitDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dcbYear", rmaidcbr.getDcbYear());
+		params.put("dcbNo", rmaidcbr.getDcbNo());
+		params.put("dcbDate", rmaidcbr.getDcbDate());
+		params.put("dcbStatus", rmaidcbr.getDcbStatus());
+		response.setDcbNoList(maintenanceDao.retrieveMtnAcitDCBNo(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException {
+		SaveMtnAcitDCBNoResponse response = new SaveMtnAcitDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveDCBNo", smaidcbr.getSaveDCBNo());
+		params.put("delDCBNo", smaidcbr.getDelDCBNo());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnAcitDCBNo(params));
+		}catch(SQLException sqlex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQL Exception","Please check the field values."));
+			sqlex.printStackTrace();
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnDCBUserResponse retrieveMtnDCBUser(RetrieveMtnDCBUserRequest rmdur) throws SQLException {
+		RetrieveMtnDCBUserResponse response = new RetrieveMtnDCBUserResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rmdur.getUserid());
+		response.setDcbUserList(maintenanceDao.retrieveMtnDCBUser(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		RetrieveMtnPayeeResponse reponse = new RetrieveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", rmbar.getPayeeNo());
+		params.put("payeeClassCd", rmbar.getPayeeClassCd());
+		reponse.setPayeeList(maintenanceDao.retrieveMtnPayee(params));
+		return reponse;
+	}
+	
+	@Override
+	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)
+			throws SQLException {
+		RetrieveMtnBookingMonthResponse rmbmResponse = new RetrieveMtnBookingMonthResponse();
+		HashMap<String, Object> rmbmParams = new HashMap<String, Object>();
+		rmbmParams.put("bookingMm", rbmr.getBookingMm());
+		rmbmParams.put("bookingYear", rbmr.getBookingYear());
+		rmbmResponse.setBookingMonthList(maintenanceDao.retrieveMtnBookingMonth(rmbmParams));
+		logger.info("RetrieveMtnBookingMonthResponse : " + rmbmResponse.toString());
+		return rmbmResponse;
 	}
 }

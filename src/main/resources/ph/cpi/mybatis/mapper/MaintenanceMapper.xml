@@ -1540,12 +1540,13 @@
     		
     		#{outCedingId, mode=OUT, jdbcType=VARCHAR} := v_ceding_id;
     		
-   			<foreach collection="delCedingRepList" item="del">
+   			<!-- <foreach collection="delCedingRepList" item="del">
     			MTN_CED_REP_PKG.del_mtn_ced_rep(
     								v_ceding_id,
     								#{del.cedingRepId}
     						);
     		</foreach>
+    		
     		<foreach collection="saveCedingRepList" item="save">
 		    		MTN_CED_REP_PKG.save_mtn_ced_rep(
 		    							#{uploadDate, mode=OUT, jdbcType=VARCHAR},
@@ -1566,7 +1567,7 @@
 			    						#{updateUser},
 			    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    		            );
-    		</foreach>
+    		</foreach> -->
     	END;
     </update>
 
@@ -2378,6 +2379,7 @@
 	
 	<update id="saveMtnApprover" parameterType="java.util.Map">
 		BEGIN
+			NULL;
 			<foreach collection="delList" item="item">
 				MTN_APPROVER_PKG.del_mtn_approver(#{item.userId});
 			</foreach>
@@ -2423,7 +2425,9 @@
 																	  #{position , jdbcType=VARCHAR},
 																      #{count , jdbcType=VARCHAR},
 																      #{sortKey	, jdbcType=VARCHAR},
-																	  #{order , jdbcType=VARCHAR}))
+																	  #{order , jdbcType=VARCHAR},
+																	  #{paramName , jdbcType=VARCHAR}
+																	  ))
 	</select>
 	
 	<update id="saveMtnParameters" parameterType="java.util.Map">
@@ -2694,7 +2698,6 @@
     <resultMap type="ph.cpi.rest.api.model.maintenance.Adjuster" id="mtnAdjusterListMap">
 		<result property="adjId"			column="ADJ_ID" />
 		<result property="adjName"			column="ADJ_NAME" />
-		<result property="adjRefNo"			column="ADJ_REF_NO" />
 		<result property="addrLine1"		column="ADDR_LINE1" />
 		<result property="addrLine2"		column="ADDR_LINE2" />
 		<result property="addrLine3"		column="ADDR_LINE3" />
@@ -2712,7 +2715,6 @@
      
      <select id="retMtnAdjList" resultMap="mtnAdjusterListMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_ADJUSTER_PKG.ret_mtn_adj_list(#{adjName, jdbcType=VARCHAR},
-															  #{adjRefNo, jdbcType=VARCHAR},
 															  #{fullAddress, jdbcType=VARCHAR},
 															  #{zipCd, jdbcType=VARCHAR},
 															  #{contactNo, jdbcType=VARCHAR},
@@ -2732,7 +2734,6 @@
 	 <resultMap type="ph.cpi.rest.api.model.maintenance.Adjuster" id="mtnAdjusterMap">
 		<result property="adjId"			column="ADJ_ID" />
 		<result property="adjName"			column="ADJ_NAME" />
-		<result property="adjRefNo"			column="ADJ_REF_NO" />
 		<result property="addrLine1"		column="ADDR_LINE1" />
 		<result property="addrLine2"		column="ADDR_LINE2" />
 		<result property="addrLine3"		column="ADDR_LINE3" />
@@ -2781,7 +2782,6 @@
     						v_adj_id,
     						#{adjId, jdbcType=VARCHAR},
     						#{adjName},
-    						#{adjRefNo, jdbcType=VARCHAR},
     						#{addrLine1},
     						#{addrLine2, jdbcType=VARCHAR},
     						#{addrLine3, jdbcType=VARCHAR},
@@ -2863,6 +2863,7 @@
    <resultMap type="ph.cpi.rest.api.model.maintenance.ClaimStatus" id="clmStatMap">
     	<result property="statusCode" 		column="CLM_STAT_CD"/>
 		<result property="description" 		column="CLM_STAT_DESC"/>
+		<result property="openTag" 			column="OPEN_TAG"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -2980,6 +2981,7 @@
 				MTN_CLAIM_STATUS_PKG.save_mtn_claim_status(
 				#{save.statusCode},
 				#{save.description},
+				#{save.openTag, jdbcType=VARCHAR},
 				#{save.activeTag, jdbcType=VARCHAR},
 				#{save.remarks, jdbcType=VARCHAR},
 				#{save.createUser, jdbcType=VARCHAR},
@@ -3371,6 +3373,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 			column="UPDATE_USER"/> 
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="groupTag" 			column="GROUP_TAG" />
     </resultMap>
     
     <select id="retrieveMtnAcitTranType" resultMap="mtnAcitTranTypeMap" parameterType="java.util.Map">
@@ -3381,6 +3384,178 @@
 				#{baeTag, jdbcType=VARCHAR},
 				#{activeTag, jdbcType=VARCHAR},
 				'','','',''))
+	</select>
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Bank" id="bankMap">
+    	<result property="bankCd"				column="BANK_CD" />
+		<result property="shortName"			column="SHORT_NAME" />
+		<result property="officialName"			column="OFFICIAL_NAME" />
+		<result property="remarks"				column="REMARKS" />
+		<result property="activeTag"			column="ACTIVE_TAG" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.BookingMonth" id="bookingMonthMap">
+		<result property="bookingMm" 	column="BOOKING_MM"/>
+		<result property="bookingYear" 	column="BOOKING_YEAR"/>
+		<result property="bookedTag" 	column="BOOKED_TAG"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="createUser" 	column="CREATE_USER"/> 
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 	column="UPDATE_USER"/> 
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnBookingMonth" resultMap="bookingMonthMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_BOOKING_MONTH_PKG.ret_booking_mth(#{bookingMm, jdbcType=VARCHAR},#{bookingYear, jdbcType=INTEGER},
+				'','','',''))
+	</select>
+    
+    <select id="retMtnBank" resultMap="bankMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_BANK_PKG.ret_mtn_bank(#{bankCd, jdbcType=VARCHAR},
+													  #{officialName, jdbcType=VARCHAR},
+													  #{activeTag, jdbcType=VARCHAR},
+													  '','','',''))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.BankAcct" id="bankAcctMap">
+    	<result property="bankCd"			column="BANK_CD" />
+		<result property="bankAcctCd"		column="BANK_ACCT_CD" />
+		<result property="accountNo"		column="ACCOUNT_NO" />
+		<result property="accountName"		column="ACCOUNT_NAME" />
+		<result property="acctStatus"		column="ACCT_STATUS" />
+		<result property="currCd"			column="CURR_CD" />
+		<result property="bankBranch"		column="BANK_BRANCH" />
+		<result property="accountType"		column="ACCOUNT_TYPE" />
+		<result property="openDate"			column="OPEN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="closeDate"		column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acItGlDepNo"		column="ACIT_GL_DEP_NO" />
+		<result property="acSeGlDepNo"	    column="ACSE_GL_DEP_NO" />
+		<result property="remarks"			column="REMARKS" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+	
+	<select id="retMtnBankAcct" resultMap="bankAcctMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_BANK_ACCT_PKG.ret_mtn_bank_acct(#{bankCd, jdbcType=VARCHAR},
+																#{bankAcctCd, jdbcType=VARCHAR},
+													  			#{accountNo, jdbcType=VARCHAR},
+													  			'','','',''))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitDCBNo" id="dcbNoMap">
+		<result property="dcbYear"		column="DCB_YEAR" />
+		<result property="dcbNo"		column="DCB_NO" />
+		<result property="dcbDate"		column="DCB_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dcbStatus"	column="DCB_STATUS" />
+		<result property="remarks"		column="REMARKS" />
+		<result property="autoTag"		column="AUTO_TAG" />
+		<result property="createUser"	column="CREATE_USER" />
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER" />
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_ACIT_DCB_NO_PKG.ret_mtn_acit_dcb_no(#{dcbYear, jdbcType=VARCHAR},
+													  				#{dcbNo, jdbcType=VARCHAR},
+													  				CAST(to_timestamp(#{dcbDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  				#{dcbStatus, jdbcType=VARCHAR},
+													  				'','','',''))
+	</select>
+	
+	<update id="saveMtnAcitDCBNo" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delDCBNo" item="del">
+				MTN_ACIT_DCB_NO_PKG.del_mtn_acit_dcb_no(
+															#{del.dcbYear},
+															#{del.dcbNo},
+				);
+			</foreach>
+			<foreach collection="saveDCBNo" item="save">
+				MTN_ACIT_DCB_NO_PKG.save_mtn_acit_dcb_no(
+															#{save.dcbYear},
+															#{save.dcbNo, jdbcType=VARCHAR},
+															CAST(to_timestamp(#{save.dcbDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{save.dcbStatus},
+															#{save.remarks, jdbcType=VARCHAR},
+															#{save.autoTag},
+															#{save.createUser},
+															CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{save.updateUser},
+															CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			DBMS_OUTPUT.PUT_LINE('Placeholder');
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.DCBUser" id="dcbUserMap">
+		<result property="dcbUserCd"				column="DCB_USER_CD" />
+		<result property="userId"					column="USER_ID" />
+		<result property="printableName"			column="PRINTABLE_NAME" />
+		<result property="validFrom"				column="VALID_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="validTo"					column="VALID_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="defaultArBank"			column="DEFAULT_AR_BANK" />
+		<result property="arBankName"				column="AR_BANK_NAME" />
+		<result property="defaultArBankAcct"		column="DEFAULT_AR_BANK_ACCT" />
+		<result property="arBankAcctNo"				column="AR_BANK_ACCT_NO" />
+		<result property="defaultOrBank"			column="DEFAULT_OR_BANK" />
+		<result property="orBankName"				column="OR_BANK_NAME" />
+		<result property="defaultOrBankAcct"		column="DEFAULT_OR_BANK_ACCT" />
+		<result property="orBankAcctNo"				column="OR_BANK_ACCT_NO" />
+		<result property="remarks"					column="REMARKS" />
+		<result property="activeTag"				column="ACTIVE_TAG" />
+		<result property="createUser"				column="CREATE_USER" />
+		<result property="createDate"				column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"				column="UPDATE_USER" />
+		<result property="updateDate"				column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+    
+    <select id="retMtnDCBUser" resultMap="dcbUserMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_DCB_USER_PKG.ret_mtn_dcb_user(#{userId, jdbcType=VARCHAR},
+													  		  '','','',''))
+	</select>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Payee" id="payeeMap">
+		<result property="payeeNo"	column="PAYEE_NO"/>
+		<result property="payeeClassCd"	column="PAYEE_CLASS_CD"/>
+		<result property="payeeClassName"	column="PAYEE_CLASS_NAME"/>
+		<result property="payeeName"	column="PAYEE_NAME"/>
+		<result property="refCd"	column="REF_CD"/>
+		<result property="bussTypeCd"	column="BUSS_TYPE_CD"/>
+		<result property="tin"	column="TIN"/>
+		<result property="contactNo"	column="CONTACT_NO"/>
+		<result property="mailAddress"	column="MAIL_ADDRESS"/>
+		<result property="email"	column="EMAIL"/>
+		<result property="remarks"	column="REMARKS"/>
+		<result property="designation"	column="DESIGNATION"/>
+		<result property="department"	column="DEPARTMENT"/>
+		<result property="mailAddress2"	column="MAIL_ADDRESS2"/>
+		<result property="permAddress"	column="PERM_ADDRESS"/>
+		<result property="contactPerson1"	column="CONTACT_PERSON1"/>
+		<result property="contactPerson2"	column="CONTACT_PERSON2"/>
+		<result property="phoneNo"	column="PHONE_NO"/>
+		<result property="mobileNo"	column="MOBILE_NO"/>
+		<result property="faxNo"	column="FAX_NO"/>
+		<result property="bankCd1"	column="BANK_CD1"/>
+		<result property="bankBranch1"	column="BANK_BRANCH1"/>
+		<result property="bankAcctType1"	column="BANK_ACCT_TYPE1"/>
+		<result property="bankAcctName1"	column="BANK_ACCT_NAME1"/>
+		<result property="bankAcctNo1"	column="BANK_ACCT_NO1"/>
+		<result property="bankCd2"	column="BANK_CD2"/>
+		<result property="bankBranch2"	column="BANK_BRANCH2"/>
+		<result property="bankAcctType2"	column="BANK_ACCT_TYPE2"/>
+		<result property="bankAcctName2"	column="BANK_ACCT_NAME2"/>
+		<result property="bankAcctNo2"	column="BANK_ACCT_NO2"/>
+	</resultMap>
+	
+	<select id="retrieveMtnPayee" resultMap="payeeMap">
+		SELECT * FROM TABLE(MTN_PAYEE_PKG.RET_MTN_PAYEE(#{payeeNo, jdbcType=VARCHAR},#{payeeClassCd, jdbcType=VARCHAR}))
 	</select>
 
 </mapper>

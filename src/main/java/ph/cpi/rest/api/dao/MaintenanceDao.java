@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
+import ph.cpi.rest.api.model.maintenance.Bank;
+import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -19,6 +23,7 @@ import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
+import ph.cpi.rest.api.model.maintenance.DCBUser;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -36,6 +41,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -183,6 +189,12 @@ public interface MaintenanceDao {
 	public List<MtnClmEventType> retrieveMtnClmEventTypeLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnClmEvent> retrieveMtnClmEventLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcitTranType> retrieveMtnAcitTranType(final HashMap<String, Object> params ) throws SQLException;
-
-	}
+	public List<Bank> retrieveMtnBank(final HashMap<String, Object> params) throws SQLException;
+	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitDCBNo> retrieveMtnAcitDCBNo(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnAcitDCBNo(final HashMap<String, Object> params) throws SQLException;
+	public List<DCBUser> retrieveMtnDCBUser(final HashMap<String, Object> params) throws SQLException;
+	public List<Payee> retrieveMtnPayee(final HashMap<String, Object> params) throws SQLException;
+	public List<BookingMonth> retrieveMtnBookingMonth(final HashMap<String, Object> params) throws SQLException;
+}
 

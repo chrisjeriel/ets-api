@@ -1493,6 +1493,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("policyId",pdr.getPolicyId());
 		params.put("riskDistId",pdr.getRiskDistId());
 		params.put("distId",pdr.getDistId());
+		params.put("user",pdr.getUser());
 		try{
 			pdrResponse.setReturnCode(underwritingDao.postDistribution(params));
 		}catch(Exception ex){

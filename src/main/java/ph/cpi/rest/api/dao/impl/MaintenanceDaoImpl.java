@@ -13,11 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
 import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
+import ph.cpi.rest.api.model.maintenance.Bank;
+import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -27,6 +31,7 @@ import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
+import ph.cpi.rest.api.model.maintenance.DCBUser;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -44,6 +49,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -916,5 +922,47 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public List<MtnAcitTranType> retrieveMtnAcitTranType(HashMap<String, Object> params) throws SQLException {
 		List<MtnAcitTranType> tranTypeList = sqlSession.selectList("retrieveMtnAcitTranType", params);
 		return tranTypeList;
+	}
+
+	@Override
+	public List<Bank> retrieveMtnBank(HashMap<String, Object> params) throws SQLException {
+		List<Bank> res = sqlSession.selectList("retMtnBank", params);
+		return res;
+	}
+
+	@Override
+	public List<BankAcct> retrieveMtnBankAcct(HashMap<String, Object> params) throws SQLException {
+		List<BankAcct> res = sqlSession.selectList("retMtnBankAcct", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitDCBNo> retrieveMtnAcitDCBNo(HashMap<String, Object> params) throws SQLException {
+		List<AcitDCBNo> res = sqlSession.selectList("retMtnAcitDCBNo", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnAcitDCBNo(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnAcitDCBNo", params);
+		return res;
+	}
+
+	@Override
+	public List<DCBUser> retrieveMtnDCBUser(HashMap<String, Object> params) throws SQLException {
+		List<DCBUser> res = sqlSession.selectList("retMtnDCBUser", params);
+		return res;
+	}
+
+	@Override
+	public List<Payee> retrieveMtnPayee(HashMap<String, Object> params) throws SQLException {
+		List<Payee> payeeList = sqlSession.selectList("retrieveMtnPayee", params);
+		return payeeList;
+	}
+	
+	@Override
+	public List<BookingMonth> retrieveMtnBookingMonth(HashMap<String, Object> params) throws SQLException {
+		List<BookingMonth> bookingMthList = sqlSession.selectList("retrieveMtnBookingMonth", params);
+		return bookingMthList;
 	}
 }

@@ -868,4 +868,53 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcitTranTypeRequest : " + rmattp.toString());
 		return maintenanceService.retrieveMtnAcitTranType(rmattp);
 	}
+	
+	@GetMapping(path="retrieveMtnBank")
+	public @ResponseBody RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBank");
+		logger.info("RetrieveMtnBankRequest : " + rmbr.toString());
+		return maintenanceService.retrieveMtnBank(rmbr);
+	}
+	
+	@GetMapping(path="retrieveMtnBankAcct")
+	public @ResponseBody RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBankAcct");
+		logger.info("RetrieveMtnBankAcctRequest : " + rmbar.toString());
+		return maintenanceService.retrieveMtnBankAcct(rmbar);
+	}
+
+	@GetMapping(path="retrieveMtnAcitDCBNo")
+	public @ResponseBody RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitDCBNo");
+		logger.info("RetrieveMtnAcitDCBNoRequest : " + rmaidcbr.toString());
+		return maintenanceService.retrieveMtnAcitDCBNo(rmaidcbr);
+	}
+	
+	@PostMapping(path="saveMtnAcitDCBNo")
+	public @ResponseBody SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(@RequestBody SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAcitDCBNo");
+		logger.info("SaveMtnAcitDCBNoRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnAcitDCBNo(smaidcbr);
+	}
+	
+	@GetMapping(path="retrieveMtnDCBUser")
+	public @ResponseBody RetrieveMtnDCBUserResponse retrieveMtnDCBUser(RetrieveMtnDCBUserRequest rmdur) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnDCBUser");
+		logger.info("RetrieveMtnDCBUserRequest : " + rmdur.toString());
+		return maintenanceService.retrieveMtnDCBUser(rmdur);
+	}
+	
+	@GetMapping(path="retrieveMtnPayee")
+	public @ResponseBody RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPayee");
+		logger.info("RetrieveMtnPayeeRequest : " + rmbar.toString());
+		return maintenanceService.retrieveMtnPayee(rmbar);
+	}
+
+	@GetMapping(path="retrieveMtnBookingMonth")
+	public @ResponseBody RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBookingMonth");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnBookingMonth(rbmr);
+	}
 }
