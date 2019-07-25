@@ -324,6 +324,7 @@
 		<result property="jvNo" column="JV_NO"/>
 		<result property="jvDate" column="JV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="jvStatus" column="JV_STATUS"/>
+		<result property="jvStatusName" column="JV_STATUS_NAME"/>
 		<result property="tranTypeCd" column="JV_TRAN_TYPE_CD"/>
 		<result property="tranTypeName" column="TRAN_TYPE"/>
 		<result property="autoTag" column="AUTO_TAG"/>
@@ -501,4 +502,21 @@
 					#{cedingId},
 					'', '', '',''))
 	</select>
+	
+	<update id="saveAcitJVInwPolBal" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="deleteInwPol" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_aipb(#{delete.tranId}, #{delete.itemNo});
+			</foreach>
+			
+			<foreach collection="saveInwPol" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_aipb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
+													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
+													#{save.netDue}, #{save.prevPaytAmt}, #{save.adjBalAmt}, #{save.overdueInt}, #{save.createUser}, 
+													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{save.updateUser}, 
+													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

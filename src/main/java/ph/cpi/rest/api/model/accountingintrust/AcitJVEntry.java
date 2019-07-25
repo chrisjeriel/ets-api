@@ -10,6 +10,7 @@ public class AcitJVEntry {
 	private Integer jvNo;
 	private DateTime jvDate;
 	private String jvStatus;
+	private String jvStatusName;
 	private Integer tranTypeCd;
 	private String tranTypeName;
 	private String autoTag;
@@ -59,6 +60,13 @@ public class AcitJVEntry {
 	}
 	public void setJvStatus(String jvStatus) {
 		this.jvStatus = jvStatus;
+	}
+	
+	public String getJvStatusName() {
+		return jvStatusName;
+	}
+	public void setJvStatusName(String jvStatusName) {
+		this.jvStatusName = jvStatusName;
 	}
 	public Integer getTranTypeCd() {
 		return tranTypeCd;
@@ -183,13 +191,14 @@ public class AcitJVEntry {
 	@Override
 	public String toString() {
 		return "AcitJVEntry [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate
-				+ ", jvStatus=" + jvStatus + ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName
-				+ ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId + ", refnoDate=" + refnoDate
-				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt
-				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", preparedBy="
-				+ preparedBy + ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedDate="
-				+ approvedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", jvStatus=" + jvStatus + ", jvStatusName=" + jvStatusName + ", tranTypeCd=" + tranTypeCd
+				+ ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId
+				+ ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", jvAmt=" + jvAmt + ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId="
+				+ allocTranId + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate + ", approvedBy="
+				+ approvedBy + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }

@@ -127,4 +127,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJVIntOverdueAcctsMS>  acitJVIntOverdue  = sqlSession.selectList("retrieveAcitJVIntOverdue", params);
 		return acitJVIntOverdue;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVAdjInwPolBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVInwPolBal",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

@@ -11,6 +11,7 @@ public class AcitJVListing {
 	private Integer jvNo;
 	private DateTime jvDate;
 	private String jvStatus;
+	private String jvStatusName;
 	private Integer tranTypeCd;
 	private String tranTypeName;
 	private String autoTag;
@@ -62,6 +63,13 @@ public class AcitJVListing {
 	}
 	public void setJvStatus(String jvStatus) {
 		this.jvStatus = jvStatus;
+	}
+	
+	public String getJvStatusName() {
+		return jvStatusName;
+	}
+	public void setJvStatusName(String jvStatusName) {
+		this.jvStatusName = jvStatusName;
 	}
 	public Integer getTranTypeCd() {
 		return tranTypeCd;
