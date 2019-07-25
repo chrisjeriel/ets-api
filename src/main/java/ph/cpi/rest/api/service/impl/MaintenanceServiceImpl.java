@@ -2063,6 +2063,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		RetrieveMtnPayeeResponse reponse = new RetrieveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", rmbar.getPayeeNo());
+		params.put("payeeClassCd", rmbar.getPayeeClassCd());
+		reponse.setPayeeList(maintenanceDao.retrieveMtnPayee(params));
+		return reponse;
+	}
+	
+	@Override
 	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)
 			throws SQLException {
 		RetrieveMtnBookingMonthResponse rmbmResponse = new RetrieveMtnBookingMonthResponse();

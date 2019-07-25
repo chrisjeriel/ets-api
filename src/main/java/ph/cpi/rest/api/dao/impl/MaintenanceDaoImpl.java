@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
+import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -935,6 +936,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		return res;
 	}
 
+	@Override
+	public List<Payee> retrieveMtnPayee(HashMap<String, Object> params) throws SQLException {
+		List<Payee> payeeList = sqlSession.selectList("retrieveMtnPayee", params);
+		return payeeList;
+	}
+	
 	@Override
 	public List<BookingMonth> retrieveMtnBookingMonth(HashMap<String, Object> params) throws SQLException {
 		List<BookingMonth> bookingMthList = sqlSession.selectList("retrieveMtnBookingMonth", params);

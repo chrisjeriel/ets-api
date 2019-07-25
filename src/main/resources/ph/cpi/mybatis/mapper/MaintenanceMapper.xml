@@ -3372,6 +3372,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 			column="UPDATE_USER"/> 
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="groupTag" 			column="GROUP_TAG" />
     </resultMap>
     
     <select id="retrieveMtnAcitTranType" resultMap="mtnAcitTranTypeMap" parameterType="java.util.Map">
@@ -3442,5 +3443,42 @@
 		SELECT * FROM TABLE(MTN_BANK_ACCT_PKG.ret_mtn_bank_acct(#{bankCd, jdbcType=VARCHAR},
 													  			#{accountNo, jdbcType=VARCHAR},
 													  			'','','',''))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Payee" id="payeeMap">
+		<result property="payeeNo"	column="PAYEE_NO"/>
+		<result property="payeeClassCd"	column="PAYEE_CLASS_CD"/>
+		<result property="payeeClassName"	column="PAYEE_CLASS_NAME"/>
+		<result property="payeeName"	column="PAYEE_NAME"/>
+		<result property="refCd"	column="REF_CD"/>
+		<result property="bussTypeCd"	column="BUSS_TYPE_CD"/>
+		<result property="tin"	column="TIN"/>
+		<result property="contactNo"	column="CONTACT_NO"/>
+		<result property="mailAddress"	column="MAIL_ADDRESS"/>
+		<result property="email"	column="EMAIL"/>
+		<result property="remarks"	column="REMARKS"/>
+		<result property="designation"	column="DESIGNATION"/>
+		<result property="department"	column="DEPARTMENT"/>
+		<result property="mailAddress2"	column="MAIL_ADDRESS2"/>
+		<result property="permAddress"	column="PERM_ADDRESS"/>
+		<result property="contactPerson1"	column="CONTACT_PERSON1"/>
+		<result property="contactPerson2"	column="CONTACT_PERSON2"/>
+		<result property="phoneNo"	column="PHONE_NO"/>
+		<result property="mobileNo"	column="MOBILE_NO"/>
+		<result property="faxNo"	column="FAX_NO"/>
+		<result property="bankCd1"	column="BANK_CD1"/>
+		<result property="bankBranch1"	column="BANK_BRANCH1"/>
+		<result property="bankAcctType1"	column="BANK_ACCT_TYPE1"/>
+		<result property="bankAcctName1"	column="BANK_ACCT_NAME1"/>
+		<result property="bankAcctNo1"	column="BANK_ACCT_NO1"/>
+		<result property="bankCd2"	column="BANK_CD2"/>
+		<result property="bankBranch2"	column="BANK_BRANCH2"/>
+		<result property="bankAcctType2"	column="BANK_ACCT_TYPE2"/>
+		<result property="bankAcctName2"	column="BANK_ACCT_NAME2"/>
+		<result property="bankAcctNo2"	column="BANK_ACCT_NO2"/>
+	</resultMap>
+	
+	<select id="retrieveMtnPayee" resultMap="payeeMap">
+		SELECT * FROM TABLE(MTN_PAYEE_PKG.RET_MTN_PAYEE(#{payeeNo, jdbcType=VARCHAR},#{payeeClassCd, jdbcType=VARCHAR}))
 	</select>
 </mapper>

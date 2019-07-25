@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
@@ -110,7 +111,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return acitPrqTransList;
 	}
 
-
 	@Override
 	public HashMap<String, Object> saveAcitPrqTrans(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitPrqTrans", params);
@@ -128,5 +128,23 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitJVAdjstInwPolBal> retrieveAcitJVAdjstInwPolBal(HashMap<String, Object> params) throws SQLException {
 		List<AcitJVAdjstInwPolBal>  acitJVAdjInwPolBal  = sqlSession.selectList("retrieveAcitJvInwPolBal", params);
 		return acitJVAdjInwPolBal;
+	}
+	
+	@Override
+	public Integer cancelCMDM(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("cancelCMDM",params);
+		return code;
+	}
+
+	@Override
+	public Integer printCMDM(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("printCMDM",params);
+		return code;
+	}
+
+	@Override
+	public List<AcitAcctEntries> retrieveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
+		List<AcitAcctEntries> list = sqlSession.selectList("retrieveAcitAcctEntries", params);
+		return list;
 	}
 }

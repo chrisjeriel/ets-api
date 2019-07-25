@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
@@ -13,6 +14,9 @@ import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
+import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -29,7 +33,9 @@ public interface AccountingInTrustDao {
 	public List<AcitSOAAgingDetails> retrieveAcitSOAAging(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAdjstInwPolBal> retrieveAcitJVAdjstInwPolBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> updateAcitPaytReqStat(final HashMap<String, Object> params) throws SQLException;
-	public List<AcitPrqTrans> retrieveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException; 
 	public HashMap<String, Object> saveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException;
-
+	public List<AcitPrqTrans> retrieveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer cancelCMDM(final HashMap<String, Object> params) throws SQLException;
+	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
 }

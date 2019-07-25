@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
+import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
@@ -31,9 +34,18 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
+import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
-import ph.cpi.rest.api.model.request.SaveQuoteHoldCoverRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
+import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
@@ -46,8 +58,11 @@ import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
+import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
-import ph.cpi.rest.api.model.response.SaveQuoteHoldCoverResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -167,10 +182,32 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitPrqTrans(raptr);
 	}
 	
+
 	@PostMapping(path="saveAcitPrqTrans")
 	public @ResponseBody SaveAcitPrqTransResponse saveAcitPrqTrans(@RequestBody SaveAcitPrqTransRequest saptr) throws SQLException {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitPrqTrans");
 		logger.info("SaveAcitPrqTransRequest : " + saptr.toString());
 		return acctInTrustService.saveAcitPrqTrans(saptr);
+	}
+
+	@PostMapping(path="cancelCMDMCMDM")
+	public @ResponseBody CancelCMDMCMDMResponse cancelCMDMCMDM(@RequestBody CancelCMDMCMDMRequest saprr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/cancelCMDMCMDM");
+		logger.info("CancelCMDMCMDMRequest : " + saprr.toString());
+		return acctInTrustService.cancelCMDMCMDM(saprr);
+	}
+	
+	@PostMapping(path="printCMDM")
+	public @ResponseBody PrintCMDMResponse printCMDM(@RequestBody PrintCMDMRequest saprr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/printCMDM");
+		logger.info("PrintCMDMRequest : " + saprr.toString());
+		return acctInTrustService.printCMDM(saprr);
+	}
+	
+	@GetMapping(path="retrieveAcitAcctEntries")
+	public @ResponseBody RetrieveAcitAcctEntriesResponse retrieveAcitAcctEntries(RetrieveAcitAcctEntriesRequest racitcmdmlr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAcctEntries");
+		logger.info("RetrieveAcitAcctEntriesRequest : " + racitcmdmlr.toString());
+		return acctInTrustService.retrieveAcitAcctEntries(racitcmdmlr);
 	}
 }
