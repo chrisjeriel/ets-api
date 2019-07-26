@@ -541,4 +541,30 @@
 		SELECT * FROM TABLE(ACIT_ACCT_ENTRIES_PKG.ret_acit_acc_entries(#{tranId, jdbcType=VARCHAR},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOA" id="qsoaMap">
+		<result property="qsoaId" 			column="QSOA_ID"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="quarterEnding" 	column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="qsoaStatus" 		column="QSOA_STATUS"/>
+		<result property="qsoaStatusDesc" 	column="QSOA_STATUS_DESC"/>
+		<result property="refNoTranId" 		column="REF_NO_TRAN_ID"/>
+		<result property="refNoDate" 		column="REF_NO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="totalDebitAmt" 	column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt" 	column="TOTAL_CREDIT_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQSOAList" resultMap="qsoaMap">
+		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_comp_qsoa_list(#{qsoaId, jdbcType=INTEGER},
+															 #{cedingId, jdbcType=VARCHAR},
+															 #{fromQtr, jdbcType=INTEGER},
+															 #{fromYear, jdbcType=INTEGER},
+															 #{toQtr, jdbcType=INTEGER},
+															 #{toYear, jdbcType=INTEGER},
+															 null,null,null,null))
+	</select>
 </mapper>

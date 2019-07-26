@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 
@@ -146,5 +147,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
 		List<AcitAcctEntries> list = sqlSession.selectList("retrieveAcitAcctEntries", params);
 		return list;
+	}
+
+	@Override
+	public List<QSOA> retrieveQSOAList(HashMap<String, Object> params) throws SQLException {
+		List<QSOA> qsoaList = sqlSession.selectList("retrieveQSOAList", params);
+		return qsoaList;
 	}
 }

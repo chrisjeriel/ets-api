@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
@@ -42,6 +43,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -443,5 +445,23 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("slCd", racitcmdmlr.getSlCd()) ;
 		response.setList(acctITDao.retrieveAcitAcctEntries(params));
 		return response;
+	}
+
+
+	@Override
+	public RetrieveQSOAListResponse retrieveQSOAList(RetrieveQSOAListRequest rqlr) throws SQLException {
+		RetrieveQSOAListResponse rqlResponse = new RetrieveQSOAListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("qsoaId", rqlr.getQsoaId());
+		params.put("cedingId", rqlr.getCedingId());
+		params.put("fromQtr", rqlr.getFromQtr());
+		params.put("fromYear", rqlr.getFromYear());
+		params.put("toQtr", rqlr.getToQtr());
+		params.put("toYear", rqlr.getToYear());
+		
+		rqlResponse.setQsoaList(acctITDao.retrieveQSOAList(params));
+		
+		return rqlResponse;
 	}
 }

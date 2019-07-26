@@ -12,6 +12,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
@@ -38,4 +39,5 @@ public interface AccountingInTrustDao {
 	public Integer cancelCMDM(final HashMap<String, Object> params) throws SQLException;
 	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOA> retrieveQSOAList(final HashMap<String, Object> params) throws SQLException;
 }
