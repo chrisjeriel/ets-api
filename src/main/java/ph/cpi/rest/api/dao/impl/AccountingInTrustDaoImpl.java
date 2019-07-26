@@ -154,4 +154,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<QSOA> qsoaList = sqlSession.selectList("retrieveQSOAList", params);
 		return qsoaList;
 	}
+
+	@Override
+	public Integer saveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveAcitAcctEntries",params);
+		return code;
+	}
 }

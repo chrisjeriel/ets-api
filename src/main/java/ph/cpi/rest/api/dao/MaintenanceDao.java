@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -50,6 +51,8 @@ import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.RoundingError;
+import ph.cpi.rest.api.model.maintenance.SL;
+import ph.cpi.rest.api.model.maintenance.SLType;
 import ph.cpi.rest.api.model.maintenance.SecIITreatyLimit;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
@@ -191,4 +194,7 @@ public interface MaintenanceDao {
 	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<Payee> retrieveMtnPayee(final HashMap<String, Object> params) throws SQLException;
 	public List<BookingMonth> retrieveMtnBookingMonth(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitChartAcct> retrieveMtnAcitChartAcct(final HashMap<String, Object> params) throws SQLException;
+	public List<SLType> retrieveMtnSLType(final HashMap<String, Object> params) throws SQLException;
+	public List<SL> retrieveMtnSL(final HashMap<String, Object> params) throws SQLException;
 }

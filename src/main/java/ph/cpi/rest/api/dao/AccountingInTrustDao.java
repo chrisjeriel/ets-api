@@ -40,4 +40,5 @@ public interface AccountingInTrustDao {
 	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOA> retrieveQSOAList(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
 }
