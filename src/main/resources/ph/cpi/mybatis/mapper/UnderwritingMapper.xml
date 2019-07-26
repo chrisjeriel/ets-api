@@ -2648,5 +2648,4 @@
 	<select id="getMissingCoins" resultMap="retDistCoInsMap">
 		SELECT * FROM TABLE(DIST_WPOL_PKG.get_mia_alt_coins(#{policyId}))
 	</select>
-	
 </mapper>

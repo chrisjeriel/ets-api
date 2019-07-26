@@ -118,4 +118,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitAcctEntries> list = sqlSession.selectList("retrieveAcitAcctEntries", params);
 		return list;
 	}
+
+	@Override
+	public Integer saveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveAcitAcctEntries",params);
+		return code;
+	}
 }
