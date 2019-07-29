@@ -26,6 +26,7 @@ public class DistWrisk {
 	private String updateUser;
 	private DateTime updateDate;
 	private BigDecimal secIIInputLimit;
+	private String cuurCd;
 	
 	List<DistRiskWtreaty> distRiskWtreaty;
 	
@@ -197,6 +198,12 @@ public class DistWrisk {
 	public void setTotalPremAmt(BigDecimal totalPremAmt) {
 		this.totalPremAmt = totalPremAmt;
 	}
+	public String getCuurCd() {
+		return cuurCd;
+	}
+	public void setCuurCd(String cuurCd) {
+		this.cuurCd = cuurCd;
+	}
 	@Override
 	public String toString() {
 		return "DistWrisk [riskDistId=" + riskDistId + ", altNo=" + altNo + ", coinsGrpId=" + coinsGrpId + ", status="
@@ -205,9 +212,10 @@ public class DistWrisk {
 				+ vatRiRt + ", negateDate=" + negateDate + ", negateUser=" + negateUser + ", seciiPremTag="
 				+ seciiPremTag + ", trtyLimitSec2=" + trtyLimitSec2 + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", secIIInputLimit="
-				+ secIIInputLimit + ", distRiskWtreaty=" + distRiskWtreaty + ", retOneTsiAmt=" + retOneTsiAmt
-				+ ", retOnePremAmt=" + retOnePremAmt + ", retTwoTsiAmt=" + retTwoTsiAmt + ", retTwoPremAmt="
-				+ retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt + ", totalPremAmt=" + totalPremAmt + "]";
+				+ secIIInputLimit + ", cuurCd=" + cuurCd + ", distRiskWtreaty=" + distRiskWtreaty + ", retOneTsiAmt="
+				+ retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt + ", retTwoTsiAmt=" + retTwoTsiAmt
+				+ ", retTwoPremAmt=" + retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt + ", totalPremAmt=" + totalPremAmt
+				+ "]";
 	}
 	
 	}
