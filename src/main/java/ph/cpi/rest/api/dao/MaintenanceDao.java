@@ -205,4 +205,5 @@ public interface MaintenanceDao {
 	public List<SL> retrieveMtnSL(final HashMap<String, Object> params) throws SQLException;
 
 	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnBank(final HashMap<String, Object> params) throws SQLException;
 }

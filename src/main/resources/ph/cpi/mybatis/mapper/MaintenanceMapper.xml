@@ -3643,4 +3643,21 @@
 													  			   #{activeTag, jdbcType=VARCHAR},
 													  			   '','','',''))
 	</select>
+	
+	<update id="saveMtnBank" >
+		BEGIN
+			NULL;
+			<foreach collection="delList" item="item">
+				MTN_BANK_PKG.del_mtn_bank(#{item.bankCd});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_BANK_PKG.save_mtn_bank(#{item.bankCd},#{item.shortName, jdbcType=VARCHAR},#{item.officialName, jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR},#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

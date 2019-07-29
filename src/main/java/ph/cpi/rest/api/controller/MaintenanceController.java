@@ -945,4 +945,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnInvtSecurityTypeRequest : " + rist.toString());
 		return maintenanceService.retrieveMtnInvtSecurityType(rist);
 	}
+	
+	@PostMapping(path="saveMtnBank")
+	public @ResponseBody SaveMtnBankResponse saveMtnBank(@RequestBody SaveMtnBankRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBank");
+		logger.info("SaveMtnBankRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnBank(smaidcbr);
+	}
 }

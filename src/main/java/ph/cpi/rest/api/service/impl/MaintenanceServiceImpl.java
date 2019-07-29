@@ -2182,4 +2182,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("RetrieveMtnInvtSecurityTypeResponse : " + rmistResponse.toString());
 		return rmistResponse;
 	}
+
+	@Override
+	public SaveMtnBankResponse saveMtnBank(SaveMtnBankRequest smaidcbr) throws SQLException {
+		SaveMtnBankResponse response = new SaveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smaidcbr.getSaveList());
+		params.put("delList", smaidcbr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBank(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		
+		return response;
+	}
 }
