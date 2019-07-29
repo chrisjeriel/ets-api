@@ -522,7 +522,10 @@
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
 				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{save.policyId},#{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, 
-															  #{save.charges}, #{save.netDue}, #{save.adjBalAmt});
+															  #{save.charges}, #{save.netDue}, #{save.adjBalAmt}, #{save.createUser}, 
+													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{save.updateUser}, 
+													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
 			
 			
