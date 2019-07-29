@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
@@ -34,5 +35,6 @@ public interface AccountingInTrustDao {
 	public List<AcitJVIntOverdueAcctsMS> retrieveAcitJVIntOverdAcctsMS(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVAdjInwPolBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVOverdueAccts(final HashMap<String, Object> params) throws SQLException;
-
+	public List<AcitJVPremResReleased> retrieveAcitJVPremResRel(final HashMap<String, Object> params) throws SQLException;
+	
 }
