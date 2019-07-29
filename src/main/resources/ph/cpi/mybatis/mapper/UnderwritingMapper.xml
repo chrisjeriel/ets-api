@@ -2267,6 +2267,9 @@
 		<result property="retTwoPremAmt" 	column="RET2_PREM_AMT" />
 		<result property="totalTsiAmt" 		column="TOTAL_TSI_AMT" />
 		<result property="totalPremAmt" 	column="TOTAL_PREM_AMT" />
+		<result property="secIIInputLimit"		column="RET_INPUT_LIMIT" />
+		<result property="cuurCd"		column="CURR_CD" />
+		
 		<association property="distRiskWtreaty" 	resultMap="retRiskWtreaty"/>
 	</resultMap>
 	

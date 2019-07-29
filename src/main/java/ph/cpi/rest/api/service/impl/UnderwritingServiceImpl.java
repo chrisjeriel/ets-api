@@ -1257,6 +1257,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId",ppr.getPolicyId());
 		params.put("updateUser",ppr.getUpdateUser());
+		
 		try{
 			pprResponse.setReturnCode(underwritingDao.postPolicy(params));
 		}catch(Exception ex){
@@ -1264,6 +1265,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			pprResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
+		logger.info("postPolicy : " + pprResponse.toString());
 		return pprResponse;
 	}
 
@@ -1627,10 +1629,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			drrResponse.setReturnCode(underwritingDao.distributeRiskDist(params));
 		}catch (Exception ex){
+			
 			drrResponse.setReturnCode(0);
 			drrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
+		logger.info(drrResponse.toString());
 		return drrResponse;
 	}
 

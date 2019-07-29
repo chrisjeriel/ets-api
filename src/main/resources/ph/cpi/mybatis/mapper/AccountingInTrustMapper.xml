@@ -172,6 +172,7 @@
 		<result property="createDate" column="CMDM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" column="CMDM_UPDATE_USER"/>
 		<result property="updateDate" column="CMDM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="unbalAcctEntryTag" column="UNBAL_ACCT_ENTRY_TAG" />
 	</resultMap>
 	
 	<update id="saveAcitCMDM" parameterType="java.util.Map"  statementType="CALLABLE">

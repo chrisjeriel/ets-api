@@ -32,6 +32,7 @@ public class AcitCMDM {
 	private String updateUser;
 	private DateTime updateDate;
 	private String status;
+	private String unbalAcctEntryTag;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -194,6 +195,12 @@ public class AcitCMDM {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getUnbalAcctEntryTag() {
+		return unbalAcctEntryTag;
+	}
+	public void setUnbalAcctEntryTag(String unbalAcctEntryTag) {
+		this.unbalAcctEntryTag = unbalAcctEntryTag;
+	}
 	@Override
 	public String toString() {
 		return "AcitCMDM [tranId=" + tranId + ", memoType=" + memoType + ", memoTranType=" + memoTranType
@@ -203,6 +210,7 @@ public class AcitCMDM {
 				+ refNoTranId + ", refNoDate=" + refNoDate + ", payeeNo=" + payeeNo + ", payee=" + payee
 				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", cmdmAmt="
 				+ cmdmAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", status=" + status + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", status=" + status
+				+ ", unbalAcctEntryTag=" + unbalAcctEntryTag + "]";
 	}
 }
