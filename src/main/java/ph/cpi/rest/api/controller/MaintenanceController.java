@@ -917,4 +917,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
 		return maintenanceService.retrieveMtnBookingMonth(rbmr);
 	}
+	
+	@GetMapping(path="retrieveMtnInvtSecType")
+	public @ResponseBody RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnInvtSecType");
+		logger.info("RetrieveMtnInvtSecurityTypeRequest : " + rist.toString());
+		return maintenanceService.retrieveMtnInvtSecurityType(rist);
+	}
 }

@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
+import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
@@ -196,5 +197,6 @@ public interface MaintenanceDao {
 	public List<DCBUser> retrieveMtnDCBUser(final HashMap<String, Object> params) throws SQLException;
 	public List<Payee> retrieveMtnPayee(final HashMap<String, Object> params) throws SQLException;
 	public List<BookingMonth> retrieveMtnBookingMonth(final HashMap<String, Object> params) throws SQLException;
+	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
 }
 

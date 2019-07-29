@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
+import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
@@ -964,5 +965,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public List<BookingMonth> retrieveMtnBookingMonth(HashMap<String, Object> params) throws SQLException {
 		List<BookingMonth> bookingMthList = sqlSession.selectList("retrieveMtnBookingMonth", params);
 		return bookingMthList;
+	}
+
+	@Override
+	public List<InvtSecurityType> retrieveMtnInvtSecurityType(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<InvtSecurityType> invtSecTypeList = sqlSession.selectList("retrieveMtnInvtSecType", params);
+		return invtSecTypeList;
 	}
 }

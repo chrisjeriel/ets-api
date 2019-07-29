@@ -29,7 +29,14 @@ public class AcitInvestments {
 	private DateTime 	createDate;
 	private String 		updateUser;
 	private DateTime 	updateDate;
+	private String		okDelete;	
 	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public Integer getInvtId() {
 		return invtId;
 	}
@@ -177,7 +184,7 @@ public class AcitInvestments {
 				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
 				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 	
 
