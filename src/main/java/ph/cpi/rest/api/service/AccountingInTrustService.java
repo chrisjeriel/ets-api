@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
@@ -35,6 +36,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
@@ -61,4 +63,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitPrqTransResponse retrieveAcitPrqTrans(RetrieveAcitPrqTransRequest raptp ) throws SQLException;
 	public RetrieveAcitJVIntOverdAcctMSResponse retrieveAcitJVIntOverdue (RetrieveAcitJVIntOverdAcctMSRequest rajvo) throws SQLException;
 	public SaveAcitJVAdjInwPolBalResponse saveAcitJvInwPolBal (SaveAcitJVAdjInwPolBalRequest request)throws SQLException;
+	public SaveAcitJVIntOverdAcctMSResponse saveAcitJvOverdueAccts (SaveAcitJVIntOverdAcctMSRequest request)throws SQLException;
+
 }

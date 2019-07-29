@@ -6,7 +6,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveAcitJVAdjInwPolBalResponse {
+public class SaveAcitJVIntOverdAcctMSResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
@@ -33,7 +33,7 @@ public class SaveAcitJVAdjInwPolBalResponse {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVIntOverdAcctResponse [errorList=" + errorList + ", messageList=" + messageList
+		return "SaveAcitJVIntOverdAcctMSResponse [errorList=" + errorList + ", messageList=" + messageList
 				+ ", returnCode=" + returnCode + "]";
 	}
 }

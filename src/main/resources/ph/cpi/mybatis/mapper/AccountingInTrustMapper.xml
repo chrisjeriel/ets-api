@@ -329,6 +329,7 @@
 		<result property="tranTypeName" column="TRAN_TYPE"/>
 		<result property="autoTag" column="AUTO_TAG"/>
 		<result property="refnoTranId" column="REFNO_TRAN_ID"/>
+		<result property="refNo" column="REFNO"/>
 		<result property="refnoDate" column="REFNO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="particulars" column="PARTICULARS"/>
 		<result property="currCd" column="CURR_CD"/>
@@ -456,7 +457,7 @@
 												  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{tranIdJv,jdbcType=VARCHAR}, #{jvYear,jdbcType=VARCHAR},
 												  #{jvNo,jdbcType=VARCHAR}, CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{jvStatus}, #{jvTranTypeCd}, 
-												  #{autoTag}, #{refnoTranId,jdbcType=VARCHAR}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{autoTag}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 												  #{particulars}, #{currCd}, #{currRate}, #{jvAmt}, #{localAmt}, #{allocTag,jdbcType=VARCHAR}, #{allocTranId,jdbcType=VARCHAR}, 
 												  #{preparedBy,jdbcType=VARCHAR}, 
 												  CAST(to_timestamp(#{preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{approvedBy,jdbcType=VARCHAR}, 
@@ -516,6 +517,29 @@
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{save.policyId},#{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, 
+															  #{save.charges}, #{save.netDue}, #{save.adjBalAmt});
+			</foreach>
+			
+			
+		END;
+	</update>
+	
+	<update id="saveAcitJVOverdueAccts" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="deleteOverdueAccts" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_ioams(#{delete.tranId}, #{delete.itemNo});
+			</foreach>
+			
+			<foreach collection="saveOverdueAccts" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_ioams(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId},
+														 #{save.instNo}, CAST(to_timestamp(#{save.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.daysOverdue}, #{save.autoTag}, #{save.currCd}, #{save.currRate}, 
+														 #{save.premAmt}, #{save.overdueInt}, #{save.createUser},
+													     CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
 		END;
 	</update>

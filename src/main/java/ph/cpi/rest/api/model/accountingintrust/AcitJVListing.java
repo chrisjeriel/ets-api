@@ -16,6 +16,7 @@ public class AcitJVListing {
 	private String tranTypeName;
 	private String autoTag;
 	private Integer refnoTranId;
+	private String refNo;
 	private DateTime refnoDate;
 	private String particulars;
 	private String currCd;
@@ -95,6 +96,12 @@ public class AcitJVListing {
 	}
 	public void setRefnoTranId(Integer refnoTranId) {
 		this.refnoTranId = refnoTranId;
+	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
 	}
 	public DateTime getRefnoDate() {
 		return refnoDate;
@@ -201,13 +208,15 @@ public class AcitJVListing {
 	@Override
 	public String toString() {
 		return "AcitJVListing [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate
-				+ ", jvStatus=" + jvStatus + ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName
-				+ ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId + ", refnoDate=" + refnoDate
-				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt
-				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", preparedBy="
-				+ preparedBy + ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedDate="
-				+ approvedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", inwPolBal=" + inwPolBal + "]";
+				+ ", jvStatus=" + jvStatus + ", jvStatusName=" + jvStatusName + ", tranTypeCd=" + tranTypeCd
+				+ ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId
+				+ ", refNo=" + refNo + ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt + ", localAmt=" + localAmt + ", allocTag="
+				+ allocTag + ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedDate="
+				+ preparedDate + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", inwPolBal=" + inwPolBal + "]";
 	}
+	
 	
 }

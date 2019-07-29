@@ -15,6 +15,7 @@ public class AcitJVEntry {
 	private String tranTypeName;
 	private String autoTag;
 	private Integer refnoTranId;
+	private String refNo;
 	private DateTime refnoDate;
 	private String particulars;
 	private String currCd;
@@ -88,6 +89,13 @@ public class AcitJVEntry {
 	}
 	public Integer getRefnoTranId() {
 		return refnoTranId;
+	}
+	
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
 	}
 	public void setRefnoTranId(Integer refnoTranId) {
 		this.refnoTranId = refnoTranId;

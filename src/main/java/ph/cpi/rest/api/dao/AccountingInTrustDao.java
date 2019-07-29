@@ -33,4 +33,6 @@ public interface AccountingInTrustDao {
 	public List<AcitPrqTrans> retrieveAcitPrqTrans(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVIntOverdueAcctsMS> retrieveAcitJVIntOverdAcctsMS(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVAdjInwPolBal(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVOverdueAccts(final HashMap<String, Object> params) throws SQLException;
+
 }
