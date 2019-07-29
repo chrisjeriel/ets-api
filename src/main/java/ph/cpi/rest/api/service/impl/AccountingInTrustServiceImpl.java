@@ -128,6 +128,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			
 			saprResponse.setReturnCode((Integer) response.get("errorCode"));
 			saprResponse.setPaytReqNo((String) response.get("paytReqNo"));
+			saprResponse.setReqIdOut((Integer) response.get("reqId"));
 		} catch (SQLException sqlex) {
 			saprResponse.setReturnCode(0);
 			saprResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));

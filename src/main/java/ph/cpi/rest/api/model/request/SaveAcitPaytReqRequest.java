@@ -1,7 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 public class SaveAcitPaytReqRequest {
-	private String reqId;
+	private Integer reqId;
 	private String reqPrefix;
 	private String reqYear;
 	private String reqMm;
@@ -25,10 +25,10 @@ public class SaveAcitPaytReqRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	public String getReqId() {
+	public Integer getReqId() {
 		return reqId;
 	}
-	public void setReqId(String reqId) {
+	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
 	public String getReqPrefix() {

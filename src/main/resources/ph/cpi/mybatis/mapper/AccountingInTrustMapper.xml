@@ -112,7 +112,7 @@
 		BEGIN
 			ACIT_PAYMENT_REQUEST_PKG.save_payt_req(
 				#{paytReqNo,mode=OUT,jdbcType=VARCHAR},
-				#{reqId, jdbcType=INTEGER},
+				#{reqId,mode=INOUT, jdbcType=INTEGER},
 				#{reqPrefix, jdbcType=VARCHAR},
 				#{reqYear, jdbcType=VARCHAR},
 				#{reqMm, jdbcType=INTEGER},
