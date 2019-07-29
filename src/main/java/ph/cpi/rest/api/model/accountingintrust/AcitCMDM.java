@@ -13,6 +13,7 @@ public class AcitCMDM {
 	private Integer memoSeqNo;
 	private Integer tranTypeCd;
 	private String tranTypeName;
+	private String groupTag;
 	private String autoTag;
 	private DateTime memoDate;
 	private String memoStatus;
@@ -31,6 +32,7 @@ public class AcitCMDM {
 	private String updateUser;
 	private DateTime updateDate;
 	private String status;
+	private String unbalAcctEntryTag;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -79,6 +81,12 @@ public class AcitCMDM {
 	public void setTranTypeName(String tranTypeName) {
 		this.tranTypeName = tranTypeName;
 	}
+	public String getGroupTag() {
+		return groupTag;
+	}
+	public void setGroupTag(String groupTag) {
+		this.groupTag = groupTag;
+	}
 	public String getAutoTag() {
 		return autoTag;
 	}
@@ -96,6 +104,12 @@ public class AcitCMDM {
 	}
 	public void setMemoStatus(String memoStatus) {
 		this.memoStatus = memoStatus;
+	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
 	}
 	public Integer getRefNoTranId() {
 		return refNoTranId;
@@ -175,27 +189,28 @@ public class AcitCMDM {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public String getRefNo() {
-		return refNo;
-	}
-	public void setRefNo(String refNo) {
-		this.refNo = refNo;
-	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getUnbalAcctEntryTag() {
+		return unbalAcctEntryTag;
+	}
+	public void setUnbalAcctEntryTag(String unbalAcctEntryTag) {
+		this.unbalAcctEntryTag = unbalAcctEntryTag;
+	}
 	@Override
 	public String toString() {
 		return "AcitCMDM [tranId=" + tranId + ", memoType=" + memoType + ", memoTranType=" + memoTranType
 				+ ", memoYear=" + memoYear + ", memoMm=" + memoMm + ", memoSeqNo=" + memoSeqNo + ", tranTypeCd="
-				+ tranTypeCd + ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", memoDate=" + memoDate
-				+ ", memoStatus=" + memoStatus + ", refNo=" + refNo + ", refNoTranId=" + refNoTranId + ", refNoDate="
-				+ refNoDate + ", payeeNo=" + payeeNo + ", payee=" + payee + ", particulars=" + particulars + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", cmdmAmt=" + cmdmAmt + ", localAmt=" + localAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", status=" + status + "]";
+				+ tranTypeCd + ", tranTypeName=" + tranTypeName + ", groupTag=" + groupTag + ", autoTag=" + autoTag
+				+ ", memoDate=" + memoDate + ", memoStatus=" + memoStatus + ", refNo=" + refNo + ", refNoTranId="
+				+ refNoTranId + ", refNoDate=" + refNoDate + ", payeeNo=" + payeeNo + ", payee=" + payee
+				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", cmdmAmt="
+				+ cmdmAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", status=" + status
+				+ ", unbalAcctEntryTag=" + unbalAcctEntryTag + "]";
 	}
 }

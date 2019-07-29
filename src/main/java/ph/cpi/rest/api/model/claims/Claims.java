@@ -77,7 +77,7 @@ public class Claims {
 	private String polTermTag;
 	private String remarks;
 	private String approvedBy;
-	private String approvedDate;
+	private DateTime approvedDate;
 	private String secISiTag;
 	private String secIISiTag;
 	private String secIIISiTag;
@@ -518,10 +518,10 @@ public class Claims {
 	public void setApprovedBy(String approvedBy) {
 		this.approvedBy = approvedBy;
 	}
-	public String getApprovedDate() {
+	public DateTime getApprovedDate() {
 		return approvedDate;
 	}
-	public void setApprovedDate(String approvedDate) {
+	public void setApprovedDate(DateTime approvedDate) {
 		this.approvedDate = approvedDate;
 	}
 	public String getSecISiTag() {
