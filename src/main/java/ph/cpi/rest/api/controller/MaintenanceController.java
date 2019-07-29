@@ -882,6 +882,27 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBankAcctRequest : " + rmbar.toString());
 		return maintenanceService.retrieveMtnBankAcct(rmbar);
 	}
+
+	@GetMapping(path="retrieveMtnAcitDCBNo")
+	public @ResponseBody RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitDCBNo");
+		logger.info("RetrieveMtnAcitDCBNoRequest : " + rmaidcbr.toString());
+		return maintenanceService.retrieveMtnAcitDCBNo(rmaidcbr);
+	}
+	
+	@PostMapping(path="saveMtnAcitDCBNo")
+	public @ResponseBody SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(@RequestBody SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAcitDCBNo");
+		logger.info("SaveMtnAcitDCBNoRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnAcitDCBNo(smaidcbr);
+	}
+	
+	@GetMapping(path="retrieveMtnDCBUser")
+	public @ResponseBody RetrieveMtnDCBUserResponse retrieveMtnDCBUser(RetrieveMtnDCBUserRequest rmdur) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnDCBUser");
+		logger.info("RetrieveMtnDCBUserRequest : " + rmdur.toString());
+		return maintenanceService.retrieveMtnDCBUser(rmdur);
+	}
 	
 	@GetMapping(path="retrieveMtnPayee")
 	public @ResponseBody RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
@@ -916,5 +937,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnSL");
 		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
 		return maintenanceService.retrieveMtnSL(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnInvtSecType")
+	public @ResponseBody RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnInvtSecType");
+		logger.info("RetrieveMtnInvtSecurityTypeRequest : " + rist.toString());
+		return maintenanceService.retrieveMtnInvtSecurityType(rist);
 	}
 }
