@@ -15,12 +15,15 @@ public class Region {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	private Province province;
 	
-	
-	
-	
-	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	
 	public Integer getRegionCd() {
 		return regionCd;
@@ -86,8 +89,8 @@ public class Region {
 	public String toString() {
 		return "Region [regionCd=" + regionCd + ", regionDesc=" + regionDesc + ", provinceList=" + provinceList
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", province=" + province
-				+ "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ ", province=" + province + "]";
 	}
 	
 	

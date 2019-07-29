@@ -18,11 +18,12 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
-import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
+import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -79,7 +80,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		AcknowledgementReceipt res = sqlSession.selectOne("retArEntry", params);
 		return res;
 	}
-
+	
+	@Override
 	public List<AcitTransactions> retrieveAcitJVListings(HashMap<String, Object> params) throws SQLException {
 		List<AcitTransactions> acitJVList  = sqlSession.selectList("retrieveAcitJvList", params);
 		return acitJVList;
@@ -159,5 +161,19 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer saveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("saveAcitAcctEntries",params);
 		return code;
+	}
+	
+	@Override
+	public List<AcitProfCommSumm> retrieveProfCommSumm(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommSumm", params);
+		return acitProfCommSummList;
+	}
+
+	@Override
+	public List<AcitProfCommDtl> retrieveProfCommDtl(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
+		return acitProfCommDtlList;
 	}
 }

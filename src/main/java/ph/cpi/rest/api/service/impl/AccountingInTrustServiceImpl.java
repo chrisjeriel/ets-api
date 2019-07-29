@@ -27,6 +27,8 @@ import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
@@ -50,6 +52,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
@@ -363,6 +367,22 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setSoaDetails(acctITDao.retrieveAcitSOAAging(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
+		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
+		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
+		rapcsrParams.put("cedingId", rapcsr.getCedingId());
+		rapcsrParams.put("month", rapcsr.getMonth());
+		rapcsrParams.put("year", rapcsr.getYear());
+		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
+		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
+		return rapcsrResponse;
+	}
 
 
 	@Override
@@ -481,5 +501,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
+		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
+		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
+		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
+		return rapcdrResponse;
 	}
 }

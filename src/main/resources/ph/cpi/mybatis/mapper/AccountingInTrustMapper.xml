@@ -594,4 +594,50 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm" id="acitProfCommSumm">
+		<result property="profCommId" 					column="PROFCOMM_ID"/>
+		<result property="cedingId" 					column="CEDING_ID"/>
+		<result property="cedingName" 					column="CEDING_NAME"/>
+		<result property="cedingAbbr" 					column="CEDING_ABBR"/>
+		<result property="month" 						column="PROFCOMM_MM"/>
+		<result property="year" 						column="PROFCOMM_YEAR"/>
+		<result property="profitLossAmt" 				column="PROFIT_LOSS_AMT"/>
+		<result property="totIncome" 					column="TOTAL_INCOME"/>
+		<result property="totOutgo" 					column="TOTAL_OUTGO"/>
+		<result property="lossCarry" 					column="LOSS_CARRY"/>
+		<result property="createUser" 					column="CREATE_USER"/>
+		<result property="createDate" 					column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 					column="UPDATE_USER"/>
+		<result property="updateDate" 					column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl" id="acitProfCommDtl">
+		<result property="profCommId" 					column="PROFCOMM_ID"/>
+		<result property="itemNo" 						column="ITEM_NO"/>
+		<result property="particulars" 					column="PARTICULARS"/>
+		<result property="actualAmt" 					column="ACTUAL_AMT"/>
+		<result property="natcatAmt" 					column="NATCAT_AMT"/>
+		<result property="income" 						column="INCOME"/>
+		<result property="outgo" 						column="OUTGO"/>
+		<result property="createUser" 					column="CREATE_USER"/>
+		<result property="createDate" 					column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 					column="UPDATE_USER"/>
+		<result property="updateDate" 					column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveProfCommSumm" resultMap="acitProfCommSumm" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_profcomm_summ(
+					#{profcommId,jdbcType=INTEGER},
+					#{cedingId, jdbcType=VARCHAR},
+					#{month, jdbcType=VARCHAR},
+					#{year, jdbcType=VARCHAR},
+					'', '', '',''))
+	</select>
+	
+	<select id="retrieveProfCommDtl" resultMap="acitProfCommDtl" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_profcomm_dtl(
+					#{profcommId,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
 </mapper>

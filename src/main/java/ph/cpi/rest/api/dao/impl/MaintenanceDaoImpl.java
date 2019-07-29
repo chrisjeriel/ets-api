@@ -872,13 +872,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer res = sqlSession.update("copyPoolRetHist", params);
 		return res;
 	}
-
 	@Override
 	public List<MtnLossCd> retrieveMtnLossCdLov(HashMap<String, Object> params) throws SQLException {
 		List<MtnLossCd> list = sqlSession.selectList("retrieveMtnLossCdLov", params);
 		return list;
 	}
-
 	@Override
 	public List<MtnClmCashCall> retrieveMtnCashCall(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
