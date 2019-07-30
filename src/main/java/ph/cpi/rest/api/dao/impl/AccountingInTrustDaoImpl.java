@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
+import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
@@ -150,5 +152,30 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitSOAAgingDetails> retrieveAgingSoaDtl(HashMap<String, Object> params) throws SQLException {
 		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveAcitAgingSoaDtl", params);
 		return res;
+	}
+
+	@Override
+	public Integer saveArInwPolBal(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveArInwPolBal", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitArInwPolBal> retrieveAcitArInwPolBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitArInwPolBal> res = sqlSession.selectList("retrieveArInwPolBal", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitArTransDtl> retrieveAcitArTransDtl(HashMap<String, Object> params) throws SQLException {
+		List<AcitArTransDtl> res = sqlSession.selectList("retrieveArTransDtl", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveArTransDtl(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveArTransDtl", params);
+		params.put("errorCode", res);
+		return params;
 	}
 }

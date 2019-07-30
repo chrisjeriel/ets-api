@@ -16,7 +16,9 @@ import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
@@ -24,6 +26,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
@@ -34,7 +38,9 @@ import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
@@ -45,6 +51,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -510,6 +518,85 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId", raasdr.getCedingId());
 		params.put("payeeNo", raasdr.getPayeeNo());
 		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
+		return response;
+	}
+	
+	@Override
+	public SaveAcitArInwPolBalResponse saveArInwPolBal(SaveAcitArInwPolBalRequest saipbr) throws SQLException {
+		SaveAcitArInwPolBalResponse response = new SaveAcitArInwPolBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saipbr.getTranId());
+		params.put("billId", saipbr.getBillId());
+		params.put("billType", saipbr.getBillType());
+		params.put("totalLocalAmt", saipbr.getTotalLocalAmt());
+		params.put("createUser", saipbr.getCreateUser());
+		params.put("createDate", saipbr.getCreateDate());
+		params.put("updateUser", saipbr.getUpdateUser());
+		params.put("updateDate", saipbr.getUpdateDate());
+		params.put("saveInwPolBal", saipbr.getSaveInwPolBal());
+		params.put("delInwPolBal", saipbr.getDelInwPolBal());
+		try{
+			response.setReturnCode(acctITDao.saveArInwPolBal(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArInwPolBalResponse retrieveArInwPolBal(RetrieveAcitArInwPolBalRequest raaipbr)
+			throws SQLException {
+		RetrieveAcitArInwPolBalResponse response = new RetrieveAcitArInwPolBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaipbr.getTranId());
+		params.put("billId", raaipbr.getBillId());
+		response.setArInwPolBal(acctITDao.retrieveAcitArInwPolBal(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArTransDtlResponse retrieveARTransDtl(RetrieveAcitArTransDtlRequest raatdr) throws SQLException {
+		RetrieveAcitArTransDtlResponse response = new RetrieveAcitArTransDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raatdr.getTranId());
+		params.put("billId", raatdr.getBillId());
+		response.setTransDtlList(acctITDao.retrieveAcitArTransDtl(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArTransDtlResponse saveAcitArTransDtl(SaveAcitArTransDtlRequest saatdr) throws SQLException {
+		SaveAcitArTransDtlResponse response = new SaveAcitArTransDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saatdr.getTranId());
+		params.put("billId", saatdr.getBillId());
+		params.put("billType", saatdr.getBillType());
+		params.put("totalLocalAmt", saatdr.getTotalLocalAmt());
+		params.put("createUser", saatdr.getCreateUser());
+		params.put("createDate", saatdr.getCreateDate());
+		params.put("updateUser", saatdr.getUpdateUser());
+		params.put("updateDate", saatdr.getUpdateDate());
+		params.put("saveTransDtl", saatdr.getSaveTransDtl());
+		params.put("delTransDtl", saatdr.getDelTransDtl());
+		try{
+			HashMap<String, Object> res = acctITDao.saveArTransDtl(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
 		return response;
 	}
 }
