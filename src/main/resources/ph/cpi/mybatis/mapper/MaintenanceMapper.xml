@@ -3552,4 +3552,16 @@
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PrintableNames" id="printableMap">
+     	<result property="employeeId" column="EMPLOYEE_ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userGrp" column="USER_GRP"/>
+		<result property="printableName" column="PRINTABLE_NAME"/>
+		<result property="designation" column="DESIGNATION"/>
+     </resultMap>
+     
+     <select id="retrieveMtnPrintable" resultMap="printableMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null))
+	</select>
+	
 </mapper>

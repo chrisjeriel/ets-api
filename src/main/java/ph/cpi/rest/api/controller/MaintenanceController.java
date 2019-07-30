@@ -920,4 +920,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
 		return maintenanceService.retrieveMtnSL(rbmr);
 	}
+	
+	@GetMapping(path="retrieveMtnPrintableName")
+	public @ResponseBody RetrieveMtnPrintableNamesResponse retrieveMtnPrintable(RetrieveMtnPrintableNamesRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPrintableName");
+		logger.info("RetrieveMtnPrintableNamesRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnPrintableNames(rbmr);
+	}
 }
