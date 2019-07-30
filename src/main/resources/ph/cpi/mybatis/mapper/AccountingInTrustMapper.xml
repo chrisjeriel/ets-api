@@ -718,4 +718,12 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="cancelJV" parameterType="java.util.Map">
+		BEGIN
+			ACIT_JOURNAL_VOUCHER_PKG.cancel_jv(#{tranId},#{jvYear},#{jvNo},#{updateUser},
+											   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) );
+					
+		END;
+	</update>
 </mapper>
