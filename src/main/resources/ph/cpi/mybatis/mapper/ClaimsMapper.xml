@@ -111,8 +111,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-<!-- 		<result property="adjRate"		column="ADJ_RATE"/>
- -->		
+		<result property="insuredDesc"	column="INSURED_DESC"/>	
  		<result property="val1"			column="VAL1"/>
 		<result property="val2"			column="VAL2"/>
 		<result property="val3"			column="VAL3"/>
