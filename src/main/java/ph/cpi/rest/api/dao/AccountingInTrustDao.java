@@ -47,4 +47,6 @@ public interface AccountingInTrustDao {
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOA> retrieveQSOAList(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVPremResRel(final HashMap<String, Object> params) throws SQLException;
+	
 }

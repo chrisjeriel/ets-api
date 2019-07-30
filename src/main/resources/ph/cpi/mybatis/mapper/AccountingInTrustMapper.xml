@@ -692,4 +692,30 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveAcitJVPremResRel" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="deletePremResRel" item="del">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_prr(#{del.tranId},
+					#{del.itemNo});
+			</foreach>
+			
+			<foreach collection="savePremResRel" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_prr(
+					#{save.tranId},
+					#{save.itemNo,jdbcType=INTEGER},
+					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.currCd},
+					#{save.currRate},
+					#{save.interestAmt},
+					#{save.whtaxAmt},
+					#{save.releaseAmt},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
 </mapper>

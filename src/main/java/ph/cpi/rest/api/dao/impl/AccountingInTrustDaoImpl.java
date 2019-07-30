@@ -189,4 +189,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer code = sqlSession.update("saveAcitAcctEntries",params);
 		return code;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVPremResRel(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVPremResRel",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
