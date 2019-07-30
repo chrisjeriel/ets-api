@@ -29,6 +29,7 @@ public interface AccountingInTrustDao {
 	public List<AcknowledgementReceipt> retrieveArList(final HashMap<String, Object> params) throws SQLException;
 	public AcknowledgementReceipt retrieveArEntry(final HashMap<String, Object> params) throws SQLException;
 	public AcitTransactions retrieveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitArTrans(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVEntry(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAcitSOAAging(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAdjstInwPolBal> retrieveAcitJVAdjstInwPolBal(final HashMap<String, Object> params) throws SQLException;
@@ -38,4 +39,6 @@ public interface AccountingInTrustDao {
 	public Integer cancelCMDM(final HashMap<String, Object> params) throws SQLException;
 	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
+	public Integer cancelAr(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveAgingSoaDtl(final HashMap<String, Object> params) throws SQLException;
 }

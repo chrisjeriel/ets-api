@@ -6,7 +6,10 @@ import org.joda.time.DateTime;
 
 public class AcitSOAAgingDetails {
 	private Integer policyId;
-	private Integer cedingId;
+	private String cedingId;
+	private String refCd;
+	private Integer payeeNo;
+	private String payeeName;
 	private String policyNo;
 	private String soaNo;
 	private String coRefNo;
@@ -38,11 +41,29 @@ public class AcitSOAAgingDetails {
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
+	}
+	public String getRefCd() {
+		return refCd;
+	}
+	public void setRefCd(String refCd) {
+		this.refCd = refCd;
+	}
+	public Integer getPayeeNo() {
+		return payeeNo;
+	}
+	public void setPayeeNo(Integer payeeNo) {
+		this.payeeNo = payeeNo;
+	}
+	public String getPayeeName() {
+		return payeeName;
+	}
+	public void setPayeeName(String payeeName) {
+		this.payeeName = payeeName;
 	}
 	public String getPolicyNo() {
 		return policyNo;

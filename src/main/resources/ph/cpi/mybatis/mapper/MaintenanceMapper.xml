@@ -1539,12 +1539,13 @@
     		
     		#{outCedingId, mode=OUT, jdbcType=VARCHAR} := v_ceding_id;
     		
-   			<foreach collection="delCedingRepList" item="del">
+   			<!-- <foreach collection="delCedingRepList" item="del">
     			MTN_CED_REP_PKG.del_mtn_ced_rep(
     								v_ceding_id,
     								#{del.cedingRepId}
     						);
     		</foreach>
+    		
     		<foreach collection="saveCedingRepList" item="save">
 		    		MTN_CED_REP_PKG.save_mtn_ced_rep(
 		    							#{uploadDate, mode=OUT, jdbcType=VARCHAR},
@@ -1565,7 +1566,7 @@
 			    						#{updateUser},
 			    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    		            );
-    		</foreach>
+    		</foreach> -->
     	END;
     </update>
 
@@ -3414,7 +3415,8 @@
 	</select>
     
     <select id="retMtnBank" resultMap="bankMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_BANK_PKG.ret_mtn_bank(#{officialName, jdbcType=VARCHAR},
+		SELECT * FROM TABLE(MTN_BANK_PKG.ret_mtn_bank(#{bankCd, jdbcType=VARCHAR},
+													  #{officialName, jdbcType=VARCHAR},
 													  #{activeTag, jdbcType=VARCHAR},
 													  '','','',''))
 	</select>
@@ -3430,8 +3432,8 @@
 		<result property="accountType"		column="ACCOUNT_TYPE" />
 		<result property="openDate"			column="OPEN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="closeDate"		column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="defaultAcitGl"	column="DEFAULT_ACIT_GL" />
-		<result property="defaultAcseGl"	column="DEFAULT_ACSE_GL" />
+		<result property="acItGlDepNo"		column="ACIT_GL_DEP_NO" />
+		<result property="acSeGlDepNo"	    column="ACSE_GL_DEP_NO" />
 		<result property="remarks"			column="REMARKS" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -3441,10 +3443,85 @@
 	
 	<select id="retMtnBankAcct" resultMap="bankAcctMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_BANK_ACCT_PKG.ret_mtn_bank_acct(#{bankCd, jdbcType=VARCHAR},
+																#{bankAcctCd, jdbcType=VARCHAR},
 													  			#{accountNo, jdbcType=VARCHAR},
 													  			'','','',''))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitDCBNo" id="dcbNoMap">
+		<result property="dcbYear"		column="DCB_YEAR" />
+		<result property="dcbNo"		column="DCB_NO" />
+		<result property="dcbDate"		column="DCB_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dcbStatus"	column="DCB_STATUS" />
+		<result property="remarks"		column="REMARKS" />
+		<result property="autoTag"		column="AUTO_TAG" />
+		<result property="createUser"	column="CREATE_USER" />
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER" />
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_ACIT_DCB_NO_PKG.ret_mtn_acit_dcb_no(#{dcbYear, jdbcType=VARCHAR},
+													  				#{dcbNo, jdbcType=VARCHAR},
+													  				CAST(to_timestamp(#{dcbDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  				#{dcbStatus, jdbcType=VARCHAR},
+													  				'','','',''))
+	</select>
+	
+	<update id="saveMtnAcitDCBNo" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delDCBNo" item="del">
+				MTN_ACIT_DCB_NO_PKG.del_mtn_acit_dcb_no(
+															#{del.dcbYear},
+															#{del.dcbNo},
+				);
+			</foreach>
+			<foreach collection="saveDCBNo" item="save">
+				MTN_ACIT_DCB_NO_PKG.save_mtn_acit_dcb_no(
+															#{save.dcbYear},
+															#{save.dcbNo, jdbcType=VARCHAR},
+															CAST(to_timestamp(#{save.dcbDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{save.dcbStatus},
+															#{save.remarks, jdbcType=VARCHAR},
+															#{save.autoTag},
+															#{save.createUser},
+															CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{save.updateUser},
+															CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			DBMS_OUTPUT.PUT_LINE('Placeholder');
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.DCBUser" id="dcbUserMap">
+		<result property="dcbUserCd"				column="DCB_USER_CD" />
+		<result property="userId"					column="USER_ID" />
+		<result property="printableName"			column="PRINTABLE_NAME" />
+		<result property="validFrom"				column="VALID_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="validTo"					column="VALID_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="defaultArBank"			column="DEFAULT_AR_BANK" />
+		<result property="arBankName"				column="AR_BANK_NAME" />
+		<result property="defaultArBankAcct"		column="DEFAULT_AR_BANK_ACCT" />
+		<result property="arBankAcctNo"				column="AR_BANK_ACCT_NO" />
+		<result property="defaultOrBank"			column="DEFAULT_OR_BANK" />
+		<result property="orBankName"				column="OR_BANK_NAME" />
+		<result property="defaultOrBankAcct"		column="DEFAULT_OR_BANK_ACCT" />
+		<result property="orBankAcctNo"				column="OR_BANK_ACCT_NO" />
+		<result property="remarks"					column="REMARKS" />
+		<result property="activeTag"				column="ACTIVE_TAG" />
+		<result property="createUser"				column="CREATE_USER" />
+		<result property="createDate"				column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"				column="UPDATE_USER" />
+		<result property="updateDate"				column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+    
+    <select id="retMtnDCBUser" resultMap="dcbUserMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_DCB_USER_PKG.ret_mtn_dcb_user(#{userId, jdbcType=VARCHAR},
+													  		  '','','',''))
+	</select>
+
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Payee" id="payeeMap">
 		<result property="payeeNo"	column="PAYEE_NO"/>
 		<result property="payeeClassCd"	column="PAYEE_CLASS_CD"/>

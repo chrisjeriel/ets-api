@@ -259,13 +259,16 @@
 		<result property="dcbUserCd"     column="DCB_USER_CD"       />
 		<result property="dcbNo"         column="DCB_NO"            />
 		<result property="dcbBank"       column="DCB_BANK"          />
+		<result property="dcbBankName"   column="DCB_BANK_NAME"     />
 		<result property="dcbBankAcct"   column="DCB_BANK_ACCT"     />
+		<result property="dcbBankAcctNo" column="DCB_BANK_ACCT_NO"  />
 		<result property="refNo"         column="REF_NO"            />
 		<result property="tranTypeCd"    column="TRAN_TYPE_CD"      />
 		<result property="tranTypeName"  column="TRAN_TYPE_NAME"    />
 		<result property="prNo"          column="PR_NO"             />
 		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
+		<result property="payeeNo"       column="PAYEE_NO"          />
 		<result property="payor"         column="PAYOR"             />
 		<result property="mailAddress"   column="MAIL_ADDRESS"      />
 		<result property="bussTypeCd"    column="BUSS_TYPE_CD"      />
@@ -380,6 +383,9 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="soaAgingMap">
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="cedingId" column="CEDING_ID"/>
+		<result property="refCd" column="REF_CD"/>
+		<result property="payeeNo" column="PAYEE_NO"/>
+		<result property="payeeName" column="PAYEE_NAME"/>
 		<result property="policyNo" column="POLICY_NO"/>
 		<result property="soaNo" column="SOA_NO"/>
 		<result property="coRefNo" column="CO_REF_NO"/>
@@ -419,6 +425,84 @@
 					'', '', '',''))
 	</select>
 	
+	<update id="saveAcitArTrans" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_tran_id        ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+		BEGIN
+			ACIT_ACKGT_RECEIPT_PKG.save_acit_trans(
+													v_tran_id,
+													#{tranId},
+													CAST(to_timestamp(#{tranDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{tranClass},
+													#{tranTypeCd},
+													#{tranYear},
+													#{tranClassNo,jdbcType=VARCHAR},
+													#{tranStat},
+													CAST(to_timestamp(#{closeDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													CAST(to_timestamp(#{deleteDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													CAST(to_timestamp(#{postDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{createUser},
+													CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{updateUser},
+													CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												  );
+												  
+			#{outTranId, mode=OUT, jdbcType=VARCHAR} := v_tran_id;
+			
+			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
+				ACIT_ACKGT_RECEIPT_PKG.save_ar_info(
+														v_tran_id,
+														#{tranClassNo, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{tranDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{arStatus},
+														#{tranTypeCd},
+														#{dcbYear},
+														#{dcbNo},
+														#{dcbUserCd},
+														#{dcbBank, jdbcType=VARCHAR},
+														#{dcbBankAcct, jdbcType=VARCHAR},
+														#{refNo, jdbcType=VARCHAR},
+														#{prNo, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{prDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{prPreparedBy, jdbcType=VARCHAR},
+														#{payeeNo, jdbcType=VARCHAR},
+														#{payor},
+														#{particulars},
+														#{currCd},
+														#{currRate},
+														#{arAmt},
+														#{allocTag, jdbcType=VARCHAR},
+														#{allocTranId, jdbcType=VARCHAR},
+														#{createUser},
+														CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{updateUser},
+														CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													);
+				<foreach collection="delPaytDtl" item="del">
+					ACIT_AR_PAYTDTL_PKG.del_ar_paytdtl(
+														v_tran_id,
+														#{del.paytId}
+													  );
+				</foreach>
+				<foreach collection="savePaytDtl" item="save">
+					ACIT_AR_PAYTDTL_PKG.save_ar_paytdtl(
+														v_tran_id,
+														#{save.paytId, jdbcType=VARCHAR},
+														#{save.paytMode},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.paytAmt},
+														#{save.bank, jdbcType=VARCHAR},
+														#{save.bankAcct, jdbcType=VARCHAR},
+														#{save.checkNo, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{save.checkDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.checkClass, jdbcType=VARCHAR}
+													  );
+				</foreach>
+			END IF;
+		END;
+	</update>
+
 	<update id="saveAcitJVEntry" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_tran_id	ACIT_TRANSACTIONS.TRAN_ID%TYPE;
@@ -541,4 +625,50 @@
 		SELECT * FROM TABLE(ACIT_ACCT_ENTRIES_PKG.ret_acit_acc_entries(#{tranId, jdbcType=VARCHAR},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
 	</select>
 	
+	<update id="cancelAr" parameterType="java.util.Map">
+		BEGIN
+			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="agingSoaDtlMap">
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="cedingId" 			column="CEDING_ID"/>
+		<result property="refCd" 				column="REF_CD"/>
+		<result property="payeeNo" 				column="PAYEE_NO"/>
+		<result property="payeeName" 			column="PAYEE_NAME"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="soaNo" 				column="SOA_NO"/>
+		<result property="coRefNo" 				column="CO_REF_NO"/>
+		<result property="instNo" 				column="INST_NO"/>
+		<result property="currCd" 				column="CURR_CD"/>
+		<result property="currRate" 			column="CURR_RATE"/>
+		<result property="totalAmtDue" 			column="TOTAL_AMT_DUE"/>
+		<result property="totalPayments" 		column="TOTAL_PAYMENTS"/>
+		<result property="tempPayments" 		column="TEMP_PAYMENTS"/>
+		<result property="balAmtDue" 			column="BAL_AMT_DUE"/>
+		<result property="balPremDue" 			column="BAL_PREM_DUE"/>
+		<result property="balChargesDue" 		column="BAL_CHARGES_DUE"/>
+		<result property="balRiComm" 			column="BAL_RI_COMM"/>
+		<result property="balRiCommVat" 		column="BAL_RI_COMM_VAT"/>
+		<result property="balOverdueInt" 		column="BAL_OVERDUE_INT"/>
+		<result property="effDate" 				column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dueDate" 				column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="bookingDate" 			column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="agingId" 				column="AGING_ID"/>
+		<result property="netDue" 				column="NET_DUE"/>
+		<result property="balance" 				column="BALANCE"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitAgingSoaDtl" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl(
+																	#{policyId, jdbcType=VARCHAR},
+																	#{instNo,jdbcType=VARCHAR},
+																	#{cedingId,jdbcType=VARCHAR},
+																	#{payeeNo, jdbcType=VARCHAR}))
+	</select>
 </mapper>

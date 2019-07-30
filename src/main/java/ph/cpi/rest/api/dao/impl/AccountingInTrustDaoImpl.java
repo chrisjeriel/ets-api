@@ -78,7 +78,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		AcknowledgementReceipt res = sqlSession.selectOne("retArEntry", params);
 		return res;
 	}
-
+	
+	@Override
 	public List<AcitTransactions> retrieveAcitJVListings(HashMap<String, Object> params) throws SQLException {
 		List<AcitTransactions> acitJVList  = sqlSession.selectList("retrieveAcitJvList", params);
 		return acitJVList;
@@ -90,6 +91,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return acitJVEntry;
 	}
 
+	@Override
+	public HashMap<String, Object> saveAcitArTrans(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitArTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 
 	@Override
 	public HashMap<String, Object> saveAcitJVEntry(HashMap<String, Object> params) throws SQLException {
@@ -146,5 +153,17 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
 		List<AcitAcctEntries> list = sqlSession.selectList("retrieveAcitAcctEntries", params);
 		return list;
+	}
+
+	@Override
+	public Integer cancelAr(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("cancelAr", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveAgingSoaDtl(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveAcitAgingSoaDtl", params);
+		return res;
 	}
 }
