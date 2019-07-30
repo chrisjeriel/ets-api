@@ -49,5 +49,6 @@ public interface AccountingInTrustDao {
 	public Integer saveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVPremResRel(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> cancelJV(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> printJV(final HashMap<String, Object> params) throws SQLException;
 	
 }

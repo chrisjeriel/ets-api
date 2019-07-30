@@ -726,4 +726,12 @@
 					
 		END;
 	</update>
+	
+	<update id="printJV" parameterType="java.util.Map">
+		BEGIN
+			ACIT_JOURNAL_VOUCHER_PKG.print_jv(#{tranId},#{jvYear},#{jvNo},#{updateUser},
+											   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) );
+					
+		END;
+	</update>
 </mapper>

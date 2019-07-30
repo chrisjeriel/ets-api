@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.PrintJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
@@ -39,6 +40,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.PrintJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
@@ -580,6 +582,27 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("updateUser" , request.getUpdateUser());
 			params.put("updateDate" , request.getUpdateDate());
 			HashMap<String, Object> res = acctITDao.cancelJV(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public PrintJVResponse printJV(PrintJVRequest request) throws SQLException {
+		PrintJVResponse response = new PrintJVResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId" , request.getTranId());
+			params.put("jvYear" , request.getJvYear());
+			params.put("jvNo" , request.getJvNo());
+			params.put("updateUser" , request.getUpdateUser());
+			params.put("updateDate" , request.getUpdateDate());
+			HashMap<String, Object> res = acctITDao.printJV(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		} catch (SQLException sqlex) {
 			response.setReturnCode(0);

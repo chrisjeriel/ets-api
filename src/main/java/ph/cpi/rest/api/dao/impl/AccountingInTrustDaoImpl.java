@@ -203,4 +203,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> printJV(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("printJV",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
