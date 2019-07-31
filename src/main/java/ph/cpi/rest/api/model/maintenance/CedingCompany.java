@@ -32,6 +32,7 @@ public class CedingCompany {
 	private String updateUser;
 	private DateTime updateDate;
 	private List<CedingRepresentative> cedingRepresentative;
+	private List<CedingHist> cedingHistory;
 	
 	public String getCedingId() {
 		return cedingId;
@@ -195,7 +196,12 @@ public class CedingCompany {
 	public void setCedingRepresentative(List<CedingRepresentative> cedingRepresentative) {
 		this.cedingRepresentative = cedingRepresentative;
 	}
-	
+	public List<CedingHist> getCedingHistory() {
+		return cedingHistory;
+	}
+	public void setCedingHistory(List<CedingHist> cedingHistory) {
+		this.cedingHistory = cedingHistory;
+	}
 	@Override
 	public String toString() {
 		return "CedingCompany [cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr
@@ -206,6 +212,6 @@ public class CedingCompany {
 				+ membershipDate + ", withdrawDate=" + withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag="
 				+ treatyTag + ", withdrawTag=" + withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", cedingRepresentative=" + cedingRepresentative + "]";
+				+ ", cedingRepresentative=" + cedingRepresentative + ", cedingHistory=" + cedingHistory + "]";
 	}
 }
