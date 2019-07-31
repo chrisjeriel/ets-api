@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PoolDistribution;
+import ph.cpi.rest.api.model.underwriting.Warning;
 import ph.cpi.rest.api.model.underwriting.WriskLimit;
 import ph.cpi.rest.api.model.workflowmanager.Approval;
 
@@ -104,4 +105,6 @@ public interface UnderwritingDao {
 	
 	public List<DistCoIns> retrieveInProgCoins(final HashMap<String, Object> params ) throws SQLException;
 	public List<DistCoIns> retrieveMissingCoins(final HashMap<String, Object> params ) throws SQLException;
+	
+	public List<Warning> retrievePolDistWarning(final HashMap<String, Object> params) throws SQLException;
 }
