@@ -201,12 +201,17 @@
 		<result property="reportedBy"     	column="REPORTED_BY" />
 		<result property="lossAbbr"     	column="LOSS_ABBR" />
 		<result property="lossPeriod"     	column="LOSS_PERIOD" />
+		<result property="lossPdAbbr"     	column="LOSS_PD_ABBR" />
 		<result property="eventTypeDesc"    column="EVENT_TYPE_DESC" />
 		<result property="eventDesc"     	column="EVENT_DESC" />
 		<result property="remarks"     		column="REMARKS" />
 		<result property="secISiTag"     	column="SECI_SI_TAG" />
 		<result property="secIISiTag"     	column="SECII_SI_TAG" />
 		<result property="secIIISiTag"     	column="SECIII_SI_TAG" />
+		<result property="sectionIPrem"    	column="SECTION_I_PREM" />
+		<result property="sectionIIPrem"    column="SECTION_II_PREM" />
+		<result property="sectionIIIPrem"   column="SECTION_III_PREM" />
+		<result property="allowMaxSi"     	column="ALLOW_MAX_SI" />
 		<result property="createUser"     	column="CREATE_USER" />
 		<result property="createDate"     	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="UPDATE_USER" />
