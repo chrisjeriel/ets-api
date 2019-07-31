@@ -2195,7 +2195,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));
 			e.printStackTrace();
 		}
-		
+		return response;
+	}
+
+	@Override
+	public SaveMtnBankAcctResponse saveMtnBankAcct(SaveMtnBankAcctRequest smaidcbr) throws SQLException {
+		SaveMtnBankAcctResponse response = new SaveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smaidcbr.getSaveList());
+		params.put("delList", smaidcbr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBankAcct(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
 		return response;
 	}
 }

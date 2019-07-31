@@ -1,37 +1,58 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class BankAcct {
-	private Integer bankCd;
-	private Integer bankAcctCd;
+public class SaveMtnBankAcctRequest {
+	private List<SaveBankAcct> saveList;
+	private List<SaveBankAcct> delList;
+	public List<SaveBankAcct> getSaveList() {
+		return saveList;
+	}
+	public void setSaveList(List<SaveBankAcct> saveList) {
+		this.saveList = saveList;
+	}
+	public List<SaveBankAcct> getDelList() {
+		return delList;
+	}
+	public void setDelList(List<SaveBankAcct> delList) {
+		this.delList = delList;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnBankAcctRequest [saveList=" + saveList + ", delList=" + delList + "]";
+	}
+	
+}
+
+
+class SaveBankAcct{
+	private String bankCd;
+	private String bankAcctCd;
 	private String accountNo;
 	private String accountName;
 	private String acctStatus;
-	private String acctStatusName;
 	private String currCd;
 	private String bankBranch;
 	private String accountType;
-	private String acctTypeName;
-	private DateTime openDate;
-	private DateTime closeDate;
-	private Integer acItGlDepNo;
-	private Integer acSeGlDepNo;
+	private String openDate;
+	private String closeDate;
+	private String acitGlDepNo;
+	private String acseGlDepNo;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	public Integer getBankCd() {
+	private String updateDate;
+	public String getBankCd() {
 		return bankCd;
 	}
-	public void setBankCd(Integer bankCd) {
+	public void setBankCd(String bankCd) {
 		this.bankCd = bankCd;
 	}
-	public Integer getBankAcctCd() {
+	public String getBankAcctCd() {
 		return bankAcctCd;
 	}
-	public void setBankAcctCd(Integer bankAcctCd) {
+	public void setBankAcctCd(String bankAcctCd) {
 		this.bankAcctCd = bankAcctCd;
 	}
 	public String getAccountNo() {
@@ -52,12 +73,6 @@ public class BankAcct {
 	public void setAcctStatus(String acctStatus) {
 		this.acctStatus = acctStatus;
 	}
-	public String getAcctStatusName() {
-		return acctStatusName;
-	}
-	public void setAcctStatusName(String acctStatusName) {
-		this.acctStatusName = acctStatusName;
-	}
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -76,35 +91,29 @@ public class BankAcct {
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
-	public String getAcctTypeName() {
-		return acctTypeName;
-	}
-	public void setAcctTypeName(String acctTypeName) {
-		this.acctTypeName = acctTypeName;
-	}
-	public DateTime getOpenDate() {
+	public String getOpenDate() {
 		return openDate;
 	}
-	public void setOpenDate(DateTime openDate) {
+	public void setOpenDate(String openDate) {
 		this.openDate = openDate;
 	}
-	public DateTime getCloseDate() {
+	public String getCloseDate() {
 		return closeDate;
 	}
-	public void setCloseDate(DateTime closeDate) {
+	public void setCloseDate(String closeDate) {
 		this.closeDate = closeDate;
 	}
-	public Integer getAcItGlDepNo() {
-		return acItGlDepNo;
+	public String getAcitGlDepNo() {
+		return acitGlDepNo;
 	}
-	public void setAcItGlDepNo(Integer acItGlDepNo) {
-		this.acItGlDepNo = acItGlDepNo;
+	public void setAcitGlDepNo(String acitGlDepNo) {
+		this.acitGlDepNo = acitGlDepNo;
 	}
-	public Integer getAcSeGlDepNo() {
-		return acSeGlDepNo;
+	public String getAcseGlDepNo() {
+		return acseGlDepNo;
 	}
-	public void setAcSeGlDepNo(Integer acSeGlDepNo) {
-		this.acSeGlDepNo = acSeGlDepNo;
+	public void setAcseGlDepNo(String acseGlDepNo) {
+		this.acseGlDepNo = acseGlDepNo;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -118,10 +127,10 @@ public class BankAcct {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -130,19 +139,18 @@ public class BankAcct {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
 		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo=" + accountNo
-				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", acctStatusName=" + acctStatusName
-				+ ", currCd=" + currCd + ", bankBranch=" + bankBranch + ", accountType=" + accountType
-				+ ", acctTypeName=" + acctTypeName + ", openDate=" + openDate + ", closeDate=" + closeDate
-				+ ", acItGlDepNo=" + acItGlDepNo + ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
+				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", currCd=" + currCd + ", bankBranch="
+				+ bankBranch + ", accountType=" + accountType + ", openDate=" + openDate + ", closeDate=" + closeDate
+				+ ", acitGlDepNo=" + acitGlDepNo + ", acseGlDepNo=" + acseGlDepNo + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}

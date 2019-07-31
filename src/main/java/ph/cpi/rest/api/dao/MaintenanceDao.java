@@ -206,4 +206,5 @@ public interface MaintenanceDao {
 
 	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBank(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 }

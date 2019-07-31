@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RedistributeClaimDistRequest;
+import ph.cpi.rest.api.model.request.RedistributeClaimReserveDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveChangeClaimStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.RetrieveClaimHistoryRequest;
@@ -25,6 +26,8 @@ import ph.cpi.rest.api.model.request.RetrieveClmDistPoolRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmReserveDistPoolRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmReserveDistRequest;
 import ph.cpi.rest.api.model.request.SaveClaimApprovedAmtRequest;
 import ph.cpi.rest.api.model.request.SaveClaimHistoryRequest;
 import ph.cpi.rest.api.model.request.SaveClaimPaytReqRequest;
@@ -37,6 +40,7 @@ import ph.cpi.rest.api.model.request.SaveClmGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdateClaimStatusRequest;
 import ph.cpi.rest.api.model.request.UpdateClmDetailsRequest;
 import ph.cpi.rest.api.model.response.RedistributeClaimDistResponse;
+import ph.cpi.rest.api.model.response.RedistributeClaimReserveDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveChangeClaimStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.RetrieveClaimHistoryResponse;
@@ -48,6 +52,8 @@ import ph.cpi.rest.api.model.response.RetrieveClmDistPoolResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmReserveDistPoolResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmReserveDistResponse;
 import ph.cpi.rest.api.model.response.SaveClaimApprovedAmtResponse;
 import ph.cpi.rest.api.model.response.SaveClaimHistoryResponse;
 import ph.cpi.rest.api.model.response.SaveClaimPaytReqResponse;
@@ -212,6 +218,7 @@ public class ClaimsController {
 		return claimsService.retrieveClmPaytReq(rcprr);
 	}
 	
+//	remove this in the future
 	@GetMapping(path="retrieveClmDist")
 	public @ResponseBody RetrieveClmDistResponse retrieveClmDist(RetrieveClmDistRequest rcprr) throws SQLException {
 		logger.info("GET: /api/claims-service/retrieveClmDist");
@@ -231,5 +238,27 @@ public class ClaimsController {
 		logger.info("POST: /api/claims-service/redistributeClaimDist");
 		logger.info("RedistributeClaimDistRequest : " + ucdr.toString());
 		return claimsService.redistributeClaimDist(ucdr);
+	}
+// until here
+	
+	@GetMapping(path="retrieveClmReserveDist")
+	public @ResponseBody RetrieveClmReserveDistResponse retrieveClmReserveDist(RetrieveClmReserveDistRequest rcprr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClmReserveDist");
+		logger.info("RetrieveClmReserveDistRequest : " + rcprr.toString());
+		return claimsService.retrieveClmReserveDist(rcprr);
+	}
+	
+	@GetMapping(path="retrieveClmReserveDistPool")
+	public @ResponseBody RetrieveClmReserveDistPoolResponse retrieveClmReserveDistPool(RetrieveClmReserveDistPoolRequest rcprr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClmReserveDistPool");
+		logger.info("RetrieveClmReserveDistPoolRequest : " + rcprr.toString());
+		return claimsService.retrieveClmReserveDistPool(rcprr);
+	}
+	
+	@PostMapping(path="redistributeClaimReserveDist")
+	public @ResponseBody RedistributeClaimReserveDistResponse redistributeClaimReserveDist(@RequestBody RedistributeClaimReserveDistRequest ucdr) throws SQLException {
+		logger.info("POST: /api/claims-service/redistributeClaimReserveDist");
+		logger.info("RedistributeClaimReserveDistRequest : " + ucdr.toString());
+		return claimsService.redistributeClaimReserveDist(ucdr);
 	}
 }
