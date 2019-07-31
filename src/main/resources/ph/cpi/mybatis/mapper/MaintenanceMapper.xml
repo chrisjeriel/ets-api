@@ -2925,7 +2925,6 @@
 		<result property="eventDesc"	column="EVENT_DESC"/>
 		<result property="lossDateFrom"	column="LOSS_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lossDateTo"	column="LOSS_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="lineCd"		column="LINE_CD"/>
 		<result property="eventTypeCd"	column="EVENT_TYPE_CD"/>
 		<result property="activeTag"	column="ACTIVE_TAG"/>
 		<result property="remarks"		column="REMARKS"/>
@@ -2953,7 +2952,6 @@
 					#{eventSave.eventDesc,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{eventSave.lossDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					CAST(to_timestamp(#{eventSave.lossDateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					#{eventSave.lineCd,jdbcType=VARCHAR},
 					#{eventSave.eventTypeCd,jdbcType=VARCHAR},
 					#{eventSave.activeTag,jdbcType=VARCHAR},
 					#{eventSave.remarks,jdbcType=VARCHAR},

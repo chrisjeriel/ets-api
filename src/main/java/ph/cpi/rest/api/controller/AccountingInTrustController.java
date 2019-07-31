@@ -223,4 +223,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitAgingSoaDtlRequest : " + ragsdr.toString());
 		return acctInTrustService.retrieveAgingSoaDtl(ragsdr);
 	}
+	
+//	@GetMapping(path="retrieveAcitPrqInwPol")
+//	public @ResponseBody RetrieveAcitPrqInwPolResponse retrieveAcitPrqInwPol(RetrieveAcitPrqInwPolRequest rapipr) throws SQLException {
+//		logger.info("GET: /api/acct-in-trust-service/retrieveAcitPrqInwPol");
+//		logger.info("RetrieveAcitPrqInwPolRequest : " + rapipr.toString());
+//		return acctInTrustService.retrieveAcitPrqInwPol(rapipr);
+//	}
 }
