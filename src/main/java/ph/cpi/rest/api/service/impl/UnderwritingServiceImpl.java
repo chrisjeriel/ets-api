@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
@@ -101,6 +102,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
@@ -1707,6 +1709,25 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			response.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrievePolDistWarningResponse retrievePolDistWarning(RetrievePolDistWarningRequest rpdwr)
+			throws SQLException {
+		RetrievePolDistWarningResponse response = new RetrievePolDistWarningResponse();
+		try {
+
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("riskDistId", rpdwr.getRiskDistId());
+			params.put("altNo", rpdwr.getAltNo());
+
+			response.setWarningList(underwritingDao.retrievePolDistWarning(params));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		return response;
 	}
 }

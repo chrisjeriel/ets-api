@@ -75,12 +75,17 @@ public class Claims {
 	private String reasonDesc;
 	private String lapsePdTag;
 	private String polTermTag;
+	private String premTag;
 	private String remarks;
 	private String approvedBy;
 	private DateTime approvedDate;
 	private String secISiTag;
 	private String secIISiTag;
 	private String secIIISiTag;
+	private BigDecimal sectionIPrem;
+	private BigDecimal sectionIIPrem;
+	private BigDecimal sectionIIIPrem;
+	private BigDecimal allowMaxSi;
 	private Integer adjId;
 	private String adjName;
 	private String adjFileNo;
@@ -506,6 +511,12 @@ public class Claims {
 	public void setPolTermTag(String polTermTag) {
 		this.polTermTag = polTermTag;
 	}
+	public String getPremTag() {
+		return premTag;
+	}
+	public void setPremTag(String premTag) {
+		this.premTag = premTag;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -541,6 +552,30 @@ public class Claims {
 	}
 	public void setSecIIISiTag(String secIIISiTag) {
 		this.secIIISiTag = secIIISiTag;
+	}
+	public BigDecimal getSectionIPrem() {
+		return sectionIPrem;
+	}
+	public void setSectionIPrem(BigDecimal sectionIPrem) {
+		this.sectionIPrem = sectionIPrem;
+	}
+	public BigDecimal getSectionIIPrem() {
+		return sectionIIPrem;
+	}
+	public void setSectionIIPrem(BigDecimal sectionIIPrem) {
+		this.sectionIIPrem = sectionIIPrem;
+	}
+	public BigDecimal getSectionIIIPrem() {
+		return sectionIIIPrem;
+	}
+	public void setSectionIIIPrem(BigDecimal sectionIIIPrem) {
+		this.sectionIIIPrem = sectionIIIPrem;
+	}
+	public BigDecimal getAllowMaxSi() {
+		return allowMaxSi;
+	}
+	public void setAllowMaxSi(BigDecimal allowMaxSi) {
+		this.allowMaxSi = allowMaxSi;
 	}
 	public Integer getAdjId() {
 		return adjId;
@@ -643,12 +678,14 @@ public class Claims {
 				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
 				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
-				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy=" + approvedBy
-				+ ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag=" + secIISiTag
-				+ ", secIIISiTag=" + secIIISiTag + ", adjId=" + adjId + ", adjName=" + adjName + ", adjFileNo="
-				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
-				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
-				+ ", clmAttachments=" + clmAttachments + "]";
+				+ ", polTermTag=" + polTermTag + ", premTag=" + premTag + ", remarks=" + remarks + ", approvedBy="
+				+ approvedBy + ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag="
+				+ secIISiTag + ", secIIISiTag=" + secIIISiTag + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem="
+				+ sectionIIPrem + ", sectionIIIPrem=" + sectionIIIPrem + ", allowMaxSi=" + allowMaxSi + ", adjId="
+				+ adjId + ", adjName=" + adjName + ", adjFileNo=" + adjFileNo + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", project=" + project + ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject
+				+ ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments="
+				+ clmAttachments + "]";
 	}
 }

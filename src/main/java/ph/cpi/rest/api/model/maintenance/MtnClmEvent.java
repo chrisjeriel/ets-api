@@ -7,7 +7,6 @@ public class MtnClmEvent {
 	private String eventDesc;
 	private DateTime lossDateFrom;
 	private DateTime lossDateTo;
-	private String lineCd;
 	private String eventTypeCd;
 	private String activeTag;
 	private String remarks;
@@ -39,12 +38,6 @@ public class MtnClmEvent {
 	}
 	public void setLossDateTo(DateTime lossDateTo) {
 		this.lossDateTo = lossDateTo;
-	}
-	public String getLineCd() {
-		return lineCd;
-	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
 	}
 	public String getEventTypeCd() {
 		return eventTypeCd;
@@ -97,7 +90,7 @@ public class MtnClmEvent {
 	@Override
 	public String toString() {
 		return "MtnClmEvent [eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", lossDateFrom=" + lossDateFrom
-				+ ", lossDateTo=" + lossDateTo + ", lineCd=" + lineCd + ", eventTypeCd=" + eventTypeCd + ", activeTag="
+				+ ", lossDateTo=" + lossDateTo + ", eventTypeCd=" + eventTypeCd + ", activeTag="
 				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}

@@ -1989,7 +1989,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			throws SQLException {
 		RetrieveMtnClmEventLovResponse rmcelResponse = new RetrieveMtnClmEventLovResponse();
 		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
-		rmcelParams.put("lineCd", rmcel.getLineCd());
 		rmcelParams.put("eventTypeCd", rmcel.getEventTypeCd());
 		rmcelParams.put("searchStr", rmcel.getSearchStr());
 		

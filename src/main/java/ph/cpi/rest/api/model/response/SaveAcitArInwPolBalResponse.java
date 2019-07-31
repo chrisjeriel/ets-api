@@ -6,12 +6,10 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveAcitPaytReqResponse {
+public class SaveAcitArInwPolBalResponse {
 	private List<Error> errorList = new ArrayList<Error>();
 	private List<Message> messageList = new ArrayList<Message>();
 	private Integer returnCode;
-	private String paytReqNo;
-	private Integer reqIdOut;
 	public List<Error> getErrorList() {
 		return errorList;
 	}
@@ -30,21 +28,10 @@ public class SaveAcitPaytReqResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	public String getPaytReqNo() {
-		return paytReqNo;
-	}
-	public void setPaytReqNo(String paytReqNo) {
-		this.paytReqNo = paytReqNo;
-	}
-	public Integer getReqIdOut() {
-		return reqIdOut;
-	}
-	public void setReqIdOut(Integer reqIdOut) {
-		this.reqIdOut = reqIdOut;
-	}
 	@Override
 	public String toString() {
-		return "SaveAcitPaytReqResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", paytReqNo=" + paytReqNo + ", reqIdOut=" + reqIdOut + "]";
+		return "SaveAcitArInwPolBalResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + "]";
 	}
+	
 }
