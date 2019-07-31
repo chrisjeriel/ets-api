@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -60,6 +61,8 @@ import ph.cpi.rest.api.model.maintenance.ReportsParam;
 import ph.cpi.rest.api.model.maintenance.RetAmt;
 import ph.cpi.rest.api.model.maintenance.Risk;
 import ph.cpi.rest.api.model.maintenance.RoundingError;
+import ph.cpi.rest.api.model.maintenance.SL;
+import ph.cpi.rest.api.model.maintenance.SLType;
 import ph.cpi.rest.api.model.maintenance.SecIITreatyLimit;
 import ph.cpi.rest.api.model.maintenance.SectionCovers;
 import ph.cpi.rest.api.model.maintenance.Spoil;
@@ -966,5 +969,23 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public List<BookingMonth> retrieveMtnBookingMonth(HashMap<String, Object> params) throws SQLException {
 		List<BookingMonth> bookingMthList = sqlSession.selectList("retrieveMtnBookingMonth", params);
 		return bookingMthList;
+	}
+
+	@Override
+	public List<AcitChartAcct> retrieveMtnAcitChartAcct(HashMap<String, Object> params) throws SQLException {
+		List<AcitChartAcct> list = sqlSession.selectList("retrieveMtnAcitChartAcct", params);
+		return list;
+	}
+
+	@Override
+	public List<SLType> retrieveMtnSLType(HashMap<String, Object> params) throws SQLException {
+		List<SLType> list = sqlSession.selectList("retrieveMtnSLType", params);
+		return list;
+	}
+
+	@Override
+	public List<SL> retrieveMtnSL(HashMap<String, Object> params) throws SQLException {
+		List<SL> list = sqlSession.selectList("retrieveMtnSL", params);
+		return list;
 	}
 }

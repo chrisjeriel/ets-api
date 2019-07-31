@@ -172,6 +172,7 @@
 		<result property="createDate" column="CMDM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" column="CMDM_UPDATE_USER"/>
 		<result property="updateDate" column="CMDM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="unbalAcctEntryTag" column="UNBAL_ACCT_ENTRY_TAG" />
 	</resultMap>
 	
 	<update id="saveAcitCMDM" parameterType="java.util.Map"  statementType="CALLABLE">
@@ -556,6 +557,40 @@
 		END;
 	</update>
 	
+	 <update id="saveAcitPrqTrans" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="savePrqTrans" item="save">
+	    		ACIT_PRQ_TRANS_PKG.save_acit_prq_trans(
+	    			#{save.reqId, jdbcType=INTEGER},
+					#{save.itemNo, jdbcType=INTEGER},
+					#{save.claimId, jdbcType=INTEGER},
+					#{save.projId, jdbcType=INTEGER},
+					#{save.histNo, jdbcType=INTEGER},
+					#{save.policyId, jdbcType=INTEGER},
+					#{save.instNo, jdbcType=INTEGER},
+					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.investmentId, jdbcType=INTEGER},
+					#{save.refNo, jdbcType=VARCHAR},
+					#{save.paymentFor, jdbcType=VARCHAR},
+					#{save.currCd, jdbcType=VARCHAR},
+					#{save.currRate, jdbcType=INTEGER},
+					#{save.currAmt, jdbcType=INTEGER},
+					#{save.localAmt, jdbcType=INTEGER},
+					#{save.remarks, jdbcType=VARCHAR},
+			        #{save.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{save.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deletePrqTrans" item="del">
+    			ACIT_PRQ_TRANS_PKG.del_acit_prq_trans(
+    				#{del.reqId, jdbcType=INTEGER},
+					#{del.itemNo, jdbcType=INTEGER});
+    		</foreach>
+    	END;
+    </update>
+
 	<update id="cancelCMDM" parameterType="java.util.Map">
 		BEGIN
 			ACIT_CRDR_MEMO_PKG.cancel_memo(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
@@ -810,4 +845,79 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries" id="AcctEntriesMap">
+		<result property="tranId"  column="TRAN_ID"/>
+		<result property="entryId"  column="ENTRY_ID"/>
+		<result property="glAcctId"  column="GL_ACCT_ID"/>
+		<result property="glShortCd"  column="GL_SHORT_CD"/>
+		<result property="glShortDesc"  column="GL_SHORT_DESC"/>
+		<result property="slTypeCd"  column="SL_TYPE_CD"/>
+		<result property="slTypeName"  column="SL_TYPE_NAME"/>
+		<result property="slCd"  column="SL_CD"/>
+		<result property="slName"  column="SL_NAME"/>
+		<result property="creditAmt"  column="CREDIT_AMT"/>
+		<result property="debitAmt"  column="DEBIT_AMT"/>
+		<result property="autoTag"  column="AUTO_TAG"/>
+		<result property="createUser"  column="CREATE_USER"/>
+		<result property="createDate"  column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"  column="UPDATE_USER"/>
+		<result property="updateDate"  column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitAcctEntries" resultMap="AcctEntriesMap">
+		SELECT * FROM TABLE(ACIT_ACCT_ENTRIES_PKG.ret_acit_acc_entries(#{tranId, jdbcType=VARCHAR},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOA" id="qsoaMap">
+		<result property="qsoaId" 			column="QSOA_ID"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="quarterEnding" 	column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="qsoaStatus" 		column="QSOA_STATUS"/>
+		<result property="qsoaStatusDesc" 	column="QSOA_STATUS_DESC"/>
+		<result property="refNoTranId" 		column="REF_NO_TRAN_ID"/>
+		<result property="refNoDate" 		column="REF_NO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="totalDebitAmt" 	column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt" 	column="TOTAL_CREDIT_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQSOAList" resultMap="qsoaMap">
+		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_comp_qsoa_list(#{qsoaId, jdbcType=INTEGER},
+															 #{cedingId, jdbcType=VARCHAR},
+															 #{fromQtr, jdbcType=INTEGER},
+															 #{fromYear, jdbcType=INTEGER},
+															 #{toQtr, jdbcType=INTEGER},
+															 #{toYear, jdbcType=INTEGER},
+															 null,null,null,null))
+	</select>
+	
+	<update id="saveAcitAcctEntries" parameterType="java.util.Map">
+		BEGIN
+			NULL;
+			<foreach collection="delList" item="item">
+				ACIT_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				ACIT_ACCT_ENTRIES_PKG.save_acit_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
 </mapper>

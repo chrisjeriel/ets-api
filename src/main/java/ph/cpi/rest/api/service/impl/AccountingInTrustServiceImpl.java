@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
@@ -28,15 +29,19 @@ import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
+import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
@@ -53,11 +58,14 @@ import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
+import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -467,6 +475,28 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 
 	@Override
+	public SaveAcitPrqTransResponse saveAcitPrqTrans(SaveAcitPrqTransRequest saptr) throws SQLException {
+		SaveAcitPrqTransResponse saptResponse = new SaveAcitPrqTransResponse();
+		HashMap<String, Object> saptParams = new HashMap<String, Object>();
+		try {
+			saptParams.put("deletePrqTrans", saptr.getDeletePrqTrans());
+			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
+			
+			HashMap<String, Object> response = acctITDao.saveAcitPrqTrans(saptParams);
+			saptResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			saptResponse.setReturnCode(0);
+			saptResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			saptResponse.setReturnCode(0);
+			saptResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return saptResponse;
+	}
+
+	@Override
 	public CancelCMDMCMDMResponse cancelCMDMCMDM(CancelCMDMCMDMRequest saprr) throws SQLException {
 		CancelCMDMCMDMResponse response = new CancelCMDMCMDMResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -556,6 +586,20 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setArInwPolBal(acctITDao.retrieveAcitArInwPolBal(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcitAcctEntriesResponse retrieveAcitAcctEntries(RetrieveAcitAcctEntriesRequest racitcmdmlr)
+			throws SQLException {
+		RetrieveAcitAcctEntriesResponse response = new RetrieveAcitAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", racitcmdmlr.getTranId()) ;
+		params.put("entryId", racitcmdmlr.getEntryId()) ;
+		params.put("glAcctId", racitcmdmlr.getGlAcctId()) ;
+		params.put("slTypeCd", racitcmdmlr.getSlTypeCd()) ;
+		params.put("slCd", racitcmdmlr.getSlCd()) ;
+		response.setList(acctITDao.retrieveAcitAcctEntries(params));
+		return response;
+	}
 
 
 	@Override
@@ -596,6 +640,39 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception", "Please check field values."));
 			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	@Override
+	public RetrieveQSOAListResponse retrieveQSOAList(RetrieveQSOAListRequest rqlr) throws SQLException {
+		RetrieveQSOAListResponse rqlResponse = new RetrieveQSOAListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("qsoaId", rqlr.getQsoaId());
+		params.put("cedingId", rqlr.getCedingId());
+		params.put("fromQtr", rqlr.getFromQtr());
+		params.put("fromYear", rqlr.getFromYear());
+		params.put("toQtr", rqlr.getToQtr());
+		params.put("toYear", rqlr.getToYear());
+		
+		rqlResponse.setQsoaList(acctITDao.retrieveQSOAList(params));
+		
+		return rqlResponse;
+	}
+
+	@Override
+	public SaveAcitAcctEntriesResponse saveAcitAcctEntries(SaveAcitAcctEntriesRequest saprr) throws SQLException {
+		SaveAcitAcctEntriesResponse response = new SaveAcitAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", saprr.getSaveList()) ;
+		params.put("delList", saprr.getDelList()) ;
+		try{
+			response.setReturnCode(acctITDao.saveAcitAcctEntries(params));
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
 		}
 		return response;
 	}

@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.ClaimsDao;
 import ph.cpi.rest.api.model.claims.Attachment;
+import ph.cpi.rest.api.model.claims.CheckHist;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimDist;
 import ph.cpi.rest.api.model.claims.ClaimDistCeding;
@@ -146,7 +148,9 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		List<ClaimPaytRequest> list = sqlSession.selectList("retrieveClmPaytReq", params);
 		return list;
 	}
+	
 
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public HashMap<String, Object> saveClaimReserve(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveClaimReserve",params);
@@ -188,16 +192,17 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	}
 
 	@Override
-	public Integer chkPoldistStat(Integer param) throws SQLException {
-		HashMap<String, Object> par = new HashMap<String, Object>();
-		par.put("claimId", param);
-		par.put("checkRes", "");
-		sqlSession.selectOne("chkPoldistStat", par);
-		return (Integer) par.get("checkRes");
+	public List<CheckHist> checkHist(Integer param) throws SQLException {
+//		HashMap<String, Object> par = new HashMap<String, Object>();
+//		par.put("claimId", param);
+//		sqlSession.selectOne("chkPoldistStat", par);
+//		return (Integer) par.get("checkRes");
+		List<CheckHist> listCheckHist = sqlSession.selectList("checkHist", param);
+		return listCheckHist;
 	}
 
 	@Override
-	public Float chkAdjRate(Integer param) throws SQLException {
+	public Float chkAdjRate(float param) throws SQLException {
 		HashMap<String, Object> par = new HashMap<String, Object>();
 		par.put("claimId", param);
 		par.put("chkAdjRate", "");

@@ -73,13 +73,21 @@ public class ClaimsServiceImpl implements ClaimsService {
 	public RetrieveClaimHistoryResponse retrieveClaimHistory(RetrieveClaimHistoryRequest rchp) throws SQLException {
 		RetrieveClaimHistoryResponse rchResponse = new RetrieveClaimHistoryResponse();
 		HashMap<String, Object> retClmHistoryParams = new HashMap<String, Object>();
-		retClmHistoryParams.put("claimId", rchp.getClaimId());
-		retClmHistoryParams.put("claimNo", rchp.getClaimNo());
-		retClmHistoryParams.put("projId", rchp.getProjId());
-		retClmHistoryParams.put("histNo", rchp.getHistNo());
+		try {
+			retClmHistoryParams.put("claimId", rchp.getClaimId());
+			retClmHistoryParams.put("claimNo", rchp.getClaimNo());
+			retClmHistoryParams.put("projId", rchp.getProjId());
+			retClmHistoryParams.put("histNo", rchp.getHistNo());
+			
+			rchResponse.setCheckHistList(claimsDao.checkHist(Integer.parseInt(rchp.getClaimId())));
+			rchResponse.setAdjRate(claimsDao.chkAdjRate(Float.parseFloat(rchp.getClaimId())));
+//			rchResponse.setPolDistStat(claimsDao.chkPoldistStat(Integer.parseInt(rchp.getClaimId())));
+			//rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
+		}catch(Exception e) {
+			System.out.println(rchp.getClaimId());
+			System.out.println("entered here in catch");
+		}
 		
-		rchResponse.setAdjRate(claimsDao.chkAdjRate(Integer.parseInt(rchp.getClaimId())));
-		rchResponse.setPolDistStat(claimsDao.chkPoldistStat(Integer.parseInt(rchp.getClaimId())));
 		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
 		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
@@ -498,6 +506,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 			scrParams.put("createDate", scrr.getCreateDate());
 			scrParams.put("updateUser", scrr.getUpdateUser());
 			scrParams.put("updateDate", scrr.getUpdateDate());
+			scrParams.put("upUserGi", scrr.getUpUserGi());
 			
 			HashMap<String, Object> response = claimsDao.saveClaimReserve(scrParams);
 			scrResponse.setReturnCode((Integer) response.get("errorCode"));
