@@ -1000,4 +1000,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer code = sqlSession.update("saveMtnBank",params);
 		return code;
 	}
+	
+	@Override
+	public Integer saveMtnBankAcct(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnBankAcct",params);
+		return code;
+	}
 }

@@ -952,4 +952,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnBankRequest : " + smaidcbr.toString());
 		return maintenanceService.saveMtnBank(smaidcbr);
 	}
+	
+	@PostMapping(path="saveMtnBankAcct")
+	public @ResponseBody SaveMtnBankAcctResponse saveMtnBankAcct(@RequestBody SaveMtnBankAcctRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBankAcct");
+		logger.info("SaveMtnBankAcctRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnBankAcct(smaidcbr);
+	}
 }

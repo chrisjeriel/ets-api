@@ -158,18 +158,18 @@
 				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
     			
-    			CLM_DIST_PKG.gen_reserve_dist(
-    				#{ch.claimId,jdbcType=VARCHAR},
-					#{ch.projId,jdbcType=VARCHAR},
-					v_hist_no,
-					#{ch.histCategory,jdbcType=VARCHAR},
-					#{ch.histType,jdbcType=VARCHAR},
-					#{ch.reserveAmt,jdbcType=INTEGER},
-					#{ch.createUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				    #{ch.updateUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-    			);
+    			<!-- ADD IF #{ch.histNo,jdbcType=VARCHAR} == NULL AND HIST_TYPEQ IS NOT PAYMENT -->
+    			IF #{ch.histNo,jdbcType=VARCHAR} IS NULL AND #{ch.histType,jdbcType=VARCHAR} IN (1,2,3,6) THEN
+	    			CLM_DIST_RESERVE_PKG.gen_reserve_dist(
+	    				#{ch.claimId,jdbcType=VARCHAR},
+						#{ch.projId,jdbcType=VARCHAR},
+						#{ch.histCategory,jdbcType=VARCHAR},
+						#{ch.createUser,jdbcType=VARCHAR},
+					    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					    #{ch.updateUser,jdbcType=VARCHAR},
+					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    			);
+    			END IF;
     		</foreach>
     	END;
 	</update>
@@ -856,4 +856,61 @@
 	<select id="checkHist" resultMap="checkHistMap" parameterType="java.lang.Integer">
 		SELECT * FROM TABLE(CLM_RES_HIST_PKG.chk_hist(#{claimId}))
 	</select> 
+	
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimReserveDist" id="ClaimReserveDistMap">
+		<result property="histCategory" column="HIST_CATEGORY"/>
+		<result property="histCategoryName" column="HIST_CATEGORY_NAME"/>
+		<result property="clmDistNo" column="CLM_DIST_NO"/>
+		<result property="reserveAmt" column="RESERVE_AMT"/>
+		<result property="currencyCd" column="CURRENCY_CD"/>
+		<result property="currencyRt" column="CURRENCY_RT"/>
+		<result property="bookingMth" column="BOOKING_MTH"/>
+		<result property="bookingYear" column="BOOKING_YEAR"/>
+		<result property="clmDistStat" column="CLM_DIST_STAT"/>
+		<result property="clmDistStatName" column="CLM_DIST_STAT_NAME"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="treatyList" resultMap="ClaimReserveDistTreatyMap" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimReserveDistTreaty" id="ClaimReserveDistTreatyMap">
+		<result property="treatyId" column="TREATY_ID"/>
+		<result property="treatyAbbr" column="TREATY_ABBR"/>
+		<result property="trtyCedId" column="TRTY_CED_ID"/>
+		<result property="cedingAbbr" column="CEDING_ABBR"/>
+		<result property="retLayer" column="RET_LAYER"/>
+		<result property="clmPctShare" column="CLM_PCT_SHARE"/>
+		<result property="reserveAmt" column="AMT"/>
+	</resultMap>
+	
+	<select id="retrieveClmReserveDist" resultMap="ClaimReserveDistMap">
+		SELECT * FROM TABLE(CLM_DIST_RESERVE_PKG.get_clm_dist(#{claimId},#{projId}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.claims.ClaimReserveDistPool" id="ClaimReserveDistPoolMap">
+		<result property="treatyAbbr" column="TREATY_ABBR"/>
+		<result property="cedingAbbr" column="CEDING_ABBR"/>
+		<result property="ret1Lines" column="RET1_LINES"/>
+		<result property="ret1Amt" column="RET1_AMT"/>
+		<result property="ret2Lines" column="RET2_LINES"/>
+		<result property="ret2Amt" column="RET2_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveClmReserveDistPool" resultMap="ClaimReserveDistPoolMap">
+		SELECT * FROM TABLE(CLM_DIST_RESERVE_PKG.get_clm_dist_pool(#{claimId},#{projId},#{histCategory},#{clmDistNo}))
+	</select>
+	
+	<update id="redistributeClaimReserveDist" parameterType="java.util.Map">
+		BEGIN
+			CLM_DIST_RESERVE_PKG.clm_redistribute(#{claimId},#{projId},#{histCategory},#{createUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	
 </mapper>
