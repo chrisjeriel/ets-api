@@ -975,4 +975,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<PrintableNames> list = sqlSession.selectList("retrieveMtnPrintable", params);
 		return list;
 	}
+
+	@Override
+	public List<CedingCompany> retrieveMtnCedingTreaty(HashMap<String, Object> params) throws SQLException {
+		List<CedingCompany> cedingCompanyListing = sqlSession.selectList("retMtnCedingTreaty", params);
+		return cedingCompanyListing;
+	}
 }

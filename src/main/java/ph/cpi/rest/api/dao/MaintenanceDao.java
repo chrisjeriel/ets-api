@@ -199,4 +199,6 @@ public interface MaintenanceDao {
 	public List<SLType> retrieveMtnSLType(final HashMap<String, Object> params) throws SQLException;
 	public List<SL> retrieveMtnSL(final HashMap<String, Object> params) throws SQLException;
 	public List<PrintableNames> retrieveMtnPrintableNames (final HashMap<String, Object> params) throws SQLException;
+	public List<CedingCompany> retrieveMtnCedingTreaty(final HashMap<String, Object> params) throws SQLException;
+	
 }

@@ -927,4 +927,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnPrintableNamesRequest : " + rbmr.toString());
 		return maintenanceService.retrieveMtnPrintableNames(rbmr);
 	}
+	
+	@GetMapping(path="retrieveMtnCedingTreaty")
+	public @ResponseBody RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCedingTreaty");
+		logger.info("RetrieveMtnCedingTreatyRequest : " + request.toString());
+		return maintenanceService.retrieveMtnCedingTreaty(request);
+	}
 }

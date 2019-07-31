@@ -2136,4 +2136,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setPrintableNames(maintenanceDao.retrieveMtnPrintableNames(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request)
+			throws SQLException {
+		RetrieveMtnCedingTreatyResponse response = new RetrieveMtnCedingTreatyResponse();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("treatyTag",request.getTreatyTag()); 
+		params.put("cedingName",request.getCedingName()); 
+		response.setCedingcompany(maintenanceDao.retrieveMtnCedingTreaty(params));
+        
+		return response;
+	}
 }

@@ -138,4 +138,5 @@ public interface MaintenanceService {
 	public RetrieveMtnSLTypeResponse retrieveMtnSLType(RetrieveMtnSLTypeRequest rbmr) throws SQLException;
 	public RetrieveMtnSLResponse retrieveMtnSL(RetrieveMtnSLRequest rbmr) throws SQLException;
 	public RetrieveMtnPrintableNamesResponse retrieveMtnPrintableNames (RetrieveMtnPrintableNamesRequest request) throws SQLException;
+	public RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request)throws SQLException;
 }

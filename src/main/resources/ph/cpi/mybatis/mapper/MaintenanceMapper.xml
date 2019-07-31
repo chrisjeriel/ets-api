@@ -3564,4 +3564,8 @@
 			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null))
 	</select>
 	
+	<select id="retMtnCedingTreaty" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_trty(#{treatyTag,jdbcType=VARCHAR},#{cedingName,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
+	
 </mapper>
