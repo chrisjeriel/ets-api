@@ -110,6 +110,7 @@
 		<result property="excludeDistTag" 		column="EXCLUDE_DIST_TAG"/>
 		<result property="coinsGrpId" 			column="COINS_GRP_ID"/>
 		<result property="wordings" 			column="WORDINGS"/>
+		<result property="premTag" 				column="PREM_TAG"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>

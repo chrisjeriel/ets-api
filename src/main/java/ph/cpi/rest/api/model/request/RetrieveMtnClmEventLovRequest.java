@@ -5,18 +5,11 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnClmEventLovRequest {
 
-	private String lineCd;
 	private String eventTypeCd;
 	private String searchStr;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
-	public String getLineCd() {
-		return lineCd;
-	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
-	}
+
 	public String getEventTypeCd() {
 		return eventTypeCd;
 	}
@@ -43,7 +36,7 @@ public class RetrieveMtnClmEventLovRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnClmEventLovRequest [lineCd=" + lineCd + ", eventTypeCd=" + eventTypeCd + ", searchStr="
-				+ searchStr + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnClmEventLovRequest [eventTypeCd=" + eventTypeCd + ", searchStr=" + searchStr
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

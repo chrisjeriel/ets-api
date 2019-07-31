@@ -66,6 +66,7 @@
 		<result property="totalValue" 		column="TOTAL_VALUE"/>
 		<result property="lapsePdTag" 		column="LAPSE_PD_TAG"/>
 		<result property="polTermTag" 		column="POL_TERM_TAG"/>
+		<result property="premTag" 			column="PREM_TAG"/>
 		<result property="remarks" 			column="REMARKS"/>
 		<result property="approvedBy" 		column="APPROVED_BY"/>
 		<result property="approvedDate" 	column="APPROVED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -660,6 +661,7 @@
 				#{insuredDesc, jdbcType=VARCHAR},
 				#{lapsePdTag, jdbcType=VARCHAR},
 				#{polTermTag, jdbcType=VARCHAR},
+				#{premTag, jdbcType=VARCHAR},
 				#{remarks, jdbcType=VARCHAR},
 				#{adjId, jdbcType=INTEGER},
 				#{adjFileNo, jdbcType=VARCHAR},

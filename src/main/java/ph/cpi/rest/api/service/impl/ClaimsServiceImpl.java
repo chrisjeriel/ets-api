@@ -374,6 +374,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("insuredDesc", scgir.getInsuredDesc());
 		params.put("lapsePdTag", scgir.getLapsePdTag());
 		params.put("polTermTag", scgir.getPolTermTag());
+		params.put("premTag", scgir.getPremTag());
 		params.put("remarks", scgir.getRemarks());
 		params.put("adjId", scgir.getAdjId());
 		params.put("adjFileNo", scgir.getAdjFileNo());

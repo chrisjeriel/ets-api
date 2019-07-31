@@ -75,6 +75,7 @@ public class Claims {
 	private String reasonDesc;
 	private String lapsePdTag;
 	private String polTermTag;
+	private String premTag;
 	private String remarks;
 	private String approvedBy;
 	private DateTime approvedDate;
@@ -506,6 +507,12 @@ public class Claims {
 	public void setPolTermTag(String polTermTag) {
 		this.polTermTag = polTermTag;
 	}
+	public String getPremTag() {
+		return premTag;
+	}
+	public void setPremTag(String premTag) {
+		this.premTag = premTag;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -643,12 +650,12 @@ public class Claims {
 				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
 				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
-				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", approvedBy=" + approvedBy
-				+ ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag=" + secIISiTag
-				+ ", secIIISiTag=" + secIIISiTag + ", adjId=" + adjId + ", adjName=" + adjName + ", adjFileNo="
-				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
-				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
-				+ ", clmAttachments=" + clmAttachments + "]";
+				+ ", polTermTag=" + polTermTag + ", premTag=" + premTag + ", remarks=" + remarks + ", approvedBy="
+				+ approvedBy + ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag="
+				+ secIISiTag + ", secIIISiTag=" + secIIISiTag + ", adjId=" + adjId + ", adjName=" + adjName
+				+ ", adjFileNo=" + adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", project=" + project
+				+ ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject + ", clmDeductibles="
+				+ clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments=" + clmAttachments + "]";
 	}
 }
