@@ -2651,4 +2651,14 @@
 	<select id="getMissingCoins" resultMap="retDistCoInsMap">
 		SELECT * FROM TABLE(DIST_WPOL_PKG.get_mia_alt_coins(#{policyId}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Warning" id="retrievePolDistWarningMap">
+		<result property="warningCode"        column="WARNING_CODE" />
+		<result property="warningMessage"    column="WARNING_MESSAGE" />
+	</resultMap>
+	
+	<select id="retrievePolDistWarning" resultMap="retrievePolDistWarningMap">
+		SELECT * FROM TABLE(DIST_PKG.GET_DIST_RISK_WARNING(#{riskDistId}, #{altNo}))
+	</select>
+	
 </mapper>
