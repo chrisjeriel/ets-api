@@ -67,6 +67,7 @@ public class Policy {
 	private Integer coinsGrpId;
 	private String wordings;
 	private String distStatDesc;
+	private String premTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -451,6 +452,12 @@ public class Policy {
 	public void setDistStatDesc(String distStatDesc) {
 		this.distStatDesc = distStatDesc;
 	}
+	public String getPremTag() {
+		return premTag;
+	}
+	public void setPremTag(String premTag) {
+		this.premTag = premTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -568,13 +575,11 @@ public class Policy {
 				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
 				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
 				+ ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId + ", wordings=" + wordings
-				+ ", distStatDesc=" + distStatDesc + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", deductibles=" + deductibles
-				+ ", project=" + project + ", endorsements=" + endorsements + ", attachments=" + attachments
-				+ ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance + ", alop=" + alop
-				+ ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist=" + alterationHist
-				+ ", polWordings=" + polWordings + ", endtText=" + endtText + "]";
-	}
-	
-	
+				+ ", distStatDesc=" + distStatDesc + ", premTag=" + premTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
+				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
+				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
+				+ alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText + "]";
+	}	
 }

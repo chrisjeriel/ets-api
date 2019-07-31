@@ -110,6 +110,7 @@
 		<result property="excludeDistTag" 		column="EXCLUDE_DIST_TAG"/>
 		<result property="coinsGrpId" 			column="COINS_GRP_ID"/>
 		<result property="wordings" 			column="WORDINGS"/>
+		<result property="premTag" 				column="PREM_TAG"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
@@ -2267,6 +2268,9 @@
 		<result property="retTwoPremAmt" 	column="RET2_PREM_AMT" />
 		<result property="totalTsiAmt" 		column="TOTAL_TSI_AMT" />
 		<result property="totalPremAmt" 	column="TOTAL_PREM_AMT" />
+		<result property="secIIInputLimit"		column="RET_INPUT_LIMIT" />
+		<result property="cuurCd"		column="CURR_CD" />
+		
 		<association property="distRiskWtreaty" 	resultMap="retRiskWtreaty"/>
 	</resultMap>
 	
@@ -2648,5 +2652,4 @@
 	<select id="getMissingCoins" resultMap="retDistCoInsMap">
 		SELECT * FROM TABLE(DIST_WPOL_PKG.get_mia_alt_coins(#{policyId}))
 	</select>
-	
 </mapper>

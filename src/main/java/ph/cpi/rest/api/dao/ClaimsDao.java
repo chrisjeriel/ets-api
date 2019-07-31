@@ -11,6 +11,8 @@ import ph.cpi.rest.api.model.claims.ClaimDist;
 import ph.cpi.rest.api.model.claims.ClaimDistCeding;
 import ph.cpi.rest.api.model.claims.ClaimPaytRequest;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
+import ph.cpi.rest.api.model.claims.ClaimReserveDist;
+import ph.cpi.rest.api.model.claims.ClaimReserveDistPool;
 import ph.cpi.rest.api.model.claims.Claims;
 
 public interface ClaimsDao {
@@ -41,4 +43,8 @@ public interface ClaimsDao {
 	public Integer redistributeClaimDist(final HashMap<String, Object> params) throws SQLException;
 	public List<CheckHist> checkHist(Integer param) throws SQLException;
 	public Float chkAdjRate(float f) throws SQLException;
+	public List<ClaimReserveDist> retrieveClmReserveDist(final HashMap<String, Object> params ) throws SQLException;
+	public List<ClaimReserveDistPool> retrieveClmReserveDistPool(final HashMap<String, Object> params ) throws SQLException;
+	public Integer redistributeClaimReserveDist(final HashMap<String, Object> params) throws SQLException;
+	
 }
