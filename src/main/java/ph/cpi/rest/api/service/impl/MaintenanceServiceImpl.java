@@ -1989,7 +1989,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			throws SQLException {
 		RetrieveMtnClmEventLovResponse rmcelResponse = new RetrieveMtnClmEventLovResponse();
 		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
-		rmcelParams.put("lineCd", rmcel.getLineCd());
 		rmcelParams.put("eventTypeCd", rmcel.getEventTypeCd());
 		rmcelParams.put("searchStr", rmcel.getSearchStr());
 		
@@ -2046,6 +2045,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
 		RetrieveMtnBankResponse res = new RetrieveMtnBankResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbr.getBankCd());
 		params.put("officialName", rmbr.getOfficialName());
 		params.put("activeTag", rmbr.getActiveTag());
 		res.setBankList(maintenanceDao.retrieveMtnBank(params));
@@ -2057,9 +2057,51 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnBankAcctResponse res = new RetrieveMtnBankAcctResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("bankCd", rmbar.getBankCd());
+		params.put("bankAcctCd", rmbar.getBankAcctCd());
 		params.put("accountNo", rmbar.getAccountNo());
 		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
 		return res;
+	}
+
+	@Override
+	public RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException {
+		RetrieveMtnAcitDCBNoResponse response = new RetrieveMtnAcitDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dcbYear", rmaidcbr.getDcbYear());
+		params.put("dcbNo", rmaidcbr.getDcbNo());
+		params.put("dcbDate", rmaidcbr.getDcbDate());
+		params.put("dcbStatus", rmaidcbr.getDcbStatus());
+		response.setDcbNoList(maintenanceDao.retrieveMtnAcitDCBNo(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException {
+		SaveMtnAcitDCBNoResponse response = new SaveMtnAcitDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveDCBNo", smaidcbr.getSaveDCBNo());
+		params.put("delDCBNo", smaidcbr.getDelDCBNo());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnAcitDCBNo(params));
+		}catch(SQLException sqlex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQL Exception","Please check the field values."));
+			sqlex.printStackTrace();
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnDCBUserResponse retrieveMtnDCBUser(RetrieveMtnDCBUserRequest rmdur) throws SQLException {
+		RetrieveMtnDCBUserResponse response = new RetrieveMtnDCBUserResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", rmdur.getUserid());
+		response.setDcbUserList(maintenanceDao.retrieveMtnDCBUser(params));
+		return response;
 	}
 
 	@Override
@@ -2136,6 +2178,35 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setPrintableNames(maintenanceDao.retrieveMtnPrintableNames(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnInvtSecurityTypeResponse rmistResponse = new RetrieveMtnInvtSecurityTypeResponse();
+		HashMap<String, Object> rmistParams = new HashMap<String, Object>();
+		rmistParams.put("invtSecCd", rist.getInvtSecCd());
+		rmistParams.put("activeTag", rist.getActiveTag());
+		rmistResponse.setInvSecTypeList(maintenanceDao.retrieveMtnInvtSecurityType(rmistParams));
+		logger.info("RetrieveMtnInvtSecurityTypeResponse : " + rmistResponse.toString());
+		return rmistResponse;
+	}
+
+	@Override
+	public SaveMtnBankResponse saveMtnBank(SaveMtnBankRequest smaidcbr) throws SQLException {
+		SaveMtnBankResponse response = new SaveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smaidcbr.getSaveList());
+		params.put("delList", smaidcbr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBank(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
 
 	@Override
 	public RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request)
@@ -2146,7 +2217,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("treatyTag",request.getTreatyTag()); 
 		params.put("cedingName",request.getCedingName()); 
 		response.setCedingcompany(maintenanceDao.retrieveMtnCedingTreaty(params));
-        
+        return response;
+	}
+
+	@Override
+	public SaveMtnBankAcctResponse saveMtnBankAcct(SaveMtnBankAcctRequest smaidcbr) throws SQLException {
+		SaveMtnBankAcctResponse response = new SaveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smaidcbr.getSaveList());
+		params.put("delList", smaidcbr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBankAcct(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
 		return response;
 	}
 }

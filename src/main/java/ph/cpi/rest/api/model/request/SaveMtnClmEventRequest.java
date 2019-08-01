@@ -28,7 +28,6 @@ class Events {
 	private String eventDesc;
 	private String lossDateFrom;
 	private String lossDateTo;
-	private String lineCd;
 	private String eventTypeCd;
 	private String activeTag;
 	private String remarks;
@@ -59,12 +58,6 @@ class Events {
 	}
 	public void setLossDateTo(String lossDateTo) {
 		this.lossDateTo = lossDateTo;
-	}
-	public String getLineCd() {
-		return lineCd;
-	}
-	public void setLineCd(String lineCd) {
-		this.lineCd = lineCd;
 	}
 	public String getEventTypeCd() {
 		return eventTypeCd;
@@ -111,7 +104,7 @@ class Events {
 	@Override
 	public String toString() {
 		return "Events [eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", lossDateFrom=" + lossDateFrom
-				+ ", lossDateTo=" + lossDateTo + ", lineCd=" + lineCd + ", eventTypeCd=" + eventTypeCd + ", activeTag="
+				+ ", lossDateTo=" + lossDateTo + ", eventTypeCd=" + eventTypeCd + ", activeTag="
 				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}

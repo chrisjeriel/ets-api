@@ -4,11 +4,18 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnBankRequest {
+	private String bankCd;
 	private String officialName;
 	private String activeTag;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
+	public String getBankCd() {
+		return bankCd;
+	}
+	public void setBankCd(String bankCd) {
+		this.bankCd = bankCd;
+	}
 	public String getOfficialName() {
 		return officialName;
 	}
@@ -36,7 +43,7 @@ public class RetrieveMtnBankRequest {
 	
 	@Override
 	public String toString() {
-		return "RetrieveMtnBankRequest [officialName=" + officialName + ", activeTag=" + activeTag
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnBankRequest [bankCd=" + bankCd + ", officialName=" + officialName + ", activeTag="
+				+ activeTag + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

@@ -11,13 +11,17 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
@@ -25,11 +29,18 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
+import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
@@ -37,15 +48,18 @@ import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
-import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
@@ -54,11 +68,18 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
+import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -146,6 +167,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			
 			saprResponse.setReturnCode((Integer) response.get("errorCode"));
 			saprResponse.setPaytReqNo((String) response.get("paytReqNo"));
+			saprResponse.setReqIdOut((Integer) response.get("reqId"));
 		} catch (SQLException sqlex) {
 			saprResponse.setReturnCode(0);
 			saprResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -158,6 +180,33 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return saprResponse;
 	}
 
+
+//	@Override
+//	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
+//			throws SQLException {
+//		// TODO Auto-generated method stub
+//		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
+//		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
+//		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
+//		rapcsrParams.put("cedingId", rapcsr.getCedingId());
+//		rapcsrParams.put("month", rapcsr.getMonth());
+//		rapcsrParams.put("year", rapcsr.getYear());
+//		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
+//		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
+//		return rapcsrResponse;
+//	}
+
+
+//	@Override
+//	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
+//			throws SQLException {
+//		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
+//		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
+//		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
+//		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+//		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
+//		return rapcdrResponse;
+//	}
 
 	@Override
 	public RetrieveAcitCMDMListResponse retrieveAcitCMDMList(RetrieveAcitCMDMListRequest racitcmdmlr)
@@ -271,6 +320,51 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
+	public RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentList(RetrieveAcitInvestmentsListRequest railr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitInvestmentsListResponse railrResponse = new RetrieveAcitInvestmentsListResponse();
+		HashMap<String, Object> railrParams = new HashMap<String, Object>();
+		railrParams.put("invtId", railr.getInvtId());
+		railrParams.put("invtCd", railr.getInvtCd());
+		railrParams.put("bank", railr.getBank());
+		railrParams.put("invtType", railr.getInvtType());
+		railrParams.put("invtSecCd", railr.getInvtSecCd());
+		railrParams.put("invtStatus", railr.getInvtStatus());
+		railrParams.put("matPeriod", railr.getMatPeriod());
+		railrParams.put("durUnit", railr.getDurUnit());
+		railrParams.put("purDate", railr.getPurDate());
+		railrParams.put("matDate", railr.getMatDate());
+		railrParams.put("currCd", railr.getCurrCd());
+		
+		railrResponse.setInvtList(acctITDao.retrieveInvestmentList(railrParams));
+		logger.info("RetrieveAcitInvestmentsListResponse : " + railrResponse.toString());
+		return railrResponse;
+	}
+
+
+	@Override
+	public SaveAcitInvestmentsResponse saveAcitInvestments(SaveAcitInvestmentsRequest rair) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcitInvestmentsResponse sairResponse = new SaveAcitInvestmentsResponse();
+		HashMap<String, Object> sairParams = new HashMap<String, Object>();
+		try {
+			sairParams.put("saveAcitInvestments",rair.getSaveAcitInvestments());
+			sairParams.put("delAcitInvestments", rair.getDelAcitInvestments());
+			sairResponse.setReturnCode(acctITDao.saveAcitInvestments(sairParams));
+			logger.info("SaveAcitInvestmentsResponse : " + sairResponse.toString());
+		} catch (SQLException sqlex) {
+			sairResponse.setReturnCode(0);
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sairResponse.setReturnCode(0);
+			sairResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return sairResponse;
+	}
+	
 	public RetrieveAcitRefNoLOVResponse retrieveAcitRefNoLOV(RetrieveAcitRefNoLOVRequest racitcmdmlr)
 			throws SQLException {
 		RetrieveAcitRefNoLOVResponse reponse = new RetrieveAcitRefNoLOVResponse();
@@ -306,6 +400,77 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", raje.getTranId());
 		response.setTransactions(acctITDao.retrieveAcitJVEntry(params));
+		return response;
+	}
+	
+	@Override
+	public SaveAcitArTransResponse saveAcitArTrans(SaveAcitArTransRequest saatr) throws SQLException {
+		SaveAcitArTransResponse response = new SaveAcitArTransResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saatr.getTranId());
+		params.put("tranDate", saatr.getTranDate());
+		params.put("tranClass", saatr.getTranClass());
+		params.put("tranTypeCd", saatr.getTranTypeCd());
+		params.put("tranYear", saatr.getTranYear());
+		params.put("tranClassNo", saatr.getTranClassNo());
+		params.put("tranStat", saatr.getTranStat());
+		params.put("closeDate", saatr.getCloseDate());
+		params.put("deleteDate", saatr.getDeleteDate());
+		params.put("postDate", saatr.getPostDate());
+		params.put("createUser", saatr.getCreateUser());
+		params.put("createDate", saatr.getCreateDate());
+		params.put("updateUser", saatr.getUpdateUser());
+		params.put("updateDate", saatr.getUpdateDate());
+		params.put("arStatus", saatr.getArStatus());
+		params.put("dcbYear", saatr.getDcbYear());
+		params.put("dcbNo", saatr.getDcbNo());
+		params.put("dcbUserCd", saatr.getDcbUserCd());
+		params.put("dcbBank", saatr.getDcbBank());
+		params.put("dcbBankAcct", saatr.getDcbBankAcct());
+		params.put("refNo", saatr.getRefNo());
+		params.put("prNo", saatr.getPrNo());
+		params.put("prDate", saatr.getPrDate());
+		params.put("prPreparedBy", saatr.getPrPreparedBy());
+		params.put("payeeNo", saatr.getPayeeNo());
+		params.put("payor", saatr.getPayor());
+		params.put("particulars", saatr.getParticulars());
+		params.put("currCd", saatr.getCurrCd());
+		params.put("currRate", saatr.getCurrRate());
+		params.put("arAmt", saatr.getArAmt());
+		params.put("allocTag", saatr.getAllocTag());
+		params.put("allocTranId", saatr.getAllocTranId());
+		params.put("savePaytDtl", saatr.getSavePaytDtl());
+		params.put("delPaytDtl", saatr.getDelPaytDtl());
+		try{
+			HashMap<String, Object> daoResponse = acctITDao.saveAcitArTrans(params);
+			response.setReturnCode(Integer.parseInt(daoResponse.get("errorCode").toString()));
+			response.setOutTranId(Integer.parseInt(daoResponse.get("outTranId").toString()));
+			if(response.getOutTranId() == 0){
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("General Error","The specified AR No. is not yet generated. Please review your records and make the necessary changes."));
+			}
+		}catch(Throwable e){
+			Throwable t = e;
+			while(t.getCause() != null){
+				t = t.getCause();
+				if(t.toString().contains("unique constraint")){
+					response.getErrorList().add(new Error("General Error","The specified AR No. was already taken. Please review your records and make the necessary changes."));
+					break;
+				}
+			}
+			response.setReturnCode(0);
+			e.printStackTrace();
+		}
+		
+		/*catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}*/
 		return response;
 	}
 
@@ -377,6 +542,22 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setSoaDetails(acctITDao.retrieveAcitSOAAging(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
+		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
+		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
+		rapcsrParams.put("cedingId", rapcsr.getCedingId());
+		rapcsrParams.put("month", rapcsr.getMonth());
+		rapcsrParams.put("year", rapcsr.getYear());
+		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
+		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
+		return rapcsrResponse;
+	}
 
 
 	@Override
@@ -390,8 +571,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setInwPolBal(acctITDao.retrieveAcitJVAdjstInwPolBal(params));
 		return response;
 	}
-
-
+	
 	@Override
 	public RetrieveAcitPrqTransResponse retrieveAcitPrqTrans(RetrieveAcitPrqTransRequest raptp) throws SQLException {
 		RetrieveAcitPrqTransResponse raptResponse =  new RetrieveAcitPrqTransResponse();
@@ -476,6 +656,23 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setReturnCode(acctITDao.printCMDM(params));
 		return response;
 	}
+	
+	@Override
+	public CancelArResponse cancelAr(CancelArRequest car) throws SQLException {
+		CancelArResponse response = new CancelArResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId",car.getTranId());
+		params.put("updateUser", car.getUpdateUser());
+		params.put("updateDate", car.getUpdateDate());
+		try{
+			response.setReturnCode(acctITDao.cancelAr(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values"));
+			e.printStackTrace();
+		}
+		return response;
+	}
 
 
 	@Override
@@ -496,6 +693,55 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
+	@Override
+	public RetrieveAcitAgingSoaDtlResponse retrieveAgingSoaDtl(RetrieveAcitAgingSoaDtlRequest raasdr)
+			throws SQLException {
+		RetrieveAcitAgingSoaDtlResponse response = new RetrieveAcitAgingSoaDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", raasdr.getPolicyId());
+		params.put("instNo", raasdr.getInstNo());
+		params.put("cedingId", raasdr.getCedingId());
+		params.put("payeeNo", raasdr.getPayeeNo());
+		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
+		return response;
+	}
+	
+	@Override
+	public SaveAcitArInwPolBalResponse saveArInwPolBal(SaveAcitArInwPolBalRequest saipbr) throws SQLException {
+		SaveAcitArInwPolBalResponse response = new SaveAcitArInwPolBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saipbr.getTranId());
+		params.put("billId", saipbr.getBillId());
+		params.put("billType", saipbr.getBillType());
+		params.put("totalLocalAmt", saipbr.getTotalLocalAmt());
+		params.put("createUser", saipbr.getCreateUser());
+		params.put("createDate", saipbr.getCreateDate());
+		params.put("updateUser", saipbr.getUpdateUser());
+		params.put("updateDate", saipbr.getUpdateDate());
+		params.put("saveInwPolBal", saipbr.getSaveInwPolBal());
+		params.put("delInwPolBal", saipbr.getDelInwPolBal());
+		try{
+			response.setReturnCode(acctITDao.saveArInwPolBal(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcitArInwPolBalResponse retrieveArInwPolBal(RetrieveAcitArInwPolBalRequest raaipbr)
+			throws SQLException {
+		RetrieveAcitArInwPolBalResponse response = new RetrieveAcitArInwPolBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaipbr.getTranId());
+		params.put("billId", raaipbr.getBillId());
+		response.setArInwPolBal(acctITDao.retrieveAcitArInwPolBal(params));
+		return response;
+	}
+	
+	@Override
 	public RetrieveAcitAcctEntriesResponse retrieveAcitAcctEntries(RetrieveAcitAcctEntriesRequest racitcmdmlr)
 			throws SQLException {
 		RetrieveAcitAcctEntriesResponse response = new RetrieveAcitAcctEntriesResponse();
@@ -521,6 +767,49 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
+	@Override
+	public RetrieveAcitArTransDtlResponse retrieveARTransDtl(RetrieveAcitArTransDtlRequest raatdr) throws SQLException {
+		RetrieveAcitArTransDtlResponse response = new RetrieveAcitArTransDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raatdr.getTranId());
+		params.put("billId", raatdr.getBillId());
+		response.setTransDtlList(acctITDao.retrieveAcitArTransDtl(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArTransDtlResponse saveAcitArTransDtl(SaveAcitArTransDtlRequest saatdr) throws SQLException {
+		SaveAcitArTransDtlResponse response = new SaveAcitArTransDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saatdr.getTranId());
+		params.put("billId", saatdr.getBillId());
+		params.put("billType", saatdr.getBillType());
+		params.put("totalLocalAmt", saatdr.getTotalLocalAmt());
+		params.put("createUser", saatdr.getCreateUser());
+		params.put("createDate", saatdr.getCreateDate());
+		params.put("updateUser", saatdr.getUpdateUser());
+		params.put("updateDate", saatdr.getUpdateDate());
+		params.put("saveTransDtl", saatdr.getSaveTransDtl());
+		params.put("delTransDtl", saatdr.getDelTransDtl());
+		try{
+			HashMap<String, Object> res = acctITDao.saveArTransDtl(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
+	@Override
 	public RetrieveQSOAListResponse retrieveQSOAList(RetrieveQSOAListRequest rqlr) throws SQLException {
 		RetrieveQSOAListResponse rqlResponse = new RetrieveQSOAListResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -552,7 +841,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
-
 
 	@Override
 	public SaveAcitJVPremResRelResponse saveAcitJVPremResRel(SaveAcitJVPremResRelRequest request) throws SQLException {
@@ -611,5 +899,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			sqlex.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
+		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
+		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
+		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
+		return rapcdrResponse;
 	}
 }

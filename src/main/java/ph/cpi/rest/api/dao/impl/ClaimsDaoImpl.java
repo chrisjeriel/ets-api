@@ -19,6 +19,8 @@ import ph.cpi.rest.api.model.claims.ClaimDist;
 import ph.cpi.rest.api.model.claims.ClaimDistCeding;
 import ph.cpi.rest.api.model.claims.ClaimPaytRequest;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
+import ph.cpi.rest.api.model.claims.ClaimReserveDist;
+import ph.cpi.rest.api.model.claims.ClaimReserveDistPool;
 import ph.cpi.rest.api.model.claims.Claims;
 
 @Component
@@ -208,5 +210,23 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		par.put("chkAdjRate", "");
 		sqlSession.selectOne("chkAdjRate", par);
 		return (Float) par.get("chkAdjRate");
+	}
+
+	@Override
+	public List<ClaimReserveDist> retrieveClmReserveDist(HashMap<String, Object> params) throws SQLException {
+		List<ClaimReserveDist> list = sqlSession.selectList("retrieveClmReserveDist", params);
+		return list;
+	}
+
+	@Override
+	public List<ClaimReserveDistPool> retrieveClmReserveDistPool(HashMap<String, Object> params) throws SQLException {
+		List<ClaimReserveDistPool> list = sqlSession.selectList("retrieveClmReserveDistPool", params);
+		return list;
+	}
+
+	@Override
+	public Integer redistributeClaimReserveDist(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("redistributeClaimReserveDist",params);
+		return code;
 	}
 }

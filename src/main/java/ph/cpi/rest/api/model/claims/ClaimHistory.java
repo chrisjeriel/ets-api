@@ -27,6 +27,7 @@ public class ClaimHistory {
 	private DateTime 	createDate;
 	private String 	 	updateUser;
 	private DateTime 	updateDate;
+	private String		insuredDesc;
 	private Float		adjRate;
 	private String		val1;
 	private String		val2;
@@ -194,6 +195,13 @@ public class ClaimHistory {
 	public void setVal4(String val4) {
 		this.val4 = val4;
 	}
+	
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	@Override
 	public String toString() {
 		return "ClaimHistory [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", histNo=" + histNo
@@ -202,7 +210,7 @@ public class ClaimHistory {
 				+ ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
 				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", adjRate=" + adjRate + ", val1=" + val1 + ", val2="
-				+ val2 + ", val3=" + val3 + ", val4=" + val4 + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", adjRate=" + adjRate
+				+ ", val1=" + val1 + ", val2=" + val2 + ", val3=" + val3 + ", val4=" + val4 + "]";
 	}
 }
