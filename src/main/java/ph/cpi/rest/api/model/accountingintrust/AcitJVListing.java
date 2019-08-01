@@ -26,8 +26,12 @@ public class AcitJVListing {
 	private String allocTag;
 	private Integer allocTranId;
 	private String preparedBy;
+	private String preparedName;
+	private String preparedPosition;
 	private DateTime preparedDate;
 	private String approvedBy;
+	private String approvedName;
+	private String approvedPosition;
 	private DateTime approvedDate;
 	private String createUser;
 	private DateTime createDate;
@@ -157,6 +161,31 @@ public class AcitJVListing {
 	public void setPreparedBy(String preparedBy) {
 		this.preparedBy = preparedBy;
 	}
+	
+	public String getPreparedName() {
+		return preparedName;
+	}
+	public void setPreparedName(String preparedName) {
+		this.preparedName = preparedName;
+	}
+	public String getPreparedPosition() {
+		return preparedPosition;
+	}
+	public void setPreparedPosition(String preparedPosition) {
+		this.preparedPosition = preparedPosition;
+	}
+	public String getApprovedName() {
+		return approvedName;
+	}
+	public void setApprovedName(String approvedName) {
+		this.approvedName = approvedName;
+	}
+	public String getApprovedPosition() {
+		return approvedPosition;
+	}
+	public void setApprovedPosition(String approvedPosition) {
+		this.approvedPosition = approvedPosition;
+	}
 	public DateTime getPreparedDate() {
 		return preparedDate;
 	}
@@ -212,11 +241,12 @@ public class AcitJVListing {
 				+ ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId
 				+ ", refNo=" + refNo + ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd="
 				+ currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt + ", localAmt=" + localAmt + ", allocTag="
-				+ allocTag + ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedDate="
-				+ preparedDate + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", inwPolBal=" + inwPolBal + "]";
+				+ allocTag + ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedName="
+				+ preparedName + ", preparedPosition=" + preparedPosition + ", preparedDate=" + preparedDate
+				+ ", approvedBy=" + approvedBy + ", approvedName=" + approvedName + ", approvedPosition="
+				+ approvedPosition + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", inwPolBal=" + inwPolBal
+				+ "]";
 	}
-	
 	
 }
