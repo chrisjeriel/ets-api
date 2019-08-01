@@ -43,6 +43,8 @@ class premResRel {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private BigDecimal totalWhtaxAmt;
+	private BigDecimal totalInterestAmt;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -122,11 +124,24 @@ class premResRel {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getTotalWhtaxAmt() {
+		return totalWhtaxAmt;
+	}
+	public void setTotalWhtaxAmt(BigDecimal totalWhtaxAmt) {
+		this.totalWhtaxAmt = totalWhtaxAmt;
+	}
+	public BigDecimal getTotalInterestAmt() {
+		return totalInterestAmt;
+	}
+	public void setTotalInterestAmt(BigDecimal totalInterestAmt) {
+		this.totalInterestAmt = totalInterestAmt;
+	}
 	@Override
 	public String toString() {
 		return "premResRel [tranId=" + tranId + ", cedingId=" + cedingId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", interestAmt=" + interestAmt
 				+ ", whtaxAmt=" + whtaxAmt + ", releaseAmt=" + releaseAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", totalWhtaxAmt=" + totalWhtaxAmt + ", totalInterestAmt=" + totalInterestAmt + "]";
 	}
 }
