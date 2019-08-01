@@ -568,6 +568,7 @@
 	<select id="retrieveAcitJVPremResRel" resultMap="premResMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_premrr(
 					#{tranId},
+					#{cedingId, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 
@@ -703,6 +704,7 @@
 			<foreach collection="savePremResRel" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_prr(
 					#{save.tranId},
+					#{save.cedingId},
 					#{save.itemNo,jdbcType=INTEGER},
 					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.currCd},

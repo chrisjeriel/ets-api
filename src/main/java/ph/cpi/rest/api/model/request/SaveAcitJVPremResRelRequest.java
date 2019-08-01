@@ -31,6 +31,7 @@ public class SaveAcitJVPremResRelRequest {
 @Alias ("ACITPremResRel")
 class premResRel {
 	private Integer tranId;
+	private String cedingId;
 	private Integer itemNo;
 	private String quarterEnding;
 	private String currCd;
@@ -47,6 +48,13 @@ class premResRel {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
 	}
 	public Integer getItemNo() {
 		return itemNo;
@@ -116,9 +124,9 @@ class premResRel {
 	}
 	@Override
 	public String toString() {
-		return "premResRel [tranId=" + tranId + ", itemNo=" + itemNo + ", quarterEnding=" + quarterEnding + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", interestAmt=" + interestAmt + ", whtaxAmt=" + whtaxAmt
-				+ ", releaseAmt=" + releaseAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "premResRel [tranId=" + tranId + ", cedingId=" + cedingId + ", itemNo=" + itemNo + ", quarterEnding="
+				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", interestAmt=" + interestAmt
+				+ ", whtaxAmt=" + whtaxAmt + ", releaseAmt=" + releaseAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

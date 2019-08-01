@@ -516,6 +516,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVPremResRelResponse response = new RetrieveAcitJVPremResRelResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
+		params.put("cedingId", request.getCedingId());
 		response.setPremResRel(acctITDao.retrieveAcitJVPremResRel(params));
 		return response;
 	}
