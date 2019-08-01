@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
@@ -102,6 +103,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
@@ -635,5 +637,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/saveExpGenInfo");
 		logger.info("SaveExpGenInfoRequest : " + segir.toString());
 		return underwritingService.saveExpGenInfo(segir);
+	}
+	
+	@GetMapping(path="retrievePolDistWarning")
+	public @ResponseBody RetrievePolDistWarningResponse retrievePolDistWarning(RetrievePolDistWarningRequest rpdwr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolDistWarning");
+		logger.info("RetrievePolDistWarningRequest : " + rpdwr.toString());
+		return underwritingService.retrievePolDistWarning(rpdwr);
 	}
 }
