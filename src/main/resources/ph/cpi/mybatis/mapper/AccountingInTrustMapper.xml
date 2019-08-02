@@ -65,7 +65,7 @@
 		<result property="policyId"				column="POLICY_ID"/>
 		<result property="instNo"				column="INST_NO"/>
 		<result property="quarterEnding"		column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="investmentId"			column="INVESTMENT_ID"/>
+		<result property="invtId"				column="INVT_ID"/>
 		<result property="refNo"				column="REF_NO"/>
 		<result property="paymentFor"			column="PAYMENT_FOR"/>
 		<result property="currCd"				column="CURR_CD"/>
@@ -663,7 +663,7 @@
 					#{save.policyId, jdbcType=INTEGER},
 					#{save.instNo, jdbcType=INTEGER},
 					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					#{save.investmentId, jdbcType=INTEGER},
+					#{save.invtId, jdbcType=INTEGER},
 					#{save.refNo, jdbcType=VARCHAR},
 					#{save.paymentFor, jdbcType=VARCHAR},
 					#{save.currCd, jdbcType=VARCHAR},
