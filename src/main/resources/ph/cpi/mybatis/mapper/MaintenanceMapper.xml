@@ -3574,6 +3574,7 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitChartAcct" id="AcitChartAcct">
 		<result property="glAcctId" column="GL_ACCT_ID"/>
 		<result property="glAcctCategory" column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctCategoryDesc" column="GL_ACCT_CATEGORY_DESC"/>
 		<result property="glAcctControl" column="GL_ACCT_CONTROL"/>
 		<result property="glAcctSub1" column="GL_ACCT_SUB1"/>
 		<result property="glAcctSub2" column="GL_ACCT_SUB2"/>
@@ -3582,6 +3583,7 @@
 		<result property="longDesc" column="LONG_DESC"/>
 		<result property="shortCode" column="SHORT_CODE"/>
 		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
 		<result property="drCrTag" column="DR_CR_TAG"/>
 		<result property="postTag" column="POST_TAG"/>
 		<result property="activeTag" column="ACTIVE_TAG"/>
