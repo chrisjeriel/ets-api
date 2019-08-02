@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.ClaimReason;
 import ph.cpi.rest.api.model.maintenance.ClaimStatus;
+import ph.cpi.rest.api.model.maintenance.Company;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -207,4 +208,5 @@ public interface MaintenanceDao {
 	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBank(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
+	public List<Company> retrieveMtnCompany(final HashMap<String, Object> params) throws SQLException;
 }

@@ -14,6 +14,8 @@ import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
@@ -249,5 +251,24 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		// TODO Auto-generated method stub
 		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
 		return acitProfCommDtlList;
+	}
+
+	@Override
+	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecover> res = sqlSession.selectList("retrieveAcitArClmRecover", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecoverLov> res = sqlSession.selectList("retrieveAcitArClmRecoverLov", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveArClmRecover(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveArClmRecover", params);
+		params.put("errorCode", res);
+		return params;
 	}
 }

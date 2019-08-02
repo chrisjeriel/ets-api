@@ -37,6 +37,8 @@ public class AcknowledgementReceipt {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String cedingId;
+	private String bussTypeName;
 	
 	private List<ARPaymentDetails> paytDtl;
 
@@ -296,6 +298,22 @@ public class AcknowledgementReceipt {
 		this.paytDtl = paytDtl;
 	}
 
+	public String getCedingId() {
+		return cedingId;
+	}
+
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+
+	public String getBussTypeName() {
+		return bussTypeName;
+	}
+
+	public void setBussTypeName(String bussTypeName) {
+		this.bussTypeName = bussTypeName;
+	}
+
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
@@ -307,6 +325,6 @@ public class AcknowledgementReceipt {
 				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", currCd=" + currCd + ", arAmt=" + arAmt
 				+ ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", paytDtl=" + paytDtl + "]";
+				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", paytDtl=" + paytDtl + "]";
 	}
 }

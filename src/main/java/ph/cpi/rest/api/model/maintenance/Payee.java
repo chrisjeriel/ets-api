@@ -31,6 +31,8 @@ public class Payee {
 	private String bankAcctType2;
 	private String bankAcctName2;
 	private String bankAcctNo2;
+	private String cedingId;
+	private String bussTypeName;
 	public Integer getPayeeNo() {
 		return payeeNo;
 	}
@@ -211,6 +213,21 @@ public class Payee {
 	public void setBankAcctNo2(String bankAcctNo2) {
 		this.bankAcctNo2 = bankAcctNo2;
 	}
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	
+	public String getBussTypeName() {
+		return bussTypeName;
+	}
+	public void setBussTypeName(String bussTypeName) {
+		this.bussTypeName = bussTypeName;
+	}
+	
 	@Override
 	public String toString() {
 		return "Payee [payeeNo=" + payeeNo + ", payeeClassCd=" + payeeClassCd + ", payeeClassName=" + payeeClassName
@@ -222,6 +239,7 @@ public class Payee {
 				+ faxNo + ", bankCd1=" + bankCd1 + ", bankBranch1=" + bankBranch1 + ", bankAcctType1=" + bankAcctType1
 				+ ", bankAcctName1=" + bankAcctName1 + ", bankAcctNo1=" + bankAcctNo1 + ", bankCd2=" + bankCd2
 				+ ", bankBranch2=" + bankBranch2 + ", bankAcctType2=" + bankAcctType2 + ", bankAcctName2="
-				+ bankAcctName2 + ", bankAcctNo2=" + bankAcctNo2 + "]";
+				+ bankAcctName2 + ", bankAcctNo2=" + bankAcctNo2 + ", cedingId=" + cedingId + ", bussTypeName="
+				+ bussTypeName + "]";
 	}	
 }

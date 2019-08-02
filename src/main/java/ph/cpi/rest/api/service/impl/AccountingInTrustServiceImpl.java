@@ -15,6 +15,8 @@ import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverLovRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
@@ -37,6 +39,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
@@ -45,6 +48,8 @@ import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArClmRecoverLovResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArClmRecoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
@@ -69,6 +74,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
@@ -782,5 +788,60 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitArClmRecoverResponse retrieveAcitArClmRecover(RetrieveAcitArClmRecoverRequest raacrr)
+			throws SQLException {
+		RetrieveAcitArClmRecoverResponse response = new RetrieveAcitArClmRecoverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raacrr.getTranId());
+		params.put("billId", raacrr.getBillId());
+		response.setArClmRecover(acctITDao.retrieveAcitArClmRecover(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArClmRecoverLovResponse retrieveAcitArClmRecoverLov(RetrieveAcitArClmRecoverLovRequest raacrlr)
+			throws SQLException {
+		RetrieveAcitArClmRecoverLovResponse response = new RetrieveAcitArClmRecoverLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", raacrlr.getPayeeNo());
+		response.setClaimList(acctITDao.retrieveAcitArClmRecoverLov(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArClmRecoverResponse saveArClmRecover(SaveAcitArClmRecoverRequest saacrr) throws SQLException {
+		SaveAcitArClmRecoverResponse response = new SaveAcitArClmRecoverResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saacrr.getTranId());
+		params.put("billId", saacrr.getBillId());
+		params.put("billType", saacrr.getBillType());
+		params.put("totalLocalAmt", saacrr.getTotalLocalAmt());
+		params.put("createUser", saacrr.getCreateUser());
+		params.put("createDate", saacrr.getCreateDate());
+		params.put("updateUser", saacrr.getUpdateUser());
+		params.put("updateDate", saacrr.getUpdateDate());
+		params.put("saveClmRecover", saacrr.getSaveClmRecover());
+		params.put("delClmRecover", saacrr.getDelClmRecover());
+		try{
+			HashMap<String, Object> res = acctITDao.saveArClmRecover(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

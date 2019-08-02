@@ -3565,6 +3565,8 @@
 		<result property="bankAcctType2"	column="BANK_ACCT_TYPE2"/>
 		<result property="bankAcctName2"	column="BANK_ACCT_NAME2"/>
 		<result property="bankAcctNo2"	column="BANK_ACCT_NO2"/>
+		<result property="cedingId"	column="CEDING_ID"/>
+		<result property="bussTypeName"	column="BUSS_TYPE_NAME"/>
 	</resultMap>
 	
 	<select id="retrieveMtnPayee" resultMap="payeeMap">
@@ -3701,5 +3703,29 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Company" id="companyMap">
+		<result property="companyId"    column="COMPANY_ID" />
+		<result property="companyName"  column="COMPANY_NAME" />
+		<result property="companyAbbr"  column="COMPANY_ABBR" />
+		<result property="bussTypeCd"   column="BUSS_TYPE_CD" />
+		<result property="bussTypeName" column="BUSS_TYPE_NAME" />
+		<result property="addrLine1"    column="ADDR_LINE1" />
+		<result property="addrLine2"    column="ADDR_LINE2" />
+		<result property="addrLine3"    column="ADDR_LINE3" />
+		<result property="zipCd"        column="ZIP_CD" />
+		<result property="contactNo"    column="CONTACT_NO" />
+		<result property="tinNo"        column="TIN_NO" />
+		<result property="emailAdd"     column="EMAIL_ADD" />
+		<result property="cedingId"     column="CEDING_ID" />
+		<result property="activeTag"    column="ACTIVE_TAG" />
+		<result property="remarks"      column="REMARKS" />
+		<result property="createUser"   column="CREATE_USER" />
+		<result property="createDate"   column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"   column="UPDATE_USER" />
+		<result property="updateDate"   column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
 	
+	<select id="retMtnCompany" resultMap="companyMap">
+		SELECT * FROM TABLE(MTN_COMPANY_PKG.ret_mtn_company(#{companyId, jdbcType=VARCHAR}))
+	</select>
 </mapper>

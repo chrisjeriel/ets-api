@@ -2213,4 +2213,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException {
+		RetrieveMtnCompanyResponse response = new RetrieveMtnCompanyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("companyId", rmcr.getCompanyId());
+		response.setCompanyListing(maintenanceDao.retrieveMtnCompany(params));
+		return response;
+	}
 }

@@ -959,4 +959,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnBankAcctRequest : " + smaidcbr.toString());
 		return maintenanceService.saveMtnBankAcct(smaidcbr);
 	}
+	
+	@GetMapping(path="retrieveMtnCompany")
+	public @ResponseBody RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCompany");
+		logger.info("RetrieveMtnCompanyRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCompany(rmcr);
+	}
 }

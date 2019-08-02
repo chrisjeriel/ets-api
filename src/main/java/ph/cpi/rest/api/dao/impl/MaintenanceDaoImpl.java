@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.ClaimReason;
 import ph.cpi.rest.api.model.maintenance.ClaimStatus;
+import ph.cpi.rest.api.model.maintenance.Company;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -1005,5 +1006,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public Integer saveMtnBankAcct(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("saveMtnBankAcct",params);
 		return code;
+	}
+
+	@Override
+	public List<Company> retrieveMtnCompany(HashMap<String, Object> params) throws SQLException {
+		List<Company> res = sqlSession.selectList("retMtnCompany", params);
+		return res;
 	}
 }
