@@ -34,11 +34,13 @@ import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
@@ -66,12 +68,14 @@ import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -782,5 +786,41 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitPrqInwPolResponse retrieveAcitPrqInwPol(RetrieveAcitPrqInwPolRequest rapipp)
+			throws SQLException {
+		RetrieveAcitPrqInwPolResponse rapipResponse = new RetrieveAcitPrqInwPolResponse();
+		HashMap<String, Object> rapipParams = new HashMap<String, Object>();
+		rapipParams.put("",rapipp.getReqId());
+		rapipParams.put("",rapipp.getItemNo());
+		rapipResponse.setAcitPrqInwPolList(acctITDao.retrieveAcitPrqInwPol(rapipParams));
+		logger.info("RetrieveAcitPrqInwPolResponse : " + rapipResponse.toString());
+		return rapipResponse;
+	}
+
+
+	@Override
+	public SaveAcitPrqInwPolResponse saveAcitPrqInwPol(SaveAcitPrqInwPolRequest sapipp) throws SQLException {
+		SaveAcitPrqInwPolResponse sapipResponse = new SaveAcitPrqInwPolResponse();
+		HashMap<String, Object> sapipParams = new HashMap<String, Object>();
+		try {
+			sapipParams.put("saveAcitPrqInwPol",sapipp.getSaveAcitPrqInwPol());
+			sapipParams.put("deleteAcitPrqInwPol",sapipp.getDeleteAcitPrqInwPol());
+			
+			HashMap<String, Object> response = acctITDao.saveAcitPrqInwPol(sapipParams);
+			sapipResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			sapipResponse.setReturnCode(0);
+			sapipResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sapipResponse.setReturnCode(0);
+			sapipResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return sapipResponse;
 	}
 }

@@ -65,7 +65,7 @@
 		<result property="policyId"				column="POLICY_ID"/>
 		<result property="instNo"				column="INST_NO"/>
 		<result property="quarterEnding"		column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="investmentId"			column="INVESTMENT_ID"/>
+		<result property="invtId"				column="INVT_ID"/>
 		<result property="refNo"				column="REF_NO"/>
 		<result property="paymentFor"			column="PAYMENT_FOR"/>
 		<result property="currCd"				column="CURR_CD"/>
@@ -663,7 +663,7 @@
 					#{save.policyId, jdbcType=INTEGER},
 					#{save.instNo, jdbcType=INTEGER},
 					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					#{save.investmentId, jdbcType=INTEGER},
+					#{save.invtId, jdbcType=INTEGER},
 					#{save.refNo, jdbcType=VARCHAR},
 					#{save.paymentFor, jdbcType=VARCHAR},
 					#{save.currCd, jdbcType=VARCHAR},
@@ -1043,4 +1043,54 @@
 					#{profcommId,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol" id="acitPrqInwPolMap">
+		<result property="reqId"		column="REQ_ID"/>			
+		<result property="itemNo"		column="ITEM_NO"/>			
+		<result property="premAmt"		column="PREM_AMT"/>		
+		<result property="riComm"		column="RI_COMM"/>			
+		<result property="riCommVat"	column="RI_COMM_VAT"/>		
+		<result property="prevPaytAmt"	column="PREV_PAYT_AMT"/>	
+		<result property="netDue"		column="NET_DUE"/>			
+		<result property="charges"		column="CHARGES"/>			
+		<result property="returnAmt"	column="RETURN_AMT"/>		
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />	
+	</resultMap>
+	
+	<select id="retrieveAcitPrqInwPol" resultMap="acitPrqInwPolMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PRQ_INWPOL_PKG.ret_prq_inwpol(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	
+	<update id="saveAcitPrqInwPol" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveAcitPrqInwPol" item="save">
+	    		ACIT_PRQ_INWPOL_PKG.save_prq_inwpol(
+	    			#{save.reqId, jdbcType=INTEGER},
+					#{save.itemNo, jdbcType=INTEGER},
+					#{save.premAmt, jdbcType=INTEGER},
+					#{save.riComm, jdbcType=INTEGER},
+					#{save.riCommVat, jdbcType=INTEGER},
+					#{save.prevPaytAmt, jdbcType=INTEGER},
+					#{save.netDue, jdbcType=INTEGER},
+					#{save.charges, jdbcType=INTEGER},
+					#{save.returnAmt, jdbcType=INTEGER},
+					#{save.createUser, jdbcType=INTEGER},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteAcitPrqInwPol" item="del">
+    			ACIT_PRQ_INWPOL_PKG.del_prq_inwpol(
+    				#{del.reqId, jdbcType=INTEGER},
+					#{del.itemNo, jdbcType=INTEGER});
+    		</foreach>
+    	END;
+    </update>
 </mapper>
