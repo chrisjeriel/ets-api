@@ -29,8 +29,15 @@ public class AcitInvestments {
 	private DateTime 	createDate;
 	private String 		updateUser;
 	private DateTime 	updateDate;
-	private String		okDelete;	
+	private String		okDelete;
+	private String 		slCd;
 	
+	public String getSlCd() {
+		return slCd;
+	}
+	public void setSlCd(String slCd) {
+		this.slCd = slCd;
+	}
 	public String getOkDelete() {
 		return okDelete;
 	}
@@ -184,7 +191,7 @@ public class AcitInvestments {
 				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
 				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
 	}
 	
 
