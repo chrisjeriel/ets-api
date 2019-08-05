@@ -206,12 +206,14 @@
 		<result property="updateUser" 					column="UPDATE_USER"/>
 		<result property="updateDate" 					column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="okDelete"						column="OK_DELETE" />
+		<result property="slCd"							column="SL_CD" />
 	</resultMap>
 	
 	<select id="retrieveInvestmentList" resultMap="acitInvestmentsList" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_INVESTMENTS_PKG.ret_invt_list(
 					#{invtId,jdbcType=INTEGER},
 					#{invtCd,jdbcType=VARCHAR},
+					#{bankCd,jdbcType=VARCHAR},
 					#{bank,jdbcType=VARCHAR},
 					#{invtType,jdbcType=VARCHAR},
 					#{invtSecCd,jdbcType=VARCHAR},
@@ -219,7 +221,8 @@
 					#{matPeriod,jdbcType=VARCHAR},
 					#{durUnit,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{purDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					CAST(to_timestamp(#{matDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{matDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{matDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{currCd,jdbcType=VARCHAR},
 					'', '', '',''))
 	</select> 
@@ -249,7 +252,8 @@
 		   	   									#{investments.createUser},
 			   									CAST(to_timestamp(#{investments.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   									#{investments.updateUser},
-			   									CAST(to_timestamp(#{investments.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			   									CAST(to_timestamp(#{investments.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   									#{investments.slCd,  jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
 		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
