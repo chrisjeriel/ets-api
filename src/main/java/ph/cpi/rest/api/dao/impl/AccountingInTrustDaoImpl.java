@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -291,14 +292,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	
 	@Override
 	public List<AcitProfCommSumm> retrieveProfCommSumm(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommSumm", params);
 		return acitProfCommSummList;
 	}
 
 	@Override
 	public List<AcitProfCommDtl> retrieveProfCommDtl(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
 		return acitProfCommDtlList;
 	}
@@ -312,6 +311,20 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public HashMap<String, Object> saveAcitPrqInwPol(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitPrqInwPol", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcitJVAppPaymentZeroBal> res = sqlSession.selectList("retrieveAcitJVAppPaytZeroBal", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVAppPaytZeroBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVAppPaytZeroBal",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

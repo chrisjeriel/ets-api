@@ -690,6 +690,12 @@
 		BEGIN
 			<foreach collection="deleteInwPol" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_acit_aipb(#{delete.tranId}, #{delete.itemNo});
+				
+				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
+														#{delete.tranId},
+														#{delete.policyId},
+														#{delete.instNo}
+				);
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="save">
@@ -704,6 +710,14 @@
 															  #{save.charges}, #{save.netDue}, #{save.adjBalAmt}, 
 																#{save.updateUser}, 
 																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
+														#{save.tranId},
+														#{save.policyId},
+														#{save.instNo},
+														1, <!-- PAYT TYPE 1 FOR JV. CHANGE AS NECESSARY -->
+														3 <!-- JV -->
+				);
 			</foreach>
 			
 			
@@ -840,7 +854,8 @@
 																	#{policyId, jdbcType=VARCHAR},
 																	#{instNo,jdbcType=VARCHAR},
 																	#{cedingId,jdbcType=VARCHAR},
-																	#{payeeNo, jdbcType=VARCHAR}))
+																	#{payeeNo, jdbcType=VARCHAR},
+																	#{zeroBal, jdbcType=INTEGER}))
 	</select>
 	
 	<update id="saveArInwPolBal" parameterType="java.util.Map">
@@ -1237,4 +1252,58 @@
     		</foreach>
     	END;
     </update>
+
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal" id="zeroBalMap">
+		<result property="tranId" column="PWZB_TRAN_ID"/>
+		<result property="itemNo" column="PWZB_ITEM_NO"/>
+		<result property="policyId" column="PWZB_POLICY_ID"/>
+		<result property="policyNo" column="PWZB_POLICY_NO"/>
+		<result property="soaNo" column="PWZB_SOA_NO"/>
+		<result property="coRefNo" column="PWZB_CO_REF_NO"/>
+		<result property="effDate" column="PWZB_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dueDate" column="PWZB_DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="instNo" column="PWZB_INST_NO"/>
+		<result property="currCd" column="PWZB_CURR_CD"/>
+		<result property="currRate" column="PWZB_CURR_RATE"/>
+		<result property="premAmt" column="PWZB_PREM_AMT"/>
+		<result property="riComm" column="PWZB_RI_COMM"/>
+		<result property="riCommVat" column="PWZB_RI_COMM_VAT"/>
+		<result property="charges" column="PWZB_CHARGES"/>
+		<result property="netDue" column="PWZB_NET_DUE"/>
+		<result property="prevPaytAmt" column="PWZB_PREV_PAYT_AMT"/>
+		<result property="adjBalAmt" column="PWZB_ADJ_BAL_AMT"/>
+		<result property="overdueInt" column="PWZB_OVERDUE_INT"/>
+		<result property="createUser" column="PWZB_CREATE_USER"/>
+		<result property="createDate" column="PWZB_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="PWZB_UPDATE_USER"/>
+		<result property="updateDate" column="PWZB_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitJVAppPaytZeroBal" resultMap="zeroBalMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_pwzb(#{tranId},#{instNo,jdbcType=INTEGER},#{cedingId},null,null,null,null))
+	</select>
+	
+	<update id="saveAcitJVAppPaytZeroBal" parameterType="java.util.Map">
+		BEGIN
+			<!-- <foreach collection="deleteZeroBal" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_aipb(#{delete.tranId}, #{delete.itemNo});
+				
+				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
+														#{delete.tranId},
+														#{delete.policyId},
+														#{delete.instNo}
+				);
+			</foreach> -->
+			
+			<foreach collection="saveZeroBal" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
+													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
+													#{save.netDue}, #{save.prevPaytAmt}, #{save.adjBalAmt}, #{save.overdueInt}, #{save.createUser}, 
+													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{save.updateUser}, 
+													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				);
+			</foreach>
+		END;
+	</update>
 </mapper>

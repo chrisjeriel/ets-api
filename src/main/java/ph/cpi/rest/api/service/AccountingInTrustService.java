@@ -32,7 +32,9 @@ import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
@@ -73,6 +75,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
@@ -83,6 +86,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
@@ -132,5 +136,6 @@ public interface AccountingInTrustService {
 	public SaveAcitArTransDtlResponse saveAcitArTransDtl(SaveAcitArTransDtlRequest saatdr) throws SQLException;
 	public RetrieveAcitPrqInwPolResponse retrieveAcitPrqInwPol(RetrieveAcitPrqInwPolRequest rapipp ) throws SQLException;
 	public SaveAcitPrqInwPolResponse saveAcitPrqInwPol(SaveAcitPrqInwPolRequest sapipp) throws SQLException;
-
+	public RetrieveAcitJVAppPaytZeroResponse retrieveAcitJVAppPaytZeroBal(RetrieveAcitJVAppPaytZeroRequest request) throws SQLException;
+	public SaveAcitJVAppPaytZeroResponse saveAcitJVAppPaytZeroBal(SaveAcitJVAppPaytZeroRequest request)throws SQLException;
 }
