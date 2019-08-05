@@ -76,4 +76,5 @@ public interface AccountingInTrustDao {
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
 }

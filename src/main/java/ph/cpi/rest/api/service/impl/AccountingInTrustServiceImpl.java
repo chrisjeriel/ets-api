@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArInvPulloutRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
@@ -93,6 +94,7 @@ import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArInvPulloutResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAppPaytZeroResponse;
@@ -1022,6 +1024,38 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArInvPulloutResponse saveAcitArInvPullout(SaveAcitArInvPulloutRequest saaipr) throws SQLException {
+		SaveAcitArInvPulloutResponse response = new SaveAcitArInvPulloutResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saaipr.getTranId());
+		params.put("billId", saaipr.getBillId());
+		params.put("billType", saaipr.getBillType());
+		params.put("totalLocalAmt", saaipr.getTotalLocalAmt());
+		params.put("createUser", saaipr.getCreateUser());
+		params.put("createDate", saaipr.getCreateDate());
+		params.put("updateUser", saaipr.getUpdateUser());
+		params.put("updateDate", saaipr.getUpdateDate());
+		params.put("saveInvPullout", saaipr.getSaveInvPullout());
+		params.put("delInvPullout", saaipr.getDelInvPullout());
+		try{
+			HashMap<String, Object> res = acctITDao.saveAcitArInvPullout(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
 		}
 		return response;
 	}

@@ -163,7 +163,9 @@
 		<result property="bank" 						column="BANK"/>
 		<result property="certNo" 						column="CERT_NO"/>
 		<result property="invtType" 					column="INVT_TYPE"/>
+		<result property="invtTypeDesc" 				column="INVT_TYPE_DESC"/>
 		<result property="invtSecCd" 					column="INVT_SEC_CD"/>
+		<result property="securityDesc" 				column="SECURITY_DESC"/>
 		<result property="invtStatus" 					column="INVT_STATUS"/>
 		<result property="matPeriod" 					column="MATURITY_PERIOD"/>
 		<result property="durUnit" 						column="DURATION_UNIT"/>
@@ -372,6 +374,7 @@
 		<result property="mailAddress"   column="MAIL_ADDRESS"      />
 		<result property="bussTypeCd"    column="BUSS_TYPE_CD"      />
 		<result property="tin"           column="TIN"               />
+		<result property="refCd"         column="REF_CD"               />
 		<result property="currCd"        column="AAR_CURR_CD"       />
 		<result property="arAmt"         column="AR_AMT"            />
 		<result property="currRate"      column="AAR_CURR_RATE"     />
@@ -722,7 +725,7 @@
 						);
 					END IF;
 					<!-- Generate to Accounting Entries -->
-					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
+					<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message); -->
 				END IF;
 			END IF;
 		END;
@@ -992,7 +995,7 @@
 			</foreach>
 			
 			<!-- Generate to Accounting Entries -->
-			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+			<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 		END;
 	</update>
 	
@@ -1112,7 +1115,7 @@
 					);
 				</foreach>
 				<!-- Generate to Accounting Entries -->
-				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -1374,7 +1377,7 @@
 					);
 				</foreach>
 				<!-- Generate to Accounting Entries -->
-				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -1466,6 +1469,71 @@
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				);
 			</foreach>
+		END;
+	</update>
+	
+	<update id="saveArInvPullout" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_total_payts	NUMBER(16,2);
+			v_ar_amt		NUMBER(16,2);
+			v_message		VARCHAR2(500);
+		BEGIN
+			SELECT NVL(SUM(TOTAL_LOCAL_AMT), 0)
+			  INTO v_total_payts
+			  FROM ACIT_AR_TRANSUMM
+			 WHERE TRAN_ID = #{tranId};
+			
+			SELECT AR_AMT * CURR_RATE
+			  INTO v_ar_amt
+			  FROM ACIT_ACKGT_RECEIPT
+			 WHERE TRAN_ID = #{tranId};
+			 
+			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+				<!-- Save to ACIT_AR_TRANSUMM -->
+				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
+														#{billId},
+														#{billType},
+														#{totalLocalAmt},
+														#{createUser},
+														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{updateUser},
+														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														);
+				<!-- Delete from ACIT_AR_INVPULLOUT_PKG -->
+				<foreach collection="delInvPullout" item="del">
+					ACIT_AR_INVPULLOUT_PKG.del_ar_invpullout(
+														#{del.tranId},
+														#{del.billId},
+														#{del.itemNo}				
+					);
+					
+				</foreach>
+				<!-- Save from ACIT_AR_INVPULLOUT_PKG -->
+				<foreach collection="saveInvPullout" item="save">
+					ACIT_AR_INVPULLOUT_PKG.save_ar_invpullout(
+														#{save.tranId},
+														#{save.billId},
+														#{save.itemNo},
+														#{save.invtId},
+														#{save.pulloutType},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.invtAmt},
+														#{save.incomeAmt},
+														#{save.bankCharge},
+														#{save.whtaxAmt},
+														#{save.maturityValue},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+					);
+				</foreach>
+				<!-- Generate to Accounting Entries -->
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
+			ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
+			END IF;
 		END;
 	</update>
 	
