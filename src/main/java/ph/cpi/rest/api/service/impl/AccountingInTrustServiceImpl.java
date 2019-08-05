@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
@@ -77,6 +79,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
@@ -84,6 +87,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
@@ -702,6 +706,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("instNo", raasdr.getInstNo());
 		params.put("cedingId", raasdr.getCedingId());
 		params.put("payeeNo", raasdr.getPayeeNo());
+		params.put("zeroBal", raasdr.getZeroBal());
 		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
 		return response;
 	}
@@ -904,13 +909,44 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	@Override
 	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		
 		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
 		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
 		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitJVAppPaytZeroResponse retrieveAcitJVAppPaytZeroBal(RetrieveAcitJVAppPaytZeroRequest request)
+			throws SQLException {
+		RetrieveAcitJVAppPaytZeroResponse response =  new RetrieveAcitJVAppPaytZeroResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());		
+		params.put("instNo", request.getInstNo());	
+		params.put("cedingId", request.getCedingId());	
+		response.setZeroBal(acctITDao.retrieveAcitJVAppPaytZeroBal(params));
+		logger.info("RetrieveAcitJVAppPaytZeroResponse : " + response.toString());
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVAppPaytZeroResponse saveAcitJVAppPaytZeroBal(SaveAcitJVAppPaytZeroRequest request)
+			throws SQLException {
+		SaveAcitJVAppPaytZeroResponse response = new SaveAcitJVAppPaytZeroResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveZeroBal" , request.getSaveZeroBal());
+			params.put("deleteZeroBal" , request.getDeleteZeroBal());
+			HashMap<String, Object> res = acctITDao.saveAcitJVAppPaytZeroBal(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
+		return response;
 	}
 }
