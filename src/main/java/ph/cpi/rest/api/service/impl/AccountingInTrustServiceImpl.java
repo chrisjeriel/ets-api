@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
@@ -61,6 +62,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
@@ -822,5 +824,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return sapipResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitServFeeMainGnrtResponse retrieveAcitServFeeMainGnrt(RetrieveAcitServFeeMainGnrtRequest rasfmr)
+			throws SQLException {
+		RetrieveAcitServFeeMainGnrtResponse rasfmgResponse = new RetrieveAcitServFeeMainGnrtResponse();
+		HashMap<String, Object> rasfmParams = new HashMap<String, Object>();
+		rasfmParams.put("prdAsOf", rasfmr.getPrdAsOf());
+		rasfmParams.put("year", rasfmr.getYear());
+		
+		rasfmgResponse.setMainDistList(acctITDao.retrieveAcitServFeeMainGnrt(rasfmParams));
+		
+		return rasfmgResponse;
 	}
 }

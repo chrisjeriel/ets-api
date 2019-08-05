@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
@@ -60,5 +61,6 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveArTransDtl(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitPrqInwPol> retrieveAcitPrqInwPol(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitPrqInwPol(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
 
 }

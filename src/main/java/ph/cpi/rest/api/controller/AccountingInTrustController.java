@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
@@ -64,6 +65,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -345,5 +347,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitPrqInwPolRequest : " + saptr.toString());
 		return acctInTrustService.saveAcitPrqInwPol(saptr);
 	}
-
+	
+	@GetMapping(path="retrieveAcitServFeeMainGnrt")
+	public @ResponseBody RetrieveAcitServFeeMainGnrtResponse retrieveAcitServFeeMainGnrt(RetrieveAcitServFeeMainGnrtRequest rasfmr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitServFeeMainGnrt");
+		logger.info("RetrieveAcitServFeeMainGnrtRequest : " + rasfmr.toString());
+		return acctInTrustService.retrieveAcitServFeeMainGnrt(rasfmr);
+	}
 }
