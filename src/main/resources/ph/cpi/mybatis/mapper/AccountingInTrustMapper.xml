@@ -1237,15 +1237,10 @@
 	
 	<update id="saveAcitJVAppPaytZeroBal" parameterType="java.util.Map">
 		BEGIN
-			<!-- <foreach collection="deleteZeroBal" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_aipb(#{delete.tranId}, #{delete.itemNo});
-				
-				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
-														#{delete.tranId},
-														#{delete.policyId},
-														#{delete.instNo}
+			<foreach collection="deleteZeroBal" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_pwzb(#{delete.tranId}, #{delete.itemNo});
 				);
-			</foreach> -->
+			</foreach>
 			
 			<foreach collection="saveZeroBal" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
