@@ -4,25 +4,22 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcitJVAdjstInwPolBal {
+public class AcitJVIntOverdueAcctsMS {
 	private Integer tranId;
-	private Integer itemNo;
+	private String itemNo;
+	private String cedingId;
 	private Integer policyId;
 	private String policyNo;
 	private String soaNo;
 	private String coRefNo;
 	private DateTime effDate;
-	private DateTime dueDate;
 	private Integer instNo;
+	private DateTime dueDate;
+	private Integer daysOverdue;
+	private String autoTag;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal premAmt;
-	private BigDecimal riComm;
-	private BigDecimal riCommVat;
-	private BigDecimal charges;
-	private BigDecimal netDue;
-	private BigDecimal prevPaytAmt;
-	private BigDecimal adjBalAmt;
 	private BigDecimal overdueInt;
 	private String createUser;
 	private DateTime createDate;
@@ -34,11 +31,17 @@ public class AcitJVAdjstInwPolBal {
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	public Integer getItemNo() {
+	public String getItemNo() {
 		return itemNo;
 	}
-	public void setItemNo(Integer itemNo) {
+	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
 	}
 	public Integer getPolicyId() {
 		return policyId;
@@ -70,17 +73,29 @@ public class AcitJVAdjstInwPolBal {
 	public void setEffDate(DateTime effDate) {
 		this.effDate = effDate;
 	}
+	public Integer getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
+	}
 	public DateTime getDueDate() {
 		return dueDate;
 	}
 	public void setDueDate(DateTime dueDate) {
 		this.dueDate = dueDate;
 	}
-	public Integer getInstNo() {
-		return instNo;
+	public Integer getDaysOverdue() {
+		return daysOverdue;
 	}
-	public void setInstNo(Integer instNo) {
-		this.instNo = instNo;
+	public void setDaysOverdue(Integer daysOverdue) {
+		this.daysOverdue = daysOverdue;
+	}
+	public String getAutoTag() {
+		return autoTag;
+	}
+	public void setAutoTag(String autoTag) {
+		this.autoTag = autoTag;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -99,42 +114,6 @@ public class AcitJVAdjstInwPolBal {
 	}
 	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
-	}
-	public BigDecimal getRiComm() {
-		return riComm;
-	}
-	public void setRiComm(BigDecimal riComm) {
-		this.riComm = riComm;
-	}
-	public BigDecimal getRiCommVat() {
-		return riCommVat;
-	}
-	public void setRiCommVat(BigDecimal riCommVat) {
-		this.riCommVat = riCommVat;
-	}
-	public BigDecimal getCharges() {
-		return charges;
-	}
-	public void setCharges(BigDecimal charges) {
-		this.charges = charges;
-	}
-	public BigDecimal getNetDue() {
-		return netDue;
-	}
-	public void setNetDue(BigDecimal netDue) {
-		this.netDue = netDue;
-	}
-	public BigDecimal getPrevPaytAmt() {
-		return prevPaytAmt;
-	}
-	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
-		this.prevPaytAmt = prevPaytAmt;
-	}
-	public BigDecimal getAdjBalAmt() {
-		return adjBalAmt;
-	}
-	public void setAdjBalAmt(BigDecimal adjBalAmt) {
-		this.adjBalAmt = adjBalAmt;
 	}
 	public BigDecimal getOverdueInt() {
 		return overdueInt;
@@ -168,13 +147,11 @@ public class AcitJVAdjstInwPolBal {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVAdjstInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate
-				+ ", dueDate=" + dueDate + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges
-				+ ", netDue=" + netDue + ", prevPaytAmt=" + prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt="
-				+ overdueInt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitJVIntOverdueAcctsMS [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId
+				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo
+				+ ", effDate=" + effDate + ", instNo=" + instNo + ", dueDate=" + dueDate + ", daysOverdue="
+				+ daysOverdue + ", autoTag=" + autoTag + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
+				+ premAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

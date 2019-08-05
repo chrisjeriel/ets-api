@@ -46,6 +46,7 @@ import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -204,7 +205,8 @@ public interface MaintenanceDao {
 	public List<AcitChartAcct> retrieveMtnAcitChartAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<SLType> retrieveMtnSLType(final HashMap<String, Object> params) throws SQLException;
 	public List<SL> retrieveMtnSL(final HashMap<String, Object> params) throws SQLException;
-
+	public List<PrintableNames> retrieveMtnPrintableNames (final HashMap<String, Object> params) throws SQLException;
+	public List<CedingCompany> retrieveMtnCedingTreaty(final HashMap<String, Object> params) throws SQLException;
 	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBank(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;

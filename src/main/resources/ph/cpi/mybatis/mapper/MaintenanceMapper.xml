@@ -3728,4 +3728,21 @@
 	<select id="retMtnCompany" resultMap="companyMap">
 		SELECT * FROM TABLE(MTN_COMPANY_PKG.ret_mtn_company(#{companyId, jdbcType=VARCHAR}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PrintableNames" id="printableMap">
+     	<result property="employeeId" column="EMPLOYEE_ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userGrp" column="USER_GRP"/>
+		<result property="printableName" column="PRINTABLE_NAME"/>
+		<result property="designation" column="DESIGNATION"/>
+     </resultMap>
+     
+     <select id="retrieveMtnPrintable" resultMap="printableMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null))
+	</select>
+	
+	<select id="retMtnCedingTreaty" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_trty(#{treatyTag,jdbcType=VARCHAR},#{cedingName,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
+	
 </mapper>

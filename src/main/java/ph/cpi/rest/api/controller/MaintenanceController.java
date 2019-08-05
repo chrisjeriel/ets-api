@@ -939,6 +939,21 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnSL(rbmr);
 	}
 	
+
+	@GetMapping(path="retrieveMtnPrintableName")
+	public @ResponseBody RetrieveMtnPrintableNamesResponse retrieveMtnPrintable(RetrieveMtnPrintableNamesRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPrintableName");
+		logger.info("RetrieveMtnPrintableNamesRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnPrintableNames(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnCedingTreaty")
+	public @ResponseBody RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCedingTreaty");
+		logger.info("RetrieveMtnCedingTreatyRequest : " + request.toString());
+		return maintenanceService.retrieveMtnCedingTreaty(request);
+	}
+
 	@GetMapping(path="retrieveMtnInvtSecType")
 	public @ResponseBody RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnInvtSecType");

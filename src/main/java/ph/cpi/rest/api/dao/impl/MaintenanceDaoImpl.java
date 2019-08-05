@@ -54,6 +54,7 @@ import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -987,6 +988,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public List<SL> retrieveMtnSL(HashMap<String, Object> params) throws SQLException {
 		List<SL> list = sqlSession.selectList("retrieveMtnSL", params);
 		return list;
+	}
+
+	@Override
+	public List<PrintableNames> retrieveMtnPrintableNames(HashMap<String, Object> params) throws SQLException {
+		List<PrintableNames> list = sqlSession.selectList("retrieveMtnPrintable", params);
+		return list;
+	}
+
+	@Override
+	public List<CedingCompany> retrieveMtnCedingTreaty(HashMap<String, Object> params) throws SQLException {
+		List<CedingCompany> cedingCompanyListing = sqlSession.selectList("retMtnCedingTreaty", params);
+		return cedingCompanyListing;
 	}
 	
 	@Override
