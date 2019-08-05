@@ -494,6 +494,7 @@
 		<result property="totalAmtDue" column="TOTAL_AMT_DUE"/>
 		<result property="totalPayments" column="TOTAL_PAYMENTS"/>
 		<result property="tempPayments" column="TEMP_PAYMENTS"/>
+		<result property="netDuePayments" column="NET_DUE_PAYMENTS"/>
 		<result property="balAmtDue" column="BAL_AMT_DUE"/>
 		<result property="balPremDue" column="BAL_PREM_DUE"/>
 		<result property="balChargesDue" column="BAL_CHARGES_DUE"/>
@@ -831,6 +832,7 @@
 		<result property="totalAmtDue" 			column="TOTAL_AMT_DUE"/>
 		<result property="totalPayments" 		column="TOTAL_PAYMENTS"/>
 		<result property="tempPayments" 		column="TEMP_PAYMENTS"/>
+		<result property="netDuePayments" 		column="NET_DUE_PAYMENTS"/>
 		<result property="balAmtDue" 			column="BAL_AMT_DUE"/>
 		<result property="balPremDue" 			column="BAL_PREM_DUE"/>
 		<result property="balChargesDue" 		column="BAL_CHARGES_DUE"/>
