@@ -218,7 +218,7 @@ public class ClaimsController {
 		return claimsService.retrieveClmPaytReq(rcprr);
 	}
 	
-//	remove this in the future
+//	USED FOR PAYMENT DISTRIBUTION
 	@GetMapping(path="retrieveClmDist")
 	public @ResponseBody RetrieveClmDistResponse retrieveClmDist(RetrieveClmDistRequest rcprr) throws SQLException {
 		logger.info("GET: /api/claims-service/retrieveClmDist");

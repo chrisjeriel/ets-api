@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
+import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
@@ -302,6 +304,25 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitProfCommDtl> retrieveProfCommDtl(HashMap<String, Object> params) throws SQLException {
 		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
 		return acitProfCommDtlList;
+	}
+
+	@Override
+	public List<AcitPrqInwPol> retrieveAcitPrqInwPol(HashMap<String, Object> params) throws SQLException {
+		List<AcitPrqInwPol> acitPrqInwPolList = sqlSession.selectList("retrieveAcitPrqInwPol", params);
+		return acitPrqInwPolList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitPrqInwPol(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitPrqInwPol", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(HashMap<String, Object> params) throws SQLException {
+		List<AcctServFeeDist> mainList =  sqlSession.selectList("retrieveAcitServFeeMainGnrt", params);
+		return mainList;
 	}
 
 	@Override
