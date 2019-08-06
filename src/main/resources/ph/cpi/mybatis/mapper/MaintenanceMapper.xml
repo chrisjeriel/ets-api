@@ -630,6 +630,8 @@
 		<result property="emailAdd" 		column="EMAIL_ADD"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="govtTag" 			column="GOVT_TAG"/>
+		<result property="vatTag" 			column="VAT_TAG"/>
+		<result property="vatTagDesc" 		column="VAT_TAG_DESC"/>
 		<result property="oldCedingId" 		column="OLD_CEDING_ID"/>
 		<result property="membershipTag" 	column="MEMBERSHIP_TAG"/>
 		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -665,6 +667,8 @@
 		<result property="tinNo" 			column="TIN_NO"/>
 		<result property="activeTag" 		column="ACTIVE_TAG"/>
 		<result property="govtTag"			column="GOVT_TAG"/>
+		<result property="vatTag" 			column="VAT_TAG"/>
+		<result property="vatTagDesc" 		column="VAT_TAG_DESC"/>
 		<result property="oldCedingId" 		column="OLD_CEDING_ID"/>
 		<result property="membershipTag" 	column="MEMBERSHIP_TAG"/>
 		<result property="membershipDate" 	column="MEMBERSHIP_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -1536,6 +1540,7 @@
     						#{tinNo, jdbcType=VARCHAR},
     						#{activeTag, jdbcType=VARCHAR},
     						#{govtTag, jdbcType=VARCHAR},
+    						#{vatTag, jdbcType=VARCHAR},
     						#{oldCedingId, jdbcType=VARCHAR},
     						#{membershipTag, jdbcType=VARCHAR},
     						CAST(to_timestamp(#{membershipDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),

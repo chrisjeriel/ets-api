@@ -965,6 +965,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("tinNo", smccr.getTinNo());
 			params.put("activeTag", smccr.getActiveTag());
 			params.put("govtTag", smccr.getGovtTag());
+			params.put("vatTag", smccr.getVatTag());
 			params.put("oldCedingId", smccr.getOldCedingId());
 			params.put("membershipTag", smccr.getMembershipTag());
 			params.put("membershipDate", smccr.getMembershipDate());
