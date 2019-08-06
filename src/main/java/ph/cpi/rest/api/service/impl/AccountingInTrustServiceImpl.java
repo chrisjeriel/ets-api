@@ -337,13 +337,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		railrParams.put("invtId", railr.getInvtId());
 		railrParams.put("invtCd", railr.getInvtCd());
 		railrParams.put("bank", railr.getBank());
+		railrParams.put("bankCd", railr.getBankCd());
 		railrParams.put("invtType", railr.getInvtType());
 		railrParams.put("invtSecCd", railr.getInvtSecCd());
 		railrParams.put("invtStatus", railr.getInvtStatus());
 		railrParams.put("matPeriod", railr.getMatPeriod());
 		railrParams.put("durUnit", railr.getDurUnit());
 		railrParams.put("purDate", railr.getPurDate());
-		railrParams.put("matDate", railr.getMatDate());
+		railrParams.put("matDateFrom", railr.getMatDateFrom());
+		railrParams.put("matDateTo", railr.getMatDateTo());
 		railrParams.put("currCd", railr.getCurrCd());
 		
 		railrResponse.setInvtList(acctITDao.retrieveInvestmentList(railrParams));

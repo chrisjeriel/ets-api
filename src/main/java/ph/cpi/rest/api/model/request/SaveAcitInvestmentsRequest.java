@@ -56,7 +56,14 @@ class AcitInvt {
 	private String 		createDate;
 	private String 		updateUser;
 	private String 		updateDate;
+	private String 		slCd;
 	
+	public String getSlCd() {
+		return slCd;
+	}
+	public void setSlCd(String slCd) {
+		this.slCd = slCd;
+	}
 	public String getInvtId() {
 		return invtId;
 	}
@@ -198,12 +205,12 @@ class AcitInvt {
 	
 	@Override
 	public String toString() {
-		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
+		return "AcitInvt [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
 				+ ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod="
 				+ matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate="
 				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
 				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", slCd=" + slCd + "]";
 	}
 }
