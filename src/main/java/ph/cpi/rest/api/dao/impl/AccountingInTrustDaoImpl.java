@@ -15,6 +15,9 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
@@ -323,6 +326,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecover> res = sqlSession.selectList("retrieveAcitArClmRecover", params);
+		return res;
+	}
+	
+	@Override
 	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(HashMap<String, Object> params)
 			throws SQLException {
 		List<AcitJVAppPaymentZeroBal> res = sqlSession.selectList("retrieveAcitJVAppPaytZeroBal", params);
@@ -330,8 +339,34 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecoverLov> res = sqlSession.selectList("retrieveAcitArClmRecoverLov", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveArClmRecover(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveArClmRecover", params);
+		params.put("errorCode", res);
+		return params;
+	}
+
+	@Override
+	public List<AcitArInvPullout> retrieveAcitArPullout(HashMap<String, Object> params) throws SQLException {
+		List<AcitArInvPullout> res = sqlSession.selectList("retrieveArInvpullout", params);
+		return res;
+	}
+
+	@Override
 	public HashMap<String, Object> saveAcitJVAppPaytZeroBal(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitJVAppPaytZeroBal",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitArInvPullout(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveArInvPullout",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

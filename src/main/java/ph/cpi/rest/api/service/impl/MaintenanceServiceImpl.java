@@ -965,6 +965,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("tinNo", smccr.getTinNo());
 			params.put("activeTag", smccr.getActiveTag());
 			params.put("govtTag", smccr.getGovtTag());
+			params.put("vatTag", smccr.getVatTag());
 			params.put("oldCedingId", smccr.getOldCedingId());
 			params.put("membershipTag", smccr.getMembershipTag());
 			params.put("membershipDate", smccr.getMembershipDate());
@@ -2233,6 +2234,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));
 			e.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException {
+		RetrieveMtnCompanyResponse response = new RetrieveMtnCompanyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("companyId", rmcr.getCompanyId());
+		response.setCompanyListing(maintenanceDao.retrieveMtnCompany(params));
 		return response;
 	}
 }

@@ -10,13 +10,15 @@ public class RetrieveAcitInvestmentsListRequest {
 	private Integer 	invtId;
 	private String 		invtCd;
 	private String  	bank;
+	private String 		bankCd;
 	private String		invtType;
 	private String		invtSecCd;
 	private String  	invtStatus;
 	private Integer 	matPeriod;
 	private String 		durUnit;
-	private DateTime 	purDate;
-	private DateTime 	matDate;
+	private String 		purDate;	
+	private String 		matDateFrom;
+	private String 		matDateTo;
 	private String 		currCd;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
@@ -38,6 +40,12 @@ public class RetrieveAcitInvestmentsListRequest {
 	}
 	public void setBank(String bank) {
 		this.bank = bank;
+	}
+	public String getBankCd() {
+		return bankCd;
+	}
+	public void setBankCd(String bankCd) {
+		this.bankCd = bankCd;
 	}
 	public String getInvtType() {
 		return invtType;
@@ -69,17 +77,23 @@ public class RetrieveAcitInvestmentsListRequest {
 	public void setDurUnit(String durUnit) {
 		this.durUnit = durUnit;
 	}
-	public DateTime getPurDate() {
+	public String getPurDate() {
 		return purDate;
 	}
-	public void setPurDate(DateTime purDate) {
+	public void setPurDate(String purDate) {
 		this.purDate = purDate;
 	}
-	public DateTime getMatDate() {
-		return matDate;
+	public String getMatDateFrom() {
+		return matDateFrom;
 	}
-	public void setMatDate(DateTime matDate) {
-		this.matDate = matDate;
+	public void setMatDateFrom(String matDateFrom) {
+		this.matDateFrom = matDateFrom;
+	}
+	public String getMatDateTo() {
+		return matDateTo;
+	}
+	public void setMatDateTo(String matDateTo) {
+		this.matDateTo = matDateTo;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -103,9 +117,10 @@ public class RetrieveAcitInvestmentsListRequest {
 	@Override
 	public String toString() {
 		return "RetrieveAcitInvestmentsListRequest [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank
-				+ ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod="
-				+ matPeriod + ", durUnit=" + durUnit + ", purDate=" + purDate + ", matDate=" + matDate + ", currCd="
-				+ currCd + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", bankCd=" + bankCd + ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus="
+				+ invtStatus + ", matPeriod=" + matPeriod + ", durUnit=" + durUnit + ", purDate=" + purDate
+				+ ", matDateFrom=" + matDateFrom + ", matDateTo=" + matDateTo + ", currCd=" + currCd
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 
 }

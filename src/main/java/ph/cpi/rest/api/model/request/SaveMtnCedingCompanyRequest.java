@@ -18,6 +18,7 @@ public class SaveMtnCedingCompanyRequest {
 	private String tinNo;
 	private String activeTag;
 	private String govtTag;
+	private String vatTag;
 	private String oldCedingId;
 	private String membershipTag;
 	private String membershipDate;
@@ -111,6 +112,12 @@ public class SaveMtnCedingCompanyRequest {
 	public void setGovtTag(String govtTag) {
 		this.govtTag = govtTag;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	public String getOldCedingId() {
 		return oldCedingId;
 	}
@@ -201,8 +208,8 @@ public class SaveMtnCedingCompanyRequest {
 		return "SaveMtnCedingCompanyRequest [cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr="
 				+ cedingAbbr + ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3
 				+ ", zipCd=" + zipCd + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", bussTypeId="
-				+ bussTypeId + ", tinNo=" + tinNo + ", activeTag=" + activeTag + ", govtTag=" + govtTag
-				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
+				+ bussTypeId + ", tinNo=" + tinNo + ", activeTag=" + activeTag + ", govtTag=" + govtTag + ", vatTag="
+				+ vatTag + ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
 				+ membershipDate + ", withdrawDate=" + withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag="
 				+ treatyTag + ", withdrawTag=" + withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
