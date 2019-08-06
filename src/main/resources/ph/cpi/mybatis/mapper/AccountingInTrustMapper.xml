@@ -1115,6 +1115,7 @@
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACCT_SERVFEE_MAIN_DIST_PKG.ret_servfee_main_gnrt(CAST(to_timestamp(#{prdAsOf, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																			 #{year, jdbcType=INTEGER},
+																			 #{servFeeAmt, jdbcType=INTEGER},
 																			 null,null,null,null))
 	</select>
 </mapper>

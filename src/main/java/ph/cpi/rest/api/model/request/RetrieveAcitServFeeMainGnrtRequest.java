@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
+
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
@@ -7,6 +9,7 @@ public class RetrieveAcitServFeeMainGnrtRequest {
 
 	private String prdAsOf;
 	private Integer year;
+	private BigDecimal servFeeAmt;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -22,6 +25,12 @@ public class RetrieveAcitServFeeMainGnrtRequest {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
+	public BigDecimal getServFeeAmt() {
+		return servFeeAmt;
+	}
+	public void setServFeeAmt(BigDecimal servFeeAmt) {
+		this.servFeeAmt = servFeeAmt;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -36,7 +45,7 @@ public class RetrieveAcitServFeeMainGnrtRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitServFeeMainGnrtRequest [prdAsOf=" + prdAsOf + ", year=" + year + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitServFeeMainGnrtRequest [prdAsOf=" + prdAsOf + ", year=" + year + ", servFeeAmt="
+				+ servFeeAmt + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

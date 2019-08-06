@@ -834,6 +834,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rasfmParams = new HashMap<String, Object>();
 		rasfmParams.put("prdAsOf", rasfmr.getPrdAsOf());
 		rasfmParams.put("year", rasfmr.getYear());
+		rasfmParams.put("servFeeAmt", rasfmr.getServFeeAmt());
 		
 		rasfmgResponse.setMainDistList(acctITDao.retrieveAcitServFeeMainGnrt(rasfmParams));
 		
