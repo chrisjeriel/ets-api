@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
@@ -82,4 +83,6 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitArNegTrtyBal> retrieveAcitArNegTrtyBal(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitArNegTrtyBal(final HashMap<String, Object> params) throws SQLException;
 }

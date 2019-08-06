@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArInvPulloutRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
@@ -36,6 +37,7 @@ import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
@@ -71,6 +73,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArInvPulloutResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
@@ -85,6 +88,7 @@ import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
@@ -1099,6 +1103,50 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("delInvPullout", saaipr.getDelInvPullout());
 		try{
 			HashMap<String, Object> res = acctITDao.saveAcitArInvPullout(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArNegTrtyBalResponse retrieveAcitArNegTrtyBal(RetrieveAcitArNegTrtyBalRequest raantbr)
+			throws SQLException {
+		RetrieveAcitArNegTrtyBalResponse response = new RetrieveAcitArNegTrtyBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raantbr.getTranId());
+		params.put("billId", raantbr.getBillId());
+		response.setNegTrtyBalList(acctITDao.retrieveAcitArNegTrtyBal(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArNegTrtyBalResponse saveAcitArNegTrtyBal(SaveAcitArNegTrtyBalRequest saantbr) throws SQLException {
+		SaveAcitArNegTrtyBalResponse response = new SaveAcitArNegTrtyBalResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saantbr.getTranId());
+		params.put("billId", saantbr.getBillId());
+		params.put("billType", saantbr.getBillType());
+		params.put("totalLocalAmt", saantbr.getTotalLocalAmt());
+		params.put("createUser", saantbr.getCreateUser());
+		params.put("createDate", saantbr.getCreateDate());
+		params.put("updateUser", saantbr.getUpdateUser());
+		params.put("updateDate", saantbr.getUpdateDate());
+		params.put("saveNegTrtyBal", saantbr.getSaveNegTrtyBal());
+		params.put("delNegTrtyBal", saantbr.getDelNegTrtyBal());
+		try{
+			HashMap<String, Object> res = acctITDao.saveAcitArNegTrtyBal(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
 			
 			if(res.get("custReturnCode") != null){

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
@@ -367,6 +368,19 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public HashMap<String, Object> saveAcitArInvPullout(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveArInvPullout",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitArNegTrtyBal> retrieveAcitArNegTrtyBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitArNegTrtyBal> res = sqlSession.selectList("retArNegTrtyBal", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitArNegTrtyBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveArNegTrtyBal",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
