@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class AcitChartAcct {
 	private Integer glAcctId;
 	private Integer glAcctCategory;
+	private String glAcctCategoryDesc;
 	private Integer glAcctControl;
 	private Integer glAcctSub1;
 	private Integer glAcctSub2;
@@ -13,6 +14,7 @@ public class AcitChartAcct {
 	private String longDesc;
 	private String shortCode;
 	private Integer slTypeCd;
+	private String slTypeName;
 	private String drCrTag;
 	private String postTag;
 	private String activeTag;
@@ -31,6 +33,12 @@ public class AcitChartAcct {
 	}
 	public void setGlAcctCategory(Integer glAcctCategory) {
 		this.glAcctCategory = glAcctCategory;
+	}
+	public String getGlAcctCategoryDesc() {
+		return glAcctCategoryDesc;
+	}
+	public void setGlAcctCategoryDesc(String glAcctCategoryDesc) {
+		this.glAcctCategoryDesc = glAcctCategoryDesc;
 	}
 	public Integer getGlAcctControl() {
 		return glAcctControl;
@@ -80,6 +88,12 @@ public class AcitChartAcct {
 	public void setSlTypeCd(Integer slTypeCd) {
 		this.slTypeCd = slTypeCd;
 	}
+	public String getSlTypeName() {
+		return slTypeName;
+	}
+	public void setSlTypeName(String slTypeName) {
+		this.slTypeName = slTypeName;
+	}
 	public String getDrCrTag() {
 		return drCrTag;
 	}
@@ -124,11 +138,12 @@ public class AcitChartAcct {
 	}
 	@Override
 	public String toString() {
-		return "AcitChartAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctControl="
-				+ glAcctControl + ", glAcctSub1=" + glAcctSub1 + ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3="
-				+ glAcctSub3 + ", shortDesc=" + shortDesc + ", longDesc=" + longDesc + ", shortCode=" + shortCode
-				+ ", slTypeCd=" + slTypeCd + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag="
-				+ activeTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+		return "AcitChartAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctCategoryDesc="
+				+ glAcctCategoryDesc + ", glAcctControl=" + glAcctControl + ", glAcctSub1=" + glAcctSub1
+				+ ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3=" + glAcctSub3 + ", shortDesc=" + shortDesc
+				+ ", longDesc=" + longDesc + ", shortCode=" + shortCode + ", slTypeCd=" + slTypeCd + ", slTypeName="
+				+ slTypeName + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
 }

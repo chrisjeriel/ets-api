@@ -11,7 +11,9 @@ public class AcitInvestments {
 	private String  	bank;
 	private String  	certNo;
 	private String		invtType;
+	private String		invtTypeDesc;
 	private String  	invtSecCd;
+	private String  	securityDesc;
 	private String  	invtStatus;
 	private Integer 	matPeriod;
 	private String 		durUnit;
@@ -31,19 +33,6 @@ public class AcitInvestments {
 	private DateTime 	updateDate;
 	private String		okDelete;
 	private String 		slCd;
-	
-	public String getSlCd() {
-		return slCd;
-	}
-	public void setSlCd(String slCd) {
-		this.slCd = slCd;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
 	public Integer getInvtId() {
 		return invtId;
 	}
@@ -74,11 +63,23 @@ public class AcitInvestments {
 	public void setInvtType(String invtType) {
 		this.invtType = invtType;
 	}
+	public String getInvtTypeDesc() {
+		return invtTypeDesc;
+	}
+	public void setInvtTypeDesc(String invtTypeDesc) {
+		this.invtTypeDesc = invtTypeDesc;
+	}
 	public String getInvtSecCd() {
 		return invtSecCd;
 	}
 	public void setInvtSecCd(String invtSecCd) {
 		this.invtSecCd = invtSecCd;
+	}
+	public String getSecurityDesc() {
+		return securityDesc;
+	}
+	public void setSecurityDesc(String securityDesc) {
+		this.securityDesc = securityDesc;
 	}
 	public String getInvtStatus() {
 		return invtStatus;
@@ -182,17 +183,28 @@ public class AcitInvestments {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
+	public String getSlCd() {
+		return slCd;
+	}
+	public void setSlCd(String slCd) {
+		this.slCd = slCd;
+	}
 	@Override
 	public String toString() {
 		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
-				+ ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod="
-				+ matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate="
-				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
-				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
+				+ ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc + ", invtSecCd=" + invtSecCd
+				+ ", securityDesc=" + securityDesc + ", invtStatus=" + invtStatus + ", matPeriod=" + matPeriod
+				+ ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate=" + matDate
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt
+				+ ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
 	}
 	
-
 }
