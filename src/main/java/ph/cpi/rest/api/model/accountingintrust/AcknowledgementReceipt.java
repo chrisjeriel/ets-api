@@ -29,6 +29,7 @@ public class AcknowledgementReceipt {
 	private String mailAddress;
 	private Integer bussTypeCd;
 	private String tin;
+	private Integer refCd;
 	private String currCd;
 	private BigDecimal arAmt;
 	private BigDecimal currRate;
@@ -37,6 +38,8 @@ public class AcknowledgementReceipt {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String cedingId;
+	private String bussTypeName;
 	
 	private List<ARPaymentDetails> paytDtl;
 
@@ -223,6 +226,14 @@ public class AcknowledgementReceipt {
 	public void setTin(String tin) {
 		this.tin = tin;
 	}
+	
+	public Integer getRefCd() {
+		return refCd;
+	}
+
+	public void setRefCd(Integer refCd) {
+		this.refCd = refCd;
+	}
 
 	public String getCurrCd() {
 		return currCd;
@@ -296,6 +307,22 @@ public class AcknowledgementReceipt {
 		this.paytDtl = paytDtl;
 	}
 
+	public String getCedingId() {
+		return cedingId;
+	}
+
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+
+	public String getBussTypeName() {
+		return bussTypeName;
+	}
+
+	public void setBussTypeName(String bussTypeName) {
+		this.bussTypeName = bussTypeName;
+	}
+
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
@@ -304,9 +331,9 @@ public class AcknowledgementReceipt {
 				+ dcbBankAcct + ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo + ", tranTypeCd=" + tranTypeCd
 				+ ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy="
 				+ prPreparedBy + ", payeeNo=" + payeeNo + ", payor=" + payor + ", mailAddress=" + mailAddress
-				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", currCd=" + currCd + ", arAmt=" + arAmt
-				+ ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
+				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", refCd=" + refCd + ", currCd=" + currCd + ", arAmt="
+				+ arAmt + ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", paytDtl=" + paytDtl + "]";
+				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", paytDtl=" + paytDtl + "]";
 	}
 }

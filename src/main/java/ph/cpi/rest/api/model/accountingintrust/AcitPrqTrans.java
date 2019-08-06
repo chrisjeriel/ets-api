@@ -13,7 +13,7 @@ public class AcitPrqTrans {
 	private Integer policyId;
 	private Integer instNo;
 	private DateTime quarterEnding;
-	private Integer investmentId;
+	private Integer invtId;
 	private String refNo;
 	private String paymentFor;
 	private String currCd;
@@ -73,11 +73,11 @@ public class AcitPrqTrans {
 	public void setQuarterEnding(DateTime quarterEnding) {
 		this.quarterEnding = quarterEnding;
 	}
-	public Integer getInvestmentId() {
-		return investmentId;
+	public Integer getInvtId() {
+		return invtId;
 	}
-	public void setInvestmentId(Integer investmentId) {
-		this.investmentId = investmentId;
+	public void setInvtId(Integer invtId) {
+		this.invtId = invtId;
 	}
 	public String getRefNo() {
 		return refNo;
@@ -149,7 +149,7 @@ public class AcitPrqTrans {
 	public String toString() {
 		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
 				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", investmentId=" + investmentId + ", refNo=" + refNo + ", paymentFor=" + paymentFor
+				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", paymentFor=" + paymentFor
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";

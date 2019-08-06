@@ -169,6 +169,21 @@
 					    #{ch.updateUser,jdbcType=VARCHAR},
 					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 	    			);
+	    		ELSE
+	    			CLM_DIST_PAYMENT_PKG.gen_reserve_dist(
+	    				#{ch.claimId,jdbcType=VARCHAR},
+						#{ch.projId,jdbcType=VARCHAR},
+						v_hist_no,
+						#{ch.histCategory,jdbcType=VARCHAR},
+						#{ch.histType,jdbcType=VARCHAR},
+						#{ch.reserveAmt,jdbcType=INTEGER},
+						#{ch.bookingMth,jdbcType=VARCHAR},
+						#{ch.bookingYear,jdbcType=INTEGER},
+						#{ch.createUser,jdbcType=VARCHAR},
+					    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					    #{ch.updateUser,jdbcType=VARCHAR},
+					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    			);
     			END IF;
     		</foreach>
     	END;
@@ -790,17 +805,23 @@
 	</update>
 
 	<select id="retrieveClmDist" resultMap="ClaimDistMap">
-		SELECT * FROM TABLE(CLM_DIST_PKG.get_clm_dist(#{claimId},#{projId}))
+		SELECT * FROM TABLE(CLM_DIST_PAYMENT_PKG.get_clm_dist(#{claimId},#{projId}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimDist" id="ClaimDistMap">
-		<result property="clmDistNo" column="CLM_DIST_NO"/>
 		<result property="histNo" column="HIST_NO"/>
+		<result property="clmDistNo" column="CLM_DIST_NO"/>
 		<result property="histCategory" column="HIST_CATEGORY"/>
+		<result property="histCategoryName" column="HIST_CATEGORY_NAME"/>
 		<result property="histType" column="HIST_TYPE"/>
-		<result property="reserveAmt" column="RESERVE_AMT"/>
+		<result property="histTypeName" column="HIST_TYPE_NAME"/>
 		<result property="paytAmt" column="PAYT_AMT"/>
+		<result property="currencyCd" column="CURRENCY_CD"/>
+		<result property="currencyRt" column="CURRENCY_RT"/>
+		<result property="bookingMth" column="BOOKING_MTH"/>
+		<result property="bookingYear" column="BOOKING_YEAR"/>
 		<result property="clmDistStat" column="CLM_DIST_STAT"/>
+		<result property="clmDistStatName" column="CLM_DIST_STAT_NAME"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" column="UPDATE_USER"/>
@@ -815,11 +836,11 @@
 		<result property="cedingAbbr" column="CEDING_ABBR"/>
 		<result property="retLayer" column="RET_LAYER"/>
 		<result property="clmPctShare" column="CLM_PCT_SHARE"/>
-		<result property="clmAmt" column="CLM_AMT"/>
+		<result property="reserveAmt" column="AMT"/>
 	</resultMap>
 	
 	<select id="retrieveClmDistPool" resultMap="ClaimDistCedingMap">
-		SELECT * FROM TABLE(CLM_DIST_PKG.get_clm_dist_pool(#{claimId},#{projId},#{histNo},#{clmDistNo}))
+		SELECT * FROM TABLE(CLM_DIST_PAYMENT_PKG.get_clm_dist_pool(#{claimId},#{projId},#{histNo},#{clmDistNo}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimDistCeding" id="ClaimDistCedingMap">
@@ -833,7 +854,7 @@
 	
 	<update id="redistributeClaimDist" parameterType="java.util.Map">
 		BEGIN
-			CLM_DIST_PKG.clm_redistribute(#{claimId},#{projId},#{histNo},#{clmDistNo},#{createUser,jdbcType=VARCHAR},
+			CLM_DIST_PAYMENT_PKG.clm_redistribute(#{claimId},#{projId},#{histNo},#{clmDistNo},#{createUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));

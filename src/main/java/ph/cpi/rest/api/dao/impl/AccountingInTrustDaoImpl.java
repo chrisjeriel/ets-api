@@ -14,7 +14,11 @@ import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
@@ -26,6 +30,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
+import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
@@ -303,9 +308,53 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitPrqInwPol> retrieveAcitPrqInwPol(HashMap<String, Object> params) throws SQLException {
+		List<AcitPrqInwPol> acitPrqInwPolList = sqlSession.selectList("retrieveAcitPrqInwPol", params);
+		return acitPrqInwPolList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitPrqInwPol(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitPrqInwPol", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(HashMap<String, Object> params) throws SQLException {
+		List<AcctServFeeDist> mainList =  sqlSession.selectList("retrieveAcitServFeeMainGnrt", params);
+		return mainList;
+	}
+
+	@Override
+	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecover> res = sqlSession.selectList("retrieveAcitArClmRecover", params);
+		return res;
+	}
+	
+	@Override
 	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(HashMap<String, Object> params)
 			throws SQLException {
 		List<AcitJVAppPaymentZeroBal> res = sqlSession.selectList("retrieveAcitJVAppPaytZeroBal", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecoverLov> res = sqlSession.selectList("retrieveAcitArClmRecoverLov", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveArClmRecover(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveArClmRecover", params);
+		params.put("errorCode", res);
+		return params;
+	}
+
+	@Override
+	public List<AcitArInvPullout> retrieveAcitArPullout(HashMap<String, Object> params) throws SQLException {
+		List<AcitArInvPullout> res = sqlSession.selectList("retrieveArInvpullout", params);
 		return res;
 	}
 
@@ -320,5 +369,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<ACITSOATreatyDetails> retrieveAcitSoaTrtyList(HashMap<String, Object> params) throws SQLException {
 		List<ACITSOATreatyDetails> res = sqlSession.selectList("retrieveAcitSoaTrtyList", params);
 		return res;
+	}
+
+	public HashMap<String, Object> saveAcitArInvPullout(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveArInvPullout",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }
