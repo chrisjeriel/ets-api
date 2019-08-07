@@ -1340,10 +1340,19 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+		<result property="cedingId" 	column="CEDING_ID"/>
+		<result property="cedingName" 	column="CEDING_NAME"/>
+		<result property="actualShrPct" column="ACTUAL_SHR_PCT"/>
+		<result property="actualShrAmt" column="ACTUAL_SHR_AMT"/>
+		<result property="baseShrPct" 	column="BASE_SHR_PCT"/>
+		<result property="baseShrAmt" 	column="BASE_SHR_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACCT_SERVFEE_MAIN_DIST_PKG.ret_servfee_main_gnrt(#{servFeeAmt, jdbcType=INTEGER},
+																			 #{currCd, jdbcType=VARCHAR},
+																			 #{currRt, jdbcType=INTEGER},
 																			 null,null,null,null))
 	</select>
 	
@@ -1606,5 +1615,14 @@
 			END IF;
 		END;
 	</update>
+	
+	<select id="retrieveAcitServFeeSubGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_servfee_sub_gnrt(CAST(to_timestamp(#{prdAsOf, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																		   #{year, jdbcType=INTEGER},
+																		   #{servFeeAmt, jdbcType=INTEGER},
+																		   #{currCd, jdbcType=VARCHAR},
+																		   #{currRt, jdbcType=INTEGER},
+																		   null,null,null,null))
+	</select>
 	
 </mapper>
