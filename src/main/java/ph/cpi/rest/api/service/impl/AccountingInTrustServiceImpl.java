@@ -659,6 +659,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVAdjInwPolBalResponse response = new SaveAcitJVAdjInwPolBalResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranType", request.getTranType());
+			params.put("tranId", request.getTranId());
 			params.put("saveInwPol" , request.getSaveInwPol());
 			params.put("deleteInwPol" , request.getDeleteInwPol());
 			HashMap<String, Object> res = acctITDao.saveAcitJVAdjInwPolBal(params);
