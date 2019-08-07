@@ -44,6 +44,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
@@ -94,6 +95,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
@@ -1129,6 +1131,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.getErrorList().add(new Error("General Exception", "Please check field values."));
 			e.printStackTrace();
 		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJVClmOffLOVResponse retrieveAcitJvClmOff(RetrieveAcitJVClmOffLOVRequest request)
+			throws SQLException {
+		RetrieveAcitJVClmOffLOVResponse response = new RetrieveAcitJVClmOffLOVResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("cedingId", request.getCedingId());
+		response.setClaimOffset(acctITDao.retrieveAcitJvClmOff(params));
 		return response;
 	}
 }

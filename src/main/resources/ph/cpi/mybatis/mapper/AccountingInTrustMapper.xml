@@ -1655,4 +1655,26 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV" id="jvClmOffMap">
+		<result property="claimId" column="CLAIM_ID"/>
+		<result property="claimNo" column="CLAIM_NO"/>
+		<result property="histNo" column="HIST_NO"/>
+		<result property="histCategory" column="HIST_CATEGORY"/>
+		<result property="histCategoryDesc" column="HIST_CATEGORY_DESC"/>
+		<result property="histType" column="HIST_TYPE"/>
+		<result property="histTypeDesc" column="HIST_TYPE_DESC"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
+		<result property="currencyCd" column="CURRENCY_CD"/>
+		<result property="currencyRt" column="CURRENCY_RT"/>
+		<result property="reserveAmt" column="RESERVE_AMT"/>
+		<result property="paytAmt" column="PAYT_AMT"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitJvClmOff" resultMap="jvClmOffMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_clmoff(#{cedingId,jdbcType=INTEGER},null,null,null,null))
+	</select>
 </mapper>

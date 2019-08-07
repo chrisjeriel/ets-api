@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -84,5 +85,6 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
-
+	public List<AcitJVClaimOffSetLOV> retrieveAcitJvClmOff(final HashMap<String, Object> params) throws SQLException;
+	
 }
