@@ -589,5 +589,37 @@
 			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome" id="acitAllInvtIncomeList">
+		<result property="tranId" 						column="TRAN_ID"/>
+		<result property="tranClass" 					column="TRAN_CLASS"/>
+		<result property="tranDate" 					column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="payor" 						column="PAYOR"/>
+		<result property="arStatus" 					column="AR_STATUS"/>
+		<result property="statusDesc" 					column="STATUS_DESC"/>
+		<result property="particulars" 					column="PARTICULARS"/>
+		<result property="bankCharge" 					column="BANK_CHARGE"/>
+		<result property="whtaxAmt" 					column="WHTAX_AMT"/>
+		<result property="incomeAmt" 					column="INCOME_AMT"/>
+		<result property="invtId" 						column="INVT_ID"/>
+	</resultMap>
+	
+	<select id="retrieveAcitAllInvestmentIncome" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ALL_INVT_INC_PKG.ret_all_invt_inc_list(
+					CAST(to_timestamp(#{tranDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{tranDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{tranMonth, jdbcType=VARCHAR},
+					#{tranYear, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{tranDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					'', '', '',''))
+	</select>
+	
+		<select id="retrieveAcitAllInvestmentIncomeInvtId" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ALL_INVT_INC_PKG.ret_all_invt_inc_invtid(
+					#{tranId, jdbcType=VARCHAR},
+					'', '', '',''))
+	</select>
+	
+	
 
 </mapper>

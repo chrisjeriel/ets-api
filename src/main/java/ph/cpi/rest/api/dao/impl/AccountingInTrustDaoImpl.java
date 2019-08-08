@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
+import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
@@ -156,5 +157,20 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer cancelAr(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("cancelAr", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncome(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitAllInvtIncome> acitAllInvtIncome = sqlSession.selectList("retrieveAcitAllInvestmentIncome", params);
+		return acitAllInvtIncome;
+	}
+
+	@Override
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitAllInvtIncome> acitAllInvtIncomeInvtId = sqlSession.selectList("retrieveAcitAllInvestmentIncomeInvtId", params);
+		return acitAllInvtIncomeInvtId;
 	}
 }

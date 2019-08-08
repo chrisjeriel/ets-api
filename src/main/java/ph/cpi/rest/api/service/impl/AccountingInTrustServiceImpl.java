@@ -14,6 +14,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
@@ -34,6 +36,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
@@ -495,5 +499,37 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			e.printStackTrace();
 		}
 		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAllInvestmentIncomeResponse retrieveAcitAllInvestmentIncome(
+			RetrieveAcitAllInvestmentIncomeRequest raaii) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcitAllInvestmentIncomeResponse raaiiResponse = new RetrieveAcitAllInvestmentIncomeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranDateFrom", raaii.getTranDateFrom());
+		params.put("tranDateTo", raaii.getTranDateTo());
+		params.put("tranMonth", raaii.getTranMonth());
+		params.put("tranYear", raaii.getTranYear());
+		params.put("tranDate", raaii.getTranDate());
+		
+		raaiiResponse.setAllInvtIncomeList(acctITDao.retrieveAcitAllInvestmentIncome(params));
+		logger.info("RetrieveAcitAllInvestmentIncomeResponse : " + raaiiResponse.toString());
+		
+		return raaiiResponse;
+	}
+
+
+	@Override
+	public RetrieveAcitAllInvestmentIncomeInvtIdResponse retrieveAcitAllInvestmentIncomeInvtId(
+			RetrieveAcitAllInvestmentIncomeInvtIdRequest raii) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcitAllInvestmentIncomeInvtIdResponse raiResponse = new RetrieveAcitAllInvestmentIncomeInvtIdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raii.getTranId());
+		raiResponse.setAllInvtIncomeList(acctITDao.retrieveAcitAllInvestmentIncomeInvtId(params));
+		logger.info("RetrieveAcitAllInvestmentIncomeInvtIdResponse : " + raiResponse.toString());
+		return raiResponse;
 	}
 }

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
@@ -39,6 +41,8 @@ import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
@@ -209,5 +213,20 @@ public class AccountingInTrustController {
 		logger.info("CancelArRequest : " + car.toString());
 		return acctInTrustService.cancelAr(car);
 	}
+	
+	@GetMapping(path="retrieveAcitAllInvestmentIncome")
+	public @ResponseBody RetrieveAcitAllInvestmentIncomeResponse retrieveAcitAllInvestmentIncome(RetrieveAcitAllInvestmentIncomeRequest raaii) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAllInvestmentIncome");
+		logger.info("RetrieveAcitAllInvestmentIncomeRequest : " + raaii.toString());
+		return acctInTrustService.retrieveAcitAllInvestmentIncome(raaii);
+	}
+	
+	@GetMapping(path="retrieveAcitAllInvestmentIncomeInvtId")
+	public @ResponseBody RetrieveAcitAllInvestmentIncomeInvtIdResponse retrieveAcitAllInvestmentIncomeInvtId(RetrieveAcitAllInvestmentIncomeInvtIdRequest raii) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAllInvestmentIncomeInvtId");
+		logger.info("RetrieveAcitAllInvestmentIncomeInvtIdRequest : " + raii.toString());
+		return acctInTrustService.retrieveAcitAllInvestmentIncomeInvtId(raii);
+	}
+	
 
 }

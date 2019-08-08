@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
@@ -37,4 +38,6 @@ public interface AccountingInTrustDao {
 	public Integer cancelCMDM(final HashMap<String, Object> params) throws SQLException;
 	public Integer printCMDM(final HashMap<String, Object> params) throws SQLException;
 	public Integer cancelAr(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncome(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(final HashMap<String, Object> params) throws SQLException;
 }
