@@ -16,6 +16,9 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
@@ -381,6 +384,38 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public HashMap<String, Object> saveAcitArNegTrtyBal(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveArNegTrtyBal",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmCashCallLov> res = sqlSession.selectList("retAcitARClmCashCallLov", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmCashCall> res = sqlSession.selectList("retAcitARClmCashCall", params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitArClmCashCallLov(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveArClmCashCall",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitArAmtDtl> retrieveAcitArAmtDtl(HashMap<String, Object> params) throws SQLException {
+		List<AcitArAmtDtl> res = sqlSession.selectList("retAcitArAmtDtl",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitArAmtDtl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitArAmtDtl",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

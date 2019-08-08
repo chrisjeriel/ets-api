@@ -17,6 +17,9 @@ import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
@@ -51,6 +54,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInvPulloutRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
@@ -66,6 +71,9 @@ import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmRecoverLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmRecoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
@@ -102,6 +110,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInvPulloutResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
@@ -1147,6 +1157,98 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("delNegTrtyBal", saantbr.getDelNegTrtyBal());
 		try{
 			HashMap<String, Object> res = acctITDao.saveAcitArNegTrtyBal(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArClmCashCallResponse retrieveAcitArClmCashCall(RetrieveAcitArClmCashCallRequest raacccr)
+			throws SQLException {
+		RetrieveAcitArClmCashCallResponse response = new RetrieveAcitArClmCashCallResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raacccr.getTranId());
+		params.put("billId", raacccr.getBillId());
+		response.setClmCashCallList(acctITDao.retrieveAcitArClmCashCall(params));;
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArClmCashCallLovResponse retrieveAcitArClmCashCallLov(
+			RetrieveAcitArClmCashCallLovRequest raaccclr) throws SQLException {
+		RetrieveAcitArClmCashCallLovResponse response = new RetrieveAcitArClmCashCallLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", raaccclr.getPayeeNo());
+		response.setClmCashCallLovList(acctITDao.retrieveAcitArClmCashCallLov(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArClmCashCallResponse saveAcitArClmCashCall(SaveAcitArClmCashCallRequest saacccr)
+			throws SQLException {
+		SaveAcitArClmCashCallResponse response = new SaveAcitArClmCashCallResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saacccr.getTranId());
+		params.put("billId", saacccr.getBillId());
+		params.put("billType", saacccr.getBillType());
+		params.put("totalLocalAmt", saacccr.getTotalLocalAmt());
+		params.put("createUser", saacccr.getCreateUser());
+		params.put("createDate", saacccr.getCreateDate());
+		params.put("updateUser", saacccr.getUpdateUser());
+		params.put("updateDate", saacccr.getUpdateDate());
+		params.put("saveClmCashCall", saacccr.getSaveClmCashCall());
+		params.put("delClmCashCall", saacccr.getDelClmCashCall());
+		try{
+			HashMap<String, Object> res = acctITDao.saveAcitArClmCashCallLov(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitArAmtDtlResponse retrieveAcitArAmtDtl(RetrieveAcitArAmtDtlRequest raaadr) throws SQLException {
+		RetrieveAcitArAmtDtlResponse response = new RetrieveAcitArAmtDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaadr.getTranId());
+		response.setArAmtDtlList(acctITDao.retrieveAcitArAmtDtl(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitArAmtDtlResponse saveAcitArAmtDtl(SaveAcitArAmtDtlRequest saaadr) throws SQLException {
+		SaveAcitArAmtDtlResponse response = new SaveAcitArAmtDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saaadr.getTranId());
+		params.put("totalLocalAmt", saaadr.getTotalLocalAmt());
+		params.put("saveAmtDtl", saaadr.getSaveAmtDtl());
+		params.put("delAmtDtl", saaadr.getDelAmtDtl());
+		try{
+			HashMap<String, Object> res = acctITDao.saveAcitArAmtDtl(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
 			
 			if(res.get("custReturnCode") != null){
