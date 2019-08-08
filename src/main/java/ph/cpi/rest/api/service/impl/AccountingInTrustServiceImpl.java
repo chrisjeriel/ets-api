@@ -44,7 +44,9 @@ import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffsetRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
@@ -82,6 +84,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJvClmOffsetResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
@@ -95,6 +98,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
@@ -1142,6 +1146,31 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("cedingId", request.getCedingId());
 		response.setClaimOffset(acctITDao.retrieveAcitJvClmOff(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJvClmOffsetResponse retrieveAcitJvClaimOffset(RetrieveAcitJVClmOffsetRequest request)
+			throws SQLException {
+		RetrieveAcitJvClmOffsetResponse response = new RetrieveAcitJvClmOffsetResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());
+		params.put("cedingId", request.getCedingId());
+		params.put("quarterNo", request.getQuarterNo());
+		response.setClaimOffset(acctITDao.retrieveAcitJvClaimOffset(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJVClmNegTrtyResponse retrieveAcitJvNegTrty(RetrieveAcitJVClmNegTrtyRequest request)
+			throws SQLException {
+		RetrieveAcitJVClmNegTrtyResponse response = new RetrieveAcitJVClmNegTrtyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());
+		params.put("cedingId", request.getCedingId());
+		response.setNegativeTrty(acctITDao.retrieveAcitJvNegTrty(params));
 		return response;
 	}
 }

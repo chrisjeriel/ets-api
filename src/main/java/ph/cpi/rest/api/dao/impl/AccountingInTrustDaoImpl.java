@@ -24,6 +24,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffset;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -381,6 +383,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitJVClaimOffSetLOV> retrieveAcitJvClmOff(HashMap<String, Object> params) throws SQLException {
 		List<AcitJVClaimOffSetLOV> res = sqlSession.selectList("retrieveAcitJvClmOff", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitJVClaimOffset> retrieveAcitJvClaimOffset(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVClaimOffset> res = sqlSession.selectList("retrieveAcitJvClaimOffset", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitJVClmNegativeTreaty> retrieveAcitJvNegTrty(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVClmNegativeTreaty> res = sqlSession.selectList("retrieveAcitJvNegTrty", params);
 		return res;
 	}
 }

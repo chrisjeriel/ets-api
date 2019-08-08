@@ -40,7 +40,9 @@ import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffsetRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
@@ -76,6 +78,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJvClmOffsetResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
@@ -89,6 +92,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
@@ -162,4 +166,7 @@ public interface AccountingInTrustService {
 	public RetrieveAcitSOATreatyDetailsResponse retrieveAcitSOATrtyDetails(RetrieveAcitSOATreatyDetailsRequest request)throws SQLException;
 	public SaveAcitArInvPulloutResponse saveAcitArInvPullout(SaveAcitArInvPulloutRequest saaipr) throws SQLException;
 	public RetrieveAcitJVClmOffLOVResponse retrieveAcitJvClmOff(RetrieveAcitJVClmOffLOVRequest request)throws SQLException;
+	public RetrieveAcitJvClmOffsetResponse retrieveAcitJvClaimOffset (RetrieveAcitJVClmOffsetRequest request)throws SQLException;
+	public RetrieveAcitJVClmNegTrtyResponse retrieveAcitJvNegTrty (RetrieveAcitJVClmNegTrtyRequest request)throws SQLException;
+	
 }

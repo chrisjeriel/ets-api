@@ -7,6 +7,9 @@ import org.joda.time.DateTime;
 public class AcitJVClaimOffSetLOV {
 	private Integer claimId;
 	private String claimNo;
+	private Integer projId;
+	private Integer policyId;
+	private String policyNo;
 	private Integer histNo;
 	private String histCategory;
 	private String histCategoryDesc;
@@ -32,6 +35,25 @@ public class AcitJVClaimOffSetLOV {
 	}
 	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
+	}
+	
+	public Integer getProjId() {
+		return projId;
+	}
+	public void setProjId(Integer projId) {
+		this.projId = projId;
+	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
 	}
 	public Integer getHistNo() {
 		return histNo;
@@ -117,13 +139,14 @@ public class AcitJVClaimOffSetLOV {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "AcitJVClaimOffSetLOV [claimId=" + claimId + ", claimNo=" + claimNo + ", histNo=" + histNo
-				+ ", histCategory=" + histCategory + ", histCategoryDesc=" + histCategoryDesc + ", histType=" + histType
-				+ ", histTypeDesc=" + histTypeDesc + ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "AcitJVClaimOffSetLOV [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId
+				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", histNo=" + histNo + ", histCategory="
+				+ histCategory + ", histCategoryDesc=" + histCategoryDesc + ", histType=" + histType + ", histTypeDesc="
+				+ histTypeDesc + ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd + ", currencyRt="
+				+ currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
