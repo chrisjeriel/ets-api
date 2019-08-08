@@ -2267,6 +2267,9 @@
 		<result property="retTwoPremAmt" 	column="RET2_PREM_AMT" />
 		<result property="totalTsiAmt" 		column="TOTAL_TSI_AMT" />
 		<result property="totalPremAmt" 	column="TOTAL_PREM_AMT" />
+		<result property="secIIInputLimit"		column="RET_INPUT_LIMIT" />
+		<result property="cuurCd"		column="CURR_CD" />
+		
 		<association property="distRiskWtreaty" 	resultMap="retRiskWtreaty"/>
 	</resultMap>
 	
@@ -2647,6 +2650,15 @@
 	
 	<select id="getMissingCoins" resultMap="retDistCoInsMap">
 		SELECT * FROM TABLE(DIST_WPOL_PKG.get_mia_alt_coins(#{policyId}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.Warning" id="retrievePolDistWarningMap">
+		<result property="warningCode"        column="WARNING_CODE" />
+		<result property="warningMessage"    column="WARNING_MESSAGE" />
+	</resultMap>
+	
+	<select id="retrievePolDistWarning" resultMap="retrievePolDistWarningMap">
+		SELECT * FROM TABLE(DIST_PKG.GET_DIST_RISK_WARNING(#{riskDistId}, #{altNo}))
 	</select>
 	
 </mapper>

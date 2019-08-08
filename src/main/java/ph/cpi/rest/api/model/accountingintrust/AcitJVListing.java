@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.accountingintrust;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
@@ -30,6 +31,8 @@ public class AcitJVListing {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	private List<AcitJVAdjstInwPolBal> inwPolBal;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -181,6 +184,12 @@ public class AcitJVListing {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<AcitJVAdjstInwPolBal> getInwPolBal() {
+		return inwPolBal;
+	}
+	public void setInwPolBal(List<AcitJVAdjstInwPolBal> inwPolBal) {
+		this.inwPolBal = inwPolBal;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVListing [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate
@@ -190,6 +199,7 @@ public class AcitJVListing {
 				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", preparedBy="
 				+ preparedBy + ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedDate="
 				+ approvedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", inwPolBal=" + inwPolBal + "]";
 	}
+	
 }

@@ -3574,4 +3574,72 @@
 													  			   #{activeTag, jdbcType=VARCHAR},
 													  			   '','','',''))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitChartAcct" id="AcitChartAcct">
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="glAcctCategory" column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctControl" column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1" column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2" column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3" column="GL_ACCT_SUB3"/>
+		<result property="shortDesc" column="SHORT_DESC"/>
+		<result property="longDesc" column="LONG_DESC"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="drCrTag" column="DR_CR_TAG"/>
+		<result property="postTag" column="POST_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveMtnAcitChartAcct" resultMap="AcitChartAcct">
+		SELECT * FROM TABLE(MTN_ACIT_CHART_ACCT_PKG.ret_mtn_acit_chart_acct(#{glAcctId, jdbcType=VARCHAR},
+				#{glAcctCategory, jdbcType=VARCHAR},
+				#{glAcctControl, jdbcType=VARCHAR},
+				#{glAcctSub1, jdbcType=VARCHAR},
+				#{glAcctSub2, jdbcType=VARCHAR},
+				#{glAcctSub3, jdbcType=VARCHAR},
+				#{slTypeCd, jdbcType=VARCHAR},
+				#{drCrTag, jdbcType=VARCHAR},
+				#{postTag, jdbcType=VARCHAR},
+				#{activeTag, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveMtnSLType" resultMap="SLTypeMap">
+		SELECT * FROM TABLE(MTN_SL_TYPE_PKG.RET_MTN_SL_TYPE(#{slTypeCd, jdbcType=VARCHAR},#{autoTag, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.SLType" id="SLTypeMap">
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="autoTag" column="AUTO_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnSL" resultMap="SLMap">
+		SELECT * FROM TABLE(MTN_SL_PKG.RET_MTN_SL(#{slTypeCd,jdbcType=VARCHAR},#{slCd,jdbcType=VARCHAR},#{payeeNo,jdbcType=VARCHAR},#{autoTag,jdbcType=VARCHAR},#{activeTag,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.SL" id="SLMap">
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="slCd" column="SL_CD"/>
+		<result property="slName" column="SL_NAME"/>
+		<result property="payeeNo" column="PAYEE_NO"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="autoTag" column="AUTO_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
 </mapper>
