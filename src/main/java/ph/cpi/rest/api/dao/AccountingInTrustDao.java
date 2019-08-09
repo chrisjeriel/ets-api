@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
@@ -91,5 +95,11 @@ public interface AccountingInTrustDao {
 	public List<AcitJVClaimOffset> retrieveAcitJvClaimOffset(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVClmNegativeTreaty> retrieveAcitJvNegTrty(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJvNegTrty(final HashMap<String, Object> params) throws SQLException;
-	
+	public List<AcitArNegTrtyBal> retrieveAcitArNegTrtyBal(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitArNegTrtyBal(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitArClmCashCallLov(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitArAmtDtl> retrieveAcitArAmtDtl(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitArAmtDtl(final HashMap<String, Object> params) throws SQLException;
 }
