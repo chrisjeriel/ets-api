@@ -397,4 +397,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJVClmNegativeTreaty> res = sqlSession.selectList("retrieveAcitJvNegTrty", params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJvNegTrty(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJvNegTrty",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

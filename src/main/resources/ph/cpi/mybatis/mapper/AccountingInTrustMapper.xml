@@ -1731,6 +1731,26 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_trty_bal(#{tranId},#{cedingId},null,null,null,null))
 	</select>
 	
-	
+	<update id="saveAcitJvNegTrty" parameterType="java.util.Map">
+		BEGIN
+			
+			<foreach collection="saveNegTrty" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId},
+														#{save.quarterNo},
+														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.cedingId},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.balanceAmt},
+														#{save.localAmt},
+														#{save.actualBalPaid},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
 	
 </mapper>
