@@ -385,6 +385,7 @@
 		<result property="updateDate"    column="UPDATE_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="cedingId"      column="CEDING_ID"       />
 		<result property="bussTypeName"  column="BUSS_TYPE_NAME"       />
+		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	
@@ -948,9 +949,9 @@
 				);
 				<!-- DELETE FROM ACIT_INWPOL_PAYTS -->
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
-														#{save.tranId},
-														#{save.policyId},
-														#{save.instNo}
+														#{del.tranId},
+														#{del.policyId},
+														#{del.instNo}
 				);
 				<!-- Insert something about resetting the SOA Details here -->
 			</foreach>

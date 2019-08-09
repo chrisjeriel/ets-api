@@ -40,6 +40,7 @@ public class AcknowledgementReceipt {
 	private DateTime updateDate;
 	private String cedingId;
 	private String bussTypeName;
+	private Integer rstrctTranUp;
 	
 	private List<ARPaymentDetails> paytDtl;
 
@@ -226,7 +227,7 @@ public class AcknowledgementReceipt {
 	public void setTin(String tin) {
 		this.tin = tin;
 	}
-	
+
 	public Integer getRefCd() {
 		return refCd;
 	}
@@ -299,14 +300,6 @@ public class AcknowledgementReceipt {
 		this.updateDate = updateDate;
 	}
 
-	public List<ARPaymentDetails> getPaytDtl() {
-		return paytDtl;
-	}
-
-	public void setPaytDtl(List<ARPaymentDetails> paytDtl) {
-		this.paytDtl = paytDtl;
-	}
-
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -323,6 +316,22 @@ public class AcknowledgementReceipt {
 		this.bussTypeName = bussTypeName;
 	}
 
+	public Integer getRstrctTranUp() {
+		return rstrctTranUp;
+	}
+
+	public void setRstrctTranUp(Integer rstrctTranUp) {
+		this.rstrctTranUp = rstrctTranUp;
+	}
+
+	public List<ARPaymentDetails> getPaytDtl() {
+		return paytDtl;
+	}
+
+	public void setPaytDtl(List<ARPaymentDetails> paytDtl) {
+		this.paytDtl = paytDtl;
+	}
+
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
@@ -334,6 +343,9 @@ public class AcknowledgementReceipt {
 				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", refCd=" + refCd + ", currCd=" + currCd + ", arAmt="
 				+ arAmt + ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", paytDtl=" + paytDtl + "]";
+				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp
+				+ ", paytDtl=" + paytDtl + "]";
 	}
+
+
 }
