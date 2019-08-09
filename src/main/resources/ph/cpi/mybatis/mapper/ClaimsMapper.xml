@@ -646,6 +646,7 @@
 				#{altNo, jdbcType=INTEGER},
 				#{clmYear, jdbcType=INTEGER},
 				#{clmSeqNo, jdbcType=INTEGER},
+				#{policyId, jdbcType=INTEGER},
 				#{clmStatCd, jdbcType=VARCHAR},
 				#{cessionId, jdbcType=INTEGER},
 				#{lineClassCd, jdbcType=VARCHAR},

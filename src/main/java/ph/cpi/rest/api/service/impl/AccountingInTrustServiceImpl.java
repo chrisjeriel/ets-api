@@ -1002,8 +1002,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rasfmParams.put("prdAsOf", rasfmr.getPrdAsOf());
 		rasfmParams.put("year", rasfmr.getYear());
 		rasfmParams.put("servFeeAmt", rasfmr.getServFeeAmt());
+		rasfmParams.put("currCd", rasfmr.getCurrCd());
+		rasfmParams.put("currRt", rasfmr.getCurrRt());
 		
 		rasfmgResponse.setMainDistList(acctITDao.retrieveAcitServFeeMainGnrt(rasfmParams));
+		rasfmgResponse.setSubDistList(acctITDao.retrieveAcitServFeeSubGnrt(rasfmParams));
 		
 		return rasfmgResponse;
 	}

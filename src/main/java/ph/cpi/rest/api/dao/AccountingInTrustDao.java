@@ -82,4 +82,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
 }
