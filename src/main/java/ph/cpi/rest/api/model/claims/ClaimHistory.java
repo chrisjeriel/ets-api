@@ -19,7 +19,7 @@ public class ClaimHistory {
 	private String 	 	currencyCd;
 	private Integer  	currencyRt;
 	private BigDecimal  reserveAmt;
-	//private BigDecimal  paytAmt;
+	private BigDecimal  paytAmt;
 	private String 	 	refNo;
 	private DateTime 	refDate;
 	private String 	 	remarks;
@@ -117,12 +117,12 @@ public class ClaimHistory {
 	public void setReserveAmt(BigDecimal reserveAmt) {
 		this.reserveAmt = reserveAmt;
 	}
-//	public BigDecimal getPaytAmt() {
-//		return paytAmt;
-//	}
-//	public void setPaytAmt(BigDecimal paytAmt) {
-//		this.paytAmt = paytAmt;
-//	}
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
+	}
 	public String getRefNo() {
 		return refNo;
 	}
@@ -208,9 +208,7 @@ public class ClaimHistory {
 				+ ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc + ", histType=" + histType
 				+ ", histTypeDesc=" + histTypeDesc + ", bookingMth=" + bookingMth + ", bookingYear=" + bookingYear
 				+ ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
-				+ ", reserveAmt=" + reserveAmt 
-				//+ ", paytAmt=" + paytAmt + 
-				+ ", refNo=" + refNo + ", refDate=" + refDate
+				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", adjRate=" + adjRate
 				+ ", val1=" + val1 + ", val2=" + val2 + ", val3=" + val3 + ", val4=" + val4 + "]";

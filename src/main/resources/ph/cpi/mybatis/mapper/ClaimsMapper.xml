@@ -104,7 +104,7 @@
 		<result property="currencyCd"	column="CURRENCY_CD"/>
 		<result property="currencyRt"	column="CURRENCY_RT"/>
 		<result property="reserveAmt"	column="RESERVE_AMT"/>
-		<!-- <result property="paytAmt"		column="PAYT_AMT"/> -->
+		<result property="paytAmt"		column="PAYT_AMT"/>
 		<result property="refNo"		column="REF_NO"/>
 		<result property="refDate"		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="remarks"		column="REMARKS"/>
@@ -646,7 +646,6 @@
 				#{altNo, jdbcType=INTEGER},
 				#{clmYear, jdbcType=INTEGER},
 				#{clmSeqNo, jdbcType=INTEGER},
-				#{policyId, jdbcType=INTEGER},
 				#{clmStatCd, jdbcType=VARCHAR},
 				#{cessionId, jdbcType=INTEGER},
 				#{lineClassCd, jdbcType=VARCHAR},

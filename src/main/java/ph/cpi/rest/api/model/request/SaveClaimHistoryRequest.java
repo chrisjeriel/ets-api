@@ -158,9 +158,9 @@ class ClmHist {
 		return "ClmHist [claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory="
 				+ histCategory + ", histType=" + histType + ", bookingMth=" + bookingMth + ", bookingYear="
 				+ bookingYear + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
-				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" 
-				//+ paytAmt + ", refNo=" 
-				+ refNo + ", refDate=" + refDate
+				+ ", reserveAmt=" + reserveAmt 
+				//+ ", paytAmt=" + paytAmt 
+				+ ", refNo=" + refNo + ", refDate=" + refDate
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
