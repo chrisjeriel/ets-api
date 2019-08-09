@@ -1947,7 +1947,7 @@
 		BEGIN
 			
 			<foreach collection="saveNegTrty" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId},
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_trty(#{save.tranId},
 														#{save.quarterNo},
 														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.cedingId},
@@ -1955,7 +1955,7 @@
 														#{save.currRate},
 														#{save.balanceAmt},
 														#{save.localAmt},
-														#{save.actualBalPaid},
+														#{save.actualBalPaid,jdbcType=INTEGER},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
