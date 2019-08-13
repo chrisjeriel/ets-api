@@ -149,8 +149,8 @@
 					#{ch.currencyRt,jdbcType=VARCHAR},
 					#{ch.reserveAmt,jdbcType=INTEGER},
 					<!-- #{ch.paytAmt,jdbcType=INTEGER}, -->
-					#{ch.refNo,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					<!-- #{ch.refNo,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), -->
 					#{ch.remarks,jdbcType=VARCHAR},
 					#{ch.createUser,jdbcType=VARCHAR},
 				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
