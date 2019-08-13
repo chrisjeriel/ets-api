@@ -11,122 +11,126 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
+import ph.cpi.rest.api.model.request.GenerateUPRRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArInvPulloutRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
-import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
-import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
+import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInvPulloutRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
+import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
-import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
+import ph.cpi.rest.api.model.response.GenerateUPRResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmRecoverLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmRecoverResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArInvPulloutResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
-import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
-import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
-import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
-import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
-import ph.cpi.rest.api.model.response.SaveAcitArNegTrtyBalResponse;
-import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
-import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
-import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
-import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
-import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
-import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
-import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
+import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInvPulloutResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArNegTrtyBalResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
+import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAppPaytZeroResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
@@ -1226,7 +1230,25 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
-
+	
+	@Override
+	public GenerateUPRResponse generateUPR(GenerateUPRRequest guprr) throws SQLException {
+		GenerateUPRResponse response = new GenerateUPRResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("extMm",guprr.getExtMm());
+			params.put("extYear",guprr.getExtYear());
+			params.put("extMethod",guprr.getExtMethod());
+			params.put("extractUser",guprr.getExtractUser());
+			params.put("extractDate",guprr.getExtractDate());
+			response.setReturnCode(acctITDao.generateUPR(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
 
 	@Override
 	public RetrieveAcitArClmCashCallResponse retrieveAcitArClmCashCall(RetrieveAcitArClmCashCallRequest raacccr)
@@ -1238,7 +1260,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setClmCashCallList(acctITDao.retrieveAcitArClmCashCall(params));
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitJVClmNegTrtyResponse retrieveAcitJvNegTrty(RetrieveAcitJVClmNegTrtyRequest request)
@@ -1348,4 +1369,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
+	@Override
+	public RetrieveAcitUPRPerCedeResponse retrieveAcitUPRPerCede(RetrieveAcitUPRPerCedeRequest raupcr)
+			throws SQLException {
+		RetrieveAcitUPRPerCedeResponse response = new RetrieveAcitUPRPerCedeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extMm",raupcr.getExtMm());
+		params.put("extYear",raupcr.getExtYear());
+		params.put("extMethod",raupcr.getExtMethod());
+		params.put("cedingId",raupcr.getCedingId());
+		response.setPerLine(acctITDao.retrieveAcitUPRPerLine(params));
+		response.setPerPol(acctITDao.retrieveAcitUPRPerPol(params));
+		return response;
+	}
 }

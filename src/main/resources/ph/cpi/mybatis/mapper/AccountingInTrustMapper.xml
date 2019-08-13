@@ -2116,4 +2116,37 @@
 		END;
 	</update>
 	
+	<update id="generateUPR" parameterType="java.util.Map">
+		BEGIN
+			ACIT_UPR_PKG.generate_upr(#{extMm},#{extYear},#{extMethod},#{extractUser},CAST(to_timestamp(#{extractDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine" id="AcitUPRPerLineMap">
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="premGross" column="PREM_GROSS"/>
+		<result property="defPremGross" column="DEF_PREM_GROSS"/>
+		<result property="prevDefPremGross" column="PREV_DEF_PREM_GROSS"/>
+		<result property="defDiff" column="DEF_DIFF"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy" id="AcitUPRPerPolicyMap">
+		<result property="lineCd" column="LINE_CD"/>
+		<result property="policyNo" column="POLICY_NO"/>
+		<result property="effDate" column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="numeratorFactor" column="NUMERATOR_FACTOR"/>
+		<result property="denominatorFactor" column="DENOMINATOR_FACTOR"/>
+		<result property="premGross" column="PREM_GROSS"/>
+		<result property="defPremGross" column="DEF_PREM_GROSS"/>
+	</resultMap>
+	
+	<select id="retrieveAcitUPRPerLine" resultMap="AcitUPRPerLineMap">
+		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line(#{extMm},#{extYear},#{extMethod},#{cedingId}))
+	</select>
+	
+	<select id="retrieveAcitUPRPerPol" resultMap="AcitUPRPerPolicyMap">
+		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line_pol(#{extMm},#{extYear},#{extMethod},#{cedingId}))
+	</select>
+	
 </mapper>
