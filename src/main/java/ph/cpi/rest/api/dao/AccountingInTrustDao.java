@@ -76,7 +76,7 @@ public interface AccountingInTrustDao {
 	public List<AcitProfCommDtl> retrieveProfCommDtl(final HashMap<String, Object> params ) throws SQLException;
 	public Integer cancelAr(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAgingSoaDtl(final HashMap<String, Object> params) throws SQLException;
-	public Integer saveArInwPolBal(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveArInwPolBal(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArInwPolBal> retrieveAcitArInwPolBal(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArTransDtl> retrieveAcitArTransDtl(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveArTransDtl(final HashMap<String, Object> params) throws SQLException;

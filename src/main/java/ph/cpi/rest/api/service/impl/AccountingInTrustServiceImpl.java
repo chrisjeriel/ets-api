@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -770,12 +771,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("saveInwPolBal", saipbr.getSaveInwPolBal());
 		params.put("delInwPolBal", saipbr.getDelInwPolBal());
 		try{
-			response.setReturnCode(acctITDao.saveArInwPolBal(params));
+			HashMap<String, Object> res = acctITDao.saveArInwPolBal(params);
+			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
+			if(saipbr.getSaveInwPolBal().size() != 0){
+				response.setNewPrem(new BigDecimal(res.get("newPrem").toString()));
+				response.setNewRiComm(new BigDecimal(res.get("newRiComm").toString()));
+				response.setNewRiCommVat(new BigDecimal(res.get("newRiCommVat").toString()));
+				response.setNewCharges(new BigDecimal(res.get("newCharges").toString()));
+			}
+			
+			if(res.get("custReturnCode") != null){
+				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));
+				response.setReturnCode(0);
+				response.setCustReturnCode(Integer.parseInt(res.get("custReturnCode").toString()));
+			}
 		}catch(Exception e){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception", "Please check field values."));
 			e.printStackTrace();
 		}
+		logger.info(response.toString());
 		return response;
 	}
 

@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class AcitArClmCashCall {
+	private Integer tranId;
+	private Integer billId;
+	private Integer itemNo;
 	private Integer claimId;
 	private String insuredDesc;
 	private String claimNo;
@@ -27,6 +30,24 @@ public class AcitArClmCashCall {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+	public Integer getBillId() {
+		return billId;
+	}
+	public void setBillId(Integer billId) {
+		this.billId = billId;
+	}
+	public Integer getItemNo() {
+		return itemNo;
+	}
+	public void setItemNo(Integer itemNo) {
+		this.itemNo = itemNo;
+	}
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -156,12 +177,12 @@ public class AcitArClmCashCall {
 	
 	@Override
 	public String toString() {
-		return "AcitArClmCashCall [claimId=" + claimId + ", insuredDesc=" + insuredDesc + ", claimNo=" + claimNo
-				+ ", policyNo=" + policyNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr
-				+ ", projId=" + projId + ", histNo=" + histNo + ", histCategory=" + histCategory + ", histCatDesc="
-				+ histCatDesc + ", currCd=" + currCd + ", currRate=" + currRate + ", reserveAmt=" + reserveAmt
-				+ ", paytAmt=" + paytAmt + ", cashcallAmt=" + cashcallAmt + ", localAmt=" + localAmt + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "AcitArClmCashCall [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
+				+ claimId + ", insuredDesc=" + insuredDesc + ", claimNo=" + claimNo + ", policyNo=" + policyNo
+				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", projId=" + projId
+				+ ", histNo=" + histNo + ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt
+				+ ", cashcallAmt=" + cashcallAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

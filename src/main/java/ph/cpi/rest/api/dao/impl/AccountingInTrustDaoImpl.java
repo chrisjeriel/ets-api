@@ -238,9 +238,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public Integer saveArInwPolBal(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveArInwPolBal(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveArInwPolBal", params);
-		return res;
+		params.put("errorCode", res);
+		return params;
 	}
 
 	@Override
