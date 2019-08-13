@@ -34,6 +34,8 @@ import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
+import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 
 @Component
@@ -369,5 +371,23 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveArInvPullout",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public Integer generateUPR(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateUPR",params);
+		return errorCode;
+	}
+
+	@Override
+	public List<AcitUPRPerLine> retrieveAcitUPRPerLine(HashMap<String, Object> params) throws SQLException {
+		List<AcitUPRPerLine> list = sqlSession.selectList("retrieveAcitUPRPerLine",params);
+		return list;
+	}
+
+	@Override
+	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(HashMap<String, Object> params) throws SQLException {
+		List<AcitUPRPerPolicy> list = sqlSession.selectList("retrieveAcitUPRPerPol",params);
+		return list;
 	}
 }

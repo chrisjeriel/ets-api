@@ -3,11 +3,14 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
+import ph.cpi.rest.api.model.request.GenerateUPRRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
@@ -29,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
@@ -55,6 +59,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
+import ph.cpi.rest.api.model.response.GenerateUPRResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
@@ -78,6 +83,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
@@ -156,4 +162,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitJVAppPaytZeroResponse retrieveAcitJVAppPaytZeroBal(RetrieveAcitJVAppPaytZeroRequest request) throws SQLException;
 	public SaveAcitJVAppPaytZeroResponse saveAcitJVAppPaytZeroBal(SaveAcitJVAppPaytZeroRequest request)throws SQLException;
 	public SaveAcitArInvPulloutResponse saveAcitArInvPullout(SaveAcitArInvPulloutRequest saaipr) throws SQLException;
+	public GenerateUPRResponse generateUPR(GenerateUPRRequest guprr) throws SQLException;
+	public RetrieveAcitUPRPerCedeResponse retrieveAcitUPRPerCede(RetrieveAcitUPRPerCedeRequest raupcr) throws SQLException;
 }

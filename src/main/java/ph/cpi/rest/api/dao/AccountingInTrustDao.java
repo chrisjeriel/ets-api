@@ -4,30 +4,32 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
-import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
+import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
-import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
-import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
+import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
-import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
-import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
+import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
+import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
-import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
-import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -82,4 +84,8 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
+	public Integer generateUPR(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitUPRPerLine> retrieveAcitUPRPerLine(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(final HashMap<String, Object> params) throws SQLException;
+
 }

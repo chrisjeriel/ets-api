@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
+import ph.cpi.rest.api.model.request.GenerateUPRRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
@@ -35,6 +36,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
@@ -61,6 +63,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
+import ph.cpi.rest.api.model.response.GenerateUPRResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
@@ -84,6 +87,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
@@ -1111,6 +1115,42 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.getErrorList().add(new Error("General Exception", "Please check field values."));
 			e.printStackTrace();
 		}
+		return response;
+	}
+
+
+	@Override
+	public GenerateUPRResponse generateUPR(GenerateUPRRequest guprr) throws SQLException {
+		GenerateUPRResponse response = new GenerateUPRResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("extMm",guprr.getExtMm());
+			params.put("extYear",guprr.getExtYear());
+			params.put("extMethod",guprr.getExtMethod());
+			params.put("extractUser",guprr.getExtractUser());
+			params.put("extractDate",guprr.getExtractDate());
+			response.setReturnCode(acctITDao.generateUPR(params));
+			
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitUPRPerCedeResponse retrieveAcitUPRPerCede(RetrieveAcitUPRPerCedeRequest raupcr)
+			throws SQLException {
+		RetrieveAcitUPRPerCedeResponse response = new RetrieveAcitUPRPerCedeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extMm",raupcr.getExtMm());
+		params.put("extYear",raupcr.getExtYear());
+		params.put("extMethod",raupcr.getExtMethod());
+		params.put("cedingId",raupcr.getCedingId());
+		response.setPerLine(acctITDao.retrieveAcitUPRPerLine(params));
+		response.setPerPol(acctITDao.retrieveAcitUPRPerPol(params));
 		return response;
 	}
 }
