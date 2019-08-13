@@ -1930,27 +1930,24 @@
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveAcitJvClaimOffset" resultMap="jvClmOffsetMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_clm_off(#{tranId},#{cedingId},#{quarterNo},null,null,null,null))
-	</select>
-	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty" id="jvNegTrtyMap">
-		<result property="tranId" column="TRAN_ID"/>
-		<result property="quarterNo" column="QUARTER_NO"/>
-		<result property="cedingId" column="CEDING_ID"/>
-		<result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="currCd" column="CURR_CD"/>
-		<result property="currRate" column="CURR_RATE"/>
-		<result property="balanceAmt" column="BALANCE_AMT"/>
-		<result property="localAmt" column="LOCAL_AMT"/>
-		<result property="createUser" column="CREATE_USER"/>
-		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" column="UPDATE_USER"/>
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranId" column="TRYTY_TRAN_ID"/>
+		<result property="quarterNo" column="TRYTY_QUARTER_NO"/>
+		<result property="cedingId" column="TRYTY_CEDING_ID"/>
+		<result property="quarterEnding" column="TRYTY_QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currCd" column="TRYTY_CURR_CD"/>
+		<result property="currRate" column="TRYTY_CURR_RATE"/>
+		<result property="balanceAmt" column="TRYTY_BALANCE_AMT"/>
+		<result property="localAmt" column="TRYTY_LOCAL_AMT"/>
+		<result property="createUser" column="TRYTY_CREATE_USER"/>
+		<result property="createDate" column="TRYTY_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="TRYTY_UPDATE_USER"/>
+		<result property="updateDate" column="TRYTY_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="clmOffset" resultMap="jvClmOffsetMap"></association>
 	</resultMap>
 	
 	<select id="retrieveAcitJvNegTrty" resultMap="jvNegTrtyMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_trty_bal(#{tranId},#{cedingId},null,null,null,null))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_off_clm_neg_trty(#{tranId},#{cedingId},null,null,null,null))
 	</select>
 	
 	<update id="saveAcitJvNegTrty" parameterType="java.util.Map">

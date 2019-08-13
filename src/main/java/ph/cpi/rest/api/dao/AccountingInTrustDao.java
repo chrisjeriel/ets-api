@@ -92,7 +92,6 @@ public interface AccountingInTrustDao {
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVClaimOffSetLOV> retrieveAcitJvClmOff(final HashMap<String, Object> params) throws SQLException;
-	public List<AcitJVClaimOffset> retrieveAcitJvClaimOffset(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVClmNegativeTreaty> retrieveAcitJvNegTrty(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJvNegTrty(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArNegTrtyBal> retrieveAcitArNegTrtyBal(final HashMap<String, Object> params) throws SQLException;

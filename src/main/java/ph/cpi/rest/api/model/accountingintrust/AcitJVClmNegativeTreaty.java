@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.accountingintrust;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
@@ -17,6 +18,7 @@ public class AcitJVClmNegativeTreaty {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private List <AcitJVClaimOffset> clmOffset;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -89,11 +91,18 @@ public class AcitJVClmNegativeTreaty {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public List<AcitJVClaimOffset> getClmOffset() {
+		return clmOffset;
+	}
+	public void setClmOffset(List<AcitJVClaimOffset> clmOffset) {
+		this.clmOffset = clmOffset;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVClmNegativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
 				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
 				+ balanceAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + "]";
 	}
 }

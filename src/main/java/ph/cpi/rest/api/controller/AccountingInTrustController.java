@@ -37,7 +37,6 @@ import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffsetRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
@@ -103,7 +102,6 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitJvClmOffsetResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
@@ -517,13 +515,6 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJvClmOffLOV");
 		logger.info("RetrieveAcitJVClmOffLOVRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitJvClmOff(request);
-	}
-	
-	@GetMapping(path="retrieveAcitJvClaimOffset")
-	public @ResponseBody RetrieveAcitJvClmOffsetResponse retrieveAcitJvClaimOffset(RetrieveAcitJVClmOffsetRequest request) throws SQLException {
-		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJvClaimOffset");
-		logger.info("RetrieveAcitJVClmOffLOVRequest : " + request.toString());
-		return acctInTrustService.retrieveAcitJvClaimOffset(request);
 	}
 	
 	@GetMapping(path="retrieveAcitJvNegativeTreaty")

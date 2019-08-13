@@ -397,12 +397,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcitJVClaimOffset> retrieveAcitJvClaimOffset(HashMap<String, Object> params) throws SQLException {
-		List<AcitJVClaimOffset> res = sqlSession.selectList("retrieveAcitJvClaimOffset", params);
-		return res;
-	}
-
-	@Override
 	public HashMap<String, Object> saveAcitArNegTrtyBal(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveArNegTrtyBal",params);
 		params.put("errorCode", errorCode);
