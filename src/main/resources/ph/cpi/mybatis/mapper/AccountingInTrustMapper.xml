@@ -397,7 +397,7 @@
 		<result property="paytAmt"         column="PAYT_AMT" />
 		<result property="bank"            column="BANK" />
 		<result property="bankAcct"        column="BANK_ACCT" />
-		<result property="checkNo"         column="CHECK_NO" />
+		<result property="checkNo"         column="CHECK_CARD_NO" />
 		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="checkClass"      column="CHECK_CLASS" />
 	</resultMap>
@@ -931,81 +931,120 @@
 	
 	<update id="saveArInwPolBal" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
-			v_message		VARCHAR2(500);
+			v_message		    VARCHAR2(500);
+			v_new_prem_amt      ACIT_AGING_SOA_DETAILS.BAL_PREM_DUE%TYPE;
+	        v_new_ri_comm       ACIT_AGING_SOA_DETAILS.BAL_RI_COMM%TYPE;
+	        v_new_ri_comm_vat   ACIT_AGING_SOA_DETAILS.BAL_RI_COMM_VAT%TYPE;
+	        v_new_charges       ACIT_AGING_SOA_DETAILS.BAL_CHARGES_DUE%TYPE;
+	        v_total_payts	NUMBER(16,2);
+			v_ar_amt		NUMBER(16,2);
 		BEGIN
-			<!-- Save to ACIT_AR_TRANSUMM -->
-			ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
-													#{billId},
-													#{billType},
-													#{totalLocalAmt},
-													#{createUser},
-													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-													#{updateUser},
-													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-													);
-			<!-- Delete from ACIT_AR_INWPOLBAL -->
-			<foreach collection="delInwPolBal" item="del">
-				ACIT_AR_INWPOLBAL_PKG.del_ar_inwpolbal(
-													#{del.tranId},
-													#{del.billId},
-													#{del.itemNo}				
-				);
-				<!-- DELETE FROM ACIT_INWPOL_PAYTS -->
-				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
+			SELECT NVL(SUM(TOTAL_LOCAL_AMT), 0)
+			  INTO v_total_payts
+			  FROM ACIT_AR_TRANSUMM
+			 WHERE TRAN_ID = #{tranId};
+			
+			SELECT AR_AMT * CURR_RATE
+			  INTO v_ar_amt
+			  FROM ACIT_ACKGT_RECEIPT
+			 WHERE TRAN_ID = #{tranId};
+			 
+			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+				<!-- Save to ACIT_AR_TRANSUMM -->
+				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
+														#{billId},
+														#{billType},
+														#{totalLocalAmt},
+														#{createUser},
+														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{updateUser},
+														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														);
+			    
+				<!-- Delete from ACIT_AR_INWPOLBAL -->
+				<foreach collection="delInwPolBal" item="del">
+					ACIT_AR_INWPOLBAL_PKG.del_ar_inwpolbal(
 														#{del.tranId},
-														#{del.policyId},
-														#{del.instNo}
-				);
-				<!-- Insert something about resetting the SOA Details here -->
-			</foreach>
-			<!-- Save from ACIT_AR_INWPOLBAL -->
-			<foreach collection="saveInwPolBal" item="save">
-				ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
-													#{save.tranId},
-													#{save.billId},
-													#{save.itemNo},
-													#{save.policyId},
-													#{save.instNo},
-													#{save.currCd},
-													#{save.currRate},
-													#{save.premAmt},
-													#{save.riComm},
-													#{save.riCommVat},
-													#{save.charges},
-													#{save.netDue},
-													#{save.balPaytAmt},
-													#{save.overdueInt},
-													#{save.createUser},
-													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-													#{save.updateUser},
-													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
-				);
+														#{del.billId},
+														#{del.itemNo}				
+					);
+					<!-- DELETE FROM ACIT_INWPOL_PAYTS -->
+					ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
+															#{del.tranId},
+															#{del.policyId},
+															#{del.instNo}
+					);
+					<!-- Insert something about resetting the SOA Details here -->
+					ACIT_AGING_SOA_DETAILS_PKG.reset_soa(#{del.policyId},
+														  #{del.instNo},
+														  #{del.premAmt},
+														  #{del.riComm},
+														  #{del.riCommVat},
+														  #{del.charges},
+														  #{del.netDue});
+				</foreach>
+				
+				<foreach collection="saveInwPolBal" item="save">
 				<!-- UPDATE AGING SOA DETAILS -->
-				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{save.policyId},
-															  #{save.instNo},
-															  #{save.premAmt},
-															  #{save.riComm},
-															  #{save.riCommVat},
-															  #{save.charges},
-															  #{save.netDue},
-															  #{save.balPaytAmt},
-															  #{save.updateUser},
-															  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-														      );
-				<!-- INSERT OR UPDATE TO ACIT_INWPOL_PAYTS -->
-				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
+					ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{tranId},
+																  #{save.policyId},
+																  #{save.instNo},
+																  #{save.premAmt},
+																  #{save.riComm},
+																  #{save.riCommVat},
+																  #{save.charges},
+																  #{save.netDue},
+																  #{save.balPaytAmt},
+																  #{save.updateUser},
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																  v_new_prem_amt,
+																  v_new_ri_comm,
+																  v_new_ri_comm_vat,
+																  v_new_charges
+															      );
+					#{newPrem, mode=OUT, jdbcType=VARCHAR} := v_new_prem_amt;
+					#{newRiComm, mode=OUT, jdbcType=VARCHAR} := v_new_ri_comm;
+					#{newRiCommVat, mode=OUT, jdbcType=VARCHAR} := v_new_ri_comm_vat;
+					#{newCharges, mode=OUT, jdbcType=VARCHAR} := v_new_charges;
+					<!-- Save from ACIT_AR_INWPOLBAL -->										      
+					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
 														#{save.tranId},
+														#{save.billId},
+														#{save.itemNo},
 														#{save.policyId},
 														#{save.instNo},
-														1, <!-- PAYT TYPE 1 FOR AR. CHANGE AS NECESSARY -->
-														1 <!-- AR -->
-				);
-			</foreach>
-			
-			<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
-			<!-- Generate to Accounting Entries -->
-			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+														#{save.currCd},
+														#{save.currRate},
+														v_new_prem_amt,
+													    v_new_ri_comm,
+													    v_new_ri_comm_vat,
+													    v_new_charges,
+														#{save.netDue},
+														#{save.balPaytAmt},
+														#{save.overdueInt},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+					);
+					
+					<!-- INSERT OR UPDATE TO ACIT_INWPOL_PAYTS -->
+					ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
+															#{save.tranId},
+															#{save.policyId},
+															#{save.instNo},
+															1, <!-- PAYT TYPE 1 FOR AR. CHANGE AS NECESSARY -->
+															1 <!-- AR -->
+					);
+				</foreach>
+				
+				<!-- Generate to Amount Details -->
+					GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- Generate to Accounting Entries -->
+				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+			ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
+			END IF;
 		END;
 	</update>
 	
@@ -1776,6 +1815,9 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall" id="arClmCashCallMap">
+		<result property="tranId"        column="TRAN_ID" />
+		<result property="billId"        column="BILL_ID" />
+		<result property="itemNo"        column="ITEM_NO" />
 		<result property="claimId"       column="CLAIM_ID" />
 		<result property="insuredDesc"   column="INSURED_DESC" />
 		<result property="claimNo"       column="CLAIM_NO" />
