@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.SaveAcitAllocInvtIncomeResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -281,11 +283,12 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveQSOAList(rqlr);
 	}
 
-	@PostMapping(path="saveAcitAcctEntries")
-	public @ResponseBody SaveAcitAcctEntriesResponse saveAcitAcctEntries(@RequestBody SaveAcitAcctEntriesRequest saprr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/saveAcitAcctEntries");
-		logger.info("SaveAcitAcctEntriesRequest : " + saprr.toString());
-		return acctInTrustService.saveAcitAcctEntries(saprr);
+
+	@PostMapping(path="saveAcitAllocInvtIncome")
+	public @ResponseBody SaveAcitAllocInvtIncomeResponse saveAcitAllocInvtIncome(@RequestBody SaveAcitAllocInvtIncomeRequest saaii) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitAllocInvtIncome");
+		logger.info("SaveAcitAllocInvtIncomeRequest : " + saaii.toString());
+		return acctInTrustService.saveAcitAllocInvtIncome(saaii);
 	}
 
 }

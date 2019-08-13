@@ -221,4 +221,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer code = sqlSession.update("saveAcitAcctEntries",params);
 		return code;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitAllocInvtIncome(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcitAllocInvtIncome",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

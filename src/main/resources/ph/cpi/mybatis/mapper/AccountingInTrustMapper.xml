@@ -186,7 +186,9 @@
 		<result property="bank" 						column="BANK"/>
 		<result property="certNo" 						column="CERT_NO"/>
 		<result property="invtType" 					column="INVT_TYPE"/>
+		<result property="invtTypeDesc" 				column="INVT_TYPE_DESC"/>
 		<result property="invtSecCd" 					column="INVT_SEC_CD"/>
+		<result property="invtSecDesc" 					column="SECURITY_DESC"/>
 		<result property="invtStatus" 					column="INVT_STATUS"/>
 		<result property="matPeriod" 					column="MATURITY_PERIOD"/>
 		<result property="durUnit" 						column="DURATION_UNIT"/>
@@ -658,7 +660,7 @@
 	</select>
 	
 	<select id="retrieveAcitJvInwPolBal" resultMap="inwPolBalMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_aipb(
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_apb(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
 					#{cedingCo},
@@ -730,6 +732,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome" id="acitAllInvtIncomeList">
 		<result property="tranId" 						column="TRAN_ID"/>
 		<result property="tranClass" 					column="TRAN_CLASS"/>
+		<result property="tranNo" 						column="TRAN_NO"/>
 		<result property="tranDate" 					column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="payor" 						column="PAYOR"/>
 		<result property="arStatus" 					column="AR_STATUS"/>
@@ -739,6 +742,8 @@
 		<result property="whtaxAmt" 					column="WHTAX_AMT"/>
 		<result property="incomeAmt" 					column="INCOME_AMT"/>
 		<result property="invtId" 						column="INVT_ID"/>
+		<result property="currCd" 						column="CURR_CD"/>
+		<result property="currRate" 					column="CURR_RATE"/>
 	</resultMap>
 	
 	<select id="retrieveAcitAllInvestmentIncome" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
@@ -832,4 +837,29 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveAcitAllocInvtIncome" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_alloc_tran_id        ACIT_ALLOC_REF.ALLOC_TRAN_ID%TYPE;
+		BEGIN
+			ACIT_ALL_INVT_INC_PKG.save_alloc_ref(v_alloc_tran_id);
+												  
+			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_alloc_tran_id;
+			
+			IF v_alloc_tran_id <![CDATA[ <> ]]> 0 THEN
+				<foreach collection="saveAcitAllocInvtIncome" item="save">
+					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
+														v_alloc_tran_id,
+														#{save.refTranId, jdbcType=VARCHAR},
+														#{save.createUser, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														
+													  );
+				</foreach>
+			END IF; 
+		END;
+	</update>
+	
 </mapper>

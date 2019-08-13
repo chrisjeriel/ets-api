@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
@@ -65,6 +66,7 @@ import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.SaveAcitAllocInvtIncomeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
@@ -633,8 +635,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	public RetrieveAcitAllInvestmentIncomeResponse retrieveAcitAllInvestmentIncome(
 			RetrieveAcitAllInvestmentIncomeRequest raaii) throws SQLException {
 		// TODO Auto-generated method stub
+		
 		RetrieveAcitAllInvestmentIncomeResponse raaiiResponse = new RetrieveAcitAllInvestmentIncomeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		
 		params.put("tranDateFrom", raaii.getTranDateFrom());
 		params.put("tranDateTo", raaii.getTranDateTo());
 		params.put("tranMonth", raaii.getTranMonth());
@@ -688,6 +692,28 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitAllocInvtIncomeResponse saveAcitAllocInvtIncome(SaveAcitAllocInvtIncomeRequest saaii)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcitAllocInvtIncomeResponse response = new SaveAcitAllocInvtIncomeResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("allocTranId", saaii.getAllocTranId());
+			params.put("saveAcitAllocInvtIncome", saaii.getSaveAcitAllocInvtIncome());
+			params.put("delAcitAllocInvtIncome", saaii.getDelAcitAllocInvtIncome());
+			HashMap<String, Object> res = acctITDao.saveAcitAllocInvtIncome(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setTranIdOut((Integer) res.get("tranIdOut"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
 		}
 		return response;
 	}

@@ -11,6 +11,8 @@ public class AcitInvestments {
 	private String  	bank;
 	private String  	certNo;
 	private String		invtType;
+	private String  	invtTypeDesc;
+	private String  	invtSecDesc;
 	private String  	invtSecCd;
 	private String  	invtStatus;
 	private Integer 	matPeriod;
@@ -183,15 +185,29 @@ public class AcitInvestments {
 		this.updateDate = updateDate;
 	}
 	
+	public String getInvtTypeDesc() {
+		return invtTypeDesc;
+	}
+	public void setInvtTypeDesc(String invtTypeDesc) {
+		this.invtTypeDesc = invtTypeDesc;
+	}
+	public String getInvtSecDesc() {
+		return invtSecDesc;
+	}
+	public void setInvtSecDesc(String invtSecDesc) {
+		this.invtSecDesc = invtSecDesc;
+	}
+	
 	@Override
 	public String toString() {
 		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
-				+ ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod="
-				+ matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate="
-				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
-				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
+				+ ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc + ", invtSecDesc=" + invtSecDesc
+				+ ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod=" + matPeriod + ", durUnit="
+				+ durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate=" + matDate + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge="
+				+ bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
 	}
 	
 

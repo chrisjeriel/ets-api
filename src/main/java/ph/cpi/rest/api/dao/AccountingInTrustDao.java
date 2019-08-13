@@ -55,7 +55,8 @@ public interface AccountingInTrustDao {
 	public Integer cancelAr(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncome(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(final HashMap<String, Object> params) throws SQLException;
-	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAcctEntries> retrieveAcitAcctEntries(final HashMap<String, Object> paramqs) throws SQLException;
 	public List<QSOA> retrieveQSOAList(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcitAcctEntries(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitAllocInvtIncome(final HashMap<String, Object> params) throws SQLException;
 }

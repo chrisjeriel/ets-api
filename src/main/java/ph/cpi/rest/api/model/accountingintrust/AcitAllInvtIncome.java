@@ -8,6 +8,7 @@ public class AcitAllInvtIncome {
 	
 	private Integer 	tranId;
 	private String 		tranClass;
+	private String		tranNo;	
 	private DateTime  	tranDate;
 	private String 		payor;
 	private String		arStatus;
@@ -17,7 +18,29 @@ public class AcitAllInvtIncome {
 	private BigDecimal 	whtaxAmt;	
 	private BigDecimal  incomeAmt;
 	private Integer		invtId;
+	private String		currCd;
+	private Integer		currRate;
 	
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
+	public Integer getCurrRate() {
+		return currRate;
+	}
+	public void setCurrRate(Integer currRate) {
+		this.currRate = currRate;
+	}
+
+
+	public String getTranNo() {
+		return tranNo;
+	}
+	public void setTranNo(String tranNo) {
+		this.tranNo = tranNo;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -87,10 +110,11 @@ public class AcitAllInvtIncome {
 	
 	@Override
 	public String toString() {
-		return "AcitIAllInvtIncome [tranId=" + tranId + ", tranClass=" + tranClass + ", tranDate=" + tranDate
-				+ ", payor=" + payor + ", arStatus=" + arStatus + ", statusDesc=" + statusDesc + ", particulars="
-				+ particulars + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", incomeAmt=" + incomeAmt
-				+ ", invtId=" + invtId + "]";
+		return "AcitAllInvtIncome [tranId=" + tranId + ", tranClass=" + tranClass + ", tranNo=" + tranNo + ", tranDate="
+				+ tranDate + ", payor=" + payor + ", arStatus=" + arStatus + ", statusDesc=" + statusDesc
+				+ ", particulars=" + particulars + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
+				+ ", incomeAmt=" + incomeAmt + ", invtId=" + invtId + ", currCd=" + currCd + ", currRate=" + currRate
+				+ "]";
 	}
 	
 	
