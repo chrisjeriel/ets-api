@@ -102,4 +102,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitArClmCashCallLov(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArAmtDtl> retrieveAcitArAmtDtl(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArAmtDtl(final HashMap<String, Object> params) throws SQLException;
+	
 }

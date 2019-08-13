@@ -795,6 +795,8 @@
 	</update>
 	
 	<update id="saveAcitJVOverdueAccts" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="deleteOverdueAccts" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_acit_ioams(#{delete.tranId}, #{delete.itemNo});
@@ -803,12 +805,14 @@
 			<foreach collection="saveOverdueAccts" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_ioams(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId},
 														 #{save.instNo}, CAST(to_timestamp(#{save.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														 #{save.daysOverdue}, #{save.autoTag}, #{save.currCd}, #{save.currRate}, 
+														 #{save.daysOverdue}, #{save.interestRate}, #{save.autoTag}, #{save.currCd}, #{save.currRate}, 
 														 #{save.premAmt}, #{save.overdueInt}, #{save.createUser},
 													     CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														 #{save.updateUser},
 														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
+			
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -1211,6 +1215,8 @@
 	</update>
 	
 	<update id="saveAcitJVPremResRel" parameterType="java.util.Map">
+		DECLARE
+			v_message		VARCHAR2(500);
 		BEGIN
 			<foreach collection="deletePremResRel" item="del">
 				ACIT_JOURNAL_VOUCHER_PKG.del_acit_prr(#{del.tranId},
@@ -1236,6 +1242,7 @@
 					#{save.totalWhtaxAmt}
 				);
 			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -1538,6 +1545,8 @@
 	</select>
 	
 	<update id="saveAcitJVAppPaytZeroBal" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="deleteZeroBal" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_acit_pwzb(#{delete.tranId}, #{delete.itemNo}
@@ -1561,6 +1570,7 @@
 														3 
 				);
 			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -1945,6 +1955,9 @@
 	
 	<update id="saveAcitJvNegTrty" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="deleteNegTrty" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_trty_bal(#{delete.tranId},#{delete.cedingId},#{delete.quarteNo});
+			</foreach>
 			
 			<foreach collection="saveNegTrty" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_trty(#{save.tranId},
@@ -1962,9 +1975,41 @@
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
-			END;
+			
+			<foreach collection="deleteClmOffset" item="deleted">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_clm_off(
+					#{deleted.tranId},
+					#{deleted.quarterNo},
+					#{deleted.itemNo}
+				);
+			</foreach>
+			
+			<foreach collection="saveClmOffset" item="saved">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_clm_off(#{saved.tranId},
+															#{saved.quarterNo},
+															#{saved.itemNo},
+															#{saved.claimId},
+															#{saved.projId},
+															#{saved.histNo},
+															#{saved.paymentFor},
+															#{saved.currCd},
+															#{saved.currRate},
+															#{saved.histCategory},
+															#{saved.histType},
+															#{saved.exGratia,jdbcType=VARCHAR},
+															#{saved.reserveAmt},
+															#{saved.clmPaytAmt},
+															#{saved.localAmt},
+															#{saved.remarks},
+															#{saved.createUser},
+															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{saved.updateUser},
+															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
 	</update>
-
+	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl" id="arAmtDtlMap">
 		<result property="tranId"		column="TRAN_ID" />
 		<result property="itemSeqno"	column="ITEM_SEQNO" />

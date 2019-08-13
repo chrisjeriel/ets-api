@@ -588,4 +588,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitArAmtDtlRequest : " + saaadr.toString());
 		return acctInTrustService.saveAcitArAmtDtl(saaadr);
 	}
+	
+	/*@PostMapping(path="saveAcitJVClmOffset")
+	public @ResponseBody SaveAcitJVClmOffsetResponse saveAcitJvClmOffset(@RequestBody SaveAcitJvClmOffsetRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/SaveAcitJvClmOffsetRequest");
+		logger.info("SaveAcitJvClmOffsetRequest : " + request.toString());
+		return acctInTrustService.saveAcitJvClmOffset(request);
+	}*/
 }

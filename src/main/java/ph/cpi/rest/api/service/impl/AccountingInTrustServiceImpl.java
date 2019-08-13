@@ -729,6 +729,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVIntOverdAcctMSResponse response = new SaveAcitJVIntOverdAcctMSResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranType" , request.getTranType());
+			params.put("tranId" , request.getTranId());
 			params.put("saveOverdueAccts" , request.getSaveOverdueAccts());
 			params.put("deleteOverdueAccts" , request.getDeleteOverdueAccts());
 			HashMap<String, Object> res = acctITDao.saveAcitJVOverdueAccts(params);
@@ -896,6 +898,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVPremResRelResponse response = new SaveAcitJVPremResRelResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranType" , request.getTranType());
+			params.put("tranId" , request.getTranId());
 			params.put("savePremResRel" , request.getSavePremResRel());
 			params.put("deletePremResRel" , request.getDeletePremResRel());
 			HashMap<String, Object> res = acctITDao.saveAcitJVPremResRel(params);
@@ -1096,6 +1100,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVAppPaytZeroResponse response = new SaveAcitJVAppPaytZeroResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranType" , request.getTranType());
+			params.put("tranId", request.getTranId());
+			params.put("saveZeroBal" , request.getSaveZeroBal());
 			params.put("saveZeroBal" , request.getSaveZeroBal());
 			params.put("deleteZeroBal" , request.getDeleteZeroBal());
 			HashMap<String, Object> res = acctITDao.saveAcitJVAppPaytZeroBal(params);
@@ -1293,6 +1300,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("saveNegTrty", request.getSaveNegTrty());
+			params.put("deleteNegTrty", request.getDeleteNegTrty());
+			params.put("saveClmOffset", request.getSaveClmOffset());
+			params.put("deleteClmOffset", request.getDeleteClmOffset());
 			HashMap<String, Object> res = acctITDao.saveAcitJvNegTrty(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		} catch (SQLException sqlex) {
@@ -1337,4 +1347,5 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+
 }

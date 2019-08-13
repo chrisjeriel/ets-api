@@ -1,12 +1,26 @@
 package ph.cpi.rest.api.model.request;
 import java.math.BigDecimal;
 import java.util.List;
-
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVAppPaytZeroRequest {
+	private Integer tranType;
+	private Integer tranId;
 	private List<InwPol> saveZeroBal;
 	private List<InwPol> deleteZeroBal;
+	
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
 	public List<InwPol> getSaveZeroBal() {
 		return saveZeroBal;
 	}
@@ -21,7 +35,8 @@ public class SaveAcitJVAppPaytZeroRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVAppPaytZeroRequest [saveZeroBal=" + saveZeroBal + ", deleteZeroBal=" + deleteZeroBal + "]";
+		return "SaveAcitJVAppPaytZeroRequest [tranType=" + tranType + ", tranId=" + tranId + ", saveZeroBal="
+				+ saveZeroBal + ", deleteZeroBal=" + deleteZeroBal + "]";
 	}
 	
 }
