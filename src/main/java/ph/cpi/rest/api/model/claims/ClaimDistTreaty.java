@@ -9,7 +9,7 @@ public class ClaimDistTreaty {
 	private String cedingAbbr;
 	private String retLayer;
 	private BigDecimal clmPctShare;
-	private BigDecimal clmAmt;
+	private BigDecimal reserveAmt;
 	public String getTreatyId() {
 		return treatyId;
 	}
@@ -46,17 +46,17 @@ public class ClaimDistTreaty {
 	public void setClmPctShare(BigDecimal clmPctShare) {
 		this.clmPctShare = clmPctShare;
 	}
-	public BigDecimal getClmAmt() {
-		return clmAmt;
+	public BigDecimal getReserveAmt() {
+		return reserveAmt;
 	}
-	public void setClmAmt(BigDecimal clmAmt) {
-		this.clmAmt = clmAmt;
+	public void setReserveAmt(BigDecimal reserveAmt) {
+		this.reserveAmt = reserveAmt;
 	}
 	@Override
 	public String toString() {
 		return "ClaimDistTreaty [treatyId=" + treatyId + ", treatyAbbr=" + treatyAbbr + ", trtyCedId=" + trtyCedId
-				+ ", cedingAbbr=" + cedingAbbr + ", retLayer=" + retLayer + ", clmPctShare=" + clmPctShare + ", clmAmt="
-				+ clmAmt + "]";
+				+ ", cedingAbbr=" + cedingAbbr + ", retLayer=" + retLayer + ", clmPctShare=" + clmPctShare
+				+ ", reserveAmt=" + reserveAmt + "]";
 	}
 	
 }

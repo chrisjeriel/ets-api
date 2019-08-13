@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.*;
@@ -123,18 +124,27 @@ public interface MaintenanceService {
 	public SaveMtnClaimReasonResponse saveMtnClaimReason(SaveMtnClaimReasonRequest smcrr) throws SQLException;
 	public SaveMtnPoolRetHistResponse saveMtnPoolRetHist(SaveMtnPoolRetHistRequest smprhr) throws SQLException;
 	public CopyPoolRetHistResponse copyPoolRetHist(CopyPoolRetHistRequest cprhr) throws SQLException;
-	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException;
 	public RetrieveMtnClmCashCallResponse retrieveMtnClmCashCall(RetrieveMtnClmCashCallRequest rccp ) throws SQLException;
 	public SaveMtnClmCashCallResponse saveMtnClmCashCall(SaveMtnClmCashCallRequest smcccr) throws SQLException;
+	public RetrieveMtnLossCdLovResponse retrieveMtnLossCdLov(RetrieveMtnLossCdLovRequest rmlcl) throws SQLException;
 	public CopyMtnClmCashCallResponse copyMtnClmCashCall(CopyMtnClmCashCallRequest cpmccr) throws SQLException;
 	public RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel) throws SQLException;
 	public RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel) throws SQLException;
 	public RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattr ) throws SQLException;
-	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException;
+	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException; 
 	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException;
+	public RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException;
+	public SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException;
+	public RetrieveMtnDCBUserResponse retrieveMtnDCBUser(RetrieveMtnDCBUserRequest rmdur) throws SQLException;
 	public RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException;
 	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr ) throws SQLException;
 	public RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcct(RetrieveMtnAcitChartAcctRequest rbmr) throws SQLException;
 	public RetrieveMtnSLTypeResponse retrieveMtnSLType(RetrieveMtnSLTypeRequest rbmr) throws SQLException;
 	public RetrieveMtnSLResponse retrieveMtnSL(RetrieveMtnSLRequest rbmr) throws SQLException;
+	public RetrieveMtnPrintableNamesResponse retrieveMtnPrintableNames (RetrieveMtnPrintableNamesRequest request) throws SQLException;
+	public RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request)throws SQLException;
+	public RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist) throws SQLException;
+	public SaveMtnBankResponse saveMtnBank(SaveMtnBankRequest smaidcbr) throws SQLException;
+	public SaveMtnBankAcctResponse saveMtnBankAcct(SaveMtnBankAcctRequest smaidcbr) throws SQLException;
+	public RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException;
 }
