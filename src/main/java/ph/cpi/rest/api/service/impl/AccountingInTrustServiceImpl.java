@@ -1284,6 +1284,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJvNegTrtyResponse response = new SaveAcitJvNegTrtyResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranType", request.getTranType());
+			params.put("tranId", request.getTranId());
 			params.put("saveNegTrty", request.getSaveNegTrty());
 			params.put("deleteNegTrty", request.getDeleteNegTrty());
 			params.put("saveClmOffset", request.getSaveClmOffset());

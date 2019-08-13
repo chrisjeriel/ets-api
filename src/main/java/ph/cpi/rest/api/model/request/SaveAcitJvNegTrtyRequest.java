@@ -6,12 +6,31 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 public class SaveAcitJvNegTrtyRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<negativeTreaty> saveNegTrty;
 	private List<negativeTreaty> deleteNegTrty;
 	private List<ClaimOffset> saveClmOffset;
 	private List<ClaimOffset> deleteClmOffset;
+	
 	public List<negativeTreaty> getSaveNegTrty() {
 		return saveNegTrty;
+	}
+
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
 	}
 
 	public void setSaveNegTrty(List<negativeTreaty> saveNegTrty) {
@@ -45,10 +64,10 @@ public class SaveAcitJvNegTrtyRequest {
 
 	@Override
 	public String toString() {
-		return "SaveAcitJvNegTrtyRequest [saveNegTrty=" + saveNegTrty + ", deleteNegTrty=" + deleteNegTrty
-				+ ", saveClmOffset=" + saveClmOffset + ", deleteClmOffset=" + deleteClmOffset + "]";
+		return "SaveAcitJvNegTrtyRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveNegTrty=" + saveNegTrty
+				+ ", deleteNegTrty=" + deleteNegTrty + ", saveClmOffset=" + saveClmOffset + ", deleteClmOffset="
+				+ deleteClmOffset + "]";
 	}
-
 	
 }
 
