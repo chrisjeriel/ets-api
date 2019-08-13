@@ -1486,6 +1486,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnParametersResponse response = new RetrieveMtnParametersResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("paramType", rafr.getParamType());
+		params.put("paramName", rafr.getParamName());
 		response.setParameters(maintenanceDao.retrieveParameters(params));
 		return response;
 	}
@@ -1682,7 +1683,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		try{
 			params.put("adjId", smar.getAdjId());
 			params.put("adjName", smar.getAdjName());
-			params.put("adjRefNo", smar.getAdjRefNo());
 			params.put("addrLine1", smar.getAddrLine1());
 			params.put("addrLine2", smar.getAddrLine2());
 			params.put("addrLine3", smar.getAddrLine3());
@@ -1968,8 +1968,162 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnClmCashCallParams = new HashMap<String, Object>();
 		saveMtnClmCashCallParams.put("saveCashCall", smcccr.getSaveCashCall());
 		saveMtnClmCashCallParams.put("delCashCall", smcccr.getDelCashCall());
-/*		smcccrResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnClmCashCallParams));*/
+		smcccrResponse.setReturnCode(maintenanceDao.saveMtnClmCashCall(saveMtnClmCashCallParams));
 		return smcccrResponse;
+	}
 		
+	@Override
+	public RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel)
+			throws SQLException {
+		RetrieveMtnClmEventTypeLovResponse rmcelResponse = new RetrieveMtnClmEventTypeLovResponse();
+		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
+		rmcelParams.put("searchStr", rmcel.getSearchStr());
+		
+		rmcelResponse.setClmEventTypeList(maintenanceDao.retrieveMtnClmEventTypeLov(rmcelParams));
+		
+		return rmcelResponse;
+	}
+
+	@Override
+	public RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel)
+			throws SQLException {
+		RetrieveMtnClmEventLovResponse rmcelResponse = new RetrieveMtnClmEventLovResponse();
+		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
+		rmcelParams.put("lineCd", rmcel.getLineCd());
+		rmcelParams.put("eventTypeCd", rmcel.getEventTypeCd());
+		rmcelParams.put("searchStr", rmcel.getSearchStr());
+		
+		rmcelResponse.setClmEventList(maintenanceDao.retrieveMtnClmEventLov(rmcelParams));
+		
+		return rmcelResponse;
+	}
+
+	@Override
+	public CopyMtnClmCashCallResponse copyMtnClmCashCall(CopyMtnClmCashCallRequest cpmccr) throws SQLException {
+		// TODO Auto-generated method stub
+		CopyMtnClmCashCallResponse cpmccResponse = new CopyMtnClmCashCallResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("copyFromTreatyId", cpmccr.getCopyFromTreatyId());
+		params.put("copyToTreatyId", cpmccr.getCopyToTreatyId());
+		params.put("copyFromTreatyCedId", cpmccr.getCopyFromTreatyCedId());
+		params.put("copyToTreatyCedId", cpmccr.getCopyToTreatyCedId());
+		params.put("copyFromCurrCd", cpmccr.getCopyFromCurrCd());
+		params.put("copyToCurrCd", cpmccr.getCopyToCurrCd());
+		params.put("copyFromHistNo", cpmccr.getCopyFromHistNo());
+		params.put("createUser", cpmccr.getCreateUser());
+		params.put("createDate", cpmccr.getCreateDate());
+		params.put("updateUser", cpmccr.getUpdateUser());
+		params.put("updateDate", cpmccr.getUpdateDate());
+		
+		Integer res = maintenanceDao.checkMtnClmCashCall(params);
+		
+		if(res == 1) {
+			cpmccResponse.setReturnCode(2);
+		} else if(res == 0) {
+			cpmccResponse.setReturnCode(maintenanceDao.copyMtnClmCashCall(params));
+		}
+		
+		return cpmccResponse;
+	}
+
+	@Override
+	public RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattr)
+			throws SQLException {
+		RetrieveMtnAcitTranTypeResponse rmattResponse =  new RetrieveMtnAcitTranTypeResponse();
+		HashMap<String, Object> rmattParams = new HashMap<String, Object>();
+		rmattParams.put("tranClass", rmattr.getTranClass());
+		rmattParams.put("tranTypeCd", rmattr.getTranTypeCd());
+		rmattParams.put("typePrefix", rmattr.getTypePrefix());
+		rmattParams.put("autoTag", rmattr.getAutoTag());
+		rmattParams.put("baeTag", rmattr.getBaeTag());
+		rmattParams.put("activeTag", rmattr.getActiveTag());
+		rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcitTranType(rmattParams));
+		logger.info("RetrieveMtnAcitTranTypeResponse : " + rmattResponse.toString());
+		return rmattResponse;
+	}
+
+	@Override
+	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveMtnBankResponse res = new RetrieveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		res.setBankList(maintenanceDao.retrieveMtnBank(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		RetrieveMtnBankAcctResponse res = new RetrieveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbar.getBankCd());
+		params.put("accountNo", rmbar.getAccountNo());
+		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
+		return res;
+	}
+
+	@Override
+	public RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		RetrieveMtnPayeeResponse reponse = new RetrieveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeNo", rmbar.getPayeeNo());
+		params.put("payeeClassCd", rmbar.getPayeeClassCd());
+		reponse.setPayeeList(maintenanceDao.retrieveMtnPayee(params));
+		return reponse;
+	}
+	
+	@Override
+	public RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr)
+			throws SQLException {
+		RetrieveMtnBookingMonthResponse rmbmResponse = new RetrieveMtnBookingMonthResponse();
+		HashMap<String, Object> rmbmParams = new HashMap<String, Object>();
+		rmbmParams.put("bookingMm", rbmr.getBookingMm());
+		rmbmParams.put("bookingYear", rbmr.getBookingYear());
+		rmbmResponse.setBookingMonthList(maintenanceDao.retrieveMtnBookingMonth(rmbmParams));
+		logger.info("RetrieveMtnBookingMonthResponse : " + rmbmResponse.toString());
+		return rmbmResponse;
+	}
+
+	@Override
+	public RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcct(RetrieveMtnAcitChartAcctRequest rbmr)
+			throws SQLException {
+		RetrieveMtnAcitChartAcctResponse response = new RetrieveMtnAcitChartAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("glAcctId", rbmr.getGlAcctId());
+		params.put("glAcctCategory", rbmr.getGlAcctCategory());
+		params.put("glAcctControl", rbmr.getGlAcctControl());
+		params.put("glAcctSub1", rbmr.getGlAcctSub1());
+		params.put("glAcctSub2", rbmr.getGlAcctSub2());
+		params.put("glAcctSub3", rbmr.getGlAcctSub3());
+		params.put("slTypeCd", rbmr.getSlTypeCd());
+		params.put("drCrTag", rbmr.getDrCrTag());
+		params.put("postTag", rbmr.getPostTag());
+		params.put("activeTag", rbmr.getActiveTag());
+		response.setList(maintenanceDao.retrieveMtnAcitChartAcct(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnSLTypeResponse retrieveMtnSLType(RetrieveMtnSLTypeRequest rbmr) throws SQLException {
+		RetrieveMtnSLTypeResponse response = new RetrieveMtnSLTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("slTypeCd", rbmr.getSlTypeCd());
+		params.put("autoTag", rbmr.getAutoTag());
+		params.put("activeTag", rbmr.getActiveTag());
+		response.setList(maintenanceDao.retrieveMtnSLType(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnSLResponse retrieveMtnSL(RetrieveMtnSLRequest rbmr) throws SQLException {
+		RetrieveMtnSLResponse response = new RetrieveMtnSLResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("slTypeCd", rbmr.getSlTypeCd());
+		params.put("slCd", rbmr.getSlCd());
+		params.put("payeeNo", rbmr.getPayeeNo());
+		params.put("autoTag", rbmr.getAutoTag());
+		params.put("activeTag", rbmr.getActiveTag());
+		response.setList(maintenanceDao.retrieveMtnSL(params));
+		return response;
 	}
 }

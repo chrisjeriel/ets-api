@@ -13,6 +13,7 @@ public class SaveClaimReserveRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String upUserGi;
 	public String getClaimId() {
 		return claimId;
 	}
@@ -85,11 +86,18 @@ public class SaveClaimReserveRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getUpUserGi() {
+		return upUserGi;
+	}
+	public void setUpUserGi(String upUserGi) {
+		this.upUserGi = upUserGi;
+	}
 	@Override
 	public String toString() {
 		return "SaveClaimReserveRequest [claimId=" + claimId + ", projId=" + projId + ", lossResAmt=" + lossResAmt
 				+ ", lossPdAmt=" + lossPdAmt + ", lossStatCd=" + lossStatCd + ", expResAmt=" + expResAmt + ", expPdAmt="
 				+ expPdAmt + ", expStatCd=" + expStatCd + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", upUserGi=" + upUserGi + "]";
 	}
 }

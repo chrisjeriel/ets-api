@@ -844,4 +844,80 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnClmCashCall(smcccr);
 	}
 	
+	@GetMapping(path="retrieveMtnClmEventTypeLov")
+	public @ResponseBody RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmEventTypeLov");
+		logger.info("RetrieveMtnClmEventTypeLovRequest : " + rmcel.toString());
+		return maintenanceService.retrieveMtnClmEventTypeLov(rmcel);
+	}
+	
+	@GetMapping(path="retrieveMtnClmEventLov")
+	public @ResponseBody RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmEventLov");
+		logger.info("RetrieveMtnClmEventLovRequest : " + rmcel.toString());
+		return maintenanceService.retrieveMtnClmEventLov(rmcel);
+	}
+	
+	@PostMapping(path="copyMtnClmCashCall")
+	public @ResponseBody CopyMtnClmCashCallResponse copyPoolRetHist(@RequestBody CopyMtnClmCashCallRequest cpmccr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/copyMtnClmCashCall");
+		logger.info("CopyClmCashCallRequest : " + cpmccr.toString());
+		return maintenanceService.copyMtnClmCashCall(cpmccr);
+	}
+	
+	@GetMapping(path="retrieveMtnAcitTranType")
+	public @ResponseBody RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranType");
+		logger.info("RetrieveMtnAcitTranTypeRequest : " + rmattp.toString());
+		return maintenanceService.retrieveMtnAcitTranType(rmattp);
+	}
+	
+	@GetMapping(path="retrieveMtnBank")
+	public @ResponseBody RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBank");
+		logger.info("RetrieveMtnBankRequest : " + rmbr.toString());
+		return maintenanceService.retrieveMtnBank(rmbr);
+	}
+	
+	@GetMapping(path="retrieveMtnBankAcct")
+	public @ResponseBody RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBankAcct");
+		logger.info("RetrieveMtnBankAcctRequest : " + rmbar.toString());
+		return maintenanceService.retrieveMtnBankAcct(rmbar);
+	}
+	
+	@GetMapping(path="retrieveMtnPayee")
+	public @ResponseBody RetrieveMtnPayeeResponse retrieveMtnPayee(RetrieveMtnPayeeRequest rmbar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPayee");
+		logger.info("RetrieveMtnPayeeRequest : " + rmbar.toString());
+		return maintenanceService.retrieveMtnPayee(rmbar);
+	}
+
+	@GetMapping(path="retrieveMtnBookingMonth")
+	public @ResponseBody RetrieveMtnBookingMonthResponse retrieveMtnBookingMonth(RetrieveMtnBookingMonthRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnBookingMonth");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnBookingMonth(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnAcitChartAcct")
+	public @ResponseBody RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcct(RetrieveMtnAcitChartAcctRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitChartAcct");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnAcitChartAcct(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnSLType")
+	public @ResponseBody RetrieveMtnSLTypeResponse retrieveMtnSLType(RetrieveMtnSLTypeRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnSLType");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnSLType(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnSL")
+	public @ResponseBody RetrieveMtnSLResponse retrieveMtnSL(RetrieveMtnSLRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnSL");
+		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnSL(rbmr);
+	}
 }

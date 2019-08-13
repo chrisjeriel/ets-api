@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -9,30 +10,32 @@ public class DistWrisk {
 	private Integer altNo;
 	private Integer coinsGrpId;
 	private String status;
-	private Double retLineAmt;
-	private Double retOneLines;
-	private Double retTwoLines;
+	private BigDecimal retLineAmt;
+	private Integer retOneLines;
+	private Integer retTwoLines;
 	private String autoCalc;
-	private Double tsiAmt;
-	private Double premAmt;
-	private Double vatRiRt;
+	private BigDecimal tsiAmt;
+	private BigDecimal premAmt;
+	private BigDecimal vatRiRt;
 	private DateTime negateDate;
 	private String negateUser;
+	private String seciiPremTag;
 	private Double trtyLimitSec2;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private BigDecimal secIIInputLimit;
+	private String cuurCd;
 	
 	List<DistRiskWtreaty> distRiskWtreaty;
 	
-	private Double retOneTsiAmt;
-	private Double retOnePremAmt;
-	private Double retTwoTsiAmt;
-	private Double retTwoPremAmt;
-	private Double totalTsiAmt;
-	private Double totalPremAmt;
-	
+	private BigDecimal retOneTsiAmt;
+	private BigDecimal retOnePremAmt;
+	private BigDecimal retTwoTsiAmt;
+	private BigDecimal retTwoPremAmt;
+	private BigDecimal totalTsiAmt;
+	private BigDecimal totalPremAmt;
 	public Integer getRiskDistId() {
 		return riskDistId;
 	}
@@ -57,22 +60,22 @@ public class DistWrisk {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Double getRetLineAmt() {
+	public BigDecimal getRetLineAmt() {
 		return retLineAmt;
 	}
-	public void setRetLineAmt(Double retLineAmt) {
+	public void setRetLineAmt(BigDecimal retLineAmt) {
 		this.retLineAmt = retLineAmt;
 	}
-	public Double getRetOneLines() {
+	public Integer getRetOneLines() {
 		return retOneLines;
 	}
-	public void setRetOneLines(Double retOneLines) {
+	public void setRetOneLines(Integer retOneLines) {
 		this.retOneLines = retOneLines;
 	}
-	public Double getRetTwoLines() {
+	public Integer getRetTwoLines() {
 		return retTwoLines;
 	}
-	public void setRetTwoLines(Double retTwoLines) {
+	public void setRetTwoLines(Integer retTwoLines) {
 		this.retTwoLines = retTwoLines;
 	}
 	public String getAutoCalc() {
@@ -81,22 +84,22 @@ public class DistWrisk {
 	public void setAutoCalc(String autoCalc) {
 		this.autoCalc = autoCalc;
 	}
-	public Double getTsiAmt() {
+	public BigDecimal getTsiAmt() {
 		return tsiAmt;
 	}
-	public void setTsiAmt(Double tsiAmt) {
+	public void setTsiAmt(BigDecimal tsiAmt) {
 		this.tsiAmt = tsiAmt;
 	}
-	public Double getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(Double premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public Double getVatRiRt() {
+	public BigDecimal getVatRiRt() {
 		return vatRiRt;
 	}
-	public void setVatRiRt(Double vatRiRt) {
+	public void setVatRiRt(BigDecimal vatRiRt) {
 		this.vatRiRt = vatRiRt;
 	}
 	public DateTime getNegateDate() {
@@ -110,6 +113,12 @@ public class DistWrisk {
 	}
 	public void setNegateUser(String negateUser) {
 		this.negateUser = negateUser;
+	}
+	public String getSeciiPremTag() {
+		return seciiPremTag;
+	}
+	public void setSeciiPremTag(String seciiPremTag) {
+		this.seciiPremTag = seciiPremTag;
 	}
 	public Double getTrtyLimitSec2() {
 		return trtyLimitSec2;
@@ -141,60 +150,72 @@ public class DistWrisk {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getSecIIInputLimit() {
+		return secIIInputLimit;
+	}
+	public void setSecIIInputLimit(BigDecimal secIIInputLimit) {
+		this.secIIInputLimit = secIIInputLimit;
+	}
 	public List<DistRiskWtreaty> getDistRiskWtreaty() {
 		return distRiskWtreaty;
 	}
 	public void setDistRiskWtreaty(List<DistRiskWtreaty> distRiskWtreaty) {
 		this.distRiskWtreaty = distRiskWtreaty;
 	}
-	public Double getRetOneTsiAmt() {
+	public BigDecimal getRetOneTsiAmt() {
 		return retOneTsiAmt;
 	}
-	public void setRetOneTsiAmt(Double retOneTsiAmt) {
+	public void setRetOneTsiAmt(BigDecimal retOneTsiAmt) {
 		this.retOneTsiAmt = retOneTsiAmt;
 	}
-	public Double getRetOnePremAmt() {
+	public BigDecimal getRetOnePremAmt() {
 		return retOnePremAmt;
 	}
-	public void setRetOnePremAmt(Double retOnePremAmt) {
+	public void setRetOnePremAmt(BigDecimal retOnePremAmt) {
 		this.retOnePremAmt = retOnePremAmt;
 	}
-	public Double getRetTwoTsiAmt() {
+	public BigDecimal getRetTwoTsiAmt() {
 		return retTwoTsiAmt;
 	}
-	public void setRetTwoTsiAmt(Double retTwoTsiAmt) {
+	public void setRetTwoTsiAmt(BigDecimal retTwoTsiAmt) {
 		this.retTwoTsiAmt = retTwoTsiAmt;
 	}
-	public Double getRetTwoPremAmt() {
+	public BigDecimal getRetTwoPremAmt() {
 		return retTwoPremAmt;
 	}
-	public void setRetTwoPremAmt(Double retTwoPremAmt) {
+	public void setRetTwoPremAmt(BigDecimal retTwoPremAmt) {
 		this.retTwoPremAmt = retTwoPremAmt;
 	}
-	public Double getTotalTsiAmt() {
+	public BigDecimal getTotalTsiAmt() {
 		return totalTsiAmt;
 	}
-	public void setTotalTsiAmt(Double totalTsiAmt) {
+	public void setTotalTsiAmt(BigDecimal totalTsiAmt) {
 		this.totalTsiAmt = totalTsiAmt;
 	}
-	public Double getTotalPremAmt() {
+	public BigDecimal getTotalPremAmt() {
 		return totalPremAmt;
 	}
-	public void setTotalPremAmt(Double totalPremAmt) {
+	public void setTotalPremAmt(BigDecimal totalPremAmt) {
 		this.totalPremAmt = totalPremAmt;
+	}
+	public String getCuurCd() {
+		return cuurCd;
+	}
+	public void setCuurCd(String cuurCd) {
+		this.cuurCd = cuurCd;
 	}
 	@Override
 	public String toString() {
 		return "DistWrisk [riskDistId=" + riskDistId + ", altNo=" + altNo + ", coinsGrpId=" + coinsGrpId + ", status="
 				+ status + ", retLineAmt=" + retLineAmt + ", retOneLines=" + retOneLines + ", retTwoLines="
 				+ retTwoLines + ", autoCalc=" + autoCalc + ", tsiAmt=" + tsiAmt + ", premAmt=" + premAmt + ", vatRiRt="
-				+ vatRiRt + ", negateDate=" + negateDate + ", negateUser=" + negateUser + ", trtyLimitSec2="
-				+ trtyLimitSec2 + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", distRiskWtreaty=" + distRiskWtreaty + ", retOneTsiAmt="
+				+ vatRiRt + ", negateDate=" + negateDate + ", negateUser=" + negateUser + ", seciiPremTag="
+				+ seciiPremTag + ", trtyLimitSec2=" + trtyLimitSec2 + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", secIIInputLimit="
+				+ secIIInputLimit + ", cuurCd=" + cuurCd + ", distRiskWtreaty=" + distRiskWtreaty + ", retOneTsiAmt="
 				+ retOneTsiAmt + ", retOnePremAmt=" + retOnePremAmt + ", retTwoTsiAmt=" + retTwoTsiAmt
 				+ ", retTwoPremAmt=" + retTwoPremAmt + ", totalTsiAmt=" + totalTsiAmt + ", totalPremAmt=" + totalPremAmt
 				+ "]";
 	}
 	
-	
-}
+	}

@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
@@ -101,6 +102,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
@@ -1257,6 +1259,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId",ppr.getPolicyId());
 		params.put("updateUser",ppr.getUpdateUser());
+		
 		try{
 			pprResponse.setReturnCode(underwritingDao.postPolicy(params));
 		}catch(Exception ex){
@@ -1264,6 +1267,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			pprResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
+		logger.info("postPolicy : " + pprResponse.toString());
 		return pprResponse;
 	}
 
@@ -1493,6 +1497,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("policyId",pdr.getPolicyId());
 		params.put("riskDistId",pdr.getRiskDistId());
 		params.put("distId",pdr.getDistId());
+		params.put("user",pdr.getUser());
 		try{
 			pdrResponse.setReturnCode(underwritingDao.postDistribution(params));
 		}catch(Exception ex){
@@ -1600,6 +1605,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("retLineAmt",srdr.getRetLineAmt());
 		params.put("autoCalc",srdr.getAutoCalc());
 		params.put("updateUser",srdr.getUpdateUser());
+		params.put("trtyLimitSec2", srdr.getTrtyLimitSec2());
+		params.put("seciiPremTag", srdr.getSeciiPremTag());
 		try {
 			if(srdr.getAutoCalc().equals("Y")){
 				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
@@ -1624,10 +1631,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			drrResponse.setReturnCode(underwritingDao.distributeRiskDist(params));
 		}catch (Exception ex){
+			
 			drrResponse.setReturnCode(0);
 			drrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
+		logger.info(drrResponse.toString());
 		return drrResponse;
 	}
 
@@ -1700,6 +1709,25 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			response.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrievePolDistWarningResponse retrievePolDistWarning(RetrievePolDistWarningRequest rpdwr)
+			throws SQLException {
+		RetrievePolDistWarningResponse response = new RetrievePolDistWarningResponse();
+		try {
+
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("riskDistId", rpdwr.getRiskDistId());
+			params.put("altNo", rpdwr.getAltNo());
+
+			response.setWarningList(underwritingDao.retrievePolDistWarning(params));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		return response;
 	}
 }

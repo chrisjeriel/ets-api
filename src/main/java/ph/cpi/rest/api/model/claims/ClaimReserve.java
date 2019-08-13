@@ -8,12 +8,12 @@ import org.joda.time.DateTime;
 public class ClaimReserve {
 	private Integer  claimId;
 	private Integer  projId;
-	private Integer  lossResAmt;
-	private Integer  lossPdAmt;
+	private BigDecimal  lossResAmt;
+	private BigDecimal  lossPdAmt;
 	private String 	 lossStatCd;
 	private String 	 lossStatus;
-	private Integer  expResAmt;
-	private Integer  expPdAmt;
+	private BigDecimal  expResAmt;
+	private BigDecimal  expPdAmt;
 	private String 	 expStatCd;
 	private String 	 expStatus;
 	private BigDecimal totalReserve;
@@ -36,16 +36,16 @@ public class ClaimReserve {
 	public void setProjId(Integer projId) {
 		this.projId = projId;
 	}
-	public Integer getLossResAmt() {
+	public BigDecimal getLossResAmt() {
 		return lossResAmt;
 	}
-	public void setLossResAmt(Integer lossResAmt) {
+	public void setLossResAmt(BigDecimal lossResAmt) {
 		this.lossResAmt = lossResAmt;
 	}
-	public Integer getLossPdAmt() {
+	public BigDecimal getLossPdAmt() {
 		return lossPdAmt;
 	}
-	public void setLossPdAmt(Integer lossPdAmt) {
+	public void setLossPdAmt(BigDecimal lossPdAmt) {
 		this.lossPdAmt = lossPdAmt;
 	}
 	public String getLossStatCd() {
@@ -60,16 +60,16 @@ public class ClaimReserve {
 	public void setLossStatus(String lossStatus) {
 		this.lossStatus = lossStatus;
 	}
-	public Integer getExpResAmt() {
+	public BigDecimal getExpResAmt() {
 		return expResAmt;
 	}
-	public void setExpResAmt(Integer expResAmt) {
+	public void setExpResAmt(BigDecimal expResAmt) {
 		this.expResAmt = expResAmt;
 	}
-	public Integer getExpPdAmt() {
+	public BigDecimal getExpPdAmt() {
 		return expPdAmt;
 	}
-	public void setExpPdAmt(Integer expPdAmt) {
+	public void setExpPdAmt(BigDecimal expPdAmt) {
 		this.expPdAmt = expPdAmt;
 	}
 	public String getExpStatCd() {

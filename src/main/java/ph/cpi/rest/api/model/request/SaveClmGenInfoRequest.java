@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class SaveClmGenInfoRequest {
 
+	private Integer statusChanged;
 	private Integer refPolId;
 	private Integer claimId;
 	private String lineCd;
@@ -35,10 +36,20 @@ public class SaveClmGenInfoRequest {
 	private String oldStatCd;
 	private String closeDate;
 	private String refreshSw;
+	private String issueDate;
+	private String effDate;
 	private String lapseFrom;
 	private String lapseTo;
 	private String maintenanceFrom;
 	private String maintenanceTo;
+	private Integer prinId;
+	private Integer contractorId;
+	private String insuredDesc;
+	private String lapsePdTag;
+	private String polTermTag;
+	private String remarks;
+	private Integer adjId;
+	private String adjFileNo;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -65,6 +76,12 @@ public class SaveClmGenInfoRequest {
 	private String prjUpdateUser;
 	private String prjUpdateDate;
 	
+	public Integer getStatusChanged() {
+		return statusChanged;
+	}
+	public void setStatusChanged(Integer statusChanged) {
+		this.statusChanged = statusChanged;
+	}
 	public Integer getRefPolId() {
 		return refPolId;
 	}
@@ -263,6 +280,18 @@ public class SaveClmGenInfoRequest {
 	public void setRefreshSw(String refreshSw) {
 		this.refreshSw = refreshSw;
 	}
+	public String getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(String issueDate) {
+		this.issueDate = issueDate;
+	}
+	public String getEffDate() {
+		return effDate;
+	}
+	public void setEffDate(String effDate) {
+		this.effDate = effDate;
+	}
 	public String getLapseFrom() {
 		return lapseFrom;
 	}
@@ -286,6 +315,54 @@ public class SaveClmGenInfoRequest {
 	}
 	public void setMaintenanceTo(String maintenanceTo) {
 		this.maintenanceTo = maintenanceTo;
+	}
+	public Integer getPrinId() {
+		return prinId;
+	}
+	public void setPrinId(Integer prinId) {
+		this.prinId = prinId;
+	}
+	public Integer getContractorId() {
+		return contractorId;
+	}
+	public void setContractorId(Integer contractorId) {
+		this.contractorId = contractorId;
+	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
+	public String getLapsePdTag() {
+		return lapsePdTag;
+	}
+	public void setLapsePdTag(String lapsePdTag) {
+		this.lapsePdTag = lapsePdTag;
+	}
+	public String getPolTermTag() {
+		return polTermTag;
+	}
+	public void setPolTermTag(String polTermTag) {
+		this.polTermTag = polTermTag;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public Integer getAdjId() {
+		return adjId;
+	}
+	public void setAdjId(Integer adjId) {
+		this.adjId = adjId;
+	}
+	public String getAdjFileNo() {
+		return adjFileNo;
+	}
+	public void setAdjFileNo(String adjFileNo) {
+		this.adjFileNo = adjFileNo;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -439,18 +516,21 @@ public class SaveClmGenInfoRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveClmGenInfoRequest [refPolId=" + refPolId + ", claimId=" + claimId + ", lineCd=" + lineCd
-				+ ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId + ", coSeriesNo="
-				+ coSeriesNo + ", altNo=" + altNo + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo + ", clmStatCd="
-				+ clmStatCd + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", coRefNo=" + coRefNo
-				+ ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
-				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd + ", coClmNo="
-				+ coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod=" + lossPeriod
-				+ ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd + ", reportDate="
-				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
-				+ oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", lapseFrom=" + lapseFrom
-				+ ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+		return "SaveClmGenInfoRequest [statusChanged=" + statusChanged + ", refPolId=" + refPolId + ", claimId="
+				+ claimId + ", lineCd=" + lineCd + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId="
+				+ cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", clmYear=" + clmYear + ", clmSeqNo="
+				+ clmSeqNo + ", clmStatCd=" + clmStatCd + ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd
+				+ ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo="
+				+ mbiRefNo + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd
+				+ ", coClmNo=" + coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod="
+				+ lossPeriod + ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd
+				+ ", reportDate=" + reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy
+				+ ", oldStatCd=" + oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate="
+				+ issueDate + ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
+				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", prinId=" + prinId
+				+ ", contractorId=" + contractorId + ", insuredDesc=" + insuredDesc + ", lapsePdTag=" + lapsePdTag
+				+ ", polTermTag=" + polTermTag + ", remarks=" + remarks + ", adjId=" + adjId + ", adjFileNo="
+				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
 				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
 				+ districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude=" + longitude
