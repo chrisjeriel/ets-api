@@ -1984,7 +1984,7 @@
 			<foreach collection="saveClmOffset" item="saved">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_clm_off(#{saved.tranId},
 															#{saved.quarterNo},
-															#{saved.itemNo},
+															#{saved.itemNo,jdbcType=INTEGER},
 															#{saved.claimId},
 															#{saved.projId},
 															#{saved.histNo},
@@ -1997,7 +1997,7 @@
 															#{saved.reserveAmt},
 															#{saved.clmPaytAmt},
 															#{saved.localAmt},
-															#{saved.remarks},
+															#{saved.remarks,jdbcType=VARCHAR},
 															#{saved.createUser},
 															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															#{saved.updateUser},
