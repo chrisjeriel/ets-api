@@ -11,9 +11,9 @@ public class AcctServFeeDist {
 	private Integer sfeeYear;
 	private Integer groupId;
 	private String groupName;
-	private Float groupShrPct;
+	private Double groupShrPct;
 	private String currCd;
-	private Float currRt;
+	private Double currRt;
 	private BigDecimal groupShrAmt;
 	private BigDecimal localAmt;
 	private BigDecimal totalSfee;
@@ -21,6 +21,13 @@ public class AcctServFeeDist {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	private String cedingId;
+	private String cedingName;
+	private Double actualShrPct;
+	private BigDecimal actualShrAmt;
+	private Double baseShrPct;
+	private BigDecimal baseShrAmt;
 	
 	public Integer getReqId() {
 		return reqId;
@@ -52,10 +59,10 @@ public class AcctServFeeDist {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public Float getGroupShrPct() {
+	public Double getGroupShrPct() {
 		return groupShrPct;
 	}
-	public void setGroupShrPct(Float groupShrPct) {
+	public void setGroupShrPct(Double groupShrPct) {
 		this.groupShrPct = groupShrPct;
 	}
 	public String getCurrCd() {
@@ -64,10 +71,10 @@ public class AcctServFeeDist {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Float getCurrRt() {
+	public Double getCurrRt() {
 		return currRt;
 	}
-	public void setCurrRt(Float currRt) {
+	public void setCurrRt(Double currRt) {
 		this.currRt = currRt;
 	}
 	public BigDecimal getGroupShrAmt() {
@@ -112,12 +119,50 @@ public class AcctServFeeDist {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
+	public Double getActualShrPct() {
+		return actualShrPct;
+	}
+	public void setActualShrPct(Double actualShrPct) {
+		this.actualShrPct = actualShrPct;
+	}
+	public BigDecimal getActualShrAmt() {
+		return actualShrAmt;
+	}
+	public void setActualShrAmt(BigDecimal actualShrAmt) {
+		this.actualShrAmt = actualShrAmt;
+	}
+	public Double getBaseShrPct() {
+		return baseShrPct;
+	}
+	public void setBaseShrPct(Double baseShrPct) {
+		this.baseShrPct = baseShrPct;
+	}
+	public BigDecimal getBaseShrAmt() {
+		return baseShrAmt;
+	}
+	public void setBaseShrAmt(BigDecimal baseShrAmt) {
+		this.baseShrAmt = baseShrAmt;
+	}
 	@Override
 	public String toString() {
 		return "AcctServFeeDist [reqId=" + reqId + ", sfeeMm=" + sfeeMm + ", sfeeYear=" + sfeeYear + ", groupId="
 				+ groupId + ", groupName=" + groupName + ", groupShrPct=" + groupShrPct + ", currCd=" + currCd
 				+ ", currRt=" + currRt + ", groupShrAmt=" + groupShrAmt + ", localAmt=" + localAmt + ", totalSfee="
 				+ totalSfee + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", actualShrPct=" + actualShrPct + ", actualShrAmt=" + actualShrAmt + ", baseShrPct=" + baseShrPct
+				+ ", baseShrAmt=" + baseShrAmt + "]";
 	}
 }

@@ -31,7 +31,7 @@ class ClmHist {
 	private String 	currencyCd;
 	private String  currencyRt;
 	private String  reserveAmt;
-	private String  paytAmt;
+	//private String  paytAmt;
 	private String 	refNo;
 	private String  refDate;
 	private String 	remarks;
@@ -105,12 +105,12 @@ class ClmHist {
 	public void setReserveAmt(String reserveAmt) {
 		this.reserveAmt = reserveAmt;
 	}
-	public String getPaytAmt() {
-		return paytAmt;
-	}
-	public void setPaytAmt(String paytAmt) {
-		this.paytAmt = paytAmt;
-	}
+//	public String getPaytAmt() {
+//		return paytAmt;
+//	}
+//	public void setPaytAmt(String paytAmt) {
+//		this.paytAmt = paytAmt;
+//	}
 	public String getRefNo() {
 		return refNo;
 	}
@@ -158,7 +158,9 @@ class ClmHist {
 		return "ClmHist [claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory="
 				+ histCategory + ", histType=" + histType + ", bookingMth=" + bookingMth + ", bookingYear="
 				+ bookingYear + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
-				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
+				+ ", reserveAmt=" + reserveAmt 
+				//+ ", paytAmt=" + paytAmt 
+				+ ", refNo=" + refNo + ", refDate=" + refDate
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}

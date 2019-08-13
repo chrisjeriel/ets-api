@@ -469,4 +469,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return list;
 	}
 	
+	@Override
+	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
+		List<AcctServFeeDist> subList =  sqlSession.selectList("retrieveAcitServFeeSubGnrt", params);
+		return subList;
+	}
+	
 }

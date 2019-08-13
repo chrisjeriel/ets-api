@@ -34,6 +34,7 @@ class PrqTrans {
 	private String quarterEnding;
 	private String invtId;
 	private String refNo;
+	private String itemName;
 	private String paymentFor;
 	private String currCd;
 	private String currRate;
@@ -104,6 +105,12 @@ class PrqTrans {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 	public String getPaymentFor() {
 		return paymentFor;
 	}
@@ -168,9 +175,9 @@ class PrqTrans {
 	public String toString() {
 		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
 				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", paymentFor=" + paymentFor
-				+ ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName=" + itemName + ", paymentFor="
+				+ paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
+				+ localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

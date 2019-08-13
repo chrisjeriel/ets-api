@@ -1019,7 +1019,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public SaveAcitPrqInwPolResponse saveAcitPrqInwPol(SaveAcitPrqInwPolRequest sapipp) throws SQLException {
 		SaveAcitPrqInwPolResponse sapipResponse = new SaveAcitPrqInwPolResponse();
@@ -1050,8 +1049,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rasfmParams.put("prdAsOf", rasfmr.getPrdAsOf());
 		rasfmParams.put("year", rasfmr.getYear());
 		rasfmParams.put("servFeeAmt", rasfmr.getServFeeAmt());
+		rasfmParams.put("currCd", rasfmr.getCurrCd());
+		rasfmParams.put("currRt", rasfmr.getCurrRt());
 		
 		rasfmgResponse.setMainDistList(acctITDao.retrieveAcitServFeeMainGnrt(rasfmParams));
+		rasfmgResponse.setSubDistList(acctITDao.retrieveAcitServFeeSubGnrt(rasfmParams));
 		
 		return rasfmgResponse;
 	}

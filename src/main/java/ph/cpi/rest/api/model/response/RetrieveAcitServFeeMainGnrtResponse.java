@@ -9,6 +9,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 public class RetrieveAcitServFeeMainGnrtResponse {
 
 	private List<AcctServFeeDist> mainDistList;
+	private List<AcctServFeeDist> subDistList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
@@ -17,6 +18,12 @@ public class RetrieveAcitServFeeMainGnrtResponse {
 	}
 	public void setMainDistList(List<AcctServFeeDist> mainDistList) {
 		this.mainDistList = mainDistList;
+	}
+	public List<AcctServFeeDist> getSubDistList() {
+		return subDistList;
+	}
+	public void setSubDistList(List<AcctServFeeDist> subDistList) {
+		this.subDistList = subDistList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,7 +39,7 @@ public class RetrieveAcitServFeeMainGnrtResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitServFeeMainGnrtResponse [mainDistList=" + mainDistList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcitServFeeMainGnrtResponse [mainDistList=" + mainDistList + ", subDistList=" + subDistList
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }
