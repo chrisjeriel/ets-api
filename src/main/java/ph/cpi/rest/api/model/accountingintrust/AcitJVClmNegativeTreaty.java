@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 public class AcitJVClmNegativeTreaty {
 	private Integer tranId;
 	private Integer quarterNo;
-	private Integer cedingId;
+	private String cedingId;
 	private DateTime quarterEnding;
 	private String currCd;
 	private BigDecimal currRate;
@@ -31,10 +31,10 @@ public class AcitJVClmNegativeTreaty {
 	public void setQuarterNo(Integer quarterNo) {
 		this.quarterNo = quarterNo;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public DateTime getQuarterEnding() {

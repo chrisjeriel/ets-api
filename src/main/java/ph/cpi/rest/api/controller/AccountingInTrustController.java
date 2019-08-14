@@ -78,6 +78,7 @@ import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInvPulloutRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
@@ -134,6 +135,7 @@ import ph.cpi.rest.api.model.response.SaveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInvPulloutResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -589,10 +591,10 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitJvAcctTrtyBal(request);
 	}
 	
-	/*@PostMapping(path="saveAcitJVClmOffset")
-	public @ResponseBody SaveAcitJVClmOffsetResponse saveAcitJvClmOffset(@RequestBody SaveAcitJvClmOffsetRequest request) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/SaveAcitJvClmOffsetRequest");
-		logger.info("SaveAcitJvClmOffsetRequest : " + request.toString());
-		return acctInTrustService.saveAcitJvClmOffset(request);
-	}*/
+	@PostMapping(path="saveAcitJVActTrtyBal")
+	public @ResponseBody SaveAcitJVAcctTrtyBalResponse saveAcitJVActTrtyBal(@RequestBody SaveAcitJVAcctTrtyBalRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitJVActTrtyBal");
+		logger.info("SaveAcitJVAcctTrtyBalRequest : " + request.toString());
+		return acctInTrustService.saveAcitJvActTrtyBal(request);
+	}
 }

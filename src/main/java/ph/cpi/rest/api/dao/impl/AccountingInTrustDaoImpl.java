@@ -454,4 +454,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJVAcctTrtyBal> res = sqlSession.selectList("retrieveAcitJvAcctTrtyBal",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJvActTrtyBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJvActTrtyBal",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
@@ -118,6 +119,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
@@ -1346,6 +1348,29 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranId", request.getTranId());
 		params.put("cedingId", request.getCedingId());
 		response.setAcctTreatyBal(acctITDao.retrieveAcitJvAcctTrtyBal(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVAcctTrtyBalResponse saveAcitJvActTrtyBal(SaveAcitJVAcctTrtyBalRequest request)
+			throws SQLException {
+		SaveAcitJVAcctTrtyBalResponse response = new SaveAcitJVAcctTrtyBalResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+//			params.put("tranType", request.getTranType());
+//			params.put("tranId", request.getTranId());
+			params.put("saveAcctTrty", request.getSaveAcctTrty());
+			params.put("delAcctTrty", request.getDelAcctTrty());
+			params.put("saveInwPolOffset", request.getSaveInwPolOffset());
+			params.put("delInwPolOffset", request.getDelInwPolOffset());
+			HashMap<String, Object> res = acctITDao.saveAcitJvActTrtyBal(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
 		return response;
 	}
 

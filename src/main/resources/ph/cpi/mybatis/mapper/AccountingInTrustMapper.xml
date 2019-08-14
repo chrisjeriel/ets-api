@@ -1955,7 +1955,7 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="deleteNegTrty" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_trty_bal(#{delete.tranId},#{delete.cedingId},#{delete.quarteNo});
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_trty_bal(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
 			</foreach>
 			
 			<foreach collection="saveNegTrty" item="save">
@@ -2125,4 +2125,65 @@
 	<select id="retrieveAcitJvAcctTrtyBal" resultMap="acctTrtyMap">
 		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_acct_trty_bal(#{tranId},#{cedingId},null,null,null,null))
 	</select>
+	
+	<update id="saveAcitJvActTrtyBal" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
+		BEGIN
+			<foreach collection="delAcctTrty" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_trty_bal(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+			</foreach>
+			
+			<foreach collection="saveAcctTrty" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_acit_trty(#{save.tranId},
+														#{save.quarterNo},
+														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.cedingId},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.balanceAmt},
+														#{save.localAmt},
+														#{save.actualBalPaid,jdbcType=INTEGER},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			
+			<foreach collection="delInwPolOffset" item="deleted">
+				ACIT_JOURNAL_VOUCHER_PKG.del_inwpol_offset(
+					#{deleted.tranId},
+					#{deleted.itemNo},
+					#{deleted.quarterNo}
+				);
+			</foreach>
+			
+			<foreach collection="saveInwPolOffset" item="saved">
+				ACIT_JOURNAL_VOUCHER_PKG.save_inwpol_offset(#{saved.tranId}, 
+															#{saved.quarterNo}, 
+															#{saved.itemNo,jdbcType=INTEGER}, 
+															#{saved.policyId}, 
+															#{saved.instNo}, 
+															#{saved.currCd}, 
+															#{saved.currRate}, 
+															#{saved.premAmt}, 
+															#{saved.riComm}, 
+															#{saved.riCommVat}, 
+															#{saved.charges}, 
+															#{saved.netDue}, 
+															#{saved.prevPaytAmt}, 
+															#{saved.balPaytAmt}, 
+															#{saved.localAmt}, 
+															#{saved.overdueInt}, 
+															#{saved.remarks,jdbcType=VARCHAR}, 
+															#{saved.createUser}, 
+															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+															#{saved.updateUser}, 
+															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+<!-- 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message); -->
+		END;
+	</update>
 </mapper>
