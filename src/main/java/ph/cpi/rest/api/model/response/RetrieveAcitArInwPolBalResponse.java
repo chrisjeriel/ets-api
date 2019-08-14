@@ -32,7 +32,7 @@ public class RetrieveAcitArInwPolBalResponse {
 	
 	@Override
 	public String toString() {
-		return "RetrieveAcitArInwPolBalResponse [arInwPolBal=" + arInwPolBal + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcitArInwPolBalResponse [ arInwPolBal=" + arInwPolBal
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

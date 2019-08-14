@@ -772,6 +772,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("createDate", saipbr.getCreateDate());
 		params.put("updateUser", saipbr.getUpdateUser());
 		params.put("updateDate", saipbr.getUpdateDate());
+		params.put("allotedAmt", saipbr.getAllotedAmt());
 		params.put("saveInwPolBal", saipbr.getSaveInwPolBal());
 		params.put("delInwPolBal", saipbr.getDelInwPolBal());
 		try{
