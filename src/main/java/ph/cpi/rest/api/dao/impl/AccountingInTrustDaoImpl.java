@@ -229,4 +229,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVEntryList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcitJVEntryList",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

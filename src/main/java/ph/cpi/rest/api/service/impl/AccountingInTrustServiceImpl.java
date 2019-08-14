@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.awt.List;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -26,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVEntryListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
@@ -57,6 +59,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVEntryListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
@@ -708,6 +711,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("saveAcitAllocInvtIncome", saaii.getSaveAcitAllocInvtIncome());
 			params.put("delAcitAllocInvtIncome", saaii.getDelAcitAllocInvtIncome());
 			HashMap<String, Object> res = acctITDao.saveAcitAllocInvtIncome(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setTranIdOut((Integer) res.get("tranIdOut"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVEntryListResponse saveAcitJVEntryList(SaveAcitJVEntryListRequest sajel) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcitJVEntryListResponse response = new SaveAcitJVEntryListResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveAcitJVEntryList", sajel.getSaveAcitJVEntryList());
+			params.put("saveAcitAllocInvtIncome", sajel.getSaveAcitAllocInvtIncome());
+			HashMap<String, Object> res = acctITDao.saveAcitJVEntryList(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setTranIdOut((Integer) res.get("tranIdOut"));
 		} catch (SQLException sqlex) {
