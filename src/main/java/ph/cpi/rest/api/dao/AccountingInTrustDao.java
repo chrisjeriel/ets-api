@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV;
@@ -38,7 +39,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
-import ph.cpi.rest.api.model.request.GenerateUPRRequest;
+import ph.cpi.rest.api.model.maintenance.UserId;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -110,4 +111,8 @@ public interface AccountingInTrustDao {
 	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
 	public GenUPRParams retrieveAcitUPRParams() throws SQLException;
 	public String retrieveAcitExistingUPR(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJvActTrtyBal(final HashMap<String, Object> params) throws SQLException;
+	public UserId retrieveJVDefName(final HashMap<String, Object> params) throws SQLException;
+	
 }

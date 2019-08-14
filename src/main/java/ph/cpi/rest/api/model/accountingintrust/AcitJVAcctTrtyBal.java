@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class AcitJVClmNegativeTreaty {
+public class AcitJVAcctTrtyBal {
 	private Integer tranId;
 	private Integer quarterNo;
 	private String cedingId;
@@ -18,7 +18,8 @@ public class AcitJVClmNegativeTreaty {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private List <AcitJVClaimOffset> clmOffset;
+	private List <AcitJVAcctOffset> acctOffset;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -92,17 +93,18 @@ public class AcitJVClmNegativeTreaty {
 		this.updateDate = updateDate;
 	}
 	
-	public List<AcitJVClaimOffset> getClmOffset() {
-		return clmOffset;
+	public List<AcitJVAcctOffset> getAcctOffset() {
+		return acctOffset;
 	}
-	public void setClmOffset(List<AcitJVClaimOffset> clmOffset) {
-		this.clmOffset = clmOffset;
+	public void setAcctOffset(List<AcitJVAcctOffset> acctOffset) {
+		this.acctOffset = acctOffset;
 	}
 	@Override
 	public String toString() {
-		return "AcitJVClmNegativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
+		return "AcitJVAcctTrtyBal [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
 				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
 				+ balanceAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", acctOffset=" + acctOffset + "]";
 	}
+	
 }

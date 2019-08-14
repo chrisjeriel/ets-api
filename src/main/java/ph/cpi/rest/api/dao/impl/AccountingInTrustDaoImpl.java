@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.maintenance.UserId;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -476,6 +478,19 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVAcctTrtyBal> res = sqlSession.selectList("retrieveAcitJvAcctTrtyBal",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJvActTrtyBal(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJvActTrtyBal",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public String retrieveAcitExistingUPR(HashMap<String, Object> params) throws SQLException {
 		String response = sqlSession.selectOne("retrieveAcitExistingUPR", params);
 		return response;
@@ -485,6 +500,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
 		List<AcctServFeeDist> subList =  sqlSession.selectList("retrieveAcitServFeeSubGnrt", params);
 		return subList;
+	}
+	
+	public UserId retrieveJVDefName(HashMap<String, Object> params) throws SQLException {
+		UserId res = sqlSession.selectOne("retrieveDefName",params);
+		return res;
 	}
 	
 }
