@@ -1672,4 +1672,7 @@
 																		   null,null,null,null))
 	</select>
 	
+	<select id="retrieveAcitExistingUPR" resultType="String">
+		SELECT ACIT_UPR_PKG.check_existing(#{extMm},#{extYear},#{extMethod}) EXIST FROM DUAL
+	</select>
 </mapper>

@@ -1164,4 +1164,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setParams(acctITDao.retrieveAcitUPRParams());
 		return response;
 	}
+
+
+	@Override
+	public String retrieveAcitExistingUPR(GenerateUPRRequest guprr) throws SQLException {
+		String response = new String();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extMm",guprr.getExtMm());
+		params.put("extYear",guprr.getExtYear());
+		params.put("extMethod",guprr.getExtMethod());
+		response = acctITDao.retrieveAcitExistingUPR(params);
+		return response;
+	}
 }

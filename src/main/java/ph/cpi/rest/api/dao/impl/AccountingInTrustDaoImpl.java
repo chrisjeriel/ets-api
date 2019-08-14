@@ -403,4 +403,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcctServFeeDist> subList =  sqlSession.selectList("retrieveAcitServFeeSubGnrt", params);
 		return subList;
 	}
+
+	@Override
+	public String retrieveAcitExistingUPR(HashMap<String, Object> params) throws SQLException {
+		String response = sqlSession.selectOne("retrieveAcitExistingUPR", params);
+		return response;
+	}
 }

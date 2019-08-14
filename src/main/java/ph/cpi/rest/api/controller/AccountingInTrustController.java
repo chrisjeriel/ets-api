@@ -507,4 +507,11 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitUPRParams();
 	}
 	
+	@GetMapping(path="retrieveAcitExistingUPR")
+	public @ResponseBody String retrieveAcitExistingUPR(GenerateUPRRequest guprr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitExistingUPR");
+		logger.info("RetrieveAcitExistingUPRRequest : "+  guprr.toString());
+		return acctInTrustService.retrieveAcitExistingUPR(guprr);
+	}
+	
 }

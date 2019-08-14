@@ -166,4 +166,5 @@ public interface AccountingInTrustService {
 	public GenerateUPRResponse generateUPR(GenerateUPRRequest guprr) throws SQLException;
 	public RetrieveAcitUPRPerCedeResponse retrieveAcitUPRPerCede(RetrieveAcitUPRPerCedeRequest raupcr) throws SQLException;
 	public RetrieveAcitUPRParamsResponse retrieveAcitUPRParams() throws SQLException;
+	public String retrieveAcitExistingUPR(GenerateUPRRequest guprr) throws SQLException;
 }
