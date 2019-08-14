@@ -865,7 +865,7 @@
 	
 	<update id="redistributeClaimDist" parameterType="java.util.Map">
 		BEGIN
-			CLM_DIST_PAYMENT_PKG.clm_redistribute(#{claimId},#{projId},#{histNo},#{clmDistNo},#{createUser,jdbcType=VARCHAR},
+			CLM_DIST_PKG.clm_redistribute(#{claimId},#{projId},#{histNo},#{clmDistNo},#{createUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
