@@ -112,6 +112,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
@@ -1382,6 +1383,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId",raupcr.getCedingId());
 		response.setPerLine(acctITDao.retrieveAcitUPRPerLine(params));
 		response.setPerPol(acctITDao.retrieveAcitUPRPerPol(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitUPRParamsResponse retrieveAcitUPRParams() throws SQLException {
+		RetrieveAcitUPRParamsResponse response = new RetrieveAcitUPRParamsResponse();
+		response.setParams(acctITDao.retrieveAcitUPRParams());
+		return response;
+	}
+
+
+	@Override
+	public String retrieveAcitExistingUPR(GenerateUPRRequest guprr) throws SQLException {
+		String response = new String();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extMm",guprr.getExtMm());
+		params.put("extYear",guprr.getExtYear());
+		params.put("extMethod",guprr.getExtMethod());
+		response = acctITDao.retrieveAcitExistingUPR(params);
 		return response;
 	}
 }

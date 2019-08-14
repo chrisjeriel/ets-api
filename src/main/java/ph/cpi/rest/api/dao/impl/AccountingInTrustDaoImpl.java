@@ -11,40 +11,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
-import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
-import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
-import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
+import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
+import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV;
-import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffset;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
-import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
-import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
-import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
-import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
-import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
+import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
-import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
+import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
+import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -467,6 +467,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(HashMap<String, Object> params) throws SQLException {
 		List<AcitUPRPerPolicy> list = sqlSession.selectList("retrieveAcitUPRPerPol",params);
 		return list;
+	}
+
+	@Override
+	public GenUPRParams retrieveAcitUPRParams() throws SQLException {
+		GenUPRParams params = sqlSession.selectOne("retrieveAcitUPRParams");
+		return params;
+	}
+
+	@Override
+	public String retrieveAcitExistingUPR(HashMap<String, Object> params) throws SQLException {
+		String response = sqlSession.selectOne("retrieveAcitExistingUPR", params);
+		return response;
 	}
 	
 	@Override
