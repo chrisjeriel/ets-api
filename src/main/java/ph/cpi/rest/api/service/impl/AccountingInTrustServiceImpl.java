@@ -1358,8 +1358,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVAcctTrtyBalResponse response = new SaveAcitJVAcctTrtyBalResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
-//			params.put("tranType", request.getTranType());
-//			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
+			params.put("tranId", request.getTranId());
 			params.put("saveAcctTrty", request.getSaveAcctTrty());
 			params.put("delAcctTrty", request.getDelAcctTrty());
 			params.put("saveInwPolOffset", request.getSaveInwPolOffset());
@@ -1373,5 +1373,4 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
-
 }

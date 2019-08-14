@@ -4,10 +4,25 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 public class SaveAcitJVAcctTrtyBalRequest {
+	private Integer tranType;
+	private Integer tranId;
 	private List<TreatyAcc> saveAcctTrty;
 	private List<TreatyAcc> delAcctTrty;
 	private List<acctTreaty> saveInwPolOffset;
 	private List<acctTreaty> delInwPolOffset;
+	
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
 	public List<TreatyAcc> getSaveAcctTrty() {
 		return saveAcctTrty;
 	}
@@ -34,11 +49,10 @@ public class SaveAcitJVAcctTrtyBalRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVAcctTrtyBalRequest [saveAcctTrty=" + saveAcctTrty + ", delAcctTrty=" + delAcctTrty
-				+ ", saveInwPolOffset=" + saveInwPolOffset + ", delInwPolOffset=" + delInwPolOffset + "]";
+		return "SaveAcitJVAcctTrtyBalRequest [tranType=" + tranType + ", tranId=" + tranId + ", saveAcctTrty="
+				+ saveAcctTrty + ", delAcctTrty=" + delAcctTrty + ", saveInwPolOffset=" + saveInwPolOffset
+				+ ", delInwPolOffset=" + delInwPolOffset + "]";
 	}
-	
-	
 }
 
 @Alias ("acctTreaty")
