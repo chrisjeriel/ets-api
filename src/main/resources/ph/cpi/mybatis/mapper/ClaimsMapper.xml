@@ -826,7 +826,7 @@
 		<result property="histCategoryName" column="HIST_CATEGORY_NAME"/>
 		<result property="histType" column="HIST_TYPE"/>
 		<result property="histTypeName" column="HIST_TYPE_NAME"/>
-		<result property="paytAmt" column="PAYT_AMT"/>
+		<result property="reserveAmt" column="RESERVE_AMT"/>
 		<result property="currencyCd" column="CURRENCY_CD"/>
 		<result property="currencyRt" column="CURRENCY_RT"/>
 		<result property="bookingMth" column="BOOKING_MTH"/>

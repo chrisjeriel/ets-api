@@ -1644,11 +1644,11 @@
 	</resultMap>
 	
 	<select id="retrieveAcitUPRPerLine" resultMap="AcitUPRPerLineMap">
-		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line(#{extMm},#{extYear},#{extMethod},#{cedingId}))
+		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line(#{extMm},#{extYear},#{extMethod},#{cedingId, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveAcitUPRPerPol" resultMap="AcitUPRPerPolicyMap">
-		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line_pol(#{extMm},#{extYear},#{extMethod},#{cedingId}))
+		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line_pol(#{extMm},#{extYear},#{extMethod},#{cedingId, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.GenUPRParams" id="GenUPRParamsMap">
