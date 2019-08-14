@@ -7,6 +7,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
@@ -114,5 +115,8 @@ public interface AccountingInTrustDao {
 	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJvActTrtyBal(final HashMap<String, Object> params) throws SQLException;
 	public UserId retrieveJVDefName(final HashMap<String, Object> params) throws SQLException;
-	
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncome(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitAllocInvtIncome(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVEntryList(final HashMap<String, Object> params) throws SQLException;
 }

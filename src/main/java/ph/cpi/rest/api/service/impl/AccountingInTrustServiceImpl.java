@@ -18,6 +18,8 @@ import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
@@ -54,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
@@ -67,6 +70,7 @@ import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVEntryListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
@@ -83,6 +87,8 @@ import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
@@ -120,6 +126,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.SaveAcitAllocInvtIncomeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
@@ -133,6 +140,7 @@ import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAppPaytZeroResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVEntryListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
@@ -626,7 +634,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setInwPolBal(acctITDao.retrieveAcitJVAdjstInwPolBal(params));
 		return response;
 	}
-	
+
 	@Override
 	public RetrieveAcitPrqTransResponse retrieveAcitPrqTrans(RetrieveAcitPrqTransRequest raptp) throws SQLException {
 		RetrieveAcitPrqTransResponse raptResponse =  new RetrieveAcitPrqTransResponse();
@@ -730,7 +738,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
-
 
 	@Override
 	public SaveAcitJVIntOverdAcctMSResponse saveAcitJvOverdueAccts(SaveAcitJVIntOverdAcctMSRequest request)
@@ -851,6 +858,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setTransDtlList(acctITDao.retrieveAcitArTransDtl(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcitAllInvestmentIncomeResponse retrieveAcitAllInvestmentIncome(
+			RetrieveAcitAllInvestmentIncomeRequest raaii) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		RetrieveAcitAllInvestmentIncomeResponse raaiiResponse = new RetrieveAcitAllInvestmentIncomeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("tranDateFrom", raaii.getTranDateFrom());
+		params.put("tranDateTo", raaii.getTranDateTo());
+		params.put("tranMonth", raaii.getTranMonth());
+		params.put("tranYear", raaii.getTranYear());
+		params.put("tranDate", raaii.getTranDate());
+		
+		raaiiResponse.setAllInvtIncomeList(acctITDao.retrieveAcitAllInvestmentIncome(params));
+		logger.info("RetrieveAcitAllInvestmentIncomeResponse : " + raaiiResponse.toString());
+		
+		return raaiiResponse;
+	}
 
 
 	@Override
@@ -885,6 +912,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 	
 	@Override
+	public RetrieveAcitAllInvestmentIncomeInvtIdResponse retrieveAcitAllInvestmentIncomeInvtId(
+			RetrieveAcitAllInvestmentIncomeInvtIdRequest raii) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcitAllInvestmentIncomeInvtIdResponse raiResponse = new RetrieveAcitAllInvestmentIncomeInvtIdResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raii.getTranId());
+		raiResponse.setAllInvtIncomeList(acctITDao.retrieveAcitAllInvestmentIncomeInvtId(params));
+		logger.info("RetrieveAcitAllInvestmentIncomeInvtIdResponse : " + raiResponse.toString());
+		return raiResponse;
+	}
+	
 	public RetrieveQSOAListResponse retrieveQSOAList(RetrieveQSOAListRequest rqlr) throws SQLException {
 		RetrieveQSOAListResponse rqlResponse = new RetrieveQSOAListResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1103,6 +1141,47 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception", "Please check field values."));
 			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveAcitAllocInvtIncomeResponse saveAcitAllocInvtIncome(SaveAcitAllocInvtIncomeRequest saaii)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcitAllocInvtIncomeResponse response = new SaveAcitAllocInvtIncomeResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("allocTranId", saaii.getAllocTranId());
+			params.put("saveAcitAllocInvtIncome", saaii.getSaveAcitAllocInvtIncome());
+			params.put("delAcitAllocInvtIncome", saaii.getDelAcitAllocInvtIncome());
+			HashMap<String, Object> res = acctITDao.saveAcitAllocInvtIncome(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setTranIdOut((Integer) res.get("tranIdOut"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVEntryListResponse saveAcitJVEntryList(SaveAcitJVEntryListRequest sajel) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcitJVEntryListResponse response = new SaveAcitJVEntryListResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveAcitJVEntryList", sajel.getSaveAcitJVEntryList());
+			params.put("saveAcitAllocInvtIncome", sajel.getSaveAcitAllocInvtIncome());
+			HashMap<String, Object> res = acctITDao.saveAcitJVEntryList(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setTranIdOut((Integer) res.get("tranIdOut"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
 		}
 		return response;
 	}

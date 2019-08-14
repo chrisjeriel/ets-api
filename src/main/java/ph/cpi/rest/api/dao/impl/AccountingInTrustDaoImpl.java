@@ -14,6 +14,7 @@ import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
@@ -268,6 +269,21 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncome(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitAllInvtIncome> acitAllInvtIncome = sqlSession.selectList("retrieveAcitAllInvestmentIncome", params);
+		return acitAllInvtIncome;
+	}
+
+	@Override
+	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitAllInvtIncome> acitAllInvtIncomeInvtId = sqlSession.selectList("retrieveAcitAllInvestmentIncomeInvtId", params);
+		return acitAllInvtIncomeInvtId;
+	}
+	
+	@Override
 	public List<AcitAcctEntries> retrieveAcitAcctEntries(HashMap<String, Object> params) throws SQLException {
 		List<AcitAcctEntries> list = sqlSession.selectList("retrieveAcitAcctEntries", params);
 		return list;
@@ -288,6 +304,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public HashMap<String, Object> saveAcitJVPremResRel(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitJVPremResRel",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public HashMap<String, Object> saveAcitAllocInvtIncome(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcitAllocInvtIncome",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
@@ -457,6 +481,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer generateUPR(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("generateUPR",params);
 		return errorCode;
+	}
+	
+	@Override
+	public HashMap<String, Object> saveAcitJVEntryList(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcitJVEntryList",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
