@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 
@@ -87,5 +88,6 @@ public interface AccountingInTrustDao {
 	public Integer generateUPR(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerLine> retrieveAcitUPRPerLine(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(final HashMap<String, Object> params) throws SQLException;
-
+	public GenUPRParams retrieveAcitUPRParams() throws SQLException;
+	
 }

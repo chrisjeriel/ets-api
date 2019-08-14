@@ -96,6 +96,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
@@ -498,4 +499,12 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitUPRPerCedeRequest : " + raupcr.toString());
 		return acctInTrustService.retrieveAcitUPRPerCede(raupcr);
 	}
+	
+	@GetMapping(path="retrieveAcitUPRParams")
+	public @ResponseBody RetrieveAcitUPRParamsResponse retrieveAcitUPRParams() throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitUPRParams");
+		logger.info("RetrieveAcitUPRParamsRequest : ");
+		return acctInTrustService.retrieveAcitUPRParams();
+	}
+	
 }

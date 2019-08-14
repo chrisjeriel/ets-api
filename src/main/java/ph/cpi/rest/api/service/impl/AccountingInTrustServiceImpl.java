@@ -87,6 +87,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
@@ -1151,6 +1152,14 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId",raupcr.getCedingId());
 		response.setPerLine(acctITDao.retrieveAcitUPRPerLine(params));
 		response.setPerPol(acctITDao.retrieveAcitUPRPerPol(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitUPRParamsResponse retrieveAcitUPRParams() throws SQLException {
+		RetrieveAcitUPRParamsResponse response = new RetrieveAcitUPRParamsResponse();
+		response.setParams(acctITDao.retrieveAcitUPRParams());
 		return response;
 	}
 }

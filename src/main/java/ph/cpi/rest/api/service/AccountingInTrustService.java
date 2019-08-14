@@ -83,6 +83,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
@@ -164,4 +165,5 @@ public interface AccountingInTrustService {
 	public SaveAcitArInvPulloutResponse saveAcitArInvPullout(SaveAcitArInvPulloutRequest saaipr) throws SQLException;
 	public GenerateUPRResponse generateUPR(GenerateUPRRequest guprr) throws SQLException;
 	public RetrieveAcitUPRPerCedeResponse retrieveAcitUPRPerCede(RetrieveAcitUPRPerCedeRequest raupcr) throws SQLException;
+	public RetrieveAcitUPRParamsResponse retrieveAcitUPRParams() throws SQLException;
 }

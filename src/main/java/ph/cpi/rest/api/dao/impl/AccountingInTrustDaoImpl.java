@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
+import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
@@ -389,5 +390,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(HashMap<String, Object> params) throws SQLException {
 		List<AcitUPRPerPolicy> list = sqlSession.selectList("retrieveAcitUPRPerPol",params);
 		return list;
+	}
+
+	@Override
+	public GenUPRParams retrieveAcitUPRParams() throws SQLException {
+		GenUPRParams params = sqlSession.selectOne("retrieveAcitUPRParams");
+		return params;
 	}
 }

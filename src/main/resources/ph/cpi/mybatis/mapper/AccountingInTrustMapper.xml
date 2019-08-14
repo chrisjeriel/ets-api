@@ -1641,4 +1641,16 @@
 	<select id="retrieveAcitUPRPerPol" resultMap="AcitUPRPerPolicyMap">
 		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_upr_per_line_pol(#{extMm},#{extYear},#{extMethod},#{cedingId}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.GenUPRParams" id="GenUPRParamsMap">
+		<result property="extMm" column="ext_mm"/>
+		<result property="extYear" column="ext_year"/>
+		<result property="extMethod" column="ext_method"/>
+		<result property="extractUser" column="extract_user"/>
+		<result property="extractDate" column="extract_date" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitUPRParams" resultMap="GenUPRParamsMap">
+		SELECT * FROM TABLE(ACIT_UPR_PKG.ret_last_upr_params())
+	</select>
 </mapper>
