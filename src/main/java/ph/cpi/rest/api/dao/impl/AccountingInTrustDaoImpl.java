@@ -397,4 +397,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		GenUPRParams params = sqlSession.selectOne("retrieveAcitUPRParams");
 		return params;
 	}
+	
+	@Override
+	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
+		List<AcctServFeeDist> subList =  sqlSession.selectList("retrieveAcitServFeeSubGnrt", params);
+		return subList;
+	}
 }

@@ -77,9 +77,9 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveArTransDtl(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitPrqInwPol> retrieveAcitPrqInwPol(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitPrqInwPol(final HashMap<String, Object> params) throws SQLException;
-	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArClmRecover> retrieveAcitArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
@@ -89,5 +89,5 @@ public interface AccountingInTrustDao {
 	public List<AcitUPRPerLine> retrieveAcitUPRPerLine(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(final HashMap<String, Object> params) throws SQLException;
 	public GenUPRParams retrieveAcitUPRParams() throws SQLException;
-	
+	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
 }
