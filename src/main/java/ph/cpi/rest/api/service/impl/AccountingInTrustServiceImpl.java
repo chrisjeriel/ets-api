@@ -773,17 +773,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("createDate", saipbr.getCreateDate());
 		params.put("updateUser", saipbr.getUpdateUser());
 		params.put("updateDate", saipbr.getUpdateDate());
+		params.put("allotedAmt", saipbr.getAllotedAmt());
 		params.put("saveInwPolBal", saipbr.getSaveInwPolBal());
 		params.put("delInwPolBal", saipbr.getDelInwPolBal());
 		try{
 			HashMap<String, Object> res = acctITDao.saveArInwPolBal(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
-			if(saipbr.getSaveInwPolBal().size() != 0){
+			/*if(saipbr.getSaveInwPolBal().size() != 0){
 				response.setNewPrem(new BigDecimal(res.get("newPrem").toString()));
 				response.setNewRiComm(new BigDecimal(res.get("newRiComm").toString()));
 				response.setNewRiCommVat(new BigDecimal(res.get("newRiCommVat").toString()));
 				response.setNewCharges(new BigDecimal(res.get("newCharges").toString()));
-			}
+			}*/
 			
 			if(res.get("custReturnCode") != null){
 				response.getErrorList().add(new Error("Exceeded AR Amount", "Cannot save. AR Amount exceeded"));

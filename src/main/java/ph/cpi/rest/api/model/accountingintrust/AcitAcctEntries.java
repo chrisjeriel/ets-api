@@ -21,6 +21,8 @@ public class AcitAcctEntries {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String updateLevel;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -117,13 +119,19 @@ public class AcitAcctEntries {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getUpdateLevel() {
+		return updateLevel;
+	}
+	public void setUpdateLevel(String updateLevel) {
+		this.updateLevel = updateLevel;
+	}
 	@Override
 	public String toString() {
 		return "AcitAcctEntries [tranId=" + tranId + ", entryId=" + entryId + ", glAcctId=" + glAcctId + ", glShortCd="
 				+ glShortCd + ", glShortDesc=" + glShortDesc + ", slTypeCd=" + slTypeCd + ", slTypeName=" + slTypeName
 				+ ", slCd=" + slCd + ", slName=" + slName + ", creditAmt=" + creditAmt + ", debitAmt=" + debitAmt
 				+ ", autoTag=" + autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", updateLevel=" + updateLevel + "]";
 	}
 	
 	

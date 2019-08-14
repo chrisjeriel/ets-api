@@ -356,6 +356,7 @@
 		<result property="arNo"          column="AR_NO"             />
 		<result property="arDate"        column="AR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"      column="AR_STATUS"         />
+		<result property="tranStat"      column="TRAN_STAT"         />
 		<result property="arStatDesc"    column="AR_STAT_DESC"      />
 		<result property="dcbYear"       column="DCB_YEAR"          />
 		<result property="dcbUserCd"     column="DCB_USER_CD"       />
@@ -687,6 +688,7 @@
 															1,
 															#{tranTypeCd},
 															#{arAmt} * #{currRate},
+															null,
 															#{createUser},
 															CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															#{updateUser},
@@ -944,6 +946,7 @@
 	        v_new_charges       ACIT_AGING_SOA_DETAILS.BAL_CHARGES_DUE%TYPE;
 	        v_total_payts	NUMBER(16,2);
 			v_ar_amt		NUMBER(16,2);
+			v_new_netdue	ACIT_AGING_SOA_DETAILS.BAL_AMT_DUE%TYPE;
 		BEGIN
 			SELECT NVL(SUM(TOTAL_LOCAL_AMT), 0)
 			  INTO v_total_payts
@@ -961,6 +964,7 @@
 														#{billId},
 														#{billType},
 														#{totalLocalAmt},
+														#{allotedAmt},
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
@@ -981,7 +985,9 @@
 															#{del.instNo}
 					);
 					<!-- Insert something about resetting the SOA Details here -->
-					ACIT_AGING_SOA_DETAILS_PKG.reset_soa(#{del.policyId},
+					ACIT_AGING_SOA_DETAILS_DEMO_PKG.reset_soa(
+														  #{del.tranId},
+															#{del.policyId},
 														  #{del.instNo},
 														  #{del.premAmt},
 														  #{del.riComm},
@@ -992,7 +998,7 @@
 				
 				<foreach collection="saveInwPolBal" item="save">
 				<!-- UPDATE AGING SOA DETAILS -->
-					ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{tranId},
+					ACIT_AGING_SOA_DETAILS_DEMO_PKG.save_aging_soa_dtl(#{tranId},
 																  #{save.policyId},
 																  #{save.instNo},
 																  #{save.premAmt},
@@ -1003,15 +1009,8 @@
 																  #{save.balPaytAmt},
 																  #{save.updateUser},
 																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																  v_new_prem_amt,
-																  v_new_ri_comm,
-																  v_new_ri_comm_vat,
-																  v_new_charges
+																  v_new_netdue
 															      );
-					#{newPrem, mode=OUT, jdbcType=VARCHAR} := v_new_prem_amt;
-					#{newRiComm, mode=OUT, jdbcType=VARCHAR} := v_new_ri_comm;
-					#{newRiCommVat, mode=OUT, jdbcType=VARCHAR} := v_new_ri_comm_vat;
-					#{newCharges, mode=OUT, jdbcType=VARCHAR} := v_new_charges;
 					<!-- Save from ACIT_AR_INWPOLBAL -->										      
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
 														#{save.tranId},
@@ -1021,11 +1020,11 @@
 														#{save.instNo},
 														#{save.currCd},
 														#{save.currRate},
-														v_new_prem_amt,
-													    v_new_ri_comm,
-													    v_new_ri_comm_vat,
-													    v_new_charges,
-														#{save.netDue},
+														#{save.premAmt},
+														#{save.riComm},
+													    #{save.riCommVat},
+														#{save.charges},
+														v_new_netdue,
 														#{save.balPaytAmt},
 														#{save.overdueInt},
 														#{save.createUser},
@@ -1081,6 +1080,7 @@
 		<result property="createDate"       column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"       column="UPDATE_USER" />
 		<result property="updateDate"       column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="allotedAmt"       column="ALLOTED_AMT"  />
 	</resultMap>
 	
 	<select id="retrieveArInwPolBal" resultMap="arInwPolBalMap" parameterType="java.util.Map">
@@ -1136,6 +1136,7 @@
 														#{billId},
 														#{billType},
 														#{totalLocalAmt},
+														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
@@ -1196,6 +1197,7 @@
 		<result property="createDate"  column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"  column="UPDATE_USER"/>
 		<result property="updateDate"  column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateLevel"  column="UPDATE_LEVEL"/>
 	</resultMap>
 	
 	<select id="retrieveAcitAcctEntries" resultMap="AcctEntriesMap">
@@ -1485,6 +1487,7 @@
 														#{billId},
 														#{billType},
 														#{totalLocalAmt},
+														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
@@ -1679,6 +1682,7 @@
 														#{billId},
 														#{billType},
 														#{totalLocalAmt},
+														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
@@ -1765,6 +1769,7 @@
 														#{billId},
 														#{billType},
 														ABS(#{totalLocalAmt}),
+														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
@@ -1886,6 +1891,7 @@
 														#{billId},
 														#{billType},
 														ABS(#{totalLocalAmt}),
+														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},

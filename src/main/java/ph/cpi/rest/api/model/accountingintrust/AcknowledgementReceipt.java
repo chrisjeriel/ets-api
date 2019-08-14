@@ -10,6 +10,7 @@ public class AcknowledgementReceipt {
 	private Integer arNo;
 	private DateTime arDate;
 	private String arStatus;
+	private String tranStat;
 	private String arStatDesc;
 	private Integer dcbYear;
 	private Integer dcbUserCd;
@@ -74,6 +75,14 @@ public class AcknowledgementReceipt {
 
 	public void setArStatus(String arStatus) {
 		this.arStatus = arStatus;
+	}
+
+	public String getTranStat() {
+		return tranStat;
+	}
+
+	public void setTranStat(String tranStat) {
+		this.tranStat = tranStat;
 	}
 
 	public String getArStatDesc() {
@@ -335,16 +344,16 @@ public class AcknowledgementReceipt {
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
-				+ arStatus + ", arStatDesc=" + arStatDesc + ", dcbYear=" + dcbYear + ", dcbUserCd=" + dcbUserCd
-				+ ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankName=" + dcbBankName + ", dcbBankAcct="
-				+ dcbBankAcct + ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo + ", tranTypeCd=" + tranTypeCd
-				+ ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy="
-				+ prPreparedBy + ", payeeNo=" + payeeNo + ", payor=" + payor + ", mailAddress=" + mailAddress
-				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", refCd=" + refCd + ", currCd=" + currCd + ", arAmt="
-				+ arAmt + ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp
-				+ ", paytDtl=" + paytDtl + "]";
+				+ arStatus + ", tranStat=" + tranStat + ", arStatDesc=" + arStatDesc + ", dcbYear=" + dcbYear
+				+ ", dcbUserCd=" + dcbUserCd + ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankName="
+				+ dcbBankName + ", dcbBankAcct=" + dcbBankAcct + ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo
+				+ ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate="
+				+ prDate + ", prPreparedBy=" + prPreparedBy + ", payeeNo=" + payeeNo + ", payor=" + payor
+				+ ", mailAddress=" + mailAddress + ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", refCd=" + refCd
+				+ ", currCd=" + currCd + ", arAmt=" + arAmt + ", currRate=" + currRate + ", particulars=" + particulars
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName
+				+ ", rstrctTranUp=" + rstrctTranUp + ", paytDtl=" + paytDtl + "]";
 	}
 
 
