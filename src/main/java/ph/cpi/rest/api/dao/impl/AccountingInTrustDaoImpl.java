@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
@@ -446,5 +447,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveAcitArAmtDtl",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVAcctTrtyBal> res = sqlSession.selectList("retrieveAcitJvAcctTrtyBal",params);
+		return res;
 	}
 }
