@@ -2186,4 +2186,14 @@
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.UserId" id="employeeMap">
+		<result property="userName" column="PREPARED_BY"/>
+		<result property="employeeName" column="PREPARED_NAME"/>
+		<result property="designation" column="PREPARED_POS"/>
+	</resultMap>
+	
+	<select id="retrieveDefName" resultMap="employeeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_def_name(#{userId}))
+	</select>
 </mapper>

@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.maintenance.UserId;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
@@ -104,5 +105,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitArAmtDtl(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJvActTrtyBal(final HashMap<String, Object> params) throws SQLException;
-	
+	public UserId retrieveJVDefName(final HashMap<String, Object> params) throws SQLException;
 }
