@@ -743,6 +743,7 @@
 	<update id="saveAcitJVEntryList" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_tran_id	ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+			v_message   VARCHAR2(500);
 		BEGIN
 		  <foreach collection="saveAcitJVEntryList" item="save">
 			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv(v_tran_id,#{save.tranId, jdbcType=VARCHAR}, 
@@ -763,7 +764,7 @@
 												  #{save.createUserJv}, CAST(to_timestamp(#{save.createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{save.updateUserJv}, 
 												  CAST(to_timestamp(#{save.updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
-			
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{save.jvTranTypeCd}, v_tran_id, v_message);
 			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
 				<foreach collection="saveAcitAllocInvtIncome" item="save">
 					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
@@ -779,6 +780,8 @@
 			END IF; 
 			
 		</foreach>
+		
+		
 	END;
 		
 	</update> 
@@ -2412,5 +2415,21 @@
 			END IF; 
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome" id="acitJvAllInvtIncomeListMap">
+		<result property="tranId" 		column="TRAN_ID"/>
+		<result property="jvYear" 		column="JV_YEAR"/>
+		<result property="jvNo" 		column="JV_NO"/>
+		<result property="jvDate" 		column="JV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranTypeCd" 	column="TRAN_TYPE_CD"/>
+		<result property="tranTypeName" column="TRAN_TYPE_NAME"/>
+		<result property="jvAmt" 		column="JV_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitJvAllInvtIncome" resultMap="acitJvAllInvtIncomeListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE (ACIT_ALL_INVT_INC_PKG.ret_jv_list(#{allocTranId, jdbcType=INTEGER},null,null,null,null))
+	</select>
+	
+	
 	
 </mapper>

@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVAllocInvtIncRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
@@ -98,6 +99,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAcctTrtyBalResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVAllocInvtIncResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
@@ -219,5 +221,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitAllInvestmentIncomeInvtIdResponse retrieveAcitAllInvestmentIncomeInvtId(RetrieveAcitAllInvestmentIncomeInvtIdRequest raii ) throws SQLException;
 	public SaveAcitAllocInvtIncomeResponse saveAcitAllocInvtIncome(SaveAcitAllocInvtIncomeRequest saaii) throws SQLException;
 	public SaveAcitJVEntryListResponse saveAcitJVEntryList(SaveAcitJVEntryListRequest sajel) throws SQLException;
+	public RetrieveAcitJVAllocInvtIncResponse retrieveAcitJVAllocInvtInc(RetrieveAcitJVAllocInvtIncRequest rajaii ) throws SQLException;
 
 }

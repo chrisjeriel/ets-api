@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVAllocInvtIncRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
@@ -104,6 +105,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAcctTrtyBalResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVAllocInvtIncResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
@@ -1534,6 +1536,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", request.getUserId());
 		response.setEmployee(acctITDao.retrieveJVDefName(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJVAllocInvtIncResponse retrieveAcitJVAllocInvtInc(RetrieveAcitJVAllocInvtIncRequest rajaii)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcitJVAllocInvtIncResponse response = new RetrieveAcitJVAllocInvtIncResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("allocTranId", rajaii.getAllocTranId());
+		response.setAllInvtIncomeList(acctITDao.retrieveAcitJvAllInvtIncome(params));
 		return response;
 	}
 }

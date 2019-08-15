@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVAllocInvtIncRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
@@ -107,6 +108,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAcctTrtyBalResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVAllocInvtIncResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmNegTrtyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
@@ -682,5 +684,13 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitJVEntryListRequest : " + sajel.toString());
 		return acctInTrustService.saveAcitJVEntryList(sajel);
 	}
+	
+	@GetMapping(path="retrieveAcitJVAllocInvtInc")
+	public @ResponseBody RetrieveAcitJVAllocInvtIncResponse retrieveAcitJVAllocInvtInc(RetrieveAcitJVAllocInvtIncRequest rajaii) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/RetrieveAcitJVAllocInvtIncRequest");
+		logger.info("RetrieveAcitJVAllocInvtIncRequest : " + rajaii.toString());
+		return acctInTrustService.retrieveAcitJVAllocInvtInc(rajaii);
+	}
+	
 	
 }

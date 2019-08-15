@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -536,6 +537,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	
 	public UserId retrieveJVDefName(HashMap<String, Object> params) throws SQLException {
 		UserId res = sqlSession.selectOne("retrieveDefName",params);
+		return res;
+	}
+
+	@Override
+	public List<AcitJvAllInvtIncome> retrieveAcitJvAllInvtIncome(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitJvAllInvtIncome> res = sqlSession.selectList("retrieveAcitJvAllInvtIncome", params);
 		return res;
 	}
 	
