@@ -10,7 +10,7 @@ public class ClaimDist {
 	private Integer histNo;
 	private String histCategory;
 	private String histType;
-	private BigDecimal paytAmt;
+	private BigDecimal reserveAmt;
 	private String clmDistStat;
 	private String createUser;
 	private DateTime createDate;
@@ -51,11 +51,11 @@ public class ClaimDist {
 	public void setHistType(String histType) {
 		this.histType = histType;
 	}
-	public BigDecimal getPaytAmt() {
-		return paytAmt;
+	public BigDecimal getReserveAmt() {
+		return reserveAmt;
 	}
-	public void setPaytAmt(BigDecimal paytAmt) {
-		this.paytAmt = paytAmt;
+	public void setReserveAmt(BigDecimal reserveAmt) {
+		this.reserveAmt = reserveAmt;
 	}
 	public String getClmDistStat() {
 		return clmDistStat;
@@ -138,11 +138,11 @@ public class ClaimDist {
 	@Override
 	public String toString() {
 		return "ClaimDist [clmDistNo=" + clmDistNo + ", histNo=" + histNo + ", histCategory=" + histCategory
-				+ ", histType=" + histType + ", paytAmt=" + paytAmt + ", clmDistStat=" + clmDistStat + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", histCategoryName=" + histCategoryName + ", histTypeName=" + histTypeName
-				+ ", bookingMth=" + bookingMth + ", bookingYear=" + bookingYear + ", clmDistStatName=" + clmDistStatName
-				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", claimDistTreaty=" + claimDistTreaty
-				+ "]";
+				+ ", histType=" + histType + ", reserveAmt=" + reserveAmt + ", clmDistStat=" + clmDistStat
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", histCategoryName=" + histCategoryName + ", histTypeName="
+				+ histTypeName + ", bookingMth=" + bookingMth + ", bookingYear=" + bookingYear + ", clmDistStatName="
+				+ clmDistStatName + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", claimDistTreaty="
+				+ claimDistTreaty + "]";
 	}
 }

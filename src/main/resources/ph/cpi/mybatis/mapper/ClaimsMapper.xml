@@ -91,8 +91,6 @@
 		<result property="claimNo" 		column="CLAIM_NO"/>
 		<result property="claimId" 		column="RES_CLAIM_ID"/>
 		<result property="projId" 		column="RES_PROJ_ID"/>
-<!-- 		<result property="lossStatCd" 	column="LOSS_STAT_CD"/>
-		<result property="expStatCd" 	column="EXP_STAT_CD"/> -->
 		<result property="claimId"		column="CLAIM_ID"/>
 		<result property="projId"		column="PROJ_ID"/>
 		<result property="histNo"		column="HIST_NO"/>
@@ -107,18 +105,21 @@
 		<result property="currencyRt"	column="CURRENCY_RT"/>
 		<result property="reserveAmt"	column="RESERVE_AMT"/>
 		<result property="paytAmt"		column="PAYT_AMT"/>
-		<result property="refNo"		column="REF_NO"/>
-		<result property="refDate"		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<!-- <result property="refNo"		column="REF_NO"/>
+		<result property="refDate"		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> -->
 		<result property="remarks"		column="REMARKS"/>
 		<result property="createUser"	column="CREATE_USER"/>
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="insuredDesc"	column="INSURED_DESC"/>	
- 		<result property="val1"			column="VAL1"/>
+		<result property="insuredDesc"	column="INSURED_DESC"/>
+		<result property="approvedAmt"	column="APPROVED_AMT"/>	
+		<result property="enableRes"	column="ENABLE_RES"/>	
+		<result property="enablePayt"	column="ENABLE_PAYT"/>	
+ 		<!-- <result property="val1"			column="VAL1"/>
 		<result property="val2"			column="VAL2"/>
 		<result property="val3"			column="VAL3"/>
-		<result property="val4"			column="VAL4"/>
+		<result property="val4"			column="VAL4"/> -->
 	</resultMap>
 	
 	<select id="retrieveClaimHistory" resultMap="claimReserveMap" parameterType="java.util.Map">
@@ -150,9 +151,9 @@
 					#{ch.currencyCd,jdbcType=VARCHAR},
 					#{ch.currencyRt,jdbcType=VARCHAR},
 					#{ch.reserveAmt,jdbcType=INTEGER},
-					#{ch.paytAmt,jdbcType=INTEGER},
-					#{ch.refNo,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					<!-- #{ch.paytAmt,jdbcType=INTEGER}, -->
+					<!-- #{ch.refNo,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{ch.refDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), -->
 					#{ch.remarks,jdbcType=VARCHAR},
 					#{ch.createUser,jdbcType=VARCHAR},
 				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -160,8 +161,19 @@
 				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
     			
+    			clm_dist_pkg.gen_reserve_dist(#{ch.claimId,jdbcType=VARCHAR},
+					#{ch.projId,jdbcType=VARCHAR},
+					v_hist_no,
+					#{ch.histCategory,jdbcType=VARCHAR},
+					#{ch.histType,jdbcType=VARCHAR},
+					#{ch.reserveAmt,jdbcType=INTEGER},
+					#{ch.createUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{ch.updateUser,jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+    			
     			<!-- ADD IF #{ch.histNo,jdbcType=VARCHAR} == NULL AND HIST_TYPEQ IS NOT PAYMENT -->
-    			IF #{ch.histNo,jdbcType=VARCHAR} IS NULL AND #{ch.histType,jdbcType=VARCHAR} IN (1,2,3,6) THEN
+    			<!-- IF #{ch.histNo,jdbcType=VARCHAR} IS NULL AND #{ch.histType,jdbcType=VARCHAR} IN (1,2,3,6) THEN
 	    			CLM_DIST_RESERVE_PKG.gen_reserve_dist(
 	    				#{ch.claimId,jdbcType=VARCHAR},
 						#{ch.projId,jdbcType=VARCHAR},
@@ -186,7 +198,7 @@
 					    #{ch.updateUser,jdbcType=VARCHAR},
 					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 	    			);
-    			END IF;
+    			END IF; -->
     		</foreach>
     	END;
 	</update>
@@ -648,7 +660,6 @@
 				#{altNo, jdbcType=INTEGER},
 				#{clmYear, jdbcType=INTEGER},
 				#{clmSeqNo, jdbcType=INTEGER},
-				#{policyId, jdbcType=INTEGER},
 				#{clmStatCd, jdbcType=VARCHAR},
 				#{insuredClm, jdbcType=INTEGER},
 				#{cessionId, jdbcType=INTEGER},
@@ -809,7 +820,7 @@
 	</update>
 
 	<select id="retrieveClmDist" resultMap="ClaimDistMap">
-		SELECT * FROM TABLE(CLM_DIST_PAYMENT_PKG.get_clm_dist(#{claimId},#{projId}))
+		SELECT * FROM TABLE(CLM_DIST_PKG.get_clm_dist(#{claimId},#{projId}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimDist" id="ClaimDistMap">
@@ -819,7 +830,7 @@
 		<result property="histCategoryName" column="HIST_CATEGORY_NAME"/>
 		<result property="histType" column="HIST_TYPE"/>
 		<result property="histTypeName" column="HIST_TYPE_NAME"/>
-		<result property="paytAmt" column="PAYT_AMT"/>
+		<result property="reserveAmt" column="RESERVE_AMT"/>
 		<result property="currencyCd" column="CURRENCY_CD"/>
 		<result property="currencyRt" column="CURRENCY_RT"/>
 		<result property="bookingMth" column="BOOKING_MTH"/>
@@ -844,7 +855,7 @@
 	</resultMap>
 	
 	<select id="retrieveClmDistPool" resultMap="ClaimDistCedingMap">
-		SELECT * FROM TABLE(CLM_DIST_PAYMENT_PKG.get_clm_dist_pool(#{claimId},#{projId},#{histNo},#{clmDistNo}))
+		SELECT * FROM TABLE(CLM_DIST_pkg.get_clm_dist_pool(#{claimId},#{projId},#{histNo},#{clmDistNo}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimDistCeding" id="ClaimDistCedingMap">
@@ -858,7 +869,7 @@
 	
 	<update id="redistributeClaimDist" parameterType="java.util.Map">
 		BEGIN
-			CLM_DIST_PAYMENT_PKG.clm_redistribute(#{claimId},#{projId},#{histNo},#{clmDistNo},#{createUser,jdbcType=VARCHAR},
+			CLM_DIST_PKG.clm_redistribute(#{claimId},#{projId},#{histNo},#{clmDistNo},#{createUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{updateUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));

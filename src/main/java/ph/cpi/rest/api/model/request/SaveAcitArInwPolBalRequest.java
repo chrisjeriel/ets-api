@@ -11,6 +11,7 @@ public class SaveAcitArInwPolBalRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String allotedAmt;
 	private List<SaveArInwPolBal> saveInwPolBal;
 	private List<SaveArInwPolBal> delInwPolBal;
 	
@@ -75,12 +76,19 @@ public class SaveAcitArInwPolBalRequest {
 		this.delInwPolBal = delInwPolBal;
 	}
 	
+	public String getAllotedAmt() {
+		return allotedAmt;
+	}
+	public void setAllotedAmt(String allotedAmt) {
+		this.allotedAmt = allotedAmt;
+	}
+	
 	@Override
 	public String toString() {
 		return "SaveAcitArInwPolBalRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
 				+ ", totalLocalAmt=" + totalLocalAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveInwPolBal=" + saveInwPolBal
-				+ ", delInwPolBal=" + delInwPolBal + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", allotedAmt=" + allotedAmt
+				+ ", saveInwPolBal=" + saveInwPolBal + ", delInwPolBal=" + delInwPolBal + "]";
 	}
 }
 

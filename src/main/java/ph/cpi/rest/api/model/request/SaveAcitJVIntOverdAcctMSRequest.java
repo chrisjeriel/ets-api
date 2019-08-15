@@ -7,8 +7,23 @@ import org.apache.ibatis.type.Alias;
 
 
 public class SaveAcitJVIntOverdAcctMSRequest {
+	private Integer tranType;
+	private Integer tranId;
 	private List<overDueAccts> saveOverdueAccts;
 	private List<overDueAccts> deleteOverdueAccts;
+	
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
 	public List<overDueAccts> getSaveOverdueAccts() {
 		return saveOverdueAccts;
 	}
@@ -23,9 +38,10 @@ public class SaveAcitJVIntOverdAcctMSRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVIntOverdAcctMSRequest [saveOverdueAccts=" + saveOverdueAccts + ", deleteOverdueAccts="
-				+ deleteOverdueAccts + "]";
+		return "SaveAcitJVIntOverdAcctMSRequest [tranType=" + tranType + ", tranId=" + tranId + ", saveOverdueAccts="
+				+ saveOverdueAccts + ", deleteOverdueAccts=" + deleteOverdueAccts + "]";
 	}
+	
 }
 
 @Alias ("ACITOverdueAcct")
@@ -36,6 +52,7 @@ class overDueAccts {
 	private Integer instNo;
 	private String dueDate;
 	private Integer daysOverdue;
+	private Integer interestRate;
 	private String autoTag;
 	private String currCd;
 	private BigDecimal currRate;
@@ -80,6 +97,13 @@ class overDueAccts {
 	}
 	public void setDaysOverdue(Integer daysOverdue) {
 		this.daysOverdue = daysOverdue;
+	}
+	
+	public Integer getInterestRate() {
+		return interestRate;
+	}
+	public void setInterestRate(Integer interestRate) {
+		this.interestRate = interestRate;
 	}
 	public String getAutoTag() {
 		return autoTag;
@@ -138,8 +162,10 @@ class overDueAccts {
 	@Override
 	public String toString() {
 		return "overDueAccts [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
-				+ ", dueDate=" + dueDate + ", daysOverdue=" + daysOverdue + ", autoTag=" + autoTag + ", currCd="
-				+ currCd + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", dueDate=" + dueDate + ", daysOverdue=" + daysOverdue + ", interestRate=" + interestRate
+				+ ", autoTag=" + autoTag + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt
+				+ ", overdueInt=" + overdueInt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

@@ -28,11 +28,14 @@ public class ClaimHistory {
 	private String 	 	updateUser;
 	private DateTime 	updateDate;
 	private String		insuredDesc;
+	private String		approvedAmt;
 	private Float		adjRate;
-	private String		val1;
-	private String		val2;
-	private String		val3;
-	private String		val4;
+	private String		enableRes;
+	private String 		enablePayt;
+//	private String		val1;
+//	private String		val2;
+//	private String		val3;
+//	private String		val4;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -171,31 +174,51 @@ public class ClaimHistory {
 	public void setAdjRate(Float adjRate) {
 		this.adjRate = adjRate;
 	}
-	public String getVal1() {
-		return val1;
-	}
-	public void setVal1(String val1) {
-		this.val1 = val1;
-	}
-	public String getVal2() {
-		return val2;
-	}
-	public void setVal2(String val2) {
-		this.val2 = val2;
-	}
-	public String getVal3() {
-		return val3;
-	}
-	public void setVal3(String val3) {
-		this.val3 = val3;
-	}
-	public String getVal4() {
-		return val4;
-	}
-	public void setVal4(String val4) {
-		this.val4 = val4;
-	}
 	
+	
+//	public String getVal1() {
+//		return val1;
+//	}
+//	public void setVal1(String val1) {
+//		this.val1 = val1;
+//	}
+//	public String getVal2() {
+//		return val2;
+//	}
+//	public void setVal2(String val2) {
+//		this.val2 = val2;
+//	}
+//	public String getVal3() {
+//		return val3;
+//	}
+//	public void setVal3(String val3) {
+//		this.val3 = val3;
+//	}
+//	public String getVal4() {
+//		return val4;
+//	}
+//	public void setVal4(String val4) {
+//		this.val4 = val4;
+//	}
+	
+	public String getApprovedAmt() {
+		return approvedAmt;
+	}
+	public void setApprovedAmt(String approvedAmt) {
+		this.approvedAmt = approvedAmt;
+	}
+	public String getEnableRes() {
+		return enableRes;
+	}
+	public void setEnableRes(String enableRes) {
+		this.enableRes = enableRes;
+	}
+	public String getEnablePayt() {
+		return enablePayt;
+	}
+	public void setEnablePayt(String enablePayt) {
+		this.enablePayt = enablePayt;
+	}
 	public String getInsuredDesc() {
 		return insuredDesc;
 	}
@@ -210,7 +233,8 @@ public class ClaimHistory {
 				+ ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
 				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", adjRate=" + adjRate
-				+ ", val1=" + val1 + ", val2=" + val2 + ", val3=" + val3 + ", val4=" + val4 + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", approvedAmt="
+				+ approvedAmt + ", adjRate=" + adjRate + ", enableRes=" + enableRes + ", enablePayt=" + enablePayt
+				+ "]";
 	}
 }
