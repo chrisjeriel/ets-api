@@ -6,8 +6,23 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVAdjInwPolBalRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<InwPol> saveInwPol;
 	private List<InwPol> deleteInwPol;
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
 	public List<InwPol> getSaveInwPol() {
 		return saveInwPol;
 	}
@@ -22,8 +37,10 @@ public class SaveAcitJVAdjInwPolBalRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVAdjInwPolBalRequest [saveInwPol=" + saveInwPol + ", deleteInwPol=" + deleteInwPol + "]";
+		return "SaveAcitJVAdjInwPolBalRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveInwPol="
+				+ saveInwPol + ", deleteInwPol=" + deleteInwPol + "]";
 	}
+	
 }
 
 @Alias ("ACITInwPol")
@@ -40,6 +57,7 @@ class InwPol{
 	private BigDecimal charges;
 	private BigDecimal netDue;
 	private BigDecimal prevPaytAmt;
+	private BigDecimal localAmt;
 	private BigDecimal adjBalAmt;
 	private BigDecimal overdueInt;
 	private String createUser;
@@ -154,13 +172,20 @@ class InwPol{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
+	}
 	@Override
 	public String toString() {
 		return "InwPol [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
 				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPaytAmt="
-				+ prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ prevPaytAmt + ", localAmt=" + localAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

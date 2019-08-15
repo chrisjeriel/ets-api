@@ -973,6 +973,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
+	public List<InvtSecurityType> retrieveMtnInvtSecurityType(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<InvtSecurityType> invtSecTypeList = sqlSession.selectList("retrieveMtnInvtSecType", params);
+		return invtSecTypeList;
+	}
+	
+	@Override
 	public List<AcitChartAcct> retrieveMtnAcitChartAcct(HashMap<String, Object> params) throws SQLException {
 		List<AcitChartAcct> list = sqlSession.selectList("retrieveMtnAcitChartAcct", params);
 		return list;
@@ -1002,13 +1009,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		return cedingCompanyListing;
 	}
 	
-	@Override
-	public List<InvtSecurityType> retrieveMtnInvtSecurityType(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		List<InvtSecurityType> invtSecTypeList = sqlSession.selectList("retrieveMtnInvtSecType", params);
-		return invtSecTypeList;
-	}
-
 	@Override
 	public Integer saveMtnBank(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("saveMtnBank",params);

@@ -54,6 +54,9 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			saveRemindersParams.put("reminderId", srreq.getReminderId());
 			saveRemindersParams.put("title", srreq.getTitle());
 			saveRemindersParams.put("reminder", srreq.getReminder());
+			saveRemindersParams.put("module", srreq.getModule());
+			saveRemindersParams.put("referenceId", srreq.getReferenceId());
+			saveRemindersParams.put("details", srreq.getDetails());
 			saveRemindersParams.put("reminderDate", srreq.getRemiderDate());
 			saveRemindersParams.put("alarmTime", srreq.getAlarmTime());
 			saveRemindersParams.put("assignedTo", srreq.getAssignedTo());
@@ -99,6 +102,9 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			saveNotesParams.put("noteId", snreq.getNoteId());
 			saveNotesParams.put("title", snreq.getTitle());
 			saveNotesParams.put("note", snreq.getNote());
+			saveNotesParams.put("module", snreq.getModule());
+			saveNotesParams.put("referenceId", snreq.getReferenceId());
+			saveNotesParams.put("details", snreq.getDetails());
 			saveNotesParams.put("assignedTo", snreq.getAssignedTo());
 			saveNotesParams.put("status", snreq.getStatus());
 			saveNotesParams.put("createUser", snreq.getCreateUser());
