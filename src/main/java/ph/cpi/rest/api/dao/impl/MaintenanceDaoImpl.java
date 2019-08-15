@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
-import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
+import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -29,6 +29,7 @@ import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.ClaimReason;
 import ph.cpi.rest.api.model.maintenance.ClaimStatus;
+import ph.cpi.rest.api.model.maintenance.Company;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -53,6 +54,7 @@ import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -977,6 +979,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		return invtSecTypeList;
 	}
 	
+	@Override
 	public List<AcitChartAcct> retrieveMtnAcitChartAcct(HashMap<String, Object> params) throws SQLException {
 		List<AcitChartAcct> list = sqlSession.selectList("retrieveMtnAcitChartAcct", params);
 		return list;
@@ -992,5 +995,35 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public List<SL> retrieveMtnSL(HashMap<String, Object> params) throws SQLException {
 		List<SL> list = sqlSession.selectList("retrieveMtnSL", params);
 		return list;
+	}
+
+	@Override
+	public List<PrintableNames> retrieveMtnPrintableNames(HashMap<String, Object> params) throws SQLException {
+		List<PrintableNames> list = sqlSession.selectList("retrieveMtnPrintable", params);
+		return list;
+	}
+
+	@Override
+	public List<CedingCompany> retrieveMtnCedingTreaty(HashMap<String, Object> params) throws SQLException {
+		List<CedingCompany> cedingCompanyListing = sqlSession.selectList("retMtnCedingTreaty", params);
+		return cedingCompanyListing;
+	}
+	
+	@Override
+	public Integer saveMtnBank(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnBank",params);
+		return code;
+	}
+	
+	@Override
+	public Integer saveMtnBankAcct(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveMtnBankAcct",params);
+		return code;
+	}
+
+	@Override
+	public List<Company> retrieveMtnCompany(HashMap<String, Object> params) throws SQLException {
+		List<Company> res = sqlSession.selectList("retMtnCompany", params);
+		return res;
 	}
 }

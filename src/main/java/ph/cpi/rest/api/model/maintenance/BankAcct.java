@@ -8,9 +8,11 @@ public class BankAcct {
 	private String accountNo;
 	private String accountName;
 	private String acctStatus;
+	private String acctStatusName;
 	private String currCd;
 	private String bankBranch;
 	private String accountType;
+	private String acctTypeName;
 	private DateTime openDate;
 	private DateTime closeDate;
 	private Integer acItGlDepNo;
@@ -20,7 +22,6 @@ public class BankAcct {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getBankCd() {
 		return bankCd;
 	}
@@ -51,6 +52,12 @@ public class BankAcct {
 	public void setAcctStatus(String acctStatus) {
 		this.acctStatus = acctStatus;
 	}
+	public String getAcctStatusName() {
+		return acctStatusName;
+	}
+	public void setAcctStatusName(String acctStatusName) {
+		this.acctStatusName = acctStatusName;
+	}
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -68,6 +75,12 @@ public class BankAcct {
 	}
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
+	}
+	public String getAcctTypeName() {
+		return acctTypeName;
+	}
+	public void setAcctTypeName(String acctTypeName) {
+		this.acctTypeName = acctTypeName;
 	}
 	public DateTime getOpenDate() {
 		return openDate;
@@ -123,14 +136,15 @@ public class BankAcct {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo=" + accountNo
-				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", currCd=" + currCd + ", bankBranch="
-				+ bankBranch + ", accountType=" + accountType + ", openDate=" + openDate + ", closeDate=" + closeDate
-				+ ", acitGlDepNo=" + acItGlDepNo + ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
+				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", acctStatusName=" + acctStatusName
+				+ ", currCd=" + currCd + ", bankBranch=" + bankBranch + ", accountType=" + accountType
+				+ ", acctTypeName=" + acctTypeName + ", openDate=" + openDate + ", closeDate=" + closeDate
+				+ ", acItGlDepNo=" + acItGlDepNo + ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }

@@ -6,7 +6,10 @@ import org.joda.time.DateTime;
 
 public class AcitSOAAgingDetails {
 	private Integer policyId;
-	private Integer cedingId;
+	private String cedingId;
+	private String refCd;
+	private Integer payeeNo;
+	private String payeeName;
 	private String policyNo;
 	private String soaNo;
 	private String coRefNo;
@@ -16,6 +19,7 @@ public class AcitSOAAgingDetails {
 	private BigDecimal totalAmtDue;
 	private BigDecimal totalPayments;
 	private BigDecimal tempPayments;
+	private BigDecimal netDuePayments;
 	private BigDecimal balAmtDue;
 	private BigDecimal balPremDue;
 	private BigDecimal balChargesDue;
@@ -38,11 +42,29 @@ public class AcitSOAAgingDetails {
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
+	}
+	public String getRefCd() {
+		return refCd;
+	}
+	public void setRefCd(String refCd) {
+		this.refCd = refCd;
+	}
+	public Integer getPayeeNo() {
+		return payeeNo;
+	}
+	public void setPayeeNo(Integer payeeNo) {
+		this.payeeNo = payeeNo;
+	}
+	public String getPayeeName() {
+		return payeeName;
+	}
+	public void setPayeeName(String payeeName) {
+		this.payeeName = payeeName;
 	}
 	public String getPolicyNo() {
 		return policyNo;
@@ -97,6 +119,13 @@ public class AcitSOAAgingDetails {
 	}
 	public void setTempPayments(BigDecimal tempPayments) {
 		this.tempPayments = tempPayments;
+	}
+	
+	public BigDecimal getNetDuePayments() {
+		return netDuePayments;
+	}
+	public void setNetDuePayments(BigDecimal netDuePayments) {
+		this.netDuePayments = netDuePayments;
 	}
 	public BigDecimal getBalAmtDue() {
 		return balAmtDue;
@@ -196,10 +225,11 @@ public class AcitSOAAgingDetails {
 	}
 	@Override
 	public String toString() {
-		return "AcitSOAAgingDetails [policyId=" + policyId + ", cedingId=" + cedingId + ", policyNo=" + policyNo
-				+ ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", instNo=" + instNo + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", totalAmtDue=" + totalAmtDue + ", totalPayments=" + totalPayments
-				+ ", tempPayments=" + tempPayments + ", balAmtDue=" + balAmtDue + ", balPremDue=" + balPremDue
+		return "AcitSOAAgingDetails [policyId=" + policyId + ", cedingId=" + cedingId + ", refCd=" + refCd
+				+ ", payeeNo=" + payeeNo + ", payeeName=" + payeeName + ", policyNo=" + policyNo + ", soaNo=" + soaNo
+				+ ", coRefNo=" + coRefNo + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", totalAmtDue=" + totalAmtDue + ", totalPayments=" + totalPayments + ", tempPayments=" + tempPayments
+				+ ", netDuePayments=" + netDuePayments + ", balAmtDue=" + balAmtDue + ", balPremDue=" + balPremDue
 				+ ", balChargesDue=" + balChargesDue + ", balRiComm=" + balRiComm + ", balRiCommVat=" + balRiCommVat
 				+ ", balOverdueInt=" + balOverdueInt + ", effDate=" + effDate + ", dueDate=" + dueDate
 				+ ", bookingDate=" + bookingDate + ", agingId=" + agingId + ", netDue=" + netDue + ", balance="

@@ -11,10 +11,12 @@ public class AcitJVListing {
 	private Integer jvNo;
 	private DateTime jvDate;
 	private String jvStatus;
+	private String jvStatusName;
 	private Integer tranTypeCd;
 	private String tranTypeName;
 	private String autoTag;
 	private Integer refnoTranId;
+	private String refNo;
 	private DateTime refnoDate;
 	private String particulars;
 	private String currCd;
@@ -24,8 +26,12 @@ public class AcitJVListing {
 	private String allocTag;
 	private Integer allocTranId;
 	private String preparedBy;
+	private String preparedName;
+	private String preparedPosition;
 	private DateTime preparedDate;
 	private String approvedBy;
+	private String approvedName;
+	private String approvedPosition;
 	private DateTime approvedDate;
 	private String createUser;
 	private DateTime createDate;
@@ -63,6 +69,13 @@ public class AcitJVListing {
 	public void setJvStatus(String jvStatus) {
 		this.jvStatus = jvStatus;
 	}
+	
+	public String getJvStatusName() {
+		return jvStatusName;
+	}
+	public void setJvStatusName(String jvStatusName) {
+		this.jvStatusName = jvStatusName;
+	}
 	public Integer getTranTypeCd() {
 		return tranTypeCd;
 	}
@@ -87,6 +100,12 @@ public class AcitJVListing {
 	}
 	public void setRefnoTranId(Integer refnoTranId) {
 		this.refnoTranId = refnoTranId;
+	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
 	}
 	public DateTime getRefnoDate() {
 		return refnoDate;
@@ -142,6 +161,31 @@ public class AcitJVListing {
 	public void setPreparedBy(String preparedBy) {
 		this.preparedBy = preparedBy;
 	}
+	
+	public String getPreparedName() {
+		return preparedName;
+	}
+	public void setPreparedName(String preparedName) {
+		this.preparedName = preparedName;
+	}
+	public String getPreparedPosition() {
+		return preparedPosition;
+	}
+	public void setPreparedPosition(String preparedPosition) {
+		this.preparedPosition = preparedPosition;
+	}
+	public String getApprovedName() {
+		return approvedName;
+	}
+	public void setApprovedName(String approvedName) {
+		this.approvedName = approvedName;
+	}
+	public String getApprovedPosition() {
+		return approvedPosition;
+	}
+	public void setApprovedPosition(String approvedPosition) {
+		this.approvedPosition = approvedPosition;
+	}
 	public DateTime getPreparedDate() {
 		return preparedDate;
 	}
@@ -193,13 +237,16 @@ public class AcitJVListing {
 	@Override
 	public String toString() {
 		return "AcitJVListing [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate
-				+ ", jvStatus=" + jvStatus + ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName
-				+ ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId + ", refnoDate=" + refnoDate
-				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt
-				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", preparedBy="
-				+ preparedBy + ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedDate="
-				+ approvedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", inwPolBal=" + inwPolBal + "]";
+				+ ", jvStatus=" + jvStatus + ", jvStatusName=" + jvStatusName + ", tranTypeCd=" + tranTypeCd
+				+ ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId
+				+ ", refNo=" + refNo + ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt + ", localAmt=" + localAmt + ", allocTag="
+				+ allocTag + ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedName="
+				+ preparedName + ", preparedPosition=" + preparedPosition + ", preparedDate=" + preparedDate
+				+ ", approvedBy=" + approvedBy + ", approvedName=" + approvedName + ", approvedPosition="
+				+ approvedPosition + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", inwPolBal=" + inwPolBal
+				+ "]";
 	}
 	
 }

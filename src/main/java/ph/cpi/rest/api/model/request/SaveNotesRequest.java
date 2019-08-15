@@ -5,6 +5,9 @@ public class SaveNotesRequest {
 	private String noteId;
 	private String title;
 	private String note;
+	private String module;
+	private String referenceId;
+	private String details;
 	private String assignedTo;
 	private String status;
 	private String createUser;
@@ -66,13 +69,31 @@ public class SaveNotesRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
+	}
+	public String getReferenceId() {
+		return referenceId;
+	}
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
+	}
 	@Override
 	public String toString() {
-		return "SaveNotesRequest [noteId=" + noteId + ", title=" + title + ", note=" + note + ", assignedTo="
-				+ assignedTo + ", status=" + status + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "SaveNotesRequest [noteId=" + noteId + ", title=" + title + ", note=" + note + ", module=" + module
+				+ ", referenceId=" + referenceId + ", details=" + details + ", assignedTo=" + assignedTo + ", status="
+				+ status + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-
+	
 	
 }

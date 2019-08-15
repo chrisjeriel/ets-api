@@ -965,6 +965,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("tinNo", smccr.getTinNo());
 			params.put("activeTag", smccr.getActiveTag());
 			params.put("govtTag", smccr.getGovtTag());
+			params.put("vatTag", smccr.getVatTag());
 			params.put("oldCedingId", smccr.getOldCedingId());
 			params.put("membershipTag", smccr.getMembershipTag());
 			params.put("membershipDate", smccr.getMembershipDate());
@@ -1989,7 +1990,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			throws SQLException {
 		RetrieveMtnClmEventLovResponse rmcelResponse = new RetrieveMtnClmEventLovResponse();
 		HashMap<String, Object> rmcelParams = new HashMap<String, Object>();
-		rmcelParams.put("lineCd", rmcel.getLineCd());
 		rmcelParams.put("eventTypeCd", rmcel.getEventTypeCd());
 		rmcelParams.put("searchStr", rmcel.getSearchStr());
 		
@@ -2140,6 +2140,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return rmistResponse;
 	}
 	
+	@Override
 	public RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcct(RetrieveMtnAcitChartAcctRequest rbmr)
 			throws SQLException {
 		RetrieveMtnAcitChartAcctResponse response = new RetrieveMtnAcitChartAcctResponse();
@@ -2179,6 +2180,69 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("autoTag", rbmr.getAutoTag());
 		params.put("activeTag", rbmr.getActiveTag());
 		response.setList(maintenanceDao.retrieveMtnSL(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnPrintableNamesResponse retrieveMtnPrintableNames(RetrieveMtnPrintableNamesRequest request)
+			throws SQLException {
+		RetrieveMtnPrintableNamesResponse response = new RetrieveMtnPrintableNamesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("employeeId", request.getEmployeeId());
+		response.setPrintableNames(maintenanceDao.retrieveMtnPrintableNames(params));
+		return response;
+	}
+	
+	@Override
+	public SaveMtnBankResponse saveMtnBank(SaveMtnBankRequest smaidcbr) throws SQLException {
+		SaveMtnBankResponse response = new SaveMtnBankResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smaidcbr.getSaveList());
+		params.put("delList", smaidcbr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBank(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request)
+			throws SQLException {
+		RetrieveMtnCedingTreatyResponse response = new RetrieveMtnCedingTreatyResponse();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("treatyTag",request.getTreatyTag()); 
+		params.put("cedingName",request.getCedingName()); 
+		response.setCedingcompany(maintenanceDao.retrieveMtnCedingTreaty(params));
+        return response;
+	}
+
+	@Override
+	public SaveMtnBankAcctResponse saveMtnBankAcct(SaveMtnBankAcctRequest smaidcbr) throws SQLException {
+		SaveMtnBankAcctResponse response = new SaveMtnBankAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveList", smaidcbr.getSaveList());
+		params.put("delList", smaidcbr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBankAcct(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException {
+		RetrieveMtnCompanyResponse response = new RetrieveMtnCompanyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("companyId", rmcr.getCompanyId());
+		response.setCompanyListing(maintenanceDao.retrieveMtnCompany(params));
 		return response;
 	}
 }

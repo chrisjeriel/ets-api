@@ -19,6 +19,8 @@ public class CedingCompany {
 	private String emailAdd;
 	private String activeTag;
 	private String govtTag;
+	private String vatTag;
+	private String vatTagDesc;
 	private String oldCedingId;
 	private String membershipTag;
 	private DateTime membershipDate;
@@ -32,6 +34,7 @@ public class CedingCompany {
 	private String updateUser;
 	private DateTime updateDate;
 	private List<CedingRepresentative> cedingRepresentative;
+	private List<CedingHist> cedingHistory;
 	
 	public String getCedingId() {
 		return cedingId;
@@ -117,6 +120,18 @@ public class CedingCompany {
 	public void setGovtTag(String govtTag) {
 		this.govtTag = govtTag;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
+	public String getVatTagDesc() {
+		return vatTagDesc;
+	}
+	public void setVatTagDesc(String vatTagDesc) {
+		this.vatTagDesc = vatTagDesc;
+	}
 	public String getOldCedingId() {
 		return oldCedingId;
 	}
@@ -195,17 +210,23 @@ public class CedingCompany {
 	public void setCedingRepresentative(List<CedingRepresentative> cedingRepresentative) {
 		this.cedingRepresentative = cedingRepresentative;
 	}
-	
+	public List<CedingHist> getCedingHistory() {
+		return cedingHistory;
+	}
+	public void setCedingHistory(List<CedingHist> cedingHistory) {
+		this.cedingHistory = cedingHistory;
+	}
 	@Override
 	public String toString() {
 		return "CedingCompany [cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr
 				+ ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd="
 				+ zipCd + ", address=" + address + ", contactNo=" + contactNo + ", bussTypeId=" + bussTypeId
 				+ ", tinNo=" + tinNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", govtTag=" + govtTag
-				+ ", oldCedingId=" + oldCedingId + ", membershipTag=" + membershipTag + ", membershipDate="
-				+ membershipDate + ", withdrawDate=" + withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag="
-				+ treatyTag + ", withdrawTag=" + withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", cedingRepresentative=" + cedingRepresentative + "]";
+				+ ", vatTag=" + vatTag + ", vatTagDesc=" + vatTagDesc + ", oldCedingId=" + oldCedingId
+				+ ", membershipTag=" + membershipTag + ", membershipDate=" + membershipDate + ", withdrawDate="
+				+ withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag=" + treatyTag + ", withdrawTag="
+				+ withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingRepresentative="
+				+ cedingRepresentative + ", cedingHistory=" + cedingHistory + "]";
 	}
 }

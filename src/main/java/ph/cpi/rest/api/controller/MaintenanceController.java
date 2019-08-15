@@ -945,4 +945,40 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBookingMthRequest : " + rbmr.toString());
 		return maintenanceService.retrieveMtnSL(rbmr);
 	}
+	
+
+	@GetMapping(path="retrieveMtnPrintableName")
+	public @ResponseBody RetrieveMtnPrintableNamesResponse retrieveMtnPrintable(RetrieveMtnPrintableNamesRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPrintableName");
+		logger.info("RetrieveMtnPrintableNamesRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnPrintableNames(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnCedingTreaty")
+	public @ResponseBody RetrieveMtnCedingTreatyResponse retrieveMtnCedingTreaty(RetrieveMtnCedingTreatyRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCedingTreaty");
+		logger.info("RetrieveMtnCedingTreatyRequest : " + request.toString());
+		return maintenanceService.retrieveMtnCedingTreaty(request);
+	}
+	
+	@PostMapping(path="saveMtnBank")
+	public @ResponseBody SaveMtnBankResponse saveMtnBank(@RequestBody SaveMtnBankRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBank");
+		logger.info("SaveMtnBankRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnBank(smaidcbr);
+	}
+	
+	@PostMapping(path="saveMtnBankAcct")
+	public @ResponseBody SaveMtnBankAcctResponse saveMtnBankAcct(@RequestBody SaveMtnBankAcctRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBankAcct");
+		logger.info("SaveMtnBankAcctRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnBankAcct(smaidcbr);
+	}
+	
+	@GetMapping(path="retrieveMtnCompany")
+	public @ResponseBody RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnCompany");
+		logger.info("RetrieveMtnCompanyRequest : " + rmcr.toString());
+		return maintenanceService.retrieveMtnCompany(rmcr);
+	}
 }

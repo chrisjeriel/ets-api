@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.RefCode;
-import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
+import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.ClaimReason;
 import ph.cpi.rest.api.model.maintenance.ClaimStatus;
+import ph.cpi.rest.api.model.maintenance.Company;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
 import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
 import ph.cpi.rest.api.model.maintenance.Reason;
@@ -200,9 +202,13 @@ public interface MaintenanceDao {
 	public List<DCBUser> retrieveMtnDCBUser(final HashMap<String, Object> params) throws SQLException;
 	public List<Payee> retrieveMtnPayee(final HashMap<String, Object> params) throws SQLException;
 	public List<BookingMonth> retrieveMtnBookingMonth(final HashMap<String, Object> params) throws SQLException;
-	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitChartAcct> retrieveMtnAcitChartAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<SLType> retrieveMtnSLType(final HashMap<String, Object> params) throws SQLException;
 	public List<SL> retrieveMtnSL(final HashMap<String, Object> params) throws SQLException;
+	public List<PrintableNames> retrieveMtnPrintableNames (final HashMap<String, Object> params) throws SQLException;
+	public List<CedingCompany> retrieveMtnCedingTreaty(final HashMap<String, Object> params) throws SQLException;
+	public List<InvtSecurityType> retrieveMtnInvtSecurityType(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnBank(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
+	public List<Company> retrieveMtnCompany(final HashMap<String, Object> params) throws SQLException;
 }
-

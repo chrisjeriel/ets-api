@@ -10,6 +10,7 @@ public class AcknowledgementReceipt {
 	private Integer arNo;
 	private DateTime arDate;
 	private String arStatus;
+	private String tranStat;
 	private String arStatDesc;
 	private Integer dcbYear;
 	private Integer dcbUserCd;
@@ -29,6 +30,7 @@ public class AcknowledgementReceipt {
 	private String mailAddress;
 	private Integer bussTypeCd;
 	private String tin;
+	private Integer refCd;
 	private String currCd;
 	private BigDecimal arAmt;
 	private BigDecimal currRate;
@@ -37,6 +39,9 @@ public class AcknowledgementReceipt {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String cedingId;
+	private String bussTypeName;
+	private Integer rstrctTranUp;
 	
 	private List<ARPaymentDetails> paytDtl;
 
@@ -70,6 +75,14 @@ public class AcknowledgementReceipt {
 
 	public void setArStatus(String arStatus) {
 		this.arStatus = arStatus;
+	}
+
+	public String getTranStat() {
+		return tranStat;
+	}
+
+	public void setTranStat(String tranStat) {
+		this.tranStat = tranStat;
 	}
 
 	public String getArStatDesc() {
@@ -224,6 +237,14 @@ public class AcknowledgementReceipt {
 		this.tin = tin;
 	}
 
+	public Integer getRefCd() {
+		return refCd;
+	}
+
+	public void setRefCd(Integer refCd) {
+		this.refCd = refCd;
+	}
+
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -288,6 +309,30 @@ public class AcknowledgementReceipt {
 		this.updateDate = updateDate;
 	}
 
+	public String getCedingId() {
+		return cedingId;
+	}
+
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+
+	public String getBussTypeName() {
+		return bussTypeName;
+	}
+
+	public void setBussTypeName(String bussTypeName) {
+		this.bussTypeName = bussTypeName;
+	}
+
+	public Integer getRstrctTranUp() {
+		return rstrctTranUp;
+	}
+
+	public void setRstrctTranUp(Integer rstrctTranUp) {
+		this.rstrctTranUp = rstrctTranUp;
+	}
+
 	public List<ARPaymentDetails> getPaytDtl() {
 		return paytDtl;
 	}
@@ -299,14 +344,17 @@ public class AcknowledgementReceipt {
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", arDate=" + arDate + ", arStatus="
-				+ arStatus + ", arStatDesc=" + arStatDesc + ", dcbYear=" + dcbYear + ", dcbUserCd=" + dcbUserCd
-				+ ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankName=" + dcbBankName + ", dcbBankAcct="
-				+ dcbBankAcct + ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo + ", tranTypeCd=" + tranTypeCd
-				+ ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy="
-				+ prPreparedBy + ", payeeNo=" + payeeNo + ", payor=" + payor + ", mailAddress=" + mailAddress
-				+ ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", currCd=" + currCd + ", arAmt=" + arAmt
-				+ ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", paytDtl=" + paytDtl + "]";
+				+ arStatus + ", tranStat=" + tranStat + ", arStatDesc=" + arStatDesc + ", dcbYear=" + dcbYear
+				+ ", dcbUserCd=" + dcbUserCd + ", dcbNo=" + dcbNo + ", dcbBank=" + dcbBank + ", dcbBankName="
+				+ dcbBankName + ", dcbBankAcct=" + dcbBankAcct + ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo
+				+ ", tranTypeCd=" + tranTypeCd + ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate="
+				+ prDate + ", prPreparedBy=" + prPreparedBy + ", payeeNo=" + payeeNo + ", payor=" + payor
+				+ ", mailAddress=" + mailAddress + ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", refCd=" + refCd
+				+ ", currCd=" + currCd + ", arAmt=" + arAmt + ", currRate=" + currRate + ", particulars=" + particulars
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName
+				+ ", rstrctTranUp=" + rstrctTranUp + ", paytDtl=" + paytDtl + "]";
 	}
+
+
 }

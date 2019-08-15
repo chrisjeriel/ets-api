@@ -11,12 +11,20 @@ public class ClaimDist {
 	private String histCategory;
 	private String histType;
 	private BigDecimal reserveAmt;
-	private BigDecimal paytAmt;
 	private String clmDistStat;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+
+	private String histCategoryName;
+	private String histTypeName;
+	private String bookingMth;
+	private String bookingYear;
+	private String clmDistStatName;
+	private String currencyCd;
+	private BigDecimal currencyRt;
 	
 	private List<ClaimDistTreaty> claimDistTreaty;
 	public Integer getClmDistNo() {
@@ -48,12 +56,6 @@ public class ClaimDist {
 	}
 	public void setReserveAmt(BigDecimal reserveAmt) {
 		this.reserveAmt = reserveAmt;
-	}
-	public BigDecimal getPaytAmt() {
-		return paytAmt;
-	}
-	public void setPaytAmt(BigDecimal paytAmt) {
-		this.paytAmt = paytAmt;
 	}
 	public String getClmDistStat() {
 		return clmDistStat;
@@ -91,12 +93,56 @@ public class ClaimDist {
 	public void setClaimDistTreaty(List<ClaimDistTreaty> claimDistTreaty) {
 		this.claimDistTreaty = claimDistTreaty;
 	}
+	public String getHistCategoryName() {
+		return histCategoryName;
+	}
+	public void setHistCategoryName(String histCategoryName) {
+		this.histCategoryName = histCategoryName;
+	}
+	public String getHistTypeName() {
+		return histTypeName;
+	}
+	public void setHistTypeName(String histTypeName) {
+		this.histTypeName = histTypeName;
+	}
+	public String getBookingMth() {
+		return bookingMth;
+	}
+	public void setBookingMth(String bookingMth) {
+		this.bookingMth = bookingMth;
+	}
+	public String getBookingYear() {
+		return bookingYear;
+	}
+	public void setBookingYear(String bookingYear) {
+		this.bookingYear = bookingYear;
+	}
+	public String getClmDistStatName() {
+		return clmDistStatName;
+	}
+	public void setClmDistStatName(String clmDistStatName) {
+		this.clmDistStatName = clmDistStatName;
+	}
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
+	public BigDecimal getCurrencyRt() {
+		return currencyRt;
+	}
+	public void setCurrencyRt(BigDecimal currencyRt) {
+		this.currencyRt = currencyRt;
+	}
 	@Override
 	public String toString() {
 		return "ClaimDist [clmDistNo=" + clmDistNo + ", histNo=" + histNo + ", histCategory=" + histCategory
-				+ ", histType=" + histType + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", clmDistStat="
-				+ clmDistStat + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", claimDistTreaty=" + claimDistTreaty + "]";
+				+ ", histType=" + histType + ", reserveAmt=" + reserveAmt + ", clmDistStat=" + clmDistStat
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", histCategoryName=" + histCategoryName + ", histTypeName="
+				+ histTypeName + ", bookingMth=" + bookingMth + ", bookingYear=" + bookingYear + ", clmDistStatName="
+				+ clmDistStatName + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", claimDistTreaty="
+				+ claimDistTreaty + "]";
 	}
-	
 }

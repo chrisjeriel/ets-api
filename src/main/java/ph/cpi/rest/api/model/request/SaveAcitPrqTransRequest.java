@@ -32,8 +32,9 @@ class PrqTrans {
 	private String policyId;
 	private String instNo;
 	private String quarterEnding;
-	private String investmentId;
+	private String invtId;
 	private String refNo;
+	private String itemName;
 	private String paymentFor;
 	private String currCd;
 	private String currRate;
@@ -92,17 +93,23 @@ class PrqTrans {
 	public void setQuarterEnding(String quarterEnding) {
 		this.quarterEnding = quarterEnding;
 	}
-	public String getInvestmentId() {
-		return investmentId;
+	public String getInvtId() {
+		return invtId;
 	}
-	public void setInvestmentId(String investmentId) {
-		this.investmentId = investmentId;
+	public void setInvtId(String investmentId) {
+		this.invtId = investmentId;
 	}
 	public String getRefNo() {
 		return refNo;
 	}
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 	public String getPaymentFor() {
 		return paymentFor;
@@ -168,9 +175,9 @@ class PrqTrans {
 	public String toString() {
 		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
 				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", investmentId=" + investmentId + ", refNo=" + refNo + ", paymentFor=" + paymentFor
-				+ ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName=" + itemName + ", paymentFor="
+				+ paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
+				+ localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
