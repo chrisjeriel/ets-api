@@ -32,6 +32,8 @@ public class AcitArInwPolBal {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	private BigDecimal allotedAmt;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -189,6 +191,13 @@ public class AcitArInwPolBal {
 		this.updateDate = updateDate;
 	}
 	
+	public BigDecimal getAllotedAmt() {
+		return allotedAmt;
+	}
+	public void setAllotedAmt(BigDecimal allotedAmt) {
+		this.allotedAmt = allotedAmt;
+	}
+	
 	@Override
 	public String toString() {
 		return "AcitArInwPolBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", policyId="
@@ -198,6 +207,6 @@ public class AcitArInwPolBal {
 				+ riComm + ", riCommVat=" + riCommVat + ", overdueInt=" + overdueInt + ", effDate=" + effDate
 				+ ", dueDate=" + dueDate + ", bookingDate=" + bookingDate + ", netDue=" + netDue + ", balPaytAmt="
 				+ balPaytAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", allotedAmt=" + allotedAmt + "]";
 	}
 }

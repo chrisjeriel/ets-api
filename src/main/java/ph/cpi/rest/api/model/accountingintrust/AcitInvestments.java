@@ -11,7 +11,8 @@ public class AcitInvestments {
 	private String  	bank;
 	private String  	certNo;
 	private String		invtType;
-	private String		invtTypeDesc;
+	private String  	invtTypeDesc;
+	private String  	invtSecDesc;
 	private String  	invtSecCd;
 	private String  	securityDesc;
 	private String  	invtStatus;
@@ -68,6 +69,12 @@ public class AcitInvestments {
 	}
 	public void setInvtTypeDesc(String invtTypeDesc) {
 		this.invtTypeDesc = invtTypeDesc;
+	}
+	public String getInvtSecDesc() {
+		return invtSecDesc;
+	}
+	public void setInvtSecDesc(String invtSecDesc) {
+		this.invtSecDesc = invtSecDesc;
 	}
 	public String getInvtSecCd() {
 		return invtSecCd;
@@ -198,13 +205,14 @@ public class AcitInvestments {
 	@Override
 	public String toString() {
 		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
-				+ ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc + ", invtSecCd=" + invtSecCd
-				+ ", securityDesc=" + securityDesc + ", invtStatus=" + invtStatus + ", matPeriod=" + matPeriod
-				+ ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate=" + matDate
-				+ ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt
-				+ ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
+				+ ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc + ", invtSecDesc=" + invtSecDesc
+				+ ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc + ", invtStatus=" + invtStatus
+				+ ", matPeriod=" + matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate
+				+ ", matDate=" + matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt
+				+ ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal="
+				+ matVal + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
 	}
+	
 	
 }

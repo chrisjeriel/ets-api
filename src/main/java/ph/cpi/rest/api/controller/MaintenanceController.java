@@ -918,6 +918,13 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnBookingMonth(rbmr);
 	}
 	
+	@GetMapping(path="retrieveMtnInvtSecType")
+	public @ResponseBody RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnInvtSecType");
+		logger.info("RetrieveMtnInvtSecurityTypeRequest : " + rist.toString());
+		return maintenanceService.retrieveMtnInvtSecurityType(rist);
+	}
+
 	@GetMapping(path="retrieveMtnAcitChartAcct")
 	public @ResponseBody RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcct(RetrieveMtnAcitChartAcctRequest rbmr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcitChartAcct");
@@ -952,13 +959,6 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnCedingTreaty");
 		logger.info("RetrieveMtnCedingTreatyRequest : " + request.toString());
 		return maintenanceService.retrieveMtnCedingTreaty(request);
-	}
-
-	@GetMapping(path="retrieveMtnInvtSecType")
-	public @ResponseBody RetrieveMtnInvtSecurityTypeResponse retrieveMtnInvtSecurityType(RetrieveMtnInvtSecurityTypeRequest rist) throws SQLException {
-		logger.info("GET: /api/maintenance-service/retrieveMtnInvtSecType");
-		logger.info("RetrieveMtnInvtSecurityTypeRequest : " + rist.toString());
-		return maintenanceService.retrieveMtnInvtSecurityType(rist);
 	}
 	
 	@PostMapping(path="saveMtnBank")

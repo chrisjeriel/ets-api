@@ -5,6 +5,9 @@ public class SaveRemindersRequest {
 	private String reminderId;
 	private String title;
 	private String reminder;
+	private String module;
+	private String referenceId;
+	private String details;
 	private String remiderDate;
 	private String alarmTime;
 	private String assignedTo;
@@ -80,13 +83,32 @@ public class SaveRemindersRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
+	}
+	public String getReferenceId() {
+		return referenceId;
+	}
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
+	}
 	@Override
 	public String toString() {
 		return "SaveRemindersRequest [reminderId=" + reminderId + ", title=" + title + ", reminder=" + reminder
-				+ ", remiderDate=" + remiderDate + ", alarmTime=" + alarmTime + ", assignedTo=" + assignedTo
-				+ ", status=" + status + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", module=" + module + ", referenceId=" + referenceId + ", details=" + details + ", remiderDate="
+				+ remiderDate + ", alarmTime=" + alarmTime + ", assignedTo=" + assignedTo + ", status=" + status
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

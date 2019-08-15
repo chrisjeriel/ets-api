@@ -6,8 +6,23 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVPremResRelRequest {
+	private Integer tranType;
+	private Integer tranId;
 	private List<premResRel> savePremResRel;
 	private List<premResRel> deletePremResRel;
+	
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
 	public List<premResRel> getSavePremResRel() {
 		return savePremResRel;
 	}
@@ -22,8 +37,8 @@ public class SaveAcitJVPremResRelRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVPremResRelRequest [savePremResRel=" + savePremResRel + ", deletePremResRel="
-				+ deletePremResRel + "]";
+		return "SaveAcitJVPremResRelRequest [tranType=" + tranType + ", tranId=" + tranId + ", savePremResRel="
+				+ savePremResRel + ", deletePremResRel=" + deletePremResRel + "]";
 	}
 }
 
