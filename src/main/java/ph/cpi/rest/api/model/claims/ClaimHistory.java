@@ -28,6 +28,7 @@ public class ClaimHistory {
 	private String 	 	updateUser;
 	private DateTime 	updateDate;
 	private String		insuredDesc;
+	private String		approvedAmt;
 	private Float		adjRate;
 	private String		enableRes;
 	private String 		enablePayt;
@@ -174,6 +175,7 @@ public class ClaimHistory {
 		this.adjRate = adjRate;
 	}
 	
+	
 //	public String getVal1() {
 //		return val1;
 //	}
@@ -199,6 +201,12 @@ public class ClaimHistory {
 //		this.val4 = val4;
 //	}
 	
+	public String getApprovedAmt() {
+		return approvedAmt;
+	}
+	public void setApprovedAmt(String approvedAmt) {
+		this.approvedAmt = approvedAmt;
+	}
 	public String getEnableRes() {
 		return enableRes;
 	}
@@ -225,7 +233,8 @@ public class ClaimHistory {
 				+ ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
 				+ ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate=" + refDate
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", adjRate=" + adjRate
-				+ ", enableRes=" + enableRes + ", enablePayt=" + enablePayt + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", approvedAmt="
+				+ approvedAmt + ", adjRate=" + adjRate + ", enableRes=" + enableRes + ", enablePayt=" + enablePayt
+				+ "]";
 	}
 }

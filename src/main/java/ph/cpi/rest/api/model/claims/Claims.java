@@ -26,6 +26,7 @@ public class Claims {
 	private Integer clmSeqNo;
 	private String clmStatCd;
 	private String clmStatus;
+	private BigDecimal insuredClm;
 	private Integer cessionId;
 	private String cessionDesc;
 	private String lineClassCd;
@@ -102,6 +103,7 @@ public class Claims {
 	private ClaimReserve clmReserve;
 	
 	private List<Attachment> clmAttachments;
+	private String preventRefresh;
 	
 	public Integer getClaimId() {
 		return claimId;
@@ -216,6 +218,12 @@ public class Claims {
 	}
 	public void setClmStatus(String clmStatus) {
 		this.clmStatus = clmStatus;
+	}
+	public BigDecimal getInsuredClm() {
+		return insuredClm;
+	}
+	public void setInsuredClm(BigDecimal insuredClm) {
+		this.insuredClm = insuredClm;
 	}
 	public Integer getCessionId() {
 		return cessionId;
@@ -655,6 +663,12 @@ public class Claims {
 	public void setClmAttachments(List<Attachment> clmAttachments) {
 		this.clmAttachments = clmAttachments;
 	}
+	public String getPreventRefresh() {
+		return preventRefresh;
+	}
+	public void setPreventRefresh(String preventRefresh) {
+		this.preventRefresh = preventRefresh;
+	}
 	@Override
 	public String toString() {
 		return "Claims [claimId=" + claimId + ", claimNo=" + claimNo + ", lineCd=" + lineCd + ", polYear=" + polYear
@@ -662,30 +676,30 @@ public class Claims {
 				+ altNo + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingName=" + cedingName
 				+ ", prinId=" + prinId + ", principalName=" + principalName + ", contractorId=" + contractorId
 				+ ", contractorName=" + contractorName + ", clmYear=" + clmYear + ", clmSeqNo=" + clmSeqNo
-				+ ", clmStatCd=" + clmStatCd + ", clmStatus=" + clmStatus + ", cessionId=" + cessionId
-				+ ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc
-				+ ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName
-				+ ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate
-				+ ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo + ", lossDate=" + lossDate + ", lossCd="
-				+ lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod=" + lossPeriod + ", lossPdAbbr=" + lossPdAbbr
-				+ ", lossDtl=" + lossDtl + ", lossStatCd=" + lossStatCd + ", eventTypeCd=" + eventTypeCd
-				+ ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc
-				+ ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate + ", reportedBy=" + reportedBy
-				+ ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd + ", oldClmStatus=" + oldClmStatus
-				+ ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate=" + issueDate + ", effDate="
-				+ effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
-				+ ", maintenanceTo=" + maintenanceTo + ", pctShare=" + pctShare + ", totalSi=" + totalSi
-				+ ", totalValue=" + totalValue + ", riskId=" + riskId + ", riskName=" + riskName + ", currencyCd="
-				+ currencyCd + ", totalLossExpRes=" + totalLossExpRes + ", totalLossExpPd=" + totalLossExpPd
-				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", lapsePdTag=" + lapsePdTag
-				+ ", polTermTag=" + polTermTag + ", premTag=" + premTag + ", remarks=" + remarks + ", approvedBy="
-				+ approvedBy + ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag + ", secIISiTag="
-				+ secIISiTag + ", secIIISiTag=" + secIIISiTag + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem="
-				+ sectionIIPrem + ", sectionIIIPrem=" + sectionIIIPrem + ", allowMaxSi=" + allowMaxSi + ", adjId="
-				+ adjId + ", adjName=" + adjName + ", adjFileNo=" + adjFileNo + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", project=" + project + ", clmAdjusterList=" + clmAdjusterList + ", clmProject=" + clmProject
-				+ ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve + ", clmAttachments="
-				+ clmAttachments + "]";
+				+ ", clmStatCd=" + clmStatCd + ", clmStatus=" + clmStatus + ", insuredClm=" + insuredClm
+				+ ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd
+				+ ", lineClassDesc=" + lineClassDesc + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId
+				+ ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
+				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo
+				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod="
+				+ lossPeriod + ", lossPdAbbr=" + lossPdAbbr + ", lossDtl=" + lossDtl + ", lossStatCd=" + lossStatCd
+				+ ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd
+				+ ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate
+				+ ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd
+				+ ", oldClmStatus=" + oldClmStatus + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw
+				+ ", issueDate=" + issueDate + ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo="
+				+ lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", pctShare="
+				+ pctShare + ", totalSi=" + totalSi + ", totalValue=" + totalValue + ", riskId=" + riskId
+				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", totalLossExpRes=" + totalLossExpRes
+				+ ", totalLossExpPd=" + totalLossExpPd + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
+				+ ", lapsePdTag=" + lapsePdTag + ", polTermTag=" + polTermTag + ", premTag=" + premTag + ", remarks="
+				+ remarks + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", secISiTag=" + secISiTag
+				+ ", secIISiTag=" + secIISiTag + ", secIIISiTag=" + secIIISiTag + ", sectionIPrem=" + sectionIPrem
+				+ ", sectionIIPrem=" + sectionIIPrem + ", sectionIIIPrem=" + sectionIIIPrem + ", allowMaxSi="
+				+ allowMaxSi + ", adjId=" + adjId + ", adjName=" + adjName + ", adjFileNo=" + adjFileNo
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", project=" + project + ", clmAdjusterList=" + clmAdjusterList
+				+ ", clmProject=" + clmProject + ", clmDeductibles=" + clmDeductibles + ", clmReserve=" + clmReserve
+				+ ", clmAttachments=" + clmAttachments + ", preventRefresh=" + preventRefresh + "]";
 	}
 }

@@ -24,6 +24,7 @@
 		<result property="clmSeqNo" 		column="CLM_SEQ_NO"/>
 		<result property="clmStatCd" 		column="CLM_STAT_CD"/>
 		<result property="clmStatus" 		column="CLM_STATUS"/>
+		<result property="insuredClm" 		column="INSURED_CLM"/>
 		<result property="cessionId" 		column="CESSION_ID"/>
 		<result property="cessionDesc" 		column="CESSION_DESC"/>
 		<result property="lineClassCd" 		column="LINE_CLASS_CD"/>
@@ -77,6 +78,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="preventRefresh" 	column="PREVENT_REFRESH"/>
 		
 		<association property="project" resultMap="clmProjectAssoc" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
@@ -110,7 +112,8 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER"/>
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="insuredDesc"	column="INSURED_DESC"/>	
+		<result property="insuredDesc"	column="INSURED_DESC"/>
+		<result property="approvedAmt"	column="APPROVED_AMT"/>	
 		<result property="enableRes"	column="ENABLE_RES"/>	
 		<result property="enablePayt"	column="ENABLE_PAYT"/>	
  		<!-- <result property="val1"			column="VAL1"/>
@@ -659,7 +662,9 @@
 				#{altNo, jdbcType=INTEGER},
 				#{clmYear, jdbcType=INTEGER},
 				#{clmSeqNo, jdbcType=INTEGER},
+				#{policyId, jdbcType=INTEGER},
 				#{clmStatCd, jdbcType=VARCHAR},
+				#{insuredClm, jdbcType=INTEGER},
 				#{cessionId, jdbcType=INTEGER},
 				#{lineClassCd, jdbcType=VARCHAR},
 				#{coRefNo, jdbcType=VARCHAR},
