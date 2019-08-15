@@ -1462,6 +1462,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		response.setWriskLimit(underwritingDao.retrieveWriskLimit(distWriskParam));
 		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
 		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
+		riskDistWparamParam.put("policyId", rrdr.getPolicyId());
 		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
 		response.setUndistAlt(underwritingDao.retrieveUndistAlt(distWriskParam));
 		response.setDistAlt(underwritingDao.retrieveDistAlt(distWriskParam));
