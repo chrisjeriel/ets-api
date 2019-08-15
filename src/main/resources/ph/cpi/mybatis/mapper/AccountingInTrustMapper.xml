@@ -1661,6 +1661,7 @@
 		<result property="netDue" column="PWZB_NET_DUE"/>
 		<result property="prevPaytAmt" column="PWZB_PREV_PAYT_AMT"/>
 		<result property="adjBalAmt" column="PWZB_ADJ_BAL_AMT"/>
+		<result property="localAmt" column="PWZB_LOCAL_AMT"/>
 		<result property="overdueInt" column="PWZB_OVERDUE_INT"/>
 		<result property="createUser" column="PWZB_CREATE_USER"/>
 		<result property="createDate" column="PWZB_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
