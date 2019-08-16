@@ -683,4 +683,11 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitJVEntryList(sajel);
 	}
 	
+	@GetMapping(path="retrieveAcitCv")
+	public @ResponseBody RetrieveAcitCvResponse retrieveAcitCv(RetrieveAcitCvRequest racr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitCv");
+		logger.info("RetrieveAcitCvRequest : " + racr.toString());
+		return acctInTrustService.retrieveAcitCv(racr);
+	}
+	
 }
