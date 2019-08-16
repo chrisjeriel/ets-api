@@ -90,7 +90,7 @@ public interface AccountingInTrustDao {
 	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
 	public List<ACITSOATreatyDetails> retrieveAcitSoaTrtyList(final HashMap<String, Object> params) throws SQLException;
-	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArClmRecover> retrieveAcitArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
@@ -109,7 +109,7 @@ public interface AccountingInTrustDao {
 	public Integer generateUPR(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerLine> retrieveAcitUPRPerLine(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(final HashMap<String, Object> params) throws SQLException;
-	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
 	public GenUPRParams retrieveAcitUPRParams() throws SQLException;
 	public String retrieveAcitExistingUPR(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(final HashMap<String, Object> params) throws SQLException;
@@ -119,4 +119,5 @@ public interface AccountingInTrustDao {
 	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitAllocInvtIncome(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVEntryList(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcctPrqServFee(final HashMap<String, Object> params) throws SQLException;
 }

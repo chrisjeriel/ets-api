@@ -52,9 +52,10 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcctPrqServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
+import ph.cpi.rest.api.model.request.SaveAcctPrqServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
@@ -121,10 +122,11 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcctPrqServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
+import ph.cpi.rest.api.model.response.SaveAcctPrqServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAllocInvtIncomeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
@@ -1087,18 +1089,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 
 	@Override
-	public RetrieveAcitServFeeMainGnrtResponse retrieveAcitServFeeMainGnrt(RetrieveAcitServFeeMainGnrtRequest rasfmr)
+	public RetrieveAcctPrqServFeeResponse retrieveAcctPrqServFee(RetrieveAcctPrqServFeeRequest rasfr)
 			throws SQLException {
-		RetrieveAcitServFeeMainGnrtResponse rasfmgResponse = new RetrieveAcitServFeeMainGnrtResponse();
+		RetrieveAcctPrqServFeeResponse rasfmgResponse = new RetrieveAcctPrqServFeeResponse();
 		HashMap<String, Object> rasfmParams = new HashMap<String, Object>();
-		rasfmParams.put("prdAsOf", rasfmr.getPrdAsOf());
-		rasfmParams.put("year", rasfmr.getYear());
-		rasfmParams.put("servFeeAmt", rasfmr.getServFeeAmt());
-		rasfmParams.put("currCd", rasfmr.getCurrCd());
-		rasfmParams.put("currRt", rasfmr.getCurrRt());
+		rasfmParams.put("prdAsOf", rasfr.getPrdAsOf());
+		rasfmParams.put("year", rasfr.getYear());
+		rasfmParams.put("servFeeAmt", rasfr.getServFeeAmt());
+		rasfmParams.put("currCd", rasfr.getCurrCd());
+		rasfmParams.put("currRt", rasfr.getCurrRt());
 		
-		rasfmgResponse.setMainDistList(acctITDao.retrieveAcitServFeeMainGnrt(rasfmParams));
-		rasfmgResponse.setSubDistList(acctITDao.retrieveAcitServFeeSubGnrt(rasfmParams));
+		rasfmgResponse.setMainDistList(acctITDao.retrieveAcctPrqServFeeMainGnrt(rasfmParams));
+		rasfmgResponse.setSubDistList(acctITDao.retrieveAcctPrqServFeeSubGnrt(rasfmParams));
 		
 		return rasfmgResponse;
 	}
@@ -1534,6 +1536,33 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", request.getUserId());
 		response.setEmployee(acctITDao.retrieveJVDefName(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcctPrqServFeeResponse saveAcctPrqServFee(SaveAcctPrqServFeeRequest sapsfr) throws SQLException {
+		SaveAcctPrqServFeeResponse response = new SaveAcctPrqServFeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("reqId", sapsfr.getReqId());
+		params.put("prdAsOf", sapsfr.getPrdAsOf());
+		params.put("year", sapsfr.getYear());
+		params.put("servFeeAmt", sapsfr.getServFeeAmt());
+		params.put("currCd", sapsfr.getCurrCd());
+		params.put("currRt", sapsfr.getCurrRt());
+		params.put("createUser", sapsfr.getCreateUser());
+		params.put("createDate", sapsfr.getCreateDate());
+		params.put("updateUser", sapsfr.getUpdateUser());
+		params.put("updateDate", sapsfr.getUpdateDate());
+		
+		try {
+			response.setReturnCode(acctITDao.saveAcctPrqServFee(params));
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		
 		return response;
 	}
 }

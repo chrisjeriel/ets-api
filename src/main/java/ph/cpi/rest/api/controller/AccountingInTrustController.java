@@ -55,9 +55,10 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcctPrqServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
+import ph.cpi.rest.api.model.request.SaveAcctPrqServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
@@ -124,10 +125,11 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcctPrqServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
+import ph.cpi.rest.api.model.response.SaveAcctPrqServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAllocInvtIncomeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
@@ -480,11 +482,11 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitPrqInwPol(saptr);
 	}
 	
-	@GetMapping(path="retrieveAcitServFeeMainGnrt")
-	public @ResponseBody RetrieveAcitServFeeMainGnrtResponse retrieveAcitServFeeMainGnrt(RetrieveAcitServFeeMainGnrtRequest rasfmr) throws SQLException {
-		logger.info("GET: /api/acct-in-trust-service/retrieveAcitServFeeMainGnrt");
-		logger.info("RetrieveAcitServFeeMainGnrtRequest : " + rasfmr.toString());
-		return acctInTrustService.retrieveAcitServFeeMainGnrt(rasfmr);
+	@GetMapping(path="retrieveAcctPrqServFee")
+	public @ResponseBody RetrieveAcctPrqServFeeResponse retrieveAcctPrqServFee(RetrieveAcctPrqServFeeRequest rasfr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctPrqServFee");
+		logger.info("RetrieveAcctPrqServFeeRequest : " + rasfr.toString());
+		return acctInTrustService.retrieveAcctPrqServFee(rasfr);
 	}
 
 	@GetMapping(path="retrieveAcitArClmRecover")
@@ -683,4 +685,10 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitJVEntryList(sajel);
 	}
 	
+	@PostMapping(path="saveAcctPrqServFee")
+	public @ResponseBody SaveAcctPrqServFeeResponse saveAcctPrqServFee(@RequestBody SaveAcctPrqServFeeRequest sapsfr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcctPrqServFee");
+		logger.info("SaveAcctPrqServFeeRequest : " + sapsfr.toString());
+		return acctInTrustService.saveAcctPrqServFee(sapsfr);
+	}
 }

@@ -357,7 +357,7 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(HashMap<String, Object> params) throws SQLException {
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeMainGnrt(HashMap<String, Object> params) throws SQLException {
 		List<AcctServFeeDist> mainList =  sqlSession.selectList("retrieveAcitServFeeMainGnrt", params);
 		return mainList;
 	}
@@ -529,7 +529,7 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 	
 	@Override
-	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
 		List<AcctServFeeDist> subList =  sqlSession.selectList("retrieveAcitServFeeSubGnrt", params);
 		return subList;
 	}
@@ -537,6 +537,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public UserId retrieveJVDefName(HashMap<String, Object> params) throws SQLException {
 		UserId res = sqlSession.selectOne("retrieveDefName",params);
 		return res;
+	}
+
+	@Override
+	public Integer saveAcctPrqServFee(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcctPrqServFee", params);
+		return errorCode;
 	}
 	
 }

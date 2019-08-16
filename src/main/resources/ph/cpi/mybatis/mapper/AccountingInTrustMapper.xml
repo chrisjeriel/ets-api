@@ -2413,4 +2413,21 @@
 		END;
 	</update>
 	
+	<update id="saveAcctPrqServFee" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACCT_SERVFEE_DTL_DIST_PKG.save_servfee(
+				#{reqId, jdbcType=INTEGER},
+				CAST(to_timestamp(#{prdAsOf, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{year, jdbcType=INTEGER},
+				#{servFeeAmt, jdbcType=INTEGER},
+				#{currCd, jdbcType=VARCHAR},
+				#{currRt, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
 </mapper>
