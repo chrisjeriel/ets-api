@@ -56,9 +56,9 @@ class InwPol{
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal prevPaytAmt;
+	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
-	private BigDecimal adjBalAmt;
+	private BigDecimal remainingBal;
 	private BigDecimal overdueInt;
 	private String createUser;
 	private String createDate;
@@ -130,17 +130,18 @@ class InwPol{
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getPrevPaytAmt() {
-		return prevPaytAmt;
+	
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
 	}
-	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
-		this.prevPaytAmt = prevPaytAmt;
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
-	public BigDecimal getAdjBalAmt() {
-		return adjBalAmt;
+	public BigDecimal getRemainingBal() {
+		return remainingBal;
 	}
-	public void setAdjBalAmt(BigDecimal adjBalAmt) {
-		this.adjBalAmt = adjBalAmt;
+	public void setRemainingBal(BigDecimal remainingBal) {
+		this.remainingBal = remainingBal;
 	}
 	public BigDecimal getOverdueInt() {
 		return overdueInt;
@@ -183,8 +184,8 @@ class InwPol{
 	public String toString() {
 		return "InwPol [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPaytAmt="
-				+ prevPaytAmt + ", localAmt=" + localAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", paytAmt=" + paytAmt
+				+ ", localAmt=" + localAmt + ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}

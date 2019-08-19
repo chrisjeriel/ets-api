@@ -78,6 +78,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJVEntryListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVRcvblsAgnstLosRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
@@ -149,6 +150,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVEntryListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVRcvblsAgnstLosResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
@@ -692,4 +694,10 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitJVRcvblsAgnstLosses(request);
 	}
 	
+	@PostMapping(path="saveAcitJvReceivablesAgainstLoss")
+	public @ResponseBody SaveAcitJVRcvblsAgnstLosResponse saveAcitJvReceivablesAgainstLoss(@RequestBody SaveAcitJVRcvblsAgnstLosRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/SaveAcitJVRcvblsAgnstLosRequest");
+		logger.info("SaveAcitJVRcvblsAgnstLosRequest : " + request.toString());
+		return acctInTrustService.saveAcitJvRcvblsAgnstLoss(request);
+	}
 }
