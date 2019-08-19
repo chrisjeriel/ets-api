@@ -15,6 +15,7 @@ public class ARPaymentDetails {
 	private String checkNo;
 	private DateTime checkDate;
 	private String checkClass;
+	private String remarks;
 	
 	
 	public Integer getPaytId() {
@@ -77,11 +78,17 @@ public class ARPaymentDetails {
 	public void setCheckClass(String checkClass) {
 		this.checkClass = checkClass;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	
 	@Override
 	public String toString() {
 		return "ARPaymentDetails [paytId=" + paytId + ", paytMode=" + paytMode + ", currCd=" + currCd + ", currRate="
 				+ currRate + ", paytAmt=" + paytAmt + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo="
-				+ checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass + "]";
+				+ checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass + ", remarks=" + remarks + "]";
 	}
 }

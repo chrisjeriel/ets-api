@@ -496,6 +496,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("prPreparedBy", saatr.getPrPreparedBy());
 		params.put("payeeNo", saatr.getPayeeNo());
 		params.put("payor", saatr.getPayor());
+		params.put("mailAddress", saatr.getMailAddress());
+		params.put("bussTypeName", saatr.getBussTypeName());
+		params.put("tin", saatr.getTin());
 		params.put("particulars", saatr.getParticulars());
 		params.put("currCd", saatr.getCurrCd());
 		params.put("currRate", saatr.getCurrRate());
@@ -769,6 +772,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId", raasdr.getCedingId());
 		params.put("payeeNo", raasdr.getPayeeNo());
 		params.put("zeroBal", raasdr.getZeroBal());
+		params.put("currCd", raasdr.getCurrCd());
 		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
 		return response;
 	}

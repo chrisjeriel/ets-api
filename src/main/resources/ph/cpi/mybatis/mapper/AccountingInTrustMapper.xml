@@ -403,6 +403,7 @@
 		<result property="checkNo"         column="CHECK_CARD_NO" />
 		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="checkClass"      column="CHECK_CLASS" />
+		<result property="remarks"         column="REMARKS" />
 	</resultMap>
 	
 	<select id="retArEntry" resultMap="arEntryMap" parameterType="java.util.Map">
@@ -648,6 +649,9 @@
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
 														#{payor},
+														#{mailAddress},
+														#{bussTypeName},
+														#{tin},
 														#{particulars},
 														#{currCd},
 														#{currRate},
@@ -677,7 +681,8 @@
 														#{save.bankAcct, jdbcType=VARCHAR},
 														#{save.checkNo, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.checkDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														#{save.checkClass, jdbcType=VARCHAR}
+														#{save.checkClass, jdbcType=VARCHAR},
+														#{save.remarks, jdbcType=VARCHAR}
 													  );
 				</foreach>
 				
@@ -978,7 +983,8 @@
 																	#{instNo,jdbcType=VARCHAR},
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{payeeNo, jdbcType=VARCHAR},
-																	#{zeroBal, jdbcType=INTEGER}))
+																	#{zeroBal, jdbcType=INTEGER},
+																	#{currCd}))
 	</select>
 	
 	<update id="saveArInwPolBal" parameterType="java.util.Map" statementType="CALLABLE">
