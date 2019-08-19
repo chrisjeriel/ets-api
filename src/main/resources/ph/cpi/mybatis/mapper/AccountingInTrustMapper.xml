@@ -497,6 +497,7 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="OKDELETE"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="soaAgingMap">
@@ -1710,7 +1711,7 @@
 			<foreach collection="saveZeroBal" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.prevPaytAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
+													#{save.netDue}, #{save.prevPaytAmt}, #{save.localAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
