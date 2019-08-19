@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVRcvblsAgnstLosRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJvDefNameRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
@@ -74,6 +75,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJVEntryListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVRcvblsAgnstLosRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
@@ -113,6 +115,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVRcvblsAgnstLosResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitProfCommSummResponse;
@@ -144,6 +147,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVEntryListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVRcvblsAgnstLosResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
@@ -245,7 +249,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 //	@Override
 //	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
 //			throws SQLException {
-//		// TODO Auto-generated method stub
 //		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
 //		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
 //		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
@@ -383,7 +386,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	@Override
 	public RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentList(RetrieveAcitInvestmentsListRequest railr)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		
 		RetrieveAcitInvestmentsListResponse railrResponse = new RetrieveAcitInvestmentsListResponse();
 		HashMap<String, Object> railrParams = new HashMap<String, Object>();
@@ -409,7 +411,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 	@Override
 	public SaveAcitInvestmentsResponse saveAcitInvestments(SaveAcitInvestmentsRequest rair) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcitInvestmentsResponse sairResponse = new SaveAcitInvestmentsResponse();
 		HashMap<String, Object> sairParams = new HashMap<String, Object>();
 		try {
@@ -612,7 +613,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	@Override
 	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		
 		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
 		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
@@ -865,9 +865,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	
 	@Override
 	public RetrieveAcitAllInvestmentIncomeResponse retrieveAcitAllInvestmentIncome(
-			RetrieveAcitAllInvestmentIncomeRequest raaii) throws SQLException {
-		// TODO Auto-generated method stub
-		
+			RetrieveAcitAllInvestmentIncomeRequest raaii) throws SQLException {	
 		RetrieveAcitAllInvestmentIncomeResponse raaiiResponse = new RetrieveAcitAllInvestmentIncomeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -918,7 +916,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	@Override
 	public RetrieveAcitAllInvestmentIncomeInvtIdResponse retrieveAcitAllInvestmentIncomeInvtId(
 			RetrieveAcitAllInvestmentIncomeInvtIdRequest raii) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcitAllInvestmentIncomeInvtIdResponse raiResponse = new RetrieveAcitAllInvestmentIncomeInvtIdResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", raii.getTranId());
@@ -1152,7 +1149,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	@Override
 	public SaveAcitAllocInvtIncomeResponse saveAcitAllocInvtIncome(SaveAcitAllocInvtIncomeRequest saaii)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcitAllocInvtIncomeResponse response = new SaveAcitAllocInvtIncomeResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1173,7 +1169,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 	@Override
 	public SaveAcitJVEntryListResponse saveAcitJVEntryList(SaveAcitJVEntryListRequest sajel) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcitJVEntryListResponse response = new SaveAcitJVEntryListResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1538,6 +1533,39 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("userId", request.getUserId());
 		response.setEmployee(acctITDao.retrieveJVDefName(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJVRcvblsAgnstLosResponse retrieveAcitJVRcvblsAgnstLosses(
+			RetrieveAcitJVRcvblsAgnstLosRequest request) throws SQLException {
+		RetrieveAcitJVRcvblsAgnstLosResponse response = new RetrieveAcitJVRcvblsAgnstLosResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());
+		params.put("cedingId", request.getCedingId());
+		response.setReceivables(acctITDao.retrieveAcitJVRcvblsAgnstLosses(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVRcvblsAgnstLosResponse saveAcitJvRcvblsAgnstLoss(SaveAcitJVRcvblsAgnstLosRequest request)
+			throws SQLException {
+		SaveAcitJVRcvblsAgnstLosResponse response = new SaveAcitJVRcvblsAgnstLosResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveClmOffset", request.getSaveClmOffset());
+			params.put("delClmOffset", request.getDelClmOffset());
+			params.put("saveInwPol", request.getSaveInwPol());
+			params.put("delInwPol", request.getDelInwPol());
+			HashMap<String, Object> res = acctITDao.saveAcitJvRcvblsAgnstLoss(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
 		return response;
 	}
 }
