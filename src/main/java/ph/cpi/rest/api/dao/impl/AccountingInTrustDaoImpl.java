@@ -545,4 +545,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitCv> acitCvList  = sqlSession.selectList("retrieveAcitCv", params);
 		return acitCvList;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitCv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCv", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
