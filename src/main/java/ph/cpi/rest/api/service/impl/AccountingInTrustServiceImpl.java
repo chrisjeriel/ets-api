@@ -1547,7 +1547,14 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitCvResponse racResponse = new RetrieveAcitCvResponse();
 		HashMap<String, Object> racParams = new HashMap<String, Object>();
 		racParams.put("tranId",raptp.getTranId());
-		racResponse.setAcitCvPaytReqList(acctITDao.retrieveAcitCv(racParams));
+		racParams.put("cvGenNo",raptp.getCvGenNo());
+		racParams.put("cvDateFrom",raptp.getCvDateFrom());
+		racParams.put("cvDateTo",raptp.getCvDateTo());
+		racParams.put("cvStatusDesc",raptp.getCvStatusDesc());
+		racParams.put("payee",raptp.getPayee());
+		racParams.put("particulars",raptp.getParticulars());
+		racParams.put("cvAmt",raptp.getCvAmt());
+		racResponse.setAcitCvList(acctITDao.retrieveAcitCv(racParams));
 		logger.info("RetrieveAcitCvResponse : " + racResponse);
 		return racResponse;
 	}

@@ -7,14 +7,15 @@ import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 
 public class RetrieveAcitCvResponse {
-	private List<AcitCv> acitCvPaytReqList;
+	private List<AcitCv> acitCvList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public List<AcitCv> getAcitCvPaytReqList() {
-		return acitCvPaytReqList;
+	
+	public List<AcitCv> getAcitCvList() {
+		return acitCvList;
 	}
-	public void setAcitCvPaytReqList(List<AcitCv> acitCvPaytReqList) {
-		this.acitCvPaytReqList = acitCvPaytReqList;
+	public void setAcitCvList(List<AcitCv> acitCvList) {
+		this.acitCvList = acitCvList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -30,7 +31,7 @@ public class RetrieveAcitCvResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitCvResponse [acitCvPaytReqList=" + acitCvPaytReqList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcitCvResponse [acitCvList=" + acitCvList + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
 }
