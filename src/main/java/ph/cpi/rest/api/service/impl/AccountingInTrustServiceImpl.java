@@ -1582,6 +1582,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVRcvblsAgnstLosResponse response = new SaveAcitJVRcvblsAgnstLosResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveClmOffset", request.getSaveClmOffset());
 			params.put("delClmOffset", request.getDelClmOffset());
 			params.put("saveInwPol", request.getSaveInwPol());

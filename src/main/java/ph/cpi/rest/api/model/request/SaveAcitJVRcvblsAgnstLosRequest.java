@@ -6,10 +6,25 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVRcvblsAgnstLosRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<ClmOffset> saveClmOffset;
 	private List<ClmOffset> delClmOffset;
 	private List<InwpolOffset> saveInwPol;
 	private List<InwpolOffset> delInwPol;
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
 	public List<ClmOffset> getSaveClmOffset() {
 		return saveClmOffset;
 	}
@@ -36,8 +51,9 @@ public class SaveAcitJVRcvblsAgnstLosRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVRcvblsAgnstLosRequest [saveClmOffset=" + saveClmOffset + ", delClmOffset=" + delClmOffset
-				+ ", saveInwPol=" + saveInwPol + ", delInwPol=" + delInwPol + "]";
+		return "SaveAcitJVRcvblsAgnstLosRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveClmOffset="
+				+ saveClmOffset + ", delClmOffset=" + delClmOffset + ", saveInwPol=" + saveInwPol + ", delInwPol="
+				+ delInwPol + "]";
 	}
 	
 }
@@ -55,8 +71,8 @@ class InwpolOffset{
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal prevPaytAmt;
-	private BigDecimal balPaytAmt;
+	private BigDecimal cumPayment;
+	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
 	private String remarks;
@@ -130,17 +146,18 @@ class InwpolOffset{
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getPrevPaytAmt() {
-		return prevPaytAmt;
+	
+	public BigDecimal getCumPayment() {
+		return cumPayment;
 	}
-	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
-		this.prevPaytAmt = prevPaytAmt;
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
 	}
-	public BigDecimal getBalPaytAmt() {
-		return balPaytAmt;
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
 	}
-	public void setBalPaytAmt(BigDecimal balPaytAmt) {
-		this.balPaytAmt = balPaytAmt;
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -188,11 +205,12 @@ class InwpolOffset{
 	public String toString() {
 		return "InwpolOffset [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPaytAmt="
-				+ prevPaytAmt + ", balPaytAmt=" + balPaytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", cumPayment="
+				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }
 
 @Alias ("ACITClaimOffset")
