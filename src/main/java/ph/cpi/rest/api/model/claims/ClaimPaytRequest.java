@@ -23,11 +23,46 @@ public class ClaimPaytRequest {
 	private String histType;
 	private String histTypeDesc;
 	private String currencyCd;
+	private BigDecimal currencyRt;
 	private BigDecimal reserveAmt;
 	private BigDecimal paytAmt;
 	private String refNo;
 	private DateTime refDate;
+	private String particulars;
+	private Integer payeeNo;
+	private String payee;
+	private String tranTypeName;
 	
+	public String getTranTypeName() {
+		return tranTypeName;
+	}
+	public void setTranTypeName(String tranTypeName) {
+		this.tranTypeName = tranTypeName;
+	}
+	public Integer getPayeeNo() {
+		return payeeNo;
+	}
+	public void setPayeeNo(Integer payeeNo) {
+		this.payeeNo = payeeNo;
+	}
+	public String getPayee() {
+		return payee;
+	}
+	public void setPayee(String payee) {
+		this.payee = payee;
+	}
+	public String getParticulars() {
+		return particulars;
+	}
+	public void setParticulars(String particulars) {
+		this.particulars = particulars;
+	}
+	public BigDecimal getCurrencyRt() {
+		return currencyRt;
+	}
+	public void setCurrencyRt(BigDecimal currencyRt) {
+		this.currencyRt = currencyRt;
+	}
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -155,7 +190,8 @@ public class ClaimPaytRequest {
 				+ paytReqStatDesc + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", histCategory=" + histCategory + ", histCategoryDesc="
 				+ histCategoryDesc + ", histType=" + histType + ", histTypeDesc=" + histTypeDesc + ", currencyCd="
-				+ currencyCd + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", refNo=" + refNo + ", refDate="
-				+ refDate + "]";
+				+ currencyCd + ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt
+				+ ", refNo=" + refNo + ", refDate=" + refDate + ", particulars=" + particulars + ", payeeNo=" + payeeNo
+				+ ", payee=" + payee + ", tranTypeName=" + tranTypeName + "]";
 	}
 }
