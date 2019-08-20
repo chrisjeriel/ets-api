@@ -348,6 +348,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("clmSeqNo", scgir.getClmSeqNo());
 		params.put("policyId", scgir.getPolicyId());
 		params.put("clmStatCd", scgir.getClmStatCd());
+		params.put("insuredClm", scgir.getInsuredClm());
 		params.put("cessionId", scgir.getCessionId());
 		params.put("lineClassCd", scgir.getLineClassCd());
 		params.put("coRefNo", scgir.getCoRefNo());

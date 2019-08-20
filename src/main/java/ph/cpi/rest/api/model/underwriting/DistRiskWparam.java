@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class DistRiskWparam {
+	private String distId;
 	private Integer treatyYear;
 	private Integer treatyId;
 	private String treatyName;
@@ -16,6 +17,13 @@ public class DistRiskWparam {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	public String getDistId() {
+		return distId;
+	}
+	public void setDistId(String distId) {
+		this.distId = distId;
+	}
 	public Integer getTreatyYear() {
 		return treatyYear;
 	}
@@ -84,10 +92,10 @@ public class DistRiskWparam {
 	}
 	@Override
 	public String toString() {
-		return "DistRiskWparam [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", treatyName=" + treatyName
-				+ ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", commRt="
-				+ commRt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "DistRiskWparam [distId=" + distId + ", treatyYear=" + treatyYear + ", treatyId=" + treatyId
+				+ ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName
+				+ ", pctShare=" + pctShare + ", commRt=" + commRt + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }
