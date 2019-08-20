@@ -7,6 +7,8 @@ import org.joda.time.DateTime;
 public class AcitJVPremResReleased {
 	private Integer tranId;
 	private Integer itemNo;
+	private String cedingId;
+	private String cedingName;
 	private DateTime quarterEnding;
 	private String currCd;
 	private BigDecimal currRate;
@@ -17,6 +19,19 @@ public class AcitJVPremResReleased {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -91,9 +106,11 @@ public class AcitJVPremResReleased {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVPremResReleased [tranId=" + tranId + ", itemNo=" + itemNo + ", quarterEnding=" + quarterEnding
-				+ ", currCd=" + currCd + ", currRate=" + currRate + ", interestAmt=" + interestAmt + ", whtaxAmt="
-				+ whtaxAmt + ", releaseAmt=" + releaseAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitJVPremResReleased [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId
+				+ ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", interestAmt=" + interestAmt + ", whtaxAmt=" + whtaxAmt + ", releaseAmt="
+				+ releaseAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }
