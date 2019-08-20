@@ -9,26 +9,33 @@ public class AcitJVAdjstInwPolBal {
 	private Integer itemNo;
 	private Integer policyId;
 	private String policyNo;
-	private String soaNo;
+	private Integer instNo;
 	private String coRefNo;
 	private DateTime effDate;
 	private DateTime dueDate;
-	private Integer instNo;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal prevPremAmt;
+	private BigDecimal prevRiComm;
+	private BigDecimal prevRiCommVat;
+	private BigDecimal prevCharges;
+	private BigDecimal prevNetDue;
+	private BigDecimal cumPayment;
+	private BigDecimal balance;
+	private BigDecimal localAmt;
+	private BigDecimal paytAmt;
 	private BigDecimal premAmt;
 	private BigDecimal riComm;
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal prevPaytAmt;
-	private BigDecimal localAmt;
-	private BigDecimal adjBalAmt;
-	private BigDecimal overdueInt;
+	private BigDecimal totalPayt;
+	private BigDecimal remainingBal;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -53,11 +60,11 @@ public class AcitJVAdjstInwPolBal {
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
 	}
-	public String getSoaNo() {
-		return soaNo;
+	public Integer getInstNo() {
+		return instNo;
 	}
-	public void setSoaNo(String soaNo) {
-		this.soaNo = soaNo;
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
 	}
 	public String getCoRefNo() {
 		return coRefNo;
@@ -77,12 +84,6 @@ public class AcitJVAdjstInwPolBal {
 	public void setDueDate(DateTime dueDate) {
 		this.dueDate = dueDate;
 	}
-	public Integer getInstNo() {
-		return instNo;
-	}
-	public void setInstNo(Integer instNo) {
-		this.instNo = instNo;
-	}
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -94,6 +95,60 @@ public class AcitJVAdjstInwPolBal {
 	}
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
+	}
+	public BigDecimal getPrevPremAmt() {
+		return prevPremAmt;
+	}
+	public void setPrevPremAmt(BigDecimal prevPremAmt) {
+		this.prevPremAmt = prevPremAmt;
+	}
+	public BigDecimal getPrevRiComm() {
+		return prevRiComm;
+	}
+	public void setPrevRiComm(BigDecimal prevRiComm) {
+		this.prevRiComm = prevRiComm;
+	}
+	public BigDecimal getPrevRiCommVat() {
+		return prevRiCommVat;
+	}
+	public void setPrevRiCommVat(BigDecimal prevRiCommVat) {
+		this.prevRiCommVat = prevRiCommVat;
+	}
+	public BigDecimal getPrevCharges() {
+		return prevCharges;
+	}
+	public void setPrevCharges(BigDecimal prevCharges) {
+		this.prevCharges = prevCharges;
+	}
+	public BigDecimal getPrevNetDue() {
+		return prevNetDue;
+	}
+	public void setPrevNetDue(BigDecimal prevNetDue) {
+		this.prevNetDue = prevNetDue;
+	}
+	public BigDecimal getCumPayment() {
+		return cumPayment;
+	}
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getBalance() {
+		return balance;
+	}
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
+	}
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
 	public BigDecimal getPremAmt() {
 		return premAmt;
@@ -125,23 +180,17 @@ public class AcitJVAdjstInwPolBal {
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getPrevPaytAmt() {
-		return prevPaytAmt;
+	public BigDecimal getTotalPayt() {
+		return totalPayt;
 	}
-	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
-		this.prevPaytAmt = prevPaytAmt;
+	public void setTotalPayt(BigDecimal totalPayt) {
+		this.totalPayt = totalPayt;
 	}
-	public BigDecimal getAdjBalAmt() {
-		return adjBalAmt;
+	public BigDecimal getRemainingBal() {
+		return remainingBal;
 	}
-	public void setAdjBalAmt(BigDecimal adjBalAmt) {
-		this.adjBalAmt = adjBalAmt;
-	}
-	public BigDecimal getOverdueInt() {
-		return overdueInt;
-	}
-	public void setOverdueInt(BigDecimal overdueInt) {
-		this.overdueInt = overdueInt;
+	public void setRemainingBal(BigDecimal remainingBal) {
+		this.remainingBal = remainingBal;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -168,20 +217,24 @@ public class AcitJVAdjstInwPolBal {
 		this.updateDate = updateDate;
 	}
 	
-	public BigDecimal getLocalAmt() {
-		return localAmt;
+	public String getOkDelete() {
+		return okDelete;
 	}
-	public void setLocalAmt(BigDecimal localAmt) {
-		this.localAmt = localAmt;
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
 		return "AcitJVAdjstInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate
-				+ ", dueDate=" + dueDate + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges
-				+ ", netDue=" + netDue + ", prevPaytAmt=" + prevPaytAmt + ", localAmt=" + localAmt + ", adjBalAmt="
-				+ adjBalAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", policyNo=" + policyNo + ", instNo=" + instNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate
+				+ ", dueDate=" + dueDate + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPremAmt="
+				+ prevPremAmt + ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges="
+				+ prevCharges + ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment + ", balance=" + balance
+				+ ", localAmt=" + localAmt + ", paytAmt=" + paytAmt + ", premAmt=" + premAmt + ", riComm=" + riComm
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", totalPayt="
+				+ totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ "]";
 	}
+	
 }

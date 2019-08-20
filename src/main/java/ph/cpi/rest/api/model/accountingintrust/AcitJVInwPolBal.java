@@ -4,16 +4,16 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcitJVAppPaymentZeroBal {
+public class AcitJVInwPolBal {
 	private Integer tranId;
 	private Integer itemNo;
 	private Integer policyId;
+	private Integer instNo;
 	private String policyNo;
 	private String soaNo;
 	private String coRefNo;
 	private DateTime effDate;
 	private DateTime dueDate;
-	private Integer instNo;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal premAmt;
@@ -22,9 +22,10 @@ public class AcitJVAppPaymentZeroBal {
 	private BigDecimal charges;
 	private BigDecimal netDue;
 	private BigDecimal prevPaytAmt;
-	private BigDecimal adjBalAmt;
+	private BigDecimal balPaytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -46,6 +47,12 @@ public class AcitJVAppPaymentZeroBal {
 	}
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
+	}
+	public Integer getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
 	}
 	public String getPolicyNo() {
 		return policyNo;
@@ -76,12 +83,6 @@ public class AcitJVAppPaymentZeroBal {
 	}
 	public void setDueDate(DateTime dueDate) {
 		this.dueDate = dueDate;
-	}
-	public Integer getInstNo() {
-		return instNo;
-	}
-	public void setInstNo(Integer instNo) {
-		this.instNo = instNo;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -131,11 +132,11 @@ public class AcitJVAppPaymentZeroBal {
 	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
 		this.prevPaytAmt = prevPaytAmt;
 	}
-	public BigDecimal getAdjBalAmt() {
-		return adjBalAmt;
+	public BigDecimal getBalPaytAmt() {
+		return balPaytAmt;
 	}
-	public void setAdjBalAmt(BigDecimal adjBalAmt) {
-		this.adjBalAmt = adjBalAmt;
+	public void setBalPaytAmt(BigDecimal balPaytAmt) {
+		this.balPaytAmt = balPaytAmt;
 	}
 	
 	public BigDecimal getLocalAmt() {
@@ -149,6 +150,12 @@ public class AcitJVAppPaymentZeroBal {
 	}
 	public void setOverdueInt(BigDecimal overdueInt) {
 		this.overdueInt = overdueInt;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -176,12 +183,13 @@ public class AcitJVAppPaymentZeroBal {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVAppPaymentZeroBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate
-				+ ", dueDate=" + dueDate + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges
-				+ ", netDue=" + netDue + ", prevPaytAmt=" + prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", localAmt="
-				+ localAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitJVInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo="
+				+ instNo + ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", effDate="
+				+ effDate + ", dueDate=" + dueDate + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
+				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
+				+ netDue + ", prevPaytAmt=" + prevPaytAmt + ", balPaytAmt=" + balPaytAmt + ", localAmt=" + localAmt
+				+ ", overdueInt=" + overdueInt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }
