@@ -8,6 +8,8 @@ import org.joda.time.DateTime;
 public class AcitJVClaimsLosses {
 	private Integer tranId;
 	private Integer itemNo;
+	private String cedingId;
+	private String cedingName;
 	private Integer claimId;
 	private Integer projId;
 	private Integer histNo;
@@ -30,6 +32,19 @@ public class AcitJVClaimsLosses {
 	private String updateUser;
 	private DateTime updateDate;
 	private List<AcitJVInwPolBal> inwPolBal;
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}

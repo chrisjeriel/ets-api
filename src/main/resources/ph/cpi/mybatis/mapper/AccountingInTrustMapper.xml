@@ -472,6 +472,8 @@
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="policyId" column="PREV_POLICY_ID"/>
 		<result property="policyNo" column="PREV_POLICY_NO"/>
+		<result property="cedingId" column="CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="instNo" column="PREV_INST_NO"/>
 		<result property="coRefNo" column="PREV_CO_REF_NO"/>
 		<result property="effDate" column="PREV_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -538,6 +540,7 @@
 		<result property="tranId" column="TRAN_ID"/>
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="cedingId" column="CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="policyNo" column="POLICY_NO"/>
 		<result property="soaNo" column="SOA_NO"/>
@@ -608,7 +611,7 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_aipb(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
-					#{cedingCo},
+					#{cedingCo,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
 
@@ -887,6 +890,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased" id="premResMap">
 		<result property="tranId" column="TRAN_ID"/>
 		<result property="itemNo" column="ITEM_NO"/>
+		<result property="cedingId" column="CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd" column="CURR_CD"/>
 		<result property="currRate" column="CURR_RATE"/>
@@ -1681,6 +1686,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal" id="zeroBalMap">
 		<result property="tranId" column="PWZB_TRAN_ID"/>
 		<result property="itemNo" column="PWZB_ITEM_NO"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="policyId" column="PWZB_POLICY_ID"/>
 		<result property="policyNo" column="PWZB_POLICY_NO"/>
 		<result property="soaNo" column="PWZB_SOA_NO"/>
@@ -2116,6 +2123,7 @@
 		<result property="tranId" column="TRYTY_TRAN_ID"/>
 		<result property="quarterNo" column="TRYTY_QUARTER_NO"/>
 		<result property="cedingId" column="TRYTY_CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="quarterEnding" column="TRYTY_QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd" column="TRYTY_CURR_CD"/>
 		<result property="currRate" column="TRYTY_CURR_RATE"/>
@@ -2321,6 +2329,7 @@
 		<result property="tranId" 			column="TRYTY_TRAN_ID"/>
 		<result property="quarterNo" 		column="TRYTY_QUARTER_NO"/>
 		<result property="cedingId" 		column="TRYTY_CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="quarterEnding" 	column="TRYTY_QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd" 			column="TRYTY_CURR_CD"/>
 		<result property="currRate" 		column="TRYTY_CURR_RATE"/>
@@ -2504,6 +2513,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses" id="claimLossMap">
 		<result property="tranId" 			column="CLM_TRAN_ID"/>
 		<result property="itemNo" 			column="CLM_ITEM_NO"/>
+		<result property="cedingId" 			column="CLM_TRAN_ID"/>
+		<result property="cedingName" 			column="CLM_ITEM_NO"/>
 		<result property="claimId" 			column="CLM_CLAIM_ID"/>
 		<result property="projId" 			column="CLM_PROJ_ID"/>
 		<result property="histNo" 			column="CLM_HIST_NO"/>

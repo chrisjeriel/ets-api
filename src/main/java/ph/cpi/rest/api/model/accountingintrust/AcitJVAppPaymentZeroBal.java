@@ -9,6 +9,8 @@ public class AcitJVAppPaymentZeroBal {
 	private Integer itemNo;
 	private Integer policyId;
 	private String policyNo;
+	private String cedingId;
+	private String cedingName;
 	private String soaNo;
 	private String coRefNo;
 	private DateTime effDate;
@@ -38,6 +40,19 @@ public class AcitJVAppPaymentZeroBal {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}
