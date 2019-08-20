@@ -742,7 +742,7 @@
 						);
 					END IF;
 					<!-- Generate to Amount Details -->
-					GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser});
+					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
 					<!-- Generate to Accounting Entries -->
 					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
 				END IF;
@@ -1042,6 +1042,16 @@
 			    
 				<!-- Delete from ACIT_AR_INWPOLBAL -->
 				<foreach collection="delInwPolBal" item="del">
+				<!-- Insert something about resetting the SOA Details here -->
+					ACIT_AGING_SOA_DETAILS_PKG.reset_soa(
+														  #{del.tranId},
+														  #{del.policyId},
+														  #{del.instNo},
+														  #{del.premAmt},
+														  #{del.riComm},
+														  #{del.riCommVat},
+														  #{del.charges},
+														  #{del.netDue});
 					ACIT_AR_INWPOLBAL_PKG.del_ar_inwpolbal(
 														#{del.tranId},
 														#{del.billId},
@@ -1053,32 +1063,21 @@
 															#{del.policyId},
 															#{del.instNo}
 					);
-					<!-- Insert something about resetting the SOA Details here -->
-					ACIT_AGING_SOA_DETAILS_DEMO_PKG.reset_soa(
-														  #{del.tranId},
-															#{del.policyId},
-														  #{del.instNo},
-														  #{del.premAmt},
-														  #{del.riComm},
-														  #{del.riCommVat},
-														  #{del.charges},
-														  #{del.netDue});
+					
 				</foreach>
 				
 				<foreach collection="saveInwPolBal" item="save">
 				<!-- UPDATE AGING SOA DETAILS -->
-					ACIT_AGING_SOA_DETAILS_DEMO_PKG.save_aging_soa_dtl(#{tranId},
+					ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(
 																  #{save.policyId},
 																  #{save.instNo},
 																  #{save.premAmt},
 																  #{save.riComm},
 																  #{save.riCommVat},
 																  #{save.charges},
-																  #{save.netDue},
 																  #{save.balPaytAmt},
 																  #{save.updateUser},
-																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																  v_new_netdue
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 															      );
 					<!-- Save from ACIT_AR_INWPOLBAL -->										      
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
@@ -1093,9 +1092,8 @@
 														#{save.riComm},
 													    #{save.riCommVat},
 														#{save.charges},
-														v_new_netdue,
+														#{save.netDue},
 														#{save.balPaytAmt},
-														#{save.overdueInt},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
@@ -1113,7 +1111,7 @@
 				</foreach>
 				
 				<!-- Generate to Amount Details -->
-					GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1135,6 +1133,15 @@
 		<result property="currRate"         column="CURR_RATE" />
 		<result property="totalPayments"    column="TOTAL_PAYMENTS" />
 		<result property="tempPayments"     column="TEMP_PAYMENTS" />
+		
+		<result property="prevPremAmt"      column="PREV_PREMIUM" />
+		<result property="prevCharges"      column="PREV_CHARGES" />
+		<result property="prevRiComm"       column="PREV_RI_COMM" />
+		<result property="prevRiCommVat"    column="PREV_RI_COMM_VAT" />
+		<result property="prevNetDue"       column="PREV_NET_DUE" />
+		<result property="prevCumPayment"   column="PREV_CUM_PAYMENT" />
+		<result property="prevBalance"      column="PREV_BALANCE" />
+		
 		<result property="premAmt"          column="PREM_AMT" />
 		<result property="charges"          column="CHARGES" />
 		<result property="riComm"           column="RI_COMM" />
@@ -1240,7 +1247,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1624,7 +1631,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1822,7 +1829,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1904,7 +1911,7 @@
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -2028,7 +2035,7 @@
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
