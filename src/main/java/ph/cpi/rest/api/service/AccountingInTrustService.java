@@ -74,6 +74,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -145,6 +146,7 @@ import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitStatusResponse;
 
 @Service
 public interface AccountingInTrustService {
@@ -222,5 +224,6 @@ public interface AccountingInTrustService {
 	public SaveAcitAllocInvtIncomeResponse saveAcitAllocInvtIncome(SaveAcitAllocInvtIncomeRequest saaii) throws SQLException;
 	public SaveAcitJVEntryListResponse saveAcitJVEntryList(SaveAcitJVEntryListRequest sajel) throws SQLException;
 	public RetrieveAcitJVAllocInvtIncResponse retrieveAcitJVAllocInvtInc(RetrieveAcitJVAllocInvtIncRequest rajaii ) throws SQLException;
+	public UpdateAcitStatusResponse updateAcitStatus(UpdateAcitStatusRequest uasr ) throws SQLException;
 
 }

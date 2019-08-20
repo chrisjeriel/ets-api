@@ -121,4 +121,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitAllocInvtIncome(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVEntryList(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJvAllInvtIncome> retrieveAcitJvAllInvtIncome(final HashMap<String, Object> params) throws SQLException;
+	public Integer updateAcitStatus(final HashMap<String, Object> params ) throws SQLException;
 }

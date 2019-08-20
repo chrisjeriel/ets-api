@@ -83,6 +83,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -154,6 +155,7 @@ import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitStatusResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
 @Controller
@@ -690,6 +692,15 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/RetrieveAcitJVAllocInvtIncRequest");
 		logger.info("RetrieveAcitJVAllocInvtIncRequest : " + rajaii.toString());
 		return acctInTrustService.retrieveAcitJVAllocInvtInc(rajaii);
+	}
+	
+	@PostMapping(path="updateAcitStatus")
+	public @ResponseBody UpdateAcitStatusResponse updateAcitStatus(@RequestBody UpdateAcitStatusRequest uasr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/UpdateAcitStatusRequest");
+		logger.info("UpdateAcitStatusRequest : " + uasr.toString());
+		return acctInTrustService.updateAcitStatus(uasr);
+		
+	
 	}
 	
 	

@@ -80,6 +80,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -151,6 +152,7 @@ import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitStatusResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
 @Component
@@ -1548,6 +1550,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("allocTranId", rajaii.getAllocTranId());
 		response.setAllInvtIncomeList(acctITDao.retrieveAcitJvAllInvtIncome(params));
+		return response;
+	}
+
+
+	@Override
+	public UpdateAcitStatusResponse updateAcitStatus(UpdateAcitStatusRequest uasr) throws SQLException {
+		// TODO Auto-generated method stub
+		UpdateAcitStatusResponse response = new UpdateAcitStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("updateAcitStatusList", uasr.getUpdateAcitStatusList());
+		response.setReturnCode(acctITDao.updateAcitStatus(params));
 		return response;
 	}
 }

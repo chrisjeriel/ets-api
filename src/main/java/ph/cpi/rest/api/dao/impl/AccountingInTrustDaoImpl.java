@@ -547,5 +547,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJvAllInvtIncome> res = sqlSession.selectList("retrieveAcitJvAllInvtIncome", params);
 		return res;
 	}
+
+	@Override
+	public Integer updateAcitStatus(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("updateAcitStatus", params);
+		return errorCode;
+	}
 	
 }
