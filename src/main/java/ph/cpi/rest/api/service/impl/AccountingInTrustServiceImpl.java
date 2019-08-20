@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
@@ -68,6 +69,7 @@ import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
+import ph.cpi.rest.api.model.request.SaveAcitCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
@@ -105,6 +107,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAppPaytZeroResponse;
@@ -141,6 +144,7 @@ import ph.cpi.rest.api.model.response.SaveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
+import ph.cpi.rest.api.model.response.SaveAcitCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
@@ -1575,6 +1579,22 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
+	public RetrieveAcitCvResponse retrieveAcitCv(RetrieveAcitCvRequest raptp) throws SQLException {
+		RetrieveAcitCvResponse racResponse = new RetrieveAcitCvResponse();
+		HashMap<String, Object> racParams = new HashMap<String, Object>();
+		racParams.put("tranId",raptp.getTranId());
+		racParams.put("cvGenNo",raptp.getCvGenNo());
+		racParams.put("cvDateFrom",raptp.getCvDateFrom());
+		racParams.put("cvDateTo",raptp.getCvDateTo());
+		racParams.put("cvStatusDesc",raptp.getCvStatusDesc());
+		racParams.put("payee",raptp.getPayee());
+		racParams.put("particulars",raptp.getParticulars());
+		racParams.put("cvAmt",raptp.getCvAmt());
+		racResponse.setAcitCvList(acctITDao.retrieveAcitCv(racParams));
+		logger.info("RetrieveAcitCvResponse : " + racResponse);
+		return racResponse;
+	}
+
 
 	@Override
 	public SaveAcitJVRcvblsAgnstLosResponse saveAcitJvRcvblsAgnstLoss(SaveAcitJVRcvblsAgnstLosRequest request)
@@ -1594,5 +1614,58 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			sqlex.printStackTrace();
 		}
 		return response;
+	}
+
+	public SaveAcitCvResponse saveAcitCv(SaveAcitCvRequest sacr) throws SQLException {
+		SaveAcitCvResponse sacResponse = new SaveAcitCvResponse();
+		HashMap<String, Object> sacParams = new HashMap<String, Object>();
+		try {
+			sacParams.put("tranIdOut","");
+			sacParams.put("mainTranIdOut","");
+			sacParams.put("tranId",sacr.getTranId());
+	        sacParams.put("cvYear", sacr.getCvYear());
+	        sacParams.put("cvNo", sacr.getCvNo());
+	        sacParams.put("cvDate", sacr.getCvDate());
+	        sacParams.put("cvStatus", sacr.getCvStatus());
+	        sacParams.put("payeeNo", sacr.getPayeeNo());
+	        sacParams.put("payee", sacr.getPayee());
+	        sacParams.put("particulars", sacr.getParticulars());
+	        sacParams.put("bank", sacr.getBank());
+	        sacParams.put("bankAcct", sacr.getBankAcct());
+	        sacParams.put("checkNo", sacr.getCheckNo());
+	        sacParams.put("checkDate", sacr.getCheckDate());
+	        sacParams.put("checkClass", sacr.getCheckClass());
+	        sacParams.put("currCd", sacr.getCurrCd());
+	        sacParams.put("currRate", sacr.getCurrRate());
+	        sacParams.put("cvAmt", sacr.getCvAmt());
+	        sacParams.put("localAmt", sacr.getLocalAmt());
+	        sacParams.put("preparedBy", sacr.getPreparedBy());
+	        sacParams.put("preparedDate", sacr.getPreparedDate());
+	        sacParams.put("certifiedBy", sacr.getCertifiedBy());
+	        sacParams.put("certifiedDate", sacr.getCertifiedDate());
+	        sacParams.put("createUser", sacr.getCreateUser());
+	        sacParams.put("createDate", sacr.getCreateDate());
+	        sacParams.put("updateUser", sacr.getUpdateUser());
+	        sacParams.put("updateDate", sacr.getUpdateDate());
+	        sacParams.put("mainTranId", sacr.getMainTranId());
+	        sacParams.put("tranStat", sacr.getTranStat());
+	        sacParams.put("closeDate", sacr.getCloseDate());
+	        sacParams.put("deleteDate", sacr.getDeleteDate());
+	        sacParams.put("postDate", sacr.getPostDate());
+	        
+	        HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
+	        sacResponse.setReturnCode((Integer) response.get("errorCode"));
+	        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
+	        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+		} catch (SQLException sqlex) {
+			sacResponse.setReturnCode(0);
+			sacResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sacResponse.setReturnCode(0);
+			sacResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return sacResponse;
 	}
 }
