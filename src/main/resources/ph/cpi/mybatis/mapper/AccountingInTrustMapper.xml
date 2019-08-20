@@ -403,6 +403,7 @@
 		<result property="checkNo"         column="CHECK_CARD_NO" />
 		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="checkClass"      column="CHECK_CLASS" />
+		<result property="remarks"         column="REMARKS" />
 	</resultMap>
 	
 	<select id="retArEntry" resultMap="arEntryMap" parameterType="java.util.Map">
@@ -496,6 +497,7 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="OKDELETE"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="soaAgingMap">
@@ -653,6 +655,9 @@
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
 														#{payor},
+														#{mailAddress},
+														#{bussTypeName},
+														#{tin},
 														#{particulars},
 														#{currCd},
 														#{currRate},
@@ -682,7 +687,8 @@
 														#{save.bankAcct, jdbcType=VARCHAR},
 														#{save.checkNo, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.checkDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														#{save.checkClass, jdbcType=VARCHAR}
+														#{save.checkClass, jdbcType=VARCHAR},
+														#{save.remarks, jdbcType=VARCHAR}
 													  );
 				</foreach>
 				
@@ -997,7 +1003,8 @@
 																	#{instNo,jdbcType=VARCHAR},
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{payeeNo, jdbcType=VARCHAR},
-																	#{zeroBal, jdbcType=INTEGER}))
+																	#{zeroBal, jdbcType=INTEGER},
+																	#{currCd}))
 	</select>
 	
 	<update id="saveArInwPolBal" parameterType="java.util.Map" statementType="CALLABLE">
@@ -1704,7 +1711,7 @@
 			<foreach collection="saveZeroBal" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.prevPaytAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
+													#{save.netDue}, #{save.prevPaytAmt}, #{save.localAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)

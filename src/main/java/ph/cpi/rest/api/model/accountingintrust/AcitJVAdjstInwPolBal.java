@@ -35,6 +35,7 @@ public class AcitJVAdjstInwPolBal {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -215,6 +216,13 @@ public class AcitJVAdjstInwPolBal {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVAdjstInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
@@ -225,7 +233,8 @@ public class AcitJVAdjstInwPolBal {
 				+ ", localAmt=" + localAmt + ", paytAmt=" + paytAmt + ", premAmt=" + premAmt + ", riComm=" + riComm
 				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", totalPayt="
 				+ totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ "]";
 	}
 	
 }
