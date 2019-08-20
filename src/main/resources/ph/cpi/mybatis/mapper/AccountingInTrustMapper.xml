@@ -2685,4 +2685,22 @@
 		END;
 	</update>
 	
+	<update id="saveAcitCvPaytReqList" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deletePaytReqList" item="del">
+				ACIT_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId}, #{del.itemNo});
+			</foreach>
+			
+			<foreach collection="savePaytReqList" item="save">
+				ACIT_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId},
+														   #{save.itemNo, jdbcType=INTEGER},
+														   #{save.reqId},
+														   #{save.createUser, jdbcType=VARCHAR},
+														   CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														   #{save.updateUser, jdbcType=VARCHAR}, 
+														   CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

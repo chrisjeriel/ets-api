@@ -565,4 +565,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Integer saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCvPaytReqList", params);
+		return errorCode;
+	}
 }
