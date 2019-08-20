@@ -5,6 +5,7 @@
         
 <mapper namespace="ph.cpi.mybatis.mapper.AccountingInTrustMapper">
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq" id="acitCvPaytReqListMap">
+		<result property="paytReqNo" 	column="PAYT_REQ_NO"/>
 		<result property="tranId" 		column="TRAN_ID"/>
 		<result property="itemNo" 		column="ITEM_NO"/>
 		<result property="reqId" 		column="REQ_ID"/>
@@ -13,6 +14,7 @@
 		<result property="reqMm" 		column="REQ_MM"/>
 		<result property="reqSeqNo" 	column="REQ_SEQ_NO"/>
 		<result property="tranTypeCd" 	column="TRAN_TYPE_CD"/>
+		<result property="tranTypeDesc" column="TRAN_TYPE_DESC"/>
 		<result property="reqDate" 		column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="requestedBy" 	column="REQUESTED_BY"/>
 		<result property="particulars" 	column="PARTICULARS"/>

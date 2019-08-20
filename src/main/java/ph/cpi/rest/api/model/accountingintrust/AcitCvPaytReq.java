@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class AcitCvPaytReq {
+	private String paytReqNo;
 	private Integer tranId;
 	private Integer itemNo;
 	private Integer reqId;
@@ -13,6 +14,7 @@ public class AcitCvPaytReq {
 	private Integer reqMm;
 	private Integer reqSeqNo;
 	private Integer tranTypeCd;
+	private String tranTypeDesc;
 	private DateTime reqDate;
 	private String requestedBy;
 	private String particulars;
@@ -24,6 +26,13 @@ public class AcitCvPaytReq {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	public String getPaytReqNo() {
+		return paytReqNo;
+	}
+	public void setPaytReqNo(String paytReqNo) {
+		this.paytReqNo = paytReqNo;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -47,6 +56,12 @@ public class AcitCvPaytReq {
 	}
 	public void setReqPrefix(String reqPrefix) {
 		this.reqPrefix = reqPrefix;
+	}
+	public String getTranTypeDesc() {
+		return tranTypeDesc;
+	}
+	public void setTranTypeDesc(String tranTypeDesc) {
+		this.tranTypeDesc = tranTypeDesc;
 	}
 	public Integer getReqYear() {
 		return reqYear;
@@ -140,11 +155,11 @@ public class AcitCvPaytReq {
 	}
 	@Override
 	public String toString() {
-		return "AcitCvPaytReq [tranId=" + tranId + ", itemNo=" + itemNo + ", reqId=" + reqId + ", reqPrefix="
-				+ reqPrefix + ", reqYear=" + reqYear + ", reqMm=" + reqMm + ", reqSeqNo=" + reqSeqNo + ", tranTypeCd="
-				+ tranTypeCd + ", reqDate=" + reqDate + ", requestedBy=" + requestedBy + ", particulars=" + particulars
-				+ ", currCd=" + currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt + ", localAmt=" + localAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "AcitCvPaytReq [paytReqNo=" + paytReqNo + ", tranId=" + tranId + ", itemNo=" + itemNo + ", reqId="
+				+ reqId + ", reqPrefix=" + reqPrefix + ", reqYear=" + reqYear + ", reqMm=" + reqMm + ", reqSeqNo="
+				+ reqSeqNo + ", tranTypeCd=" + tranTypeCd + ", tranTypeDesc=" + tranTypeDesc + ", reqDate=" + reqDate
+				+ ", requestedBy=" + requestedBy + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", reqAmt=" + reqAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
