@@ -1110,6 +1110,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitArClmRecoverLovResponse response = new RetrieveAcitArClmRecoverLovResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("payeeNo", raacrlr.getPayeeNo());
+		params.put("currCd", raacrlr.getCurrCd());
 		response.setClaimList(acctITDao.retrieveAcitArClmRecoverLov(params));
 		return response;
 	}
@@ -1365,6 +1366,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitArClmCashCallLovResponse response = new RetrieveAcitArClmCashCallLovResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("payeeNo", raaccclr.getPayeeNo());
+		params.put("currCd", raaccclr.getCurrCd());
 		response.setClmCashCallLovList(acctITDao.retrieveAcitArClmCashCallLov(params));
 		return response;
 	}

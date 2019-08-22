@@ -355,6 +355,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arEntryMap">
 		<result property="tranId"        column="TRAN_ID"           />
 		<result property="arNo"          column="AR_NO"             />
+		<result property="formattedArNo" column="FORMATTED_AR_NO"   />
+		<result property="arNoDigits"    column="AR_NO_DIGITS"      />
 		<result property="arDate"        column="AR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"      column="AR_STATUS"         />
 		<result property="tranStat"      column="TRAN_STAT"         />
@@ -654,9 +656,9 @@
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
 														#{payor},
-														#{mailAddress},
-														#{bussTypeName},
-														#{tin},
+														#{mailAddress, jdbcType=VARCHAR},
+														#{bussTypeName, jdbcType=VARCHAR},
+														#{tin, jdbcType=VARCHAR},
 														#{particulars},
 														#{currCd},
 														#{currRate},
@@ -711,6 +713,7 @@
 															v_tran_id,
 															1,
 															1,
+															NULL,
 															'Loss Reserve Deposit',
 															#{currCd},
 															#{currRate},
@@ -728,6 +731,7 @@
 															v_tran_id,
 															1,
 															1,
+															NULL,
 															'Payment for Advances by Service',
 															#{currCd},
 															#{currRate},
@@ -1170,6 +1174,7 @@
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="billId"			column="BILL_ID" />
 		<result property="itemNo"			column="ITEM_NO" />
+		<result property="transdtlType"		column="TRANSDTL_TYPE" />
 		<result property="itemName"			column="ITEM_NAME" />
 		<result property="currCd"			column="CURR_CD" />
 		<result property="currRate"			column="CURR_RATE" />
@@ -1233,6 +1238,7 @@
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo},
+														#{save.transdtlType, jdbcType=VARCHAR},
 														#{save.itemName},
 														#{save.currCd},
 														#{save.currRate},
@@ -1569,7 +1575,8 @@
 	
 	<select id="retrieveAcitArClmRecoverLov" resultMap="arClmRecLovMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_AR_CLMRECOVER_PKG.ret_clm_lov(
-																#{payeeNo}
+																#{payeeNo},
+																#{currCd}
 															  )
 							)
 	</select>
@@ -1945,7 +1952,7 @@
 	</resultMap>
 	
 	<select id="retAcitARClmCashCallLov" resultMap="arClmCashCallLovMap">
-		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll_lov(#{payeeNo}))
+		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll_lov(#{payeeNo}, #{currCd}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall" id="arClmCashCallMap">
