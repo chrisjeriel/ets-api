@@ -348,6 +348,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("clmSeqNo", scgir.getClmSeqNo());
 		params.put("policyId", scgir.getPolicyId());
 		params.put("clmStatCd", scgir.getClmStatCd());
+		params.put("insuredClm", scgir.getInsuredClm());
 		params.put("cessionId", scgir.getCessionId());
 		params.put("lineClassCd", scgir.getLineClassCd());
 		params.put("coRefNo", scgir.getCoRefNo());
@@ -551,6 +552,12 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("claimId", rcprr.getClaimId());
 		params.put("projId", rcprr.getProjId());
+		params.put("histNo", rcprr.getHistNo());
+		params.put("histType", rcprr.getHistType());
+		params.put("bookingMonth", rcprr.getBookingMonth());
+		params.put("bookingYear", rcprr.getBookingYear());
+		params.put("distStatus", rcprr.getDistStatus());
+		params.put("histCategory", rcprr.getHistCategory());
 		response.setClaimDist(claimsDao.retrieveClmDist(params));
 		return response;
 	}

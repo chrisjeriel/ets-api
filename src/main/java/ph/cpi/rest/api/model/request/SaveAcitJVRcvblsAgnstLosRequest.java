@@ -1,64 +1,66 @@
 package ph.cpi.rest.api.model.request;
+
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-public class SaveAcitJVAcctTrtyBalRequest {
-	private Integer tranType;
+
+public class SaveAcitJVRcvblsAgnstLosRequest {
 	private Integer tranId;
-	private List<TreatyAcc> saveAcctTrty;
-	private List<TreatyAcc> delAcctTrty;
-	private List<acctTreaty> saveInwPolOffset;
-	private List<acctTreaty> delInwPolOffset;
+	private Integer tranType;
+	private List<ClmOffset> saveClmOffset;
+	private List<ClmOffset> delClmOffset;
+	private List<InwpolOffset> saveInwPol;
+	private List<InwpolOffset> delInwPol;
 	
-	public Integer getTranType() {
-		return tranType;
-	}
-	public void setTranType(Integer tranType) {
-		this.tranType = tranType;
-	}
 	public Integer getTranId() {
 		return tranId;
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	public List<TreatyAcc> getSaveAcctTrty() {
-		return saveAcctTrty;
+	public Integer getTranType() {
+		return tranType;
 	}
-	public void setSaveAcctTrty(List<TreatyAcc> saveAcctTrty) {
-		this.saveAcctTrty = saveAcctTrty;
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
 	}
-	public List<TreatyAcc> getDelAcctTrty() {
-		return delAcctTrty;
+	public List<ClmOffset> getSaveClmOffset() {
+		return saveClmOffset;
 	}
-	public void setDelAcctTrty(List<TreatyAcc> delAcctTrty) {
-		this.delAcctTrty = delAcctTrty;
+	public void setSaveClmOffset(List<ClmOffset> saveClmOffset) {
+		this.saveClmOffset = saveClmOffset;
 	}
-	public List<acctTreaty> getSaveInwPolOffset() {
-		return saveInwPolOffset;
+	public List<ClmOffset> getDelClmOffset() {
+		return delClmOffset;
 	}
-	public void setSaveInwPolOffset(List<acctTreaty> saveInwPolOffset) {
-		this.saveInwPolOffset = saveInwPolOffset;
+	public void setDelClmOffset(List<ClmOffset> delClmOffset) {
+		this.delClmOffset = delClmOffset;
 	}
-	public List<acctTreaty> getDelInwPolOffset() {
-		return delInwPolOffset;
+	public List<InwpolOffset> getSaveInwPol() {
+		return saveInwPol;
 	}
-	public void setDelInwPolOffset(List<acctTreaty> delInwPolOffset) {
-		this.delInwPolOffset = delInwPolOffset;
+	public void setSaveInwPol(List<InwpolOffset> saveInwPol) {
+		this.saveInwPol = saveInwPol;
+	}
+	public List<InwpolOffset> getDelInwPol() {
+		return delInwPol;
+	}
+	public void setDelInwPol(List<InwpolOffset> delInwPol) {
+		this.delInwPol = delInwPol;
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJVAcctTrtyBalRequest [tranType=" + tranType + ", tranId=" + tranId + ", saveAcctTrty="
-				+ saveAcctTrty + ", delAcctTrty=" + delAcctTrty + ", saveInwPolOffset=" + saveInwPolOffset
-				+ ", delInwPolOffset=" + delInwPolOffset + "]";
+		return "SaveAcitJVRcvblsAgnstLosRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveClmOffset="
+				+ saveClmOffset + ", delClmOffset=" + delClmOffset + ", saveInwPol=" + saveInwPol + ", delInwPol="
+				+ delInwPol + "]";
 	}
+	
 }
 
-@Alias ("acctTreaty")
-class acctTreaty {
+@Alias ("ACITInwpolOffset")
+class InwpolOffset{
 	private Integer tranId;
-	private Integer quarterNo;
 	private Integer itemNo;
 	private Integer policyId;
 	private Integer instNo;
@@ -83,12 +85,6 @@ class acctTreaty {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
-	}
-	public Integer getQuarterNo() {
-		return quarterNo;
-	}
-	public void setQuarterNo(Integer quarterNo) {
-		this.quarterNo = quarterNo;
 	}
 	public Integer getItemNo() {
 		return itemNo;
@@ -150,18 +146,18 @@ class acctTreaty {
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getPaytAmt() {
-		return paytAmt;
-	}
-	public void setPaytAmt(BigDecimal paytAmt) {
-		this.paytAmt = paytAmt;
-	}
 	
 	public BigDecimal getCumPayment() {
 		return cumPayment;
 	}
 	public void setCumPayment(BigDecimal cumPayment) {
 		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -207,28 +203,33 @@ class acctTreaty {
 	}
 	@Override
 	public String toString() {
-		return "acctTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo + ", policyId="
-				+ policyId + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
-				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
-				+ netDue + ", cumPayment=" + cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
-				+ ", overdueInt=" + overdueInt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "InwpolOffset [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", cumPayment="
+				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }
 
-
-@Alias ("acitTreaty")
-class TreatyAcc {
+@Alias ("ACITClaimOffset")
+class ClmOffset{
 	private Integer tranId;
-	private Integer quarterNo;
-	private String quarterEnding;
-	private String cedingId;
+	private Integer itemNo;
+	private Integer claimId;
+	private Integer projId;
+	private Integer histNo;
+	private String paymentFor;
+	private String histCategory;
+	private String histType;
+	private String exGratia;
+	private BigDecimal reserveAmt;
 	private String currCd;
 	private BigDecimal currRate;
-	private BigDecimal balanceAmt;
+	private BigDecimal clmPaytAmt;
 	private BigDecimal localAmt;
-	private BigDecimal actualBalPaid;
+	private String remarks;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -239,23 +240,35 @@ class TreatyAcc {
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	public Integer getQuarterNo() {
-		return quarterNo;
+	public Integer getItemNo() {
+		return itemNo;
 	}
-	public void setQuarterNo(Integer quarterNo) {
-		this.quarterNo = quarterNo;
+	public void setItemNo(Integer itemNo) {
+		this.itemNo = itemNo;
 	}
-	public String getQuarterEnding() {
-		return quarterEnding;
+	public Integer getClaimId() {
+		return claimId;
 	}
-	public void setQuarterEnding(String quarterEnding) {
-		this.quarterEnding = quarterEnding;
+	public void setClaimId(Integer claimId) {
+		this.claimId = claimId;
 	}
-	public String getCedingId() {
-		return cedingId;
+	public Integer getProjId() {
+		return projId;
 	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
+	public void setProjId(Integer projId) {
+		this.projId = projId;
+	}
+	public Integer getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(Integer histNo) {
+		this.histNo = histNo;
+	}
+	public String getPaymentFor() {
+		return paymentFor;
+	}
+	public void setPaymentFor(String paymentFor) {
+		this.paymentFor = paymentFor;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -269,11 +282,36 @@ class TreatyAcc {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
-	public BigDecimal getBalanceAmt() {
-		return balanceAmt;
+	public BigDecimal getClmPaytAmt() {
+		return clmPaytAmt;
 	}
-	public void setBalanceAmt(BigDecimal balanceAmt) {
-		this.balanceAmt = balanceAmt;
+	public void setClmPaytAmt(BigDecimal clmPaytAmt) {
+		this.clmPaytAmt = clmPaytAmt;
+	}
+	
+	public String getHistCategory() {
+		return histCategory;
+	}
+	public void setHistCategory(String histCategory) {
+		this.histCategory = histCategory;
+	}
+	public String getHistType() {
+		return histType;
+	}
+	public void setHistType(String histType) {
+		this.histType = histType;
+	}
+	public String getExGratia() {
+		return exGratia;
+	}
+	public void setExGratia(String exGratia) {
+		this.exGratia = exGratia;
+	}
+	public BigDecimal getReserveAmt() {
+		return reserveAmt;
+	}
+	public void setReserveAmt(BigDecimal reserveAmt) {
+		this.reserveAmt = reserveAmt;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -281,11 +319,11 @@ class TreatyAcc {
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
 	}
-	public BigDecimal getActualBalPaid() {
-		return actualBalPaid;
+	public String getRemarks() {
+		return remarks;
 	}
-	public void setActualBalPaid(BigDecimal actualBalPaid) {
-		this.actualBalPaid = actualBalPaid;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -313,10 +351,11 @@ class TreatyAcc {
 	}
 	@Override
 	public String toString() {
-		return "Treaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
-				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "ClmOffset [tranId=" + tranId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
+				+ ", histNo=" + histNo + ", paymentFor=" + paymentFor + ", histCategory=" + histCategory + ", histType="
+				+ histType + ", exGratia=" + exGratia + ", reserveAmt=" + reserveAmt + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", clmPaytAmt=" + clmPaytAmt + ", localAmt=" + localAmt + ", remarks="
+				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

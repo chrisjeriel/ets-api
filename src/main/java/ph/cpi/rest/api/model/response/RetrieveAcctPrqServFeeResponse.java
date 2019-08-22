@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 
-public class RetrieveAcitServFeeMainGnrtResponse {
+public class RetrieveAcctPrqServFeeResponse {
 
 	private List<AcctServFeeDist> mainDistList;
 	private List<AcctServFeeDist> subDistList;

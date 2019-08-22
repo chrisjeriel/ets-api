@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
+
 public class SaveClmGenInfoRequest {
 
 	private Integer statusChanged;
@@ -15,6 +17,7 @@ public class SaveClmGenInfoRequest {
 	private Integer clmSeqNo;
 	private Integer policyId;
 	private String clmStatCd;
+	private BigDecimal insuredClm;
 	private Integer cessionId;
 	private String lineClassCd;
 	private String coRefNo;
@@ -155,6 +158,12 @@ public class SaveClmGenInfoRequest {
 	}
 	public void setClmStatCd(String clmStatCd) {
 		this.clmStatCd = clmStatCd;
+	}
+	public BigDecimal getInsuredClm() {
+		return insuredClm;
+	}
+	public void setInsuredClm(BigDecimal insuredClm) {
+		this.insuredClm = insuredClm;
 	}
 	public Integer getCessionId() {
 		return cessionId;
@@ -533,19 +542,19 @@ public class SaveClmGenInfoRequest {
 		return "SaveClmGenInfoRequest [statusChanged=" + statusChanged + ", refPolId=" + refPolId + ", claimId="
 				+ claimId + ", lineCd=" + lineCd + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId="
 				+ cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", clmYear=" + clmYear + ", clmSeqNo="
-				+ clmSeqNo + ", policyId=" + policyId + ", clmStatCd=" + clmStatCd + ", cessionId=" + cessionId
-				+ ", lineClassCd=" + lineClassCd + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId
-				+ ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo + ", inceptDate=" + inceptDate
-				+ ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd + ", coClmNo=" + coClmNo + ", lossDate="
-				+ lossDate + ", lossCd=" + lossCd + ", lossPeriod=" + lossPeriod + ", lossDtl=" + lossDtl
-				+ ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd + ", reportDate=" + reportDate
-				+ ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd
-				+ ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate=" + issueDate + ", effDate="
-				+ effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
-				+ ", maintenanceTo=" + maintenanceTo + ", prinId=" + prinId + ", contractorId=" + contractorId
-				+ ", insuredDesc=" + insuredDesc + ", lapsePdTag=" + lapsePdTag + ", polTermTag=" + polTermTag
-				+ ", premTag=" + premTag + ", remarks=" + remarks + ", adjId=" + adjId + ", adjFileNo=" + adjFileNo
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ clmSeqNo + ", policyId=" + policyId + ", clmStatCd=" + clmStatCd + ", insuredClm=" + insuredClm
+				+ ", cessionId=" + cessionId + ", lineClassCd=" + lineClassCd + ", coRefNo=" + coRefNo
+				+ ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
+				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", reasonCd=" + reasonCd + ", coClmNo="
+				+ coClmNo + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossPeriod=" + lossPeriod
+				+ ", lossDtl=" + lossDtl + ", eventTypeCd=" + eventTypeCd + ", eventCd=" + eventCd + ", reportDate="
+				+ reportDate + ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd="
+				+ oldStatCd + ", closeDate=" + closeDate + ", refreshSw=" + refreshSw + ", issueDate=" + issueDate
+				+ ", effDate=" + effDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom="
+				+ maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", prinId=" + prinId + ", contractorId="
+				+ contractorId + ", insuredDesc=" + insuredDesc + ", lapsePdTag=" + lapsePdTag + ", polTermTag="
+				+ polTermTag + ", premTag=" + premTag + ", remarks=" + remarks + ", adjId=" + adjId + ", adjFileNo="
+				+ adjFileNo + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId
 				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
 				+ districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude=" + longitude

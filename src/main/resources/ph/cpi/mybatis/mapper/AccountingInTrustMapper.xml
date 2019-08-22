@@ -5,6 +5,7 @@
         
 <mapper namespace="ph.cpi.mybatis.mapper.AccountingInTrustMapper">
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq" id="acitCvPaytReqListMap">
+		<result property="paytReqNo" 	column="PAYT_REQ_NO"/>
 		<result property="tranId" 		column="TRAN_ID"/>
 		<result property="itemNo" 		column="ITEM_NO"/>
 		<result property="reqId" 		column="REQ_ID"/>
@@ -13,6 +14,7 @@
 		<result property="reqMm" 		column="REQ_MM"/>
 		<result property="reqSeqNo" 	column="REQ_SEQ_NO"/>
 		<result property="tranTypeCd" 	column="TRAN_TYPE_CD"/>
+		<result property="tranTypeDesc" column="TRAN_TYPE_DESC"/>
 		<result property="reqDate" 		column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="requestedBy" 	column="REQUESTED_BY"/>
 		<result property="particulars" 	column="PARTICULARS"/>
@@ -403,6 +405,7 @@
 		<result property="checkNo"         column="CHECK_CARD_NO" />
 		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="checkClass"      column="CHECK_CLASS" />
+		<result property="remarks"         column="REMARKS" />
 	</resultMap>
 	
 	<select id="retArEntry" resultMap="arEntryMap" parameterType="java.util.Map">
@@ -467,30 +470,38 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVAdjstInwPolBal" id="inwPolBalMap">
-		<result property="tranId" column="AIPB_TRAN_ID"/>
-		<result property="itemNo" column="AIPB_ITEM_NO"/>
-		<result property="policyId" column="AIPB_POLICY_ID"/>
-		<result property="policyNo" column="AIPB_POLICY_NO"/>
-		<result property="soaNo" column="AIPB_SOA_NO"/>
-		<result property="coRefNo" 	   column="AIPB_CO_REF_NO"/>
-		<result property="effDate" 	   column="AIPB_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="dueDate" 	   column="AIPB_DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="instNo" 	   column="AIPB_INST_NO"/>
-		<result property="currCd" 	   column="AIPB_CURR_CD"/>
-		<result property="currRate"    column="AIPB_CURR_RATE"/>
-		<result property="premAmt"     column="AIPB_PREM_AMT"/>
-		<result property="riComm"      column="AIPB_RI_COMM"/>
-		<result property="riCommVat"   column="AIPB_RI_COMM_VAT"/>
-		<result property="charges"     column="AIPB_CHARGES"/>
-		<result property="netDue" 	   column="AIPB_NET_DUE"/>
-		<result property="prevPaytAmt" column="AIPB_PREV_PAYT_AMT"/>
-		<result property="localAmt"    column="AIPB_LOCAL_AMT"/>
-		<result property="adjBalAmt"   column="AIPB_ADJ_BAL_AMT"/>
-		<result property="overdueInt"  column="AIPB_OVERDUE_INT"/>
-		<result property="createUser"  column="AIPB_CREATE_USER"/>
-		<result property="createDate"  column="AIPB_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser"  column="AIPB_UPDATE_USER"/>
-		<result property="updateDate"  column="AIPB_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="policyId" column="PREV_POLICY_ID"/>
+		<result property="policyNo" column="PREV_POLICY_NO"/>
+		<result property="cedingId" column="CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
+		<result property="instNo" column="PREV_INST_NO"/>
+		<result property="coRefNo" column="PREV_CO_REF_NO"/>
+		<result property="effDate" column="PREV_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dueDate" column="PREV_DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currCd" column="PREV_CURR"/>
+		<result property="currRate" column="PREV_CURR_RATE"/>
+		<result property="prevPremAmt" column="PREV_PREMIUM"/>
+		<result property="prevRiComm" column="PREV_RI_COMM"/>
+		<result property="prevRiCommVat" column="PREV_RI_COMM_VAT"/>
+		<result property="prevCharges" column="PREV_CHARGES"/>
+		<result property="prevNetDue" column="PREV_NET_DUE"/>
+		<result property="cumPayment" column="PREV_CUMMULATIVE_PAYMENT"/>
+		<result property="balance" column="PREV_BALANCE"/>
+		<result property="localAmt" column="LOCAL_AMOUNT"/>
+		<result property="paytAmt" column="PAYMENT_AMOUNT"/>
+		<result property="premAmt" column="PREM_AMT"/>
+		<result property="riComm" column="RI_COMM"/>
+		<result property="riCommVat" column="RI_COMM_VAT"/>
+		<result property="charges" column="CHARGES"/>
+		<result property="totalPayt" column="TOTAL_PAYMENTS"/>
+		<result property="remainingBal" column="REMAINING_BALANCE"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="OKDELETE"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails" id="soaAgingMap">
@@ -531,6 +542,7 @@
 		<result property="tranId" column="TRAN_ID"/>
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="cedingId" column="CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="policyNo" column="POLICY_NO"/>
 		<result property="soaNo" column="SOA_NO"/>
@@ -601,7 +613,7 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_aipb(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
-					#{cedingCo},
+					#{cedingCo,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
 
@@ -648,6 +660,9 @@
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
 														#{payor},
+														#{mailAddress},
+														#{bussTypeName},
+														#{tin},
 														#{particulars},
 														#{currCd},
 														#{currRate},
@@ -677,7 +692,8 @@
 														#{save.bankAcct, jdbcType=VARCHAR},
 														#{save.checkNo, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.checkDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														#{save.checkClass, jdbcType=VARCHAR}
+														#{save.checkClass, jdbcType=VARCHAR},
+														#{save.remarks, jdbcType=VARCHAR}
 													  );
 				</foreach>
 				
@@ -732,7 +748,7 @@
 						);
 					END IF;
 					<!-- Generate to Amount Details -->
-					GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser});
+					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
 					<!-- Generate to Accounting Entries -->
 					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
 				END IF;
@@ -809,7 +825,10 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="deleteInwPol" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_aipb(#{delete.tranId}, #{delete.itemNo});
+				ACIT_JOURNAL_VOUCHER_PKG.del_acit_aipb(#{delete.tranId}, #{delete.itemNo}, #{delete.policyId}, #{delete.instNo}, #{delete.premAmt}, #{delete.riComm}, 
+													   #{delete.riCommVat}, #{delete.charges}, 
+													   #{delete.paytAmt},#{delete.updateUser}, 
+													  	CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
 														#{delete.tranId},
@@ -821,15 +840,19 @@
 			<foreach collection="saveInwPol" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_aipb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.prevPaytAmt}, #{save.localAmt},#{save.adjBalAmt}, #{save.overdueInt}, #{save.createUser}, 
+													#{save.netDue}, #{save.paytAmt}, #{save.localAmt},#{save.remainingBal}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
-				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{save.policyId},#{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, 
+				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
+																   #{save.paytAmt},#{save.updateUser}, 
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+																  
+			<!-- 	ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl(#{save.policyId},#{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, 
 															  #{save.charges}, #{save.netDue}, #{save.adjBalAmt}, 
 															  #{save.updateUser}, 
-															  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+															  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
 			
 				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
 														#{save.tranId},
@@ -869,6 +892,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased" id="premResMap">
 		<result property="tranId" column="TRAN_ID"/>
 		<result property="itemNo" column="ITEM_NO"/>
+		<result property="cedingId" column="CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd" column="CURR_CD"/>
 		<result property="currRate" column="CURR_RATE"/>
@@ -953,6 +978,13 @@
 		<result property="instNo" 				column="INST_NO"/>
 		<result property="currCd" 				column="CURR_CD"/>
 		<result property="currRate" 			column="CURR_RATE"/>
+		<result property="prevPremAmt" 			column="PREV_PREMIUM"/>
+		<result property="prevRiComm" 			column="PREV_RI_COMM"/>
+		<result property="prevRiCommVat" 		column="PREV_RI_COMM_VAT"/>
+		<result property="prevCharges" 			column="PREV_CHARGES"/>
+		<result property="prevNetDue" 			column="PREV_NET_DUE"/>
+		<result property="cumPayment" 			column="PREV_CUM_PAYMENT"/>
+		<result property="prevBalance"				column="PREV_BALANCE"/>
 		<result property="totalAmtDue" 			column="TOTAL_AMT_DUE"/>
 		<result property="totalPayments" 		column="TOTAL_PAYMENTS"/>
 		<result property="tempPayments" 		column="TEMP_PAYMENTS"/>
@@ -981,7 +1013,8 @@
 																	#{instNo,jdbcType=VARCHAR},
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{payeeNo, jdbcType=VARCHAR},
-																	#{zeroBal, jdbcType=INTEGER}))
+																	#{zeroBal, jdbcType=INTEGER},
+																	#{currCd}))
 	</select>
 	
 	<update id="saveArInwPolBal" parameterType="java.util.Map" statementType="CALLABLE">
@@ -1020,6 +1053,16 @@
 			    
 				<!-- Delete from ACIT_AR_INWPOLBAL -->
 				<foreach collection="delInwPolBal" item="del">
+				<!-- Insert something about resetting the SOA Details here -->
+					ACIT_AGING_SOA_DETAILS_PKG.reset_soa(
+														  #{del.tranId},
+														  #{del.policyId},
+														  #{del.instNo},
+														  #{del.premAmt},
+														  #{del.riComm},
+														  #{del.riCommVat},
+														  #{del.charges},
+														  #{del.netDue});
 					ACIT_AR_INWPOLBAL_PKG.del_ar_inwpolbal(
 														#{del.tranId},
 														#{del.billId},
@@ -1031,32 +1074,21 @@
 															#{del.policyId},
 															#{del.instNo}
 					);
-					<!-- Insert something about resetting the SOA Details here -->
-					ACIT_AGING_SOA_DETAILS_DEMO_PKG.reset_soa(
-														  #{del.tranId},
-															#{del.policyId},
-														  #{del.instNo},
-														  #{del.premAmt},
-														  #{del.riComm},
-														  #{del.riCommVat},
-														  #{del.charges},
-														  #{del.netDue});
+					
 				</foreach>
 				
 				<foreach collection="saveInwPolBal" item="save">
 				<!-- UPDATE AGING SOA DETAILS -->
-					ACIT_AGING_SOA_DETAILS_DEMO_PKG.save_aging_soa_dtl(#{tranId},
+					ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(
 																  #{save.policyId},
 																  #{save.instNo},
 																  #{save.premAmt},
 																  #{save.riComm},
 																  #{save.riCommVat},
 																  #{save.charges},
-																  #{save.netDue},
 																  #{save.balPaytAmt},
 																  #{save.updateUser},
-																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																  v_new_netdue
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 															      );
 					<!-- Save from ACIT_AR_INWPOLBAL -->										      
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
@@ -1071,9 +1103,8 @@
 														#{save.riComm},
 													    #{save.riCommVat},
 														#{save.charges},
-														v_new_netdue,
+														#{save.netDue},
 														#{save.balPaytAmt},
-														#{save.overdueInt},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
@@ -1091,7 +1122,7 @@
 				</foreach>
 				
 				<!-- Generate to Amount Details -->
-					GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1113,6 +1144,15 @@
 		<result property="currRate"         column="CURR_RATE" />
 		<result property="totalPayments"    column="TOTAL_PAYMENTS" />
 		<result property="tempPayments"     column="TEMP_PAYMENTS" />
+		
+		<result property="prevPremAmt"      column="PREV_PREMIUM" />
+		<result property="prevCharges"      column="PREV_CHARGES" />
+		<result property="prevRiComm"       column="PREV_RI_COMM" />
+		<result property="prevRiCommVat"    column="PREV_RI_COMM_VAT" />
+		<result property="prevNetDue"       column="PREV_NET_DUE" />
+		<result property="prevCumPayment"   column="PREV_CUM_PAYMENT" />
+		<result property="prevBalance"      column="PREV_BALANCE" />
+		
 		<result property="premAmt"          column="PREM_AMT" />
 		<result property="charges"          column="CHARGES" />
 		<result property="riComm"           column="RI_COMM" />
@@ -1218,7 +1258,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1604,7 +1644,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1650,6 +1690,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVAppPaymentZeroBal" id="zeroBalMap">
 		<result property="tranId" column="PWZB_TRAN_ID"/>
 		<result property="itemNo" column="PWZB_ITEM_NO"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="policyId" column="PWZB_POLICY_ID"/>
 		<result property="policyNo" column="PWZB_POLICY_NO"/>
 		<result property="soaNo" column="PWZB_SOA_NO"/>
@@ -1659,6 +1701,17 @@
 		<result property="instNo" column="PWZB_INST_NO"/>
 		<result property="currCd" column="PWZB_CURR_CD"/>
 		<result property="currRate" column="PWZB_CURR_RATE"/>
+		
+		<result property="totalPayt" column="PREV_PREMIUM"/>
+		<result property="remainingBal" column="PREV_RI_COMM"/>
+		<result property="prevPremAmt" column="PREV_RI_COMM_VAT"/>
+		<result property="prevRiComm" column="PREV_CHARGES"/>
+		<result property="prevRiCommVat" column="PREV_NET_DUE"/>
+		<result property="prevCharges" column="PREV_CUM_PAYMENT"/>
+		<result property="prevNetDue" column="PREV_BALANCE"/>
+		<result property="cumPayment" column="TOTAL_PAYMENTS"/>
+		<result property="balance" column="REMAINING_BALANCE"/>
+		
 		<result property="premAmt" column="PWZB_PREM_AMT"/>
 		<result property="riComm" column="PWZB_RI_COMM"/>
 		<result property="riCommVat" column="PWZB_RI_COMM_VAT"/>
@@ -1666,6 +1719,7 @@
 		<result property="netDue" column="PWZB_NET_DUE"/>
 		<result property="prevPaytAmt" column="PWZB_PREV_PAYT_AMT"/>
 		<result property="adjBalAmt" column="PWZB_ADJ_BAL_AMT"/>
+		<result property="localAmt" column="PWZB_LOCAL_AMT"/>
 		<result property="overdueInt" column="PWZB_OVERDUE_INT"/>
 		<result property="createUser" column="PWZB_CREATE_USER"/>
 		<result property="createDate" column="PWZB_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -1689,7 +1743,7 @@
 			<foreach collection="saveZeroBal" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.prevPaytAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
+													#{save.netDue}, #{save.prevPaytAmt}, #{save.localAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
@@ -1801,7 +1855,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1883,7 +1937,7 @@
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -2007,7 +2061,7 @@
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -2073,6 +2127,7 @@
 		<result property="tranId" column="TRYTY_TRAN_ID"/>
 		<result property="quarterNo" column="TRYTY_QUARTER_NO"/>
 		<result property="cedingId" column="TRYTY_CEDING_ID"/>
+		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="quarterEnding" column="TRYTY_QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd" column="TRYTY_CURR_CD"/>
 		<result property="currRate" column="TRYTY_CURR_RATE"/>
@@ -2278,6 +2333,7 @@
 		<result property="tranId" 			column="TRYTY_TRAN_ID"/>
 		<result property="quarterNo" 		column="TRYTY_QUARTER_NO"/>
 		<result property="cedingId" 		column="TRYTY_CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="quarterEnding" 	column="TRYTY_QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd" 			column="TRYTY_CURR_CD"/>
 		<result property="currRate" 		column="TRYTY_CURR_RATE"/>
@@ -2303,12 +2359,21 @@
 		<result property="instNo" column="INST_NO"/>
 		<result property="currCd" column="CURR_CD"/>
 		<result property="currRate" column="CURR_RATE"/>
+		<result property="prevPremAmt" column="PREV_PREMIUM"/>
+        <result property="prevRiComm" column="PREV_RI_COMM"/>
+        <result property="prevRiCommVat" column="PREV_RI_COMM_VAT"/>
+        <result property="prevCharges" column="PREV_CHARGES"/>
+        <result property="prevNetDue" column="PREV_NET_DUE"/>
+        <result property="cumPayment" column="PREV_CUM_PAYMENT"/>
+        <result property="balance" column="PREV_BALANCE"/>
+        <result property="totalPayt" column="TOTAL_PAYMENTS"/>
+        <result property="remainingBal" column="REMAINING_BALANCE"/>
 		<result property="premAmt" column="PREM_AMT"/>
 		<result property="riComm" column="RI_COMM"/>
 		<result property="riCommVat" column="RI_COMM_VAT"/>
 		<result property="charges" column="CHARGES"/>
 		<result property="netDue" column="NET_DUE"/>
-		<result property="prevPaytAmt" column="PREV_PAYT_AMT"/>
+		<result property="paytAmt" column="PREV_PAYT_AMT"/>
 		<result property="balPaytAmt" column="BAL_PAYT_AMT"/>
 		<result property="localAmt" column="LOCAL_AMT"/>
 		<result property="overdueInt" column="OVERDUE_INT"/>
@@ -2369,16 +2434,20 @@
 															#{saved.riCommVat}, 
 															#{saved.charges}, 
 															#{saved.netDue}, 
-															#{saved.prevPaytAmt}, 
-															#{saved.balPaytAmt}, 
+															#{saved.cumPayment}, 
+															#{saved.paytAmt}, 
 															#{saved.localAmt}, 
-															#{saved.overdueInt}, 
+															#{saved.overdueInt ,jdbcType=INTEGER}, 
 															#{saved.remarks,jdbcType=VARCHAR}, 
 															#{saved.createUser}, 
 															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 															#{saved.updateUser}, 
 															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				
+				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
+																   #{saved.paytAmt},#{saved.updateUser}, 
+																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2445,5 +2514,278 @@
     	END;
 	</update>
 	
+	<update id="saveAcctPrqServFee" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACCT_SERVFEE_DTL_DIST_PKG.save_servfee(
+				#{reqId, jdbcType=INTEGER},
+				CAST(to_timestamp(#{prdAsOf, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{year, jdbcType=INTEGER},
+				#{servFeeAmt, jdbcType=INTEGER},
+				#{currCd, jdbcType=VARCHAR},
+				#{currRt, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses" id="claimLossMap">
+		<result property="tranId" 			column="CLM_TRAN_ID"/>
+		<result property="itemNo" 			column="CLM_ITEM_NO"/>
+		<result property="cedingId" 			column="CLM_TRAN_ID"/>
+		<result property="cedingName" 			column="CLM_ITEM_NO"/>
+		<result property="claimId" 			column="CLM_CLAIM_ID"/>
+		<result property="projId" 			column="CLM_PROJ_ID"/>
+		<result property="histNo" 			column="CLM_HIST_NO"/>
+		<result property="claimNo" 			column="CLM_CLAIM_NO"/>
+		<result property="histCategory" 	column="CLM_HIST_CATEGORY"/>
+		<result property="histCategoryDesc" column="CLM_HIST_CATEGORY_DESC"/>
+		<result property="histType" 		column="CLM_HIST_TYPE"/>
+		<result property="histTypeDesc" 	column="CLM_HIST_TYPE_DESC"/>
+		<result property="exGratia" 		column="CLM_EX_GRATIA"/>
+		<result property="reserveAmt" 		column="CLM_RESERVE_AMT"/>
+		<result property="insuredDesc" 		column="CLM_INSURED_DESC"/>
+		<result property="paymentFor" 		column="CLM_PAYMENT_FOR"/>
+		<result property="currCd" 			column="CLM_CURR_CD"/>
+		<result property="currRate" 		column="CLM_CURR_RATE"/>
+		<result property="clmPaytAmt" 		column="CLM_CLM_PAYT_AMT"/>
+		<result property="localAmt" 		column="CLM_LOCAL_AMT"/>
+		<result property="remarks" 			column="CLM_REMARKS"/>
+		<result property="createUser" 		column="CLM_CREATE_USER"/>
+		<result property="createDate" 		column="CLM_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="CLM_UPDATE_USER"/>
+		<result property="updateDate" 		column="CLM_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<association property="inwPolBal" resultMap="clminwpolMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVInwPolBal" id="clminwpolMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="policyId" column="POLICY_ID"/>
+		<result property="instNo" column="INST_NO"/>
+		<result property="policyNo" column="POLICY_NO"/>
+		<result property="soaNo" column="SOA_NO"/>
+		<result property="coRefNo" column="CO_REF_NO"/>
+		<result property="effDate" column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="dueDate" column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		
+		<result property="prevPremAmt" column="PREV_PREMIUM"/>
+		<result property="prevRiComm" column="PREV_RI_COMM"/>
+		<result property="prevRiCommVat" column="PREV_RI_COMM_VAT"/>
+		<result property="prevCharges" column="PREV_CHARGES"/>
+		<result property="prevNetDue" column="PREV_NET_DUE"/>
+		<result property="cumPayment" column="PREV_CUM_PAYMENT"/>
+		<result property="balance" column="PREV_BALANCE"/>
+		<result property="totalPayt" column="TOTAL_PAYMENTS"/>
+		<result property="remainingBal" column="REMAINING_BALANCE"/>
+
+		<result property="premAmt" column="PREM_AMT"/>
+		<result property="riComm" column="RI_COMM"/>
+		<result property="riCommVat" column="RI_COMM_VAT"/>
+		<result property="charges" column="CHARGES"/>
+		<result property="netDue" column="NET_DUE"/>
+		<result property="prevPaytAmt" column="PREV_PAYT_AMT"/>
+		<result property="paytAmt" column="BAL_PAYT_AMT"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+		<result property="overdueInt" column="OVERDUE_INT"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitJVRcvblsAgnstLosses" resultMap="claimLossMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_rec_agnst_loss(#{tranId},#{cedingId},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<update id="saveAcitJvRcvblsAgnstLoss" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_message VARCHAR2(500);
+		BEGIN
+			<foreach collection="delClmOffset" item="del">
+				ACIT_JOURNAL_VOUCHER_PKG.del_clm_offset(#{del.tranId},#{del.itemNo}
+												  		);
+			</foreach>
+			
+			<foreach collection="saveClmOffset" item="save">
+				ACIT_JOURNAL_VOUCHER_PKG.save_clm_offset(#{save.tranId}, 
+														 #{save.itemNo,jdbcType=INTEGER}, 
+														 #{save.claimId}, 
+														 #{save.projId}, 
+														 #{save.histNo}, 
+														 #{save.paymentFor,jdbcType=VARCHAR}, 
+														 #{save.histCategory},
+														 #{save.histType},
+														 #{save.exGratia},
+														 #{save.reserveAmt},
+														 #{save.currCd}, 
+														 #{save.currRate}, 
+														 #{save.clmPaytAmt}, 
+														 #{save.localAmt}, 
+														 #{save.remarks,jdbcType=VARCHAR}, 
+														 #{save.createUser}, 
+														 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser}, 
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														 );
+			</foreach>
+			
+			<foreach collection="delInwPol" item="delete">
+				ACIT_JOURNAL_VOUCHER_PKG.del_inw_offset(#{delete.tranId},#{delete.itemNo}
+												  		);
+			</foreach>
+			
+			<foreach collection="saveInwPol" item="saved">
+				ACIT_JOURNAL_VOUCHER_PKG.save_inw_offset(#{saved.tranId}, 
+														 #{saved.itemNo,jdbcType=INTEGER}, 
+														 #{saved.policyId}, 
+														 #{saved.instNo}, 
+														 #{saved.currCd}, 
+														 #{saved.currRate}, 
+														 #{saved.premAmt}, 
+														 #{saved.riComm}, 
+														 #{saved.riCommVat}, 
+														 #{saved.charges}, 
+														 #{saved.netDue}, 
+														 #{saved.cumPayment}, 
+														 #{saved.paytAmt}, 
+														 #{saved.localAmt}, 
+														 #{saved.overdueInt ,jdbcType=INTEGER}, 
+														 #{saved.remarks,jdbcType=VARCHAR}, 
+														 #{saved.createUser}, 
+														 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{saved.updateUser}, 
+														 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														 );
+				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
+																   #{saved.paytAmt},#{saved.updateUser}, 
+																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); 
+				
+			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
+		END;
+	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitCv" id="acitCvMap">
+		<result property="cvGenNo"			column="CV_GEN_NO"/>
+		<result property="tranId"			column="TRAN_ID"/>
+		<result property="cvYear"			column="CV_YEAR"/>
+		<result property="cvNo"				column="CV_NO"/>
+		<result property="cvDate"			column="CV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cvStatus"			column="CV_STATUS"/>
+		<result property="cvStatusDesc"		column="CV_STATUS_DESC"/>
+		<result property="payeeNo"			column="PAYEE_NO"/>
+		<result property="payee"			column="PAYEE"/>
+		<result property="particulars"		column="PARTICULARS"/>
+		<result property="bank"				column="BANK"/>
+		<result property="bankDesc"			column="BANK_DESC"/>
+		<result property="bankAcct"			column="BANK_ACCT"/>
+		<result property="checkNo"			column="CHECK_NO"/>
+		<result property="checkDate"		column="CHECK_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="checkClass"		column="CHECK_CLASS"/>
+		<result property="checkClassDesc"	column="CHECK_CLASS_DESC"/>
+		<result property="currCd"			column="CURR_CD"/>
+		<result property="currRate"			column="CURR_RATE"/>
+		<result property="cvAmt"			column="CV_AMT"/>
+		<result property="localAmt"			column="LOCAL_AMT"/>
+		<result property="preparedBy"		column="PREPARED_BY"/>
+		<result property="preparedDate"		column="PREPARED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="certifiedBy"		column="CERTIFIED_BY"/>
+		<result property="certifiedDate"	column="CERTIFIED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		
+		<result property="mainTranId" 		column="MAIN_TRAN_ID"/>
+		<result property="mainTranDate" 	column="MAIN_TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainTranClass" 	column="MAIN_TRAN_CLASS"/>
+		<result property="mainTranTypeCd" 	column="MAIN_TRAN_TYPE_CD"/>
+		<result property="mainTranYear" 	column="MAIN_TRAN_YEAR"/>
+		<result property="mainTranClassNo" 	column="MAIN_TRAN_CLASS_NO"/>
+		<result property="mainTranStat" 	column="MAIN_TRAN_STAT"/>
+		<result property="mainCloseDate" 	column="MAIN_CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainDeleteDate" 	column="MAIN_DELETE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainPostDate" 	column="MAIN_POST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainCreateUser" 	column="MAIN_CREATE_USER"/>
+		<result property="mainCreateDate" 	column="MAIN_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainUpdateUser" 	column="MAIN_UPDATE_USER"/>
+		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_CHECK_VOUCHER_PKG.ret_acit_cv(
+					#{tranId,jdbcType=INTEGER},
+					#{cvGenNo, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{cvDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{cvDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{cvStatusDesc, jdbcType=VARCHAR},
+					#{payee, jdbcType=VARCHAR},
+					#{particulars, jdbcType=VARCHAR},
+					#{cvAmt, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	
+	<update id="saveAcitCv" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_CHECK_VOUCHER_PKG.save_acit_cv(
+				#{tranIdOut,mode=OUT,jdbcType=INTEGER},
+				#{mainTranIdOut,mode=OUT,jdbcType=INTEGER},
+				#{tranId,mode=INOUT, jdbcType=INTEGER},
+				#{cvYear, jdbcType=INTEGER},
+				#{cvNo, jdbcType=INTEGER},
+				CAST(to_timestamp(#{cvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{cvStatus, jdbcType=VARCHAR},
+				#{payeeNo, jdbcType=INTEGER},
+				#{payee, jdbcType=VARCHAR},
+				#{particulars, jdbcType=VARCHAR},
+				#{bank, jdbcType=INTEGER},
+				#{bankAcct, jdbcType=VARCHAR},
+				#{checkNo, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{checkDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{checkClass, jdbcType=VARCHAR},
+				#{currCd, jdbcType=VARCHAR},
+				#{currRate, jdbcType=INTEGER},
+				#{cvAmt, jdbcType=INTEGER},
+				#{localAmt, jdbcType=INTEGER},
+				#{preparedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{preparedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{certifiedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{certifiedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{mainTranId,mode=INOUT, jdbcType=INTEGER},
+				#{tranStat, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{closeDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{deleteDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="saveAcitCvPaytReqList" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deletePaytReqList" item="del">
+				ACIT_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId}, #{del.itemNo});
+			</foreach>
+			
+			<foreach collection="savePaytReqList" item="save">
+				ACIT_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId},
+														   #{save.itemNo, jdbcType=INTEGER},
+														   #{save.reqId},
+														   #{save.createUser, jdbcType=VARCHAR},
+														   CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														   #{save.updateUser, jdbcType=VARCHAR}, 
+														   CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 	
 </mapper>

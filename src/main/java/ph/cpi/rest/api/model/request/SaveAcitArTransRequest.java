@@ -32,6 +32,9 @@ public class SaveAcitArTransRequest {
 	private String prPreparedBy;
 	private String payeeNo;
 	private String payor;
+	private String mailAddress;
+	private String bussTypeName;
+	private String tin;
 	private String particulars;
 	private String currCd;
 	private String currRate;
@@ -199,6 +202,24 @@ public class SaveAcitArTransRequest {
 	public void setPayor(String payor) {
 		this.payor = payor;
 	}
+	public String getMailAddress() {
+		return mailAddress;
+	}
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
+	}
+	public String getBussTypeName() {
+		return bussTypeName;
+	}
+	public void setBussTypeName(String bussTypeName) {
+		this.bussTypeName = bussTypeName;
+	}
+	public String getTin() {
+		return tin;
+	}
+	public void setTin(String tin) {
+		this.tin = tin;
+	}
 	public String getParticulars() {
 		return particulars;
 	}
@@ -257,9 +278,10 @@ public class SaveAcitArTransRequest {
 				+ ", updateDate=" + updateDate + ", arStatus=" + arStatus + ", dcbYear=" + dcbYear + ", dcbNo=" + dcbNo
 				+ ", dcbUserCd=" + dcbUserCd + ", dcbBank=" + dcbBank + ", dcbBankAcct=" + dcbBankAcct + ", refNo="
 				+ refNo + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy=" + prPreparedBy + ", payeeNo="
-				+ payeeNo + ", payor=" + payor + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", arAmt=" + arAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId
-				+ ", savePaytDtl=" + savePaytDtl + ", delPaytDtl=" + delPaytDtl + "]";
+				+ payeeNo + ", payor=" + payor + ", mailAddress=" + mailAddress + ", bussTypeName=" + bussTypeName
+				+ ", tin=" + tin + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", arAmt=" + arAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", savePaytDtl="
+				+ savePaytDtl + ", delPaytDtl=" + delPaytDtl + "]";
 	}
 }
 
@@ -275,6 +297,7 @@ class SavePaytDtl{
 	private String checkNo;
 	private String checkDate;
 	private String checkClass;
+	private String remarks;
 	
 	public String getTranId() {
 		return tranId;
@@ -342,11 +365,18 @@ class SavePaytDtl{
 	public void setCheckClass(String checkClass) {
 		this.checkClass = checkClass;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	
 	@Override
 	public String toString() {
 		return "SavePaytDtl [tranId=" + tranId + ", paytId=" + paytId + ", paytMode=" + paytMode + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", paytAmt=" + paytAmt + ", bank=" + bank + ", bankAcct=" + bankAcct
-				+ ", checkNo=" + checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass + "]";
+				+ ", checkNo=" + checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass + ", remarks="
+				+ remarks + "]";
 	}
 }
