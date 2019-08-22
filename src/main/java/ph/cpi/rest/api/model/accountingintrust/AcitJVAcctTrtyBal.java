@@ -9,6 +9,7 @@ public class AcitJVAcctTrtyBal {
 	private Integer tranId;
 	private Integer quarterNo;
 	private String cedingId;
+	private String cedingName;
 	private DateTime quarterEnding;
 	private String currCd;
 	private BigDecimal currRate;
@@ -20,6 +21,12 @@ public class AcitJVAcctTrtyBal {
 	private DateTime updateDate;
 	private List <AcitJVAcctOffset> acctOffset;
 	
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}

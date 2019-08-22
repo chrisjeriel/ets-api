@@ -16,6 +16,13 @@ public class AcitSOAAgingDetails {
 	private Integer instNo;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal prevPremAmt;
+	private BigDecimal prevRiComm;
+	private BigDecimal prevRiCommVat;
+	private BigDecimal prevCharges;
+	private BigDecimal prevNetDue;
+	private BigDecimal cumPayment;
+	private BigDecimal prevBalance;
 	private BigDecimal totalAmtDue;
 	private BigDecimal totalPayments;
 	private BigDecimal tempPayments;
@@ -102,6 +109,48 @@ public class AcitSOAAgingDetails {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
+	public BigDecimal getPrevPremAmt() {
+		return prevPremAmt;
+	}
+	public void setPrevPremAmt(BigDecimal prevPremAmt) {
+		this.prevPremAmt = prevPremAmt;
+	}
+	public BigDecimal getPrevRiComm() {
+		return prevRiComm;
+	}
+	public void setPrevRiComm(BigDecimal prevRiComm) {
+		this.prevRiComm = prevRiComm;
+	}
+	public BigDecimal getPrevRiCommVat() {
+		return prevRiCommVat;
+	}
+	public void setPrevRiCommVat(BigDecimal prevRiCommVat) {
+		this.prevRiCommVat = prevRiCommVat;
+	}
+	public BigDecimal getPrevCharges() {
+		return prevCharges;
+	}
+	public void setPrevCharges(BigDecimal prevCharges) {
+		this.prevCharges = prevCharges;
+	}
+	public BigDecimal getPrevNetDue() {
+		return prevNetDue;
+	}
+	public void setPrevNetDue(BigDecimal prevNetDue) {
+		this.prevNetDue = prevNetDue;
+	}
+	public BigDecimal getCumPayment() {
+		return cumPayment;
+	}
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
 	public BigDecimal getTotalAmtDue() {
 		return totalAmtDue;
 	}
@@ -120,7 +169,6 @@ public class AcitSOAAgingDetails {
 	public void setTempPayments(BigDecimal tempPayments) {
 		this.tempPayments = tempPayments;
 	}
-	
 	public BigDecimal getNetDuePayments() {
 		return netDuePayments;
 	}
@@ -228,13 +276,15 @@ public class AcitSOAAgingDetails {
 		return "AcitSOAAgingDetails [policyId=" + policyId + ", cedingId=" + cedingId + ", refCd=" + refCd
 				+ ", payeeNo=" + payeeNo + ", payeeName=" + payeeName + ", policyNo=" + policyNo + ", soaNo=" + soaNo
 				+ ", coRefNo=" + coRefNo + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", totalAmtDue=" + totalAmtDue + ", totalPayments=" + totalPayments + ", tempPayments=" + tempPayments
-				+ ", netDuePayments=" + netDuePayments + ", balAmtDue=" + balAmtDue + ", balPremDue=" + balPremDue
-				+ ", balChargesDue=" + balChargesDue + ", balRiComm=" + balRiComm + ", balRiCommVat=" + balRiCommVat
-				+ ", balOverdueInt=" + balOverdueInt + ", effDate=" + effDate + ", dueDate=" + dueDate
-				+ ", bookingDate=" + bookingDate + ", agingId=" + agingId + ", netDue=" + netDue + ", balance="
-				+ balance + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", prevPremAmt=" + prevPremAmt + ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat
+				+ ", prevCharges=" + prevCharges + ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment
+				+ ", prevBalance=" + prevBalance + ", totalAmtDue=" + totalAmtDue + ", totalPayments=" + totalPayments
+				+ ", tempPayments=" + tempPayments + ", netDuePayments=" + netDuePayments + ", balAmtDue=" + balAmtDue
+				+ ", balPremDue=" + balPremDue + ", balChargesDue=" + balChargesDue + ", balRiComm=" + balRiComm
+				+ ", balRiCommVat=" + balRiCommVat + ", balOverdueInt=" + balOverdueInt + ", effDate=" + effDate
+				+ ", dueDate=" + dueDate + ", bookingDate=" + bookingDate + ", agingId=" + agingId + ", netDue="
+				+ netDue + ", balance=" + balance + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

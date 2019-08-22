@@ -6,6 +6,7 @@ public class RetrieveAcitAgingSoaDtlRequest {
 	private String cedingId;
 	private String payeeNo;
 	private Integer zeroBal;
+	private String currCd;
 	
 	public String getPolicyId() {
 		return policyId;
@@ -38,9 +39,15 @@ public class RetrieveAcitAgingSoaDtlRequest {
 	public void setZeroBal(Integer zeroBal) {
 		this.zeroBal = zeroBal;
 	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcitAgingSoaDtlRequest [policyId=" + policyId + ", instNo=" + instNo + ", cedingId=" + cedingId
-				+ ", payeeNo=" + payeeNo + ", zeroBal=" + zeroBal + "]";
+				+ ", payeeNo=" + payeeNo + ", zeroBal=" + zeroBal + ", currCd=" + currCd + "]";
 	}
 }
