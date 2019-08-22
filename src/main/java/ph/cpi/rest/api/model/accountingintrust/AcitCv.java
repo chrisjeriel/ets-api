@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.accountingintrust;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class AcitCv {
@@ -22,8 +24,8 @@ public class AcitCv {
 	private String checkClassDesc;
 	private String currCd;
 	private Integer currRate;
-	private Integer cvAmt;
-	private Integer localAmt;
+	private BigDecimal cvAmt;
+	private BigDecimal localAmt;
 	private String preparedBy;
 	private DateTime preparedDate;
 	private String certifiedBy;
@@ -159,20 +161,20 @@ public class AcitCv {
 	public Integer getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Integer currRate) {
-		this.currRate = currRate;
-	}
-	public Integer getCvAmt() {
+	public BigDecimal getCvAmt() {
 		return cvAmt;
 	}
-	public void setCvAmt(Integer cvAmt) {
+	public void setCvAmt(BigDecimal cvAmt) {
 		this.cvAmt = cvAmt;
 	}
-	public Integer getLocalAmt() {
+	public BigDecimal getLocalAmt() {
 		return localAmt;
 	}
-	public void setLocalAmt(Integer localAmt) {
+	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
+	}
+	public void setCurrRate(Integer currRate) {
+		this.currRate = currRate;
 	}
 	public String getPreparedBy() {
 		return preparedBy;

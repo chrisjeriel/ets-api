@@ -34,6 +34,7 @@ class SaveAcitCvPaytReq {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String cvStatus;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -77,10 +78,16 @@ class SaveAcitCvPaytReq {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCvStatus() {
+		return cvStatus;
+	}
+	public void setCvStatus(String cvStatus) {
+		this.cvStatus = cvStatus;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcitCvPaytReq [tranId=" + tranId + ", itemNo=" + itemNo + ", reqId=" + reqId + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", cvStatus=" + cvStatus + "]";
 	}
 }
