@@ -1403,8 +1403,10 @@
 		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_profcomm_summ(
 					#{profcommId,jdbcType=INTEGER},
 					#{cedingId, jdbcType=VARCHAR},
-					#{month, jdbcType=VARCHAR},
-					#{year, jdbcType=VARCHAR},
+					#{monthFrom, jdbcType=VARCHAR},
+					#{monthTo, jdbcType=VARCHAR},
+					#{yearFrom, jdbcType=VARCHAR},
+					#{yearTo, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 	
