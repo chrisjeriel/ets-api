@@ -36,7 +36,7 @@
 		<result property="mbiRefNo"			column="MBI_REF_NO"/>
 		<result property="inceptDate" 		column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="expiryDate" 		column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="coClaimNo" 		column="CO_CLM_NO"/>
+		<result property="coClmNo" 			column="CO_CLM_NO"/>
 		<result property="lossDate" 		column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lossCd" 			column="LOSS_CD"/>
 		<result property="lossAbbr" 		column="LOSS_ABBR"/>
@@ -223,7 +223,7 @@
 		<result property="totalLossExpPd"   column="T_LOSS_EXP_PD" />
 		<result property="lossStatCd"   	column="LOSS_STAT_CD" />
 		<result property="processedBy"     	column="PROCESSED_BY" />
-		<result property="coClaimNo"     	column="CO_CLM_NO" />
+		<result property="coClmNo"     		column="CO_CLM_NO" />
 		<result property="processedBy"     	column="PROCESSED_BY" />
 		<result property="cessionDesc"     	column="CESSION_DESC" />
 		<result property="lineClassDesc"    column="LINE_CLASS_DESC" />
