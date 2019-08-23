@@ -2098,6 +2098,7 @@
 		<result property="paymentFor" column="PAYMENT_FOR"/>
 		<result property="currCd" column="CURR_CD"/>
 		<result property="currRate" column="CURR_RATE"/>
+		<result property="paytAmt"  column="CUM_PAYMENT"/>
 		<result property="clmPaytAmt" column="CLM_PAYT_AMT"/>
 		<result property="localAmt" column="LOCAL_AMT"/>
 		<result property="remarks" column="REMARKS"/>
