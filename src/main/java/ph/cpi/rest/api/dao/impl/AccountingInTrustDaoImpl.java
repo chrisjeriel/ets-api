@@ -552,5 +552,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitClmResHistPayts> res = sqlSession.selectList("retrieveAcitClmResHistPayts",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitClmResHistPayts(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitClmResHistPayts",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 }

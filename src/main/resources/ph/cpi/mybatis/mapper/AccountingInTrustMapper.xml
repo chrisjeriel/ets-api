@@ -2152,6 +2152,7 @@
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				
 			</foreach>
 			
 			<foreach collection="deleteClmOffset" item="deleted">
@@ -2183,6 +2184,25 @@
 															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															#{saved.updateUser},
 															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.save_acit_clmres_hist(
+											#{saved.tranId},
+											#{saved.claimId},
+											#{saved.projId},
+											#{saved.histNo},
+											#{saved.histCategory},
+											#{saved.histType},
+											#{saved.exGratia},
+											#{saved.reserveAmt},
+											#{saved.currCd},
+											#{saved.currRate},
+											#{saved.clmPaytAmt},
+											#{saved.localAmt},
+											#{saved.createUser},
+											CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											#{saved.updateUser},
+											CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
@@ -2637,4 +2657,39 @@
 	<select id="retrieveAcitClmResHistPayts" resultMap="clmResHistPaytMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_CLM_RES_HIST_PAYTS_PKG.ret_clm_res_hist_lov(#{cedingId,jdbcType=VARCHAR},#{payeeNo,jdbcType=INTEGER},#{currCd},NULL,NULL,NULL,NULL))
 	</select>
+	
+	<update id="saveAcitClmResHistPayts" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveResHistPayments" item="save">
+					ACIT_CLM_RES_HIST_PAYTS_PKG.save_acit_clmres_hist(
+														#{save.tranId},
+														#{save.claimId},
+														#{save.projId},
+														#{save.histNo},
+														#{save.histCategory},
+														#{save.histType},
+														#{save.exGratia},
+														#{save.reserveAmt},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.paytAmt},
+														#{save.localAmt},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.createDate},
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  );
+			</foreach>
+			
+			<foreach collection="delResHistPayments" item="delete">
+					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
+														#{delete.tranId},
+														#{delete.claimId},
+														#{delete.projId},
+														#{delete.histNo}
+													  );
+			</foreach>
+		END;
+	</update>
 </mapper>
