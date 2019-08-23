@@ -8,6 +8,7 @@ public class AcitJVIntOverdueAcctsMS {
 	private Integer tranId;
 	private String itemNo;
 	private String cedingId;
+	private String cedingName;
 	private Integer policyId;
 	private String policyNo;
 	private String soaNo;
@@ -30,6 +31,13 @@ public class AcitJVIntOverdueAcctsMS {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public String getItemNo() {
 		return itemNo;
@@ -148,10 +156,12 @@ public class AcitJVIntOverdueAcctsMS {
 	@Override
 	public String toString() {
 		return "AcitJVIntOverdueAcctsMS [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId
-				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo
-				+ ", effDate=" + effDate + ", instNo=" + instNo + ", dueDate=" + dueDate + ", daysOverdue="
-				+ daysOverdue + ", autoTag=" + autoTag + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
-				+ premAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", soaNo="
+				+ soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate + ", instNo=" + instNo + ", dueDate="
+				+ dueDate + ", daysOverdue=" + daysOverdue + ", autoTag=" + autoTag + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", premAmt=" + premAmt + ", overdueInt=" + overdueInt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
+	
 }

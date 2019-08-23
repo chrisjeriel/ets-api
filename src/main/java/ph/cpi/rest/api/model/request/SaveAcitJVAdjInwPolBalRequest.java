@@ -131,12 +131,14 @@ class InwPol{
 		this.netDue = netDue;
 	}
 	
+	
 	public BigDecimal getPaytAmt() {
 		return paytAmt;
 	}
 	public void setPaytAmt(BigDecimal paytAmt) {
 		this.paytAmt = paytAmt;
 	}
+	
 	public BigDecimal getRemainingBal() {
 		return remainingBal;
 	}
@@ -189,4 +191,5 @@ class InwPol{
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }

@@ -9,6 +9,7 @@ public class AcitJVClmNegativeTreaty {
 	private Integer tranId;
 	private Integer quarterNo;
 	private String cedingId;
+	private String cedingName;
 	private DateTime quarterEnding;
 	private String currCd;
 	private BigDecimal currRate;
@@ -24,6 +25,13 @@ public class AcitJVClmNegativeTreaty {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public Integer getQuarterNo() {
 		return quarterNo;
@@ -91,7 +99,6 @@ public class AcitJVClmNegativeTreaty {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	public List<AcitJVClaimOffset> getClmOffset() {
 		return clmOffset;
 	}
@@ -101,8 +108,10 @@ public class AcitJVClmNegativeTreaty {
 	@Override
 	public String toString() {
 		return "AcitJVClmNegativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
-				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + "]";
+				+ ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", clmOffset=" + clmOffset + "]";
 	}
+	
 }
