@@ -611,7 +611,6 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_aipb(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
-					#{cedingCo,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
 

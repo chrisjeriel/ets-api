@@ -633,7 +633,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", rajipb.getTranId());
 		params.put("instNo", rajipb.getInstNo());
-		params.put("cedingCo", rajipb.getCedingCo());
 		response.setInwPolBal(acctITDao.retrieveAcitJVAdjstInwPolBal(params));
 		return response;
 	}
