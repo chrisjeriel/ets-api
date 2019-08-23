@@ -2,8 +2,10 @@ package ph.cpi.rest.api.service;
 
 import java.sql.SQLException;
 
+import org.glassfish.jersey.jaxb.internal.XmlCollectionJaxbProvider.App;
 import org.springframework.stereotype.Service;
 
+import ph.cpi.rest.api.model.request.ApproveJVRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
@@ -77,6 +79,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.response.ApproveJVResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -231,4 +234,5 @@ public interface AccountingInTrustService {
 	public SaveAcitJVRcvblsAgnstLosResponse saveAcitJvRcvblsAgnstLoss(SaveAcitJVRcvblsAgnstLosRequest request)throws SQLException;
 	public RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request)throws SQLException;
 	public SaveAcitClmResHistPaytsResponse saveAcitClmResHistPayts(SaveAcitClmResHistPaytsRequest request)throws SQLException;
+	public ApproveJVResponse approveJV(ApproveJVRequest request)throws SQLException;
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.ApproveJVRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
@@ -83,6 +84,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.response.ApproveJVResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -1591,6 +1593,29 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("saveResHistPayments", request.getSaveResHistPayments());
 			params.put("delResHistPayments", request.getDelResHistPayments());
 			HashMap<String, Object> res = acctITDao.saveAcitClmResHistPayts(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public ApproveJVResponse approveJV(ApproveJVRequest request) throws SQLException {
+		ApproveJVResponse response = new ApproveJVResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("jvNo", request.getJvNo());
+			params.put("jvYear", request.getJvYear());
+			params.put("approvedBy", request.getApprovedBy());
+			params.put("approvedDate", request.getApprovedDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String, Object> res = acctITDao.approveJV(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		} catch (SQLException sqlex) {
 			response.setReturnCode(0);

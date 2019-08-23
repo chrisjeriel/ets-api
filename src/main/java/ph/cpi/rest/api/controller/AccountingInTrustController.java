@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.ApproveJVRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
@@ -86,6 +87,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.response.ApproveJVResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -717,5 +719,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/SaveAcitClmResHistPaytsRequest");
 		logger.info("SaveAcitClmResHistPaytsRequest : " + request.toString());
 		return acctInTrustService.saveAcitClmResHistPayts(request);
+	}
+	
+	@PostMapping(path="approveJV")
+	public @ResponseBody ApproveJVResponse approveJV(@RequestBody ApproveJVRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/ApproveJVRequest");
+		logger.info("ApproveJVRequest : " + request.toString());
+		return acctInTrustService.approveJV(request);
 	}
 }
