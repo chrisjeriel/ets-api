@@ -1675,20 +1675,20 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	@Override
 	public SaveAcitCvPaytReqListResponse saveAcitCvPaytReqList(SaveAcitCvPaytReqListRequest sacprr)
 			throws SQLException {
-		SaveAcitCvPaytReqListResponse response = new SaveAcitCvPaytReqListResponse();
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		
-		params.put("savePaytReqList", sacprr.getSavePaytReqList());
-		params.put("deletePaytReqList", sacprr.getDeletePaytReqList());
+		SaveAcitCvPaytReqListResponse sacprlResponse = new SaveAcitCvPaytReqListResponse();
+		HashMap<String, Object> sacprlParams = new HashMap<String, Object>();
 		
 		try {
-			response.setReturnCode(acctITDao.saveAcitCvPaytReqList(params));
+			sacprlParams.put("savePaytReqList", sacprr.getSavePaytReqList());
+			sacprlParams.put("deletePaytReqList", sacprr.getDeletePaytReqList());
+			HashMap<String, Object> response = acctITDao.saveAcitCvPaytReqList(sacprlParams);
+			sacprlResponse.setReturnCode((Integer) response.get("errorCode"));
 		} catch (Exception e) {
-			response.setReturnCode(0);
-			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			sacprlResponse.setReturnCode(0);
+			sacprlResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			e.printStackTrace();
 		}
 		
-		return response;
+		return sacprlResponse;
 	}
 }
