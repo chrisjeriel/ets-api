@@ -655,7 +655,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", rajvo.getTranId());
 		params.put("instNo", rajvo.getInstNo());
-		params.put("cedingId", rajvo.getCedingId());
 		response.setOverDueAccts(acctITDao.retrieveAcitJVIntOverdAcctsMS(params));
 		return response;
 	}
@@ -847,7 +846,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVPremResRelResponse response = new RetrieveAcitJVPremResRelResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setPremResRel(acctITDao.retrieveAcitJVPremResRel(params));
 		return response;
 	}
@@ -1057,8 +1055,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVAppPaytZeroResponse response =  new RetrieveAcitJVAppPaytZeroResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());		
-		params.put("instNo", request.getInstNo());	
-		params.put("cedingId", request.getCedingId());	
+		params.put("instNo", request.getInstNo());
 		response.setZeroBal(acctITDao.retrieveAcitJVAppPaytZeroBal(params));
 		logger.info("RetrieveAcitJVAppPaytZeroResponse : " + response.toString());
 		return response;
@@ -1353,7 +1350,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVClmNegTrtyResponse response = new RetrieveAcitJVClmNegTrtyResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setNegativeTrty(acctITDao.retrieveAcitJvNegTrty(params));
 		return response;
 	}
@@ -1478,7 +1474,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVAcctTrtyBalResponse response = new RetrieveAcitJVAcctTrtyBalResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setAcctTreatyBal(acctITDao.retrieveAcitJvAcctTrtyBal(params));
 		return response;
 	}
@@ -1542,7 +1537,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVRcvblsAgnstLosResponse response = new RetrieveAcitJVRcvblsAgnstLosResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setReceivables(acctITDao.retrieveAcitJVRcvblsAgnstLosses(params));
 		return response;
 	}
