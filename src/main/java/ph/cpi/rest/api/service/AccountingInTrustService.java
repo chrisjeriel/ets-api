@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitClmResHistPaytRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
@@ -97,6 +98,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitClmResHistPaytResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAcctTrtyBalResponse;
@@ -225,4 +227,6 @@ public interface AccountingInTrustService {
 	public SaveAcitJVEntryListResponse saveAcitJVEntryList(SaveAcitJVEntryListRequest sajel) throws SQLException;
 	public RetrieveAcitJVRcvblsAgnstLosResponse retrieveAcitJVRcvblsAgnstLosses(RetrieveAcitJVRcvblsAgnstLosRequest request)throws SQLException;
 	public SaveAcitJVRcvblsAgnstLosResponse saveAcitJvRcvblsAgnstLoss(SaveAcitJVRcvblsAgnstLosRequest request)throws SQLException;
+	public RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request)throws SQLException;
+	
 }

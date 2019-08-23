@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitClmResHistPaytRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
@@ -103,6 +104,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitClmResHistPaytResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVAcctTrtyBalResponse;
@@ -1561,6 +1563,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
 		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request)
+			throws SQLException {
+		RetrieveAcitClmResHistPaytResponse response = new RetrieveAcitClmResHistPaytResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("cedingId",request.getCedingId());
+		params.put("payeeNo",request.getPayeeNo());
+		params.put("currCd",request.getCurrCd());
+		response.setClmpayments(acctITDao.retrieveAcitClmResHistPayts(params));
 		return response;
 	}
 }
