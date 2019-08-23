@@ -35,11 +35,5 @@ public class RetrieveAcitJVClmNegTrtyResponse {
 		this.sortRequest = sortRequest;
 	}
 
-	@Override
-	public String toString() {
-		return "RetrieveAcitJVClmNegTrtyResponse [negativeTrty=" + negativeTrty + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
-	}
 	
 }

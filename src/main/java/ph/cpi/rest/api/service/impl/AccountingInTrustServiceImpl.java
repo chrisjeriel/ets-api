@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
 import ph.cpi.rest.api.model.request.GenerateUPRRequest;
+import ph.cpi.rest.api.model.request.PrintArRequest;
 import ph.cpi.rest.api.model.request.PrintCMDMRequest;
 import ph.cpi.rest.api.model.request.PrintJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
@@ -32,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitClmResHistPaytRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
@@ -71,6 +73,7 @@ import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcitClmResHistPaytsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
@@ -89,6 +92,7 @@ import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
 import ph.cpi.rest.api.model.response.GenerateUPRResponse;
+import ph.cpi.rest.api.model.response.PrintArResponse;
 import ph.cpi.rest.api.model.response.PrintCMDMResponse;
 import ph.cpi.rest.api.model.response.PrintJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
@@ -107,6 +111,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitClmResHistPaytResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitInvestmentsListResponse;
@@ -147,6 +152,7 @@ import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcitClmResHistPaytsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
@@ -641,7 +647,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", rajipb.getTranId());
 		params.put("instNo", rajipb.getInstNo());
-		params.put("cedingCo", rajipb.getCedingCo());
 		response.setInwPolBal(acctITDao.retrieveAcitJVAdjstInwPolBal(params));
 		return response;
 	}
@@ -664,7 +669,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", rajvo.getTranId());
 		params.put("instNo", rajvo.getInstNo());
-		params.put("cedingId", rajvo.getCedingId());
 		response.setOverDueAccts(acctITDao.retrieveAcitJVIntOverdAcctsMS(params));
 		return response;
 	}
@@ -856,7 +860,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVPremResRelResponse response = new RetrieveAcitJVPremResRelResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setPremResRel(acctITDao.retrieveAcitJVPremResRel(params));
 		return response;
 	}
@@ -1066,8 +1069,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVAppPaytZeroResponse response =  new RetrieveAcitJVAppPaytZeroResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());		
-		params.put("instNo", request.getInstNo());	
-		params.put("cedingId", request.getCedingId());	
+		params.put("instNo", request.getInstNo());
 		response.setZeroBal(acctITDao.retrieveAcitJVAppPaytZeroBal(params));
 		logger.info("RetrieveAcitJVAppPaytZeroResponse : " + response.toString());
 		return response;
@@ -1118,6 +1120,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitArClmRecoverLovResponse response = new RetrieveAcitArClmRecoverLovResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("payeeNo", raacrlr.getPayeeNo());
+		params.put("currCd", raacrlr.getCurrCd());
 		response.setClaimList(acctITDao.retrieveAcitArClmRecoverLov(params));
 		return response;
 	}
@@ -1362,7 +1365,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVClmNegTrtyResponse response = new RetrieveAcitJVClmNegTrtyResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setNegativeTrty(acctITDao.retrieveAcitJvNegTrty(params));
 		return response;
 	}
@@ -1373,6 +1375,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitArClmCashCallLovResponse response = new RetrieveAcitArClmCashCallLovResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("payeeNo", raaccclr.getPayeeNo());
+		params.put("currCd", raaccclr.getCurrCd());
 		response.setClmCashCallLovList(acctITDao.retrieveAcitArClmCashCallLov(params));
 		return response;
 	}
@@ -1487,7 +1490,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVAcctTrtyBalResponse response = new RetrieveAcitJVAcctTrtyBalResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setAcctTreatyBal(acctITDao.retrieveAcitJvAcctTrtyBal(params));
 		return response;
 	}
@@ -1576,7 +1578,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVRcvblsAgnstLosResponse response = new RetrieveAcitJVRcvblsAgnstLosResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
-		params.put("cedingId", request.getCedingId());
 		response.setReceivables(acctITDao.retrieveAcitJVRcvblsAgnstLosses(params));
 		return response;
 	}
@@ -1604,6 +1605,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVRcvblsAgnstLosResponse response = new SaveAcitJVRcvblsAgnstLosResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveClmOffset", request.getSaveClmOffset());
 			params.put("delClmOffset", request.getDelClmOffset());
 			params.put("saveInwPol", request.getSaveInwPol());
@@ -1671,6 +1674,36 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return sacResponse;
 	}
 
+	@Override
+	public PrintArResponse printAr(PrintArRequest par) throws SQLException {
+		PrintArResponse response = new PrintArResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", par.getTranId());
+		params.put("arNo", par.getArNo());
+		params.put("updateUser", par.getUpdateUser());
+		params.put("updateDate", par.getUpdateDate());
+		try{
+			response.setReturnCode(acctITDao.printAr(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request)
+			throws SQLException {
+		RetrieveAcitClmResHistPaytResponse response = new RetrieveAcitClmResHistPaytResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("cedingId",request.getCedingId());
+		params.put("payeeNo",request.getPayeeNo());
+		params.put("currCd",request.getCurrCd());
+		response.setClmpayments(acctITDao.retrieveAcitClmResHistPayts(params));
+		return response;
+	}
+
 
 	@Override
 	public SaveAcitCvPaytReqListResponse saveAcitCvPaytReqList(SaveAcitCvPaytReqListRequest sacprr)
@@ -1690,5 +1723,23 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		
 		return sacprlResponse;
+	}
+	
+	@Override
+	public SaveAcitClmResHistPaytsResponse saveAcitClmResHistPayts(SaveAcitClmResHistPaytsRequest request)
+			throws SQLException {
+		SaveAcitClmResHistPaytsResponse response = new SaveAcitClmResHistPaytsResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveResHistPayments", request.getSaveResHistPayments());
+			params.put("delResHistPayments", request.getDelResHistPayments());
+			HashMap<String, Object> res = acctITDao.saveAcitClmResHistPayts(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}
+		return response;
 	}
 }

@@ -3,15 +3,22 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveAcitArClmCashCallLovRequest {
-	private String payeeNo;
+public class RetrieveAcitClmResHistPaytRequest {
+	private String cedingId;
+	private Integer payeeNo;
 	private String currCd;
-	private PaginationRequest paginationRequest = new PaginationRequest();
-	private SortRequest sortRequest = new SortRequest();
-	public String getPayeeNo() {
+	private PaginationRequest paginationRequest;
+	private SortRequest sortRequest;
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public Integer getPayeeNo() {
 		return payeeNo;
 	}
-	public void setPayeeNo(String payeeNo) {
+	public void setPayeeNo(Integer payeeNo) {
 		this.payeeNo = payeeNo;
 	}
 	public String getCurrCd() {
@@ -34,8 +41,8 @@ public class RetrieveAcitArClmCashCallLovRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitArClmCashCallLovRequest [payeeNo=" + payeeNo + ", currCd=" + currCd + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitClmResHistPaytRequest [cedingId=" + cedingId + ", payeeNo=" + payeeNo + ", currCd=" + currCd
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

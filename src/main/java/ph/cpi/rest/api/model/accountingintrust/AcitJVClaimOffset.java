@@ -22,6 +22,7 @@ public class AcitJVClaimOffset {
 	private String paymentFor;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal paytAmt;
 	private BigDecimal clmPaytAmt;
 	private BigDecimal localAmt;
 	private String remarks;
@@ -130,6 +131,13 @@ public class AcitJVClaimOffset {
 	}
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
+	}
+	
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
 	public BigDecimal getClmPaytAmt() {
 		return clmPaytAmt;
