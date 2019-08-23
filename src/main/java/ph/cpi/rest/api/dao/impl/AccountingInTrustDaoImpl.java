@@ -545,5 +545,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Integer printAr(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("printAr", params);
+		return errorCode;
+	}
 	
 }

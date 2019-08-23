@@ -391,6 +391,8 @@
 		<result property="cedingId"      column="CEDING_ID"       />
 		<result property="bussTypeName"  column="BUSS_TYPE_NAME"       />
 		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
+		<result property="arDtlSum"      column="ARDTL_SUM"       />
+		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	
@@ -2572,6 +2574,12 @@
 														 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														 );
 			</foreach>
+		END;
+	</update>
+	
+	<update id="printAr" parameterType="java.util.Map">
+		BEGIN
+			ACIT_ACKGT_RECEIPT_PKG.print_ar(#{tranId},#{arNo},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
 	

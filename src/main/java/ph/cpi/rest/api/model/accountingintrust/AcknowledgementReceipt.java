@@ -44,6 +44,8 @@ public class AcknowledgementReceipt {
 	private String cedingId;
 	private String bussTypeName;
 	private Integer rstrctTranUp;
+	private BigDecimal arDtlSum;
+	private BigDecimal acctEntriesSum;
 	
 	private List<ARPaymentDetails> paytDtl;
 
@@ -359,6 +361,22 @@ public class AcknowledgementReceipt {
 		this.paytDtl = paytDtl;
 	}
 
+	public BigDecimal getArDtlSum() {
+		return arDtlSum;
+	}
+
+	public void setArDtlSum(BigDecimal arDtlSum) {
+		this.arDtlSum = arDtlSum;
+	}
+
+	public BigDecimal getAcctEntriesSum() {
+		return acctEntriesSum;
+	}
+
+	public void setAcctEntriesSum(BigDecimal acctEntriesSum) {
+		this.acctEntriesSum = acctEntriesSum;
+	}
+
 	@Override
 	public String toString() {
 		return "AcknowledgementReceipt [tranId=" + tranId + ", arNo=" + arNo + ", formattedArNo=" + formattedArNo
@@ -372,7 +390,7 @@ public class AcknowledgementReceipt {
 				+ arAmt + ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp
-				+ ", paytDtl=" + paytDtl + "]";
+				+ ", arDtlSum=" + arDtlSum + ", acctEntriesSum=" + acctEntriesSum + ", paytDtl=" + paytDtl + "]";
 	}
 
 
