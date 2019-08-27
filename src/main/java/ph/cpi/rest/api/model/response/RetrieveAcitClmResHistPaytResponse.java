@@ -1,17 +1,20 @@
-package ph.cpi.rest.api.model.request;
+package ph.cpi.rest.api.model.response;
+
+import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
+import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 
-public class RetrieveAcitJVPremResRelRequest {
-	private Integer tranId;
+public class RetrieveAcitClmResHistPaytResponse {
+	private List<AcitClmResHistPayts> clmpayments;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getTranId() {
-		return tranId;
+	public List<AcitClmResHistPayts> getClmpayments() {
+		return clmpayments;
 	}
-	public void setTranId(Integer tranId) {
-		this.tranId = tranId;
+	public void setClmpayments(List<AcitClmResHistPayts> clmpayments) {
+		this.clmpayments = clmpayments;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -27,8 +30,8 @@ public class RetrieveAcitJVPremResRelRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitJVPremResRelRequest [tranId=" + tranId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitClmResHistPaytResponse [clmpayments=" + clmpayments + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

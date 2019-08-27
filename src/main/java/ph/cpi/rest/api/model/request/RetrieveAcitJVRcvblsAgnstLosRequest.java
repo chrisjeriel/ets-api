@@ -5,7 +5,6 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveAcitJVRcvblsAgnstLosRequest {
 	private Integer tranId;
-	private String cedingId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public Integer getTranId() {
@@ -13,12 +12,6 @@ public class RetrieveAcitJVRcvblsAgnstLosRequest {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
-	}
-	public String getCedingId() {
-		return cedingId;
-	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,8 +27,7 @@ public class RetrieveAcitJVRcvblsAgnstLosRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitJVRcvblsAgnstLosRequest [tranId=" + tranId + ", cedingId=" + cedingId
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitJVRcvblsAgnstLosRequest [tranId=" + tranId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

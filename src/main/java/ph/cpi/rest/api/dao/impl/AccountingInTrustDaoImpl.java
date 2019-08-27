@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
+import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -552,6 +553,25 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Integer printAr(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("printAr", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<AcitClmResHistPayts> retrieveAcitClmResHistPayts(HashMap<String, Object> params) throws SQLException {
+		List<AcitClmResHistPayts> res = sqlSession.selectList("retrieveAcitClmResHistPayts",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitClmResHistPayts(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitClmResHistPayts",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 	@Override
 	public List<AcitCv> retrieveAcitCv(HashMap<String, Object> params) throws SQLException {
@@ -567,8 +587,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public Integer saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitCvPaytReqList", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

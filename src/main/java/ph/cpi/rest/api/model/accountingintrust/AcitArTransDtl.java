@@ -8,6 +8,7 @@ public class AcitArTransDtl {
 	private Integer tranId;
 	private Integer billId;
 	private Integer itemNo;
+	private String transdtlType;
 	private String itemName;
 	private String currCd;
 	private BigDecimal currRate;
@@ -37,6 +38,12 @@ public class AcitArTransDtl {
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getTransdtlType() {
+		return transdtlType;
+	}
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
 	}
 	public String getItemName() {
 		return itemName;
@@ -107,9 +114,10 @@ public class AcitArTransDtl {
 	
 	@Override
 	public String toString() {
-		return "AcitArTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", itemName="
-				+ itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
-				+ localAmt + ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitArTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", transdtlType="
+				+ transdtlType + ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", refNo=" + refNo + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

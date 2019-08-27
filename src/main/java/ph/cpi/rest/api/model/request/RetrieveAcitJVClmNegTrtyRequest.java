@@ -8,7 +8,6 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 
 public class RetrieveAcitJVClmNegTrtyRequest {
 	private Integer tranId;
-	private String cedingId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public Integer getTranId() {
@@ -16,12 +15,6 @@ public class RetrieveAcitJVClmNegTrtyRequest {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
-	}
-	public String getCedingId() {
-		return cedingId;
-	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -37,7 +30,8 @@ public class RetrieveAcitJVClmNegTrtyRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitJVClmNegTrtyRequest [tranId=" + tranId + ", cedingId=" + cedingId + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitJVClmNegTrtyRequest [tranId=" + tranId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

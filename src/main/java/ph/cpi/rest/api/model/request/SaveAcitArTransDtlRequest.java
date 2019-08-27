@@ -89,6 +89,7 @@ class SaveArTransDtl{
 	private String tranId;
 	private String billId;
 	private String itemNo;
+	private String transdtlType;
 	private String itemName;
 	private String currCd;
 	private String currRate;
@@ -118,6 +119,12 @@ class SaveArTransDtl{
 	}
 	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getTransdtlType() {
+		return transdtlType;
+	}
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
 	}
 	public String getItemName() {
 		return itemName;
@@ -188,9 +195,10 @@ class SaveArTransDtl{
 	
 	@Override
 	public String toString() {
-		return "SaveArTranDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", itemName="
-				+ itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
-				+ localAmt + ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "SaveArTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", transdtlType="
+				+ transdtlType + ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", refNo=" + refNo + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

@@ -145,5 +145,5 @@ public interface MaintenanceService {
 	public SaveMtnBankResponse saveMtnBank(SaveMtnBankRequest smaidcbr) throws SQLException;
 	public SaveMtnBankAcctResponse saveMtnBankAcct(SaveMtnBankAcctRequest smaidcbr) throws SQLException;
 	public RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException;
-	
+	public RetrieveMtnBussTypeResponse retrieveMtnBussType(RetrieveMtnBussTypeRequest rmbtr) throws SQLException;
 }
