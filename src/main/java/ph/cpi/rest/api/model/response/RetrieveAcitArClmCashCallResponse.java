@@ -5,6 +5,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 
 public class RetrieveAcitArClmCashCallResponse {
 	private List<AcitArClmCashCall> clmCashCallList;
@@ -33,4 +34,6 @@ public class RetrieveAcitArClmCashCallResponse {
 		return "RetrieveAcitArClmCashCallResponse [clmCashCallList=" + clmCashCallList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
+	
+	
 }

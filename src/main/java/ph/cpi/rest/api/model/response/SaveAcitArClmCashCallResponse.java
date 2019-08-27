@@ -11,6 +11,7 @@ public class SaveAcitArClmCashCallResponse {
 	private List<Message> messageList = new ArrayList<Message>();
 	private Integer returnCode;
 	private Integer custReturnCode;
+	
 	public List<Error> getErrorList() {
 		return errorList;
 	}
@@ -35,9 +36,10 @@ public class SaveAcitArClmCashCallResponse {
 	public void setCustReturnCode(Integer custReturnCode) {
 		this.custReturnCode = custReturnCode;
 	}
+	
 	@Override
 	public String toString() {
-		return "SaveAcitArClmCashCallResponse [errorList=" + errorList + ", messageList=" + messageList
-				+ ", returnCode=" + returnCode + ", custReturnCode=" + custReturnCode + "]";
+		return "SaveAcitArClmRecoverResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + ", custReturnCode=" + custReturnCode + "]";
 	}
 }

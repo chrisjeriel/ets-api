@@ -4,6 +4,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 
 public class RetrieveAcitArClmRecoverResponse {
@@ -35,4 +36,5 @@ public class RetrieveAcitArClmRecoverResponse {
 		return "RetrieveAcitArClmRecoverResponse [arClmRecover=" + arClmRecover + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
+	
 }

@@ -16,10 +16,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
@@ -358,8 +358,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmRecover> res = sqlSession.selectList("retrieveAcitArClmRecover", params);
+	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmCashCall> res = sqlSession.selectList("retrieveAcitArClmCashCall", params);
 		return res;
 	}
 	
@@ -371,8 +371,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmRecoverLov> res = sqlSession.selectList("retrieveAcitArClmRecoverLov", params);
+	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmCashCallLov> res = sqlSession.selectList("retrieveAcitArClmCashCallLov", params);
 		return res;
 	}
 
@@ -428,14 +428,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmCashCallLov> res = sqlSession.selectList("retAcitARClmCashCallLov", params);
+	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecoverLov> res = sqlSession.selectList("retAcitARClmRecoverLov", params);
 		return res;
 	}
 
 	@Override
-	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmCashCall> res = sqlSession.selectList("retAcitARClmCashCall", params);
+	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecover> res = sqlSession.selectList("retAcitARClmRecover", params);
 		return res;
 	}
 

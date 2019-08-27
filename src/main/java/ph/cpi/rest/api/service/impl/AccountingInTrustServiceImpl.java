@@ -61,8 +61,8 @@ import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
+import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInvPulloutRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
@@ -136,8 +136,8 @@ import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAllocInvtIncomeResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArAmtDtlResponse;
-import ph.cpi.rest.api.model.response.SaveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArClmRecoverResponse;
+import ph.cpi.rest.api.model.response.SaveAcitArClmCashCallResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInvPulloutResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArNegTrtyBalResponse;
@@ -1119,8 +1119,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
-	public SaveAcitArClmRecoverResponse saveArClmRecover(SaveAcitArClmRecoverRequest saacrr) throws SQLException {
-		SaveAcitArClmRecoverResponse response = new SaveAcitArClmRecoverResponse();
+	public SaveAcitArClmCashCallResponse saveAcitArClmCashCall(SaveAcitArClmCashCallRequest saacrr) throws SQLException {
+		SaveAcitArClmCashCallResponse response = new SaveAcitArClmCashCallResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", saacrr.getTranId());
 		params.put("billId", saacrr.getBillId());
@@ -1130,10 +1130,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("createDate", saacrr.getCreateDate());
 		params.put("updateUser", saacrr.getUpdateUser());
 		params.put("updateDate", saacrr.getUpdateDate());
-		params.put("saveClmRecover", saacrr.getSaveClmRecover());
-		params.put("delClmRecover", saacrr.getDelClmRecover());
+		params.put("saveClmCashCall", saacrr.getSaveClmCashCall());
+		params.put("delClmCashCall", saacrr.getDelClmCashCall());
 		try{
-			HashMap<String, Object> res = acctITDao.saveArClmRecover(params);
+			HashMap<String, Object> res = acctITDao.saveAcitArClmCashCallLov(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
 			
 			if(res.get("custReturnCode") != null){
@@ -1373,9 +1373,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 
 	@Override
-	public SaveAcitArClmCashCallResponse saveAcitArClmCashCall(SaveAcitArClmCashCallRequest saacccr)
+	public SaveAcitArClmRecoverResponse saveAcitArClmRecover(SaveAcitArClmRecoverRequest saacccr)
 			throws SQLException {
-		SaveAcitArClmCashCallResponse response = new SaveAcitArClmCashCallResponse();
+		SaveAcitArClmRecoverResponse response = new SaveAcitArClmRecoverResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", saacccr.getTranId());
 		params.put("billId", saacccr.getBillId());
@@ -1385,10 +1385,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("createDate", saacccr.getCreateDate());
 		params.put("updateUser", saacccr.getUpdateUser());
 		params.put("updateDate", saacccr.getUpdateDate());
-		params.put("saveClmCashCall", saacccr.getSaveClmCashCall());
-		params.put("delClmCashCall", saacccr.getDelClmCashCall());
+		params.put("saveClmRecover", saacccr.getSaveClmRecover());
+		params.put("delClmRecover", saacccr.getDelClmRecover());
 		try{
-			HashMap<String, Object> res = acctITDao.saveAcitArClmCashCallLov(params);
+			HashMap<String, Object> res = acctITDao.saveArClmRecover(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
 			
 			if(res.get("custReturnCode") != null){
