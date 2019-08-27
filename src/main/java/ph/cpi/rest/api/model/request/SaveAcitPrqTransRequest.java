@@ -26,6 +26,7 @@ public class SaveAcitPrqTransRequest {
 class PrqTrans {
 	private String reqId;
 	private String itemNo;
+	private String tranTypeCd;
 	private String claimId;
 	private String projId;
 	private String histNo;
@@ -56,6 +57,12 @@ class PrqTrans {
 	}
 	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(String tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public String getClaimId() {
 		return claimId;
@@ -173,11 +180,12 @@ class PrqTrans {
 	}
 	@Override
 	public String toString() {
-		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
-				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName=" + itemName + ", paymentFor="
-				+ paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
-				+ localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId=" + claimId
+				+ ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo
+				+ ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName="
+				+ itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }

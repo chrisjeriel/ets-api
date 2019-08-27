@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 public class AcitPrqTrans {
 	private Integer reqId;
 	private Integer itemNo;
+	private	Integer tranTypeCd;
 	private Integer claimId;
 	private Integer projId;
 	private Integer histNo;
@@ -37,6 +38,12 @@ public class AcitPrqTrans {
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public Integer getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(Integer tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public Integer getClaimId() {
 		return claimId;
@@ -154,11 +161,12 @@ public class AcitPrqTrans {
 	}
 	@Override
 	public String toString() {
-		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
-				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName=" + itemName + ", paymentFor="
-				+ paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
-				+ localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
+				+ claimId + ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo="
+				+ instNo + ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo
+				+ ", itemName=" + itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
