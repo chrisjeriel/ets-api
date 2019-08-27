@@ -1,3 +1,4 @@
+
 package ph.cpi.rest.api.dao.impl;
 
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
+import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -1024,6 +1026,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<Company> retrieveMtnCompany(HashMap<String, Object> params) throws SQLException {
 		List<Company> res = sqlSession.selectList("retMtnCompany", params);
+		return res;
+	}
+
+	@Override
+	public List<BussType> retrieveMtnBussType(HashMap<String, Object> params) throws SQLException {
+		List<BussType> res = sqlSession.selectList("retMtnBussType", params);
 		return res;
 	}
 }

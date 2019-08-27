@@ -2245,4 +2245,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setCompanyListing(maintenanceDao.retrieveMtnCompany(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnBussTypeResponse retrieveMtnBussType(RetrieveMtnBussTypeRequest rmbtr) throws SQLException {
+		RetrieveMtnBussTypeResponse response = new RetrieveMtnBussTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bussTypeCd", rmbtr.getBussTypeCd());
+		params.put("bussTypeName", rmbtr.getBussTypeName());
+		params.put("activeTag", rmbtr.getActiveTag());
+		response.setBussTypeList(maintenanceDao.retrieveMtnBussType(params));
+		return response;
+	}
 }

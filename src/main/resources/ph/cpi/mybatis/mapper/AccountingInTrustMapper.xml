@@ -355,6 +355,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arEntryMap">
 		<result property="tranId"        column="TRAN_ID"           />
 		<result property="arNo"          column="AR_NO"             />
+		<result property="formattedArNo" column="FORMATTED_AR_NO"   />
+		<result property="arNoDigits"    column="AR_NO_DIGITS"      />
 		<result property="arDate"        column="AR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"      column="AR_STATUS"         />
 		<result property="tranStat"      column="TRAN_STAT"         />
@@ -389,6 +391,8 @@
 		<result property="cedingId"      column="CEDING_ID"       />
 		<result property="bussTypeName"  column="BUSS_TYPE_NAME"       />
 		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
+		<result property="arDtlSum"      column="ARDTL_SUM"       />
+		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	
@@ -659,9 +663,9 @@
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
 														#{payor},
-														#{mailAddress},
-														#{bussTypeName},
-														#{tin},
+														#{mailAddress, jdbcType=VARCHAR},
+														#{bussTypeName, jdbcType=VARCHAR},
+														#{tin, jdbcType=VARCHAR},
 														#{particulars},
 														#{currCd},
 														#{currRate},
@@ -716,6 +720,7 @@
 															v_tran_id,
 															1,
 															1,
+															NULL,
 															'Loss Reserve Deposit',
 															#{currCd},
 															#{currRate},
@@ -733,6 +738,7 @@
 															v_tran_id,
 															1,
 															1,
+															NULL,
 															'Payment for Advances by Service',
 															#{currCd},
 															#{currRate},
@@ -747,7 +753,7 @@
 						);
 					END IF;
 					<!-- Generate to Amount Details -->
-					GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser});
+					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
 					<!-- Generate to Accounting Entries -->
 					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
 				END IF;
@@ -1047,6 +1053,16 @@
 			    
 				<!-- Delete from ACIT_AR_INWPOLBAL -->
 				<foreach collection="delInwPolBal" item="del">
+				<!-- Insert something about resetting the SOA Details here -->
+					ACIT_AGING_SOA_DETAILS_PKG.reset_soa(
+														  #{del.tranId},
+														  #{del.policyId},
+														  #{del.instNo},
+														  #{del.premAmt},
+														  #{del.riComm},
+														  #{del.riCommVat},
+														  #{del.charges},
+														  #{del.netDue});
 					ACIT_AR_INWPOLBAL_PKG.del_ar_inwpolbal(
 														#{del.tranId},
 														#{del.billId},
@@ -1058,32 +1074,21 @@
 															#{del.policyId},
 															#{del.instNo}
 					);
-					<!-- Insert something about resetting the SOA Details here -->
-					ACIT_AGING_SOA_DETAILS_DEMO_PKG.reset_soa(
-														  #{del.tranId},
-															#{del.policyId},
-														  #{del.instNo},
-														  #{del.premAmt},
-														  #{del.riComm},
-														  #{del.riCommVat},
-														  #{del.charges},
-														  #{del.netDue});
+					
 				</foreach>
 				
 				<foreach collection="saveInwPolBal" item="save">
 				<!-- UPDATE AGING SOA DETAILS -->
-					ACIT_AGING_SOA_DETAILS_DEMO_PKG.save_aging_soa_dtl(#{tranId},
+					ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(
 																  #{save.policyId},
 																  #{save.instNo},
 																  #{save.premAmt},
 																  #{save.riComm},
 																  #{save.riCommVat},
 																  #{save.charges},
-																  #{save.netDue},
 																  #{save.balPaytAmt},
 																  #{save.updateUser},
-																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																  v_new_netdue
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 															      );
 					<!-- Save from ACIT_AR_INWPOLBAL -->										      
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
@@ -1098,9 +1103,8 @@
 														#{save.riComm},
 													    #{save.riCommVat},
 														#{save.charges},
-														v_new_netdue,
+														#{save.netDue},
 														#{save.balPaytAmt},
-														#{save.overdueInt},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
@@ -1118,7 +1122,7 @@
 				</foreach>
 				
 				<!-- Generate to Amount Details -->
-					GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1140,6 +1144,15 @@
 		<result property="currRate"         column="CURR_RATE" />
 		<result property="totalPayments"    column="TOTAL_PAYMENTS" />
 		<result property="tempPayments"     column="TEMP_PAYMENTS" />
+		
+		<result property="prevPremAmt"      column="PREV_PREMIUM" />
+		<result property="prevCharges"      column="PREV_CHARGES" />
+		<result property="prevRiComm"       column="PREV_RI_COMM" />
+		<result property="prevRiCommVat"    column="PREV_RI_COMM_VAT" />
+		<result property="prevNetDue"       column="PREV_NET_DUE" />
+		<result property="prevCumPayment"   column="PREV_CUM_PAYMENT" />
+		<result property="prevBalance"      column="PREV_BALANCE" />
+		
 		<result property="premAmt"          column="PREM_AMT" />
 		<result property="charges"          column="CHARGES" />
 		<result property="riComm"           column="RI_COMM" />
@@ -1168,6 +1181,7 @@
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="billId"			column="BILL_ID" />
 		<result property="itemNo"			column="ITEM_NO" />
+		<result property="transdtlType"		column="TRANSDTL_TYPE" />
 		<result property="itemName"			column="ITEM_NAME" />
 		<result property="currCd"			column="CURR_CD" />
 		<result property="currRate"			column="CURR_RATE" />
@@ -1231,6 +1245,7 @@
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo},
+														#{save.transdtlType, jdbcType=VARCHAR},
 														#{save.itemName},
 														#{save.currCd},
 														#{save.currRate},
@@ -1245,7 +1260,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1567,7 +1582,8 @@
 	
 	<select id="retrieveAcitArClmRecoverLov" resultMap="arClmRecLovMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_AR_CLMRECOVER_PKG.ret_clm_lov(
-																#{payeeNo}
+																#{payeeNo},
+																#{currCd}
 															  )
 							)
 	</select>
@@ -1629,7 +1645,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1841,7 +1857,7 @@
 					);
 				</foreach>
 				<!-- Generate to Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1923,7 +1939,7 @@
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -1957,7 +1973,7 @@
 	</resultMap>
 	
 	<select id="retAcitARClmCashCallLov" resultMap="arClmCashCallLovMap">
-		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll_lov(#{payeeNo}))
+		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll_lov(#{payeeNo}, #{currCd}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall" id="arClmCashCallMap">
@@ -2047,7 +2063,7 @@
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
-				GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser});
+				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
@@ -2632,6 +2648,12 @@
 				
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
+		END;
+	</update>
+	
+	<update id="printAr" parameterType="java.util.Map">
+		BEGIN
+			ACIT_ACKGT_RECEIPT_PKG.print_ar(#{tranId},#{arNo},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
 	

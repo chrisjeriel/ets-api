@@ -3752,4 +3752,21 @@
 			SELECT * FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_trty(#{treatyTag,jdbcType=VARCHAR},#{cedingName,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.BussType" id="bussTypeMap">
+     	<result property="bussTypeCd" 	column="BUSS_TYPE_CD"/>
+		<result property="bussTypeName" column="BUSS_TYPE_NAME"/>
+		<result property="description" 	column="DESCRIPTION"/>
+		<result property="activeTag" 	column="ACTIVE_TAG"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retMtnBussType" resultMap="bussTypeMap" parameterType="java.util.Map">
+     	SELECT * FROM TABLE(MTN_BUSS_TYPE_PKG.ret_mtn_buss_type(#{bussTypeCd, jdbcType=VARCHAR}, 
+     															#{bussTypeName, jdbcType=VARCHAR}, 
+     															#{activeTag, jdbcType=VARCHAR}))
+     </select>
+	
 </mapper>

@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
+import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
 import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
@@ -211,4 +212,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnBank(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<Company> retrieveMtnCompany(final HashMap<String, Object> params) throws SQLException;
+	public List<BussType> retrieveMtnBussType(final HashMap<String, Object> params) throws SQLException;
 }

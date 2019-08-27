@@ -548,6 +548,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public Integer printAr(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("printAr", params);
+		return errorCode;
+	}
+
+	@Override
 	public List<AcitClmResHistPayts> retrieveAcitClmResHistPayts(HashMap<String, Object> params) throws SQLException {
 		List<AcitClmResHistPayts> res = sqlSession.selectList("retrieveAcitClmResHistPayts",params);
 		return res;
