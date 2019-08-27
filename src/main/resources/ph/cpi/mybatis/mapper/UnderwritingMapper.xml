@@ -679,7 +679,7 @@
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} , #{sectioncovers.coverName},
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, #{sectioncovers.exDiscTag, jdbcType=VARCHAR},
 													#{sectioncovers.exPremRt, jdbcType=INTEGER}, #{sectioncovers.exPremAmt, jdbcType=INTEGER},
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
