@@ -2368,6 +2368,7 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistRiskWparam" id="retDistRiskWparamMap">
+		<result property="distId"        column="DIST_ID" />
 		<result property="treatyYear"        column="TREATY_YEAR" />
 		<result property="treatyId"          column="WP_TREATY_ID" />
 		<result property="treatyName"        column="WP_TREATY_NAME" />
@@ -2382,7 +2383,7 @@
 	</resultMap>
 	
 	<select id="retrieveDistRiskWparam" resultMap="retDistRiskWparamMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(DIST_RISK_WPARAM_PKG.ret_dr_wparam(#{riskDistId}, #{altNo},null,null,null,null))
+		SELECT * FROM TABLE(DIST_RISK_WPARAM_PKG.ret_dr_wparam(#{riskDistId}, #{altNo},#{policyId},null,null,null,null))
 	</select>
 	
 	<update id="postDistribution" parameterType="java.util.Map">
@@ -2539,9 +2540,11 @@
 		BEGIN
 			<foreach collection="delWParam" item="wparam">
 				DIST_RISK_WPARAM_PKG.del_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
+				DIST_POL_WPARAM_PKG.save_dp_wparam(#{wparam.distId},#{policyId},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
 			</foreach>
 			<foreach collection="saveWParam" item="wparam">
 				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
+				DIST_POL_WPARAM_PKG.save_dp_wparam(#{wparam.distId},#{policyId},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
 			</foreach>
 			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{trtyLimitSec2, jdbcType=VARCHAR},#{seciiPremTag, jdbcType=VARCHAR},#{updateUser});
 			DIST_PKG.dist_not_auto(#{riskDistId},#{altNo},#{updateUser});

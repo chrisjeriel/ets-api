@@ -1462,6 +1462,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		response.setWriskLimit(underwritingDao.retrieveWriskLimit(distWriskParam));
 		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
 		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
+		riskDistWparamParam.put("policyId", rrdr.getPolicyId());
 		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
 		response.setUndistAlt(underwritingDao.retrieveUndistAlt(distWriskParam));
 		response.setDistAlt(underwritingDao.retrieveDistAlt(distWriskParam));
@@ -1614,9 +1615,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
 			}
 		}catch (Exception ex){
+			logger.info(ex.getMessage());
 			srdrResponse.setReturnCode(0);
 			srdrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
-			ex.printStackTrace();
+//			ex.printStackTrace();
 		}
 		return srdrResponse;
 	}

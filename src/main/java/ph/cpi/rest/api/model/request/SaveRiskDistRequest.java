@@ -84,6 +84,7 @@ public class SaveRiskDistRequest {
 
 class WParam{
 	private String riskDistId;
+	private String distId;
 	private String altNo;
 	private String treatyYear;
 	private String treatyId;
@@ -99,6 +100,12 @@ class WParam{
 	}
 	public void setRiskDistId(String riskDistId) {
 		this.riskDistId = riskDistId;
+	}
+	public String getDistId() {
+		return distId;
+	}
+	public void setDistId(String distId) {
+		this.distId = distId;
 	}
 	public String getAltNo() {
 		return altNo;
@@ -162,11 +169,10 @@ class WParam{
 	}
 	@Override
 	public String toString() {
-		return "WParam [riskDistId=" + riskDistId + ", altNo=" + altNo + ", treatyYear=" + treatyYear + ", treatyId="
-				+ treatyId + ", trtyCedId=" + trtyCedId + ", pctShare=" + pctShare + ", commRt=" + commRt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "WParam [riskDistId=" + riskDistId + ", distId=" + distId + ", altNo=" + altNo + ", treatyYear="
+				+ treatyYear + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId + ", pctShare=" + pctShare
+				+ ", commRt=" + commRt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveAcitServFeeMainGnrtRequest {
+public class RetrieveAcctPrqServFeeRequest {
 
 	private String prdAsOf;
 	private Integer year;

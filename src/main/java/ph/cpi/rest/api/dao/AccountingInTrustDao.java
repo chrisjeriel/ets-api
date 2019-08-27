@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
+import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -29,6 +30,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -92,9 +94,9 @@ public interface AccountingInTrustDao {
 	public List<AcitJVAppPaymentZeroBal> retrieveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVAppPaytZeroBal(final HashMap<String, Object> params) throws SQLException;
 	public List<ACITSOATreatyDetails> retrieveAcitSoaTrtyList(final HashMap<String, Object> params) throws SQLException;
-	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeMainGnrt(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveArClmRecover(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArInvPullout> retrieveAcitArPullout(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitArInvPullout(final HashMap<String, Object> params) throws SQLException;
@@ -111,7 +113,7 @@ public interface AccountingInTrustDao {
 	public Integer generateUPR(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerLine> retrieveAcitUPRPerLine(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitUPRPerPolicy> retrieveAcitUPRPerPol(final HashMap<String, Object> params) throws SQLException;
-	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeSubGnrt(final HashMap<String, Object> params) throws SQLException;
 	public GenUPRParams retrieveAcitUPRParams() throws SQLException;
 	public String retrieveAcitExistingUPR(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVAcctTrtyBal> retrieveAcitJvAcctTrtyBal(final HashMap<String, Object> params) throws SQLException;
@@ -121,10 +123,15 @@ public interface AccountingInTrustDao {
 	public List<AcitAllInvtIncome> retrieveAcitAllInvestmentIncomeInvtId(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitAllocInvtIncome(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVEntryList(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJvAllInvtIncome> retrieveAcitJvAllInvtIncome(final HashMap<String, Object> params) throws SQLException;
+	public Integer updateAcitStatus(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveAcctPrqServFee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVClaimsLosses> retrieveAcitJVRcvblsAgnstLosses(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJvRcvblsAgnstLoss(final HashMap<String, Object> params) throws SQLException;
 	public Integer printAr(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitClmResHistPayts> retrieveAcitClmResHistPayts(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitClmResHistPayts(final HashMap<String, Object> params) throws SQLException;
-
+	public List<AcitCv> retrieveAcitCv(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitCv(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitCvPaytReqList(final HashMap<String, Object> params) throws SQLException;
 }
