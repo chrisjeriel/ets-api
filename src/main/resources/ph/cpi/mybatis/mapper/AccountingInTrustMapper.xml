@@ -428,6 +428,7 @@
 		<result property="tranYear" column="TRAN_YEAR"/>
 		<result property="tranClassNo" column="TRAN_CLASS_NO"/>
 		<result property="tranStat" column="TRAN_STAT"/>
+		<result property="tranStatDesc" column="TRAN_STAT_DESC"/>
 		<result property="closeDate" column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="deleteDate" column="DELETE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="postDate" column="POST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -2711,6 +2712,7 @@
 		<result property="mainTranYear" 	column="MAIN_TRAN_YEAR"/>
 		<result property="mainTranClassNo" 	column="MAIN_TRAN_CLASS_NO"/>
 		<result property="mainTranStat" 	column="MAIN_TRAN_STAT"/>
+		<result property="mainTranStatDesc" column="MAIN_TRAN_STAT_DESC"/>
 		<result property="mainCloseDate" 	column="MAIN_CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainDeleteDate" 	column="MAIN_DELETE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainPostDate" 	column="MAIN_POST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>

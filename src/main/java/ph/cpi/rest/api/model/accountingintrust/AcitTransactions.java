@@ -12,6 +12,7 @@ public class AcitTransactions {
 	private Integer tranYear;
 	private Integer tranClassNo;
 	private String tranStat;
+	private String tranStatDesc;
 	private DateTime closeDate;
 	private DateTime deleteDate;
 	private DateTime postDate;
@@ -40,7 +41,6 @@ public class AcitTransactions {
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
 	}
-	
 	public Integer getTranTypeCd() {
 		return tranTypeCd;
 	}
@@ -64,6 +64,12 @@ public class AcitTransactions {
 	}
 	public void setTranStat(String tranStat) {
 		this.tranStat = tranStat;
+	}
+	public String getTranStatDesc() {
+		return tranStatDesc;
+	}
+	public void setTranStatDesc(String tranStatDesc) {
+		this.tranStatDesc = tranStatDesc;
 	}
 	public DateTime getCloseDate() {
 		return closeDate;
@@ -107,7 +113,6 @@ public class AcitTransactions {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	public AcitJVListing getJvListings() {
 		return jvListings;
 	}
@@ -118,8 +123,9 @@ public class AcitTransactions {
 	public String toString() {
 		return "AcitTransactions [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
 				+ ", tranTypeCd=" + tranTypeCd + ", tranYear=" + tranYear + ", tranClassNo=" + tranClassNo
-				+ ", tranStat=" + tranStat + ", closeDate=" + closeDate + ", deleteDate=" + deleteDate + ", postDate="
-				+ postDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", jvListings=" + jvListings + "]";
+				+ ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + ", closeDate=" + closeDate
+				+ ", deleteDate=" + deleteDate + ", postDate=" + postDate + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", jvListings=" + jvListings + "]";
 	}
 }

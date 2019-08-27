@@ -42,6 +42,7 @@ public class AcitCv {
 	private Integer mainTranYear;
 	private Integer mainTranClassNo;
 	private String mainTranStat;
+	private String mainTranStatDesc;
 	private DateTime mainCloseDate;
 	private DateTime mainDeleteDate;
 	private DateTime mainPostDate;
@@ -70,18 +71,6 @@ public class AcitCv {
 	}
 	public Integer getCvNo() {
 		return cvNo;
-	}
-	public String getBankDesc() {
-		return bankDesc;
-	}
-	public void setBankDesc(String bankDesc) {
-		this.bankDesc = bankDesc;
-	}
-	public String getCheckClassDesc() {
-		return checkClassDesc;
-	}
-	public void setCheckClassDesc(String checkClassDesc) {
-		this.checkClassDesc = checkClassDesc;
 	}
 	public void setCvNo(Integer cvNo) {
 		this.cvNo = cvNo;
@@ -128,6 +117,12 @@ public class AcitCv {
 	public void setBank(Integer bank) {
 		this.bank = bank;
 	}
+	public String getBankDesc() {
+		return bankDesc;
+	}
+	public void setBankDesc(String bankDesc) {
+		this.bankDesc = bankDesc;
+	}
 	public String getBankAcct() {
 		return bankAcct;
 	}
@@ -152,6 +147,12 @@ public class AcitCv {
 	public void setCheckClass(String checkClass) {
 		this.checkClass = checkClass;
 	}
+	public String getCheckClassDesc() {
+		return checkClassDesc;
+	}
+	public void setCheckClassDesc(String checkClassDesc) {
+		this.checkClassDesc = checkClassDesc;
+	}
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -160,6 +161,9 @@ public class AcitCv {
 	}
 	public Integer getCurrRate() {
 		return currRate;
+	}
+	public void setCurrRate(Integer currRate) {
+		this.currRate = currRate;
 	}
 	public BigDecimal getCvAmt() {
 		return cvAmt;
@@ -172,9 +176,6 @@ public class AcitCv {
 	}
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
-	}
-	public void setCurrRate(Integer currRate) {
-		this.currRate = currRate;
 	}
 	public String getPreparedBy() {
 		return preparedBy;
@@ -266,6 +267,12 @@ public class AcitCv {
 	public void setMainTranStat(String mainTranStat) {
 		this.mainTranStat = mainTranStat;
 	}
+	public String getMainTranStatDesc() {
+		return mainTranStatDesc;
+	}
+	public void setMainTranStatDesc(String mainTranStatDesc) {
+		this.mainTranStatDesc = mainTranStatDesc;
+	}
 	public DateTime getMainCloseDate() {
 		return mainCloseDate;
 	}
@@ -321,8 +328,9 @@ public class AcitCv {
 				+ updateUser + ", updateDate=" + updateDate + ", mainTranId=" + mainTranId + ", mainTranDate="
 				+ mainTranDate + ", mainTranClass=" + mainTranClass + ", mainTranTypeCd=" + mainTranTypeCd
 				+ ", mainTranYear=" + mainTranYear + ", mainTranClassNo=" + mainTranClassNo + ", mainTranStat="
-				+ mainTranStat + ", mainCloseDate=" + mainCloseDate + ", mainDeleteDate=" + mainDeleteDate
-				+ ", mainPostDate=" + mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate="
-				+ mainCreateDate + ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + "]";
+				+ mainTranStat + ", mainTranStatDesc=" + mainTranStatDesc + ", mainCloseDate=" + mainCloseDate
+				+ ", mainDeleteDate=" + mainDeleteDate + ", mainPostDate=" + mainPostDate + ", mainCreateUser="
+				+ mainCreateUser + ", mainCreateDate=" + mainCreateDate + ", mainUpdateUser=" + mainUpdateUser
+				+ ", mainUpdateDate=" + mainUpdateDate + "]";
 	}
 }
