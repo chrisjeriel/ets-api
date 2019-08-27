@@ -1,19 +1,23 @@
 package ph.cpi.rest.api.model;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 public class PaginationRequest {
 	
 	
 	private Integer position;
 	private Integer count;
 	public Integer getPosition() {
+		if (position == null) {
+			position = 1;
+		}
 		return position;
 	}
 	public void setPosition(Integer position) {
 		this.position = position;
 	}
 	public Integer getCount() {
+		if (count == null) {
+			count = 1;
+		}
 		return count;
 	}
 	public void setCount(Integer count) {
