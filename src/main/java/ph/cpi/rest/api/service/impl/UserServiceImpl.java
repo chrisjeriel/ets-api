@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 	
 		params.put("userId", rmur.getUserId());
+		params.put("userGrp", rmur.getUserGrp());
 		params.put("position", rmur.getPaginationRequest().getPosition());
 		params.put("count", rmur.getPaginationRequest().getCount());
 		params.put("sortKey", rmur.getSortRequest().getSortKey());

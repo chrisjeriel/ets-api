@@ -28,6 +28,7 @@
      
     <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
     	SELECT * FROM TABLE(ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
+    											  #{userGrp, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
