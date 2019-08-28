@@ -2741,6 +2741,7 @@
 		<result property="maturityDate" column="MATURITY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="destInvtId" column="DEST_INVT_ID"/>
 		<result property="bank" column="BANK"/>
+		<result property="bankName" column="BANK_NAME"/>
 		<result property="bankAcct" column="BANK_ACCT"/>
 		<result property="pulloutType" column="PULLOUT_TYPE"/>
 		<result property="currCd" column="CURR_CD"/>
@@ -2758,6 +2759,6 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJVInvPullOut" resultMap="jvInvPullOutMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_jv_invpullout(#{tranId},#{bankCd},#{accountNo},NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_jv_invpullout(#{tranId},NULL,NULL,NULL,NULL))
 	</select>
 </mapper>

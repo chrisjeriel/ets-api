@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.maintenance.PayeeCeding;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
 public interface AccountingInTrustDao {

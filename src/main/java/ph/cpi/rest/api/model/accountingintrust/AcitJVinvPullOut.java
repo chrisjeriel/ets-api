@@ -21,6 +21,7 @@ public class AcitJVinvPullOut {
 	private DateTime maturityDate;
 	private Integer destInvtId;
 	private String bank;
+	private String bankName;
 	private String bankAcct;
 	private String pulloutType;
 	private String currCd;
@@ -131,6 +132,13 @@ public class AcitJVinvPullOut {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
+	
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
 	public String getBankAcct() {
 		return bankAcct;
 	}
@@ -220,10 +228,13 @@ public class AcitJVinvPullOut {
 		return "AcitJVinvPullOut [tranId=" + tranId + ", itemNo=" + itemNo + ", invtId=" + invtId + ", invtCode="
 				+ invtCode + ", certNo=" + certNo + ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc
 				+ ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc + ", maturityPeriod=" + maturityPeriod
-				+ ", durationUnit=" + durationUnit + ", destInvtId=" + destInvtId + ", bank=" + bank + ", bankAcct="
-				+ bankAcct + ", pulloutType=" + pulloutType + ", currCd=" + currCd + ", createUser=" + createUser
-				+ ", updateUser=" + updateUser + "]";
+				+ ", durationUnit=" + durationUnit + ", interestRate=" + interestRate + ", purchasedDate="
+				+ purchasedDate + ", maturityDate=" + maturityDate + ", destInvtId=" + destInvtId + ", bank=" + bank
+				+ ", bankName=" + bankName + ", bankAcct=" + bankAcct + ", pulloutType=" + pulloutType + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt
+				+ ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", maturityValue=" + maturityValue
+				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }
