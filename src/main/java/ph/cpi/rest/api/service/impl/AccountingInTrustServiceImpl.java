@@ -225,7 +225,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			saprParams.put("tranTypeCd", saprr.getTranTypeCd());
 			saprParams.put("reqDate", saprr.getReqDate());
 			saprParams.put("reqStatus", saprr.getReqStatus());
-			saprParams.put("payeeNo", saprr.getPayeeNo());
+			//saprParams.put("payeeNo", saprr.getPayeeNo());
+			saprParams.put("payee_class_cd", saprr.getPayee_class_cd());
+			saprParams.put("payee_cd", saprr.getPayee_cd());
 			saprParams.put("payee", saprr.getPayee());
 			saprParams.put("currCd", saprr.getCurrCd());
 			saprParams.put("currRate", saprr.getCurrRate());
@@ -1620,7 +1622,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
-
+	
+	@Override
 	public SaveAcitCvResponse saveAcitCv(SaveAcitCvRequest sacr) throws SQLException {
 		SaveAcitCvResponse sacResponse = new SaveAcitCvResponse();
 		HashMap<String, Object> sacParams = new HashMap<String, Object>();

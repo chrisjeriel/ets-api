@@ -16,6 +16,8 @@ public class AcitPrqTrans {
 	private DateTime quarterEnding;
 	private Integer invtId;
 	private String refNo;
+	private String transdtlType;
+	private String transdtlTypeDesc;
 	private String itemName;
 	private String paymentFor;
 	private String currCd;
@@ -93,6 +95,18 @@ public class AcitPrqTrans {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
+	public String getTransdtlType() {
+		return transdtlType;
+	}
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
+	}
+	public String getTransdtlTypeDesc() {
+		return transdtlTypeDesc;
+	}
+	public void setTransdtlTypeDesc(String transdtlTypeDesc) {
+		this.transdtlTypeDesc = transdtlTypeDesc;
+	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -164,9 +178,9 @@ public class AcitPrqTrans {
 		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
 				+ claimId + ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo="
 				+ instNo + ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo
-				+ ", itemName=" + itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", transdtlType=" + transdtlType + ", transdtlTypeDesc=" + transdtlTypeDesc + ", itemName=" + itemName
+				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
+				+ currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

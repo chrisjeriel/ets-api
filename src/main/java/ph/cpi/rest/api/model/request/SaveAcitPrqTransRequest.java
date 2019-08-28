@@ -35,6 +35,7 @@ class PrqTrans {
 	private String quarterEnding;
 	private String invtId;
 	private String refNo;
+	private String transdtlType;
 	private String itemName;
 	private String paymentFor;
 	private String currCd;
@@ -112,6 +113,12 @@ class PrqTrans {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
+	public String getTransdtlType() {
+		return transdtlType;
+	}
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
+	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -182,10 +189,10 @@ class PrqTrans {
 	public String toString() {
 		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId=" + claimId
 				+ ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo
-				+ ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName="
-				+ itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", transdtlType="
+				+ transdtlType + ", itemName=" + itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

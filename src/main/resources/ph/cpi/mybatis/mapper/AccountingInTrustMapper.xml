@@ -40,7 +40,9 @@
 		<result property="reqDate"			column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="reqStatus"		column="REQ_STATUS"/>
 		<result property="reqStatusDesc"	column="REQ_STATUS_DESC"/>
-		<result property="payeeNo"			column="PAYEE_NO"/>
+		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
+		<result property="payee_class_cd"	column="PAYEE_CLASS_CD"/>
+		<result property="payee_cd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
 		<result property="currCd"			column="CURR_CD"/>
 		<result property="currRate"			column="CURR_RATE"/>
@@ -70,6 +72,8 @@
 		<result property="quarterEnding"		column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="invtId"				column="INVT_ID"/>
 		<result property="refNo"				column="REF_NO"/>
+		<result property="transdtlType"			column="TRANSDTL_TYPE"/>
+		<result property="transdtlTypeDesc"		column="TRANSDTL_TYPE_DESC"/>
 		<result property="itemName"				column="ITEM_NAME"/>
 		<result property="paymentFor"			column="PAYMENT_FOR"/>
 		<result property="currCd"				column="CURR_CD"/>
@@ -124,7 +128,9 @@
 				#{tranTypeCd, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{reqStatus, jdbcType=VARCHAR},
-				#{payeeNo, jdbcType=VARCHAR},
+				<!-- #{payeeNo, jdbcType=VARCHAR}, -->
+				#{payeeClassCd, jdbcType=VARCHAR},
+				#{payeeCd, jdbcType=VARCHAR},
 				#{payee, jdbcType=VARCHAR},
 				#{currCd, jdbcType=VARCHAR},
 				#{currRate, jdbcType=VARCHAR},
@@ -929,6 +935,7 @@
 					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.invtId, jdbcType=INTEGER},
 					#{save.refNo, jdbcType=VARCHAR},
+					#{save.transdtlType, jdbcType=VARCHAR},
 					#{save.itemName, jdbcType=VARCHAR},
 					#{save.paymentFor, jdbcType=VARCHAR},
 					#{save.currCd, jdbcType=VARCHAR},
