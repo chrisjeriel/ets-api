@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -571,6 +572,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("approveJV",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVinvPullOut> res = sqlSession.selectList("retrieveAcitJVInvPullOut",params);
+		return res;
 	}
 	
 }
