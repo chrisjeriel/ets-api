@@ -755,7 +755,7 @@
 					<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
 					<!-- Generate to Accounting Entries -->
-					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
+					<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message); -->
 				END IF;
 			END IF;
 		END;
@@ -1127,7 +1127,7 @@
 				<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
-				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -2098,7 +2098,7 @@
 				<!-- Generate Amount Details -->
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
-				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -2874,7 +2874,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitClmResHistPayts" resultMap="clmResHistPaytMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_CLM_RES_HIST_PAYTS_PKG.ret_clm_res_hist_lov(#{cedingId,jdbcType=VARCHAR},#{payeeNo,jdbcType=INTEGER},#{currCd},NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE(ACIT_CLM_RES_HIST_PAYTS_PKG.ret_clm_res_hist_lov(#{cedingId,jdbcType=VARCHAR},#{payeeNo,jdbcType=VARCHAR},#{currCd},NULL,NULL,NULL,NULL))
 	</select>
 	
 	<update id="saveAcitClmResHistPayts" parameterType="java.util.Map">
@@ -2912,4 +2912,38 @@
 		END;
 	</update>
 
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAttachments" id="acitAttchmntMap">
+		<result property="tranId" 			column="TRAN_ID" />
+		<result property="fileNo" 			column="FILE_NO" />
+		<result property="fileName" 		column="FILE_NAME" />
+		<result property="description" 		column="DESCRIPTION" />
+		<result property="createUser" 		column="CREATE_USER" />
+		<result property="createDate" 		column="CREATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER" />
+		<result property="updateDate" 		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retAcitAttachments" resultMap="acitAttchmntMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ATTACHMENTS_PKG.ret_acit_attchmnt(#{tranId},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<update id="saveAcitAttachments" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+		   <foreach collection="delAttachmentsList" item="attachment">
+		   		ACIT_ATTACHMENTS_PKG.del_acit_attchmnt(#{attachment.tranId},
+		   											#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		   <foreach collection="saveAttachmentsList" item="attachment">
+		   	   ACIT_ATTACHMENTS_PKG.save_acit_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
+		   	   										#{attachment.tranId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		END;
+	</update>
 </mapper>

@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitClmResHistPaytRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
@@ -71,6 +72,7 @@ import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
+import ph.cpi.rest.api.model.request.SaveAcitAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
 import ph.cpi.rest.api.model.request.SaveAcitClmResHistPaytsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCvPaytReqListRequest;
@@ -113,6 +115,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArTransDtlResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCMDMListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitClmResHistPaytResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
@@ -152,6 +155,7 @@ import ph.cpi.rest.api.model.response.SaveAcitArInwPolBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArNegTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcitAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
 import ph.cpi.rest.api.model.response.SaveAcitClmResHistPaytsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCvPaytReqListResponse;
@@ -169,6 +173,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitStatusResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -1766,6 +1771,37 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAttachmentsResponse retrieveAcitAttachments(RetrieveAcitAttachmentsRequest raar)
+			throws SQLException {
+		RetrieveAcitAttachmentsResponse response = new RetrieveAcitAttachmentsResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raar.getTranId());
+		response.setAcitAttachmentsList(acctITDao.retrieveAcitAttachments(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitAttachmentsResponse saveAcitAttachments(SaveAcitAttachmentsRequest saar) throws SQLException {
+		SaveAcitAttachmentsResponse response = new SaveAcitAttachmentsResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveAttachmentsList", saar.getSaveAttachmentsList());
+			params.put("delAttachmentsList", saar.getDelAttachmentsList());
+			
+			HashMap<String, Object> res = acctITDao.saveAcitAttachments(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setUploadDate((String) res.get("uploadDate"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
+			ex.printStackTrace();
 		}
 		return response;
 	}
