@@ -39,6 +39,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJVInvtRollOverRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVRcvblsAgnstLosRequest;
@@ -117,6 +118,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVDefNameResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInvPullOutResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVInvtRollOverResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
@@ -244,5 +246,6 @@ public interface AccountingInTrustService {
 	public ApproveJVResponse approveJV(ApproveJVRequest request)throws SQLException;
 	public RetrieveAcitJVInvPullOutResponse retrieveAcitJVInvPullOut(RetrieveAcitJvInvPullOutRequest request)throws SQLException;
 	public SaveAcitJVInvPullOutResponse saveAcitJVInvPullOut(SaveAcitJVInvPullOutRequest request)throws SQLException;
+	public RetrieveAcitJVInvtRollOverResponse retrieveAcitJVInvRollOver(RetrieveAcitJVInvtRollOverRequest request)throws SQLException;
 	
 }
