@@ -579,5 +579,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJVinvPullOut> res = sqlSession.selectList("retrieveAcitJVInvPullOut",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVInvPullOut",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 }

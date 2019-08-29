@@ -2761,4 +2761,32 @@
 	<select id="retrieveAcitJVInvPullOut" resultMap="jvInvPullOutMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_jv_invpullout(#{tranId},NULL,NULL,NULL,NULL))
 	</select>
+	
+	<update id="saveAcitJVInvPullOut" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveInvPullOut" item="save">
+					ACIT_JOURNAL_VOUCHER_PKG.save_jv_inv_pull(
+														#{save.tranId}, 
+														#{save.itemNo,jdbcType=INTEGER}, 
+														#{save.invtId}, 
+														#{save.destInvtId ,jdbcType=VARCHAR}, 
+														#{save.pulloutType}, 
+														#{save.bank,jdbcType=INTEGER}, 
+														#{save.bankAcct,jdbcType=VARCHAR}, 
+														#{save.currCd}, 
+														#{save.currRate}, 
+														#{save.invtAmt}, 
+														#{save.incomeAmt}, 
+														#{save.bankCharge}, 
+														#{save.whtaxAmt}, 
+														#{save.maturityValue}, 
+														#{save.localAmt}, 
+														#{save.createUser}, 
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser}, 
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  );
+			</foreach>
+		END;
+	</update>
 </mapper>
