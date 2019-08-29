@@ -51,6 +51,8 @@ public class AcitCv {
 	private String mainUpdateUser;
 	private DateTime mainUpdateDate;
 	
+	private String refNo;
+	
 	public String getCvGenNo() {
 		return cvGenNo;
 	}
@@ -315,6 +317,12 @@ public class AcitCv {
 	public void setMainUpdateDate(DateTime mainUpdateDate) {
 		this.mainUpdateDate = mainUpdateDate;
 	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
 	@Override
 	public String toString() {
 		return "AcitCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -331,6 +339,6 @@ public class AcitCv {
 				+ mainTranStat + ", mainTranStatDesc=" + mainTranStatDesc + ", mainCloseDate=" + mainCloseDate
 				+ ", mainDeleteDate=" + mainDeleteDate + ", mainPostDate=" + mainPostDate + ", mainCreateUser="
 				+ mainCreateUser + ", mainCreateDate=" + mainCreateDate + ", mainUpdateUser=" + mainUpdateUser
-				+ ", mainUpdateDate=" + mainUpdateDate + "]";
+				+ ", mainUpdateDate=" + mainUpdateDate + ", refNo=" + refNo + "]";
 	}
 }

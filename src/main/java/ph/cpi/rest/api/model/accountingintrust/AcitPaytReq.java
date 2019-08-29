@@ -35,6 +35,7 @@ public class AcitPaytReq {
 	
 	private String tranStat;
 	private String tranStatDesc;
+	private String refNo;
 	
 	public String getPaytReqNo() {
 		return paytReqNo;
@@ -210,6 +211,12 @@ public class AcitPaytReq {
 	public void setTranStatDesc(String tranStatDesc) {
 		this.tranStatDesc = tranStatDesc;
 	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
 	@Override
 	public String toString() {
 		return "AcitPaytReq [paytReqNo=" + paytReqNo + ", reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear="
@@ -220,6 +227,6 @@ public class AcitPaytReq {
 				+ particulars + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate + ", requestedBy="
 				+ requestedBy + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + "]";
+				+ updateDate + ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo + "]";
 	}
 }

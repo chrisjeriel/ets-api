@@ -59,6 +59,7 @@
 		
 		<result property="tranStat" 		column="TRAN_STAT"/>
 		<result property="tranStatDesc" 	column="TRAN_STAT_DESC"/>
+		<result property="refNo" 			column="REF_NO"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans" id="acitPrqTransMap">
@@ -2723,6 +2724,8 @@
 		<result property="mainCreateDate" 	column="MAIN_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainUpdateUser" 	column="MAIN_UPDATE_USER"/>
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+		<result property="refNo" 			column="REF_NO"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
