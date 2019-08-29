@@ -406,7 +406,7 @@
 		<result property="paytAmt"         column="PAYT_AMT" />
 		<result property="bank"            column="BANK" />
 		<result property="bankAcct"        column="BANK_ACCT" />
-		<result property="checkNo"         column="CHECK_CARD_NO" />
+		<result property="checkNo"         column="CHECK_NO" />
 		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="checkClass"      column="CHECK_CLASS" />
 		<result property="remarks"         column="REMARKS" />
@@ -757,7 +757,7 @@
 					<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
 					<!-- Generate to Accounting Entries -->
-					<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message); -->
+					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
 				END IF;
 			END IF;
 		END;
@@ -1129,7 +1129,7 @@
 				<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
-				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
+				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -1808,7 +1808,18 @@
 			v_total_payts	NUMBER(16,2);
 			v_ar_amt		NUMBER(16,2);
 			v_message		VARCHAR2(500);
+			v_tot_payt_inv	NUMBER(16,2);
 		BEGIN
+			<!-- Delete from ACIT_AR_INVPULLOUT_PKG -->
+			<foreach collection="delInvPullout" item="del">
+				ACIT_AR_INVPULLOUT_PKG.del_ar_invpullout(
+													#{del.tranId},
+													#{del.billId},
+													#{del.itemNo}				
+				);
+				
+			</foreach>
+			
 			SELECT NVL(SUM(TOTAL_LOCAL_AMT), 0)
 			  INTO v_total_payts
 			  FROM ACIT_AR_TRANSUMM
@@ -1819,27 +1830,24 @@
 			  FROM ACIT_ACKGT_RECEIPT
 			 WHERE TRAN_ID = #{tranId};
 			 
+			 SELECT NVL(SUM(MATURITY_VALUE), 0)
+			   INTO v_tot_payt_inv
+			   FROM ACIT_AR_INVPULLOUT
+			  WHERE TRAN_ID = #{tranId};
+			 
 			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
 														#{billType},
-														#{totalLocalAmt},
+														v_tot_payt_inv + #{totalLocalAmt},
 														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{updateUser},
 														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														);
-				<!-- Delete from ACIT_AR_INVPULLOUT_PKG -->
-				<foreach collection="delInvPullout" item="del">
-					ACIT_AR_INVPULLOUT_PKG.del_ar_invpullout(
-														#{del.tranId},
-														#{del.billId},
-														#{del.itemNo}				
-					);
-					
-				</foreach>
+				
 				<!-- Save from ACIT_AR_INVPULLOUT_PKG -->
 				<foreach collection="saveInvPullout" item="save">
 					ACIT_AR_INVPULLOUT_PKG.save_ar_invpullout(
@@ -2100,7 +2108,7 @@
 				<!-- Generate Amount Details -->
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
-				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
+				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
