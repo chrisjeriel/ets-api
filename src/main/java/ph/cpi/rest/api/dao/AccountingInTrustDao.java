@@ -9,10 +9,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
@@ -137,4 +138,8 @@ public interface AccountingInTrustDao {
 	public Integer saveAcitCvPaytReqList(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAttachments> retrieveAcitAttachments(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitAttachments(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> approveJV(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
+	
 }

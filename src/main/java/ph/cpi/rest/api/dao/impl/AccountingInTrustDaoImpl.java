@@ -16,10 +16,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
@@ -585,6 +586,26 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public HashMap<String, Object> saveAcitClmResHistPayts(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitClmResHistPayts",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> approveJV(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("approveJV",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVinvPullOut> res = sqlSession.selectList("retrieveAcitJVInvPullOut",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVInvPullOut",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

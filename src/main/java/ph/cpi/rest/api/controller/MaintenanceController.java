@@ -988,4 +988,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnBussTypeRequest : " + rmbtr.toString());
 		return maintenanceService.retrieveMtnBussType(rmbtr);
 	}
+	
+	@GetMapping(path="retrieveMtnPayeeCeding")
+	public @ResponseBody RetrieveMtnPayeeCedingResponse retrieveMtnPayeeCeding(RetrieveMtnPayeeCedingRequest rmbtr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPayeeCeding");
+		logger.info("RetrieveMtnPayeeCedingRequest : " + rmbtr.toString());
+		return maintenanceService.retrieveMtnPayeeCeding(rmbtr);
+	}
 }
