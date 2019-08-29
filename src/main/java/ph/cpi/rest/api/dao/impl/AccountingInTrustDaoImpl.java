@@ -592,4 +592,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> updateAcitCvStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcitCvStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

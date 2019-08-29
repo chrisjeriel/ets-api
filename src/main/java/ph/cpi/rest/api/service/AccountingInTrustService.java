@@ -81,6 +81,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
@@ -160,6 +161,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 
 @Service
@@ -246,4 +248,5 @@ public interface AccountingInTrustService {
 	public PrintArResponse printAr(PrintArRequest par) throws SQLException;
 	public RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request)throws SQLException;
 	public SaveAcitClmResHistPaytsResponse saveAcitClmResHistPayts(SaveAcitClmResHistPaytsRequest request)throws SQLException;
+	public UpdateAcitCvStatResponse updateAcitCvStat(UpdateAcitCvStatRequest uaprsr) throws SQLException;
 }

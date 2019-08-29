@@ -2690,12 +2690,15 @@
 		<result property="cvDate"			column="CV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cvStatus"			column="CV_STATUS"/>
 		<result property="cvStatusDesc"		column="CV_STATUS_DESC"/>
-		<result property="payeeNo"			column="PAYEE_NO"/>
+		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
+		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
+		<result property="payeeCd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
 		<result property="particulars"		column="PARTICULARS"/>
 		<result property="bank"				column="BANK"/>
 		<result property="bankDesc"			column="BANK_DESC"/>
 		<result property="bankAcct"			column="BANK_ACCT"/>
+		<result property="bankAcctDesc"		column="BANK_ACCT_DESC"/>
 		<result property="checkNo"			column="CHECK_NO"/>
 		<result property="checkDate"		column="CHECK_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="checkClass"		column="CHECK_CLASS"/>
@@ -2752,11 +2755,13 @@
 				#{cvNo, jdbcType=INTEGER},
 				CAST(to_timestamp(#{cvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{cvStatus, jdbcType=VARCHAR},
-				#{payeeNo, jdbcType=INTEGER},
+				<!-- #{payeeNo, jdbcType=INTEGER}, -->
+				#{payeeClassCd, jdbcType=INTEGER},
+				#{payeeCd, jdbcType=VARCHAR},
 				#{payee, jdbcType=VARCHAR},
 				#{particulars, jdbcType=VARCHAR},
 				#{bank, jdbcType=INTEGER},
-				#{bankAcct, jdbcType=VARCHAR},
+				#{bankAcct, jdbcType=INTEGER},
 				#{checkNo, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{checkDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{checkClass, jdbcType=VARCHAR},
@@ -2861,6 +2866,16 @@
 														#{delete.histNo}
 													  );
 			</foreach>
+		END;
+	</update>
+	
+	<update id="updateAcitCvStat" parameterType="java.util.Map">
+		BEGIN
+			ACIT_CHECK_VOUCHER_PKG.up_acit_cv_stat(
+				#{tranId, jdbcType=INTEGER},
+				#{cvStatus, jdbcType=VARCHAR},
+				#{updateUser, jdbcType=VARCHAR}
+			);
 		END;
 	</update>
 

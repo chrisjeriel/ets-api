@@ -12,12 +12,15 @@ public class AcitCv {
 	private DateTime cvDate;
 	private String cvStatus;
 	private String cvStatusDesc;
-	private Integer payeeNo;
+	//private Integer payeeNo;
+	private Integer payeeClassCd;
+	private String payeeCd;
 	private String payee;
 	private String particulars;
 	private Integer bank;
 	private String bankDesc;
-	private String bankAcct;
+	private Integer bankAcct;
+	private String bankAcctDesc;
 	private String checkNo;
 	private DateTime checkDate;
 	private String checkClass;
@@ -104,14 +107,27 @@ public class AcitCv {
 	public void setCvStatusDesc(String cvStatusDesc) {
 		this.cvStatusDesc = cvStatusDesc;
 	}
-	public Integer getPayeeNo() {
-		return payeeNo;
-	}
-	public void setPayeeNo(Integer payeeNo) {
-		this.payeeNo = payeeNo;
-	}
+//	public Integer getPayeeNo() {
+//		return payeeNo;
+//	}
+//	public void setPayeeNo(Integer payeeNo) {
+//		this.payeeNo = payeeNo;
+//	}
+	
 	public String getPayee() {
 		return payee;
+	}
+	public Integer getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(Integer payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
+	}
+	public String getPayeeCd() {
+		return payeeCd;
+	}
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
 	}
 	public void setPayee(String payee) {
 		this.payee = payee;
@@ -128,11 +144,17 @@ public class AcitCv {
 	public void setBank(Integer bank) {
 		this.bank = bank;
 	}
-	public String getBankAcct() {
+	public Integer getBankAcct() {
 		return bankAcct;
 	}
-	public void setBankAcct(String bankAcct) {
+	public void setBankAcct(Integer bankAcct) {
 		this.bankAcct = bankAcct;
+	}
+	public String getBankAcctDesc() {
+		return bankAcctDesc;
+	}
+	public void setBankAcctDesc(String bankAcctDesc) {
+		this.bankAcctDesc = bankAcctDesc;
 	}
 	public String getCheckNo() {
 		return checkNo;
@@ -311,18 +333,19 @@ public class AcitCv {
 	@Override
 	public String toString() {
 		return "AcitCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
-				+ ", cvDate=" + cvDate + ", cvStatus=" + cvStatus + ", cvStatusDesc=" + cvStatusDesc + ", payeeNo="
-				+ payeeNo + ", payee=" + payee + ", particulars=" + particulars + ", bank=" + bank + ", bankDesc="
-				+ bankDesc + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo + ", checkDate=" + checkDate
-				+ ", checkClass=" + checkClass + ", checkClassDesc=" + checkClassDesc + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", cvAmt=" + cvAmt + ", localAmt=" + localAmt + ", preparedBy="
-				+ preparedBy + ", preparedDate=" + preparedDate + ", certifiedBy=" + certifiedBy + ", certifiedDate="
-				+ certifiedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", mainTranId=" + mainTranId + ", mainTranDate="
-				+ mainTranDate + ", mainTranClass=" + mainTranClass + ", mainTranTypeCd=" + mainTranTypeCd
-				+ ", mainTranYear=" + mainTranYear + ", mainTranClassNo=" + mainTranClassNo + ", mainTranStat="
-				+ mainTranStat + ", mainCloseDate=" + mainCloseDate + ", mainDeleteDate=" + mainDeleteDate
-				+ ", mainPostDate=" + mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate="
-				+ mainCreateDate + ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + "]";
+				+ ", cvDate=" + cvDate + ", cvStatus=" + cvStatus + ", cvStatusDesc=" + cvStatusDesc + ", payeeClassCd="
+				+ payeeClassCd + ", payeeCd=" + payeeCd + ", payee=" + payee + ", particulars=" + particulars
+				+ ", bank=" + bank + ", bankDesc=" + bankDesc + ", bankAcct=" + bankAcct + ", bankAcctDesc="
+				+ bankAcctDesc + ", checkNo=" + checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass
+				+ ", checkClassDesc=" + checkClassDesc + ", currCd=" + currCd + ", currRate=" + currRate + ", cvAmt="
+				+ cvAmt + ", localAmt=" + localAmt + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate
+				+ ", certifiedBy=" + certifiedBy + ", certifiedDate=" + certifiedDate + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", mainTranId=" + mainTranId + ", mainTranDate=" + mainTranDate + ", mainTranClass=" + mainTranClass
+				+ ", mainTranTypeCd=" + mainTranTypeCd + ", mainTranYear=" + mainTranYear + ", mainTranClassNo="
+				+ mainTranClassNo + ", mainTranStat=" + mainTranStat + ", mainCloseDate=" + mainCloseDate
+				+ ", mainDeleteDate=" + mainDeleteDate + ", mainPostDate=" + mainPostDate + ", mainCreateUser="
+				+ mainCreateUser + ", mainCreateDate=" + mainCreateDate + ", mainUpdateUser=" + mainUpdateUser
+				+ ", mainUpdateDate=" + mainUpdateDate + "]";
 	}
 }

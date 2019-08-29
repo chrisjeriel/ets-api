@@ -7,7 +7,9 @@ public class SaveAcitCvRequest {
     private Integer cvNo;
     private String cvDate;
     private String cvStatus;
-    private String payeeNo;
+    //private String payeeNo;
+    private String payeeClassCd;
+    private String payeeCd;
     private String payee;
     private String particulars;
     private String bank;
@@ -67,14 +69,26 @@ public class SaveAcitCvRequest {
 	public void setCvStatus(String cvStatus) {
 		this.cvStatus = cvStatus;
 	}
-	public String getPayeeNo() {
-		return payeeNo;
-	}
-	public void setPayeeNo(String payeeNo) {
-		this.payeeNo = payeeNo;
-	}
+//	public String getPayeeNo() {
+//		return payeeNo;
+//	}
+//	public void setPayeeNo(String payeeNo) {
+//		this.payeeNo = payeeNo;
+//	}
 	public String getPayee() {
 		return payee;
+	}
+	public String getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(String payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
+	}
+	public String getPayeeCd() {
+		return payeeCd;
+	}
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
 	}
 	public void setPayee(String payee) {
 		this.payee = payee;
@@ -214,13 +228,13 @@ public class SaveAcitCvRequest {
 	@Override
 	public String toString() {
 		return "SaveAcitCvRequest [tranId=" + tranId + ", mainTranId=" + mainTranId + ", cvYear=" + cvYear + ", cvNo="
-				+ cvNo + ", cvDate=" + cvDate + ", cvStatus=" + cvStatus + ", payeeNo=" + payeeNo + ", payee=" + payee
-				+ ", particulars=" + particulars + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo
-				+ ", checkDate=" + checkDate + ", checkClass=" + checkClass + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", cvAmt=" + cvAmt + ", localAmt=" + localAmt + ", preparedBy=" + preparedBy
-				+ ", preparedDate=" + preparedDate + ", certifiedBy=" + certifiedBy + ", certifiedDate=" + certifiedDate
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", tranStat=" + tranStat + ", closeDate=" + closeDate + ", deleteDate="
-				+ deleteDate + ", postDate=" + postDate + "]";
+				+ cvNo + ", cvDate=" + cvDate + ", cvStatus=" + cvStatus + ", payeeClassCd=" + payeeClassCd
+				+ ", payeeCd=" + payeeCd + ", payee=" + payee + ", particulars=" + particulars + ", bank=" + bank
+				+ ", bankAcct=" + bankAcct + ", checkNo=" + checkNo + ", checkDate=" + checkDate + ", checkClass="
+				+ checkClass + ", currCd=" + currCd + ", currRate=" + currRate + ", cvAmt=" + cvAmt + ", localAmt="
+				+ localAmt + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate + ", certifiedBy="
+				+ certifiedBy + ", certifiedDate=" + certifiedDate + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat
+				+ ", closeDate=" + closeDate + ", deleteDate=" + deleteDate + ", postDate=" + postDate + "]";
 	}
 }

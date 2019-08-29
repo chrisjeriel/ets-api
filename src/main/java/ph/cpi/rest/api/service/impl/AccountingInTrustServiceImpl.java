@@ -87,6 +87,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
@@ -166,6 +167,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -397,8 +399,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return uaprsResponse;
 	}
-
-
+	
 	@Override
 	public RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentList(RetrieveAcitInvestmentsListRequest railr)
 			throws SQLException {
@@ -1635,7 +1636,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("cvNo", sacr.getCvNo());
 	        sacParams.put("cvDate", sacr.getCvDate());
 	        sacParams.put("cvStatus", sacr.getCvStatus());
-	        sacParams.put("payeeNo", sacr.getPayeeNo());
+	        //sacParams.put("payeeNo", sacr.getPayeeNo());
+	        sacParams.put("payeeClassCd", sacr.getPayeeClassCd());
+	        sacParams.put("payeeCd", sacr.getPayeeCd());
 	        sacParams.put("payee", sacr.getPayee());
 	        sacParams.put("particulars", sacr.getParticulars());
 	        sacParams.put("bank", sacr.getBank());
@@ -1745,4 +1748,29 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+	
+	@Override
+	public UpdateAcitCvStatResponse updateAcitCvStat(UpdateAcitCvStatRequest uacsr) throws SQLException {
+		UpdateAcitCvStatResponse uacsResponse = new UpdateAcitCvStatResponse();
+		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
+		try {
+			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("updateUser", uacsr.getUpdateUser());
+			
+			HashMap<String, Object> response = acctITDao.updateAcitCvStat(uacsParams);
+			
+			uacsResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			uacsResponse.setReturnCode(0);
+			uacsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			uacsResponse.setReturnCode(0);
+			uacsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return uacsResponse;
+	}
+
 }

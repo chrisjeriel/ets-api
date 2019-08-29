@@ -90,6 +90,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
@@ -169,6 +170,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPrqTransResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -762,5 +764,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/SaveAcitClmResHistPaytsRequest");
 		logger.info("SaveAcitClmResHistPaytsRequest : " + request.toString());
 		return acctInTrustService.saveAcitClmResHistPayts(request);
+	}
+	
+	@PostMapping(path="updateAcitCvStat")
+	public @ResponseBody UpdateAcitCvStatResponse updateAcitCvStat(@RequestBody UpdateAcitCvStatRequest uacvsr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/updateAcitCvStat");
+		logger.info("UpdateAcitCvStatRequest : " + uacvsr.toString());
+		return acctInTrustService.updateAcitCvStat(uacvsr);
 	}
 }
