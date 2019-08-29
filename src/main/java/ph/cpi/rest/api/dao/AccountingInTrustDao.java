@@ -133,5 +133,6 @@ public interface AccountingInTrustDao {
 	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVRollOver> retrieveAcitJVInvRollOver(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVInvRollOver(final HashMap<String, Object> params) throws SQLException;
 	
 }

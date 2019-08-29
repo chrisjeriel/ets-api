@@ -2764,6 +2764,13 @@
 	
 	<update id="saveAcitJVInvPullOut" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="delInvPullOut" item="delete">
+					ACIT_JOURNAL_VOUCHER_PKG.del_jv_inv_pull(
+														#{delete.tranId}, 
+														#{delete.itemNo}, 
+														#{delete.invtId}
+														);
+			</foreach>
 			<foreach collection="saveInvPullOut" item="save">
 					ACIT_JOURNAL_VOUCHER_PKG.save_jv_inv_pull(
 														#{save.tranId}, 
@@ -2844,4 +2851,37 @@
 		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_jv_invrollover(#{tranId},NULL,NULL,NULL,NULL))
 	</select>
 	
+	<update id="saveAcitJVInvRollOver" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delRollOver" item="del">
+					ACIT_JOURNAL_VOUCHER_PKG.del_inv_roll_over(
+														#{del.tranId},
+														#{del.itemNo}
+													  );
+			</foreach>
+			<foreach collection="saveRollOver" item="save">
+					ACIT_JOURNAL_VOUCHER_PKG.save_inv_roll_over(
+														#{save.tranId},
+														#{save.itemNo,jdbcType=INTEGER},
+														#{save.invtId},
+														#{save.destInvtId},
+														#{save.pulloutType},
+														#{save.bank,jdbcType=INTEGER},
+														#{save.bankAcct,jdbcType=INTEGER},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.invtAmt},
+														#{save.incomeAmt},
+														#{save.bankCharge},
+														#{save.whtaxAmt},
+														#{save.maturityValue},
+														#{save.localAmt},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  );
+			</foreach>
+		END;
+	</update>
 </mapper>

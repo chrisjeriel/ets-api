@@ -593,5 +593,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJVRollOver> res = sqlSession.selectList("retrieveAcitJVInvRollOver",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVInvRollOver(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVInvRollOver",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 }
