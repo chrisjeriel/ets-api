@@ -1,7 +1,7 @@
 package ph.cpi.rest.api.model.maintenance;
 
 public class Payee {
-	private Integer payeeNo;
+	private String payeeNo;
 	private Integer payeeClassCd;
 	private String payeeClassName;
 	private String payeeName;
@@ -33,10 +33,10 @@ public class Payee {
 	private String bankAcctNo2;
 	private String cedingId;
 	private String bussTypeName;
-	public Integer getPayeeNo() {
+	public String getPayeeNo() {
 		return payeeNo;
 	}
-	public void setPayeeNo(Integer payeeNo) {
+	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
 	public Integer getPayeeClassCd() {

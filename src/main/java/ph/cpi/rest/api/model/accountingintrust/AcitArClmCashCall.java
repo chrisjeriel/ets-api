@@ -9,21 +9,17 @@ public class AcitArClmCashCall {
 	private Integer billId;
 	private Integer itemNo;
 	private Integer claimId;
-	private String insuredDesc;
 	private String claimNo;
+	private String paytType;
+	private String paytTypeName;
+	private String coClmNo;
+	private Integer policyId;
 	private String policyNo;
 	private DateTime lossDate;
-	private String lossCd;
-	private String lossAbbr;
-	private Integer projId;
-	private Integer histNo;
-	private String histCategory;
-	private String histCatDesc;
 	private String currCd;
 	private BigDecimal currRate;
-	private BigDecimal reserveAmt;
-	private BigDecimal paytAmt;
-	private BigDecimal cashcallAmt;
+	private String remarks;
+	private BigDecimal recOverAmt;
 	private BigDecimal localAmt;
 	private String createUser;
 	private DateTime createDate;
@@ -54,17 +50,35 @@ public class AcitArClmCashCall {
 	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
 	}
-	public String getInsuredDesc() {
-		return insuredDesc;
-	}
-	public void setInsuredDesc(String insuredDesc) {
-		this.insuredDesc = insuredDesc;
-	}
 	public String getClaimNo() {
 		return claimNo;
 	}
 	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
+	}
+	public String getPaytType() {
+		return paytType;
+	}
+	public void setPaytType(String paytType) {
+		this.paytType = paytType;
+	}
+	public String getPaytTypeName() {
+		return paytTypeName;
+	}
+	public void setPaytTypeName(String paytTypeName) {
+		this.paytTypeName = paytTypeName;
+	}
+	public String getCoClmNo() {
+		return coClmNo;
+	}
+	public void setCoClmNo(String coClmNo) {
+		this.coClmNo = coClmNo;
+	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
 	}
 	public String getPolicyNo() {
 		return policyNo;
@@ -78,42 +92,6 @@ public class AcitArClmCashCall {
 	public void setLossDate(DateTime lossDate) {
 		this.lossDate = lossDate;
 	}
-	public String getLossCd() {
-		return lossCd;
-	}
-	public void setLossCd(String lossCd) {
-		this.lossCd = lossCd;
-	}
-	public String getLossAbbr() {
-		return lossAbbr;
-	}
-	public void setLossAbbr(String lossAbbr) {
-		this.lossAbbr = lossAbbr;
-	}
-	public Integer getProjId() {
-		return projId;
-	}
-	public void setProjId(Integer projId) {
-		this.projId = projId;
-	}
-	public Integer getHistNo() {
-		return histNo;
-	}
-	public void setHistNo(Integer histNo) {
-		this.histNo = histNo;
-	}
-	public String getHistCategory() {
-		return histCategory;
-	}
-	public void setHistCategory(String histCategory) {
-		this.histCategory = histCategory;
-	}
-	public String getHistCatDesc() {
-		return histCatDesc;
-	}
-	public void setHistCatDesc(String histCatDesc) {
-		this.histCatDesc = histCatDesc;
-	}
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -126,23 +104,17 @@ public class AcitArClmCashCall {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
-	public BigDecimal getReserveAmt() {
-		return reserveAmt;
+	public String getRemarks() {
+		return remarks;
 	}
-	public void setReserveAmt(BigDecimal reserveAmt) {
-		this.reserveAmt = reserveAmt;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
-	public BigDecimal getPaytAmt() {
-		return paytAmt;
+	public BigDecimal getRecOverAmt() {
+		return recOverAmt;
 	}
-	public void setPaytAmt(BigDecimal paytAmt) {
-		this.paytAmt = paytAmt;
-	}
-	public BigDecimal getCashcallAmt() {
-		return cashcallAmt;
-	}
-	public void setCashcallAmt(BigDecimal cashcallAmt) {
-		this.cashcallAmt = cashcallAmt;
+	public void setRecOverAmt(BigDecimal recOverAmt) {
+		this.recOverAmt = recOverAmt;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -178,11 +150,10 @@ public class AcitArClmCashCall {
 	@Override
 	public String toString() {
 		return "AcitArClmCashCall [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
-				+ claimId + ", insuredDesc=" + insuredDesc + ", claimNo=" + claimNo + ", policyNo=" + policyNo
-				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", projId=" + projId
-				+ ", histNo=" + histNo + ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt
-				+ ", cashcallAmt=" + cashcallAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ claimId + ", claimNo=" + claimNo + ", paytType=" + paytType + ", paytTypeName=" + paytTypeName
+				+ ", coClmNo=" + coClmNo + ", policyId=" + policyId + ", policyNo=" + policyNo + ", lossDate="
+				+ lossDate + ", currCd=" + currCd + ", currRate=" + currRate + ", remarks=" + remarks + ", recOverAmt="
+				+ recOverAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

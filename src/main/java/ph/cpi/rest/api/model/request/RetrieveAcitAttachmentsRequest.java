@@ -3,14 +3,15 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveAcitJVPremResRelRequest {
-	private Integer tranId;
-	private PaginationRequest paginationRequest;
-	private SortRequest sortRequest;
-	public Integer getTranId() {
+public class RetrieveAcitAttachmentsRequest {
+	private String tranId;
+	private PaginationRequest paginationRequest = new PaginationRequest();
+	private SortRequest sortRequest = new SortRequest();
+	
+	public String getTranId() {
 		return tranId;
 	}
-	public void setTranId(Integer tranId) {
+	public void setTranId(String tranId) {
 		this.tranId = tranId;
 	}
 	public PaginationRequest getPaginationRequest() {
@@ -25,10 +26,10 @@ public class RetrieveAcitJVPremResRelRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveAcitJVPremResRelRequest [tranId=" + tranId + ", paginationRequest=" + paginationRequest
+		return "RetrieveAcitAttachmentsRequest [tranId=" + tranId + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveAcitArClmRecoverLovRequest {
 	private String payeeNo;
+	private String currCd;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
@@ -13,6 +14,12 @@ public class RetrieveAcitArClmRecoverLovRequest {
 	}
 	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -29,7 +36,7 @@ public class RetrieveAcitArClmRecoverLovRequest {
 	
 	@Override
 	public String toString() {
-		return "RetrieveAcitArClmRecoverLovRequest [payeeNo=" + payeeNo + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitArClmRecoverLovRequest [payeeNo=" + payeeNo + ", currCd=" + currCd + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

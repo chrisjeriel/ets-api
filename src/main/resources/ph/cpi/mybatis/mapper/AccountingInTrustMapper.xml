@@ -357,6 +357,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arEntryMap">
 		<result property="tranId"        column="TRAN_ID"           />
 		<result property="arNo"          column="AR_NO"             />
+		<result property="formattedArNo" column="FORMATTED_AR_NO"   />
+		<result property="arNoDigits"    column="AR_NO_DIGITS"      />
 		<result property="arDate"        column="AR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"      column="AR_STATUS"         />
 		<result property="tranStat"      column="TRAN_STAT"         />
@@ -391,6 +393,8 @@
 		<result property="cedingId"      column="CEDING_ID"       />
 		<result property="bussTypeName"  column="BUSS_TYPE_NAME"       />
 		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
+		<result property="arDtlSum"      column="ARDTL_SUM"       />
+		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	
@@ -613,7 +617,6 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_aipb(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
-					#{cedingCo,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
 
@@ -660,9 +663,9 @@
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
 														#{payor},
-														#{mailAddress},
-														#{bussTypeName},
-														#{tin},
+														#{mailAddress, jdbcType=VARCHAR},
+														#{bussTypeName, jdbcType=VARCHAR},
+														#{tin, jdbcType=VARCHAR},
 														#{particulars},
 														#{currCd},
 														#{currRate},
@@ -717,6 +720,7 @@
 															v_tran_id,
 															1,
 															1,
+															NULL,
 															'Loss Reserve Deposit',
 															#{currCd},
 															#{currRate},
@@ -734,6 +738,7 @@
 															v_tran_id,
 															1,
 															1,
+															NULL,
 															'Payment for Advances by Service',
 															#{currCd},
 															#{currRate},
@@ -750,7 +755,7 @@
 					<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
 					<!-- Generate to Accounting Entries -->
-					GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
+					<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message); -->
 				END IF;
 			END IF;
 		END;
@@ -816,7 +821,6 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_ioams(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
-					#{cedingId},
 					'', '', '',''))
 	</select>
 	
@@ -909,7 +913,6 @@
 	<select id="retrieveAcitJVPremResRel" resultMap="premResMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_premrr(
 					#{tranId},
-					#{cedingId, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 
@@ -1124,7 +1127,7 @@
 				<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
-				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -1181,6 +1184,7 @@
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="billId"			column="BILL_ID" />
 		<result property="itemNo"			column="ITEM_NO" />
+		<result property="transdtlType"		column="TRANSDTL_TYPE" />
 		<result property="itemName"			column="ITEM_NAME" />
 		<result property="currCd"			column="CURR_CD" />
 		<result property="currRate"			column="CURR_RATE" />
@@ -1244,6 +1248,7 @@
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo},
+														#{save.transdtlType, jdbcType=VARCHAR},
 														#{save.itemName},
 														#{save.currCd},
 														#{save.currRate},
@@ -1536,14 +1541,14 @@
 																			 null,null,null,null))
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover" id="arClmRecMap">
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall" id="arClmCashCallMap">
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="billId"			column="BILL_ID" />
 		<result property="itemNo"			column="ITEM_NO" />
 		<result property="claimId"			column="CLAIM_ID" />
 		<result property="claimNo"			column="CLAIM_NO" />
-		<result property="paytType"			column="PAYT_TYPE" />
-		<result property="paytTypeName"		column="PAYT_TYPE_NAME" />
+		<!-- <result property="paytType"			column="PAYT_TYPE" />
+		<result property="paytTypeName"		column="PAYT_TYPE_NAME" /> -->
 		<result property="coClmNo"			column="CO_CLM_NO" />
 		<result property="policyId"			column="POLICY_ID" />
 		<result property="policyNo"			column="POLICY_NO" />
@@ -1559,15 +1564,15 @@
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
-	<select id="retrieveAcitArClmRecover" resultMap="arClmRecMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_AR_CLMRECOVER_PKG.ret_ar_clmrecover(
+	<select id="retrieveAcitArClmCashCall" resultMap="arClmCashCallMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll(
 																		#{tranId},
 																		#{billId}
 																	)
 							)
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov" id="arClmRecLovMap">
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov" id="arClmCashCallLov">
 		<result property="claimId"	column="CLAIM_ID" />
 		<result property="claimNo"	column="CLAIM_NO" />
 		<result property="coClmNo"	column="CO_CLM_NO" />
@@ -1578,14 +1583,15 @@
 		<result property="currRate"	column="CURR_RATE" />
 	</resultMap>
 	
-	<select id="retrieveAcitArClmRecoverLov" resultMap="arClmRecLovMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_AR_CLMRECOVER_PKG.ret_clm_lov(
-																#{payeeNo}
+	<select id="retrieveAcitArClmCashCallLov" resultMap="arClmCashCallLov" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_clm_lov(
+																#{payeeNo},
+																#{currCd}
 															  )
 							)
 	</select>
 	
-	<update id="saveArClmRecover" parameterType="java.util.Map" statementType="CALLABLE">
+	<update id="saveArClmCashCall" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_total_payts	NUMBER(16,2);
 			v_ar_amt		NUMBER(16,2);
@@ -1613,23 +1619,23 @@
 														#{updateUser},
 														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														);
-				<!-- Delete from ACIT_AR_CLMRECOVER -->
-				<foreach collection="delClmRecover" item="del">
-					ACIT_AR_CLMRECOVER_PKG.del_ar_clmrecover(
+				<!-- Delete from ACIT_AR_CLMCASHCALL -->
+				<foreach collection="delClmCashCall" item="del">
+					ACIT_AR_CLMCASHCALL_PKG.del_ar_clmcshcll(
 														#{del.tranId},
 														#{del.billId},
 														#{del.itemNo}				
 					);
 					
 				</foreach>
-				<!-- Save from ACIT_AR_CLM_RECOVER -->
-				<foreach collection="saveClmRecover" item="save">
-					ACIT_AR_CLMRECOVER_PKG.save_ar_clm_recover(
+				<!-- Save from ACIT_AR_CLMCASHCALL -->
+				<foreach collection="saveClmCashCall" item="save">
+					ACIT_AR_CLMCASHCALL_PKG.save_ar_clmcshcll(
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo},
 														#{save.claimId},
-														#{save.paytType},
+														<!-- #{save.paytType}, -->
 														#{save.currCd},
 														#{save.currRate},
 														#{save.recOverAmt},
@@ -1723,10 +1729,11 @@
 		<result property="createDate" column="PWZB_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="PWZB_UPDATE_USER"/>
 		<result property="updateDate" column="PWZB_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" column="OKDELETE"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJVAppPaytZeroBal" resultMap="zeroBalMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_pwzb(#{tranId},#{instNo,jdbcType=INTEGER},#{cedingId},null,null,null,null))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_pwzb(#{tranId},#{instNo,jdbcType=INTEGER},null,null,null,null))
 	</select>
 	
 	<update id="saveAcitJVAppPaytZeroBal" parameterType="java.util.Map">
@@ -1944,7 +1951,7 @@
 		END;
 	</update>
 	
-	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov" id="arClmCashCallLovMap">
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov" id="arClmRecoverLovMap">
 		<result property="claimId"          column="CLAIM_ID"        />
 		<result property="insuredDesc"      column="INSURED_DESC"           />
 		<result property="claimNo"          column="CLAIM_NO"        />
@@ -1968,11 +1975,11 @@
 		<result property="updateDate"       column="UPDATE_DATE"   typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"     />   
 	</resultMap>
 	
-	<select id="retAcitARClmCashCallLov" resultMap="arClmCashCallLovMap">
-		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll_lov(#{payeeNo}))
+	<select id="retAcitARClmRecoverLov" resultMap="arClmRecoverLovMap">
+		SELECT * FROM TABLE(ACIT_AR_CLMRECOVER_PKG.ret_ar_clmrecover_lov(#{payeeNo}, #{currCd}))
 	</select>
 	
-	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall" id="arClmCashCallMap">
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover" id="arClmRecoverMap">
 		<result property="tranId"        column="TRAN_ID" />
 		<result property="billId"        column="BILL_ID" />
 		<result property="itemNo"        column="ITEM_NO" />
@@ -1986,11 +1993,15 @@
 		<result property="projId"        column="PROJ_ID" />
 		<result property="histNo"        column="HIST_NO" />
 		<result property="histCategory"  column="HIST_CATEGORY" />
-		<result property="histCatDesc"   column="HIST_CAT_DESC" />
+		<result property="histCategoryDesc"   column="HIST_CATEGORY_DESC" />
+		<result property="histType"  column="HIST_TYPE" />
+		<result property="histTypeDesc"   column="HIST_TYPE_DESC" />
+		<result property="exGratia"   column="EX_GRATIA" />
+		<result property="paymentFor"   column="PAYMENT_FOR" />
 		<result property="currCd"        column="CURR_CD" />
 		<result property="currRate"      column="CURR_RATE" />
 		<result property="reserveAmt"    column="RESERVE_AMT" />
-		<result property="paytAmt"       column="PAYT_AMT" />
+		<result property="cumulativeAmt"       column="CUMULATIVE_AMT" />
 		<result property="cashcallAmt"   column="CASHCALL_AMT" />
 		<result property="localAmt"      column="LOCAL_AMT" />
 		<result property="createUser"    column="CREATE_USER" />
@@ -1999,11 +2010,11 @@
 		<result property="updateDate"    column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />  
 	</resultMap>
 	
-	<select id="retAcitARClmCashCall" resultMap="arClmCashCallMap">
-		SELECT * FROM TABLE(ACIT_AR_CLMCASHCALL_PKG.ret_ar_clmcshcll(#{tranId}, #{billId}))
+	<select id="retAcitARClmRecover" resultMap="arClmRecoverMap">
+		SELECT * FROM TABLE(ACIT_AR_CLMRECOVER_PKG.ret_ar_clmrecover(#{tranId}, #{billId}))
 	</select>
 	
-	<update id="saveArClmCashCall" parameterType="java.util.Map" statementType="CALLABLE">
+	<update id="saveArClmRecover" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_total_payts	NUMBER(16,2);
 			v_ar_amt		NUMBER(16,2);
@@ -2031,17 +2042,24 @@
 														#{updateUser},
 														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														);
-				<!-- Delete from ACIT_AR_CLMCASHCALL_PKG -->
-				<foreach collection="delClmCashCall" item="del">
-					ACIT_AR_CLMCASHCALL_PKG.del_ar_clmcashcall(
+				<!-- Delete from ACIT_AR_CLMRECOVER_PKG -->
+				<foreach collection="delClmRecover" item="del">
+					ACIT_AR_CLMRECOVER_PKG.del_ar_clmrecover(
 														#{del.tranId},
 														#{del.billId},
 														#{del.itemNo}				
 					);
+					<!-- Delete from ACIT_CLM_RES_HIST_PAYTS -->
+					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
+														#{del.tranId},
+														#{del.claimId},
+														#{del.projId},
+														#{del.histNo}
+					);
 				</foreach>
-				<!-- Save from ACIT_AR_CLMCASHCALL_PKG -->
-				<foreach collection="saveClmCashCall" item="save">
-					ACIT_AR_CLMCASHCALL_PKG.save_ar_clmcashcall(
+				<!-- Save from ACIT_AR_CLMRECOVER_PKG -->
+				<foreach collection="saveClmRecover" item="save">
+					ACIT_AR_CLMRECOVER_PKG.save_ar_clmrecover(
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo},
@@ -2050,6 +2068,7 @@
 														#{save.histNo},
 														#{save.currCd},
 														#{save.currRate},
+														#{save.paymentFor, jdbcType=VARCHAR},
 														#{save.cashcallAmt},
 														#{save.localAmt},
 														#{save.createUser},
@@ -2057,11 +2076,29 @@
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
 					);
+					<!-- Save to ACIT_CLM_RES_HIST_PAYTS -->
+					ACIT_CLM_RES_HIST_PAYTS_PKG.save_acit_clmres_hist(#{save.tranId},
+																	  #{save.claimId},
+																	  #{save.projId},
+																	  #{save.histNo},
+																	  #{save.histCategory},
+																	  #{save.histType},
+																	  #{save.exGratia},
+																	  #{save.reserveAmt},
+																	  #{save.currCd},
+																	  #{save.currRate},
+																	  #{save.cashcallAmt},
+																	  #{save.localAmt},
+																	  #{save.createUser},
+																	  CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																	  #{save.updateUser},
+																	  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+																		);
 				</foreach>
 				<!-- Generate Amount Details -->
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
-				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
+				<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message); -->
 			ELSE
 				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
 			END IF;
@@ -2112,6 +2149,7 @@
 		<result property="paymentFor" column="PAYMENT_FOR"/>
 		<result property="currCd" column="CURR_CD"/>
 		<result property="currRate" column="CURR_RATE"/>
+		<result property="paytAmt"  column="CUM_PAYMENT"/>
 		<result property="clmPaytAmt" column="CLM_PAYT_AMT"/>
 		<result property="localAmt" column="LOCAL_AMT"/>
 		<result property="remarks" column="REMARKS"/>
@@ -2139,7 +2177,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJvNegTrty" resultMap="jvNegTrtyMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_off_clm_neg_trty(#{tranId},#{cedingId},null,null,null,null))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_off_clm_neg_trty(#{tranId},null,null,null,null))
 	</select>
 	
 	<update id="saveAcitJvNegTrty" parameterType="java.util.Map">
@@ -2165,6 +2203,7 @@
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				
 			</foreach>
 			
 			<foreach collection="deleteClmOffset" item="deleted">
@@ -2196,6 +2235,25 @@
 															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															#{saved.updateUser},
 															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.save_acit_clmres_hist(
+											#{saved.tranId},
+											#{saved.claimId},
+											#{saved.projId},
+											#{saved.histNo},
+											#{saved.histCategory},
+											#{saved.histType},
+											#{saved.exGratia},
+											#{saved.reserveAmt},
+											#{saved.currCd},
+											#{saved.currRate},
+											#{saved.clmPaytAmt},
+											#{saved.localAmt},
+											#{saved.createUser},
+											CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											#{saved.updateUser},
+											CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
@@ -2383,7 +2441,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJvAcctTrtyBal" resultMap="acctTrtyMap">
-		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_acct_trty_bal(#{tranId},#{cedingId},null,null,null,null))
+		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_acct_trty_bal(#{tranId},null,null,null,null))
 	</select>
 	
 	<update id="saveAcitJvActTrtyBal" parameterType="java.util.Map">
@@ -2432,9 +2490,9 @@
 															#{saved.riCommVat}, 
 															#{saved.charges}, 
 															#{saved.netDue}, 
-															#{saved.cumPayment}, 
 															#{saved.paytAmt}, 
 															#{saved.localAmt}, 
+															#{saved.remainingBal}, 
 															#{saved.overdueInt ,jdbcType=INTEGER}, 
 															#{saved.remarks,jdbcType=VARCHAR}, 
 															#{saved.createUser}, 
@@ -2532,8 +2590,8 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses" id="claimLossMap">
 		<result property="tranId" 			column="CLM_TRAN_ID"/>
 		<result property="itemNo" 			column="CLM_ITEM_NO"/>
-		<result property="cedingId" 			column="CLM_TRAN_ID"/>
-		<result property="cedingName" 			column="CLM_ITEM_NO"/>
+		<result property="cedingId" 			column="CEDING_ID"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>
 		<result property="claimId" 			column="CLM_CLAIM_ID"/>
 		<result property="projId" 			column="CLM_PROJ_ID"/>
 		<result property="histNo" 			column="CLM_HIST_NO"/>
@@ -2598,7 +2656,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJVRcvblsAgnstLosses" resultMap="claimLossMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_rec_agnst_loss(#{tranId},#{cedingId},NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_rec_agnst_loss(#{tranId},NULL,NULL,NULL,NULL))
 	</select>
 	
 	<update id="saveAcitJvRcvblsAgnstLoss" parameterType="java.util.Map" statementType="CALLABLE">
@@ -2786,4 +2844,106 @@
 		END;
 	</update>
 	
+	<update id="printAr" parameterType="java.util.Map">
+		BEGIN
+			ACIT_ACKGT_RECEIPT_PKG.print_ar(#{tranId},#{arNo},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts" id="clmResHistPaytMap">
+		<result property="claimId" 			column="CLAIM_ID"/>
+		<result property="claimNo" 			column="CLAIM_NO"/>
+		<result property="projId" 			column="PROJ_ID"/>
+		<result property="policyId" 		column="POLICY_ID"/>
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="histNo" 			column="HIST_NO"/>
+		<result property="histCategory" 	column="HIST_CATEGORY"/>
+		<result property="histCategoryDesc" column="HIST_CATEGORY_DESC"/>
+		<result property="histType" 		column="HIST_TYPE"/>
+		<result property="histTypeDesc" 	column="HIST_TYPE_DESC"/>
+		<result property="exGratia" 		column="EX_GRATIA"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="currencyRt" 		column="CURRENCY_RT"/>
+		<result property="reserveAmt" 		column="RESERVE_AMT"/>
+		<result property="cumulativeAmt" 	column="CUMULATIVE_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	    column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitClmResHistPayts" resultMap="clmResHistPaytMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_CLM_RES_HIST_PAYTS_PKG.ret_clm_res_hist_lov(#{cedingId,jdbcType=VARCHAR},#{payeeNo,jdbcType=VARCHAR},#{currCd},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<update id="saveAcitClmResHistPayts" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveResHistPayments" item="save">
+					ACIT_CLM_RES_HIST_PAYTS_PKG.save_acit_clmres_hist(
+														#{save.tranId},
+														#{save.claimId},
+														#{save.projId},
+														#{save.histNo},
+														#{save.histCategory},
+														#{save.histType},
+														#{save.exGratia},
+														#{save.reserveAmt},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.paytAmt},
+														#{save.localAmt},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.createDate},
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  );
+			</foreach>
+			
+			<foreach collection="delResHistPayments" item="delete">
+					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
+														#{delete.tranId},
+														#{delete.claimId},
+														#{delete.projId},
+														#{delete.histNo}
+													  );
+			</foreach>
+		END;
+	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAttachments" id="acitAttchmntMap">
+		<result property="tranId" 			column="TRAN_ID" />
+		<result property="fileNo" 			column="FILE_NO" />
+		<result property="fileName" 		column="FILE_NAME" />
+		<result property="description" 		column="DESCRIPTION" />
+		<result property="createUser" 		column="CREATE_USER" />
+		<result property="createDate" 		column="CREATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER" />
+		<result property="updateDate" 		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retAcitAttachments" resultMap="acitAttchmntMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ATTACHMENTS_PKG.ret_acit_attchmnt(#{tranId},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<update id="saveAcitAttachments" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+		   <foreach collection="delAttachmentsList" item="attachment">
+		   		ACIT_ATTACHMENTS_PKG.del_acit_attchmnt(#{attachment.tranId},
+		   											#{attachment.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		   <foreach collection="saveAttachmentsList" item="attachment">
+		   	   ACIT_ATTACHMENTS_PKG.save_acit_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
+		   	   										#{attachment.tranId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		END;
+	</update>
 </mapper>

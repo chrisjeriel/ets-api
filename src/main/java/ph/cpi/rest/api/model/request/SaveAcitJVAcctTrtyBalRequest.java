@@ -69,7 +69,7 @@ class acctTreaty {
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal cumPayment;
+	private BigDecimal remainingBal;
 	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
@@ -157,11 +157,11 @@ class acctTreaty {
 		this.paytAmt = paytAmt;
 	}
 	
-	public BigDecimal getCumPayment() {
-		return cumPayment;
+	public BigDecimal getRemainingBal() {
+		return remainingBal;
 	}
-	public void setCumPayment(BigDecimal cumPayment) {
-		this.cumPayment = cumPayment;
+	public void setRemainingBal(BigDecimal remainingBal) {
+		this.remainingBal = remainingBal;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -210,10 +210,11 @@ class acctTreaty {
 		return "acctTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo + ", policyId="
 				+ policyId + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
 				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
-				+ netDue + ", cumPayment=" + cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
+				+ netDue + ", remainingBal=" + remainingBal + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
 				+ ", overdueInt=" + overdueInt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }
 

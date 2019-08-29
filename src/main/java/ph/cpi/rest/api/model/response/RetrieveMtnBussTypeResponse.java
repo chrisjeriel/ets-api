@@ -4,19 +4,18 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
+import ph.cpi.rest.api.model.maintenance.BussType;
 
-public class RetrieveAcitArClmCashCallLovResponse {
-	private List<AcitArClmCashCallLov> clmCashCallLovList;
+public class RetrieveMtnBussTypeResponse {
+	private List<BussType> bussTypeList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
 	
-	public List<AcitArClmCashCallLov> getClmCashCallLovList() {
-		return clmCashCallLovList;
+	public List<BussType> getBussTypeList() {
+		return bussTypeList;
 	}
-	public void setClmCashCallLovList(List<AcitArClmCashCallLov> clmCashCallLovList) {
-		this.clmCashCallLovList = clmCashCallLovList;
+	public void setBussTypeList(List<BussType> bussTypeList) {
+		this.bussTypeList = bussTypeList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -33,7 +32,7 @@ public class RetrieveAcitArClmCashCallLovResponse {
 	
 	@Override
 	public String toString() {
-		return "RetrieveAcitArClmCashCallLovResponse [clmCashCallLovList=" + clmCashCallLovList
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnBussTypeResponse [bussTypeList=" + bussTypeList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

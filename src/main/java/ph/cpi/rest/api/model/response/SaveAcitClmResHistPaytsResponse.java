@@ -1,17 +1,14 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveAcitArClmCashCallResponse {
-	private List<Error> errorList = new ArrayList<Error>();
-	private List<Message> messageList = new ArrayList<Message>();
+public class SaveAcitClmResHistPaytsResponse {
+	private List<Error> errorList;
+	private List<Message> messageList;
 	private Integer returnCode;
-	private Integer custReturnCode;
-	
 	public List<Error> getErrorList() {
 		return errorList;
 	}
@@ -30,16 +27,10 @@ public class SaveAcitArClmCashCallResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	public Integer getCustReturnCode() {
-		return custReturnCode;
-	}
-	public void setCustReturnCode(Integer custReturnCode) {
-		this.custReturnCode = custReturnCode;
-	}
-	
 	@Override
 	public String toString() {
-		return "SaveAcitArClmRecoverResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", custReturnCode=" + custReturnCode + "]";
+		return "SaveAcitClmResHistPaytsResponse [errorList=" + errorList + ", messageList=" + messageList
+				+ ", returnCode=" + returnCode + "]";
 	}
+	
 }

@@ -40,6 +40,7 @@ public class AcitJVAppPaymentZeroBal {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
 	public String getCedingId() {
 		return cedingId;
@@ -252,18 +253,26 @@ public class AcitJVAppPaymentZeroBal {
 	public void setRemainingBal(BigDecimal remainingBal) {
 		this.remainingBal = remainingBal;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVAppPaymentZeroBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate
-				+ ", dueDate=" + dueDate + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", prevPremAmt=" + prevPremAmt + ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat
-				+ ", prevCharges=" + prevCharges + ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment
-				+ ", balance=" + balance + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat
-				+ ", charges=" + charges + ", netDue=" + netDue + ", prevPaytAmt=" + prevPaytAmt + ", adjBalAmt="
-				+ adjBalAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt + ", totalPayt=" + totalPayt
-				+ ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", soaNo="
+				+ soaNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate + ", dueDate=" + dueDate + ", instNo="
+				+ instNo + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt
+				+ ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges
+				+ ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment + ", balance=" + balance + ", premAmt="
+				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
+				+ netDue + ", prevPaytAmt=" + prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", localAmt=" + localAmt
+				+ ", overdueInt=" + overdueInt + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 	
 }
