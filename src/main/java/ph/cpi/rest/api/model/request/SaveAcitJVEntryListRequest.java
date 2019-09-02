@@ -336,7 +336,7 @@ class saveAcitJVEntryList{
 
 @Alias ("acitAllocInvtInc")
 class acitAllocInvtInc{
-	
+
 	private String refTranId;
 	private String createDate;
 	private String createUser;

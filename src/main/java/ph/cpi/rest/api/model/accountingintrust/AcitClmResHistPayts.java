@@ -15,6 +15,7 @@ public class AcitClmResHistPayts {
 	private String histCategoryDesc;
 	private Integer histType;
 	private String histTypeDesc;
+	private String exGratia;
 	private String insuredDesc;
 	private String currencyCd;
 	private BigDecimal currencyRt;
@@ -87,6 +88,12 @@ public class AcitClmResHistPayts {
 	public String getInsuredDesc() {
 		return insuredDesc;
 	}
+	public String getExGratia() {
+		return exGratia;
+	}
+	public void setExGratia(String exGratia) {
+		this.exGratia = exGratia;
+	}
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
@@ -143,8 +150,10 @@ public class AcitClmResHistPayts {
 		return "AcitClmResHistPayts [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", policyId="
 				+ policyId + ", policyNo=" + policyNo + ", histNo=" + histNo + ", histCategory=" + histCategory
 				+ ", histCategoryDesc=" + histCategoryDesc + ", histType=" + histType + ", histTypeDesc=" + histTypeDesc
-				+ ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd + ", createUser=" + createUser
-				+ ", updateUser=" + updateUser + "]";
+				+ ", exGratia=" + exGratia + ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd
+				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", cumulativeAmt=" + cumulativeAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

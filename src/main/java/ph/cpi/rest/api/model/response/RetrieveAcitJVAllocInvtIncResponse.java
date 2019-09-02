@@ -4,19 +4,20 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 
-public class RetrieveAcitArClmRecoverLovResponse {
-	private List<AcitArClmRecoverLov> claimList;
-	private PaginationResponse paginationResponse = new PaginationResponse();
-	private SortResponse sortResponse = new SortResponse();
+public class RetrieveAcitJVAllocInvtIncResponse {
 	
-	public List<AcitArClmRecoverLov> getClaimList() {
-		return claimList;
+	private List<AcitJvAllInvtIncome> allInvtIncomeList;
+	private PaginationResponse paginationResponse;
+	private SortResponse sortResponse;
+	
+	public List<AcitJvAllInvtIncome> getAllInvtIncomeList() {
+		return allInvtIncomeList;
 	}
-	public void setClaimList(List<AcitArClmRecoverLov> claimList) {
-		this.claimList = claimList;
+	public void setAllInvtIncomeList(List<AcitJvAllInvtIncome> allInvtIncomeList) {
+		this.allInvtIncomeList = allInvtIncomeList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -30,11 +31,9 @@ public class RetrieveAcitArClmRecoverLovResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
 	@Override
 	public String toString() {
-		return "RetrieveAcitArClmRecoverLovResponse [claimList=" + claimList + ", paginationResponse="
+		return "RetrieveAcitJVAllocInvtIncResponse [allInvtIncomeList=" + allInvtIncomeList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
 }

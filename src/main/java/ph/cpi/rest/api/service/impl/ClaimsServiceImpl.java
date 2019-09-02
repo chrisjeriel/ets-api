@@ -552,6 +552,12 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("claimId", rcprr.getClaimId());
 		params.put("projId", rcprr.getProjId());
+		params.put("histNo", rcprr.getHistNo());
+		params.put("histType", rcprr.getHistType());
+		params.put("bookingMonth", rcprr.getBookingMonth());
+		params.put("bookingYear", rcprr.getBookingYear());
+		params.put("distStatus", rcprr.getDistStatus());
+		params.put("histCategory", rcprr.getHistCategory());
 		response.setClaimDist(claimsDao.retrieveClmDist(params));
 		return response;
 	}

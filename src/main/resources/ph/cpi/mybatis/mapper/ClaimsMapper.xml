@@ -762,10 +762,16 @@
 		<result property="histType"  		column="HIST_TYPE" />
 		<result property="histTypeDesc"  	column="HIST_TYPE_DESC" />
 		<result property="currencyCd"  		column="CURRENCY_CD" />
+		<result property="currencyRt"  		column="CURRENCY_RT" />
+		<result property="particulars"  	column="PARTICULARS" />
 		<result property="reserveAmt"  		column="RESERVE_AMT" />
 		<result property="paytAmt"  		column="PAYT_AMT" />
 		<result property="refNo"  			column="REF_NO" />
 		<result property="refDate"  		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="payee"  			column="PAYEE" />
+		<result property="payeeNo"  		column="PAYEE_NO" />
+		<result property="tranTypeName"  		column="TRAN_TYPE_NAME" />
+		
 	</resultMap>
 	
 	<select id="retrieveClmPaytReq" resultMap="clmPaytReqMap" parameterType="java.util.Map">
@@ -823,7 +829,11 @@
 	</update>
 
 	<select id="retrieveClmDist" resultMap="ClaimDistMap">
-		SELECT * FROM TABLE(CLM_DIST_PKG.get_clm_dist(#{claimId},#{projId}))
+		SELECT * FROM TABLE(CLM_DIST_PKG.get_clm_dist(#{claimId},#{projId},#{histNo, jdbcType=VARCHAR},
+			#{histType, jdbcType=VARCHAR},
+			#{bookingMonth, jdbcType=VARCHAR},
+			#{bookingYear, jdbcType=VARCHAR},
+			#{distStatus, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.claims.ClaimDist" id="ClaimDistMap">

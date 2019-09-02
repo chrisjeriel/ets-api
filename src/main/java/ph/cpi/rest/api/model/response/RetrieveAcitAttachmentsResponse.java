@@ -4,19 +4,17 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitAttachments;
 
-public class RetrieveAcitArClmCashCallLovResponse {
-	private List<AcitArClmCashCallLov> clmCashCallLovList;
+public class RetrieveAcitAttachmentsResponse {
+	private List<AcitAttachments> acitAttachmentsList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
-	
-	public List<AcitArClmCashCallLov> getClmCashCallLovList() {
-		return clmCashCallLovList;
+	public List<AcitAttachments> getAcitAttachmentsList() {
+		return acitAttachmentsList;
 	}
-	public void setClmCashCallLovList(List<AcitArClmCashCallLov> clmCashCallLovList) {
-		this.clmCashCallLovList = clmCashCallLovList;
+	public void setAcitAttachmentsList(List<AcitAttachments> acitAttachmentsList) {
+		this.acitAttachmentsList = acitAttachmentsList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -30,10 +28,9 @@ public class RetrieveAcitArClmCashCallLovResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	
 	@Override
 	public String toString() {
-		return "RetrieveAcitArClmCashCallLovResponse [clmCashCallLovList=" + clmCashCallLovList
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcitAttachmentsResponse [acitAttachmentsList=" + acitAttachmentsList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }
