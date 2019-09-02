@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.ApproveJVRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
 import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
@@ -51,6 +52,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVRcvblsAgnstLosRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJvDefNameRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJvInvPullOutRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
@@ -74,9 +76,9 @@ import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
+import ph.cpi.rest.api.model.request.SaveAcitClmResHistPaytsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitCvRequest;
-import ph.cpi.rest.api.model.request.SaveAcitClmResHistPaytsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
@@ -84,6 +86,7 @@ import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
+import ph.cpi.rest.api.model.request.SaveAcitJVInvPullOutRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJVRcvblsAgnstLosRequest;
 import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
@@ -93,6 +96,7 @@ import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
+import ph.cpi.rest.api.model.response.ApproveJVResponse;
 import ph.cpi.rest.api.model.response.CancelArResponse;
 import ph.cpi.rest.api.model.response.CancelCMDMCMDMResponse;
 import ph.cpi.rest.api.model.response.CancelJournalVoucherResponse;
@@ -130,6 +134,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVClmOffLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVDefNameResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVIntOverdAcctMSResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJVInvPullOutResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
@@ -158,9 +163,9 @@ import ph.cpi.rest.api.model.response.SaveAcitArTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcitArTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCMDMResponse;
+import ph.cpi.rest.api.model.response.SaveAcitClmResHistPaytsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitCvResponse;
-import ph.cpi.rest.api.model.response.SaveAcitClmResHistPaytsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitInvestmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAcctTrtyBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVAdjInwPolBalResponse;
@@ -168,6 +173,7 @@ import ph.cpi.rest.api.model.response.SaveAcitJVAppPaytZeroResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryListResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVIntOverdAcctMSResponse;
+import ph.cpi.rest.api.model.response.SaveAcitJVInvPullOutResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJVRcvblsAgnstLosResponse;
 import ph.cpi.rest.api.model.response.SaveAcitJvNegTrtyResponse;
@@ -1657,6 +1663,24 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 
 	@Override
+	public PrintArResponse printAr(PrintArRequest par) throws SQLException {
+		PrintArResponse response = new PrintArResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", par.getTranId());
+		params.put("arNo", par.getArNo());
+		params.put("updateUser", par.getUpdateUser());
+		params.put("updateDate", par.getUpdateDate());
+		try{
+			response.setReturnCode(acctITDao.printAr(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
 	public RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request)
 			throws SQLException {
 		RetrieveAcitClmResHistPaytResponse response = new RetrieveAcitClmResHistPaytResponse();
@@ -1743,6 +1767,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 
 	@Override
+	public SaveAcitCvPaytReqListResponse saveAcitCvPaytReqList(SaveAcitCvPaytReqListRequest sacprr)
+			throws SQLException {
+		SaveAcitCvPaytReqListResponse response = new SaveAcitCvPaytReqListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("savePaytReqList", sacprr.getSavePaytReqList());
+		params.put("deletePaytReqList", sacprr.getDeletePaytReqList());
+		
+		try {
+			response.setReturnCode(acctITDao.saveAcitCvPaytReqList(params));
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
 	public RetrieveAcitAttachmentsResponse retrieveAcitAttachments(RetrieveAcitAttachmentsRequest raar)
 			throws SQLException {
 		RetrieveAcitAttachmentsResponse response = new RetrieveAcitAttachmentsResponse();
@@ -1753,26 +1797,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 
 
-	@Override
-	public SaveAcitCvPaytReqListResponse saveAcitCvPaytReqList(SaveAcitCvPaytReqListRequest sacprr)
-			throws SQLException {
-		SaveAcitCvPaytReqListResponse sacprlResponse = new SaveAcitCvPaytReqListResponse();
-		HashMap<String, Object> sacprlParams = new HashMap<String, Object>();
-		
-		try {
-			sacprlParams.put("savePaytReqList", sacprr.getSavePaytReqList());
-			sacprlParams.put("deletePaytReqList", sacprr.getDeletePaytReqList());
-			HashMap<String, Object> response = acctITDao.saveAcitCvPaytReqList(sacprlParams);
-			sacprlResponse.setReturnCode((Integer) response.get("errorCode"));
-		} catch (Exception e) {
-			sacprlResponse.setReturnCode(0);
-			sacprlResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
-			e.printStackTrace();
-		}
-		
-		return sacprlResponse;
-	}
-	
 	@Override
 	public SaveAcitAttachmentsResponse saveAcitAttachments(SaveAcitAttachmentsRequest saar) throws SQLException {
 		SaveAcitAttachmentsResponse response = new SaveAcitAttachmentsResponse();
@@ -1816,21 +1840,34 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return uacsResponse;
 	}
 
+
 	@Override
-	public PrintArResponse printAr(PrintArRequest par) throws SQLException {
-		PrintArResponse response = new PrintArResponse();
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("tranId", par.getTranId());
-		params.put("arNo", par.getArNo());
-		params.put("updateUser", par.getUpdateUser());
-		params.put("updateDate", par.getUpdateDate());
-		
-		try{
-			response.setReturnCode(acctITDao.printAr(params));
-		}catch(Exception e){
+	public ApproveJVResponse approveJV(ApproveJVRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public RetrieveAcitJVInvPullOutResponse retrieveAcitJVInvPullOut(RetrieveAcitJvInvPullOutRequest request)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public SaveAcitJVInvPullOutResponse saveAcitJVInvPullOut(SaveAcitJVInvPullOutRequest request) throws SQLException {
+		SaveAcitJVInvPullOutResponse response = new SaveAcitJVInvPullOutResponse();
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveInvPullOut", request.getSaveInvPullOut());
+			HashMap<String, Object> res = acctITDao.saveAcitJVInvPullOut(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		} catch (SQLException sqlex) {
 			response.setReturnCode(0);
-			response.getErrorList().add(new Error("General Exception", "Please check field values."));
-			e.printStackTrace();
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
 		}
 		return response;
 	}

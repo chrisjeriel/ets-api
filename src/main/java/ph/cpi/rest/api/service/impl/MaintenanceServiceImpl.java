@@ -2256,4 +2256,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setBussTypeList(maintenanceDao.retrieveMtnBussType(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnPayeeCedingResponse retrieveMtnPayeeCeding(RetrieveMtnPayeeCedingRequest request)
+			throws SQLException {
+		RetrieveMtnPayeeCedingResponse response = new RetrieveMtnPayeeCedingResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeClassCd", request.getPayeeClassCd());
+		params.put("treatyTag", request.getTreatyTag());
+		response.setPayeeCeding(maintenanceDao.retrieveMtnPayeeCeding(params));
+		return response;
+	}
 }

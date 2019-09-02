@@ -38,7 +38,7 @@ public class Claims {
 	private String mbiRefNo; 
 	private DateTime inceptDate;
 	private DateTime expiryDate;
-	private String coClaimNo;
+	private String coClmNo;
 	private DateTime lossDate;
 	private String lossCd;
 	private String lossAbbr;
@@ -291,11 +291,11 @@ public class Claims {
 	public void setExpiryDate(DateTime expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	public String getCoClaimNo() {
-		return coClaimNo;
+	public String getCoClmNo() {
+		return coClmNo;
 	}
-	public void setCoClaimNo(String coClaimNo) {
-		this.coClaimNo = coClaimNo;
+	public void setCoClmNo(String coClmNo) {
+		this.coClmNo = coClmNo;
 	}
 	public DateTime getLossDate() {
 		return lossDate;
@@ -680,9 +680,9 @@ public class Claims {
 				+ ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd
 				+ ", lineClassDesc=" + lineClassDesc + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId
 				+ ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
-				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", coClaimNo=" + coClaimNo
-				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod="
-				+ lossPeriod + ", lossPdAbbr=" + lossPdAbbr + ", lossDtl=" + lossDtl + ", lossStatCd=" + lossStatCd
+				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", coClmNo=" + coClmNo + ", lossDate="
+				+ lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossPeriod=" + lossPeriod
+				+ ", lossPdAbbr=" + lossPdAbbr + ", lossDtl=" + lossDtl + ", lossStatCd=" + lossStatCd
 				+ ", eventTypeCd=" + eventTypeCd + ", eventTypeDesc=" + eventTypeDesc + ", eventCd=" + eventCd
 				+ ", eventDesc=" + eventDesc + ", insuredDesc=" + insuredDesc + ", reportDate=" + reportDate
 				+ ", reportedBy=" + reportedBy + ", processedBy=" + processedBy + ", oldStatCd=" + oldStatCd
