@@ -243,8 +243,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			saprParams.put("reqDate", saprr.getReqDate());
 			saprParams.put("reqStatus", saprr.getReqStatus());
 			//saprParams.put("payeeNo", saprr.getPayeeNo());
-			saprParams.put("payee_class_cd", saprr.getPayee_class_cd());
-			saprParams.put("payee_cd", saprr.getPayee_cd());
+			saprParams.put("payeeClassCd", saprr.getPayeeClassCd());
+			saprParams.put("payeeCd", saprr.getPayeeCd());
 			saprParams.put("payee", saprr.getPayee());
 			saprParams.put("currCd", saprr.getCurrCd());
 			saprParams.put("currRate", saprr.getCurrRate());
