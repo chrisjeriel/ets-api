@@ -1824,6 +1824,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("arNo", par.getArNo());
 		params.put("updateUser", par.getUpdateUser());
 		params.put("updateDate", par.getUpdateDate());
+		
 		try{
 			response.setReturnCode(acctITDao.printAr(params));
 		}catch(Exception e){
