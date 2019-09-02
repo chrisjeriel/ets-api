@@ -2397,7 +2397,7 @@
 	</select>
 
 	<select id="retrieveAcitServFeeSubGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_servfee_sub_gnrt(CAST(to_timestamp(#{prdAsOf, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_servfee_sub_gnrt(#{quarter, jdbcType=INTEGER},
 																		   #{year, jdbcType=INTEGER},
 																		   #{servFeeAmt, jdbcType=INTEGER},
 																		   #{currCd, jdbcType=VARCHAR},
@@ -2598,7 +2598,7 @@
 		BEGIN
 			ACCT_SERVFEE_DTL_DIST_PKG.save_servfee(
 				#{reqId, jdbcType=INTEGER},
-				CAST(to_timestamp(#{prdAsOf, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{quarter, jdbcType=INTEGER},
 				#{year, jdbcType=INTEGER},
 				#{servFeeAmt, jdbcType=INTEGER},
 				#{currCd, jdbcType=VARCHAR},

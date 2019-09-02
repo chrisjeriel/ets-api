@@ -1119,7 +1119,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			throws SQLException {
 		RetrieveAcctPrqServFeeResponse rasfmgResponse = new RetrieveAcctPrqServFeeResponse();
 		HashMap<String, Object> rasfmParams = new HashMap<String, Object>();
-		rasfmParams.put("prdAsOf", rasfr.getPrdAsOf());
+		rasfmParams.put("quarter", rasfr.getQuarter());
 		rasfmParams.put("year", rasfr.getYear());
 		rasfmParams.put("servFeeAmt", rasfr.getServFeeAmt());
 		rasfmParams.put("currCd", rasfr.getCurrCd());
@@ -1581,7 +1581,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcctPrqServFeeResponse response = new SaveAcctPrqServFeeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("reqId", sapsfr.getReqId());
-		params.put("prdAsOf", sapsfr.getPrdAsOf());
+		params.put("quarter", sapsfr.getQuarter());
 		params.put("year", sapsfr.getYear());
 		params.put("servFeeAmt", sapsfr.getServFeeAmt());
 		params.put("currCd", sapsfr.getCurrCd());

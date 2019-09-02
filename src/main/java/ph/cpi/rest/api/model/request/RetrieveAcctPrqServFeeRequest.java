@@ -7,7 +7,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveAcctPrqServFeeRequest {
 
-	private String prdAsOf;
+	private Integer quarter;
 	private Integer year;
 	private BigDecimal servFeeAmt;
 	private String currCd;
@@ -15,11 +15,11 @@ public class RetrieveAcctPrqServFeeRequest {
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public String getPrdAsOf() {
-		return prdAsOf;
+	public Integer getQuarter() {
+		return quarter;
 	}
-	public void setPrdAsOf(String prdAsOf) {
-		this.prdAsOf = prdAsOf;
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
 	}
 	public Integer getYear() {
 		return year;
@@ -59,8 +59,8 @@ public class RetrieveAcctPrqServFeeRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitServFeeMainGnrtRequest [prdAsOf=" + prdAsOf + ", year=" + year + ", servFeeAmt="
-				+ servFeeAmt + ", currCd=" + currCd + ", currRt=" + currRt + ", paginationRequest=" + paginationRequest
+		return "RetrieveAcctPrqServFeeRequest [quarter=" + quarter + ", year=" + year + ", servFeeAmt=" + servFeeAmt
+				+ ", currCd=" + currCd + ", currRt=" + currRt + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + "]";
 	}
 }
