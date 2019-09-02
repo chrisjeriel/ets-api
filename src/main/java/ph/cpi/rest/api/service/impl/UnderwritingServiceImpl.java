@@ -1615,9 +1615,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
 			}
 		}catch (Exception ex){
+			logger.info(ex.getMessage());
 			srdrResponse.setReturnCode(0);
 			srdrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
-			ex.printStackTrace();
+//			ex.printStackTrace();
 		}
 		return srdrResponse;
 	}

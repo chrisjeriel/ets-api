@@ -5,7 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveAcitClmResHistPaytRequest {
 	private String cedingId;
-	private Integer payeeNo;
+	private String payeeNo;
 	private String currCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
@@ -15,10 +15,10 @@ public class RetrieveAcitClmResHistPaytRequest {
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
-	public Integer getPayeeNo() {
+	public String getPayeeNo() {
 		return payeeNo;
 	}
-	public void setPayeeNo(Integer payeeNo) {
+	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
 	public String getCurrCd() {

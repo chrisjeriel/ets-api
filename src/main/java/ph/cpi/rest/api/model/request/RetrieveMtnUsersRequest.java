@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnUsersRequest {
 	private String userId;
+	private String userGrp;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -32,10 +33,16 @@ public class RetrieveMtnUsersRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public String getUserGrp() {
+		return userGrp;
+	}
+	public void setUserGrp(String userGrp) {
+		this.userGrp = userGrp;
+	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnUsersRequest [userId=" + userId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnUsersRequest [userId=" + userId + ", userGrp=" + userGrp + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 	

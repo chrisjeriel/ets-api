@@ -12,8 +12,9 @@ public class SaveAcitArClmCashCallRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	private List<SaveArClmCashCall> saveClmCashCall;
-	private List<SaveArClmCashCall> delClmCashCall;
+	private List<SaveClmCashCall> saveClmCashCall;
+	private List<SaveClmCashCall> delClmCashCall;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -62,18 +63,19 @@ public class SaveAcitArClmCashCallRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<SaveArClmCashCall> getSaveClmCashCall() {
+	public List<SaveClmCashCall> getSaveClmCashCall() {
 		return saveClmCashCall;
 	}
-	public void setSaveClmCashCall(List<SaveArClmCashCall> saveClmCashCall) {
+	public void setSaveClmCashCall(List<SaveClmCashCall> saveClmCashCall) {
 		this.saveClmCashCall = saveClmCashCall;
 	}
-	public List<SaveArClmCashCall> getDelClmCashCall() {
+	public List<SaveClmCashCall> getDelClmCashCall() {
 		return delClmCashCall;
 	}
-	public void setDelClmCashCall(List<SaveArClmCashCall> delClmCashCall) {
+	public void setDelClmCashCall(List<SaveClmCashCall> delClmCashCall) {
 		this.delClmCashCall = delClmCashCall;
 	}
+	
 	@Override
 	public String toString() {
 		return "SaveAcitArClmCashCallRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
@@ -83,17 +85,17 @@ public class SaveAcitArClmCashCallRequest {
 	}
 }
 
-class SaveArClmCashCall{
+class SaveClmCashCall{
 	private String tranId;
 	private String billId;
 	private String itemNo;
 	private String claimId;
-	private String projId;
-	private String histNo;
+	private String paytType;
 	private String currCd;
 	private String currRate;
-	private String cashcallAmt;
+	private String recOverAmt;
 	private String localAmt;
+	private String remarks;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -122,17 +124,11 @@ class SaveArClmCashCall{
 	public void setClaimId(String claimId) {
 		this.claimId = claimId;
 	}
-	public String getProjId() {
-		return projId;
+	public String getPaytType() {
+		return paytType;
 	}
-	public void setProjId(String projId) {
-		this.projId = projId;
-	}
-	public String getHistNo() {
-		return histNo;
-	}
-	public void setHistNo(String histNo) {
-		this.histNo = histNo;
+	public void setPaytType(String paytType) {
+		this.paytType = paytType;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -146,17 +142,23 @@ class SaveArClmCashCall{
 	public void setCurrRate(String currRate) {
 		this.currRate = currRate;
 	}
-	public String getCashcallAmt() {
-		return cashcallAmt;
+	public String getRecOverAmt() {
+		return recOverAmt;
 	}
-	public void setCashcallAmt(String cashcallAmt) {
-		this.cashcallAmt = cashcallAmt;
+	public void setRecOverAmt(String recOverAmt) {
+		this.recOverAmt = recOverAmt;
 	}
 	public String getLocalAmt() {
 		return localAmt;
 	}
 	public void setLocalAmt(String localAmt) {
 		this.localAmt = localAmt;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -184,9 +186,10 @@ class SaveArClmCashCall{
 	}
 	@Override
 	public String toString() {
-		return "SaveArClmCashCall [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
-				+ claimId + ", projId=" + projId + ", histNo=" + histNo + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", cashcallAmt=" + cashcallAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
+		return "SaveClmCashCall [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
+				+ claimId + ", paytType=" + paytType + ", currCd=" + currCd + ", currRate=" + currRate + ", recOverAmt="
+				+ recOverAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }
