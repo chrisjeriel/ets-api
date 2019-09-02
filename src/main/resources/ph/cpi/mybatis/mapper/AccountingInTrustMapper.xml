@@ -1555,7 +1555,7 @@
 		<result property="lossDate"			column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="currCd"			column="CURR_CD" />
 		<result property="currRate"			column="CURR_RATE" />
-		<result property="recOverAmt"		column="REC_OVER_AMT" />
+		<result property="cashcallAmt"		column="CASHCALL_AMT" />
 		<result property="localAmt"			column="LOCAL_AMT" />
 		<result property="remarks"			column="REMARKS" />
 		<result property="createUser"		column="CREATE_USER" />
@@ -1638,7 +1638,7 @@
 														<!-- #{save.paytType}, -->
 														#{save.currCd},
 														#{save.currRate},
-														#{save.recOverAmt},
+														#{save.cashcallAmt},
 														#{save.localAmt},
 														#{save.remarks, jdbcType=VARCHAR},
 														#{save.createUser},
@@ -1988,34 +1988,34 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover" id="arClmRecoverMap">
-		<result property="tranId"        column="TRAN_ID" />
-		<result property="billId"        column="BILL_ID" />
-		<result property="itemNo"        column="ITEM_NO" />
-		<result property="claimId"       column="CLAIM_ID" />
-		<result property="insuredDesc"   column="INSURED_DESC" />
-		<result property="claimNo"       column="CLAIM_NO" />
-		<result property="policyNo"      column="POLICY_NO" />
-		<result property="lossDate"      column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="lossCd"        column="LOSS_CD" />
-		<result property="lossAbbr"      column="LOSS_ABBR" />
-		<result property="projId"        column="PROJ_ID" />
-		<result property="histNo"        column="HIST_NO" />
-		<result property="histCategory"  column="HIST_CATEGORY" />
-		<result property="histCategoryDesc"   column="HIST_CATEGORY_DESC" />
-		<result property="histType"  column="HIST_TYPE" />
-		<result property="histTypeDesc"   column="HIST_TYPE_DESC" />
-		<result property="exGratia"   column="EX_GRATIA" />
-		<result property="paymentFor"   column="PAYMENT_FOR" />
-		<result property="currCd"        column="CURR_CD" />
-		<result property="currRate"      column="CURR_RATE" />
-		<result property="reserveAmt"    column="RESERVE_AMT" />
-		<result property="cumulativeAmt"       column="CUMULATIVE_AMT" />
-		<result property="cashcallAmt"   column="CASHCALL_AMT" />
-		<result property="localAmt"      column="LOCAL_AMT" />
-		<result property="createUser"    column="CREATE_USER" />
-		<result property="createDate"    column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="updateUser"    column="UPDATE_USER" />
-		<result property="updateDate"    column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />  
+		<result property="tranId"        	column="TRAN_ID" />
+		<result property="billId"        	column="BILL_ID" />
+		<result property="itemNo"        	column="ITEM_NO" />
+		<result property="claimId"       	column="CLAIM_ID" />
+		<result property="insuredDesc"   	column="INSURED_DESC" />
+		<result property="claimNo"       	column="CLAIM_NO" />
+		<result property="policyNo"      	column="POLICY_NO" />
+		<result property="lossDate"      	column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="lossCd"        	column="LOSS_CD" />
+		<result property="lossAbbr"      	column="LOSS_ABBR" />
+		<result property="projId"        	column="PROJ_ID" />
+		<result property="histNo"        	column="HIST_NO" />
+		<result property="histCategory"  	column="HIST_CATEGORY" />
+		<result property="histCategoryDesc" column="HIST_CATEGORY_DESC" />
+		<result property="histType"  		column="HIST_TYPE" />
+		<result property="histTypeDesc"   	column="HIST_TYPE_DESC" />
+		<result property="exGratia"   		column="EX_GRATIA" />
+		<result property="paymentFor"   	column="PAYMENT_FOR" />
+		<result property="currCd"        	column="CURR_CD" />
+		<result property="currRate"      	column="CURR_RATE" />
+		<result property="reserveAmt"    	column="RESERVE_AMT" />
+		<result property="cumulativeAmt"    column="CUMULATIVE_AMT" />
+		<result property="recOverAmt"   	column="REC_OVER_AMT" />
+		<result property="localAmt"      	column="LOCAL_AMT" />
+		<result property="createUser"    	column="CREATE_USER" />
+		<result property="createDate"    	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"    	column="UPDATE_USER" />
+		<result property="updateDate"    	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />  
 	</resultMap>
 	
 	<select id="retAcitARClmRecover" resultMap="arClmRecoverMap">
@@ -2077,7 +2077,7 @@
 														#{save.currCd},
 														#{save.currRate},
 														#{save.paymentFor, jdbcType=VARCHAR},
-														#{save.cashcallAmt},
+														#{save.recOverAmt},
 														#{save.localAmt},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -2095,7 +2095,7 @@
 																	  #{save.reserveAmt},
 																	  #{save.currCd},
 																	  #{save.currRate},
-																	  #{save.cashcallAmt},
+																	  #{save.recOverAmt},
 																	  #{save.localAmt},
 																	  #{save.createUser},
 																	  CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),

@@ -756,7 +756,7 @@ public class AccountingInTrustController {
 	@GetMapping(path="retrieveAcitClmResHistPayts")
 	public @ResponseBody RetrieveAcitClmResHistPaytResponse retrieveAcitClmResHistPayts(RetrieveAcitClmResHistPaytRequest request) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/RetrieveAcitJVAcctTrtyBalRequest");
-		logger.info("RetrieveAcitJVAcctTrtyBalRequest : " + request.toString());
+		logger.info("RetrieveAcitClmResHistPaytRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitClmResHistPayts(request);
 	}
 	
