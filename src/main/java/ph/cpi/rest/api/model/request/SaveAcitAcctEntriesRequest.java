@@ -3,8 +3,24 @@ package ph.cpi.rest.api.model.request;
 import java.util.List;
 
 public class SaveAcitAcctEntriesRequest {
+	private String tranId;
+	private String forApproval;
 	private List<SaveAcitAccEntry> saveList;
 	private List<SaveAcitAccEntry> delList;
+	
+	
+	public String getTranId() {
+		return tranId;
+	}
+	public void setTranId(String tranId) {
+		this.tranId = tranId;
+	}
+	public String getForApproval() {
+		return forApproval;
+	}
+	public void setForApproval(String forApproval) {
+		this.forApproval = forApproval;
+	}
 	public List<SaveAcitAccEntry> getSaveList() {
 		return saveList;
 	}
@@ -19,7 +35,8 @@ public class SaveAcitAcctEntriesRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitAcctEntriesRequest [saveList=" + saveList + ", delList=" + delList + "]";
+		return "SaveAcitAcctEntriesRequest [tranId=" + tranId + ", forApproval=" + forApproval + ", saveList="
+				+ saveList + ", delList=" + delList + "]";
 	}
 	
 }

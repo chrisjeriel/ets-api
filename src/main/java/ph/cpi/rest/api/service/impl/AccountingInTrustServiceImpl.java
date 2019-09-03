@@ -957,6 +957,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	public SaveAcitAcctEntriesResponse saveAcitAcctEntries(SaveAcitAcctEntriesRequest saprr) throws SQLException {
 		SaveAcitAcctEntriesResponse response = new SaveAcitAcctEntriesResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saprr.getTranId());
+		params.put("forApproval", saprr.getForApproval());
 		params.put("saveList", saprr.getSaveList()) ;
 		params.put("delList", saprr.getDelList()) ;
 		try{
