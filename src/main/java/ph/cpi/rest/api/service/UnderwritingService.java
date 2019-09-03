@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
@@ -24,6 +25,8 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistInstPoolRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistInstRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
@@ -35,6 +38,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
+import ph.cpi.rest.api.model.request.RetrievePolInstTagAcctDateRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
@@ -92,6 +96,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistInstResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
@@ -102,6 +107,7 @@ import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
+import ph.cpi.rest.api.model.response.RetrievePolInstTagAcctDateResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
@@ -220,4 +226,9 @@ public interface UnderwritingService {
 	public NegateDistributionResponse negateDistribution(NegateDistributionRequest ndr) throws SQLException;
 	public SaveExpGenInfoResponse saveExpGenInfo(SaveExpGenInfoRequest segir)throws SQLException;
 	public RetrievePolDistWarningResponse retrievePolDistWarning(RetrievePolDistWarningRequest rpdwr) throws SQLException;
+	
+	public RetrievePolDistInstResponse retrievePolDistInst(RetrievePolDistInstRequest rpdir) throws SQLException;
+	
+	public RetrievePoolDistributionResponse retrievePolDistInstPool(RetrievePolDistInstPoolRequest rpdir) throws SQLException;
+	public RetrievePolInstTagAcctDateResponse retrievePolInstTagAcctDate(RetrievePolInstTagAcctDateRequest rpdir) throws SQLException;
 }
