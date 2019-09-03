@@ -3769,4 +3769,18 @@
      															#{activeTag, jdbcType=VARCHAR}))
      </select>
 	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PayeeCeding" id="payeeCedMap">
+     	<result property="payeeClassCd" column="PAYEE_CLASS_CD"/>
+		<result property="payeeCd" column="PAYEE_CD"/>
+		<result property="payeeName" column="PAYEE_NAME"/>
+		<result property="payeeAddress" column="MAIL_ADDRESS"/>
+     </resultMap>
+     
+     <select id="retrieveMtnPayeeCeding" resultMap="payeeCedMap" parameterType="java.util.Map">
+     	SELECT * FROM TABLE(ACIT_PAYEE_LOV_PKG.ret_payee_ced_name(#{payeeClassCd, jdbcType=VARCHAR}, 
+     															  #{treatyTag, jdbcType=VARCHAR},
+     															  NULL, NULL, NULL, NULL
+     															  ))
+     </select>
+     
 </mapper>

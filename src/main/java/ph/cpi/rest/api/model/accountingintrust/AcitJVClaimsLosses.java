@@ -24,6 +24,7 @@ public class AcitJVClaimsLosses {
 	private String paymentFor;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal paytAmt;
 	private BigDecimal clmPaytAmt;
 	private BigDecimal localAmt;
 	private String remarks;
@@ -141,6 +142,13 @@ public class AcitJVClaimsLosses {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
+	
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
+	}
 	public BigDecimal getClmPaytAmt() {
 		return clmPaytAmt;
 	}
@@ -191,11 +199,12 @@ public class AcitJVClaimsLosses {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVClaimsLosses [tranId=" + tranId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId="
-				+ projId + ", histNo=" + histNo + ", claimNo=" + claimNo + ", histCategory=" + histCategory
-				+ ", histCategoryDesc=" + histCategoryDesc + ", histType=" + histType + ", histTypeDesc=" + histTypeDesc
-				+ ", exGratia=" + exGratia + ", reserveAmt=" + reserveAmt + ", insuredDesc=" + insuredDesc
-				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", clmPaytAmt="
+		return "AcitJVClaimsLosses [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId
+				+ ", cedingName=" + cedingName + ", claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo
+				+ ", claimNo=" + claimNo + ", histCategory=" + histCategory + ", histCategoryDesc=" + histCategoryDesc
+				+ ", histType=" + histType + ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia
+				+ ", reserveAmt=" + reserveAmt + ", insuredDesc=" + insuredDesc + ", paymentFor=" + paymentFor
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", paytAmt=" + paytAmt + ", clmPaytAmt="
 				+ clmPaytAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", inwPolBal=" + inwPolBal + "]";

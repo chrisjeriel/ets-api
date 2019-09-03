@@ -55,6 +55,7 @@ import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
+import ph.cpi.rest.api.model.maintenance.PayeeCeding;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
@@ -1032,6 +1033,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<BussType> retrieveMtnBussType(HashMap<String, Object> params) throws SQLException {
 		List<BussType> res = sqlSession.selectList("retMtnBussType", params);
+		return res;
+	}
+
+	@Override
+	public List<PayeeCeding> retrieveMtnPayeeCeding(HashMap<String, Object> params) throws SQLException {
+		List<PayeeCeding> res = sqlSession.selectList("retrieveMtnPayeeCeding", params);
 		return res;
 	}
 }
