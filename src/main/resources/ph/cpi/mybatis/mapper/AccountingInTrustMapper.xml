@@ -1017,6 +1017,15 @@
 																	#{currCd}))
 	</select>
 	
+	<select id="retrieveSoaAgingZeroLOV" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_zero(
+																	#{policyId, jdbcType=VARCHAR},
+																	#{instNo,jdbcType=VARCHAR},
+																	#{cedingId},
+																	#{payeeNo, jdbcType=VARCHAR},
+																	#{currCd}))
+	</select>
+	
 	<update id="saveArInwPolBal" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_message		    VARCHAR2(500);
@@ -1800,7 +1809,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitSoaTrtyList" resultMap="soaTrtyMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_trty_dtl(#{policyId,jdbcType=INTEGER},#{instNo,jdbcType=INTEGER},#{cedingId,jdbcType=INTEGER},#{payeeNo,jdbcType=VARCHAR},#{zeroBal,jdbcType=INTEGER}))
+		SELECT * FROM TABLE(.ret_soa_trty_dtl(#{policyId,jdbcType=INTEGER},#{instNo,jdbcType=INTEGER},#{cedingId,jdbcType=INTEGER},#{payeeNo,jdbcType=VARCHAR},#{zeroBal,jdbcType=INTEGER}))
 	</select>
 
 	<update id="saveArInvPullout" parameterType="java.util.Map" statementType="CALLABLE">

@@ -600,5 +600,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
-	
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroLOV(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroLOV",params);
+		return res;
+	}
 }

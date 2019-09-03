@@ -52,6 +52,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
@@ -131,6 +132,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
@@ -250,5 +252,6 @@ public interface AccountingInTrustService {
 	public SaveAcitJVInvPullOutResponse saveAcitJVInvPullOut(SaveAcitJVInvPullOutRequest request)throws SQLException;
 	public RetrieveAcitJVInvtRollOverResponse retrieveAcitJVInvRollOver(RetrieveAcitJVInvtRollOverRequest request)throws SQLException;
 	public SaveAcitJVInvRollOverResponse saveAcitJVInvRollOver(SaveAcitJVInvRollOverRequest request)throws SQLException;
+	public RetrieveAcitSOAAgingZeroResponse retrieveSoaAgingZeroLOV(RetrieveAcitSOAAgingZeroRequest request)throws SQLException;
 	
 }

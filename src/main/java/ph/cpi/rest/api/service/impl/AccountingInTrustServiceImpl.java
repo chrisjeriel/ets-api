@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
@@ -136,6 +137,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqInwPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
@@ -1715,6 +1717,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
 		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitSOAAgingZeroResponse retrieveSoaAgingZeroLOV(RetrieveAcitSOAAgingZeroRequest request)
+			throws SQLException {
+		RetrieveAcitSOAAgingZeroResponse response = new RetrieveAcitSOAAgingZeroResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",request.getPolicyId());
+		params.put("instNo",request.getInstNo());
+		params.put("cedingId",request.getCedingId());
+		params.put("payeeNo",request.getPayeeNo());
+		params.put("currCd",request.getCurrCd());
+		response.setSoaDtlList(acctITDao.retrieveSoaAgingZeroLOV(params));
 		return response;
 	}
 }
