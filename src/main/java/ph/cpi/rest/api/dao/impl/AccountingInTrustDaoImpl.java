@@ -630,6 +630,13 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public HashMap<String, Object> updateAcitCvStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcitCvStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public List<AcitAttachments> retrieveAcitAttachments(HashMap<String, Object> params) throws SQLException {
 		List<AcitAttachments> res = sqlSession.selectList("retAcitAttachments", params);
 		return res;

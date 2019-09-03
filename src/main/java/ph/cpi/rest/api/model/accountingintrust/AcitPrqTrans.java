@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 public class AcitPrqTrans {
 	private Integer reqId;
 	private Integer itemNo;
+	private	Integer tranTypeCd;
 	private Integer claimId;
 	private Integer projId;
 	private Integer histNo;
@@ -15,6 +16,8 @@ public class AcitPrqTrans {
 	private DateTime quarterEnding;
 	private Integer invtId;
 	private String refNo;
+	private String transdtlType;
+	private String transdtlTypeDesc;
 	private String itemName;
 	private String paymentFor;
 	private String currCd;
@@ -37,6 +40,12 @@ public class AcitPrqTrans {
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public Integer getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(Integer tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public Integer getClaimId() {
 		return claimId;
@@ -85,6 +94,18 @@ public class AcitPrqTrans {
 	}
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
+	}
+	public String getTransdtlType() {
+		return transdtlType;
+	}
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
+	}
+	public String getTransdtlTypeDesc() {
+		return transdtlTypeDesc;
+	}
+	public void setTransdtlTypeDesc(String transdtlTypeDesc) {
+		this.transdtlTypeDesc = transdtlTypeDesc;
 	}
 	public String getItemName() {
 		return itemName;
@@ -154,11 +175,12 @@ public class AcitPrqTrans {
 	}
 	@Override
 	public String toString() {
-		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
-				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName=" + itemName + ", paymentFor="
-				+ paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
-				+ localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
+				+ claimId + ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo="
+				+ instNo + ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo
+				+ ", transdtlType=" + transdtlType + ", transdtlTypeDesc=" + transdtlTypeDesc + ", itemName=" + itemName
+				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
+				+ currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

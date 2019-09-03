@@ -130,6 +130,7 @@ public interface AccountingInTrustDao {
 	public Integer saveAcctPrqServFee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVClaimsLosses> retrieveAcitJVRcvblsAgnstLosses(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJvRcvblsAgnstLoss(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> updateAcitCvStat(final HashMap<String, Object> params) throws SQLException;
 	public Integer printAr(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitClmResHistPayts> retrieveAcitClmResHistPayts(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitClmResHistPayts(final HashMap<String, Object> params) throws SQLException;
@@ -141,5 +142,4 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> approveJV(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
-	
 }

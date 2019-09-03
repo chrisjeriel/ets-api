@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class SaveAcctPrqServFeeRequest {
 
 	private Integer reqId;
-	private String prdAsOf;
+	private Integer quarter;
 	private Integer year;
 	private BigDecimal servFeeAmt;
 	private String currCd;
@@ -21,11 +21,11 @@ public class SaveAcctPrqServFeeRequest {
 	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
-	public String getPrdAsOf() {
-		return prdAsOf;
+	public Integer getQuarter() {
+		return quarter;
 	}
-	public void setPrdAsOf(String prdAsOf) {
-		this.prdAsOf = prdAsOf;
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
 	}
 	public Integer getYear() {
 		return year;
@@ -77,7 +77,7 @@ public class SaveAcctPrqServFeeRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcctPrqServFeeRequest [reqId=" + reqId + ", prdAsOf=" + prdAsOf + ", year=" + year + ", servFeeAmt="
+		return "SaveAcctPrqServFeeRequest [reqId=" + reqId + ", quarter=" + quarter + ", year=" + year + ", servFeeAmt="
 				+ servFeeAmt + ", currCd=" + currCd + ", currRt=" + currRt + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
