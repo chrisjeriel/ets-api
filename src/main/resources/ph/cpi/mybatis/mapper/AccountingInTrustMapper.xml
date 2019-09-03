@@ -3065,4 +3065,21 @@
 			</foreach>
 		END;
 	</update>
+	
+	<select id="retrieveAcitServFeeMain" resultMap="servFeeDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACCT_SERVFEE_MAIN_DIST_PKG.ret_servfee_main(#{reqId, jdbcType=INTEGER},
+																		#{quarter, jdbcType=INTEGER},
+																		#{year, jdbcType=INTEGER},
+																		#{groupId, jdbcType=INTEGER},
+																		null,null,null,null))
+	</select>
+	
+	<select id="retrieveAcitServFeeSub" resultMap="servFeeDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_servfee_sub(#{reqId, jdbcType=INTEGER},
+																	  #{quarter, jdbcType=INTEGER},
+																	  #{year, jdbcType=INTEGER},
+																	  #{groupId, jdbcType=INTEGER},
+																	  null,null,null,null))
+	</select>
+	
 </mapper>

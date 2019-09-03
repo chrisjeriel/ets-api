@@ -2,6 +2,7 @@ package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.request.ApproveJVRequest;
 import ph.cpi.rest.api.model.request.CancelArRequest;
 import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
@@ -1114,19 +1116,29 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return sapipResponse;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public RetrieveAcctPrqServFeeResponse retrieveAcctPrqServFee(RetrieveAcctPrqServFeeRequest rasfr)
 			throws SQLException {
 		RetrieveAcctPrqServFeeResponse rasfmgResponse = new RetrieveAcctPrqServFeeResponse();
 		HashMap<String, Object> rasfmParams = new HashMap<String, Object>();
+		rasfmParams.put("reqId", rasfr.getReqId());
 		rasfmParams.put("quarter", rasfr.getQuarter());
 		rasfmParams.put("year", rasfr.getYear());
+		rasfmParams.put("groupId", rasfr.getGroupId());
 		rasfmParams.put("servFeeAmt", rasfr.getServFeeAmt());
 		rasfmParams.put("currCd", rasfr.getCurrCd());
 		rasfmParams.put("currRt", rasfr.getCurrRt());
 		
-		rasfmgResponse.setMainDistList(acctITDao.retrieveAcctPrqServFeeMainGnrt(rasfmParams));
-		rasfmgResponse.setSubDistList(acctITDao.retrieveAcctPrqServFeeSubGnrt(rasfmParams));
+		if(rasfr.getRetType().equals("generate")) {
+			rasfmgResponse.setMainDistList(acctITDao.retrieveAcctPrqServFeeMainGnrt(rasfmParams));
+			rasfmgResponse.setSubDistList(acctITDao.retrieveAcctPrqServFeeSubGnrt(rasfmParams));
+		} else if(rasfr.getRetType().equals("normal")) {
+			HashMap<String, Object> res = acctITDao.retrieveAcctPrqServFee(rasfmParams);
+			
+			rasfmgResponse.setMainDistList((List<AcctServFeeDist>) res.get("mainList"));
+			rasfmgResponse.setSubDistList((List<AcctServFeeDist>) res.get("subList"));
+		}
 		
 		return rasfmgResponse;
 	}

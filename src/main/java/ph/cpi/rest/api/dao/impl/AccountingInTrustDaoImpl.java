@@ -648,4 +648,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> retrieveAcctPrqServFee(HashMap<String, Object> params) throws SQLException {
+		params.put("mainList", sqlSession.selectList("retrieveAcitServFeeMain", params));
+		params.put("subList", sqlSession.selectList("retrieveAcitServFeeSub", params));
+		
+		return params;
+	}
 }

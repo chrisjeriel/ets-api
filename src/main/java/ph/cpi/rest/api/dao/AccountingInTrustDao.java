@@ -142,4 +142,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> approveJV(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> retrieveAcctPrqServFee(final HashMap<String, Object> params) throws SQLException;
 }
