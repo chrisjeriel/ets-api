@@ -1393,7 +1393,7 @@
 			</foreach>
 			
 			IF #{forApproval, jdbcType=VARCHAR} IS NOT NULL THEN
-				ACIT_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId},#{forApproval});
+				ACIT_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId, jdbcType=VARCHAR},#{forApproval, jdbcType=VARCHAR});
 			END IF;
 		END;
 	</update>
@@ -1778,7 +1778,7 @@
 														3 
 				);
 			</foreach>
-			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
+			<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message); -->
 		END;
 	</update>
 	
