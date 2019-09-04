@@ -9,23 +9,30 @@ public class AcitArClmRecover {
 	private Integer billId;
 	private Integer itemNo;
 	private Integer claimId;
+	private String insuredDesc;
 	private String claimNo;
-	private String paytType;
-	private String paytTypeName;
-	private String coClmNo;
-	private Integer policyId;
 	private String policyNo;
 	private DateTime lossDate;
+	private String lossCd;
+	private String lossAbbr;
+	private Integer projId;
+	private Integer histNo;
+	private String histCategory;
+	private String histCategoryDesc;
+	private String histType;
+	private String histTypeDesc;
+	private String exGratia;
+	private String paymentFor;
 	private String currCd;
 	private BigDecimal currRate;
-	private String remarks;
+	private BigDecimal reserveAmt;
+	private BigDecimal cumulativeAmt;
 	private BigDecimal recOverAmt;
 	private BigDecimal localAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -50,35 +57,17 @@ public class AcitArClmRecover {
 	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	public String getClaimNo() {
 		return claimNo;
 	}
 	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
-	}
-	public String getPaytType() {
-		return paytType;
-	}
-	public void setPaytType(String paytType) {
-		this.paytType = paytType;
-	}
-	public String getPaytTypeName() {
-		return paytTypeName;
-	}
-	public void setPaytTypeName(String paytTypeName) {
-		this.paytTypeName = paytTypeName;
-	}
-	public String getCoClmNo() {
-		return coClmNo;
-	}
-	public void setCoClmNo(String coClmNo) {
-		this.coClmNo = coClmNo;
-	}
-	public Integer getPolicyId() {
-		return policyId;
-	}
-	public void setPolicyId(Integer policyId) {
-		this.policyId = policyId;
 	}
 	public String getPolicyNo() {
 		return policyNo;
@@ -92,6 +81,66 @@ public class AcitArClmRecover {
 	public void setLossDate(DateTime lossDate) {
 		this.lossDate = lossDate;
 	}
+	public String getLossCd() {
+		return lossCd;
+	}
+	public void setLossCd(String lossCd) {
+		this.lossCd = lossCd;
+	}
+	public String getLossAbbr() {
+		return lossAbbr;
+	}
+	public void setLossAbbr(String lossAbbr) {
+		this.lossAbbr = lossAbbr;
+	}
+	public Integer getProjId() {
+		return projId;
+	}
+	public void setProjId(Integer projId) {
+		this.projId = projId;
+	}
+	public Integer getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(Integer histNo) {
+		this.histNo = histNo;
+	}
+	public String getHistCategory() {
+		return histCategory;
+	}
+	public void setHistCategory(String histCategory) {
+		this.histCategory = histCategory;
+	}
+	public String getHistCategoryDesc() {
+		return histCategoryDesc;
+	}
+	public void setHistCategoryDesc(String histCategoryDesc) {
+		this.histCategoryDesc = histCategoryDesc;
+	}
+	public String getHistType() {
+		return histType;
+	}
+	public void setHistType(String histType) {
+		this.histType = histType;
+	}
+	public String getHistTypeDesc() {
+		return histTypeDesc;
+	}
+	public void setHistTypeDesc(String histTypeDesc) {
+		this.histTypeDesc = histTypeDesc;
+	}
+	public String getExGratia() {
+		return exGratia;
+	}
+	public void setExGratia(String exGratia) {
+		this.exGratia = exGratia;
+	}
+	public String getPaymentFor() {
+		return paymentFor;
+	}
+	public void setPaymentFor(String paymentFor) {
+		this.paymentFor = paymentFor;
+	}
 	public String getCurrCd() {
 		return currCd;
 	}
@@ -104,11 +153,17 @@ public class AcitArClmRecover {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
-	public String getRemarks() {
-		return remarks;
+	public BigDecimal getReserveAmt() {
+		return reserveAmt;
 	}
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
+	public void setReserveAmt(BigDecimal reserveAmt) {
+		this.reserveAmt = reserveAmt;
+	}
+	public BigDecimal getCumulativeAmt() {
+		return cumulativeAmt;
+	}
+	public void setCumulativeAmt(BigDecimal cumulativeAmt) {
+		this.cumulativeAmt = cumulativeAmt;
 	}
 	public BigDecimal getRecOverAmt() {
 		return recOverAmt;
@@ -146,14 +201,16 @@ public class AcitArClmRecover {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "AcitArClmRecover [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
-				+ claimId + ", claimNo=" + claimNo + ", paytType=" + paytType + ", paytTypeName=" + paytTypeName
-				+ ", coClmNo=" + coClmNo + ", policyId=" + policyId + ", policyNo=" + policyNo + ", lossDate="
-				+ lossDate + ", currCd=" + currCd + ", currRate=" + currRate + ", remarks=" + remarks + ", recOverAmt="
-				+ recOverAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ claimId + ", insuredDesc=" + insuredDesc + ", claimNo=" + claimNo + ", policyNo=" + policyNo
+				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", projId=" + projId
+				+ ", histNo=" + histNo + ", histCategory=" + histCategory + ", histCategoryDesc=" + histCategoryDesc
+				+ ", histType=" + histType + ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia
+				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", reserveAmt="
+				+ reserveAmt + ", cumulativeAmt=" + cumulativeAmt + ", recOverAmt=" + recOverAmt + ", localAmt="
+				+ localAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

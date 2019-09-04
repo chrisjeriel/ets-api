@@ -27,7 +27,7 @@ public class AcknowledgementReceipt {
 	private String prNo;
 	private DateTime prDate;
 	private String prPreparedBy;
-	private Integer payeeNo;
+	private String payeeNo;
 	private String payor;
 	private String mailAddress;
 	private Integer bussTypeCd;
@@ -217,11 +217,11 @@ public class AcknowledgementReceipt {
 		this.prPreparedBy = prPreparedBy;
 	}
 
-	public Integer getPayeeNo() {
+	public String getPayeeNo() {
 		return payeeNo;
 	}
 
-	public void setPayeeNo(Integer payeeNo) {
+	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
 

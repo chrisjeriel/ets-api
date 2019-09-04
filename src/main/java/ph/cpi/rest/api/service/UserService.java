@@ -10,6 +10,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAmountLimitResponse;
@@ -32,5 +34,6 @@ public interface UserService {
 	public RetrieveMtnUserAmountLimitResponse retrieveMtnUserAmountLimit(RetrieveMtnUserAmountLimitRequest rmualr) throws SQLException;
 
 	public SaveApprovalResponse saveApproval(SaveApprovalRequest sar) throws SQLException;
+	public SaveMtnUserResponse saveMtnUser(SaveMtnUserRequest smur) throws SQLException;
 
 }

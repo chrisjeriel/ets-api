@@ -5,27 +5,48 @@ import java.math.BigDecimal;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveAcitServFeeMainGnrtRequest {
+public class RetrieveAcctPrqServFeeRequest {
 
-	private String prdAsOf;
+	private String retType;
+	private Integer reqId;
+	private Integer quarter;
 	private Integer year;
+	private Integer groupId;
 	private BigDecimal servFeeAmt;
 	private String currCd;
 	private Double currRt;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
-	public String getPrdAsOf() {
-		return prdAsOf;
+	public String getRetType() {
+		return retType;
 	}
-	public void setPrdAsOf(String prdAsOf) {
-		this.prdAsOf = prdAsOf;
+	public void setRetType(String retType) {
+		this.retType = retType;
+	}
+	public Integer getReqId() {
+		return reqId;
+	}
+	public void setReqId(Integer reqId) {
+		this.reqId = reqId;
+	}
+	public Integer getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
 	}
 	public Integer getYear() {
 		return year;
 	}
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+	public Integer getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 	public BigDecimal getServFeeAmt() {
 		return servFeeAmt;
@@ -59,8 +80,9 @@ public class RetrieveAcitServFeeMainGnrtRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitServFeeMainGnrtRequest [prdAsOf=" + prdAsOf + ", year=" + year + ", servFeeAmt="
-				+ servFeeAmt + ", currCd=" + currCd + ", currRt=" + currRt + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcctPrqServFeeRequest [retType=" + retType + ", reqId=" + reqId + ", quarter=" + quarter
+				+ ", year=" + year + ", groupId=" + groupId + ", servFeeAmt=" + servFeeAmt + ", currCd=" + currCd
+				+ ", currRt=" + currRt + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
+				+ "]";
 	}
 }

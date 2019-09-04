@@ -6,6 +6,7 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveMtnCurrencyRequest {
 	private String currencyCd;
 	private String activeTag;
+	private String effDateFrom;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -20,6 +21,12 @@ public class RetrieveMtnCurrencyRequest {
 	}
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
+	}
+	public String getEffDateFrom() {
+		return effDateFrom;
+	}
+	public void setEffDateFrom(String effDateFrom) {
+		this.effDateFrom = effDateFrom;
 	}
 	public PaginationRequest getPaginationRequest() {
 		if(paginationRequest == null){
@@ -41,8 +48,8 @@ public class RetrieveMtnCurrencyRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnCurrencyRequest [currencyCd=" + currencyCd + ", activeTag=" + activeTag
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnCurrencyRequest [currencyCd=" + currencyCd + ", activeTag=" + activeTag + ", effDateFrom="
+				+ effDateFrom + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}	
 	
 }

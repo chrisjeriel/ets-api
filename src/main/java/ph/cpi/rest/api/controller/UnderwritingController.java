@@ -33,6 +33,8 @@ import ph.cpi.rest.api.model.request.RetrievePolCoInsuranceRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageAltRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolCoverageRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistInstPoolRequest;
+import ph.cpi.rest.api.model.request.RetrievePolDistInstRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
@@ -44,6 +46,7 @@ import ph.cpi.rest.api.model.request.RetrievePolGenInfoOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
+import ph.cpi.rest.api.model.request.RetrievePolInstTagAcctDateRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
@@ -101,6 +104,7 @@ import ph.cpi.rest.api.model.response.RetrievePolCoInsuranceResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageAltResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolCoverageResponse;
+import ph.cpi.rest.api.model.response.RetrievePolDistInstResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
@@ -111,6 +115,7 @@ import ph.cpi.rest.api.model.response.RetrievePolFullCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
+import ph.cpi.rest.api.model.response.RetrievePolInstTagAcctDateResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
@@ -151,7 +156,10 @@ import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888"})
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", 
+						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
+						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
+						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200"})
 @RequestMapping(path="/underwriting-service")
 public class UnderwritingController {
 
@@ -644,5 +652,26 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolDistWarning");
 		logger.info("RetrievePolDistWarningRequest : " + rpdwr.toString());
 		return underwritingService.retrievePolDistWarning(rpdwr);
+	}
+	
+	@GetMapping(path="retrievePolDistInst")
+	public @ResponseBody RetrievePolDistInstResponse retrievePolDistInst(RetrievePolDistInstRequest rpdir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolDistInst");
+		logger.info("RetrievePolDistInstRequest : " + rpdir.toString());
+		return underwritingService.retrievePolDistInst(rpdir);
+	}
+	
+	@GetMapping(path="retrievePolDistInstPool")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePolDistInstPool(RetrievePolDistInstPoolRequest rpdir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolDistInstPool");
+		logger.info("RetrievePolDistInstPoolRequest : " + rpdir.toString());
+		return underwritingService.retrievePolDistInstPool(rpdir);
+	}
+	
+	@GetMapping(path="retrievePolInstTagAcctDate")
+	public @ResponseBody RetrievePolInstTagAcctDateResponse retrievePolInstTagAcctDate(RetrievePolInstTagAcctDateRequest rpdir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolInstTagAcctDate");
+		logger.info("RetrievePolInstTagAcctDateRequest : " + rpdir.toString());
+		return underwritingService.retrievePolInstTagAcctDate(rpdir);
 	}
 }

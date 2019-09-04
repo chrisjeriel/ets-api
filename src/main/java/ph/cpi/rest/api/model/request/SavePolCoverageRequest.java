@@ -453,6 +453,7 @@ class SectionCoversUw {
 	private BigDecimal premAmt;
 	private String addSi;
 	private String discountTag;
+	private String exDiscTag;
 	private BigDecimal exPremRt;
 	private BigDecimal exPremAmt;
 	private BigDecimal cumSi;
@@ -571,13 +572,19 @@ class SectionCoversUw {
 	public void setUpdateDateSec(String updateDateSec) {
 		this.updateDateSec = updateDateSec;
 	}
+	public String getExDiscTag() {
+		return exDiscTag;
+	}
+	public void setExDiscTag(String exDiscTag) {
+		this.exDiscTag = exDiscTag;
+	}
 	@Override
 	public String toString() {
 		return "SectionCoversUw [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", coverName="
 				+ coverName + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt
-				+ ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag + ", exPremRt="
-				+ exPremRt + ", exPremAmt=" + exPremAmt + ", cumSi=" + cumSi + ", cumPrem=" + cumPrem
-				+ ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
+				+ ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag + ", exDiscTag="
+				+ exDiscTag + ", exPremRt=" + exPremRt + ", exPremAmt=" + exPremAmt + ", cumSi=" + cumSi + ", cumPrem="
+				+ cumPrem + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
 				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
 	}
 }

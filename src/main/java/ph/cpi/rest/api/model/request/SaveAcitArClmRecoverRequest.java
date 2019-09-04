@@ -12,8 +12,9 @@ public class SaveAcitArClmRecoverRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	private List<SaveClmRecover> saveClmRecover;
-	private List<SaveClmRecover> delClmRecover;
+	private List<SaveArClmRecover> saveClmRecover;
+	private List<SaveArClmRecover> delClmRecover;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -62,18 +63,19 @@ public class SaveAcitArClmRecoverRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<SaveClmRecover> getSaveClmRecover() {
+	public List<SaveArClmRecover> getSaveClmRecover() {
 		return saveClmRecover;
 	}
-	public void setSaveClmRecover(List<SaveClmRecover> saveClmRecover) {
+	public void setSaveClmRecover(List<SaveArClmRecover> saveClmRecover) {
 		this.saveClmRecover = saveClmRecover;
 	}
-	public List<SaveClmRecover> getDelClmRecover() {
+	public List<SaveArClmRecover> getDelClmRecover() {
 		return delClmRecover;
 	}
-	public void setDelClmRecover(List<SaveClmRecover> delClmRecover) {
+	public void setDelClmRecover(List<SaveArClmRecover> delClmRecover) {
 		this.delClmRecover = delClmRecover;
 	}
+	
 	@Override
 	public String toString() {
 		return "SaveAcitArClmRecoverRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
@@ -81,19 +83,25 @@ public class SaveAcitArClmRecoverRequest {
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveClmRecover=" + saveClmRecover
 				+ ", delClmRecover=" + delClmRecover + "]";
 	}
+	
 }
 
-class SaveClmRecover{
+class SaveArClmRecover{
 	private String tranId;
 	private String billId;
 	private String itemNo;
 	private String claimId;
-	private String paytType;
+	private String projId;
+	private String histNo;
+	private String histCategory;
+	private String histType;
+	private String exGratia;
+	private String reserveAmt;
 	private String currCd;
 	private String currRate;
+	private String paymentFor;
 	private String recOverAmt;
 	private String localAmt;
-	private String remarks;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -122,11 +130,41 @@ class SaveClmRecover{
 	public void setClaimId(String claimId) {
 		this.claimId = claimId;
 	}
-	public String getPaytType() {
-		return paytType;
+	public String getProjId() {
+		return projId;
 	}
-	public void setPaytType(String paytType) {
-		this.paytType = paytType;
+	public void setProjId(String projId) {
+		this.projId = projId;
+	}
+	public String getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(String histNo) {
+		this.histNo = histNo;
+	}
+	public String getHistCategory() {
+		return histCategory;
+	}
+	public void setHistCategory(String histCategory) {
+		this.histCategory = histCategory;
+	}
+	public String getHistType() {
+		return histType;
+	}
+	public void setHistType(String histType) {
+		this.histType = histType;
+	}
+	public String getExGratia() {
+		return exGratia;
+	}
+	public void setExGratia(String exGratia) {
+		this.exGratia = exGratia;
+	}
+	public String getReserveAmt() {
+		return reserveAmt;
+	}
+	public void setReserveAmt(String reserveAmt) {
+		this.reserveAmt = reserveAmt;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -140,6 +178,12 @@ class SaveClmRecover{
 	public void setCurrRate(String currRate) {
 		this.currRate = currRate;
 	}
+	public String getPaymentFor() {
+		return paymentFor;
+	}
+	public void setPaymentFor(String paymentFor) {
+		this.paymentFor = paymentFor;
+	}
 	public String getRecOverAmt() {
 		return recOverAmt;
 	}
@@ -151,12 +195,6 @@ class SaveClmRecover{
 	}
 	public void setLocalAmt(String localAmt) {
 		this.localAmt = localAmt;
-	}
-	public String getRemarks() {
-		return remarks;
-	}
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -184,10 +222,11 @@ class SaveClmRecover{
 	}
 	@Override
 	public String toString() {
-		return "SaveClmRecover [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId=" + claimId
-				+ ", paytType=" + paytType + ", currCd=" + currCd + ", currRate=" + currRate + ", recOverAmt="
-				+ recOverAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "SaveArClmRecover [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
+				+ claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory=" + histCategory
+				+ ", histType=" + histType + ", exGratia=" + exGratia + ", reserveAmt=" + reserveAmt + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", paymentFor=" + paymentFor + ", recOverAmt=" + recOverAmt
+				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

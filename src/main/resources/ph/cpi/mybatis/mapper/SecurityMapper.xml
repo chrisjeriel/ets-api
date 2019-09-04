@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ph.cpi.mybatis.mapper.SecurityMapper">
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.Module" id="moduleMap">
+     	<result property="moduleId"			column="MODULE_ID" />  
+		<result property="moduleDesc"		column="MODULE_DESC" />
+		<result property="moduleGrp"		column="MODULE_GRP" /> 
+		<result property="description"		column="DESCRIPTION" />
+		<result property="remarks"			column="REMARKS" />    
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveMtnModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_mtn_modules(#{moduleId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveUserModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_user_modules(#{userId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, #{moduleId, jdbcType=VARCHAR}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveGroupModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_modules(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, #{moduleId, jdbcType=VARCHAR}, null, null, null, null))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.Transaction" id="transactionMap">
+     	<result property="tranCd" 				column="TRAN_CD" /> 
+		<result property="tranDesc" 			column="TRAN_DESC" /> 
+		<result property="remarks" 				column="REMARKS" /> 
+		<result property="createUser" 			column="CREATE_USER" /> 
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+		<result property="updateUser" 			column="UPDATE_USER" /> 
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+     </resultMap>
+     
+     <select id="retrieveMtnTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_mtn_transactions(#{moduleId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveUserTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_user_transactions(#{userId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveGroupTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_transactions(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
+     </select>
+     
+</mapper>

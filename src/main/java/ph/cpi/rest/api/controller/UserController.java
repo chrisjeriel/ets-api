@@ -19,6 +19,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAmountLimitResponse;
@@ -31,7 +33,10 @@ import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888"})
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", 
+						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
+						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
+						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200"})
 @RequestMapping(path="/user-service")
 public class UserController {
 	
@@ -105,6 +110,13 @@ public class UserController {
 		logger.info("RetrieveMtnUserGroupAccessRequest : " + rmugar.toString());
 		
 		return userService.retrieveMtnUserGroupAccess(rmugar);
+	}
+	
+	@PostMapping(path="saveMtnUser")
+	public @ResponseBody SaveMtnUserResponse saveMtnUser(@RequestBody SaveMtnUserRequest smur) throws SQLException {
+		logger.info("POST: /api/user-service/saveMtnUser");
+		logger.info("SaveMtnUserRequest : " + smur.toString());
+		return userService.saveMtnUser(smur);
 	}
 	
 	@PostMapping(path="saveApproval")

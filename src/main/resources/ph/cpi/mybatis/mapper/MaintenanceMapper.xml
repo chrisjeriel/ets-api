@@ -528,6 +528,7 @@
 		<result property="currencyWord"		column="CURRENCY_WORD" />
 		<result property="currencyRt"		column="CURRENCY_RT" />
 		<result property="currencyDesc"		column="CURRENCY_DESC" />
+		<result property="effDateFrom"		column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER" />
@@ -540,7 +541,8 @@
 																			#{position, jdbcType=VARCHAR}, 
 																			#{count, jdbcType=VARCHAR}, 
 																			#{sortKey, jdbcType=VARCHAR}, 
-																			#{order, jdbcType=VARCHAR}))
+																			#{order, jdbcType=VARCHAR},
+																			CAST(to_timestamp(#{effDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.maintenance.AdviceWordings" id="adviceWordingsMap">

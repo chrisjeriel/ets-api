@@ -24,8 +24,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcitAttachments;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
+import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -39,6 +41,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -355,14 +358,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcctServFeeDist> retrieveAcitServFeeMainGnrt(HashMap<String, Object> params) throws SQLException {
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeMainGnrt(HashMap<String, Object> params) throws SQLException {
 		List<AcctServFeeDist> mainList =  sqlSession.selectList("retrieveAcitServFeeMainGnrt", params);
 		return mainList;
 	}
 
 	@Override
-	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmRecover> res = sqlSession.selectList("retrieveAcitArClmRecover", params);
+	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmCashCall> res = sqlSession.selectList("retrieveAcitArClmCashCall", params);
 		return res;
 	}
 	
@@ -374,8 +377,8 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmRecoverLov> res = sqlSession.selectList("retrieveAcitArClmRecoverLov", params);
+	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmCashCallLov> res = sqlSession.selectList("retrieveAcitArClmCashCallLov", params);
 		return res;
 	}
 
@@ -431,14 +434,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public List<AcitArClmCashCallLov> retrieveAcitArClmCashCallLov(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmCashCallLov> res = sqlSession.selectList("retAcitARClmCashCallLov", params);
+	public List<AcitArClmRecoverLov> retrieveAcitArClmRecoverLov(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecoverLov> res = sqlSession.selectList("retAcitARClmRecoverLov", params);
 		return res;
 	}
 
 	@Override
-	public List<AcitArClmCashCall> retrieveAcitArClmCashCall(HashMap<String, Object> params) throws SQLException {
-		List<AcitArClmCashCall> res = sqlSession.selectList("retAcitARClmCashCall", params);
+	public List<AcitArClmRecover> retrieveAcitArClmRecover(HashMap<String, Object> params) throws SQLException {
+		List<AcitArClmRecover> res = sqlSession.selectList("retAcitARClmRecover", params);
 		return res;
 	}
 
@@ -526,7 +529,7 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 	
 	@Override
-	public List<AcctServFeeDist> retrieveAcitServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
+	public List<AcctServFeeDist> retrieveAcctPrqServFeeSubGnrt(HashMap<String, Object> params) throws SQLException {
 		List<AcctServFeeDist> subList =  sqlSession.selectList("retrieveAcitServFeeSubGnrt", params);
 		return subList;
 	}
@@ -537,6 +540,20 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitJvAllInvtIncome> retrieveAcitJvAllInvtIncome(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitJvAllInvtIncome> res = sqlSession.selectList("retrieveAcitJvAllInvtIncome", params);
+		return res;
+	}
+	
+	@Override
+	public Integer saveAcctPrqServFee(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcctPrqServFee", params);
+		return errorCode;
+	}
+
+	@Override
 	public List<AcitJVClaimsLosses> retrieveAcitJVRcvblsAgnstLosses(HashMap<String, Object> params)
 			throws SQLException {
 		List<AcitJVClaimsLosses> res = sqlSession.selectList("retrieveAcitJVRcvblsAgnstLosses",params);
@@ -544,6 +561,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public Integer updateAcitStatus(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("updateAcitStatus", params);
+		return errorCode;
+	}
+
 	public HashMap<String, Object> saveAcitJvRcvblsAgnstLoss(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitJvRcvblsAgnstLoss",params);
 		params.put("errorCode", errorCode);
@@ -568,12 +591,37 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public List<AcitCv> retrieveAcitCv(HashMap<String, Object> params) throws SQLException {
+		List<AcitCv> acitCvList  = sqlSession.selectList("retrieveAcitCv", params);
+		return acitCvList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitCv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCv", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 
 	@Override
 	public HashMap<String, Object> approveJV(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("approveJV",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public Integer saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCvPaytReqList", params);
+		return errorCode;
+	}
+
+	@Override
+	public List<AcitAttachments> retrieveAcitAttachments(HashMap<String, Object> params) throws SQLException {
+		List<AcitAttachments> res = sqlSession.selectList("retAcitAttachments", params);
+		return res;
 	}
 
 	@Override
@@ -596,6 +644,13 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public HashMap<String, Object> saveAcitAttachments(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitAttachments",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public HashMap<String, Object> saveAcitJVInvRollOver(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitJVInvRollOver",params);
 		params.put("errorCode", errorCode);
@@ -603,11 +658,25 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public HashMap<String, Object> updateAcitCvStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcitCvStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
 	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroLOV(HashMap<String, Object> params) throws SQLException {
 		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroLOV",params);
 		return res;
 	}
 
+	@Override
+	public HashMap<String, Object> retrieveAcctPrqServFee(HashMap<String, Object> params) throws SQLException {
+		params.put("mainList", sqlSession.selectList("retrieveAcitServFeeMain", params));
+		params.put("subList", sqlSession.selectList("retrieveAcitServFeeSub", params));
+		return params;
+	}
+	
 	@Override
 	public AcitJVQuarterPremRes retrieveQuarterPremRes(HashMap<String, Object> params) throws SQLException {
 		AcitJVQuarterPremRes res = sqlSession.selectOne("retrieveQuarterPremResfinal", params);
