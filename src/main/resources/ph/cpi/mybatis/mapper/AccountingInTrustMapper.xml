@@ -905,6 +905,10 @@
 		<result property="interestAmt" column="INTEREST_AMT"/>
 		<result property="whtaxAmt" column="WHTAX_AMT"/>
 		<result property="releaseAmt" column="RELEASE_AMT"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+		<result property="premResQuota" column="PREM_RES_QUOTA"/>
+		<result property="premRes1surplus" column="PREM_RES_1SURPLUS"/>
+		<result property="premRes2surplus" column="PREM_RES_2SURPLUS"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
@@ -1417,6 +1421,10 @@
 					#{save.interestAmt},
 					#{save.whtaxAmt},
 					#{save.releaseAmt},
+					#{save.localAmt},
+					#{save.premResQuota},
+					#{save.premRes1surplus},
+					#{save.premRes2surplus},
 					#{save.createUser},
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.updateUser},
@@ -1782,7 +1790,7 @@
 														3 
 				);
 			</foreach>
-			<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message); -->
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -2910,8 +2918,11 @@
 	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes" id="AcitJVQuarterPremResMap">
-        <result property="fundsHeld" column="DEF_PREM_GROSS"/>
+        <result property="fundsHeld" column="RELEASE_AMT"/>
         <result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="premResQuota" column="PREM_RES_QUOTA"/>
+		<result property="premRes1surplus" column="PREM_RES_1SURPLUS"/>
+		<result property="premRes2surplus" column="PREM_RES_2SURPLUS"/>
 	</resultMap>
 	
 	<select id="retrieveQuarterPremResfinal" resultMap="AcitJVQuarterPremResMap" parameterType="java.util.Map">
