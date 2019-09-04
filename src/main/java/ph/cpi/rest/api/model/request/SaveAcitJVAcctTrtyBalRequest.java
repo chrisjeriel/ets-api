@@ -240,6 +240,7 @@ class TreatyAcc {
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
+	
 	public Integer getQuarterNo() {
 		return quarterNo;
 	}
@@ -314,10 +315,11 @@ class TreatyAcc {
 	}
 	@Override
 	public String toString() {
-		return "Treaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
+		return "TreatyAcc [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
 				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
 				+ balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}
+	
 }

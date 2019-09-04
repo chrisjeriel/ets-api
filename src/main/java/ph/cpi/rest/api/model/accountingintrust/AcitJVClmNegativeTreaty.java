@@ -26,7 +26,6 @@ public class AcitJVClmNegativeTreaty {
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	
 	public String getCedingName() {
 		return cedingName;
 	}

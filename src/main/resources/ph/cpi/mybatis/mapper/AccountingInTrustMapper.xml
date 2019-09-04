@@ -923,6 +923,10 @@
 		<result property="interestAmt" column="INTEREST_AMT"/>
 		<result property="whtaxAmt" column="WHTAX_AMT"/>
 		<result property="releaseAmt" column="RELEASE_AMT"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+		<result property="premResQuota" column="PREM_RES_QUOTA"/>
+		<result property="premRes1surplus" column="PREM_RES_1SURPLUS"/>
+		<result property="premRes2surplus" column="PREM_RES_2SURPLUS"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
@@ -1443,6 +1447,10 @@
 					#{save.interestAmt},
 					#{save.whtaxAmt},
 					#{save.releaseAmt},
+					#{save.localAmt},
+					#{save.premResQuota},
+					#{save.premRes1surplus},
+					#{save.premRes2surplus},
 					#{save.createUser},
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.updateUser},
@@ -1747,15 +1755,15 @@
 		<result property="currCd" column="PWZB_CURR_CD"/>
 		<result property="currRate" column="PWZB_CURR_RATE"/>
 		
-		<result property="totalPayt" column="PREV_PREMIUM"/>
-		<result property="remainingBal" column="PREV_RI_COMM"/>
-		<result property="prevPremAmt" column="PREV_RI_COMM_VAT"/>
-		<result property="prevRiComm" column="PREV_CHARGES"/>
-		<result property="prevRiCommVat" column="PREV_NET_DUE"/>
-		<result property="prevCharges" column="PREV_CUM_PAYMENT"/>
-		<result property="prevNetDue" column="PREV_BALANCE"/>
-		<result property="cumPayment" column="TOTAL_PAYMENTS"/>
-		<result property="balance" column="REMAINING_BALANCE"/>
+		<result property="totalPayt" column="TOTAL_PAYMENTS"/>
+		<result property="remainingBal" column="REMAINING_BALANCE"/>
+		<result property="prevPremAmt" column="PREV_PREMIUM"/>
+		<result property="prevRiComm" column="PREV_RI_COMM"/>
+		<result property="prevRiCommVat" column="PREV_RI_COMM_VAT"/>
+		<result property="prevCharges" column="PREV_CHARGES"/>
+		<result property="prevNetDue" column="PREV_NET_DUE"/>
+		<result property="cumPayment" column="PREV_CUM_PAYMENT"/>
+		<result property="balance" column="PREV_BALANCE"/>
 		
 		<result property="premAmt" column="PWZB_PREM_AMT"/>
 		<result property="riComm" column="PWZB_RI_COMM"/>
@@ -1795,6 +1803,11 @@
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				
+				ACIT_AGING_SOA_DETAILS_PKG.save_aging_soa_dtl_test(#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
+																   #{save.adjBalAmt},#{save.updateUser}, 
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+																  
+																  
 				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
 														#{save.tranId},
 														#{save.policyId},
@@ -1803,7 +1816,7 @@
 														3 
 				);
 			</foreach>
-			<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message); -->
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -2182,6 +2195,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffset" id="jvClmOffsetMap">
 		<result property="tranId" column="TRAN_ID"/>
+		<result property="itemNo" column="ITEM_NO"/>
 		<result property="quarterNo" column="QUARTER_NO"/>
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="claimId" column="CLAIM_ID"/>
@@ -3206,8 +3220,11 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes" id="AcitJVQuarterPremResMap">
-        <result property="fundsHeld" column="DEF_PREM_GROSS"/>
+        <result property="fundsHeld" column="RELEASE_AMT"/>
         <result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="premResQuota" column="PREM_RES_QUOTA"/>
+		<result property="premRes1surplus" column="PREM_RES_1SURPLUS"/>
+		<result property="premRes2surplus" column="PREM_RES_2SURPLUS"/>
 	</resultMap>
 	
 	<select id="retrieveQuarterPremResfinal" resultMap="AcitJVQuarterPremResMap" parameterType="java.util.Map">
