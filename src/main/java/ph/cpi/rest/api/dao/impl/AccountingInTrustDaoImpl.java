@@ -613,4 +613,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		AcitJVQuarterPremRes res = sqlSession.selectOne("retrieveQuarterPremResfinal", params);
 		return res;
 	}
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroAltLOV(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroAltLOV",params);
+		return res;
+	}
 }

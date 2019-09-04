@@ -61,6 +61,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingZeroRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitServFeeMainGnrtRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSoaZeroAltRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
 import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
 import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
@@ -142,6 +143,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingZeroResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitServFeeMainGnrtResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSoaZeroAltResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRPerCedeResponse;
 import ph.cpi.rest.api.model.response.RetrieveQSOAListResponse;
@@ -1746,6 +1748,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId",request.getCedingId());
 		params.put("quarterEnd",request.getQuarterEnd());
 		response.setPremRes(acctITDao.retrieveQuarterPremRes(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitSoaZeroAltResponse retrieveSoaAgingZeroAltLOV(RetrieveAcitSoaZeroAltRequest request)
+			throws SQLException {
+		RetrieveAcitSoaZeroAltResponse response = new RetrieveAcitSoaZeroAltResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",request.getPolicyId());
+		response.setSoaDtlList(acctITDao.retrieveSoaAgingZeroAltLOV(params));
 		return response;
 	}
 }
