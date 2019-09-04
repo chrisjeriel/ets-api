@@ -7,10 +7,8 @@ public class RetrieveAcitProfCommSummRequest {
 	
 	private String profcommId;
 	private String cedingId;
-	private String monthTo;
-	private String monthFrom;
-	private String yearTo;
-	private String yearFrom;
+	private String dateTo;
+	private String dateFrom;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -26,29 +24,17 @@ public class RetrieveAcitProfCommSummRequest {
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
-	public String getMonthTo() {
-		return monthTo;
+	public String getDateTo() {
+		return dateTo;
 	}
-	public void setMonthTo(String monthTo) {
-		this.monthTo = monthTo;
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
 	}
-	public String getMonthFrom() {
-		return monthFrom;
+	public String getDateFrom() {
+		return dateFrom;
 	}
-	public void setMonthFrom(String monthFrom) {
-		this.monthFrom = monthFrom;
-	}
-	public String getYearTo() {
-		return yearTo;
-	}
-	public void setYearTo(String yearTo) {
-		this.yearTo = yearTo;
-	}
-	public String getYearFrom() {
-		return yearFrom;
-	}
-	public void setYearFrom(String yearFrom) {
-		this.yearFrom = yearFrom;
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -65,8 +51,9 @@ public class RetrieveAcitProfCommSummRequest {
 	
 	@Override
 	public String toString() {
-		return "RetrieveAcitProfCommSummRequest [profcommId=" + profcommId + ", cedingId=" + cedingId + ", monthTo="
-				+ monthTo + ", monthFrom=" + monthFrom + ", yearTo=" + yearTo + ", yearFrom=" + yearFrom
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitProfCommSummRequest [profcommId=" + profcommId + ", cedingId=" + cedingId + ", dateTo="
+				+ dateTo + ", dateFrom=" + dateFrom + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
+
 }

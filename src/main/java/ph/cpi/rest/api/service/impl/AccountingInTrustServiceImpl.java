@@ -630,10 +630,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
 		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
 		rapcsrParams.put("cedingId", rapcsr.getCedingId());
-		rapcsrParams.put("monthTo", rapcsr.getMonthTo());
-		rapcsrParams.put("monthFrom", rapcsr.getMonthFrom());
-		rapcsrParams.put("yearTo", rapcsr.getYearTo());
-		rapcsrParams.put("yearFrom", rapcsr.getYearFrom());
+		rapcsrParams.put("dateTo", rapcsr.getDateTo());
+		rapcsrParams.put("dateFrom", rapcsr.getDateFrom());
 		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
 		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
 		return rapcsrResponse;

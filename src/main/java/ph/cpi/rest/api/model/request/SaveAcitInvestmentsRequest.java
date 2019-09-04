@@ -57,6 +57,21 @@ class AcitInvt {
 	private String 		updateUser;
 	private String 		updateDate;
 	private String 		slCd;
+	private String		preTerminatedTag;
+	private String		termDate;
+	
+	public String getTermDate() {
+		return termDate;
+	}
+	public void setTermDate(String termDate) {
+		this.termDate = termDate;
+	}
+	public String getPreTerminatedTag() {
+		return preTerminatedTag;
+	}
+	public void setPreTerminatedTag(String preTerminatedTag) {
+		this.preTerminatedTag = preTerminatedTag;
+	}
 	
 	public String getSlCd() {
 		return slCd;
@@ -211,6 +226,9 @@ class AcitInvt {
 				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
 				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", slCd=" + slCd + "]";
+				+ ", updateDate=" + updateDate + ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag
+				+ ", termDate=" + termDate + "]";
 	}
+	
+	
 }
