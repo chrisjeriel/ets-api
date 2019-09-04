@@ -25,7 +25,18 @@ public class SecurityDaoImpl implements SecurityDao {
 	@Override
 	public List<Module> retrieveMtnModules(HashMap<String, Object> params) throws SQLException {
 		List<Module> modules = sqlSession.selectList("retrieveMtnModules", params);
-		logger.info(modules.toString());
+		return modules;
+	}
+	
+	@Override
+	public List<Module> retrieveUserModules(HashMap<String, Object> params) throws SQLException {
+		List<Module> modules = sqlSession.selectList("retrieveUserModules", params);
+		return modules;
+	}
+
+	@Override
+	public List<Module> retrieveGroupModules(HashMap<String, Object> params) throws SQLException {
+		List<Module> modules = sqlSession.selectList("retrieveGroupModules", params);
 		return modules;
 	}
 
@@ -34,5 +45,31 @@ public class SecurityDaoImpl implements SecurityDao {
 		List<Transaction> transactions = sqlSession.selectList("retrieveMtnTransactions", params);
 		return transactions;
 	}
+
+	@Override
+	public List<Transaction> retrieveUserTransactions(HashMap<String, Object> params) throws SQLException {
+		List<Transaction> transactions = sqlSession.selectList("retrieveUserTransactions", params);
+		return transactions;
+	}
+	
+	@Override
+	public List<Transaction> retrieveGroupTransactions(HashMap<String, Object> params) throws SQLException {
+		List<Transaction> transactions = sqlSession.selectList("retrieveGroupTransactions", params);
+		return transactions;
+	}
+
+	@Override
+	public Integer saveUserTransactions(HashMap<String, Object> params) throws SQLException {
+		Integer respCode = sqlSession.update("saveUserTransactions", params);
+		return respCode;
+	}
+
+	@Override
+	public Integer saveGroupTransactions(HashMap<String, Object> params) throws SQLException {
+		Integer respCode = sqlSession.update("saveGroupTransactions", params);
+		return respCode;
+	}
+
+	
 	
 }

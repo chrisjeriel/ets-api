@@ -14,6 +14,9 @@ import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UserGrp;
 import ph.cpi.rest.api.model.maintenance.Users;
+import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
+import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
+import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
 
 @Component
 public class UserDaoImpl implements UserDao{
@@ -69,6 +72,23 @@ public class UserDaoImpl implements UserDao{
 	public List<UserAmtLimit> retrieveMtnUserAmountLimit(HashMap<String, Object> params) throws SQLException {
 		List<UserAmtLimit> userAmtLmtList = sqlSession.selectList("retrieveMtnUserAmountLimit", params);
 		return userAmtLmtList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Integer saveMtnUser(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnUser DAO : " + params);
+		Integer resultCode = 99;
+		try {
+			for (Users user : ((List<Users>) params.get("usersList"))) {
+				logger.info("usersList renPol : " + user);
+				resultCode = sqlSession.update("saveMtnUser",user);
+			}
+			
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return resultCode;
 	}
 
 }

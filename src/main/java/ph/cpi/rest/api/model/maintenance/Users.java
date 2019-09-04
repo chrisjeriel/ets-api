@@ -20,6 +20,7 @@ public class Users {
 	private String updateUser;
 	private DateTime updateDate;
 	private UserTran userTran;
+	private Integer	employeeId;
 	
 	public String getUserId() {
 		return userId;
@@ -123,7 +124,12 @@ public class Users {
 	public void setUserTran(UserTran userTran) {
 		this.userTran = userTran;
 	}
-	
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", userGrp=" + userGrp + ", userGrpDesc=" + userGrpDesc + ", userName="
@@ -131,6 +137,8 @@ public class Users {
 				+ ", remarks=" + remarks + ", lastLogin=" + lastLogin + ", passwordResetDate=" + passwordResetDate
 				+ ", salt=" + salt + ", invalidLoginTries=" + invalidLoginTries + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", userTran=" + userTran + "]";
+				+ ", userTran=" + userTran + ", employeeId=" + employeeId + "]";
 	}
+	
+	
 }

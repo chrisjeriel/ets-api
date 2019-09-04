@@ -22,6 +22,14 @@
 		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_mtn_modules(#{moduleId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
+     <select id="retrieveUserModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_user_modules(#{userId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, #{moduleId, jdbcType=VARCHAR}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveGroupModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_modules(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, #{moduleId, jdbcType=VARCHAR}, null, null, null, null))
+     </select>
+     
      <resultMap type="ph.cpi.rest.api.model.maintenance.Transaction" id="transactionMap">
      	<result property="tranCd" 				column="TRAN_CD" /> 
 		<result property="tranDesc" 			column="TRAN_DESC" /> 
@@ -34,6 +42,14 @@
      
      <select id="retrieveMtnTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
      	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_mtn_transactions(#{moduleId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveUserTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_user_transactions(#{userId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
+     </select>
+     
+     <select id="retrieveGroupTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_transactions(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
 </mapper>

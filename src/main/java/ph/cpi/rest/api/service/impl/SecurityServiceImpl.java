@@ -9,10 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.SecurityDao;
+import ph.cpi.rest.api.model.request.RetrieveModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTransactionsRequest;
+import ph.cpi.rest.api.model.request.RetrieveTransactionsRequest;
+import ph.cpi.rest.api.model.request.SaveTransactionsRequest;
+import ph.cpi.rest.api.model.request.SaveTransactionsRequest.Transaction;
+import ph.cpi.rest.api.model.response.RetrieveModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTransactionsResponse;
+import ph.cpi.rest.api.model.response.RetrieveTransactionsResponse;
+import ph.cpi.rest.api.model.response.SaveTransactionsResponse;
 import ph.cpi.rest.api.service.SecurityService;
 
 @Component
@@ -55,6 +62,66 @@ public class SecurityServiceImpl implements SecurityService{
 		*/
 		
 		response.setTransactions(securityDao.retrieveMtnTransactions(params));
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveTransactionsResponse retrieveTransactions(RetrieveTransactionsRequest rtr) throws SQLException {
+		RetrieveTransactionsResponse response = new RetrieveTransactionsResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("tranCd", rtr.getTranCd());
+		if ("USER".equalsIgnoreCase(rtr.getAccessLevel())) {
+			params.put("userId", rtr.getUserId());
+			response.setTransactions(securityDao.retrieveUserTransactions(params));
+		} else if  ("USER_GROUP".equalsIgnoreCase(rtr.getAccessLevel())) {
+			params.put("userGrp", rtr.getUserGrp());
+			response.setTransactions(securityDao.retrieveGroupTransactions(params));
+		}
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveModulesResponse retrieveModules(RetrieveModulesRequest rmr) throws SQLException {
+		RetrieveModulesResponse response = new RetrieveModulesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("tranCd", rmr.getTranCd());
+		if ("USER".equalsIgnoreCase(rmr.getAccessLevel())) {
+			params.put("userId", rmr.getUserId());
+			response.setModules(securityDao.retrieveUserModules(params));
+		} else if  ("USER_GROUP".equalsIgnoreCase(rmr.getAccessLevel())) {
+			params.put("userGrp", rmr.getUserGrp());
+			response.setModules(securityDao.retrieveGroupModules(params));
+		}
+		
+		return response;
+	}
+
+	@Override
+	public SaveTransactionsResponse saveTransactions(SaveTransactionsRequest str) throws SQLException {
+		SaveTransactionsResponse response = new SaveTransactionsResponse();
+		
+		
+		if ("USER".equalsIgnoreCase(str.getAccessLevel())) {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			
+			
+			for (Transaction tr : str.getTransactionList()) {
+				params.put("userId", tr.getUserId());
+				params.put("tranCd", tr.getTranCd());
+				params.put("remarks", tr.getRemarks());
+				params.put("createUser", tr.getCreateUser());
+				params.put("updateUser", tr.getUpdateUser());
+			}
+
+			response.setReturnCode(securityDao.saveUserTransactions(params));
+		} else if  ("USER_GROUP".equalsIgnoreCase(str.getAccessLevel())) {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			response.setReturnCode(securityDao.saveGroupTransactions(params));
+		}
 		
 		return response;
 	}

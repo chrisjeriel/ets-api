@@ -8,14 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTransactionsRequest;
+import ph.cpi.rest.api.model.request.RetrieveTransactionsRequest;
+import ph.cpi.rest.api.model.request.SaveTransactionsRequest;
+import ph.cpi.rest.api.model.response.RetrieveModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTransactionsResponse;
+import ph.cpi.rest.api.model.response.RetrieveTransactionsResponse;
+import ph.cpi.rest.api.model.response.SaveTransactionsResponse;
 import ph.cpi.rest.api.service.SecurityService;
 
 @Controller
@@ -51,5 +58,26 @@ public class SecurityController {
 		logger.info("SaveClaimHistoryRequest : " + schr.toString());
 		return claimsService.saveClaimHistory(schr);
 	}*/
+	
+	@GetMapping(path="retrieveTransactions")
+	public @ResponseBody RetrieveTransactionsResponse retrieveTransactions(RetrieveTransactionsRequest rtr) throws SQLException {
+		logger.info("GET: /api/security-service/retrieveTransactions");
+		logger.info("retrieveTransactions : " + rtr.toString());
+		return securityService.retrieveTransactions(rtr);
+	}
+	
+	@GetMapping(path="retrieveModules")
+	public @ResponseBody RetrieveModulesResponse retrieveModules(RetrieveModulesRequest rmr) throws SQLException {
+		logger.info("GET: /api/security-service/retrieveModules");
+		logger.info("retrieveModules : " + rmr.toString());
+		return securityService.retrieveModules(rmr);
+	}
+	
+	@PostMapping(path="saveTransactions")
+	public @ResponseBody SaveTransactionsResponse saveTransactions(@RequestBody SaveTransactionsRequest str) throws SQLException {
+		logger.info("POST: /api/security-service/saveTransactions");
+		logger.info("SaveTransactionRequest : " + str.toString());
+		return securityService.saveTransactions(str);
+	}
 	
 }

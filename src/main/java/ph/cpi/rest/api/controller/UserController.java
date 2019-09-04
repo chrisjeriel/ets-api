@@ -19,6 +19,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAmountLimitResponse;
@@ -111,10 +113,10 @@ public class UserController {
 	}
 	
 	@PostMapping(path="saveMtnUser")
-	public @ResponseBody SaveApprovalResponse saveMtnUser(@RequestBody SaveApprovalRequest sar) throws SQLException {
+	public @ResponseBody SaveMtnUserResponse saveMtnUser(@RequestBody SaveMtnUserRequest smur) throws SQLException {
 		logger.info("POST: /api/user-service/saveMtnUser");
-		logger.info("SaveApprovalRequest : " + sar.toString());
-		return userService.saveApproval(sar);
+		logger.info("SaveMtnUserRequest : " + smur.toString());
+		return userService.saveMtnUser(smur);
 	}
 	
 	@PostMapping(path="saveApproval")

@@ -23,6 +23,7 @@
 		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	column="UPDATE_USER"/>
 		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="employeeId"			column="EMPLOYEE_ID"/>
      	<association property="userTran" resultMap="userTranMap"></association>
      </resultMap>
      
@@ -156,6 +157,25 @@
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+     		);
+     	END;
+     </update>
+     
+     <update id="saveMtnUser" parameterType="java.util.Map">
+     	BEGIN
+     		MTN_USERS_PKG.save_mtn_user(
+     			#{userId,jdbcType=VARCHAR},
+				#{userGrp,jdbcType=INTEGER},
+				#{userName,jdbcType=VARCHAR},
+				#{activeTag,jdbcType=VARCHAR},
+				#{password,jdbcType=VARCHAR},
+				#{emailAddress,jdbcType=VARCHAR},
+				#{remarks,jdbcType=VARCHAR},
+				#{salt,jdbcType=VARCHAR},
+				#{invalidLoginTries,jdbcType=INTEGER},
+				#{createUser,jdbcType=VARCHAR},
+				#{updateUser,jdbcType=VARCHAR},
+				#{employeeId,jdbcType=INTEGER}
      		);
      	END;
      </update>
