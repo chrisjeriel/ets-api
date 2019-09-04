@@ -109,12 +109,5 @@ class SaveAcitAccEntry{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	@Override
-	public String toString() {
-		return "SaveAcitAccEntry [tranId=" + tranId + ", entryId=" + entryId + ", glAcctId=" + glAcctId + ", slTypeCd="
-				+ slTypeCd + ", slCd=" + slCd + ", creditAmt=" + creditAmt + ", debitAmt=" + debitAmt + ", autoTag="
-				+ autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
-	}
-	
+
 }

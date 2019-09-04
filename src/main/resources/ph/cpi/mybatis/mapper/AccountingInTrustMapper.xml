@@ -1344,7 +1344,12 @@
 	</resultMap>
 	
 	<select id="retrieveAcitAcctEntries" resultMap="AcctEntriesMap">
-		SELECT * FROM TABLE(ACIT_ACCT_ENTRIES_PKG.ret_acit_acc_entries(#{tranId, jdbcType=VARCHAR},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(ACIT_ACCT_ENTRIES_PKG.ret_acit_acc_entries(
+				#{tranId, jdbcType=VARCHAR},
+				#{entryId, jdbcType=VARCHAR},
+				#{glAcctId, jdbcType=VARCHAR},
+				#{slTypeCd, jdbcType=VARCHAR},
+				#{slCd, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOA" id="qsoaMap">
