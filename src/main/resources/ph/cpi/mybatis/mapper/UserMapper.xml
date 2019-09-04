@@ -23,11 +23,13 @@
 		<result property="createDate"        	column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	column="UPDATE_USER"/>
 		<result property="updateDate"			column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="employeeId"			column="EMPLOYEE_ID"/>
      	<association property="userTran" resultMap="userTranMap"></association>
      </resultMap>
      
     <select id="retMtnUsers" resultMap="usersMap" parameterType="java.util.Map">
-    	SELECT * FROM TABLE(ETS_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
+    	SELECT * FROM TABLE(MTN_USERS_PKG.ret_mtn_users(#{userId, jdbcType=VARCHAR},
+    											  #{userGrp, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
@@ -59,11 +61,11 @@
      </resultMap>
      
      <select id="retrieveMtnUserAccess" resultMap="usersMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USERS_PKG.retrieve_mtn_user_access(#{userId, jdbcType=VARCHAR},
+    	SELECT * FROM TABLE(MTN_USERS_PKG.retrieve_mtn_user_access(#{userId, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.UserGrp" id="userGrpMap">
@@ -78,11 +80,11 @@
      </resultMap>
      
      <select id="retrieveMtnUserGroup" resultMap="userGrpMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USER_GRP_PKG.retrieve_mtn_user_group(#{userGrp, jdbcType=INTEGER},
+    	SELECT * FROM TABLE(MTN_USER_GRP_PKG.retrieve_mtn_user_group(#{userGrp, jdbcType=INTEGER},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.UserGrpTran" id="userGrpTranMap">
@@ -122,21 +124,21 @@
      </resultMap>
      
      <select id="retrieveMtnUserGroupAccess" resultMap="userGrpMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USER_GRP_PKG.retrieve_mtn_user_group_access(#{userGrp, jdbcType=INTEGER},
+    	SELECT * FROM TABLE(MTN_USER_GRP_PKG.retrieve_mtn_user_group_access(#{userGrp, jdbcType=INTEGER},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
      </select>
      
      <select id="retrieveMtnUserAmountLimit" resultMap="userAmtLmtMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_USR_AMT_LMT_PKG.ret_mtn_usr_amt_lmt(
+    	SELECT * FROM TABLE(MTN_USR_AMT_LMT_PKG.ret_mtn_usr_amt_lmt(
     											  #{userGrp, jdbcType=INTEGER},
     											  #{lineCd, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
      </select>
      
      <update id="saveApproval" parameterType="java.util.Map">
@@ -155,6 +157,25 @@
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+     		);
+     	END;
+     </update>
+     
+     <update id="saveMtnUser" parameterType="java.util.Map">
+     	BEGIN
+     		MTN_USERS_PKG.save_mtn_user(
+     			#{userId,jdbcType=VARCHAR},
+				#{userGrp,jdbcType=INTEGER},
+				#{userName,jdbcType=VARCHAR},
+				#{activeTag,jdbcType=VARCHAR},
+				#{password,jdbcType=VARCHAR},
+				#{emailAddress,jdbcType=VARCHAR},
+				#{remarks,jdbcType=VARCHAR},
+				#{salt,jdbcType=VARCHAR},
+				#{invalidLoginTries,jdbcType=INTEGER},
+				#{createUser,jdbcType=VARCHAR},
+				#{updateUser,jdbcType=VARCHAR},
+				#{employeeId,jdbcType=INTEGER}
      		);
      	END;
      </update>

@@ -16,10 +16,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
-import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecover;
+import ph.cpi.rest.api.model.accountingintrust.AcitArClmRecoverLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInvPullout;
 import ph.cpi.rest.api.model.accountingintrust.AcitArInwPolBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitArNegTrtyBal;
@@ -38,9 +38,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
-import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -657,8 +658,34 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public HashMap<String, Object> updateAcitCvStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcitCvStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
 	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroLOV(HashMap<String, Object> params) throws SQLException {
 		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroLOV",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> retrieveAcctPrqServFee(HashMap<String, Object> params) throws SQLException {
+		params.put("mainList", sqlSession.selectList("retrieveAcitServFeeMain", params));
+		params.put("subList", sqlSession.selectList("retrieveAcitServFeeSub", params));
+		return params;
+	}
+	
+	@Override
+	public AcitJVQuarterPremRes retrieveQuarterPremRes(HashMap<String, Object> params) throws SQLException {
+		AcitJVQuarterPremRes res = sqlSession.selectOne("retrieveQuarterPremResfinal", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroAltLOV(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroAltLOV",params);
 		return res;
 	}
 }

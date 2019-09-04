@@ -15,6 +15,8 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserAmountLimitResponse;
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 	
 		params.put("userId", rmur.getUserId());
+		params.put("userGrp", rmur.getUserGrp());
 		params.put("position", rmur.getPaginationRequest().getPosition());
 		params.put("count", rmur.getPaginationRequest().getCount());
 		params.put("sortKey", rmur.getSortRequest().getSortKey());
@@ -155,6 +158,18 @@ public class UserServiceImpl implements UserService {
 		userAmtLmtParams.put("lineCd", rmualr.getLineCd());
 		rmualResponse.setUserAmtLmtList(userDao.retrieveMtnUserAmountLimit(userAmtLmtParams));
 		return rmualResponse;
+	}
+
+	@Override
+	public SaveMtnUserResponse saveMtnUser(SaveMtnUserRequest smur) throws SQLException {
+		SaveMtnUserResponse smuResponse = new SaveMtnUserResponse();
+		HashMap<String, Object> saveMtnUserParams = new HashMap<String, Object>();
+		saveMtnUserParams.put("usersList", smur.getUsersList());
+		
+		smuResponse.setReturnCode(userDao.saveMtnUser(saveMtnUserParams));
+		
+		logger.info("saveMtnUser : " + smuResponse.toString());
+		return smuResponse;
 	}
 
 }

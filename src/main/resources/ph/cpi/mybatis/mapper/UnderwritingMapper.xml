@@ -26,9 +26,11 @@
 		<result property="instNo" 				column="INST_NO"/>
 		<result property="dueDate" 				column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="bookingDate" 			column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctEntDate" 			column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="premAmt" 				column="PREM_AMT"/>
 		<result property="commRt"               column="COMM_RT"/>
 		<result property="commAmt"              column="COMM_AMT"/>
+		<result property="vatRiComm"            column="VAT_RI_COMM"/>
 		<result property="otherChargesInw" 		column="OTHER_CHARGES"/>
 		<result property="amtDue" 				column="AMT_DUE"/>
 		<result property="createUser" 			column="CREATE_USER"/>
@@ -679,7 +681,7 @@
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} , #{sectioncovers.coverName},
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, 
+													#{sectioncovers.addSi}, #{sectioncovers.discountTag, jdbcType=VARCHAR}, #{sectioncovers.exDiscTag, jdbcType=VARCHAR},
 													#{sectioncovers.exPremRt, jdbcType=INTEGER}, #{sectioncovers.exPremAmt, jdbcType=INTEGER},
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
@@ -1831,7 +1833,7 @@
 	
 	<update id="postPolicy" parameterType="java.util.Map">
 		BEGIN
-			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser});
+			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser},#{status, jdbcType=VARCHAR},#{altCancelTag, jdbcType=VARCHAR});
 			DIST_PKG.dist_policy(#{policyId},#{updateUser},sysdate,#{updateUser},sysdate);
 		END;
 	</update>
@@ -2665,4 +2667,55 @@
 		SELECT * FROM TABLE(DIST_PKG.GET_DIST_RISK_WARNING(#{riskDistId}, #{altNo}))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DistPolInst" id="DistPolInstMap">
+		<result property="distId" column="DIST_ID"/>
+		<result property="policyNo" column="POLICY_NO"/>
+		<result property="instNo" column="INST_NO"/>
+		<result property="dueDate" column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="bookingDate" column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctEntDate" column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="premAmt" column="PREM_AMT"/>
+		<result property="commRt" column="COMM_RT"/>
+		<result property="commAmt" column="COMM_AMT"/>
+		<result property="vatRiComm" column="VAT_RI_COMM"/>
+		<result property="netDue" column="NET_DUE"/>
+		<association property="treatyList" resultMap="DistPolInstTreatyMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.DistPolInstTreaty" id="DistPolInstTreatyMap">
+		<result property="treatyId" column="TREATY_ID" />
+		<result property="treatyAbbr" column="TREATY_ABBR" />
+		<result property="section" column="SECTION" />
+		<result property="trtyCedId" column="TRTY_CED_ID" />
+		<result property="trtyCedName" column="TRTY_CED_NAME" />
+		<result property="premAmt" column="W_PREM_AMT" />
+		<result property="commRt" column="W_COMM_RT" />
+		<result property="commAmt" column="W_COMM_AMT" />
+		<result property="vatRiComm" column="W_VAT_RI_COMM" />
+		<result property="netDue" column="W_NET_DUE" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER" />
+		<result property="updateDate" column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrievePolDistInst" resultMap="DistPolInstMap">
+		SELECT * FROM TABLE(DIST_POL_WINST_PKG.ret_dist_pol_winst(#{policyId}))
+	</select>
+	
+	<select id="retrievePolDistInstPool" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WINST_CEDING_PKG.ret_pol_wceding(#{distId},#{policyId},#{instNo},null,null,null,null))
+	</select>
+	
+	<select id="getInstTag" resultType="java.lang.String">
+		SELECT CASE WHEN COUNT(*)>1 THEN 'Y' ELSE 'N' END FROM POL_INWARD_BAL where policy_id = #{policyId}
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.InwPolBalance" id="getAcctingDateMap">
+		<result property="acctEntDate" column="ACCT_ENT_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="getAcctingDate" resultMap="getAcctingDateMap">
+		SELECT POL_INWARD_PKG.get_acct_date(#{policyId}) ACCT_ENT_DATE FROM DUAL
+	</select>
 </mapper>

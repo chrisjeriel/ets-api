@@ -26,6 +26,7 @@ public class SaveAcitPrqTransRequest {
 class PrqTrans {
 	private String reqId;
 	private String itemNo;
+	private String tranTypeCd;
 	private String claimId;
 	private String projId;
 	private String histNo;
@@ -34,12 +35,14 @@ class PrqTrans {
 	private String quarterEnding;
 	private String invtId;
 	private String refNo;
+	private String transdtlType;
 	private String itemName;
 	private String paymentFor;
 	private String currCd;
 	private String currRate;
 	private String currAmt;
 	private String localAmt;
+	private String allotedAmt;
 	private String remarks;
 	private String createUser;
 	private String createDate;
@@ -56,6 +59,12 @@ class PrqTrans {
 	}
 	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(String tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public String getClaimId() {
 		return claimId;
@@ -105,6 +114,12 @@ class PrqTrans {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
+	public String getTransdtlType() {
+		return transdtlType;
+	}
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
+	}
 	public String getItemName() {
 		return itemName;
 	}
@@ -141,6 +156,12 @@ class PrqTrans {
 	public void setLocalAmt(String localAmt) {
 		this.localAmt = localAmt;
 	}
+	public String getAllotedAmt() {
+		return allotedAmt;
+	}
+	public void setAllotedAmt(String allotedAmt) {
+		this.allotedAmt = allotedAmt;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -173,11 +194,12 @@ class PrqTrans {
 	}
 	@Override
 	public String toString() {
-		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
-				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", quarterEnding="
-				+ quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", itemName=" + itemName + ", paymentFor="
-				+ paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
-				+ localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId=" + claimId
+				+ ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo
+				+ ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", transdtlType="
+				+ transdtlType + ", itemName=" + itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", allotedAmt="
+				+ allotedAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

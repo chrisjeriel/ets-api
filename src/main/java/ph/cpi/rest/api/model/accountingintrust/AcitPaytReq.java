@@ -16,7 +16,9 @@ public class AcitPaytReq {
 	private DateTime reqDate;
 	private String reqStatus;
 	private String reqStatusDesc;
-	private Integer payeeNo;
+	//private Integer payeeNo;
+	private Integer payeeClassCd;
+	private String payeeCd;
 	private String payee;
 	private String currCd;
 	private Integer currRate;
@@ -32,6 +34,10 @@ public class AcitPaytReq {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	private String tranStat;
+	private String tranStatDesc;
+	private String refNo;
 	
 	public String getPaytReqNo() {
 		return paytReqNo;
@@ -99,14 +105,27 @@ public class AcitPaytReq {
 	public void setReqStatusDesc(String reqStatusDesc) {
 		this.reqStatusDesc = reqStatusDesc;
 	}
-	public Integer getPayeeNo() {
-		return payeeNo;
-	}
-	public void setPayeeNo(Integer payeeNo) {
-		this.payeeNo = payeeNo;
-	}
+//	public Integer getPayeeNo() {
+//		return payeeNo;
+//	}
+//	public void setPayeeNo(Integer payeeNo) {
+//		this.payeeNo = payeeNo;
+//	}
+	
 	public String getPayee() {
 		return payee;
+	}
+	public Integer getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(Integer payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
+	}
+	public String getPayeeCd() {
+		return payeeCd;
+	}
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
 	}
 	public void setPayee(String payee) {
 		this.payee = payee;
@@ -195,16 +214,35 @@ public class AcitPaytReq {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getTranStat() {
+		return tranStat;
+	}
+	public void setTranStat(String tranStat) {
+		this.tranStat = tranStat;
+	}
+	public String getTranStatDesc() {
+		return tranStatDesc;
+	}
+	public void setTranStatDesc(String tranStatDesc) {
+		this.tranStatDesc = tranStatDesc;
+	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
 	@Override
 	public String toString() {
 		return "AcitPaytReq [paytReqNo=" + paytReqNo + ", reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear="
 				+ reqYear + ", reqMm=" + reqMm + ", reqSeqNo=" + reqSeqNo + ", tranTypeCd=" + tranTypeCd
 				+ ", tranTypeDesc=" + tranTypeDesc + ", reqDate=" + reqDate + ", reqStatus=" + reqStatus
-				+ ", reqStatusDesc=" + reqStatusDesc + ", payeeNo=" + payeeNo + ", payee=" + payee + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt + ", localAmt=" + localAmt + ", particulars="
-				+ particulars + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate + ", requestedBy="
-				+ requestedBy + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ ", reqStatusDesc=" + reqStatusDesc + ", payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd
+				+ ", payee=" + payee + ", currCd=" + currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt
+				+ ", localAmt=" + localAmt + ", particulars=" + particulars + ", preparedBy=" + preparedBy
+				+ ", preparedDate=" + preparedDate + ", requestedBy=" + requestedBy + ", approvedBy=" + approvedBy
+				+ ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat
+				+ ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo + "]";
 	}
 }
