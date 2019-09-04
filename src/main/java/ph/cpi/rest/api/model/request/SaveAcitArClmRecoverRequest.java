@@ -100,7 +100,7 @@ class SaveArClmRecover{
 	private String currCd;
 	private String currRate;
 	private String paymentFor;
-	private String cashcallAmt;
+	private String recOverAmt;
 	private String localAmt;
 	private String createUser;
 	private String createDate;
@@ -184,11 +184,11 @@ class SaveArClmRecover{
 	public void setPaymentFor(String paymentFor) {
 		this.paymentFor = paymentFor;
 	}
-	public String getCashcallAmt() {
-		return cashcallAmt;
+	public String getRecOverAmt() {
+		return recOverAmt;
 	}
-	public void setCashcallAmt(String cashcallAmt) {
-		this.cashcallAmt = cashcallAmt;
+	public void setRecOverAmt(String recOverAmt) {
+		this.recOverAmt = recOverAmt;
 	}
 	public String getLocalAmt() {
 		return localAmt;
@@ -225,9 +225,8 @@ class SaveArClmRecover{
 		return "SaveArClmRecover [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
 				+ claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory=" + histCategory
 				+ ", histType=" + histType + ", exGratia=" + exGratia + ", reserveAmt=" + reserveAmt + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", paymentFor=" + paymentFor + ", cashcallAmt=" + cashcallAmt
+				+ currCd + ", currRate=" + currRate + ", paymentFor=" + paymentFor + ", recOverAmt=" + recOverAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

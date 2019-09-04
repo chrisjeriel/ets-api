@@ -9,6 +9,7 @@ public class Currency {
 	private String currencyWord;
 	private Double currencyRt;
 	private String currencyDesc;
+	private DateTime effDateFrom;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -43,6 +44,12 @@ public class Currency {
 	public void setCurrencyDesc(String currencyDesc) {
 		this.currencyDesc = currencyDesc;
 	}
+	public DateTime getEffDateFrom() {
+		return effDateFrom;
+	}
+	public void setEffDateFrom(DateTime effDateFrom) {
+		this.effDateFrom = effDateFrom;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -70,9 +77,8 @@ public class Currency {
 	
 	@Override
 	public String toString() {
-		return "Currency [currencyCd="+ currencyCd +", currencyWord="
-				+ currencyWord + ", currencyRt=" + currencyRt + ", currencyDesc=" + currencyDesc + ", createUser="
-				+ createUser +", createDate="+ createDate +", updateUser="+ updateUser +", updateDate="
-				+ updateDate +"]";
+		return "Currency [currencyCd=" + currencyCd + ", currencyWord=" + currencyWord + ", currencyRt=" + currencyRt
+				+ ", currencyDesc=" + currencyDesc + ", effDateFrom=" + effDateFrom + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

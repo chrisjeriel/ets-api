@@ -2,44 +2,43 @@ package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
-public class SaveAcitJVInvPullOutRequest {
-	private List<InvPullOut> saveInvPullOut;
-	private List<InvPullOut> delInvPullOut;
-	public List<InvPullOut> getSaveInvPullOut() {
-		return saveInvPullOut;
+public class SaveAcitJVInvRollOverRequest {
+	private List<InvRollOver> saveRollOver;
+	private List<InvRollOver> delRollOver;
+	public List<InvRollOver> getSaveRollOver() {
+		return saveRollOver;
 	}
 
-	public void setSaveInvPullOut(List<InvPullOut> saveInvPullOut) {
-		this.saveInvPullOut = saveInvPullOut;
+	public void setSaveRollOver(List<InvRollOver> saveRollOver) {
+		this.saveRollOver = saveRollOver;
 	}
 
-	public List<InvPullOut> getDelInvPullOut() {
-		return delInvPullOut;
+	public List<InvRollOver> getDelRollOver() {
+		return delRollOver;
 	}
 
-	public void setDelInvPullOut(List<InvPullOut> delInvPullOut) {
-		this.delInvPullOut = delInvPullOut;
+	public void setDelRollOver(List<InvRollOver> delRollOver) {
+		this.delRollOver = delRollOver;
 	}
 
 	@Override
 	public String toString() {
-		return "SaveAcitJVInvPullOutRequest [saveInvPullOut=" + saveInvPullOut + ", delInvPullOut=" + delInvPullOut
-				+ "]";
+		return "SaveAcitJVInvRollOverRequest [saveRollOver=" + saveRollOver + ", delRollOver=" + delRollOver + "]";
 	}
-	
 }
 
-@Alias ("ACITInvPullOut")
-class InvPullOut {
+@Alias ("ACITInvRollOver")
+class InvRollOver {
 	private Integer tranId;
 	private Integer itemNo;
 	private Integer invtId;
-	private String destInvtId;
+	private Integer destInvtId;
 	private String pulloutType;
 	private Integer bank;
-	private String bankAcct;
+	private Integer bankAcct;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal invtAmt;
@@ -70,10 +69,10 @@ class InvPullOut {
 	public void setInvtId(Integer invtId) {
 		this.invtId = invtId;
 	}
-	public String getDestInvtId() {
+	public Integer getDestInvtId() {
 		return destInvtId;
 	}
-	public void setDestInvtId(String destInvtId) {
+	public void setDestInvtId(Integer destInvtId) {
 		this.destInvtId = destInvtId;
 	}
 	public String getPulloutType() {
@@ -88,10 +87,10 @@ class InvPullOut {
 	public void setBank(Integer bank) {
 		this.bank = bank;
 	}
-	public String getBankAcct() {
+	public Integer getBankAcct() {
 		return bankAcct;
 	}
-	public void setBankAcct(String bankAcct) {
+	public void setBankAcct(Integer bankAcct) {
 		this.bankAcct = bankAcct;
 	}
 	public String getCurrCd() {
@@ -168,12 +167,11 @@ class InvPullOut {
 	}
 	@Override
 	public String toString() {
-		return "InvPullOut [tranId=" + tranId + ", itemNo=" + itemNo + ", invtId=" + invtId + ", destInvtId="
+		return "InvRollOver [tranId=" + tranId + ", itemNo=" + itemNo + ", invtId=" + invtId + ", destInvtId="
 				+ destInvtId + ", pulloutType=" + pulloutType + ", bank=" + bank + ", bankAcct=" + bankAcct
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt
 				+ ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", maturityValue=" + maturityValue
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

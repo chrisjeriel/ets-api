@@ -93,7 +93,7 @@ class SaveClmCashCall{
 	private String paytType;
 	private String currCd;
 	private String currRate;
-	private String recOverAmt;
+	private String cashcallAmt;
 	private String localAmt;
 	private String remarks;
 	private String createUser;
@@ -142,11 +142,11 @@ class SaveClmCashCall{
 	public void setCurrRate(String currRate) {
 		this.currRate = currRate;
 	}
-	public String getRecOverAmt() {
-		return recOverAmt;
+	public String getCashcallAmt() {
+		return cashcallAmt;
 	}
-	public void setRecOverAmt(String recOverAmt) {
-		this.recOverAmt = recOverAmt;
+	public void setCashcallAmt(String cashcallAmt) {
+		this.cashcallAmt = cashcallAmt;
 	}
 	public String getLocalAmt() {
 		return localAmt;
@@ -187,9 +187,10 @@ class SaveClmCashCall{
 	@Override
 	public String toString() {
 		return "SaveClmCashCall [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
-				+ claimId + ", paytType=" + paytType + ", currCd=" + currCd + ", currRate=" + currRate + ", recOverAmt="
-				+ recOverAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ claimId + ", paytType=" + paytType + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", cashcallAmt=" + cashcallAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 	
 }

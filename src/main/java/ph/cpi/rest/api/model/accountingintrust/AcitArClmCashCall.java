@@ -19,13 +19,12 @@ public class AcitArClmCashCall {
 	private String currCd;
 	private BigDecimal currRate;
 	private String remarks;
-	private BigDecimal recOverAmt;
+	private BigDecimal cashcallAmt;
 	private BigDecimal localAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -110,11 +109,11 @@ public class AcitArClmCashCall {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public BigDecimal getRecOverAmt() {
-		return recOverAmt;
+	public BigDecimal getCashcallAmt() {
+		return cashcallAmt;
 	}
-	public void setRecOverAmt(BigDecimal recOverAmt) {
-		this.recOverAmt = recOverAmt;
+	public void setCashcallAmt(BigDecimal cashcallAmt) {
+		this.cashcallAmt = cashcallAmt;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -146,14 +145,13 @@ public class AcitArClmCashCall {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "AcitArClmCashCall [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
 				+ claimId + ", claimNo=" + claimNo + ", paytType=" + paytType + ", paytTypeName=" + paytTypeName
 				+ ", coClmNo=" + coClmNo + ", policyId=" + policyId + ", policyNo=" + policyNo + ", lossDate="
-				+ lossDate + ", currCd=" + currCd + ", currRate=" + currRate + ", remarks=" + remarks + ", recOverAmt="
-				+ recOverAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ lossDate + ", currCd=" + currCd + ", currRate=" + currRate + ", remarks=" + remarks + ", cashcallAmt="
+				+ cashcallAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

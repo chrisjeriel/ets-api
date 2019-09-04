@@ -27,13 +27,12 @@ public class AcitArClmRecover {
 	private BigDecimal currRate;
 	private BigDecimal reserveAmt;
 	private BigDecimal cumulativeAmt;
-	private BigDecimal cashcallAmt;
+	private BigDecimal recOverAmt;
 	private BigDecimal localAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -166,11 +165,11 @@ public class AcitArClmRecover {
 	public void setCumulativeAmt(BigDecimal cumulativeAmt) {
 		this.cumulativeAmt = cumulativeAmt;
 	}
-	public BigDecimal getCashcallAmt() {
-		return cashcallAmt;
+	public BigDecimal getRecOverAmt() {
+		return recOverAmt;
 	}
-	public void setCashcallAmt(BigDecimal cashcallAmt) {
-		this.cashcallAmt = cashcallAmt;
+	public void setRecOverAmt(BigDecimal recOverAmt) {
+		this.recOverAmt = recOverAmt;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -202,7 +201,6 @@ public class AcitArClmRecover {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "AcitArClmRecover [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", claimId="
@@ -211,9 +209,8 @@ public class AcitArClmRecover {
 				+ ", histNo=" + histNo + ", histCategory=" + histCategory + ", histCategoryDesc=" + histCategoryDesc
 				+ ", histType=" + histType + ", histTypeDesc=" + histTypeDesc + ", exGratia=" + exGratia
 				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", reserveAmt="
-				+ reserveAmt + ", cumulativeAmt=" + cumulativeAmt + ", cashcallAmt=" + cashcallAmt + ", localAmt="
+				+ reserveAmt + ", cumulativeAmt=" + cumulativeAmt + ", recOverAmt=" + recOverAmt + ", localAmt="
 				+ localAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

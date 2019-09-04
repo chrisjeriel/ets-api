@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -142,4 +143,7 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> approveJV(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVInvPullOut(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJVRollOver> retrieveAcitJVInvRollOver(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVInvRollOver(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroLOV(final HashMap<String, Object> params) throws SQLException;
 }

@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -589,26 +590,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
-
-	@Override
-	public HashMap<String, Object> approveJV(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("approveJV",params);
-		params.put("errorCode", errorCode);
-		return params;
-	}
-
-	@Override
-	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
-		List<AcitJVinvPullOut> res = sqlSession.selectList("retrieveAcitJVInvPullOut",params);
-		return res;
-	}
-
-	@Override
-	public HashMap<String, Object> saveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("saveAcitJVInvPullOut",params);
-		params.put("errorCode", errorCode);
-		return params;
-	}
 	
 	@Override
 	public List<AcitCv> retrieveAcitCv(HashMap<String, Object> params) throws SQLException {
@@ -624,16 +605,16 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public Integer saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("saveAcitCvPaytReqList", params);
-		return errorCode;
+	public HashMap<String, Object> approveJV(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("approveJV",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
 	@Override
-	public HashMap<String, Object> updateAcitCvStat(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("updateAcitCvStat", params);
-		params.put("errorCode", errorCode);
-		return params;
+	public Integer saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitCvPaytReqList", params);
+		return errorCode;
 	}
 
 	@Override
@@ -643,9 +624,48 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public List<AcitJVinvPullOut> retrieveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVinvPullOut> res = sqlSession.selectList("retrieveAcitJVInvPullOut",params);
+		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVInvPullOut(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVInvPullOut",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitJVRollOver> retrieveAcitJVInvRollOver(HashMap<String, Object> params) throws SQLException {
+		List<AcitJVRollOver> res = sqlSession.selectList("retrieveAcitJVInvRollOver",params);
+		return res;
+	}
+
+	@Override
 	public HashMap<String, Object> saveAcitAttachments(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitAttachments",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitJVInvRollOver(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitJVInvRollOver",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> updateAcitCvStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcitCvStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroLOV(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroLOV",params);
+		return res;
 	}
 }
