@@ -879,6 +879,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("slTypeCd", racitcmdmlr.getSlTypeCd()) ;
 		params.put("slCd", racitcmdmlr.getSlCd()) ;
 		response.setList(acctITDao.retrieveAcitAcctEntries(params));
+		System.out.println(response);
 		return response;
 	}
 
