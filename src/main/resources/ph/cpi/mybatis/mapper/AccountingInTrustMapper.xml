@@ -2195,6 +2195,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffset" id="jvClmOffsetMap">
 		<result property="tranId" column="TRAN_ID"/>
+		<result property="itemNo" column="ITEM_NO"/>
 		<result property="quarterNo" column="QUARTER_NO"/>
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="claimId" column="CLAIM_ID"/>
