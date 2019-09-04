@@ -557,6 +557,10 @@
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
+	<select id="retrieveSoaAgingZeroAltLOV" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_zero_alt(#{policyId}))
+	</select>
+	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS" id="overDueMap">
 		<result property="tranId" column="TRAN_ID"/>
 		<result property="itemNo" column="ITEM_NO"/>
@@ -1794,7 +1798,7 @@
 														3 
 				);
 			</foreach>
-			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
+			<!-- GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message); -->
 		END;
 	</update>
 	
@@ -2515,6 +2519,7 @@
 					#{deleted.itemNo},
 					#{deleted.quarterNo}
 				);
+				
 			</foreach>
 			
 			<foreach collection="saveInwPolOffset" item="saved">
@@ -3191,6 +3196,15 @@
 																	  #{year, jdbcType=INTEGER},
 																	  #{groupId, jdbcType=INTEGER},
 																	  null,null,null,null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes" id="AcitJVQuarterPremResMap">
+        <result property="fundsHeld" column="DEF_PREM_GROSS"/>
+        <result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQuarterPremResfinal" resultMap="AcitJVQuarterPremResMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_quarter_end(#{quarterEnd},#{cedingId},NULL,NULL,NULL,NULL))
 	</select>
 	
 </mapper>
