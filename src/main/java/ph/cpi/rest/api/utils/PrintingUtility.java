@@ -44,7 +44,7 @@ public class PrintingUtility {
 
 		reportPath = "C:\\ETS\\REPORTS\\" + reportName + "_MAIN.jrxml";
 		
-		String filename = reportName + "_" + reportParams.get("QUOTE_ID") + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
+		String filename = reportName + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
 		
 		if (outputPath == null){
 		    outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
@@ -64,6 +64,12 @@ public class PrintingUtility {
 		
 		mapRptParam.put("P_USER_ID", reportParams.get("USER_ID"));
 		mapRptParam.put("pUserId", reportParams.get("USER_ID"));
+		
+		mapRptParam.put("P_TRAN_ID", reportParams.get("TRAN_ID"));
+		mapRptParam.put("pTranId", reportParams.get("TRAN_ID"));
+		
+		mapRptParam.put("P_REQ_ID", reportParams.get("REQ_ID"));
+		mapRptParam.put("pReqId", reportParams.get("REQ_ID"));
 		
 		logger.info("generateJasperReport outputPath : " + outputPath);
 		JasperPrint jasperPrint = jasperPrint(conn, reportPath, mapRptParam);

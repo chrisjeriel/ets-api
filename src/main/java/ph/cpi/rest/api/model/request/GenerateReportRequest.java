@@ -7,6 +7,8 @@ public class GenerateReportRequest {
 	private Integer adviceNo;
 	private Integer holdCovId;
 	private String userId;
+	private Integer tranId;
+	private Integer reqId;
 	
 	public String getReportName() {
 		return reportName;
@@ -38,9 +40,23 @@ public class GenerateReportRequest {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+	public Integer getReqId() {
+		return reqId;
+	}
+	public void setReqId(Integer reqId) {
+		this.reqId = reqId;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", quoteId=" + quoteId + ", adviceNo=" + adviceNo
-				+ ", holdCovId=" + holdCovId + ", userId=" + userId + "]";
+				+ ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId + ", reqId=" + reqId + "]";
 	}
+	
 }

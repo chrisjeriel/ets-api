@@ -10,8 +10,8 @@ public class SaveAcitPaytReqRequest {
 	private String reqDate;
 	private String reqStatus;
 	//private String payeeNo;
-	private Integer payee_class_cd;
-	private String payee_cd;
+	private Integer payeeClassCd;
+	private String payeeCd;
 	private String payee;
 	private String currCd;
 	private String currRate;
@@ -84,20 +84,20 @@ public class SaveAcitPaytReqRequest {
 	public String getPayee() {
 		return payee;
 	}
-	public Integer getPayee_class_cd() {
-		return payee_class_cd;
-	}
-	public void setPayee_class_cd(Integer payee_class_cd) {
-		this.payee_class_cd = payee_class_cd;
-	}
-	public String getPayee_cd() {
-		return payee_cd;
-	}
-	public void setPayee_cd(String payee_cd) {
-		this.payee_cd = payee_cd;
-	}
 	public void setPayee(String payee) {
 		this.payee = payee;
+	}
+	public Integer getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(Integer payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
+	}
+	public String getPayeeCd() {
+		return payeeCd;
+	}
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -187,11 +187,11 @@ public class SaveAcitPaytReqRequest {
 	public String toString() {
 		return "SaveAcitPaytReqRequest [reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear=" + reqYear
 				+ ", reqMm=" + reqMm + ", reqSeqNo=" + reqSeqNo + ", tranTypeCd=" + tranTypeCd + ", reqDate=" + reqDate
-				+ ", reqStatus=" + reqStatus + ", payee_class_cd=" + payee_class_cd + ", payee_cd=" + payee_cd
-				+ ", payee=" + payee + ", currCd=" + currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt
-				+ ", localAmt=" + localAmt + ", particulars=" + particulars + ", preparedBy=" + preparedBy
-				+ ", preparedDate=" + preparedDate + ", requestedBy=" + requestedBy + ", approvedBy=" + approvedBy
-				+ ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", reqStatus=" + reqStatus + ", payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd + ", payee="
+				+ payee + ", currCd=" + currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt + ", localAmt="
+				+ localAmt + ", particulars=" + particulars + ", preparedBy=" + preparedBy + ", preparedDate="
+				+ preparedDate + ", requestedBy=" + requestedBy + ", approvedBy=" + approvedBy + ", approvedDate="
+				+ approvedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
@@ -676,4 +677,15 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return params;
 	}
 	
+	@Override
+	public AcitJVQuarterPremRes retrieveQuarterPremRes(HashMap<String, Object> params) throws SQLException {
+		AcitJVQuarterPremRes res = sqlSession.selectOne("retrieveQuarterPremResfinal", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroAltLOV(HashMap<String, Object> params) throws SQLException {
+		List<AcitSOAAgingDetails> res = sqlSession.selectList("retrieveSoaAgingZeroAltLOV",params);
+		return res;
+	}
 }
