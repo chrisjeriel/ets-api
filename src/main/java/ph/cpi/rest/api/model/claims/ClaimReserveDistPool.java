@@ -7,8 +7,10 @@ public class ClaimReserveDistPool {
 	private String cedingAbbr;
 	private Integer ret1Lines;
 	private BigDecimal ret1Amt;
+	private BigDecimal ret1PaytAmt;
 	private Integer ret2Lines;
 	private BigDecimal ret2Amt;
+	private BigDecimal ret2PaytAmt;
 	public String getTreatyAbbr() {
 		return treatyAbbr;
 	}
@@ -33,6 +35,12 @@ public class ClaimReserveDistPool {
 	public void setRet1Amt(BigDecimal ret1Amt) {
 		this.ret1Amt = ret1Amt;
 	}
+	public BigDecimal getRet1PaytAmt() {
+		return ret1PaytAmt;
+	}
+	public void setRet1PaytAmt(BigDecimal ret1PaytAmt) {
+		this.ret1PaytAmt = ret1PaytAmt;
+	}
 	public Integer getRet2Lines() {
 		return ret2Lines;
 	}
@@ -45,11 +53,17 @@ public class ClaimReserveDistPool {
 	public void setRet2Amt(BigDecimal ret2Amt) {
 		this.ret2Amt = ret2Amt;
 	}
+	public BigDecimal getRet2PaytAmt() {
+		return ret2PaytAmt;
+	}
+	public void setRet2PaytAmt(BigDecimal ret2PaytAmt) {
+		this.ret2PaytAmt = ret2PaytAmt;
+	}
 	@Override
 	public String toString() {
 		return "ClaimReserveDistPool [treatyAbbr=" + treatyAbbr + ", cedingAbbr=" + cedingAbbr + ", ret1Lines="
-				+ ret1Lines + ", ret1Amt=" + ret1Amt + ", ret2Lines=" + ret2Lines + ", ret2Amt=" + ret2Amt + "]";
+				+ ret1Lines + ", ret1Amt=" + ret1Amt + ", ret1PaytAmt=" + ret1PaytAmt + ", ret2Lines=" + ret2Lines
+				+ ", ret2Amt=" + ret2Amt + ", ret2PaytAmt=" + ret2PaytAmt + "]";
 	}
-	
 	
 }

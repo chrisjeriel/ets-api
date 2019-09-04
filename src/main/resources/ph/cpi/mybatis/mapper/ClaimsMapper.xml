@@ -173,7 +173,7 @@
 				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
     			
     			<!-- ADD IF #{ch.histNo,jdbcType=VARCHAR} == NULL AND HIST_TYPEQ IS NOT PAYMENT -->
-    			IF #{ch.histType,jdbcType=VARCHAR} IN (1,2,3,6) THEN
+    			<!-- IF #{ch.histType,jdbcType=VARCHAR} IN (1,2,3,6) THEN -->
 	    			CLM_DIST_CUMRESERVE_PKG.gen_reserve_dist(
 	    				#{ch.claimId,jdbcType=VARCHAR},
 						#{ch.projId,jdbcType=VARCHAR},
@@ -181,9 +181,9 @@
 						#{ch.createUser,jdbcType=VARCHAR},
 					    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					    #{ch.updateUser,jdbcType=VARCHAR},
-					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-	    			); 
-    			END IF;
+					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+	    			<!-- ); 
+    			END IF; -->
     			<!-- 
 	    		ELSE
 	    			CLM_DIST_PAYMENT_PKG.gen_reserve_dist(
@@ -918,6 +918,7 @@
 		<result property="histCategoryName" column="HIST_CATEGORY_NAME"/>
 		<result property="clmDistNo" column="CLM_DIST_NO"/>
 		<result property="reserveAmt" column="RESERVE_AMT"/>
+		<result property="paytAmt" column="PAYT_AMT"/>
 		<result property="currencyCd" column="CURRENCY_CD"/>
 		<result property="currencyRt" column="CURRENCY_RT"/>
 		<result property="bookingMth" column="BOOKING_MTH"/>
@@ -939,6 +940,7 @@
 		<result property="retLayer" column="RET_LAYER"/>
 		<result property="clmPctShare" column="CLM_PCT_SHARE"/>
 		<result property="reserveAmt" column="AMT"/>
+		<result property="paytAmt" column="P_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveClmReserveDist" resultMap="ClaimReserveDistMap">
@@ -950,8 +952,10 @@
 		<result property="cedingAbbr" column="CEDING_ABBR"/>
 		<result property="ret1Lines" column="RET1_LINES"/>
 		<result property="ret1Amt" column="RET1_AMT"/>
+		<result property="ret1PaytAmt" column="RET1_PAYT_AMT"/>
 		<result property="ret2Lines" column="RET2_LINES"/>
 		<result property="ret2Amt" column="RET2_AMT"/>
+		<result property="ret2PaytAmt" column="RET2_PAYT_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveClmReserveDistPool" resultMap="ClaimReserveDistPoolMap">

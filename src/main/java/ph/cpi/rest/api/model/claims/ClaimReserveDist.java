@@ -10,6 +10,7 @@ public class ClaimReserveDist {
 	private String histCategoryName;
 	private String clmDistNo;
 	private BigDecimal reserveAmt;
+	private BigDecimal paytAmt;
 	private String currencyCd;
 	private BigDecimal currencyRt;
 	private String bookingMth;
@@ -111,15 +112,19 @@ public class ClaimReserveDist {
 	public void setTreatyList(List<ClaimReserveDistTreaty> treatyList) {
 		this.treatyList = treatyList;
 	}
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
+	}
 	@Override
 	public String toString() {
 		return "ClaimReserveDist [histCategory=" + histCategory + ", histCategoryName=" + histCategoryName
-				+ ", clmDistNo=" + clmDistNo + ", reserveAmt=" + reserveAmt + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", bookingMth=" + bookingMth + ", bookingYear=" + bookingYear
-				+ ", clmDistStat=" + clmDistStat + ", clmDistStatName=" + clmDistStatName + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", treatyList=" + treatyList + "]";
+				+ ", clmDistNo=" + clmDistNo + ", reserveAmt=" + reserveAmt + ", paytAmt=" + paytAmt + ", currencyCd="
+				+ currencyCd + ", currencyRt=" + currencyRt + ", bookingMth=" + bookingMth + ", bookingYear="
+				+ bookingYear + ", clmDistStat=" + clmDistStat + ", clmDistStatName=" + clmDistStatName
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", treatyList=" + treatyList + "]";
 	}
-	
-	
 }
