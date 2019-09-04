@@ -5,22 +5,35 @@ import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class InwPolBalance {
+public class DistPolInst {
+	private Integer distId;
+	private String policyNo;
 	private Integer instNo;
 	private DateTime dueDate;
 	private DateTime bookingDate;
+	private DateTime acctEntDate;
 	private BigDecimal premAmt;
-	private BigDecimal otherChargesInw;
-	private BigDecimal amtDue;
-	private BigDecimal commAmt;
 	private BigDecimal commRt;
+	private BigDecimal commAmt;
 	private BigDecimal vatRiComm;
+	private BigDecimal netDue;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private DateTime acctEntDate;
-	private List<OtherCharges> otherCharges;
+	List <DistPolInstTreaty> treatyList;
+	public Integer getDistId() {
+		return distId;
+	}
+	public void setDistId(Integer distId) {
+		this.distId = distId;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
 	public Integer getInstNo() {
 		return instNo;
 	}
@@ -39,29 +52,17 @@ public class InwPolBalance {
 	public void setBookingDate(DateTime bookingDate) {
 		this.bookingDate = bookingDate;
 	}
+	public DateTime getAcctEntDate() {
+		return acctEntDate;
+	}
+	public void setAcctEntDate(DateTime acctEntDate) {
+		this.acctEntDate = acctEntDate;
+	}
 	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
 	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
-	}
-	public BigDecimal getOtherChargesInw() {
-		return otherChargesInw;
-	}
-	public void setOtherChargesInw(BigDecimal otherChargesInw) {
-		this.otherChargesInw = otherChargesInw;
-	}
-	public BigDecimal getAmtDue() {
-		return amtDue;
-	}
-	public void setAmtDue(BigDecimal amtDue) {
-		this.amtDue = amtDue;
-	}
-	public BigDecimal getCommAmt() {
-		return commAmt;
-	}
-	public void setCommAmt(BigDecimal commAmt) {
-		this.commAmt = commAmt;
 	}
 	public BigDecimal getCommRt() {
 		return commRt;
@@ -69,11 +70,23 @@ public class InwPolBalance {
 	public void setCommRt(BigDecimal commRt) {
 		this.commRt = commRt;
 	}
+	public BigDecimal getCommAmt() {
+		return commAmt;
+	}
+	public void setCommAmt(BigDecimal commAmt) {
+		this.commAmt = commAmt;
+	}
 	public BigDecimal getVatRiComm() {
 		return vatRiComm;
 	}
 	public void setVatRiComm(BigDecimal vatRiComm) {
 		this.vatRiComm = vatRiComm;
+	}
+	public BigDecimal getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(BigDecimal netDue) {
+		this.netDue = netDue;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -99,24 +112,18 @@ public class InwPolBalance {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public List<OtherCharges> getOtherCharges() {
-		return otherCharges;
+	public List<DistPolInstTreaty> getTreatyList() {
+		return treatyList;
 	}
-	public void setOtherCharges(List<OtherCharges> otherCharges) {
-		this.otherCharges = otherCharges;
-	}
-	public DateTime getAcctEntDate() {
-		return acctEntDate;
-	}
-	public void setAcctEntDate(DateTime acctEntDate) {
-		this.acctEntDate = acctEntDate;
+	public void setTreatyList(List<DistPolInstTreaty> treatyList) {
+		this.treatyList = treatyList;
 	}
 	@Override
 	public String toString() {
-		return "InwPolBalance [instNo=" + instNo + ", dueDate=" + dueDate + ", bookingDate=" + bookingDate
-				+ ", premAmt=" + premAmt + ", otherChargesInw=" + otherChargesInw + ", amtDue=" + amtDue + ", commAmt="
-				+ commAmt + ", commRt=" + commRt + ", vatRiComm=" + vatRiComm + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", acctEntDate=" + acctEntDate + ", otherCharges=" + otherCharges + "]";
+		return "DistPolInst [distId=" + distId + ", policyNo=" + policyNo + ", instNo=" + instNo + ", dueDate="
+				+ dueDate + ", bookingDate=" + bookingDate + ", acctEntDate=" + acctEntDate + ", premAmt=" + premAmt
+				+ ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", netDue=" + netDue
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", treatyList=" + treatyList + "]";
 	}
 }

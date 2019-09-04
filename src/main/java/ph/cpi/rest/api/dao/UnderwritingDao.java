@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
@@ -107,4 +110,12 @@ public interface UnderwritingDao {
 	public List<DistCoIns> retrieveMissingCoins(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<Warning> retrievePolDistWarning(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<DistPolInst> retrievePolDistInst(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<PoolDistribution> retrievePolDistInstPool(final HashMap<String, Object> params) throws SQLException;
+	
+	public String getInstTag(final HashMap<String, Object> params) throws SQLException;
+	
+	public DateTime getAcctingDate(final HashMap<String, Object> params) throws SQLException;
 }

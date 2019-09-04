@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
+import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
+import ph.cpi.rest.api.model.underwriting.InwPolBalance;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
@@ -604,5 +607,36 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<Warning> retrievePolDistWarning(HashMap<String, Object> params) throws SQLException {
 		List<Warning> res = sqlSession.selectList("retrievePolDistWarning", params);
 		return res;
+	}
+
+	@Override
+	public List<DistPolInst> retrievePolDistInst(HashMap<String, Object> params) throws SQLException {
+		List<DistPolInst> list = sqlSession.selectList("retrievePolDistInst", params);
+		return list;
+	}
+
+	@Override
+	public List<PoolDistribution> retrievePolDistInstPool(HashMap<String, Object> params) throws SQLException {
+		List<PoolDistribution> list = sqlSession.selectList("retrievePolDistInstPool", params);
+		return list;
+	}
+
+	@Override
+	public String getInstTag(HashMap<String, Object> params) throws SQLException {
+		String instTag = sqlSession.selectOne("getInstTag",params);
+		return instTag;
+	}
+
+	@Override
+	public DateTime getAcctingDate(HashMap<String, Object> params) throws SQLException {
+		InwPolBalance inw = sqlSession.selectOne("getAcctingDate",params);
+		DateTime date;
+		try{
+			date = inw.getAcctEntDate();
+		}catch(NullPointerException ex){
+			date = null;
+		}
+		
+		return date;
 	}
 }
