@@ -1264,13 +1264,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId",ppr.getPolicyId());
 		params.put("updateUser",ppr.getUpdateUser());
+		params.put("status",ppr.getStatus());
+		params.put("altCancelTag",ppr.getAltCancelTag());
 		
 		try{
 			pprResponse.setReturnCode(underwritingDao.postPolicy(params));
-		}catch(Exception ex){
+		}catch(SQLException ex){
 			pprResponse.setReturnCode(0);
 			pprResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
+			/*logger.info(""+ex.getErrorCode());*/
 		}
 		logger.info("postPolicy : " + pprResponse.toString());
 		return pprResponse;

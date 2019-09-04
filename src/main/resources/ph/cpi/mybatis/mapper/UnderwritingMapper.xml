@@ -1833,7 +1833,7 @@
 	
 	<update id="postPolicy" parameterType="java.util.Map">
 		BEGIN
-			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser});
+			POL_GEN_INFO_PKG.post(#{policyId},#{updateUser},#{status, jdbcType=VARCHAR},#{altCancelTag, jdbcType=VARCHAR});
 			DIST_PKG.dist_policy(#{policyId},#{updateUser},sysdate,#{updateUser},sysdate);
 		END;
 	</update>
@@ -2708,7 +2708,7 @@
 	</select>
 	
 	<select id="getInstTag" resultType="java.lang.String">
-		SELECT inst_tag FROM pol_gen_info where policy_id = #{policyId}
+		SELECT CASE WHEN COUNT(*)>1 THEN 'Y' ELSE 'N' END FROM POL_INWARD_BAL where policy_id = #{policyId}
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.InwPolBalance" id="getAcctingDateMap">
