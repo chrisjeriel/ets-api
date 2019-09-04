@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
@@ -392,7 +393,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public Integer postPolicy(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("postPolicy",params);
+		Integer errorCode = -1;
+		try{
+			errorCode = sqlSession.update("postPolicy",params);
+		}catch (UncategorizedSQLException e){
+			throw (SQLException) e.getCause();
+		}
 		return errorCode;
 	}
 
