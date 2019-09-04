@@ -2456,6 +2456,7 @@
 					#{deleted.itemNo},
 					#{deleted.quarterNo}
 				);
+				
 			</foreach>
 			
 			<foreach collection="saveInwPolOffset" item="saved">
@@ -2898,4 +2899,13 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes" id="AcitJVQuarterPremResMap">
+        <result property="fundsHeld" column="DEF_PREM_GROSS"/>
+        <result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQuarterPremResfinal" resultMap="AcitJVQuarterPremResMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_quarter_end(#{quarterEnd},#{cedingId},NULL,NULL,NULL,NULL))
+	</select>
 </mapper>
