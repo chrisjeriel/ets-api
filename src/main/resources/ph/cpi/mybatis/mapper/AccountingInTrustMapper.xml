@@ -41,8 +41,8 @@
 		<result property="reqStatus"		column="REQ_STATUS"/>
 		<result property="reqStatusDesc"	column="REQ_STATUS_DESC"/>
 		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
-		<result property="payee_class_cd"	column="PAYEE_CLASS_CD"/>
-		<result property="payee_cd"			column="PAYEE_CD"/>
+		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
+		<result property="payeeCd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
 		<result property="currCd"			column="CURR_CD"/>
 		<result property="currRate"			column="CURR_RATE"/>
@@ -84,6 +84,7 @@
 		<result property="currRate"				column="CURR_RATE"/>
 		<result property="currAmt"				column="CURR_AMT"/>
 		<result property="localAmt"				column="LOCAL_AMT"/>
+		<result property="allotedAmt"			column="ALLOTED_AMT"/>
 		<result property="remarks"				column="REMARKS"/>
 		<result property="createUser" 			column="CREATE_USER"/>
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -952,6 +953,7 @@
 					#{save.currRate, jdbcType=INTEGER},
 					#{save.currAmt, jdbcType=INTEGER},
 					#{save.localAmt, jdbcType=INTEGER},
+					#{save.allotedAmt, jdbcType=INTEGER},
 					#{save.remarks, jdbcType=VARCHAR},
 			        #{save.createUser,jdbcType=VARCHAR},
 			        CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
