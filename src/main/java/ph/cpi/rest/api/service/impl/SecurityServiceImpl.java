@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.SecurityDao;
+import ph.cpi.rest.api.model.maintenance.SaveTransaction;
 import ph.cpi.rest.api.model.request.RetrieveModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTransactionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveTransactionsRequest;
-import ph.cpi.rest.api.model.request.SaveTransactionsRequest.Transaction;
 import ph.cpi.rest.api.model.response.RetrieveModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTransactionsResponse;
@@ -107,16 +107,7 @@ public class SecurityServiceImpl implements SecurityService{
 		
 		if ("USER".equalsIgnoreCase(str.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
-			
-			
-			for (Transaction tr : str.getTransactionList()) {
-				params.put("userId", tr.getUserId());
-				params.put("tranCd", tr.getTranCd());
-				params.put("remarks", tr.getRemarks());
-				params.put("createUser", tr.getCreateUser());
-				params.put("updateUser", tr.getUpdateUser());
-			}
-
+			params.put("transactionList", str.getTransactionList());
 			response.setReturnCode(securityDao.saveUserTransactions(params));
 		} else if  ("USER_GROUP".equalsIgnoreCase(str.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
