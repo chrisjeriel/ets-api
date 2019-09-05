@@ -828,17 +828,19 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			HashMap<String, Object> res = new HashMap<String, Object>();
 			
-			if(!savePolicyDetailsParams.get("quotationNo").toString().equals("")) {
-				Integer x = underwritingDao.retrieveCoInsStatus(savePolicyDetailsParams);
-				
-				if(x == 0) {
-					res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
-				} else {
-					spdResponse.setCoInsStatus(x);
-				}
-			} else {
-				res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
-			}			 
+//			if(!savePolicyDetailsParams.get("quotationNo").toString().equals("")) {
+//				Integer x = underwritingDao.retrieveCoInsStatus(savePolicyDetailsParams);
+//				
+//				if(x == 0) {
+//					res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+//				} else {
+//					spdResponse.setCoInsStatus(x);
+//				}
+//			} else {
+//				res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+//			}
+			
+			res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
 			
 			spdResponse.setReturnCode((Integer) res.get("errorCode"));
 			spdResponse.setPolicyId((Integer) res.get("policyId"));
