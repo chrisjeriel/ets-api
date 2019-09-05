@@ -52,4 +52,18 @@
      	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_transactions(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
+     <update id="saveUserTransactions" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="transactionList" item="tranItem">
+			BEGIN
+		    	MTN_SECURITY_PKG.save_user_transaction(#{tranItem.userId, jdbcType=VARCHAR},
+		    										   #{tranItem.tranCd, jdbcType=INTEGER},
+		    										   #{tranItem.remarks, jdbcType=VARCHAR},
+		    										   #{tranItem.createUser, jdbcType=VARCHAR},
+		    										   #{tranItem.updateUser, jdbcType=VARCHAR});
+			END;
+			</foreach>
+		END;
+	</update>
+     
 </mapper>

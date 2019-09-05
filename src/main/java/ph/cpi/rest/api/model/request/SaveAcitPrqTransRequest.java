@@ -42,6 +42,7 @@ class PrqTrans {
 	private String currRate;
 	private String currAmt;
 	private String localAmt;
+	private String allotedAmt;
 	private String remarks;
 	private String createUser;
 	private String createDate;
@@ -155,6 +156,12 @@ class PrqTrans {
 	public void setLocalAmt(String localAmt) {
 		this.localAmt = localAmt;
 	}
+	public String getAllotedAmt() {
+		return allotedAmt;
+	}
+	public void setAllotedAmt(String allotedAmt) {
+		this.allotedAmt = allotedAmt;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -191,8 +198,8 @@ class PrqTrans {
 				+ ", projId=" + projId + ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo + ", transdtlType="
 				+ transdtlType + ", itemName=" + itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", allotedAmt="
+				+ allotedAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

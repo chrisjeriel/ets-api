@@ -24,6 +24,7 @@ public class AcitPrqTrans {
 	private Integer currRate;
 	private BigDecimal currAmt;
 	private BigDecimal localAmt;
+	private BigDecimal allotedAmt;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
@@ -143,6 +144,12 @@ public class AcitPrqTrans {
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
 	}
+	public BigDecimal getAllotedAmt() {
+		return allotedAmt;
+	}
+	public void setAllotedAmt(BigDecimal allotedAmt) {
+		this.allotedAmt = allotedAmt;
+	}
 	public String getRemarks() {
 		return remarks;
 	}
@@ -180,7 +187,8 @@ public class AcitPrqTrans {
 				+ instNo + ", quarterEnding=" + quarterEnding + ", invtId=" + invtId + ", refNo=" + refNo
 				+ ", transdtlType=" + transdtlType + ", transdtlTypeDesc=" + transdtlTypeDesc + ", itemName=" + itemName
 				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
-				+ currAmt + ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ currAmt + ", localAmt=" + localAmt + ", allotedAmt=" + allotedAmt + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
