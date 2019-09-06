@@ -1034,6 +1034,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="processing" 			column="PROCESSING"/>
 	</resultMap>
 	
 	<select id="retrieveAcitAgingSoaDtl" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
@@ -1422,7 +1423,7 @@
 			</foreach>
 			
 			IF #{forApproval, jdbcType=VARCHAR} IS NOT NULL THEN
-				ACIT_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId},#{forApproval});
+				ACIT_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId, jdbcType=VARCHAR},#{forApproval, jdbcType=VARCHAR});
 			END IF;
 		END;
 	</update>

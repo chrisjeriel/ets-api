@@ -43,6 +43,7 @@ public class AcitSOAAgingDetails {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String processing;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -271,6 +272,13 @@ public class AcitSOAAgingDetails {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getProcessing() {
+		return processing;
+	}
+	public void setProcessing(String processing) {
+		this.processing = processing;
+	}
 	@Override
 	public String toString() {
 		return "AcitSOAAgingDetails [policyId=" + policyId + ", cedingId=" + cedingId + ", refCd=" + refCd
@@ -284,7 +292,7 @@ public class AcitSOAAgingDetails {
 				+ ", balRiCommVat=" + balRiCommVat + ", balOverdueInt=" + balOverdueInt + ", effDate=" + effDate
 				+ ", dueDate=" + dueDate + ", bookingDate=" + bookingDate + ", agingId=" + agingId + ", netDue="
 				+ netDue + ", balance=" + balance + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing=" + processing + "]";
 	}
 	
 }
