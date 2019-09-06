@@ -1819,7 +1819,7 @@
 														#{save.instNo},
 														#{save.paytType}, 
 														3 
-				);
+				);save_acit_clm_off
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2280,6 +2280,11 @@
 					#{deleted.quarterNo},
 					#{deleted.itemNo}
 				);
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(#{deleted.tranId},
+																 #{deleted.claimId},
+															     #{deleted.projId},
+															     #{deleted.histNo});
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="saved">
@@ -2544,6 +2549,12 @@
 					#{deleted.quarterNo}
 				);
 				
+				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
+														#{deleted.tranId},
+														#{deleted.policyId},
+														#{deleted.instNo}
+				);
+				
 			</foreach>
 			
 			<foreach collection="saveInwPolOffset" item="saved">
@@ -2559,9 +2570,9 @@
 															#{saved.riCommVat}, 
 															#{saved.charges}, 
 															#{saved.netDue}, 
+															#{saved.prevPayt ,jdbcType=INTEGER},
 															#{saved.paytAmt}, 
 															#{saved.localAmt}, 
-															#{saved.remainingBal}, 
 															#{saved.overdueInt ,jdbcType=INTEGER}, 
 															#{saved.remarks,jdbcType=VARCHAR}, 
 															#{saved.createUser}, 
@@ -2573,6 +2584,8 @@
 				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
 																   #{saved.paytAmt},#{saved.updateUser}, 
 																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(#{saved.tranId}, #{saved.policyId}, #{saved.instNo}, #{saved.paytType}, 3);
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
