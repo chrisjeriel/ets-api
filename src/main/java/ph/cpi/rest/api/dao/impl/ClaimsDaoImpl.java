@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.claims.CheckHist;
 import ph.cpi.rest.api.model.claims.ClaimApprovedAmt;
 import ph.cpi.rest.api.model.claims.ClaimDist;
 import ph.cpi.rest.api.model.claims.ClaimDistCeding;
+import ph.cpi.rest.api.model.claims.ClaimPaytReqInq;
 import ph.cpi.rest.api.model.claims.ClaimPaytRequest;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
 import ph.cpi.rest.api.model.claims.ClaimReserveDist;
@@ -228,5 +229,11 @@ public class ClaimsDaoImpl implements ClaimsDao {
 	public Integer redistributeClaimReserveDist(HashMap<String, Object> params) throws SQLException {
 		Integer code = sqlSession.update("redistributeClaimReserveDist",params);
 		return code;
+	}
+
+	@Override
+	public List<ClaimPaytReqInq> retrieveClmPaytReqInq(HashMap<String, Object> params) throws SQLException {
+		List<ClaimPaytReqInq> list = sqlSession.selectList("retrieveClmPaytReqInq", params);
+		return list;
 	}
 }

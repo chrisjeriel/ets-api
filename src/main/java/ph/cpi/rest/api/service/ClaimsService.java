@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistPoolRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmPaytReqInqRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnClmCashCallRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmReserveDistPoolRequest;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistPoolResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmPaytReqInqResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnClmCashCallResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmReserveDistPoolResponse;
@@ -92,4 +94,5 @@ public interface ClaimsService {
 	public RetrieveClmReserveDistPoolResponse retrieveClmReserveDistPool(RetrieveClmReserveDistPoolRequest rcprr) throws SQLException;
 	public RedistributeClaimReserveDistResponse redistributeClaimReserveDist(RedistributeClaimReserveDistRequest ucdr) throws SQLException;
 
+	public RetrieveClmPaytReqInqResponse retrieveClmPaytReqInq(RetrieveClmPaytReqInqRequest rcprr) throws SQLException;
 }
