@@ -69,7 +69,7 @@ class acctTreaty {
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal remainingBal;
+	private BigDecimal prevPayt;
 	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
@@ -78,6 +78,7 @@ class acctTreaty {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String paytType;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -150,18 +151,17 @@ class acctTreaty {
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
+	public BigDecimal getPrevPayt() {
+		return prevPayt;
+	}
+	public void setPrevPayt(BigDecimal prevPayt) {
+		this.prevPayt = prevPayt;
+	}
 	public BigDecimal getPaytAmt() {
 		return paytAmt;
 	}
 	public void setPaytAmt(BigDecimal paytAmt) {
 		this.paytAmt = paytAmt;
-	}
-	
-	public BigDecimal getRemainingBal() {
-		return remainingBal;
-	}
-	public void setRemainingBal(BigDecimal remainingBal) {
-		this.remainingBal = remainingBal;
 	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
@@ -205,16 +205,22 @@ class acctTreaty {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getPaytType() {
+		return paytType;
+	}
+	public void setPaytType(String paytType) {
+		this.paytType = paytType;
+	}
 	@Override
 	public String toString() {
 		return "acctTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo + ", policyId="
 				+ policyId + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
 				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
-				+ netDue + ", remainingBal=" + remainingBal + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
+				+ netDue + ", prevPayt=" + prevPayt + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
 				+ ", overdueInt=" + overdueInt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", paytType=" + paytType
+				+ "]";
 	}
-	
 	
 }
 

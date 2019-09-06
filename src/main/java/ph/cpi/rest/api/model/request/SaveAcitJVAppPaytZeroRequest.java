@@ -62,6 +62,7 @@ class ZeroBal{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String paytType;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -177,6 +178,13 @@ class ZeroBal{
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
 	}
+	
+	public String getPaytType() {
+		return paytType;
+	}
+	public void setPaytType(String paytType) {
+		this.paytType = paytType;
+	}
 	@Override
 	public String toString() {
 		return "ZeroBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
@@ -184,7 +192,7 @@ class ZeroBal{
 				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPaytAmt="
 				+ prevPaytAmt + ", localAmt=" + localAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", paytType=" + paytType + "]";
 	}
 	
 }
