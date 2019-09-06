@@ -14,11 +14,12 @@ public class AcitInvestments {
 	private String  	invtTypeDesc;
 	private String  	invtSecDesc;
 	private String  	invtSecCd;
+	private String      amortized;
 	private String  	securityDesc;
 	private String  	invtStatus;
 	private Integer 	matPeriod;
 	private String 		durUnit;
-	private Integer 	intRt;
+	private BigDecimal 	intRt;
 	private DateTime 	purDate;
 	private DateTime 	matDate;
 	private String 		currCd;
@@ -34,6 +35,49 @@ public class AcitInvestments {
 	private DateTime 	updateDate;
 	private String		okDelete;
 	private String 		slCd;
+	private String		preTerminatedTag;
+	private DateTime	termDate;
+	private BigDecimal  amortEff;
+	private BigDecimal  priceCost;
+	
+	public BigDecimal getAmortEff() {
+		return amortEff;
+	}
+	public void setAmortEff(BigDecimal amortEff) {
+		this.amortEff = amortEff;
+	}
+	public BigDecimal getPriceCost() {
+		return priceCost;
+	}
+	public void setPriceCost(BigDecimal priceCost) {
+		this.priceCost = priceCost;
+	}
+	public BigDecimal getIntRt() {
+		return intRt;
+	}
+	public void setIntRt(BigDecimal intRt) {
+		this.intRt = intRt;
+	}
+	
+	public DateTime getTermDate() {
+		return termDate;
+	}
+	public void setTermDate(DateTime termDate) {
+		this.termDate = termDate;
+	}
+	public String getPreTerminatedTag() {
+		return preTerminatedTag;
+	}
+	public void setPreTerminatedTag(String preTerminatedTag) {
+		this.preTerminatedTag = preTerminatedTag;
+	}
+	public String getAmortized() {
+		return amortized;
+	}
+	public void setAmortized(String amortized) {
+		this.amortized = amortized;
+	}
+	
 	public Integer getInvtId() {
 		return invtId;
 	}
@@ -105,12 +149,6 @@ public class AcitInvestments {
 	}
 	public void setDurUnit(String durUnit) {
 		this.durUnit = durUnit;
-	}
-	public Integer getIntRt() {
-		return intRt;
-	}
-	public void setIntRt(Integer intRt) {
-		this.intRt = intRt;
 	}
 	public DateTime getPurDate() {
 		return purDate;
@@ -202,17 +240,18 @@ public class AcitInvestments {
 	public void setSlCd(String slCd) {
 		this.slCd = slCd;
 	}
+	
 	@Override
 	public String toString() {
 		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
 				+ ", invtType=" + invtType + ", invtTypeDesc=" + invtTypeDesc + ", invtSecDesc=" + invtSecDesc
-				+ ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc + ", invtStatus=" + invtStatus
-				+ ", matPeriod=" + matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate
-				+ ", matDate=" + matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt
-				+ ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal="
-				+ matVal + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", slCd=" + slCd + "]";
+				+ ", invtSecCd=" + invtSecCd + ", amortized=" + amortized + ", securityDesc=" + securityDesc
+				+ ", invtStatus=" + invtStatus + ", matPeriod=" + matPeriod + ", durUnit=" + durUnit + ", intRt="
+				+ intRt + ", purDate=" + purDate + ", matDate=" + matDate + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge
+				+ ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag + ", termDate=" + termDate + ", amortEff="
+				+ amortEff + ", priceCost=" + priceCost + "]";
 	}
-	
-	
 }

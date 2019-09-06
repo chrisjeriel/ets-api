@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAmortizeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
@@ -116,6 +117,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAmortizeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
@@ -661,8 +663,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
 		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
 		rapcsrParams.put("cedingId", rapcsr.getCedingId());
-		rapcsrParams.put("month", rapcsr.getMonth());
-		rapcsrParams.put("year", rapcsr.getYear());
+		rapcsrParams.put("dateTo", rapcsr.getDateTo());
+		rapcsrParams.put("dateFrom", rapcsr.getDateFrom());
 		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
 		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
 		return rapcsrResponse;
@@ -1980,5 +1982,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("policyId",request.getPolicyId());
 		response.setSoaDtlList(acctITDao.retrieveSoaAgingZeroAltLOV(params));
 		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAmortizeResponse retrieveAcitAmortize(RetrieveAcitAmortizeRequest raar) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcitAmortizeResponse raaResponse = new RetrieveAcitAmortizeResponse();
+		HashMap<String, Object> raaParams = new HashMap<String, Object>();
+		raaParams.put("invtId",raar.getInvtId());
+		raaResponse.setAcitAmortizeList(acctITDao.retrieveAcitAmortize(raaParams));
+		logger.info("RetrieveAcitAmortizeResponse : " + raaResponse);
+		return raaResponse;
+		
 	}
 }
