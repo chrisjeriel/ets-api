@@ -5,8 +5,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ph.cpi.mybatis.mapper.SecurityMapper">
-     
+
      <resultMap type="ph.cpi.rest.api.model.maintenance.Module" id="moduleMap">
+     	<result property="moduleId"			column="MODULE_ID" />  
+		<result property="moduleDesc"		column="MODULE_DESC" />
+		<result property="moduleGrp"		column="MODULE_GRP" /> 
+		<result property="description"		column="DESCRIPTION" />
+		<result property="remarks"			column="REMARKS" />    
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.UserWithGrpModule" id="userWithGrpModuleMap">
+     	<result property="userId"			column="USER_ID" />  
+		<result property="userName"			column="USER_NAME" />
+		<result property="activeTag"		column="ACTIVE_TAG" /> 
+		<result property="userGrp"			column="USER_GRP" />  
+		<result property="userGrpDesc"		column="USER_GRP_DESC" />
      	<result property="moduleId"			column="MODULE_ID" />  
 		<result property="moduleDesc"		column="MODULE_DESC" />
 		<result property="moduleGrp"		column="MODULE_GRP" /> 
@@ -22,11 +39,11 @@
 		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_mtn_modules(#{moduleId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
-     <select id="retrieveUserModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+     <select id="retrieveUserModules" resultMap="userWithGrpModuleMap" parameterType="java.util.Map">    	  
 		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_user_modules(#{userId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, #{moduleId, jdbcType=VARCHAR}, null, null, null, null))
      </select>
      
-     <select id="retrieveGroupModules" resultMap="moduleMap" parameterType="java.util.Map">    	  
+     <select id="retrieveGroupModules" resultMap="userWithGrpModuleMap" parameterType="java.util.Map">    	  
 		 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_modules(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, #{moduleId, jdbcType=VARCHAR}, null, null, null, null))
      </select>
      
@@ -40,15 +57,30 @@
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
      </resultMap>
      
+     <resultMap type="ph.cpi.rest.api.model.maintenance.UserWithGrpTransaction" id="userWithGrpTransactionMap">
+     	<result property="userId"				column="USER_ID" />  
+		<result property="userName"				column="USER_NAME" />
+		<result property="activeTag"			column="ACTIVE_TAG" /> 
+		<result property="userGrp"				column="USER_GRP" />  
+		<result property="userGrpDesc"			column="USER_GRP_DESC" />
+     	<result property="tranCd" 				column="TRAN_CD" /> 
+		<result property="tranDesc" 			column="TRAN_DESC" /> 
+		<result property="remarks" 				column="REMARKS" /> 
+		<result property="createUser" 			column="CREATE_USER" /> 
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+		<result property="updateUser" 			column="UPDATE_USER" /> 
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" /> 
+     </resultMap>
+     
      <select id="retrieveMtnTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
      	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_mtn_transactions(#{moduleId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
-     <select id="retrieveUserTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     <select id="retrieveUserTransactions" resultMap="userWithGrpTransactionMap" parameterType="java.util.Map"> 
      	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_user_transactions(#{userId, jdbcType=VARCHAR}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
-     <select id="retrieveGroupTransactions" resultMap="transactionMap" parameterType="java.util.Map"> 
+     <select id="retrieveGroupTransactions" resultMap="userWithGrpTransactionMap" parameterType="java.util.Map"> 
      	 SELECT * from TABLE(MTN_SECURITY_PKG.retrieve_usergrp_transactions(#{userGrp, jdbcType=INTEGER}, #{tranCd, jdbcType=INTEGER}, null, null, null, null))
      </select>
      
@@ -61,6 +93,50 @@
 		    										   #{tranItem.remarks, jdbcType=VARCHAR},
 		    										   #{tranItem.createUser, jdbcType=VARCHAR},
 		    										   #{tranItem.updateUser, jdbcType=VARCHAR});
+			END;
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveUserModules" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="moduleList" item="modItem">
+			BEGIN
+		    	MTN_SECURITY_PKG.save_user_module(#{modItem.userId, jdbcType=VARCHAR},
+		    										   #{modItem.tranCd, jdbcType=INTEGER},
+		    										   #{modItem.moduleId, jdbcType=VARCHAR},
+		    										   #{modItem.remarks, jdbcType=VARCHAR},
+		    										   #{modItem.createUser, jdbcType=VARCHAR},
+		    										   #{modItem.updateUser, jdbcType=VARCHAR});
+			END;
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveGroupTransactions" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="transactionList" item="tranItem">
+			BEGIN
+		    	MTN_SECURITY_PKG.save_usergrp_transaction(#{tranItem.userGrp, jdbcType=VARCHAR},
+		    										   #{tranItem.tranCd, jdbcType=INTEGER},
+		    										   #{tranItem.remarks, jdbcType=VARCHAR},
+		    										   #{tranItem.createUser, jdbcType=VARCHAR},
+		    										   #{tranItem.updateUser, jdbcType=VARCHAR});
+			END;
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveGroupModules" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="moduleList" item="modItem">
+			BEGIN
+		    	MTN_SECURITY_PKG.save_usergrp_module(#{modItem.userGrp, jdbcType=VARCHAR},
+		    										   #{modItem.tranCd, jdbcType=INTEGER},
+		    										   #{modItem.moduleId, jdbcType=VARCHAR},
+		    										   #{modItem.remarks, jdbcType=VARCHAR},
+		    										   #{modItem.createUser, jdbcType=VARCHAR},
+		    										   #{modItem.updateUser, jdbcType=VARCHAR});
 			END;
 			</foreach>
 		END;

@@ -53,5 +53,13 @@ public class Transaction {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	@Override
+	public String toString() {
+		return "Transaction [tranCd=" + tranCd + ", tranDesc=" + tranDesc + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
+	}
+	
+	
 
 }

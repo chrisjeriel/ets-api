@@ -6,21 +6,22 @@ import java.util.List;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.Module;
+import ph.cpi.rest.api.model.maintenance.UserWithGrpModule;
 
 public class RetrieveModulesResponse {
 	
-	private List<Module> modules;
+	private List<UserWithGrpModule> modules;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<Module> getModules() {
+	public List<UserWithGrpModule> getModules() {
 		if (modules == null) {
-			modules = new ArrayList<Module>();
+			modules = new ArrayList<UserWithGrpModule>();
 		}
 		
 		return modules;
 	}
-	public void setModules(List<Module> modules) {
+	public void setModules(List<UserWithGrpModule> modules) {
 		this.modules = modules;
 	}
 	public PaginationResponse getPaginationResponse() {

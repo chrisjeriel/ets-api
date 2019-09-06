@@ -14,11 +14,13 @@ import ph.cpi.rest.api.model.request.RetrieveModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTransactionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveTransactionsRequest;
+import ph.cpi.rest.api.model.request.SaveModulesRequest;
 import ph.cpi.rest.api.model.request.SaveTransactionsRequest;
 import ph.cpi.rest.api.model.response.RetrieveModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnModulesResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnTransactionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveTransactionsResponse;
+import ph.cpi.rest.api.model.response.SaveModulesResponse;
 import ph.cpi.rest.api.model.response.SaveTransactionsResponse;
 import ph.cpi.rest.api.service.SecurityService;
 
@@ -79,7 +81,7 @@ public class SecurityServiceImpl implements SecurityService{
 			params.put("userGrp", rtr.getUserGrp());
 			response.setTransactions(securityDao.retrieveGroupTransactions(params));
 		}
-		
+		logger.info(response.toString());
 		return response;
 	}
 
@@ -89,6 +91,7 @@ public class SecurityServiceImpl implements SecurityService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("tranCd", rmr.getTranCd());
+		params.put("moduleId", rmr.getModuleId());
 		if ("USER".equalsIgnoreCase(rmr.getAccessLevel())) {
 			params.put("userId", rmr.getUserId());
 			response.setModules(securityDao.retrieveUserModules(params));
@@ -96,7 +99,7 @@ public class SecurityServiceImpl implements SecurityService{
 			params.put("userGrp", rmr.getUserGrp());
 			response.setModules(securityDao.retrieveGroupModules(params));
 		}
-		
+		logger.info(response.toString());
 		return response;
 	}
 
@@ -111,7 +114,26 @@ public class SecurityServiceImpl implements SecurityService{
 			response.setReturnCode(securityDao.saveUserTransactions(params));
 		} else if  ("USER_GROUP".equalsIgnoreCase(str.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("transactionList", str.getTransactionList());
 			response.setReturnCode(securityDao.saveGroupTransactions(params));
+		}
+		
+		return response;
+	}
+
+	@Override
+	public SaveModulesResponse saveModules(SaveModulesRequest smr) throws SQLException {
+		SaveModulesResponse response = new SaveModulesResponse();
+		
+		
+		if ("USER".equalsIgnoreCase(smr.getAccessLevel())) {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("moduleList", smr.getModuleList());
+			response.setReturnCode(securityDao.saveUserModules(params));
+		} else if  ("USER_GROUP".equalsIgnoreCase(smr.getAccessLevel())) {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("moduleList", smr.getModuleList());
+			response.setReturnCode(securityDao.saveGroupModules(params));
 		}
 		
 		return response;

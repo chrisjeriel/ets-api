@@ -9,6 +9,7 @@ public class RetrieveModulesRequest {
 	private String userId;
 	private String userGrp;
 	private Integer tranCd;
+	private String moduleId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getAccessLevel() {
@@ -47,11 +48,17 @@ public class RetrieveModulesRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public String getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(String moduleId) {
+		this.moduleId = moduleId;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveModulesRequest [accessLevel=" + accessLevel + ", userId=" + userId + ", userGrp=" + userGrp
-				+ ", tranCd=" + tranCd + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
-				+ "]";
+				+ ", tranCd=" + tranCd + ", moduleId=" + moduleId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

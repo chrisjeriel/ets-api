@@ -1,9 +1,10 @@
 package ph.cpi.rest.api.model.maintenance;
 
-public class SaveTransaction {
+public class SaveModule {
 	private String userId;
 	private String userGrp;
 	private Integer tranCd;    
+	private String moduleId;
 	private String remarks;    
 	private String createUser;
 	private String updateUser;
@@ -37,6 +38,13 @@ public class SaveTransaction {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
+	
+	public String getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(String moduleId) {
+		this.moduleId = moduleId;
+	}
 	public String getUserGrp() {
 		return userGrp;
 	}
@@ -45,8 +53,8 @@ public class SaveTransaction {
 	}
 	@Override
 	public String toString() {
-		return "SaveTransaction [userId=" + userId + ", userGrp=" + userGrp + ", tranCd=" + tranCd + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", updateUser=" + updateUser + "]";
+		return "SaveModule [userId=" + userId + ", userGrp=" + userGrp + ", tranCd=" + tranCd + ", moduleId=" + moduleId
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", updateUser=" + updateUser + "]";
 	}
 	
 }

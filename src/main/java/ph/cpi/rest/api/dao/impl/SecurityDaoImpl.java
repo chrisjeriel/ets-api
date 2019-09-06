@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.SecurityDao;
 import ph.cpi.rest.api.model.maintenance.Module;
 import ph.cpi.rest.api.model.maintenance.Transaction;
+import ph.cpi.rest.api.model.maintenance.UserWithGrpModule;
+import ph.cpi.rest.api.model.maintenance.UserWithGrpTransaction;
 
 @Component
 public class SecurityDaoImpl implements SecurityDao {
@@ -29,14 +31,14 @@ public class SecurityDaoImpl implements SecurityDao {
 	}
 	
 	@Override
-	public List<Module> retrieveUserModules(HashMap<String, Object> params) throws SQLException {
-		List<Module> modules = sqlSession.selectList("retrieveUserModules", params);
+	public List<UserWithGrpModule> retrieveUserModules(HashMap<String, Object> params) throws SQLException {
+		List<UserWithGrpModule> modules = sqlSession.selectList("retrieveUserModules", params);
 		return modules;
 	}
 
 	@Override
-	public List<Module> retrieveGroupModules(HashMap<String, Object> params) throws SQLException {
-		List<Module> modules = sqlSession.selectList("retrieveGroupModules", params);
+	public List<UserWithGrpModule> retrieveGroupModules(HashMap<String, Object> params) throws SQLException {
+		List<UserWithGrpModule> modules = sqlSession.selectList("retrieveGroupModules", params);
 		return modules;
 	}
 
@@ -47,14 +49,14 @@ public class SecurityDaoImpl implements SecurityDao {
 	}
 
 	@Override
-	public List<Transaction> retrieveUserTransactions(HashMap<String, Object> params) throws SQLException {
-		List<Transaction> transactions = sqlSession.selectList("retrieveUserTransactions", params);
+	public List<UserWithGrpTransaction> retrieveUserTransactions(HashMap<String, Object> params) throws SQLException {
+		List<UserWithGrpTransaction> transactions = sqlSession.selectList("retrieveUserTransactions", params);
 		return transactions;
 	}
 	
 	@Override
-	public List<Transaction> retrieveGroupTransactions(HashMap<String, Object> params) throws SQLException {
-		List<Transaction> transactions = sqlSession.selectList("retrieveGroupTransactions", params);
+	public List<UserWithGrpTransaction> retrieveGroupTransactions(HashMap<String, Object> params) throws SQLException {
+		List<UserWithGrpTransaction> transactions = sqlSession.selectList("retrieveGroupTransactions", params);
 		return transactions;
 	}
 
@@ -67,6 +69,18 @@ public class SecurityDaoImpl implements SecurityDao {
 	@Override
 	public Integer saveGroupTransactions(HashMap<String, Object> params) throws SQLException {
 		Integer respCode = sqlSession.update("saveGroupTransactions", params);
+		return respCode;
+	}
+
+	@Override
+	public Integer saveUserModules(HashMap<String, Object> params) throws SQLException {
+		Integer respCode = sqlSession.update("saveUserModules", params);
+		return respCode;
+	}
+
+	@Override
+	public Integer saveGroupModules(HashMap<String, Object> params) throws SQLException {
+		Integer respCode = sqlSession.update("saveGroupModules", params);
 		return respCode;
 	}
 
