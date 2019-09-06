@@ -193,6 +193,9 @@
 		<result property="slCd"							column="SL_CD" />
 		<result property="preTerminatedTag"			    column="PRE_TERMINATED_TAG" />
 		<result property="termDate"			    		column="TERMINATION_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="priceCost"			    	column="AMORT_INVT_AMT" />
+		<result property="amortEff"			    	    column="AMORT_EFF_PCT" />
+		
 	</resultMap>
 	
 	<select id="retrieveInvestmentList" resultMap="acitInvestmentsList" parameterType="java.util.Map">
@@ -241,7 +244,10 @@
 			   									CAST(to_timestamp(#{investments.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   									#{investments.slCd,  jdbcType=VARCHAR},
 			   									#{investments.preTerminatedTag,  jdbcType=VARCHAR},
-			   									CAST(to_timestamp(#{investments.termDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			   									CAST(to_timestamp(#{investments.termDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   									#{investments.amortized,  jdbcType=VARCHAR},
+			   									#{investments.amortEff,  jdbcType=VARCHAR},
+			   									#{investments.parCost,  jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
 		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
@@ -2790,5 +2796,27 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAmortize" id="acitAmortize">
+		<result property="invtId" 					column="INVT_ID"/>
+		<result property="amortNo" 					column="AMORT_NO"/>
+		<result property="startDate" 				column="START_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="endDate" 					column="END_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="amortDays" 				column="AMORT_DAYS"/>
+		<result property="couponDays" 				column="COUPON_DAYS"/>
+		<result property="coupon" 					column="COUPON_AMT"/>
+		<result property="effAmt" 					column="EFF_AMT"/>
+		<result property="amortAmt" 				column="AMORT_AMT"/>
+		<result property="amortInvtAmt" 			column="AMORT_INVT_AMT"/>
+		<result property="amortDailyAmt" 			column="AMORT_DAILY_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitAmortizeList" resultMap="acitAmortize" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_INVESTMENTS_PKG.ret_amort_list(
+					#{invtId,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	
+	
 	
 </mapper>

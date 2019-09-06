@@ -37,7 +37,21 @@ public class AcitInvestments {
 	private String 		slCd;
 	private String		preTerminatedTag;
 	private DateTime	termDate;
+	private BigDecimal  amortEff;
+	private BigDecimal  priceCost;
 	
+	public BigDecimal getAmortEff() {
+		return amortEff;
+	}
+	public void setAmortEff(BigDecimal amortEff) {
+		this.amortEff = amortEff;
+	}
+	public BigDecimal getPriceCost() {
+		return priceCost;
+	}
+	public void setPriceCost(BigDecimal priceCost) {
+		this.priceCost = priceCost;
+	}
 	public BigDecimal getIntRt() {
 		return intRt;
 	}
@@ -237,6 +251,7 @@ public class AcitInvestments {
 				+ currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge
 				+ ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag + ", termDate=" + termDate + "]";
+				+ ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag + ", termDate=" + termDate + ", amortEff="
+				+ amortEff + ", priceCost=" + priceCost + "]";
 	}
 }

@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAmortizeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
@@ -98,6 +99,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAmortizeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
@@ -1719,5 +1721,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		
 		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAmortizeResponse retrieveAcitAmortize(RetrieveAcitAmortizeRequest raar) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcitAmortizeResponse raaResponse = new RetrieveAcitAmortizeResponse();
+		HashMap<String, Object> raaParams = new HashMap<String, Object>();
+		raaParams.put("invtId",raar.getInvtId());
+		raaResponse.setAcitAmortizeList(acctITDao.retrieveAcitAmortize(raaParams));
+		logger.info("RetrieveAcitAmortizeResponse : " + raaResponse);
+		return raaResponse;
+		
 	}
 }

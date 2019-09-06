@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAmortizeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
@@ -92,6 +93,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAmortizeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
@@ -239,9 +241,9 @@ public interface AccountingInTrustService {
 	public UpdateAcitStatusResponse updateAcitStatus(UpdateAcitStatusRequest uasr ) throws SQLException;
 	public RetrieveAcitJVRcvblsAgnstLosResponse retrieveAcitJVRcvblsAgnstLosses(RetrieveAcitJVRcvblsAgnstLosRequest request)throws SQLException;
 	public SaveAcitJVRcvblsAgnstLosResponse saveAcitJvRcvblsAgnstLoss(SaveAcitJVRcvblsAgnstLosRequest request)throws SQLException;
-	
 	public SaveAcctPrqServFeeResponse saveAcctPrqServFee(SaveAcctPrqServFeeRequest sapsfr) throws SQLException;
 	public RetrieveAcitCvResponse retrieveAcitCv(RetrieveAcitCvRequest raptp ) throws SQLException;
 	public SaveAcitCvResponse saveAcitCv(SaveAcitCvRequest sacr) throws SQLException;
 	public SaveAcitCvPaytReqListResponse saveAcitCvPaytReqList(SaveAcitCvPaytReqListRequest sacprr) throws SQLException;
+	public RetrieveAcitAmortizeResponse retrieveAcitAmortize(RetrieveAcitAmortizeRequest raar) throws SQLException;
 }

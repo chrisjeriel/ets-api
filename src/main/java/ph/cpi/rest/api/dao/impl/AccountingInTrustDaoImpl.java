@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitAmortize;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCall;
 import ph.cpi.rest.api.model.accountingintrust.AcitArClmCashCallLov;
@@ -585,5 +586,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer saveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitCvPaytReqList", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<AcitAmortize> retrieveAcitAmortize(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcitAmortize> acitAmortizeList = sqlSession.selectList("retrieveAcitAmortizeList",params);
+		return acitAmortizeList;
 	}
 }

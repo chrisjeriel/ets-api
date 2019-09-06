@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAmortizeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
@@ -101,6 +102,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAgingSoaDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeInvtIdResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitAllInvestmentIncomeResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAmortizeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArAmtDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitArClmCashCallResponse;
@@ -755,6 +757,13 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitCvPaytReqList");
 		logger.info("SaveAcitCvPaytReqListRequest : " + sacprr.toString());
 		return acctInTrustService.saveAcitCvPaytReqList(sacprr);
+	}
+	
+	@GetMapping(path="retrieveAcitAmortize")
+	public @ResponseBody RetrieveAcitAmortizeResponse retrieveAcitAmortize(RetrieveAcitAmortizeRequest raar) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/retrieveAcitAmortize");
+		logger.info("RetrieveAcitAmortizeRequest : " + raar.toString());
+		return acctInTrustService.retrieveAcitAmortize(raar);
 	}
 	
 }
