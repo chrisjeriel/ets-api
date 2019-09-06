@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistPoolRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmPaytReqInqRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmReserveDistPoolRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmReserveDistRequest;
@@ -51,6 +52,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistPoolResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmPaytReqInqResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmReserveDistPoolResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmReserveDistResponse;
@@ -652,6 +654,15 @@ public class ClaimsServiceImpl implements ClaimsService {
 			response.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveClmPaytReqInqResponse retrieveClmPaytReqInq(RetrieveClmPaytReqInqRequest rcprr) throws SQLException {
+		RetrieveClmPaytReqInqResponse response = new RetrieveClmPaytReqInqResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimNo", rcprr.getClaimNo());
+		response.setList(claimsDao.retrieveClmPaytReqInq(params));
 		return response;
 	}
 }
