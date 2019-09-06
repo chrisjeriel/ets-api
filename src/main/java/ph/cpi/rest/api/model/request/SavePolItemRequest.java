@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
@@ -50,7 +51,7 @@ class Items {
 	private String	itemDesc;
 	private String	makeYear;
 	private String	deductibleTxt;
-	private Integer	sumInsured;
+	private BigDecimal	sumInsured;
 	private String	stockType;
 	private String	serialNo;
 	private String	location;
@@ -95,10 +96,10 @@ class Items {
 	public void setDeductibleTxt(String deductibleTxt) {
 		this.deductibleTxt = deductibleTxt;
 	}
-	public Integer getSumInsured() {
+	public BigDecimal getSumInsured() {
 		return sumInsured;
 	}
-	public void setSumInsured(Integer sumInsured) {
+	public void setSumInsured(BigDecimal sumInsured) {
 		this.sumInsured = sumInsured;
 	}
 	public String getStockType() {
