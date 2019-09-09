@@ -1,28 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.Module;
-import ph.cpi.rest.api.model.maintenance.UserWithGrpModule;
+import ph.cpi.rest.api.model.claims.ClaimPaytReqInq;
 
-public class RetrieveModulesResponse {
-	
-	private List<UserWithGrpModule> modules;
+public class RetrieveClmPaytReqInqResponse {
+	List<ClaimPaytReqInq> list;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public List<UserWithGrpModule> getModules() {
-		if (modules == null) {
-			modules = new ArrayList<UserWithGrpModule>();
-		}
-		
-		return modules;
+	public List<ClaimPaytReqInq> getList() {
+		return list;
 	}
-	public void setModules(List<UserWithGrpModule> modules) {
-		this.modules = modules;
+	public void setList(List<ClaimPaytReqInq> list) {
+		this.list = list;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -38,9 +30,8 @@ public class RetrieveModulesResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnModulesResponse [modules=" + modules + ", paginationResponse=" + paginationResponse
+		return "RetrieveClmPaytReqInqResponse [list=" + list + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
 	
 }

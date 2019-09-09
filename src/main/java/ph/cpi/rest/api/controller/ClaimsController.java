@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveClaimsAttachmentRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistPoolRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmDistRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmGenInfoRequest;
+import ph.cpi.rest.api.model.request.RetrieveClmPaytReqInqRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmPaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmReserveDistPoolRequest;
 import ph.cpi.rest.api.model.request.RetrieveClmReserveDistRequest;
@@ -51,6 +52,7 @@ import ph.cpi.rest.api.model.response.RetrieveClaimsAttachmentResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistPoolResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmDistResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmGenInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveClmPaytReqInqResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmPaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmReserveDistPoolResponse;
 import ph.cpi.rest.api.model.response.RetrieveClmReserveDistResponse;
@@ -263,5 +265,12 @@ public class ClaimsController {
 		logger.info("POST: /api/claims-service/redistributeClaimReserveDist");
 		logger.info("RedistributeClaimReserveDistRequest : " + ucdr.toString());
 		return claimsService.redistributeClaimReserveDist(ucdr);
+	}
+	
+	@GetMapping(path="retrieveClmPaytReqInq")
+	public @ResponseBody RetrieveClmPaytReqInqResponse retrieveClmPaytReqInq(RetrieveClmPaytReqInqRequest rcprr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClmPaytReqInq");
+		logger.info("RetrieveClmPaytReqInqRequest : " + rcprr.toString());
+		return claimsService.retrieveClmPaytReqInq(rcprr);
 	}
 }

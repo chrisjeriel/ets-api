@@ -1,28 +1,22 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.Module;
-import ph.cpi.rest.api.model.maintenance.UserWithGrpModule;
+import ph.cpi.rest.api.model.accountingintrust.AcitAmortize;
 
-public class RetrieveModulesResponse {
-	
-	private List<UserWithGrpModule> modules;
+public class RetrieveAcitAmortizeResponse {
+
+	private List<AcitAmortize> acitAmortizeList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
-	public List<UserWithGrpModule> getModules() {
-		if (modules == null) {
-			modules = new ArrayList<UserWithGrpModule>();
-		}
-		
-		return modules;
+	public List<AcitAmortize> getAcitAmortizeList() {
+		return acitAmortizeList;
 	}
-	public void setModules(List<UserWithGrpModule> modules) {
-		this.modules = modules;
+	public void setAcitAmortizeList(List<AcitAmortize> acitAmortizeList) {
+		this.acitAmortizeList = acitAmortizeList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -36,11 +30,11 @@ public class RetrieveModulesResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveMtnModulesResponse [modules=" + modules + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcitAmortizeResponse [acitAmortizeList=" + acitAmortizeList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
 	
 }

@@ -57,6 +57,43 @@ class AcitInvt {
 	private String 		updateUser;
 	private String 		updateDate;
 	private String 		slCd;
+	private String		preTerminatedTag;
+	private String		termDate;
+	private String      amortEff;
+	private String      amortized;
+	private String      parCost;
+	
+	public String getAmortEff() {
+		return amortEff;
+	}
+	public void setAmortEff(String amortEff) {
+		this.amortEff = amortEff;
+	}
+	public String getAmortized() {
+		return amortized;
+	}
+	public void setAmortized(String amortized) {
+		this.amortized = amortized;
+	}
+	public String getParCost() {
+		return parCost;
+	}
+	public void setParCost(String parCost) {
+		this.parCost = parCost;
+	}
+
+	public String getTermDate() {
+		return termDate;
+	}
+	public void setTermDate(String termDate) {
+		this.termDate = termDate;
+	}
+	public String getPreTerminatedTag() {
+		return preTerminatedTag;
+	}
+	public void setPreTerminatedTag(String preTerminatedTag) {
+		this.preTerminatedTag = preTerminatedTag;
+	}
 	
 	public String getSlCd() {
 		return slCd;
@@ -211,6 +248,10 @@ class AcitInvt {
 				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
 				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", slCd=" + slCd + "]";
+				+ ", updateDate=" + updateDate + ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag
+				+ ", termDate=" + termDate + ", amortEff=" + amortEff + ", amortized=" + amortized + ", parCost="
+				+ parCost + "]";
 	}
+	
+	
 }

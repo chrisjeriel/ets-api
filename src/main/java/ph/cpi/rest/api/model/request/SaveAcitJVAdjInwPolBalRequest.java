@@ -56,14 +56,15 @@ class InwPol{
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
+	private BigDecimal prevPayt;
 	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
-	private BigDecimal remainingBal;
 	private BigDecimal overdueInt;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String paytType; 
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -139,11 +140,12 @@ class InwPol{
 		this.paytAmt = paytAmt;
 	}
 	
-	public BigDecimal getRemainingBal() {
-		return remainingBal;
+	
+	public BigDecimal getPrevPayt() {
+		return prevPayt;
 	}
-	public void setRemainingBal(BigDecimal remainingBal) {
-		this.remainingBal = remainingBal;
+	public void setPrevPayt(BigDecimal prevPayt) {
+		this.prevPayt = prevPayt;
 	}
 	public BigDecimal getOverdueInt() {
 		return overdueInt;
@@ -182,14 +184,21 @@ class InwPol{
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
 	}
+	
+	public String getPaytType() {
+		return paytType;
+	}
+	public void setPaytType(String paytType) {
+		this.paytType = paytType;
+	}
 	@Override
 	public String toString() {
 		return "InwPol [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", paytAmt=" + paytAmt
-				+ ", localAmt=" + localAmt + ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPayt=" + prevPayt
+				+ ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", paytType=" + paytType + "]";
 	}
 	
 }

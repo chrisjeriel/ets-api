@@ -828,17 +828,19 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			HashMap<String, Object> res = new HashMap<String, Object>();
 			
-			if(!savePolicyDetailsParams.get("quotationNo").toString().equals("")) {
-				Integer x = underwritingDao.retrieveCoInsStatus(savePolicyDetailsParams);
-				
-				if(x == 0) {
-					res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
-				} else {
-					spdResponse.setCoInsStatus(x);
-				}
-			} else {
-				res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
-			}			 
+//			if(!savePolicyDetailsParams.get("quotationNo").toString().equals("")) {
+//				Integer x = underwritingDao.retrieveCoInsStatus(savePolicyDetailsParams);
+//				
+//				if(x == 0) {
+//					res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+//				} else {
+//					spdResponse.setCoInsStatus(x);
+//				}
+//			} else {
+//				res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
+//			}
+			
+			res = underwritingDao.savePolicyDetails(savePolicyDetailsParams);
 			
 			spdResponse.setReturnCode((Integer) res.get("errorCode"));
 			spdResponse.setPolicyId((Integer) res.get("policyId"));
@@ -1270,15 +1272,19 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			pprResponse.setReturnCode(underwritingDao.postPolicy(params));
 		}catch(SQLException ex){
-			pprResponse.setReturnCode(0);
-			pprResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
-			ex.printStackTrace();
-			/*logger.info(""+ex.getErrorCode());*/
+			
+			if(ex.getErrorCode()== 20000){
+				pprResponse.setReturnCode(20000);
+				pprResponse.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				pprResponse.setReturnCode(0);
+				pprResponse.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
 		}
 		logger.info("postPolicy : " + pprResponse.toString());
 		return pprResponse;
 	}
-
+	
 	@Override
 	public GenHundredValPolPrintingResponse genHundredValPolPrinting(GenHundredValPolPrintingRequest ghvppr)
 			throws SQLException {

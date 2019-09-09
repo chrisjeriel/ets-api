@@ -54,6 +54,10 @@ class premResRel {
 	private BigDecimal interestAmt;
 	private BigDecimal whtaxAmt;
 	private BigDecimal releaseAmt;
+	private BigDecimal localAmt;
+	private BigDecimal premResQuota;
+	private BigDecimal premRes1surplus;
+	private BigDecimal premRes2surplus;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -115,6 +119,31 @@ class premResRel {
 	public void setReleaseAmt(BigDecimal releaseAmt) {
 		this.releaseAmt = releaseAmt;
 	}
+	
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
+	}
+	public BigDecimal getPremResQuota() {
+		return premResQuota;
+	}
+	public void setPremResQuota(BigDecimal premResQuota) {
+		this.premResQuota = premResQuota;
+	}
+	public BigDecimal getPremRes1surplus() {
+		return premRes1surplus;
+	}
+	public void setPremRes1surplus(BigDecimal premRes1surplus) {
+		this.premRes1surplus = premRes1surplus;
+	}
+	public BigDecimal getPremRes2surplus() {
+		return premRes2surplus;
+	}
+	public void setPremRes2surplus(BigDecimal premRes2surplus) {
+		this.premRes2surplus = premRes2surplus;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -155,8 +184,11 @@ class premResRel {
 	public String toString() {
 		return "premResRel [tranId=" + tranId + ", cedingId=" + cedingId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", interestAmt=" + interestAmt
-				+ ", whtaxAmt=" + whtaxAmt + ", releaseAmt=" + releaseAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", totalWhtaxAmt=" + totalWhtaxAmt + ", totalInterestAmt=" + totalInterestAmt + "]";
+				+ ", whtaxAmt=" + whtaxAmt + ", releaseAmt=" + releaseAmt + ", localAmt=" + localAmt + ", premResQuota="
+				+ premResQuota + ", premRes1surplus=" + premRes1surplus + ", premRes2surplus=" + premRes2surplus
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", totalWhtaxAmt=" + totalWhtaxAmt + ", totalInterestAmt="
+				+ totalInterestAmt + "]";
 	}
+	
 }
