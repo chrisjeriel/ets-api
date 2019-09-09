@@ -1123,18 +1123,6 @@
 				</foreach>
 				
 				<foreach collection="saveInwPolBal" item="save">
-				<!-- UPDATE AGING SOA DETAILS -->
-					ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(
-																  #{save.policyId},
-																  #{save.instNo},
-																  #{save.premAmt},
-																  #{save.riComm},
-																  #{save.riCommVat},
-																  #{save.charges},
-																  #{save.balPaytAmt},
-																  #{save.updateUser},
-																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-															      );
 					<!-- Save from ACIT_AR_INWPOLBAL -->										      
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
 														#{save.tranId},
@@ -1155,6 +1143,19 @@
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
 					);
+					
+					<!-- UPDATE AGING SOA DETAILS -->
+					ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(	  #{save.tranId},
+																  #{save.policyId},
+																  #{save.instNo},
+																  #{save.premAmt},
+																  #{save.riComm},
+																  #{save.riCommVat},
+																  #{save.charges},
+																  #{save.balPaytAmt},
+																  #{save.updateUser},
+																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+															      );
 					
 					<!-- INSERT OR UPDATE TO ACIT_INWPOL_PAYTS -->
 					ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
