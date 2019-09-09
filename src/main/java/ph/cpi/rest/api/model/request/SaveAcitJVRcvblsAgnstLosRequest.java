@@ -71,7 +71,7 @@ class InwpolOffset{
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal cumPayment;
+	private BigDecimal prevPayt;
 	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
@@ -146,12 +146,11 @@ class InwpolOffset{
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	
-	public BigDecimal getCumPayment() {
-		return cumPayment;
+	public BigDecimal getPrevPayt() {
+		return prevPayt;
 	}
-	public void setCumPayment(BigDecimal cumPayment) {
-		this.cumPayment = cumPayment;
+	public void setPrevPayt(BigDecimal prevPayt) {
+		this.prevPayt = prevPayt;
 	}
 	public BigDecimal getPaytAmt() {
 		return paytAmt;
@@ -205,10 +204,10 @@ class InwpolOffset{
 	public String toString() {
 		return "InwpolOffset [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", cumPayment="
-				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPayt=" + prevPayt
+				+ ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt + ", remarks="
+				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

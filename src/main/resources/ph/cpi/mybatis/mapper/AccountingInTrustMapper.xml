@@ -2597,7 +2597,13 @@
 																   #{saved.paytAmt},#{saved.updateUser}, 
 																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
-				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(#{saved.tranId}, #{saved.policyId}, #{saved.instNo}, #{saved.paytType}, 3);
+				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
+														#{saved.tranId},
+														#{saved.policyId},
+														#{saved.instNo},
+														#{saved.paytType}, <!-- PAYT TYPE 1 FOR JV. CHANGE AS NECESSARY -->
+														3 
+				);
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2792,7 +2798,7 @@
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="saved">
-				ACIT_JOURNAL_VOUCHER_PKG.save_inw_offset(#{saved.tranId}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_clm_inw(#{saved.tranId}, 
 														 #{saved.itemNo,jdbcType=INTEGER}, 
 														 #{saved.policyId}, 
 														 #{saved.instNo}, 
@@ -2803,7 +2809,7 @@
 														 #{saved.riCommVat}, 
 														 #{saved.charges}, 
 														 #{saved.netDue}, 
-														 #{saved.cumPayment}, 
+														 #{saved.prevPayt,jdbcType=INTEGER}, 
 														 #{saved.paytAmt}, 
 														 #{saved.localAmt}, 
 														 #{saved.overdueInt ,jdbcType=INTEGER}, 
@@ -2813,10 +2819,11 @@
 														 #{saved.updateUser}, 
 														 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														 );
-				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
-																   #{saved.paytAmt},#{saved.updateUser}, 
-																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); 
-				
+														 
+				 <!-- ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
+														#{saved.paytAmt}, #{saved.updateUser}, 
+														CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													    ); -->
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
