@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.underwriting.BookingDate;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
@@ -644,5 +645,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		}
 		
 		return date;
+	}
+
+	@Override
+	public BookingDate retrieveValidBookingDate(HashMap<String, Object> params) throws SQLException {
+		BookingDate dates = sqlSession.selectOne("retrieveValidBookingDate",params);
+		return dates;
 	}
 }

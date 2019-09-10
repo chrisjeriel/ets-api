@@ -2718,4 +2718,16 @@
 	<select id="getAcctingDate" resultMap="getAcctingDateMap">
 		SELECT POL_INWARD_PKG.get_acct_date(#{policyId}) ACCT_ENT_DATE FROM DUAL
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.BookingDate" id="BookingDateMap">
+		<result property="suggestedDate" column="SUGGESTED_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="minDate" column="MIN_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveValidBookingDate" resultMap="BookingDateMap">
+		SELECT * FROM TABLE(MTN_BOOKING_MONTH_PKG.get_valid_booking_date(
+							CAST(to_timestamp(#{date1, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							CAST(to_timestamp(#{date2, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+							))
+	</select>
 </mapper>

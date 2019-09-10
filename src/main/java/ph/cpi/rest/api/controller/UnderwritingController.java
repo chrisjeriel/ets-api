@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
+import ph.cpi.rest.api.model.request.RetrieveValidBookingDateRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
@@ -125,6 +126,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
+import ph.cpi.rest.api.model.response.RetrieveValidBookingDateResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
@@ -673,5 +675,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolInstTagAcctDate");
 		logger.info("RetrievePolInstTagAcctDateRequest : " + rpdir.toString());
 		return underwritingService.retrievePolInstTagAcctDate(rpdir);
+	}
+	
+	@GetMapping(path="retrieveValidBookingDate")
+	public @ResponseBody RetrieveValidBookingDateResponse retrieveValidBookingDate(RetrieveValidBookingDateRequest rpdir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveValidBookingDate");
+		logger.info("RetrieveValidBookingDateRequest : " + rpdir.toString());
+		return underwritingService.retrieveValidBookingDate(rpdir);
 	}
 }
