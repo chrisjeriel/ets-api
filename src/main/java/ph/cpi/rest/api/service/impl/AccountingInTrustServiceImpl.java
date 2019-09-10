@@ -1079,8 +1079,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			throws SQLException {
 		RetrieveAcitPrqInwPolResponse rapipResponse = new RetrieveAcitPrqInwPolResponse();
 		HashMap<String, Object> rapipParams = new HashMap<String, Object>();
-		rapipParams.put("",rapipp.getReqId());
-		rapipParams.put("",rapipp.getItemNo());
+		rapipParams.put("reqId",rapipp.getReqId());
+		rapipParams.put("itemNo",rapipp.getItemNo());
 		rapipResponse.setAcitPrqInwPolList(acctITDao.retrieveAcitPrqInwPol(rapipParams));
 		logger.info("RetrieveAcitPrqInwPolResponse : " + rapipResponse.toString());
 		return rapipResponse;

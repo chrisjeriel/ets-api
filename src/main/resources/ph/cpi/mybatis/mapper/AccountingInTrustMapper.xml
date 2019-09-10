@@ -1522,7 +1522,10 @@
 		<result property="premAmt"		column="PREM_AMT"/>		
 		<result property="riComm"		column="RI_COMM"/>			
 		<result property="riCommVat"	column="RI_COMM_VAT"/>		
-		<result property="prevPaytAmt"	column="PREV_PAYT_AMT"/>	
+		<result property="prevPaytAmt"	column="PREV_PAYT_AMT"/>
+		<result property="prevBalance"	column="PREV_BALANCE"/>
+		<result property="newPaytAmt"	column="NEW_PAYT_AMT"/>
+		<result property="newBalance"	column="NEW_BALANCE"/>	
 		<result property="netDue"		column="NET_DUE"/>			
 		<result property="charges"		column="CHARGES"/>			
 		<result property="returnAmt"	column="RETURN_AMT"/>		
@@ -1549,6 +1552,9 @@
 					#{save.riComm, jdbcType=INTEGER},
 					#{save.riCommVat, jdbcType=INTEGER},
 					#{save.prevPaytAmt, jdbcType=INTEGER},
+					#{save.prevBalance, jdbcType=INTEGER},
+					#{save.newPaytAmt, jdbcType=INTEGER},
+					#{save.newBalance, jdbcType=INTEGER},
 					#{save.netDue, jdbcType=INTEGER},
 					#{save.charges, jdbcType=INTEGER},
 					#{save.returnAmt, jdbcType=INTEGER},
