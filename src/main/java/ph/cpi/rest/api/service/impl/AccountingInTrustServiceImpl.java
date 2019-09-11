@@ -1731,6 +1731,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("cvDate", sacr.getCvDate());
 	        sacParams.put("cvStatus", sacr.getCvStatus());
 	        //sacParams.put("payeeNo", sacr.getPayeeNo());
+	        sacParams.put("paytReqType", sacr.getPaytReqType());
 	        sacParams.put("payeeClassCd", sacr.getPayeeClassCd());
 	        sacParams.put("payeeCd", sacr.getPayeeCd());
 	        sacParams.put("payee", sacr.getPayee());

@@ -41,6 +41,7 @@
 		<result property="reqStatus"		column="REQ_STATUS"/>
 		<result property="reqStatusDesc"	column="REQ_STATUS_DESC"/>
 		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
+		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
 		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
 		<result property="payeeCd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
@@ -2842,6 +2843,8 @@
 		<result property="cvStatus"			column="CV_STATUS"/>
 		<result property="cvStatusDesc"		column="CV_STATUS_DESC"/>
 		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
+		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
+		<result property="paytReqTypeDesc"	column="PAYT_REQ_TYPE_DESC"/>
 		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
 		<result property="payeeCd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
@@ -2910,6 +2913,7 @@
 				CAST(to_timestamp(#{cvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{cvStatus, jdbcType=VARCHAR},
 				<!-- #{payeeNo, jdbcType=INTEGER}, -->
+				#{paytReqType, jdbcType=INTEGER},
 				#{payeeClassCd, jdbcType=INTEGER},
 				#{payeeCd, jdbcType=VARCHAR},
 				#{payee, jdbcType=VARCHAR},
