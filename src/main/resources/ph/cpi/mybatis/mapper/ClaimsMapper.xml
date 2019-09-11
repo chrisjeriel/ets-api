@@ -614,6 +614,8 @@
 	</update>
 	
 	<update id="saveClmAdjuster" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_num NUMBER;
 		BEGIN
 		   <foreach collection="deleteAdjuster" item="del">
 		   		CLM_ADJUSTER_PKG.del_adjuster(
@@ -633,6 +635,10 @@
 				    CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		   		);
 		   </foreach>
+		   
+		   SELECT 1
+		     INTO v_num
+		     FROM DUAL;
 		END;
 	</update>
 
