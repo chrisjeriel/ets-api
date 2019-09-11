@@ -389,6 +389,7 @@
 		<result property="arStatus"      column="AR_STATUS"         />
 		<result property="tranStat"      column="TRAN_STAT"         />
 		<result property="arStatDesc"    column="AR_STAT_DESC"      />
+		<result property="tranStatDesc"  column="TRAN_STAT_DESC"    />
 		<result property="dcbYear"       column="DCB_YEAR"          />
 		<result property="dcbUserCd"     column="DCB_USER_CD"       />
 		<result property="dcbNo"         column="DCB_NO"            />
