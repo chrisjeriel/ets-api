@@ -584,16 +584,19 @@
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="policyNo" column="POLICY_NO"/>
 		<result property="soaNo" column="SOA_NO"/>
+		<result property="instNo" column="INST_NO"/>
 		<result property="coRefNo" column="CO_REF_NO"/>
 		<result property="effDate" column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="instNo" column="INST_NO"/>
 		<result property="dueDate" column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="daysOverdue" column="DAYS_OVERDUE"/>
+		<result property="actualOverdueDays" column="ACTUAL_OVERDUE_DAYS"/>
+		<result property="overdueDaysWInt" column="OVERDUE_DAYS_W_INT"/>
+		<result property="interestRate" column="INTEREST_RATE"/>
 		<result property="autoTag" column="AUTO_TAG"/>
 		<result property="currCd" column="CURR_CD"/>
 		<result property="currRate" column="CURR_RATE"/>
-		<result property="premAmt" column="PREM_AMT"/>
+		<result property="balanceAmt" column="BALANCE_AMT"/>
 		<result property="overdueInt" column="OVERDUE_INT"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
@@ -648,7 +651,7 @@
 	</select>
 	
 	<select id="retrieveAcitJvInwPolBal" resultMap="inwPolBalMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_aipb(
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_adj_inw_pol(
 					#{tranId},
 					#{instNo,jdbcType=INTEGER},
 					'', '', '',''))
@@ -852,10 +855,7 @@
 	</update>
 	
 	<select id="retrieveAcitJVIntOverdue" resultMap="overDueMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_ioams(
-					#{tranId},
-					#{instNo,jdbcType=INTEGER},
-					'', '', '',''))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_overdue_int(#{tranId},#{instNo,jdbcType=INTEGER},'', '', '',''))
 	</select>
 	
 	<update id="saveAcitJVInwPolBal" parameterType="java.util.Map" statementType="CALLABLE">
@@ -876,14 +876,15 @@
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_acit_aipb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_adj_inwpol(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.prevPayt,jdbcType=INTEGER}, #{save.localAmt},#{save.paytAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
+													#{save.netDue}, #{save.localAmt},#{save.paytAmt}, #{save.overdueInt,jdbcType=INTEGER},
+												    #{save.totalPayt},#{save.remainingBal}, #{save.balance}, #{save.cumPayment}, #{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
-				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
+				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{tranId},#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
 																   #{save.paytAmt},#{save.updateUser}, 
 																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 																  
@@ -905,17 +906,17 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="deleteOverdueAccts" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_ioams(#{delete.tranId}, #{delete.itemNo});
+				ACIT_JOURNAL_VOUCHER_PKG.del_overdue_int(#{delete.tranId}, #{delete.itemNo});
 			</foreach>
 			
 			<foreach collection="saveOverdueAccts" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_acit_ioams(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId},
-														 #{save.instNo}, CAST(to_timestamp(#{save.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														 #{save.daysOverdue}, #{save.interestRate}, #{save.autoTag}, #{save.currCd}, #{save.currRate}, 
-														 #{save.premAmt}, #{save.overdueInt}, #{save.createUser},
-													     CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														 #{save.updateUser},
-														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				ACIT_JOURNAL_VOUCHER_PKG.save_overdue_int(#{save.tranId}, #{itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, 
+														  CAST(to_timestamp(#{save.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+														  #{save.actualOverdueDays}, #{save.overdueDaysWInt}, #{save.interestRate}, #{save.autoTag}, 
+														  #{save.currCd}, #{save.currRate}, #{save.balanceAmt}, #{save.overdueInt}, #{save.localAmt}, 
+														  #{save.createUser}, CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+														  #{save.updateUser}, CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				
 			</foreach>
 			
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
@@ -944,9 +945,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJVPremResRel" resultMap="premResMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_premrr(
-					#{tranId},
-					'', '', '',''))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_funds_held(#{tranId},'', '', '',''))
 	</select>
 
 	 <update id="saveAcitPrqTrans" parameterType="java.util.Map">
@@ -1448,12 +1447,12 @@
 			v_message		VARCHAR2(500);
 		BEGIN
 			<foreach collection="deletePremResRel" item="del">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_prr(#{del.tranId},
+				ACIT_JOURNAL_VOUCHER_PKG.del_funds_held(#{del.tranId},
 					#{del.itemNo});
 			</foreach>
 			
 			<foreach collection="savePremResRel" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_acit_prr(
+				ACIT_JOURNAL_VOUCHER_PKG.save_funds_held(
 					#{save.tranId},
 					#{save.cedingId},
 					#{save.itemNo,jdbcType=INTEGER},
@@ -1798,7 +1797,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJVAppPaytZeroBal" resultMap="zeroBalMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_pwzb(#{tranId},#{instNo,jdbcType=INTEGER},null,null,null,null))
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_zero_bal(#{tranId},#{instNo,jdbcType=INTEGER},null,null,null,null))
 	</select>
 	
 	<update id="saveAcitJVAppPaytZeroBal" parameterType="java.util.Map">
@@ -1821,15 +1820,17 @@
 			</foreach>
 			
 			<foreach collection="saveZeroBal" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_acit_pwzb(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_zero_bal(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.prevPaytAmt,jdbcType=INTEGER}, #{save.localAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, #{save.createUser}, 
+													#{save.netDue}, #{save.localAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, 
+													#{save.totalPayt},#{save.remainingBal},#{save.balance},
+													#{save.cumPayment},#{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser}, 
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				
-				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
+				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{tranId},#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
 																   #{save.adjBalAmt},#{save.updateUser}, 
 																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 																  
@@ -1840,7 +1841,7 @@
 														#{save.instNo},
 														#{save.paytType}, 
 														3 
-				);save_acit_clm_off
+				);
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2591,22 +2592,20 @@
 															#{saved.riCommVat}, 
 															#{saved.charges}, 
 															#{saved.netDue}, 
-															#{saved.prevPayt ,jdbcType=INTEGER},
 															#{saved.paytAmt}, 
 															#{saved.localAmt}, 
 															#{saved.overdueInt ,jdbcType=INTEGER}, 
-															#{saved.remarks,jdbcType=VARCHAR}, 
+															#{saved.remarks,jdbcType=VARCHAR},
+															#{saved.totalPayt},
+															#{saved.remainingBal},
+															#{saved.balance},
+															#{saved.cumPayment},
 															#{saved.createUser}, 
 															CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 															#{saved.updateUser}, 
 															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
-				
-				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
-																   #{saved.paytAmt},#{saved.updateUser}, 
-																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-			
-				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(#{saved.tranId}, #{saved.policyId}, #{saved.instNo}, #{saved.paytType}, 3);
+				<!-- UPDATE FOR SOA AND ACIT_INWPOL_PAYTS IS INCLUDED ON THE PACKAGE -->
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2801,7 +2800,7 @@
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="saved">
-				ACIT_JOURNAL_VOUCHER_PKG.save_inw_offset(#{saved.tranId}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_clm_inw(#{saved.tranId}, 
 														 #{saved.itemNo,jdbcType=INTEGER}, 
 														 #{saved.policyId}, 
 														 #{saved.instNo}, 
@@ -2812,20 +2811,20 @@
 														 #{saved.riCommVat}, 
 														 #{saved.charges}, 
 														 #{saved.netDue}, 
-														 #{saved.cumPayment}, 
 														 #{saved.paytAmt}, 
 														 #{saved.localAmt}, 
 														 #{saved.overdueInt ,jdbcType=INTEGER}, 
 														 #{saved.remarks,jdbcType=VARCHAR}, 
+														 #{saved.cumPayment}, 
+														 #{saved.balance}, 
+														 #{saved.totalPayt}, 
+														 #{saved.remainingBal}, 
 														 #{saved.createUser}, 
 														 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														 #{saved.updateUser}, 
 														 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														 );
-				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{saved.policyId}, #{saved.instNo}, #{saved.premAmt}, #{saved.riComm}, #{saved.riCommVat}, #{saved.charges}, 
-																   #{saved.paytAmt},#{saved.updateUser}, 
-																  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); 
-				
+						<!-- UPDATING SOA AND INWPOL_PAYTS IS INCLUDED ON THE PACKAGE ALREADY -->
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;

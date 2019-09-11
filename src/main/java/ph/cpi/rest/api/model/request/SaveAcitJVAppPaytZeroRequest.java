@@ -54,10 +54,13 @@ class ZeroBal{
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal prevPaytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal adjBalAmt;
 	private BigDecimal overdueInt;
+	private BigDecimal cumPayment;
+	private BigDecimal balance;
+	private BigDecimal totalPayt;
+	private BigDecimal remainingBal;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -129,12 +132,6 @@ class ZeroBal{
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getPrevPaytAmt() {
-		return prevPaytAmt;
-	}
-	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
-		this.prevPaytAmt = prevPaytAmt;
-	}
 	public BigDecimal getAdjBalAmt() {
 		return adjBalAmt;
 	}
@@ -185,12 +182,39 @@ class ZeroBal{
 	public void setPaytType(String paytType) {
 		this.paytType = paytType;
 	}
+	
+	
+	public BigDecimal getCumPayment() {
+		return cumPayment;
+	}
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getBalance() {
+		return balance;
+	}
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+	public BigDecimal getTotalPayt() {
+		return totalPayt;
+	}
+	public void setTotalPayt(BigDecimal totalPayt) {
+		this.totalPayt = totalPayt;
+	}
+	public BigDecimal getRemainingBal() {
+		return remainingBal;
+	}
+	public void setRemainingBal(BigDecimal remainingBal) {
+		this.remainingBal = remainingBal;
+	}
 	@Override
 	public String toString() {
 		return "ZeroBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", prevPaytAmt="
-				+ prevPaytAmt + ", localAmt=" + localAmt + ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", localAmt=" + localAmt
+				+ ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt + ", cumPayment=" + cumPayment
+				+ ", balance=" + balance + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", paytType=" + paytType + "]";
 	}
