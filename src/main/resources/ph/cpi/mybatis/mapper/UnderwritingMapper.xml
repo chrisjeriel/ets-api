@@ -2730,4 +2730,10 @@
 							CAST(to_timestamp(#{date2, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 							))
 	</select>
+	
+	<update id="updatePolOpenCoverStatu">
+		BEGIN
+			POL_GEN_INFO_OC_PKG.updateStatus(#{policyIdOc},#{updateUser});
+		END;
+	</update>
 </mapper>

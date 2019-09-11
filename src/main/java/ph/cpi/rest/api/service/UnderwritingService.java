@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.DistRiskRequest;
@@ -76,6 +77,7 @@ import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
@@ -146,6 +148,7 @@ import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdatePolOpenCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 
 @Service
@@ -235,4 +238,6 @@ public interface UnderwritingService {
 	public RetrievePolInstTagAcctDateResponse retrievePolInstTagAcctDate(RetrievePolInstTagAcctDateRequest rpdir) throws SQLException;
 
 	public RetrieveValidBookingDateResponse retrieveValidBookingDate(RetrieveValidBookingDateRequest rpdir) throws SQLException;
+	
+	public UpdatePolOpenCoverStatusResponse updatePolOpenCoverStatus(UpdatePolOpenCoverStatusRequest uphcsr) throws SQLException;
 }

@@ -652,4 +652,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		BookingDate dates = sqlSession.selectOne("retrieveValidBookingDate",params);
 		return dates;
 	}
+
+	@Override
+	public Integer updatePolOpenCoverStatus(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("updatePolOpenCoverStatu",params);
+		return code;
+	}
 }

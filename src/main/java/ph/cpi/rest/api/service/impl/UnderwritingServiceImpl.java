@@ -83,6 +83,7 @@ import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
@@ -153,6 +154,7 @@ import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdatePolOpenCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
@@ -1794,6 +1796,21 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("date1", rpdir.getDate1());
 		params.put("date2", rpdir.getDate2());
 		response.setDates(underwritingDao.retrieveValidBookingDate(params));
+		return response;
+	}
+
+	@Override
+	public UpdatePolOpenCoverStatusResponse updatePolOpenCoverStatus(UpdatePolOpenCoverStatusRequest uphcsr)
+			throws SQLException {
+		UpdatePolOpenCoverStatusResponse response = new UpdatePolOpenCoverStatusResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", uphcsr.getPolicyIdOc());
+		params.put("updateUser", uphcsr.getUpdateUser());
+		try{
+			response.setReturnCode(underwritingDao.updatePolOpenCoverStatus(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+		}
 		return response;
 	}
 }

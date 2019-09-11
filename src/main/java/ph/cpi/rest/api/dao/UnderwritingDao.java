@@ -120,4 +120,6 @@ public interface UnderwritingDao {
 	
 	public DateTime getAcctingDate(final HashMap<String, Object> params) throws SQLException;
 	public BookingDate retrieveValidBookingDate(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer updatePolOpenCoverStatus(final HashMap<String, Object> params) throws SQLException;
 }
