@@ -906,12 +906,12 @@
 			</foreach>
 			
 			<foreach collection="saveOverdueAccts" item="save">
-				ACIT_JOURNAL_VOUCHER_PKG.save_overdue_int(#{tranId}, #{itemNo,jdbcType=INTEGER}, #{policyId}, #{instNo}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_overdue_int(#{save.tranId}, #{itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, 
 														  CAST(to_timestamp(#{save.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-														  #{actualOverdueDays}, #{overdueDaysWInt}, #{interestRate}, #{autoTag}, 
-														  #{currCd}, #{currRate}, #{balanceAmt}, #{overdueInt}, #{localAmt}, 
-														  #{createUser}, CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-														  #{updateUser}, CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+														  #{save.actualOverdueDays}, #{save.overdueDaysWInt}, #{save.interestRate}, #{save.autoTag}, 
+														  #{save.currCd}, #{save.currRate}, #{save.balanceAmt}, #{save.overdueInt}, #{save.localAmt}, 
+														  #{save.createUser}, CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+														  #{save.updateUser}, CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				
 			</foreach>
 			

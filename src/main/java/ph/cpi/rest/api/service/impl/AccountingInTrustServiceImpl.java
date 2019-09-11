@@ -633,7 +633,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setTranIdOut((Integer) res.get("tranIdOut"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -750,7 +750,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("deleteInwPol" , request.getDeleteInwPol());
 			HashMap<String, Object> res = acctITDao.saveAcitJVAdjInwPolBal(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -797,7 +797,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("deleteOverdueAccts" , request.getDeleteOverdueAccts());
 			HashMap<String, Object> res = acctITDao.saveAcitJVOverdueAccts(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1012,7 +1012,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("deletePremResRel" , request.getDeletePremResRel());
 			HashMap<String, Object> res = acctITDao.saveAcitJVPremResRel(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1232,7 +1232,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			HashMap<String, Object> res = acctITDao.saveAcitJVEntryList(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setTranIdOut((Integer) res.get("tranIdOut"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1266,7 +1266,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("deleteZeroBal" , request.getDeleteZeroBal());
 			HashMap<String, Object> res = acctITDao.saveAcitJVAppPaytZeroBal(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1470,7 +1470,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("deleteClmOffset", request.getDeleteClmOffset());
 			HashMap<String, Object> res = acctITDao.saveAcitJvNegTrty(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1560,7 +1560,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("delInwPolOffset", request.getDelInwPolOffset());
 			HashMap<String, Object> res = acctITDao.saveAcitJvActTrtyBal(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1680,7 +1680,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("delInwPol", request.getDelInwPol());
 			HashMap<String, Object> res = acctITDao.saveAcitJvRcvblsAgnstLoss(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1866,7 +1866,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("delInvPullOut", request.getDelInvPullOut());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvPullOut(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
@@ -1939,7 +1939,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("delRollOver", request.getDelRollOver());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvRollOver(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
