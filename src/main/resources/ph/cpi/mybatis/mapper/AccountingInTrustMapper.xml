@@ -2302,7 +2302,7 @@
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="saved">
-				ACIT_JOURNAL_VOUCHER_PKG.save_acit_clm_off(#{saved.tranId},
+				ACIT_JOURNAL_VOUCHER_PKG.save_trty_clm(		#{saved.tranId},
 															#{saved.quarterNo},
 															#{saved.itemNo,jdbcType=INTEGER},
 															#{saved.claimId},
@@ -2482,11 +2482,13 @@
 		<result property="currRate" 		column="TRYTY_CURR_RATE"/>
 		<result property="balanceAmt" 		column="TRYTY_BALANCE_AMT"/>
 		<result property="localAmt" 		column="TRYTY_LOCAL_AMT"/>
+		<result property="actualBalPaid"    column="TRYTY_ACTUAL_BAL_PAID"/>
 		<result property="createUser" 		column="TRYTY_CREATE_USER"/>
 		<result property="createDate" 		column="TRYTY_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="TRYTY_UPDATE_USER"/>
 		<result property="updateDate" 		column="TRYTY_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<association property="acctOffset" resultMap="acctOffsetMap"></association>
+		<association property="trtyInvmt" resultMap="invOffsetMap"></association>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVAcctOffset" id="acctOffsetMap">
@@ -2527,8 +2529,43 @@
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVInvestmentOffset" id="invOffsetMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="quarterNo" column="QUARTER_NO"/>
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="invtId" column="INVT_ID"/>
+		<result property="invtCode" column="INVT_CODE"/>
+		<result property="certNo" column="CERT_NO"/>
+		<result property="invtType" column="INVT_TYPE"/>
+		<result property="invtTypeDesc" column="INVT_TYPE_DESC"/>
+		<result property="invtSecCd" column="INVT_SEC_CD"/>
+		<result property="securityDesc" column="SECURITY_DESC"/>
+		<result property="maturityPeriod" column="MATURITY_PERIOD"/>
+		<result property="durationUnit" column="DURATION_UNIT"/>
+		<result property="interestRate" column="INTEREST_RATE"/>
+		<result property="purchasedDate" column="PURCHASED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maturityDate" column="MATURITY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="pulloutType" column="PULLOUT_TYPE"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		<result property="invtAmt" column="INVT_AMT"/>
+		<result property="incomeAmt" column="INCOME_AMT"/>
+		<result property="bankCharge" column="BANK_CHARGE"/>
+		<result property="whtaxAmt" column="WHTAX_AMT"/>
+		<result property="maturityValue" column="MATURITY_VALUE"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
 	<select id="retrieveAcitJvAcctTrtyBal" resultMap="acctTrtyMap">
 		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_acct_trty_bal(#{tranId},null,null,null,null))
+	</select>
+	
+	<select id="retrieveAcitJvInvmtOffset" resultMap="acctTrtyMap">
+		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_trty_pullout(#{tranId},null,null,null,null))
 	</select>
 	
 	<update id="saveAcitJvActTrtyBal" parameterType="java.util.Map">
@@ -2572,7 +2609,7 @@
 			</foreach>
 			
 			<foreach collection="saveInwPolOffset" item="saved">
-				ACIT_JOURNAL_VOUCHER_PKG.save_inwpol_offset(#{saved.tranId}, 
+				ACIT_JOURNAL_VOUCHER_PKG.save_trty_inwpol(#{saved.tranId}, 
 															#{saved.quarterNo}, 
 															#{saved.itemNo,jdbcType=INTEGER}, 
 															#{saved.policyId}, 
@@ -3282,5 +3319,21 @@
 					#{invtId,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
+	
+	<update id="saveAcitJVTrtyInvt" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveTrtyInvt" item="save">
+					ACIT_JOURNAL_VOUCHER_PKG.save_trty_invt({#{save.tranId},#{save.quarterNo},#{save.itemNo},
+															 #{save.invtId},#{save.pulloutType},#{save.currCd},
+															 #{save.currRate},#{save.invtAmt},#{save.incomeAmt},
+															 #{save.bankCharge},#{save.whtaxAmt},#{save.maturityValue},
+															 #{save.localAmt},#{save.createUser},
+															 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+															 #{save.updateUser},
+															 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  );
+			</foreach>
+		END;
+	</update>
 	
 </mapper>

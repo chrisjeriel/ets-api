@@ -152,5 +152,7 @@ public interface AccountingInTrustDao {
 	public AcitJVQuarterPremRes retrieveQuarterPremRes(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroAltLOV(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAmortize> retrieveAcitAmortize(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVTrtyInvt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJVAcctTrtyBal> retrieveAcitJvInvmtOffset(final HashMap<String, Object> params) throws SQLException;
 	
 }

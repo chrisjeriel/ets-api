@@ -1,25 +1,56 @@
-package ph.cpi.rest.api.model.accountingintrust;
+package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import org.joda.time.DateTime;
+import org.apache.ibatis.type.Alias;
 
-public class AcitJVInvestmentOffset {
+public class SaveAcitJVTrtyInvtRequest {
+	private Integer tranId;
+	private Integer tranType;
+	private List<invtTreaty> saveTrtyInvt;
+	
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+
+	public List<invtTreaty> getSaveTrtyInvt() {
+		return saveTrtyInvt;
+	}
+
+	public void setSaveTrtyInvt(List<invtTreaty> saveTrtyInvt) {
+		this.saveTrtyInvt = saveTrtyInvt;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveAcitJVTrtyInvtRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveTrtyInvt="
+				+ saveTrtyInvt + "]";
+	}
+
+	
+
+}
+
+@Alias ("ACITInvtTrty")
+class invtTreaty {
 	private Integer tranId;
 	private Integer quarterNo;
 	private Integer itemNo;
 	private Integer invtId;
-	private String invtCode;
-	private String certNo;
-	private Integer invtType;
-	private String invtTypeDesc;
-	private Integer invtSecCd;
-	private String securityDesc;
-	private Integer maturityPeriod;
-	private String durationUnit;
-	private BigDecimal interestRate;
-	private DateTime purchasedDate;
-	private DateTime maturityDate;
 	private String pulloutType;
 	private String currCd;
 	private BigDecimal currRate;
@@ -30,16 +61,15 @@ public class AcitJVInvestmentOffset {
 	private BigDecimal maturityValue;
 	private BigDecimal localAmt;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
 	public Integer getTranId() {
 		return tranId;
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	
 	public Integer getQuarterNo() {
 		return quarterNo;
 	}
@@ -57,72 +87,6 @@ public class AcitJVInvestmentOffset {
 	}
 	public void setInvtId(Integer invtId) {
 		this.invtId = invtId;
-	}
-	public String getInvtCode() {
-		return invtCode;
-	}
-	public void setInvtCode(String invtCode) {
-		this.invtCode = invtCode;
-	}
-	public String getCertNo() {
-		return certNo;
-	}
-	public void setCertNo(String certNo) {
-		this.certNo = certNo;
-	}
-	public Integer getInvtType() {
-		return invtType;
-	}
-	public void setInvtType(Integer invtType) {
-		this.invtType = invtType;
-	}
-	public String getInvtTypeDesc() {
-		return invtTypeDesc;
-	}
-	public void setInvtTypeDesc(String invtTypeDesc) {
-		this.invtTypeDesc = invtTypeDesc;
-	}
-	public Integer getInvtSecCd() {
-		return invtSecCd;
-	}
-	public void setInvtSecCd(Integer invtSecCd) {
-		this.invtSecCd = invtSecCd;
-	}
-	public String getSecurityDesc() {
-		return securityDesc;
-	}
-	public void setSecurityDesc(String securityDesc) {
-		this.securityDesc = securityDesc;
-	}
-	public Integer getMaturityPeriod() {
-		return maturityPeriod;
-	}
-	public void setMaturityPeriod(Integer maturityPeriod) {
-		this.maturityPeriod = maturityPeriod;
-	}
-	public String getDurationUnit() {
-		return durationUnit;
-	}
-	public void setDurationUnit(String durationUnit) {
-		this.durationUnit = durationUnit;
-	}
-	public BigDecimal getInterestRate() {
-		return interestRate;
-	}
-	public void setInterestRate(BigDecimal interestRate) {
-		this.interestRate = interestRate;
-	}
-	public DateTime getPurchasedDate() {
-		return purchasedDate;
-	}
-	public void setPurchasedDate(DateTime purchasedDate) {
-		this.purchasedDate = purchasedDate;
-	}
-	public DateTime getMaturityDate() {
-		return maturityDate;
-	}
-	public void setMaturityDate(DateTime maturityDate) {
-		this.maturityDate = maturityDate;
 	}
 	public String getPulloutType() {
 		return pulloutType;
@@ -184,10 +148,10 @@ public class AcitJVInvestmentOffset {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -196,23 +160,20 @@ public class AcitJVInvestmentOffset {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "AcitJVInvestmentOffset [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo
-				+ ", invtId=" + invtId + ", invtCode=" + invtCode + ", certNo=" + certNo + ", invtType=" + invtType
-				+ ", invtTypeDesc=" + invtTypeDesc + ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc
-				+ ", maturityPeriod=" + maturityPeriod + ", durationUnit=" + durationUnit + ", interestRate="
-				+ interestRate + ", purchasedDate=" + purchasedDate + ", maturityDate=" + maturityDate
+		return "invtTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo + ", invtId=" + invtId
 				+ ", pulloutType=" + pulloutType + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
 				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
 				+ ", maturityValue=" + maturityValue + ", localAmt=" + localAmt + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }
