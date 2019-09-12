@@ -405,6 +405,7 @@
 		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
 		<result property="payeeNo"       column="PAYEE_NO"          />
+		<result property="payeeClassCd"  column="PAYEE_CLASS_CD"          />
 		<result property="payor"         column="PAYOR"             />
 		<result property="mailAddress"   column="MAIL_ADDRESS"      />
 		<result property="bussTypeCd"    column="BUSS_TYPE_CD"      />
@@ -700,6 +701,7 @@
 														CAST(to_timestamp(#{prDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
+														#{payeeClassCd, jdbcType=VARCHAR},
 														#{payor},
 														#{mailAddress, jdbcType=VARCHAR},
 														#{bussTypeName, jdbcType=VARCHAR},

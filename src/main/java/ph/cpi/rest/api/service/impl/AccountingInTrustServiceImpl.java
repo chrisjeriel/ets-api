@@ -541,6 +541,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("prDate", saatr.getPrDate());
 		params.put("prPreparedBy", saatr.getPrPreparedBy());
 		params.put("payeeNo", saatr.getPayeeNo());
+		params.put("payeeClassCd", saatr.getPayeeClassCd());
 		params.put("payor", saatr.getPayor());
 		params.put("mailAddress", saatr.getMailAddress());
 		params.put("bussTypeName", saatr.getBussTypeName());
