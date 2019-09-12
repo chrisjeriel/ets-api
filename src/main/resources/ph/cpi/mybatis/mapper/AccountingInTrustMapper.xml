@@ -952,12 +952,16 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_funds_held(#{tranId},'', '', '',''))
 	</select>
 
-	 <update id="saveAcitPrqTrans" parameterType="java.util.Map">
+	 <update id="saveAcitPrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
+	 	DECLARE
+	 		v_tran_type_cd ACIT_PRQ_TRANS.TRAN_TYPE_CD%TYPE;
+	 		v_item_no ACIT_PRQ_TRANS.TRAN_TYPE_CD%TYPE;
     	BEGIN
     		<foreach collection="savePrqTrans" item="save">
+    			v_tran_type_cd := #{save.tranTypeCd, jdbcType=INTEGER};
 	    		ACIT_PRQ_TRANS_PKG.save_acit_prq_trans(
 	    			#{save.reqId, jdbcType=INTEGER},
-					#{save.itemNo, jdbcType=INTEGER},
+					v_item_no,
 					#{save.tranTypeCd, jdbcType=INTEGER},
 					#{save.claimId, jdbcType=INTEGER},
 					#{save.projId, jdbcType=INTEGER},
@@ -981,6 +985,29 @@
 			        #{save.updateUser,jdbcType=VARCHAR},
 			        CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 	    		);
+	    		<!-- v_item_no := #{save.itemNo, jdbcType=INTEGER, mode=INOUT}; -->
+	    		<!-- #{save.itemNo, jdbcType=INTEGER, mode=INOUT} := v_item_no; -->
+	    		IF v_tran_type_cd <![CDATA[ = ]]> 4
+	    		THEN
+	    			ACIT_PRQ_INWPOL_PKG.save_prq_inwpol(
+		    			#{save.inwPol.reqId, jdbcType=INTEGER},
+						v_item_no,
+						#{save.inwPol.premAmt, jdbcType=INTEGER},
+						#{save.inwPol.riComm, jdbcType=INTEGER},
+						#{save.inwPol.riCommVat, jdbcType=INTEGER},
+						#{save.inwPol.prevPaytAmt, jdbcType=INTEGER},
+						#{save.inwPol.prevBalance, jdbcType=INTEGER},
+						#{save.inwPol.newPaytAmt, jdbcType=INTEGER},
+						#{save.inwPol.newBalance, jdbcType=INTEGER},
+						#{save.inwPol.netDue, jdbcType=INTEGER},
+						#{save.inwPol.charges, jdbcType=INTEGER},
+						#{save.inwPol.returnAmt, jdbcType=INTEGER},
+						#{save.inwPol.createUser, jdbcType=INTEGER},
+						CAST(to_timestamp(#{save.inwPol.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.inwPol.updateUser,jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.inwPol.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+		    	END IF;
     		</foreach>
     		<foreach collection="deletePrqTrans" item="del">
     			ACIT_PRQ_TRANS_PKG.del_acit_prq_trans(
