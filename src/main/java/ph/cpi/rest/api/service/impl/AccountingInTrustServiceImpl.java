@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJVRcvblsAgnstLosRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJvDefNameRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitJvInvPlacementRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJvInvPullOutRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJvInvmtOffsetRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitJvQrtrPremResRequest;
@@ -151,6 +152,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitJVInwPolBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVPremResRelResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJVRcvblsAgnstLosResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitJvInvPlacementResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJvInvmtOffsetResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitJvQrtrPremResResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
@@ -2004,6 +2006,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVTrtyInvtResponse response = new SaveAcitJVTrtyInvtResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("saveaccTrty", request.getSaveaccTrty());
 			params.put("saveTrtyInvt", request.getSaveTrtyInvt());
 			HashMap<String, Object> res = acctITDao.saveAcitJVTrtyInvt(params);
 			response.setReturnCode((Integer)res.get("errorCode"));
@@ -2023,6 +2026,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params =  new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
 		response.setAcctTreatyBal(acctITDao.retrieveAcitJvInvmtOffset(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJvInvPlacementResponse retrieveAcitJvInvPlacement(RetrieveAcitJvInvPlacementRequest request)
+			throws SQLException {
+		RetrieveAcitJvInvPlacementResponse response = new RetrieveAcitJvInvPlacementResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());
+		response.setInvPlacement(acctITDao.retrieveAcitJvInvPlacement(params));
 		return response;
 	}
 }
