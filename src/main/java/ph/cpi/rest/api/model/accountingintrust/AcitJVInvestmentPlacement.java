@@ -21,9 +21,9 @@ public class AcitJVInvestmentPlacement {
 	private DateTime maturityDate;
 	private Integer destInvtId;
 	private String pulloutType;
-	private String bank;
+	private Integer bank;
 	private String bankName;
-	private String bankAcct;
+	private Integer bankAcct;
 	private String accountNo;
 	private String currCd;
 	private BigDecimal currRate;
@@ -133,13 +133,13 @@ public class AcitJVInvestmentPlacement {
 	public void setPulloutType(String pulloutType) {
 		this.pulloutType = pulloutType;
 	}
-	public String getBank() {
+	public Integer getBank() {
 		return bank;
 	}
-	public void setBank(String bank) {
+	public void setBank(Integer bank) {
 		this.bank = bank;
 	}
-	public String getBankAcct() {
+	public Integer getBankAcct() {
 		return bankAcct;
 	}
 	
@@ -155,7 +155,7 @@ public class AcitJVInvestmentPlacement {
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
 	}
-	public void setBankAcct(String bankAcct) {
+	public void setBankAcct(Integer bankAcct) {
 		this.bankAcct = bankAcct;
 	}
 	public String getCurrCd() {
