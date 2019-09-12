@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcitJVInvestmentOffset {
+public class AcitJVInvestmentPlacement {
 	private Integer tranId;
-	private Integer quarterNo;
 	private Integer itemNo;
 	private Integer invtId;
 	private String invtCode;
 	private String certNo;
-	private Integer invtType;
+	private String invtType;
 	private String invtTypeDesc;
 	private Integer invtSecCd;
 	private String securityDesc;
@@ -20,7 +19,12 @@ public class AcitJVInvestmentOffset {
 	private BigDecimal interestRate;
 	private DateTime purchasedDate;
 	private DateTime maturityDate;
+	private Integer destInvtId;
 	private String pulloutType;
+	private String bank;
+	private String bankName;
+	private String bankAcct;
+	private String accountNo;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal invtAmt;
@@ -38,13 +42,6 @@ public class AcitJVInvestmentOffset {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
-	}
-	
-	public Integer getQuarterNo() {
-		return quarterNo;
-	}
-	public void setQuarterNo(Integer quarterNo) {
-		this.quarterNo = quarterNo;
 	}
 	public Integer getItemNo() {
 		return itemNo;
@@ -70,10 +67,10 @@ public class AcitJVInvestmentOffset {
 	public void setCertNo(String certNo) {
 		this.certNo = certNo;
 	}
-	public Integer getInvtType() {
+	public String getInvtType() {
 		return invtType;
 	}
-	public void setInvtType(Integer invtType) {
+	public void setInvtType(String invtType) {
 		this.invtType = invtType;
 	}
 	public String getInvtTypeDesc() {
@@ -124,11 +121,42 @@ public class AcitJVInvestmentOffset {
 	public void setMaturityDate(DateTime maturityDate) {
 		this.maturityDate = maturityDate;
 	}
+	public Integer getDestInvtId() {
+		return destInvtId;
+	}
+	public void setDestInvtId(Integer destInvtId) {
+		this.destInvtId = destInvtId;
+	}
 	public String getPulloutType() {
 		return pulloutType;
 	}
 	public void setPulloutType(String pulloutType) {
 		this.pulloutType = pulloutType;
+	}
+	public String getBank() {
+		return bank;
+	}
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	public String getBankAcct() {
+		return bankAcct;
+	}
+	
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	public String getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+	public void setBankAcct(String bankAcct) {
+		this.bankAcct = bankAcct;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -204,12 +232,13 @@ public class AcitJVInvestmentOffset {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVInvestmentOffset [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo
-				+ ", invtId=" + invtId + ", invtCode=" + invtCode + ", certNo=" + certNo + ", invtType=" + invtType
-				+ ", invtTypeDesc=" + invtTypeDesc + ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc
-				+ ", maturityPeriod=" + maturityPeriod + ", durationUnit=" + durationUnit + ", interestRate="
-				+ interestRate + ", purchasedDate=" + purchasedDate + ", maturityDate=" + maturityDate
-				+ ", pulloutType=" + pulloutType + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
+		return "AcitJVInvestmentPlacement [tranId=" + tranId + ", itemNo=" + itemNo + ", invtId=" + invtId
+				+ ", invtCode=" + invtCode + ", certNo=" + certNo + ", invtType=" + invtType + ", invtTypeDesc="
+				+ invtTypeDesc + ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc + ", maturityPeriod="
+				+ maturityPeriod + ", durationUnit=" + durationUnit + ", interestRate=" + interestRate
+				+ ", purchasedDate=" + purchasedDate + ", maturityDate=" + maturityDate + ", destInvtId=" + destInvtId
+				+ ", pulloutType=" + pulloutType + ", bank=" + bank + ", bankName=" + bankName + ", bankAcct="
+				+ bankAcct + ", accountNo=" + accountNo + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
 				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
 				+ ", maturityValue=" + maturityValue + ", localAmt=" + localAmt + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
