@@ -22,7 +22,9 @@ public class AcitJVInvestmentPlacement {
 	private Integer destInvtId;
 	private String pulloutType;
 	private String bank;
+	private String bankName;
 	private String bankAcct;
+	private String accountNo;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal invtAmt;
@@ -140,6 +142,19 @@ public class AcitJVInvestmentPlacement {
 	public String getBankAcct() {
 		return bankAcct;
 	}
+	
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	public String getAccountNo() {
+		return accountNo;
+	}
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
 	public void setBankAcct(String bankAcct) {
 		this.bankAcct = bankAcct;
 	}
@@ -222,10 +237,11 @@ public class AcitJVInvestmentPlacement {
 				+ invtTypeDesc + ", invtSecCd=" + invtSecCd + ", securityDesc=" + securityDesc + ", maturityPeriod="
 				+ maturityPeriod + ", durationUnit=" + durationUnit + ", interestRate=" + interestRate
 				+ ", purchasedDate=" + purchasedDate + ", maturityDate=" + maturityDate + ", destInvtId=" + destInvtId
-				+ ", pulloutType=" + pulloutType + ", bank=" + bank + ", bankAcct=" + bankAcct + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge="
-				+ bankCharge + ", whtaxAmt=" + whtaxAmt + ", maturityValue=" + maturityValue + ", localAmt=" + localAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", pulloutType=" + pulloutType + ", bank=" + bank + ", bankName=" + bankName + ", bankAcct="
+				+ bankAcct + ", accountNo=" + accountNo + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
+				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
+				+ ", maturityValue=" + maturityValue + ", localAmt=" + localAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

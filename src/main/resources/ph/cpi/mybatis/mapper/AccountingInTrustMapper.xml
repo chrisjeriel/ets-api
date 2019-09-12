@@ -3364,7 +3364,9 @@
 	        <result property="destInvtId" column="DEST_INVT_ID"/>
 	        <result property="pulloutType" column="PULLOUT_TYPE"/>
 	        <result property="bank" column="BANK"/>
+	        <result property="bankName" column="BANK_NAME"/>
 	        <result property="bankAcct" column="BANK_ACCT"/>
+	        <result property="accountNo" column="ACCOUNT_NO"/>
 	        <result property="currCd" column="CURR_CD"/>
 	        <result property="currRate" column="CURR_RATE"/>
 	        <result property="invtAmt" column="INVT_AMT"/>
@@ -3382,4 +3384,28 @@
 	<select id="retrieveAcitJvInvPlacement" resultMap="invPlacementMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_jv_invplacement(#{tranId},'', '', '',''))
 	</select>
+	
+	<update id="saveAcitJVInvPlacement" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delInvPlacement" item="saved">
+					ACIT_JOURNAL_VOUCHER_PKG.del_jv_inv_placement( #{saved.tranId},#{saved.itemNo});
+			</foreach>
+			
+			<foreach collection="saveInvPlacement" item="save">
+					ACIT_JOURNAL_VOUCHER_PKG.save_jv_inv_placement( #{save.tranId},
+																	#{save.itemNo,jdbcType=INTEGER},
+																	#{save.invtId},
+																	#{save.bank},
+																	#{save.bankAcct},
+																	#{save.currCd},
+																	#{save.currRate},
+																	#{save.invtAmt},
+																	#{save.createUser},
+																	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																	#{save.updateUser},
+																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													  );
+			</foreach>
+		END;
+	</update>
 </mapper>
