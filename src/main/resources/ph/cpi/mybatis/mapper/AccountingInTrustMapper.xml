@@ -949,10 +949,15 @@
 	 <update id="saveAcitPrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
 	 	DECLARE
 	 		v_tran_type_cd ACIT_PRQ_TRANS.TRAN_TYPE_CD%TYPE;
-	 		v_item_no ACIT_PRQ_TRANS.TRAN_TYPE_CD%TYPE;
+	 		v_item_no NUMBER;
+	 		v_policy_id ACIT_PRQ_TRANS.POLICY_ID%TYPE;
+	 		v_inst_no ACIT_PRQ_TRANS.INST_NO%TYPE;
     	BEGIN
     		<foreach collection="savePrqTrans" item="save">
     			v_tran_type_cd := #{save.tranTypeCd, jdbcType=INTEGER};
+    			v_policy_id := #{save.policyId, jdbcType=INTEGER};
+    			v_inst_no := #{save.instNo, jdbcType=INTEGER};
+    			v_item_no := #{save.itemNo, jdbcType=INTEGER};
 	    		ACIT_PRQ_TRANS_PKG.save_acit_prq_trans(
 	    			#{save.reqId, jdbcType=INTEGER},
 					v_item_no,
@@ -981,10 +986,13 @@
 	    		);
 	    		<!-- v_item_no := #{save.itemNo, jdbcType=INTEGER, mode=INOUT}; -->
 	    		<!-- #{save.itemNo, jdbcType=INTEGER, mode=INOUT} := v_item_no; -->
+	    		
 	    		IF v_tran_type_cd <![CDATA[ = ]]> 4
+	    		  AND v_policy_id IS NOT NULL
+	    		  AND v_inst_no IS NOT NULL
 	    		THEN
 	    			ACIT_PRQ_INWPOL_PKG.save_prq_inwpol(
-		    			#{save.inwPol.reqId, jdbcType=INTEGER},
+		    			#{save.reqId, jdbcType=INTEGER},
 						v_item_no,
 						#{save.inwPol.premAmt, jdbcType=INTEGER},
 						#{save.inwPol.riComm, jdbcType=INTEGER},
@@ -997,9 +1005,9 @@
 						#{save.inwPol.charges, jdbcType=INTEGER},
 						#{save.inwPol.returnAmt, jdbcType=INTEGER},
 						#{save.inwPol.createUser, jdbcType=INTEGER},
-						CAST(to_timestamp(#{save.inwPol.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{save.inwPol.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{save.inwPol.updateUser,jdbcType=VARCHAR},
-						CAST(to_timestamp(#{save.inwPol.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+						CAST(to_timestamp(#{save.inwPol.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		    		);
 		    	END IF;
     		</foreach>

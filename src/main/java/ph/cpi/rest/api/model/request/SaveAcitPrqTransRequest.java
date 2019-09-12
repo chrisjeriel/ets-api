@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import org.apache.ibatis.type.Alias;
-
 public class SaveAcitPrqTransRequest {
 	private List<PrqTrans> deletePrqTrans;
 	private List<PrqTrans> savePrqTrans;
