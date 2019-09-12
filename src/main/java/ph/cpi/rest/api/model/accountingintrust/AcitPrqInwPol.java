@@ -5,12 +5,15 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class AcitPrqInwPol {
-	private BigDecimal reqId;
-	private BigDecimal itemNo;
+	private Integer reqId;
+	private Integer itemNo;
 	private BigDecimal premAmt;
 	private BigDecimal riComm;
 	private BigDecimal riCommVat;
 	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	private BigDecimal netDue;
 	private BigDecimal charges;
 	private BigDecimal returnAmt;
@@ -18,16 +21,16 @@ public class AcitPrqInwPol {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public BigDecimal getReqId() {
+	public Integer getReqId() {
 		return reqId;
 	}
-	public void setReqId(BigDecimal reqId) {
+	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
-	public BigDecimal getItemNo() {
+	public Integer getItemNo() {
 		return itemNo;
 	}
-	public void setItemNo(BigDecimal itemNo) {
+	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
 	}
 	public BigDecimal getPremAmt() {
@@ -53,6 +56,24 @@ public class AcitPrqInwPol {
 	}
 	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
 		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
 	}
 	public BigDecimal getNetDue() {
 		return netDue;
@@ -99,7 +120,8 @@ public class AcitPrqInwPol {
 	@Override
 	public String toString() {
 		return "AcitPrqInwPol [reqId=" + reqId + ", itemNo=" + itemNo + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", prevPaytAmt=" + prevPaytAmt + ", netDue=" + netDue + ", charges="
+				+ ", riCommVat=" + riCommVat + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance
+				+ ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + ", netDue=" + netDue + ", charges="
 				+ charges + ", returnAmt=" + returnAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}

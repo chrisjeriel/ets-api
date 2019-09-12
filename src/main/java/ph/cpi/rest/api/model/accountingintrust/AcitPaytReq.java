@@ -17,6 +17,7 @@ public class AcitPaytReq {
 	private String reqStatus;
 	private String reqStatusDesc;
 	//private Integer payeeNo;
+	private String paytReqType;
 	private Integer payeeClassCd;
 	private String payeeCd;
 	private String payee;
@@ -232,17 +233,23 @@ public class AcitPaytReq {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
+	public String getPaytReqType() {
+		return paytReqType;
+	}
+	public void setPaytReqType(String paytReqType) {
+		this.paytReqType = paytReqType;
+	}
 	@Override
 	public String toString() {
 		return "AcitPaytReq [paytReqNo=" + paytReqNo + ", reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear="
 				+ reqYear + ", reqMm=" + reqMm + ", reqSeqNo=" + reqSeqNo + ", tranTypeCd=" + tranTypeCd
 				+ ", tranTypeDesc=" + tranTypeDesc + ", reqDate=" + reqDate + ", reqStatus=" + reqStatus
-				+ ", reqStatusDesc=" + reqStatusDesc + ", payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd
-				+ ", payee=" + payee + ", currCd=" + currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt
-				+ ", localAmt=" + localAmt + ", particulars=" + particulars + ", preparedBy=" + preparedBy
-				+ ", preparedDate=" + preparedDate + ", requestedBy=" + requestedBy + ", approvedBy=" + approvedBy
-				+ ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat
+				+ ", reqStatusDesc=" + reqStatusDesc + ", paytReqType=" + paytReqType + ", payeeClassCd=" + payeeClassCd
+				+ ", payeeCd=" + payeeCd + ", payee=" + payee + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", reqAmt=" + reqAmt + ", localAmt=" + localAmt + ", particulars=" + particulars + ", preparedBy="
+				+ preparedBy + ", preparedDate=" + preparedDate + ", requestedBy=" + requestedBy + ", approvedBy="
+				+ approvedBy + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat
 				+ ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo + "]";
 	}
 }

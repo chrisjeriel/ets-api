@@ -41,6 +41,7 @@
 		<result property="reqStatus"		column="REQ_STATUS"/>
 		<result property="reqStatusDesc"	column="REQ_STATUS_DESC"/>
 		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
+		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
 		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
 		<result property="payeeCd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
@@ -347,7 +348,10 @@
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="arNo"				column="AR_NO" />
 		<result property="arDate"			column="AR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="arStatus"		    column="AR_STATUS_CD" />
+		<result property="tranStat"			column="TRAN_STAT_CD" />
 		<result property="arStatDesc"		column="AR_STATUS" />
+		<result property="tranStatDesc"		column="TRAN_STAT" />
 		<result property="tranTypeName"		column="TRAN_TYPE_NAME" />
 		<result property="payor"			column="PAYOR" />
 		<result property="arAmt"			column="AR_AMT" />
@@ -386,6 +390,7 @@
 		<result property="arStatus"      column="AR_STATUS"         />
 		<result property="tranStat"      column="TRAN_STAT"         />
 		<result property="arStatDesc"    column="AR_STAT_DESC"      />
+		<result property="tranStatDesc"  column="TRAN_STAT_DESC"    />
 		<result property="dcbYear"       column="DCB_YEAR"          />
 		<result property="dcbUserCd"     column="DCB_USER_CD"       />
 		<result property="dcbNo"         column="DCB_NO"            />
@@ -400,6 +405,7 @@
 		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
 		<result property="payeeNo"       column="PAYEE_NO"          />
+		<result property="payeeClassCd"  column="PAYEE_CLASS_CD"          />
 		<result property="payor"         column="PAYOR"             />
 		<result property="mailAddress"   column="MAIL_ADDRESS"      />
 		<result property="bussTypeCd"    column="BUSS_TYPE_CD"      />
@@ -695,6 +701,7 @@
 														CAST(to_timestamp(#{prDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{prPreparedBy, jdbcType=VARCHAR},
 														#{payeeNo, jdbcType=VARCHAR},
+														#{payeeClassCd, jdbcType=VARCHAR},
 														#{payor},
 														#{mailAddress, jdbcType=VARCHAR},
 														#{bussTypeName, jdbcType=VARCHAR},
@@ -1137,6 +1144,10 @@
 														#{save.charges},
 														#{save.netDue},
 														#{save.balPaytAmt},
+														#{save.prevPaytAmt},
+														#{save.prevBalance},
+														#{save.newPaytAmt},
+														#{save.newBalance},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
@@ -1521,7 +1532,10 @@
 		<result property="premAmt"		column="PREM_AMT"/>		
 		<result property="riComm"		column="RI_COMM"/>			
 		<result property="riCommVat"	column="RI_COMM_VAT"/>		
-		<result property="prevPaytAmt"	column="PREV_PAYT_AMT"/>	
+		<result property="prevPaytAmt"	column="PREV_PAYT_AMT"/>
+		<result property="prevBalance"	column="PREV_BALANCE"/>
+		<result property="newPaytAmt"	column="NEW_PAYT_AMT"/>
+		<result property="newBalance"	column="NEW_BALANCE"/>	
 		<result property="netDue"		column="NET_DUE"/>			
 		<result property="charges"		column="CHARGES"/>			
 		<result property="returnAmt"	column="RETURN_AMT"/>		
@@ -1548,6 +1562,9 @@
 					#{save.riComm, jdbcType=INTEGER},
 					#{save.riCommVat, jdbcType=INTEGER},
 					#{save.prevPaytAmt, jdbcType=INTEGER},
+					#{save.prevBalance, jdbcType=INTEGER},
+					#{save.newPaytAmt, jdbcType=INTEGER},
+					#{save.newBalance, jdbcType=INTEGER},
 					#{save.netDue, jdbcType=INTEGER},
 					#{save.charges, jdbcType=INTEGER},
 					#{save.returnAmt, jdbcType=INTEGER},
@@ -2868,6 +2885,8 @@
 		<result property="cvStatus"			column="CV_STATUS"/>
 		<result property="cvStatusDesc"		column="CV_STATUS_DESC"/>
 		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
+		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
+		<result property="paytReqTypeDesc"	column="PAYT_REQ_TYPE_DESC"/>
 		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
 		<result property="payeeCd"			column="PAYEE_CD"/>
 		<result property="payee"			column="PAYEE"/>
@@ -2936,6 +2955,7 @@
 				CAST(to_timestamp(#{cvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{cvStatus, jdbcType=VARCHAR},
 				<!-- #{payeeNo, jdbcType=INTEGER}, -->
+				#{paytReqType, jdbcType=INTEGER},
 				#{payeeClassCd, jdbcType=INTEGER},
 				#{payeeCd, jdbcType=VARCHAR},
 				#{payee, jdbcType=VARCHAR},

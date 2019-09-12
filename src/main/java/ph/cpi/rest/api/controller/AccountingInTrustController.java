@@ -886,7 +886,7 @@ public class AccountingInTrustController {
 	public @ResponseBody RetrieveAcitJvQrtrPremResResponse retrieveQuarterPremRes(RetrieveAcitJvQrtrPremResRequest request) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/RetrieveAcitJvQrtrPremResRequest");
 		logger.info("RetrieveAcitJvQrtrPremResRequest : " + request.toString());
-		return acctInTrustService.retrieveQuarterPremRes(request);
+		return acctInTrustService.retrieveQuarterPremRes(request); 
 	}
 	
 	@GetMapping(path="retrieveSoaAgingZeroAltLOV")
