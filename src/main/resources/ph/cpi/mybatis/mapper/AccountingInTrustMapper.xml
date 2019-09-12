@@ -3170,6 +3170,8 @@
 	</select>
 	
 	<update id="saveAcitJVInvPullOut" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delInvPullOut" item="delete">
 					ACIT_JOURNAL_VOUCHER_PKG.del_jv_inv_pull(
@@ -3201,6 +3203,7 @@
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
 			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -3259,6 +3262,8 @@
 	</select>
 	
 	<update id="saveAcitJVInvRollOver" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delRollOver" item="del">
 					ACIT_JOURNAL_VOUCHER_PKG.del_inv_roll_over(
@@ -3289,6 +3294,7 @@
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
 			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -3341,12 +3347,15 @@
 	</select>
 	
 	<update id="saveAcitJVTrtyInvt" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="saveaccTrty" item="saved">
-					ACIT_JOURNAL_VOUCHER_PKG.save_acit_trty( #{saved.tranId},#{saved.quarterNo},#{saved.quarterEnding},
+					ACIT_JOURNAL_VOUCHER_PKG.save_acit_trty( #{saved.tranId},#{saved.quarterNo},
+															 CAST(to_timestamp(#{saved.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															 #{saved.cedingId},#{saved.currCd},#{saved.currRate},#{saved.balanceAmt},
 															 #{saved.localAmt},#{saved.actualBalPaid},#{saved.createUser},
-															 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+															 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															 #{saved.updateUser},
 															 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  		);
@@ -3363,6 +3372,7 @@
 															 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
 			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -3406,6 +3416,8 @@
 	</select>
 	
 	<update id="saveAcitJVInvPlacement" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delInvPlacement" item="saved">
 					ACIT_JOURNAL_VOUCHER_PKG.del_jv_inv_placement( #{saved.tranId},#{saved.itemNo});
@@ -3426,6 +3438,7 @@
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
 			</foreach>
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 </mapper>
