@@ -6,8 +6,27 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVInvPlacementRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<InvPlacement> saveInvPlacement;
 	private List<InvPlacement> delInvPlacement;
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+
 	public List<InvPlacement> getSaveInvPlacement() {
 		return saveInvPlacement;
 	}
@@ -26,9 +45,10 @@ public class SaveAcitJVInvPlacementRequest {
 
 	@Override
 	public String toString() {
-		return "SaveAcitJVInvPlacementRequest [saveInvPlacement=" + saveInvPlacement + ", delInvPlacement="
-				+ delInvPlacement + "]";
+		return "SaveAcitJVInvPlacementRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveInvPlacement="
+				+ saveInvPlacement + ", delInvPlacement=" + delInvPlacement + "]";
 	}
+
 	
 }
 
