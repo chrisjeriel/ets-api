@@ -394,6 +394,7 @@
 		<result property="dcbYear"       column="DCB_YEAR"          />
 		<result property="dcbUserCd"     column="DCB_USER_CD"       />
 		<result property="dcbNo"         column="DCB_NO"            />
+		<result property="dcbStatus"     column="DCB_STATUS"            />
 		<result property="dcbBank"       column="DCB_BANK"          />
 		<result property="dcbBankName"   column="DCB_BANK_NAME"     />
 		<result property="dcbBankAcct"   column="DCB_BANK_ACCT"     />
@@ -951,12 +952,21 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_funds_held(#{tranId},'', '', '',''))
 	</select>
 
-	 <update id="saveAcitPrqTrans" parameterType="java.util.Map">
+	 <update id="saveAcitPrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
+	 	DECLARE
+	 		v_tran_type_cd ACIT_PRQ_TRANS.TRAN_TYPE_CD%TYPE;
+	 		v_item_no NUMBER;
+	 		v_policy_id ACIT_PRQ_TRANS.POLICY_ID%TYPE;
+	 		v_inst_no ACIT_PRQ_TRANS.INST_NO%TYPE;
     	BEGIN
     		<foreach collection="savePrqTrans" item="save">
+    			v_tran_type_cd := #{save.tranTypeCd, jdbcType=INTEGER};
+    			v_policy_id := #{save.policyId, jdbcType=INTEGER};
+    			v_inst_no := #{save.instNo, jdbcType=INTEGER};
+    			v_item_no := #{save.itemNo, jdbcType=INTEGER};
 	    		ACIT_PRQ_TRANS_PKG.save_acit_prq_trans(
 	    			#{save.reqId, jdbcType=INTEGER},
-					#{save.itemNo, jdbcType=INTEGER},
+					v_item_no,
 					#{save.tranTypeCd, jdbcType=INTEGER},
 					#{save.claimId, jdbcType=INTEGER},
 					#{save.projId, jdbcType=INTEGER},
@@ -980,6 +990,32 @@
 			        #{save.updateUser,jdbcType=VARCHAR},
 			        CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 	    		);
+	    		<!-- v_item_no := #{save.itemNo, jdbcType=INTEGER, mode=INOUT}; -->
+	    		<!-- #{save.itemNo, jdbcType=INTEGER, mode=INOUT} := v_item_no; -->
+	    		
+	    		IF v_tran_type_cd <![CDATA[ = ]]> 4
+	    		  AND v_policy_id IS NOT NULL
+	    		  AND v_inst_no IS NOT NULL
+	    		THEN
+	    			ACIT_PRQ_INWPOL_PKG.save_prq_inwpol(
+		    			#{save.reqId, jdbcType=INTEGER},
+						v_item_no,
+						#{save.inwPol.premAmt, jdbcType=INTEGER},
+						#{save.inwPol.riComm, jdbcType=INTEGER},
+						#{save.inwPol.riCommVat, jdbcType=INTEGER},
+						#{save.inwPol.prevPaytAmt, jdbcType=INTEGER},
+						#{save.inwPol.prevBalance, jdbcType=INTEGER},
+						#{save.inwPol.newPaytAmt, jdbcType=INTEGER},
+						#{save.inwPol.newBalance, jdbcType=INTEGER},
+						#{save.inwPol.netDue, jdbcType=INTEGER},
+						#{save.inwPol.charges, jdbcType=INTEGER},
+						#{save.inwPol.returnAmt, jdbcType=INTEGER},
+						#{save.inwPol.createUser, jdbcType=INTEGER},
+						CAST(to_timestamp(#{save.inwPol.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.inwPol.updateUser,jdbcType=VARCHAR},
+						CAST(to_timestamp(#{save.inwPol.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+		    		);
+		    	END IF;
     		</foreach>
     		<foreach collection="deletePrqTrans" item="del">
     			ACIT_PRQ_TRANS_PKG.del_acit_prq_trans(
