@@ -26,6 +26,7 @@ public class AcitClmResHistPayts {
 	private String updateUser;
 	private DateTime updateDate;
 	private String processing;
+	private String clmStatCd;
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -152,6 +153,12 @@ public class AcitClmResHistPayts {
 	public void setProcessing(String processing) {
 		this.processing = processing;
 	}
+	public String getClmStatCd() {
+		return clmStatCd;
+	}
+	public void setClmStatCd(String clmStatCd) {
+		this.clmStatCd = clmStatCd;
+	}
 	@Override
 	public String toString() {
 		return "AcitClmResHistPayts [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", policyId="
@@ -160,7 +167,7 @@ public class AcitClmResHistPayts {
 				+ ", exGratia=" + exGratia + ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", cumulativeAmt=" + cumulativeAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", processing=" + processing + "]";
+				+ ", updateDate=" + updateDate + ", processing=" + processing + ", clmStatCd=" + clmStatCd + "]";
 	}
 	
 }
