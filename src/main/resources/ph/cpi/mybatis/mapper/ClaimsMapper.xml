@@ -614,6 +614,8 @@
 	</update>
 	
 	<update id="saveClmAdjuster" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_num NUMBER;
 		BEGIN
 		   <foreach collection="deleteAdjuster" item="del">
 		   		CLM_ADJUSTER_PKG.del_adjuster(
@@ -633,6 +635,10 @@
 				    CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 		   		);
 		   </foreach>
+		   
+		   SELECT 1
+		     INTO v_num
+		     FROM DUAL;
 		END;
 	</update>
 
@@ -995,6 +1001,9 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+		<result property="policyId" column="POLICY_ID"/>
+		<result property="clmStatus" column="CLM_STAT_DESC"/>
 	</resultMap>
 	
 	<select id="retrieveClmPaytReqInq" resultMap="ClaimPaytReqInqMap">

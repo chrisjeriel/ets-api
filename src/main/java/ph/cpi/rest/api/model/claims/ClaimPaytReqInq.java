@@ -30,6 +30,9 @@ public class ClaimPaytReqInq {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	private String policyId;
+	private String clmStatus;
+	
 	public String getClaimId() {
 		return claimId;
 	}
@@ -168,6 +171,18 @@ public class ClaimPaytReqInq {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
+	}
+	public String getClmStatus() {
+		return clmStatus;
+	}
+	public void setClmStatus(String clmStatus) {
+		this.clmStatus = clmStatus;
+	}
 	@Override
 	public String toString() {
 		return "ClaimPaytReqInq [claimId=" + claimId + ", projId=" + projId + ", claimNo=" + claimNo + ", histNo="
@@ -176,7 +191,8 @@ public class ClaimPaytReqInq {
 				+ ", particulars=" + particulars + ", reqDate=" + reqDate + ", requestedBy=" + requestedBy
 				+ ", acctRefNo=" + acctRefNo + ", tranDate=" + tranDate + ", insuredDesc=" + insuredDesc + ", riskName="
 				+ riskName + ", lossDate=" + lossDate + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", policyId=" + policyId
+				+ ", clmStatus=" + clmStatus + "]";
 	}
 	
 }
