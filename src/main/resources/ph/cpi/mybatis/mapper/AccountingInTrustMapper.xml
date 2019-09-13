@@ -2181,7 +2181,11 @@
 					ACIT_AR_CLMRECOVER_PKG.del_ar_clmrecover(
 														#{del.tranId},
 														#{del.billId},
-														#{del.itemNo}				
+														#{del.itemNo},
+														#{del.claimId},
+														#{del.projId},
+														#{del.histNo},
+														#{del.localAmt}	
 					);
 					<!-- Delete from ACIT_CLM_RES_HIST_PAYTS -->
 					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
