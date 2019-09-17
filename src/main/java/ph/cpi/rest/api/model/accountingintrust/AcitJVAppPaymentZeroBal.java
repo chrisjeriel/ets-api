@@ -31,7 +31,7 @@ public class AcitJVAppPaymentZeroBal {
 	private BigDecimal charges;
 	private BigDecimal netDue;
 	private BigDecimal prevPaytAmt;
-	private BigDecimal adjBalAmt;
+	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
 	private BigDecimal totalPayt;
@@ -156,13 +156,14 @@ public class AcitJVAppPaymentZeroBal {
 	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
 		this.prevPaytAmt = prevPaytAmt;
 	}
-	public BigDecimal getAdjBalAmt() {
-		return adjBalAmt;
-	}
-	public void setAdjBalAmt(BigDecimal adjBalAmt) {
-		this.adjBalAmt = adjBalAmt;
-	}
 	
+	
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
+	}
 	public BigDecimal getLocalAmt() {
 		return localAmt;
 	}
@@ -269,7 +270,7 @@ public class AcitJVAppPaymentZeroBal {
 				+ ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges
 				+ ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment + ", balance=" + balance + ", premAmt="
 				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
-				+ netDue + ", prevPaytAmt=" + prevPaytAmt + ", adjBalAmt=" + adjBalAmt + ", localAmt=" + localAmt
+				+ netDue + ", prevPaytAmt=" + prevPaytAmt + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
 				+ ", overdueInt=" + overdueInt + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";

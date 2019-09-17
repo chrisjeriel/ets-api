@@ -1831,7 +1831,7 @@
 		<result property="charges" column="PWZB_CHARGES"/>
 		<result property="netDue" column="PWZB_NET_DUE"/>
 		<result property="prevPaytAmt" column="PWZB_PREV_PAYT_AMT"/>
-		<result property="adjBalAmt" column="PWZB_ADJ_BAL_AMT"/>
+		<result property="paytAmt" column="PWZB_ADJ_BAL_AMT"/>
 		<result property="localAmt" column="PWZB_LOCAL_AMT"/>
 		<result property="overdueInt" column="PWZB_OVERDUE_INT"/>
 		<result property="createUser" column="PWZB_CREATE_USER"/>
@@ -1867,7 +1867,7 @@
 			<foreach collection="saveZeroBal" item="save">
 				ACIT_JOURNAL_VOUCHER_PKG.save_zero_bal(#{save.tranId}, #{save.itemNo,jdbcType=INTEGER}, #{save.policyId}, #{save.instNo}, #{save.currCd}, 
 													#{save.currRate}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-													#{save.netDue}, #{save.localAmt}, #{save.adjBalAmt}, #{save.overdueInt,jdbcType=INTEGER}, 
+													#{save.netDue}, #{save.localAmt}, #{save.paytAmt}, #{save.overdueInt,jdbcType=INTEGER}, 
 													#{save.totalPayt},#{save.remainingBal},#{save.balance},
 													#{save.cumPayment},#{save.createUser}, 
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -1876,7 +1876,7 @@
 				);
 				
 				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(#{tranId},#{save.policyId}, #{save.instNo}, #{save.premAmt}, #{save.riComm}, #{save.riCommVat}, #{save.charges}, 
-																   #{save.adjBalAmt},#{save.updateUser}, 
+																   #{save.paytAmt},#{save.updateUser}, 
 																  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 																  
 																  
@@ -3408,6 +3408,7 @@
 															 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
 			</foreach>
+			
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
