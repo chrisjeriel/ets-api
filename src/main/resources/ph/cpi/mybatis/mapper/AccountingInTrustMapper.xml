@@ -1719,6 +1719,8 @@
 		<result property="lossDate"	column="LOSS_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="currCd"	column="CURR_CD" />
 		<result property="currRate"	column="CURR_RATE" />
+		<result property="tsiAmt"	column="TSI_AMT" />
+		<result property="reserveAmt"	column="RESERVE_AMT" />
 	</resultMap>
 	
 	<select id="retrieveAcitArClmCashCallLov" resultMap="arClmCashCallLov" parameterType="java.util.Map">
