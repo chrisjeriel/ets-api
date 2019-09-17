@@ -937,6 +937,8 @@
 		<result property="currRate" column="CURR_RATE"/>
 		<result property="interestAmt" column="INTEREST_AMT"/>
 		<result property="whtaxAmt" column="WHTAX_AMT"/>
+		<result property="interestRate" column="INTEREST_RATE"/>
+		<result property="whtaxRate" column="WHTAX_RATE"/>
 		<result property="releaseAmt" column="RELEASE_AMT"/>
 		<result property="localAmt" column="LOCAL_AMT"/>
 		<result property="premResQuota" column="PREM_RES_QUOTA"/>
