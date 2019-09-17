@@ -1125,7 +1125,7 @@
 			  FROM ACIT_ACKGT_RECEIPT
 			 WHERE TRAN_ID = #{tranId};
 			 
-			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+			 <!-- IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
@@ -1217,9 +1217,9 @@
 					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
-			ELSE
-				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
-			END IF;
+			<!-- ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; if return code is 2, cannot save
+			END IF; -->
 		END;
 	</update>
 	
