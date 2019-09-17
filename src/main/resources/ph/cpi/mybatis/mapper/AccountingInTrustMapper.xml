@@ -445,7 +445,7 @@
 	<select id="retArEntry" resultMap="arEntryMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_ACKGT_RECEIPT_PKG.ret_ar_entry(
 																	#{tranId},
-																	#{arNo}
+																	#{arNo, jdbcType=VARCHAR}
 															   )
 						   )
 	</select>
