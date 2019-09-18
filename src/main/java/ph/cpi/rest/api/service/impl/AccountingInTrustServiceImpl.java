@@ -2017,7 +2017,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("tranId", request.getTranId());
 			params.put("tranType", request.getTranType());
 			params.put("saveaccTrty", request.getSaveaccTrty());
+			params.put("delaccTrty", request.getDelaccTrty());
 			params.put("saveTrtyInvt", request.getSaveTrtyInvt());
+			params.put("delTrtyInvt", request.getDelTrtyInvt());
 			HashMap<String, Object> res = acctITDao.saveAcitJVTrtyInvt(params);
 			response.setReturnCode((Integer)res.get("errorCode"));
 		}catch(Exception exception){
