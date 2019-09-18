@@ -2050,6 +2050,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("bankCd", rmbr.getBankCd());
 		params.put("officialName", rmbr.getOfficialName());
 		params.put("activeTag", rmbr.getActiveTag());
+		params.put("dcbTag", rmbr.getDcbTag());
 		res.setBankList(maintenanceDao.retrieveMtnBank(params));
 		return res;
 	}
@@ -2061,6 +2062,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("bankCd", rmbar.getBankCd());
 		params.put("bankAcctCd", rmbar.getBankAcctCd());
 		params.put("accountNo", rmbar.getAccountNo());
+		params.put("dcbTag", rmbar.getDcbTag());
 		res.setBankAcctList(maintenanceDao.retrieveMtnBankAcct(params));
 		return res;
 	}

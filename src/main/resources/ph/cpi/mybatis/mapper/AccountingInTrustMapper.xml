@@ -1370,11 +1370,12 @@
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				IF v_tran_type <![CDATA[=]]> 1 THEN
-				 	SELECT v_ar_amt -  SUM(TOTAL_LOCAL_AMT)
+				 	SELECT v_ar_amt -  SUM(a.TOTAL_LOCAL_AMT/b.CURR_RATE)
 				 	  INTO v_alloted_amt
-					  FROM ACIT_AR_TRANSUMM
-			         WHERE TRAN_ID = #{tranId}
-					   AND BILL_ID IN (2,3);
+					  FROM ACIT_AR_TRANSUMM a, ACIT_ACKGT_RECEIPT b
+			         WHERE a.TRAN_ID = #{tranId}
+			           AND a.TRAN_ID = b.TRAN_ID
+					   AND a.BILL_ID IN (2,3);
 										 
 					ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 															1,
