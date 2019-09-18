@@ -7,6 +7,7 @@ public class RetrieveMtnBankRequest {
 	private String bankCd;
 	private String officialName;
 	private String activeTag;
+	private String dcbTag;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
@@ -28,6 +29,12 @@ public class RetrieveMtnBankRequest {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	public String getDcbTag() {
+		return dcbTag;
+	}
+	public void setDcbTag(String dcbTag) {
+		this.dcbTag = dcbTag;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -44,6 +51,7 @@ public class RetrieveMtnBankRequest {
 	@Override
 	public String toString() {
 		return "RetrieveMtnBankRequest [bankCd=" + bankCd + ", officialName=" + officialName + ", activeTag="
-				+ activeTag + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ activeTag + ", dcbTag=" + dcbTag + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
 }

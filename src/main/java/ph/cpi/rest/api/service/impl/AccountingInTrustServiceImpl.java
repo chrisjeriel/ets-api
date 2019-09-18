@@ -1870,6 +1870,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInvPullOutResponse response = new SaveAcitJVInvPullOutResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveInvPullOut", request.getSaveInvPullOut());
 			params.put("delInvPullOut", request.getDelInvPullOut());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvPullOut(params);
@@ -1944,6 +1946,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInvRollOverResponse response = new SaveAcitJVInvRollOverResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveRollOver", request.getSaveRollOver());
 			params.put("delRollOver", request.getDelRollOver());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvRollOver(params);
@@ -2011,6 +2015,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVTrtyInvtResponse response = new SaveAcitJVTrtyInvtResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveaccTrty", request.getSaveaccTrty());
 			params.put("saveTrtyInvt", request.getSaveTrtyInvt());
 			HashMap<String, Object> res = acctITDao.saveAcitJVTrtyInvt(params);
@@ -2052,6 +2058,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInvPlacementResponse response = new SaveAcitJVInvPlacementResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveInvPlacement", request.getSaveInvPlacement());
 			params.put("delInvPlacement", request.getDelInvPlacement());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvPlacement(params);

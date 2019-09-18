@@ -117,6 +117,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lastAffectingPolId" 	column="LAST_AFFECTING_POL_ID"/>
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>

@@ -86,6 +86,7 @@ public class Policy {
 	private PolWordings polWordings;
 	private List<EndtText> endtText;
 	
+	private Integer lastAffectingPolId;
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -554,6 +555,12 @@ public class Policy {
 	public void setEndtText(List<EndtText> endtText) {
 		this.endtText = endtText;
 	}
+	public Integer getLastAffectingPolId() {
+		return lastAffectingPolId;
+	}
+	public void setLastAffectingPolId(Integer lastAffectingPolId) {
+		this.lastAffectingPolId = lastAffectingPolId;
+	}
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd + ", lineCdDesc="
@@ -580,6 +587,8 @@ public class Policy {
 				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
 				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
 				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
-				+ alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText + "]";
-	}	
+				+ alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText + ", lastAffectingPolId="
+				+ lastAffectingPolId + "]";
+	}
+	
 }

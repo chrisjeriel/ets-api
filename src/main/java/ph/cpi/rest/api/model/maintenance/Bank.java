@@ -8,6 +8,7 @@ public class Bank {
 	private String officialName;
 	private String remarks;
 	private String activeTag;
+	private String dcbTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -44,6 +45,12 @@ public class Bank {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	public String getDcbTag() {
+		return dcbTag;
+	}
+	public void setDcbTag(String dcbTag) {
+		this.dcbTag = dcbTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -77,7 +84,8 @@ public class Bank {
 	@Override
 	public String toString() {
 		return "Bank [bankCd=" + bankCd + ", shortName=" + shortName + ", officialName=" + officialName + ", remarks="
-				+ remarks + ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ remarks + ", activeTag=" + activeTag + ", dcbTag=" + dcbTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", okDelete=" + okDelete + "]";
 	}
 }
