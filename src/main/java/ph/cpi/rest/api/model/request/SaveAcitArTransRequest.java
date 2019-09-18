@@ -31,6 +31,7 @@ public class SaveAcitArTransRequest {
 	private String prDate;
 	private String prPreparedBy;
 	private String payeeNo;
+	private String payeeClassCd;
 	private String payor;
 	private String mailAddress;
 	private String bussTypeName;
@@ -196,6 +197,12 @@ public class SaveAcitArTransRequest {
 	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
+	public String getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(String payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
+	}
 	public String getPayor() {
 		return payor;
 	}
@@ -278,10 +285,10 @@ public class SaveAcitArTransRequest {
 				+ ", updateDate=" + updateDate + ", arStatus=" + arStatus + ", dcbYear=" + dcbYear + ", dcbNo=" + dcbNo
 				+ ", dcbUserCd=" + dcbUserCd + ", dcbBank=" + dcbBank + ", dcbBankAcct=" + dcbBankAcct + ", refNo="
 				+ refNo + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy=" + prPreparedBy + ", payeeNo="
-				+ payeeNo + ", payor=" + payor + ", mailAddress=" + mailAddress + ", bussTypeName=" + bussTypeName
-				+ ", tin=" + tin + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", arAmt=" + arAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", savePaytDtl="
-				+ savePaytDtl + ", delPaytDtl=" + delPaytDtl + "]";
+				+ payeeNo + ", payeeClassCd=" + payeeClassCd + ", payor=" + payor + ", mailAddress=" + mailAddress
+				+ ", bussTypeName=" + bussTypeName + ", tin=" + tin + ", particulars=" + particulars + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", arAmt=" + arAmt + ", allocTag=" + allocTag + ", allocTranId="
+				+ allocTranId + ", savePaytDtl=" + savePaytDtl + ", delPaytDtl=" + delPaytDtl + "]";
 	}
 }
 

@@ -15,11 +15,13 @@ public class AcitJVAcctTrtyBal {
 	private BigDecimal currRate;
 	private BigDecimal balanceAmt;
 	private BigDecimal localAmt;
+	private BigDecimal actualBalPaid;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private List <AcitJVAcctOffset> acctOffset;
+	private List <AcitJVInvestmentOffset> trtyInvmt;
 	
 	public String getCedingName() {
 		return cedingName;
@@ -75,6 +77,13 @@ public class AcitJVAcctTrtyBal {
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
 	}
+	
+	public BigDecimal getActualBalPaid() {
+		return actualBalPaid;
+	}
+	public void setActualBalPaid(BigDecimal actualBalPaid) {
+		this.actualBalPaid = actualBalPaid;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -106,12 +115,20 @@ public class AcitJVAcctTrtyBal {
 	public void setAcctOffset(List<AcitJVAcctOffset> acctOffset) {
 		this.acctOffset = acctOffset;
 	}
+	public List<AcitJVInvestmentOffset> getTrtyInvmt() {
+		return trtyInvmt;
+	}
+	public void setTrtyInvmt(List<AcitJVInvestmentOffset> trtyInvmt) {
+		this.trtyInvmt = trtyInvmt;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVAcctTrtyBal [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
-				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", acctOffset=" + acctOffset + "]";
+				+ ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt
+				+ ", actualBalPaid=" + actualBalPaid + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", acctOffset=" + acctOffset
+				+ ", trtyInvmt=" + trtyInvmt + "]";
 	}
 	
 }

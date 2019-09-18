@@ -5,8 +5,28 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVInvPullOutRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<InvPullOut> saveInvPullOut;
 	private List<InvPullOut> delInvPullOut;
+	
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+
 	public List<InvPullOut> getSaveInvPullOut() {
 		return saveInvPullOut;
 	}
@@ -25,9 +45,10 @@ public class SaveAcitJVInvPullOutRequest {
 
 	@Override
 	public String toString() {
-		return "SaveAcitJVInvPullOutRequest [saveInvPullOut=" + saveInvPullOut + ", delInvPullOut=" + delInvPullOut
-				+ "]";
+		return "SaveAcitJVInvPullOutRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveInvPullOut="
+				+ saveInvPullOut + ", delInvPullOut=" + delInvPullOut + "]";
 	}
+
 	
 }
 

@@ -31,6 +31,9 @@ class PrqInwPol {
 	private String riComm;
 	private String riCommVat;
 	private String prevPaytAmt;
+	private String prevBalance;
+	private String newPaytAmt;
+	private String newBalance;
 	private String netDue;
 	private String charges;
 	private String returnAmt;
@@ -73,6 +76,24 @@ class PrqInwPol {
 	}
 	public void setPrevPaytAmt(String prevPaytAmt) {
 		this.prevPaytAmt = prevPaytAmt;
+	}
+	public String getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(String prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public String getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(String newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public String getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(String newBalance) {
+		this.newBalance = newBalance;
 	}
 	public String getNetDue() {
 		return netDue;
@@ -119,7 +140,8 @@ class PrqInwPol {
 	@Override
 	public String toString() {
 		return "PrqInwPol [reqId=" + reqId + ", itemNo=" + itemNo + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", prevPaytAmt=" + prevPaytAmt + ", netDue=" + netDue + ", charges="
+				+ ", riCommVat=" + riCommVat + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance
+				+ ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + ", netDue=" + netDue + ", charges="
 				+ charges + ", returnAmt=" + returnAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
