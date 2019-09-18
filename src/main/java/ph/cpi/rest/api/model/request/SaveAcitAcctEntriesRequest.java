@@ -49,6 +49,8 @@ class SaveAcitAccEntry{
 	private String slCd;
 	private String creditAmt;
 	private String debitAmt;
+	private String foreignCreditAmt;
+	private String foreignDebitAmt;
 	private String autoTag;
 	private String createUser;
 	private String createDate;
@@ -95,6 +97,26 @@ class SaveAcitAccEntry{
 	}
 	public void setDebitAmt(String debitAmt) {
 		this.debitAmt = debitAmt;
+	}
+	public String getForeignCreditAmt() {
+		return foreignCreditAmt;
+	}
+	public void setForeignCreditAmt(String foreignCreditAmt) {
+		this.foreignCreditAmt = foreignCreditAmt;
+	}
+	@Override
+	public String toString() {
+		return "SaveAcitAccEntry [tranId=" + tranId + ", entryId=" + entryId + ", glAcctId=" + glAcctId + ", slTypeCd="
+				+ slTypeCd + ", slCd=" + slCd + ", creditAmt=" + creditAmt + ", debitAmt=" + debitAmt
+				+ ", foreignCreditAmt=" + foreignCreditAmt + ", foreignDebitAmt=" + foreignDebitAmt + ", autoTag="
+				+ autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
+	}
+	public String getForeignDebitAmt() {
+		return foreignDebitAmt;
+	}
+	public void setForeignDebitAmt(String foreignDebitAmt) {
+		this.foreignDebitAmt = foreignDebitAmt;
 	}
 	public String getAutoTag() {
 		return autoTag;

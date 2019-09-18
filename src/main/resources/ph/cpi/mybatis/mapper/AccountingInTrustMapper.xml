@@ -1436,6 +1436,8 @@
 		<result property="slName"  column="SL_NAME"/>
 		<result property="creditAmt"  column="CREDIT_AMT"/>
 		<result property="debitAmt"  column="DEBIT_AMT"/>
+		<result property="foreignCreditAmt"  column="FOREIGN_CREDIT_AMT"/>
+		<result property="foreignDebitAmt"  column="FOREIGN_DEBIT_AMT"/>
 		<result property="autoTag"  column="AUTO_TAG"/>
 		<result property="createUser"  column="CREATE_USER"/>
 		<result property="createDate"  column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -1497,6 +1499,8 @@
 					#{item.slCd, jdbcType=VARCHAR},
 					#{item.creditAmt, jdbcType=VARCHAR},
 					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
 					#{item.autoTag, jdbcType=VARCHAR},
 					#{item.createUser, jdbcType=VARCHAR},
 					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
