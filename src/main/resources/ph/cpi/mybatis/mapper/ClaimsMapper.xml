@@ -769,7 +769,7 @@
 		<result property="refNo"  			column="REF_NO" />
 		<result property="refDate"  		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="payee"  			column="PAYEE" />
-		<result property="payeeNo"  		column="PAYEE_NO" />
+		<result property="payeeNo"  		column="PAYEE_CD" />
 		<result property="tranTypeName"  		column="TRAN_TYPE_NAME" />
 		
 	</resultMap>
