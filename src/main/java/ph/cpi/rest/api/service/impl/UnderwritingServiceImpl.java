@@ -798,7 +798,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			spgiResponse.setPolicyId((Integer) res.get("outPolicyId"));
 			spgiResponse.setPolicyNo((String) res.get("policyNo"));
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			spgiResponse.setReturnCode(0);
 			spgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			e.printStackTrace();			

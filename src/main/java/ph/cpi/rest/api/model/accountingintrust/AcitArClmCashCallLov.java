@@ -13,6 +13,8 @@ public class AcitArClmCashCallLov {
 	private String coClmNo;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal tsiAmt;
+	private BigDecimal reserveAmt;
 	
 	public Integer getClaimId() {
 		return claimId;
@@ -62,11 +64,23 @@ public class AcitArClmCashCallLov {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
+	public BigDecimal getTsiAmt() {
+		return tsiAmt;
+	}
+	public void setTsiAmt(BigDecimal tsiAmt) {
+		this.tsiAmt = tsiAmt;
+	}
+	public BigDecimal getReserveAmt() {
+		return reserveAmt;
+	}
+	public void setReserveAmt(BigDecimal reserveAmt) {
+		this.reserveAmt = reserveAmt;
+	}
 	
 	@Override
 	public String toString() {
 		return "AcitArClmCashCallLov [claimId=" + claimId + ", claimNo=" + claimNo + ", policyId=" + policyId
 				+ ", policyNo=" + policyNo + ", lossDate=" + lossDate + ", coClmNo=" + coClmNo + ", currCd=" + currCd
-				+ ", currRate=" + currRate + "]";
+				+ ", currRate=" + currRate + ", tsiAmt=" + tsiAmt + ", reserveAmt=" + reserveAmt + "]";
 	}
 }
