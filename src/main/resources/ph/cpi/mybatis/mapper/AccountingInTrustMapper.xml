@@ -40,7 +40,6 @@
 		<result property="reqDate"			column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="reqStatus"		column="REQ_STATUS"/>
 		<result property="reqStatusDesc"	column="REQ_STATUS_DESC"/>
-		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
 		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
 		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
 		<result property="payeeCd"			column="PAYEE_CD"/>
@@ -59,6 +58,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="processing"		column="PROCESSING"/>
 		
 		<result property="tranStat" 		column="TRAN_STAT"/>
 		<result property="tranStatDesc" 	column="TRAN_STAT_DESC"/>
