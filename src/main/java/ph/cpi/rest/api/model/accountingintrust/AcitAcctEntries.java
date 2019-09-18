@@ -16,6 +16,8 @@ public class AcitAcctEntries {
 	private String slName;
 	private BigDecimal creditAmt;
 	private BigDecimal debitAmt;
+	private BigDecimal foreignCreditAmt;
+	private BigDecimal foreignDebitAmt;
 	private String autoTag;
 	private String createUser;
 	private DateTime createDate;
@@ -89,6 +91,18 @@ public class AcitAcctEntries {
 	public void setDebitAmt(BigDecimal debitAmt) {
 		this.debitAmt = debitAmt;
 	}
+	public BigDecimal getForeignCreditAmt() {
+		return foreignCreditAmt;
+	}
+	public void setForeignCreditAmt(BigDecimal foreignCreditAmt) {
+		this.foreignCreditAmt = foreignCreditAmt;
+	}
+	public BigDecimal getForeignDebitAmt() {
+		return foreignDebitAmt;
+	}
+	public void setForeignDebitAmt(BigDecimal foreignDebitAmt) {
+		this.foreignDebitAmt = foreignDebitAmt;
+	}
 	public String getAutoTag() {
 		return autoTag;
 	}
@@ -130,8 +144,9 @@ public class AcitAcctEntries {
 		return "AcitAcctEntries [tranId=" + tranId + ", entryId=" + entryId + ", glAcctId=" + glAcctId + ", glShortCd="
 				+ glShortCd + ", glShortDesc=" + glShortDesc + ", slTypeCd=" + slTypeCd + ", slTypeName=" + slTypeName
 				+ ", slCd=" + slCd + ", slName=" + slName + ", creditAmt=" + creditAmt + ", debitAmt=" + debitAmt
-				+ ", autoTag=" + autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", updateLevel=" + updateLevel + "]";
+				+ ", foreignCreditAmt=" + foreignCreditAmt + ", foreignDebitAmt=" + foreignDebitAmt + ", autoTag="
+				+ autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", updateLevel=" + updateLevel + "]";
 	}
 	
 	
