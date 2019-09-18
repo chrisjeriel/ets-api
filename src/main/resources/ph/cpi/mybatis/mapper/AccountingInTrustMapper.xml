@@ -1025,6 +1025,7 @@
 					ACIT_PRQ_INWPOL_PKG.del_prq_inwpol(
     					#{del.reqId, jdbcType=INTEGER},
 						#{del.itemNo, jdbcType=INTEGER});
+						
     		</foreach>
     	END;
     </update>
