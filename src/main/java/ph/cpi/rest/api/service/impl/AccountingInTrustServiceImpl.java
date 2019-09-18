@@ -1871,7 +1871,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("tranId", request.getTranId());
-			params.put("trantype", request.getTranType());
+			params.put("tranType", request.getTranType());
 			params.put("saveInvPullOut", request.getSaveInvPullOut());
 			params.put("delInvPullOut", request.getDelInvPullOut());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvPullOut(params);

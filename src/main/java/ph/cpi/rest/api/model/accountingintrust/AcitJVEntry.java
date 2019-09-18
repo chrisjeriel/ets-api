@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 public class AcitJVEntry {
 	private Integer tranId;
 	private Integer jvYear;
-	private Integer jvNo;
+	private String jvNo;
 	private DateTime jvDate;
 	private String jvStatus;
 	private String jvStatusName;
@@ -48,10 +48,10 @@ public class AcitJVEntry {
 	public void setJvYear(Integer jvYear) {
 		this.jvYear = jvYear;
 	}
-	public Integer getJvNo() {
+	public String getJvNo() {
 		return jvNo;
 	}
-	public void setJvNo(Integer jvNo) {
+	public void setJvNo(String jvNo) {
 		this.jvNo = jvNo;
 	}
 	public DateTime getJvDate() {

@@ -15,6 +15,8 @@ public class AcitJVPremResReleased {
 	private BigDecimal interestAmt;
 	private BigDecimal whtaxAmt;
 	private BigDecimal releaseAmt;
+	private BigDecimal whtaxRate;
+	private BigDecimal interestRate;
 	private BigDecimal localAmt;
 	private BigDecimal premResQuota;
 	private BigDecimal premRes1surplus;
@@ -91,6 +93,19 @@ public class AcitJVPremResReleased {
 	public void setLocalAmt(BigDecimal localAmt) {
 		this.localAmt = localAmt;
 	}
+	
+	public BigDecimal getWhtaxRate() {
+		return whtaxRate;
+	}
+	public void setWhtaxRate(BigDecimal whtaxRate) {
+		this.whtaxRate = whtaxRate;
+	}
+	public BigDecimal getInterestRate() {
+		return interestRate;
+	}
+	public void setInterestRate(BigDecimal interestRate) {
+		this.interestRate = interestRate;
+	}
 	public BigDecimal getPremResQuota() {
 		return premResQuota;
 	}
@@ -138,9 +153,10 @@ public class AcitJVPremResReleased {
 		return "AcitJVPremResReleased [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId
 				+ ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", interestAmt=" + interestAmt + ", whtaxAmt=" + whtaxAmt + ", releaseAmt="
-				+ releaseAmt + ", localAmt=" + localAmt + ", premResQuota=" + premResQuota + ", premRes1surplus="
-				+ premRes1surplus + ", premRes2surplus=" + premRes2surplus + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ releaseAmt + ", whtaxRate=" + whtaxRate + ", interestRate=" + interestRate + ", localAmt=" + localAmt
+				+ ", premResQuota=" + premResQuota + ", premRes1surplus=" + premRes1surplus + ", premRes2surplus="
+				+ premRes2surplus + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

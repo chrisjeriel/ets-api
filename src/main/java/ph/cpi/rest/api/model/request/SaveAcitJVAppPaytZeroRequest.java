@@ -55,7 +55,7 @@ class ZeroBal{
 	private BigDecimal charges;
 	private BigDecimal netDue;
 	private BigDecimal localAmt;
-	private BigDecimal adjBalAmt;
+	private BigDecimal paytAmt;
 	private BigDecimal overdueInt;
 	private BigDecimal cumPayment;
 	private BigDecimal balance;
@@ -132,11 +132,11 @@ class ZeroBal{
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	public BigDecimal getAdjBalAmt() {
-		return adjBalAmt;
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
 	}
-	public void setAdjBalAmt(BigDecimal adjBalAmt) {
-		this.adjBalAmt = adjBalAmt;
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
 	public BigDecimal getOverdueInt() {
 		return overdueInt;
@@ -213,10 +213,10 @@ class ZeroBal{
 		return "ZeroBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
 				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", localAmt=" + localAmt
-				+ ", adjBalAmt=" + adjBalAmt + ", overdueInt=" + overdueInt + ", cumPayment=" + cumPayment
-				+ ", balance=" + balance + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", paytType=" + paytType + "]";
+				+ ", paytAmt=" + paytAmt + ", overdueInt=" + overdueInt + ", cumPayment=" + cumPayment + ", balance="
+				+ balance + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", paytType=" + paytType + "]";
 	}
 	
 }
