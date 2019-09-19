@@ -2586,10 +2586,10 @@
 															#{insuredDesc, jdbcType=VARCHAR},
 															#{riskName, jdbcType=VARCHAR},
 															#{currencyCd, jdbcType=VARCHAR},
-															CAST(to_timestamp(#{distDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-															CAST(to_timestamp(#{distDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-															CAST(to_timestamp(#{acctDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-															CAST(to_timestamp(#{acctDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{distDateFrom,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+															CAST(to_timestamp(#{distDateTo,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+															CAST(to_timestamp(#{acctDateFrom,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+															CAST(to_timestamp(#{acctDateTo,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
 														    null,null,null,null))
 	</select>
 	
