@@ -39,6 +39,7 @@ public class AcitInvestments {
 	private DateTime	termDate;
 	private BigDecimal  amortEff;
 	private BigDecimal  priceCost;
+	private String 		processing;
 	
 	public BigDecimal getAmortEff() {
 		return amortEff;
@@ -240,7 +241,12 @@ public class AcitInvestments {
 	public void setSlCd(String slCd) {
 		this.slCd = slCd;
 	}
-	
+	public String getProcessing() {
+		return processing;
+	}
+	public void setProcessing(String processing) {
+		this.processing = processing;
+	}
 	@Override
 	public String toString() {
 		return "AcitInvestments [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
@@ -252,6 +258,6 @@ public class AcitInvestments {
 				+ ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
 				+ ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag + ", termDate=" + termDate + ", amortEff="
-				+ amortEff + ", priceCost=" + priceCost + "]";
-	}
+				+ amortEff + ", priceCost=" + priceCost + ", processing=" + processing + "]";
+	}	
 }

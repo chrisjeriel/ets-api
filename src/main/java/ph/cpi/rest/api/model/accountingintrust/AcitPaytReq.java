@@ -21,7 +21,7 @@ public class AcitPaytReq {
 	private String payeeCd;
 	private String payee;
 	private String currCd;
-	private Integer currRate;
+	private Float currRate;
 	private BigDecimal reqAmt;
 	private BigDecimal localAmt;
 	private String particulars;
@@ -130,10 +130,10 @@ public class AcitPaytReq {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Integer getCurrRate() {
+	public Float getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Integer currRate) {
+	public void setCurrRate(Float currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getReqAmt() {

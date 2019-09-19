@@ -209,6 +209,7 @@
 		<result property="termDate"			    		column="TERMINATION_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="priceCost"			    	column="AMORT_INVT_AMT" />
 		<result property="amortEff"			    	    column="AMORT_EFF_PCT" />
+		<result property="processing"		    	    column="PROCESSING" />
 		
 	</resultMap>
 	
