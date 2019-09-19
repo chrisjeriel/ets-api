@@ -115,6 +115,7 @@
 					'', '', '',''))
 	</select>
 	
+	
 	<select id="retrieveAcitPrqTrans" resultMap="acitPrqTransMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_PRQ_TRANS_PKG.ret_acit_prq_trans(
 					#{reqId,jdbcType=INTEGER},
