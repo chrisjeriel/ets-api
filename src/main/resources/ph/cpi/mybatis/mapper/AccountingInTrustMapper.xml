@@ -260,9 +260,9 @@
 			   									#{investments.slCd,  jdbcType=VARCHAR},
 			   									#{investments.preTerminatedTag,  jdbcType=VARCHAR},
 			   									CAST(to_timestamp(#{investments.termDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-			   									#{investments.amortized,  jdbcType=VARCHAR},
-			   									#{investments.amortEff,  jdbcType=VARCHAR},
-			   									#{investments.parCost,  jdbcType=VARCHAR});
+			   									#{investments.amortized, jdbcType=VARCHAR},
+			   									#{investments.amortEff, jdbcType=VARCHAR},
+			   									#{investments.parCost, jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
 		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
