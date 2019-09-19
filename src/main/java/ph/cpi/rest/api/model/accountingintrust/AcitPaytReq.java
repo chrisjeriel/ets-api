@@ -16,13 +16,12 @@ public class AcitPaytReq {
 	private DateTime reqDate;
 	private String reqStatus;
 	private String reqStatusDesc;
-	//private Integer payeeNo;
 	private String paytReqType;
 	private Integer payeeClassCd;
 	private String payeeCd;
 	private String payee;
 	private String currCd;
-	private Integer currRate;
+	private Float currRate;
 	private BigDecimal reqAmt;
 	private BigDecimal localAmt;
 	private String particulars;
@@ -35,6 +34,7 @@ public class AcitPaytReq {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String processing;
 	
 	private String tranStat;
 	private String tranStatDesc;
@@ -105,14 +105,7 @@ public class AcitPaytReq {
 	}
 	public void setReqStatusDesc(String reqStatusDesc) {
 		this.reqStatusDesc = reqStatusDesc;
-	}
-//	public Integer getPayeeNo() {
-//		return payeeNo;
-//	}
-//	public void setPayeeNo(Integer payeeNo) {
-//		this.payeeNo = payeeNo;
-//	}
-	
+	}	
 	public String getPayee() {
 		return payee;
 	}
@@ -137,10 +130,10 @@ public class AcitPaytReq {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Integer getCurrRate() {
+	public Float getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Integer currRate) {
+	public void setCurrRate(Float currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getReqAmt() {
@@ -215,6 +208,12 @@ public class AcitPaytReq {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getProcessing() {
+		return processing;
+	}
+	public void setProcessing(String processing) {
+		this.processing = processing;
+	}
 	public String getTranStat() {
 		return tranStat;
 	}
@@ -249,7 +248,7 @@ public class AcitPaytReq {
 				+ ", reqAmt=" + reqAmt + ", localAmt=" + localAmt + ", particulars=" + particulars + ", preparedBy="
 				+ preparedBy + ", preparedDate=" + preparedDate + ", requestedBy=" + requestedBy + ", approvedBy="
 				+ approvedBy + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat
-				+ ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing="
+				+ processing + ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + ", refNo=" + refNo + "]";
 	}
 }
