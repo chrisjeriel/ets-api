@@ -1,7 +1,8 @@
 package ph.cpi.rest.api.model.quote;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 public class QuotationGeneralInfo {
 	
@@ -38,7 +39,7 @@ public class QuotationGeneralInfo {
 	private String reqMode;
 	private String mbiRefNo;
 	private String currencyCd;
-	private Integer currencyRt;
+	private BigDecimal currencyRt;
 	private String govtTag;
 	private String indicativeTag;
 	private String openCoverTag;
@@ -257,10 +258,10 @@ public class QuotationGeneralInfo {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrencyRt() {
+	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(Integer currencyRt) {
+	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
 	public String getGovtTag() {
