@@ -23,7 +23,7 @@ public class AcitInvestments {
 	private DateTime 	purDate;
 	private DateTime 	matDate;
 	private String 		currCd;
-	private Integer 	currRate;
+	private BigDecimal 	currRate;
 	private BigDecimal 	invtAmt;
 	private BigDecimal 	incomeAmt;
 	private BigDecimal  bankCharge;     
@@ -168,12 +168,6 @@ public class AcitInvestments {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Integer getCurrRate() {
-		return currRate;
-	}
-	public void setCurrRate(Integer currRate) {
-		this.currRate = currRate;
-	}
 	public BigDecimal getInvtAmt() {
 		return invtAmt;
 	}
@@ -239,6 +233,12 @@ public class AcitInvestments {
 	}
 	public void setSlCd(String slCd) {
 		this.slCd = slCd;
+	}
+	public BigDecimal getCurrRate() {
+		return currRate;
+	}
+	public void setCurrRate(BigDecimal currRate) {
+		this.currRate = currRate;
 	}
 	
 	@Override

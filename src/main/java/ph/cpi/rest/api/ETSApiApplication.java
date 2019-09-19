@@ -28,5 +28,5 @@ public class ETSApiApplication extends SpringBootServletInitializer {
 	            storageService.init();
 	 };
   }
-}
+}	
 
