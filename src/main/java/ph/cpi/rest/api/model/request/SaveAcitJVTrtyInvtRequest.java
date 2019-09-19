@@ -9,8 +9,9 @@ public class SaveAcitJVTrtyInvtRequest {
 	private Integer tranId;
 	private Integer tranType;
 	private List<acctTrty> saveaccTrty;
+	private List<acctTrty> delaccTrty;
 	private List<invtTreaty> saveTrtyInvt;
-	
+	private List<invtTreaty> delTrtyInvt;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -44,12 +45,32 @@ public class SaveAcitJVTrtyInvtRequest {
 	public void setSaveaccTrty(List<acctTrty> saveaccTrty) {
 		this.saveaccTrty = saveaccTrty;
 	}
+	
+	public List<invtTreaty> getDelTrtyInvt() {
+		return delTrtyInvt;
+	}
+
+	public void setDelTrtyInvt(List<invtTreaty> delTrtyInvt) {
+		this.delTrtyInvt = delTrtyInvt;
+	}
+	
+	
+	public List<acctTrty> getDelaccTrty() {
+		return delaccTrty;
+	}
+
+	public void setDelaccTrty(List<acctTrty> delaccTrty) {
+		this.delaccTrty = delaccTrty;
+	}
 
 	@Override
 	public String toString() {
 		return "SaveAcitJVTrtyInvtRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveaccTrty=" + saveaccTrty
-				+ ", saveTrtyInvt=" + saveTrtyInvt + "]";
+				+ ", delaccTrty=" + delaccTrty + ", saveTrtyInvt=" + saveTrtyInvt + ", delTrtyInvt=" + delTrtyInvt
+				+ "]";
 	}
+
+	
 }
 
 @Alias ("ACITInvtTrty")
