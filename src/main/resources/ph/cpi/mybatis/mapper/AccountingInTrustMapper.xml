@@ -347,6 +347,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arListMap">
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="arNo"				column="AR_NO" />
+		<result property="formattedArNo"	column="FORMATTED_AR_NO" />
 		<result property="arDate"			column="AR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"		    column="AR_STATUS_CD" />
 		<result property="tranStat"			column="TRAN_STAT_CD" />
