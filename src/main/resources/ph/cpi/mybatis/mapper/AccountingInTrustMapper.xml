@@ -260,9 +260,9 @@
 			   									#{investments.slCd,  jdbcType=VARCHAR},
 			   									#{investments.preTerminatedTag,  jdbcType=VARCHAR},
 			   									CAST(to_timestamp(#{investments.termDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-			   									#{investments.amortized,  jdbcType=VARCHAR},
-			   									#{investments.amortEff,  jdbcType=VARCHAR},
-			   									#{investments.parCost,  jdbcType=VARCHAR});
+			   									#{investments.amortized, jdbcType=VARCHAR},
+			   									#{investments.amortEff, jdbcType=VARCHAR},
+			   									#{investments.parCost, jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
 		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
@@ -1328,7 +1328,7 @@
 			  
 			 
 			 
-			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+			 <!-- IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
@@ -1394,9 +1394,9 @@
 				 	v_alloted_amt := NULL;
 			     END IF;
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
-			ELSE
-				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
-			END IF;
+			<!-- ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; if return code is 2, cannot save
+			END IF; -->
 		END;
 	</update>
 	
@@ -1761,7 +1761,7 @@
 			  FROM ACIT_ACKGT_RECEIPT
 			 WHERE TRAN_ID = #{tranId};
 			 
-			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+			<!--  IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
@@ -1805,9 +1805,9 @@
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
-			ELSE
-				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
-			END IF;
+			<!-- ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; if return code is 2, cannot save
+			END IF; -->
 		END;
 	</update>
 	
@@ -2004,7 +2004,7 @@
 			   FROM ACIT_AR_INVPULLOUT
 			  WHERE TRAN_ID = #{tranId};
 			 
-			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+			 <!-- IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
@@ -2042,9 +2042,9 @@
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
-			ELSE
-				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
-			END IF;
+			<!-- ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; if return code is 2, cannot save
+			END IF; -->
 		END;
 	</update>
 	
@@ -2083,7 +2083,7 @@
 			  FROM ACIT_ACKGT_RECEIPT
 			 WHERE TRAN_ID = #{tranId};
 			 
-			 IF (ABS(#{totalLocalAmt}) - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+			 <!-- IF (ABS(#{totalLocalAmt}) - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
@@ -2124,9 +2124,9 @@
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
-			ELSE
-				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
-			END IF;
+			<!-- ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; if return code is 2, cannot save
+			END IF; -->
 		END;
 	</update>
 	
@@ -2209,7 +2209,7 @@
 			  FROM ACIT_ACKGT_RECEIPT
 			 WHERE TRAN_ID = #{tranId};
 			 
-			 IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN
+			 <!-- IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
@@ -2282,9 +2282,9 @@
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{billType}, #{tranId}, v_message);
-			ELSE
-				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; <!-- if return code is 2, cannot save -->
-			END IF;
+			<!-- ELSE
+				#{custReturnCode, mode=OUT, jdbcType=VARCHAR} := 2; if return code is 2, cannot save
+			END IF; -->
 		END;
 	</update>
 	
@@ -2369,7 +2369,7 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="deleteNegTrty" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_trty_bal(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+				ACIT_JOURNAL_VOUCHER_PKG.del_trty_clm(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
 			</foreach>
 			
 			<foreach collection="saveNegTrty" item="save">
@@ -2675,7 +2675,7 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delAcctTrty" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_acit_trty_bal(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+				ACIT_JOURNAL_VOUCHER_PKG.del_trty_inw(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
 			</foreach>
 			
 			<foreach collection="saveAcctTrty" item="save">
@@ -2898,7 +2898,7 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delClmOffset" item="del">
-				ACIT_JOURNAL_VOUCHER_PKG.del_clm_offset(#{del.tranId},#{del.itemNo}
+				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo}
 												  		);
 			</foreach>
 			
@@ -2926,7 +2926,7 @@
 			</foreach>
 			
 			<foreach collection="delInwPol" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_inw_offset(#{delete.tranId},#{delete.itemNo}
+				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo}
 												  		);
 			</foreach>
 			
@@ -3436,6 +3436,11 @@
 		DECLARE
 			v_message VARCHAR2(500);
 		BEGIN
+			<foreach collection="delaccTrty" item="delete">
+					ACIT_JOURNAL_VOUCHER_PKG.del_trty_inv(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo}
+													  );
+			</foreach>
+			
 			<foreach collection="saveaccTrty" item="saved">
 					ACIT_JOURNAL_VOUCHER_PKG.save_acit_trty( #{saved.tranId},#{saved.quarterNo},
 															 CAST(to_timestamp(#{saved.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -3445,6 +3450,11 @@
 															 #{saved.updateUser},
 															 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  		);
+			</foreach>
+			
+			<foreach collection="delTrtyInvt" item="del">
+					ACIT_JOURNAL_VOUCHER_PKG.del_invt_offset(#{del.tranId},#{del.quarterNo},#{del.itemNo}
+													  );
 			</foreach>
 			
 			<foreach collection="saveTrtyInvt" item="save">
@@ -3528,4 +3538,13 @@
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
+	
+	<select id="retrieveAcitSoaDue" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_due(
+																	#{policyId, jdbcType=VARCHAR},
+																	#{instNo,jdbcType=VARCHAR},
+																	#{cedingId,jdbcType=VARCHAR},
+																	#{currCd}))
+	</select>
+	
 </mapper>

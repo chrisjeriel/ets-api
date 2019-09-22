@@ -362,7 +362,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public Integer updatePolGenInfoSpoilage(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("updatePolGenInfoSpoilage", params);
+		Integer errorCode;
+		try{
+			errorCode = sqlSession.update("updatePolGenInfoSpoilage", params);
+		}catch (UncategorizedSQLException e){
+			throw (SQLException) e.getCause();
+		}
 		return errorCode;
 	}
 	@Override
