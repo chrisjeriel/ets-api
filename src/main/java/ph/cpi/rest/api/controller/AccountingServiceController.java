@@ -1,12 +1,18 @@
 package ph.cpi.rest.api.controller;
 
+import java.sql.SQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Controller
@@ -21,5 +27,12 @@ public class AccountingServiceController {
 	private AccountingServService acctServService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccountingServiceController.class);
+	
+	@GetMapping(path="retrieveAcseOrList")
+	public @ResponseBody RetrieveAcseOrListResponse retrieveAcseOrList(RetrieveAcseOrListRequest raolr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcseOrList");
+		logger.info("RetrieveAcseOrListRequest : " + raolr.toString());
+		return acctServService.retrieveAcseOrList(raolr);
+	}
 
 }
