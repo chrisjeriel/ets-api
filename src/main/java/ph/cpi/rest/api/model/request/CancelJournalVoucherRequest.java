@@ -4,6 +4,7 @@ public class CancelJournalVoucherRequest {
 	private Integer tranId;
 	private Integer jvYear;
 	private Integer jvNo;
+	private Integer tranType; 
 	private String updateUser;
 	private String updateDate;
 	public Integer getTranId() {
@@ -24,6 +25,13 @@ public class CancelJournalVoucherRequest {
 	public void setJvNo(Integer jvNo) {
 		this.jvNo = jvNo;
 	}
+	
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
 	public String getUpdateUser() {
 		return updateUser;
 	}
@@ -38,7 +46,8 @@ public class CancelJournalVoucherRequest {
 	}
 	@Override
 	public String toString() {
-		return "CancelJournalVoucherRequest [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "CancelJournalVoucherRequest [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", tranType="
+				+ tranType + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

@@ -1040,11 +1040,12 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("tranId" , request.getTranId());
 			params.put("jvYear" , request.getJvYear());
 			params.put("jvNo" , request.getJvNo());
+			params.put("tranType" , request.getTranType());
 			params.put("updateUser" , request.getUpdateUser());
 			params.put("updateDate" , request.getUpdateDate());
 			HashMap<String, Object> res = acctITDao.cancelJV(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		} catch (SQLException sqlex) {
+		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
