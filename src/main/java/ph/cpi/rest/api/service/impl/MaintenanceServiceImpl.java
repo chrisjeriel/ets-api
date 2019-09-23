@@ -2270,4 +2270,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setPayeeCeding(maintenanceDao.retrieveMtnPayeeCeding(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcitCheckSeriesResponse retrieveMtnAcitCheckSeries(RetrieveMtnAcitCheckSeriesRequest rmacs)
+			throws SQLException {
+		RetrieveMtnAcitCheckSeriesResponse rmacsResponse = new RetrieveMtnAcitCheckSeriesResponse();
+		HashMap<String, Object> rmacsParams = new HashMap<String, Object>();
+		rmacsParams.put("bank",rmacs.getBank());
+		rmacsParams.put("bankAcct", rmacs.getBankAcct());
+		rmacsParams.put("checkNo",rmacs.getCheckNo());
+		rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcitCheckSeries(rmacsParams));
+		return rmacsResponse;
+	}
 }

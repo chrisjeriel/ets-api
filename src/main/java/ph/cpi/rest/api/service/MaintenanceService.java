@@ -147,4 +147,5 @@ public interface MaintenanceService {
 	public RetrieveMtnCompanyResponse retrieveMtnCompany(RetrieveMtnCompanyRequest rmcr) throws SQLException;
 	public RetrieveMtnBussTypeResponse retrieveMtnBussType(RetrieveMtnBussTypeRequest rmbtr) throws SQLException;
 	public RetrieveMtnPayeeCedingResponse retrieveMtnPayeeCeding(RetrieveMtnPayeeCedingRequest request) throws SQLException;
+	public RetrieveMtnAcitCheckSeriesResponse retrieveMtnAcitCheckSeries(RetrieveMtnAcitCheckSeriesRequest request) throws SQLException;
 }

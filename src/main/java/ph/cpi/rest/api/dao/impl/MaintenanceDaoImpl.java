@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
+import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -1040,5 +1041,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public List<PayeeCeding> retrieveMtnPayeeCeding(HashMap<String, Object> params) throws SQLException {
 		List<PayeeCeding> res = sqlSession.selectList("retrieveMtnPayeeCeding", params);
 		return res;
+	}
+
+	@Override
+	public List<AcitCheckSeries> retrieveMtnAcitCheckSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcitCheckSeries> checkSeriesList = sqlSession.selectList("retrieveMtnAcitCheckSeries", params);
+		return checkSeriesList;
 	}
 }
