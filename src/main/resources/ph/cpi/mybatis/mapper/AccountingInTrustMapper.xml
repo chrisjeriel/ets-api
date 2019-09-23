@@ -2231,7 +2231,7 @@
 														#{del.claimId},
 														#{del.projId},
 														#{del.histNo},
-														#{del.localAmt}	
+														#{del.recOverAmt}	
 					);
 					<!-- Delete from ACIT_CLM_RES_HIST_PAYTS -->
 					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
