@@ -12,7 +12,6 @@ public class AcitCv {
 	private DateTime cvDate;
 	private String cvStatus;
 	private String cvStatusDesc;
-	//private Integer payeeNo;
 	private String paytReqType;
 	private String paytReqTypeDesc;
 	private Integer payeeClassCd;
@@ -28,7 +27,7 @@ public class AcitCv {
 	private String checkClass;
 	private String checkClassDesc;
 	private String currCd;
-	private Integer currRate;
+	private Float currRate;
 	private BigDecimal cvAmt;
 	private BigDecimal localAmt;
 	private String preparedBy;
@@ -198,10 +197,10 @@ public class AcitCv {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Integer getCurrRate() {
+	public Float getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Integer currRate) {
+	public void setCurrRate(Float currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getCvAmt() {

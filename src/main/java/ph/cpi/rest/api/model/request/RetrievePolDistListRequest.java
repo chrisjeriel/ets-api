@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
-
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
@@ -14,10 +12,10 @@ public class RetrievePolDistListRequest {
 	private String insuredDesc;
 	private String riskName;
 	private String currencyCd;
-	private DateTime distDateFrom;
-	private DateTime distDateTo;
-	private DateTime acctDateFrom;
-	private DateTime acctDateTo;
+	private String distDateFrom;
+	private String distDateTo;
+	private String acctDateFrom;
+	private String acctDateTo;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	public Integer getDistId() {
@@ -68,28 +66,28 @@ public class RetrievePolDistListRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public DateTime getDistDateFrom() {
+	public String getDistDateFrom() {
 		return distDateFrom;
 	}
-	public void setDistDateFrom(DateTime distDateFrom) {
+	public void setDistDateFrom(String distDateFrom) {
 		this.distDateFrom = distDateFrom;
 	}
-	public DateTime getDistDateTo() {
+	public String getDistDateTo() {
 		return distDateTo;
 	}
-	public void setDistDateTo(DateTime distDateTo) {
+	public void setDistDateTo(String distDateTo) {
 		this.distDateTo = distDateTo;
 	}
-	public DateTime getAcctDateFrom() {
+	public String getAcctDateFrom() {
 		return acctDateFrom;
 	}
-	public void setAcctDateFrom(DateTime acctDateFrom) {
+	public void setAcctDateFrom(String acctDateFrom) {
 		this.acctDateFrom = acctDateFrom;
 	}
-	public DateTime getAcctDateTo() {
+	public String getAcctDateTo() {
 		return acctDateTo;
 	}
-	public void setAcctDateTo(DateTime acctDateTo) {
+	public void setAcctDateTo(String acctDateTo) {
 		this.acctDateTo = acctDateTo;
 	}
 	public PaginationRequest getPaginationRequest() {

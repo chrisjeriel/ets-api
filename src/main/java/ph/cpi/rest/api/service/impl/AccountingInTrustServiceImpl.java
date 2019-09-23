@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingZeroRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitSOADueRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitSoaZeroAltRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
@@ -164,6 +165,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitPrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOAAgingZeroResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitSOADueResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSOATreatyDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitSoaZeroAltResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitUPRParamsResponse;
@@ -1870,6 +1872,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInvPullOutResponse response = new SaveAcitJVInvPullOutResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveInvPullOut", request.getSaveInvPullOut());
 			params.put("delInvPullOut", request.getDelInvPullOut());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvPullOut(params);
@@ -1935,6 +1939,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return uacsResponse;
+		
 	}
 
 	@Override
@@ -1943,6 +1948,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInvRollOverResponse response = new SaveAcitJVInvRollOverResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveRollOver", request.getSaveRollOver());
 			params.put("delRollOver", request.getDelRollOver());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvRollOver(params);
@@ -2010,8 +2017,12 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVTrtyInvtResponse response = new SaveAcitJVTrtyInvtResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveaccTrty", request.getSaveaccTrty());
+			params.put("delaccTrty", request.getDelaccTrty());
 			params.put("saveTrtyInvt", request.getSaveTrtyInvt());
+			params.put("delTrtyInvt", request.getDelTrtyInvt());
 			HashMap<String, Object> res = acctITDao.saveAcitJVTrtyInvt(params);
 			response.setReturnCode((Integer)res.get("errorCode"));
 		}catch(Exception exception){
@@ -2051,6 +2062,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInvPlacementResponse response = new SaveAcitJVInvPlacementResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveInvPlacement", request.getSaveInvPlacement());
 			params.put("delInvPlacement", request.getDelInvPlacement());
 			HashMap<String, Object> res = acctITDao.saveAcitJVInvPlacement(params);
@@ -2060,6 +2073,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			exception.printStackTrace();
 		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitSOADueResponse retrieveAcitSoaDue(RetrieveAcitSOADueRequest request) throws SQLException {
+		RetrieveAcitSOADueResponse response = new RetrieveAcitSOADueResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("policyId", request.getPolicyId());
+		params.put("instNo", request.getInstNo());
+		params.put("cedingId", request.getCedingId());
+		params.put("currCd", request.getCurrCd());
+		response.setSoaDtlList(acctITDao.retrieveAcitSoaDue(params));
 		return response;
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
@@ -798,7 +799,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			spgiResponse.setPolicyId((Integer) res.get("outPolicyId"));
 			spgiResponse.setPolicyNo((String) res.get("policyNo"));
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			spgiResponse.setReturnCode(0);
 			spgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			e.printStackTrace();			
@@ -1169,7 +1170,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		updatePolGenInfoSpoilageParams.put("spoilCd", upgisr.getSpoilCd());
 		updatePolGenInfoSpoilageParams.put("spldUser", upgisr.getSpldUser());
 		updatePolGenInfoSpoilageParams.put("updateUser", upgisr.getUpdateUser());
-		upgisResponse.setReturnCode(underwritingDao.updatePolGenInfoSpoilage(updatePolGenInfoSpoilageParams));
+		try{
+			upgisResponse.setReturnCode(underwritingDao.updatePolGenInfoSpoilage(updatePolGenInfoSpoilageParams));
+		}catch(SQLException e){
+			if(e.getErrorCode()== 20001){
+				upgisResponse.setReturnCode(20000);
+				upgisResponse.getErrorList().add(new Error("SQLException", e.getMessage().substring(e.getMessage().indexOf(':')+2,e.getMessage().indexOf("\n"))));
+			}else{
+				upgisResponse.setReturnCode(0);
+				upgisResponse.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
+		logger.info("UpdatePolGenInfoSpoilageResponse : "+upgisResponse.toString());
 		return upgisResponse;
 	}
 	

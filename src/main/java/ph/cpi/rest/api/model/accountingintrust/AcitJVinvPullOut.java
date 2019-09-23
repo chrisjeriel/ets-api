@@ -20,9 +20,9 @@ public class AcitJVinvPullOut {
 	private DateTime purchasedDate;
 	private DateTime maturityDate;
 	private Integer destInvtId;
-	private String bank;
+	private Integer bank;
 	private String bankName;
-	private String bankAcct;
+	private Integer bankAcct;
 	private String pulloutType;
 	private String currCd;
 	private BigDecimal currRate;
@@ -126,10 +126,10 @@ public class AcitJVinvPullOut {
 	public void setDestInvtId(Integer destInvtId) {
 		this.destInvtId = destInvtId;
 	}
-	public String getBank() {
+	public Integer getBank() {
 		return bank;
 	}
-	public void setBank(String bank) {
+	public void setBank(Integer bank) {
 		this.bank = bank;
 	}
 	
@@ -139,10 +139,10 @@ public class AcitJVinvPullOut {
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
 	}
-	public String getBankAcct() {
+	public Integer getBankAcct() {
 		return bankAcct;
 	}
-	public void setBankAcct(String bankAcct) {
+	public void setBankAcct(Integer bankAcct) {
 		this.bankAcct = bankAcct;
 	}
 	public String getPulloutType() {
