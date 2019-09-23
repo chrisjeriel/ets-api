@@ -86,10 +86,10 @@
 		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
 		<result property="orDtlSum"      column="ORDTL_SUM"       />
 		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
-		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
+		<association property="paytDtl"  resultMap="acsePaytDtlAssoc"   />
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.accountingservice.ORPaymentDetails" id="paytDtlAssoc">
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.ORPaymentDetails" id="acsePaytDtlAssoc">
 		<result property="paytId"          column="PAYT_ID" />
 		<result property="paytMode"        column="PAYT_MODE" />
 		<result property="currCd"          column="ORP_CURR_CD" />
