@@ -25,4 +25,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<OfficialReceipt> res = sqlSession.selectList("retOrList", params);
 		return res;
 	}
+
+	@Override
+	public OfficialReceipt retrieveOrEntry(HashMap<String, Object> params) throws SQLException {
+		OfficialReceipt res = sqlSession.selectOne("retOrEntry", params);
+		return res;
+	}
 }

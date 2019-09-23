@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -34,5 +36,11 @@ public class AccountingServiceController {
 		logger.info("RetrieveAcseOrListRequest : " + raolr.toString());
 		return acctServService.retrieveAcseOrList(raolr);
 	}
-
+	
+	@GetMapping(path="retrieveAcseOrEntry")
+	public @ResponseBody RetrieveAcseOrEntryResponse retrieveAcseOrEntry(RetrieveAcseOrEntryRequest raoer) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcseOrList");
+		logger.info("RetrieveAcseOrEntryRequest : " + raoer.toString());
+		return acctServService.retrieveAcseOrEntry(raoer);
+	}
 }
