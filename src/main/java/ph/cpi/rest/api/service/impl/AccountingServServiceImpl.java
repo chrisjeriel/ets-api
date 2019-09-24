@@ -17,9 +17,11 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Component
@@ -153,5 +155,55 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}*/
 		return response;
+	}
+	
+	@Override
+	public SaveAcsePaytReqResponse saveAcsePaytReq(SaveAcsePaytReqRequest saprr) throws SQLException {
+		SaveAcsePaytReqResponse saprResponse = new SaveAcsePaytReqResponse();
+		HashMap<String, Object> saprParams = new HashMap<String, Object>();
+		try {
+			saprParams.put("paytReqNo","");
+			saprParams.put("reqId", saprr.getReqId());
+			saprParams.put("reqPrefix", saprr.getReqPrefix());
+			saprParams.put("reqYear", saprr.getReqYear());
+			saprParams.put("reqMm", saprr.getReqMm());
+			saprParams.put("reqSeqNo", saprr.getReqSeqNo());
+			saprParams.put("tranTypeCd", saprr.getTranTypeCd());
+			saprParams.put("reqDate", saprr.getReqDate());
+			saprParams.put("reqStatus", saprr.getReqStatus());
+			//saprParams.put("payeeNo", saprr.getPayeeNo());
+			saprParams.put("payeeClassCd", saprr.getPayeeClassCd());
+			saprParams.put("payeeCd", saprr.getPayeeCd());
+			saprParams.put("payee", saprr.getPayee());
+			saprParams.put("currCd", saprr.getCurrCd());
+			saprParams.put("currRate", saprr.getCurrRate());
+			saprParams.put("reqAmt", saprr.getReqAmt());
+			saprParams.put("localAmt", saprr.getLocalAmt());
+			saprParams.put("particulars", saprr.getParticulars());
+			saprParams.put("preparedBy", saprr.getPreparedBy());
+			saprParams.put("preparedDate", saprr.getPreparedDate());
+			saprParams.put("requestedBy", saprr.getRequestedBy());
+			saprParams.put("approvedBy", saprr.getApprovedBy());
+			saprParams.put("approvedDate", saprr.getApprovedDate());
+			saprParams.put("createUser", saprr.getCreateUser());
+			saprParams.put("createDate", saprr.getCreateDate());
+			saprParams.put("updateUser", saprr.getUpdateUser());
+			saprParams.put("updateDate", saprr.getUpdateDate());
+			
+			HashMap<String, Object> response = acctServDao.saveAcsePaytReq(saprParams);
+			
+			saprResponse.setReturnCode((Integer) response.get("errorCode"));
+			saprResponse.setPaytReqNo((String) response.get("paytReqNo"));
+			saprResponse.setReqIdOut((Integer) response.get("reqId"));
+		} catch (SQLException sqlex) {
+			saprResponse.setReturnCode(0);
+			saprResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			saprResponse.setReturnCode(0);
+			saprResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return saprResponse;
 	}
 }

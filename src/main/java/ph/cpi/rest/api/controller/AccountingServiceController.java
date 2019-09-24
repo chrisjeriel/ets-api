@@ -16,13 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Controller
@@ -64,5 +68,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseOrEntry");
 		logger.info("SaveAcseOrTransRequest : " + saotr.toString());
 		return acctServService.saveOrEntry(saotr);
+	}
+	
+	@PostMapping(path="saveAcsePaytReq")
+	public @ResponseBody SaveAcsePaytReqResponse saveAcsePaytReq(@RequestBody SaveAcsePaytReqRequest saprr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcsePaytReq");
+		logger.info("SaveAcsePaytReqRequest : " + saprr.toString());
+		return acctServService.saveAcsePaytReq(saprr);
 	}
 }

@@ -45,4 +45,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public HashMap<String, Object> saveAcsePaytReq(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcsePaytReq", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
