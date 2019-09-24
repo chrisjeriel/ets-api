@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 
 @Component
@@ -30,5 +31,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public OfficialReceipt retrieveOrEntry(HashMap<String, Object> params) throws SQLException {
 		OfficialReceipt res = sqlSession.selectOne("retOrEntry", params);
 		return res;
+	}
+	
+	@Override
+	public List<AcsePaytReq> retrieveAcsePaytReq(HashMap<String, Object> params) throws SQLException {
+		List<AcsePaytReq> acsePaytReqList  = sqlSession.selectList("retrieveAcsePaytReq", params);
+		return acsePaytReqList;
 	}
 }

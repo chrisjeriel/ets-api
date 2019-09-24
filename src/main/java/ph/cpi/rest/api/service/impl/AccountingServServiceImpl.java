@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Component
@@ -50,5 +52,25 @@ public class AccountingServServiceImpl implements AccountingServService{
 		response.setOrEntry(acctServDao.retrieveOrEntry(params));
 		logger.info("RetrieveAcseOrEntryRequest : " + response.toString());
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcsePaytReqResponse retrieveAcsePaytReq(RetrieveAcsePaytReqRequest racprlp) throws SQLException {
+		RetrieveAcsePaytReqResponse rapResponse = new RetrieveAcsePaytReqResponse();
+		HashMap<String, Object> rapParams = new HashMap<String, Object>();
+		rapParams.put("reqId", racprlp.getReqId());
+		rapParams.put("paytReqNo", racprlp.getPaytReqNo());
+		rapParams.put("tranTypeDesc", racprlp.getTranTypeDesc());
+		rapParams.put("reqDateFrom", racprlp.getReqDateFrom());
+		rapParams.put("reqDateTo", racprlp.getReqDateTo());
+		rapParams.put("reqStatusDesc", racprlp.getReqStatusDesc());
+		rapParams.put("payee", racprlp.getPayee());
+		rapParams.put("currCd", racprlp.getCurrCd());
+		rapParams.put("reqAmt", racprlp.getReqAmt());
+		rapParams.put("particulars", racprlp.getParticulars());
+		rapParams.put("requestedBy", racprlp.getRequestedBy());
+		rapResponse.setAcsePaytReq(acctServDao.retrieveAcsePaytReq(rapParams));
+		logger.info("RetrieveAcsePaytReqResponse : " + rapResponse.toString());
+		return rapResponse;
 	}
 }

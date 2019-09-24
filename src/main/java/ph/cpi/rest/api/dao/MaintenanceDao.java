@@ -36,6 +36,7 @@ import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -217,4 +218,5 @@ public interface MaintenanceDao {
 	public List<BussType> retrieveMtnBussType(final HashMap<String, Object> params) throws SQLException;
 	public List<PayeeCeding> retrieveMtnPayeeCeding(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCheckSeries> retrieveMtnAcitCheckSeries(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnAcseTranType> retrieveMtnAcseTranType(final HashMap<String, Object> params ) throws SQLException;
 }

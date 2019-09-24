@@ -45,6 +45,7 @@ import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -1048,5 +1049,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcitCheckSeries> checkSeriesList = sqlSession.selectList("retrieveMtnAcitCheckSeries", params);
 		return checkSeriesList;
 	}
+	
+	@Override
+	public List<MtnAcseTranType> retrieveMtnAcseTranType(HashMap<String, Object> params) throws SQLException {
+	    List<MtnAcseTranType> tranTypeList = sqlSession.selectList("retrieveMtnAcseTranType", params);
+	    return tranTypeList;
+	}
+
 	
 }

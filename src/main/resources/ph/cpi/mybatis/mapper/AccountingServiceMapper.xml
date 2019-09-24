@@ -111,4 +111,56 @@
 						   )
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePaytReq" id="acsePaytReqMap">
+		<result property="paytReqNo"		column="PAYT_REQ_NO"/>
+		<result property="reqId"			column="REQ_ID"/>
+		<result property="reqPrefix"		column="REQ_PREFIX"/>
+		<result property="reqYear"			column="REQ_YEAR"/>
+		<result property="reqMm"			column="REQ_MM"/>
+		<result property="reqSeqNo"			column="REQ_SEQ_NO"/>
+		<result property="tranTypeCd"		column="TRAN_TYPE_CD"/>
+		<result property="tranTypeDesc"		column="TRAN_TYPE_DESC"/>
+		<result property="reqDate"			column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="reqStatus"		column="REQ_STATUS"/>
+		<result property="reqStatusDesc"	column="REQ_STATUS_DESC"/>
+		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
+		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
+		<result property="payeeCd"			column="PAYEE_CD"/>
+		<result property="payee"			column="PAYEE"/>
+		<result property="currCd"			column="CURR_CD"/>
+		<result property="currRate"			column="CURR_RATE"/>
+		<result property="reqAmt"			column="REQ_AMT"/>
+		<result property="localAmt"			column="LOCAL_AMT"/>
+		<result property="particulars"		column="PARTICULARS"/>
+		<result property="preparedBy"		column="PREPARED_BY"/>
+		<result property="preparedDate"		column="PREPARED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="requestedBy"		column="REQUESTED_BY"/>
+		<result property="approvedBy"		column="APPROVED_BY"/>
+		<result property="approvedDate"		column="APPROVED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="processing"		column="PROCESSING"/>
+		
+		<result property="tranStat" 		column="TRAN_STAT"/>
+		<result property="tranStatDesc" 	column="TRAN_STAT_DESC"/>
+		<result property="refNo" 			column="REF_NO"/>
+	</resultMap>
+	
+	<select id="retrieveAcsePaytReq" resultMap="acsePaytReqMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_PAYMENT_REQUEST_PKG.ret_payt_req(
+					#{reqId,jdbcType=INTEGER},
+					#{paytReqNo, jdbcType=VARCHAR},
+					#{tranTypeDesc, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{reqDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{reqDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{reqStatusDesc, jdbcType=VARCHAR},
+					#{payee, jdbcType=VARCHAR},
+					#{currCd, jdbcType=VARCHAR},
+					#{reqAmt, jdbcType=INTEGER},
+					#{particulars, jdbcType=VARCHAR},
+					#{requestedBy, jdbcType=VARCHAR},
+					'', '', '',''))
+	</select>
 </mapper>

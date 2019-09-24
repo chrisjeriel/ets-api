@@ -2282,4 +2282,20 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcitCheckSeries(rmacsParams));
 		return rmacsResponse;
 	}
+	
+	@Override
+	  public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr)
+	      throws SQLException {
+	    RetrieveMtnAcseTranTypeResponse rmattResponse =  new RetrieveMtnAcseTranTypeResponse();
+	    HashMap<String, Object> rmattParams = new HashMap<String, Object>();
+	    rmattParams.put("tranClass", rmattr.getTranClass());
+	    rmattParams.put("tranTypeCd", rmattr.getTranTypeCd());
+	    rmattParams.put("typePrefix", rmattr.getTypePrefix());
+	    rmattParams.put("autoTag", rmattr.getAutoTag());
+	    rmattParams.put("baeTag", rmattr.getBaeTag());
+	    rmattParams.put("activeTag", rmattr.getActiveTag());
+	    rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcseTranType(rmattParams));
+	    logger.info("RetrieveMtnAcseTranTypeResponse : " + rmattResponse.toString());
+	    return rmattResponse;
+	 }
 }
