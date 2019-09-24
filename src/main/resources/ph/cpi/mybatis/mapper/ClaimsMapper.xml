@@ -247,6 +247,9 @@
 		<result property="createDate"     	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="UPDATE_USER" />
 		<result property="updateDate"     	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		
+		<result property="reasonCd"			column="REASON_CD" />
+		<result property="reasonDesc"		column="REASON_DESC" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
 		<association property="clmDeductibles" resultMap="claimDeductiblesMap"></association>
 	</resultMap>
