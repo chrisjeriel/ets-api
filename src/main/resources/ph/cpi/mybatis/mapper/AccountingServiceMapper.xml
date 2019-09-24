@@ -163,4 +163,88 @@
 					#{requestedBy, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
+
+	<update id="saveAcsetOrTrans" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_tran_id        ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+			v_message		 VARCHAR2(500);
+		BEGIN
+			ACSE_OFFICIAL_RECEIPT_PKG.save_acse_trans(
+													v_tran_id,
+													#{tranId},
+													CAST(to_timestamp(#{tranDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{tranClass},
+													#{tranTypeCd},
+													#{tranYear},
+													#{tranClassNo,jdbcType=VARCHAR},
+													#{tranStat},
+													CAST(to_timestamp(#{closeDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													CAST(to_timestamp(#{deleteDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													CAST(to_timestamp(#{postDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{createUser},
+													CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{updateUser},
+													CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												  );
+												  
+			#{outTranId, mode=OUT, jdbcType=VARCHAR} := v_tran_id;
+			
+			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
+				ACSE_OFFICIAL_RECEIPT_PKG.save_or_info(
+														v_tran_id,
+														#{orType},
+														#{tranClassNo, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{tranDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{orStatus},
+														#{tranTypeCd},
+														#{dcbYear},
+														#{dcbNo},
+														#{dcbUserCd},
+														#{dcbBank, jdbcType=VARCHAR},
+														#{dcbBankAcct, jdbcType=VARCHAR},
+														#{refNo, jdbcType=VARCHAR},
+														#{prNo, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{prDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{prPreparedBy, jdbcType=VARCHAR},
+														#{payeeNo, jdbcType=VARCHAR},
+														#{payeeClassCd, jdbcType=VARCHAR},
+														#{payor},
+														#{mailAddress, jdbcType=VARCHAR},
+														#{bussTypeName, jdbcType=VARCHAR},
+														#{tin, jdbcType=VARCHAR},
+														#{particulars},
+														#{currCd},
+														#{currRate},
+														#{orAmt},
+														#{allocTag, jdbcType=VARCHAR},
+														#{allocTranId, jdbcType=VARCHAR},
+														#{createUser},
+														CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{updateUser},
+														CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													);
+				<foreach collection="delPaytDtl" item="del">
+					ACSE_OR_PAYTDTL_PKG.del_or_paytdtl(
+														v_tran_id,
+														#{del.paytId}
+													  );
+				</foreach>
+				<foreach collection="savePaytDtl" item="save">
+					ACSE_OR_PAYTDTL_PKG.save_or_paytdtl(
+														v_tran_id,
+														#{save.paytId, jdbcType=VARCHAR},
+														#{save.paytMode},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.paytAmt},
+														#{save.bank, jdbcType=VARCHAR},
+														#{save.bankAcct, jdbcType=VARCHAR},
+														#{save.checkNo, jdbcType=VARCHAR},
+														CAST(to_timestamp(#{save.checkDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.checkClass, jdbcType=VARCHAR},
+														#{save.remarks, jdbcType=VARCHAR}
+													  );
+				</foreach>
+		END;
+	</update>
 </mapper>

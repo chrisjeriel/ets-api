@@ -38,4 +38,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<AcsePaytReq> acsePaytReqList  = sqlSession.selectList("retrieveAcsePaytReq", params);
 		return acsePaytReqList;
 	}
+	
+	@Override
+	public HashMap<String, Object> saveOrEntry(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcsetOrTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

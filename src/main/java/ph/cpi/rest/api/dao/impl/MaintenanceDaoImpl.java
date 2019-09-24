@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -1051,10 +1052,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 	
 	@Override
-	public List<MtnAcseTranType> retrieveMtnAcseTranType(HashMap<String, Object> params) throws SQLException {
-	    List<MtnAcseTranType> tranTypeList = sqlSession.selectList("retrieveMtnAcseTranType", params);
-	    return tranTypeList;
+	public List<AcseDCBNo> retrieveMtnAcseDCBNo(HashMap<String, Object> params) throws SQLException {
+		List<AcseDCBNo> res = sqlSession.selectList("retMtnAcseDCBNo", params);
+		return res;
 	}
 
-	
+	@Override
+	public List<MtnAcseTranType> retrieveMtnAcseTranType(HashMap<String, Object> params) throws SQLException {
+		List<MtnAcseTranType> res = sqlSession.selectList("retrieveMtnAcseTranType", params);
+		return res;
+	}
 }

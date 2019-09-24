@@ -2284,18 +2284,30 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 	
 	@Override
-	  public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr)
-	      throws SQLException {
-	    RetrieveMtnAcseTranTypeResponse rmattResponse =  new RetrieveMtnAcseTranTypeResponse();
-	    HashMap<String, Object> rmattParams = new HashMap<String, Object>();
-	    rmattParams.put("tranClass", rmattr.getTranClass());
-	    rmattParams.put("tranTypeCd", rmattr.getTranTypeCd());
-	    rmattParams.put("typePrefix", rmattr.getTypePrefix());
-	    rmattParams.put("autoTag", rmattr.getAutoTag());
-	    rmattParams.put("baeTag", rmattr.getBaeTag());
-	    rmattParams.put("activeTag", rmattr.getActiveTag());
-	    rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcseTranType(rmattParams));
-	    logger.info("RetrieveMtnAcseTranTypeResponse : " + rmattResponse.toString());
-	    return rmattResponse;
-	 }
+	public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr)
+			throws SQLException {
+		RetrieveMtnAcseTranTypeResponse response = new RetrieveMtnAcseTranTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", rmattr.getTranClass());
+		params.put("tranTypeCd", rmattr.getTranTypeCd());
+		params.put("typePrefix", rmattr.getTypePrefix());
+		params.put("autoTag", rmattr.getAutoTag());
+		params.put("baeTag", rmattr.getBaeTag());
+		params.put("activeTag", rmattr.getActiveTag());
+		response.setTranTypeList(maintenanceDao.retrieveMtnAcseTranType(params));
+		logger.info("RetrieveMtnAcseTranTypeResponse : " + response.toString());
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDCBNoResponse retrieveMtnAcseDCBNo(RetrieveMtnAcseDCBNoRequest rmadnr) throws SQLException {
+		RetrieveMtnAcseDCBNoResponse response = new RetrieveMtnAcseDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dcbYear", rmadnr.getDcbYear());
+		params.put("dcbNo", rmadnr.getDcbNo());
+		params.put("dcbDate", rmadnr.getDcbDate());
+		params.put("dcbStatus", rmadnr.getDcbStatus());
+		response.setDcbNoList(maintenanceDao.retrieveMtnAcseDCBNo(params));
+		return response;
+	}
 }

@@ -148,5 +148,6 @@ public interface MaintenanceService {
 	public RetrieveMtnBussTypeResponse retrieveMtnBussType(RetrieveMtnBussTypeRequest rmbtr) throws SQLException;
 	public RetrieveMtnPayeeCedingResponse retrieveMtnPayeeCeding(RetrieveMtnPayeeCedingRequest request) throws SQLException;
 	public RetrieveMtnAcitCheckSeriesResponse retrieveMtnAcitCheckSeries(RetrieveMtnAcitCheckSeriesRequest request) throws SQLException;
-	public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr ) throws SQLException;
+	public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr) throws SQLException;
+	public RetrieveMtnAcseDCBNoResponse retrieveMtnAcseDCBNo(RetrieveMtnAcseDCBNoRequest rmadnr) throws SQLException;
 }

@@ -8,7 +8,8 @@ import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 
 public interface AccountingServDao {
-	public List<OfficialReceipt> retrieveOrList(HashMap<String, Object> params) throws SQLException;
-	public OfficialReceipt retrieveOrEntry(HashMap<String, Object> params) throws SQLException;
+	public List<OfficialReceipt> retrieveOrList(final HashMap<String, Object> params) throws SQLException;
+	public OfficialReceipt retrieveOrEntry(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveOrEntry(final HashMap<String, Object> params) throws SQLException;
 	public List<AcsePaytReq> retrieveAcsePaytReq(final HashMap<String, Object> params) throws SQLException;
 }
