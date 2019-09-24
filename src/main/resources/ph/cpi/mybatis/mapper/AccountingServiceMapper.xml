@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="ph.cpi.mybatis.mapper.AccountingInTrustMapper">
+
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.OfficialReceipt" id="orListMap">
+		<result property="tranId"			column="TRAN_ID" />
+		<result property="orType"			column="OR_TYPE" />
+		<result property="orNo"				column="OR_NO" />
+		<result property="formattedOrNo"	column="FORMATTED_OR_NO" />
+		<result property="orDate"			column="OR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="orStatus"		    column="OR_STATUS_CD" />
+		<result property="tranStat"			column="TRAN_STAT_CD" />
+		<result property="orStatDesc"		column="OR_STATUS" />
+		<result property="tranStatDesc"		column="TRAN_STAT" />
+		<result property="tranTypeName"		column="TRAN_TYPE_NAME" />
+		<result property="payor"			column="PAYOR" />
+		<result property="orAmt"			column="OR_AMT" />
+		<result property="particulars"		column="PARTICULARS" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retOrList" resultMap="orListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_OFFICIAL_RECEIPT_PKG.ret_or_list(
+																#{orType, jdbcType=VARCHAR},
+																#{orNo, jdbcType=VARCHAR},
+																#{payor, jdbcType=VARCHAR},
+																CAST(to_timestamp(#{orDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																CAST(to_timestamp(#{orDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{tranTypeName, jdbcType=VARCHAR},
+																#{orStatDesc, jdbcType=VARCHAR},
+																#{particulars, jdbcType=VARCHAR},
+																#{orAmtFrom, jdbcType=VARCHAR},
+																#{orAmtTo, jdbcType=VARCHAR}
+															   )
+						   )
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.OfficialReceipt" id="orEntryMap">
+		<result property="tranId"        column="TRAN_ID"           />
+		<result property="orNo"          column="OR_NO"             />
+		<result property="orType"        column="OR_TYPE"             />
+		<result property="formattedOrNo" column="FORMATTED_OR_NO"   />
+		<result property="orNoDigits"    column="OR_NO_DIGITS"      />
+		<result property="orDate"        column="OR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="orStatus"      column="OR_STATUS"         />
+		<result property="tranStat"      column="TRAN_STAT"         />
+		<result property="orStatDesc"    column="OR_STAT_DESC"      />
+		<result property="tranStatDesc"  column="TRAN_STAT_DESC"    />
+		<result property="dcbYear"       column="DCB_YEAR"          />
+		<result property="dcbUserCd"     column="DCB_USER_CD"       />
+		<result property="dcbNo"         column="DCB_NO"            />
+		<result property="dcbStatus"     column="DCB_STATUS"            />
+		<result property="dcbBank"       column="DCB_BANK"          />
+		<result property="dcbBankName"   column="DCB_BANK_NAME"     />
+		<result property="dcbBankAcct"   column="DCB_BANK_ACCT"     />
+		<result property="dcbBankAcctNo" column="DCB_BANK_ACCT_NO"  />
+		<result property="refNo"         column="REF_NO"            />
+		<result property="tranTypeCd"    column="TRAN_TYPE_CD"      />
+		<result property="tranTypeName"  column="TRAN_TYPE_NAME"    />
+		<result property="prNo"          column="PR_NO"             />
+		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
+		<result property="payeeNo"       column="PAYEE_NO"          />
+		<result property="payeeClassCd"  column="PAYEE_CLASS_CD"          />
+		<result property="payor"         column="PAYOR"             />
+		<result property="mailAddress"   column="MAIL_ADDRESS"      />
+		<result property="bussTypeCd"    column="BUSS_TYPE_CD"      />
+		<result property="tin"           column="TIN"               />
+		<result property="refCd"         column="REF_CD"               />
+		<result property="currCd"        column="OR_CURR_CD"       />
+		<result property="orAmt"         column="OR_AMT"            />
+		<result property="currRate"      column="OR_CURR_RATE"     />
+		<result property="particulars"   column="PARTICULARS"       />
+		<result property="createUser"    column="CREATE_USER"       />
+		<result property="createDate"    column="CREATE_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"    column="UPDATE_USER"       />
+		<result property="updateDate"    column="UPDATE_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="cedingId"      column="CEDING_ID"       />
+		<result property="bussTypeName"  column="BUSS_TYPE_NAME"       />
+		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
+		<result property="orDtlSum"      column="ORDTL_SUM"       />
+		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
+		<association property="paytDtl"  resultMap="acsePaytDtlAssoc"   />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.ORPaymentDetails" id="acsePaytDtlAssoc">
+		<result property="paytId"          column="PAYT_ID" />
+		<result property="paytMode"        column="PAYT_MODE" />
+		<result property="currCd"          column="ORP_CURR_CD" />
+		<result property="currRate"        column="ORP_CURR_RATE" />
+		<result property="paytAmt"         column="PAYT_AMT" />
+		<result property="bank"            column="BANK" />
+		<result property="bankAcct"        column="BANK_ACCT" />
+		<result property="checkNo"         column="CHECK_NO" />
+		<result property="checkDate"       column="CHECK_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="checkClass"      column="CHECK_CLASS" />
+		<result property="remarks"         column="REMARKS" />
+	</resultMap>
+	
+	<select id="retOrEntry" resultMap="orEntryMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_OFFICIAL_RECEIPT_PKG.ret_or_entry(
+																	#{tranId},
+																	#{orNo, jdbcType=VARCHAR}
+															   )
+						   )
+	</select>
+	
+</mapper>

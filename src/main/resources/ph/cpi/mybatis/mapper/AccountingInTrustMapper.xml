@@ -349,6 +349,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arListMap">
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="arNo"				column="AR_NO" />
+		<result property="formattedArNo"	column="FORMATTED_AR_NO" />
 		<result property="arDate"			column="AR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"		    column="AR_STATUS_CD" />
 		<result property="tranStat"			column="TRAN_STAT_CD" />
@@ -2230,7 +2231,7 @@
 														#{del.claimId},
 														#{del.projId},
 														#{del.histNo},
-														#{del.localAmt}	
+														#{del.recOverAmt}	
 					);
 					<!-- Delete from ACIT_CLM_RES_HIST_PAYTS -->
 					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
