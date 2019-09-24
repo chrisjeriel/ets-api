@@ -1048,4 +1048,5 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcitCheckSeries> checkSeriesList = sqlSession.selectList("retrieveMtnAcitCheckSeries", params);
 		return checkSeriesList;
 	}
+	
 }
