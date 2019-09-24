@@ -31,4 +31,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		OfficialReceipt res = sqlSession.selectOne("retOrEntry", params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveOrEntry(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcsetOrTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

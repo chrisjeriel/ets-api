@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Controller
@@ -32,15 +36,22 @@ public class AccountingServiceController {
 	
 	@GetMapping(path="retrieveAcseOrList")
 	public @ResponseBody RetrieveAcseOrListResponse retrieveAcseOrList(RetrieveAcseOrListRequest raolr) throws SQLException {
-		logger.info("GET: /api/acct-in-trust-service/retrieveAcseOrList");
+		logger.info("GET: /api/acct-serv-service/retrieveAcseOrList");
 		logger.info("RetrieveAcseOrListRequest : " + raolr.toString());
 		return acctServService.retrieveAcseOrList(raolr);
 	}
 	
 	@GetMapping(path="retrieveAcseOrEntry")
 	public @ResponseBody RetrieveAcseOrEntryResponse retrieveAcseOrEntry(RetrieveAcseOrEntryRequest raoer) throws SQLException {
-		logger.info("GET: /api/acct-in-trust-service/retrieveAcseOrList");
+		logger.info("GET: /api/acct-serv-service/retrieveAcseOrList");
 		logger.info("RetrieveAcseOrEntryRequest : " + raoer.toString());
 		return acctServService.retrieveAcseOrEntry(raoer);
+	}
+	
+	@PostMapping(path="saveAcseOrEntry")
+	public @ResponseBody SaveAcseOrTransResponse saveAcseOrEntry(@RequestBody SaveAcseOrTransRequest saotr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseOrEntry");
+		logger.info("SaveAcseOrTransRequest : " + saotr.toString());
+		return acctServService.saveOrEntry(saotr);
 	}
 }
