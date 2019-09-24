@@ -328,6 +328,7 @@
 		<result property="adjId"     		column="ADJ_ID" />
 		<result property="adjName"     		column="ADJ_NAME" />
 		<result property="adjRefNo"     	column="ADJ_FILE_NO" />
+		<result property="adjRefNo"     	column="ADJ_REF_NO" />
 		<result property="createUser"     	column="ADJ_CREATE_USER" />
 		<result property="createDate"     	column="ADJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="ADJ_UPDATE_USER" />
