@@ -7,6 +7,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.underwriting.BookingDate;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
@@ -118,4 +119,7 @@ public interface UnderwritingDao {
 	public String getInstTag(final HashMap<String, Object> params) throws SQLException;
 	
 	public DateTime getAcctingDate(final HashMap<String, Object> params) throws SQLException;
+	public BookingDate retrieveValidBookingDate(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer updatePolOpenCoverStatus(final HashMap<String, Object> params) throws SQLException;
 }

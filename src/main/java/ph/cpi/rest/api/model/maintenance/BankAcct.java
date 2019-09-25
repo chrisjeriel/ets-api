@@ -22,6 +22,7 @@ public class BankAcct {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String dcbTag;
 	public Integer getBankCd() {
 		return bankCd;
 	}
@@ -136,6 +137,12 @@ public class BankAcct {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getDcbTag() {
+		return dcbTag;
+	}
+	public void setDcbTag(String dcbTag) {
+		this.dcbTag = dcbTag;
+	}
 	@Override
 	public String toString() {
 		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo=" + accountNo
@@ -144,7 +151,7 @@ public class BankAcct {
 				+ ", acctTypeName=" + acctTypeName + ", openDate=" + openDate + ", closeDate=" + closeDate
 				+ ", acItGlDepNo=" + acItGlDepNo + ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", dcbTag=" + dcbTag + "]";
 	}
 	
 }

@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrievePolicyListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyOCListingRequest;
 import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
+import ph.cpi.rest.api.model.request.RetrieveValidBookingDateRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
@@ -83,6 +84,7 @@ import ph.cpi.rest.api.model.request.SaveSumInsOCRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoRequest;
 import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
+import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
@@ -125,6 +127,7 @@ import ph.cpi.rest.api.model.response.RetrievePolicyListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyOCListingResponse;
 import ph.cpi.rest.api.model.response.RetrievePoolDistributionResponse;
 import ph.cpi.rest.api.model.response.RetrieveRiskDistributionResponse;
+import ph.cpi.rest.api.model.response.RetrieveValidBookingDateResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
@@ -152,6 +155,7 @@ import ph.cpi.rest.api.model.response.SaveSumInsOCResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoResponse;
 import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.UpdatePolOpenCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
@@ -673,5 +677,19 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolInstTagAcctDate");
 		logger.info("RetrievePolInstTagAcctDateRequest : " + rpdir.toString());
 		return underwritingService.retrievePolInstTagAcctDate(rpdir);
+	}
+	
+	@GetMapping(path="retrieveValidBookingDate")
+	public @ResponseBody RetrieveValidBookingDateResponse retrieveValidBookingDate(RetrieveValidBookingDateRequest rpdir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveValidBookingDate");
+		logger.info("RetrieveValidBookingDateRequest : " + rpdir.toString());
+		return underwritingService.retrieveValidBookingDate(rpdir);
+	}
+	
+	@PostMapping(path="updatePolOpenCoverStatus")
+	public @ResponseBody UpdatePolOpenCoverStatusResponse updatePolOpenCoverStatus(@RequestBody UpdatePolOpenCoverStatusRequest uphcsr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/updatePolOpenCoverStatus");
+		logger.info("UpdatePolOpenCoverStatusRequest : " + uphcsr.toString());
+		return underwritingService.updatePolOpenCoverStatus(uphcsr);
 	}
 }

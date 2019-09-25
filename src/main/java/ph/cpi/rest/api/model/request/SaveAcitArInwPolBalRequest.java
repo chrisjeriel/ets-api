@@ -107,11 +107,14 @@ class SaveArInwPolBal{
 	private String netDue;
 	private String balPaytAmt;
 	private String overdueInt;
+	private String prevPaytAmt;
+	private String prevBalance;
+	private String newPaytAmt;
+	private String newBalance;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	
 	public String getTranId() {
 		return tranId;
 	}
@@ -127,7 +130,7 @@ class SaveArInwPolBal{
 	public String getItemNo() {
 		return itemNo;
 	}
-	public void setItemno(String itemNo) {
+	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
 	}
 	public String getPolicyId() {
@@ -196,6 +199,30 @@ class SaveArInwPolBal{
 	public void setOverdueInt(String overdueInt) {
 		this.overdueInt = overdueInt;
 	}
+	public String getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(String prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public String getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(String prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public String getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(String newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public String getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(String newBalance) {
+		this.newBalance = newBalance;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -220,13 +247,15 @@ class SaveArInwPolBal{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "SaveArInwPolBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", policyId="
 				+ policyId + ", instNo=" + instNo + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
 				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue="
-				+ netDue + ", balPaytAmt=" + balPaytAmt + ", overdueInt=" + overdueInt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ netDue + ", balPaytAmt=" + balPaytAmt + ", overdueInt=" + overdueInt + ", prevPaytAmt=" + prevPaytAmt
+				+ ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }
