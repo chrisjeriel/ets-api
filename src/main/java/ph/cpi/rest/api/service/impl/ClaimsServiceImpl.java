@@ -302,6 +302,8 @@ public class ClaimsServiceImpl implements ClaimsService {
 				i.setClmStatDesc("Unable to change the status of the claim. Please zero out the reserved amount first.");
 			}else if(chkResult == 2){
 				i.setClmStatDesc("Unable to change the status of the claim. Payment must be fully settled.");
+			}else if(chkResult == 3){
+				i.setClmStatDesc("Unable to change the status of the claim to Closed (Fully Settled).");
 			}else if(chkResult == 0){
 				allowedUpdate.add(i);
 			}
