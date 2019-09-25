@@ -2270,4 +2270,52 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setPayeeCeding(maintenanceDao.retrieveMtnPayeeCeding(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr)
+			throws SQLException {
+		RetrieveMtnAcseTranTypeResponse response = new RetrieveMtnAcseTranTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", rmattr.getTranClass());
+		params.put("tranTypeCd", rmattr.getTranTypeCd());
+		params.put("typePrefix", rmattr.getTypePrefix());
+		params.put("autoTag", rmattr.getAutoTag());
+		params.put("baeTag", rmattr.getBaeTag());
+		params.put("activeTag", rmattr.getActiveTag());
+		response.setTranTypeList(maintenanceDao.retrieveMtnAcseTranType(params));
+		logger.info("RetrieveMtnAcseTranTypeResponse : " + response.toString());
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDCBNoResponse retrieveMtnAcseDCBNo(RetrieveMtnAcseDCBNoRequest rmadnr) throws SQLException {
+		RetrieveMtnAcseDCBNoResponse response = new RetrieveMtnAcseDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dcbYear", rmadnr.getDcbYear());
+		params.put("dcbNo", rmadnr.getDcbNo());
+		params.put("dcbDate", rmadnr.getDcbDate());
+		params.put("dcbStatus", rmadnr.getDcbStatus());
+		response.setDcbNoList(maintenanceDao.retrieveMtnAcseDCBNo(params));
+		return response;
+	}
+	
+	@Override
+	public SaveMtnAcseDCBNoResponse saveMtnAcseDCBNo(SaveMtnAcseDCBNoRequest smaidcbr) throws SQLException {
+		SaveMtnAcseDCBNoResponse response = new SaveMtnAcseDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveDCBNo", smaidcbr.getSaveDCBNo());
+		params.put("delDCBNo", smaidcbr.getDelDCBNo());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnAcseDCBNo(params));
+		}catch(SQLException sqlex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQL Exception","Please check the field values."));
+			sqlex.printStackTrace();
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
 }

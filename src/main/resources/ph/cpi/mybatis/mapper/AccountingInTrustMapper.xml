@@ -349,6 +349,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arListMap">
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="arNo"				column="AR_NO" />
+		<result property="formattedArNo"	column="FORMATTED_AR_NO" />
 		<result property="arDate"			column="AR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"		    column="AR_STATUS_CD" />
 		<result property="tranStat"			column="TRAN_STAT_CD" />
@@ -1178,7 +1179,7 @@
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.policyId},
 														#{save.instNo},
 														#{save.currCd},
@@ -1354,7 +1355,7 @@
 					ACIT_AR_TRANSDTL_PKG.save_ar_transdtl(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.transdtlType, jdbcType=VARCHAR},
 														#{save.itemName},
 														#{save.currCd},
@@ -1787,7 +1788,7 @@
 					ACIT_AR_CLMCASHCALL_PKG.save_ar_clmcshcll(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.claimId},
 														<!-- #{save.paytType}, -->
 														#{save.currCd},
@@ -2022,7 +2023,7 @@
 					ACIT_AR_INVPULLOUT_PKG.save_ar_invpullout(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.invtId},
 														#{save.pulloutType},
 														#{save.currCd},
@@ -2108,7 +2109,7 @@
 					ACIT_AR_NEGTRTYBAL_PKG.save_ar_negtrtybal(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.currCd},
 														#{save.currRate},
@@ -2230,7 +2231,7 @@
 														#{del.claimId},
 														#{del.projId},
 														#{del.histNo},
-														#{del.localAmt}	
+														#{del.recOverAmt}	
 					);
 					<!-- Delete from ACIT_CLM_RES_HIST_PAYTS -->
 					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
@@ -2245,7 +2246,7 @@
 					ACIT_AR_CLMRECOVER_PKG.save_ar_clmrecover(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.claimId},
 														#{save.projId},
 														#{save.histNo},
