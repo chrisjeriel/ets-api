@@ -246,6 +246,7 @@
 		   	   									#{investments.intRt, jdbcType=VARCHAR},
 		   	   									CAST(to_timestamp(#{investments.purDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		   	   									CAST(to_timestamp(#{investments.matDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		   	   									#{investments.currSeq, jdbcType=VARCHAR},
 		   	   									#{investments.currCd, jdbcType=VARCHAR},
 		   	   									#{investments.currRate, jdbcType=VARCHAR},
 		   	   									#{investments.invtAmt, jdbcType=VARCHAR},
