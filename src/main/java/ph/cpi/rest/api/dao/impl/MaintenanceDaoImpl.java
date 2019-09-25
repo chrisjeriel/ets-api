@@ -1055,4 +1055,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<MtnAcseTranType> res = sqlSession.selectList("retrieveMtnAcseTranType", params);
 		return res;
 	}
+	
+	@Override
+	public Integer saveMtnAcseDCBNo(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnAcseDCBNo", params);
+		return res;
+	}
 }

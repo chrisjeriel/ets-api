@@ -13,8 +13,8 @@
 		<result property="orDate"			column="OR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="orStatus"		    column="OR_STATUS_CD" />
 		<result property="tranStat"			column="TRAN_STAT_CD" />
-		<result property="orStatDesc"		column="OR_STATUS" />
-		<result property="tranStatDesc"		column="TRAN_STAT" />
+		<result property="orStatDesc"		column="OR_STAT_DESC" />
+		<result property="tranStatDesc"		column="TRAN_STAT_DESC" />
 		<result property="tranTypeName"		column="TRAN_TYPE_NAME" />
 		<result property="payor"			column="PAYOR" />
 		<result property="orAmt"			column="OR_AMT" />
@@ -124,6 +124,7 @@
 													#{tranTypeCd},
 													#{tranYear},
 													#{tranClassNo,jdbcType=VARCHAR},
+													#{orType},
 													#{tranStat},
 													CAST(to_timestamp(#{closeDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													CAST(to_timestamp(#{deleteDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -192,6 +193,7 @@
 														#{save.remarks, jdbcType=VARCHAR}
 													  );
 				</foreach>
+		    END IF;
 		END;
 	</update>
 	

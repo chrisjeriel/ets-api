@@ -1012,4 +1012,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcseDCBNoRequest : " + rmaidcbr.toString());
 		return maintenanceService.retrieveMtnAcseDCBNo(rmaidcbr);
 	}
+	
+	@PostMapping(path="saveMtnAcseDCBNo")
+	public @ResponseBody SaveMtnAcseDCBNoResponse saveMtnAcseDCBNo(@RequestBody SaveMtnAcseDCBNoRequest smaidcbr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAcseDCBNo");
+		logger.info("SaveMtnAcseDCBNoRequest : " + smaidcbr.toString());
+		return maintenanceService.saveMtnAcseDCBNo(smaidcbr);
+	}
 }

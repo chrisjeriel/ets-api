@@ -3837,5 +3837,31 @@
 													  				#{dcbStatus, jdbcType=VARCHAR},
 													  				'','','',''))
 	</select>
+	
+	<update id="saveMtnAcseDCBNo" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delDCBNo" item="del">
+				MTN_ACSE_DCB_NO_PKG.del_mtn_acse_dcb_no(
+															#{del.dcbYear},
+															#{del.dcbNo},
+				);
+			</foreach>
+			<foreach collection="saveDCBNo" item="save">
+				MTN_ACSE_DCB_NO_PKG.save_mtn_acse_dcb_no(
+															#{save.dcbYear},
+															#{save.dcbNo, jdbcType=VARCHAR},
+															CAST(to_timestamp(#{save.dcbDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{save.dcbStatus},
+															#{save.remarks, jdbcType=VARCHAR},
+															#{save.autoTag},
+															#{save.createUser},
+															CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{save.updateUser},
+															CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			DBMS_OUTPUT.PUT_LINE('Placeholder');
+		END;
+	</update>
      
 </mapper>
