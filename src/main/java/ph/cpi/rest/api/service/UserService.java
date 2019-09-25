@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserGrpRequest;
 import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
 import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
@@ -19,6 +20,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.SaveApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserGrpResponse;
 import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 
@@ -35,5 +37,6 @@ public interface UserService {
 
 	public SaveApprovalResponse saveApproval(SaveApprovalRequest sar) throws SQLException;
 	public SaveMtnUserResponse saveMtnUser(SaveMtnUserRequest smur) throws SQLException;
+	public SaveMtnUserGrpResponse saveMtnUserGrp(SaveMtnUserGrpRequest smur) throws SQLException;
 
 }

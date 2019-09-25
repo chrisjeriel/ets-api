@@ -159,8 +159,12 @@
 		<result property="statusDesc"	 		column="STATUS_DESC"/>
 		<result property="altNo"	 		    column="ALT_NO"/>
 		<result property="distStatDesc"			column="DIST_STAT_DESC" />
-		<association property="project" 		resultMap="projectMap"/>	
+		<result property="quoteId"				column="QUOTE_ID"/> <!-- added by CJS for WFMServices -->
+		<result property="quotationNo"			column="QUOTATION_NO"/> <!-- added by CJS for WFMServices -->
+		<association property="project" 		resultMap="projectMap"/>
 	</resultMap>
+	
+	
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
 		<!-- <result property="policyNo"		column="POLICY_NO"/> -->

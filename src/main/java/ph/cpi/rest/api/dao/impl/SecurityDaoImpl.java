@@ -26,6 +26,7 @@ public class SecurityDaoImpl implements SecurityDao {
 
 	@Override
 	public List<Module> retrieveMtnModules(HashMap<String, Object> params) throws SQLException {
+		System.out.println("retrieveMtnModules : " + params);
 		List<Module> modules = sqlSession.selectList("retrieveMtnModules", params);
 		return modules;
 	}
@@ -81,6 +82,13 @@ public class SecurityDaoImpl implements SecurityDao {
 	@Override
 	public Integer saveGroupModules(HashMap<String, Object> params) throws SQLException {
 		Integer respCode = sqlSession.update("saveGroupModules", params);
+		return respCode;
+	}
+
+	@Override
+	public Integer saveMtnModules(HashMap<String, Object> params) throws SQLException {
+		System.out.println("params : " + params);	
+		Integer respCode = sqlSession.update("saveMtnModules", params);
 		return respCode;
 	}
 

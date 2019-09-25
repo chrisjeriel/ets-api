@@ -134,6 +134,11 @@ public class SecurityServiceImpl implements SecurityService{
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("moduleList", smr.getModuleList());
 			response.setReturnCode(securityDao.saveGroupModules(params));
+		} else if ("MTN".equalsIgnoreCase(smr.getAccessLevel())) {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("mtnModuleList", smr.getMtnModuleList());
+			params.put("delMtnModuleList", smr.getDelMtnModuleList());
+			response.setReturnCode(securityDao.saveMtnModules(params));
 		}
 		
 		return response;
