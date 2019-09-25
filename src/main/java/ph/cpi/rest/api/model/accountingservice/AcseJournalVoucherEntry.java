@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcseJournalVoucherList {
+public class AcseJournalVoucherEntry {
 	private Integer tranId;
 	private Integer jvYear;
 	private String jvNo;
@@ -65,7 +65,6 @@ public class AcseJournalVoucherList {
 	public void setJvStatus(String jvStatus) {
 		this.jvStatus = jvStatus;
 	}
-	
 	public String getStatusName() {
 		return statusName;
 	}
@@ -78,7 +77,6 @@ public class AcseJournalVoucherList {
 	public void setTranTypeCd(Integer tranTypeCd) {
 		this.tranTypeCd = tranTypeCd;
 	}
-	
 	public String getTranTypeName() {
 		return tranTypeName;
 	}
@@ -151,13 +149,6 @@ public class AcseJournalVoucherList {
 	public void setPreparedBy(String preparedBy) {
 		this.preparedBy = preparedBy;
 	}
-	public DateTime getPreparedDate() {
-		return preparedDate;
-	}
-	public void setPreparedDate(DateTime preparedDate) {
-		this.preparedDate = preparedDate;
-	}
-	
 	public String getPreparedName() {
 		return preparedName;
 	}
@@ -170,6 +161,18 @@ public class AcseJournalVoucherList {
 	public void setPreparedPosition(String preparedPosition) {
 		this.preparedPosition = preparedPosition;
 	}
+	public DateTime getPreparedDate() {
+		return preparedDate;
+	}
+	public void setPreparedDate(DateTime preparedDate) {
+		this.preparedDate = preparedDate;
+	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
 	public String getApprovedName() {
 		return approvedName;
 	}
@@ -181,12 +184,6 @@ public class AcseJournalVoucherList {
 	}
 	public void setApprovedPosition(String approvedPosition) {
 		this.approvedPosition = approvedPosition;
-	}
-	public String getApprovedBy() {
-		return approvedBy;
-	}
-	public void setApprovedBy(String approvedBy) {
-		this.approvedBy = approvedBy;
 	}
 	public DateTime getApprovedDate() {
 		return approvedDate;
@@ -220,7 +217,7 @@ public class AcseJournalVoucherList {
 	}
 	@Override
 	public String toString() {
-		return "AcseJournalVoucherList [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate="
+		return "AcseJournalVoucherEntry [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate="
 				+ jvDate + ", jvStatus=" + jvStatus + ", statusName=" + statusName + ", tranTypeCd=" + tranTypeCd
 				+ ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId
 				+ ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate="
@@ -231,6 +228,5 @@ public class AcseJournalVoucherList {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

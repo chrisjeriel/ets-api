@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
@@ -49,7 +50,7 @@ public class AccountingServDaoImpl implements AccountingServDao{
 
 	@Override
 	public List<AcseJournalVoucherList> retrieveJVList(HashMap<String, Object> params) throws SQLException {
-		List<AcseJournalVoucherList> list = sqlSession.selectList("retrieveJVList"); 
+		List<AcseJournalVoucherList> list = sqlSession.selectList("retrieveJVList",params); 
 		return list;
 	}
 	
@@ -58,5 +59,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("saveAcsePaytReq", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public AcseJournalVoucherEntry retrieveJVEntry(HashMap<String, Object> params) throws SQLException {
+		AcseJournalVoucherEntry entry = sqlSession.selectOne("retrieveJVEntry",params);
+		return entry;
 	}
 }

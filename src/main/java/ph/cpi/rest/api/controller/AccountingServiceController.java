@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
@@ -23,6 +24,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
@@ -78,6 +80,13 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveJVList");
 		logger.info("RetrieveAcseJVListRequest : " + request.toString());
 		return acctServService.retrieveJVList(request);
+	}
+	
+	@GetMapping(path="retrieveJVEntry")
+	public @ResponseBody RetrieveAcseJVEntryResponse retrieveJVEntry(RetrieveAcseJVEntryRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveJVEntry");
+		logger.info("RetrieveAcseJVEntryRequest : " + request.toString());
+		return acctServService.retrieveJVEntry(request);
 	}
 
 	@PostMapping(path="saveAcsePaytReq")

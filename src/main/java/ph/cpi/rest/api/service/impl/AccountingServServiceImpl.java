@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
@@ -18,6 +19,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
@@ -216,5 +218,14 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return saprResponse;
+	}
+
+	@Override
+	public RetrieveAcseJVEntryResponse retrieveJVEntry(RetrieveAcseJVEntryRequest request) throws SQLException {
+		RetrieveAcseJVEntryResponse response = new RetrieveAcseJVEntryResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());
+		response.setJvEntry(acctServDao.retrieveJVEntry(params));
+		return response;
 	}
 }
