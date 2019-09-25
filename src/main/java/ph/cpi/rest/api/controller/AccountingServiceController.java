@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
@@ -53,5 +55,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseOrEntry");
 		logger.info("SaveAcseOrTransRequest : " + saotr.toString());
 		return acctServService.saveOrEntry(saotr);
+	}
+	
+	@GetMapping(path="retrieveJVList")
+	public @ResponseBody RetrieveAcseJVListResponse retrieveJVList(RetrieveAcseJVListRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveJVList");
+		logger.info("RetrieveAcseJVListRequest : " + request.toString());
+		return acctServService.retrieveJVList(request);
 	}
 }

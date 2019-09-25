@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 
 @Component
@@ -37,5 +38,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("saveAcsetOrTrans", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcseJournalVoucherList> retrieveJVList(HashMap<String, Object> params) throws SQLException {
+		List<AcseJournalVoucherList> list = sqlSession.selectList("retrieveJVList"); 
+		return list;
 	}
 }
