@@ -3547,4 +3547,18 @@
 																	#{currCd}))
 	</select>
 	
+	<update id="saveAcitQSOA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_QSOA_PKG.gnrt_comp_qsoa(
+				#{cedingId, jdbcType=VARCHAR},
+				#{gnrtQtr, jdbcType=INTEGER},
+				#{gnrtYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
 </mapper>
