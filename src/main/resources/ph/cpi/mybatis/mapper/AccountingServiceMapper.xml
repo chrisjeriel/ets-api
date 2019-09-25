@@ -11,8 +11,8 @@
 		<result property="orNo"				column="OR_NO" />
 		<result property="formattedOrNo"	column="FORMATTED_OR_NO" />
 		<result property="orDate"			column="OR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="orStatus"		    column="OR_STATUS_CD" />
-		<result property="tranStat"			column="TRAN_STAT_CD" />
+		<result property="orStatus"		    column="OR_STATUS" />
+		<result property="tranStat"			column="TRAN_STAT" />
 		<result property="orStatDesc"		column="OR_STAT_DESC" />
 		<result property="tranStatDesc"		column="TRAN_STAT_DESC" />
 		<result property="tranTypeName"		column="TRAN_TYPE_NAME" />
