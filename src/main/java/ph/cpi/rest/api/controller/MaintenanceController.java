@@ -999,6 +999,13 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnPayeeCeding(rmbtr);
 	}
 	
+	@GetMapping(path="retrieveMtnAcitCheckSeries")
+	public @ResponseBody RetrieveMtnAcitCheckSeriesResponse retrieveMtnAcitCheckSeries(RetrieveMtnAcitCheckSeriesRequest rmacsr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitCheckSeries");
+		logger.info("RetrieveMtnMtnAcitCheckSeriesRequest : " + rmacsr.toString());
+		return maintenanceService.retrieveMtnAcitCheckSeries(rmacsr);
+	}
+	
 	@GetMapping(path="retrieveMtnAcseTranType")
 	public @ResponseBody RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcseTranType");

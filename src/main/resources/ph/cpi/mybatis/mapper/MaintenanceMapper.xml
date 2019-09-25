@@ -3789,6 +3789,29 @@
      															  ))
      </select>
      
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCheckSeries" id="acitCheckSeriesMap">
+     	<result property="bank"			column="BANK"/>
+		<result property="bankAcct"		column="BANK_ACCT"/>
+		<result property="checkNo"		column="CHECK_NO"/>
+		<result property="checkPrefix"	column="CHECK_PREFIX"/>
+		<result property="tranId"		column="TRAN_ID"/>
+		<result property="usedTag"		column="USED_TAG"/>
+		<result property="checkStatus"	column="CHECK_STATUS"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveMtnAcitCheckSeries" resultMap="acitCheckSeriesMap" parameterType="java.util.Map">
+     	SELECT * FROM TABLE(MTN_ACIT_CHECK_SERIES_PKG.ret_acit_chk_series(
+     		#{bank, jdbcType=INTEGER},
+     		#{bankAcct, jdbcType=INTEGER},
+     		#{checkNo, jdbcType=VARCHAR},
+     		NULL,NULL,NULL,NULL
+     	))
+     </select>
+
      <resultMap type="ph.cpi.rest.api.model.maintenance.MtnAcseTranType" id="mtnAcseTranTypeMap">
     	<result property="tranClass" 			column="TRAN_CLASS"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>

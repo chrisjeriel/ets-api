@@ -606,6 +606,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		raptResponse.setAcitPrqTrans(acctITDao.retrieveAcitPrqTrans(raptParams));
 		logger.info("RetrieveAcitPrqTransResponse : " + raptResponse.toString());
 		return raptResponse;
+		
 	}
 
 	@Override
