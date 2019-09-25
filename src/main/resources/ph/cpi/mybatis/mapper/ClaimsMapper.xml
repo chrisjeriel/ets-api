@@ -105,8 +105,8 @@
 		<result property="currencyRt"	column="CURRENCY_RT"/>
 		<result property="reserveAmt"	column="RESERVE_AMT"/>
 		<result property="paytAmt"		column="PAYT_AMT"/>
-		<!-- <result property="refNo"		column="REF_NO"/>
-		<result property="refDate"		column="REF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> -->
+		<result property="refNo"		column="REF_NO"/>
+		<result property="refDate"		column="REF_DATE" />
 		<result property="remarks"		column="REMARKS"/>
 		<result property="createUser"	column="CREATE_USER"/>
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -247,6 +247,9 @@
 		<result property="createDate"     	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="UPDATE_USER" />
 		<result property="updateDate"     	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		
+		<result property="reasonCd"			column="REASON_CD" />
+		<result property="reasonDesc"		column="REASON_DESC" />
 		<association property="clmAdjusterList" resultMap="clmAdjusterListAssoc" />
 		<association property="clmDeductibles" resultMap="claimDeductiblesMap"></association>
 	</resultMap>
@@ -328,6 +331,7 @@
 		<result property="adjId"     		column="ADJ_ID" />
 		<result property="adjName"     		column="ADJ_NAME" />
 		<result property="adjRefNo"     	column="ADJ_FILE_NO" />
+		<result property="adjRefNo"     	column="ADJ_REF_NO" />
 		<result property="createUser"     	column="ADJ_CREATE_USER" />
 		<result property="createDate"     	column="ADJ_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"     	column="ADJ_UPDATE_USER" />

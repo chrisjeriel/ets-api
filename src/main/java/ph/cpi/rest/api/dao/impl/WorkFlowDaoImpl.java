@@ -15,6 +15,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
+import ph.cpi.rest.api.model.workflowmanager.WfmTransaction;
 
 @Component
 public class WorkFlowDaoImpl implements WorkFlowDao {
@@ -62,7 +63,15 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	@Override
 	public Integer saveNotes(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
+		System.out.println("DAOIMPL saveNotes : " + params);
 		Integer errorCode = sqlSession.update("saveNotes", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<WfmTransaction> retrieveTransactions(HashMap<String, Object> params) throws SQLException {
+		List<WfmTransaction> transactionList = sqlSession.selectList("retrieveTransactions", params);
+		logger.info("retrieveTransactions DAOImpl : " + transactionList);
+		return transactionList;
 	}
 }

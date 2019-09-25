@@ -1,35 +1,24 @@
 package ph.cpi.rest.api.model.request;
 
-import java.util.List;
+import ph.cpi.rest.api.model.Response;
 
-import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.Message;
-
-public class SaveMtnUserResponse {
-	private List<Error> errorList;
-	private List<Message> messageList;
+public class SaveMtnUserResponse extends Response{
+	
 	private Integer returnCode;
-	public List<Error> getErrorList() {
-		return errorList;
-	}
-	public void setErrorList(List<Error> errorList) {
-		this.errorList = errorList;
-	}
-	public List<Message> getMessageList() {
-		return messageList;
-	}
-	public void setMessageList(List<Message> messageList) {
-		this.messageList = messageList;
-	}
+
 	public Integer getReturnCode() {
 		return returnCode;
 	}
+
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
+
 	@Override
 	public String toString() {
-		return "SaveApprovalResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+		return "SaveMtnUserResponse [returnCode=" + returnCode + ", getMessageList()=" + getMessageList()
+				+ ", getErrorList()=" + getErrorList() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
+	
 }

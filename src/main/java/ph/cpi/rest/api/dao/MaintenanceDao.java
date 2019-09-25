@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
+import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
@@ -217,6 +218,8 @@ public interface MaintenanceDao {
 	public List<Company> retrieveMtnCompany(final HashMap<String, Object> params) throws SQLException;
 	public List<BussType> retrieveMtnBussType(final HashMap<String, Object> params) throws SQLException;
 	public List<PayeeCeding> retrieveMtnPayeeCeding(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitCheckSeries> retrieveMtnAcitCheckSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDCBNo> retrieveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcseTranType> retrieveMtnAcseTranType(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
 }

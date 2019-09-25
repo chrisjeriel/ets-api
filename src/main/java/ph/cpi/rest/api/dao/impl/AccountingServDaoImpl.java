@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
+import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 
 @Component
@@ -32,7 +33,13 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		OfficialReceipt res = sqlSession.selectOne("retOrEntry", params);
 		return res;
 	}
-
+	
+	@Override
+	public List<AcsePaytReq> retrieveAcsePaytReq(HashMap<String, Object> params) throws SQLException {
+		List<AcsePaytReq> acsePaytReqList  = sqlSession.selectList("retrieveAcsePaytReq", params);
+		return acsePaytReqList;
+	}
+	
 	@Override
 	public HashMap<String, Object> saveOrEntry(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcsetOrTrans", params);
@@ -44,5 +51,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public List<AcseJournalVoucherList> retrieveJVList(HashMap<String, Object> params) throws SQLException {
 		List<AcseJournalVoucherList> list = sqlSession.selectList("retrieveJVList"); 
 		return list;
+	}
+	
+	@Override
+	public HashMap<String, Object> saveAcsePaytReq(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcsePaytReq", params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

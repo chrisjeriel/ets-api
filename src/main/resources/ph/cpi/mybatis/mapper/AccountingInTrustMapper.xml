@@ -246,6 +246,7 @@
 		   	   									#{investments.intRt, jdbcType=VARCHAR},
 		   	   									CAST(to_timestamp(#{investments.purDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		   	   									CAST(to_timestamp(#{investments.matDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		   	   									#{investments.currSeq, jdbcType=VARCHAR},
 		   	   									#{investments.currCd, jdbcType=VARCHAR},
 		   	   									#{investments.currRate, jdbcType=VARCHAR},
 		   	   									#{investments.invtAmt, jdbcType=VARCHAR},
@@ -3564,5 +3565,19 @@
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{currCd}))
 	</select>
+	
+	<update id="saveAcitQSOA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_QSOA_PKG.gnrt_comp_qsoa(
+				#{cedingId, jdbcType=VARCHAR},
+				#{gnrtQtr, jdbcType=INTEGER},
+				#{gnrtYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 	
 </mapper>

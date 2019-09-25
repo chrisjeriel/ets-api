@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
-public class SaveAcitPaytReqRequest {
+public class SaveAcsePaytReqRequest {
 	private Integer reqId;
 	private String reqPrefix;
 	private String reqYear;
@@ -74,18 +74,6 @@ public class SaveAcitPaytReqRequest {
 	public void setReqStatus(String reqStatus) {
 		this.reqStatus = reqStatus;
 	}
-//	public String getPayeeNo() {
-//		return payeeNo;
-//	}
-//	public void setPayeeNo(String payeeNo) {
-//		this.payeeNo = payeeNo;
-//	}
-	public String getPayee() {
-		return payee;
-	}
-	public void setPayee(String payee) {
-		this.payee = payee;
-	}
 	public Integer getPayeeClassCd() {
 		return payeeClassCd;
 	}
@@ -97,6 +85,12 @@ public class SaveAcitPaytReqRequest {
 	}
 	public void setPayeeCd(String payeeCd) {
 		this.payeeCd = payeeCd;
+	}
+	public String getPayee() {
+		return payee;
+	}
+	public void setPayee(String payee) {
+		this.payee = payee;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -184,7 +178,7 @@ public class SaveAcitPaytReqRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitPaytReqRequest [reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear=" + reqYear
+		return "SaveAcsePaytReqRequest [reqId=" + reqId + ", reqPrefix=" + reqPrefix + ", reqYear=" + reqYear
 				+ ", reqMm=" + reqMm + ", reqSeqNo=" + reqSeqNo + ", tranTypeCd=" + tranTypeCd + ", reqDate=" + reqDate
 				+ ", reqStatus=" + reqStatus + ", payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd + ", payee="
 				+ payee + ", currCd=" + currCd + ", currRate=" + currRate + ", reqAmt=" + reqAmt + ", localAmt="

@@ -17,11 +17,11 @@ public class ClaimHistory {
 	private Integer		bookingYear;
 	private String 	 	exGratia;
 	private String 	 	currencyCd;
-	private Integer  	currencyRt;
+	private BigDecimal 	currencyRt;
 	private BigDecimal  reserveAmt;
 	private BigDecimal  paytAmt;
 	private String 	 	refNo;
-	private DateTime 	refDate;
+	private String	 	refDate;
 	private String 	 	remarks;
 	private String 	 	createUser;
 	private DateTime 	createDate;
@@ -108,10 +108,10 @@ public class ClaimHistory {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrencyRt() {
+	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(Integer currencyRt) {
+	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
 	public BigDecimal getReserveAmt() {
@@ -132,10 +132,10 @@ public class ClaimHistory {
 	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
-	public DateTime getRefDate() {
+	public String getRefDate() {
 		return refDate;
 	}
-	public void setRefDate(DateTime refDate) {
+	public void setRefDate(String refDate) {
 		this.refDate = refDate;
 	}
 	public String getRemarks() {

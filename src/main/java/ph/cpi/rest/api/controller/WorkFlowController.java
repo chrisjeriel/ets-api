@@ -13,17 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
+import ph.cpi.rest.api.model.request.RetrieveWfmTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveNotesRequest;
-import ph.cpi.rest.api.model.request.SavePolAttachmentRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
-import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
+import ph.cpi.rest.api.model.response.RetrieveWfmTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveNotesResponse;
-import ph.cpi.rest.api.model.response.SavePolAttachmentResponse;
 import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.service.WorkFlowService;
 
@@ -66,6 +64,10 @@ public class WorkFlowController {
 		return workFlowService.saveNotes(snreq);
 	}
 
-	 
-
+	@GetMapping(path="retTransactions")
+	public @ResponseBody RetrieveWfmTransactionsResponse retrieveTransactions(RetrieveWfmTransactionsRequest rwtr) throws SQLException {
+		logger.info("GET: /api/work-flow-service/retTransactions"); 
+		logger.info("RetrieveWfmTransactionsRequest : " + rwtr.toString());
+		return workFlowService.retrieveTransactions(rwtr);
+	}
 }

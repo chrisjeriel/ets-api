@@ -11,10 +11,12 @@ import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
+import ph.cpi.rest.api.model.request.RetrieveWfmTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
 import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
+import ph.cpi.rest.api.model.response.RetrieveWfmTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveNotesResponse;
 import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.service.WorkFlowService;
@@ -85,6 +87,8 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		retrieveNotesParams.put("noteId",rnrq.getNoteId());
 		retrieveNotesParams.put("assignedTo", rnrq.getAssignedTo());
 		retrieveNotesParams.put("createUser", rnrq.getCreateUser());
+		retrieveNotesParams.put("module", rnrq.getModule());
+		retrieveNotesParams.put("referenceId", rnrq.getReferenceId());
 		
 		rnResponse.setNoteList(workFlowDao.retrieveNotes(retrieveNotesParams));
 		logger.info("retrieveReminderResponse : " + rnResponse.toString());
@@ -99,18 +103,22 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		
 		try {
 			HashMap<String, Object> saveNotesParams = new HashMap<String, Object>();
-			saveNotesParams.put("noteId", snreq.getNoteId());
-			saveNotesParams.put("title", snreq.getTitle());
-			saveNotesParams.put("note", snreq.getNote());
-			saveNotesParams.put("module", snreq.getModule());
-			saveNotesParams.put("referenceId", snreq.getReferenceId());
-			saveNotesParams.put("details", snreq.getDetails());
-			saveNotesParams.put("assignedTo", snreq.getAssignedTo());
-			saveNotesParams.put("status", snreq.getStatus());
-			saveNotesParams.put("createUser", snreq.getCreateUser());
-			saveNotesParams.put("createDate", snreq.getCreateDate());
-			saveNotesParams.put("updateUser", snreq.getUpdateUser());
-			saveNotesParams.put("updateDate", snreq.getUpdateDate());
+			
+			saveNotesParams.put("noteList", snreq.getNoteList());
+			saveNotesParams.put("delNoteList", snreq.getDelNoteList());
+			/*
+			 * saveNotesParams.put("noteId", snreq.getNoteId());
+			 * saveNotesParams.put("title", snreq.getTitle()); saveNotesParams.put("note",
+			 * snreq.getNote()); saveNotesParams.put("module", snreq.getModule());
+			 * saveNotesParams.put("referenceId", snreq.getReferenceId());
+			 * saveNotesParams.put("details", snreq.getDetails());
+			 * saveNotesParams.put("assignedTo", snreq.getAssignedTo());
+			 * saveNotesParams.put("status", snreq.getStatus());
+			 * saveNotesParams.put("createUser", snreq.getCreateUser());
+			 * saveNotesParams.put("createDate", snreq.getCreateDate());
+			 * saveNotesParams.put("updateUser", snreq.getUpdateUser());
+			 * saveNotesParams.put("updateDate", snreq.getUpdateDate());
+			 */
 			snResponse.setReturnCode(workFlowDao.saveNotes(saveNotesParams));
 		} catch (Exception ex) {
 			snResponse.setReturnCode(0);
@@ -120,6 +128,23 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		
 		
 		return snResponse;
+	}
+
+	@Override
+	public RetrieveWfmTransactionsResponse retrieveTransactions(RetrieveWfmTransactionsRequest rwtr) throws SQLException {
+		RetrieveWfmTransactionsResponse resp = new RetrieveWfmTransactionsResponse();
+		try {
+			HashMap<String, Object> retrieveTransactionParams = new HashMap<String, Object>();
+			retrieveTransactionParams.put("tranTitle",rwtr.getTranTitle());
+			
+			resp.setTransactionList(workFlowDao.retrieveTransactions(retrieveTransactionParams));
+			logger.info("RetrieveWfmTransactionsResponse : " + resp.toString());
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return resp;
 	}
 
 }
