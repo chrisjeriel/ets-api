@@ -282,4 +282,16 @@
 			);
 		END;
 	</update>
+	
+	<update id="updateAcsePaytReqStat" parameterType="java.util.Map">
+		BEGIN
+			ACSE_PAYMENT_REQUEST_PKG.up_acse_paytreqstat(
+				#{reqId, jdbcType=INTEGER},
+				#{reqStatus, jdbcType=VARCHAR},
+				#{updateUser, jdbcType=VARCHAR},
+				#{approvedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 </mapper>

@@ -326,6 +326,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			uaprsParams.put("reqId", uaprsr.getReqId());
 			uaprsParams.put("reqStatus", uaprsr.getReqStatus());
 			uaprsParams.put("updateUser", uaprsr.getUpdateUser());
+			uaprsParams.put("approvedBy", uaprsr.getApprovedBy());
+			uaprsParams.put("approvedDate", uaprsr.getApprovedDate());
 			
 			HashMap<String, Object> response = acctITDao.updateAcitPaytReqStat(uaprsParams);
 			
