@@ -871,9 +871,9 @@
 		BEGIN
 			<foreach collection="deleteInwPol" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_acit_inwpol(#{delete.tranId}, #{delete.itemNo}, #{delete.policyId}, #{delete.instNo}, #{delete.premAmt}, #{delete.riComm}, 
-													   #{delete.riCommVat}, #{delete.charges}, 
-													   #{delete.paytAmt},#{delete.updateUser}, 
-													  	CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+													     #{delete.riCommVat}, #{delete.charges}, 
+													     #{delete.paytAmt},#{delete.updateUser}, 
+													  	 CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
 														#{delete.tranId},
@@ -2700,7 +2700,16 @@
 				ACIT_JOURNAL_VOUCHER_PKG.del_inwpol_offset(
 					#{deleted.tranId},
 					#{deleted.itemNo},
-					#{deleted.quarterNo}
+					#{deleted.quarterNo},
+					#{deleted.policyId}, 
+					#{deleted.instNo},
+					#{deleted.premAmt}, 
+					#{deleted.riComm}, 
+					#{deleted.riCommVat}, 
+					#{deleted.charges}, 
+					#{deleted.paytAmt},
+					#{deleted.updateUser}, 
+					CAST(to_timestamp(#{deleted.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
@@ -2899,8 +2908,7 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delClmOffset" item="del">
-				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo}
-												  		);
+				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo});
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="save">
@@ -2927,7 +2935,15 @@
 			</foreach>
 			
 			<foreach collection="delInwPol" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo}
+				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo},
+														   #{delete.premAmt}, 
+														   #{delete.riComm}, 
+														   #{delete.riCommVat}, 
+														   #{delete.charges}, 
+													   	   #{delete.netDue}, 
+														   #{delete.paytAmt}, 
+														   #{delete.updateUser}, 
+													  	   CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 												  		);
 			</foreach>
 			
