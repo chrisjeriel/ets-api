@@ -1026,4 +1026,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseDCBNoRequest : " + smaidcbr.toString());
 		return maintenanceService.saveMtnAcseDCBNo(smaidcbr);
 	}
+	
+	@GetMapping(path="retrieveMtnAcitArSeries")
+	public @ResponseBody RetrieveMtnAcitArSeriesResponse retrieveMtnAcitArSeries(RetrieveMtnAcitArSeriesRequest rmaasr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitArSeries");
+		logger.info("RetrieveMtnAcitArSeriesRequest : " + rmaasr.toString());
+		return maintenanceService.retrieveMtnAcitArSeries(rmaasr);
+	}
 }
