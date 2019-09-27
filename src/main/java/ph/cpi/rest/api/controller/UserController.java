@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserGrpRequest;
 import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
 import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.SaveApprovalResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserGrpResponse;
 import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
@@ -124,5 +126,12 @@ public class UserController {
 		logger.info("POST: /api/user-service/saveApproval");
 		logger.info("SaveApprovalRequest : " + sar.toString());
 		return userService.saveApproval(sar);
+	}
+	
+	@PostMapping(path="saveMtnUserGrp")
+	public @ResponseBody SaveMtnUserGrpResponse saveMtnUserGrp(@RequestBody SaveMtnUserGrpRequest smugr) throws SQLException {
+		logger.info("POST: /api/user-service/saveMtnUserGrp");
+		logger.info("SaveMtnUserGrpRequest : " + smugr.toString());
+		return userService.saveMtnUserGrp(smugr);
 	}
 }

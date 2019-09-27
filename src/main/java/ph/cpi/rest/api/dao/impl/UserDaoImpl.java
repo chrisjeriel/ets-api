@@ -14,9 +14,6 @@ import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UserGrp;
 import ph.cpi.rest.api.model.maintenance.Users;
-import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
-import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
-import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
 
 @Component
 public class UserDaoImpl implements UserDao{
@@ -79,14 +76,25 @@ public class UserDaoImpl implements UserDao{
 	public Integer saveMtnUser(HashMap<String, Object> params) throws SQLException {
 		logger.info("saveMtnUser DAO : " + params);
 		Integer resultCode = 99;
-		try {
-			for (Users user : ((List<Users>) params.get("usersList"))) {
-				logger.info("usersList renPol : " + user);
-				resultCode = sqlSession.update("saveMtnUser",user);
-			}
-			
-		} catch(Exception ex) {
-			ex.printStackTrace();
+		for (Users user : ((List<Users>) params.get("usersList"))) {
+			logger.info("Saving user : " + user);
+			resultCode = sqlSession.update("saveMtnUser",user);
+		}
+		return resultCode;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Integer saveMtnUserGrp(HashMap<String, Object> params) throws SQLException {
+		logger.info("saveMtnUserGrp DAO : " + params);
+		Integer resultCode = 99;
+		for (UserGrp userGrp : ((List<UserGrp>) params.get("delUserGrpList"))) {
+			logger.info("Saving delUserGrp : " + userGrp);
+			resultCode = sqlSession.update("delMtnUserGrp",userGrp);
+		}
+		for (UserGrp userGrp : ((List<UserGrp>) params.get("userGrpList"))) {
+			logger.info("Saving userGrp : " + userGrp);
+			resultCode = sqlSession.update("saveMtnUserGrp",userGrp);
 		}
 		return resultCode;
 	}

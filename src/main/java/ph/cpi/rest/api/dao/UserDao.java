@@ -19,5 +19,6 @@ public interface UserDao {
 	public List<UserAmtLimit> retrieveMtnUserAmountLimit(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveApproval(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnUser(final HashMap<String, Object> params) throws SQLException;
-
+	public Integer saveMtnUserGrp(final HashMap<String, Object> params) throws SQLException;
+	
 }

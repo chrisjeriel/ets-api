@@ -71,11 +71,14 @@ class InwpolOffset{
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
-	private BigDecimal cumPayment;
 	private BigDecimal paytAmt;
 	private BigDecimal localAmt;
 	private BigDecimal overdueInt;
 	private String remarks;
+	private BigDecimal cumPayment;
+	private BigDecimal balance;
+	private BigDecimal totalPayt;
+	private BigDecimal remainingBal;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -146,13 +149,6 @@ class InwpolOffset{
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
-	
-	public BigDecimal getCumPayment() {
-		return cumPayment;
-	}
-	public void setCumPayment(BigDecimal cumPayment) {
-		this.cumPayment = cumPayment;
-	}
 	public BigDecimal getPaytAmt() {
 		return paytAmt;
 	}
@@ -176,6 +172,31 @@ class InwpolOffset{
 	}
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	
+	public BigDecimal getCumPayment() {
+		return cumPayment;
+	}
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getBalance() {
+		return balance;
+	}
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+	public BigDecimal getTotalPayt() {
+		return totalPayt;
+	}
+	public void setTotalPayt(BigDecimal totalPayt) {
+		this.totalPayt = totalPayt;
+	}
+	public BigDecimal getRemainingBal() {
+		return remainingBal;
+	}
+	public void setRemainingBal(BigDecimal remainingBal) {
+		this.remainingBal = remainingBal;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -205,10 +226,11 @@ class InwpolOffset{
 	public String toString() {
 		return "InwpolOffset [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", cumPayment="
-				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt=" + overdueInt
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", paytAmt=" + paytAmt
+				+ ", localAmt=" + localAmt + ", overdueInt=" + overdueInt + ", remarks=" + remarks + ", cumPayment="
+				+ cumPayment + ", balance=" + balance + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

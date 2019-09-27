@@ -9,7 +9,6 @@ public class SaveAcitPaytReqRequest {
 	private String tranTypeCd;
 	private String reqDate;
 	private String reqStatus;
-	//private String payeeNo;
 	private Integer payeeClassCd;
 	private String payeeCd;
 	private String payee;

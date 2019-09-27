@@ -9,6 +9,7 @@ public class AcitJVAdjstInwPolBal {
 	private Integer itemNo;
 	private Integer policyId;
 	private String policyNo;
+	private String soaNo;
 	private String cedingId;
 	private String cedingName;
 	private Integer instNo;
@@ -74,6 +75,13 @@ public class AcitJVAdjstInwPolBal {
 	}
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
+	}
+	
+	public String getSoaNo() {
+		return soaNo;
+	}
+	public void setSoaNo(String soaNo) {
+		this.soaNo = soaNo;
 	}
 	public Integer getInstNo() {
 		return instNo;
@@ -241,15 +249,15 @@ public class AcitJVAdjstInwPolBal {
 	@Override
 	public String toString() {
 		return "AcitJVAdjstInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", instNo="
-				+ instNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate + ", dueDate=" + dueDate + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt + ", prevRiComm=" + prevRiComm
-				+ ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges + ", prevNetDue=" + prevNetDue
-				+ ", cumPayment=" + cumPayment + ", balance=" + balance + ", localAmt=" + localAmt + ", paytAmt="
-				+ paytAmt + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges="
-				+ charges + ", netDue=" + netDue + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", instNo=" + instNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate + ", dueDate="
+				+ dueDate + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt
+				+ ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges
+				+ ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment + ", balance=" + balance + ", localAmt="
+				+ localAmt + ", paytAmt=" + paytAmt + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat="
+				+ riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", totalPayt=" + totalPayt
+				+ ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 	
 }

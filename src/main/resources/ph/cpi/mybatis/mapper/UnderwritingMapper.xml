@@ -117,6 +117,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lastAffectingPolId" 	column="LAST_AFFECTING_POL_ID"/>
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
@@ -159,8 +160,12 @@
 		<result property="statusDesc"	 		column="STATUS_DESC"/>
 		<result property="altNo"	 		    column="ALT_NO"/>
 		<result property="distStatDesc"			column="DIST_STAT_DESC" />
-		<association property="project" 		resultMap="projectMap"/>	
+		<result property="quoteId"				column="QUOTE_ID"/> <!-- added by CJS for WFMServices -->
+		<result property="quotationNo"			column="QUOTATION_NO"/> <!-- added by CJS for WFMServices -->
+		<association property="project" 		resultMap="projectMap"/>
 	</resultMap>
+	
+	
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.CoInsurance" id="coInsuranceMap">
 		<!-- <result property="policyNo"		column="POLICY_NO"/> -->
@@ -2585,10 +2590,10 @@
 															#{insuredDesc, jdbcType=VARCHAR},
 															#{riskName, jdbcType=VARCHAR},
 															#{currencyCd, jdbcType=VARCHAR},
-															CAST(to_timestamp(#{distDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-															CAST(to_timestamp(#{distDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-															CAST(to_timestamp(#{acctDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-															CAST(to_timestamp(#{acctDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{distDateFrom,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+															CAST(to_timestamp(#{distDateTo,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+															CAST(to_timestamp(#{acctDateFrom,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+															CAST(to_timestamp(#{acctDateTo,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
 														    null,null,null,null))
 	</select>
 	
@@ -2718,4 +2723,22 @@
 	<select id="getAcctingDate" resultMap="getAcctingDateMap">
 		SELECT POL_INWARD_PKG.get_acct_date(#{policyId}) ACCT_ENT_DATE FROM DUAL
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.BookingDate" id="BookingDateMap">
+		<result property="suggestedDate" column="SUGGESTED_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="minDate" column="MIN_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveValidBookingDate" resultMap="BookingDateMap">
+		SELECT * FROM TABLE(MTN_BOOKING_MONTH_PKG.get_valid_booking_date(
+							CAST(to_timestamp(#{date1, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							CAST(to_timestamp(#{date2, jdbcType=VARCHAR},  'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+							))
+	</select>
+	
+	<update id="updatePolOpenCoverStatu">
+		BEGIN
+			POL_GEN_INFO_OC_PKG.updateStatus(#{policyIdOc},#{updateUser});
+		END;
+	</update>
 </mapper>

@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
@@ -31,6 +33,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimOffSetLOV;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClaimsLosses;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVIntOverdueAcctsMS;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVInvestmentPlacement;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
@@ -152,5 +155,10 @@ public interface AccountingInTrustDao {
 	public AcitJVQuarterPremRes retrieveQuarterPremRes(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveSoaAgingZeroAltLOV(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAmortize> retrieveAcitAmortize(final HashMap<String, Object> params) throws SQLException;
-	
+	public HashMap<String, Object> saveAcitJVTrtyInvt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJVAcctTrtyBal> retrieveAcitJvInvmtOffset(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitJVInvestmentPlacement> retrieveAcitJvInvPlacement(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcitJVInvPlacement(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveAcitSoaDue(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitQSOA(final HashMap<String, Object> params) throws SQLException;
 }

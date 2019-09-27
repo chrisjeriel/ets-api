@@ -23,7 +23,7 @@ public class AcitInvestments {
 	private DateTime 	purDate;
 	private DateTime 	matDate;
 	private String 		currCd;
-	private Integer 	currRate;
+	private BigDecimal 	currRate;
 	private BigDecimal 	invtAmt;
 	private BigDecimal 	incomeAmt;
 	private BigDecimal  bankCharge;     
@@ -39,6 +39,7 @@ public class AcitInvestments {
 	private DateTime	termDate;
 	private BigDecimal  amortEff;
 	private BigDecimal  priceCost;
+	private String 		processing;
 	
 	public BigDecimal getAmortEff() {
 		return amortEff;
@@ -168,12 +169,6 @@ public class AcitInvestments {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Integer getCurrRate() {
-		return currRate;
-	}
-	public void setCurrRate(Integer currRate) {
-		this.currRate = currRate;
-	}
 	public BigDecimal getInvtAmt() {
 		return invtAmt;
 	}
@@ -240,6 +235,19 @@ public class AcitInvestments {
 	public void setSlCd(String slCd) {
 		this.slCd = slCd;
 	}
+
+	public String getProcessing() {
+		return processing;
+	}
+	public void setProcessing(String processing) {
+		this.processing = processing;
+	}
+	public BigDecimal getCurrRate() {
+		return currRate;
+	}
+	public void setCurrRate(BigDecimal currRate) {
+		this.currRate = currRate;
+	}
 	
 	@Override
 	public String toString() {
@@ -252,6 +260,6 @@ public class AcitInvestments {
 				+ ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
 				+ ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag + ", termDate=" + termDate + ", amortEff="
-				+ amortEff + ", priceCost=" + priceCost + "]";
-	}
+				+ amortEff + ", priceCost=" + priceCost + ", processing=" + processing + "]";
+	}	
 }

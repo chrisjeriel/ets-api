@@ -47,31 +47,33 @@ public class SaveAcitJVIntOverdAcctMSRequest {
 @Alias ("ACITOverdueAcct")
 class overDueAccts {
 	private Integer tranId;
-	private Integer itemNo;
-	private Integer policyId;
-	private Integer instNo;
-	private String dueDate;
-	private Integer daysOverdue;
-	private Integer interestRate;
-	private String autoTag;
-	private String currCd;
-	private BigDecimal currRate;
-	private BigDecimal premAmt;
-	private BigDecimal overdueInt;
-	private String createUser;
-	private String createDate;
-	private String updateUser;
-	private String updateDate;
+    private String itemNo;
+    private Integer policyId;
+    private Integer instNo;
+    private String dueDate;
+    private Integer actualOverdueDays;
+    private Integer overdueDaysWInt;
+    private BigDecimal interestRate;
+    private String autoTag;
+    private String currCd;
+    private BigDecimal currRate;
+    private BigDecimal balanceAmt;
+    private BigDecimal overdueInt;
+    private BigDecimal localAmt;
+    private String createUser;
+    private String createDate;
+    private String updateUser;
+    private String updateDate;
 	public Integer getTranId() {
 		return tranId;
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	public Integer getItemNo() {
+	public String getItemNo() {
 		return itemNo;
 	}
-	public void setItemNo(Integer itemNo) {
+	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
 	}
 	public Integer getPolicyId() {
@@ -92,17 +94,22 @@ class overDueAccts {
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
-	public Integer getDaysOverdue() {
-		return daysOverdue;
+	public Integer getActualOverdueDays() {
+		return actualOverdueDays;
 	}
-	public void setDaysOverdue(Integer daysOverdue) {
-		this.daysOverdue = daysOverdue;
+	public void setActualOverdueDays(Integer actualOverdueDays) {
+		this.actualOverdueDays = actualOverdueDays;
 	}
-	
-	public Integer getInterestRate() {
+	public Integer getOverdueDaysWInt() {
+		return overdueDaysWInt;
+	}
+	public void setOverdueDaysWInt(Integer overdueDaysWInt) {
+		this.overdueDaysWInt = overdueDaysWInt;
+	}
+	public BigDecimal getInterestRate() {
 		return interestRate;
 	}
-	public void setInterestRate(Integer interestRate) {
+	public void setInterestRate(BigDecimal interestRate) {
 		this.interestRate = interestRate;
 	}
 	public String getAutoTag() {
@@ -123,17 +130,23 @@ class overDueAccts {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
-	public BigDecimal getPremAmt() {
-		return premAmt;
+	public BigDecimal getBalanceAmt() {
+		return balanceAmt;
 	}
-	public void setPremAmt(BigDecimal premAmt) {
-		this.premAmt = premAmt;
+	public void setBalanceAmt(BigDecimal balanceAmt) {
+		this.balanceAmt = balanceAmt;
 	}
 	public BigDecimal getOverdueInt() {
 		return overdueInt;
 	}
 	public void setOverdueInt(BigDecimal overdueInt) {
 		this.overdueInt = overdueInt;
+	}
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -162,10 +175,11 @@ class overDueAccts {
 	@Override
 	public String toString() {
 		return "overDueAccts [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo
-				+ ", dueDate=" + dueDate + ", daysOverdue=" + daysOverdue + ", interestRate=" + interestRate
-				+ ", autoTag=" + autoTag + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt
-				+ ", overdueInt=" + overdueInt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", dueDate=" + dueDate + ", actualOverdueDays=" + actualOverdueDays + ", overdueDaysWInt="
+				+ overdueDaysWInt + ", interestRate=" + interestRate + ", autoTag=" + autoTag + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", overdueInt=" + overdueInt + ", localAmt="
+				+ localAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
+    
 }

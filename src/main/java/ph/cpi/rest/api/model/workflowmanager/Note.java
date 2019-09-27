@@ -4,20 +4,23 @@ import org.joda.time.DateTime;
 
 public class Note {
 	
-	private Integer  noteId;
-	private String   title;
-	private String   note;
-	private String   assignedTo;
-	private String   status;
-	private String   createUser;
+	private String noteId;
+	private String title;
+	private String note;
+	private String module;
+	private String referenceId;
+	private String details;
+	private String assignedTo;
+	private String status;
+	private String createUser;
 	private DateTime createDate;
-	private String   updateUser;
+	private String updateUser;
 	private DateTime updateDate;
-
-	public Integer getNoteId() {
+	
+	public String getNoteId() {
 		return noteId;
 	}
-	public void setNoteId(Integer noteId) {
+	public void setNoteId(String noteId) {
 		this.noteId = noteId;
 	}
 	public String getTitle() {
@@ -31,6 +34,24 @@ public class Note {
 	}
 	public void setNote(String note) {
 		this.note = note;
+	}
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
+	}
+	public String getReferenceId() {
+		return referenceId;
+	}
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
 	}
 	public String getAssignedTo() {
 		return assignedTo;
@@ -68,12 +89,12 @@ public class Note {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "Note [noteId=" + noteId + ", title=" + title + ", note=" + note + ", assignedTo=" + assignedTo
-				+ ", status=" + status + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "Note [noteId=" + noteId + ", title=" + title + ", note=" + note + ", module=" + module
+				+ ", referenceId=" + referenceId + ", details=" + details + ", assignedTo=" + assignedTo + ", status="
+				+ status + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 	

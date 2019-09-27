@@ -8,6 +8,8 @@ public class RetrieveNotesRequest {
 	private Integer noteId;
 	private String 	assignedTo;
 	private String  createUser;
+	private String  module;
+	private String  referenceId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -41,11 +43,23 @@ public class RetrieveNotesRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
-	
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
+	}
+	public String getReferenceId() {
+		return referenceId;
+	}
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveNotesRequest [noteId=" + noteId + ", assignedTo=" + assignedTo + ", createUser=" + createUser
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", module=" + module + ", referenceId=" + referenceId + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 
 

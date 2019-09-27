@@ -6,8 +6,27 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVInvRollOverRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<InvRollOver> saveRollOver;
 	private List<InvRollOver> delRollOver;
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+
 	public List<InvRollOver> getSaveRollOver() {
 		return saveRollOver;
 	}
@@ -26,8 +45,11 @@ public class SaveAcitJVInvRollOverRequest {
 
 	@Override
 	public String toString() {
-		return "SaveAcitJVInvRollOverRequest [saveRollOver=" + saveRollOver + ", delRollOver=" + delRollOver + "]";
+		return "SaveAcitJVInvRollOverRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveRollOver="
+				+ saveRollOver + ", delRollOver=" + delRollOver + "]";
 	}
+
+	
 }
 
 @Alias ("ACITInvRollOver")

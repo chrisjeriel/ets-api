@@ -3,10 +3,12 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserAccessRequest;
@@ -15,6 +17,7 @@ import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupAccessRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUserGroupRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnUsersRequest;
 import ph.cpi.rest.api.model.request.SaveApprovalRequest;
+import ph.cpi.rest.api.model.request.SaveMtnUserGrpRequest;
 import ph.cpi.rest.api.model.request.SaveMtnUserRequest;
 import ph.cpi.rest.api.model.request.SaveMtnUserResponse;
 import ph.cpi.rest.api.model.request.UserLoginRequest;
@@ -24,7 +27,7 @@ import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupAccessResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUserGroupResponse;
 import ph.cpi.rest.api.model.response.RetrieveMtnUsersResponse;
 import ph.cpi.rest.api.model.response.SaveApprovalResponse;
-import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
+import ph.cpi.rest.api.model.response.SaveMtnUserGrpResponse;
 import ph.cpi.rest.api.model.response.UserAuthenticateResponse;
 import ph.cpi.rest.api.model.response.UserLoginResponse;
 import ph.cpi.rest.api.service.UserService;
@@ -161,15 +164,53 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public SaveMtnUserResponse saveMtnUser(SaveMtnUserRequest smur) throws SQLException {
+	@ExceptionHandler(Exception.class)
+	public SaveMtnUserResponse saveMtnUser(SaveMtnUserRequest smur) throws SQLException, org.springframework.dao.DataIntegrityViolationException {
 		SaveMtnUserResponse smuResponse = new SaveMtnUserResponse();
 		HashMap<String, Object> saveMtnUserParams = new HashMap<String, Object>();
 		saveMtnUserParams.put("usersList", smur.getUsersList());
+		String errorMsg = "Please check field values.";
 		
-		smuResponse.setReturnCode(userDao.saveMtnUser(saveMtnUserParams));
+		try {
+			smuResponse.setReturnCode(userDao.saveMtnUser(saveMtnUserParams));
+			logger.info("saveMtnUser : " + smuResponse.toString());
+		} catch (HibernateException e) {
+			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUHE", "HibernateException Exception : " + errorMsg));
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUDIV", "DataIntegrityViolation Exception : " + errorMsg));
+		} catch (SQLException sqle) {
+			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUSQL", "SQL Exception : " + errorMsg));
+		} catch (Exception e) {
+			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGEN", "General Exception"));
+		}
 		
-		logger.info("saveMtnUser : " + smuResponse.toString());
+		
 		return smuResponse;
+	}
+
+	@Override
+	public SaveMtnUserGrpResponse saveMtnUserGrp(SaveMtnUserGrpRequest smur) throws SQLException {
+		SaveMtnUserGrpResponse smugResponse = new SaveMtnUserGrpResponse();
+		HashMap<String, Object> saveMtnUserGrpParams = new HashMap<String, Object>();
+		saveMtnUserGrpParams.put("userGrpList", smur.getUserGrpList());
+		saveMtnUserGrpParams.put("delUserGrpList", smur.getDelUserGrpList());
+		String errorMsg = "Please check field values.";
+		
+		try {
+			smugResponse.setReturnCode(userDao.saveMtnUserGrp(saveMtnUserGrpParams));
+			logger.info("saveMtnUserGrp : " + smugResponse.toString());
+		} catch (HibernateException e) {
+			smugResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGHE", "HibernateException Exception : " + errorMsg));
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			smugResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGDIV", "DataIntegrityViolation Exception : " + errorMsg));
+		} catch (SQLException sqle) {
+			smugResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGSQL", "SQL Exception : " + errorMsg));
+		} catch (Exception e) {
+			smugResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGGEN", "General Exception"));
+		}
+		
+		
+		return smugResponse;
 	}
 
 }

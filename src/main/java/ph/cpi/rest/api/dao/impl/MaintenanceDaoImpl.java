@@ -15,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ph.cpi.rest.api.dao.MaintenanceDao;
 import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
+import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -44,6 +46,7 @@ import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
 import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -1039,6 +1042,30 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<PayeeCeding> retrieveMtnPayeeCeding(HashMap<String, Object> params) throws SQLException {
 		List<PayeeCeding> res = sqlSession.selectList("retrieveMtnPayeeCeding", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitCheckSeries> retrieveMtnAcitCheckSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcitCheckSeries> checkSeriesList = sqlSession.selectList("retrieveMtnAcitCheckSeries", params);
+		return checkSeriesList;
+	}
+	
+	@Override
+	public List<AcseDCBNo> retrieveMtnAcseDCBNo(HashMap<String, Object> params) throws SQLException {
+		List<AcseDCBNo> res = sqlSession.selectList("retMtnAcseDCBNo", params);
+		return res;
+	}
+
+	@Override
+	public List<MtnAcseTranType> retrieveMtnAcseTranType(HashMap<String, Object> params) throws SQLException {
+		List<MtnAcseTranType> res = sqlSession.selectList("retrieveMtnAcseTranType", params);
+		return res;
+	}
+	
+	@Override
+	public Integer saveMtnAcseDCBNo(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveMtnAcseDCBNo", params);
 		return res;
 	}
 }

@@ -29,7 +29,7 @@ public class ClaimPaytRequest {
 	private String refNo;
 	private DateTime refDate;
 	private String particulars;
-	private Integer payeeNo;
+	private String payeeNo;
 	private String payee;
 	private String tranTypeName;
 	
@@ -39,10 +39,10 @@ public class ClaimPaytRequest {
 	public void setTranTypeName(String tranTypeName) {
 		this.tranTypeName = tranTypeName;
 	}
-	public Integer getPayeeNo() {
+	public String getPayeeNo() {
 		return payeeNo;
 	}
-	public void setPayeeNo(Integer payeeNo) {
+	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
 	public String getPayee() {
