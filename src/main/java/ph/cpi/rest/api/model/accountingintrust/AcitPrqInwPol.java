@@ -7,17 +7,26 @@ import org.joda.time.DateTime;
 public class AcitPrqInwPol {
 	private Integer reqId;
 	private Integer itemNo;
-
+	private String policyNo;
+	private String coRefNo;
+	private Integer instNo;
+	private DateTime dueDate;
+	private String currCd;
+	private Float currRate;
+	private BigDecimal prevPremAmt;
+	private BigDecimal prevRiComm;
+	private BigDecimal prevRiCommVat;
+	private BigDecimal prevCharges;
+	private BigDecimal cumPayment;
+	private BigDecimal prevBalance;
+	private BigDecimal returnAmt;
 	private BigDecimal premAmt;
 	private BigDecimal riComm;
 	private BigDecimal riCommVat;
-	private BigDecimal prevPaytAmt;
-	private BigDecimal prevBalance;
-	private BigDecimal newPaytAmt;
-	private BigDecimal newBalance;
-	private BigDecimal netDue;
 	private BigDecimal charges;
-	private BigDecimal returnAmt;
+	private BigDecimal prevNetDue;
+	private BigDecimal totalPayt;
+	private BigDecimal remainingBal;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -33,6 +42,84 @@ public class AcitPrqInwPol {
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+	public String getCoRefNo() {
+		return coRefNo;
+	}
+	public void setCoRefNo(String coRefNo) {
+		this.coRefNo = coRefNo;
+	}
+	public Integer getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
+	}
+	public DateTime getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(DateTime dueDate) {
+		this.dueDate = dueDate;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
+	public Float getCurrRate() {
+		return currRate;
+	}
+	public void setCurrRate(Float currRate) {
+		this.currRate = currRate;
+	}
+	public BigDecimal getPrevPremAmt() {
+		return prevPremAmt;
+	}
+	public void setPrevPremAmt(BigDecimal prevPremAmt) {
+		this.prevPremAmt = prevPremAmt;
+	}
+	public BigDecimal getPrevRiComm() {
+		return prevRiComm;
+	}
+	public void setPrevRiComm(BigDecimal prevRiComm) {
+		this.prevRiComm = prevRiComm;
+	}
+	public BigDecimal getPrevRiCommVat() {
+		return prevRiCommVat;
+	}
+	public void setPrevRiCommVat(BigDecimal prevRiCommVat) {
+		this.prevRiCommVat = prevRiCommVat;
+	}
+	public BigDecimal getPrevCharges() {
+		return prevCharges;
+	}
+	public void setPrevCharges(BigDecimal prevCharges) {
+		this.prevCharges = prevCharges;
+	}
+	public BigDecimal getCumPayment() {
+		return cumPayment;
+	}
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getReturnAmt() {
+		return returnAmt;
+	}
+	public void setReturnAmt(BigDecimal returnAmt) {
+		this.returnAmt = returnAmt;
 	}
 	public BigDecimal getPremAmt() {
 		return premAmt;
@@ -52,47 +139,23 @@ public class AcitPrqInwPol {
 	public void setRiCommVat(BigDecimal riCommVat) {
 		this.riCommVat = riCommVat;
 	}
-	public BigDecimal getPrevPaytAmt() {
-		return prevPaytAmt;
-	}
-	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
-		this.prevPaytAmt = prevPaytAmt;
-	}
-	public BigDecimal getPrevBalance() {
-		return prevBalance;
-	}
-	public void setPrevBalance(BigDecimal prevBalance) {
-		this.prevBalance = prevBalance;
-	}
-	public BigDecimal getNewPaytAmt() {
-		return newPaytAmt;
-	}
-	public void setNewPaytAmt(BigDecimal newPaytAmt) {
-		this.newPaytAmt = newPaytAmt;
-	}
-	public BigDecimal getNewBalance() {
-		return newBalance;
-	}
-	public void setNewBalance(BigDecimal newBalance) {
-		this.newBalance = newBalance;
-	}
-	public BigDecimal getNetDue() {
-		return netDue;
-	}
-	public void setNetDue(BigDecimal netDue) {
-		this.netDue = netDue;
-	}
 	public BigDecimal getCharges() {
 		return charges;
 	}
 	public void setCharges(BigDecimal charges) {
 		this.charges = charges;
 	}
-	public BigDecimal getReturnAmt() {
-		return returnAmt;
+	public BigDecimal getTotalPayt() {
+		return totalPayt;
 	}
-	public void setReturnAmt(BigDecimal returnAmt) {
-		this.returnAmt = returnAmt;
+	public void setTotalPayt(BigDecimal totalPayt) {
+		this.totalPayt = totalPayt;
+	}
+	public BigDecimal getRemainingBal() {
+		return remainingBal;
+	}
+	public void setRemainingBal(BigDecimal remainingBal) {
+		this.remainingBal = remainingBal;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -118,12 +181,21 @@ public class AcitPrqInwPol {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getPrevNetDue() {
+		return prevNetDue;
+	}
+	public void setPrevNetDue(BigDecimal prevNetDue) {
+		this.prevNetDue = prevNetDue;
+	}
 	@Override
 	public String toString() {
-		return "AcitPrqInwPol [reqId=" + reqId + ", itemNo=" + itemNo + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance
-				+ ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + ", netDue=" + netDue + ", charges="
-				+ charges + ", returnAmt=" + returnAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitPrqInwPol [reqId=" + reqId + ", itemNo=" + itemNo + ", policyNo=" + policyNo + ", coRefNo="
+				+ coRefNo + ", instNo=" + instNo + ", dueDate=" + dueDate + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", prevPremAmt=" + prevPremAmt + ", prevRiComm=" + prevRiComm + ", prevRiCommVat="
+				+ prevRiCommVat + ", prevCharges=" + prevCharges + ", cumPayment=" + cumPayment + ", prevBalance="
+				+ prevBalance + ", returnAmt=" + returnAmt + ", premAmt=" + premAmt + ", riComm=" + riComm
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", prevNetDue=" + prevNetDue + ", totalPayt="
+				+ totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
