@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 public class AcitPrqInwPol {
 	private Integer reqId;
 	private Integer itemNo;
+
 	private BigDecimal premAmt;
 	private BigDecimal riComm;
 	private BigDecimal riCommVat;
