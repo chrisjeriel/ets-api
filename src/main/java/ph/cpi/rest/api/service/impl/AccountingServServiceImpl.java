@@ -13,9 +13,11 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
@@ -234,5 +236,17 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return uaprsResponse;
+	}
+	
+	@Override
+	public RetrieveAcsePrqTransResponse retrieveAcsePrqTrans(RetrieveAcsePrqTransRequest raptp) throws SQLException {
+		RetrieveAcsePrqTransResponse raptResponse =  new RetrieveAcsePrqTransResponse();
+		HashMap<String, Object> raptParams = new HashMap<String, Object>();
+		raptParams.put("reqId", raptp.getReqId());
+		raptParams.put("itemNo", raptp.getItemNo());
+		raptResponse.setAcsePrqTrans(acctServDao.retrieveAcsePrqTrans(raptParams));
+		logger.info("RetrieveAcsePrqTransResponse : " + raptResponse.toString());
+		return raptResponse;
+		
 	}
 }

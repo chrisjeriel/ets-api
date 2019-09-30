@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -84,5 +86,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/updateAcsePaytReqStat");
 		logger.info("UpdateAcsePaytReqStatRequest : " + uaprsr.toString());
 		return acctServService.updateAcsePaytReqStat(uaprsr);
+	}
+	
+	@GetMapping(path="retrieveAcsePrqTrans")
+	public @ResponseBody RetrieveAcsePrqTransResponse retrieveAcsePrqTrans(RetrieveAcsePrqTransRequest raptr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcsePrqTrans");
+		logger.info("RetrieveAcsePrqTransRequest : " + raptr.toString());
+		return acctServService.retrieveAcsePrqTrans(raptr);
 	}
 }

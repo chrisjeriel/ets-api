@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 
 @Component
@@ -58,6 +59,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("updateAcsePaytReqStat", params);
 		params.put("errorCode", errorCode);
 		return params;
-	}	
+	}
+	
+	@Override
+	public List<AcsePrqTrans> retrieveAcsePrqTrans(HashMap<String, Object> params) throws SQLException {
+		List<AcsePrqTrans> acsePrqTransList  = sqlSession.selectList("retrieveAcsePrqTrans", params);
+		return acsePrqTransList;
+	}
 
 }
