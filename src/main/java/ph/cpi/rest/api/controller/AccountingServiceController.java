@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -26,6 +27,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -103,5 +105,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseJVEntry");
 		logger.info("SaveAcseJVEntryRequest : " + request.toString());
 		return acctServService.saveJVEntry(request);
+	}
+	
+	@PostMapping(path="approveJV")
+	public @ResponseBody ApproveJVServiceResponse approveJV(@RequestBody ApproveJVServiceRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/approveJV");
+		logger.info("ApproveJVServiceRequest : " + request.toString());
+		return acctServService.approveJV(request);
 	}
 }

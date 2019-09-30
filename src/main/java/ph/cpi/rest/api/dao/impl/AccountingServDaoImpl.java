@@ -74,4 +74,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> aprroveJV(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("approveJVService", params);
+		params.put("errorCode", errorCode);
+		return null;
+	}
 }

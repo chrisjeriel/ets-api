@@ -6,7 +6,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class ApproveJVResponse {
+public class ApproveJVServiceResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
@@ -32,7 +32,7 @@ public class ApproveJVResponse {
 	}
 	@Override
 	public String toString() {
-		return "ApproveJVResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "ApproveJVServiceResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
 	
