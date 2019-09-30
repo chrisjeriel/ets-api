@@ -74,6 +74,7 @@ public class SaveAcitJvNegTrtyRequest {
 @Alias ("ACITNegative")
 class negativeTreaty {
 	private Integer tranId;
+	private String qsoaId;
 	private Integer quarterNo;
 	private String quarterEnding;
 	private String cedingId;
@@ -91,6 +92,13 @@ class negativeTreaty {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public String getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(String qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public Integer getQuarterNo() {
 		return quarterNo;
@@ -166,11 +174,11 @@ class negativeTreaty {
 	}
 	@Override
 	public String toString() {
-		return "negativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
-				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "negativeTreaty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterNo=" + quarterNo
+				+ ", quarterEnding=" + quarterEnding + ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid="
+				+ actualBalPaid + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

@@ -2391,6 +2391,18 @@
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				
+				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
+														 #{save.qsoaId, jdbcType=INTEGER},
+														 CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.currCd},
+														 #{save.currRate},
+														 #{save.balanceAmt},
+														 #{save.localAmt},
+														 #{save.createUser},
+														 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
 			</foreach>
 			
 			<foreach collection="deleteClmOffset" item="deleted">
@@ -2696,6 +2708,19 @@
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				
+				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
+														 #{save.qsoaId, jdbcType=INTEGER},
+														 CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.currCd},
+														 #{save.currRate},
+														 #{save.balanceAmt},
+														 #{save.localAmt},
+														 #{save.createUser},
+														 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
 			</foreach>
 			
 			<foreach collection="delInwPolOffset" item="deleted">
@@ -2911,6 +2936,11 @@
 		BEGIN
 			<foreach collection="delClmOffset" item="del">
 				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo});
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(#{deleted.tranId},
+																 #{deleted.claimId},
+															     #{deleted.projId},
+															     #{deleted.histNo});
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="save">
@@ -2938,11 +2968,12 @@
 			
 			<foreach collection="delInwPol" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo},
+														   #{delete.policyId}, 
+													  	   #{delete.instNo}, 
 														   #{delete.premAmt}, 
 														   #{delete.riComm}, 
 														   #{delete.riCommVat}, 
 														   #{delete.charges}, 
-													   	   #{delete.netDue}, 
 														   #{delete.paytAmt}, 
 														   #{delete.updateUser}, 
 													  	   CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)

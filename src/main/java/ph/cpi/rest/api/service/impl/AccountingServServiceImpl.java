@@ -15,9 +15,11 @@ import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -226,6 +228,61 @@ public class AccountingServServiceImpl implements AccountingServService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
 		response.setJvEntry(acctServDao.retrieveJVEntry(params));
+		return response;
+	}
+
+	@Override
+	public SaveAcseJVEntryResponse saveJVEntry(SaveAcseJVEntryRequest request) throws SQLException {
+		SaveAcseJVEntryResponse response = new SaveAcseJVEntryResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId" , request.getTranId());
+			params.put("tranDate" , request.getTranDate());
+			params.put("tranClass" , request.getTranClass());
+			params.put("tranYear" , request.getTranYear());
+			params.put("tranClassNo" , request.getTranClassNo());
+			params.put("tranStat" , request.getTranStat());
+			params.put("closeDate" , request.getCloseDate());
+			params.put("deleteDate" , request.getDeleteDate());
+			params.put("postDate" , request.getPostDate());
+			params.put("createUser" , request.getCreateUser());
+			params.put("createDate" , request.getCreateDate());
+			params.put("updateUser" , request.getUpdateUser());
+			params.put("updateDate" , request.getUpdateDate());
+			params.put("tranTypeCd" , request.getTranTypeCd());
+			params.put("tranIdJv" , request.getTranIdJv());
+			params.put("jvYear" , request.getJvYear());
+			params.put("jvNo" , request.getJvNo());
+			params.put("jvDate" , request.getJvDate());
+			params.put("jvStatus" , request.getJvStatus());
+			params.put("JvTranTypeCd" , request.getJvTranTypeCd());
+			params.put("autoTag" , request.getAutoTag());
+			params.put("refnoTranId" , request.getRefnoTranId());
+			params.put("refnoDate" , request.getRefnoDate());
+			params.put("particulars" , request.getParticulars());
+			params.put("currCd" , request.getCurrCd());
+			params.put("currRate" , request.getCurrRate());
+			params.put("jvAmt" , request.getJvAmt());
+			params.put("localAmt" , request.getLocalAmt());
+			params.put("allocTag" , request.getAllocTag());
+			params.put("allocTranId" , request.getAllocTranId());
+			params.put("preparedBy" , request.getPreparedBy());
+			params.put("preparedDate" , request.getPreparedDate());
+			params.put("approvedBy" , request.getApprovedBy());
+			params.put("approvedDate" , request.getApprovedDate());
+			params.put("createUserJv" , request.getCreateUserJv());
+			params.put("createDateJv" , request.getCreateDateJv());
+			params.put("updateUserJv" , request.getUpdateUserJv());
+			params.put("updateDateJv" , request.getUpdateDateJv());
+			
+			HashMap<String, Object> res = acctServDao.saveJVEntry(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setTranIdOut((Integer) res.get("tranIdOut"));
+		}catch(Exception exc){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			exc.printStackTrace();
+		}
 		return response;
 	}
 }

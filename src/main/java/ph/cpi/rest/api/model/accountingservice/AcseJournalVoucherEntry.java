@@ -5,6 +5,21 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class AcseJournalVoucherEntry {
+	private Integer tranIdTran;
+	private DateTime tranDate;
+	private String tranClass;
+	private Integer tranYear;
+	private Integer tranClassNo;
+	private String tranStat;
+	private DateTime closeDate;
+	private DateTime deleteDate;
+	private DateTime postDate;
+	private String createUserTran;
+	private DateTime createDateTran;
+	private String updateUserTran;
+	private DateTime updateDateTran;
+	private String tranTypeCdTran;
+	
 	private Integer tranId;
 	private Integer jvYear;
 	private String jvNo;
@@ -35,6 +50,92 @@ public class AcseJournalVoucherEntry {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	
+	public Integer getTranIdTran() {
+		return tranIdTran;
+	}
+	public void setTranIdTran(Integer tranIdTran) {
+		this.tranIdTran = tranIdTran;
+	}
+	public DateTime getTranDate() {
+		return tranDate;
+	}
+	public void setTranDate(DateTime tranDate) {
+		this.tranDate = tranDate;
+	}
+	public String getTranClass() {
+		return tranClass;
+	}
+	public void setTranClass(String tranClass) {
+		this.tranClass = tranClass;
+	}
+	public Integer getTranYear() {
+		return tranYear;
+	}
+	public void setTranYear(Integer tranYear) {
+		this.tranYear = tranYear;
+	}
+	public Integer getTranClassNo() {
+		return tranClassNo;
+	}
+	public void setTranClassNo(Integer tranClassNo) {
+		this.tranClassNo = tranClassNo;
+	}
+	public String getTranStat() {
+		return tranStat;
+	}
+	public void setTranStat(String tranStat) {
+		this.tranStat = tranStat;
+	}
+	public DateTime getCloseDate() {
+		return closeDate;
+	}
+	public void setCloseDate(DateTime closeDate) {
+		this.closeDate = closeDate;
+	}
+	public DateTime getDeleteDate() {
+		return deleteDate;
+	}
+	public void setDeleteDate(DateTime deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+	public DateTime getPostDate() {
+		return postDate;
+	}
+	public void setPostDate(DateTime postDate) {
+		this.postDate = postDate;
+	}
+	public String getCreateUserTran() {
+		return createUserTran;
+	}
+	public void setCreateUserTran(String createUserTran) {
+		this.createUserTran = createUserTran;
+	}
+	public DateTime getCreateDateTran() {
+		return createDateTran;
+	}
+	public void setCreateDateTran(DateTime createDateTran) {
+		this.createDateTran = createDateTran;
+	}
+	public String getUpdateUserTran() {
+		return updateUserTran;
+	}
+	public void setUpdateUserTran(String updateUserTran) {
+		this.updateUserTran = updateUserTran;
+	}
+	public DateTime getUpdateDateTran() {
+		return updateDateTran;
+	}
+	public void setUpdateDateTran(DateTime updateDateTran) {
+		this.updateDateTran = updateDateTran;
+	}
+	public String getTranTypeCdTran() {
+		return tranTypeCdTran;
+	}
+	public void setTranTypeCdTran(String tranTypeCdTran) {
+		this.tranTypeCdTran = tranTypeCdTran;
+	}
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -217,16 +318,21 @@ public class AcseJournalVoucherEntry {
 	}
 	@Override
 	public String toString() {
-		return "AcseJournalVoucherEntry [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate="
-				+ jvDate + ", jvStatus=" + jvStatus + ", statusName=" + statusName + ", tranTypeCd=" + tranTypeCd
-				+ ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId
-				+ ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", jvAmt=" + jvAmt + ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId="
-				+ allocTranId + ", preparedBy=" + preparedBy + ", preparedName=" + preparedName + ", preparedPosition="
-				+ preparedPosition + ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedName="
-				+ approvedName + ", approvedPosition=" + approvedPosition + ", approvedDate=" + approvedDate
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "AcseJournalVoucherEntry [tranIdTran=" + tranIdTran + ", tranDate=" + tranDate + ", tranClass="
+				+ tranClass + ", tranYear=" + tranYear + ", tranClassNo=" + tranClassNo + ", tranStat=" + tranStat
+				+ ", closeDate=" + closeDate + ", deleteDate=" + deleteDate + ", postDate=" + postDate
+				+ ", createUserTran=" + createUserTran + ", createDateTran=" + createDateTran + ", updateUserTran="
+				+ updateUserTran + ", updateDateTran=" + updateDateTran + ", tranTypeCdTran=" + tranTypeCdTran
+				+ ", tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate + ", jvStatus="
+				+ jvStatus + ", statusName=" + statusName + ", tranTypeCd=" + tranTypeCd + ", tranTypeName="
+				+ tranTypeName + ", autoTag=" + autoTag + ", refnoTranId=" + refnoTranId + ", refnoDate=" + refnoDate
+				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt
+				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", preparedBy="
+				+ preparedBy + ", preparedName=" + preparedName + ", preparedPosition=" + preparedPosition
+				+ ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedName=" + approvedName
+				+ ", approvedPosition=" + approvedPosition + ", approvedDate=" + approvedDate + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 	
 }

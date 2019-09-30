@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.accountingservice;
 
-import java.util.List;
-
 import org.joda.time.DateTime;
 
 public class AcseTransactions {
@@ -19,8 +17,7 @@ public class AcseTransactions {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-
-	private List<AcseJournalVoucherList> jvList;
+	private String tranTypeCd;
 
 	public Integer getTranId() {
 		return tranId;
@@ -126,12 +123,12 @@ public class AcseTransactions {
 		this.updateDate = updateDate;
 	}
 
-	public List<AcseJournalVoucherList> getJvList() {
-		return jvList;
+	public String getTranTypeCd() {
+		return tranTypeCd;
 	}
 
-	public void setJvList(List<AcseJournalVoucherList> jvList) {
-		this.jvList = jvList;
+	public void setTranTypeCd(String tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 
 	@Override
@@ -140,8 +137,8 @@ public class AcseTransactions {
 				+ ", tranYear=" + tranYear + ", tranClassNo=" + tranClassNo + ", tranStat=" + tranStat + ", closeDate="
 				+ closeDate + ", deleteDate=" + deleteDate + ", postDate=" + postDate + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", jvList=" + jvList + "]";
+				+ ", tranTypeCd=" + tranTypeCd + "]";
 	}
-	
+
 	
 }

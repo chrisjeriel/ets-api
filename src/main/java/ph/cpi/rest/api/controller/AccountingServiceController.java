@@ -19,10 +19,12 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -94,5 +96,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcsePaytReq");
 		logger.info("SaveAcsePaytReqRequest : " + saprr.toString());
 		return acctServService.saveAcsePaytReq(saprr);
+	}
+	
+	@PostMapping(path="saveAcseJVEntry")
+	public @ResponseBody SaveAcseJVEntryResponse saveAcseJVEntry(@RequestBody SaveAcseJVEntryRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseJVEntry");
+		logger.info("SaveAcseJVEntryRequest : " + request.toString());
+		return acctServService.saveJVEntry(request);
 	}
 }
