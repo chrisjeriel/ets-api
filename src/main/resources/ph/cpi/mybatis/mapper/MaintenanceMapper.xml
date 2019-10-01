@@ -200,6 +200,7 @@
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
 		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/>
 		<result property="alopTag" 			column="ALOP_TAG"/>
+		<result property="retAmtTag" 		column="RET_AMT_TAG"/>
 		<result property="referenceNo"		column="REFERENCE_NO"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/>
@@ -944,6 +945,7 @@
 			        #{line.renewalTag,jdbcType=VARCHAR},
 			        #{line.openCoverTag,jdbcType=VARCHAR},
 			        #{line.alopTag,jdbcType=VARCHAR},
+			        #{line.retAmtTag,jdbcType=VARCHAR},
 			        #{line.referenceNo,jdbcType=INTEGER},
 			        #{line.sortSeq,jdbcType=INTEGER},
 			        #{line.remarks,jdbcType=VARCHAR},

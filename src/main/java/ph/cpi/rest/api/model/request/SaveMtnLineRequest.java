@@ -46,6 +46,8 @@ class Lines {
     private String updateUser ;
     private String updateDate ;
     private String alopTag ;
+    private String retAmtTag ;
+    
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -142,6 +144,12 @@ class Lines {
 	public void setAlopTag(String alopTag) {
 		this.alopTag = alopTag;
 	}
+	public String getRetAmtTag() {
+		return retAmtTag;
+	}
+	public void setRetAmtTag(String retAmtTag) {
+		this.retAmtTag = retAmtTag;
+	}
 	@Override
 	public String toString() {
 		return "Lines [lineCd=" + lineCd + ", description=" + description + ", menuLineCd=" + menuLineCd
@@ -149,6 +157,6 @@ class Lines {
 				+ ", renewalTag=" + renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo=" + referenceNo
 				+ ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", alopTag=" + alopTag
-				+ "]";
+				+ ", retAmtTag=" + retAmtTag + "]";
 	}
 }
