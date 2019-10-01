@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.workflowmanager;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class Reminder {
@@ -9,12 +11,16 @@ public class Reminder {
 	private String   reminder;
 	private DateTime reminderDate;
 	private String   alarmTime;
+	private String	 module;
+	private String	 referenceId;
+	private String	 details;
 	private String   assignedTo;
 	private String   status;
 	private String   createUser;
 	private DateTime createDate;
 	private String   updateUser;
 	private DateTime updateDate;
+	List<RelatedRecord> relatedRecordList;
 	
 	public Integer getReminderId() {
 		return reminderId;
@@ -82,12 +88,36 @@ public class Reminder {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getModule() {
+		return module;
+	}
+	public void setModule(String module) {
+		this.module = module;
+	}
+	public String getReferenceId() {
+		return referenceId;
+	}
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
+	}
+	public List<RelatedRecord> getRelatedRecordList() {
+		return relatedRecordList;
+	}
+	public void setRelatedRecordList(List<RelatedRecord> relatedRecordList) {
+		this.relatedRecordList = relatedRecordList;
+	}
 	@Override
 	public String toString() {
 		return "Reminder [reminderId=" + reminderId + ", title=" + title + ", reminder=" + reminder + ", reminderDate="
-				+ reminderDate + ", alarmTime=" + alarmTime + ", assignedTo=" + assignedTo + ", status=" + status
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ reminderDate + ", alarmTime=" + alarmTime + ", module=" + module + ", referenceId=" + referenceId
+				+ ", details=" + details + ", assignedTo=" + assignedTo + ", status=" + status + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", relatedRecordList=" + relatedRecordList + "]";
 	}
-	
 }
