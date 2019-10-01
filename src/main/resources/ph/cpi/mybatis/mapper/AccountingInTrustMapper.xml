@@ -1225,6 +1225,8 @@
 					);
 				</foreach>
 				
+				<!-- UPDATE AR PARTICULARS -->
+				ACIT_AR_INWPOLBAL_PKG.update_particulars(#{tranId},#{billId});
 				<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
@@ -2041,6 +2043,8 @@
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
 					);
 				</foreach>
+				<!-- UPDATE AR PARTICULARS -->
+				ACIT_AR_INVPULLOUT_PKG.update_particulars(#{tranId},#{billId});
 				<!-- Generate to Amount Details -->
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
@@ -2281,6 +2285,8 @@
 																	  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 																		);
 				</foreach>
+				<!-- UPDATE AR PARTICULARS -->
+				ACIT_AR_CLMRECOVER_PKG.update_particulars(#{tranId},#{billId});
 				<!-- Generate Amount Details -->
 				<!-- GENERATE_DEFAULT_AMT('AR', #{billType}, #{tranId}, #{updateUser}); -->
 				<!-- Generate to Accounting Entries -->
