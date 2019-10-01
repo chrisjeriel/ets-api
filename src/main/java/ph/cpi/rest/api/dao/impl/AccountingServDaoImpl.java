@@ -67,4 +67,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		return acsePrqTransList;
 	}
 
+	@Override
+	public HashMap<String, Object> saveAcsePrqTrans(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcsePrqTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

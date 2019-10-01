@@ -25,11 +25,13 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -93,5 +95,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcsePrqTrans");
 		logger.info("RetrieveAcsePrqTransRequest : " + raptr.toString());
 		return acctServService.retrieveAcsePrqTrans(raptr);
+	}
+	
+	@PostMapping(path="saveAcsePrqTrans")
+	public @ResponseBody SaveAcsePrqTransResponse saveAcsePrqTrans(@RequestBody SaveAcsePrqTransRequest saptr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcsePrqTrans");
+		logger.info("SaveAcsePrqTransRequest : " + saptr.toString());
+		return acctServService.saveAcsePrqTrans(saptr);
 	}
 }

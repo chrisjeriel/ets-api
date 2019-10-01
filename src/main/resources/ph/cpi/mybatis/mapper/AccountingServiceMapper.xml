@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
-<mapper namespace="ph.cpi.mybatis.mapper.AccountingInTrustMapper">
+<mapper namespace="ph.cpi.mybatis.mapper.AccountingServiceMapper">
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.OfficialReceipt" id="orListMap">
 		<result property="tranId"			column="TRAN_ID" />
@@ -318,4 +318,33 @@
 					'', '', '',''))
 	</select>
 	
+	<update id="saveAcsePrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deletePrqTrans" item="del">
+				ACSE_PRQ_TRANS_PKG.del_acse_prq_trans(
+					#{del.reqId,jdbcType=INTEGER},
+					#{del.itemNo,jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="savePrqTrans" item="save">
+				ACSE_PRQ_TRANS_PKG.save_acse_prq_trans(
+					#{save.reqId,jdbcType=INTEGER},
+					#{save.itemNo,jdbcType=INTEGER},
+					#{save.itemName,jdbcType=VARCHAR},
+					#{save.glAcctId,jdbcType=INTEGER},
+					#{save.refNo,jdbcType=VARCHAR},
+					#{save.remarks,jdbcType=VARCHAR},
+					#{save.currCd,jdbcType=VARCHAR},
+					#{save.currRate,jdbcType=INTEGER},
+					#{save.currAmt,jdbcType=INTEGER},
+					#{save.localAmt,jdbcType=INTEGER},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR}, 
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
 </mapper>

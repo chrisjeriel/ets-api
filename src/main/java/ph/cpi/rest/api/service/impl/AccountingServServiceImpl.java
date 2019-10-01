@@ -20,11 +20,13 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -248,5 +250,27 @@ public class AccountingServServiceImpl implements AccountingServService{
 		logger.info("RetrieveAcsePrqTransResponse : " + raptResponse.toString());
 		return raptResponse;
 		
+	}
+	
+	@Override
+	public SaveAcsePrqTransResponse saveAcsePrqTrans(SaveAcsePrqTransRequest saptr) throws SQLException {
+		SaveAcsePrqTransResponse saptResponse = new SaveAcsePrqTransResponse();
+		HashMap<String, Object> saptParams = new HashMap<String, Object>();
+		try {
+			saptParams.put("deletePrqTrans", saptr.getDeletePrqTrans());
+			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
+			
+			HashMap<String, Object> response = acctServDao.saveAcsePrqTrans(saptParams);
+			saptResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			saptResponse.setReturnCode(0);
+			saptResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			saptResponse.setReturnCode(0);
+			saptResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return saptResponse;
 	}
 }

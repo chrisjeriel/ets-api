@@ -17,4 +17,5 @@ public interface AccountingServDao {
 	public HashMap<String, Object> saveAcsePaytReq(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> updateAcsePaytReqStat(final HashMap<String, Object> params) throws SQLException;
 	public List<AcsePrqTrans> retrieveAcsePrqTrans(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcsePrqTrans(final HashMap<String, Object> params) throws SQLException;
 }
