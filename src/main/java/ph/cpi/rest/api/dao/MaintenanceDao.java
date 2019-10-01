@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.RefCode;
+import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
@@ -222,4 +223,5 @@ public interface MaintenanceDao {
 	public List<AcseDCBNo> retrieveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcseTranType> retrieveMtnAcseTranType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitArSeries> retrieveMtnAcitArSeries(final HashMap<String, Object> params) throws SQLException;
 }

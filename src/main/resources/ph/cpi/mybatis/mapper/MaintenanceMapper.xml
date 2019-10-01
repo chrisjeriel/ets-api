@@ -3886,5 +3886,22 @@
 			DBMS_OUTPUT.PUT_LINE('Placeholder');
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitArSeries" id="acitArSeriesMap">
+		<result property="minArNo"		column="MIN_AR_NO" />
+		<result property="maxArNo"		column="MAX_AR_NO" />
+		<result property="arNo"			column="AR_NO"/>
+		<result property="tranId"		column="TRAN_ID" />
+		<result property="usedTag"		column="USED_TAG" />
+		<result property="createUser"	column="CREATE_USER" />
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"	column="UPDATE_USER" />
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    </resultMap>
+    
+    <select id="retMtnAcitArSeries" resultMap="acitArSeriesMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_ACIT_AR_SERIES_PKG.ret_mtn_acit_ar_series(#{usedTag, jdbcType=VARCHAR}))
+		WHERE ROWNUM = NVL(#{rowNum, jdbcType=VARCHAR}, ROWNUM)
+	</select>
      
 </mapper>

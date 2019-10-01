@@ -151,4 +151,5 @@ public interface MaintenanceService {
 	public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr) throws SQLException;
 	public RetrieveMtnAcseDCBNoResponse retrieveMtnAcseDCBNo(RetrieveMtnAcseDCBNoRequest rmadnr) throws SQLException;
 	public SaveMtnAcseDCBNoResponse saveMtnAcseDCBNo(SaveMtnAcseDCBNoRequest smaidcbr) throws SQLException;
+	public RetrieveMtnAcitArSeriesResponse retrieveMtnAcitArSeries(RetrieveMtnAcitArSeriesRequest rmaasr) throws SQLException;
 }
