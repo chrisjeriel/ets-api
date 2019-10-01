@@ -28,10 +28,12 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Component
@@ -327,5 +329,32 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public UpdateAcsePaytReqStatResponse updateAcsePaytReqStat(UpdateAcsePaytReqStatRequest uaprsr)
+			throws SQLException {
+		UpdateAcsePaytReqStatResponse uaprsResponse = new UpdateAcsePaytReqStatResponse();
+		HashMap<String, Object> uaprsParams = new HashMap<String, Object>();
+		try {
+			uaprsParams.put("reqId", uaprsr.getReqId());
+			uaprsParams.put("reqStatus", uaprsr.getReqStatus());
+			uaprsParams.put("updateUser", uaprsr.getUpdateUser());
+			uaprsParams.put("approvedBy", uaprsr.getApprovedBy());
+			uaprsParams.put("approvedDate", uaprsr.getApprovedDate());
+			
+			HashMap<String, Object> response = acctServDao.updateAcsePaytReqStat(uaprsParams);
+			
+			uaprsResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			uaprsResponse.setReturnCode(0);
+			uaprsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			uaprsResponse.setReturnCode(0);
+			uaprsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return uaprsResponse;
 	}
 }

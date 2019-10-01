@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.workflowmanager;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class Note {
@@ -16,6 +18,7 @@ public class Note {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	List<RelatedRecord> relatedRecordList;
 	
 	public String getNoteId() {
 		return noteId;
@@ -89,13 +92,17 @@ public class Note {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<RelatedRecord> getRelatedRecordList() {
+		return relatedRecordList;
+	}
+	public void setRelatedRecordList(List<RelatedRecord> relatedRecordList) {
+		this.relatedRecordList = relatedRecordList;
+	}
 	@Override
 	public String toString() {
 		return "Note [noteId=" + noteId + ", title=" + title + ", note=" + note + ", module=" + module
 				+ ", referenceId=" + referenceId + ", details=" + details + ", assignedTo=" + assignedTo + ", status="
 				+ status + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", relatedRecordList=" + relatedRecordList + "]";
 	}
-	
-	
 }

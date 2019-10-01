@@ -858,7 +858,9 @@
 			ACIT_PAYMENT_REQUEST_PKG.up_acit_paytreqstat(
 				#{reqId, jdbcType=INTEGER},
 				#{reqStatus, jdbcType=VARCHAR},
-				#{updateUser, jdbcType=VARCHAR}
+				#{updateUser, jdbcType=VARCHAR},
+				#{approvedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>

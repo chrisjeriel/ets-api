@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
-public class UpdateAcitPaytReqStatRequest {
+public class UpdateAcsePaytReqStatRequest {
 	private String reqId;
 	private String reqStatus;
 	private String updateUser;
@@ -38,7 +38,7 @@ public class UpdateAcitPaytReqStatRequest {
 	}
 	@Override
 	public String toString() {
-		return "UpdateAcitPaytReqStatRequest [reqId=" + reqId + ", reqStatus=" + reqStatus + ", updateUser="
+		return "UpdateAcsePaytReqStatRequest [reqId=" + reqId + ", reqStatus=" + reqStatus + ", updateUser="
 				+ updateUser + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + "]";
-	}
+	}	
 }

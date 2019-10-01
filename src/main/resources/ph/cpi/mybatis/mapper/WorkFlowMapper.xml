@@ -12,18 +12,24 @@
 		<result property="reminder"			        column="REMINDER"/>
 		<result property="reminderDate"            	column="REMINDER_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	    <result property="alarmTime"            	column="ALARM_TIME"/>
+	    <result property="module"			        column="MODULE"/>
+		<result property="referenceId"			    column="REFERENCE_ID"/>
+		<result property="details"			        column="DETAILS"/>
 		<result property="assignedTo"               column="ASSIGNED_TO"/>
 		<result property="status"			        column="STATUS"/>
 		<result property="createUser"			    column="CREATE_USER"/>
 		<result property="createDate"        	    column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	    column="UPDATE_USER"/>
 		<result property="updateDate"			    column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<collection property="relatedRecordList" javaType="ArrayList" column="{module = MODULE, referenceId = REFERENCE_ID}" ofType="relatedRecordMap" select="retrieveRelatedRecords"/>
      </resultMap>
      
      <select id="retrieveReminders" resultMap="reminderMap" parameterType="java.util.Map">
     	SELECT * FROM TABLE(WFM_REMINDERS_PKG.ret_reminders(#{reminderId, jdbcType=VARCHAR},
     										      #{assignedTo, jdbcType=VARCHAR},
     										      #{createUser, jdbcType=VARCHAR},
+    										      #{module, jdbcType=VARCHAR},
+    										      #{referenceId, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR},
@@ -31,22 +37,33 @@
      </select>
      
     <update id="saveReminders" parameterType="java.util.Map" statementType="CALLABLE">
-		BEGIN
-			WFM_REMINDERS_PKG.save_reminders(
-											   #{reminderId, jdbcType=INTEGER},
-											   #{title, jdbcType=VARCHAR},
-											   #{reminder, jdbcType=VARCHAR},
-											   CAST(to_timestamp(#{reminderDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-											   #{alarmTime, jdbcType=VARCHAR},
-											   #{assignedTo, jdbcType=VARCHAR},
-											   #{status, jdbcType=VARCHAR},
-											   #{createUser, jdbcType=VARCHAR},
-											   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-											   #{updateUser, jdbcType=VARCHAR},
-											   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)										  
-			);
+    	BEGIN
+			<foreach collection="reminderList" item="reminder">
+			BEGIN
+		    	WFM_REMINDERS_PKG.save_reminders(
+												   #{reminder.reminderId, jdbcType=INTEGER},
+												   #{reminder.title, jdbcType=VARCHAR},
+												   #{reminder.reminder, jdbcType=VARCHAR},
+												   CAST(to_timestamp(#{reminder.reminderDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{reminder.alarmTime, jdbcType=VARCHAR},
+												   #{reminder.module, jdbcType=VARCHAR},
+												   #{reminder.referenceId, jdbcType=VARCHAR},
+												   #{reminder.details, jdbcType=VARCHAR},
+												   #{reminder.assignedTo, jdbcType=VARCHAR},
+												   #{reminder.status, jdbcType=VARCHAR},
+												   #{reminder.createUser, jdbcType=VARCHAR},
+												   #{reminder.updateUser, jdbcType=VARCHAR}									  
+				);
+			END;
+			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.workflowmanager.RelatedRecord" id="relatedRecordMap">
+		<result property="module"			        column="MODULE"/>
+		<result property="referenceId"			    column="REFERENCE_ID"/>
+		<result property="referenceNo"			    column="REFERENCE_NO"/>
+	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.workflowmanager.Note" id="noteMap">
      	<result property="noteId"            	    column="NOTE_ID"/>
@@ -61,7 +78,15 @@
 		<result property="createDate"        	    column="CREATE_DATE"        	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"        	    column="UPDATE_USER"/>
 		<result property="updateDate"			    column="UPDATE_DATE"			typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<collection property="relatedRecordList" javaType="ArrayList" column="{module = MODULE, referenceId = REFERENCE_ID}" ofType="relatedRecordMap" select="retrieveRelatedRecords"/>
      </resultMap>
+     
+     
+     <select id="retrieveRelatedRecords" resultMap="relatedRecordMap" parameterType="java.util.Map">
+    	SELECT * FROM TABLE(WFM_TRANSACTIONS_PKG.retrieve_rel_record(#{module, jdbcType=VARCHAR},
+    										      	#{referenceId, jdbcType=VARCHAR}))
+     </select>
+     
      
      <select id="retrieveNotes" resultMap="noteMap" parameterType="java.util.Map">
     	SELECT * FROM TABLE(WFM_NOTES_PKG.ret_notes(#{noteId, jdbcType=VARCHAR},

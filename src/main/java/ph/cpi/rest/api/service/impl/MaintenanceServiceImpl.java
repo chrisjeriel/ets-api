@@ -2330,4 +2330,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcitArSeriesResponse retrieveMtnAcitArSeries(RetrieveMtnAcitArSeriesRequest rmaasr)
+			throws SQLException {
+		RetrieveMtnAcitArSeriesResponse response = new RetrieveMtnAcitArSeriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("usedTag", rmaasr.getUsedTag());
+		params.put("rowNum", rmaasr.getRowNum());
+		response.setArSeriesList(maintenanceDao.retrieveMtnAcitArSeries(params));
+		return response;
+	}
+	
 }

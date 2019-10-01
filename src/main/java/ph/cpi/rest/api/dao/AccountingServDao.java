@@ -21,4 +21,5 @@ public interface AccountingServDao {
 	public HashMap<String, Object> saveJVEntry(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> aprroveJV(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> cancelJV(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> updateAcsePaytReqStat(final HashMap<String, Object> params) throws SQLException;
 }

@@ -22,10 +22,14 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.UpdateAcitPaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 
 @Service
 public interface AccountingServService {
@@ -39,4 +43,5 @@ public interface AccountingServService {
 	public SaveAcseJVEntryResponse saveJVEntry(SaveAcseJVEntryRequest request)throws SQLException;
 	public ApproveJVServiceResponse approveJV(ApproveJVServiceRequest request)throws SQLException;
 	public CancelJVServiceResponse cancelJV(CancelJVServiceRequest request)throws SQLException;
+	public UpdateAcsePaytReqStatResponse updateAcsePaytReqStat(UpdateAcsePaytReqStatRequest uaprsr) throws SQLException;
 }

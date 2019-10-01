@@ -33,10 +33,12 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Controller
@@ -121,5 +123,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/cancelJV");
 		logger.info("CancelJVServiceRequest : " + request.toString());
 		return acctServService.cancelJV(request);
+	}
+
+	@PostMapping(path="updateAcsePaytReqStat")
+	public @ResponseBody UpdateAcsePaytReqStatResponse updateAcsePaytReqStat(@RequestBody UpdateAcsePaytReqStatRequest uaprsr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/updateAcsePaytReqStat");
+		logger.info("UpdateAcsePaytReqStatRequest : " + uaprsr.toString());
+		return acctServService.updateAcsePaytReqStat(uaprsr);
 	}
 }
