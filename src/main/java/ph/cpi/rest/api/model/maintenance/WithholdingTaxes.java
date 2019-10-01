@@ -4,15 +4,15 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class GeneralTaxes {
-	private Integer taxId;
+public class WithholdingTaxes {
+	private Integer whTaxId;
 	private String taxCd;
 	private String taxName;
-	private String chargeType;
+	private String taxType;
 	private BigDecimal taxRate;
-	private BigDecimal amount;
 	private Integer defaultAcitGl;
 	private Integer defaultAcseGl;
+	private String creditableTag;
 	private String fixedTag;
 	private String activeTag;
 	private String remarks;
@@ -20,11 +20,11 @@ public class GeneralTaxes {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public Integer getTaxId() {
-		return taxId;
+	public Integer getWhTaxId() {
+		return whTaxId;
 	}
-	public void setTaxId(Integer taxId) {
-		this.taxId = taxId;
+	public void setWhTaxId(Integer whTaxId) {
+		this.whTaxId = whTaxId;
 	}
 	public String getTaxCd() {
 		return taxCd;
@@ -38,23 +38,17 @@ public class GeneralTaxes {
 	public void setTaxName(String taxName) {
 		this.taxName = taxName;
 	}
-	public String getChargeType() {
-		return chargeType;
+	public String getTaxType() {
+		return taxType;
 	}
-	public void setChargeType(String chargeType) {
-		this.chargeType = chargeType;
+	public void setTaxType(String taxType) {
+		this.taxType = taxType;
 	}
 	public BigDecimal getTaxRate() {
 		return taxRate;
 	}
 	public void setTaxRate(BigDecimal taxRate) {
 		this.taxRate = taxRate;
-	}
-	public BigDecimal getAmount() {
-		return amount;
-	}
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
 	}
 	public Integer getDefaultAcitGl() {
 		return defaultAcitGl;
@@ -67,6 +61,12 @@ public class GeneralTaxes {
 	}
 	public void setDefaultAcseGl(Integer defaultAcseGl) {
 		this.defaultAcseGl = defaultAcseGl;
+	}
+	public String getCreditableTag() {
+		return creditableTag;
+	}
+	public void setCreditableTag(String creditableTag) {
+		this.creditableTag = creditableTag;
 	}
 	public String getFixedTag() {
 		return fixedTag;
@@ -112,10 +112,10 @@ public class GeneralTaxes {
 	}
 	@Override
 	public String toString() {
-		return "GeneralTaxes [taxId=" + taxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", chargeType="
-				+ chargeType + ", taxRate=" + taxRate + ", amount=" + amount + ", defaultAcitGl=" + defaultAcitGl
-				+ ", defaultAcseGl=" + defaultAcseGl + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "WithholdingTaxes [whTaxId=" + whTaxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxType="
+				+ taxType + ", taxRate=" + taxRate + ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl="
+				+ defaultAcseGl + ", creditableTag=" + creditableTag + ", fixedTag=" + fixedTag + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
