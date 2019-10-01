@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 public class ApproveJVServiceRequest {
 	private Integer tranId;
-	private Integer jvYear;
-	private Integer jvNo;
 	private String approvedBy;
 	private String approvedDate;
 	private String updateUser;
@@ -13,18 +11,6 @@ public class ApproveJVServiceRequest {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
-	}
-	public Integer getJvYear() {
-		return jvYear;
-	}
-	public void setJvYear(Integer jvYear) {
-		this.jvYear = jvYear;
-	}
-	public Integer getJvNo() {
-		return jvNo;
-	}
-	public void setJvNo(Integer jvNo) {
-		this.jvNo = jvNo;
 	}
 	public String getApprovedBy() {
 		return approvedBy;
@@ -52,9 +38,8 @@ public class ApproveJVServiceRequest {
 	}
 	@Override
 	public String toString() {
-		return "ApproveJVServiceRequest [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", approvedBy="
-				+ approvedBy + ", approvedDate=" + approvedDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "ApproveJVServiceRequest [tranId=" + tranId + ", approvedBy=" + approvedBy + ", approvedDate="
+				+ approvedDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
+import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -23,6 +24,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
+import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -295,13 +297,29 @@ public class AccountingServServiceImpl implements AccountingServService{
 		try{
 			HashMap<String, Object> params = new HashMap<String,Object>();
 			params.put("tranId", request.getTranId());
-			params.put("jvNo", request.getJvNo());
-			params.put("jvYear", request.getJvYear());
 			params.put("approvedBy", request.getApprovedBy());
 			params.put("approvedDate", request.getApprovedDate());
 			params.put("updateUser", request.getUpdateUser());
 			params.put("updateDate", request.getUpdateDate());
 			HashMap<String, Object> res = acctServDao.aprroveJV(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public CancelJVServiceResponse cancelJV(CancelJVServiceRequest request) throws SQLException {
+		CancelJVServiceResponse response = new CancelJVServiceResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("tranId", request.getTranId());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = acctServDao.cancelJV(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
 			response.setReturnCode(0);

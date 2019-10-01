@@ -423,10 +423,18 @@
 		BEGIN
 			ACSE_JOURNAL_VOUCHER_PKG.approve_jv(
 				#{tranId},
-				#{jvNo},
-				#{jvYear},
 				#{approvedBy},
 				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="cancelJVService" parameterType="java.util.Map">
+		BEGIN
+			ACSE_JOURNAL_VOUCHER_PKG.cancel_jv(
+				#{tranId},
 				#{updateUser},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
