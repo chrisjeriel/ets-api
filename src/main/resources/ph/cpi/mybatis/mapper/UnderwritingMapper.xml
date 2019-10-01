@@ -805,7 +805,10 @@
 	</select>
 	
 	<select id="retrievePolicyListing" resultMap="policyListingMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+		SELECT * 
+			FROM	
+				(
+					SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
 															 #{cedingName, jdbcType=VARCHAR},
 															 #{lineClassDesc, jdbcType=VARCHAR},
@@ -831,7 +834,95 @@
 															 null,
 															 null,
 															 null))
+															 WHERE  1=1
+		   	   <if test="statusArr != null">
+			   	AND   STATUS IN 
+				   	   	<foreach item="item" index="index" collection="statusArr"
+			             open="(" separator="," close=")">
+					        #{item}
+					    </foreach>
+		   	   </if>
+		   	   <if test="search != null">
+		   	   	 AND
+		   	    	<foreach item="col" index="index" collection="search.searchCols"
+			             open="(" separator=" OR " close=")">
+					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+				    </foreach>
+		   	   </if>
+		   	   
+		   	   <if test="altNo != null">
+		   	    	<if test="altNo == 0">
+		   	    		AND ALT_NO = 0
+		   	    	</if>
+		   	    	
+		   	    	<if test="altNo > 0">
+		   	    		AND ALT_NO != 0
+		   	    	</if>
+		   	   </if>
+		   	   <if test="sort != null">
+		   	    	ORDER BY ${sort.sortKey} ${sort.order}
+		   	   </if>
+		   	   
+		   ) a	 	
+		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
+	   	   <if test="pagination.position != null">
+	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	   </if>
 	</select> 
+	
+	<select id="retrievePolicyLength" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+												 #{cessionDesc, jdbcType=VARCHAR},
+												 #{cedingName, jdbcType=VARCHAR},
+												 #{lineClassDesc, jdbcType=VARCHAR},
+												 #{insuredDesc, jdbcType=VARCHAR},
+												 #{riskName, jdbcType=VARCHAR},
+												 #{objectDesc, jdbcType=VARCHAR},
+												 #{site, jdbcType=VARCHAR},
+												 #{currencyCd, jdbcType=VARCHAR},
+												 #{totalSiLess, jdbcType=DECIMAL},
+												 #{totalSiGrt, jdbcType=DECIMAL},
+												 #{totalPremLess, jdbcType=DECIMAL},
+												 #{totalPremGrt, jdbcType=DECIMAL},
+												 CAST(to_timestamp(#{issueDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{issueDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{inceptDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{inceptDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{expiryDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{expiryDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{acctDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 CAST(to_timestamp(#{acctDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												 #{statusDesc, jdbcType=VARCHAR},
+												 null,
+												 null,
+												 null,
+												 null))
+												 WHERE  1=1
+	  	   <if test="statusArr != null">
+		   		AND   STATUS IN 
+			   	   	<foreach item="item" index="index" collection="statusArr"
+		             open="(" separator="," close=")">
+				        #{item}
+				    </foreach>
+	  	   </if>
+	  	   <if test="search != null">
+	  	   	 AND
+	  	    	<foreach item="col" index="index" collection="search.searchCols"
+	             open="(" separator=" OR " close=")">
+			         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+		    </foreach>
+	  	   </if> 
+	  	   
+	  	   <if test="altNo != null">
+		   	    	<if test="altNo == 0">
+		   	    		AND ALT_NO = 0
+		   	    	</if>
+		   	    	
+		   	    	<if test="altNo > 0">
+		   	    		AND ALT_NO > 0
+		   	    	</if>
+		   	   </if>	
+	</select>
 	
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retPolHoldCoverMap">

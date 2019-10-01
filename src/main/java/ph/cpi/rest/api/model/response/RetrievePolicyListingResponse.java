@@ -9,6 +9,7 @@ import ph.cpi.rest.api.model.underwriting.Policy;
 public class RetrievePolicyListingResponse {
 
 	private List<Policy> policyList;
+	private Integer length;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
@@ -30,9 +31,15 @@ public class RetrievePolicyListingResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	public Integer getLength() {
+		return length;
+	}
+	public void setLength(Integer length) {
+		this.length = length;
+	}
 	@Override
 	public String toString() {
-		return "RetrievePolicyListingResponse [policyList=" + policyList + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrievePolicyListingResponse [policyList=" + policyList + ", length=" + length
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }
