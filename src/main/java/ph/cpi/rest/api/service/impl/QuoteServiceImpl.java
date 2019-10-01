@@ -117,7 +117,6 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
 		RetrieveQuoteListingResponse rqlResponse = new RetrieveQuoteListingResponse();
-		DateUtility date = new DateUtility();
 		
 		try {
 			HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
@@ -144,12 +143,18 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
 			retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
 			retrieveQuoteListingParams.put("line", rqlp.getLine());
-			/*retrieveQuoteListingParams.put("position", rqlp.getPaginationRequest().getPosition());
-			retrieveQuoteListingParams.put("count", rqlp.getPaginationRequest().getCount());
-			retrieveQuoteListingParams.put("sortKey", rqlp.getSortRequest().getSortKey());
-			retrieveQuoteListingParams.put("order", rqlp.getSortRequest().getOrder());*/
+			
+			retrieveQuoteListingParams.put("statusArr",rqlp.getStatusArr());
+			
+			retrieveQuoteListingParams.put("pagination", rqlp.getPaginationRequest());
+			retrieveQuoteListingParams.put("sort", rqlp.getSortRequest());
+			retrieveQuoteListingParams.put("search", rqlp.getSearch());
 			
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
+			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
+			
+//			rqlResponse.setLength(516);
+			
 			logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
 			
 			if (rqlResponse.getQuotationList().size() == 0) {
