@@ -309,6 +309,7 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctCd" 		column="ACCT_CD"/>
 	</resultMap>
 	
 	<select id="retrieveAcsePrqTrans" resultMap="acsePrqTransMap" parameterType="java.util.Map">

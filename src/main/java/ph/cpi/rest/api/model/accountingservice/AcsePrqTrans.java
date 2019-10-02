@@ -19,6 +19,7 @@ public class AcsePrqTrans {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String acctCd;
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -103,11 +104,18 @@ public class AcsePrqTrans {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getAcctCd() {
+		return acctCd;
+	}
+	public void setAcctCd(String acctCd) {
+		this.acctCd = acctCd;
+	}
 	@Override
 	public String toString() {
 		return "AcsePrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", itemName=" + itemName + ", glAcctId="
 				+ glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd=" + currCd + ", currRate="
 				+ currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", acctCd=" + acctCd + "]";
 	}
 }
