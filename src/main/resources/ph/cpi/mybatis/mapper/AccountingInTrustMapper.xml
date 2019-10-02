@@ -2380,6 +2380,12 @@
 		BEGIN
 			<foreach collection="deleteNegTrty" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_trty_clm(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(#{delete.tranId},
+																 #{delete.claimId},
+															     #{delete.projId},
+															     #{delete.histNo});
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});											     
 			</foreach>
 			
 			<foreach collection="saveNegTrty" item="save">
@@ -2410,6 +2416,7 @@
 														 #{save.updateUser},
 														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});	
 			</foreach>
 			
 			<foreach collection="deleteClmOffset" item="deleted">
@@ -2423,6 +2430,7 @@
 																 #{deleted.claimId},
 															     #{deleted.projId},
 															     #{deleted.histNo});
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{deleted.tranId});	
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="saved">
@@ -2466,6 +2474,7 @@
 											#{saved.updateUser},
 											CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{saved.tranId});	
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2697,8 +2706,6 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delAcctTrty" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_trty_inw(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
-				
 				ACIT_JOURNAL_VOUCHER_PKG.del_inwpol_offset(
 					#{delete.tranId},
 					#{delete.itemNo},
@@ -2713,6 +2720,8 @@
 					#{delete.updateUser}, 
 					CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				
+				ACIT_JOURNAL_VOUCHER_PKG.del_trty_inw(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
 				
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
 														#{delete.tranId},

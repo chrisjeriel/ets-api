@@ -1391,7 +1391,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			response.setReturnCode((Integer) res.get("errorCode"));
 		} catch (Exception sqlex) {
 			response.setReturnCode(0);
-			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			response.getErrorList().add(new Error("General Exception", "Please check field values."));
 			sqlex.printStackTrace();
 		}
 		return response;
