@@ -15,4 +15,5 @@ public interface AccountingServDao {
 	public List<AcsePaytReq> retrieveAcsePaytReq(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcsePaytReq(final HashMap<String, Object> params) throws SQLException;
 	public List<OrTransDtl> retrieveAcseOrTransDtl(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> updateAcsePaytReqStat(final HashMap<String, Object> params) throws SQLException;
 }

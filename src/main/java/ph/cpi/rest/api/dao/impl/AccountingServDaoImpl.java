@@ -59,4 +59,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<OrTransDtl> res = sqlSession.selectList("retOrTransDtl", params);
 		return res;
 	}
+	
+	@Override
+	public HashMap<String, Object> updateAcsePaytReqStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcsePaytReqStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}	
+
 }

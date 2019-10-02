@@ -39,6 +39,8 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		retrieveRemindersParams.put("reminderId",rrrq.getReminderId());
 		retrieveRemindersParams.put("assignedTo", rrrq.getAssignedTo());
 		retrieveRemindersParams.put("createUser", rrrq.getCreateUser());
+		retrieveRemindersParams.put("module", rrrq.getModule());
+		retrieveRemindersParams.put("referenceId", rrrq.getReferenceId());
 		
 		rrResponse.setReminderList(workFlowDao.retrieveReminders(retrieveRemindersParams));
 		logger.info("retrieveReminderResponse : " + rrResponse.toString());
@@ -53,7 +55,9 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		
 		try {
 			HashMap<String, Object> saveRemindersParams = new HashMap<String, Object>();
-			saveRemindersParams.put("reminderId", srreq.getReminderId());
+			saveRemindersParams.put("reminderList", srreq.getReminderList());
+			saveRemindersParams.put("delReminderList", srreq.getDelReminderList());
+			/*saveRemindersParams.put("reminderId", srreq.getReminderId());
 			saveRemindersParams.put("title", srreq.getTitle());
 			saveRemindersParams.put("reminder", srreq.getReminder());
 			saveRemindersParams.put("module", srreq.getModule());
@@ -66,7 +70,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			saveRemindersParams.put("createUser", srreq.getCreateUser());
 			saveRemindersParams.put("createDate", srreq.getCreateDate());
 			saveRemindersParams.put("updateUser", srreq.getUpdateUser());
-			saveRemindersParams.put("updateDate", srreq.getUpdateDate());
+			saveRemindersParams.put("updateDate", srreq.getUpdateDate());*/
 			srResponse.setReturnCode(workFlowDao.saveReminders(saveRemindersParams));
 		} catch (Exception ex) {
 			srResponse.setReturnCode(0);

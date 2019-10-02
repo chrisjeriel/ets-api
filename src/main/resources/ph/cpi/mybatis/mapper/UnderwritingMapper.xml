@@ -809,7 +809,7 @@
 	</select>
 	
 	<select id="retrievePolicyListing" resultMap="policyListingMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+		SELECT * FROM (SELECT rownum rown, a.* FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
 															 #{cedingName, jdbcType=VARCHAR},
 															 #{lineClassDesc, jdbcType=VARCHAR},
@@ -834,7 +834,8 @@
 															 null,
 															 null,
 															 null,
-															 null))
+															 null)) a)
+			WHERE ROWN BETWEEN 1 AND 10
 	</select> 
 	
 	

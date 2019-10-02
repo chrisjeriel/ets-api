@@ -237,5 +237,50 @@
 															   )
 						   )
 	</select>
+
+	<update id="saveAcsePaytReq" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_PAYMENT_REQUEST_PKG.save_payt_req(
+				#{paytReqNo,mode=OUT,jdbcType=VARCHAR},
+				#{reqId,mode=INOUT, jdbcType=INTEGER},
+				#{reqPrefix, jdbcType=VARCHAR},
+				#{reqYear, jdbcType=VARCHAR},
+				#{reqMm, jdbcType=INTEGER},
+				#{reqSeqNo, jdbcType=VARCHAR},
+				#{tranTypeCd, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{reqDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{reqStatus, jdbcType=VARCHAR},
+				#{payeeClassCd, jdbcType=VARCHAR},
+				#{payeeCd, jdbcType=VARCHAR},
+				#{payee, jdbcType=VARCHAR},
+				#{currCd, jdbcType=VARCHAR},
+				#{currRate, jdbcType=VARCHAR},
+				#{reqAmt, jdbcType=INTEGER},
+				#{localAmt, jdbcType=INTEGER},
+				#{particulars, jdbcType=VARCHAR},
+				#{preparedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{preparedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{requestedBy, jdbcType=VARCHAR},
+				#{approvedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="updateAcsePaytReqStat" parameterType="java.util.Map">
+		BEGIN
+			ACSE_PAYMENT_REQUEST_PKG.up_acse_paytreqstat(
+				#{reqId, jdbcType=INTEGER},
+				#{reqStatus, jdbcType=VARCHAR},
+				#{updateUser, jdbcType=VARCHAR},
+				#{approvedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 	
 </mapper>

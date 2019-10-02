@@ -25,10 +25,12 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Controller
@@ -84,5 +86,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-service-service/retrieveAcseOrTransDtl");
 		logger.info("RetrieveAcseOrTransDtlRequest : " + raotdr.toString());
 		return acctServService.retrieveAcseOrTransDtl(raotdr);
+	}
+
+	@PostMapping(path="updateAcsePaytReqStat")
+	public @ResponseBody UpdateAcsePaytReqStatResponse updateAcsePaytReqStat(@RequestBody UpdateAcsePaytReqStatRequest uaprsr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/updateAcsePaytReqStat");
+		logger.info("UpdateAcsePaytReqStatRequest : " + uaprsr.toString());
+		return acctServService.updateAcsePaytReqStat(uaprsr);
 	}
 }
