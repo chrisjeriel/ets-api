@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 public class AcitJVAcctTrtyBal {
 	private Integer tranId;
 	private Integer quarterNo;
+	private Integer qsoaId;
 	private String cedingId;
 	private String cedingName;
 	private DateTime quarterEnding;
@@ -28,6 +29,13 @@ public class AcitJVAcctTrtyBal {
 	}
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
+	}
+	
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public Integer getTranId() {
 		return tranId;
@@ -123,8 +131,8 @@ public class AcitJVAcctTrtyBal {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVAcctTrtyBal [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
-				+ ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
+		return "AcitJVAcctTrtyBal [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId + ", cedingId="
+				+ cedingId + ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt
 				+ ", actualBalPaid=" + actualBalPaid + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", acctOffset=" + acctOffset
