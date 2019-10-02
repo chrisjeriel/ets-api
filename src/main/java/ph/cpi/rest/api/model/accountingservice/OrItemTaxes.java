@@ -96,4 +96,5 @@ public class OrItemTaxes {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }

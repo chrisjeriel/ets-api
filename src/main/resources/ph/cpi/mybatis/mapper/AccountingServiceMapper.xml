@@ -215,7 +215,7 @@
 		<association property="taxAllocation" resultMap="taxAllocAssoc" />
 	</resultMap>
 	
-	<resultMap type="ph.cpi.rest.api.model.accountingservice.OrTransDtl" id="taxAllocAssoc">
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.OrItemTaxes" id="taxAllocAssoc">
 		<result property="tranId"		column="TRAN_ID" />
 		<result property="billId"		column="BILL_ID" />
 		<result property="itemNo"		column="ITEM_NO" />

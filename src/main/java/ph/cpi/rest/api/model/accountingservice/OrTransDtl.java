@@ -151,5 +151,6 @@ public class OrTransDtl {
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation="
 				+ taxAllocation + "]";
 	}
+
 	
 }
