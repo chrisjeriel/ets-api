@@ -197,4 +197,45 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.OrTransDtl" id="acseOrTransDtlMap">
+		<result property="tranId"		column="TRAN_ID" />
+		<result property="billId"		column="BILL_ID" />
+		<result property="itemNo"		column="ITEM_NO" />
+		<result property="itemName"		column="ITEM_NAME" />
+		<result property="currCd"		column="CURR_CD" />
+		<result property="currRate"		column="CURR_RATE" />
+		<result property="currAmt"		column="CURR_AMT" />
+		<result property="localAmt"		column="LOCAL_AMT" />
+		<result property="refNo"		column="REF_NO" />
+		<result property="remarks"		column="REMARKS" />
+		<result property="createUser"	column="CREATE_USER" />
+		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"	column="UPDATE_USER" />
+		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="taxAllocation" resultMap="taxAllocAssoc" />
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.OrTransDtl" id="taxAllocAssoc">
+		<result property="tranId"		column="TRAN_ID" />
+		<result property="billId"		column="BILL_ID" />
+		<result property="itemNo"		column="ITEM_NO" />
+		<result property="taxType"		column="TAX_TYPE" />
+		<result property="taxCd"		column="TAX_CD" />
+		<result property="taxName"		column="TAX_NAME" />
+		<result property="rate"			column="RATE" />
+		<result property="amount"		column="AMOUNT" />
+		<result property="createUser"	column="TX_CREATE_USER" />
+		<result property="createDate"	column="TX_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"	column="TX_UPDATE_USER" />
+		<result property="updateDate"	column="TX_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retOrTransDtl" resultMap="acseOrTransDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_OR_TRANSDTL_PKG.ret_or_transdtl(
+																	#{tranId},
+																	#{billId}
+															   )
+						   )
+	</select>
+	
 </mapper>

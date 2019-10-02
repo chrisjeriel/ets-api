@@ -12,9 +12,11 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -205,5 +207,17 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return saprResponse;
+	}
+
+	@Override
+	public RetrieveAcseOrTransDtlResponse retrieveAcseOrTransDtl(RetrieveAcseOrTransDtlRequest raotdr)
+			throws SQLException {
+		RetrieveAcseOrTransDtlResponse response = new RetrieveAcseOrTransDtlResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raotdr.getTranId());
+		params.put("billId", raotdr.getBillId());
+		response.setOrDtlList(acctServDao.retrieveAcseOrTransDtl(params));
+		logger.info("RetrieveAcseOrTransDtlResponse : " + response);
+		return response;
 	}
 }
