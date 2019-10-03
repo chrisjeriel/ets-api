@@ -38,6 +38,7 @@ public class RetrieveQuoteListingRequest {
 	
 	private List<String> statusArr;
 	private SearchRequest search;
+	private String openCoverTag;
 	
 	public List<String> getStatusArr() {
 		return statusArr;
@@ -190,6 +191,12 @@ public class RetrieveQuoteListingRequest {
 	public void setSearch(SearchRequest search) {
 		this.search = search;
 	}
+	public String getOpenCoverTag() {
+		return openCoverTag;
+	}
+	public void setOpenCoverTag(String openCoverTag) {
+		this.openCoverTag = openCoverTag;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
@@ -200,6 +207,6 @@ public class RetrieveQuoteListingRequest {
 				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDateFrom=" + expiryDateFrom
 				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", statusArr="
-				+ statusArr + ", search=" + search + "]";
+				+ statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + "]";
 	}
 }

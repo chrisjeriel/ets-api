@@ -563,6 +563,9 @@
 					        #{item}
 					    </foreach>
 		   	   </if>
+		   	   <if test="openCoverTag != null">
+				   	AND   OP_COV_TAG = #{openCoverTag}
+		   	   </if>
 		   	   <if test="search != null">
 		   	   	 AND
 		   	    	<foreach item="col" index="index" collection="search.searchCols"
@@ -612,6 +615,9 @@
 			             open="(" separator="," close=")">
 					        #{item}
 					    </foreach>
+		   	   </if>
+		   	   <if test="openCoverTag != null">
+				   	AND   OP_COV_TAG = #{openCoverTag}
 		   	   </if>
 		   	   <if test="search != null">
 		   	   	 AND

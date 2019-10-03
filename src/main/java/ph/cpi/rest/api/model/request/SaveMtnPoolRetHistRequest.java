@@ -5,11 +5,17 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveMtnPoolRetHistRequest {
-
-	List<PoolRetHist> savePoolRetHist;
-	List<PoolRetHist> deletePoolRetHist;
-	List<PoolMember> deletePoolMember;
+	private String currencyCd;
+	private List<PoolRetHist> savePoolRetHist;
+	private List<PoolRetHist> deletePoolRetHist;
+	private List<PoolMember> deletePoolMember;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public List<PoolRetHist> getSavePoolRetHist() {
 		return savePoolRetHist;
 	}
@@ -30,9 +36,11 @@ public class SaveMtnPoolRetHistRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveMtnPoolRetHistRequest [savePoolRetHist=" + savePoolRetHist + ", deletePoolRetHist="
-				+ deletePoolRetHist + ", deletePoolMember=" + deletePoolMember + "]";
+		return "SaveMtnPoolRetHistRequest [currencyCd=" + currencyCd + ", savePoolRetHist=" + savePoolRetHist
+				+ ", deletePoolRetHist=" + deletePoolRetHist + ", deletePoolMember=" + deletePoolMember + "]";
 	}
+
+
 }
 
 @Alias("SaveMtnPoolRetHist")

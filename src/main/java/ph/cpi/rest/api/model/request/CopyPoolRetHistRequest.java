@@ -1,7 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 public class CopyPoolRetHistRequest {
-
+	private String currencyCd;
 	private Integer copyFromRetHistId;
 	private String copyToEffDateFrom;
 	private String createUser;
@@ -9,6 +9,12 @@ public class CopyPoolRetHistRequest {
 	private String updateUser;
 	private String updateDate;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getCopyFromRetHistId() {
 		return copyFromRetHistId;
 	}
@@ -47,8 +53,8 @@ public class CopyPoolRetHistRequest {
 	}
 	@Override
 	public String toString() {
-		return "CopyPoolRetHistRequest [copyFromRetHistId=" + copyFromRetHistId + ", copyToEffDateFrom="
-				+ copyToEffDateFrom + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "CopyPoolRetHistRequest [currencyCd=" + currencyCd + ", copyFromRetHistId=" + copyFromRetHistId
+				+ ", copyToEffDateFrom=" + copyToEffDateFrom + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

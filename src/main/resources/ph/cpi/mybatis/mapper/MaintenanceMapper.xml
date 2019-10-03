@@ -3140,6 +3140,7 @@
 	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.PoolRetHist" id="poolRetHistMap">
+		<result property="currencyCd" column="CURRENCY_CD"/>
      	<result property="retHistId" 	column="RET_HIST_ID"/>
 		<result property="retLine1" 	column="RET_LINE1"/>
 		<result property="retLine2" 	column="RET_LINE2"/>
@@ -3157,6 +3158,7 @@
      </resultMap>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.PoolMember" id="poolMemberMap">
+     	<result property="currencyCd" 	column="CURRENCY_CD"/>
     	<result property="retHistId" 	column="RET_HIST_ID"/>
 		<result property="cedingId" 	column="CEDING_ID"/>
 		<result property="cedingName" 	column="CEDING_NAME"/>
@@ -3172,7 +3174,8 @@
      
      
      <select id="retrieveMtnPoolRetHist" resultMap="poolRetHistMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_POOL_RET_HIST_PKG.ret_mtn_pool_ret_hist(#{retHistId, jdbcType=INTEGER},
+			SELECT * FROM TABLE(MTN_POOL_RET_HIST_PKG.ret_mtn_pool_ret_hist(#{currencyCd, jdbcType=VARCHAR},
+																		    #{retHistId, jdbcType=INTEGER},
 																		    '',
 																		    '',
 																		    '',
@@ -3185,12 +3188,14 @@
     	BEGIN
     		<foreach collection="deletePoolRetHist" item="del">
     			MTN_POOL_RET_HIST_PKG.del_mtn_pool_ret_hist(
+    				#{currencyCd, jdbcType=VARCHAR},
     				#{del.retHistId, jdbcType=INTEGER}
     			);
     		</foreach>
     		
     		<foreach collection="deletePoolMember" item="del">
     			MTN_POOL_RETENTION_PKG.del_mtn_pool_retention(
+    				#{currencyCd, jdbcType=VARCHAR},
     				#{del.retHistId, jdbcType=INTEGER},
     				#{del.cedingId, jdbcType=VARCHAR}
     			);
@@ -3201,12 +3206,14 @@
     			THEN
 		            SELECT NVL(MAX(RET_HIST_ID), 0) + 1
 		              INTO v_ret_hist_id
-		            FROM MTN_POOL_RET_HIST;
+		              FROM MTN_POOL_RET_HIST
+		             WHERE CURRENCY_CD = #{currencyCd, jdbcType=VARCHAR};
     			ELSE
     				v_ret_hist_id := #{save.retHistId, jdbcType=INTEGER};
     			END IF;
     		
 	    		MTN_POOL_RET_HIST_PKG.save_mtn_pool_ret_hist(
+	    			#{currencyCd, jdbcType=VARCHAR},
 	    			v_ret_hist_id,
 	    			#{save.retLine1, jdbcType=INTEGER},
 	    			#{save.retLine2, jdbcType=INTEGER},
@@ -3222,6 +3229,7 @@
 	    		
 	    		<foreach collection="save.poolMemberList" item="poolMember">
 	    			MTN_POOL_RETENTION_PKG.save_mtn_pool_retention(
+	    				#{currencyCd, jdbcType=VARCHAR},
 	    				v_ret_hist_id,
 	    				#{poolMember.cedingId, jdbcType=VARCHAR},
 	    				#{poolMember.retLine1, jdbcType=INTEGER},
@@ -3239,6 +3247,7 @@
     <update id="checkPoolRetHist" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_POOL_RET_HIST_PKG.check_pool_ret_hist(
+																				#{currencyCd, jdbcType=VARCHAR},
 																				CAST(to_timestamp(#{copyToEffDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 																			)
 		}	
@@ -3247,6 +3256,7 @@
 	<update id="copyPoolRetHist" parameterType="java.util.Map">
 		BEGIN
 			MTN_POOL_RET_HIST_PKG.copy_pool_ret_hist(
+				#{currencyCd, jdbcType=VARCHAR},
 				#{copyFromRetHistId, jdbcType=INTEGER},
 				CAST(to_timestamp(#{copyToEffDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{createUser, jdbcType=VARCHAR},

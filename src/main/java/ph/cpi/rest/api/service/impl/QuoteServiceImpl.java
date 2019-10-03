@@ -149,6 +149,7 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("pagination", rqlp.getPaginationRequest());
 			retrieveQuoteListingParams.put("sort", rqlp.getSortRequest());
 			retrieveQuoteListingParams.put("search", rqlp.getSearch());
+			retrieveQuoteListingParams.put("openCoverTag", rqlp.getOpenCoverTag());
 			
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
