@@ -65,6 +65,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("updateAcsePaytReqStat", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public Integer saveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveAcseOrTransDtl", params);
+		return res;
 	}	
 
 }

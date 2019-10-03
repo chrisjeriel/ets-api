@@ -283,4 +283,62 @@
 		END;
 	</update>
 	
+	<update id="saveAcseOrTransDtl" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_item_no		NUMBER;
+		BEGIN
+			<foreach item="del" collection="delOrTransDtl">
+				<!-- Delete data from ACSE_OR_ITEMTAXES first since it's a child table -->
+				ACSE_OR_ITEMTAXES_PKG.del_or_itemtaxes(
+													#{del.tranId},
+													#{del.billId},
+													#{del.itemNo}
+												);
+				<!-- Then delete data from ACSE_OR_TRANSDTL which is the parent -->
+				ACSE_OR_TRANSDTL_PKG.del_or_transdtl(
+													#{del.tranId},
+													#{del.billId},
+													#{del.itemNo}
+												);
+			</foreach>
+			<foreach item="save" collection="saveOrTransDtl">
+				<!-- Save data from ACSE_OR_TRANSDTL first since it's the parent table -->
+				ACSE_OR_TRANSDTL_PKG.save_or_transdtl(
+														v_item_no, <!-- This out parameter will be used when saving taxes later -->
+														#{save.tranId},
+														#{save.billId},
+														#{save.itemNo, jdbcType=VARCHAR},
+														#{save.itemName},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.currAmt},
+														#{save.localAmt},
+														#{save.refNo, jdbcType=VARCHAR},
+														#{save.remarks, jdbcType=VARCHAR},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				<!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_TRANSDTL item -->
+				<foreach item="saveTaxes" collection="save.taxAllocation">
+					ACSE_OR_ITEMTAXES_PKG.save_or_itemtaxes(
+																#{saveTaxes.tranId},
+																#{saveTaxes.billId},
+																v_item_no,	<!-- Based on the output parameter in ACSE_OR_TRANSDTL_PKG.save_or_transdtl PROCEDURE -->
+																#{saveTaxes.taxType},
+																#{saveTaxes.taxCd},
+																#{saveTaxes.rate, jdbcType=VARCHAR},
+																#{saveTaxes.amount, jdbcType=VARCHAR},
+																#{save.createUser},
+																CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{save.updateUser},
+																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					);
+				</foreach>
+			</foreach>
+			DBMS_OUTPUT.PUT_LINE('PLACEHOLDER');
+		END;
+	</update>
+	
 </mapper>
