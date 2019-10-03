@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.DCBUser;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
+import ph.cpi.rest.api.model.maintenance.GeneralTaxes;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
@@ -81,6 +82,7 @@ import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
+import ph.cpi.rest.api.model.maintenance.WithholdingTaxes;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao {
@@ -1073,6 +1075,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<AcitArSeries> retrieveMtnAcitArSeries(HashMap<String, Object> params) throws SQLException {
 		List<AcitArSeries> res = sqlSession.selectList("retMtnAcitArSeries",params);
+		return res;
+	}
+
+	@Override
+	public List<GeneralTaxes> retrieveMtnGenTax(HashMap<String, Object> params) throws SQLException {
+		List<GeneralTaxes> res = sqlSession.selectList("retMtnGenTax", params);
+		return res;
+	}
+
+	@Override
+	public List<WithholdingTaxes> retrieveMtnWhTax(HashMap<String, Object> params) throws SQLException {
+		List<WithholdingTaxes> res = sqlSession.selectList("retMtnWhTax", params);
 		return res;
 	}
 }

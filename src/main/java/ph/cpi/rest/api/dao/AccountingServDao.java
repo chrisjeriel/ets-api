@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseTransactions;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
+import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
 
 public interface AccountingServDao {
 	public List<OfficialReceipt> retrieveOrList(final HashMap<String, Object> params) throws SQLException;
@@ -24,4 +25,7 @@ public interface AccountingServDao {
 	public HashMap<String, Object> cancelJV(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> updateAcsePaytReqStat(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseTaxDetails> retrieveTaxDetails(final HashMap<String, Object> params) throws SQLException;
+	public List<OrTransDtl> retrieveAcseOrTransDtl(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> updateAcsePaytReqStat(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseOrTransDtl(final HashMap<String, Object> params) throws SQLException;
 }

@@ -2341,5 +2341,34 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setArSeriesList(maintenanceDao.retrieveMtnAcitArSeries(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnGenTaxResponse retrieveMtnGenTax(RetrieveMtnGenTaxRequest rmgtr) throws SQLException {
+		RetrieveMtnGenTaxResponse response = new RetrieveMtnGenTaxResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("taxCd", rmgtr.getTaxCd());
+		params.put("taxName", rmgtr.getTaxName());
+		params.put("chargeType", rmgtr.getChargeType());
+		params.put("fixedTag", rmgtr.getFixedTag());
+		params.put("activeTag", rmgtr.getActiveTag());
+		response.setGenTaxList(maintenanceDao.retrieveMtnGenTax(params));
+		logger.info("RetrieveMtnGenTaxResponse : " + response);
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnWhTaxResponse retrieveMtnWhTax(RetrieveMtnWhTaxRequest rmwt) throws SQLException {
+		RetrieveMtnWhTaxResponse response = new RetrieveMtnWhTaxResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("taxCd", rmwt.getTaxCd());
+		params.put("taxName", rmwt.getTaxName());
+		params.put("taxType", rmwt.getTaxType());
+		params.put("creditableTag", rmwt.getCreditableTag());
+		params.put("fixedTag", rmwt.getFixedTag());
+		params.put("activeTag", rmwt.getActiveTag());
+		response.setWhTaxList(maintenanceDao.retrieveMtnWhTax(params));
+		logger.info("RetrieveMtnWhTaxResponse : " + response);
+		return response;
+	}
 	
 }

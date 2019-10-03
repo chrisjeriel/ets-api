@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseTransactions;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
+import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
 
 @Component
 public class AccountingServDaoImpl implements AccountingServDao{
@@ -89,6 +90,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	public List<OrTransDtl> retrieveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
+		List<OrTransDtl> res = sqlSession.selectList("retOrTransDtl", params);
+		return res;
+	}
 	
 	@Override
 	public HashMap<String, Object> updateAcsePaytReqStat(HashMap<String, Object> params) throws SQLException {
@@ -101,6 +107,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public List<AcseTaxDetails> retrieveTaxDetails(HashMap<String, Object> params) throws SQLException {
 		List<AcseTaxDetails> list = sqlSession.selectList("retrieveTaxDetails", params);
 		return list;
+	}
+
+	public Integer saveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveAcseOrTransDtl", params);
+		return res;
 	}	
 
 }
