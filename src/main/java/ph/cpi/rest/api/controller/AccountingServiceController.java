@@ -20,11 +20,13 @@ import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
@@ -130,5 +132,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/updateAcsePaytReqStat");
 		logger.info("UpdateAcsePaytReqStatRequest : " + uaprsr.toString());
 		return acctServService.updateAcsePaytReqStat(uaprsr);
+	}
+	
+	@GetMapping(path="retrieveTaxDetails")
+	public @ResponseBody RetrieveAcseTaxDetailsResponse retrieveTaxDetails(RetrieveAcseTaxDetailsRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveTaxDetails");
+		logger.info("RetrieveAcseTaxDetailsRequest : " + request.toString());
+		return acctServService.retrieveTaxDetails(request);
 	}
 }

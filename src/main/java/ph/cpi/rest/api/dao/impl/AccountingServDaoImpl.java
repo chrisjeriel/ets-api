@@ -14,6 +14,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseTransactions;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 
@@ -94,6 +95,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("updateAcsePaytReqStat", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcseTaxDetails> retrieveTaxDetails(HashMap<String, Object> params) throws SQLException {
+		List<AcseTaxDetails> list = sqlSession.selectList("retrieveTaxDetails", params);
+		return list;
 	}	
 
 }

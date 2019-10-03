@@ -399,4 +399,28 @@
 			);
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseTaxDetails" id="taxDtlMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="taxType"      	column="TAX_TYPE"/>
+		<result property="taxSeqno"     	column="TAX_SEQNO"/>
+		<result property="genType"      	column="GEN_TYPE"/>
+		<result property="taxCd"        	column="TAX_CD"/>
+		<result property="genTaxDesc"   	column="GEN_TAX_DESC"/>
+		<result property="whtTaxDesc"   	column="WHT_TAX_DESC"/>
+		<result property="genBirRlf"   		column="GEN_BIR_RLF"/>
+		<result property="genTaxRate"   	column="GEN_TAX_RATE"/>
+		<result property="whtRate"     	    column="WHT_RATE"/>
+		<result property="payor"        	column="PAYOR"/>
+		<result property="baseAmt"      	column="BASE_AMT"/>
+		<result property="taxAmt"       	column="TAX_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveTaxDetails" resultMap="taxDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_TAX_DETAILS_PKG.ret_tax_dtl(#{tranId},#{taxType},null,null,null,null))
+	</select>
 </mapper>
