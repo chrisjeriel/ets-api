@@ -141,5 +141,26 @@
 			</foreach>
 		END;
 	</update>
-     
+	
+	<update id="saveMtnModules" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delMtnModuleList" item="modItem">
+			BEGIN
+		    	MTN_SECURITY_PKG.del_mtn_module(#{modItem.moduleId, jdbcType=VARCHAR});
+			END;
+			</foreach>
+		
+			<foreach collection="mtnModuleList" item="modItem">
+			BEGIN
+		    	MTN_SECURITY_PKG.save_mtn_module(#{modItem.moduleId, jdbcType=VARCHAR}, 
+		    									 #{modItem.moduleDesc, jdbcType=VARCHAR}, 
+		    									 #{modItem.moduleGrp, jdbcType=VARCHAR}, 
+		    									 #{modItem.remarks, jdbcType=VARCHAR}, 
+		    									 #{modItem.createUser, jdbcType=VARCHAR}, 
+		    									 #{modItem.updateUser, jdbcType=VARCHAR});
+			END;
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

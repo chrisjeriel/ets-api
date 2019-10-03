@@ -180,4 +180,24 @@
      	END;
      </update>
      
+     <update id="saveMtnUserGrp" parameterType="java.util.Map">
+     	BEGIN
+     		MTN_USER_GRP_PKG.save_mtn_user_grp(
+     			#{userGrp,jdbcType=INTEGER},
+				#{userGrpDesc,jdbcType=VARCHAR},
+				#{remarks,jdbcType=VARCHAR},
+				#{createUser,jdbcType=VARCHAR},
+				#{updateUser,jdbcType=VARCHAR}
+     		);
+     	END;
+     </update>
+     
+     <update id="delMtnUserGrp" parameterType="java.util.Map">
+     	BEGIN
+     		MTN_USER_GRP_PKG.delete_mtn_user_grp(
+     			#{userGrp,jdbcType=INTEGER}
+     		);
+     	END;
+     </update>
+     
 </mapper>

@@ -246,6 +246,7 @@
 		   	   									#{investments.intRt, jdbcType=VARCHAR},
 		   	   									CAST(to_timestamp(#{investments.purDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		   	   									CAST(to_timestamp(#{investments.matDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		   	   									#{investments.currSeq, jdbcType=VARCHAR},
 		   	   									#{investments.currCd, jdbcType=VARCHAR},
 		   	   									#{investments.currRate, jdbcType=VARCHAR},
 		   	   									#{investments.invtAmt, jdbcType=VARCHAR},
@@ -349,6 +350,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt" id="arListMap">
 		<result property="tranId"			column="TRAN_ID" />
 		<result property="arNo"				column="AR_NO" />
+		<result property="formattedArNo"	column="FORMATTED_AR_NO" />
 		<result property="arDate"			column="AR_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="arStatus"		    column="AR_STATUS_CD" />
 		<result property="tranStat"			column="TRAN_STAT_CD" />
@@ -513,6 +515,7 @@
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="policyId" column="PREV_POLICY_ID"/>
 		<result property="policyNo" column="PREV_POLICY_NO"/>
+		<result property="soaNo" column="SOA_NO"/>
 		<result property="cedingId" column="CEDING_ID"/>
 		<result property="cedingName" column="CEDING_NAME"/>
 		<result property="instNo" column="PREV_INST_NO"/>
@@ -855,7 +858,9 @@
 			ACIT_PAYMENT_REQUEST_PKG.up_acit_paytreqstat(
 				#{reqId, jdbcType=INTEGER},
 				#{reqStatus, jdbcType=VARCHAR},
-				#{updateUser, jdbcType=VARCHAR}
+				#{updateUser, jdbcType=VARCHAR},
+				#{approvedBy, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>
@@ -870,9 +875,9 @@
 		BEGIN
 			<foreach collection="deleteInwPol" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_acit_inwpol(#{delete.tranId}, #{delete.itemNo}, #{delete.policyId}, #{delete.instNo}, #{delete.premAmt}, #{delete.riComm}, 
-													   #{delete.riCommVat}, #{delete.charges}, 
-													   #{delete.paytAmt},#{delete.updateUser}, 
-													  	CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+													     #{delete.riCommVat}, #{delete.charges}, 
+													     #{delete.paytAmt},#{delete.updateUser}, 
+													  	 CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
 														#{delete.tranId},
@@ -1178,7 +1183,7 @@
 					ACIT_AR_INWPOLBAL_PKG.save_ar_inwpolbal(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.policyId},
 														#{save.instNo},
 														#{save.currCd},
@@ -1354,7 +1359,7 @@
 					ACIT_AR_TRANSDTL_PKG.save_ar_transdtl(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.transdtlType, jdbcType=VARCHAR},
 														#{save.itemName},
 														#{save.currCd},
@@ -1562,9 +1567,9 @@
 	
 	<update id="cancelJV" parameterType="java.util.Map">
 		BEGIN
-			ACIT_JOURNAL_VOUCHER_PKG.cancel_jv(#{tranId},#{jvYear},#{jvNo},#{updateUser},
+			ACIT_JOURNAL_VOUCHER_PKG.cancel_jv(#{tranId},#{jvYear},#{jvNo},#{tranType},#{updateUser},
 											   CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) );
-					
+			
 		END;
 	</update>
 	
@@ -1787,7 +1792,7 @@
 					ACIT_AR_CLMCASHCALL_PKG.save_ar_clmcshcll(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.claimId},
 														<!-- #{save.paytType}, -->
 														#{save.currCd},
@@ -2022,7 +2027,7 @@
 					ACIT_AR_INVPULLOUT_PKG.save_ar_invpullout(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.invtId},
 														#{save.pulloutType},
 														#{save.currCd},
@@ -2108,7 +2113,7 @@
 					ACIT_AR_NEGTRTYBAL_PKG.save_ar_negtrtybal(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.currCd},
 														#{save.currRate},
@@ -2230,7 +2235,7 @@
 														#{del.claimId},
 														#{del.projId},
 														#{del.histNo},
-														#{del.localAmt}	
+														#{del.recOverAmt}	
 					);
 					<!-- Delete from ACIT_CLM_RES_HIST_PAYTS -->
 					ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
@@ -2245,7 +2250,7 @@
 					ACIT_AR_CLMRECOVER_PKG.save_ar_clmrecover(
 														#{save.tranId},
 														#{save.billId},
-														#{save.itemNo},
+														#{save.itemNo, jdbcType=VARCHAR},
 														#{save.claimId},
 														#{save.projId},
 														#{save.histNo},
@@ -2699,7 +2704,16 @@
 				ACIT_JOURNAL_VOUCHER_PKG.del_inwpol_offset(
 					#{deleted.tranId},
 					#{deleted.itemNo},
-					#{deleted.quarterNo}
+					#{deleted.quarterNo},
+					#{deleted.policyId}, 
+					#{deleted.instNo},
+					#{deleted.premAmt}, 
+					#{deleted.riComm}, 
+					#{deleted.riCommVat}, 
+					#{deleted.charges}, 
+					#{deleted.paytAmt},
+					#{deleted.updateUser}, 
+					CAST(to_timestamp(#{deleted.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				
 				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
@@ -2898,8 +2912,7 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delClmOffset" item="del">
-				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo}
-												  		);
+				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo});
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="save">
@@ -2926,35 +2939,43 @@
 			</foreach>
 			
 			<foreach collection="delInwPol" item="delete">
-				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo}
+				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo},
+														   #{delete.premAmt}, 
+														   #{delete.riComm}, 
+														   #{delete.riCommVat}, 
+														   #{delete.charges}, 
+													   	   #{delete.netDue}, 
+														   #{delete.paytAmt}, 
+														   #{delete.updateUser}, 
+													  	   CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 												  		);
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="saved">
 				ACIT_JOURNAL_VOUCHER_PKG.save_clm_inw(#{saved.tranId}, 
-														 #{saved.itemNo,jdbcType=INTEGER}, 
-														 #{saved.policyId}, 
-														 #{saved.instNo}, 
-														 #{saved.currCd}, 
-														 #{saved.currRate}, 
-														 #{saved.premAmt}, 
-														 #{saved.riComm}, 
-														 #{saved.riCommVat}, 
-														 #{saved.charges}, 
-														 #{saved.netDue}, 
-														 #{saved.paytAmt}, 
-														 #{saved.localAmt}, 
-														 #{saved.overdueInt ,jdbcType=INTEGER}, 
-														 #{saved.remarks,jdbcType=VARCHAR}, 
-														 #{saved.cumPayment}, 
-														 #{saved.balance}, 
-														 #{saved.totalPayt}, 
-														 #{saved.remainingBal}, 
-														 #{saved.createUser}, 
-														 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														 #{saved.updateUser}, 
-														 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-														 );
+												      #{saved.itemNo,jdbcType=INTEGER}, 
+													  #{saved.policyId}, 
+													  #{saved.instNo}, 
+													  #{saved.currCd}, 
+													  #{saved.currRate}, 
+													  #{saved.premAmt}, 
+													  #{saved.riComm}, 
+													  #{saved.riCommVat}, 
+													  #{saved.charges}, 
+												   	  #{saved.netDue}, 
+													  #{saved.paytAmt}, 
+													  #{saved.localAmt}, 
+													  #{saved.overdueInt ,jdbcType=INTEGER}, 
+													  #{saved.remarks,jdbcType=VARCHAR}, 
+													  #{saved.cumPayment}, 
+													  #{saved.balance}, 
+													  #{saved.totalPayt}, 
+													  #{saved.remainingBal}, 
+													  #{saved.createUser}, 
+													  CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  #{saved.updateUser}, 
+													  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													);
 						<!-- UPDATING SOA AND INWPOL_PAYTS IS INCLUDED ON THE PACKAGE ALREADY -->
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
@@ -3546,5 +3567,19 @@
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{currCd}))
 	</select>
+	
+	<update id="saveAcitQSOA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_QSOA_PKG.gnrt_comp_qsoa(
+				#{cedingId, jdbcType=VARCHAR},
+				#{gnrtQtr, jdbcType=INTEGER},
+				#{gnrtYear, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 	
 </mapper>

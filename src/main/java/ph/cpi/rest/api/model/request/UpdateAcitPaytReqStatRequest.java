@@ -4,6 +4,8 @@ public class UpdateAcitPaytReqStatRequest {
 	private String reqId;
 	private String reqStatus;
 	private String updateUser;
+	private String approvedBy;
+	private String approvedDate;
 	public String getReqId() {
 		return reqId;
 	}
@@ -22,9 +24,21 @@ public class UpdateAcitPaytReqStatRequest {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+	public String getApprovedDate() {
+		return approvedDate;
+	}
+	public void setApprovedDate(String approvedDate) {
+		this.approvedDate = approvedDate;
+	}
 	@Override
 	public String toString() {
 		return "UpdateAcitPaytReqStatRequest [reqId=" + reqId + ", reqStatus=" + reqStatus + ", updateUser="
-				+ updateUser + "]";
+				+ updateUser + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + "]";
 	}
 }

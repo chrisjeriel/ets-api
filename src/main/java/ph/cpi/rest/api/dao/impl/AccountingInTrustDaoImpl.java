@@ -727,4 +727,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitSOAAgingDetails> list = sqlSession.selectList("retrieveAcitSoaDue",params);
 		return list;
 	}
+
+	@Override
+	public Integer saveAcitQSOA(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitQSOA", params);
+		return errorCode;
+	}
 }

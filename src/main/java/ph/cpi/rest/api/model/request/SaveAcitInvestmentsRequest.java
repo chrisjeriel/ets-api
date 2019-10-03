@@ -45,6 +45,7 @@ class AcitInvt {
 	private String 		intRt;
 	private String 		purDate;
 	private String 		matDate;
+	private String 		currSeq;
 	private String 		currCd;
 	private String 		currRate;
 	private String 		invtAmt;
@@ -240,17 +241,24 @@ class AcitInvt {
 		this.updateDate = updateDate;
 	}
 	
+	public String getCurrSeq() {
+		return currSeq;
+	}
+	public void setCurrSeq(String currSeq) {
+		this.currSeq = currSeq;
+	}
+	
 	@Override
 	public String toString() {
 		return "AcitInvt [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
 				+ ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod="
 				+ matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate="
-				+ matDate + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt="
-				+ incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag
-				+ ", termDate=" + termDate + ", amortEff=" + amortEff + ", amortized=" + amortized + ", parCost="
-				+ parCost + "]";
+				+ matDate + ", currSeq=" + currSeq + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
+				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
+				+ ", matVal=" + matVal + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", slCd=" + slCd + ", preTerminatedTag="
+				+ preTerminatedTag + ", termDate=" + termDate + ", amortEff=" + amortEff + ", amortized=" + amortized
+				+ ", parCost=" + parCost + "]";
 	}
 	
 	

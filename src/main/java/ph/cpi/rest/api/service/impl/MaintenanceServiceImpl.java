@@ -2277,4 +2277,76 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setPayeeCeding(maintenanceDao.retrieveMtnPayeeCeding(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcitCheckSeriesResponse retrieveMtnAcitCheckSeries(RetrieveMtnAcitCheckSeriesRequest rmacs)
+			throws SQLException {
+		RetrieveMtnAcitCheckSeriesResponse rmacsResponse = new RetrieveMtnAcitCheckSeriesResponse();
+		HashMap<String, Object> rmacsParams = new HashMap<String, Object>();
+		rmacsParams.put("bank",rmacs.getBank());
+		rmacsParams.put("bankAcct", rmacs.getBankAcct());
+		rmacsParams.put("checkNo",rmacs.getCheckNo());
+		rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcitCheckSeries(rmacsParams));
+		return rmacsResponse;
+	}
+	
+	@Override
+	public RetrieveMtnAcseTranTypeResponse retrieveMtnAcseTranType(RetrieveMtnAcseTranTypeRequest rmattr)
+			throws SQLException {
+		RetrieveMtnAcseTranTypeResponse response = new RetrieveMtnAcseTranTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", rmattr.getTranClass());
+		params.put("tranTypeCd", rmattr.getTranTypeCd());
+		params.put("typePrefix", rmattr.getTypePrefix());
+		params.put("autoTag", rmattr.getAutoTag());
+		params.put("baeTag", rmattr.getBaeTag());
+		params.put("activeTag", rmattr.getActiveTag());
+		response.setTranTypeList(maintenanceDao.retrieveMtnAcseTranType(params));
+		logger.info("RetrieveMtnAcseTranTypeResponse : " + response.toString());
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDCBNoResponse retrieveMtnAcseDCBNo(RetrieveMtnAcseDCBNoRequest rmadnr) throws SQLException {
+		RetrieveMtnAcseDCBNoResponse response = new RetrieveMtnAcseDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("dcbYear", rmadnr.getDcbYear());
+		params.put("dcbNo", rmadnr.getDcbNo());
+		params.put("dcbDate", rmadnr.getDcbDate());
+		params.put("dcbStatus", rmadnr.getDcbStatus());
+		response.setDcbNoList(maintenanceDao.retrieveMtnAcseDCBNo(params));
+		return response;
+	}
+	
+	@Override
+	public SaveMtnAcseDCBNoResponse saveMtnAcseDCBNo(SaveMtnAcseDCBNoRequest smaidcbr) throws SQLException {
+		SaveMtnAcseDCBNoResponse response = new SaveMtnAcseDCBNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveDCBNo", smaidcbr.getSaveDCBNo());
+		params.put("delDCBNo", smaidcbr.getDelDCBNo());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnAcseDCBNo(params));
+		}catch(SQLException sqlex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQL Exception","Please check the field values."));
+			sqlex.printStackTrace();
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcitArSeriesResponse retrieveMtnAcitArSeries(RetrieveMtnAcitArSeriesRequest rmaasr)
+			throws SQLException {
+		RetrieveMtnAcitArSeriesResponse response = new RetrieveMtnAcitArSeriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("usedTag", rmaasr.getUsedTag());
+		params.put("rowNum", rmaasr.getRowNum());
+		response.setArSeriesList(maintenanceDao.retrieveMtnAcitArSeries(params));
+		return response;
+	}
+	
 }
