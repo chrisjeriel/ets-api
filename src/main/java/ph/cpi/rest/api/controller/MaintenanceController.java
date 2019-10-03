@@ -1026,4 +1026,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseDCBNoRequest : " + smaidcbr.toString());
 		return maintenanceService.saveMtnAcseDCBNo(smaidcbr);
 	}
+	
+	@PostMapping(path="saveMtnBussType")
+	public @ResponseBody SaveMtnBussTypeResponse saveMtnBussType(@RequestBody SaveMtnBussTypeRequest smbtr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBussType");
+		logger.info("SaveMtnBussTypeRequest : " + smbtr.toString());
+		return maintenanceService.saveMtnBussType(smbtr);
+	}
 }

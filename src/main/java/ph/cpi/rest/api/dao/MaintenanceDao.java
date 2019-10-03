@@ -222,4 +222,5 @@ public interface MaintenanceDao {
 	public List<AcseDCBNo> retrieveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcseTranType> retrieveMtnAcseTranType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnBussType(final HashMap<String, Object> params) throws SQLException;
 }
