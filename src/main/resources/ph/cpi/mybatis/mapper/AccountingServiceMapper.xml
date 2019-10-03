@@ -287,13 +287,18 @@
 		DECLARE
 			v_item_no		NUMBER;
 		BEGIN
-			<foreach item="del" collection="delOrTransDtl">
+			<foreach item="del" collection="delOrItemTaxes">
 				<!-- Delete data from ACSE_OR_ITEMTAXES first since it's a child table -->
 				ACSE_OR_ITEMTAXES_PKG.del_or_itemtaxes(
 													#{del.tranId},
 													#{del.billId},
-													#{del.itemNo}
+													#{del.itemNo},
+													#{del.taxType},
+													#{del.taxCd}
 												);
+				
+			</foreach>
+			<foreach item="del" collection="delOrTransDtl">
 				<!-- Then delete data from ACSE_OR_TRANSDTL which is the parent -->
 				ACSE_OR_TRANSDTL_PKG.del_or_transdtl(
 													#{del.tranId},

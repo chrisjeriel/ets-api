@@ -7,6 +7,7 @@ import org.apache.ibatis.type.Alias;
 public class SaveAcseOrTransDtlRequest {
 	private List<SaveOrTransDtl> saveOrTransDtl;
 	private List<SaveOrTransDtl> delOrTransDtl;
+	private List<SaveOrItemTaxes> delOrItemTaxes;
 	
 	public List<SaveOrTransDtl> getSaveOrTransDtl() {
 		return saveOrTransDtl;
@@ -20,10 +21,16 @@ public class SaveAcseOrTransDtlRequest {
 	public void setDelOrTransDtl(List<SaveOrTransDtl> delOrTransDtl) {
 		this.delOrTransDtl = delOrTransDtl;
 	}
-	
+	public List<SaveOrItemTaxes> getDelOrItemTaxes() {
+		return delOrItemTaxes;
+	}
+	public void setDelOrItemTaxes(List<SaveOrItemTaxes> delOrItemTaxes) {
+		this.delOrItemTaxes = delOrItemTaxes;
+	}
 	@Override
 	public String toString() {
-		return "SaveAcseOrTransDtlRequest [saveOrTransDtl=" + saveOrTransDtl + ", delOrTransDtl=" + delOrTransDtl + "]";
+		return "SaveAcseOrTransDtlRequest [saveOrTransDtl=" + saveOrTransDtl + ", delOrTransDtl=" + delOrTransDtl
+				+ ", delOrItemTaxes=" + delOrItemTaxes + "]";
 	}
 }
 

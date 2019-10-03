@@ -258,6 +258,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("saveOrTransDtl", saotdr.getSaveOrTransDtl());
 		params.put("delOrTransDtl", saotdr.getDelOrTransDtl());
+		params.put("delOrItemTaxes", saotdr.getDelOrItemTaxes());
 		try {
 			response.setReturnCode(acctServDao.saveAcseOrTransDtl(params));
 		} catch (SQLException sqlex) {
