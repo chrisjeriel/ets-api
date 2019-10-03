@@ -958,19 +958,21 @@
 	<select id="retrieveAcitJVPremResRel" resultMap="premResMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_funds_held(#{tranId},'', '', '',''))
 	</select>
-
+	
 	 <update id="saveAcitPrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
 	 	DECLARE
 	 		v_tran_type_cd ACIT_PRQ_TRANS.TRAN_TYPE_CD%TYPE;
 	 		v_item_no NUMBER;
 	 		v_policy_id ACIT_PRQ_TRANS.POLICY_ID%TYPE;
 	 		v_inst_no ACIT_PRQ_TRANS.INST_NO%TYPE;
+	 		v_req_id ACIT_PRQ_TRANS.REQ_ID%TYPE;
     	BEGIN
     		<foreach collection="savePrqTrans" item="save">
     			v_tran_type_cd := #{save.tranTypeCd, jdbcType=INTEGER};
     			v_policy_id := #{save.policyId, jdbcType=INTEGER};
     			v_inst_no := #{save.instNo, jdbcType=INTEGER};
     			v_item_no := #{save.itemNo, jdbcType=INTEGER};
+    			v_req_id := #{save.reqId, jdbcType=INTEGER};
 	    		ACIT_PRQ_TRANS_PKG.save_acit_prq_trans(
 	    			#{save.reqId, jdbcType=INTEGER},
 					v_item_no,
@@ -1034,6 +1036,7 @@
 						#{del.itemNo, jdbcType=INTEGER});
 						
     		</foreach>
+
     	END;
     </update>
 
