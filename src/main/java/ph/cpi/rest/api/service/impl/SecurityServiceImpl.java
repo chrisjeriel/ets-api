@@ -24,7 +24,7 @@ import ph.cpi.rest.api.model.response.RetrieveTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveModulesResponse;
 import ph.cpi.rest.api.model.response.SaveTransactionsResponse;
 import ph.cpi.rest.api.service.SecurityService;
-import ph.cpi.rest.api.utils.GWEncoder;
+import ph.cpi.rest.api.utils.ETSEncoder;
 
 @Component
 public class SecurityServiceImpl implements SecurityService{
@@ -150,7 +150,7 @@ public class SecurityServiceImpl implements SecurityService{
 	public HashMap<String, String> secEncryption(String str) throws Exception {
 		// TODO Auto-generated method stub
 		HashMap<String, String> resp = new HashMap<String, String>();
-		resp.put("password", GWEncoder.doEncrypt(str));
+		resp.put("password", ETSEncoder.doEncrypt(str));
 		return resp;
 	}
 

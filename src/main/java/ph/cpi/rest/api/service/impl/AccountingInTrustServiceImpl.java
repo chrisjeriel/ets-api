@@ -1555,7 +1555,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setReceivables(acctITDao.retrieveAcitJVRcvblsAgnstLosses(params));
 		return response;
 	}
-
+	
+	@Override
 	public RetrieveAcitCvResponse retrieveAcitCv(RetrieveAcitCvRequest raptp) throws SQLException {
 		RetrieveAcitCvResponse racResponse = new RetrieveAcitCvResponse();
 		HashMap<String, Object> racParams = new HashMap<String, Object>();

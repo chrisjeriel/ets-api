@@ -1,6 +1,6 @@
 package ph.cpi.rest.api;
 
-import ph.cpi.rest.api.utils.GWEncoder;
+import ph.cpi.rest.api.utils.ETSEncoder;
 
 public class ClassTester {
 
@@ -8,18 +8,18 @@ public class ClassTester {
 		// TODO Auto-generated method stub
 
 		
-		System.out.println(GWEncoder.doEncrypt("CPI12345!"));
-		System.out.println(GWEncoder.doEncrypt("CPI12345!"));
-		System.out.println(GWEncoder.doEncrypt("CPI12345!"));
-		System.out.println(GWEncoder.doEncrypt("CPI12345!"));
-		System.out.println(GWEncoder.doEncrypt("CPI12345!"));
+		System.out.println(ETSEncoder.doEncrypt("CPI12345!"));
+		System.out.println(ETSEncoder.doEncrypt("CPI12345!"));
+		System.out.println(ETSEncoder.doEncrypt("CPI12345!"));
+		System.out.println(ETSEncoder.doEncrypt("CPI12345!"));
+		System.out.println(ETSEncoder.doEncrypt("CPI12345!"));
 		
-		System.out.println(GWEncoder.doEncrypt("cpi12345!"));
+		System.out.println(ETSEncoder.doEncrypt("cpi12345!"));
 		System.out.println("------------------------------");
 		
-		System.out.println(GWEncoder.doEncrypt("PMMSC12345!"));
-		System.out.println(GWEncoder.doEncrypt("PMMSC12345!"));
-		System.out.println(GWEncoder.doEncrypt("PMMSC12345!"));
+		System.out.println(ETSEncoder.doEncrypt("PMMSC12345!"));
+		System.out.println(ETSEncoder.doEncrypt("PMMSC12345!"));
+		System.out.println(ETSEncoder.doEncrypt("PMMSC12345!"));
 	}
 
 }

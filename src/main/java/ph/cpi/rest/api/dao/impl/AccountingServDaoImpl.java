@@ -149,4 +149,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<AcseAcctEntries> list = sqlSession.selectList("retrieveAcctEntries", params);
 		return list;
 	}
+	
+	@Override
+	public HashMap<String, Object> saveAcseCv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseCv", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
