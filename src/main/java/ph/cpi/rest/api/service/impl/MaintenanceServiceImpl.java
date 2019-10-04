@@ -2380,4 +2380,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return response;
 	}
 	
+	@Override
+	public SaveMtnBussTypeResponse saveMtnBussType(SaveMtnBussTypeRequest smbtr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnBussTypeResponse response = new SaveMtnBussTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smbtr.getSaveList());
+		params.put("delList", smbtr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnBussType(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+	
 }

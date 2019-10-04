@@ -228,4 +228,6 @@ public interface MaintenanceDao {
 	public List<AcitArSeries> retrieveMtnAcitArSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<GeneralTaxes> retrieveMtnGenTax(final HashMap<String, Object> params) throws SQLException;
 	public List<WithholdingTaxes> retrieveMtnWhTax(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnBussType(final HashMap<String, Object> params) throws SQLException;
+	
 }

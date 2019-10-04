@@ -43,6 +43,14 @@ class SaveBankAcct{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String dcbTag;
+	
+	public String getDcbTag() {
+		return dcbTag;
+	}
+	public void setDcbTag(String dcbTag) {
+		this.dcbTag = dcbTag;
+	}
 	public String getBankCd() {
 		return bankCd;
 	}
@@ -147,12 +155,16 @@ class SaveBankAcct{
 	}
 	@Override
 	public String toString() {
-		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo=" + accountNo
-				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", currCd=" + currCd + ", bankBranch="
-				+ bankBranch + ", accountType=" + accountType + ", openDate=" + openDate + ", closeDate=" + closeDate
-				+ ", acitGlDepNo=" + acitGlDepNo + ", acseGlDepNo=" + acseGlDepNo + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "SaveBankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd
+				+ ", accountNo=" + accountNo + ", accountName=" + accountName
+				+ ", acctStatus=" + acctStatus + ", currCd=" + currCd
+				+ ", bankBranch=" + bankBranch + ", accountType=" + accountType
+				+ ", openDate=" + openDate + ", closeDate=" + closeDate
+				+ ", acitGlDepNo=" + acitGlDepNo + ", acseGlDepNo="
+				+ acseGlDepNo + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", dcbTag="
+				+ dcbTag + "]";
 	}
 	
 }

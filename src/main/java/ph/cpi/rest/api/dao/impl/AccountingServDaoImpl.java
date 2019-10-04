@@ -92,6 +92,7 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		return params;
 	}
 
+	@Override
 	public List<OrTransDtl> retrieveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
 		List<OrTransDtl> res = sqlSession.selectList("retOrTransDtl", params);
 		return res;

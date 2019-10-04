@@ -3479,7 +3479,9 @@
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="dcbTag"		column="DCB_TAG" />
+		<result property="dcbTag"			column="DCB_TAG" />
+		<result property="okDelete"			column="OK_DELETE" />
+		<result property="bankName"			column="BANK_NAME" />
     </resultMap>
 	
 	<select id="retMtnBankAcct" resultMap="bankAcctMap" parameterType="java.util.Map">
@@ -3730,7 +3732,8 @@
 						#{item.createUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{item.updateUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.dcbTag, jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>
@@ -3786,6 +3789,7 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="okDelete" 	column="OK_DELETE"/>
      </resultMap>
      
      <select id="retMtnBussType" resultMap="bussTypeMap" parameterType="java.util.Map">
@@ -3975,5 +3979,24 @@
 														  #{fixedTag, jdbcType=VARCHAR},
 														  #{activeTag, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveMtnBussType" >
+		BEGIN
+			NULL;
+			<foreach collection="delList" item="item">
+				MTN_BUSS_TYPE_PKG.del_mtn_buss_type(#{item.bussTypeCd, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_BUSS_TYPE_PKG.save_mtn_buss_type(#{item.bussTypeCd, jdbcType=VARCHAR},
+						#{item.bussTypeName,  jdbcType=VARCHAR},
+						#{item.description, jdbcType=VARCHAR},
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
      
 </mapper>
