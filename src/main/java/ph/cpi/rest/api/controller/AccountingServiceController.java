@@ -103,4 +103,11 @@ public class AccountingServiceController {
 		logger.info("SaveAcsePrqTransRequest : " + saptr.toString());
 		return acctServService.saveAcsePrqTrans(saptr);
 	}
+	
+//	@GetMapping(path="retrieveAcseCv")
+//	public @ResponseBody RetrieveAcseCvResponse retrieveAcseCv(RetrieveAcseCvRequest racr) throws SQLException {
+//		logger.info("GET: /api/acct-serv-service/retrieveAcseCv");
+//		logger.info("RetrieveAcseCvRequest : " + racr.toString());
+//		return acctServService.retrieveAcseCv(racr);
+//	}
 }

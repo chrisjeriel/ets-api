@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
@@ -72,5 +73,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("saveAcsePrqTrans", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public List<AcseCv> retrieveAcseCv(HashMap<String, Object> params) throws SQLException {
+		List<AcseCv> acseCvList  = sqlSession.selectList("retrieveAcseCv", params);
+		return acseCvList;
 	}
 }
