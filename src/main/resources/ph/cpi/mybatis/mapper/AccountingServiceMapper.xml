@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
-<mapper namespace="ph.cpi.mybatis.mapper.AccountingInTrustMapper">
+<mapper namespace="ph.cpi.mybatis.mapper.AccountingServiceMapper">
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.OfficialReceipt" id="orListMap">
 		<result property="tranId"			column="TRAN_ID" />
@@ -524,7 +524,61 @@
 					);
 				</foreach>
 			</foreach>
-			DBMS_OUTPUT.PUT_LINE('PLACEHOLDER');
+			END;
+	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePrqTrans" id="acsePrqTransMap">
+		<result property="reqId" 		column="REQ_ID"/>
+		<result property="itemNo" 		column="ITEM_NO"/>
+		<result property="itemName" 	column="ITEM_NAME"/>
+		<result property="glAcctId" 	column="GL_ACCT_ID"/>
+		<result property="refNo" 		column="REF_NO"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="currCd" 		column="CURR_CD"/>
+		<result property="currRate" 	column="CURR_RATE"/>
+		<result property="currAmt" 		column="CURR_AMT"/>
+		<result property="localAmt" 	column="LOCAL_AMT"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctCd" 		column="ACCT_CD"/>
+	</resultMap>
+	
+	<select id="retrieveAcsePrqTrans" resultMap="acsePrqTransMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_PRQ_TRANS_PKG.ret_acse_prq_trans(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	
+	<update id="saveAcsePrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deletePrqTrans" item="del">
+				ACSE_PRQ_TRANS_PKG.del_acse_prq_trans(
+					#{del.reqId,jdbcType=INTEGER},
+					#{del.itemNo,jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="savePrqTrans" item="save">
+				ACSE_PRQ_TRANS_PKG.save_acse_prq_trans(
+					#{save.reqId,jdbcType=INTEGER},
+					#{save.itemNo,jdbcType=INTEGER},
+					#{save.itemName,jdbcType=VARCHAR},
+					#{save.glAcctId,jdbcType=INTEGER},
+					#{save.refNo,jdbcType=VARCHAR},
+					#{save.remarks,jdbcType=VARCHAR},
+					#{save.currCd,jdbcType=VARCHAR},
+					#{save.currRate,jdbcType=INTEGER},
+					#{save.currAmt,jdbcType=INTEGER},
+					#{save.localAmt,jdbcType=INTEGER},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR}, 
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
 		END;
 	</update>
 </mapper>
