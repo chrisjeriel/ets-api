@@ -252,6 +252,7 @@ class acctTreaty {
 class TreatyAcc {
 	private Integer tranId;
 	private Integer quarterNo;
+	private Integer qsoaId;
 	private String quarterEnding;
 	private String cedingId;
 	private String currCd;
@@ -259,6 +260,14 @@ class TreatyAcc {
 	private BigDecimal balanceAmt;
 	private BigDecimal localAmt;
 	private BigDecimal actualBalPaid;
+	private Integer itemNo;
+	private Integer policyId;
+	private Integer instNo;
+	private BigDecimal premAmt;
+	private String riComm;
+	private String riCommVat;
+	private String charges;
+	private String paytAmt;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -272,6 +281,13 @@ class TreatyAcc {
 	
 	public Integer getQuarterNo() {
 		return quarterNo;
+	}
+	
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public void setQuarterNo(Integer quarterNo) {
 		this.quarterNo = quarterNo;
@@ -318,6 +334,58 @@ class TreatyAcc {
 	public void setActualBalPaid(BigDecimal actualBalPaid) {
 		this.actualBalPaid = actualBalPaid;
 	}
+	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public Integer getInstNo() {
+		return instNo;
+	}
+	
+	
+	public Integer getItemNo() {
+		return itemNo;
+	}
+	public void setItemNo(Integer itemNo) {
+		this.itemNo = itemNo;
+	}
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
+	}
+	
+	public BigDecimal getPremAmt() {
+		return premAmt;
+	}
+	public void setPremAmt(BigDecimal premAmt) {
+		this.premAmt = premAmt;
+	}
+	public String getRiComm() {
+		return riComm;
+	}
+	public void setRiComm(String riComm) {
+		this.riComm = riComm;
+	}
+	public String getRiCommVat() {
+		return riCommVat;
+	}
+	public void setRiCommVat(String riCommVat) {
+		this.riCommVat = riCommVat;
+	}
+	public String getCharges() {
+		return charges;
+	}
+	public void setCharges(String charges) {
+		this.charges = charges;
+	}
+	public String getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(String paytAmt) {
+		this.paytAmt = paytAmt;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -344,11 +412,13 @@ class TreatyAcc {
 	}
 	@Override
 	public String toString() {
-		return "TreatyAcc [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
-				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "TreatyAcc [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId + ", quarterEnding="
+				+ quarterEnding + ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid
+				+ ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo=" + instNo + ", premAmt=" + premAmt
+				+ ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", paytAmt=" + paytAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

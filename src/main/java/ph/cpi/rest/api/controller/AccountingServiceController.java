@@ -13,19 +13,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
+import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
+import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
@@ -76,6 +88,21 @@ public class AccountingServiceController {
 		return acctServService.saveOrEntry(saotr);
 	}
 	
+
+	@GetMapping(path="retrieveJVList")
+	public @ResponseBody RetrieveAcseJVListResponse retrieveJVList(RetrieveAcseJVListRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveJVList");
+		logger.info("RetrieveAcseJVListRequest : " + request.toString());
+		return acctServService.retrieveJVList(request);
+	}
+	
+	@GetMapping(path="retrieveJVEntry")
+	public @ResponseBody RetrieveAcseJVEntryResponse retrieveJVEntry(RetrieveAcseJVEntryRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveJVEntry");
+		logger.info("RetrieveAcseJVEntryRequest : " + request.toString());
+		return acctServService.retrieveJVEntry(request);
+	}
+
 	@PostMapping(path="saveAcsePaytReq")
 	public @ResponseBody SaveAcsePaytReqResponse saveAcsePaytReq(@RequestBody SaveAcsePaytReqRequest saprr) throws SQLException {
 		logger.info("POST: /api/acct-serv-service/saveAcsePaytReq");
@@ -83,6 +110,27 @@ public class AccountingServiceController {
 		return acctServService.saveAcsePaytReq(saprr);
 	}
 	
+	@PostMapping(path="saveAcseJVEntry")
+	public @ResponseBody SaveAcseJVEntryResponse saveAcseJVEntry(@RequestBody SaveAcseJVEntryRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseJVEntry");
+		logger.info("SaveAcseJVEntryRequest : " + request.toString());
+		return acctServService.saveJVEntry(request);
+	}
+	
+	@PostMapping(path="approveJV")
+	public @ResponseBody ApproveJVServiceResponse approveJV(@RequestBody ApproveJVServiceRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/approveJV");
+		logger.info("ApproveJVServiceRequest : " + request.toString());
+		return acctServService.approveJV(request);
+	}
+	
+	@PostMapping(path="cancelJV")
+	public @ResponseBody CancelJVServiceResponse cancelJV(@RequestBody CancelJVServiceRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/cancelJV");
+		logger.info("CancelJVServiceRequest : " + request.toString());
+		return acctServService.cancelJV(request);
+	}
+
 	@GetMapping(path="retrieveAcseOrTransDtl")
 	public @ResponseBody RetrieveAcseOrTransDtlResponse retrieveAcseOrTransDtl(RetrieveAcseOrTransDtlRequest raotdr) throws SQLException {
 		logger.info("GET: /api/acct-service-service/retrieveAcseOrTransDtl");
@@ -97,6 +145,13 @@ public class AccountingServiceController {
 		return acctServService.updateAcsePaytReqStat(uaprsr);
 	}
 	
+	@GetMapping(path="retrieveTaxDetails")
+	public @ResponseBody RetrieveAcseTaxDetailsResponse retrieveTaxDetails(RetrieveAcseTaxDetailsRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveTaxDetails");
+		logger.info("RetrieveAcseTaxDetailsRequest : " + request.toString());
+		return acctServService.retrieveTaxDetails(request);
+	}
+
 	@PostMapping(path="saveAcseOrTransDtl")
 	public @ResponseBody SaveAcseOrTransDtlResponse saveAcseOrTransDtl(@RequestBody SaveAcseOrTransDtlRequest saotdr) throws SQLException {
 		logger.info("POST: /api/acct-serv-service/saveAcseOrTransDtl");

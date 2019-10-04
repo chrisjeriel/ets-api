@@ -884,6 +884,8 @@
 														#{delete.policyId},
 														#{delete.instNo}
 				);
+				
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="save">
@@ -906,6 +908,8 @@
 														#{save.paytType}, <!-- PAYT TYPE 1 FOR JV. CHANGE AS NECESSARY -->
 														3 
 				);
+				
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
@@ -1913,7 +1917,7 @@
 														#{delete.policyId},
 														#{delete.instNo}
 				);
-				
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});
 			</foreach>
 			
 			<foreach collection="saveZeroBal" item="save">
@@ -1939,6 +1943,7 @@
 														#{save.paytType}, 
 														3 
 				);
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2356,6 +2361,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty" id="jvNegTrtyMap">
 		<result property="tranId" column="TRYTY_TRAN_ID"/>
+		<result property="qsoaId" column="TRYTY_QSOA_ID"/>
 		<result property="quarterNo" column="TRYTY_QUARTER_NO"/>
 		<result property="cedingId" column="TRYTY_CEDING_ID"/>
 		<result property="cedingName" column="CEDING_NAME"/>
@@ -2381,6 +2387,12 @@
 		BEGIN
 			<foreach collection="deleteNegTrty" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_trty_clm(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+				
+				<!-- del_acit_clmres_hist is included in ACIT_JOURNAL_VOUCHER_PKG.del_trty_clm-->
+															     
+				ACIT_QSOA_PAYTS_PKG.del_qsoa_payts(#{delete.tranId},#{delete.qsoaId});
+														 											     
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});											     
 			</foreach>
 			
 			<foreach collection="saveNegTrty" item="save">
@@ -2399,6 +2411,19 @@
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				
+				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
+														 #{save.qsoaId, jdbcType=INTEGER},
+														 CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.currCd},
+														 #{save.currRate},
+														 #{save.balanceAmt},
+														 #{save.localAmt},
+														 #{save.createUser},
+														 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});	
 			</foreach>
 			
 			<foreach collection="deleteClmOffset" item="deleted">
@@ -2412,6 +2437,7 @@
 																 #{deleted.claimId},
 															     #{deleted.projId},
 															     #{deleted.histNo});
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{deleted.tranId});	
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="saved">
@@ -2455,6 +2481,7 @@
 											#{saved.updateUser},
 											CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{saved.tranId});	
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2588,6 +2615,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal" id="acctTrtyMap">
 		<result property="tranId" 			column="TRYTY_TRAN_ID"/>
 		<result property="quarterNo" 		column="TRYTY_QUARTER_NO"/>
+		<result property="qsoaId" 			column="TRYTY_QSOA_ID"/>
 		<result property="cedingId" 		column="TRYTY_CEDING_ID"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="quarterEnding" 	column="TRYTY_QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -2686,7 +2714,12 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delAcctTrty" item="delete">
+				
 				ACIT_JOURNAL_VOUCHER_PKG.del_trty_inw(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+				
+				ACIT_QSOA_PAYTS_PKG.del_qsoa_payts(#{delete.tranId},#{delete.qsoaId});
+				
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});
 			</foreach>
 			
 			<foreach collection="saveAcctTrty" item="save">
@@ -2703,6 +2736,19 @@
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				
+				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
+														 #{save.qsoaId, jdbcType=INTEGER},
+														 CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.currCd},
+														 #{save.currRate},
+														 #{save.balanceAmt},
+														 #{save.localAmt},
+														 #{save.createUser},
+														 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
 			
@@ -2727,6 +2773,8 @@
 														#{deleted.policyId},
 														#{deleted.instNo}
 				);
+				
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{deleted.tranId});
 				
 			</foreach>
 			
@@ -2757,6 +2805,7 @@
 															CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 				<!-- UPDATE FOR SOA AND ACIT_INWPOL_PAYTS IS INCLUDED ON THE PACKAGE -->
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{saved.tranId});
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -2918,7 +2967,14 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delClmOffset" item="del">
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(#{del.tranId},
+																 #{del.claimId},
+															     #{del.projId},
+															     #{del.histNo});
+					
 				ACIT_JOURNAL_VOUCHER_PKG.del_loss_offset(#{del.tranId},#{del.itemNo});
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{del.tranId});
 			</foreach>
 			
 			<foreach collection="saveClmOffset" item="save">
@@ -2942,19 +2998,22 @@
 														 #{save.updateUser}, 
 														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 														 );
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			
 			<foreach collection="delInwPol" item="delete">
 				ACIT_JOURNAL_VOUCHER_PKG.del_rcvbls_offset(#{delete.tranId},#{delete.itemNo},
+														   #{delete.policyId}, 
+													  	   #{delete.instNo}, 
 														   #{delete.premAmt}, 
 														   #{delete.riComm}, 
 														   #{delete.riCommVat}, 
 														   #{delete.charges}, 
-													   	   #{delete.netDue}, 
 														   #{delete.paytAmt}, 
 														   #{delete.updateUser}, 
 													  	   CAST(to_timestamp(#{delete.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 												  		);
+				ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});
 			</foreach>
 			
 			<foreach collection="saveInwPol" item="saved">
@@ -2982,6 +3041,7 @@
 													  #{saved.updateUser}, 
 													  CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													);
+						ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{saved.tranId});
 						<!-- UPDATING SOA AND INWPOL_PAYTS IS INCLUDED ON THE PACKAGE ALREADY -->
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
@@ -3464,8 +3524,9 @@
 			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delaccTrty" item="delete">
-					ACIT_JOURNAL_VOUCHER_PKG.del_trty_inv(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo}
-													  );
+					ACIT_QSOA_PAYTS_PKG.del_qsoa_payts(#{delete.tranId},#{delete.qsoaId});
+					ACIT_JOURNAL_VOUCHER_PKG.del_trty_inv(#{delete.tranId},#{delete.cedingId},#{delete.quarterNo});
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});
 			</foreach>
 			
 			<foreach collection="saveaccTrty" item="saved">
@@ -3477,11 +3538,25 @@
 															 #{saved.updateUser},
 															 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  		);
+					ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{saved.tranId},
+														#{saved.qsoaId, jdbcType=INTEGER},
+														 CAST(to_timestamp(#{saved.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{saved.currCd},
+														 #{saved.currRate},
+														 #{saved.balanceAmt},
+														 #{saved.localAmt},
+														 #{saved.createUser},
+														 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{saved.updateUser},
+														 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				   );
+				   ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{saved.tranId});
 			</foreach>
 			
 			<foreach collection="delTrtyInvt" item="del">
 					ACIT_JOURNAL_VOUCHER_PKG.del_invt_offset(#{del.tranId},#{del.quarterNo},#{del.itemNo}
 													  );
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{del.tranId});
 			</foreach>
 			
 			<foreach collection="saveTrtyInvt" item="save">
@@ -3494,6 +3569,7 @@
 															 #{save.updateUser},
 															 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);

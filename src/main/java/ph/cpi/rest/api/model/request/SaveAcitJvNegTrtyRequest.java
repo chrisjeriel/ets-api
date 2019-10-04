@@ -74,6 +74,7 @@ public class SaveAcitJvNegTrtyRequest {
 @Alias ("ACITNegative")
 class negativeTreaty {
 	private Integer tranId;
+	private String qsoaId;
 	private Integer quarterNo;
 	private String quarterEnding;
 	private String cedingId;
@@ -82,6 +83,9 @@ class negativeTreaty {
 	private BigDecimal balanceAmt;
 	private BigDecimal localAmt;
 	private BigDecimal actualBalPaid;
+	private Integer claimId;
+	private Integer projId;
+	private Integer histNo;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -91,6 +95,13 @@ class negativeTreaty {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public String getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(String qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public Integer getQuarterNo() {
 		return quarterNo;
@@ -164,11 +175,31 @@ class negativeTreaty {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public Integer getClaimId() {
+		return claimId;
+	}
+	public void setClaimId(Integer claimId) {
+		this.claimId = claimId;
+	}
+	public Integer getProjId() {
+		return projId;
+	}
+	public void setProjId(Integer projId) {
+		this.projId = projId;
+	}
+	public Integer getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(Integer histNo) {
+		this.histNo = histNo;
+	}
 	@Override
 	public String toString() {
-		return "negativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
-				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid + ", createUser="
+		return "negativeTreaty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterNo=" + quarterNo
+				+ ", quarterEnding=" + quarterEnding + ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid="
+				+ actualBalPaid + ", claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + "]";
 	}

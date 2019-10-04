@@ -197,6 +197,95 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList" id="jvListMap">
+		<result property="tranId" 			column="JV_TRAN_ID"/>
+		<result property="jvYear" 			column="JV_YEAR"/>
+		<result property="jvNo" 			column="JV_NO"/>
+		<result property="jvDate" 			column="JV_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="jvStatus" 		column="JV_STATUS"/>
+		<result property="statusName" 		column="JV_STATUS_NAME"/>
+		<result property="tranTypeCd" 		column="TRAN_TYPE_CD"/>
+		<result property="tranTypeName" 	column="TRAN_TYPE_NAME"/>
+		<result property="autoTag" 			column="AUTO_TAG"/>
+		<result property="refnoTranId" 		column="REFNO_TRAN_ID"/>
+		<result property="refnoDate" 		column="REFNO_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="particulars" 		column="PARTICULARS"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="jvAmt" 			column="JV_AMT"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="allocTag" 		column="ALLOC_TAG"/>
+		<result property="allocTranId" 		column="ALLOC_TRAN_ID"/>
+		<result property="preparedBy" 		column="PREPARED_BY"/>
+		<result property="preparedName" 	column="PREPARED_NAME"/>
+		<result property="preparedPosition" column="PREPARED_POS"/>
+		<result property="preparedDate" 	column="PREPARED_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="approvedBy" 		column="APPROVED_BY"/>
+		<result property="approvedName" 	column="APPROVED_NAME"/>
+		<result property="approvedPosition" column="APPROVED_POS"/>
+		<result property="approvedDate" 	column="APPROVED_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="createUser" 		column="JV_CREATE_USER"/>
+		<result property="createDate" 		column="JV_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="JV_UPDATE_USER"/>
+		<result property="updateDate" 		column="JV_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveJVList" resultMap="jvListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_JOURNAL_VOUCHER_PKG.ret_acse_jv_list(#{tranId, jdbcType=INTEGER},null,null,null,null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry" id="jvEntryMap">
+		<result property="tranIdTran" column="TRAN_ID"/>
+		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranYear" column="TRAN_YEAR"/>
+		<result property="tranClassNo" column="TRAN_CLASS_NO"/>
+		<result property="tranStat" column="TRAN_STAT"/>
+		<result property="closeDate" column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="deleteDate" column="DELETE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="postDate" column="POST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="createUserTran" column="CREATE_USER"/>
+		<result property="createDateTran" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUserTran" column="UPDATE_USER"/>
+		<result property="updateDateTran" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		
+		<result property="tranId" 			column="JV_TRAN_ID"/>
+		<result property="jvYear" 			column="JV_YEAR"/>
+		<result property="jvNo" 			column="JV_NO"/>
+		<result property="jvDate" 			column="JV_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="jvStatus" 		column="JV_STATUS"/>
+		<result property="statusName" 		column="JV_STATUS_NAME"/>
+		<result property="tranTypeCd" 		column="JV_TRAN_TYPE_CD"/>
+		<result property="tranTypeName" 	column="TRAN_TYPE_NAME"/>
+		<result property="autoTag" 			column="AUTO_TAG"/>
+		<result property="refnoTranId" 		column="REFNO_TRAN_ID"/>
+		<result property="refnoDate" 		column="REFNO_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="particulars" 		column="PARTICULARS"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="jvAmt" 			column="JV_AMT"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="allocTag" 		column="ALLOC_TAG"/>
+		<result property="allocTranId" 		column="ALLOC_TRAN_ID"/>
+		<result property="preparedBy" 		column="PREPARED_BY"/>
+		<result property="preparedName" 	column="PREPARED_NAME"/>
+		<result property="preparedPosition" column="PREPARED_POS"/>
+		<result property="preparedDate" 	column="PREPARED_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="approvedBy" 		column="APPROVED_BY"/>
+		<result property="approvedName" 	column="APPROVED_NAME"/>
+		<result property="approvedPosition" column="APPROVED_POS"/>
+		<result property="approvedDate" 	column="APPROVED_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="createUser" 		column="JV_CREATE_USER"/>
+		<result property="createDate" 		column="JV_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="JV_UPDATE_USER"/>
+		<result property="updateDate" 		column="JV_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveJVEntry" resultMap="jvEntryMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_JOURNAL_VOUCHER_PKG.ret_acse_jv_entry(#{tranId, jdbcType=INTEGER},null,null,null,null))
+	</select>
+
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.OrTransDtl" id="acseOrTransDtlMap">
 		<result property="tranId"		column="TRAN_ID" />
 		<result property="billId"		column="BILL_ID" />
@@ -271,6 +360,65 @@
 		END;
 	</update>
 	
+	<update id="saveJVEntry" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_tran_id	ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+		BEGIN
+			ACSE_JOURNAL_VOUCHER_PKG.save_acse_jv( v_tran_id, #{tranId, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{tranDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{tranClass}, 
+													#{tranYear, jdbcType=VARCHAR}, 
+													#{tranClassNo, jdbcType=VARCHAR}, 
+													#{tranStat}, 
+													CAST(to_timestamp(#{closeDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													CAST(to_timestamp(#{deleteDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													CAST(to_timestamp(#{postDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{createUser}, 
+													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{updateUser}, 
+													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													#{tranTypeCd, jdbcType=VARCHAR}, 
+													#{tranIdJv, jdbcType=VARCHAR}, 
+													#{jvYear, jdbcType=VARCHAR}, 
+													#{jvNo, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													#{jvStatus}, 
+													#{JvTranTypeCd}, 
+													#{autoTag}, 
+													#{refnoTranId, jdbcType=INTEGER}, 
+													CAST(to_timestamp(#{refnoDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													#{particulars}, 
+													#{currCd}, 
+													#{currRate}, 
+													#{jvAmt}, 
+													#{localAmt}, 
+													#{allocTag, jdbcType=VARCHAR}, 
+													#{allocTranId, jdbcType=VARCHAR}, 
+													#{preparedBy}, 
+													CAST(to_timestamp(#{preparedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													#{approvedBy, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{approvedDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),  
+													#{createUserJv}, 
+													CAST(to_timestamp(#{createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),  
+													#{updateUserJv}, 
+													CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												  );
+				#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;							  
+		END;
+	</update>
+	
+	<update id="approveJVService" parameterType="java.util.Map">
+		BEGIN
+			ACSE_JOURNAL_VOUCHER_PKG.approve_jv(
+				#{tranId},
+				#{approvedBy},
+				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+		END;
+	</update>
+
 	<update id="updateAcsePaytReqStat" parameterType="java.util.Map">
 		BEGIN
 			ACSE_PAYMENT_REQUEST_PKG.up_acse_paytreqstat(
@@ -283,6 +431,40 @@
 		END;
 	</update>
 	
+	<update id="cancelJVService" parameterType="java.util.Map">
+		BEGIN
+			ACSE_JOURNAL_VOUCHER_PKG.cancel_jv(
+				#{tranId},
+				#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseTaxDetails" id="taxDtlMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="taxType"      	column="TAX_TYPE"/>
+		<result property="taxSeqno"     	column="TAX_SEQNO"/>
+		<result property="genType"      	column="GEN_TYPE"/>
+		<result property="taxCd"        	column="TAX_CD"/>
+		<result property="genTaxDesc"   	column="GEN_TAX_DESC"/>
+		<result property="whtTaxDesc"   	column="WHT_TAX_DESC"/>
+		<result property="genBirRlf"   		column="GEN_BIR_RLF"/>
+		<result property="genTaxRate"   	column="GEN_TAX_RATE"/>
+		<result property="whtRate"     	    column="WHT_RATE"/>
+		<result property="payor"        	column="PAYOR"/>
+		<result property="baseAmt"      	column="BASE_AMT"/>
+		<result property="taxAmt"       	column="TAX_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveTaxDetails" resultMap="taxDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_TAX_DETAILS_PKG.ret_tax_dtl(#{tranId},#{taxType},null,null,null,null))
+	</select>
+
 	<update id="saveAcseOrTransDtl" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_item_no		NUMBER;
@@ -345,5 +527,4 @@
 			DBMS_OUTPUT.PUT_LINE('PLACEHOLDER');
 		END;
 	</update>
-	
 </mapper>

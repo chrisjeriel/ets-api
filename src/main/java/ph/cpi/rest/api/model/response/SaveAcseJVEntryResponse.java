@@ -6,13 +6,16 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class ApproveJVResponse {
+public class SaveAcseJVEntryResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private Integer tranIdOut;
+	
 	public List<Error> getErrorList() {
-		if(errorList == null)
+		if (errorList == null) {
 			errorList = new ArrayList<Error>();
+		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -30,10 +33,16 @@ public class ApproveJVResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
+	public Integer getTranIdOut() {
+		return tranIdOut;
+	}
+	public void setTranIdOut(Integer tranIdOut) {
+		this.tranIdOut = tranIdOut;
+	}
 	@Override
 	public String toString() {
-		return "ApproveJVResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+		return "SaveAcseJVEntryResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + ", tranIdOut=" + tranIdOut + "]";
 	}
 	
 }

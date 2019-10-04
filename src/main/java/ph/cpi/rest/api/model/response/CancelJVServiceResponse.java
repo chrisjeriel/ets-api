@@ -6,13 +6,14 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class ApproveJVResponse {
+public class CancelJVServiceResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
 	public List<Error> getErrorList() {
-		if(errorList == null)
+		if (errorList == null) {
 			errorList = new ArrayList<Error>();
+		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -32,7 +33,7 @@ public class ApproveJVResponse {
 	}
 	@Override
 	public String toString() {
-		return "ApproveJVResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+		return "CancelJVServiceResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + "]";
 	}
 	

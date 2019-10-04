@@ -208,6 +208,7 @@ class invtTreaty {
 class acctTrty {
 	private Integer tranId;
 	private Integer quarterNo;
+	private Integer qsoaId;
 	private String quarterEnding;
 	private String cedingId;
 	private String currCd;
@@ -224,6 +225,13 @@ class acctTrty {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public Integer getQuarterNo() {
 		return quarterNo;
@@ -299,10 +307,11 @@ class acctTrty {
 	}
 	@Override
 	public String toString() {
-		return "acctTrty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", quarterEnding=" + quarterEnding
-				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt="
-				+ balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "acctTrty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId + ", quarterEnding="
+				+ quarterEnding + ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
+	
 }
