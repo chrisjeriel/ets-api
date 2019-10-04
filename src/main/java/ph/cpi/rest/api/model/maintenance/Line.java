@@ -20,7 +20,9 @@ public class Line {
 	private String updateUser;
 	private DateTime updateDate;
 	private String alopTag;
+	private String retAmtTag;
 	private String okDelete;
+	
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -123,6 +125,12 @@ public class Line {
 	public void setAlopTag(String alopTag) {
 		this.alopTag = alopTag;
 	}
+	public String getRetAmtTag() {
+		return retAmtTag;
+	}
+	public void setRetAmtTag(String retAmtTag) {
+		this.retAmtTag = retAmtTag;
+	}
 	public String getOkDelete() {
 		return okDelete;
 	}
@@ -136,6 +144,6 @@ public class Line {
 				+ renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq="
 				+ sortSeq + ", remarks=" + remarks + ", menuLineTag=" + menuLineTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", alopTag=" + alopTag + ", okDelete=" + okDelete + "]";
+				+ ", alopTag=" + alopTag + ", retAmtTag=" + retAmtTag + ", okDelete=" + okDelete + "]";
 	}
 }
