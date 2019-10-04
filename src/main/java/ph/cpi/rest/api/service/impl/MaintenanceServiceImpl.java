@@ -1208,6 +1208,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnTreatyCommissionResponse response = new RetrieveMtnTreatyCommissionResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("quoteYear", rmtcr.getQuoteYear());
+		params.put("currencyCd",rmtcr.getCurrencyCd());
 		params.put("position", rmtcr.getPaginationRequest().getPosition());
 		params.put("count", rmtcr.getPaginationRequest().getCount());
 		params.put("sortKey", rmtcr.getSortRequest().getSortKey());
@@ -1283,6 +1284,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	public SaveMtnTreatyShareResponse saveMtnTreatyShare(SaveMtnTreatyShareRequest smtsr) throws SQLException {
 		SaveMtnTreatyShareResponse smtsResponse = new SaveMtnTreatyShareResponse();
 		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
+		saveMtnTreatyShareParams.put("currencyCd", smtsr.getCurrencyCd());
 		saveMtnTreatyShareParams.put("saveTreatyComm", smtsr.getSaveTreatyComm());
 		saveMtnTreatyShareParams.put("deleteTreatyComm", smtsr.getDeleteTreatyComm());
 		saveMtnTreatyShareParams.put("deleteTreatyShare", smtsr.getDeleteTreatyShare());

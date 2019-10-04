@@ -820,6 +820,7 @@
     	<result property="treatyId" 		column="TREATY_ID"/>
     	<result property="treatyName" 		column="TREATY_NAME"/>
     	<result property="activeTag" 		column="ACTIVE_TAG"/>
+    	<result property="currencyCd"			column="CURRENCY_CD"/>
     	<result property="commRate" 		column="COMMISSION_RATE"/>
     	<result property="treatyAbbr" 		column="TREATY_ABBR"/>
     	<result property="treatyType" 		column="TREATY_TYPE"/>
@@ -836,6 +837,7 @@
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
     	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG.ret_mtn_treaty_com(
+    															   #{currencyCd, jdbcType=VARCHAR},
     															   #{quoteYear, jdbcType=VARCHAR},
     															   #{position, jdbcType=VARCHAR},
     															   #{count, jdbcType=VARCHAR},
@@ -1978,6 +1980,7 @@
 	</select>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.TreatyShare" id="assocTreatyShare">
+    	<result property="currencyCd"			column="CURRENCY_CD"/>
      	<result property="treatyYear" column="TS_TREATY_YEAR"/>
 	    <result property="treatyId"   column="TS_TREATY_ID"/>
 	    <result property="trtyCedId"  column="TS_TRTY_CED_ID"/>
@@ -2072,6 +2075,7 @@
     	BEGIN
     		<foreach collection="deleteTreatyComm" item="del">
 	    		MTN_TREATY_COMM_PKG.del_treaty_com(
+	    			#{currencyCd,  jdbcType=VARCHAR},
 			    	#{del.treatyYear, jdbcType=INTEGER},
 			    	#{del.treatyId, jdbcType=INTEGER}
 			    );
@@ -2079,23 +2083,25 @@
     		
     		<foreach collection="deleteTreatyShare" item="del">
     			MTN_TREATY_SHARE_PKG.del_treaty_share(
+	    			#{currencyCd,  jdbcType=VARCHAR},
 			   		#{del.treatyYear, jdbcType=INTEGER},
 					#{del.treatyId, jdbcType=INTEGER},
 					#{del.trtyCedId, jdbcType=VARCHAR}
 				);
     		</foreach>
     		
-    		<foreach collection="deleteCedRetention" item="del">
+    		<!-- <foreach collection="deleteCedRetention" item="del">
     			MTN_CEDING_RETENTION_PKG.del_mtn_ced_retention(
 	    			#{del.treatyYear, jdbcType=INTEGER},
 			   		#{del.treatyId, jdbcType=INTEGER},
 			   		#{del.trtyCedId, jdbcType=VARCHAR},
 			   		#{del.cedingId, jdbcType=VARCHAR}
 			   	);
-    		</foreach>
+    		</foreach> -->
     		
     		<foreach collection="saveTreatyComm" item="save">
 		    	MTN_TREATY_COMM_PKG.save_treaty_com(
+	    			#{currencyCd,  jdbcType=VARCHAR},
 		    		#{save.treatyYear, jdbcType=INTEGER},
 		    		#{save.treatyId, jdbcType=INTEGER},
 		    		#{save.commRate, jdbcType=DECIMAL},
@@ -2108,6 +2114,7 @@
 		    		
 		    	<foreach collection="save.treatyShareList" item="treatyShare">
 		    		MTN_TREATY_SHARE_PKG.save_treaty_share(
+	    				#{currencyCd,  jdbcType=VARCHAR},
 				    	#{treatyShare.treatyYear, jdbcType=INTEGER},
 				    	#{treatyShare.treatyId, jdbcType=INTEGER},
 				    	#{treatyShare.trtyCedId, jdbcType=VARCHAR},
@@ -2120,7 +2127,7 @@
 						CAST(to_timestamp(#{treatyShare.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				    );
 					    
-				    <foreach collection="treatyShare.cedRetentionList" item="cedRet">
+				    <!-- <foreach collection="treatyShare.cedRetentionList" item="cedRet">
 				    	MTN_CEDING_RETENTION_PKG.save_mtn_ced_retention(
 				    		#{cedRet.treatyYear, jdbcType=INTEGER},
 				    		#{cedRet.treatyId, jdbcType=INTEGER},
@@ -2134,7 +2141,7 @@
 							#{cedRet.updateUser, jdbcType=VARCHAR},
 							CAST(to_timestamp(#{cedRet.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				    	);
-				    </foreach>
+				    </foreach> -->
 		    	</foreach>
     		</foreach>
     		SELECT COUNT(*)
