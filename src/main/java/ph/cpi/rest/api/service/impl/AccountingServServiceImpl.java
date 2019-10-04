@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -462,5 +464,19 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return saptResponse;
+	}
+
+	@Override
+	public RetrieveAcseAcctEntriesResponse retrieveAcctEntries(RetrieveAcseAcctEntriesRequest request)
+			throws SQLException {
+		RetrieveAcseAcctEntriesResponse response = new RetrieveAcseAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", request.getTranId());
+		params.put("entryId", request.getEntryId());
+		params.put("glAcctId", request.getGlAcctId());
+		params.put("slTypeCd", request.getSlTypeCd());
+		params.put("slCd", request.getSlCd());
+		response.setAcctEntries(acctServDao.retrieveAcctEntries(params));
+		return response;
 	}
 }

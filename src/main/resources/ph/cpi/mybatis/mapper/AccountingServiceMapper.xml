@@ -602,4 +602,30 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseAcctEntries" id="acctEntryMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="entryId" 			column="ENTRY_ID"/>
+		<result property="glAcctId" 		column="GL_ACCT_ID"/>
+		<result property="glShortCd" 		column="GL_SHORT_CD"/>
+		<result property="glShortDesc"  	column="GL_SHORT_DESC"/>
+		<result property="slTypeCd" 		column="SL_TYPE_CD"/>
+		<result property="slTypeName" 		column="SL_TYPE_NAME"/>
+		<result property="slCd" 			column="SL_CD"/>
+		<result property="slName" 			column="SL_NAME"/>
+		<result property="creditAmt" 		column="CREDIT_AMT"/>
+		<result property="debitAmt" 		column="DEBIT_AMT"/>
+		<result property="foreignCreditAmt" column="FOREIGN_CREDIT_AMT"/>
+		<result property="foreignDebitAmt"  column="FOREIGN_DEBIT_AMT"/>
+		<result property="autoTag" 			column="AUTO_TAG"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateLevel" 		column="UPDATE_LEVEL"/>
+	</resultMap>
+	
+	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd})
+	</select>
 </mapper>

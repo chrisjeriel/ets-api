@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -141,5 +142,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public List<AcseCv> retrieveAcseCv(HashMap<String, Object> params) throws SQLException {
 		List<AcseCv> acseCvList  = sqlSession.selectList("retrieveAcseCv", params);
 		return acseCvList;
+	}
+
+	@Override
+	public List<AcseAcctEntries> retrieveAcctEntries(HashMap<String, Object> params) throws SQLException {
+		List<AcseAcctEntries> list = sqlSession.selectList("retrieveAcctEntries", params);
+		return list;
 	}
 }

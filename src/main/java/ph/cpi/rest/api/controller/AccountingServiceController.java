@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -31,6 +32,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -182,6 +184,13 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcsePrqTrans");
 		logger.info("SaveAcsePrqTransRequest : " + saptr.toString());
 		return acctServService.saveAcsePrqTrans(saptr);
+	}
+	
+	@GetMapping(path="retrieveAcctEntries")
+	public @ResponseBody RetrieveAcseAcctEntriesResponse retrieveAcctEntries(RetrieveAcseAcctEntriesRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcctEntries");
+		logger.info("RetrieveAcseAcctEntriesRequest : " + request.toString());
+		return acctServService.retrieveAcctEntries(request);
 	}
 	
 //	@GetMapping(path="retrieveAcseCv")
