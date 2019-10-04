@@ -39,11 +39,13 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -157,5 +159,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseOrTransDtl");
 		logger.info("SaveAcseOrTransDtlRequest : " + saotdr.toString());
 		return acctServService.saveAcseOrTransDtl(saotdr);
+	}
+	
+	@PostMapping(path="saveTaxDetails")
+	public @ResponseBody SaveAcseTaxDetailsResponse saveTaxDetails(@RequestBody SaveAcseTaxDetailsRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveTaxDetails");
+		logger.info("SaveAcseTaxDetailsRequest : " + request.toString());
+		return acctServService.saveTaxDetails(request);
 	}
 }

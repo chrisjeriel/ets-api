@@ -112,6 +112,13 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public Integer saveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveAcseOrTransDtl", params);
 		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveTaxDetails(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveTaxDetails",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}	
 
 }
