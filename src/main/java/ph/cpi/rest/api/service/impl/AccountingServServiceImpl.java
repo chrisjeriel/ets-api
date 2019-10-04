@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -33,6 +34,7 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -573,6 +575,16 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseAttachmentsResponse retrieveAttachments(RetrieveAcseAttachmentsRequest request)
+			throws SQLException {
+		RetrieveAcseAttachmentsResponse response = new RetrieveAcseAttachmentsResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setAcitAttachmentsList(acctServDao.retrieveAttachments(params));
 		return response;
 	}
 }

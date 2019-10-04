@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -27,6 +28,7 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -79,4 +81,6 @@ public interface AccountingServService {
 	public RetrieveAcseCvResponse retrieveAcseCv(RetrieveAcseCvRequest raptp ) throws SQLException;
 	public SaveAcseCvResponse saveAcseCv(SaveAcseCvRequest sacr) throws SQLException;
 	public SaveAcseAcctEntriesResponse saveAcctEntries(SaveAcseAcctEntriesRequest request) throws SQLException;
+	public RetrieveAcseAttachmentsResponse retrieveAttachments(RetrieveAcseAttachmentsRequest request) throws SQLException;
+	
 }

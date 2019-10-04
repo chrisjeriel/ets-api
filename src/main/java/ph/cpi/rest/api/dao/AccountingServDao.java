@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
+import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -36,4 +37,5 @@ public interface AccountingServDao {
 	public List<AcseAcctEntries> retrieveAcctEntries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcseCv(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcctEntries(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseAttachments> retrieveAttachments(final HashMap<String, Object> params) throws SQLException;
 }
