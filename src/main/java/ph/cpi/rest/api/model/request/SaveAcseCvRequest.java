@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
-public class SaveAcitCvRequest {
+public class SaveAcseCvRequest {
 	private Integer tranId;
 	private Integer mainTranId;
     private String cvYear;
@@ -36,14 +36,14 @@ public class SaveAcitCvRequest {
 	public Integer getTranId() {
 		return tranId;
 	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
 	public Integer getMainTranId() {
 		return mainTranId;
 	}
 	public void setMainTranId(Integer mainTranId) {
 		this.mainTranId = mainTranId;
-	}
-	public void setTranId(Integer tranId) {
-		this.tranId = tranId;
 	}
 	public String getCvYear() {
 		return cvYear;
@@ -69,16 +69,6 @@ public class SaveAcitCvRequest {
 	public void setCvStatus(String cvStatus) {
 		this.cvStatus = cvStatus;
 	}
-//	public String getPayeeNo() {
-//		return payeeNo;
-//	}
-//	public void setPayeeNo(String payeeNo) {
-//		this.payeeNo = payeeNo;
-//	}
-	
-	public String getPayee() {
-		return payee;
-	}
 	public String getPaytReqType() {
 		return paytReqType;
 	}
@@ -96,6 +86,9 @@ public class SaveAcitCvRequest {
 	}
 	public void setPayeeCd(String payeeCd) {
 		this.payeeCd = payeeCd;
+	}
+	public String getPayee() {
+		return payee;
 	}
 	public void setPayee(String payee) {
 		this.payee = payee;
@@ -234,7 +227,7 @@ public class SaveAcitCvRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitCvRequest [tranId=" + tranId + ", mainTranId=" + mainTranId + ", cvYear=" + cvYear + ", cvNo="
+		return "SaveAcseCvRequest [tranId=" + tranId + ", mainTranId=" + mainTranId + ", cvYear=" + cvYear + ", cvNo="
 				+ cvNo + ", cvDate=" + cvDate + ", cvStatus=" + cvStatus + ", paytReqType=" + paytReqType
 				+ ", payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd + ", payee=" + payee + ", particulars="
 				+ particulars + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo + ", checkDate="

@@ -35,13 +35,13 @@ import sun.misc.BASE64Encoder;
 /**
  * The Class PasswordEncoder.
  */
-public class GWEncoder {
+public class ETSEncoder {
 
 	/** The key. */
 	protected static SecretKey key;
 	
 	/** The log. */
-	private static Logger log = Logger.getLogger(GWEncoder.class);
+	private static Logger log = Logger.getLogger(ETSEncoder.class);
 	
 	/** The algorithm. */
 	private static String algorithm = "DESede";
@@ -50,7 +50,7 @@ public class GWEncoder {
 	private static String fileName = "ETS_WEB.key";
 	
 	/** The file dir. */
-	private static String fileDir = "C:/ETS_WEB/KEY";
+	private static String fileDir = "C:/ETS/KEY";
 	
 	/** The key size. */
 	private static String keySize = "122";
@@ -266,7 +266,7 @@ public class GWEncoder {
 	 * @param algorithm the new algorithm
 	 */
 	public void setAlgorithm(String algorithm) {
-		GWEncoder.algorithm = algorithm;
+		ETSEncoder.algorithm = algorithm;
 	}
 
 	/**
@@ -284,7 +284,7 @@ public class GWEncoder {
 	 * @param fileDir the new file dir
 	 */
 	public void setFileDir(String fileDir) {
-		GWEncoder.fileDir = fileDir;
+		ETSEncoder.fileDir = fileDir;
 	}
 
 	/**
@@ -302,7 +302,7 @@ public class GWEncoder {
 	 * @param fileName the new file name
 	 */
 	public void setFileName(String fileName) {
-		GWEncoder.fileName = fileName;
+		ETSEncoder.fileName = fileName;
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class GWEncoder {
 	 * @param key the new key
 	 */
 	public void setKey(SecretKey key) {
-		GWEncoder.key = key;
+		ETSEncoder.key = key;
 	}
 
 	/**
@@ -338,7 +338,7 @@ public class GWEncoder {
 	 * @param keySize the new key size
 	 */
 	public void setKeySize(String keySize) {
-		GWEncoder.keySize = keySize;
+		ETSEncoder.keySize = keySize;
 	}
 	
 	public static byte[] createHash(String password, String algorithm, 
