@@ -1033,4 +1033,18 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcitArSeriesRequest : " + rmaasr.toString());
 		return maintenanceService.retrieveMtnAcitArSeries(rmaasr);
 	}
+	
+	@GetMapping(path="retrieveMtnGenTax")
+	public @ResponseBody RetrieveMtnGenTaxResponse retrieveMtnGenTax(RetrieveMtnGenTaxRequest rmgtr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnGenTax");
+		logger.info("RetrieveMtnGenTaxRequest : " + rmgtr.toString());
+		return maintenanceService.retrieveMtnGenTax(rmgtr);
+	}
+	
+	@GetMapping(path="retrieveMtnWhTax")
+	public @ResponseBody RetrieveMtnWhTaxResponse retrieveMtnWhTax(RetrieveMtnWhTaxRequest rmwt) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnWhTax");
+		logger.info("RetrieveMtnWhTaxRequest : " + rmwt.toString());
+		return maintenanceService.retrieveMtnWhTax(rmwt);
+	}
 }

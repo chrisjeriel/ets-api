@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
+import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
 
 @Component
 public class AccountingServDaoImpl implements AccountingServDao{
@@ -52,12 +53,24 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public List<OrTransDtl> retrieveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
+		List<OrTransDtl> res = sqlSession.selectList("retOrTransDtl", params);
+		return res;
+	}
 	
 	@Override
 	public HashMap<String, Object> updateAcsePaytReqStat(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updateAcsePaytReqStat", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public Integer saveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveAcseOrTransDtl", params);
+		return res;
 	}	
 
 }

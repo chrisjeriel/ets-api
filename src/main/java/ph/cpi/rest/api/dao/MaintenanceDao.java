@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.DCBUser;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
+import ph.cpi.rest.api.model.maintenance.GeneralTaxes;
 import ph.cpi.rest.api.model.maintenance.Insured;
 import ph.cpi.rest.api.model.maintenance.Intermediary;
 import ph.cpi.rest.api.model.maintenance.InvtSecurityType;
@@ -72,6 +73,7 @@ import ph.cpi.rest.api.model.maintenance.TreatyLimit;
 import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
+import ph.cpi.rest.api.model.maintenance.WithholdingTaxes;
 
 public interface MaintenanceDao {
 
@@ -224,4 +226,6 @@ public interface MaintenanceDao {
 	public List<MtnAcseTranType> retrieveMtnAcseTranType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnAcseDCBNo(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArSeries> retrieveMtnAcitArSeries(final HashMap<String, Object> params) throws SQLException;
+	public List<GeneralTaxes> retrieveMtnGenTax(final HashMap<String, Object> params) throws SQLException;
+	public List<WithholdingTaxes> retrieveMtnWhTax(final HashMap<String, Object> params) throws SQLException;
 }

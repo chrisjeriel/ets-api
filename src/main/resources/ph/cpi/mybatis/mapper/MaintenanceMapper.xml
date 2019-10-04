@@ -3903,5 +3903,58 @@
 		SELECT * FROM TABLE(MTN_ACIT_AR_SERIES_PKG.ret_mtn_acit_ar_series(#{usedTag, jdbcType=VARCHAR}))
 		WHERE ROWNUM = NVL(#{rowNum, jdbcType=VARCHAR}, ROWNUM)
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.GeneralTaxes" id="genTaxMap">
+		<result property="taxId"				column="TAX_ID" />
+		<result property="taxCd"				column="TAX_CD" />
+		<result property="taxName"				column="TAX_NAME" />
+		<result property="chargeType"			column="CHARGE_TYPE" />
+		<result property="taxRate"				column="RATE" />
+		<result property="amount"				column="AMOUNT" />
+		<result property="defaultAcitGl"		column="DEFAULT_ACIT_GL" />
+		<result property="defaultAcseGl"		column="DEFAULT_ACSE_GL" />
+		<result property="fixedTag"				column="FIXED_TAG" />
+		<result property="activeTag"			column="ACTIVE_TAG" />
+		<result property="remarks"				column="REMARKS" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+    
+    <select id="retMtnGenTax" resultMap="genTaxMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_GENTAX_PKG.ret_mtn_gentax(#{taxCd, jdbcType=VARCHAR},
+														  #{taxName, jdbcType=VARCHAR},
+														  #{chargeType, jdbcType=VARCHAR},
+														  #{fixedTag, jdbcType=VARCHAR},
+														  #{activeTag, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.WithholdingTaxes" id="whTaxMap">
+		<result property="whTaxId"			column="WHTAX_ID" />
+		<result property="taxCd"			column="TAX_CD" />
+		<result property="taxName"			column="TAX_NAME" />
+		<result property="taxType"			column="TAX_TYPE" />
+		<result property="taxRate"			column="RATE" />
+		<result property="defaultAcitGl"	column="DEFAULT_ACIT_GL" />
+		<result property="defaultAcseGl"	column="DEFAULT_ACSE_GL" />
+		<result property="creditableTag"	column="CREDITABLE_TAG" />
+		<result property="fixedTag"			column="FIXED_TAG" />
+		<result property="activeTag"		column="ACTIVE_TAG" />
+		<result property="remarks"			column="REMARKS" />
+		<result property="createUser"		column="CREATE_USER" />
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"		column="UPDATE_USER" />
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+    
+    <select id="retMtnWhTax" resultMap="whTaxMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_WHTAX_PKG.ret_mtn_whtax(#{taxCd, jdbcType=VARCHAR},
+														  #{taxName, jdbcType=VARCHAR},
+														  #{taxType, jdbcType=VARCHAR},
+														  #{creditableTag, jdbcType=VARCHAR},
+														  #{fixedTag, jdbcType=VARCHAR},
+														  #{activeTag, jdbcType=VARCHAR}))
+	</select>
      
 </mapper>

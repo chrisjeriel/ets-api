@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
@@ -79,10 +83,24 @@ public class AccountingServiceController {
 		return acctServService.saveAcsePaytReq(saprr);
 	}
 	
+	@GetMapping(path="retrieveAcseOrTransDtl")
+	public @ResponseBody RetrieveAcseOrTransDtlResponse retrieveAcseOrTransDtl(RetrieveAcseOrTransDtlRequest raotdr) throws SQLException {
+		logger.info("GET: /api/acct-service-service/retrieveAcseOrTransDtl");
+		logger.info("RetrieveAcseOrTransDtlRequest : " + raotdr.toString());
+		return acctServService.retrieveAcseOrTransDtl(raotdr);
+	}
+
 	@PostMapping(path="updateAcsePaytReqStat")
 	public @ResponseBody UpdateAcsePaytReqStatResponse updateAcsePaytReqStat(@RequestBody UpdateAcsePaytReqStatRequest uaprsr) throws SQLException {
 		logger.info("POST: /api/acct-serv-service/updateAcsePaytReqStat");
 		logger.info("UpdateAcsePaytReqStatRequest : " + uaprsr.toString());
 		return acctServService.updateAcsePaytReqStat(uaprsr);
+	}
+	
+	@PostMapping(path="saveAcseOrTransDtl")
+	public @ResponseBody SaveAcseOrTransDtlResponse saveAcseOrTransDtl(@RequestBody SaveAcseOrTransDtlRequest saotdr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseOrTransDtl");
+		logger.info("SaveAcseOrTransDtlRequest : " + saotdr.toString());
+		return acctServService.saveAcseOrTransDtl(saotdr);
 	}
 }

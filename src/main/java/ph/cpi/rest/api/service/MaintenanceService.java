@@ -152,4 +152,6 @@ public interface MaintenanceService {
 	public RetrieveMtnAcseDCBNoResponse retrieveMtnAcseDCBNo(RetrieveMtnAcseDCBNoRequest rmadnr) throws SQLException;
 	public SaveMtnAcseDCBNoResponse saveMtnAcseDCBNo(SaveMtnAcseDCBNoRequest smaidcbr) throws SQLException;
 	public RetrieveMtnAcitArSeriesResponse retrieveMtnAcitArSeries(RetrieveMtnAcitArSeriesRequest rmaasr) throws SQLException;
+	public RetrieveMtnGenTaxResponse retrieveMtnGenTax(RetrieveMtnGenTaxRequest rmgtr) throws SQLException;
+	public RetrieveMtnWhTaxResponse retrieveMtnWhTax(RetrieveMtnWhTaxRequest rmwt) throws SQLException;
 }
