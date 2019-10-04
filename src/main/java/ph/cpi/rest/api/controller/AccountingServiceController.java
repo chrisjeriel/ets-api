@@ -13,16 +13,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcitPaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
@@ -104,10 +108,18 @@ public class AccountingServiceController {
 		return acctServService.saveAcsePrqTrans(saptr);
 	}
 	
-//	@GetMapping(path="retrieveAcseCv")
-//	public @ResponseBody RetrieveAcseCvResponse retrieveAcseCv(RetrieveAcseCvRequest racr) throws SQLException {
-//		logger.info("GET: /api/acct-serv-service/retrieveAcseCv");
-//		logger.info("RetrieveAcseCvRequest : " + racr.toString());
-//		return acctServService.retrieveAcseCv(racr);
-//	}
+	@GetMapping(path="retrieveAcseCv")
+	public @ResponseBody RetrieveAcseCvResponse retrieveAcseCv(RetrieveAcseCvRequest racr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseCv");
+		logger.info("RetrieveAcseCvRequest : " + racr.toString());
+		return acctServService.retrieveAcseCv(racr);
+	}
+	
+	@PostMapping(path="saveAcseCv")
+	public @ResponseBody SaveAcseCvResponse saveAcseCv(@RequestBody SaveAcseCvRequest sacr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseCv");
+		logger.info("SaveAcseCvRequest : " + sacr.toString());
+		return acctServService.saveAcseCv(sacr);
+	}
+	
 }
