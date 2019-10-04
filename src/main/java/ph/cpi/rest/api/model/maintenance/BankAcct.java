@@ -23,6 +23,21 @@ public class BankAcct {
 	private String updateUser;
 	private DateTime updateDate;
 	private String dcbTag;
+	private String okDelete;
+	private String bankName;
+	
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public Integer getBankCd() {
 		return bankCd;
 	}
@@ -145,13 +160,18 @@ public class BankAcct {
 	}
 	@Override
 	public String toString() {
-		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd + ", accountNo=" + accountNo
-				+ ", accountName=" + accountName + ", acctStatus=" + acctStatus + ", acctStatusName=" + acctStatusName
-				+ ", currCd=" + currCd + ", bankBranch=" + bankBranch + ", accountType=" + accountType
-				+ ", acctTypeName=" + acctTypeName + ", openDate=" + openDate + ", closeDate=" + closeDate
-				+ ", acItGlDepNo=" + acItGlDepNo + ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", dcbTag=" + dcbTag + "]";
+		return "BankAcct [bankCd=" + bankCd + ", bankAcctCd=" + bankAcctCd
+				+ ", accountNo=" + accountNo + ", accountName=" + accountName
+				+ ", acctStatus=" + acctStatus + ", acctStatusName="
+				+ acctStatusName + ", currCd=" + currCd + ", bankBranch="
+				+ bankBranch + ", accountType=" + accountType
+				+ ", acctTypeName=" + acctTypeName + ", openDate=" + openDate
+				+ ", closeDate=" + closeDate + ", acItGlDepNo=" + acItGlDepNo
+				+ ", acSeGlDepNo=" + acSeGlDepNo + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", dcbTag=" + dcbTag + ", okDelete=" + okDelete
+				+ ", bankName=" + bankName + "]";
 	}
 	
 }

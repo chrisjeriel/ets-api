@@ -3,24 +3,22 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnPoolRetHistRequest {
-
-	private String currencyCd;
-	private Integer retHistId;
+public class RetrieveAcsePrqTransRequest {
+	private String reqId;
+	private String itemNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
-	public String getCurrencyCd() {
-		return currencyCd;
+	public String getReqId() {
+		return reqId;
 	}
-	public void setCurrencyCd(String currencyCd) {
-		this.currencyCd = currencyCd;
+	public void setReqId(String reqId) {
+		this.reqId = reqId;
 	}
-	public Integer getRetHistId() {
-		return retHistId;
+	public String getItemNo() {
+		return itemNo;
 	}
-	public void setRetHistId(Integer retHistId) {
-		this.retHistId = retHistId;
+	public void setItemNo(String itemNo) {
+		this.itemNo = itemNo;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -36,7 +34,7 @@ public class RetrieveMtnPoolRetHistRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnPoolRetHistRequest [currencyCd=" + currencyCd + ", retHistId=" + retHistId
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcsePrqTransRequest [reqId=" + reqId + ", itemNo=" + itemNo + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

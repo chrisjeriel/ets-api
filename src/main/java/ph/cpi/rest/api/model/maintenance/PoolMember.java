@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.maintenance;
 import org.joda.time.DateTime;
 
 public class PoolMember {
-
+	private String currencyCd;
 	private Integer retHistId;
 	private String cedingId;
 	private String cedingName;
@@ -15,6 +15,12 @@ public class PoolMember {
 	private DateTime updateDate;
 	private String okDelete;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getRetHistId() {
 		return retHistId;
 	}
@@ -77,9 +83,9 @@ public class PoolMember {
 	}
 	@Override
 	public String toString() {
-		return "PoolMember [retHistId=" + retHistId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", retLine1=" + retLine1 + ", retLine2=" + retLine2 + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ "]";
+		return "PoolMember [currencyCd=" + currencyCd + ", retHistId=" + retHistId + ", cedingId=" + cedingId
+				+ ", cedingName=" + cedingName + ", retLine1=" + retLine1 + ", retLine2=" + retLine2 + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", okDelete=" + okDelete + "]";
 	}
 }

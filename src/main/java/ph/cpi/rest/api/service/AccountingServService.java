@@ -12,13 +12,23 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
+import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
+import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -33,6 +43,9 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 
 @Service
@@ -52,4 +65,7 @@ public interface AccountingServService {
 	public RetrieveAcseOrTransDtlResponse retrieveAcseOrTransDtl(RetrieveAcseOrTransDtlRequest raotdr) throws SQLException;
 	public SaveAcseOrTransDtlResponse saveAcseOrTransDtl(SaveAcseOrTransDtlRequest saotdr) throws SQLException;
 	public SaveAcseTaxDetailsResponse saveTaxDetails(SaveAcseTaxDetailsRequest request) throws SQLException;
+	public RetrieveAcsePrqTransResponse retrieveAcsePrqTrans(RetrieveAcsePrqTransRequest raptp ) throws SQLException;
+	public SaveAcsePrqTransResponse saveAcsePrqTrans(SaveAcsePrqTransRequest saptr) throws SQLException;
+	
 }

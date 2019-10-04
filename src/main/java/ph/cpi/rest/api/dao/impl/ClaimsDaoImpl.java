@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -190,7 +191,12 @@ public class ClaimsDaoImpl implements ClaimsDao {
 
 	@Override
 	public Integer redistributeClaimDist(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("redistributeClaimDist",params);
+		Integer errorCode;
+		try{
+			errorCode = sqlSession.update("redistributeClaimDist",params);
+		}catch (UncategorizedSQLException e){
+			throw (SQLException) e.getCause();
+		}
 		return errorCode;
 	}
 

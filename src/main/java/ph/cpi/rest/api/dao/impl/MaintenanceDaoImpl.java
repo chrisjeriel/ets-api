@@ -1089,4 +1089,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<WithholdingTaxes> res = sqlSession.selectList("retMtnWhTax", params);
 		return res;
 	}
+
+	@Override
+	public Integer saveMtnBussType(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnBussType",params);
+		return code;
+	}
 }

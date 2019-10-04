@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
@@ -61,7 +63,9 @@ public class QuoteDaoImpl implements QuoteDao{
 
 	@Override
 	public List<Quotation> retrieveQuoteListing(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
+//		RowBounds rb = new RowBounds(
+//						(((PaginationRequest) params.get("pagination")).getPosition() - 1 ) * ((PaginationRequest) params.get("pagination")).getCount()
+//						,((PaginationRequest) params.get("pagination")).getCount());
 		List<Quotation> quoteList = sqlSession.selectList("retrieveQuoteListing", params);
 		return quoteList;
 	}
@@ -392,10 +396,16 @@ public class QuoteDaoImpl implements QuoteDao{
 		return res;
 	}
 
-	@Override
+	@Override       
 	public Integer copyCompetition(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("copyCompetition", params);
 		return errorCode;
+	}
+
+	@Override
+	public Integer retrieveQuoteListingLength(HashMap<String, Object> params) throws SQLException {
+		Integer length = (Integer) sqlSession.selectOne("retrieveQuoteListingLength", params);
+		return length;
 	}
 		
 }

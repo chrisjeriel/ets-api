@@ -144,6 +144,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	}
 	
 	@Override
+	public Integer retrievePolicyLength(HashMap<String, Object> params) throws SQLException {
+		Integer length = (Integer) sqlSession.selectOne("retrievePolicyLength", params);
+		return length;
+	}
+	
+	@Override
 	public HashMap<String, Object> savePolAttachments(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("savePolAttachment",params);

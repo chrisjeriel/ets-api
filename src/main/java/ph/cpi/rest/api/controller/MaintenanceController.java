@@ -1047,4 +1047,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnWhTaxRequest : " + rmwt.toString());
 		return maintenanceService.retrieveMtnWhTax(rmwt);
 	}
+	
+	@PostMapping(path="saveMtnBussType")
+	public @ResponseBody SaveMtnBussTypeResponse saveMtnBussType(@RequestBody SaveMtnBussTypeRequest smbtr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnBussType");
+		logger.info("SaveMtnBussTypeRequest : " + smbtr.toString());
+		return maintenanceService.saveMtnBussType(smbtr);
+	}
 }

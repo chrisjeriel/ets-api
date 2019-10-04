@@ -5,12 +5,18 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveMtnTreatyShareRequest {
-
-	List<TreatyComm> saveTreatyComm;
-	List<TreatyComm> deleteTreatyComm;
-	List<TreatyShare> deleteTreatyShare;
-	List<CedingRetention> deleteCedRetention;
+	private String currencyCd;
+	private List<TreatyComm> saveTreatyComm;
+	private List<TreatyComm> deleteTreatyComm;
+	private List<TreatyShare> deleteTreatyShare;
+	private List<CedingRetention> deleteCedRetention;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public List<TreatyComm> getSaveTreatyComm() {
 		return saveTreatyComm;
 	}
@@ -37,8 +43,9 @@ public class SaveMtnTreatyShareRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveMtnTreatyShareRequest [saveTreatyComm=" + saveTreatyComm + ", deleteTreatyComm=" + deleteTreatyComm
-				+ ", deleteTreatyShare=" + deleteTreatyShare + ", deleteCedRetention=" + deleteCedRetention + "]";
+		return "SaveMtnTreatyShareRequest [currencyCd=" + currencyCd + ", saveTreatyComm=" + saveTreatyComm
+				+ ", deleteTreatyComm=" + deleteTreatyComm + ", deleteTreatyShare=" + deleteTreatyShare
+				+ ", deleteCedRetention=" + deleteCedRetention + "]";
 	}
 }
 

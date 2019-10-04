@@ -592,7 +592,16 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("updateDate", ucdr.getUpdateDate());
 		try{
 			response.setReturnCode(claimsDao.redistributeClaimDist(params));
-		}catch (Exception ex) {
+		}catch (SQLException ex) {
+			if(ex.getErrorCode()== 20001){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+				ex.printStackTrace();
+			}
+		}catch (Exception ex){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
 			ex.printStackTrace();

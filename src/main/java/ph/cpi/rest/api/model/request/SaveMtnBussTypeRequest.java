@@ -1,28 +1,45 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class BussType {
-	private Integer bussTypeCd;
+public class SaveMtnBussTypeRequest {
+	
+	private List<SaveBussType> saveList;
+	private List<SaveBussType> delList;
+
+	public List<SaveBussType> getSaveList() {
+		return saveList;
+	}
+	public void setSaveList(List<SaveBussType> saveList) {
+		this.saveList = saveList;
+	}
+	public List<SaveBussType> getDelList() {
+		return delList;
+	}
+	public void setDelList(List<SaveBussType> delList) {
+		this.delList = delList;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnBussTypeRequest [saveList=" + saveList + ", delList="
+				+ delList + "]";
+	}
+}
+
+class SaveBussType{
+	private String bussTypeCd;
 	private String bussTypeName;
 	private String description;
 	private String activeTag;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
+	private String updateDate;
 	
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
-	public Integer getBussTypeCd() {
+	public String getBussTypeCd() {
 		return bussTypeCd;
 	}
-	public void setBussTypeCd(Integer bussTypeCd) {
+	public void setBussTypeCd(String bussTypeCd) {
 		this.bussTypeCd = bussTypeCd;
 	}
 	public String getBussTypeName() {
@@ -49,10 +66,10 @@ public class BussType {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -61,20 +78,18 @@ public class BussType {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "BussType [bussTypeCd=" + bussTypeCd + ", bussTypeName="
+		return "SaveBankAcct [bussTypeCd=" + bussTypeCd + ", bussTypeName="
 				+ bussTypeName + ", description=" + description
 				+ ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

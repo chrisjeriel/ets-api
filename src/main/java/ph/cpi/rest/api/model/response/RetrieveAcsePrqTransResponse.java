@@ -4,20 +4,17 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.Policy;
+import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 
-public class RetrievePolicyListingResponse {
-
-	private List<Policy> policyList;
-	private Integer length;
+public class RetrieveAcsePrqTransResponse {
+	private List<AcsePrqTrans> acsePrqTrans;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public List<Policy> getPolicyList() {
-		return policyList;
+	public List<AcsePrqTrans> getAcsePrqTrans() {
+		return acsePrqTrans;
 	}
-	public void setPolicyList(List<Policy> policyList) {
-		this.policyList = policyList;
+	public void setAcsePrqTrans(List<AcsePrqTrans> acsePrqTrans) {
+		this.acsePrqTrans = acsePrqTrans;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -31,15 +28,9 @@ public class RetrievePolicyListingResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	public Integer getLength() {
-		return length;
-	}
-	public void setLength(Integer length) {
-		this.length = length;
-	}
 	@Override
 	public String toString() {
-		return "RetrievePolicyListingResponse [policyList=" + policyList + ", length=" + length
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveAcsePrqTransResponse [acsePrqTrans=" + acsePrqTrans + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

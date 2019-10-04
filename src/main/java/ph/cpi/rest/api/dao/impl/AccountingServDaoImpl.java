@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
-import ph.cpi.rest.api.model.accountingservice.AcseTransactions;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
 
@@ -91,6 +92,7 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		return params;
 	}
 
+	@Override
 	public List<OrTransDtl> retrieveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
 		List<OrTransDtl> res = sqlSession.selectList("retOrTransDtl", params);
 		return res;
@@ -109,6 +111,7 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		return list;
 	}
 
+	@Override
 	public Integer saveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveAcseOrTransDtl", params);
 		return res;
@@ -120,5 +123,23 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}	
+	
+	@Override
+	public List<AcsePrqTrans> retrieveAcsePrqTrans(HashMap<String, Object> params) throws SQLException {
+		List<AcsePrqTrans> acsePrqTransList  = sqlSession.selectList("retrieveAcsePrqTrans", params);
+		return acsePrqTransList;
+	}
 
+	@Override
+	public HashMap<String, Object> saveAcsePrqTrans(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcsePrqTrans", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+	public List<AcseCv> retrieveAcseCv(HashMap<String, Object> params) throws SQLException {
+		List<AcseCv> acseCvList  = sqlSession.selectList("retrieveAcseCv", params);
+		return acseCvList;
+	}
 }

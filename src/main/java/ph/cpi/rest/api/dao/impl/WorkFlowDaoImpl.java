@@ -48,6 +48,9 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	@Override
 	public Integer saveReminders(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
+		
+		logger.info("WFM Dao");
+		logger.info(params.toString());
 		Integer errorCode = sqlSession.update("saveReminders", params);
 		return errorCode;
 	}
