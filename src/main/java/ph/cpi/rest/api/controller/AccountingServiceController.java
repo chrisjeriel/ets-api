@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -24,6 +25,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
@@ -34,6 +36,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -43,6 +46,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -199,4 +203,19 @@ public class AccountingServiceController {
 		logger.info("UpdateAcseCvStatRequest : " + uacvsr.toString());
 		return acctServService.updateAcseCvStat(uacvsr);
 	}
+	
+	@GetMapping(path="retrieveAcseCvPaytReqList")
+	public @ResponseBody RetrieveAcseCvPaytReqListResponse retrieveAcseCvPaytReqList(RetrieveAcseCvPaytReqListRequest racprlr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseCvPaytReqList");
+		logger.info("RetrieveAcseCvPaytReqListRequest : " + racprlr.toString());
+		return acctServService.retrieveAcseCvPaytReqList(racprlr);
+	}
+	
+	@PostMapping(path="saveAcseCvPaytReqList")
+	public @ResponseBody SaveAcseCvPaytReqListResponse saveAcseCvPaytReqList(@RequestBody SaveAcseCvPaytReqListRequest sacprr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseCvPaytReqList");
+		logger.info("SaveAcseCvPaytReqListRequest : " + sacprr.toString());
+		return acctServService.saveAcseCvPaytReqList(sacprr);
+	}
+	
 }

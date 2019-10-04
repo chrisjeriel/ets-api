@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -21,6 +22,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
@@ -31,6 +33,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -40,6 +43,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -545,6 +549,36 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return uacsResponse;
+	}
+	
+	@Override
+	public RetrieveAcseCvPaytReqListResponse retrieveAcseCvPaytReqList(RetrieveAcseCvPaytReqListRequest racprlp)
+			throws SQLException {
+		RetrieveAcseCvPaytReqListResponse racprlResponse =  new RetrieveAcseCvPaytReqListResponse();
+		HashMap<String, Object> racprlParams = new HashMap<String, Object>();
+		racprlParams.put("tranId", racprlp.getTranId());
+		racprlParams.put("itemNo", racprlp.getItemNo());
+		racprlResponse.setAcseCvPaytReqList(acctServDao.retrieveAcseCvPaytReqList(racprlParams));
+		logger.info("RetrieveAcseCvPaytReqListResponse : " + racprlResponse.toString());
+		return racprlResponse;
+	}
+	
+	@Override
+	public SaveAcseCvPaytReqListResponse saveAcseCvPaytReqList(SaveAcseCvPaytReqListRequest sacprr)
+			throws SQLException {
+		SaveAcseCvPaytReqListResponse response = new SaveAcseCvPaytReqListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
 		
+		params.put("savePaytReqList", sacprr.getSavePaytReqList());
+		params.put("deletePaytReqList", sacprr.getDeletePaytReqList());
+		
+		try {
+			response.setReturnCode(acctServDao.saveAcseCvPaytReqList(params));
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		return response;
 	}
 }
