@@ -148,6 +148,9 @@
 		<result property="refNo" 			column="REF_NO"/>
 	</resultMap>
 	
+	
+	
+	
 	<select id="retrieveAcsePaytReq" resultMap="acsePaytReqMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACSE_PAYMENT_REQUEST_PKG.ret_payt_req(
 					#{reqId,jdbcType=INTEGER},
