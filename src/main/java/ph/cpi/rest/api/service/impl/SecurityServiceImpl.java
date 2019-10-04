@@ -2,6 +2,7 @@ package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import ph.cpi.rest.api.model.response.RetrieveTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveModulesResponse;
 import ph.cpi.rest.api.model.response.SaveTransactionsResponse;
 import ph.cpi.rest.api.service.SecurityService;
+import ph.cpi.rest.api.utils.GWEncoder;
 
 @Component
 public class SecurityServiceImpl implements SecurityService{
@@ -142,6 +144,14 @@ public class SecurityServiceImpl implements SecurityService{
 		}
 		
 		return response;
+	}
+
+	@Override
+	public HashMap<String, String> secEncryption(String str) throws Exception {
+		// TODO Auto-generated method stub
+		HashMap<String, String> resp = new HashMap<String, String>();
+		resp.put("password", GWEncoder.doEncrypt(str));
+		return resp;
 	}
 
 	

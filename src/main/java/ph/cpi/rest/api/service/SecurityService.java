@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import ph.cpi.rest.api.model.request.RetrieveModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnModulesRequest;
@@ -24,5 +25,7 @@ public interface SecurityService {
 	
 	public SaveTransactionsResponse saveTransactions(SaveTransactionsRequest str) throws SQLException;
 	public SaveModulesResponse saveModules(SaveModulesRequest str) throws SQLException;
+	
+	public HashMap<String, String> secEncryption(String str) throws Exception;
 	
 }
