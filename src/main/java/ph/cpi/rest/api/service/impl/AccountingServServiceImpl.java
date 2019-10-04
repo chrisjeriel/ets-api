@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -20,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
@@ -28,6 +30,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
@@ -36,6 +39,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
@@ -442,5 +446,78 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return saptResponse;
+	}
+	
+	@Override
+	public RetrieveAcseCvResponse retrieveAcseCv(RetrieveAcseCvRequest raptp) throws SQLException {
+		RetrieveAcseCvResponse racResponse = new RetrieveAcseCvResponse();
+		HashMap<String, Object> racParams = new HashMap<String, Object>();
+		racParams.put("tranId",raptp.getTranId());
+		racParams.put("cvGenNo",raptp.getCvGenNo());
+		racParams.put("cvDateFrom",raptp.getCvDateFrom());
+		racParams.put("cvDateTo",raptp.getCvDateTo());
+		racParams.put("cvStatusDesc",raptp.getCvStatusDesc());
+		racParams.put("payee",raptp.getPayee());
+		racParams.put("particulars",raptp.getParticulars());
+		racParams.put("cvAmt",raptp.getCvAmt());
+		racResponse.setAcseCvList(acctServDao.retrieveAcseCv(racParams));
+		logger.info("RetrieveAcseCvResponse : " + racResponse);
+		return racResponse;
+	}
+	
+	@Override
+	public SaveAcseCvResponse saveAcseCv(SaveAcseCvRequest sacr) throws SQLException {
+		SaveAcseCvResponse sacResponse = new SaveAcseCvResponse();
+		HashMap<String, Object> sacParams = new HashMap<String, Object>();
+		try {
+			sacParams.put("tranIdOut","");
+			sacParams.put("mainTranIdOut","");
+			sacParams.put("tranId",sacr.getTranId());
+	        sacParams.put("cvYear", sacr.getCvYear());
+	        sacParams.put("cvNo", sacr.getCvNo());
+	        sacParams.put("cvDate", sacr.getCvDate());
+	        sacParams.put("cvStatus", sacr.getCvStatus());
+	        sacParams.put("paytReqType", sacr.getPaytReqType());
+	        sacParams.put("payeeClassCd", sacr.getPayeeClassCd());
+	        sacParams.put("payeeCd", sacr.getPayeeCd());
+	        sacParams.put("payee", sacr.getPayee());
+	        sacParams.put("particulars", sacr.getParticulars());
+	        sacParams.put("bank", sacr.getBank());
+	        sacParams.put("bankAcct", sacr.getBankAcct());
+	        sacParams.put("checkNo", sacr.getCheckNo());
+	        sacParams.put("checkDate", sacr.getCheckDate());
+	        sacParams.put("checkClass", sacr.getCheckClass());
+	        sacParams.put("currCd", sacr.getCurrCd());
+	        sacParams.put("currRate", sacr.getCurrRate());
+	        sacParams.put("cvAmt", sacr.getCvAmt());
+	        sacParams.put("localAmt", sacr.getLocalAmt());
+	        sacParams.put("preparedBy", sacr.getPreparedBy());
+	        sacParams.put("preparedDate", sacr.getPreparedDate());
+	        sacParams.put("certifiedBy", sacr.getCertifiedBy());
+	        sacParams.put("certifiedDate", sacr.getCertifiedDate());
+	        sacParams.put("createUser", sacr.getCreateUser());
+	        sacParams.put("createDate", sacr.getCreateDate());
+	        sacParams.put("updateUser", sacr.getUpdateUser());
+	        sacParams.put("updateDate", sacr.getUpdateDate());
+	        sacParams.put("mainTranId", sacr.getMainTranId());
+	        sacParams.put("tranStat", sacr.getTranStat());
+	        sacParams.put("closeDate", sacr.getCloseDate());
+	        sacParams.put("deleteDate", sacr.getDeleteDate());
+	        sacParams.put("postDate", sacr.getPostDate());
+	        
+	        HashMap<String, Object> response = acctServDao.saveAcseCv(sacParams);
+	        sacResponse.setReturnCode((Integer) response.get("errorCode"));
+	        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
+	        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+		} catch (SQLException sqlex) {
+			sacResponse.setReturnCode(0);
+			sacResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sacResponse.setReturnCode(0);
+			sacResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return sacResponse;
 	}
 }
