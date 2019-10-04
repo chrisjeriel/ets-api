@@ -14,7 +14,7 @@ import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UserGrp;
 import ph.cpi.rest.api.model.maintenance.Users;
-import ph.cpi.rest.api.utils.GWEncoder;
+import ph.cpi.rest.api.utils.ETSEncoder;
 
 @Component
 public class UserDaoImpl implements UserDao{
@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public List<String> userLogin(HashMap<String, Object> params) throws SQLException {
 		try {
-			params.put("password", GWEncoder.doEncrypt(params.get("password").toString()));
+			params.put("password", ETSEncoder.doEncrypt(params.get("password").toString()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage());
@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public Users userAuthenticate(HashMap<String, Object> params) throws SQLException {
 		try {
-			params.put("password", GWEncoder.doEncrypt(params.get("password").toString()));
+			params.put("password", ETSEncoder.doEncrypt(params.get("password").toString()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage());
@@ -95,7 +95,7 @@ public class UserDaoImpl implements UserDao{
 		for (Users user : ((List<Users>) params.get("usersList"))) {
 			logger.info("Saving user : " + user);
 			try {
-				user.setPassword(GWEncoder.doEncrypt(user.getPassword()));
+				user.setPassword(ETSEncoder.doEncrypt(user.getPassword()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				logger.error(e.getMessage());
