@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
@@ -45,6 +46,7 @@ import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -519,5 +521,30 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return sacResponse;
+	}
+	
+	@Override
+	public UpdateAcseCvStatResponse updateAcseCvStat(UpdateAcseCvStatRequest uacsr) throws SQLException {
+		UpdateAcseCvStatResponse uacsResponse = new UpdateAcseCvStatResponse();
+		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
+		try {
+			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("updateUser", uacsr.getUpdateUser());
+			
+			HashMap<String, Object> response = acctServDao.updateAcseCvStat(uacsParams);
+			
+			uacsResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			uacsResponse.setReturnCode(0);
+			uacsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			uacsResponse.setReturnCode(0);
+			uacsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return uacsResponse;
+		
 	}
 }

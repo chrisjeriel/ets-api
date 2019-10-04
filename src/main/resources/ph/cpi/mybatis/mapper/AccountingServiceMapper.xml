@@ -744,4 +744,14 @@
 			);
 		END;
 	</update>
+	
+	<update id="updateAcseCvStat" parameterType="java.util.Map">
+		BEGIN
+			ACSE_CHECK_VOUCHER_PKG.up_acse_cv_stat(
+				#{tranId, jdbcType=INTEGER},
+				#{cvStatus, jdbcType=VARCHAR},
+				#{updateUser, jdbcType=VARCHAR}
+			);
+		END;
+	</update>
 </mapper>

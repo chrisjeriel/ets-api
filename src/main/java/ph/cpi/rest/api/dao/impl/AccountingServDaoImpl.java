@@ -142,4 +142,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public HashMap<String, Object> updateAcseCvStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcseCvStat", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

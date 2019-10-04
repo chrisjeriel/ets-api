@@ -30,6 +30,7 @@ import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
@@ -48,6 +49,7 @@ import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -191,4 +193,10 @@ public class AccountingServiceController {
 		return acctServService.saveAcseCv(sacr);
 	}
 	
+	@PostMapping(path="updateAcseCvStat")
+	public @ResponseBody UpdateAcseCvStatResponse updateAcseCvStat(@RequestBody UpdateAcseCvStatRequest uacvsr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/updateAcseCvStat");
+		logger.info("UpdateAcseCvStatRequest : " + uacvsr.toString());
+		return acctServService.updateAcseCvStat(uacvsr);
+	}
 }
