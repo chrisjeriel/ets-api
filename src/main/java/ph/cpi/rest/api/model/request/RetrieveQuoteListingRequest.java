@@ -1,8 +1,9 @@
 package ph.cpi.rest.api.model.request;
 
-import org.joda.time.LocalDateTime;
+import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQuoteListingRequest {
@@ -32,9 +33,19 @@ public class RetrieveQuoteListingRequest {
 	private String expiryDateTo;
 	private String reqBy;
 	private String createUser;
-	private PaginationRequest paginationRequest;
+	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
 	
+	private List<String> statusArr;
+	private SearchRequest search;
+	private String openCoverTag;
+	
+	public List<String> getStatusArr() {
+		return statusArr;
+	}
+	public void setStatusArr(List<String> statusArr) {
+		this.statusArr = statusArr;
+	}
 	public String getQuotationNo() {
 		return quotationNo;
 	}
@@ -174,6 +185,18 @@ public class RetrieveQuoteListingRequest {
 	public void setLine(String line) {
 		this.line = line;
 	}
+	public SearchRequest getSearch() {
+		return search;
+	}
+	public void setSearch(SearchRequest search) {
+		this.search = search;
+	}
+	public String getOpenCoverTag() {
+		return openCoverTag;
+	}
+	public void setOpenCoverTag(String openCoverTag) {
+		this.openCoverTag = openCoverTag;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
@@ -183,6 +206,7 @@ public class RetrieveQuoteListingRequest {
 				+ ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom="
 				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDateFrom=" + expiryDateFrom
 				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", statusArr="
+				+ statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + "]";
 	}
 }

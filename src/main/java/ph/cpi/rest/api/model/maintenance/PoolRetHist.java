@@ -5,7 +5,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class PoolRetHist {
-
+	private String currencyCd;
 	private Integer retHistId;
 	private Integer retLine1;
 	private Integer retLine2;
@@ -21,6 +21,12 @@ public class PoolRetHist {
 	
 	private List<PoolMember> poolMemberList;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getRetHistId() {
 		return retHistId;
 	}
@@ -101,10 +107,10 @@ public class PoolRetHist {
 	}
 	@Override
 	public String toString() {
-		return "PoolRetHist [retHistId=" + retHistId + ", retLine1=" + retLine1 + ", retLine2=" + retLine2
-				+ ", totalRetLine=" + totalRetLine + ", effDateFrom=" + effDateFrom + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", poolMemberList="
-				+ poolMemberList + "]";
+		return "PoolRetHist [currencyCd=" + currencyCd + ", retHistId=" + retHistId + ", retLine1=" + retLine1
+				+ ", retLine2=" + retLine2 + ", totalRetLine=" + totalRetLine + ", effDateFrom=" + effDateFrom
+				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
+				+ ", poolMemberList=" + poolMemberList + "]";
 	}
 }

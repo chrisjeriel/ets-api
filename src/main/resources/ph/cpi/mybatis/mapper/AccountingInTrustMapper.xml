@@ -860,7 +860,7 @@
 				#{reqStatus, jdbcType=VARCHAR},
 				#{updateUser, jdbcType=VARCHAR},
 				#{approvedBy, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{approvedDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{approvedDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 		END;
 	</update>

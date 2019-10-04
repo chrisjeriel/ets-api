@@ -12,6 +12,7 @@ public class Treaty {
 	private Integer treatyYear;
 	private String activeTag;
 	private String remarks;
+	private String currencyCd;
 	private Double commRate;
 	private Integer sortSeq;
 	private String createUser;
@@ -20,6 +21,13 @@ public class Treaty {
 	private DateTime updateDate;
 	private String okDelete;
 	
+	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	private List<TreatyShare> treatyShareList;
 	
 	public Integer getTreatyId() {
@@ -116,8 +124,9 @@ public class Treaty {
 	public String toString() {
 		return "Treaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", treatyAbbr=" + treatyAbbr
 				+ ", treatyType=" + treatyType + ", treatyYear=" + treatyYear + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", commRate=" + commRate + ", sortSeq=" + sortSeq + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", okDelete=" + okDelete + ", treatyShareList=" + treatyShareList + "]";
+				+ ", remarks=" + remarks + ", currencyCd=" + currencyCd + ", commRate=" + commRate + ", sortSeq="
+				+ sortSeq + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", treatyShareList=" + treatyShareList
+				+ "]";
 	}
 }

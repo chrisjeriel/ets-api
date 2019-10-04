@@ -531,29 +531,101 @@
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
-														   #{cessionDesc, jdbcType=VARCHAR},
-														   #{lineClassCdDesc, jdbcType=VARCHAR},
-														   #{status, jdbcType=INTEGER},
-														   #{cedingName, jdbcType=VARCHAR},
-														   #{principalName, jdbcType=VARCHAR},
-														   #{contractorName, jdbcType=VARCHAR},
-														   #{insuredDesc, jdbcType=VARCHAR},
-														   #{riskName, jdbcType=VARCHAR},
-														   #{objectDesc, jdbcType=VARCHAR},
-														   #{site, jdbcType=VARCHAR},
-														   #{policyNo, jdbcType=VARCHAR},
-														   #{currencyCd, jdbcType=VARCHAR},
-														   TO_DATE(#{issueDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
-														   TO_DATE(#{issueDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
-														   CAST(to_timestamp(#{expiryDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														   CAST(to_timestamp(#{expiryDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														   #{reqBy, jdbcType=VARCHAR},
-														   #{createUser, jdbcType=VARCHAR},
-														   '',
-														   '',
-														   '',
-														   ''))																 
+		SELECT a.* FROM (
+			SELECT ROWNUM rown, a.* FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+															   #{cessionDesc, jdbcType=VARCHAR},
+															   #{lineClassCdDesc, jdbcType=VARCHAR},
+															   #{status, jdbcType=INTEGER},
+															   #{cedingName, jdbcType=VARCHAR},
+															   #{principalName, jdbcType=VARCHAR},
+															   #{contractorName, jdbcType=VARCHAR},
+															   #{insuredDesc, jdbcType=VARCHAR},
+															   #{riskName, jdbcType=VARCHAR},
+															   #{objectDesc, jdbcType=VARCHAR},
+															   #{site, jdbcType=VARCHAR},
+															   #{policyNo, jdbcType=VARCHAR},
+															   #{currencyCd, jdbcType=VARCHAR},
+															   TO_DATE(#{issueDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+															   TO_DATE(#{issueDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+															   CAST(to_timestamp(#{expiryDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															   CAST(to_timestamp(#{expiryDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															   #{reqBy, jdbcType=VARCHAR},
+															   #{createUser, jdbcType=VARCHAR},
+															   '',
+															   '',
+															   '',
+															   ''))	a	
+		   	  WHERE  1=1
+		   	   <if test="statusArr != null">
+			   	AND   STATUS_CD IN 
+				   	   	<foreach item="item" index="index" collection="statusArr"
+			             open="(" separator="," close=")">
+					        #{item}
+					    </foreach>
+		   	   </if>
+		   	   <if test="openCoverTag != null">
+				   	AND   OP_COV_TAG = #{openCoverTag}
+		   	   </if>
+		   	   <if test="search != null">
+		   	   	 AND
+		   	    	<foreach item="col" index="index" collection="search.searchCols"
+			             open="(" separator=" OR " close=")">
+					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+				    </foreach>
+		   	   </if>
+		   	   <if test="sort != null">
+		   	    	ORDER BY ${sort.sortKey} ${sort.order}
+		   	   </if>
+		   ) a	 	
+		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
+		   	   <if test="pagination.position != null">
+		   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+		   	   </if>
+		   	   
+	</select>
+	
+	<select id="retrieveQuoteListingLength"  parameterType="java.util.Map" resultType="java.lang.Integer">
+			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+															   #{cessionDesc, jdbcType=VARCHAR},
+															   #{lineClassCdDesc, jdbcType=VARCHAR},
+															   #{status, jdbcType=INTEGER},
+															   #{cedingName, jdbcType=VARCHAR},
+															   #{principalName, jdbcType=VARCHAR},
+															   #{contractorName, jdbcType=VARCHAR},
+															   #{insuredDesc, jdbcType=VARCHAR},
+															   #{riskName, jdbcType=VARCHAR},
+															   #{objectDesc, jdbcType=VARCHAR},
+															   #{site, jdbcType=VARCHAR},
+															   #{policyNo, jdbcType=VARCHAR},
+															   #{currencyCd, jdbcType=VARCHAR},
+															   TO_DATE(#{issueDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+															   TO_DATE(#{issueDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+															   CAST(to_timestamp(#{expiryDateFrom,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															   CAST(to_timestamp(#{expiryDateTo,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															   #{reqBy, jdbcType=VARCHAR},
+															   #{createUser, jdbcType=VARCHAR},
+															   '',
+															   '',
+															   '',
+															   ''))	a	
+		   	  WHERE  1=1
+		   	   <if test="statusArr != null">
+			   	AND   STATUS_CD IN 
+				   	   	<foreach item="item" index="index" collection="statusArr"
+			             open="(" separator="," close=")">
+					        #{item}
+					    </foreach>
+		   	   </if>
+		   	   <if test="openCoverTag != null">
+				   	AND   OP_COV_TAG = #{openCoverTag}
+		   	   </if>
+		   	   <if test="search != null">
+		   	   	 AND
+		   	    	<foreach item="col" index="index" collection="search.searchCols"
+			             open="(" separator=" OR " close=")">
+					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+				    </foreach>
+		   	   </if>
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">

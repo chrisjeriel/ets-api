@@ -1,6 +1,10 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
+import ph.cpi.rest.api.model.AdditionalParam;
 import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrievePolicyListingRequest {
@@ -28,7 +32,11 @@ public class RetrievePolicyListingRequest {
 	private String acctDateTo;
 	private String statusDesc;
 	private PaginationRequest paginationRequest = new PaginationRequest();
-	private SortRequest sortRequest = new SortRequest();
+	private SortRequest sortRequest;
+	
+	private List<String> statusArr;
+	private SearchRequest search;
+	private Integer altNo;
 	
 	public String getPolicyNo() {
 		return policyNo;
@@ -174,6 +182,24 @@ public class RetrievePolicyListingRequest {
 	public void setTotalPremGrt(String totalPremGrt) {
 		this.totalPremGrt = totalPremGrt;
 	}
+	public List<String> getStatusArr() {
+		return statusArr;
+	}
+	public void setStatusArr(List<String> statusArr) {
+		this.statusArr = statusArr;
+	}
+	public SearchRequest getSearch() {
+		return search;
+	}
+	public void setSearch(SearchRequest search) {
+		this.search = search;
+	}
+	public Integer getAltNo() {
+		return altNo;
+	}
+	public void setAltNo(Integer altNo) {
+		this.altNo = altNo;
+	}
 	@Override
 	public String toString() {
 		return "RetrievePolicyListingRequest [policyNo=" + policyNo + ", cessionDesc=" + cessionDesc + ", cedingName="
@@ -184,7 +210,7 @@ public class RetrievePolicyListingRequest {
 				+ ", expiryDateFrom=" + expiryDateFrom + ", expiryDateTo=" + expiryDateTo + ", inceptDateFrom="
 				+ inceptDateFrom + ", inceptDateTo=" + inceptDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo="
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+				+ ", sortRequest=" + sortRequest + ", statusArr=" + statusArr + ", search=" + search + ", altNo="
+				+ altNo + "]";
 	}
-	
 }

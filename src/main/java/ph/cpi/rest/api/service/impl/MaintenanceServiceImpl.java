@@ -1208,6 +1208,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnTreatyCommissionResponse response = new RetrieveMtnTreatyCommissionResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("quoteYear", rmtcr.getQuoteYear());
+		params.put("currencyCd",rmtcr.getCurrencyCd());
 		params.put("position", rmtcr.getPaginationRequest().getPosition());
 		params.put("count", rmtcr.getPaginationRequest().getCount());
 		params.put("sortKey", rmtcr.getSortRequest().getSortKey());
@@ -1283,6 +1284,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	public SaveMtnTreatyShareResponse saveMtnTreatyShare(SaveMtnTreatyShareRequest smtsr) throws SQLException {
 		SaveMtnTreatyShareResponse smtsResponse = new SaveMtnTreatyShareResponse();
 		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
+		saveMtnTreatyShareParams.put("currencyCd", smtsr.getCurrencyCd());
 		saveMtnTreatyShareParams.put("saveTreatyComm", smtsr.getSaveTreatyComm());
 		saveMtnTreatyShareParams.put("deleteTreatyComm", smtsr.getDeleteTreatyComm());
 		saveMtnTreatyShareParams.put("deleteTreatyShare", smtsr.getDeleteTreatyShare());
@@ -1867,6 +1869,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		HashMap<String, Object> retrieveMtnPoolRetHistParams = new HashMap<String, Object>();
 		retrieveMtnPoolRetHistParams.put("retHistId", rmprhr.getRetHistId());
+		retrieveMtnPoolRetHistParams.put("currencyCd", rmprhr.getCurrencyCd());
 		
 		rmprhResponse.setPoolRetHistList(maintenanceDao.retrieveMtnPoolRetHist(retrieveMtnPoolRetHistParams));
 		
@@ -1905,11 +1908,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	public SaveMtnPoolRetHistResponse saveMtnPoolRetHist(SaveMtnPoolRetHistRequest smprhr) throws SQLException {
 		SaveMtnPoolRetHistResponse smprhResponse = new SaveMtnPoolRetHistResponse();
 		HashMap<String, Object> saveMtnTreatyShareParams = new HashMap<String, Object>();
+		saveMtnTreatyShareParams.put("currencyCd", smprhr.getCurrencyCd());
 		saveMtnTreatyShareParams.put("savePoolRetHist", smprhr.getSavePoolRetHist());
 		saveMtnTreatyShareParams.put("deletePoolRetHist", smprhr.getDeletePoolRetHist());
 		saveMtnTreatyShareParams.put("deletePoolMember", smprhr.getDeletePoolMember());
 		
-		smprhResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnTreatyShareParams));
+		try{
+			smprhResponse.setReturnCode(maintenanceDao.saveMtnPoolRetHist(saveMtnTreatyShareParams));
+		}catch(Exception e){
+			smprhResponse.setReturnCode(0);
+		}
 		
 		return smprhResponse;
 	}
@@ -1920,6 +1928,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("copyFromRetHistId", cprhr.getCopyFromRetHistId());
 		params.put("copyToEffDateFrom", cprhr.getCopyToEffDateFrom());
+		params.put("currencyCd", cprhr.getCurrencyCd());
 		params.put("createUser", cprhr.getCreateUser());
 		params.put("createDate", cprhr.getCreateDate());
 		params.put("updateUser", cprhr.getUpdateUser());
