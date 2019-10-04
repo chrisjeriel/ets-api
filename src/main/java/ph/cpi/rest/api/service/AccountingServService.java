@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
@@ -35,6 +36,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -76,4 +78,5 @@ public interface AccountingServService {
 	public RetrieveAcseAcctEntriesResponse retrieveAcctEntries(RetrieveAcseAcctEntriesRequest request) throws SQLException;
 	public RetrieveAcseCvResponse retrieveAcseCv(RetrieveAcseCvRequest raptp ) throws SQLException;
 	public SaveAcseCvResponse saveAcseCv(SaveAcseCvRequest sacr) throws SQLException;
+	public SaveAcseAcctEntriesResponse saveAcctEntries(SaveAcseAcctEntriesRequest request) throws SQLException;
 }

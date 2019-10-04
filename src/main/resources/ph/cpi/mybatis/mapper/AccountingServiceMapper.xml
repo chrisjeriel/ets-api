@@ -791,4 +791,32 @@
 			);
 		END;
 	</update>
+	
+	<update id="saveAcctEntries" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delList" item="item">
+				ACSE_TAX_DETAILS_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				ACSE_TAX_DETAILS_PKG.save_acse_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
 </mapper>

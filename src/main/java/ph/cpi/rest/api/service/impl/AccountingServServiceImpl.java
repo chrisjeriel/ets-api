@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
@@ -44,6 +45,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -555,5 +557,22 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return sacResponse;
+	}
+
+	@Override
+	public SaveAcseAcctEntriesResponse saveAcctEntries(SaveAcseAcctEntriesRequest request) throws SQLException {
+		SaveAcseAcctEntriesResponse response = new SaveAcseAcctEntriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveList", request.getSaveList());
+			params.put("delList", request.getDelList());
+			HashMap<String, Object> res = acctServDao.saveAcctEntries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 }
