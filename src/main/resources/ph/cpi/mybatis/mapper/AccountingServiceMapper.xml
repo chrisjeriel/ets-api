@@ -794,9 +794,9 @@
 	
 	<update id="saveAcctEntries" parameterType="java.util.Map">
 		BEGIN
-			<foreach collection="delList" item="item">
-				ACSE_TAX_DETAILS_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
-					#{item.entryId, jdbcType=VARCHAR});
+			<foreach collection="delList" item="del">
+				ACSE_TAX_DETAILS_PKG.del_acct_acc_entries(#{del.tranId, jdbcType=VARCHAR},
+					#{del.entryId, jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="saveList" item="item">
@@ -834,4 +834,24 @@
 	<select id="retrieveAttachments" resultMap="attachmentMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACSE_ATTACHMENTS_PKG.ret_acse_attchmnt(#{tranId},null,null,null,null);
 	</select>
+	
+	<update id="saveAttachments" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			 <foreach collection="delAttachmentsList" item="del">
+		   		ACIT_ATTACHMENTS_PKG.del_acit_attchmnt(#{del.tranId},
+		   											#{del.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		   <foreach collection="saveAttachmentsList" item="attachment">
+		   	   ACIT_ATTACHMENTS_PKG.save_acit_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
+		   	   										#{attachment.tranId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
+		END;
+	</update>
 </mapper>

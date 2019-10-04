@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
+import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
@@ -51,6 +52,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
+import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -234,5 +236,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveAttachments");
 		logger.info("RetrieveAcseCvRequest : " + request.toString());
 		return acctServService.retrieveAttachments(request);
+	}
+	
+	@PostMapping(path="saveAttachments")
+	public @ResponseBody SaveAcseAttachmentsResponse saveAttachments(@RequestBody SaveAcseAttachmentsRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAttachments");
+		logger.info("SaveAcseAttachmentsRequest : " + request.toString());
+		return acctServService.saveAttachments(request);
 	}
 }

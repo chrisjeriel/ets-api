@@ -38,4 +38,5 @@ public interface AccountingServDao {
 	public HashMap<String, Object> saveAcseCv(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcctEntries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseAttachments> retrieveAttachments(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAttachments(final HashMap<String, Object> params) throws SQLException;
 }
