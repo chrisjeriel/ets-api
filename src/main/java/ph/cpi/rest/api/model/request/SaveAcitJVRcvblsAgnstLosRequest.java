@@ -242,6 +242,13 @@ class ClmOffset{
 	private Integer claimId;
 	private Integer projId;
 	private Integer histNo;
+	private Integer policyId;
+	private Integer instNo;
+	private BigDecimal premAmt;
+	private BigDecimal riComm;
+	private BigDecimal riCommVat;
+	private BigDecimal charges;
+	private BigDecimal paytAmt;
 	private String paymentFor;
 	private String histCategory;
 	private String histType;
@@ -261,6 +268,49 @@ class ClmOffset{
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public Integer getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
+	}
+	public BigDecimal getPremAmt() {
+		return premAmt;
+	}
+	public void setPremAmt(BigDecimal premAmt) {
+		this.premAmt = premAmt;
+	}
+	public BigDecimal getRiComm() {
+		return riComm;
+	}
+	public void setRiComm(BigDecimal riComm) {
+		this.riComm = riComm;
+	}
+	public BigDecimal getRiCommVat() {
+		return riCommVat;
+	}
+	public void setRiCommVat(BigDecimal riCommVat) {
+		this.riCommVat = riCommVat;
+	}
+	public BigDecimal getCharges() {
+		return charges;
+	}
+	public void setCharges(BigDecimal charges) {
+		this.charges = charges;
+	}
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
 	}
 	public Integer getItemNo() {
 		return itemNo;
@@ -374,10 +424,12 @@ class ClmOffset{
 	@Override
 	public String toString() {
 		return "ClmOffset [tranId=" + tranId + ", itemNo=" + itemNo + ", claimId=" + claimId + ", projId=" + projId
-				+ ", histNo=" + histNo + ", paymentFor=" + paymentFor + ", histCategory=" + histCategory + ", histType="
-				+ histType + ", exGratia=" + exGratia + ", reserveAmt=" + reserveAmt + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", clmPaytAmt=" + clmPaytAmt + ", localAmt=" + localAmt + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", histNo=" + histNo + ", policyId=" + policyId + ", instNo=" + instNo + ", premAmt=" + premAmt
+				+ ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", paytAmt=" + paytAmt
+				+ ", paymentFor=" + paymentFor + ", histCategory=" + histCategory + ", histType=" + histType
+				+ ", exGratia=" + exGratia + ", reserveAmt=" + reserveAmt + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", clmPaytAmt=" + clmPaytAmt + ", localAmt=" + localAmt + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
 }

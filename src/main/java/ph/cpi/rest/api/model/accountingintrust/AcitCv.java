@@ -98,14 +98,7 @@ public class AcitCv {
 	}
 	public void setCvStatusDesc(String cvStatusDesc) {
 		this.cvStatusDesc = cvStatusDesc;
-	}
-//	public Integer getPayeeNo() {
-//		return payeeNo;
-//	}
-//	public void setPayeeNo(Integer payeeNo) {
-//		this.payeeNo = payeeNo;
-//	}
-	
+	}	
 	public String getPayee() {
 		return payee;
 	}

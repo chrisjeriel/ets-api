@@ -8,6 +8,7 @@ import org.joda.time.DateTime;
 public class AcitJVClmNegativeTreaty {
 	private Integer tranId;
 	private Integer quarterNo;
+	private Integer qsoaId;
 	private String cedingId;
 	private String cedingName;
 	private DateTime quarterEnding;
@@ -25,6 +26,13 @@ public class AcitJVClmNegativeTreaty {
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
+	}
+	
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public String getCedingName() {
 		return cedingName;
@@ -106,11 +114,12 @@ public class AcitJVClmNegativeTreaty {
 	}
 	@Override
 	public String toString() {
-		return "AcitJVClmNegativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", cedingId=" + cedingId
-				+ ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", clmOffset=" + clmOffset + "]";
+		return "AcitJVClmNegativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt="
+				+ localAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + "]";
 	}
+	
 	
 }

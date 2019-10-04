@@ -44,7 +44,7 @@
 												   #{reminder.reminderId, jdbcType=INTEGER},
 												   #{reminder.title, jdbcType=VARCHAR},
 												   #{reminder.reminder, jdbcType=VARCHAR},
-												   CAST(to_timestamp(#{reminder.reminderDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   CAST(to_timestamp(#{reminder.reminderDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS".000Z"') AS DATE),
 												   #{reminder.alarmTime, jdbcType=VARCHAR},
 												   #{reminder.module, jdbcType=VARCHAR},
 												   #{reminder.referenceId, jdbcType=VARCHAR},

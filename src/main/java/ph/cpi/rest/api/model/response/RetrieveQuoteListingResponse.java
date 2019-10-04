@@ -11,6 +11,13 @@ import ph.cpi.rest.api.model.quote.Quotation;
 public class RetrieveQuoteListingResponse extends Response{
 
 	private List<Quotation> quotationList;
+	private Integer length;
+	public Integer getLength() {
+		return length;
+	}
+	public void setLength(Integer length) {
+		this.length = length;
+	}
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
@@ -38,7 +45,7 @@ public class RetrieveQuoteListingResponse extends Response{
 	}
 	@Override
 	public String toString() {
-		return "RetrieveQuoteListingResponse [quotationList=" + quotationList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveQuoteListingResponse [quotationList=" + quotationList + ", length=" + length
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

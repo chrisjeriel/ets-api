@@ -21,7 +21,7 @@ public class AcitPrqTrans {
 	private String itemName;
 	private String paymentFor;
 	private String currCd;
-	private Integer currRate;
+	private Float currRate;
 	private BigDecimal currAmt;
 	private BigDecimal localAmt;
 	private BigDecimal allotedAmt;
@@ -126,10 +126,10 @@ public class AcitPrqTrans {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Integer getCurrRate() {
+	public Float getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Integer currRate) {
+	public void setCurrRate(Float currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getCurrAmt() {

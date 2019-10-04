@@ -200,6 +200,7 @@
 		<result property="renewalTag" 		column="RENEWAL_TAG"/> 
 		<result property="openCoverTag" 	column="OPEN_COVER_TAG"/>
 		<result property="alopTag" 			column="ALOP_TAG"/>
+		<result property="retAmtTag" 		column="RET_AMT_TAG"/>
 		<result property="referenceNo"		column="REFERENCE_NO"/> 
 		<result property="sortSeq" 			column="SORT_SEQ"/> 
 		<result property="remarks" 			column="REMARKS"/>
@@ -820,6 +821,7 @@
     	<result property="treatyId" 		column="TREATY_ID"/>
     	<result property="treatyName" 		column="TREATY_NAME"/>
     	<result property="activeTag" 		column="ACTIVE_TAG"/>
+    	<result property="currencyCd"			column="CURRENCY_CD"/>
     	<result property="commRate" 		column="COMMISSION_RATE"/>
     	<result property="treatyAbbr" 		column="TREATY_ABBR"/>
     	<result property="treatyType" 		column="TREATY_TYPE"/>
@@ -836,6 +838,7 @@
     
     <select id="retrieveMtnTreatyCom" resultMap="treatyComMap">
     	SELECT * FROM TABLE(MTN_TREATY_COMM_PKG.ret_mtn_treaty_com(
+    															   #{currencyCd, jdbcType=VARCHAR},
     															   #{quoteYear, jdbcType=VARCHAR},
     															   #{position, jdbcType=VARCHAR},
     															   #{count, jdbcType=VARCHAR},
@@ -944,6 +947,7 @@
 			        #{line.renewalTag,jdbcType=VARCHAR},
 			        #{line.openCoverTag,jdbcType=VARCHAR},
 			        #{line.alopTag,jdbcType=VARCHAR},
+			        #{line.retAmtTag,jdbcType=VARCHAR},
 			        #{line.referenceNo,jdbcType=INTEGER},
 			        #{line.sortSeq,jdbcType=INTEGER},
 			        #{line.remarks,jdbcType=VARCHAR},
@@ -1978,6 +1982,7 @@
 	</select>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.TreatyShare" id="assocTreatyShare">
+    	<result property="currencyCd"			column="CURRENCY_CD"/>
      	<result property="treatyYear" column="TS_TREATY_YEAR"/>
 	    <result property="treatyId"   column="TS_TREATY_ID"/>
 	    <result property="trtyCedId"  column="TS_TRTY_CED_ID"/>
@@ -2072,6 +2077,7 @@
     	BEGIN
     		<foreach collection="deleteTreatyComm" item="del">
 	    		MTN_TREATY_COMM_PKG.del_treaty_com(
+	    			#{currencyCd,  jdbcType=VARCHAR},
 			    	#{del.treatyYear, jdbcType=INTEGER},
 			    	#{del.treatyId, jdbcType=INTEGER}
 			    );
@@ -2079,23 +2085,25 @@
     		
     		<foreach collection="deleteTreatyShare" item="del">
     			MTN_TREATY_SHARE_PKG.del_treaty_share(
+	    			#{currencyCd,  jdbcType=VARCHAR},
 			   		#{del.treatyYear, jdbcType=INTEGER},
 					#{del.treatyId, jdbcType=INTEGER},
 					#{del.trtyCedId, jdbcType=VARCHAR}
 				);
     		</foreach>
     		
-    		<foreach collection="deleteCedRetention" item="del">
+    		<!-- <foreach collection="deleteCedRetention" item="del">
     			MTN_CEDING_RETENTION_PKG.del_mtn_ced_retention(
 	    			#{del.treatyYear, jdbcType=INTEGER},
 			   		#{del.treatyId, jdbcType=INTEGER},
 			   		#{del.trtyCedId, jdbcType=VARCHAR},
 			   		#{del.cedingId, jdbcType=VARCHAR}
 			   	);
-    		</foreach>
+    		</foreach> -->
     		
     		<foreach collection="saveTreatyComm" item="save">
 		    	MTN_TREATY_COMM_PKG.save_treaty_com(
+	    			#{currencyCd,  jdbcType=VARCHAR},
 		    		#{save.treatyYear, jdbcType=INTEGER},
 		    		#{save.treatyId, jdbcType=INTEGER},
 		    		#{save.commRate, jdbcType=DECIMAL},
@@ -2108,6 +2116,7 @@
 		    		
 		    	<foreach collection="save.treatyShareList" item="treatyShare">
 		    		MTN_TREATY_SHARE_PKG.save_treaty_share(
+	    				#{currencyCd,  jdbcType=VARCHAR},
 				    	#{treatyShare.treatyYear, jdbcType=INTEGER},
 				    	#{treatyShare.treatyId, jdbcType=INTEGER},
 				    	#{treatyShare.trtyCedId, jdbcType=VARCHAR},
@@ -2120,7 +2129,7 @@
 						CAST(to_timestamp(#{treatyShare.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				    );
 					    
-				    <foreach collection="treatyShare.cedRetentionList" item="cedRet">
+				    <!-- <foreach collection="treatyShare.cedRetentionList" item="cedRet">
 				    	MTN_CEDING_RETENTION_PKG.save_mtn_ced_retention(
 				    		#{cedRet.treatyYear, jdbcType=INTEGER},
 				    		#{cedRet.treatyId, jdbcType=INTEGER},
@@ -2134,7 +2143,7 @@
 							#{cedRet.updateUser, jdbcType=VARCHAR},
 							CAST(to_timestamp(#{cedRet.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				    	);
-				    </foreach>
+				    </foreach> -->
 		    	</foreach>
     		</foreach>
     		SELECT COUNT(*)
@@ -3140,6 +3149,7 @@
 	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.PoolRetHist" id="poolRetHistMap">
+		<result property="currencyCd" column="CURRENCY_CD"/>
      	<result property="retHistId" 	column="RET_HIST_ID"/>
 		<result property="retLine1" 	column="RET_LINE1"/>
 		<result property="retLine2" 	column="RET_LINE2"/>
@@ -3157,6 +3167,7 @@
      </resultMap>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.PoolMember" id="poolMemberMap">
+     	<result property="currencyCd" 	column="CURRENCY_CD"/>
     	<result property="retHistId" 	column="RET_HIST_ID"/>
 		<result property="cedingId" 	column="CEDING_ID"/>
 		<result property="cedingName" 	column="CEDING_NAME"/>
@@ -3172,7 +3183,8 @@
      
      
      <select id="retrieveMtnPoolRetHist" resultMap="poolRetHistMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_POOL_RET_HIST_PKG.ret_mtn_pool_ret_hist(#{retHistId, jdbcType=INTEGER},
+			SELECT * FROM TABLE(MTN_POOL_RET_HIST_PKG.ret_mtn_pool_ret_hist(#{currencyCd, jdbcType=VARCHAR},
+																		    #{retHistId, jdbcType=INTEGER},
 																		    '',
 																		    '',
 																		    '',
@@ -3185,12 +3197,14 @@
     	BEGIN
     		<foreach collection="deletePoolRetHist" item="del">
     			MTN_POOL_RET_HIST_PKG.del_mtn_pool_ret_hist(
+    				#{currencyCd, jdbcType=VARCHAR},
     				#{del.retHistId, jdbcType=INTEGER}
     			);
     		</foreach>
     		
     		<foreach collection="deletePoolMember" item="del">
     			MTN_POOL_RETENTION_PKG.del_mtn_pool_retention(
+    				#{currencyCd, jdbcType=VARCHAR},
     				#{del.retHistId, jdbcType=INTEGER},
     				#{del.cedingId, jdbcType=VARCHAR}
     			);
@@ -3201,12 +3215,14 @@
     			THEN
 		            SELECT NVL(MAX(RET_HIST_ID), 0) + 1
 		              INTO v_ret_hist_id
-		            FROM MTN_POOL_RET_HIST;
+		              FROM MTN_POOL_RET_HIST
+		             WHERE CURRENCY_CD = #{currencyCd, jdbcType=VARCHAR};
     			ELSE
     				v_ret_hist_id := #{save.retHistId, jdbcType=INTEGER};
     			END IF;
     		
 	    		MTN_POOL_RET_HIST_PKG.save_mtn_pool_ret_hist(
+	    			#{currencyCd, jdbcType=VARCHAR},
 	    			v_ret_hist_id,
 	    			#{save.retLine1, jdbcType=INTEGER},
 	    			#{save.retLine2, jdbcType=INTEGER},
@@ -3222,6 +3238,7 @@
 	    		
 	    		<foreach collection="save.poolMemberList" item="poolMember">
 	    			MTN_POOL_RETENTION_PKG.save_mtn_pool_retention(
+	    				#{currencyCd, jdbcType=VARCHAR},
 	    				v_ret_hist_id,
 	    				#{poolMember.cedingId, jdbcType=VARCHAR},
 	    				#{poolMember.retLine1, jdbcType=INTEGER},
@@ -3239,6 +3256,7 @@
     <update id="checkPoolRetHist" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_POOL_RET_HIST_PKG.check_pool_ret_hist(
+																				#{currencyCd, jdbcType=VARCHAR},
 																				CAST(to_timestamp(#{copyToEffDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 																			)
 		}	
@@ -3247,6 +3265,7 @@
 	<update id="copyPoolRetHist" parameterType="java.util.Map">
 		BEGIN
 			MTN_POOL_RET_HIST_PKG.copy_pool_ret_hist(
+				#{currencyCd, jdbcType=VARCHAR},
 				#{copyFromRetHistId, jdbcType=INTEGER},
 				CAST(to_timestamp(#{copyToEffDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{createUser, jdbcType=VARCHAR},
@@ -3460,7 +3479,9 @@
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="dcbTag"		column="DCB_TAG" />
+		<result property="dcbTag"			column="DCB_TAG" />
+		<result property="okDelete"			column="OK_DELETE" />
+		<result property="bankName"			column="BANK_NAME" />
     </resultMap>
 	
 	<select id="retMtnBankAcct" resultMap="bankAcctMap" parameterType="java.util.Map">
@@ -3711,7 +3732,8 @@
 						#{item.createUser, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{item.updateUser, jdbcType=VARCHAR},
-						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.dcbTag, jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>
@@ -3767,6 +3789,7 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="okDelete" 	column="OK_DELETE"/>
      </resultMap>
      
      <select id="retMtnBussType" resultMap="bussTypeMap" parameterType="java.util.Map">
@@ -3956,5 +3979,24 @@
 														  #{fixedTag, jdbcType=VARCHAR},
 														  #{activeTag, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveMtnBussType" >
+		BEGIN
+			NULL;
+			<foreach collection="delList" item="item">
+				MTN_BUSS_TYPE_PKG.del_mtn_buss_type(#{item.bussTypeCd, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_BUSS_TYPE_PKG.save_mtn_buss_type(#{item.bussTypeCd, jdbcType=VARCHAR},
+						#{item.bussTypeName,  jdbcType=VARCHAR},
+						#{item.description, jdbcType=VARCHAR},
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
      
 </mapper>

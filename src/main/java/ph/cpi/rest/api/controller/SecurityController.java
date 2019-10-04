@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,5 +89,14 @@ public class SecurityController {
 		logger.info("SaveModulesRequest : " + smr.toString());
 		return securityService.saveModules(smr);
 	}
+	
+	@PostMapping(path="secEncryption")
+	public @ResponseBody HashMap<String, String> secEncryption(@RequestBody String smr) throws Exception {
+		logger.info("POST: /api/security-service/secEncryption");
+		logger.info("SaveModulesRequest : " + smr.toString());
+		return securityService.secEncryption(smr);
+	}
+	
+	
 	
 }

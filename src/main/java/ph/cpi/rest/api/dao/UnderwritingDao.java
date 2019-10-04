@@ -41,7 +41,8 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> savePolHoldCover(final HashMap<String, Object> params) throws SQLException;
 	public PolicyOc retrievePolAttachmentOcList(final HashMap<String,Object> params) throws SQLException;
 	public PolicyOc retrievePolEndtOcList(final HashMap<String, Object> params) throws SQLException;
-	public List<Policy> retrievePolicyListing(final HashMap<String, Object> params) throws SQLException;	
+	public List<Policy> retrievePolicyListing(final HashMap<String, Object> params) throws SQLException;
+	public Integer retrievePolicyLength(final HashMap<String, Object> params) throws SQLException;	
 	public HashMap<String, Object> savePolAlop(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> savePolAlopItem(final HashMap<String, Object> params) throws SQLException;
 	public Policy retrievePolHoldCover(final HashMap<String, Object> params) throws SQLException;

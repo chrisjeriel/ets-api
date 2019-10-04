@@ -5,7 +5,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class TreatyShare {
-
+	private String currencyCd;
 	private Integer treatyYear;
     private Integer treatyId;
     private String trtyCedId;
@@ -21,6 +21,12 @@ public class TreatyShare {
     private String okDelete;
     private List<CedingRetention> cedRetentionList;
     
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getTreatyYear() {
 		return treatyYear;
 	}
@@ -107,10 +113,10 @@ public class TreatyShare {
 	}
 	@Override
 	public String toString() {
-		return "TreatyShare [treatyYear=" + treatyYear + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId
-				+ ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr + ", pctShare=" + pctShare + ", sortSeq="
-				+ sortSeq + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ ", cedRetentionList=" + cedRetentionList + "]";
+		return "TreatyShare [currencyCd=" + currencyCd + ", treatyYear=" + treatyYear + ", treatyId=" + treatyId
+				+ ", trtyCedId=" + trtyCedId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr
+				+ ", pctShare=" + pctShare + ", sortSeq=" + sortSeq + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", okDelete=" + okDelete + ", cedRetentionList=" + cedRetentionList + "]";
 	}
 }

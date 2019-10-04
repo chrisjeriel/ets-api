@@ -40,8 +40,8 @@ public class Reminder {
 	public void setReminder(String reminder) {
 		this.reminder = reminder;
 	}
-	public DateTime getReminderDate() {
-		return reminderDate;
+	public String getReminderDate() {
+		return reminderDate.toString();
 	}
 	public void setReminderDate(DateTime reminderDate) {
 		this.reminderDate = reminderDate;

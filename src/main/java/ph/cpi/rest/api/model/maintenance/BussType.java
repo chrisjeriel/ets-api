@@ -11,7 +11,14 @@ public class BussType {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public Integer getBussTypeCd() {
 		return bussTypeCd;
 	}
@@ -63,9 +70,11 @@ public class BussType {
 	
 	@Override
 	public String toString() {
-		return "BussType [bussTypeCd=" + bussTypeCd + ", bussTypeName=" + bussTypeName + ", description=" + description
-				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "BussType [bussTypeCd=" + bussTypeCd + ", bussTypeName="
+				+ bussTypeName + ", description=" + description
+				+ ", activeTag=" + activeTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 	
 }

@@ -5,10 +5,17 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnPoolRetHistRequest {
 
+	private String currencyCd;
 	private Integer retHistId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getRetHistId() {
 		return retHistId;
 	}
@@ -29,7 +36,7 @@ public class RetrieveMtnPoolRetHistRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnPoolRetHistRequest [retHistId=" + retHistId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnPoolRetHistRequest [currencyCd=" + currencyCd + ", retHistId=" + retHistId
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }
