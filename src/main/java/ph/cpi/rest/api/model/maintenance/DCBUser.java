@@ -10,10 +10,12 @@ public class DCBUser {
 	private DateTime validTo;
 	private Integer defaultArBank;
 	private String arBankName;
+	private Integer arBankCd;
 	private Integer defaultArBankAcct;
 	private String arBankAcctNo;
 	private Integer defaultOrBank;
 	private String orBankName;
+	private Integer orBankCd;
 	private Integer defaultOrBankAcct;
 	private String orBankAcctNo;
 	private String remarks;
@@ -22,6 +24,19 @@ public class DCBUser {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	public Integer getOrBankCd() {
+		return orBankCd;
+	}
+	public void setOrBankCd(Integer orBankCd) {
+		this.orBankCd = orBankCd;
+	}
+	public Integer getArBankCd() {
+		return arBankCd;
+	}
+	public void setArBankCd(Integer arBankCd) {
+		this.arBankCd = arBankCd;
+	}
 	
 	public Integer getDcbUserCd() {
 		return dcbUserCd;
@@ -140,12 +155,17 @@ public class DCBUser {
 	
 	@Override
 	public String toString() {
-		return "DCBUser [dcbUserCd=" + dcbUserCd + ", userId=" + userId + ", printableName=" + printableName
-				+ ", validFrom=" + validFrom + ", validTo=" + validTo + ", defaultArBank=" + defaultArBank
-				+ ", arBankName=" + arBankName + ", defaultArBankAcct=" + defaultArBankAcct + ", arBankAcctNo="
-				+ arBankAcctNo + ", defaultOrBank=" + defaultOrBank + ", orBankName=" + orBankName
-				+ ", defaultOrBankAcct=" + defaultOrBankAcct + ", orBankAcctNo=" + orBankAcctNo + ", remarks=" + remarks
-				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "DCBUser [dcbUserCd=" + dcbUserCd + ", userId=" + userId
+				+ ", printableName=" + printableName + ", validFrom="
+				+ validFrom + ", validTo=" + validTo + ", defaultArBank="
+				+ defaultArBank + ", arBankName=" + arBankName + ", arBankCd="
+				+ arBankCd + ", defaultArBankAcct=" + defaultArBankAcct
+				+ ", arBankAcctNo=" + arBankAcctNo + ", defaultOrBank="
+				+ defaultOrBank + ", orBankName=" + orBankName + ", orBankCd="
+				+ orBankCd + ", defaultOrBankAcct=" + defaultOrBankAcct
+				+ ", orBankAcctNo=" + orBankAcctNo + ", remarks=" + remarks
+				+ ", activeTag=" + activeTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

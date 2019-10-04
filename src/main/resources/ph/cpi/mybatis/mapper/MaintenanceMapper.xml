@@ -3547,10 +3547,12 @@
 		<result property="validTo"					column="VALID_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="defaultArBank"			column="DEFAULT_AR_BANK" />
 		<result property="arBankName"				column="AR_BANK_NAME" />
+		<result property="arBankCd"					column="AR_BANK_CD" />
 		<result property="defaultArBankAcct"		column="DEFAULT_AR_BANK_ACCT" />
 		<result property="arBankAcctNo"				column="AR_BANK_ACCT_NO" />
 		<result property="defaultOrBank"			column="DEFAULT_OR_BANK" />
 		<result property="orBankName"				column="OR_BANK_NAME" />
+		<result property="orBankCd"					column="OR_BANK_CD" />
 		<result property="defaultOrBankAcct"		column="DEFAULT_OR_BANK_ACCT" />
 		<result property="orBankAcctNo"				column="OR_BANK_ACCT_NO" />
 		<result property="remarks"					column="REMARKS" />
