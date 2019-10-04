@@ -256,6 +256,14 @@ public class AccountingServServiceImpl implements AccountingServService{
 	public SaveAcseOrTransDtlResponse saveAcseOrTransDtl(SaveAcseOrTransDtlRequest saotdr) throws SQLException {
 		SaveAcseOrTransDtlResponse response = new SaveAcseOrTransDtlResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saotdr.getTranId());
+		params.put("billId", saotdr.getBillId());
+		params.put("billType", saotdr.getBillType());
+		params.put("totalLocalAmt", saotdr.getTotalLocalAmt());
+		params.put("createUser", saotdr.getCreateUser());
+		params.put("createDate", saotdr.getCreateDate());
+		params.put("updateUser", saotdr.getUpdateUser());
+		params.put("updateDate", saotdr.getUpdateDate());
 		params.put("saveOrTransDtl", saotdr.getSaveOrTransDtl());
 		params.put("delOrTransDtl", saotdr.getDelOrTransDtl());
 		params.put("delOrItemTaxes", saotdr.getDelOrItemTaxes());
