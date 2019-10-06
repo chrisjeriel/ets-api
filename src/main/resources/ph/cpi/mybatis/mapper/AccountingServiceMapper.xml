@@ -650,6 +650,53 @@
 		END;
 	</update>
 	
+	<update id="saveTaxDetails" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveTaxDtl" item="save">
+				ACSE_TAX_DETAILS_PKG.save_tax_details(
+					#{save.tranId},
+					#{save.taxType},
+					#{save.taxSeqno, jdbcType=INTEGER},
+					#{save.taxCd},
+					#{save.genType},
+					#{save.payor},
+					#{save.baseAmt},
+					#{save.taxAmt},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseAcctEntries" id="acctEntryMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="entryId" 			column="ENTRY_ID"/>
+		<result property="glAcctId" 		column="GL_ACCT_ID"/>
+		<result property="glShortCd" 		column="GL_SHORT_CD"/>
+		<result property="glShortDesc"  	column="GL_SHORT_DESC"/>
+		<result property="slTypeCd" 		column="SL_TYPE_CD"/>
+		<result property="slTypeName" 		column="SL_TYPE_NAME"/>
+		<result property="slCd" 			column="SL_CD"/>
+		<result property="slName" 			column="SL_NAME"/>
+		<result property="creditAmt" 		column="CREDIT_AMT"/>
+		<result property="debitAmt" 		column="DEBIT_AMT"/>
+		<result property="foreignCreditAmt" column="FOREIGN_CREDIT_AMT"/>
+		<result property="foreignDebitAmt"  column="FOREIGN_DEBIT_AMT"/>
+		<result property="autoTag" 			column="AUTO_TAG"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateLevel" 		column="UPDATE_LEVEL"/>
+	</resultMap>
+	
+	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd})
+	</select>
+
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCv" id="acseCvMap">
 		<result property="cvGenNo"			column="CV_GEN_NO"/>
 		<result property="tranId"			column="TRAN_ID"/>
@@ -755,6 +802,69 @@
 				CAST(to_timestamp(#{deleteDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
+		END;
+	</update>
+	
+	<update id="saveAcctEntries" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delList" item="del">
+				ACSE_TAX_DETAILS_PKG.del_acct_acc_entries(#{del.tranId, jdbcType=VARCHAR},
+					#{del.entryId, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				ACSE_TAX_DETAILS_PKG.save_acse_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseAttachments" id="attachmentMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="fileNo" column="FILE_NO"/>
+		<result property="fileName" column="FILE_NAME"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAttachments" resultMap="attachmentMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ATTACHMENTS_PKG.ret_acse_attchmnt(#{tranId},null,null,null,null);
+	</select>
+	
+	<update id="saveAttachments" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			 <foreach collection="delAttachmentsList" item="del">
+		   		ACIT_ATTACHMENTS_PKG.del_acit_attchmnt(#{del.tranId},
+		   											#{del.fileNo, jdbcType=VARCHAR});
+		   </foreach>
+		   <foreach collection="saveAttachmentsList" item="attachment">
+		   	   ACIT_ATTACHMENTS_PKG.save_acit_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
+		   	   										#{attachment.tranId},
+		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
+		   	   										#{attachment.fileName},
+		   	   										#{attachment.description},
+		   	   										#{attachment.createUser},
+			   										CAST(to_timestamp(#{attachment.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   										#{attachment.updateUser},
+			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		   </foreach>
 		END;
 	</update>
 </mapper>

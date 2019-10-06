@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
+import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -115,6 +117,13 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public Integer saveAcseOrTransDtl(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("saveAcseOrTransDtl", params);
 		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveTaxDetails(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveTaxDetails",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}	
 	
 	@Override
@@ -135,10 +144,36 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<AcseCv> acseCvList  = sqlSession.selectList("retrieveAcseCv", params);
 		return acseCvList;
 	}
+
+	@Override
+	public List<AcseAcctEntries> retrieveAcctEntries(HashMap<String, Object> params) throws SQLException {
+		List<AcseAcctEntries> list = sqlSession.selectList("retrieveAcctEntries", params);
+		return list;
+	}
 	
 	@Override
 	public HashMap<String, Object> saveAcseCv(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcseCv", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcctEntries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcctEntries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcseAttachments> retrieveAttachments(HashMap<String, Object> params) throws SQLException {
+		List<AcseAttachments> list = sqlSession.selectList("retrieveAttachments", params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAttachments(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAttachments",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}
