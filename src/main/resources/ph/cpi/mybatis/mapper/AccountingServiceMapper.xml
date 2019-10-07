@@ -694,7 +694,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd})
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd}))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCv" id="acseCvMap">
@@ -912,16 +912,16 @@
 	<update id="saveAcseCvPaytReqList" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			<foreach collection="deletePaytReqList" item="del">
-				ACSE_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId}, 
-														  #{del.itemNo},
+				ACSE_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId, jdbcType=INTEGER}, 
+														  #{del.itemNo, jdbcType=INTEGER},
 														  #{del.updateUser, jdbcType=VARCHAR}, 
 														  #{del.cvStatus, jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="savePaytReqList" item="save">
-				ACSE_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId},
+				ACSE_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId, jdbcType=INTEGER},
 														   #{save.itemNo, jdbcType=INTEGER},
-														   #{save.reqId},
+														   #{save.reqId, jdbcType=INTEGER},
 														   #{save.createUser, jdbcType=VARCHAR},
 														   CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   #{save.updateUser, jdbcType=VARCHAR}, 

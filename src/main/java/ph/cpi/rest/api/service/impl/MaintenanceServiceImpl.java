@@ -2399,4 +2399,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return response;
 	}
 	
+	@Override
+    public RetrieveMtnAcseCheckSeriesResponse retrieveMtnAcseCheckSeries(RetrieveMtnAcseCheckSeriesRequest rmacs)
+            throws SQLException {
+        RetrieveMtnAcseCheckSeriesResponse rmacsResponse = new RetrieveMtnAcseCheckSeriesResponse();
+        HashMap<String, Object> rmacsParams = new HashMap<String, Object>();
+        rmacsParams.put("bank",rmacs.getBank());
+        rmacsParams.put("bankAcct", rmacs.getBankAcct());
+        rmacsParams.put("checkNo",rmacs.getCheckNo());
+        rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
+        return rmacsResponse;
+    }
 }

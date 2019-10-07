@@ -9,6 +9,7 @@ import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -229,5 +230,5 @@ public interface MaintenanceDao {
 	public List<GeneralTaxes> retrieveMtnGenTax(final HashMap<String, Object> params) throws SQLException;
 	public List<WithholdingTaxes> retrieveMtnWhTax(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnBussType(final HashMap<String, Object> params) throws SQLException;
-	
+	public List<AcseCheckSeries> retrieveMtnAcseCheckSeries(final HashMap<String, Object> params) throws SQLException;
 }

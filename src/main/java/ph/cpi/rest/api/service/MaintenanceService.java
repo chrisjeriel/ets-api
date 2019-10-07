@@ -155,5 +155,5 @@ public interface MaintenanceService {
 	public RetrieveMtnGenTaxResponse retrieveMtnGenTax(RetrieveMtnGenTaxRequest rmgtr) throws SQLException;
 	public RetrieveMtnWhTaxResponse retrieveMtnWhTax(RetrieveMtnWhTaxRequest rmwt) throws SQLException;
 	public SaveMtnBussTypeResponse saveMtnBussType (SaveMtnBussTypeRequest smbtr) throws SQLException;
-	
+	public RetrieveMtnAcseCheckSeriesResponse retrieveMtnAcseCheckSeries(RetrieveMtnAcseCheckSeriesRequest request) throws SQLException;
 }
