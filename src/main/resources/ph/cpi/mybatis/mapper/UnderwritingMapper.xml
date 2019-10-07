@@ -839,6 +839,7 @@
 															 null,
 															 null))
 															 WHERE  1=1
+															   <!-- AND rownum &lt;= 10 -->
 		   	   <if test="statusArr != null">
 			   	AND   STATUS IN 
 				   	   	<foreach item="item" index="index" collection="statusArr"
