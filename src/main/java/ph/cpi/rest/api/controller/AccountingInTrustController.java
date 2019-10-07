@@ -2,10 +2,13 @@ package ph.cpi.rest.api.controller;
 
 import java.sql.SQLException;
 
+import org.apache.tools.ant.taskdefs.Sleep;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,104 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ph.cpi.rest.api.model.request.ApproveJVRequest;
-import ph.cpi.rest.api.model.request.CancelArRequest;
-import ph.cpi.rest.api.model.request.CancelCMDMCMDMRequest;
-import ph.cpi.rest.api.model.request.CancelJournalVoucherRequest;
-import ph.cpi.rest.api.model.request.GenerateUPRRequest;
-import ph.cpi.rest.api.model.request.PrintArRequest;
-import ph.cpi.rest.api.model.request.PrintCMDMRequest;
-import ph.cpi.rest.api.model.request.PrintJVRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcctPrqServFeeRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAgingSoaDtlRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeInvtIdRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAllInvestmentIncomeRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAmortizeRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArAmtDtlRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallLovRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArClmCashCallRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverLovRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArClmRecoverRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArEntryRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArInvPulloutRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArInwPolBalRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArNegTrtyBalRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitArTransDtlRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitAttachmentsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitCMDMListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitClmResHistPaytRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitCvRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitInvestmentsListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVAcctTrtyBalRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVAllocInvtIncRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVAppPaytZeroRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVClmNegTrtyRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVClmOffLOVRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVEntryRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVInPolBalRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVIntOverdAcctMSRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVInvtRollOverRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVListingRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVPremResRelRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJVRcvblsAgnstLosRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJvDefNameRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJvInvPlacementRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJvInvPullOutRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJvInvmtOffsetRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitJvQrtrPremResRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitProfCommDtlRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitProfCommSummRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitPrqInwPolRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitPrqTransRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitRefNoLOVRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingDetailsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSOAAgingZeroRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSOADueRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSOATreatyDetailsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitSoaZeroAltRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitUPRPerCedeRequest;
-import ph.cpi.rest.api.model.request.RetrieveQSOAListRequest;
-import ph.cpi.rest.api.model.request.SaveAcctPrqServFeeRequest;
-import ph.cpi.rest.api.model.request.SaveAcitAcctEntriesRequest;
-import ph.cpi.rest.api.model.request.SaveAcitAllocInvtIncomeRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArAmtDtlRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArClmCashCallRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArClmRecoverRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArInvPulloutRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArInwPolBalRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArNegTrtyBalRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArTransDtlRequest;
-import ph.cpi.rest.api.model.request.SaveAcitArTransRequest;
-import ph.cpi.rest.api.model.request.SaveAcitAttachmentsRequest;
-import ph.cpi.rest.api.model.request.SaveAcitCMDMRequest;
-import ph.cpi.rest.api.model.request.SaveAcitClmResHistPaytsRequest;
-import ph.cpi.rest.api.model.request.SaveAcitCvPaytReqListRequest;
-import ph.cpi.rest.api.model.request.SaveAcitCvRequest;
-import ph.cpi.rest.api.model.request.SaveAcitInvestmentsRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVAcctTrtyBalRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVAdjInwPolBalRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVAppPaytZeroRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVEntryListRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVEntryRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVIntOverdAcctMSRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVInvPlacementRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVInvPullOutRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVInvRollOverRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVPremResRelRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVRcvblsAgnstLosRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJVTrtyInvtRequest;
-import ph.cpi.rest.api.model.request.SaveAcitJvNegTrtyRequest;
-import ph.cpi.rest.api.model.request.SaveAcitPaytReqRequest;
-import ph.cpi.rest.api.model.request.SaveAcitPrqInwPolRequest;
-import ph.cpi.rest.api.model.request.SaveAcitPrqTransRequest;
-import ph.cpi.rest.api.model.request.SaveAcitQSOARequest;
-import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
-import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
-import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
+import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -849,5 +755,70 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/SaveAcitQSOARequest");
 		logger.info("SaveAcitQSOARequest : " + saqr.toString());
 		return acctInTrustService.saveAcitQSOA(saqr);
+	}
+	
+	//MONTH-END
+	
+	@PostMapping(path="saveAcitMonthEndBatchProd")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(@RequestBody SaveAcitMonthEndBatchProdRequest samebr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatch");
+		logger.info("SaveAcitMonthEndBatchRequest : " + samebr.toString());
+		return acctInTrustService.saveAcitMonthEndBatchProd(samebr);
+	}
+	
+	@PostMapping(path="saveAcitMonthEndBatchOS")
+	public @ResponseBody SaveAcitMonthEndBatchOSResponse saveAcitMonthEndBatchOS(@RequestBody SaveAcitMonthEndBatchOSRequest samebr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatchOS");
+		logger.info("SaveAcitMonthEndBatchOSRequest : " + samebr.toString());
+		return acctInTrustService.saveAcitMonthEndBatchOS(samebr);
+	}
+	
+	@PostMapping(path="acitMECloseTransactions")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMECloseTransactions(@RequestBody SaveAcitMonthEndBatchProdRequest amectr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/acitMECloseTransactions");
+		logger.info("AcitMECloseTransactionsRequest : " + amectr.toString());
+		return acctInTrustService.acitMECloseTransactions(amectr);
+	}
+	
+	@PostMapping(path="acitMEExtractNetPrem")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEExtractNetPrem(@RequestBody SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/acitMEExtractNetPrem");
+		logger.info("AcitMEExtractNetPremRequest : " + amenpr.toString());
+		return acctInTrustService.acitMEExtractNetPrem(amenpr);
+	}
+	
+	@PostMapping(path="acitMEEntriesNetPrem")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEEntriesNetPrem(@RequestBody SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/acitMEEntriesNetPrem");
+		logger.info("AcitMEEntriesNetPremRequest : " + amenpr.toString());
+		return acctInTrustService.acitMEEntriesNetPrem(amenpr);
+	}
+	
+	@PostMapping(path="acitMEExtractUPR")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEExtractUPR(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/acitMEExtractUPR");
+		logger.info("AcitMEExtractUPRRequest : " + ameupr.toString());
+		return acctInTrustService.acitMEExtractUPR(ameupr);
+	}
+	
+	@PostMapping(path="acitMEEntriesUPR")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEEntriesUPR(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/AcitMEEntriesUPRRequest");
+		logger.info("AcitMEEntriesUPRRequest : " + ameupr.toString());
+		return acctInTrustService.acitMEEntriesUPR(ameupr);
+	}
+	
+	@PostMapping(path="acitMEExtractOSLoss")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEExtractOSLoss(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/acitMEExtractOSLoss");
+		logger.info("AcitMEExtractOSLossRequest : " + ameupr.toString());
+		return acctInTrustService.acitMEExtractOSLoss(ameupr);
+	}
+	
+	@PostMapping(path="acitMEEntriesOSLoss")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEEntriesOSLoss(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/acitMEEntriesOSLoss");
+		logger.info("AcitMEExtractOSLossRequest : " + ameupr.toString());
+		return acctInTrustService.acitMEEntriesOSLoss(ameupr);
 	}
 }

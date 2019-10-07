@@ -161,4 +161,7 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitJVInvPlacement(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAcitSoaDue(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcitQSOA(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitMonthEndBatchProd(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitMonthEndBatchOS(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitMECloseTransactions(final HashMap<String, Object> params) throws SQLException;
 }

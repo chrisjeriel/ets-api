@@ -3677,4 +3677,106 @@
 		END;
 	</update>
 	
+	<update id="acitEomCloseAcitTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.close_acit_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomDeleteAcitTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.delete_acit_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomExtUwprod" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_NET_PREM_PKG.ext_uwprod(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{eomUser, jdbcType=VARCHAR},
+											 CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomCreateNetPremJv" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.create_net_prem_jv(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+											      #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomExtEomUpr" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_UPR_PKG.ext_eom_upr(null,
+									     #{eomUser, jdbcType=VARCHAR},
+										 CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomCreateUprJv" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.create_upr_jv(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+											 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+											 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomSaveOdInt" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_OVERDUEINT_PKG.save_od_int(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 	#{eomUser, jdbcType=VARCHAR},
+											 	CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 	#{eomUser, jdbcType=VARCHAR},
+											 	CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomExtOsLoss" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_OSLOSS_PKG.ext_osloss(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomCreateOsLossJv" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.create_os_loss_jv(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomExtClmpayt" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_CLMPAYT_PKG.ext_clmpayt(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										     #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomCreateAllocPaidClmJv" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.create_alloc_paidclm_jv(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomExtractClmRecover" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_CLMRECOVER_PKG.ext_clmrecover(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										     	   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomCreateAllocRecoverJv" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.create_alloc_recover_jv(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	
 </mapper>

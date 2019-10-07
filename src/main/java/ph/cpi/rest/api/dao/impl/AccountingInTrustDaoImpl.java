@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
@@ -731,6 +733,37 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public Integer saveAcitQSOA(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcitQSOA", params);
+		return errorCode;
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer saveAcitMonthEndBatchProd(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("acitEomCloseAcitTrans", params);
+		sqlSession.update("acitEomDeleteAcitTrans", params);
+		sqlSession.update("acitEomExtUwprod", params);
+		sqlSession.update("acitEomCreateNetPremJv", params);
+		sqlSession.update("acitEomExtEomUpr", params);
+		sqlSession.update("acitEomCreateUprJv", params);
+		sqlSession.update("acitEomSaveOdInt", params);
+		sqlSession.update("acitEomSaveOdInt", params);
+		return errorCode;
+	}
+	
+	@Override
+	public Integer acitMECloseTransactions(HashMap<String, Object> params) throws SQLException {
+		return 0; //todo
+	}
+
+	@Transactional(rollbackFor=Exception.class)
+	@Override
+	public Integer saveAcitMonthEndBatchOS(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("acitEomExtOsLoss", params);
+		sqlSession.update("acitEomCreateOsLossJv", params);
+		sqlSession.update("acitEomExtClmpayt", params);
+		sqlSession.update("acitEomCreateAllocPaidClmJv", params);
+		sqlSession.update("acitEomExtractClmRecover", params);
+		sqlSession.update("acitEomCreateAllocRecoverJv", params);
 		return errorCode;
 	}
 }
