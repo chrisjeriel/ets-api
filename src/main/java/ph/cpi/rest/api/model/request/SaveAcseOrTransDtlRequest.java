@@ -5,10 +5,66 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcseOrTransDtlRequest {
+	private String tranId;
+	private String billId;
+	private String billType;
+	private String totalLocalAmt;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
 	private List<SaveOrTransDtl> saveOrTransDtl;
 	private List<SaveOrTransDtl> delOrTransDtl;
 	private List<SaveOrItemTaxes> delOrItemTaxes;
 	
+	public String getTranId() {
+		return tranId;
+	}
+	public void setTranId(String tranId) {
+		this.tranId = tranId;
+	}
+	public String getBillId() {
+		return billId;
+	}
+	public void setBillId(String billId) {
+		this.billId = billId;
+	}
+	public String getBillType() {
+		return billType;
+	}
+	public void setBillType(String billType) {
+		this.billType = billType;
+	}
+	public String getTotalLocalAmt() {
+		return totalLocalAmt;
+	}
+	public void setTotalLocalAmt(String totalLocalAmt) {
+		this.totalLocalAmt = totalLocalAmt;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
 	public List<SaveOrTransDtl> getSaveOrTransDtl() {
 		return saveOrTransDtl;
 	}
@@ -29,8 +85,10 @@ public class SaveAcseOrTransDtlRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcseOrTransDtlRequest [saveOrTransDtl=" + saveOrTransDtl + ", delOrTransDtl=" + delOrTransDtl
-				+ ", delOrItemTaxes=" + delOrItemTaxes + "]";
+		return "SaveAcseOrTransDtlRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
+				+ ", totalLocalAmt=" + totalLocalAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveOrTransDtl=" + saveOrTransDtl
+				+ ", delOrTransDtl=" + delOrTransDtl + ", delOrItemTaxes=" + delOrItemTaxes + "]";
 	}
 }
 
