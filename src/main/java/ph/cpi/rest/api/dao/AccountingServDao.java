@@ -43,5 +43,5 @@ public interface AccountingServDao {
 	public HashMap<String, Object> updateAcseCvStat(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseCvPaytReq> retrieveAcseCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveAcseCvPaytReqList(final HashMap<String, Object> params) throws SQLException;
-	
+	public Integer cancelOr(final HashMap<String, Object> params) throws SQLException;
 }

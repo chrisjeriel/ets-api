@@ -694,7 +694,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd})
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd}))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCv" id="acseCvMap">
@@ -845,7 +845,7 @@
 	</resultMap>
 	
 	<select id="retrieveAttachments" resultMap="attachmentMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ATTACHMENTS_PKG.ret_acse_attchmnt(#{tranId},null,null,null,null);
+		SELECT * FROM TABLE(ACSE_ATTACHMENTS_PKG.ret_acse_attchmnt(#{tranId},null,null,null,null))
 	</select>
 	
 	<update id="saveAttachments" parameterType="java.util.Map" statementType="CALLABLE">
@@ -928,6 +928,14 @@
 														   CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   #{save.cvStatus, jdbcType=VARCHAR});
 			</foreach>
+		END;
+	</update>
+	
+	<update id="cancelOr" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_OFFICIAL_RECEIPT_PKG.cancel_or(#{tranId},
+												#{updateUser}, 
+												CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
 	

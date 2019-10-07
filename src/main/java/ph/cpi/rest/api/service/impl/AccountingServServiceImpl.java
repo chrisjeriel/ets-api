@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
@@ -38,6 +39,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
@@ -671,6 +673,29 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			e.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public CancelOrResponse cancelOr(CancelOrRequest cor) throws SQLException {
+		CancelOrResponse response = new CancelOrResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", cor.getTranId());
+		params.put("updateUser", cor.getUpdateUser());
+		params.put("updateDate", cor.getUpdateDate());
+		try{
+			response.setReturnCode(acctServDao.cancelOr(params));
+			logger.info("CancelOrResponse : "+ response);
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		
 		return response;
 	}
 }

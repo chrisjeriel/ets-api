@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
@@ -41,6 +42,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
@@ -268,6 +270,13 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseCvPaytReqList");
 		logger.info("SaveAcseCvPaytReqListRequest : " + sacprr.toString());
 		return acctServService.saveAcseCvPaytReqList(sacprr);
+	}
+	
+	@PostMapping(path="cancelOr")
+	public @ResponseBody CancelOrResponse cancelOr(@RequestBody CancelOrRequest cor) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/cancelOr");
+		logger.info("CancelOrRequest : " + cor.toString());
+		return acctServService.cancelOr(cor);
 	}
 	
 }

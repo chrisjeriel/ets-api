@@ -198,4 +198,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		return errorCode;
 	}
 
+	@Override
+	public Integer cancelOr(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("cancelOr", params);
+		return errorCode;
+	}
+
 }
