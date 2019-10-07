@@ -652,6 +652,14 @@
 	
 	<update id="saveTaxDetails" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="delTaxDtl" item="del">
+				ACSE_TAX_DETAILS_PKG.del_tax_details(
+					#{del.tranId},
+					#{del.taxType},
+					#{del.taxSeqno}
+				);
+			</foreach>
+			
 			<foreach collection="saveTaxDtl" item="save">
 				ACSE_TAX_DETAILS_PKG.save_tax_details(
 					#{save.tranId},

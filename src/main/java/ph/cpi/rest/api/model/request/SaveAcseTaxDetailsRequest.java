@@ -7,6 +7,7 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveAcseTaxDetailsRequest {
 	private List<taxDetails> saveTaxDtl;
+	private List<taxDetails> delTaxDtl;
 
 	public List<taxDetails> getSaveTaxDtl() {
 		return saveTaxDtl;
@@ -15,10 +16,19 @@ public class SaveAcseTaxDetailsRequest {
 	public void setSaveTaxDtl(List<taxDetails> saveTaxDtl) {
 		this.saveTaxDtl = saveTaxDtl;
 	}
+	
+
+	public List<taxDetails> getDelTaxDtl() {
+		return delTaxDtl;
+	}
+
+	public void setDelTaxDtl(List<taxDetails> delTaxDtl) {
+		this.delTaxDtl = delTaxDtl;
+	}
 
 	@Override
 	public String toString() {
-		return "SaveAcseTaxDetailsRequest [saveTaxDtl=" + saveTaxDtl + "]";
+		return "SaveAcseTaxDetailsRequest [saveTaxDtl=" + saveTaxDtl + ", delTaxDtl=" + delTaxDtl + "]";
 	}
 	
 }

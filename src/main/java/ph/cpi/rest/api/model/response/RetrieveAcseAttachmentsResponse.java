@@ -7,14 +7,16 @@ import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 
 public class RetrieveAcseAttachmentsResponse {
-	private List<AcseAttachments> acitAttachmentsList;
+	private List<AcseAttachments> acseAttachmentsList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
-	public List<AcseAttachments> getAcitAttachmentsList() {
-		return acitAttachmentsList;
+	
+	
+	public List<AcseAttachments> getAcseAttachmentsList() {
+		return acseAttachmentsList;
 	}
-	public void setAcitAttachmentsList(List<AcseAttachments> acitAttachmentsList) {
-		this.acitAttachmentsList = acitAttachmentsList;
+	public void setAcseAttachmentsList(List<AcseAttachments> acseAttachmentsList) {
+		this.acseAttachmentsList = acseAttachmentsList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -28,4 +30,10 @@ public class RetrieveAcseAttachmentsResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	@Override
+	public String toString() {
+		return "RetrieveAcseAttachmentsResponse [acseAttachmentsList=" + acseAttachmentsList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+	}
+	
 }
