@@ -14,6 +14,7 @@ import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -25,23 +26,24 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
-import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
-import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
-import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
@@ -50,13 +52,15 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
-import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
+import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -611,6 +615,61 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
+		}
+		return response;
+	}
+	
+	@Override
+	public UpdateAcseCvStatResponse updateAcseCvStat(UpdateAcseCvStatRequest uacsr) throws SQLException {
+		UpdateAcseCvStatResponse uacsResponse = new UpdateAcseCvStatResponse();
+		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
+		try {
+			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("updateUser", uacsr.getUpdateUser());
+			
+			HashMap<String, Object> response = acctServDao.updateAcseCvStat(uacsParams);
+			
+			uacsResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			uacsResponse.setReturnCode(0);
+			uacsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			uacsResponse.setReturnCode(0);
+			uacsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return uacsResponse;
+	}
+	
+	@Override
+	public RetrieveAcseCvPaytReqListResponse retrieveAcseCvPaytReqList(RetrieveAcseCvPaytReqListRequest racprlp)
+			throws SQLException {
+		RetrieveAcseCvPaytReqListResponse racprlResponse =  new RetrieveAcseCvPaytReqListResponse();
+		HashMap<String, Object> racprlParams = new HashMap<String, Object>();
+		racprlParams.put("tranId", racprlp.getTranId());
+		racprlParams.put("itemNo", racprlp.getItemNo());
+		racprlResponse.setAcseCvPaytReqList(acctServDao.retrieveAcseCvPaytReqList(racprlParams));
+		logger.info("RetrieveAcseCvPaytReqListResponse : " + racprlResponse.toString());
+		return racprlResponse;
+	}
+	
+	@Override
+	public SaveAcseCvPaytReqListResponse saveAcseCvPaytReqList(SaveAcseCvPaytReqListRequest sacprr)
+			throws SQLException {
+		SaveAcseCvPaytReqListResponse response = new SaveAcseCvPaytReqListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("savePaytReqList", sacprr.getSavePaytReqList());
+		params.put("deletePaytReqList", sacprr.getDeletePaytReqList());
+		
+		try {
+			response.setReturnCode(acctServDao.saveAcseCvPaytReqList(params));
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
 		}
 		return response;
 	}
