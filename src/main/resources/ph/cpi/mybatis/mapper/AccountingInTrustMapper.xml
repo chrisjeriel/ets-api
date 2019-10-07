@@ -3190,8 +3190,6 @@
 														   CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   #{save.cvStatus, jdbcType=VARCHAR});
 			</foreach>
-			
-			
 		END;
 	</update>
 	
