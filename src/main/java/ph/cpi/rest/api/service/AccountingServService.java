@@ -4,58 +4,8 @@ import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
 
-import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
-import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
-import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
-import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
-import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
-import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
-import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
-import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
-import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
-import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
-import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
-import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
-import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
-import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
-import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
-import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
-import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
-import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
-import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
-import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
-import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
-import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
-import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
-import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
-import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
-import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
-import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
-import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.request.*;
+import ph.cpi.rest.api.model.response.*;
 
 @Service
 public interface AccountingServService {
@@ -85,5 +35,7 @@ public interface AccountingServService {
 	public UpdateAcseCvStatResponse updateAcseCvStat(UpdateAcseCvStatRequest uaprsr) throws SQLException;
 	public RetrieveAcseCvPaytReqListResponse retrieveAcseCvPaytReqList(RetrieveAcseCvPaytReqListRequest racprlp ) throws SQLException;
 	public SaveAcseCvPaytReqListResponse saveAcseCvPaytReqList(SaveAcseCvPaytReqListRequest sacprr) throws SQLException;
-	
+	public CancelOrResponse cancelOr(CancelOrRequest cor) throws SQLException;
+	public RetrieveAcseOrServFeeResponse retrieveAcseOrServFee(RetrieveAcseOrServFeeRequest raosfr) throws SQLException;
+	public SaveAcseOrServFeeResponse saveAcseOrServFee(SaveAcseOrServFeeRequest saosfr) throws SQLException;
 }
