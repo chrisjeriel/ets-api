@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
@@ -23,6 +24,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	
 	@Autowired
 	AccountingInTrustDao acctITDao;
+	
+	@Autowired
+	WebSocketController wsController;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
 
@@ -1930,18 +1934,53 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 	
 	//MONTH-END
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr)
 			throws SQLException {
 		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
+		String procedureName = "";
 		
 		params.put("eomDate", samebr.getEomDate());
 		params.put("eomUser", samebr.getEomUser());
 		
 		try {
-			res.setReturnCode(acctITDao.saveAcitMonthEndBatchProd(params));
+			/*procedureName = "Closing Valid Transactions";
+			wsController.onReceiveMessage("Closing valid transactions . . .");
+			res.setReturnCode(acctITDao.acitMECloseTransactions(params));
+			wsController.onReceiveMessage("Valid transactions successfully closed.");*/
+			procedureName = "Extracting Inward Production";
+			wsController.onReceiveMessage("Initializing . . .");
+			wsController.onReceiveMessage("Extracting Inward Production . . .");
+			res.setReturnCode(acctITDao.acitEomExtUwprod(params));
+			wsController.onReceiveMessage("Inward Production extraction finished.");
+			
+			procedureName = "Generating Accounting Entries for distribution of Premiums";
+			wsController.onReceiveMessage("Generating Accounting Entries for Inward Production . . .");
+			res.setReturnCode(acctITDao.acitEomCreateNetPremJv(params));
+			wsController.onReceiveMessage("Generation of Accounting Entries for Inward Production was succesfull.");
+			
+			procedureName = "Extracting Premium Reserve Retained";
+			wsController.onReceiveMessage("Extracting Premium Reserve Retained . . .");
+			res.setReturnCode(acctITDao.acitEomExtEomUpr(params));
+			wsController.onReceiveMessage("Premium Reserve Retained extraction finished.");
+			
+			procedureName = "Distributing Inward Production";
+			wsController.onReceiveMessage("Distributing Inward Production . . .");
+			res.setReturnCode(acctITDao.acitEomCreateUprJv(params));
+			wsController.onReceiveMessage("Inward production distribution finished.");
+			
+			procedureName = "Computing Interest on Overdue Accounts";
+			wsController.onReceiveMessage("Computing Interest on Overdue Accounts . . .");
+			res.setReturnCode(acctITDao.acitEomSaveOdInt(params));
+			wsController.onReceiveMessage("Computation of Interest on Overdue Accounts finished.");
+			
+			procedureName = "Producing Summary Report";
+			wsController.onReceiveMessage(acctITDao.acitEomProdSummaryReport(params));
+			
 		} catch (Exception e) {
+			wsController.onReceiveMessage("An error occured while " + procedureName);
 			res.setReturnCode(0);
 			res.getErrorList().add(new Error("SQLException","Batch processing failed."));
 			e.printStackTrace();

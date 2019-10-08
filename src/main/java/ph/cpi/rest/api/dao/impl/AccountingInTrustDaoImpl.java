@@ -746,7 +746,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		sqlSession.update("acitEomExtEomUpr", params);
 		sqlSession.update("acitEomCreateUprJv", params);
 		sqlSession.update("acitEomSaveOdInt", params);
-		sqlSession.update("acitEomSaveOdInt", params);
 		return errorCode;
 	}
 	
@@ -765,5 +764,48 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		sqlSession.update("acitEomExtractClmRecover", params);
 		sqlSession.update("acitEomCreateAllocRecoverJv", params);
 		return errorCode;
+	}
+
+	@Override
+	public Integer acitEomCloseAcitTrans(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomCloseAcitTrans", params);
+	}
+
+	@Override
+	public Integer acitEomDeleteAcitTrans(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomDeleteAcitTrans", params);
+	}
+
+	@Override
+	public Integer acitEomExtUwprod(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomExtUwprod", params);
+	}
+
+	@Override
+	public Integer acitEomCreateNetPremJv(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomCreateNetPremJv", params);
+	}
+
+	@Override
+	public Integer acitEomExtEomUpr(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomExtEomUpr", params);
+	}
+
+	@Override
+	public Integer acitEomCreateUprJv(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomCreateUprJv", params);
+	}
+
+	@Override
+	public Integer acitEomSaveOdInt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomSaveOdInt", params);
+	}
+
+	@Override
+	public String acitEomProdSummaryReport(HashMap<String, Object> params) throws SQLException {
+		params.put("extractSummary", "");
+		sqlSession.selectOne("acitEomProdSummaryReport", params);
+		
+		return (String) params.get("extractSummary");
 	}
 }

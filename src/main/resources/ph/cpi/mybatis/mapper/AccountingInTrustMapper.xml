@@ -3733,6 +3733,17 @@
 		END;
 	</update>
 	
+	<update id="acitEomProdSummaryReport" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{extractSummary, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_EOM_TRANS_PKG.prod_summary_report(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+																													 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+																													 CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																													 #{eomUser, jdbcType=VARCHAR})
+		}
+	</update>
+	
+	<!-- OS -->
+	
 	<update id="acitEomExtOsLoss" parameterType="java.util.Map">
 		BEGIN
 			ACIT_EOM_OSLOSS_PKG.ext_osloss(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -3777,6 +3788,5 @@
 													   #{eomUser, jdbcType=VARCHAR});
 		END;
 	</update>
-	
 	
 </mapper>
