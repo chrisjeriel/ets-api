@@ -930,5 +930,4 @@
 			</foreach>
 		END;
 	</update>
-	
 </mapper>
