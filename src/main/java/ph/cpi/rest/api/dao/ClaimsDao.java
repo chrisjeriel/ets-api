@@ -49,4 +49,6 @@ public interface ClaimsDao {
 	public Integer redistributeClaimReserveDist(final HashMap<String, Object> params) throws SQLException;
 	
 	public List<ClaimPaytReqInq> retrieveClmPaytReqInq(final HashMap<String, Object> params) throws SQLException;
+
+	public Integer retrieveClaimListingLength(final HashMap<String, Object> params) throws SQLException;
 }

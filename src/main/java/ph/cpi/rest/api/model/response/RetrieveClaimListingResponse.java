@@ -8,9 +8,16 @@ import ph.cpi.rest.api.model.claims.Claims;
 
 public class RetrieveClaimListingResponse {
 	private List<Claims> claimsList;
+	private Integer length;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
 	
+	public Integer getLength() {
+		return length;
+	}
+	public void setLength(Integer length) {
+		this.length = length;
+	}
 	public List<Claims> getClaimsList() {
 		return claimsList;
 	}
@@ -31,8 +38,8 @@ public class RetrieveClaimListingResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimListingResponse [claimsList=" + claimsList + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrieveClaimListingResponse [claimsList=" + claimsList + ", length=" + length + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 	
 }

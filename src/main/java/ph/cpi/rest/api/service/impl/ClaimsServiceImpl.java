@@ -130,7 +130,12 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("adjName", rclr.getAdjName());
 		params.put("currencyCd", rclr.getCurrencyCd());
 		params.put("processedBy", rclr.getProcessedBy());
+		
+		params.put("pagination", rclr.getPaginationRequest());
+		params.put("sort", rclr.getSortRequest());
+		params.put("search", rclr.getSearch());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
+		response.setLength(claimsDao.retrieveClaimListingLength(params));
 		return response;
 	}
 
