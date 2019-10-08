@@ -2398,5 +2398,39 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public SaveMtnDcbUserResponse saveMtnDcbUser(SaveMtnDcbUserRequest smdur)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnDcbUserResponse response = new SaveMtnDcbUserResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smdur.getSaveList());
+		params.put("delList", smdur.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnDcbUser(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(
+			RetrieveMtnEmployeeRequest rmer) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnEmployeeResponse response = new RetrieveMtnEmployeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("companyId", rmer.getCompanyId());
+		params.put("employeeId", rmer.getEmployeeId());
+		response.setEmployeeList(maintenanceDao.retrieveMtnEmployee(params));
+		logger.info("RetrieveMtnEmployeeResponse : " + response);
+		return response;
+		
+	}
 	
 }

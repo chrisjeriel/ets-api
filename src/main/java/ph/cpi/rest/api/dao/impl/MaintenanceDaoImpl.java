@@ -40,6 +40,7 @@ import ph.cpi.rest.api.model.maintenance.Currency;
 import ph.cpi.rest.api.model.maintenance.CurrencyRt;
 import ph.cpi.rest.api.model.maintenance.DCBUser;
 import ph.cpi.rest.api.model.maintenance.Deductibles;
+import ph.cpi.rest.api.model.maintenance.Employee;
 import ph.cpi.rest.api.model.maintenance.EndtCode;
 import ph.cpi.rest.api.model.maintenance.GeneralTaxes;
 import ph.cpi.rest.api.model.maintenance.Insured;
@@ -1095,5 +1096,21 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnBussType",params);
 		return code;
+	}
+
+	@Override
+	public Integer saveMtnDcbUser(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnDcbUser",params);
+		return code;
+	}
+
+	@Override
+	public List<Employee> retrieveMtnEmployee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<Employee> res = sqlSession.selectList("retrieveMtnEmployee", params);
+		return res;
 	}
 }

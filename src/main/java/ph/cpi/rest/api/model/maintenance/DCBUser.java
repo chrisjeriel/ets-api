@@ -24,7 +24,14 @@ public class DCBUser {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public Integer getOrBankCd() {
 		return orBankCd;
 	}
@@ -166,6 +173,6 @@ public class DCBUser {
 				+ ", orBankAcctNo=" + orBankAcctNo + ", remarks=" + remarks
 				+ ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 }
