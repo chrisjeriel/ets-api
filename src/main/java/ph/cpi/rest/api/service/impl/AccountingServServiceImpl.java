@@ -610,7 +610,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			HashMap<String, Object> params = new HashMap<String,Object>();
 			params.put("saveAttachmentsList", request.getSaveAttachmentsList());
 			params.put("delAttachmentsList", request.getDelAttachmentsList());
-			HashMap<String, Object> res = acctServDao.saveAcctEntries(params);
+			HashMap<String, Object> res = acctServDao.saveAttachments(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
 			response.setReturnCode(0);
