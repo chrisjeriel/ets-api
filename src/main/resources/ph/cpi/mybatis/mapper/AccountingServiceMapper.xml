@@ -920,16 +920,16 @@
 	<update id="saveAcseCvPaytReqList" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			<foreach collection="deletePaytReqList" item="del">
-				ACSE_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId}, 
-														  #{del.itemNo},
+				ACSE_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId, jdbcType=INTEGER}, 
+														  #{del.itemNo, jdbcType=INTEGER},
 														  #{del.updateUser, jdbcType=VARCHAR}, 
 														  #{del.cvStatus, jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="savePaytReqList" item="save">
-				ACSE_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId},
+				ACSE_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId, jdbcType=INTEGER},
 														   #{save.itemNo, jdbcType=INTEGER},
-														   #{save.reqId},
+														   #{save.reqId, jdbcType=INTEGER},
 														   #{save.createUser, jdbcType=VARCHAR},
 														   CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   #{save.updateUser, jdbcType=VARCHAR}, 

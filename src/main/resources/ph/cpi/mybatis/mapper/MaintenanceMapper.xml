@@ -4001,4 +4001,26 @@
 		END;
 	</update>
      
+    <resultMap type="ph.cpi.rest.api.model.maintenance.AcseCheckSeries" id="acseCheckSeriesMap">
+        <result property="bank"         column="BANK"/>
+        <result property="bankAcct"     column="BANK_ACCT"/>
+        <result property="checkNo"      column="CHECK_NO"/>
+        <result property="checkPrefix"  column="CHECK_PREFIX"/>
+        <result property="tranId"       column="TRAN_ID"/>
+        <result property="usedTag"      column="USED_TAG"/>
+        <result property="checkStatus"  column="CHECK_STATUS"/>
+        <result property="createUser"   column="CREATE_USER"/>
+        <result property="createDate"   column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="updateUser"   column="UPDATE_USER"/>
+        <result property="updateDate"   column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveMtnAcseCheckSeries" resultMap="acseCheckSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_CHECK_SERIES_PKG.ret_acse_chk_series(
+            #{bank, jdbcType=INTEGER},
+            #{bankAcct, jdbcType=INTEGER},
+            #{checkNo, jdbcType=VARCHAR},
+            NULL,NULL,NULL,NULL
+        ))
+     </select>
 </mapper>

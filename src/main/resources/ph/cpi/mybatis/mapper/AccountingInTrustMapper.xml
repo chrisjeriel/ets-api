@@ -138,7 +138,7 @@
 				<!-- #{payeeNo, jdbcType=VARCHAR}, -->
 				#{payeeClassCd, jdbcType=VARCHAR},
 				#{payeeCd, jdbcType=VARCHAR},
-				#{payee, jdbcType=VARCHAR},
+				#{payee, jdbcType=VARCHAR},	
 				#{currCd, jdbcType=VARCHAR},
 				#{currRate, jdbcType=VARCHAR},
 				#{reqAmt, jdbcType=INTEGER},
@@ -3190,8 +3190,6 @@
 														   CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   #{save.cvStatus, jdbcType=VARCHAR});
 			</foreach>
-			
-			
 		END;
 	</update>
 	
