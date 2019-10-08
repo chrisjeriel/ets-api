@@ -69,6 +69,8 @@
      	<result property="noteId"            	    column="NOTE_ID"/>
 		<result property="title"           			column="TITLE"/>
 		<result property="note"			            column="NOTE"/>
+		<result property="impTag"			        column="IMP_TAG"/>
+		<result property="urgTag"			        column="URG_TAG"/>
 		<result property="module"			        column="MODULE"/>
 		<result property="referenceId"			    column="REFERENCE_ID"/>
 		<result property="details"			        column="DETAILS"/>
@@ -92,6 +94,8 @@
     	SELECT * FROM TABLE(WFM_NOTES_PKG.ret_notes(#{noteId, jdbcType=VARCHAR},
     										      #{assignedTo, jdbcType=VARCHAR},
     										      #{createUser, jdbcType=VARCHAR},
+    										      #{impTag, jdbcType=VARCHAR},
+    										      #{urgTag, jdbcType=VARCHAR},
     										      #{module, jdbcType=VARCHAR},
     										      #{referenceId, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR},
@@ -108,6 +112,8 @@
 											   #{note.noteId, jdbcType=INTEGER},
 											   #{note.title, jdbcType=VARCHAR},
 											   #{note.note, jdbcType=VARCHAR},
+											   #{note.impTag, jdbcType=VARCHAR},
+											   #{note.urgTag, jdbcType=VARCHAR},
 											   #{note.module, jdbcType=VARCHAR},
 											   #{note.referenceId, jdbcType=VARCHAR},
 											   #{note.details, jdbcType=VARCHAR},
