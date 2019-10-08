@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
@@ -33,6 +34,7 @@ import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
+import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -51,6 +53,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
@@ -60,6 +63,7 @@ import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
+import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
@@ -277,6 +281,20 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/cancelOr");
 		logger.info("CancelOrRequest : " + cor.toString());
 		return acctServService.cancelOr(cor);
+	}
+	
+	@GetMapping(path="retrieveAcseOrServFee")
+	public @ResponseBody RetrieveAcseOrServFeeResponse retrieveAcseOrServFee(RetrieveAcseOrServFeeRequest raosfr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseOrServFee");
+		logger.info("RetrieveAcseOrServFeeRequest : " + raosfr.toString());
+		return acctServService.retrieveAcseOrServFee(raosfr);
+	}
+	
+	@PostMapping(path="saveAcseOrServFee")
+	public @ResponseBody SaveAcseOrServFeeResponse saveAcseOrServFee(@RequestBody SaveAcseOrServFeeRequest saosfr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseOrServFee");
+		logger.info("SaveAcseOrServFeeRequest : " + saosfr.toString());
+		return acctServService.saveAcseOrServFee(saosfr);
 	}
 	
 }

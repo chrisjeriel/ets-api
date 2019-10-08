@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
+import ph.cpi.rest.api.model.accountingservice.AcseOrServFee;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
@@ -202,6 +203,18 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public Integer cancelOr(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("cancelOr", params);
 		return errorCode;
+	}
+
+	@Override
+	public List<AcseOrServFee> retrieveAcseOrServFee(HashMap<String, Object> params) throws SQLException {
+		List<AcseOrServFee> res = sqlSession.selectList("retAcseOrServFee", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveAcseOrServFee(HashMap<String, Object> params) throws SQLException {
+		Integer returnCode = sqlSession.update("saveAcseOrServFee", params);
+		return returnCode;
 	}
 
 }

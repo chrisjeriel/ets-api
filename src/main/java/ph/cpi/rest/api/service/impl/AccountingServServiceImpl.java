@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
@@ -30,6 +31,7 @@ import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
+import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -48,6 +50,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
@@ -57,6 +60,7 @@ import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
+import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
@@ -696,6 +700,46 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseOrServFeeResponse retrieveAcseOrServFee(RetrieveAcseOrServFeeRequest raosfr)
+			throws SQLException {
+		RetrieveAcseOrServFeeResponse response = new RetrieveAcseOrServFeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raosfr.getTranId());
+		params.put("billId", raosfr.getBillId());
+		response.setServFeeList(acctServDao.retrieveAcseOrServFee(params));
+		return response;
+	}
+
+	@Override
+	public SaveAcseOrServFeeResponse saveAcseOrServFee(SaveAcseOrServFeeRequest saosfr) throws SQLException {
+		SaveAcseOrServFeeResponse response = new SaveAcseOrServFeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saosfr.getTranId());
+		params.put("billId", saosfr.getBillId());
+		params.put("billType", saosfr.getBillType());
+		params.put("totalLocalAmt", saosfr.getTotalLocalAmt());
+		params.put("createUser", saosfr.getCreateUser());
+		params.put("createDate", saosfr.getCreateDate());
+		params.put("updateUser", saosfr.getUpdateUser());
+		params.put("updateDate", saosfr.getUpdateDate());
+		params.put("delServFee", saosfr.getDelServFee());
+		params.put("saveServFee", saosfr.getSaveServFee());
+		try{
+			response.setReturnCode(acctServDao.saveAcseOrServFee(params));
+			logger.info("SaveAcseOrServFeeResponse : "+ response);
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }
