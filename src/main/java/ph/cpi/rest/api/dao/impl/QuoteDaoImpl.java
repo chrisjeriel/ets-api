@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
+import ph.cpi.rest.api.model.quote.Item;
 import ph.cpi.rest.api.model.quote.Project;
 import ph.cpi.rest.api.model.quote.ProjectOc;
 import ph.cpi.rest.api.model.quote.Quotation;
@@ -406,6 +407,18 @@ public class QuoteDaoImpl implements QuoteDao{
 	public Integer retrieveQuoteListingLength(HashMap<String, Object> params) throws SQLException {
 		Integer length = (Integer) sqlSession.selectOne("retrieveQuoteListingLength", params);
 		return length;
+	}
+
+	@Override
+	public List<Item> retrieveQuItem(HashMap<String, Object> params) throws SQLException {
+		List<Item> items = sqlSession.selectList("retrieveQuItem", params);
+		return items;
+	}
+
+	@Override
+	public Integer saveQuItem(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveQuItem",params);
+		return code;
 	}
 		
 }
