@@ -618,6 +618,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("delAttachmentsList", request.getDelAttachmentsList());
 			HashMap<String, Object> res = acctServDao.saveAttachments(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setUploadDate((String) res.get("uploadDate"));
 		}catch(Exception ex){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
