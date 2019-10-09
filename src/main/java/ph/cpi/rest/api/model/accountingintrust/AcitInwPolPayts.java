@@ -5,8 +5,9 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 public class AcitInwPolPayts {
-	private String tranNO;
+	private String tranNo;
 	private Integer tranId;
+	private DateTime tranDate;
 	private Integer policyId;
 	private Integer instNo;
 	private String paytType;
@@ -22,11 +23,18 @@ public class AcitInwPolPayts {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public String getTranNO() {
-		return tranNO;
+	
+	public DateTime getTranDate() {
+		return tranDate;
 	}
-	public void setTranNO(String tranNO) {
-		this.tranNO = tranNO;
+	public void setTranDate(DateTime tranDate) {
+		this.tranDate = tranDate;
+	}
+	public String getTranNo() {
+		return tranNo;
+	}
+	public void setTranNo(String tranNo) {
+		this.tranNo = tranNo;
 	}
 	public Integer getTranId() {
 		return tranId;
@@ -126,11 +134,10 @@ public class AcitInwPolPayts {
 	}
 	@Override
 	public String toString() {
-		return "AcitInwPolPayts [tranNO=" + tranNO + ", tranId=" + tranId + ", policyId=" + policyId + ", instNo="
-				+ instNo + ", paytType=" + paytType + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt="
-				+ premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", paytAmt="
-				+ paytAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitInwPolPayts [tranNo=" + tranNo + ", tranId=" + tranId + ", tranDate=" + tranDate + ", policyId="
+				+ policyId + ", instNo=" + instNo + ", paytType=" + paytType + ", currCd=" + currCd + ", currRate="
+				+ currRate + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges="
+				+ charges + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }
