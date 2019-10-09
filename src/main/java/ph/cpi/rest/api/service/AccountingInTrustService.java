@@ -102,6 +102,7 @@ import ph.cpi.rest.api.model.request.SaveAcitQSOARequest;
 import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCancelTransactionRequest;
 import ph.cpi.rest.api.model.response.*;
 
 @Service
@@ -208,4 +209,5 @@ public interface AccountingInTrustService {
 	public SaveAcitJVInvPlacementResponse saveAcitJVInvPlacement (SaveAcitJVInvPlacementRequest request)throws SQLException;
 	public RetrieveAcitSOADueResponse retrieveAcitSoaDue(RetrieveAcitSOADueRequest request )throws SQLException;
 	public SaveAcitQSOAResponse saveAcitQSOA(SaveAcitQSOARequest saqr) throws SQLException;
+	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request ) throws SQLException;
 }

@@ -3675,4 +3675,27 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions" id="cancelMap">
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="tranClass" column="TRAN_CLASS"/>
+		<result property="refNo" column="REF_NO"/>
+		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranType" column="TRAN_TYPE"/>
+		<result property="tranTypeDesc" column="TRAN_TYPE_DESC"/>
+		<result property="payee" column="PAYEE"/>
+		<result property="particulars" column="PARTICULARS"/>
+		<result property="cancelledBy" column="CANCELLED_BY"/>
+		<result property="cancelledDate" column="CANCELLED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="reason" column="REASON"/>
+		<result property="amount" column="AMOUNT"/>
+	</resultMap>
+	
+	<select id="retrieveCancelledTrans" resultMap="cancelMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_CANCELLED_TRAN_PKG.ret_cancel_tran(
+					#{tranId,jdbcType=INTEGER},
+					#{tranClass,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{cancelFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{cancelTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					'', '', '',''))
+	</select>
 </mapper>

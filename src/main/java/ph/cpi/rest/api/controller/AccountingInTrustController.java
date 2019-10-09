@@ -111,6 +111,7 @@ import ph.cpi.rest.api.model.request.SaveAcitQSOARequest;
 import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCancelTransactionRequest;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -849,5 +850,12 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/SaveAcitQSOARequest");
 		logger.info("SaveAcitQSOARequest : " + saqr.toString());
 		return acctInTrustService.saveAcitQSOA(saqr);
+	}
+	
+	@GetMapping(path="retrieveCancelledTrans")
+	public @ResponseBody RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveCancelledTrans");
+		logger.info("RetrieveAcseCancelTransactionRequest : " + request.toString());
+		return acctInTrustService.retrieveCancelledTrans(request);
 	}
 }

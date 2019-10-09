@@ -450,6 +450,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
 			params.put("saveTaxDtl", request.getSaveTaxDtl());
+			params.put("delTaxDtl", request.getDelTaxDtl());
 			HashMap<String,Object> res = acctServDao.saveTaxDetails(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
@@ -604,7 +605,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		RetrieveAcseAttachmentsResponse response = new RetrieveAcseAttachmentsResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranId", request.getTranId());
-		response.setAcitAttachmentsList(acctServDao.retrieveAttachments(params));
+		response.setAcseAttachmentsList(acctServDao.retrieveAttachments(params));
 		return response;
 	}
 
@@ -615,7 +616,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			HashMap<String, Object> params = new HashMap<String,Object>();
 			params.put("saveAttachmentsList", request.getSaveAttachmentsList());
 			params.put("delAttachmentsList", request.getDelAttachmentsList());
-			HashMap<String, Object> res = acctServDao.saveAcctEntries(params);
+			HashMap<String, Object> res = acctServDao.saveAttachments(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
 			response.setReturnCode(0);

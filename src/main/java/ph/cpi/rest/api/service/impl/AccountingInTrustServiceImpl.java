@@ -110,6 +110,7 @@ import ph.cpi.rest.api.model.request.SaveAcitQSOARequest;
 import ph.cpi.rest.api.model.request.UpdateAcitCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitPaytReqStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcitStatusRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCancelTransactionRequest;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 
@@ -2022,5 +2023,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		
 		return saqResponse;
+	}
+	
+	@Override
+	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request)
+			throws SQLException {
+		RetrieveAcitCancelTransactionResponse response = new RetrieveAcitCancelTransactionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		params.put("tranClass", request.getTranClass());
+		params.put("cancelFrom", request.getCancelFrom());
+		params.put("cancelTo", request.getCancelTo());
+		response.setCancelledTran(acctITDao.retrieveCancelledTrans(params));
+		return response;
 	}
 }
