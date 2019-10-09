@@ -22,7 +22,7 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 	@Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app")
-                .enableSimpleBroker("/logs",
+                .enableSimpleBroker("/prodLogs", "/osLogs",
                 					"/chat",
                 					"/alert");
     }

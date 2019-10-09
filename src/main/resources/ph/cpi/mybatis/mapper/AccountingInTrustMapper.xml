@@ -3789,4 +3789,13 @@
 		END;
 	</update>
 	
+	<update id="acitEomBatchOsSummaryReport" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{extractSummary, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_EOM_TRANS_PKG.batch_os_summary_report(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+																														 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+																														 CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																														 #{eomUser, jdbcType=VARCHAR})
+		}
+	</update>
+	
 </mapper>

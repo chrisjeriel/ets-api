@@ -161,9 +161,7 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> saveAcitJVInvPlacement(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAcitSoaDue(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcitQSOA(final HashMap<String, Object> params) throws SQLException;
-	
-	public Integer saveAcitMonthEndBatchOS(final HashMap<String, Object> params) throws SQLException;
-	
+		
 	public Integer acitEomCloseAcitTrans(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomDeleteAcitTrans(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomExtUwprod(final HashMap<String, Object> params) throws SQLException;
@@ -172,6 +170,14 @@ public interface AccountingInTrustDao {
 	public Integer acitEomCreateUprJv(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomSaveOdInt(final HashMap<String, Object> params) throws SQLException;
 	public String acitEomProdSummaryReport(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer acitEomExtOsLoss(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomCreateOsLossJv(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomExtClmpayt(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomCreateAllocPaidClmJv(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomExtractClmRecover(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomCreateAllocRecoverJv(final HashMap<String, Object> params) throws SQLException;
+	public String acitEomBatchOsSummaryReport(final HashMap<String, Object> params) throws SQLException;
 	
 	public void commit();
 	public void rollback();
