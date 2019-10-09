@@ -9,6 +9,7 @@ public class AcitPrqInwPol {
 	private Integer itemNo;
 	private String policyNo;
 	private String coRefNo;
+	private String policyId;
 	private Integer instNo;
 	private DateTime dueDate;
 	private String currCd;
@@ -54,6 +55,12 @@ public class AcitPrqInwPol {
 	}
 	public void setCoRefNo(String coRefNo) {
 		this.coRefNo = coRefNo;
+	}
+	public String getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
 	}
 	public Integer getInstNo() {
 		return instNo;
@@ -190,12 +197,12 @@ public class AcitPrqInwPol {
 	@Override
 	public String toString() {
 		return "AcitPrqInwPol [reqId=" + reqId + ", itemNo=" + itemNo + ", policyNo=" + policyNo + ", coRefNo="
-				+ coRefNo + ", instNo=" + instNo + ", dueDate=" + dueDate + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", prevPremAmt=" + prevPremAmt + ", prevRiComm=" + prevRiComm + ", prevRiCommVat="
-				+ prevRiCommVat + ", prevCharges=" + prevCharges + ", cumPayment=" + cumPayment + ", prevBalance="
-				+ prevBalance + ", returnAmt=" + returnAmt + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", prevNetDue=" + prevNetDue + ", totalPayt="
-				+ totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ coRefNo + ", policyId=" + policyId + ", instNo=" + instNo + ", dueDate=" + dueDate + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt + ", prevRiComm=" + prevRiComm
+				+ ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges + ", cumPayment=" + cumPayment
+				+ ", prevBalance=" + prevBalance + ", returnAmt=" + returnAmt + ", premAmt=" + premAmt + ", riComm="
+				+ riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", prevNetDue=" + prevNetDue
+				+ ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

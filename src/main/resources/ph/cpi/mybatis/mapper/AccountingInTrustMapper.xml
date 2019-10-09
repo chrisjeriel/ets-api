@@ -1624,6 +1624,7 @@
 		<result property="itemNo"              column="ITEM_NO"/>
 		<result property="policyNo"            column="POLICY_NO"/>
 		<result property="coRefNo"             column="CO_REF_NO"/>
+		<result property="policyId"            column="POLICY_ID"/>
 		<result property="instNo"              column="INST_NO"/>
 		<result property="dueDate"             column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="currCd"              column="CURR_CD"/>
