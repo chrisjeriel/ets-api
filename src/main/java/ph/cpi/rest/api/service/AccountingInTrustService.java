@@ -115,11 +115,4 @@ public interface AccountingInTrustService {
 	//MONTH-END
 	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr) throws SQLException;
 	public SaveAcitMonthEndBatchOSResponse saveAcitMonthEndBatchOS(SaveAcitMonthEndBatchOSRequest samebr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMECloseTransactions(SaveAcitMonthEndBatchProdRequest amectr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMEExtractNetPrem(SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMEEntriesNetPrem(SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMEExtractUPR(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMEEntriesUPR(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMEExtractOSLoss(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException;
-	public SaveAcitMonthEndBatchProdResponse acitMEEntriesOSLoss(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException;
 }

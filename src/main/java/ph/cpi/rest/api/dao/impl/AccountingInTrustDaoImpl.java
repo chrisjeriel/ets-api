@@ -9,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
@@ -66,6 +68,13 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	@Autowired
+	private PlatformTransactionManager txManager;
+	
+	private DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
+	
+	private TransactionStatus txStat;
+		
 	private static final Logger logger = LoggerFactory.getLogger(AccountingInTrustDaoImpl.class);
 
 	@Override
@@ -738,24 +747,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 
 	@Transactional(rollbackFor=Exception.class)
 	@Override
-	public Integer saveAcitMonthEndBatchProd(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("acitEomCloseAcitTrans", params);
-		sqlSession.update("acitEomDeleteAcitTrans", params);
-		sqlSession.update("acitEomExtUwprod", params);
-		sqlSession.update("acitEomCreateNetPremJv", params);
-		sqlSession.update("acitEomExtEomUpr", params);
-		sqlSession.update("acitEomCreateUprJv", params);
-		sqlSession.update("acitEomSaveOdInt", params);
-		return errorCode;
-	}
-	
-	@Override
-	public Integer acitMECloseTransactions(HashMap<String, Object> params) throws SQLException {
-		return 0; //todo
-	}
-
-	@Transactional(rollbackFor=Exception.class)
-	@Override
 	public Integer saveAcitMonthEndBatchOS(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("acitEomExtOsLoss", params);
 		sqlSession.update("acitEomCreateOsLossJv", params);
@@ -778,34 +769,49 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 
 	@Override
 	public Integer acitEomExtUwprod(HashMap<String, Object> params) throws SQLException {
+		txStat = txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomExtUwprod", params);
 	}
 
 	@Override
 	public Integer acitEomCreateNetPremJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomCreateNetPremJv", params);
 	}
 
 	@Override
 	public Integer acitEomExtEomUpr(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomExtEomUpr", params);
 	}
 
 	@Override
 	public Integer acitEomCreateUprJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomCreateUprJv", params);
 	}
 
 	@Override
 	public Integer acitEomSaveOdInt(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomSaveOdInt", params);
 	}
 
 	@Override
 	public String acitEomProdSummaryReport(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
 		params.put("extractSummary", "");
-		sqlSession.selectOne("acitEomProdSummaryReport", params);
-		
+		sqlSession.selectOne("acitEomProdSummaryReport", params);		
 		return (String) params.get("extractSummary");
+	}
+
+	@Override
+	public void commit() {
+		txManager.commit(txStat);
+	}
+
+	@Override
+	public void rollback() {
+		txManager.rollback(txStat);
 	}
 }

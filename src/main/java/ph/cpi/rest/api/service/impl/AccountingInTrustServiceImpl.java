@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -1934,7 +1935,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	}
 	
 	//MONTH-END
-	@Transactional(rollbackFor=Exception.class)
+//	@Transactional(propagation=Propagation.REQUIRES_NEW, rollbackFor=Exception.class)
 	@Override
 	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr)
 			throws SQLException {
@@ -1946,41 +1947,40 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("eomUser", samebr.getEomUser());
 		
 		try {
-			/*procedureName = "Closing Valid Transactions";
-			wsController.onReceiveMessage("Closing valid transactions . . .");
-			res.setReturnCode(acctITDao.acitMECloseTransactions(params));
-			wsController.onReceiveMessage("Valid transactions successfully closed.");*/
+			wsController.onReceiveLog("Initializing . . .");
 			procedureName = "Extracting Inward Production";
-			wsController.onReceiveMessage("Initializing . . .");
-			wsController.onReceiveMessage("Extracting Inward Production . . .");
+			wsController.onReceiveLog("Extracting Inward Production . . .");
 			res.setReturnCode(acctITDao.acitEomExtUwprod(params));
-			wsController.onReceiveMessage("Inward Production extraction finished.");
+			wsController.onReceiveLog("Extraction of Inward Production finished.");
 			
 			procedureName = "Generating Accounting Entries for distribution of Premiums";
-			wsController.onReceiveMessage("Generating Accounting Entries for Inward Production . . .");
+			wsController.onReceiveLog("Generating Accounting Entries for Inward Production . . .");
 			res.setReturnCode(acctITDao.acitEomCreateNetPremJv(params));
-			wsController.onReceiveMessage("Generation of Accounting Entries for Inward Production was succesfull.");
+			wsController.onReceiveLog("Generation of Accounting Entries for Inward Production finished.");
 			
 			procedureName = "Extracting Premium Reserve Retained";
-			wsController.onReceiveMessage("Extracting Premium Reserve Retained . . .");
+			wsController.onReceiveLog("Extracting Premium Reserve Retained . . .");
 			res.setReturnCode(acctITDao.acitEomExtEomUpr(params));
-			wsController.onReceiveMessage("Premium Reserve Retained extraction finished.");
+			wsController.onReceiveLog("Extraction of Premium Reserve Retained finished.");
 			
 			procedureName = "Distributing Inward Production";
-			wsController.onReceiveMessage("Distributing Inward Production . . .");
+			wsController.onReceiveLog("Distributing Inward Production . . .");
 			res.setReturnCode(acctITDao.acitEomCreateUprJv(params));
-			wsController.onReceiveMessage("Inward production distribution finished.");
+			wsController.onReceiveLog("Distribution of Inward production finished.");
 			
 			procedureName = "Computing Interest on Overdue Accounts";
-			wsController.onReceiveMessage("Computing Interest on Overdue Accounts . . .");
+			wsController.onReceiveLog("Computing Interest on Overdue Accounts . . .");
 			res.setReturnCode(acctITDao.acitEomSaveOdInt(params));
-			wsController.onReceiveMessage("Computation of Interest on Overdue Accounts finished.");
+			wsController.onReceiveLog("Computation of Interest on Overdue Accounts finished.");
+			wsController.onReceiveLog("");
 			
 			procedureName = "Producing Summary Report";
-			wsController.onReceiveMessage(acctITDao.acitEomProdSummaryReport(params));
+			wsController.onReceiveLog(acctITDao.acitEomProdSummaryReport(params));
 			
+			acctITDao.commit();
 		} catch (Exception e) {
-			wsController.onReceiveMessage("An error occured while " + procedureName);
+			acctITDao.rollback();
+			wsController.onReceiveLog("An error occured while " + procedureName);
 			res.setReturnCode(0);
 			res.getErrorList().add(new Error("SQLException","Batch processing failed."));
 			e.printStackTrace();
@@ -2006,52 +2006,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			e.printStackTrace();
 		}
 		
-		return res;
-	}
-
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMECloseTransactions(SaveAcitMonthEndBatchProdRequest amectr)
-			throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
-		HashMap<String,Object> params = new HashMap<String,Object>();
-		
-		res.setReturnCode(acctITDao.acitMECloseTransactions(params));
-		return res;
-	}
-
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMEExtractNetPrem(SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
-		return res;
-	}
-	
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMEEntriesNetPrem(SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
-		return res;
-	}
-
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMEExtractUPR(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
-		return res;
-	}
-
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMEEntriesUPR(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
-		return res;
-	}
-
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMEExtractOSLoss(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
-		return res;
-	}
-
-	@Override
-	public SaveAcitMonthEndBatchProdResponse acitMEEntriesOSLoss(SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
 		return res;
 	}
 }

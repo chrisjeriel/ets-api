@@ -764,7 +764,7 @@ public class AccountingInTrustController {
 	
 	@PostMapping(path="saveAcitMonthEndBatchProd")
 	public @ResponseBody SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(@RequestBody SaveAcitMonthEndBatchProdRequest samebr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatch");
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatchProd");
 		logger.info("SaveAcitMonthEndBatchRequest : " + samebr.toString());
 		return acctInTrustService.saveAcitMonthEndBatchProd(samebr);
 	}
@@ -774,54 +774,5 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatchOS");
 		logger.info("SaveAcitMonthEndBatchOSRequest : " + samebr.toString());
 		return acctInTrustService.saveAcitMonthEndBatchOS(samebr);
-	}
-	
-	@PostMapping(path="acitMECloseTransactions")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMECloseTransactions(@RequestBody SaveAcitMonthEndBatchProdRequest amectr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/acitMECloseTransactions");
-		logger.info("AcitMECloseTransactionsRequest : " + amectr.toString());
-		return acctInTrustService.acitMECloseTransactions(amectr);
-	}
-	
-	@PostMapping(path="acitMEExtractNetPrem")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEExtractNetPrem(@RequestBody SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/acitMEExtractNetPrem");
-		logger.info("AcitMEExtractNetPremRequest : " + amenpr.toString());
-		return acctInTrustService.acitMEExtractNetPrem(amenpr);
-	}
-	
-	@PostMapping(path="acitMEEntriesNetPrem")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEEntriesNetPrem(@RequestBody SaveAcitMonthEndBatchProdRequest amenpr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/acitMEEntriesNetPrem");
-		logger.info("AcitMEEntriesNetPremRequest : " + amenpr.toString());
-		return acctInTrustService.acitMEEntriesNetPrem(amenpr);
-	}
-	
-	@PostMapping(path="acitMEExtractUPR")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEExtractUPR(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/acitMEExtractUPR");
-		logger.info("AcitMEExtractUPRRequest : " + ameupr.toString());
-		return acctInTrustService.acitMEExtractUPR(ameupr);
-	}
-	
-	@PostMapping(path="acitMEEntriesUPR")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEEntriesUPR(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/AcitMEEntriesUPRRequest");
-		logger.info("AcitMEEntriesUPRRequest : " + ameupr.toString());
-		return acctInTrustService.acitMEEntriesUPR(ameupr);
-	}
-	
-	@PostMapping(path="acitMEExtractOSLoss")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEExtractOSLoss(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/acitMEExtractOSLoss");
-		logger.info("AcitMEExtractOSLossRequest : " + ameupr.toString());
-		return acctInTrustService.acitMEExtractOSLoss(ameupr);
-	}
-	
-	@PostMapping(path="acitMEEntriesOSLoss")
-	public @ResponseBody SaveAcitMonthEndBatchProdResponse acitMEEntriesOSLoss(@RequestBody SaveAcitMonthEndBatchProdRequest ameupr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/acitMEEntriesOSLoss");
-		logger.info("AcitMEExtractOSLossRequest : " + ameupr.toString());
-		return acctInTrustService.acitMEEntriesOSLoss(ameupr);
 	}
 }

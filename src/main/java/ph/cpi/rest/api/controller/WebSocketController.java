@@ -15,8 +15,18 @@ public class WebSocketController {
 		this.template = template;
 	}
 	
-	@MessageMapping("/send/message")
-	public void onReceiveMessage(String message) {
-		this.template.convertAndSend("/extractionLog", message);
+	@MessageMapping("/send/logs")
+	public void onReceiveLog(String message) {
+		this.template.convertAndSend("/logs", message);
+	}
+	
+	@MessageMapping("/send/chat")
+	public void onReceiveChat(String message) {
+		this.template.convertAndSend("/chat", message);
+	}
+	
+	@MessageMapping("/send/alert")
+	public void onReceiveAlert(String message) {
+		this.template.convertAndSend("/alert", message);
 	}
 }

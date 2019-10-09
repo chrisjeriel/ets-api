@@ -12,7 +12,9 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/socket")
+		registry.addEndpoint("/extractionLog",
+							 "/telegram",
+							 "/notifications")
 				.setAllowedOrigins("*")
 				.withSockJS();
 	}
@@ -20,7 +22,9 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 	@Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app")
-                .enableSimpleBroker("/extractionLog");
+                .enableSimpleBroker("/logs",
+                					"/chat",
+                					"/alert");
     }
 
 }
