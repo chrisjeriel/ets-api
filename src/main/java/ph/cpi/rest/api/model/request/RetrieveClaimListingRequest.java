@@ -24,7 +24,15 @@ public class RetrieveClaimListingRequest {
 	private SortRequest sortRequest;
 	
 	private SearchRequest search;
+	private String fromInq;
 	
+	
+	public String getFromInq() {
+		return fromInq;
+	}
+	public void setFromInq(String fromInq) {
+		this.fromInq = fromInq;
+	}
 	public SearchRequest getSearch() {
 		return search;
 	}
@@ -141,6 +149,6 @@ public class RetrieveClaimListingRequest {
 				+ ", totalResTo=" + totalResTo + ", totalPaytFrom=" + totalPaytFrom + ", totalPaytTo=" + totalPaytTo
 				+ ", adjName=" + adjName + ", currencyCd=" + currencyCd + ", processedBy=" + processedBy
 				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", search=" + search
-				+ "]";
+				+ ", fromInq=" + fromInq + "]";
 	}
 }
