@@ -39,6 +39,14 @@ class ClmHist {
 	private String  createDate;
 	private String 	updateUser;
 	private String  updateDate;
+	private String  affecting;
+	
+	public String getAffecting() {
+		return affecting;
+	}
+	public void setAffecting(String affecting) {
+		this.affecting = affecting;
+	}
 	public String getClaimId() {
 		return claimId;
 	}
@@ -158,10 +166,8 @@ class ClmHist {
 		return "ClmHist [claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", histCategory="
 				+ histCategory + ", histType=" + histType + ", bookingMth=" + bookingMth + ", bookingYear="
 				+ bookingYear + ", exGratia=" + exGratia + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt
-				+ ", reserveAmt=" + reserveAmt 
-				//+ ", paytAmt=" + paytAmt 
-				+ ", refNo=" + refNo + ", refDate=" + refDate
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", reserveAmt=" + reserveAmt + ", refNo=" + refNo + ", refDate=" + refDate + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", affecting=" + affecting + "]";
 	}
 }

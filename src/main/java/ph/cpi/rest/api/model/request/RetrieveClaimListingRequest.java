@@ -1,8 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
-
 import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveClaimListingRequest {
@@ -22,8 +21,24 @@ public class RetrieveClaimListingRequest {
 	private String currencyCd;
 	private String processedBy;
 	private PaginationRequest paginationRequest = new PaginationRequest();
-	private SortRequest sortRequest = new SortRequest();
+	private SortRequest sortRequest;
 	
+	private SearchRequest search;
+	private String fromInq;
+	
+	
+	public String getFromInq() {
+		return fromInq;
+	}
+	public void setFromInq(String fromInq) {
+		this.fromInq = fromInq;
+	}
+	public SearchRequest getSearch() {
+		return search;
+	}
+	public void setSearch(SearchRequest search) {
+		this.search = search;
+	}
 	public String getClaimNo() {
 		return claimNo;
 	}
@@ -133,6 +148,7 @@ public class RetrieveClaimListingRequest {
 				+ ", lossDateFrom=" + lossDateFrom + ", lossDateTo=" + lossDateTo + ", totalResFrom=" + totalResFrom
 				+ ", totalResTo=" + totalResTo + ", totalPaytFrom=" + totalPaytFrom + ", totalPaytTo=" + totalPaytTo
 				+ ", adjName=" + adjName + ", currencyCd=" + currencyCd + ", processedBy=" + processedBy
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", search=" + search
+				+ ", fromInq=" + fromInq + "]";
 	}
 }

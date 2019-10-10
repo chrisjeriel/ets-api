@@ -20,6 +20,7 @@ public class InwPolBalance {
 	private String updateUser;
 	private DateTime updateDate;
 	private DateTime acctEntDate;
+	private String memoNo;
 	private List<OtherCharges> otherCharges;
 	public Integer getInstNo() {
 		return instNo;
@@ -111,12 +112,18 @@ public class InwPolBalance {
 	public void setAcctEntDate(DateTime acctEntDate) {
 		this.acctEntDate = acctEntDate;
 	}
+	public String getMemoNo() {
+		return memoNo;
+	}
+	public void setMemoNo(String memoNo) {
+		this.memoNo = memoNo;
+	}
 	@Override
 	public String toString() {
 		return "InwPolBalance [instNo=" + instNo + ", dueDate=" + dueDate + ", bookingDate=" + bookingDate
 				+ ", premAmt=" + premAmt + ", otherChargesInw=" + otherChargesInw + ", amtDue=" + amtDue + ", commAmt="
 				+ commAmt + ", commRt=" + commRt + ", vatRiComm=" + vatRiComm + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", acctEntDate=" + acctEntDate + ", otherCharges=" + otherCharges + "]";
+				+ ", acctEntDate=" + acctEntDate + ", memoNo=" + memoNo + ", otherCharges=" + otherCharges + "]";
 	}
 }

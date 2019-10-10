@@ -178,7 +178,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolInwardBalParams.put("policyId", rpibp.getPolicyId());
 		retrievePolInwardBalParams.put("policyNo",rpibp.getPolicyNo());
 		rpibResponse.setPolicyList(underwritingDao.retrievePolInwardBal(retrievePolInwardBalParams));
-		logger.info("retrievePolInwardBalResponse : " + rpibResponse.toString());
+		logger.info("retrievePolInwardBalResponseTest : " + rpibResponse.toString());
 		
 		return rpibResponse;
 	}

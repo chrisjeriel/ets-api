@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
@@ -24,8 +25,6 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteCompetitionRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteCoverageRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteDeductiblesRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsOcRequest;
-import ph.cpi.rest.api.model.request.RetrieveQuoteDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteEndorsementsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteGeneralInfoOcRequest;
@@ -35,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
@@ -59,6 +59,7 @@ import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
@@ -68,8 +69,6 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteCompetitionResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteCoverageResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteDeductiblesResponse;
-import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsOcResponse;
-import ph.cpi.rest.api.model.response.RetrieveQuoteDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteEndorsementsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteGeneralInfoOcResponse;
@@ -78,6 +77,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SaveQuItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
@@ -469,5 +469,19 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/updateQuoteStatus");
 		logger.info("UpdateQuoteStatusRequest : " + uqsr.toString());
 		return quoteService.updateQuoteStatus(uqsr);
+	}
+	
+	@GetMapping(path="retrieveQuItem")
+	public @ResponseBody RetrieveQuItemResponse retrieveQuItem(RetrieveQuItemRequest rpir) throws SQLException {
+		logger.info("GET: /api/quotation-service/retrieveQuItem");
+		logger.info("RetrieveQuItem : " + rpir.toString());
+		return quoteService.retrieveQuItem(rpir);
+	}
+	
+	@PostMapping(path="saveQuItem")
+	public @ResponseBody SaveQuItemResponse saveQuItem(@RequestBody SaveQuItemRequest spir ) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuItem");
+		logger.info("saveQuItem : " + spir.toString());
+		return quoteService.saveQuItem(spir);
 	}
 }
