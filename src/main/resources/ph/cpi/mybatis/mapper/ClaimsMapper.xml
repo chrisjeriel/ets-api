@@ -162,25 +162,27 @@
     			);
     			
     			<!-- transefer to trigger -->
-    			clm_dist_pkg.gen_reserve_dist(#{ch.claimId,jdbcType=VARCHAR},
-					#{ch.projId,jdbcType=VARCHAR},
-					v_hist_no,
-					#{ch.histCategory,jdbcType=VARCHAR},
-					#{ch.histType,jdbcType=VARCHAR},
-					#{ch.reserveAmt,jdbcType=INTEGER},
-					#{ch.createUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				    #{ch.updateUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-    			
-	    			CLM_DIST_CUMRESERVE_PKG.gen_reserve_dist(
-	    				#{ch.claimId,jdbcType=VARCHAR},
+    			IF #{ch.affecting} = 'Y' THEN
+	    			clm_dist_pkg.gen_reserve_dist(#{ch.claimId,jdbcType=VARCHAR},
 						#{ch.projId,jdbcType=VARCHAR},
+						v_hist_no,
 						#{ch.histCategory,jdbcType=VARCHAR},
+						#{ch.histType,jdbcType=VARCHAR},
+						#{ch.reserveAmt,jdbcType=INTEGER},
 						#{ch.createUser,jdbcType=VARCHAR},
 					    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					    #{ch.updateUser,jdbcType=VARCHAR},
 					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+	    			
+		    			CLM_DIST_CUMRESERVE_PKG.gen_reserve_dist(
+		    				#{ch.claimId,jdbcType=VARCHAR},
+							#{ch.projId,jdbcType=VARCHAR},
+							#{ch.histCategory,jdbcType=VARCHAR},
+							#{ch.createUser,jdbcType=VARCHAR},
+						    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						    #{ch.updateUser,jdbcType=VARCHAR},
+						    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				END IF;
 	    			
     		</foreach>
     	END;
