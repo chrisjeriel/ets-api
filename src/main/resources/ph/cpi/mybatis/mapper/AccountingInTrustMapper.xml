@@ -3365,6 +3365,7 @@
 														#{delete.itemNo}, 
 														#{delete.invtId}
 														);
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{delete.tranId});
 			</foreach>
 			<foreach collection="saveInvPullOut" item="save">
 					ACIT_JOURNAL_VOUCHER_PKG.save_jv_inv_pull(
@@ -3388,6 +3389,7 @@
 														#{save.updateUser}, 
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -3456,6 +3458,7 @@
 														#{del.tranId},
 														#{del.itemNo}
 													  );
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{del.tranId});
 			</foreach>
 			<foreach collection="saveRollOver" item="save">
 					ACIT_JOURNAL_VOUCHER_PKG.save_inv_roll_over(
@@ -3479,6 +3482,8 @@
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
+													  
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
@@ -3634,6 +3639,8 @@
 		BEGIN
 			<foreach collection="delInvPlacement" item="saved">
 					ACIT_JOURNAL_VOUCHER_PKG.del_jv_inv_placement( #{saved.tranId},#{saved.itemNo});
+					
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{saved.tranId});
 			</foreach>
 			
 			<foreach collection="saveInvPlacement" item="save">
@@ -3650,6 +3657,7 @@
 																	#{save.updateUser},
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 													  );
+					ACIT_JOURNAL_VOUCHER_PKG.update_particulars(#{save.tranId});
 			</foreach>
 			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
