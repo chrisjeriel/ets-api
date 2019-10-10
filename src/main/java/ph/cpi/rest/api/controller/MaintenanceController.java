@@ -1061,4 +1061,19 @@ public class MaintenanceController {
         logger.info("RetrieveMtnMtnAcseCheckSeriesRequest : " + rmacsr.toString());
         return maintenanceService.retrieveMtnAcseCheckSeries(rmacsr);
     }
+
+	@PostMapping(path="saveMtnDcbUser")
+	public @ResponseBody SaveMtnDcbUserResponse saveMtnDcbUser(@RequestBody SaveMtnDcbUserRequest smdur) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnDcbUser");
+		logger.info("SaveMtnDcbUserRequest : " + smdur.toString());
+		return maintenanceService.saveMtnDcbUser(smdur);
+	}
+	
+	@GetMapping(path="retrieveMtnEmployee")
+	public @ResponseBody RetrieveMtnEmployeeResponse retrieveMtnEmployee(RetrieveMtnEmployeeRequest rmer) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnEmployee");
+		logger.info("RetrieveMtnEmployeeRequest : " + rmer.toString());
+		return maintenanceService.retrieveMtnEmployee(rmer);
+	}
+	
 }
