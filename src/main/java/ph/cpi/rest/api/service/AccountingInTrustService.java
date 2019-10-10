@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import org.springframework.stereotype.Service;
 
 import ph.cpi.rest.api.model.request.*;
-import ph.cpi.rest.api.model.request.RetrieveAcitCancelTransactionRequest;
 import ph.cpi.rest.api.model.response.*;
 
 @Service
@@ -114,5 +113,7 @@ public interface AccountingInTrustService {
 	public SaveAcitQSOAResponse saveAcitQSOA(SaveAcitQSOARequest saqr) throws SQLException;
 	public RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar) throws SQLException;
 	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request ) throws SQLException;
+	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr) throws SQLException;
+	public SaveAcitMonthEndBatchOSResponse saveAcitMonthEndBatchOS(SaveAcitMonthEndBatchOSRequest samebr) throws SQLException;
 	
 }

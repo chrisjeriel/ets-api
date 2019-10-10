@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
@@ -66,6 +69,13 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	@Autowired
+	private PlatformTransactionManager txManager;
+	
+	private DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
+	
+	private TransactionStatus txStat;
+		
 	private static final Logger logger = LoggerFactory.getLogger(AccountingInTrustDaoImpl.class);
 
 	@Override
@@ -746,5 +756,107 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitCancelledTransactions> retrieveCancelledTrans(HashMap<String, Object> params) throws SQLException {
 		List<AcitCancelledTransactions>  list = sqlSession.selectList("retrieveCancelledTrans",params);
 		return list;
+	}
+	
+	@Override
+	public Integer acitEomCloseAcitTrans(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomCloseAcitTrans", params);
+	}
+
+	@Override
+	public Integer acitEomDeleteAcitTrans(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomDeleteAcitTrans", params);
+	}
+
+	@Override
+	public Integer acitEomExtUwprod(HashMap<String, Object> params) throws SQLException {
+		txStat = txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomExtUwprod", params);
+	}
+
+	@Override
+	public Integer acitEomCreateNetPremJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateNetPremJv", params);
+	}
+
+	@Override
+	public Integer acitEomExtEomUpr(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomExtEomUpr", params);
+	}
+
+	@Override
+	public Integer acitEomCreateUprJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateUprJv", params);
+	}
+
+	@Override
+	public Integer acitEomSaveOdInt(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomSaveOdInt", params);
+	}
+
+	@Override
+	public String acitEomProdSummaryReport(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		params.put("extractSummary", "");
+		sqlSession.selectOne("acitEomProdSummaryReport", params);
+		return (String) params.get("extractSummary");
+	}
+
+	@Override
+	public void commit() {
+		txManager.commit(txStat);
+	}
+
+	@Override
+	public void rollback() {
+		txManager.rollback(txStat);
+	}
+
+	@Override
+	public Integer acitEomExtOsLoss(HashMap<String, Object> params) throws SQLException {
+		txStat = txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomExtOsLoss", params);
+	}
+
+	@Override
+	public Integer acitEomCreateOsLossJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateOsLossJv", params);
+	}
+
+	@Override
+	public Integer acitEomExtClmpayt(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomExtClmpayt", params);
+	}
+
+	@Override
+	public Integer acitEomCreateAllocPaidClmJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateAllocPaidClmJv", params);
+	}
+
+	@Override
+	public Integer acitEomExtractClmRecover(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomExtractClmRecover", params);
+	}
+
+	@Override
+	public Integer acitEomCreateAllocRecoverJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateAllocRecoverJv", params);
+	}
+
+	@Override
+	public String acitEomBatchOsSummaryReport(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		params.put("extractSummary", "");
+		sqlSession.selectOne("acitEomBatchOsSummaryReport", params);
+		return (String) params.get("extractSummary");
 	}
 }

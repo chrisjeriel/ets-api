@@ -28,6 +28,9 @@ public class AccountingInTrustController {
 	@Autowired
 	private AccountingInTrustService acctInTrustService;
 	
+	@Autowired
+	private WebSocketController webSocketController;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ClaimsController.class);
 	
 	@GetMapping(path="retrieveAcitCvPaytReqList")
@@ -766,5 +769,19 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-serv-service/retrieveCancelledTrans");
 		logger.info("RetrieveAcseCancelTransactionRequest : " + request.toString());
 		return acctInTrustService.retrieveCancelledTrans(request);
+	}
+	
+	@PostMapping(path="saveAcitMonthEndBatchProd")
+	public @ResponseBody SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(@RequestBody SaveAcitMonthEndBatchProdRequest samebr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatchProd");
+		logger.info("SaveAcitMonthEndBatchRequest : " + samebr.toString());
+		return acctInTrustService.saveAcitMonthEndBatchProd(samebr);
+	}
+	
+	@PostMapping(path="saveAcitMonthEndBatchOS")
+	public @ResponseBody SaveAcitMonthEndBatchOSResponse saveAcitMonthEndBatchOS(@RequestBody SaveAcitMonthEndBatchOSRequest samebr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndBatchOS");
+		logger.info("SaveAcitMonthEndBatchOSRequest : " + samebr.toString());
+		return acctInTrustService.saveAcitMonthEndBatchOS(samebr);
 	}
 }

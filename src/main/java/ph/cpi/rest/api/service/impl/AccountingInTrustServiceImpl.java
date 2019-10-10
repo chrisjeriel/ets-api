@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
@@ -21,6 +22,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	
 	@Autowired
 	AccountingInTrustDao acctITDao;
+	
+	@Autowired
+	WebSocketController wsController;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
 
@@ -1949,5 +1953,116 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cancelTo", request.getCancelTo());
 		response.setCancelledTran(acctITDao.retrieveCancelledTrans(params));
 		return response;
+	}
+	
+	@Override
+	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr)
+			throws SQLException {
+		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		String procedureName = "";
+		
+		params.put("eomDate", samebr.getEomDate());
+		params.put("eomUser", samebr.getEomUser());
+		
+		try {
+			wsController.onReceiveProdLog("Initializing . . .");
+			procedureName = "Extracting Inward Production";
+			wsController.onReceiveProdLog("Extracting Inward Production . . .");
+			res.setReturnCode(acctITDao.acitEomExtUwprod(params));
+			wsController.onReceiveProdLog("Extraction of Inward Production finished.");
+			
+			procedureName = "Generating Accounting Entries for distribution of Premiums";
+			wsController.onReceiveProdLog("Generating Accounting Entries for Inward Production . . .");
+			res.setReturnCode(acctITDao.acitEomCreateNetPremJv(params));
+			wsController.onReceiveProdLog("Generation of Accounting Entries for Inward Production finished.");
+			
+			procedureName = "Extracting Premium Reserve Retained";
+			wsController.onReceiveProdLog("Extracting Premium Reserve Retained . . .");
+			res.setReturnCode(acctITDao.acitEomExtEomUpr(params));
+			wsController.onReceiveProdLog("Extraction of Premium Reserve Retained finished.");
+			
+			procedureName = "Distributing Inward Production";
+			wsController.onReceiveProdLog("Distributing Inward Production . . .");
+			res.setReturnCode(acctITDao.acitEomCreateUprJv(params));
+			wsController.onReceiveProdLog("Distribution of Inward production finished.");
+			
+			procedureName = "Computing Interest on Overdue Accounts";
+			wsController.onReceiveProdLog("Computing Interest on Overdue Accounts . . .");
+			res.setReturnCode(acctITDao.acitEomSaveOdInt(params));
+			wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
+			wsController.onReceiveProdLog("");
+			
+			procedureName = "Producing Summary Report";
+			wsController.onReceiveProdLog(acctITDao.acitEomProdSummaryReport(params));
+			
+			acctITDao.commit();
+		} catch (Exception e) {
+			acctITDao.rollback();
+			wsController.onReceiveProdLog("An error occured while " + procedureName);
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Batch processing failed."));
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public SaveAcitMonthEndBatchOSResponse saveAcitMonthEndBatchOS(SaveAcitMonthEndBatchOSRequest samebr)
+			throws SQLException {
+		SaveAcitMonthEndBatchOSResponse res = new SaveAcitMonthEndBatchOSResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		String procedureName = "";
+		
+		params.put("eomDate", samebr.getEomDate());
+		params.put("eomUser", samebr.getEomUser());
+		
+		try {
+			wsController.onReceiveOsLog("Initializing . . .");
+			procedureName = "Extracting Outstanding Losses";
+			wsController.onReceiveOsLog("Extracting Outstanding Losses . . .");
+			res.setReturnCode(acctITDao.acitEomExtOsLoss(params));
+			wsController.onReceiveOsLog("Extraction of Outstanding Losses finished.");
+			
+			procedureName = "Generating Accounting Entries for Outstanding Losses";
+			wsController.onReceiveOsLog("Generating Accounting Entries for Outstanding Losses . . .");
+			res.setReturnCode(acctITDao.acitEomCreateOsLossJv(params));
+			wsController.onReceiveOsLog("Generation of Accounting Entries for Outstanding Losses finished.");
+			
+			procedureName = "Allocating Paid Claims";
+			wsController.onReceiveOsLog("Allocating Paid Claims . . .");
+			res.setReturnCode(acctITDao.acitEomExtClmpayt(params));
+			wsController.onReceiveOsLog("Allocation of Paid Claims finished.");
+			
+			procedureName = "Generating Accounting Entries for Allocation of Paid Claims";
+			wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Paid Claims . . .");
+			res.setReturnCode(acctITDao.acitEomCreateAllocPaidClmJv(params));
+			wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Paid Claims finished.");
+			
+			procedureName = "Allocating Claim Recovery and Overpayments";
+			wsController.onReceiveOsLog("Allocating Claim Recovery and Overpayments . . .");
+			res.setReturnCode(acctITDao.acitEomExtractClmRecover(params));
+			wsController.onReceiveOsLog("Allocation of Claim Recovery and Overpayments finished.");
+			
+			procedureName = "Generating Accounting Entries for Allocation of Claim Recovery and Overpayments";
+			wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .");
+			res.setReturnCode(acctITDao.acitEomCreateAllocRecoverJv(params));
+			wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.");
+			wsController.onReceiveOsLog("");
+			
+			procedureName = "Producing Summary Report";
+			wsController.onReceiveOsLog(acctITDao.acitEomBatchOsSummaryReport(params));
+			
+			acctITDao.commit();
+		} catch (Exception e) {
+			acctITDao.rollback();
+			wsController.onReceiveOsLog("An error occured while " + procedureName);
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Batch OS failed."));
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 }
