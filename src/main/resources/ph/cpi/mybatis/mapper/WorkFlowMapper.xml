@@ -12,6 +12,8 @@
 		<result property="reminder"			        column="REMINDER"/>
 		<result property="reminderDate"            	column="REMINDER_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	    <result property="alarmTime"            	column="ALARM_TIME"/>
+	    <result property="impTag"            		column="IMP_TAG"/>
+	    <result property="urgTag"            		column="URG_TAG"/>
 	    <result property="module"			        column="MODULE"/>
 		<result property="referenceId"			    column="REFERENCE_ID"/>
 		<result property="details"			        column="DETAILS"/>
@@ -28,6 +30,8 @@
     	SELECT * FROM TABLE(WFM_REMINDERS_PKG.ret_reminders(#{reminderId, jdbcType=VARCHAR},
     										      #{assignedTo, jdbcType=VARCHAR},
     										      #{createUser, jdbcType=VARCHAR},
+    										      #{impTag, jdbcType=VARCHAR},
+    										      #{urgTag, jdbcType=VARCHAR},
     										      #{module, jdbcType=VARCHAR},
     										      #{referenceId, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
@@ -46,6 +50,8 @@
 												   #{reminder.reminder, jdbcType=VARCHAR},
 												   CAST(to_timestamp(#{reminder.reminderDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS".000Z"') AS DATE),
 												   #{reminder.alarmTime, jdbcType=VARCHAR},
+												   #{reminder.impTag, jdbcType=VARCHAR},
+    										       #{reminder.urgTag, jdbcType=VARCHAR},
 												   #{reminder.module, jdbcType=VARCHAR},
 												   #{reminder.referenceId, jdbcType=VARCHAR},
 												   #{reminder.details, jdbcType=VARCHAR},
