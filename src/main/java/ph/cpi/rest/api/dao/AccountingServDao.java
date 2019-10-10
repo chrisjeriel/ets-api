@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
+import ph.cpi.rest.api.model.accountingservice.AcseOrServFee;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
@@ -43,5 +44,7 @@ public interface AccountingServDao {
 	public HashMap<String, Object> updateAcseCvStat(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseCvPaytReq> retrieveAcseCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveAcseCvPaytReqList(final HashMap<String, Object> params) throws SQLException;
-	
+	public Integer cancelOr(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseOrServFee> retrieveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
 }

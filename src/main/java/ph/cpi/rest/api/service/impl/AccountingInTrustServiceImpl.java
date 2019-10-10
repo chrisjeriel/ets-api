@@ -1927,7 +1927,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return saqResponse;
 	}
 
-
 	@Override
 	public RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar)
 			throws SQLException {
@@ -1936,6 +1935,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("policyId",raar.getPolicyId());
 		params.put("policyNo",raar.getPolicyNo());
 		response.setList(acctITDao.retrieveAcitInwPolPayts(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request)
+			throws SQLException {
+		RetrieveAcitCancelTransactionResponse response = new RetrieveAcitCancelTransactionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		params.put("tranClass", request.getTranClass());
+		params.put("cancelFrom", request.getCancelFrom());
+		params.put("cancelTo", request.getCancelTo());
+		response.setCancelledTran(acctITDao.retrieveCancelledTrans(params));
 		return response;
 	}
 }

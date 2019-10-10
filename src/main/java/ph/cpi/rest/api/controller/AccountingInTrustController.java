@@ -760,4 +760,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitInwPolPaytsRequest : " + raar.toString());
 		return acctInTrustService.retrieveAcitInwPolPayts(raar);
 	}
+
+	@GetMapping(path="retrieveCancelledTrans")
+	public @ResponseBody RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveCancelledTrans");
+		logger.info("RetrieveAcseCancelTransactionRequest : " + request.toString());
+		return acctInTrustService.retrieveCancelledTrans(request);
+	}
 }

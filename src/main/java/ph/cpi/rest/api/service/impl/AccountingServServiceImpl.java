@@ -12,6 +12,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
+import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
@@ -20,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
@@ -29,6 +31,7 @@ import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
+import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
@@ -38,6 +41,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
+import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
@@ -46,6 +50,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
@@ -55,6 +60,7 @@ import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
+import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
@@ -444,6 +450,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
 			params.put("saveTaxDtl", request.getSaveTaxDtl());
+			params.put("delTaxDtl", request.getDelTaxDtl());
 			HashMap<String,Object> res = acctServDao.saveTaxDetails(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
@@ -598,7 +605,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		RetrieveAcseAttachmentsResponse response = new RetrieveAcseAttachmentsResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranId", request.getTranId());
-		response.setAcitAttachmentsList(acctServDao.retrieveAttachments(params));
+		response.setAcseAttachmentsList(acctServDao.retrieveAttachments(params));
 		return response;
 	}
 
@@ -609,7 +616,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			HashMap<String, Object> params = new HashMap<String,Object>();
 			params.put("saveAttachmentsList", request.getSaveAttachmentsList());
 			params.put("delAttachmentsList", request.getDelAttachmentsList());
-			HashMap<String, Object> res = acctServDao.saveAcctEntries(params);
+			HashMap<String, Object> res = acctServDao.saveAttachments(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
 			response.setReturnCode(0);
@@ -670,6 +677,69 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public CancelOrResponse cancelOr(CancelOrRequest cor) throws SQLException {
+		CancelOrResponse response = new CancelOrResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", cor.getTranId());
+		params.put("updateUser", cor.getUpdateUser());
+		params.put("updateDate", cor.getUpdateDate());
+		try{
+			response.setReturnCode(acctServDao.cancelOr(params));
+			logger.info("CancelOrResponse : "+ response);
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseOrServFeeResponse retrieveAcseOrServFee(RetrieveAcseOrServFeeRequest raosfr)
+			throws SQLException {
+		RetrieveAcseOrServFeeResponse response = new RetrieveAcseOrServFeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raosfr.getTranId());
+		params.put("billId", raosfr.getBillId());
+		response.setServFeeList(acctServDao.retrieveAcseOrServFee(params));
+		return response;
+	}
+
+	@Override
+	public SaveAcseOrServFeeResponse saveAcseOrServFee(SaveAcseOrServFeeRequest saosfr) throws SQLException {
+		SaveAcseOrServFeeResponse response = new SaveAcseOrServFeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", saosfr.getTranId());
+		params.put("billId", saosfr.getBillId());
+		params.put("billType", saosfr.getBillType());
+		params.put("totalLocalAmt", saosfr.getTotalLocalAmt());
+		params.put("createUser", saosfr.getCreateUser());
+		params.put("createDate", saosfr.getCreateDate());
+		params.put("updateUser", saosfr.getUpdateUser());
+		params.put("updateDate", saosfr.getUpdateDate());
+		params.put("delServFee", saosfr.getDelServFee());
+		params.put("saveServFee", saosfr.getSaveServFee());
+		try{
+			response.setReturnCode(acctServDao.saveAcseOrServFee(params));
+			logger.info("SaveAcseOrServFeeResponse : "+ response);
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
 		}
 		return response;
 	}

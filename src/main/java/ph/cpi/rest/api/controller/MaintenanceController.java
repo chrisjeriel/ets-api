@@ -1054,4 +1054,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnBussTypeRequest : " + smbtr.toString());
 		return maintenanceService.saveMtnBussType(smbtr);
 	}
+	
+	@GetMapping(path="retrieveMtnAcseCheckSeries")
+    public @ResponseBody RetrieveMtnAcseCheckSeriesResponse retrieveMtnAcseCheckSeries(RetrieveMtnAcseCheckSeriesRequest rmacsr) throws SQLException {
+        logger.info("GET: /api/maintenance-service/retrieveMtnAcseCheckSeries");
+        logger.info("RetrieveMtnMtnAcseCheckSeriesRequest : " + rmacsr.toString());
+        return maintenanceService.retrieveMtnAcseCheckSeries(rmacsr);
+    }
 }

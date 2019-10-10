@@ -652,6 +652,14 @@
 	
 	<update id="saveTaxDetails" parameterType="java.util.Map">
 		BEGIN
+			<foreach collection="delTaxDtl" item="del">
+				ACSE_TAX_DETAILS_PKG.del_tax_details(
+					#{del.tranId},
+					#{del.taxType},
+					#{del.taxSeqno}
+				);
+			</foreach>
+			
 			<foreach collection="saveTaxDtl" item="save">
 				ACSE_TAX_DETAILS_PKG.save_tax_details(
 					#{save.tranId},
@@ -694,7 +702,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd})
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd}))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCv" id="acseCvMap">
@@ -845,17 +853,17 @@
 	</resultMap>
 	
 	<select id="retrieveAttachments" resultMap="attachmentMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ATTACHMENTS_PKG.ret_acse_attchmnt(#{tranId},null,null,null,null);
+		SELECT * FROM TABLE(ACSE_ATTACHMENTS_PKG.ret_acse_attchmnt(#{tranId},null,null,null,null))
 	</select>
 	
 	<update id="saveAttachments" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			 <foreach collection="delAttachmentsList" item="del">
-		   		ACIT_ATTACHMENTS_PKG.del_acit_attchmnt(#{del.tranId},
+		   		ACSE_ATTACHMENTS_PKG.del_acse_attchmnt(#{del.tranId},
 		   											#{del.fileNo, jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="saveAttachmentsList" item="attachment">
-		   	   ACIT_ATTACHMENTS_PKG.save_acit_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
+		   	   ACSE_ATTACHMENTS_PKG.save_acse_attchmnt(#{uploadDate, mode=OUT, jdbcType=VARCHAR},
 		   	   										#{attachment.tranId},
 		   	   										#{attachment.fileNo, jdbcType=VARCHAR},
 		   	   										#{attachment.fileName},
@@ -912,16 +920,16 @@
 	<update id="saveAcseCvPaytReqList" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			<foreach collection="deletePaytReqList" item="del">
-				ACSE_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId}, 
-														  #{del.itemNo},
+				ACSE_CV_PAYTREQLIST_PKG.del_payt_req_list(#{del.tranId, jdbcType=INTEGER}, 
+														  #{del.itemNo, jdbcType=INTEGER},
 														  #{del.updateUser, jdbcType=VARCHAR}, 
 														  #{del.cvStatus, jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="savePaytReqList" item="save">
-				ACSE_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId},
+				ACSE_CV_PAYTREQLIST_PKG.save_payt_req_list(#{save.tranId, jdbcType=INTEGER},
 														   #{save.itemNo, jdbcType=INTEGER},
-														   #{save.reqId},
+														   #{save.reqId, jdbcType=INTEGER},
 														   #{save.createUser, jdbcType=VARCHAR},
 														   CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														   #{save.updateUser, jdbcType=VARCHAR}, 
@@ -931,4 +939,68 @@
 		END;
 	</update>
 	
+	<update id="cancelOr" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_OFFICIAL_RECEIPT_PKG.cancel_or(#{tranId},
+												#{updateUser}, 
+												CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseOrServFee" id="acseOrServFeeMap">
+		<result property="tranId"               column="TRAN_ID" />
+		<result property="billId"               column="BILL_ID" />
+		<result property="itemNo"               column="ITEM_NO" />
+		<result property="quarterEnding"        column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="currCd"               column="CURR_CD" />
+		<result property="currRate"             column="CURR_RATE" />
+		<result property="servFeeAmt"           column="SERVFEE_AMT" />
+		<result property="localAmt"             column="LOCAL_AMT" />
+		<result property="createUser"           column="CREATE_USER" />
+		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"           column="UPDATE_USER" />
+		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retAcseOrServFee" resultMap="acseOrServFeeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_OR_SERVFEE_PKG.ret_acse_or_servfee(
+																		#{tranId},
+																		#{billId}))
+	</select>
+	
+	<update id="saveAcseOrServFee" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<!-- Save in ACSE_OR_TRANSUMM -->
+			ACSE_OR_TRANSUMM_PKG.save_acse_transumm(
+														#{tranId},
+														#{billId},
+														#{billType},
+														#{totalLocalAmt},
+														#{createUser},
+														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{updateUser},
+														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+			<foreach collection="delServFee" item="del">
+				ACSE_OR_SERVFEE_PKG.del_acse_or_servfee(#{del.tranId}, 
+														#{del.billId},
+														  #{del.itemNo});
+			</foreach>
+			
+			<foreach collection="saveServFee" item="save">
+				ACSE_OR_SERVFEE_PKG.save_acse_or_servfee(#{save.tranId},
+														 #{save.billId},
+														 #{save.itemNo, jdbcType=VARCHAR},
+														 CAST(to_timestamp(#{save.quarterEnding, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.currCd},
+														 #{save.currRate},
+														 #{save.servFeeAmt},
+														 #{save.localAmt},
+														 #{save.createUser, jdbcType=VARCHAR},
+														 CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser, jdbcType=VARCHAR}, 
+														 CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

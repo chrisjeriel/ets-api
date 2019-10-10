@@ -3,9 +3,9 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.*;
+import ph.cpi.rest.api.model.request.RetrieveAcitCancelTransactionRequest;
 import ph.cpi.rest.api.model.response.*;
 
 @Service
@@ -112,6 +112,7 @@ public interface AccountingInTrustService {
 	public SaveAcitJVInvPlacementResponse saveAcitJVInvPlacement (SaveAcitJVInvPlacementRequest request)throws SQLException;
 	public RetrieveAcitSOADueResponse retrieveAcitSoaDue(RetrieveAcitSOADueRequest request )throws SQLException;
 	public SaveAcitQSOAResponse saveAcitQSOA(SaveAcitQSOARequest saqr) throws SQLException;
-	
 	public RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar) throws SQLException;
+	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request ) throws SQLException;
+	
 }

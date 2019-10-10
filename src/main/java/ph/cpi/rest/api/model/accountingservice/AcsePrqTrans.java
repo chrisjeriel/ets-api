@@ -12,7 +12,7 @@ public class AcsePrqTrans {
 	private String refNo;
 	private String remarks;
 	private String currCd;
-	private Float currRate;
+	private Double currRate;
 	private BigDecimal currAmt;
 	private BigDecimal localAmt;
 	private String createUser;
@@ -62,10 +62,10 @@ public class AcsePrqTrans {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Float getCurrRate() {
+	public Double getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Float currRate) {
+	public void setCurrRate(Double currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getCurrAmt() {

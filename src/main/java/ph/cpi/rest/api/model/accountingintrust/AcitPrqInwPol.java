@@ -12,7 +12,7 @@ public class AcitPrqInwPol {
 	private Integer instNo;
 	private DateTime dueDate;
 	private String currCd;
-	private Float currRate;
+	private Double currRate;
 	private BigDecimal prevPremAmt;
 	private BigDecimal prevRiComm;
 	private BigDecimal prevRiCommVat;
@@ -73,10 +73,10 @@ public class AcitPrqInwPol {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Float getCurrRate() {
+	public Double getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Float currRate) {
+	public void setCurrRate(Double currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getPrevPremAmt() {

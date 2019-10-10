@@ -4,19 +4,17 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 
-public class RetrieveAcseAttachmentsResponse {
-	private List<AcseAttachments> acseAttachmentsList;
-	private PaginationResponse paginationResponse = new PaginationResponse();
-	private SortResponse sortResponse = new SortResponse();
-	
-	
-	public List<AcseAttachments> getAcseAttachmentsList() {
-		return acseAttachmentsList;
+public class RetrieveMtnAcseCheckSeriesResponse {
+	private List<AcseCheckSeries> checkSeriesList;
+	private PaginationResponse paginationResponse;
+	private SortResponse sortResponse;
+	public List<AcseCheckSeries> getCheckSeriesList() {
+		return checkSeriesList;
 	}
-	public void setAcseAttachmentsList(List<AcseAttachments> acseAttachmentsList) {
-		this.acseAttachmentsList = acseAttachmentsList;
+	public void setCheckSeriesList(List<AcseCheckSeries> checkSeriesList) {
+		this.checkSeriesList = checkSeriesList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -32,8 +30,7 @@ public class RetrieveAcseAttachmentsResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcseAttachmentsResponse [acseAttachmentsList=" + acseAttachmentsList + ", paginationResponse="
+		return "RetrieveMtnAcseCheckSeriesResponse [checkSeriesList=" + checkSeriesList + ", paginationResponse="
 				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
-	
 }

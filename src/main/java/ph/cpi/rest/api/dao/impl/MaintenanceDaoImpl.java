@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -1096,4 +1097,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer code = sqlSession.update("saveMtnBussType",params);
 		return code;
 	}
+	
+	@Override
+    public List<AcseCheckSeries> retrieveMtnAcseCheckSeries(HashMap<String, Object> params) throws SQLException {
+        List<AcseCheckSeries> checkSeriesList = sqlSession.selectList("retrieveMtnAcseCheckSeries", params);
+        return checkSeriesList;
+    }
 }
