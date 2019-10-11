@@ -2410,4 +2410,25 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
         return rmacsResponse;
     }
+
+	@Override
+	public GenerateAcitARSeriesResponse generateARSeries(GenerateAcitARSeriesRequest request) throws SQLException {
+		GenerateAcitARSeriesResponse response = new GenerateAcitARSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String, Object>();
+			params.put("arFrom", request.getArFrom());
+			params.put("arTo", request.getArTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateARSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

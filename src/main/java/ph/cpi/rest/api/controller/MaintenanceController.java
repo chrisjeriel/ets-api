@@ -1061,4 +1061,11 @@ public class MaintenanceController {
         logger.info("RetrieveMtnMtnAcseCheckSeriesRequest : " + rmacsr.toString());
         return maintenanceService.retrieveMtnAcseCheckSeries(rmacsr);
     }
+	
+	@PostMapping(path="generateARSeries")
+	public @ResponseBody GenerateAcitARSeriesResponse generateARSeries(@RequestBody GenerateAcitARSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateARSeries");
+		logger.info("GenerateAcitARSeriesRequest : " + request.toString());
+		return maintenanceService.generateARSeries(request);
+	}
 }

@@ -1093,7 +1093,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public Integer saveMtnBussType(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnBussType",params);
 		return code;
 	}
@@ -1103,4 +1102,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
         List<AcseCheckSeries> checkSeriesList = sqlSession.selectList("retrieveMtnAcseCheckSeries", params);
         return checkSeriesList;
     }
+
+	@Override
+	public HashMap<String, Object> generateARSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateARSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
