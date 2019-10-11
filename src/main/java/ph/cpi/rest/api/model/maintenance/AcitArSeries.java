@@ -3,8 +3,6 @@ package ph.cpi.rest.api.model.maintenance;
 import org.joda.time.DateTime;
 
 public class AcitArSeries {
-	private Integer minArNo;
-	private Integer maxArNo;
 	private Integer arNo;
 	private Integer tranId;
 	private String usedTag;
@@ -12,18 +10,6 @@ public class AcitArSeries {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public Integer getMinArNo() {
-		return minArNo;
-	}
-	public void setMinArNo(Integer minArNo) {
-		this.minArNo = minArNo;
-	}
-	public Integer getMaxArNo() {
-		return maxArNo;
-	}
-	public void setMaxArNo(Integer maxArNo) {
-		this.maxArNo = maxArNo;
-	}
 	public Integer getArNo() {
 		return arNo;
 	}
@@ -68,8 +54,9 @@ public class AcitArSeries {
 	}
 	@Override
 	public String toString() {
-		return "AcitArSeries [minArNo=" + minArNo + ", maxArNo=" + maxArNo + ", arNo=" + arNo + ", tranId=" + tranId
-				+ ", usedTag=" + usedTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitArSeries [arNo=" + arNo + ", tranId=" + tranId + ", usedTag=" + usedTag + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
+	
 }

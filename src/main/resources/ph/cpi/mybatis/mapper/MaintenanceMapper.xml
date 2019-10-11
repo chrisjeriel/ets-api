@@ -4115,4 +4115,19 @@
 						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitArSeries" id="arSeriesMap">
+        <result property="arNo" column="AR_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveArSeries" resultMap="arSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_ar_series(#{arFrom,jdbcType=VARCHAR},#{arTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
 </mapper>

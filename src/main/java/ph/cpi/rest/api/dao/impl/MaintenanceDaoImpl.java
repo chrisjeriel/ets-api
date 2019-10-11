@@ -1138,4 +1138,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public List<AcitArSeries> retrieveArSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcitArSeries> res = sqlSession.selectList("retrieveArSeries", params);
+		return res;
+	}
 }

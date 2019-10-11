@@ -1096,4 +1096,11 @@ public class MaintenanceController {
 		logger.info("GenerateAcitJVSeriesRequest : " + request.toString());
 		return maintenanceService.generateJVSeries(request);
 	}
+	
+	@GetMapping(path="retrieveArSeries")
+	public @ResponseBody RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveArSeries");
+		logger.info("RetrieveMtnGenARSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveArSeries(request);
+	}
 }

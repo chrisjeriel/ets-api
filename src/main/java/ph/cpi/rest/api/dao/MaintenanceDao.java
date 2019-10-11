@@ -237,5 +237,5 @@ public interface MaintenanceDao {
 	public List<Employee> retrieveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateCVSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateJVSeries(final HashMap<String, Object> params) throws SQLException;
-	
+	public List<AcitArSeries> retrieveArSeries(final HashMap<String, Object> params) throws SQLException;
 }

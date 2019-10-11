@@ -2506,4 +2506,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException {
+		RetrieveMtnGenARSeriesResponse response = new RetrieveMtnGenARSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("arFrom", request.getArFrom());
+		params.put("arTo", request.getArTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setArSeries(maintenanceDao.retrieveArSeries(params));
+		return response;
+	}
 }
