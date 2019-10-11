@@ -2383,7 +2383,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnBussTypeResponse saveMtnBussType(SaveMtnBussTypeRequest smbtr)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnBussTypeResponse response = new SaveMtnBussTypeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2402,7 +2401,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnDcbUserResponse saveMtnDcbUser(SaveMtnDcbUserRequest smdur)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnDcbUserResponse response = new SaveMtnDcbUserResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2421,7 +2419,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(
 			RetrieveMtnEmployeeRequest rmer) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveMtnEmployeeResponse response = new RetrieveMtnEmployeeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2444,4 +2441,113 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
         return rmacsResponse;
     }
+
+	@Override
+	public GenerateAcitARSeriesResponse generateARSeries(GenerateAcitARSeriesRequest request) throws SQLException {
+		GenerateAcitARSeriesResponse response = new GenerateAcitARSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String, Object>();
+			params.put("arFrom", request.getArFrom());
+			params.put("arTo", request.getArTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateARSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateAcitCVSeriesResponse generateCVSeries(GenerateAcitCVSeriesRequest request) throws SQLException {
+		GenerateAcitCVSeriesResponse response = new GenerateAcitCVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("cvYear", request.getCvYear());
+			params.put("cvFrom", request.getCvFrom());
+			params.put("cvTo", request.getCvTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String, Object> res = maintenanceDao.generateCVSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateAcitJVSeriesResponse generateJVSeries(GenerateAcitJVSeriesRequest request) throws SQLException {
+		GenerateAcitJVSeriesResponse response  = new GenerateAcitJVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String, Object>();
+			params.put("jvYear",request.getJvYear());
+			params.put("jvFrom", request.getJvFrom());
+			params.put("jvTo", request.getJvTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateJVSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException {
+		RetrieveMtnGenARSeriesResponse response = new RetrieveMtnGenARSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("arFrom", request.getArFrom());
+		params.put("arTo", request.getArTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setArSeries(maintenanceDao.retrieveArSeries(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException {
+		RetrieveMtnGenCVSeriesResponse response = new RetrieveMtnGenCVSeriesResponse();
+		HashMap<String,Object> params  =  new HashMap<String,Object>();
+		params.put("cvYear",request.getCvYear());
+		params.put("cvFrom", request.getCvFrom());
+		params.put("cvTo", request.getCvTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setCvSeries(maintenanceDao.retrieveCvSeries(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException {
+		RetrieveMtnGenJVSeriesResponse response = new RetrieveMtnGenJVSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("jvYear",request.getJvYear());
+		params.put("jvFrom", request.getJvFrom());
+		params.put("jvTo", request.getJvTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setJvSeries(maintenanceDao.retrieveJvSeries(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException {
+		RetrieveMtnAcitSeriesResponse response = new RetrieveMtnAcitSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		response.setMaxTranNo(maintenanceDao.maxTranNo(params));
+		return response;
+	}
 }

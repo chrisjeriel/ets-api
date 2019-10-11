@@ -17,7 +17,10 @@ import ph.cpi.rest.api.model.RefCode;
 import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
+import ph.cpi.rest.api.model.maintenance.AcitCvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcitJvSeries;
+import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
@@ -1094,7 +1097,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public Integer saveMtnBussType(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnBussType",params);
 		return code;
 	}
@@ -1106,9 +1108,15 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
     }
 
 	@Override
+	public HashMap<String, Object> generateARSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateARSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
 	public Integer saveMtnDcbUser(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnDcbUser",params);
 		return code;
 	}
@@ -1116,9 +1124,45 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<Employee> retrieveMtnEmployee(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		List<Employee> res = sqlSession.selectList("retrieveMtnEmployee", params);
 		return res;
 	}
-	
+
+	@Override
+	public HashMap<String, Object> generateCVSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateCVSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> generateJVSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateJVSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitArSeries> retrieveArSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcitArSeries> res = sqlSession.selectList("retrieveArSeries", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitCvSeries> retrieveCvSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcitCvSeries> list = sqlSession.selectList("retrieveCvSeries", params);
+		return list;
+	}
+
+	@Override
+	public List<AcitJvSeries> retrieveJvSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcitJvSeries> list = sqlSession.selectList("retrieveJvSeries", params);
+		return list;
+	}
+
+	@Override
+	public AcitTranSeries maxTranNo(HashMap<String, Object> params) throws SQLException {
+		AcitTranSeries res = sqlSession.selectOne("maxTranNo",params);
+		return res;
+	}
 }

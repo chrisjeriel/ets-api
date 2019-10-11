@@ -1061,6 +1061,13 @@ public class MaintenanceController {
         logger.info("RetrieveMtnMtnAcseCheckSeriesRequest : " + rmacsr.toString());
         return maintenanceService.retrieveMtnAcseCheckSeries(rmacsr);
     }
+	
+	@PostMapping(path="generateARSeries")
+	public @ResponseBody GenerateAcitARSeriesResponse generateARSeries(@RequestBody GenerateAcitARSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateARSeries");
+		logger.info("GenerateAcitARSeriesRequest : " + request.toString());
+		return maintenanceService.generateARSeries(request);
+	}
 
 	@PostMapping(path="saveMtnDcbUser")
 	public @ResponseBody SaveMtnDcbUserResponse saveMtnDcbUser(@RequestBody SaveMtnDcbUserRequest smdur) throws SQLException {
@@ -1076,4 +1083,45 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnEmployee(rmer);
 	}
 	
+	@PostMapping(path="generateCVSeries")
+	public @ResponseBody GenerateAcitCVSeriesResponse generateCVSeries(@RequestBody GenerateAcitCVSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateCVSeries");
+		logger.info("GenerateAcitCVSeriesRequest : " + request.toString());
+		return maintenanceService.generateCVSeries(request);
+	}
+	
+	@PostMapping(path="generateJVSeries")
+	public @ResponseBody GenerateAcitJVSeriesResponse generateJVSeries(@RequestBody GenerateAcitJVSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateJVSeries");
+		logger.info("GenerateAcitJVSeriesRequest : " + request.toString());
+		return maintenanceService.generateJVSeries(request);
+	}
+	
+	@GetMapping(path="retrieveArSeries")
+	public @ResponseBody RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveArSeries");
+		logger.info("RetrieveMtnGenARSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveArSeries(request);
+	}
+	
+	@GetMapping(path="retrieveCvSeries")
+	public @ResponseBody RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveCvSeries");
+		logger.info("RetrieveMtnGenCVSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveCvSeries(request);
+	}
+	
+	@GetMapping(path="retrieveJvSeries")
+	public @ResponseBody RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveJvSeries");
+		logger.info("RetrieveMtnGenJVSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveJvSeries(request);
+	}
+	
+	@GetMapping(path="maxTranNo")
+	public @ResponseBody RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/maxTranNo");
+		logger.info("RetrieveMtnAcitSeriesRequest : " + request.toString());
+		return maintenanceService.maxTranNo(request);
+	}
 }

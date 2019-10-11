@@ -156,7 +156,13 @@ public interface MaintenanceService {
 	public RetrieveMtnWhTaxResponse retrieveMtnWhTax(RetrieveMtnWhTaxRequest rmwt) throws SQLException;
 	public SaveMtnBussTypeResponse saveMtnBussType (SaveMtnBussTypeRequest smbtr) throws SQLException;
 	public RetrieveMtnAcseCheckSeriesResponse retrieveMtnAcseCheckSeries(RetrieveMtnAcseCheckSeriesRequest request) throws SQLException;
+	public GenerateAcitARSeriesResponse generateARSeries(GenerateAcitARSeriesRequest request)throws SQLException;
 	public SaveMtnDcbUserResponse saveMtnDcbUser (SaveMtnDcbUserRequest smdur) throws SQLException;
 	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(RetrieveMtnEmployeeRequest rmer) throws SQLException;
-	
+	public GenerateAcitCVSeriesResponse generateCVSeries(GenerateAcitCVSeriesRequest request) throws SQLException;
+	public GenerateAcitJVSeriesResponse generateJVSeries(GenerateAcitJVSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException;
 }
