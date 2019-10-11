@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
+import ph.cpi.rest.api.model.request.RetrieveRelatedRecordsRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
 import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
+import ph.cpi.rest.api.model.response.RetrieveRelatedRecordsResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveNotesResponse;
@@ -69,5 +71,12 @@ public class WorkFlowController {
 		logger.info("GET: /api/work-flow-service/retTransactions"); 
 		logger.info("RetrieveWfmTransactionsRequest : " + rwtr.toString());
 		return workFlowService.retrieveTransactions(rwtr);
+	}
+	
+	@GetMapping(path="retRelatedRecords")
+	public @ResponseBody RetrieveRelatedRecordsResponse retrieveRelatedRecords(RetrieveRelatedRecordsRequest rrrr) throws SQLException {
+		logger.info("GET: /api/work-flow-service/retRelatedRecords"); 
+		logger.info("RetrieveRelatedRecordsRequest : " + rrrr.toString());
+		return workFlowService.retrieveRelatedRecords(rrrr);
 	}
 }

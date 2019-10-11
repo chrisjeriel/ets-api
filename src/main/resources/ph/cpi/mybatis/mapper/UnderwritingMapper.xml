@@ -27,6 +27,7 @@
 		<result property="dueDate" 				column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="bookingDate" 			column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="acctEntDate" 			column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="memoNo" 				column="MEMO_NO"/>
 		<result property="premAmt" 				column="PREM_AMT"/>
 		<result property="commRt"               column="COMM_RT"/>
 		<result property="commAmt"              column="COMM_AMT"/>

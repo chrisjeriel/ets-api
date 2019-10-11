@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.workflowmanager.Note;
+import ph.cpi.rest.api.model.workflowmanager.RelatedRecord;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
 import ph.cpi.rest.api.model.workflowmanager.WfmTransaction;
 
@@ -76,5 +77,12 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 		List<WfmTransaction> transactionList = sqlSession.selectList("retrieveTransactions", params);
 		logger.info("retrieveTransactions DAOImpl : " + transactionList);
 		return transactionList;
+	}
+
+	@Override
+	public List<RelatedRecord> retrieveRelatedRecords(HashMap<String, Object> params) throws SQLException {
+		List<RelatedRecord> relatedRecordList = sqlSession.selectList("retrieveRelatedRecords", params);
+		logger.info("retrieveRelatedRecords DAOImpl : " + relatedRecordList);
+		return relatedRecordList;
 	}
 }

@@ -161,46 +161,29 @@
 				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
     			);
     			
-    			clm_dist_pkg.gen_reserve_dist(#{ch.claimId,jdbcType=VARCHAR},
-					#{ch.projId,jdbcType=VARCHAR},
-					v_hist_no,
-					#{ch.histCategory,jdbcType=VARCHAR},
-					#{ch.histType,jdbcType=VARCHAR},
-					#{ch.reserveAmt,jdbcType=INTEGER},
-					#{ch.createUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				    #{ch.updateUser,jdbcType=VARCHAR},
-				    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-    			
-    			<!-- ADD IF #{ch.histNo,jdbcType=VARCHAR} == NULL AND HIST_TYPEQ IS NOT PAYMENT -->
-    			<!-- IF #{ch.histType,jdbcType=VARCHAR} IN (1,2,3,6) THEN -->
-	    			CLM_DIST_CUMRESERVE_PKG.gen_reserve_dist(
-	    				#{ch.claimId,jdbcType=VARCHAR},
-						#{ch.projId,jdbcType=VARCHAR},
-						#{ch.histCategory,jdbcType=VARCHAR},
-						#{ch.createUser,jdbcType=VARCHAR},
-					    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					    #{ch.updateUser,jdbcType=VARCHAR},
-					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-	    			<!-- ); 
-    			END IF; -->
-    			<!-- 
-	    		ELSE
-	    			CLM_DIST_PAYMENT_PKG.gen_reserve_dist(
-	    				#{ch.claimId,jdbcType=VARCHAR},
+    			<!-- transefer to trigger -->
+    			IF #{ch.affecting} = 'Y' THEN
+	    			clm_dist_pkg.gen_reserve_dist(#{ch.claimId,jdbcType=VARCHAR},
 						#{ch.projId,jdbcType=VARCHAR},
 						v_hist_no,
 						#{ch.histCategory,jdbcType=VARCHAR},
 						#{ch.histType,jdbcType=VARCHAR},
 						#{ch.reserveAmt,jdbcType=INTEGER},
-						#{ch.bookingMth,jdbcType=VARCHAR},
-						#{ch.bookingYear,jdbcType=INTEGER},
 						#{ch.createUser,jdbcType=VARCHAR},
 					    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					    #{ch.updateUser,jdbcType=VARCHAR},
-					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-	    			);
-    			END IF; -->
+					    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+	    			
+		    			CLM_DIST_CUMRESERVE_PKG.gen_reserve_dist(
+		    				#{ch.claimId,jdbcType=VARCHAR},
+							#{ch.projId,jdbcType=VARCHAR},
+							#{ch.histCategory,jdbcType=VARCHAR},
+							#{ch.createUser,jdbcType=VARCHAR},
+						    CAST(to_timestamp(#{ch.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						    #{ch.updateUser,jdbcType=VARCHAR},
+						    CAST(to_timestamp(#{ch.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				END IF;
+	    			
     		</foreach>
     	END;
 	</update>
@@ -355,8 +338,55 @@
 														#{adjName,jdbcType=VARCHAR},
 														#{currencyCd,jdbcType=VARCHAR},
 														#{processedBy,jdbcType=VARCHAR}, 
-														'', '', '','')
+														'', '', '','',
+														#{fromInq,jdbcType=VARCHAR})
 						 )
+		 WHERE 1=1				 
+		 <if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	 </if>				 
+		 <if test="sort != null">
+   	    	ORDER BY ${sort.sortKey} ${sort.order}
+   	     </if>				 
+		 <if test="pagination.position != null">
+	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	 </if>
+		
+	</select>
+	
+	
+	<select id="retrieveClaimListingLength" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM TABLE(CLM_GEN_INFO_PKG.ret_clm_list(
+														#{claimNo,jdbcType=VARCHAR},
+														#{cedingName,jdbcType=VARCHAR},
+														#{clmStatus,jdbcType=VARCHAR},
+														#{policyNo,jdbcType=VARCHAR},
+														#{insuredDesc,jdbcType=VARCHAR},
+														#{riskName,jdbcType=VARCHAR},
+														CAST(to_timestamp(#{lossDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														CAST(to_timestamp(#{lossDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{totalResFrom,jdbcType=VARCHAR},
+														#{totalResTo,jdbcType=VARCHAR},
+														#{totalPaytFrom,jdbcType=VARCHAR},
+														#{totalPaytTo,jdbcType=VARCHAR},
+														#{adjName,jdbcType=VARCHAR},
+														#{currencyCd,jdbcType=VARCHAR},
+														#{processedBy,jdbcType=VARCHAR}, 
+														'', '', '','',
+														#{fromInq,jdbcType=VARCHAR})
+						 )
+		 WHERE 1=1				 
+		 <if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	 </if>			
 		
 	</select>
 	
@@ -821,7 +851,6 @@
 					#{save.projId, jdbcType=INTEGER},
 					#{save.histNo, jdbcType=INTEGER},
 					#{save.paytReqId, jdbcType=INTEGER},
-					#{save.paytReqStat, jdbcType=VARCHAR},
 					#{save.createUser,jdbcType=VARCHAR},
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.updateUser,jdbcType=VARCHAR},

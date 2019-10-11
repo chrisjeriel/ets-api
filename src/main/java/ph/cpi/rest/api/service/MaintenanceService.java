@@ -157,4 +157,6 @@ public interface MaintenanceService {
 	public SaveMtnBussTypeResponse saveMtnBussType (SaveMtnBussTypeRequest smbtr) throws SQLException;
 	public RetrieveMtnAcseCheckSeriesResponse retrieveMtnAcseCheckSeries(RetrieveMtnAcseCheckSeriesRequest request) throws SQLException;
 	public GenerateAcitARSeriesResponse generateARSeries(GenerateAcitARSeriesRequest request)throws SQLException;
+	public SaveMtnDcbUserResponse saveMtnDcbUser (SaveMtnDcbUserRequest smdur) throws SQLException;
+	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(RetrieveMtnEmployeeRequest rmer) throws SQLException;
 }

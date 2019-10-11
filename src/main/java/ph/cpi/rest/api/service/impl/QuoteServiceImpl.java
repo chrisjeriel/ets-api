@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
@@ -36,6 +37,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
+import ph.cpi.rest.api.model.request.SaveQuItemRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
@@ -60,6 +62,7 @@ import ph.cpi.rest.api.model.request.UpdateHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
@@ -79,6 +82,8 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
+import ph.cpi.rest.api.model.response.SavePolItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
@@ -1239,6 +1244,35 @@ public class QuoteServiceImpl implements QuoteService{
 		uqsResponse.setReturnCode(quoteDao.updateQuoteStatus(uqsParams));
 		logger.info("UpdateQuoteStatusResponse : " + uqsResponse.toString());
 		return uqsResponse;
+	}
+
+	@Override
+	public RetrieveQuItemResponse retrieveQuItem(RetrieveQuItemRequest rpir) throws SQLException {
+		RetrieveQuItemResponse response = new RetrieveQuItemResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("quoteId", rpir.getQuoteId());
+		
+		response.setItems(quoteDao.retrieveQuItem(params));
+		logger.info("RetrieveQuItemResponse : " + response.toString());
+		return response;
+	}
+
+	@Override
+	public SaveQuItemResponse saveQuItem(SaveQuItemRequest spir) throws SQLException {
+		SaveQuItemResponse spiresponse = new SaveQuItemResponse();
+		try{
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("quoteId", spir.getQuoteId());
+			params.put("projId", spir.getProjId());
+			params.put("saveItemLists",spir.getSaveItemLists());
+			params.put("deleteItemLists",spir.getDeleteItemLists());
+			spiresponse.setReturnCode(quoteDao.saveQuItem(params));
+		}catch(Exception ex){
+			spiresponse.setReturnCode(0);
+			spiresponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return spiresponse;
 	}
 	
 

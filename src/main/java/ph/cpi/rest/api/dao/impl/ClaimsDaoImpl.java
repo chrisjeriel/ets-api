@@ -242,4 +242,10 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		List<ClaimPaytReqInq> list = sqlSession.selectList("retrieveClmPaytReqInq", params);
 		return list;
 	}
+
+	@Override
+	public Integer retrieveClaimListingLength(HashMap<String, Object> params) throws SQLException {
+		Integer length = (Integer) sqlSession.selectOne("retrieveClaimListingLength",params);
+		return length;
+	}
 }

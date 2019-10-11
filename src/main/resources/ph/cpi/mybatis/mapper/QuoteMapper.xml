@@ -1845,4 +1845,69 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.quote.Item" id="quoteItemsMap">
+		<result property="itemNo" 			column="ITEM_NO"/> 
+		<result property="quantity" 		column="QUANTITY"/> 
+		<result property="itemDesc" 		column="ITEM_DESC"/> 
+		<result property="makeYear" 		column="MAKE_YEAR"/> 
+		<result property="deductibleTxt" 	column="DEDUCTIBLE_TXT"/> 
+		<result property="sumInsured" 		column="SUM_INSURED"/> 
+		<result property="stockType" 		column="STOCK_TYPE"/> 
+	    <result property="serialNo"         column="SERIAL_NO"/> 
+		<result property="location" 	    column="LOCATION"/> 
+		<result property="chamberNo" 		column="CHAMBER_NO"/> 
+		<result property="noClaimPd" 		column="NO_CLAIM_PD"/> 
+		<result property="ipl" 	   			column="IPL"/> 
+		<result property="relativeImp" 		column="RELATIVE_IMP"/> 
+		<result property="standbyUnit" 		column="STANDBY_UNIT"/> 
+		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
+		<result property="updateUser" 		column="UPDATE_USER"/> 
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQuItem" resultMap="quoteItemsMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(QUOTE_ITEM_PKG.ret_QUOTE_itm(#{quoteId, jdbcType=INTEGER},
+																	#{quoteNo, jdbcType=VARCHAR},
+																	#{position, jdbcType=VARCHAR}, 
+																	#{count, jdbcType=VARCHAR}, 
+																	#{sortKey, jdbcType=VARCHAR}, 
+																	#{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveQuItem" parameterType="java.util.Map">
+		BEGIN
+		
+		  <foreach collection="deleteItemLists" item="Items">
+		  	QUOTE_ITEM_PKG.del_QUOTE_itm(#{quoteId},
+				#{projId},#{Items.itemNo});
+		  </foreach>
+		  
+		  <foreach collection="saveItemLists" item="Items">
+			QUOTE_ITEM_PKG.save_QUOTE_itm(
+				#{quoteId},
+				#{projId},
+				#{Items.itemNo, jdbcType=INTEGER},
+				#{Items.quantity, jdbcType=INTEGER},
+				#{Items.itemDesc, jdbcType=VARCHAR},
+				#{Items.makeYear, jdbcType=VARCHAR},
+				#{Items.deductibleTxt, jdbcType=VARCHAR},
+				#{Items.sumInsured, jdbcType=INTEGER},
+				#{Items.stockType, jdbcType=VARCHAR},
+				#{Items.serialNo, jdbcType=VARCHAR},
+				#{Items.location, jdbcType=VARCHAR},
+				#{Items.chamberNo, jdbcType=VARCHAR},
+				#{Items.noClaimPd, jdbcType=INTEGER},
+				#{Items.ipl, jdbcType=INTEGER},
+				#{Items.relativeImp, jdbcType=VARCHAR},
+				#{Items.standbyUnit, jdbcType=VARCHAR},
+				#{Items.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{Items.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+			</foreach>
+			QUOTE_ITEM_PKG.renumber_QUOTE_itm(#{quoteId},#{projId});
+		END;
+	</update>
 </mapper>

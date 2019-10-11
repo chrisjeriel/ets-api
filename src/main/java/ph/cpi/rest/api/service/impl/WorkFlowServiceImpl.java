@@ -10,11 +10,13 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
+import ph.cpi.rest.api.model.request.RetrieveRelatedRecordsRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
 import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
+import ph.cpi.rest.api.model.response.RetrieveRelatedRecordsResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveNotesResponse;
@@ -143,6 +145,25 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			
 			resp.setTransactionList(workFlowDao.retrieveTransactions(retrieveTransactionParams));
 			logger.info("RetrieveWfmTransactionsResponse : " + resp.toString());
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return resp;
+	}
+
+	@Override
+	public RetrieveRelatedRecordsResponse retrieveRelatedRecords(RetrieveRelatedRecordsRequest rrrr)
+			throws SQLException {
+		RetrieveRelatedRecordsResponse resp = new RetrieveRelatedRecordsResponse();
+		try {
+			HashMap<String, Object> retrieveRelatedRecordsParams = new HashMap<String, Object>();
+			retrieveRelatedRecordsParams.put("module",rrrr.getModule());
+			retrieveRelatedRecordsParams.put("referenceId",rrrr.getReferenceId());
+			
+			resp.setRelatedRecordList(workFlowDao.retrieveRelatedRecords(retrieveRelatedRecordsParams));
+			logger.info("RetrieveRelatedRecordsResponse : " + resp.toString());
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

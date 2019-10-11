@@ -44,6 +44,8 @@ public class AcitSOAAgingDetails {
 	private String updateUser;
 	private DateTime updateDate;
 	private String processing;
+	private String memoNo;
+	
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -272,12 +274,17 @@ public class AcitSOAAgingDetails {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	public String getProcessing() {
 		return processing;
 	}
 	public void setProcessing(String processing) {
 		this.processing = processing;
+	}
+	public String getMemoNo() {
+		return memoNo;
+	}
+	public void setMemoNo(String memoNo) {
+		this.memoNo = memoNo;
 	}
 	@Override
 	public String toString() {
@@ -292,7 +299,7 @@ public class AcitSOAAgingDetails {
 				+ ", balRiCommVat=" + balRiCommVat + ", balOverdueInt=" + balOverdueInt + ", effDate=" + effDate
 				+ ", dueDate=" + dueDate + ", bookingDate=" + bookingDate + ", agingId=" + agingId + ", netDue="
 				+ netDue + ", balance=" + balance + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing=" + processing + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing=" + processing
+				+ ", memoNo=" + memoNo + "]";
 	}
-	
 }

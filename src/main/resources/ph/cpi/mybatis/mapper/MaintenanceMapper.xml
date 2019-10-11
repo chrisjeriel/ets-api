@@ -3561,6 +3561,7 @@
 		<result property="createDate"				column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"				column="UPDATE_USER" />
 		<result property="updateDate"				column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+   		<result property="okDelete"				    column="OK_DELETE" />
     </resultMap>
     
     <select id="retMtnDCBUser" resultMap="dcbUserMap" parameterType="java.util.Map">
@@ -3984,7 +3985,6 @@
 	
 	<update id="saveMtnBussType" >
 		BEGIN
-			NULL;
 			<foreach collection="delList" item="item">
 				MTN_BUSS_TYPE_PKG.del_mtn_buss_type(#{item.bussTypeCd, jdbcType=VARCHAR});
 			</foreach>
@@ -4000,6 +4000,71 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveMtnDcbUser" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_DCB_USER_PKG.del_mtn_dcb_user(#{item.dcbUserCd, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_DCB_USER_PKG.save_mtn_dcb_user(#{item.dcbUserCd, jdbcType=VARCHAR},
+						#{item.userId,  jdbcType=VARCHAR},
+						#{item.printableName, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.validFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{item.validTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.defaultArBank, jdbcType=VARCHAR},
+						#{item.defaultArBankAcct, jdbcType=VARCHAR},
+						#{item.defaultOrBank, jdbcType=VARCHAR},
+						#{item.defaultOrBankAcct, jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR},
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Employee" id="employeeMap">
+		<result property="companyId"			column="COMPANY_ID"/>
+		<result property="employeeId"			column="EMPLOYEE_ID"/>
+		<result property="companyName"			column="COMPANY_NAME"/>
+		<result property="employeeNo"			column="EMPLOYEE_NO"/>
+		<result property="lastName"				column="LAST_NAME"/>
+		<result property="firstName"			column="FIRST_NAME"/>
+		<result property="middleName"			column="MIDDLE_NAME"/>
+		<result property="printableName" 		column="PRINTABLE_NAME"/>
+		<result property="gender"	    		column="GENDER"/>
+		<result property="hireDate"				column="HIRE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="terminationDate"		column="TERMINATION_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="department"			column="DEPARTMENT"/>
+		<result property="designation"			column="DESIGNATION"/>
+		<result property="supervisor"			column="SUPERVISOR"/>
+		<result property="supervisorName"		column="SUPERVISOR_NAME"/>
+		<result property="birthDate"			column="BIRTH_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="civilStatus"			column="CIVIL_STATUS"/>
+		<result property="presentAdd"			column="PRESENT_ADD"/>
+		<result property="permanentAdd"			column="PERMANENT_ADD"/>
+		<result property="tin"					column="TIN"/>
+		<result property="sssNo"				column="SSS_NO"/>
+		<result property="philhealthNo"			column="PHILHEALTH_NO"/>
+		<result property="pagibigNo"			column="PAGIBIG_NO"/>
+		<result property="contactNos"			column="CONTACT_NOS"/>
+		<result property="email"				column="EMAIL"/>
+		<result property="contactPerson"		column="CONTACT_PERSON"/>
+		<result property="emergencyNo"			column="EMERGENCY_NO"/>
+ 		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	    <result property="activeTag"			column="ACTIVE_TAG" />
+	</resultMap>
+	
+	 <select id="retrieveMtnEmployee" resultMap="employeeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_EMPLOYEE_PKG.ret_mtn_employee(#{companyId, jdbcType=VARCHAR},
+														      #{employeeId, jdbcType=VARCHAR}))
+	</select>
      
     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseCheckSeries" id="acseCheckSeriesMap">
         <result property="bank"         column="BANK"/>

@@ -4,25 +4,19 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.claims.Claims;
+import ph.cpi.rest.api.model.maintenance.Employee;
 
-public class RetrieveClaimListingResponse {
-	private List<Claims> claimsList;
-	private Integer length;
+public class RetrieveMtnEmployeeResponse {
+	
+	private List<Employee> employeeList;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
 	
-	public Integer getLength() {
-		return length;
+	public List<Employee> getEmployeeList() {
+		return employeeList;
 	}
-	public void setLength(Integer length) {
-		this.length = length;
-	}
-	public List<Claims> getClaimsList() {
-		return claimsList;
-	}
-	public void setClaimsList(List<Claims> claimsList) {
-		this.claimsList = claimsList;
+	public void setEmployeeList(List<Employee> employeeList) {
+		this.employeeList = employeeList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -38,8 +32,9 @@ public class RetrieveClaimListingResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveClaimListingResponse [claimsList=" + claimsList + ", length=" + length + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnEmployeeResponse [employeeList=" + employeeList
+				+ ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
+
 }

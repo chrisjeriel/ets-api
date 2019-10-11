@@ -9,6 +9,8 @@ public class Note {
 	private String noteId;
 	private String title;
 	private String note;
+	private String impTag;
+	private String urgTag;
 	private String module;
 	private String referenceId;
 	private String details;
@@ -98,11 +100,33 @@ public class Note {
 	public void setRelatedRecordList(List<RelatedRecord> relatedRecordList) {
 		this.relatedRecordList = relatedRecordList;
 	}
+	public String getImpTag() {
+		if (impTag == null) {
+			impTag = "N";
+		}
+		return impTag;
+	}
+	public void setImpTag(String impTag) {
+		this.impTag = impTag;
+	}
+	public String getUrgTag() {
+		if (urgTag == null) {
+			urgTag = "N";
+		}
+		
+		return urgTag;
+	}
+	public void setUrgTag(String urgTag) {
+		this.urgTag = urgTag;
+	}
 	@Override
 	public String toString() {
-		return "Note [noteId=" + noteId + ", title=" + title + ", note=" + note + ", module=" + module
-				+ ", referenceId=" + referenceId + ", details=" + details + ", assignedTo=" + assignedTo + ", status="
-				+ status + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", relatedRecordList=" + relatedRecordList + "]";
+		return "Note [getNoteId()=" + getNoteId() + ", getTitle()=" + getTitle() + ", getNote()=" + getNote()
+				+ ", getModule()=" + getModule() + ", getReferenceId()=" + getReferenceId() + ", getDetails()="
+				+ getDetails() + ", getAssignedTo()=" + getAssignedTo() + ", getStatus()=" + getStatus()
+				+ ", getCreateUser()=" + getCreateUser() + ", getCreateDate()=" + getCreateDate() + ", getUpdateUser()="
+				+ getUpdateUser() + ", getUpdateDate()=" + getUpdateDate() + ", getRelatedRecordList()="
+				+ getRelatedRecordList() + ", getImpTag()=" + getImpTag() + ", getUrgTag()=" + getUrgTag() + "]";
 	}
+	
 }
