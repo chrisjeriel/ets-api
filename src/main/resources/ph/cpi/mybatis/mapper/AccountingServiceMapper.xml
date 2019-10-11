@@ -1003,4 +1003,46 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense" id="acseBudgetExpenseMap">
+		<result property="budgetYear" 		column="BUDGET_YEAR"/>
+		<result property="itemNo" 			column="ITEM_NO"/>
+		<result property="glAcctId" 		column="GL_ACCT_ID"/>
+		<result property="slTypeCd" 		column="SL_TYPE_CD"/>
+		<result property="slCd" 			column="SL_CD"/>
+		<result property="totalBudget" 		column="TOTAL_BUDGET"/>
+		<result property="totalExpense" 	column="TOTAL_EXPENSE"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcseBudgetExpense" resultMap="acseBudgetExpenseMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_BUDGET_EXPENSE_PKG.ret_budget_expense(
+					#{budgetYear,jdbcType=INTEGER},
+					#{itemNo,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	
+	<update id="saveAcseBudgetExpense" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deleteBudgetExpense" item="del">
+				ACSE_BUDGET_EXPENSE_PKG.del_budget_expense(#{del.budgetYear, jdbcType=INTEGER}, 
+														  #{del.itemNo, jdbcType=INTEGER});
+			</foreach>
+			
+			<foreach collection="saveBudgetExpense" item="save">
+				ACSE_BUDGET_EXPENSE_PKG.save_budget_expense(#{save.budgetYear, jdbcType=INTEGER},
+														   #{save.itemNo, jdbcType=INTEGER},
+													       #{save.gl_acct_id, jdbcType=INTEGER},
+													       #{save.sl_type_cd, jdbcType=INTEGER},
+													       #{save.sl_cd, jdbcType=INTEGER},
+													       #{save.total_budget, jdbcType=INTEGER},
+													       #{save.total_expense, jdbcType=INTEGER},
+														   #{save.createUser, jdbcType=VARCHAR},
+														   #{save.updateUser, jdbcType=VARCHAR}));
+			</foreach>
+		END;
+	</update>
 </mapper>
