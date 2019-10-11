@@ -1110,4 +1110,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnGenCVSeriesRequest : " + request.toString());
 		return maintenanceService.retrieveCvSeries(request);
 	}
+	
+	@GetMapping(path="retrieveJvSeries")
+	public @ResponseBody RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveJvSeries");
+		logger.info("RetrieveMtnGenJVSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveJvSeries(request);
+	}
 }
