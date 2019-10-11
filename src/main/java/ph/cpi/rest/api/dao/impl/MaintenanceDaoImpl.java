@@ -1114,7 +1114,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnDcbUser(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnDcbUser",params);
 		return code;
 	}
@@ -1122,8 +1121,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<Employee> retrieveMtnEmployee(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		List<Employee> res = sqlSession.selectList("retrieveMtnEmployee", params);
 		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> generateCVSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateCVSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

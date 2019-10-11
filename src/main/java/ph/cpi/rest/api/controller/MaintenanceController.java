@@ -1082,4 +1082,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnEmployeeRequest : " + rmer.toString());
 		return maintenanceService.retrieveMtnEmployee(rmer);
 	}
+	
+	@PostMapping(path="generateCVSeries")
+	public @ResponseBody GenerateAcitCVSeriesResponse generateCVSeries(@RequestBody GenerateAcitCVSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateCVSeries");
+		logger.info("GenerateAcitCVSeriesRequest : " + request.toString());
+		return maintenanceService.generateCVSeries(request);
+	}
 }

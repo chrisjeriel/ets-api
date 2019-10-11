@@ -159,4 +159,5 @@ public interface MaintenanceService {
 	public GenerateAcitARSeriesResponse generateARSeries(GenerateAcitARSeriesRequest request)throws SQLException;
 	public SaveMtnDcbUserResponse saveMtnDcbUser (SaveMtnDcbUserRequest smdur) throws SQLException;
 	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(RetrieveMtnEmployeeRequest rmer) throws SQLException;
+	public GenerateAcitCVSeriesResponse generateCVSeries(GenerateAcitCVSeriesRequest request) throws SQLException;
 }

@@ -4097,4 +4097,13 @@
 						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<update id="generateCVSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_cv(#{cvFrom},#{cvTo},#{cvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>

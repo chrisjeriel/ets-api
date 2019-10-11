@@ -2383,7 +2383,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnBussTypeResponse saveMtnBussType(SaveMtnBussTypeRequest smbtr)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnBussTypeResponse response = new SaveMtnBussTypeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2402,7 +2401,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnDcbUserResponse saveMtnDcbUser(SaveMtnDcbUserRequest smdur)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnDcbUserResponse response = new SaveMtnDcbUserResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2421,7 +2419,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(
 			RetrieveMtnEmployeeRequest rmer) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveMtnEmployeeResponse response = new RetrieveMtnEmployeeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2457,6 +2454,28 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("updateUser", request.getUpdateUser());
 			params.put("updateDate", request.getUpdateDate());
 			HashMap<String,Object> res = maintenanceDao.generateARSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateAcitCVSeriesResponse generateCVSeries(GenerateAcitCVSeriesRequest request) throws SQLException {
+		GenerateAcitCVSeriesResponse response = new GenerateAcitCVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("cvYear", request.getCvYear());
+			params.put("cvFrom", request.getCvFrom());
+			params.put("cvTo", request.getCvTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String, Object> res = maintenanceDao.generateCVSeries(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 		}catch(Exception ex){
 			response.setReturnCode(0);
