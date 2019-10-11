@@ -3855,4 +3855,44 @@
 		}
 	</update>
 	
+	<update id="validateEomStat" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.validate_eom_stat(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												 #{eomUser, jdbcType=VARCHAR},
+												 #{process, jdbcType=VARCHAR},
+												 #{option, mode=OUT, jdbcType=VARCHAR},
+												 #{message, mode=OUT, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateEomCloseTag" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_eom_close_tag(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													#{process, jdbcType=VARCHAR},
+													#{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateAcctEntDate" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_acctentdate(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												  #{process, jdbcType=VARCHAR},
+												  #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateAcctEntDateNull" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_acctentdate_null(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													   #{process, jdbcType=VARCHAR},
+													   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 </mapper>

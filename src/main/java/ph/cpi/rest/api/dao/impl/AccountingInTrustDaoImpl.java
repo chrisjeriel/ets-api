@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
@@ -858,5 +860,31 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("extractSummary", "");
 		sqlSession.selectOne("acitEomBatchOsSummaryReport", params);
 		return (String) params.get("extractSummary");
+	}
+
+	@Override
+	public HashMap<String, Object> validateEomStat(HashMap<String, Object> params) throws SQLException {
+		params.put("option", "");
+		params.put("message", "");
+		sqlSession.update("validateEomStat", params);
+		
+		return params;
+	}
+
+	@Override
+	public Integer acitEomUpdateEomCloseTag(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomUpdateEomCloseTag", params);
+	}
+
+	@Override
+	public Integer acitEomUpdateAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomUpdateAcctEntDate", params);
+	}
+
+	@Override
+	public Integer acitEomUpdateAcctEntDateNull(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomUpdateAcctEntDateNull", params);
 	}
 }
