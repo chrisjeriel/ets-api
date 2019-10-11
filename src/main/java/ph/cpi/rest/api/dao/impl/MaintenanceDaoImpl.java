@@ -1165,4 +1165,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		AcitTranSeries res = sqlSession.selectOne("maxTranNo",params);
 		return res;
 	}
+	
+	@Override
+	public Integer saveMtnEmployee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnEmployee",params);
+		return code;
+	}
+	
 }

@@ -1124,4 +1124,12 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcitSeriesRequest : " + request.toString());
 		return maintenanceService.maxTranNo(request);
 	}
+
+	@PostMapping(path="saveMtnEmployee")
+	public @ResponseBody SaveMtnEmployeeResponse saveMtnEmployee(@RequestBody SaveMtnEmployeeRequest smer) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnEmployee");
+		logger.info("SaveMtnEmployeeRequest : " + smer.toString());
+		return maintenanceService.saveMtnEmployee(smer);
+	}
+	
 }

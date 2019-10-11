@@ -165,4 +165,6 @@ public interface MaintenanceService {
 	public RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException;
 	public RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException;
 	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException;
+	public SaveMtnEmployeeResponse saveMtnEmployee (SaveMtnEmployeeRequest smer) throws SQLException;
+	
 }

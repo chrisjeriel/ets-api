@@ -244,4 +244,6 @@ public interface MaintenanceDao {
 	public List<AcitCvSeries> retrieveCvSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJvSeries> retrieveJvSeries(final HashMap<String, Object> params) throws SQLException;
 	public AcitTranSeries maxTranNo(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
+	
 }
