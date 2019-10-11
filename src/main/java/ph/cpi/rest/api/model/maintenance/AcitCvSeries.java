@@ -2,19 +2,26 @@ package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
 
-public class AcitArSeries {
-	private String arNo;
+public class AcitCvSeries {
+	private Integer cvYear;
+	private String cvNo;
 	private Integer tranId;
 	private String usedTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public String getArNo() {
-		return arNo;
+	public Integer getCvYear() {
+		return cvYear;
 	}
-	public void setArNo(String arNo) {
-		this.arNo = arNo;
+	public void setCvYear(Integer cvYear) {
+		this.cvYear = cvYear;
+	}
+	public String getCvNo() {
+		return cvNo;
+	}
+	public void setCvNo(String cvNo) {
+		this.cvNo = cvNo;
 	}
 	public Integer getTranId() {
 		return tranId;
@@ -54,9 +61,9 @@ public class AcitArSeries {
 	}
 	@Override
 	public String toString() {
-		return "AcitArSeries [arNo=" + arNo + ", tranId=" + tranId + ", usedTag=" + usedTag + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+		return "AcitCvSeries [cvYear=" + cvYear + ", cvNo=" + cvNo + ", tranId=" + tranId + ", usedTag=" + usedTag
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

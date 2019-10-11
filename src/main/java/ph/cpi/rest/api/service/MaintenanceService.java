@@ -162,5 +162,6 @@ public interface MaintenanceService {
 	public GenerateAcitCVSeriesResponse generateCVSeries(GenerateAcitCVSeriesRequest request) throws SQLException;
 	public GenerateAcitJVSeriesResponse generateJVSeries(GenerateAcitJVSeriesRequest request) throws SQLException;
 	public RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException;
 	
 }

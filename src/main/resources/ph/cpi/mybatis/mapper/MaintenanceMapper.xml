@@ -4130,4 +4130,18 @@
         SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_ar_series(#{arFrom,jdbcType=VARCHAR},#{arTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
      </select>
      
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCvSeries" id="cvSeriesMap">
+        <result property="cvYear" column="CV_YEAR"/>
+        <result property="cvNo" column="CV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveCvSeries" resultMap="cvSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_cv_series(#{cvYear,jdbcType=VARCHAR},#{cvFrom,jdbcType=VARCHAR},#{cvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
 </mapper>
