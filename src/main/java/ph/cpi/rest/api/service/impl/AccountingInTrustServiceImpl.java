@@ -538,7 +538,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
 			
 			HashMap<String, Object> response = acctITDao.saveAcitPrqTrans(saptParams);
-			saptResponse.setReturnCode((Integer) response.get("errorCode"));
+			saptResponse.setReturnCode(-1);
 		} catch (SQLException sqlex) {
 			saptResponse.setReturnCode(0);
 			saptResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
