@@ -180,6 +180,11 @@ public interface AccountingInTrustDao {
 	public Integer acitEomCreateAllocRecoverJv(final HashMap<String, Object> params) throws SQLException;
 	public String acitEomBatchOsSummaryReport(final HashMap<String, Object> params) throws SQLException;
 	
+	public HashMap<String, Object> validateEomStat(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomUpdateEomCloseTag(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomUpdateAcctEntDate(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomUpdateAcctEntDateNull(final HashMap<String, Object> params) throws SQLException;
+	
 	public void commit();
 	public void rollback();
 }
