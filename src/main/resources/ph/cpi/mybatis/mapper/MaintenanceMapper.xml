@@ -4159,4 +4159,12 @@
      <select id="retrieveJvSeries" resultMap="jvSeriesMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_jv_series(#{jvYear,jdbcType=VARCHAR},#{jvFrom,jdbcType=VARCHAR},#{jvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
      </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitTranSeries" id="tranSeriesMap">
+        <result property="TranNo" column="TRAN_NO"/>
+     </resultMap>
+     
+     <select id="maxTranNo" resultMap="tranSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_max_series(#{tranClass}))
+     </select>
 </mapper>

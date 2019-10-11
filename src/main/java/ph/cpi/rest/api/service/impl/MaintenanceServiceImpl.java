@@ -2541,4 +2541,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setJvSeries(maintenanceDao.retrieveJvSeries(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException {
+		RetrieveMtnAcitSeriesResponse response = new RetrieveMtnAcitSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		response.setMaxTranNo(maintenanceDao.maxTranNo(params));
+		return response;
+	}
 }
