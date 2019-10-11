@@ -4088,4 +4088,46 @@
             NULL,NULL,NULL,NULL
         ))
      </select>
+     
+     <update id="saveMtnEmployee" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_EMPLOYEE_PKG.del_mtn_employee(#{item.employeeId, jdbcType=VARCHAR},
+											      #{item.companyId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_EMPLOYEE_PKG.save_mtn_employee(#{item.employeeId, jdbcType=VARCHAR},
+						#{item.companyId,  jdbcType=VARCHAR},
+						#{item.employeeNo, jdbcType=VARCHAR},
+						#{item.lastName, jdbcType=VARCHAR},
+						#{item.firstName, jdbcType=VARCHAR},
+						#{item.middleName, jdbcType=VARCHAR},
+						#{item.printableName, jdbcType=VARCHAR},
+						#{item.gender, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.hireDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{item.terminationDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.department, jdbcType=VARCHAR},
+						#{item.designation, jdbcType=VARCHAR},
+						#{item.supervisor, jdbcType=VARCHAR},
+						#{item.supervisorName, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.birthDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.civilStatus, jdbcType=VARCHAR},
+						#{item.presentAdd, jdbcType=VARCHAR},
+						#{item.permanentAdd, jdbcType=VARCHAR},
+						#{item.tin, jdbcType=VARCHAR},
+						#{item.sssNo, jdbcType=VARCHAR},
+						#{item.philhealthNo, jdbcType=VARCHAR},
+						#{item.pagibigNo, jdbcType=VARCHAR},
+						#{item.contactNos, jdbcType=VARCHAR},
+						#{item.email, jdbcType=VARCHAR},
+						#{item.contactPerson, jdbcType=VARCHAR},
+						#{item.emergencyNo, jdbcType=VARCHAR},						
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.activeTag, jdbcType=VARCHAR});
+			</foreach>
+		END;
+	</update>
 </mapper>

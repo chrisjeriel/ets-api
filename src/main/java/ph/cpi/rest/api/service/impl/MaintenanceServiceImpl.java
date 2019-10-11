@@ -2444,4 +2444,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
         return rmacsResponse;
     }
+
+	@Override
+	public SaveMtnEmployeeResponse saveMtnEmployee(SaveMtnEmployeeRequest smer)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnEmployeeResponse response = new SaveMtnEmployeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smer.getSaveList());
+		params.put("delList", smer.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnEmployee(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+
+	}
 }

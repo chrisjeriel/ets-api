@@ -234,4 +234,5 @@ public interface MaintenanceDao {
 	public List<AcseCheckSeries> retrieveMtnAcseCheckSeries(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnDcbUser(final HashMap<String, Object> params) throws SQLException;
 	public List<Employee> retrieveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
 }
