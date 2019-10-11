@@ -2484,4 +2484,26 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public GenerateAcitJVSeriesResponse generateJVSeries(GenerateAcitJVSeriesRequest request) throws SQLException {
+		GenerateAcitJVSeriesResponse response  = new GenerateAcitJVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String, Object>();
+			params.put("jvYear",request.getJvYear());
+			params.put("jvFrom", request.getJvFrom());
+			params.put("jvTo", request.getJvTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateJVSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
