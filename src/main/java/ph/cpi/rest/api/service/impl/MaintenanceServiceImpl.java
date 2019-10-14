@@ -2616,4 +2616,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseGenORSeriesResponse retrieveAcseOrSeries(RetrieveMtnAcseGenORSeriesRequest request)
+			throws SQLException {
+		RetrieveMtnAcseGenORSeriesResponse response = new RetrieveMtnAcseGenORSeriesResponse(); 
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("orType", request.getOrType());
+		params.put("orTo", request.getOrTo());
+		params.put("orFrom", request.getOrFrom());
+		params.put("usedTag", request.getUsedTag());
+		response.setOrSeries(maintenanceDao.retrieveAcseOrSeries(params));
+		return response;
+	}
 }

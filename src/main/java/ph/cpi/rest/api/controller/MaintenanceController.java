@@ -1145,4 +1145,11 @@ public class MaintenanceController {
 		logger.info("GenerateAcseORSeriesRequest : " + request.toString());
 		return maintenanceService.generateAcseORSeries(request);
 	}
+	
+	@GetMapping(path="retrieveAcseOrSeries")
+	public @ResponseBody RetrieveMtnAcseGenORSeriesResponse retrieveAcseOrSeries(RetrieveMtnAcseGenORSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveAcseOrSeries");
+		logger.info("RetrieveMtnAcseGenORSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveAcseOrSeries(request);
+	}
 }
