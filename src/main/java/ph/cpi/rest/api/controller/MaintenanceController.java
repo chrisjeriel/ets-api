@@ -1124,4 +1124,12 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcitSeriesRequest : " + request.toString());
 		return maintenanceService.maxTranNo(request);
 	}
+	
+	@PostMapping(path="generateAcseCVSeries")
+	public @ResponseBody GenerateAcseCVSeriesResponse generateAcseCVSeries(@RequestBody GenerateAcseCVSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateAcseCVSeries");
+		logger.info("GenerateAcseCVSeriesRequest : " + request.toString());
+		return maintenanceService.generateAcseCVSeries(request);
+	}
+	
 }

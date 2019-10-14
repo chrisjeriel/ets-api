@@ -4167,4 +4167,13 @@
      <select id="maxTranNo" resultMap="tranSeriesMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_max_series(#{tranClass}))
      </select>
+     
+     <update id="generateAcseCVSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_cv(#{cvFrom},#{cvTo},#{cvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>

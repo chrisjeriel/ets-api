@@ -2550,4 +2550,26 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setMaxTranNo(maintenanceDao.maxTranNo(params));
 		return response;
 	}
+
+	@Override
+	public GenerateAcseCVSeriesResponse generateAcseCVSeries(GenerateAcseCVSeriesRequest request) throws SQLException {
+		GenerateAcseCVSeriesResponse response = new GenerateAcseCVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("cvFrom", request.getCvFrom());
+			params.put("cvTo",request.getCvTo());
+			params.put("cvYear", request.getCvYear());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateAcseCVSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

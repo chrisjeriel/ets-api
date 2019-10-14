@@ -1165,4 +1165,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		AcitTranSeries res = sqlSession.selectOne("maxTranNo",params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> generateAcseCVSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateAcseCVSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
