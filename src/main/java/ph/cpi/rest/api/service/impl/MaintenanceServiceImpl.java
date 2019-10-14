@@ -2642,4 +2642,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setCvSeries(maintenanceDao.retrieveAcseCVSeries(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseGenJVSeriesResponse retrieveAcseJVSeries(RetrieveMtnAcseGenJVSeriesRequest request)
+			throws SQLException {
+		RetrieveMtnAcseGenJVSeriesResponse response = new RetrieveMtnAcseGenJVSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("jvYear", request.getJvYear());
+		params.put("jvFrom", request.getJvFrom());
+		params.put("jvTo", request.getJvTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setJvSeries(maintenanceDao.retrieveAcseJVSeries(params));
+		return response;
+	}
 }
