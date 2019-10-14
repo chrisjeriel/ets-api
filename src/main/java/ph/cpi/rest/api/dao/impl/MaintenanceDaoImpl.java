@@ -1179,4 +1179,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> generateAcseORSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateAcseORSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

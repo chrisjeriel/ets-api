@@ -246,5 +246,6 @@ public interface MaintenanceDao {
 	public AcitTranSeries maxTranNo(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseCVSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseJVSeries(final HashMap<String, Object> params) throws SQLException;
-
+	public HashMap<String, Object> generateAcseORSeries(final HashMap<String, Object> params) throws SQLException;
+	
 }

@@ -1138,4 +1138,11 @@ public class MaintenanceController {
 		logger.info("GenerateAcseJVSeriesRequest : " + request.toString());
 		return maintenanceService.generateAcseJVSeries(request);
 	}
+	
+	@PostMapping(path="generateAcseORSeries")
+	public @ResponseBody GenerateAcseORSeriesResponse generateAcseORSeries(@RequestBody GenerateAcseORSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateAcseORSeries");
+		logger.info("GenerateAcseORSeriesRequest : " + request.toString());
+		return maintenanceService.generateAcseORSeries(request);
+	}
 }

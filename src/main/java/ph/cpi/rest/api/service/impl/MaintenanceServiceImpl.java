@@ -2594,4 +2594,26 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public GenerateAcseORSeriesResponse generateAcseORSeries(GenerateAcseORSeriesRequest request) throws SQLException {
+		GenerateAcseORSeriesResponse response = new GenerateAcseORSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("orType", request.getOrType());
+			params.put("orFrom", request.getOrFrom());
+			params.put("orTo", request.getOrTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String ,Object> res = maintenanceDao.generateAcseORSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
