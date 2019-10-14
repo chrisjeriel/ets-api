@@ -245,4 +245,6 @@ public interface MaintenanceDao {
 	public List<AcitJvSeries> retrieveJvSeries(final HashMap<String, Object> params) throws SQLException;
 	public AcitTranSeries maxTranNo(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseCVSeries(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> generateAcseJVSeries(final HashMap<String, Object> params) throws SQLException;
+
 }

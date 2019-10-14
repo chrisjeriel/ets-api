@@ -4176,4 +4176,13 @@
 						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<update id="generateAcseJVSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_jv(#{jvFrom},#{jvTo},#{jvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>
