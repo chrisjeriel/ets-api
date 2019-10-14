@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -28,6 +29,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
@@ -44,6 +46,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -57,6 +60,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
@@ -743,5 +747,35 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcseBudgetExpenseResponse retrieveAcseBudgetExpense(RetrieveAcseBudgetExpenseRequest racprlp)
+			throws SQLException {
+		RetrieveAcseBudgetExpenseResponse racprlResponse =  new RetrieveAcseBudgetExpenseResponse();
+		HashMap<String, Object> rabeParams = new HashMap<String, Object>();
+		rabeParams.put("budgetYear", racprlp.getBudgetYear());
+		rabeParams.put("itemNo", racprlp.getItemNo());
+		racprlResponse.setAcseBudgetExpenseList(acctServDao.retrieveAcseBudgetExpense(rabeParams));
+		logger.info("RetrieveAcseBudgetExpenseResponse : " + racprlResponse.toString());
+		return racprlResponse;
+	}
+	
+	@Override
+	public SaveAcseBudgetExpenseResponse saveAcseBudgetExpense(SaveAcseBudgetExpenseRequest saber)
+			throws SQLException {
+		SaveAcseBudgetExpenseResponse sabeResponse = new SaveAcseBudgetExpenseResponse();
+		HashMap<String, Object> sabeParams = new HashMap<String, Object>();
+		try {
+			sabeParams.put("saveBudgetExpense", saber.getSaveBudgetExpense());
+			sabeParams.put("deleteBudgetExpense", saber.getDeleteBudgetExpense());
+			HashMap<String, Object> response = acctServDao.saveAcseBudgetExpense(sabeParams);
+			sabeResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (Exception e) {
+			sabeResponse.setReturnCode(0);
+			sabeResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		return sabeResponse;
 	}
 }
