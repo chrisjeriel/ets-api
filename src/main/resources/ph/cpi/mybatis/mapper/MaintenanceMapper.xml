@@ -4088,4 +4088,39 @@
             NULL,NULL,NULL,NULL
         ))
      </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseChartAcct" id="AcseChartAcctMap">
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="glAcctCategory" column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctCategoryDesc" column="GL_ACCT_CATEGORY_DESC"/>
+		<result property="glAcctControl" column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1" column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2" column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3" column="GL_ACCT_SUB3"/>
+		<result property="shortDesc" column="SHORT_DESC"/>
+		<result property="longDesc" column="LONG_DESC"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="drCrTag" column="DR_CR_TAG"/>
+		<result property="postTag" column="POST_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveMtnAcseChartAcct" resultMap="AcseChartAcctMap">
+		SELECT * FROM TABLE(MTN_ACSE_CHART_ACCT_PKG.ret_mtn_acse_chart_acct(#{glAcctId, jdbcType=VARCHAR},
+				#{glAcctCategory, jdbcType=VARCHAR},
+				#{glAcctControl, jdbcType=VARCHAR},
+				#{glAcctSub1, jdbcType=VARCHAR},
+				#{glAcctSub2, jdbcType=VARCHAR},
+				#{glAcctSub3, jdbcType=VARCHAR},
+				#{slTypeCd, jdbcType=VARCHAR},
+				#{drCrTag, jdbcType=VARCHAR},
+				#{postTag, jdbcType=VARCHAR},
+				#{activeTag, jdbcType=VARCHAR}))
+	</select>
 </mapper>

@@ -9,6 +9,7 @@ import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
@@ -234,4 +235,5 @@ public interface MaintenanceDao {
 	public List<AcseCheckSeries> retrieveMtnAcseCheckSeries(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnDcbUser(final HashMap<String, Object> params) throws SQLException;
 	public List<Employee> retrieveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseChartAcct> retrieveMtnAcseChartAcct(final HashMap<String, Object> params) throws SQLException;
 }

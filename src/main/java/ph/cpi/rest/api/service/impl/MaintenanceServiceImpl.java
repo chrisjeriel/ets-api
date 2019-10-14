@@ -2444,4 +2444,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
         return rmacsResponse;
     }
+
+	@Override
+	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcct(RetrieveMtnAcseChartAcctRequest rmacar)
+			throws SQLException {
+		RetrieveMtnAcseChartAcctResponse response = new RetrieveMtnAcseChartAcctResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("glAcctId", rmacar.getGlAcctId());
+		params.put("glAcctCategory", rmacar.getGlAcctCategory());
+		params.put("glAcctControl", rmacar.getGlAcctControl());
+		params.put("glAcctSub1", rmacar.getGlAcctSub1());
+		params.put("glAcctSub2", rmacar.getGlAcctSub2());
+		params.put("glAcctSub3", rmacar.getGlAcctSub3());
+		params.put("slTypeCd", rmacar.getSlTypeCd());
+		params.put("drCrTag", rmacar.getDrCrTag());
+		params.put("postTag", rmacar.getPostTag());
+		params.put("activeTag", rmacar.getActiveTag());
+		response.setList(maintenanceDao.retrieveMtnAcseChartAcct(params));
+		return response;
+	}
 }
