@@ -1166,4 +1166,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcseGenJVSeriesRequest : " + request.toString());
 		return maintenanceService.retrieveAcseJVSeries(request);
 	}
+	
+	@GetMapping(path="acseMaxTranNo")
+	public @ResponseBody RetrieveMtnAcseSeriesResponse acseMaxTranNo(RetrieveMtnAcseSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/acseMaxTranNo");
+		logger.info("RetrieveMtnAcseSeriesRequest : " + request.toString());
+		return maintenanceService.acseMaxTranNo(request);
+	}
 }
