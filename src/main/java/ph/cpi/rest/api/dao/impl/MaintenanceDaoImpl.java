@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.maintenance.AcitCvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcitJvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseCVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
@@ -1191,6 +1192,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<AcseOrSeries> retrieveAcseOrSeries(HashMap<String, Object> params) throws SQLException {
 		List<AcseOrSeries> list = sqlSession.selectList("retrieveAcseOrSeries",params);
+		return list;
+	}
+
+	@Override
+	public List<AcseCVSeries> retrieveAcseCVSeries(HashMap<String, Object> params) throws SQLException {
+		List<AcseCVSeries> list = sqlSession.selectList("retrieveAcseCVSeries", params);
 		return list;
 	}
 }
