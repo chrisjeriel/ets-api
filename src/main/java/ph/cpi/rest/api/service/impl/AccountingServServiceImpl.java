@@ -764,19 +764,18 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public SaveAcseBudgetExpenseResponse saveAcseBudgetExpense(SaveAcseBudgetExpenseRequest saber)
 			throws SQLException {
-		SaveAcseBudgetExpenseResponse response = new SaveAcseBudgetExpenseResponse();
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		
-		params.put("saveBudgetExpense", saber.getSaveBudgetExpense());
-		params.put("deleteBudgetExpense", saber.getDeleteBudgetExpense());
-		
+		SaveAcseBudgetExpenseResponse sabeResponse = new SaveAcseBudgetExpenseResponse();
+		HashMap<String, Object> sabeParams = new HashMap<String, Object>();
 		try {
-			response.setReturnCode(acctServDao.saveAcseBudgetExpense(params));
+			sabeParams.put("saveBudgetExpense", saber.getSaveBudgetExpense());
+			sabeParams.put("deleteBudgetExpense", saber.getDeleteBudgetExpense());
+			HashMap<String, Object> response = acctServDao.saveAcseBudgetExpense(sabeParams);
+			sabeResponse.setReturnCode((Integer) response.get("errorCode"));
 		} catch (Exception e) {
-			response.setReturnCode(0);
-			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			sabeResponse.setReturnCode(0);
+			sabeResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			e.printStackTrace();
 		}
-		return response;
+		return sabeResponse;
 	}
 }

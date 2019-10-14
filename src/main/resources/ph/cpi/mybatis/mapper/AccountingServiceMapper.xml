@@ -1008,8 +1008,12 @@
 		<result property="budgetYear" 		column="BUDGET_YEAR"/>
 		<result property="itemNo" 			column="ITEM_NO"/>
 		<result property="glAcctId" 		column="GL_ACCT_ID"/>
+		<result property="glShortCd" 		column="GL_SHORT_CD"/>
+		<result property="glShortDesc" 		column="GL_SHORT_DESC"/>
 		<result property="slTypeCd" 		column="SL_TYPE_CD"/>
+		<result property="slTypeName" 		column="SL_TYPE_NAME"/>
 		<result property="slCd" 			column="SL_CD"/>
+		<result property="slName" 			column="SL_NAME"/>
 		<result property="totalBudget" 		column="TOTAL_BUDGET"/>
 		<result property="totalExpense" 	column="TOTAL_EXPENSE"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -1035,13 +1039,13 @@
 			<foreach collection="saveBudgetExpense" item="save">
 				ACSE_BUDGET_EXPENSE_PKG.save_budget_expense(#{save.budgetYear, jdbcType=INTEGER},
 														   #{save.itemNo, jdbcType=INTEGER},
-													       #{save.gl_acct_id, jdbcType=INTEGER},
-													       #{save.sl_type_cd, jdbcType=INTEGER},
-													       #{save.sl_cd, jdbcType=INTEGER},
-													       #{save.total_budget, jdbcType=INTEGER},
-													       #{save.total_expense, jdbcType=INTEGER},
+													       #{save.glAcctId, jdbcType=INTEGER},
+													       #{save.slTypeCd, jdbcType=INTEGER},
+													       #{save.slCd, jdbcType=INTEGER},
+													       #{save.totalBudget, jdbcType=INTEGER},
+													       #{save.totalExpense, jdbcType=INTEGER},
 														   #{save.createUser, jdbcType=VARCHAR},
-														   #{save.updateUser, jdbcType=VARCHAR}));
+														   #{save.updateUser, jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>

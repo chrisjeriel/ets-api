@@ -8,8 +8,12 @@ public class AcseBudgetExpense {
 	private Integer budgetYear;
 	private Integer itemNo;
 	private Integer glAcctId;
+	private String glShortCd;
+	private String glShortDesc;
 	private Integer slTypeCd;
+	private String slTypeName;
 	private Integer slCd;
+	private String slName;
 	private BigDecimal totalBudget;
 	private BigDecimal totalExpense;
 	private String createUser;
@@ -34,17 +38,41 @@ public class AcseBudgetExpense {
 	public void setGlAcctId(Integer glAcctId) {
 		this.glAcctId = glAcctId;
 	}
+	public String getGlShortCd() {
+		return glShortCd;
+	}
+	public void setGlShortCd(String glShortCd) {
+		this.glShortCd = glShortCd;
+	}
+	public String getGlShortDesc() {
+		return glShortDesc;
+	}
+	public void setGlShortDesc(String glShortDesc) {
+		this.glShortDesc = glShortDesc;
+	}
 	public Integer getSlTypeCd() {
 		return slTypeCd;
 	}
 	public void setSlTypeCd(Integer slTypeCd) {
 		this.slTypeCd = slTypeCd;
 	}
+	public String getSlTypeName() {
+		return slTypeName;
+	}
+	public void setSlTypeName(String slTypeName) {
+		this.slTypeName = slTypeName;
+	}
 	public Integer getSlCd() {
 		return slCd;
 	}
 	public void setSlCd(Integer slCd) {
 		this.slCd = slCd;
+	}
+	public String getSlName() {
+		return slName;
+	}
+	public void setSlName(String slName) {
+		this.slName = slName;
 	}
 	public BigDecimal getTotalBudget() {
 		return totalBudget;
@@ -85,8 +113,9 @@ public class AcseBudgetExpense {
 	@Override
 	public String toString() {
 		return "AcseBudgetExpense [budgetYear=" + budgetYear + ", itemNo=" + itemNo + ", glAcctId=" + glAcctId
-				+ ", slTypeCd=" + slTypeCd + ", slCd=" + slCd + ", totalBudget=" + totalBudget + ", totalExpense="
-				+ totalExpense + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ ", glShortCd=" + glShortCd + ", glShortDesc=" + glShortDesc + ", slTypeCd=" + slTypeCd
+				+ ", slTypeName=" + slTypeName + ", slCd=" + slCd + ", slName=" + slName + ", totalBudget="
+				+ totalBudget + ", totalExpense=" + totalExpense + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

@@ -49,5 +49,5 @@ public interface AccountingServDao {
 	public List<AcseOrServFee> retrieveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseBudgetExpense> retrieveAcseBudgetExpense(final HashMap<String, Object> params ) throws SQLException;
-	public Integer saveAcseBudgetExpense(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcseBudgetExpense(final HashMap<String, Object> params) throws SQLException;
 }

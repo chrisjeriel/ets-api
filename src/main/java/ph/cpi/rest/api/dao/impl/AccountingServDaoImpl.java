@@ -225,9 +225,9 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	}
 	
 	@Override
-	public Integer saveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcseBudgetExpense", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
-
 }
