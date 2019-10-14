@@ -163,8 +163,6 @@ public interface AccountingInTrustDao {
 	public Integer saveAcitQSOA(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitInwPolPayts> retrieveAcitInwPolPayts(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCancelledTransactions> retrieveCancelledTrans(final HashMap<String, Object> params) throws SQLException;
-	public Integer acitEomCloseAcitTrans(final HashMap<String, Object> params) throws SQLException;
-	public Integer acitEomDeleteAcitTrans(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomExtUwprod(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomCreateNetPremJv(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomExtEomUpr(final HashMap<String, Object> params) throws SQLException;
@@ -185,6 +183,15 @@ public interface AccountingInTrustDao {
 	public Integer acitEomUpdateAcctEntDate(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomUpdateAcctEntDateNull(final HashMap<String, Object> params) throws SQLException;
 	
+	public String validateTbDate(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomDeleteMonthlyTotalsBackup() throws SQLException;
+	public Integer acitEomInsertMonthlyTotalsBackup(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomDeleteMonthlyTotals(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomCloseTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomDeleteTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomInsertMonthlyTotals(final HashMap<String, Object> params) throws SQLException;
+	
+	public void startTransaction();
 	public void commit();
 	public void rollback();
 }

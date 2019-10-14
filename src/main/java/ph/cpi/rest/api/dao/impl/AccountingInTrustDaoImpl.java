@@ -759,16 +759,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitCancelledTransactions>  list = sqlSession.selectList("retrieveCancelledTrans",params);
 		return list;
 	}
-	
-	@Override
-	public Integer acitEomCloseAcitTrans(HashMap<String, Object> params) throws SQLException {
-		return sqlSession.update("acitEomCloseAcitTrans", params);
-	}
-
-	@Override
-	public Integer acitEomDeleteAcitTrans(HashMap<String, Object> params) throws SQLException {
-		return sqlSession.update("acitEomDeleteAcitTrans", params);
-	}
 
 	@Override
 	public Integer acitEomExtUwprod(HashMap<String, Object> params) throws SQLException {
@@ -808,6 +798,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return (String) params.get("extractSummary");
 	}
 
+	@Override
+	public void startTransaction() {
+		txStat = txManager.getTransaction(txDef);
+	}
+	
 	@Override
 	public void commit() {
 		txManager.commit(txStat);
@@ -886,5 +881,49 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public Integer acitEomUpdateAcctEntDateNull(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.update("acitEomUpdateAcctEntDateNull", params);
+	}
+
+	@Override
+	public String validateTbDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTbDate", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public Integer acitEomDeleteMonthlyTotalsBackup() throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomDeleteMonthlyTotalsBackup");
+	}
+
+	@Override
+	public Integer acitEomInsertMonthlyTotalsBackup(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomInsertMonthlyTotalsBackup", params);
+	}
+
+	@Override
+	public Integer acitEomDeleteMonthlyTotals(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomDeleteMonthlyTotals", params);
+	}
+
+	@Override
+	public Integer acitEomCloseTrans(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCloseTrans", params);
+	}
+
+	@Override
+	public Integer acitEomDeleteTrans(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomDeleteTrans", params);
+	}
+
+	@Override
+	public Integer acitEomInsertMonthlyTotals(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomInsertMonthlyTotals", params);
 	}
 }

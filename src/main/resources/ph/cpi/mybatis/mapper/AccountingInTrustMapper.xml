@@ -3895,4 +3895,52 @@
 		END;
 	</update>
 	
+	<update id="validateTbDate" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_TRIAL_BAL_PKG.validate_tb_date(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}	
+	</update>
+	
+	<update id="acitEomDeleteMonthlyTotalsBackup">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_monthly_totals_backup();
+		END;
+	</update>
+	
+	<update id="acitEomInsertMonthlyTotalsBackup" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.insert_monthly_totals_backup(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomDeleteMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomCloseTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.close_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										   #{includeMonth, jdbcType=VARCHAR},
+										   #{includeYear, jdbcType=VARCHAR},
+										   #{aeTag, jdbcType=VARCHAR},
+										   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomDeleteTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomInsertMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.insert_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    		 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 </mapper>

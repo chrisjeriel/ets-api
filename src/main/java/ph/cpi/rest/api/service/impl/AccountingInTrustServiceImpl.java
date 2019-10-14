@@ -2094,32 +2094,32 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				
 				procedureName = "Extracting Outstanding Losses";
 				wsController.onReceiveOsLog("Extracting Outstanding Losses . . .");
-				res.setReturnCode(acctITDao.acitEomExtOsLoss(params));
+				acctITDao.acitEomExtOsLoss(params);
 				wsController.onReceiveOsLog("Extraction of Outstanding Losses finished.");
 				
 				procedureName = "Generating Accounting Entries for Outstanding Losses";
 				wsController.onReceiveOsLog("Generating Accounting Entries for Outstanding Losses . . .");
-				res.setReturnCode(acctITDao.acitEomCreateOsLossJv(params));
+				acctITDao.acitEomCreateOsLossJv(params);
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Outstanding Losses finished.");
 				
 				procedureName = "Allocating Paid Claims";
 				wsController.onReceiveOsLog("Allocating Paid Claims . . .");
-				res.setReturnCode(acctITDao.acitEomExtClmpayt(params));
+				acctITDao.acitEomExtClmpayt(params);
 				wsController.onReceiveOsLog("Allocation of Paid Claims finished.");
 				
 				procedureName = "Generating Accounting Entries for Allocation of Paid Claims";
 				wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Paid Claims . . .");
-				res.setReturnCode(acctITDao.acitEomCreateAllocPaidClmJv(params));
+				acctITDao.acitEomCreateAllocPaidClmJv(params);
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Paid Claims finished.");
 				
 				procedureName = "Allocating Claim Recovery and Overpayments";
 				wsController.onReceiveOsLog("Allocating Claim Recovery and Overpayments . . .");
-				res.setReturnCode(acctITDao.acitEomExtractClmRecover(params));
+				acctITDao.acitEomExtractClmRecover(params);
 				wsController.onReceiveOsLog("Allocation of Claim Recovery and Overpayments finished.");
 				
 				procedureName = "Generating Accounting Entries for Allocation of Claim Recovery and Overpayments";
 				wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .");
-				res.setReturnCode(acctITDao.acitEomCreateAllocRecoverJv(params));
+				acctITDao.acitEomCreateAllocRecoverJv(params);
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.");
 				wsController.onReceiveOsLog("");
 				
@@ -2136,6 +2136,70 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			wsController.onReceiveOsLog("An error occured while " + procedureName);
 			res.setReturnCode(0);
 			res.getErrorList().add(new Error("SQLException","Batch OS failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(SaveAcitMonthEndTrialBalRequest sametbr)
+			throws SQLException {
+		SaveAcitMonthEndTrialBalResponse res = new SaveAcitMonthEndTrialBalResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		String validate = "";
+		Boolean proceed = false;
+		
+		params.put("eomDate", sametbr.getEomDate());
+		params.put("eomUser", sametbr.getEomUser());
+		params.put("includeMonth", sametbr.getIncludeMonth());
+		params.put("includeYear", sametbr.getIncludeYear());
+		params.put("aeTag", sametbr.getAeTag());
+		
+		try {
+			if("N".equals(sametbr.getForce())) {
+				validate = acctITDao.validateTbDate(params);
+				
+				switch (validate) {
+				case "PROCEED":
+					proceed = true;
+					break;
+				case "RERUN":
+					proceed = false;
+					res.setReturnCode(1);
+					break;
+				case "POSTED_MONTH":
+					proceed = false;
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				acctITDao.startTransaction();
+				
+				if("Y".equals(sametbr.getForce())) {
+					acctITDao.acitEomDeleteMonthlyTotalsBackup();
+					acctITDao.acitEomInsertMonthlyTotalsBackup(params);
+					acctITDao.acitEomDeleteMonthlyTotals(params);
+				}
+				
+				acctITDao.acitEomCloseTrans(params);
+				acctITDao.acitEomDeleteTrans(params);
+				acctITDao.acitEomInsertMonthlyTotals(params);
+				
+				acctITDao.commit();
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			acctITDao.rollback();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Trial Balance Processing failed."));
 		}
 		
 		return res;

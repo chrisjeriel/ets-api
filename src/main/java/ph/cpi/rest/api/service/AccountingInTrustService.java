@@ -115,5 +115,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request ) throws SQLException;
 	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr) throws SQLException;
 	public SaveAcitMonthEndBatchOSResponse saveAcitMonthEndBatchOS(SaveAcitMonthEndBatchOSRequest samebr) throws SQLException;
-	
+	public SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(SaveAcitMonthEndTrialBalRequest sametbr) throws SQLException;
 }

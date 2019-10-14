@@ -784,4 +784,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitMonthEndBatchOSRequest : " + samebr.toString());
 		return acctInTrustService.saveAcitMonthEndBatchOS(samebr);
 	}
+	
+	@PostMapping(path="saveAcitMonthEndTrialBal")
+	public @ResponseBody SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(@RequestBody SaveAcitMonthEndTrialBalRequest sametbr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndTrialBal");
+		logger.info("SaveAcitMonthEndTrialBalRequest : " + sametbr.toString());
+		return acctInTrustService.saveAcitMonthEndTrialBal(sametbr);
+	}
 }
