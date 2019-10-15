@@ -1173,4 +1173,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcseSeriesRequest : " + request.toString());
 		return maintenanceService.acseMaxTranNo(request);
 	}
+	
+	@GetMapping(path="retrieveAcseWHTax")
+	public @ResponseBody RetrieveMtnAcseWhtaxResponse retrieveAcseWHTax(RetrieveMtnAcseWhtaxRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveAcseWHTax");
+		logger.info("RetrieveMtnAcseWhtaxRequest : " + request.toString());
+		return maintenanceService.retrieveAcseWHTax(request);
+	}
 }

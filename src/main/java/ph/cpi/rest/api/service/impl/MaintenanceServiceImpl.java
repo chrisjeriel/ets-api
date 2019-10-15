@@ -2665,4 +2665,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setMaxTranNo(maintenanceDao.acseMaxTranNo(params));
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseWhtaxResponse retrieveAcseWHTax(RetrieveMtnAcseWhtaxRequest request) throws SQLException {
+		RetrieveMtnAcseWhtaxResponse response =  new RetrieveMtnAcseWhtaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("whtaxId",request.getWhtaxId());
+		params.put("taxCd",request.getTaxCd());
+		params.put("taxType",request.getTaxType());
+		params.put("creditableTag",request.getCreditableTag());
+		params.put("fixedTag",request.getFixedTag());
+		params.put("activeTag",request.getActiveTag());
+		response.setWhtax(maintenanceDao.retrieveAcseWHTax(params));
+		return response;
+	}
 }

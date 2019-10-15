@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseWhtax;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
 import ph.cpi.rest.api.model.maintenance.ApprovalFunction;
@@ -255,4 +256,5 @@ public interface MaintenanceDao {
 	public List<AcseCVSeries> retrieveAcseCVSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseJVSeries> retrieveAcseJVSeries(final HashMap<String, Object> params) throws SQLException;
 	public AcseTranSeries acseMaxTranNo(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseWhtax> retrieveAcseWHTax(final HashMap<String, Object> params) throws SQLException;
 }
