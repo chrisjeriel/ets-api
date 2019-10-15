@@ -816,12 +816,12 @@
 	<update id="saveAcctEntries" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="delList" item="del">
-				ACSE_TAX_DETAILS_PKG.del_acct_acc_entries(#{del.tranId, jdbcType=VARCHAR},
+				ACSE_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{del.tranId, jdbcType=VARCHAR},
 					#{del.entryId, jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="saveList" item="item">
-				ACSE_TAX_DETAILS_PKG.save_acse_acc_entries(
+				ACSE_ACCT_ENTRIES_PKG.save_acse_acc_entries(
 					#{item.tranId, jdbcType=VARCHAR},
 					#{item.entryId, jdbcType=VARCHAR},
 					#{item.glAcctId, jdbcType=VARCHAR},

@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
@@ -1118,6 +1119,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 			throws SQLException {
 		// TODO Auto-generated method stub
 		List<Employee> res = sqlSession.selectList("retrieveMtnEmployee", params);
+		return res;
+	}
+
+	@Override
+	public List<AcseChartAcct> retrieveMtnAcseChartAcct(HashMap<String, Object> params) throws SQLException {
+		List<AcseChartAcct> res = sqlSession.selectList("retrieveMtnAcseChartAcct", params);
 		return res;
 	}
 	
