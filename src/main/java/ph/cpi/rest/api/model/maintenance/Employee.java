@@ -36,7 +36,21 @@ public class Employee {
 	private DateTime updateDate;
 	private String okDelete;
 	private String activeTag;
+	private String genderDesc;
+	private String civilStatusDesc;
 	
+	public String getGenderDesc() {
+		return genderDesc;
+	}
+	public void setGenderDesc(String genderDesc) {
+		this.genderDesc = genderDesc;
+	}
+	public String getCivilStatusDesc() {
+		return civilStatusDesc;
+	}
+	public void setCivilStatusDesc(String civilStatusDesc) {
+		this.civilStatusDesc = civilStatusDesc;
+	}
 	public String getEmployeeNo() {
 		return employeeNo;
 	}
@@ -256,7 +270,8 @@ public class Employee {
 				+ ", emergencyNo=" + emergencyNo + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ ", activeTag=" + activeTag + "]";
+				+ ", activeTag=" + activeTag + ", genderDesc=" + genderDesc
+				+ ", civilStatusDesc=" + civilStatusDesc + "]";
 	}
 
 }

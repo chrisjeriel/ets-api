@@ -1083,4 +1083,12 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnEmployee(smer);
 	}
 	
+	@GetMapping(path="retrieveMtnAcseChartAcct")
+	public @ResponseBody RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChart(RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcseChartAcct");
+		logger.info("RetrieveMtnAcseChartAcctRequest : " + rmacar.toString());
+		return maintenanceService.retrieveMtnAcseChart(rmacar);
+	}
+	
+	
 }

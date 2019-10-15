@@ -2464,4 +2464,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return response;
 
 	}
+
+	@Override
+	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChart(
+			RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException {
+		// TODO Auto-generated method stub
+		 RetrieveMtnAcseChartAcctResponse response = new RetrieveMtnAcseChartAcctResponse();
+	     HashMap<String, Object> params = new HashMap<String, Object>();
+	     params.put("glAcctId",rmacar.getGlAcctId());
+	     params.put("activeTag", rmacar.getActiveTag());
+	     //response.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
+	     return response;
+	}
 }

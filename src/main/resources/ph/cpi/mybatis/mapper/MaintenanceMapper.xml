@@ -4059,6 +4059,9 @@
 		<result property="updateUser"			column="UPDATE_USER" />
 		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 	    <result property="activeTag"			column="ACTIVE_TAG" />
+	    <result property="okDelete"				column="OK_DELETE" />
+	    <result property="genderDesc"		    column="GENDER_DESC" />
+	    <result property="civilStatusDesc"		column="CIVIL_STATUS_DESC" />
 	</resultMap>
 	
 	 <select id="retrieveMtnEmployee" resultMap="employeeMap" parameterType="java.util.Map">
@@ -4112,7 +4115,7 @@
 						#{item.supervisorName, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.birthDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{item.civilStatus, jdbcType=VARCHAR},
-						#{item.presentAdd, jdbcType=VARCHAR},
+						#{item.presentAdd, jdbcType=VARCHAR}, 
 						#{item.permanentAdd, jdbcType=VARCHAR},
 						#{item.tin, jdbcType=VARCHAR},
 						#{item.sssNo, jdbcType=VARCHAR},
