@@ -36,6 +36,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitInwPolPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -925,5 +927,52 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer acitEomInsertMonthlyTotals(HashMap<String, Object> params) throws SQLException {
 		txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomInsertMonthlyTotals", params);
+	}
+
+	@Override
+	public List<AcitEomMonthlyTotals> retrieveAcitMonthEndTrialBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitEomMonthlyTotals> res = sqlSession.selectList("retrieveAcitMonthEndTrialBal",params);
+		return res;
+	}
+
+	@Override
+	public String validatePrevMonth(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validatePrevMonth", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public String validateEqualTb(HashMap<String, Object> params) throws SQLException {
+		params.put("equalTb", "");
+		sqlSession.selectOne("validateEqualTb", params);
+		
+		return (String) params.get("equalTb");
+	}
+
+	@Override
+	public Integer acitEomPostToFiscalYear(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomPostToFiscalYear", params);
+	}
+
+	@Override
+	public Integer failedPosting(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("failedPosting", params);
+	}
+
+	@Override
+	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException {
+		List<AcitEomUnpostedMonth> res = sqlSession.selectList("retrieveAcitMonthEndUnpostedMonths");
+		return res;
+	}
+
+	@Override
+	public String validateCurrMonth(HashMap<String, Object> params) throws SQLException {
+		params.put("validateCurr", "");
+		sqlSession.selectOne("validateCurrMonth", params);
+		
+		return (String) params.get("validateCurr");
 	}
 }

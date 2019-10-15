@@ -785,10 +785,30 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitMonthEndBatchOS(samebr);
 	}
 	
+	@GetMapping(path="retrieveAcitMonthEndTrialBal")
+	public @ResponseBody RetrieveAcitMonthEndTrialBalResponse retrieveAcitMonthEndTrialBal(RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEndTrialBal");
+		logger.info("retrieveAcitMonthEndTrialBalRequest : " + rametbr.toString());
+		return acctInTrustService.retrieveAcitMonthEndTrialBal(rametbr);
+	}
+	
 	@PostMapping(path="saveAcitMonthEndTrialBal")
 	public @ResponseBody SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(@RequestBody SaveAcitMonthEndTrialBalRequest sametbr) throws SQLException {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndTrialBal");
 		logger.info("SaveAcitMonthEndTrialBalRequest : " + sametbr.toString());
 		return acctInTrustService.saveAcitMonthEndTrialBal(sametbr);
+	}
+	
+	@PostMapping(path="postAcitMonthEndTrialBal")
+	public @ResponseBody PostAcitMonthEndTrialBalResponse postAcitMonthEndTrialBal(@RequestBody PostAcitMonthEndTrialBalRequest pametbr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/postAcitMonthEndTrialBal");
+		logger.info("PostAcitMonthEndTrialBalRequest : " + pametbr.toString());
+		return acctInTrustService.postAcitMonthEndTrialBal(pametbr);
+	}
+	
+	@GetMapping(path="retrieveAcitMonthEndUnpostedMonths")
+	public @ResponseBody RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEndUnpostedMonths");
+		return acctInTrustService.retrieveAcitMonthEndUnpostedMonths();
 	}
 }
