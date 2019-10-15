@@ -4263,4 +4263,29 @@
         												     #{taxType,jdbcType=VARCHAR},#{creditableTag,jdbcType=VARCHAR},
         												     #{fixedTag,jdbcType=VARCHAR},#{activeTag,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
+     
+     <update id="saveMtnWhTax" >
+		BEGIN
+			<foreach collection="delWhTax" item="del">
+				MTN_WHTAX_PKG.del_mtn_whtax(#{del.whtaxId});
+			</foreach>
+			<foreach collection="saveWhTax" item="save">
+				MTN_WHTAX_PKG.save_mtn_whtax(#{save.whtaxId,jdbcType=VARCHAR},
+											 #{save.taxCd},
+											 #{save.taxName},
+											 #{save.taxType},
+											 #{save.taxRate,jdbcType=INTEGER},
+											 #{save.defaultAcitGl,jdbcType=VARCHAR},
+											 #{save.defaultAcseGl,jdbcType=VARCHAR},
+											 #{save.creditableTag},
+											 #{save.fixedTag},
+											 #{save.activeTag},
+											 #{save.remarks,jdbcType=VARCHAR},
+											 #{save.createUser},
+											 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{save.updateUser},
+											 CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

@@ -1221,4 +1221,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcseWhtax> list = sqlSession.selectList("retrieveAcseWHTax",params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnWhTax(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnWhTax",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

@@ -257,4 +257,5 @@ public interface MaintenanceDao {
 	public List<AcseJVSeries> retrieveAcseJVSeries(final HashMap<String, Object> params) throws SQLException;
 	public AcseTranSeries acseMaxTranNo(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseWhtax> retrieveAcseWHTax(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveMtnWhTax(final HashMap<String, Object> params) throws SQLException;
 }

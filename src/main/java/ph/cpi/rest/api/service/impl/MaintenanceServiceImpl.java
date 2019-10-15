@@ -2679,4 +2679,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setWhtax(maintenanceDao.retrieveAcseWHTax(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcseWhTaxResponse saveMtnWhTax(SaveMtnAcseWhTaxRequest request) throws SQLException {
+		SaveMtnAcseWhTaxResponse response = new SaveMtnAcseWhTaxResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveWhTax", request.getSaveWhTax());
+			params.put("delWhTax", request.getDelWhTax());
+			HashMap<String,Object> res = maintenanceDao.saveMtnWhTax(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
