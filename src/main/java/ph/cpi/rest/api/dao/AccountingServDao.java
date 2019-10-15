@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
@@ -50,4 +51,6 @@ public interface AccountingServDao {
 	public Integer saveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseBudgetExpense> retrieveAcseBudgetExpense(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> saveAcseBudgetExpense(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseBudExpMonthly> retrieveAcseBudExpMonthly(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseBudExpMonthly(final HashMap<String, Object> params) throws SQLException;
 }
