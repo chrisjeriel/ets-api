@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitInwPolPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -52,6 +53,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
 public interface AccountingInTrustDao {
@@ -163,8 +165,6 @@ public interface AccountingInTrustDao {
 	public Integer saveAcitQSOA(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitInwPolPayts> retrieveAcitInwPolPayts(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCancelledTransactions> retrieveCancelledTrans(final HashMap<String, Object> params) throws SQLException;
-	public Integer acitEomCloseAcitTrans(final HashMap<String, Object> params) throws SQLException;
-	public Integer acitEomDeleteAcitTrans(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomExtUwprod(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomCreateNetPremJv(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomExtEomUpr(final HashMap<String, Object> params) throws SQLException;
@@ -185,6 +185,23 @@ public interface AccountingInTrustDao {
 	public Integer acitEomUpdateAcctEntDate(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomUpdateAcctEntDateNull(final HashMap<String, Object> params) throws SQLException;
 	
+	public String validateTbDate(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomDeleteMonthlyTotalsBackup() throws SQLException;
+	public Integer acitEomInsertMonthlyTotalsBackup(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomDeleteMonthlyTotals(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomCloseTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomDeleteTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomInsertMonthlyTotals(final HashMap<String, Object> params) throws SQLException;
+	
+	public void startTransaction();
 	public void commit();
 	public void rollback();
+	
+	public List<AcitEomMonthlyTotals> retrieveAcitMonthEndTrialBal(final HashMap<String, Object> params) throws SQLException;
+	public String validatePrevMonth(final HashMap<String, Object> params) throws SQLException;
+	public String validateCurrMonth(final HashMap<String, Object> params) throws SQLException;
+	public String validateEqualTb(final HashMap<String, Object> params) throws SQLException;
+	public Integer acitEomPostToFiscalYear(final HashMap<String, Object> params) throws SQLException;
+	public Integer failedPosting(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException;
 }
