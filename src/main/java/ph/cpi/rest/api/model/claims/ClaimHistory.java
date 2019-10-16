@@ -32,6 +32,7 @@ public class ClaimHistory {
 	private Float		adjRate;
 	private String		enableRes;
 	private String 		enablePayt;
+	private String 		editable;
 //	private String		val1;
 //	private String		val2;
 //	private String		val3;
@@ -225,6 +226,12 @@ public class ClaimHistory {
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
+	public String getEditable() {
+		return editable;
+	}
+	public void setEditable(String editable) {
+		this.editable = editable;
+	}
 	@Override
 	public String toString() {
 		return "ClaimHistory [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", histNo=" + histNo
@@ -235,6 +242,6 @@ public class ClaimHistory {
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", approvedAmt="
 				+ approvedAmt + ", adjRate=" + adjRate + ", enableRes=" + enableRes + ", enablePayt=" + enablePayt
-				+ "]";
+				+ ", editable=" + editable + "]";
 	}
 }
