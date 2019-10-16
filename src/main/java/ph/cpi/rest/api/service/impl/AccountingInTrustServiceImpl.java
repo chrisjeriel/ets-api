@@ -437,6 +437,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("jvTranTypeCd", raje.getJvTranTypeCd());
 			params.put("tranTypeName", raje.getTranTypeName());
 			params.put("autoTag", raje.getAutoTag());
+			params.put("adjEntryTag", raje.getAdjEntryTag());
 			params.put("refnoTranId", raje.getRefnoTranId());
 			params.put("refnoDate", raje.getRefnoDate());
 			params.put("particulars", raje.getParticulars());
