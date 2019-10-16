@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 public class MtnAcitTranType {
 	private String tranClass;
+	private String tranClassName;
 	private Integer tranTypeCd;
 	private String typePrefix;
 	private String tranTypeName;
@@ -23,6 +24,13 @@ public class MtnAcitTranType {
 	}
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
+	}
+	
+	public String getTranClassName() {
+		return tranClassName;
+	}
+	public void setTranClassName(String tranClassName) {
+		this.tranClassName = tranClassName;
 	}
 	public Integer getTranTypeCd() {
 		return tranTypeCd;
@@ -110,10 +118,11 @@ public class MtnAcitTranType {
 	}
 	@Override
 	public String toString() {
-		return "MtnAcitTranType [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", typePrefix=" + typePrefix
-				+ ", tranTypeName=" + tranTypeName + ", defaultParticulars=" + defaultParticulars + ", masterTranType="
-				+ masterTranType + ", remarks=" + remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag
-				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", groupTag=" + groupTag + "]";
+		return "MtnAcitTranType [tranClass=" + tranClass + ", tranClassName=" + tranClassName + ", tranTypeCd="
+				+ tranTypeCd + ", typePrefix=" + typePrefix + ", tranTypeName=" + tranTypeName + ", defaultParticulars="
+				+ defaultParticulars + ", masterTranType=" + masterTranType + ", remarks=" + remarks + ", autoTag="
+				+ autoTag + ", baeTag=" + baeTag + ", activeTag=" + activeTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", groupTag=" + groupTag + "]";
 	}
 }

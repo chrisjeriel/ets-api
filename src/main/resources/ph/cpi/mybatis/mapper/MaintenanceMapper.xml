@@ -3395,6 +3395,7 @@
 
     <resultMap type="ph.cpi.rest.api.model.maintenance.MtnAcitTranType" id="mtnAcitTranTypeMap">
     	<result property="tranClass" 			column="TRAN_CLASS"/>
+    	<result property="tranClassName" 		column="TRAN_CLASS_NAME"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
 		<result property="typePrefix" 			column="TYPE_PREFIX"/>
 		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
