@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
@@ -29,6 +30,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
@@ -46,6 +48,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
@@ -60,6 +63,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
@@ -777,5 +781,39 @@ public class AccountingServServiceImpl implements AccountingServService{
 			e.printStackTrace();
 		}
 		return sabeResponse;
+	}
+
+	@Override
+	public RetrieveAcseBudExpMonthlyResponse retrieveAcseBudExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr)
+			throws SQLException {
+		RetrieveAcseBudExpMonthlyResponse response = new RetrieveAcseBudExpMonthlyResponse();
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("budgetYear", rabemr.getBudgetYear());
+		params.put("itemNo", rabemr.getItemNo());
+		params.put("mm", rabemr.getMm());
+		response.setBudExpMonthlyList(acctServDao.retrieveAcseBudExpMonthly(params));
+		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public SaveAcseBudExpMonthlyResponse saveAcseBudExpMonthly(SaveAcseBudExpMonthlyRequest sabemr)
+			throws SQLException {
+		SaveAcseBudExpMonthlyResponse response = new SaveAcseBudExpMonthlyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveBudExpMonthly", sabemr.getSaveBudExpMonthly());
+		try{
+			response.setReturnCode(acctServDao.saveAcseBudExpMonthly(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 }
