@@ -3036,6 +3036,7 @@
 	    <result property="updateUser" 		column="UPDATE_USER"/>
 	    <result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	    <result property="okDelete" 		column="OK_DELETE"/>
+	    <result property="pctShareTsi"      column="PCT_SHARE_TSI"/>
      </resultMap>
      
      <select id="retrieveMtnSecIITrtyLimit" resultMap="seciiTrtyLimitMap" parameterType="java.util.Map">
@@ -3053,7 +3054,10 @@
     	BEGIN
     		<foreach collection="deleteSecIITrtyLimit" item="del">
 	    		MTN_SECII_TRTY_LIMIT_PKG.del_secii_trty_limit(
-			    	#{del.seciiTrtyLimId, jdbcType=INTEGER}
+			    	#{del.lineCd, jdbcType=VARCHAR},
+		    		#{del.lineClassCd, jdbcType=VARCHAR},
+		    		#{del.currencyCd, jdbcType=VARCHAR},
+		    		#{del.seciiTrtyLimId, jdbcType=INTEGER}
 			    );
     		</foreach>
     		<foreach collection="saveSecIITrtyLimit" item="save">
@@ -3063,6 +3067,7 @@
 		    		#{save.currencyCd, jdbcType=VARCHAR},
 		    		#{save.seciiTrtyLimId, jdbcType=INTEGER},
 		    		#{save.amount, jdbcType=DECIMAL},
+		    		#{save.pctShareTsi, jdbcType=DECIMAL},
 		    		CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		    		#{save.activeTag, jdbcType=VARCHAR},
 		    		#{save.remarks, jdbcType=VARCHAR},

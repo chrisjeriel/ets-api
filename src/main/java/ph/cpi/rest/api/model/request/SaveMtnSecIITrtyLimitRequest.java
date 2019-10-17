@@ -43,6 +43,7 @@ class SecIITreatyLimit {
     private String createDate;
     private String updateUser;
     private String updateDate;
+    private String pctShareTsi;
     
 	public String getLineCd() {
 		return lineCd;
@@ -116,11 +117,18 @@ class SecIITreatyLimit {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getPctShareTsi() {
+		return pctShareTsi;
+	}
+	public void setPctShareTsi(String pctShareTsi) {
+		this.pctShareTsi = pctShareTsi;
+	}
 	@Override
 	public String toString() {
 		return "SecIITreatyLimit [lineCd=" + lineCd + ", lineClassCd=" + lineClassCd + ", currencyCd=" + currencyCd
 				+ ", seciiTrtyLimId=" + seciiTrtyLimId + ", amount=" + amount + ", effDateFrom=" + effDateFrom
 				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", pctShareTsi="
+				+ pctShareTsi + "]";
 	}
 }
