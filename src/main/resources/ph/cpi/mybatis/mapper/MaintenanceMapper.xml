@@ -2218,13 +2218,14 @@
     
     <update id="checkTreatyYear" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
-			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_COMM_PKG.check_year(#{copyToYear, jdbcType=INTEGER})
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_COMM_PKG.check_year(#{currencyCd, jdbcType=INTEGER},#{copyToYear, jdbcType=INTEGER})
 		}	
 	</update>
 	
 	<update id="copyMtnTreatyComm" parameterType="java.util.Map">
 		BEGIN
 			MTN_TREATY_COMM_PKG.copy_treaty_com(
+				#{currencyCd, jdbcType=INTEGER},
 				#{copyFromYear, jdbcType=INTEGER},
 				#{copyToYear, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -2238,6 +2239,7 @@
 	<update id="copyMtnTreatyShare" parameterType="java.util.Map">
 		BEGIN
 			MTN_TREATY_SHARE_PKG.copy_treaty_share(
+				#{currencyCd, jdbcType=INTEGER},
 				#{copyFromYear, jdbcType=INTEGER},
 				#{copyToYear, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -2251,6 +2253,7 @@
 	<update id="copyMtnCedRetention" parameterType="java.util.Map">
 		BEGIN
 			MTN_CEDING_RETENTION_PKG.copy_mtn_ced_retention(
+				#{currencyCd, jdbcType=VARCHAR},
 				#{copyFromYear, jdbcType=INTEGER},
 				#{copyToYear, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
