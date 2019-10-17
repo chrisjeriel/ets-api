@@ -1208,5 +1208,12 @@ public class MaintenanceController {
 		logger.info("SaveMtnEmployeeRequest : " + smer.toString());
 		return maintenanceService.saveMtnEmployee(smer);
 	}
-
+	
+	@PostMapping(path="saveMtnAcitDefAmt")
+	public @ResponseBody SaveMtnAcitDefAmtDtlResponse saveMtnAcitDefAmt(@RequestBody SaveMtnAcitDefAmtDtlRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAcitDefAmt");
+		logger.info("SaveMtnAcitDefAmtDtlRequest : " + request.toString());
+		return maintenanceService.saveMtnAcitDefAmt(request);
+	}
+	
 }

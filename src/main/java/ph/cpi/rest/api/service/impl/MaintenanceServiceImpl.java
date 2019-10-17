@@ -2729,7 +2729,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnEmployeeResponse saveMtnEmployee(SaveMtnEmployeeRequest smer)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnEmployeeResponse response = new SaveMtnEmployeeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2741,6 +2740,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));
 			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitDefAmtDtlResponse saveMtnAcitDefAmt(SaveMtnAcitDefAmtDtlRequest request) throws SQLException {
+		SaveMtnAcitDefAmtDtlResponse response = new SaveMtnAcitDefAmtDtlResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefAmt", request.getSaveDefAmt());
+			params.put("delDefAmt", request.getDelDefAmt());
+			HashMap<String,Object> res = maintenanceDao.saveMtnAcitDefAmt(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
 		}
 		return response;
 	}

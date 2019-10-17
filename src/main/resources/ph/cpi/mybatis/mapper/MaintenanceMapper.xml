@@ -4365,6 +4365,7 @@
 		<result property="itemNo" column="ITEM_NO"/>
 		<result property="itemText" column="ITEM_TEXT"/>
 		<result property="defaultGl" column="DEFAULT_GL"/>
+		<result property="shortCode" column="SHORT_CODE"/>
 		<result property="acctAmtTag" column="ACCT_AMT_TAG"/>
 		<result property="signTag" column="SIGN_TAG"/>
 		<result property="remarks" column="REMARKS"/>
@@ -4378,4 +4379,26 @@
         SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_acit_def_amt(#{tranClass},#{tranTypeCd},
         												     		#{itemNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
+     
+     <update id="saveMtnAcitDefAmt" >
+		BEGIN
+			<foreach collection="delDefAmt" item="del">
+				MTN_ACIT_TRAN_TYPE_PKG.del_def_amt_dtl(#{del.tranClass},#{del.tranTypeCd},#{del.itemNo});
+			</foreach>
+			<foreach collection="saveDefAmt" item="save">
+				MTN_ACIT_TRAN_TYPE_PKG.save_def_amt_dtl(#{save.tranClass},
+														#{save.tranTypeCd},
+														#{save.itemNo,jdbcType=VARCHAR},
+														#{save.itemText},
+														#{save.defaultGl},
+														#{save.acctAmtTag},
+														#{save.signTag},
+														#{save.remarks,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
 </mapper>

@@ -1,21 +1,47 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class AcitDefaultAmtDtl {
+public class SaveMtnAcitDefAmtDtlRequest {
+	private List<defAmt> saveDefAmt;
+	private List<defAmt> delDefAmt;
+	
+	public List<defAmt> getSaveDefAmt() {
+		return saveDefAmt;
+	}
+
+	public void setSaveDefAmt(List<defAmt> saveDefAmt) {
+		this.saveDefAmt = saveDefAmt;
+	}
+
+	public List<defAmt> getDelDefAmt() {
+		return delDefAmt;
+	}
+
+	public void setDelDefAmt(List<defAmt> delDefAmt) {
+		this.delDefAmt = delDefAmt;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveMtnAcitDefAmtDtlRequest [saveDefAmt=" + saveDefAmt + ", delDefAmt=" + delDefAmt + "]";
+	}
+	
+}
+
+class defAmt{
 	private String tranClass;
 	private Integer tranTypeCd;
 	private Integer itemNo;
 	private String itemText;
 	private String defaultGl;
-	private String shortCode;
 	private String acctAmtTag;
 	private String signTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
 	public String getTranClass() {
 		return tranClass;
 	}
@@ -46,13 +72,6 @@ public class AcitDefaultAmtDtl {
 	public void setDefaultGl(String defaultGl) {
 		this.defaultGl = defaultGl;
 	}
-	
-	public String getShortCode() {
-		return shortCode;
-	}
-	public void setShortCode(String shortCode) {
-		this.shortCode = shortCode;
-	}
 	public String getAcctAmtTag() {
 		return acctAmtTag;
 	}
@@ -77,10 +96,10 @@ public class AcitDefaultAmtDtl {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -89,19 +108,18 @@ public class AcitDefaultAmtDtl {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "AcitDefaultAmtDtl [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", itemNo=" + itemNo
-				+ ", itemText=" + itemText + ", defaultGl=" + defaultGl + ", shortCode=" + shortCode + ", acctAmtTag="
-				+ acctAmtTag + ", signTag=" + signTag + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "defAmt [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", itemNo=" + itemNo + ", itemText="
+				+ itemText + ", defaultGl=" + defaultGl + ", acctAmtTag=" + acctAmtTag + ", signTag=" + signTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

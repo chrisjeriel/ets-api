@@ -3649,7 +3649,7 @@
 																	#{save.itemNo,jdbcType=INTEGER},
 																	#{save.invtId},
 																	#{save.bank},
-																	#{save.bankAcct},
+																	#{save.bankAcct,jdbcType=INTEGER},
 																	#{save.currCd},
 																	#{save.currRate},
 																	#{save.invtAmt},
