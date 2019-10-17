@@ -2881,7 +2881,8 @@
     				#{u.tranId},
 					#{u.status, jdbcType=VARCHAR},
 				    #{u.updateUser ,jdbcType=VARCHAR},
-				    #{u.tranClass, jdbcType=VARCHAR}
+				    #{u.tranClass, jdbcType=VARCHAR},
+				    #{u.cancelReason, jdbcType=VARCHAR}
     			);
     		</foreach>
     	END;
