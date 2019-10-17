@@ -1242,4 +1242,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcitDefaultAmtDtl> list = sqlSession.selectList("retrieveAcitDefAmt", params);
 		return list;
 	}
+	
+	@Override
+	public Integer saveMtnEmployee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnEmployee",params);
+		return code;
+	}
+	
 }

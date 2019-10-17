@@ -470,6 +470,7 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="adjEntryTag" column="ADJ_ENTRY_TAG"/>
 		<association property="jvListings" resultMap="jvMap"></association>
 	</resultMap>
 	
@@ -637,7 +638,7 @@
 												  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{tranIdJv,jdbcType=VARCHAR}, #{jvYear,jdbcType=VARCHAR},
 												  #{jvNo,jdbcType=VARCHAR}, CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{jvStatus}, #{jvTranTypeCd}, 
-												  #{autoTag}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{autoTag}, #{adjEntryTag}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 												  #{particulars}, #{currCd}, #{currRate}, #{jvAmt}, #{localAmt}, #{allocTag,jdbcType=VARCHAR}, #{allocTranId,jdbcType=VARCHAR}, 
 												  #{preparedBy,jdbcType=VARCHAR}, 
 												  CAST(to_timestamp(#{preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{approvedBy,jdbcType=VARCHAR}, 
@@ -3853,6 +3854,160 @@
 																														 CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																														 #{eomUser, jdbcType=VARCHAR})
 		}
+	</update>
+	
+	<update id="validateEomStat" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.validate_eom_stat(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												 #{eomUser, jdbcType=VARCHAR},
+												 #{process, jdbcType=VARCHAR},
+												 #{option, mode=OUT, jdbcType=VARCHAR},
+												 #{message, mode=OUT, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateEomCloseTag" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_eom_close_tag(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													#{process, jdbcType=VARCHAR},
+													#{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateAcctEntDate" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_acctentdate(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												  #{process, jdbcType=VARCHAR},
+												  #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateAcctEntDateNull" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_acctentdate_null(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													   #{process, jdbcType=VARCHAR},
+													   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateTbDate" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_TRIAL_BAL_PKG.validate_tb_date(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="acitEomDeleteMonthlyTotalsBackup">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_monthly_totals_backup();
+		END;
+	</update>
+	
+	<update id="acitEomInsertMonthlyTotalsBackup" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.insert_monthly_totals_backup(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomDeleteMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomCloseTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.close_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										   #{includeMonth, jdbcType=VARCHAR},
+										   #{includeYear, jdbcType=VARCHAR},
+										   #{aeTag, jdbcType=VARCHAR},
+										   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomDeleteTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomInsertMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.insert_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    		 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals" id="acitEomMonthlyTotals">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="currCd"				column="CURR_CD"/>
+		<result property="glAcctId"				column="GL_ACCT_ID"/>
+		<result property="shortCode"			column="SHORT_CODE"/>
+		<result property="shortDesc"			column="SHORT_DESC"/>
+		<result property="longDesc"				column="LONG_DESC"/>
+		<result property="transDebitBal"		column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"		column="TRANS_CREDIT_BAL"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEndTrialBal" resultMap="acitEomMonthlyTotals" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_TRIAL_BAL_PKG.ret_monthly_totals(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<update id="validatePrevMonth" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_prev_month(#{eomMm, jdbcType=INTEGER},
+																										  	 #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="validateEqualTb" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{equalTb, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_equal_tb(#{eomMm, jdbcType=INTEGER},
+																										  #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="acitEomPostToFiscalYear" parameterType="java.util.Map">
+		BEGIN
+			ACIT_POST_TB_PKG.post_to_fiscal_year(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											    #{eomMm, jdbcType=INTEGER},
+											    #{eomYear, jdbcType=INTEGER},
+											    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="failedPosting" parameterType="java.util.Map">
+		BEGIN
+			ACIT_POST_TB_PKG.failed_posting(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomMm, jdbcType=INTEGER},
+										    #{eomYear, jdbcType=INTEGER},
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth" id="acitEomUnpostedMonth">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEndUnpostedMonths" resultMap="acitEomUnpostedMonth" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_POST_TB_PKG.ret_unposted_months())
+	</select>
+	
+	<update id="validateCurrMonth" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCurr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_curr_month(#{eomMm, jdbcType=INTEGER},
+																										  	 	 #{eomYear, jdbcType=INTEGER})
+		}	
 	</update>
 	
 </mapper>

@@ -5,14 +5,14 @@ import org.joda.time.DateTime;
 public class AcitArSeries {
 	private Integer minArNo;
 	private Integer maxArNo;
-	private String arNo;
+	private Integer arNo;
 	private Integer tranId;
 	private String usedTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
+
 	public Integer getMinArNo() {
 		return minArNo;
 	}
@@ -25,10 +25,11 @@ public class AcitArSeries {
 	public void setMaxArNo(Integer maxArNo) {
 		this.maxArNo = maxArNo;
 	}
-	public String getArNo() {
+
+	public Integer getArNo() {
 		return arNo;
 	}
-	public void setArNo(String arNo) {
+	public void setArNo(Integer arNo) {
 		this.arNo = arNo;
 	}
 	public Integer getTranId() {

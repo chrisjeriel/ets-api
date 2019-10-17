@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -215,6 +216,18 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public Integer saveAcseOrServFee(HashMap<String, Object> params) throws SQLException {
 		Integer returnCode = sqlSession.update("saveAcseOrServFee", params);
 		return returnCode;
+	}
+
+	@Override
+	public List<AcseBudgetExpense> retrieveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
+		List<AcseBudgetExpense> acseBudgetExpenseList = sqlSession.selectList("retrieveAcseBudgetExpense", params);
+		return acseBudgetExpenseList;
+	}
+	
+	@Override
+	public Integer saveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseBudgetExpense", params);
+		return errorCode;
 	}
 
 }

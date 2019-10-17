@@ -261,4 +261,6 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> saveMtnWhTax(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnTranType(final HashMap<String,Object> params) throws SQLException;
 	public List<AcitDefaultAmtDtl> retrieveAcitDefAmt(final HashMap<String,Object> params) throws SQLException;
+	public Integer saveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
+
 }
