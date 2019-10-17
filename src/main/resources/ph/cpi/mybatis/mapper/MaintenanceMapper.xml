@@ -4427,4 +4427,29 @@
         SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_acit_acct(#{tranClass},#{tranTypeCd},
         												     		#{entryNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
+     
+      <update id="saveMtnAcitDefAmt" >
+		BEGIN
+			<foreach collection="delAcctEnt" item="del">
+				MTN_ACIT_TRAN_TYPE_PKG.del_acct_ent(#{del.tranClass},#{del.tranTypeCd},#{del.entryNo});
+			</foreach>
+			<foreach collection="saveAcctEnt" item="save">
+				MTN_ACIT_TRAN_TYPE_PKG.save_acct_ent(#{save.tranClass},
+													 #{save.tranTypeCd},
+													 #{save.entryNo,jdbcType=VARCHAR},
+													 #{save.glAcctId},
+													 #{save.slTypeCd},
+												  	 #{save.sub1Dep},
+													 #{save.sub2Dep},
+													 #{save.sub3Dep},
+													 #{save.drCrTag},
+													 #{save.tranAmtTag},
+													 #{save.netDrcrTag},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
 </mapper>

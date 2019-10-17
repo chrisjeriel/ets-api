@@ -2772,4 +2772,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setDefAccEnt(maintenanceDao.retrieveAcitDefAcctEnt(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcitDefAcctEntriesResponse saveAcitDefAcctEnt(SaveMtnAcitDefAcctEntriesRequest request)
+			throws SQLException {
+		SaveMtnAcitDefAcctEntriesResponse response = new SaveMtnAcitDefAcctEntriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcctEnt", request.getSaveAcctEnt());
+			params.put("delAcctEnt", request.getDelAcctEnt());
+			HashMap<String,Object> res = maintenanceDao.saveAcitDefAcctEnt(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

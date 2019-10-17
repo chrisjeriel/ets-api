@@ -265,4 +265,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnAcitDefAmt(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDefaultAccEntries> retrieveAcitDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveAcitDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 }

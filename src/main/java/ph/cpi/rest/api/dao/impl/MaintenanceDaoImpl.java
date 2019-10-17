@@ -1263,5 +1263,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcitDefaultAccEntries> list = sqlSession.selectList("retrieveAcitDefAcctEnt", params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcitDefAcctEnt(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitDefAcctEnt",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 	
 }

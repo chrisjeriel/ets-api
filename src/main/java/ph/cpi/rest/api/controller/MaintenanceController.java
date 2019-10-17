@@ -1222,4 +1222,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcitDefAcctEntRequest : " + request.toString());
 		return maintenanceService.retrieveAcitDefAcctEnt(request);
 	}
+	
+	@PostMapping(path="saveAcitDefAcctEnt")
+	public @ResponseBody SaveMtnAcitDefAcctEntriesResponse saveAcitDefAcctEnt(@RequestBody SaveMtnAcitDefAcctEntriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcitDefAcctEnt");
+		logger.info("SaveMtnAcitDefAcctEntriesRequest : " + request.toString());
+		return maintenanceService.saveAcitDefAcctEnt(request);
+	}
 }

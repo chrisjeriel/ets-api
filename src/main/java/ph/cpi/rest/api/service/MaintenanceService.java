@@ -179,4 +179,5 @@ public interface MaintenanceService {
 	public SaveMtnEmployeeResponse saveMtnEmployee (SaveMtnEmployeeRequest smer) throws SQLException;
 	public SaveMtnAcitDefAmtDtlResponse saveMtnAcitDefAmt (SaveMtnAcitDefAmtDtlRequest request) throws SQLException;
 	public RetrieveMtnAcitDefAcctEntResponse retrieveAcitDefAcctEnt(RetrieveMtnAcitDefAcctEntRequest request) throws SQLException;
+	public SaveMtnAcitDefAcctEntriesResponse saveAcitDefAcctEnt(SaveMtnAcitDefAcctEntriesRequest request)throws SQLException;
 }
