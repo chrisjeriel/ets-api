@@ -64,6 +64,7 @@ import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PayeeCeding;
+import ph.cpi.rest.api.model.maintenance.PayeeClass;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
@@ -1174,6 +1175,30 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		// TODO Auto-generated method stub
 		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxRange", params);
 		return res;
+	}
+
+	@Override
+	public Integer saveMtnInvSecType(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnInvSecType",params);
+		return code;
+	}
+
+	@Override
+	public List<PayeeClass> retrieveMtnPayeeClass(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<PayeeClass> res = sqlSession.selectList("retrieveMtnPayeeClass", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnPayeeClass(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnPayeeClass",params);
+		return code;
 	}
 	
 }

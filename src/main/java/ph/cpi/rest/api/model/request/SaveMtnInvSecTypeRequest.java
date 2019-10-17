@@ -1,29 +1,47 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class InvtSecurityType {
+public class SaveMtnInvSecTypeRequest {
+	
+	private List<SaveInvSecType> saveList;
+	private List<SaveInvSecType> delList;
+	
+	public List<SaveInvSecType> getSaveList() {
+		return saveList;
+	}
+	public void setSaveList(List<SaveInvSecType> saveList) {
+		this.saveList = saveList;
+	}
+	public List<SaveInvSecType> getDelList() {
+		return delList;
+	}
+	public void setDelList(List<SaveInvSecType> delList) {
+		this.delList = delList;
+	}
+	
+	@Override
+	public String toString() {
+		return "SaveMtnInvSecTypeRequest [saveList=" + saveList + ", delList="
+				+ delList + "]";
+	}
+}
 
-	private Integer invtSecCd;
+class SaveInvSecType{
+	
+	private String invtSecCd;
 	private String secDesc;
 	private String remarks;
 	private String activeTag;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
+	private String updateDate;
 	
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
-	public Integer getInvtSecCd() {
+	public String getInvtSecCd() {
 		return invtSecCd;
 	}
-	public void setInvtSecCd(Integer invtSecCd) {
+	public void setInvtSecCd(String invtSecCd) {
 		this.invtSecCd = invtSecCd;
 	}
 	public String getSecDesc() {
@@ -50,10 +68,10 @@ public class InvtSecurityType {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -62,20 +80,19 @@ public class InvtSecurityType {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	
 	@Override
 	public String toString() {
-		return "InvtSecurityType [invtSecCd=" + invtSecCd + ", secDesc="
+		return "SaveInvSecType [invtSecCd=" + invtSecCd + ", secDesc="
 				+ secDesc + ", remarks=" + remarks + ", activeTag=" + activeTag
 				+ ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", okDelete=" + okDelete + "]";
+				+ "]";
 	}
-	
 }

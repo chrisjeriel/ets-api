@@ -165,4 +165,7 @@ public interface MaintenanceService {
 	public SaveMtnGenTaxHistResponse saveMtnGenTaxHist (SaveMtnGenTaxHistRequest smgth) throws SQLException;
 	public SaveMtnGenTaxRangeResponse saveMtnGenTaxRange (SaveMtnGenTaxRangeRequest smgtr) throws SQLException;
 	public RetrieveMtnGenTaxRangeResponse retrieveMtnGenTaxRange(RetrieveMtnGenTaxRangeRequest rmgtrr) throws SQLException;
+	public SaveMtnInvSecTypeResponse saveMtnInvSecType (SaveMtnInvSecTypeRequest smist) throws SQLException;
+	public RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(RetrieveMtnPayeeClassRequest rmpcr) throws SQLException;
+	public SaveMtnPayeeClassResponse saveMtnPayeeClass (SaveMtnPayeeClassRequest smpc) throws SQLException;
 }

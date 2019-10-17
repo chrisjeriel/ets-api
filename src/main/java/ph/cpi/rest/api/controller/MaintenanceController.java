@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.MaintenanceService;
@@ -1123,6 +1122,27 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnGenTaxRange");
 		logger.info("RetrieveMtnGenTaxRangeRequest : " + rmgtrr.toString());
 		return maintenanceService.retrieveMtnGenTaxRange(rmgtrr);
+	}
+	
+	@PostMapping(path="saveMtnInvSecType")
+	public @ResponseBody SaveMtnInvSecTypeResponse saveMtnInvSecType(@RequestBody SaveMtnInvSecTypeRequest smist) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnInvSecType");
+		logger.info("SaveMtnInvSecTypeRequest : " + smist.toString());
+		return maintenanceService.saveMtnInvSecType(smist);
+	}
+	
+	@GetMapping(path="retrieveMtnPayeeClass")
+	public @ResponseBody RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(RetrieveMtnPayeeClassRequest rmpcr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPayeeClass");
+		logger.info("RetrieveMtnPayeeClassRequest : " + rmpcr.toString());
+		return maintenanceService.retrieveMtnPayeeClass(rmpcr);
+	}
+	
+	@PostMapping(path="saveMtnPayeeClass")
+	public @ResponseBody SaveMtnPayeeClassResponse saveMtnPayeeClass(@RequestBody SaveMtnPayeeClassRequest smpc) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPayeeClass");
+		logger.info("SaveMtnPayeeClassRequest : " + smpc.toString());
+		return maintenanceService.saveMtnPayeeClass(smpc);
 	}
 	
 }

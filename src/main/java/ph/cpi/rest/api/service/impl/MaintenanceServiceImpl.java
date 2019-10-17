@@ -2563,4 +2563,55 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		logger.info("RetrieveMtnGenTaxRangeResponse : " + response);
 		return response;
 	}
+
+	@Override
+	public SaveMtnInvSecTypeResponse saveMtnInvSecType(
+			SaveMtnInvSecTypeRequest smist) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnInvSecTypeResponse response = new SaveMtnInvSecTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smist.getSaveList());
+		params.put("delList", smist.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnInvSecType(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(
+			RetrieveMtnPayeeClassRequest rmpcr) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnPayeeClassResponse response = new RetrieveMtnPayeeClassResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeClassCd", rmpcr.getPayeeClassCd());
+		params.put("activeTag", rmpcr.getActiveTag());
+	    response.setPayeeClassList(maintenanceDao.retrieveMtnPayeeClass(params));
+		logger.info("RetrieveMtnPayeeClassResponse : " + response);
+		return response;
+	}
+
+	@Override
+	public SaveMtnPayeeClassResponse saveMtnPayeeClass(
+			SaveMtnPayeeClassRequest smpc) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnPayeeClassResponse response = new SaveMtnPayeeClassResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smpc.getSaveList());
+		params.put("delList", smpc.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnPayeeClass(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
 }
