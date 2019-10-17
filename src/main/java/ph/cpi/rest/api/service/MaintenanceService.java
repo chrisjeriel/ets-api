@@ -159,6 +159,10 @@ public interface MaintenanceService {
 	public SaveMtnDcbUserResponse saveMtnDcbUser (SaveMtnDcbUserRequest smdur) throws SQLException;
 	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(RetrieveMtnEmployeeRequest rmer) throws SQLException;
 	public SaveMtnEmployeeResponse saveMtnEmployee (SaveMtnEmployeeRequest smer) throws SQLException;
-	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChart (RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException;
-	
+	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcct(RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException;
+	public SaveMtnGenTaxResponse saveMtnGenTax (SaveMtnGenTaxRequest smgt) throws SQLException;
+	public RetrieveMtnGenTaxHistResponse retrieveMtnGenTaxHist(RetrieveMtnGenTaxHistRequest rmgthr) throws SQLException;
+	public SaveMtnGenTaxHistResponse saveMtnGenTaxHist (SaveMtnGenTaxHistRequest smgth) throws SQLException;
+	public SaveMtnGenTaxRangeResponse saveMtnGenTaxRange (SaveMtnGenTaxRangeRequest smgtr) throws SQLException;
+	public RetrieveMtnGenTaxRangeResponse retrieveMtnGenTaxRange(RetrieveMtnGenTaxRangeRequest rmgtrr) throws SQLException;
 }

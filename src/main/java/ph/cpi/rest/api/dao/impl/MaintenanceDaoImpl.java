@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.maintenance.AcitArSeries;
 import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
@@ -1127,6 +1128,52 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnEmployee",params);
 		return code;
+	}
+	
+	@Override
+	public List<AcseChartAcct> retrieveMtnAcseChartAcct(HashMap<String, Object> params) throws SQLException {
+		List<AcseChartAcct> res = sqlSession.selectList("retrieveMtnAcseChartAcct", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnGenTax(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnGenTax",params);
+		return code;
+	}
+
+	@Override
+	public List<GeneralTaxes> retrieveMtnGenTaxHist(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxHist", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnGenTaxHist(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnGenTaxHist",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnGenTaxRange(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnGenTaxRange",params);
+		return code;
+	}
+
+	@Override
+	public List<GeneralTaxes> retrieveMtnGenTaxRange(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxRange", params);
+		return res;
 	}
 	
 }

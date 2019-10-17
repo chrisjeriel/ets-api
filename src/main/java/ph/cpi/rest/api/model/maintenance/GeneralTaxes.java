@@ -20,6 +20,67 @@ public class GeneralTaxes {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String defaultGLBankAcctCd;
+	private String defaultGLBankAcctName;
+	private DateTime effDateTo;
+	private DateTime effDateFrom;
+	private String histNo;
+	private String rangeNo;
+	private BigDecimal maxVal;
+	private BigDecimal minVal;
+	
+	public String getRangeNo() {
+		return rangeNo;
+	}
+	public void setRangeNo(String rangeNo) {
+		this.rangeNo = rangeNo;
+	}
+	public BigDecimal getMaxVal() {
+		return maxVal;
+	}
+	public void setMaxVal(BigDecimal maxVal) {
+		this.maxVal = maxVal;
+	}
+	public BigDecimal getMinVal() {
+		return minVal;
+	}
+	public void setMinVal(BigDecimal minVal) {
+		this.minVal = minVal;
+	}
+	
+	
+	public String getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(String histNo) {
+		this.histNo = histNo;
+	}
+	public DateTime getEffDateTo() {
+		return effDateTo;
+	}
+	public void setEffDateTo(DateTime effDateTo) {
+		this.effDateTo = effDateTo;
+	}
+	public DateTime getEffDateFrom() {
+		return effDateFrom;
+	}
+	public void setEffDateFrom(DateTime effDateFrom) {
+		this.effDateFrom = effDateFrom;
+	}
+	
+	public String getDefaultGLBankAcctCd() {
+		return defaultGLBankAcctCd;
+	}
+	public void setDefaultGLBankAcctCd(String defaultGLBankAcctCd) {
+		this.defaultGLBankAcctCd = defaultGLBankAcctCd;
+	}
+	public String getDefaultGLBankAcctName() {
+		return defaultGLBankAcctName;
+	}
+	public void setDefaultGLBankAcctName(String defaultGLBankAcctName) {
+		this.defaultGLBankAcctName = defaultGLBankAcctName;
+	}
+
 	public Integer getTaxId() {
 		return taxId;
 	}
@@ -112,10 +173,18 @@ public class GeneralTaxes {
 	}
 	@Override
 	public String toString() {
-		return "GeneralTaxes [taxId=" + taxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", chargeType="
-				+ chargeType + ", taxRate=" + taxRate + ", amount=" + amount + ", defaultAcitGl=" + defaultAcitGl
-				+ ", defaultAcseGl=" + defaultAcseGl + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "GeneralTaxes [taxId=" + taxId + ", taxCd=" + taxCd
+				+ ", taxName=" + taxName + ", chargeType=" + chargeType
+				+ ", taxRate=" + taxRate + ", amount=" + amount
+				+ ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl="
+				+ defaultAcseGl + ", fixedTag=" + fixedTag + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate
+				+ ", defaultGLBankAcctCd=" + defaultGLBankAcctCd
+				+ ", defaultGLBankAcctName=" + defaultGLBankAcctName
+				+ ", effDateTo=" + effDateTo + ", effDateFrom=" + effDateFrom
+				+ ", histNo=" + histNo + ", rangeNo=" + rangeNo + ", maxVal="
+				+ maxVal + ", minVal=" + minVal + "]";
 	}
 }

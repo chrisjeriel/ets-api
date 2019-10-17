@@ -3946,6 +3946,8 @@
 		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"			column="UPDATE_USER" />
 		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    	<result property="defaultGLBankAcctCd"  column="SHORT_CODE" />
+    	<result property="defaultGLBankAcctName" column="ACCOUNT_NAME" />
     </resultMap>
     
     <select id="retMtnGenTax" resultMap="genTaxMap" parameterType="java.util.Map">
@@ -4133,4 +4135,131 @@
 			</foreach>
 		END;
 	</update>
+	
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseChartAcct" id="AcseChartAcctMap">
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="glAcctCategory" column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctCategoryDesc" column="GL_ACCT_CATEGORY_DESC"/>
+		<result property="glAcctControl" column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1" column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2" column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3" column="GL_ACCT_SUB3"/>
+		<result property="shortDesc" column="SHORT_DESC"/>
+		<result property="longDesc" column="LONG_DESC"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="drCrTag" column="DR_CR_TAG"/>
+		<result property="postTag" column="POST_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveMtnAcseChartAcct" resultMap="AcseChartAcctMap">
+		SELECT * FROM TABLE(MTN_ACSE_CHART_ACCT_PKG.ret_mtn_acse_chart_acct(#{glAcctId, jdbcType=VARCHAR},
+				#{glAcctCategory, jdbcType=VARCHAR},
+				#{glAcctControl, jdbcType=VARCHAR},
+				#{glAcctSub1, jdbcType=VARCHAR},
+				#{glAcctSub2, jdbcType=VARCHAR},
+				#{glAcctSub3, jdbcType=VARCHAR},
+				#{slTypeCd, jdbcType=VARCHAR},
+				#{drCrTag, jdbcType=VARCHAR},
+				#{postTag, jdbcType=VARCHAR},
+				#{activeTag, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnGenTax" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_GENTAX_PKG.del_mtn_gentax(#{item.taxId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_GENTAX_PKG.save_mtn_gentax(#{item.taxId, jdbcType=VARCHAR},
+						#{item.taxCd,  jdbcType=VARCHAR},
+						#{item.taxName, jdbcType=VARCHAR},
+						#{item.chargeType, jdbcType=VARCHAR},
+						#{item.taxRate, jdbcType=VARCHAR},
+						#{item.amount, jdbcType=VARCHAR},
+						#{item.glAcctId, jdbcType=VARCHAR},
+						#{item.fixedTag, jdbcType=VARCHAR},
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR},				
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.GeneralTaxes" id="genTaxHistMap">
+		<result property="taxId"				column="TAX_ID" />
+		<result property="histNo"				column="HIST_NO" />
+		<result property="taxCd"				column="TAX_CD" />
+		<result property="taxName"				column="TAX_NAME" />
+		<result property="chargeType"			column="CHARGE_TYPE" />
+		<result property="taxRate"				column="RATE" />
+		<result property="amount"				column="AMOUNT" />
+		<result property="defaultAcitGl"		column="DEFAULT_ACIT_GL" />
+		<result property="defaultAcseGl"		column="DEFAULT_ACSE_GL" />
+		<result property="fixedTag"				column="FIXED_TAG" />
+		<result property="activeTag"			column="ACTIVE_TAG" />
+		<result property="remarks"				column="REMARKS" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="effDateTo"			column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="effDateFrom"			column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+    	<result property="defaultGLBankAcctCd"  column="SHORT_CODE" />
+    </resultMap>
+    
+    <select id="retrieveMtnGenTaxHist" resultMap="genTaxHistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_GENTAX_HIST_PKG.ret_mtn_gentax_hist(#{taxId, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnGenTaxHist" >
+		BEGIN
+			<foreach collection="saveList" item="item">
+				MTN_GENTAX_HIST_PKG.save_mtn_gentax_hist(#{item.taxId, jdbcType=VARCHAR},
+						#{item.histNo,  jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR},
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnGenTaxRange" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_GENTAX_PKG.del_mtn_gentax_range(#{item.taxId, jdbcType=VARCHAR},
+											        #{item.rangeNo, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_GENTAX_PKG.save_mtn_gentax_range(#{item.taxId, jdbcType=VARCHAR},
+						#{item.rangeNo,  jdbcType=VARCHAR},
+						#{item.minVal, jdbcType=VARCHAR},
+						#{item.maxVal, jdbcType=VARCHAR},
+						#{item.rate, jdbcType=VARCHAR},
+						#{item.amount, jdbcType=VARCHAR});
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.GeneralTaxes" id="genTaxRangeMap">
+		<result property="taxId"				column="TAX_ID" />
+		<result property="rangeNo"				column="RANGE_NO" />
+		<result property="minVal"				column="MIN_VALUE" />
+		<result property="maxVal"				column="MAX_VALUE" />
+		<result property="taxRate"				column="RATE" />
+		<result property="amount"				column="AMOUNT" />
+    </resultMap>
+    
+    <select id="retrieveMtnGenTaxRange" resultMap="genTaxRangeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_GENTAX_PKG.ret_mtn_gentax_range(#{taxId, jdbcType=VARCHAR}))
+	</select>
+
 </mapper>

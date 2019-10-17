@@ -1084,11 +1084,45 @@ public class MaintenanceController {
 	}
 	
 	@GetMapping(path="retrieveMtnAcseChartAcct")
-	public @ResponseBody RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChart(RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException {
+	public @ResponseBody RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcct(RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcseChartAcct");
 		logger.info("RetrieveMtnAcseChartAcctRequest : " + rmacar.toString());
-		return maintenanceService.retrieveMtnAcseChart(rmacar);
+		return maintenanceService.retrieveMtnAcseChartAcct(rmacar);
 	}
 	
+	@PostMapping(path="saveMtnGenTax")
+	public @ResponseBody SaveMtnGenTaxResponse saveMtnGenTax(@RequestBody SaveMtnGenTaxRequest smgt) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnGenTax");
+		logger.info("SaveMtnGenTaxRequest : " + smgt.toString());
+		return maintenanceService.saveMtnGenTax(smgt);
+	}
+	
+	@GetMapping(path="retrieveMtnGenTaxHist")
+	public @ResponseBody RetrieveMtnGenTaxHistResponse retrieveMtnGenTaxHist(RetrieveMtnGenTaxHistRequest rmgthr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnGenTaxHist");
+		logger.info("RetrieveMtnGenTaxHistRequest : " + rmgthr.toString());
+		return maintenanceService.retrieveMtnGenTaxHist(rmgthr);
+	}
+	
+	@PostMapping(path="saveMtnGenTaxHist")
+	public @ResponseBody SaveMtnGenTaxHistResponse saveMtnGenTaxHist(@RequestBody SaveMtnGenTaxHistRequest smgth) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnGenTaxHist");
+		logger.info("SaveMtnGenTaxHistRequest : " + smgth.toString());
+		return maintenanceService.saveMtnGenTaxHist(smgth);
+	}
+	
+	@PostMapping(path="saveMtnGenTaxRange")
+	public @ResponseBody SaveMtnGenTaxRangeResponse saveMtnGenTaxRange(@RequestBody SaveMtnGenTaxRangeRequest smgtr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnGenTaxRange");
+		logger.info("SaveMtnGenTaxRangeRequest : " + smgtr.toString());
+		return maintenanceService.saveMtnGenTaxRange(smgtr);
+	}
+	
+	@GetMapping(path="retrieveMtnGenTaxRange")
+	public @ResponseBody RetrieveMtnGenTaxRangeResponse retrieveMtnGenTaxRange(RetrieveMtnGenTaxRangeRequest rmgtrr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnGenTaxRange");
+		logger.info("RetrieveMtnGenTaxRangeRequest : " + rmgtrr.toString());
+		return maintenanceService.retrieveMtnGenTaxRange(rmgtrr);
+	}
 	
 }
