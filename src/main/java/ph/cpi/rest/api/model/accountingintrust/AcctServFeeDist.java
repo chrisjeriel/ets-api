@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 public class AcctServFeeDist {
 
 	private Integer reqId;
-	private Integer sfeeMm;
+	private String sfeeQtr;
 	private Integer sfeeYear;
 	private Integer groupId;
 	private String groupName;
@@ -21,6 +21,9 @@ public class AcctServFeeDist {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private Integer quarter;
+	private BigDecimal premWrtnCede;
+	private BigDecimal netPremWrtn;
 	
 	private String cedingId;
 	private String cedingName;
@@ -35,11 +38,11 @@ public class AcctServFeeDist {
 	public void setReqId(Integer reqId) {
 		this.reqId = reqId;
 	}
-	public Integer getSfeeMm() {
-		return sfeeMm;
+	public String getSfeeQtr() {
+		return sfeeQtr;
 	}
-	public void setSfeeMm(Integer sfeeMm) {
-		this.sfeeMm = sfeeMm;
+	public void setSfeeQtr(String sfeeQtr) {
+		this.sfeeQtr = sfeeQtr;
 	}
 	public Integer getSfeeYear() {
 		return sfeeYear;
@@ -119,6 +122,24 @@ public class AcctServFeeDist {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(Integer quarter) {
+		this.quarter = quarter;
+	}
+	public BigDecimal getPremWrtnCede() {
+		return premWrtnCede;
+	}
+	public void setPremWrtnCede(BigDecimal premWrtnCede) {
+		this.premWrtnCede = premWrtnCede;
+	}
+	public BigDecimal getNetPremWrtn() {
+		return netPremWrtn;
+	}
+	public void setNetPremWrtn(BigDecimal netPremWrtn) {
+		this.netPremWrtn = netPremWrtn;
+	}
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -157,11 +178,12 @@ public class AcctServFeeDist {
 	}
 	@Override
 	public String toString() {
-		return "AcctServFeeDist [reqId=" + reqId + ", sfeeMm=" + sfeeMm + ", sfeeYear=" + sfeeYear + ", groupId="
+		return "AcctServFeeDist [reqId=" + reqId + ", sfeeQtr=" + sfeeQtr + ", sfeeYear=" + sfeeYear + ", groupId="
 				+ groupId + ", groupName=" + groupName + ", groupShrPct=" + groupShrPct + ", currCd=" + currCd
 				+ ", currRt=" + currRt + ", groupShrAmt=" + groupShrAmt + ", localAmt=" + localAmt + ", totalSfee="
 				+ totalSfee + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", updateDate=" + updateDate + ", quarter=" + quarter + ", premWrtnCede=" + premWrtnCede
+				+ ", netPremWrtn=" + netPremWrtn + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", actualShrPct=" + actualShrPct + ", actualShrAmt=" + actualShrAmt + ", baseShrPct=" + baseShrPct
 				+ ", baseShrAmt=" + baseShrAmt + "]";
 	}

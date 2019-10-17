@@ -2124,6 +2124,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.");
 				wsController.onReceiveOsLog("");
 				
+				acctITDao.acitEomUpdateEomCloseTag(params);
+				acctITDao.acitEomUpdateAcctEntDate(params);
+				
 				procedureName = "Producing Summary Report";
 				wsController.onReceiveOsLog(acctITDao.acitEomBatchOsSummaryReport(params));
 				
