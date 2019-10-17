@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitCvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcitDefaultAccEntries;
 import ph.cpi.rest.api.model.maintenance.AcitDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcitJvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
@@ -263,4 +264,5 @@ public interface MaintenanceDao {
 	public List<AcitDefaultAmtDtl> retrieveAcitDefAmt(final HashMap<String,Object> params) throws SQLException;
 	public Integer saveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnAcitDefAmt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitDefaultAccEntries> retrieveAcitDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 }

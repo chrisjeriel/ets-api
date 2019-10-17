@@ -4401,4 +4401,30 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitDefaultAccEntries" id="acitDefAcctMap">
+        <result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		<result property="entryNo" column="ENTRY_NO"/>
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="glShortDesc" column="GL_SHORT_DESC"/>
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="sub1Dep" column="SUB1_DEPENDENCY"/>
+		<result property="sub2Dep" column="SUB2_DEPENDENCY"/>
+		<result property="sub3Dep" column="SUB3_DEPENDENCY"/>
+		<result property="drCrTag" column="DR_CR_TAG"/>
+		<result property="tranAmtTag" column="TRAN_AMT_TAG"/>
+		<result property="netDrcrTag" column="NET_DRCR_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcitDefAcctEnt" resultMap="acitDefAcctMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_acit_acct(#{tranClass},#{tranTypeCd},
+        												     		#{entryNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+     </select>
 </mapper>

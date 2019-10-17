@@ -2760,4 +2760,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcitDefAcctEntResponse retrieveAcitDefAcctEnt(RetrieveMtnAcitDefAcctEntRequest request)
+			throws SQLException {
+		RetrieveMtnAcitDefAcctEntResponse response = new RetrieveMtnAcitDefAcctEntResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("entryNo", request.getEntryNo());
+		response.setDefAccEnt(maintenanceDao.retrieveAcitDefAcctEnt(params));
+		return response;
+	}
 }

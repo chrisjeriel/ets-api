@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitCvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcitDefaultAccEntries;
 import ph.cpi.rest.api.model.maintenance.AcitDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcitJvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
@@ -1255,6 +1256,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer errorCode = sqlSession.update("saveMtnAcitDefAmt",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitDefaultAccEntries> retrieveAcitDefAcctEnt(HashMap<String, Object> params) throws SQLException {
+		List<AcitDefaultAccEntries> list = sqlSession.selectList("retrieveAcitDefAcctEnt", params);
+		return list;
 	}
 	
 }
