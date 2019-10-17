@@ -2713,4 +2713,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcitDefAmtDtlResponse retrieveAcitDefAmt(RetrieveMtnAcitDefAmtDtlRequest request)
+			throws SQLException {
+		RetrieveMtnAcitDefAmtDtlResponse response = new RetrieveMtnAcitDefAmtDtlResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("itemNo",request.getItemNo());
+		response.setDefAmtDtl(maintenanceDao.retrieveAcitDefAmt(params));
+		return response;	
+	}
 }

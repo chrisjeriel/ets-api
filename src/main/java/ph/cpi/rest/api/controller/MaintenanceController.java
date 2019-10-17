@@ -1194,4 +1194,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcitTranTypeRequest : " + request.toString());
 		return maintenanceService.saveMtnTranType(request);
 	}
+	
+	@GetMapping(path="retrieveAcitDefAmt")
+	public @ResponseBody RetrieveMtnAcitDefAmtDtlResponse retrieveAcitDefAmt(RetrieveMtnAcitDefAmtDtlRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveAcitDefAmt");
+		logger.info("RetrieveMtnAcitDefAmtDtlRequest : " + request.toString());
+		return maintenanceService.retrieveAcitDefAmt(request);
+	}
 }

@@ -175,5 +175,5 @@ public interface MaintenanceService {
 	public RetrieveMtnAcseWhtaxResponse retrieveAcseWHTax(RetrieveMtnAcseWhtaxRequest request)throws SQLException;
 	public SaveMtnAcseWhTaxResponse saveMtnWhTax(SaveMtnAcseWhTaxRequest request)throws SQLException;
 	public SaveMtnAcitTranTypeResponse saveMtnTranType(SaveMtnAcitTranTypeRequest request)throws SQLException;
-	
+	public RetrieveMtnAcitDefAmtDtlResponse retrieveAcitDefAmt(RetrieveMtnAcitDefAmtDtlRequest request)throws SQLException;
 }
