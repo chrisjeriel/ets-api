@@ -2696,4 +2696,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcitTranTypeResponse saveMtnTranType(SaveMtnAcitTranTypeRequest request) throws SQLException {
+		SaveMtnAcitTranTypeResponse response = new SaveMtnAcitTranTypeResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveTranType", request.getSaveTranType());
+			params.put("delTranType", request.getDelTranType());
+			HashMap<String,Object> res = maintenanceDao.saveMtnTranType(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

@@ -4291,4 +4291,29 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveMtnTranType" >
+		BEGIN
+			<foreach collection="delTranType" item="del">
+				MTN_ACIT_TRAN_TYPE_PKG.del_mtn_tran_type(#{del.tranClass},#{del.tranTypeCd});
+			</foreach>
+			<foreach collection="saveTranType" item="save">
+				MTN_ACIT_TRAN_TYPE_PKG.save_mtn_tran_type(#{save.tranClass}, 
+                                                          #{save.tranTypeCd}, 
+                                                          #{save.typePrefix,jdbcType=VARCHAR}, 
+                                                          #{save.tranTypeName}, 
+                                                          #{save.defaultParticulars,jdbcType=VARCHAR}, 
+                                                          #{save.masterTranType,jdbcType=VARCHAR}, 
+                                                          #{save.remarks,jdbcType=VARCHAR}, 
+                                                          #{save.autoTag}, 
+                                                          #{save.baeTag}, 
+                                                          #{save.activeTag}, 
+                                                          #{save.groupTag,jdbcType=VARCHAR}, 
+                                                          #{save.createUser}, 
+                                                          CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                          #{save.updateUser}, 
+                                                          CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
 </mapper>

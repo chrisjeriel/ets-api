@@ -1228,4 +1228,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> saveMtnTranType(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnTranType",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

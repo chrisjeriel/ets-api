@@ -1187,4 +1187,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseWhTaxRequest : " + request.toString());
 		return maintenanceService.saveMtnWhTax(request);
 	}
+	
+	@PostMapping(path="saveMtnAcitTranType")
+	public @ResponseBody SaveMtnAcitTranTypeResponse saveMtnAcitTranType(@RequestBody SaveMtnAcitTranTypeRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAcitTranType");
+		logger.info("SaveMtnAcitTranTypeRequest : " + request.toString());
+		return maintenanceService.saveMtnTranType(request);
+	}
 }
