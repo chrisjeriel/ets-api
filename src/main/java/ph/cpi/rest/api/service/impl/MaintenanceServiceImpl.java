@@ -2807,4 +2807,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseDefAcctEntResponse retrieveAcseDefAcctEnt(RetrieveMtnAcseDefAcctEntRequest request)
+			throws SQLException {
+		RetrieveMtnAcseDefAcctEntResponse response = new RetrieveMtnAcseDefAcctEntResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("entryNo", request.getEntryNo());
+		response.setDefAccEnt(maintenanceDao.retrieveAcseDefAcctEnt(params));
+		return response;
+	}
 }

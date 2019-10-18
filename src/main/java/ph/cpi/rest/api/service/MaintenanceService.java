@@ -181,4 +181,5 @@ public interface MaintenanceService {
 	public RetrieveMtnAcitDefAcctEntResponse retrieveAcitDefAcctEnt(RetrieveMtnAcitDefAcctEntRequest request) throws SQLException;
 	public SaveMtnAcitDefAcctEntriesResponse saveAcitDefAcctEnt(SaveMtnAcitDefAcctEntriesRequest request)throws SQLException;
 	public SaveMtnAcseTranTypeResponse saveAcseTranType(SaveMtnAcseTranTypeRequest request) throws SQLException;
+	public RetrieveMtnAcseDefAcctEntResponse retrieveAcseDefAcctEnt(RetrieveMtnAcseDefAcctEntRequest request) throws SQLException;
 }

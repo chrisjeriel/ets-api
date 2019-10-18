@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
 import ph.cpi.rest.api.model.maintenance.AcseCVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
@@ -267,4 +268,5 @@ public interface MaintenanceDao {
 	public List<AcitDefaultAccEntries> retrieveAcitDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcitDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseTranType(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseDefaultAcctEntries> retrieveAcseDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 }

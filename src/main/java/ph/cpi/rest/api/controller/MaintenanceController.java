@@ -1236,4 +1236,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseTranTypeRequest : " + request.toString());
 		return maintenanceService.saveAcseTranType(request);
 	}
+	
+	@GetMapping(path="retrieveAcseDefAcctEnt")
+	public @ResponseBody RetrieveMtnAcseDefAcctEntResponse retrieveAcseDefAcctEnt(RetrieveMtnAcseDefAcctEntRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/retrieveAcseDefAcctEnt");
+		logger.info("RetrieveMtnAcseDefAcctEntRequest : " + request.toString());
+		return maintenanceService.retrieveAcseDefAcctEnt(request);
+	}
 }
