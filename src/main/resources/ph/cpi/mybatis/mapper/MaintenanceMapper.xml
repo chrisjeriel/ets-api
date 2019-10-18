@@ -4417,6 +4417,7 @@
 		<result property="drCrTag" column="DR_CR_TAG"/>
 		<result property="tranAmtTag" column="TRAN_AMT_TAG"/>
 		<result property="netDrcrTag" column="NET_DRCR_TAG"/>
+		<result property="remarks"    column="REMARKS"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
@@ -4428,7 +4429,7 @@
         												     		#{entryNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
      
-      <update id="saveMtnAcitDefAmt" >
+      <update id="saveAcitDefAcctEnt" >
 		BEGIN
 			<foreach collection="delAcctEnt" item="del">
 				MTN_ACIT_TRAN_TYPE_PKG.del_acct_ent(#{del.tranClass},#{del.tranTypeCd},#{del.entryNo});
@@ -4438,13 +4439,14 @@
 													 #{save.tranTypeCd},
 													 #{save.entryNo,jdbcType=VARCHAR},
 													 #{save.glAcctId},
-													 #{save.slTypeCd},
-												  	 #{save.sub1Dep},
-													 #{save.sub2Dep},
-													 #{save.sub3Dep},
+													 #{save.slTypeCd,jdbcType=VARCHAR},
+												  	 #{save.sub1Dep,jdbcType=VARCHAR},
+													 #{save.sub2Dep,jdbcType=VARCHAR},
+													 #{save.sub3Dep,jdbcType=VARCHAR},
 													 #{save.drCrTag},
 													 #{save.tranAmtTag},
 													 #{save.netDrcrTag},
+													 #{save.remarks,jdbcType=VARCHAR},
                                                         #{save.createUser}, 
                                                         CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
                                                         #{save.updateUser}, 

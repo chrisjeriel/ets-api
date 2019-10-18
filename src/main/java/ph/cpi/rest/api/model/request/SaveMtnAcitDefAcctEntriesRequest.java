@@ -36,6 +36,7 @@ class defAcctEntries{
     private String drCrTag;
     private String tranAmtTag;
     private String netDrcrTag;
+    private String remarks;
     private String createUser;
     private String createDate;
     private String updateUser;
@@ -106,6 +107,13 @@ class defAcctEntries{
 	public void setNetDrcrTag(String netDrcrTag) {
 		this.netDrcrTag = netDrcrTag;
 	}
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -135,9 +143,8 @@ class defAcctEntries{
 		return "defAcctEntries [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", entryNo=" + entryNo
 				+ ", glAcctId=" + glAcctId + ", slTypeCd=" + slTypeCd + ", sub1Dep=" + sub1Dep + ", sub2Dep=" + sub2Dep
 				+ ", sub3Dep=" + sub3Dep + ", drCrTag=" + drCrTag + ", tranAmtTag=" + tranAmtTag + ", netDrcrTag="
-				+ netDrcrTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ netDrcrTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-    
-    
+	
 }

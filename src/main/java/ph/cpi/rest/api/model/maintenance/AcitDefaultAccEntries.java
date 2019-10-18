@@ -17,6 +17,7 @@ public class AcitDefaultAccEntries {
 	private String drCrTag;
 	private String tranAmtTag;
 	private String netDrcrTag;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -104,6 +105,12 @@ public class AcitDefaultAccEntries {
 	}
 	public void setNetDrcrTag(String netDrcrTag) {
 		this.netDrcrTag = netDrcrTag;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
