@@ -2819,4 +2819,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setDefAccEnt(maintenanceDao.retrieveAcseDefAcctEnt(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcseDefAcctEntResponse saveAcseDefAcctEnt(SaveMtnAcseDefAcctEntRequest request) throws SQLException {
+		SaveMtnAcseDefAcctEntResponse response = new SaveMtnAcseDefAcctEntResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcctEnt", request.getSaveAcctEnt());
+			params.put("delAcctEnt", request.getDelAcctEnt());
+			HashMap<String,Object> res = maintenanceDao.saveAcseDefAcctEnt(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

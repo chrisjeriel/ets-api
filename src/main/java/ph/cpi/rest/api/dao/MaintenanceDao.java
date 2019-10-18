@@ -269,4 +269,5 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> saveAcitDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseTranType(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDefaultAcctEntries> retrieveAcseDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveAcseDefAcctEnt(final HashMap<String, Object> params) throws SQLException;
 }

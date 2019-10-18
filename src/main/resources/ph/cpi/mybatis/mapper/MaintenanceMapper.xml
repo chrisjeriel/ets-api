@@ -4506,4 +4506,31 @@
         SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_acse_acct(#{tranClass},#{tranTypeCd},
         												     		#{entryNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
+     
+     <update id="saveAcseDefAcctEnt" >
+		BEGIN
+			<foreach collection="delAcctEnt" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_def_acct_ent(#{del.tranClass},#{del.tranTypeCd},#{del.entryNo});
+			</foreach>
+			<foreach collection="saveAcctEnt" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_def_acct_ent(#{save.tranClass},
+													 #{save.tranTypeCd},
+													 #{save.entryNo,jdbcType=VARCHAR},
+													 #{save.glAcctId},
+													 #{save.slTypeCd,jdbcType=VARCHAR},
+												  	 #{save.sub1Dep,jdbcType=VARCHAR},
+													 #{save.sub2Dep,jdbcType=VARCHAR},
+													 #{save.sub3Dep,jdbcType=VARCHAR},
+													 #{save.drCrTag},
+													 #{save.tranAmtTag},
+													 #{save.netDrcrTag},
+													 #{save.remarks,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
+	
 </mapper>
