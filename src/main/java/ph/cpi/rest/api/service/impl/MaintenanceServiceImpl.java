@@ -125,7 +125,11 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnInsuredParams.put("corpTag",rmir.getCorpTag());
 		retrieveMtnInsuredParams.put("vatTag",rmir.getVatTag());
 		retrieveMtnInsuredParams.put("address",rmir.getAddress());
+		retrieveMtnInsuredParams.put("pagination",rmir.getPaginationRequest());
+		retrieveMtnInsuredParams.put("sort",rmir.getSortRequest());
+		retrieveMtnInsuredParams.put("search",rmir.getSearch());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
+		rmirResponse.setLength(maintenanceDao.retrieveMtnInsuredLength(retrieveMtnInsuredParams));
 		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
 		
 		return rmirResponse;

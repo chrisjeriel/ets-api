@@ -120,6 +120,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<Insured> insured = sqlSession.selectList("retrieveMtnInsured", params);
 		return insured;
 	}
+	
+	@Override
+	public Integer retrieveMtnInsuredLength(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer insured = sqlSession.selectOne("retrieveMtnInsuredLength", params);
+		return insured;
+	}
 
 	@Override
 	public List<EndtCode> retrieveEndtCode(HashMap<String, Object> params) throws SQLException {

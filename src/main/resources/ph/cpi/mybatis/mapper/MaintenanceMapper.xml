@@ -330,9 +330,51 @@
 					#{corpTag,jdbcType=VARCHAR},
 					#{vatTag,jdbcType=VARCHAR},
 					#{address,jdbcType=VARCHAR},
-					'',1,'',''))
+					#{pagination.position,jdbcType=DECIMAL},
+					#{pagination.count,jdbcType=DECIMAL},
+					'',
+					''
+				))
+			WHERE 1=1
+			<if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	   </if>
+	   	   <if test="sort != null">
+	   	    	ORDER BY ${sort.sortKey} ${sort.order}
+	   	   </if>
+	   	   <if test="pagination.position != null">
+	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	   </if>
 	</select>
 	
+	<select id="retrieveMtnInsuredLength" resultType="java.lang.Integer" parameterType="java.util.Map">
+			SELECT count (INSURED_ID) FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(
+					#{insuredId,jdbcType=INTEGER},
+					#{insuredName,jdbcType=VARCHAR},
+					#{insuredAbbr,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{insuredType,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{address,jdbcType=VARCHAR},
+					#{pagination.position,jdbcType=DECIMAL},
+					#{pagination.count,jdbcType=DECIMAL},
+					'',
+					''
+				))
+			WHERE 1=1
+			<if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	   </if>
+	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.EndtCode" id="endtCode">
 		<result property="lineCd" 		column="LINE_CD"/>
