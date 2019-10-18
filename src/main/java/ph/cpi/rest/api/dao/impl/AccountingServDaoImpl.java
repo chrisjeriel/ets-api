@@ -243,4 +243,16 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer res = sqlSession.update("saveAcseBudExpMonthly",params);
 		return res;
 	}
+
+	@Override
+	public List<AcseBudExpMonthly> retrieveAcseActExpMonthly(HashMap<String, Object> params) throws SQLException {
+		List<AcseBudExpMonthly> res = sqlSession.selectList("retrieveAcseActExpMonthly", params);
+		return res;
+	}
+
+	@Override
+	public Integer printOr(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("printOr", params);
+		return res;
+	}
 }

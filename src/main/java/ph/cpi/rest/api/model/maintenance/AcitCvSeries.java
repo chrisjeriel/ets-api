@@ -2,33 +2,26 @@ package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
 
-public class AcitArSeries {
-	private Integer minArNo;
-	private Integer maxArNo;
-	private Integer arNo;
+public class AcitCvSeries {
+	private Integer cvYear;
+	private String cvNo;
 	private Integer tranId;
 	private String usedTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	public Integer getMinArNo() {
-		return minArNo;
+	public Integer getCvYear() {
+		return cvYear;
 	}
-	public void setMinArNo(Integer minArNo) {
-		this.minArNo = minArNo;
+	public void setCvYear(Integer cvYear) {
+		this.cvYear = cvYear;
 	}
-	public Integer getMaxArNo() {
-		return maxArNo;
+	public String getCvNo() {
+		return cvNo;
 	}
-	public void setMaxArNo(Integer maxArNo) {
-		this.maxArNo = maxArNo;
-	}
-	public Integer getArNo() {
-		return arNo;
-	}
-	public void setArNo(Integer arNo) {
-		this.arNo = arNo;
+	public void setCvNo(String cvNo) {
+		this.cvNo = cvNo;
 	}
 	public Integer getTranId() {
 		return tranId;
@@ -68,9 +61,9 @@ public class AcitArSeries {
 	}
 	@Override
 	public String toString() {
-		return "AcitArSeries [minArNo=" + minArNo + ", maxArNo=" + maxArNo + ", arNo=" + arNo + ", tranId=" + tranId
-				+ ", usedTag=" + usedTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "AcitCvSeries [cvYear=" + cvYear + ", cvNo=" + cvNo + ", tranId=" + tranId + ", usedTag=" + usedTag
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

@@ -2,9 +2,16 @@ package ph.cpi.rest.api.model.request;
 
 public class SaveAcitMonthEndBatchOSRequest {
 
+	private String force;
 	private String eomDate;
 	private String eomUser;
 	
+	public String getForce() {
+		return force;
+	}
+	public void setForce(String force) {
+		this.force = force;
+	}
 	public String getEomDate() {
 		return eomDate;
 	}
@@ -19,6 +26,6 @@ public class SaveAcitMonthEndBatchOSRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitMonthEndBatchOSRequest [eomDate=" + eomDate + ", eomUser=" + eomUser + "]";
+		return "SaveAcitMonthEndBatchOSRequest [force=" + force + ", eomDate=" + eomDate + ", eomUser=" + eomUser + "]";
 	}
 }
