@@ -246,4 +246,6 @@ public interface MaintenanceDao {
 	public Integer saveMtnInvSecType(final HashMap<String, Object> params) throws SQLException;
 	public List<PayeeClass> retrieveMtnPayeeClass(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnPayeeClass(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnSLType(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnSL(final HashMap<String, Object> params) throws SQLException;
 }

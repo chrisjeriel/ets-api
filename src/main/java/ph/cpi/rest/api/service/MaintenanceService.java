@@ -168,4 +168,6 @@ public interface MaintenanceService {
 	public SaveMtnInvSecTypeResponse saveMtnInvSecType (SaveMtnInvSecTypeRequest smist) throws SQLException;
 	public RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(RetrieveMtnPayeeClassRequest rmpcr) throws SQLException;
 	public SaveMtnPayeeClassResponse saveMtnPayeeClass (SaveMtnPayeeClassRequest smpc) throws SQLException;
+	public SaveMtnSLTypeResponse saveMtnSLType (SaveMtnSLTypeRequest smst) throws SQLException;
+	public SaveMtnSLResponse saveMtnSL (SaveMtnSLRequest sms) throws SQLException;
 }

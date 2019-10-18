@@ -1145,4 +1145,18 @@ public class MaintenanceController {
 		return maintenanceService.saveMtnPayeeClass(smpc);
 	}
 	
+	@PostMapping(path="saveMtnSLType")
+	public @ResponseBody SaveMtnSLTypeResponse saveMtnSLType(@RequestBody SaveMtnSLTypeRequest smst) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnSLType");
+		logger.info("SaveMtnSLTypeRequest : " + smst.toString());
+		return maintenanceService.saveMtnSLType(smst);
+	}
+	
+	@PostMapping(path="saveMtnSL")
+	public @ResponseBody SaveMtnSLResponse saveMtnSL(@RequestBody SaveMtnSLRequest sms) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnSL");
+		logger.info("SaveMtnSLRequest : " + sms.toString());
+		return maintenanceService.saveMtnSL(sms);
+	}
+	
 }

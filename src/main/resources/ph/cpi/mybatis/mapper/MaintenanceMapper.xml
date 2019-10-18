@@ -3666,15 +3666,16 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.SLType" id="SLTypeMap">
-		<result property="slTypeCd" column="SL_TYPE_CD"/>
-		<result property="slTypeName" column="SL_TYPE_NAME"/>
-		<result property="remarks" column="REMARKS"/>
-		<result property="autoTag" column="AUTO_TAG"/>
-		<result property="activeTag" column="ACTIVE_TAG"/>
-		<result property="createUser" column="CREATE_USER"/>
-		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" column="UPDATE_USER"/>
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="slTypeCd" 	column="SL_TYPE_CD"/>
+		<result property="slTypeName" 	column="SL_TYPE_NAME"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="autoTag" 		column="AUTO_TAG"/>
+		<result property="activeTag" 	column="ACTIVE_TAG"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 	column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnSL" resultMap="SLMap">
@@ -4318,6 +4319,48 @@
 						#{item.masterPayeeClass, jdbcType=VARCHAR}, 
 						#{item.slTag, jdbcType=VARCHAR}, 
 						#{item.slTypeCd, jdbcType=VARCHAR}, 
+						#{item.autoTag, jdbcType=VARCHAR}, 
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	 <update id="saveMtnSLType" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_SL_TYPE_PKG.del_mtn_sl_type(#{item.slTypeCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_SL_TYPE_PKG.save_mtn_sl_type(#{item.slTypeCd, jdbcType=VARCHAR},
+						#{item.slTypeName,  jdbcType=VARCHAR},
+						#{item.remarks,  jdbcType=VARCHAR},
+						#{item.autoTag, jdbcType=VARCHAR}, 
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnSL" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_SL_PKG.del_mtn_sl(#{item.slTypeCd, jdbcType=VARCHAR},
+									  #{item.slCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_SL_PKG.save_mtn_sl(#{item.slTypeCd, jdbcType=VARCHAR},
+						#{item.slCd,  jdbcType=VARCHAR},
+						#{item.slName,  jdbcType=VARCHAR},
+						#{item.remarks,  jdbcType=VARCHAR},
 						#{item.autoTag, jdbcType=VARCHAR}, 
 						#{item.activeTag, jdbcType=VARCHAR},
 						#{item.createUser, jdbcType=VARCHAR},

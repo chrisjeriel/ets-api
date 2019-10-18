@@ -1200,5 +1200,21 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer code = sqlSession.update("saveMtnPayeeClass",params);
 		return code;
 	}
+
+	@Override
+	public Integer saveMtnSLType(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnSLType",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnSL(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnSL",params);
+		return code;
+	}
 	
 }

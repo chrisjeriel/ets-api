@@ -2614,4 +2614,42 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public SaveMtnSLTypeResponse saveMtnSLType(SaveMtnSLTypeRequest smst)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnSLTypeResponse response = new SaveMtnSLTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smst.getSaveList());
+		params.put("delList", smst.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnSLType(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnSLResponse saveMtnSL(SaveMtnSLRequest sms)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnSLResponse response = new SaveMtnSLResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", sms.getSaveList());
+		params.put("delList", sms.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnSL(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
 }
