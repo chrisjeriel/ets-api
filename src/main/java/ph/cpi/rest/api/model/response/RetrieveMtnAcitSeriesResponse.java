@@ -1,47 +1,35 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.ExpPolicy;
+import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
 
-public class RetrieveExpPolListResponse {
-	
-	private List<ExpPolicy> expPolicyList;
+public class RetrieveMtnAcitSeriesResponse {
+	private AcitTranSeries maxTranNo;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-
-	public List<ExpPolicy> getExpPolicyList() {
-		return expPolicyList;
+	public AcitTranSeries getMaxTranNo() {
+		return maxTranNo;
 	}
-
-	public void setExpPolicyList(List<ExpPolicy> expPolicyList) {
-		this.expPolicyList = expPolicyList;
+	public void setMaxTranNo(AcitTranSeries maxTranNo) {
+		this.maxTranNo = maxTranNo;
 	}
-
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
 	}
-
 	public void setPaginationResponse(PaginationResponse paginationResponse) {
 		this.paginationResponse = paginationResponse;
 	}
-
 	public SortResponse getSortResponse() {
 		return sortResponse;
 	}
-
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-
 	@Override
 	public String toString() {
-		return "RetrieveExpPolListResponse [expPolicyList=" + expPolicyList + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnAcitSeriesResponse [maxTranNo=" + maxTranNo + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
-	
 	
 }

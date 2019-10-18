@@ -4088,4 +4088,126 @@
             NULL,NULL,NULL,NULL
         ))
      </select>
+     
+     <update id="generateARSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_ar(#{arFrom},#{arTo},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateCVSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_cv(#{cvFrom},#{cvTo},#{cvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateJVSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_jv(#{jvFrom},#{jvTo},#{jvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitArSeries" id="arSeriesMap">
+        <result property="arNo" column="AR_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveArSeries" resultMap="arSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_ar_series(#{arFrom,jdbcType=VARCHAR},#{arTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCvSeries" id="cvSeriesMap">
+        <result property="cvYear" column="CV_YEAR"/>
+        <result property="cvNo" column="CV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveCvSeries" resultMap="cvSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_cv_series(#{cvYear,jdbcType=VARCHAR},#{cvFrom,jdbcType=VARCHAR},#{cvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitJvSeries" id="jvSeriesMap">
+        <result property="jvYear" column="JV_YEAR"/>
+        <result property="jvNo" column="JV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveJvSeries" resultMap="jvSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_jv_series(#{jvYear,jdbcType=VARCHAR},#{jvFrom,jdbcType=VARCHAR},#{jvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitTranSeries" id="tranSeriesMap">
+        <result property="TranNo" column="TRAN_NO"/>
+     </resultMap>
+     
+     <select id="maxTranNo" resultMap="tranSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_max_series(#{tranClass}))
+     </select>
+     
+     <update id="saveMtnEmployee" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_EMPLOYEE_PKG.del_mtn_employee(#{item.employeeId, jdbcType=VARCHAR},
+											      #{item.companyId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_EMPLOYEE_PKG.save_mtn_employee(#{item.employeeId, jdbcType=VARCHAR},
+						#{item.companyId,  jdbcType=VARCHAR},
+						#{item.employeeNo, jdbcType=VARCHAR},
+						#{item.lastName, jdbcType=VARCHAR},
+						#{item.firstName, jdbcType=VARCHAR},
+						#{item.middleName, jdbcType=VARCHAR},
+						#{item.printableName, jdbcType=VARCHAR},
+						#{item.gender, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.hireDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						CAST(to_timestamp(#{item.terminationDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.department, jdbcType=VARCHAR},
+						#{item.designation, jdbcType=VARCHAR},
+						#{item.supervisor, jdbcType=VARCHAR},
+						#{item.supervisorName, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.birthDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.civilStatus, jdbcType=VARCHAR},
+						#{item.presentAdd, jdbcType=VARCHAR},
+						#{item.permanentAdd, jdbcType=VARCHAR},
+						#{item.tin, jdbcType=VARCHAR},
+						#{item.sssNo, jdbcType=VARCHAR},
+						#{item.philhealthNo, jdbcType=VARCHAR},
+						#{item.pagibigNo, jdbcType=VARCHAR},
+						#{item.contactNos, jdbcType=VARCHAR},
+						#{item.email, jdbcType=VARCHAR},
+						#{item.contactPerson, jdbcType=VARCHAR},
+						#{item.emergencyNo, jdbcType=VARCHAR},						
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.activeTag, jdbcType=VARCHAR});
+			</foreach>
+		END;
+	</update>
+	
 </mapper>
