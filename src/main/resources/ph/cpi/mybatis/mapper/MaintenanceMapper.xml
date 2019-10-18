@@ -3842,6 +3842,7 @@
 
      <resultMap type="ph.cpi.rest.api.model.maintenance.MtnAcseTranType" id="mtnAcseTranTypeMap">
     	<result property="tranClass" 			column="TRAN_CLASS"/>
+    	<result property="tranName"				column="TRAN_CLASS_NAME"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
 		<result property="typePrefix" 			column="TYPE_PREFIX"/>
 		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
@@ -4447,6 +4448,31 @@
 													 #{save.tranAmtTag},
 													 #{save.netDrcrTag},
 													 #{save.remarks,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveAcseTranType" >
+		BEGIN
+			<foreach collection="delTranType" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_acse_tran_type(#{del.tranClass},#{del.tranTypeCd});
+			</foreach>
+			<foreach collection="saveTranType" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_acse_tran_type(#{save.tranClass},
+														#{save.tranTypeCd,jdbcType=VARCHAR},
+														#{save.typePrefix},
+														#{save.tranTypeName},
+														#{save.defaultParticulars,jdbcType=VARCHAR},
+														#{save.masterTranType,jdbcType=VARCHAR},
+														#{save.remarks,jdbcType=VARCHAR},
+														#{save.autoTag},
+														#{save.baeTag},
+														#{save.activeTag},
+														#{save.groupTag,jdbcType=VARCHAR},
                                                         #{save.createUser}, 
                                                         CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
                                                         #{save.updateUser}, 
