@@ -4010,7 +4010,26 @@
 		{CALL
 			#{validateCurr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_curr_month(#{eomMm, jdbcType=INTEGER},
 																										  	 	 #{eomYear, jdbcType=INTEGER})
-		}	
+		}
 	</update>
+	
+	<update id="acitEomUpdateReport" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_batch_report(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												   #{report, jdbcType=VARCHAR},
+												   #{process, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd" id="acitMonthEnd">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="batchProdReport"		column="BATCH_PROD_REPORT"/>
+		<result property="batchOsReport"		column="BATCH_OS_REPORT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEnd" resultMap="acitMonthEnd" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_EOM_TRANS_PKG.ret_month_end(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
 	
 </mapper>
