@@ -816,4 +816,17 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveAcseBudExpMonthlyResponse retrieveAcseActExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr)
+			throws SQLException {
+		RetrieveAcseBudExpMonthlyResponse response = new RetrieveAcseBudExpMonthlyResponse();
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("budgetYear", rabemr.getBudgetYear());
+		params.put("itemNo", rabemr.getItemNo());
+		params.put("mm", rabemr.getMm());
+		response.setBudExpMonthlyList(acctServDao.retrieveAcseActExpMonthly(params));
+		logger.info(response.toString());
+		return response;
+	}
 }

@@ -1107,4 +1107,42 @@
 			DBMS_OUTPUT.PUT_LINE('PLACEHOLDER');
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly" id="acseActExpMonthlyMap">
+		<result property="budgetYear" 		column="BUDGET_YEAR"/>
+		<result property="itemNo" 			column="ITEM_NO"/>
+		<result property="glAcctId" 		column="GL_ACCT_ID"/>
+		<result property="glShortCd" 		column="GL_SHORT_CD"/>
+		<result property="glShortDesc" 		column="GL_SHORT_DESC"/>
+		<result property="slTypeCd" 		column="SL_TYPE_CD"/>
+		<result property="slTypeName" 		column="SL_TYPE_NAME"/>
+		<result property="slCd" 			column="SL_CD"/>
+		<result property="slName" 			column="SL_NAME"/>
+		<result property="totalBudget" 		column="TOTAL_BUDGET"/>
+		<result property="totalExpense" 	column="TOTAL_EXPENSE"/>
+		<result property="jan"				column="JAN"/>
+		<result property="feb"				column="FEB"/>
+		<result property="mar"				column="MAR"/>
+		<result property="apr"				column="APR"/>
+		<result property="may"				column="MAY"/>
+		<result property="jun"				column="JUN"/>
+		<result property="jul"				column="JUL"/>
+		<result property="aug"				column="AUG"/>
+		<result property="sep"				column="SEP"/>
+		<result property="oct"				column="OCT"/>
+		<result property="nov"				column="NOV"/>
+		<result property="dec"				column="DEC"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcseActExpMonthly" resultMap="acseActExpMonthlyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_BUDGET_EXPENSE_PKG.ret_actexp_monthly(
+					#{budgetYear,jdbcType=INTEGER},
+					#{itemNo,jdbcType=INTEGER},
+					#{mm,jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
 </mapper>

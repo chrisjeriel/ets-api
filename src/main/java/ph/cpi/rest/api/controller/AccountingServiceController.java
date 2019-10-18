@@ -332,4 +332,11 @@ public class AccountingServiceController {
 		logger.info("SaveAcseBudExpMonthlyRequest : " + sabemr.toString());
 		return acctServService.saveAcseBudExpMonthly(sabemr);
 	}
+	
+	@GetMapping(path="retrieveAcseActExpMonthly")
+	public @ResponseBody RetrieveAcseBudExpMonthlyResponse retrieveAcseActExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseActExpMonthly");
+		logger.info("RetrieveAcseBudExpMonthlyRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseActExpMonthly(rabemr);
+	}
 }
