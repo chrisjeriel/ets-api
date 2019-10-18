@@ -14,7 +14,14 @@ public class MtnLossCd {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	public String getLossCd() {
 		return lossCd;
 	}
@@ -80,6 +87,7 @@ public class MtnLossCd {
 	public String toString() {
 		return "MtnLossCd [lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossDesc=" + lossDesc + ", lossCdType="
 				+ lossCdType + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", okDelete=" + okDelete + "]";
 	}
 }
