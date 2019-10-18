@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
@@ -49,6 +50,7 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
@@ -338,5 +340,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcseActExpMonthly");
 		logger.info("RetrieveAcseBudExpMonthlyRequest : " + rabemr.toString());
 		return acctServService.retrieveAcseActExpMonthly(rabemr);
+	}
+	
+	@PostMapping(path="printOr")
+	public @ResponseBody PrintOrResponse printOr(@RequestBody PrintOrRequest por) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printOr");
+		logger.info("PrintOrRequest : " + por.toString());
+		return acctServService.printOr(por);
 	}
 }

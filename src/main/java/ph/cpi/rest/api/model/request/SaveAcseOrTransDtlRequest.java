@@ -249,8 +249,8 @@ class SaveOrItemTaxes{
 	private String itemNo;
 	private String taxType;
 	private String taxCd;
-	private String rate;
-	private String amount;
+	private String taxRate;
+	private String taxAmt;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -285,17 +285,17 @@ class SaveOrItemTaxes{
 	public void setTaxCd(String taxCd) {
 		this.taxCd = taxCd;
 	}
-	public String getRate() {
-		return rate;
+	public String getTaxRate() {
+		return taxRate;
 	}
-	public void setRate(String rate) {
-		this.rate = rate;
+	public void setTaxRate(String taxRate) {
+		this.taxRate = taxRate;
 	}
-	public String getAmount() {
-		return amount;
+	public String getTaxAmt() {
+		return taxAmt;
 	}
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setTaxAmt(String taxAmt) {
+		this.taxAmt = taxAmt;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -324,7 +324,8 @@ class SaveOrItemTaxes{
 	@Override
 	public String toString() {
 		return "SaveOrItemTaxes [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType="
-				+ taxType + ", taxCd=" + taxCd + ", rate=" + rate + ", amount=" + amount + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ taxType + ", taxCd=" + taxCd + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }

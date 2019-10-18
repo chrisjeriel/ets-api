@@ -366,8 +366,8 @@
 		<result property="taxType"		column="TAX_TYPE" />
 		<result property="taxCd"		column="TAX_CD" />
 		<result property="taxName"		column="TAX_NAME" />
-		<result property="rate"			column="RATE" />
-		<result property="amount"		column="AMOUNT" />
+		<result property="taxRate"			column="RATE" />
+		<result property="taxAmt"		column="AMOUNT" />
 		<result property="createUser"	column="TX_CREATE_USER" />
 		<result property="createDate"	column="TX_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"	column="TX_UPDATE_USER" />
@@ -583,8 +583,8 @@
 																v_item_no,	<!-- Based on the output parameter in ACSE_OR_TRANSDTL_PKG.save_or_transdtl PROCEDURE -->
 																#{saveTaxes.taxType},
 																#{saveTaxes.taxCd},
-																#{saveTaxes.rate, jdbcType=VARCHAR},
-																#{saveTaxes.amount, jdbcType=VARCHAR},
+																#{saveTaxes.taxRate, jdbcType=VARCHAR},
+																#{saveTaxes.taxAmt, jdbcType=VARCHAR},
 																#{save.createUser},
 																CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{save.updateUser},
@@ -1145,4 +1145,11 @@
 					#{mm,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
+	
+	<update id="printOr" parameterType="java.util.Map">
+		BEGIN
+			ACSE_OFFICIAL_RECEIPT_PKG.print_or(#{tranId},#{orNo},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
 </mapper>

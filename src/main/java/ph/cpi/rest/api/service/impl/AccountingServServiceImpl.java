@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
@@ -46,6 +47,7 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
@@ -827,6 +829,29 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("mm", rabemr.getMm());
 		response.setBudExpMonthlyList(acctServDao.retrieveAcseActExpMonthly(params));
 		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public PrintOrResponse printOr(PrintOrRequest por) throws SQLException {
+		PrintOrResponse response = new PrintOrResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", por.getTranId());
+		params.put("orNo", por.getOrNo());
+		params.put("updateUser", por.getUpdateUser());
+		params.put("updateDate", por.getUpdateDate());
+		try{
+			response.setReturnCode(acctServDao.printOr(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to printing. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }
