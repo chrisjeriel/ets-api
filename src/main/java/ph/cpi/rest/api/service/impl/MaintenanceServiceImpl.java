@@ -2574,11 +2574,185 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setMaxTranNo(maintenanceDao.maxTranNo(params));
 		return response;
 	}
+
+	@Override
+	public GenerateAcseCVSeriesResponse generateAcseCVSeries(GenerateAcseCVSeriesRequest request) throws SQLException {
+		GenerateAcseCVSeriesResponse response = new GenerateAcseCVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("cvFrom", request.getCvFrom());
+			params.put("cvTo",request.getCvTo());
+			params.put("cvYear", request.getCvYear());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateAcseCVSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateAcseJVSeriesResponse generateAcseJVSeries(GenerateAcseJVSeriesRequest request) throws SQLException {
+		GenerateAcseJVSeriesResponse response = new GenerateAcseJVSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("jvFrom",request.getJvFrom());
+			params.put("jvTo", request.getJvTo());
+			params.put("jvYear", request.getJvYear());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateAcseJVSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateAcseORSeriesResponse generateAcseORSeries(GenerateAcseORSeriesRequest request) throws SQLException {
+		GenerateAcseORSeriesResponse response = new GenerateAcseORSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("orType", request.getOrType());
+			params.put("orFrom", request.getOrFrom());
+			params.put("orTo", request.getOrTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String ,Object> res = maintenanceDao.generateAcseORSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseGenORSeriesResponse retrieveAcseOrSeries(RetrieveMtnAcseGenORSeriesRequest request)
+			throws SQLException {
+		RetrieveMtnAcseGenORSeriesResponse response = new RetrieveMtnAcseGenORSeriesResponse(); 
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("orType", request.getOrType());
+		params.put("orTo", request.getOrTo());
+		params.put("orFrom", request.getOrFrom());
+		params.put("usedTag", request.getUsedTag());
+		response.setOrSeries(maintenanceDao.retrieveAcseOrSeries(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseGenCVSeriesResponse retrieveAcseCVSeries(RetrieveMtnAcseGenCVSeriesRequest request)
+			throws SQLException {
+		RetrieveMtnAcseGenCVSeriesResponse response = new RetrieveMtnAcseGenCVSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("cvYear", request.getCvYear());
+		params.put("cvFrom", request.getCvFrom());
+		params.put("cvTo", request.getCvTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setCvSeries(maintenanceDao.retrieveAcseCVSeries(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseGenJVSeriesResponse retrieveAcseJVSeries(RetrieveMtnAcseGenJVSeriesRequest request)
+			throws SQLException {
+		RetrieveMtnAcseGenJVSeriesResponse response = new RetrieveMtnAcseGenJVSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("jvYear", request.getJvYear());
+		params.put("jvFrom", request.getJvFrom());
+		params.put("jvTo", request.getJvTo());
+		params.put("usedTag", request.getUsedTag());
+		response.setJvSeries(maintenanceDao.retrieveAcseJVSeries(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseSeriesResponse acseMaxTranNo(RetrieveMtnAcseSeriesRequest request) throws SQLException {
+		RetrieveMtnAcseSeriesResponse response =  new RetrieveMtnAcseSeriesResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("orType", request.getOrType());
+		response.setMaxTranNo(maintenanceDao.acseMaxTranNo(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseWhtaxResponse retrieveAcseWHTax(RetrieveMtnAcseWhtaxRequest request) throws SQLException {
+		RetrieveMtnAcseWhtaxResponse response =  new RetrieveMtnAcseWhtaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("whtaxId",request.getWhtaxId());
+		params.put("taxCd",request.getTaxCd());
+		params.put("taxType",request.getTaxType());
+		params.put("creditableTag",request.getCreditableTag());
+		params.put("fixedTag",request.getFixedTag());
+		params.put("activeTag",request.getActiveTag());
+		response.setWhtax(maintenanceDao.retrieveAcseWHTax(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseWhTaxResponse saveMtnWhTax(SaveMtnAcseWhTaxRequest request) throws SQLException {
+		SaveMtnAcseWhTaxResponse response = new SaveMtnAcseWhTaxResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveWhTax", request.getSaveWhTax());
+			params.put("delWhTax", request.getDelWhTax());
+			HashMap<String,Object> res = maintenanceDao.saveMtnWhTax(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitTranTypeResponse saveMtnTranType(SaveMtnAcitTranTypeRequest request) throws SQLException {
+		SaveMtnAcitTranTypeResponse response = new SaveMtnAcitTranTypeResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveTranType", request.getSaveTranType());
+			params.put("delTranType", request.getDelTranType());
+			HashMap<String,Object> res = maintenanceDao.saveMtnTranType(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcitDefAmtDtlResponse retrieveAcitDefAmt(RetrieveMtnAcitDefAmtDtlRequest request)
+			throws SQLException {
+		RetrieveMtnAcitDefAmtDtlResponse response = new RetrieveMtnAcitDefAmtDtlResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("itemNo",request.getItemNo());
+		response.setDefAmtDtl(maintenanceDao.retrieveAcitDefAmt(params));
+		return response;	
+	}
 	
 	@Override
 	public SaveMtnEmployeeResponse saveMtnEmployee(SaveMtnEmployeeRequest smer)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnEmployeeResponse response = new SaveMtnEmployeeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2590,6 +2764,99 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));
 			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitDefAmtDtlResponse saveMtnAcitDefAmt(SaveMtnAcitDefAmtDtlRequest request) throws SQLException {
+		SaveMtnAcitDefAmtDtlResponse response = new SaveMtnAcitDefAmtDtlResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefAmt", request.getSaveDefAmt());
+			params.put("delDefAmt", request.getDelDefAmt());
+			HashMap<String,Object> res = maintenanceDao.saveMtnAcitDefAmt(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcitDefAcctEntResponse retrieveAcitDefAcctEnt(RetrieveMtnAcitDefAcctEntRequest request)
+			throws SQLException {
+		RetrieveMtnAcitDefAcctEntResponse response = new RetrieveMtnAcitDefAcctEntResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("entryNo", request.getEntryNo());
+		response.setDefAccEnt(maintenanceDao.retrieveAcitDefAcctEnt(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitDefAcctEntriesResponse saveAcitDefAcctEnt(SaveMtnAcitDefAcctEntriesRequest request)
+			throws SQLException {
+		SaveMtnAcitDefAcctEntriesResponse response = new SaveMtnAcitDefAcctEntriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcctEnt", request.getSaveAcctEnt());
+			params.put("delAcctEnt", request.getDelAcctEnt());
+			HashMap<String,Object> res = maintenanceDao.saveAcitDefAcctEnt(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseTranTypeResponse saveAcseTranType(SaveMtnAcseTranTypeRequest request) throws SQLException {
+		SaveMtnAcseTranTypeResponse response = new SaveMtnAcseTranTypeResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveTranType",request.getSaveTranType());
+			params.put("delTranType" , request.getDelTranType());
+			HashMap<String,Object> res = maintenanceDao.saveAcseTranType(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDefAcctEntResponse retrieveAcseDefAcctEnt(RetrieveMtnAcseDefAcctEntRequest request)
+			throws SQLException {
+		RetrieveMtnAcseDefAcctEntResponse response = new RetrieveMtnAcseDefAcctEntResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("entryNo", request.getEntryNo());
+		response.setDefAccEnt(maintenanceDao.retrieveAcseDefAcctEnt(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseDefAcctEntResponse saveAcseDefAcctEnt(SaveMtnAcseDefAcctEntRequest request) throws SQLException {
+		SaveMtnAcseDefAcctEntResponse response = new SaveMtnAcseDefAcctEntResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcctEnt", request.getSaveAcctEnt());
+			params.put("delAcctEnt", request.getDelAcctEnt());
+			HashMap<String,Object> res = maintenanceDao.saveAcseDefAcctEnt(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
 		}
 		return response;
 	}

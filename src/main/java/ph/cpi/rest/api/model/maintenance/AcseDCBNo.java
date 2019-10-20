@@ -13,6 +13,7 @@ public class AcseDCBNo {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	
 	public Integer getDcbYear() {
 		return dcbYear;
@@ -75,10 +76,19 @@ public class AcseDCBNo {
 		this.updateDate = updateDate;
 	}
 	
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "AcseDCBNo [dcbYear=" + dcbYear + ", dcbNo=" + dcbNo + ", dcbDate=" + dcbDate + ", dcbStatus="
 				+ dcbStatus + ", remarks=" + remarks + ", autoTag=" + autoTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", okDelete=" + okDelete + "]";
 	}
+	
 }

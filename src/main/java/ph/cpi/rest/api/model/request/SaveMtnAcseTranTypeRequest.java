@@ -1,10 +1,32 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class MtnAcitTranType {
+public class SaveMtnAcseTranTypeRequest {
+	private List<acseTranType> saveTranType;
+	private List<acseTranType> delTranType;
+	public List<acseTranType> getSaveTranType() {
+		return saveTranType;
+	}
+	public void setSaveTranType(List<acseTranType> saveTranType) {
+		this.saveTranType = saveTranType;
+	}
+	public List<acseTranType> getDelTranType() {
+		return delTranType;
+	}
+	public void setDelTranType(List<acseTranType> delTranType) {
+		this.delTranType = delTranType;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnAcseTranTypeRequest [saveTranType=" + saveTranType + ", delTranType=" + delTranType + "]";
+	}
+	
+	
+}
+
+class acseTranType{
 	private String tranClass;
-	private String tranClassName;
 	private Integer tranTypeCd;
 	private String typePrefix;
 	private String tranTypeName;
@@ -14,23 +36,16 @@ public class MtnAcitTranType {
 	private String autoTag;
 	private String baeTag;
 	private String activeTag;
-	private String createUser;
-	private DateTime createDate;
-	private String updateUser;
-	private DateTime updateDate;
 	private String groupTag;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
 	public String getTranClass() {
 		return tranClass;
 	}
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
-	}
-	
-	public String getTranClassName() {
-		return tranClassName;
-	}
-	public void setTranClassName(String tranClassName) {
-		this.tranClassName = tranClassName;
 	}
 	public Integer getTranTypeCd() {
 		return tranTypeCd;
@@ -86,16 +101,22 @@ public class MtnAcitTranType {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	public String getGroupTag() {
+		return groupTag;
+	}
+	public void setGroupTag(String groupTag) {
+		this.groupTag = groupTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -104,25 +125,19 @@ public class MtnAcitTranType {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	public String getGroupTag() {
-		return groupTag;
-	}
-	public void setGroupTag(String groupTag) {
-		this.groupTag = groupTag;
 	}
 	@Override
 	public String toString() {
-		return "MtnAcitTranType [tranClass=" + tranClass + ", tranClassName=" + tranClassName + ", tranTypeCd="
-				+ tranTypeCd + ", typePrefix=" + typePrefix + ", tranTypeName=" + tranTypeName + ", defaultParticulars="
-				+ defaultParticulars + ", masterTranType=" + masterTranType + ", remarks=" + remarks + ", autoTag="
-				+ autoTag + ", baeTag=" + baeTag + ", activeTag=" + activeTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", groupTag=" + groupTag + "]";
+		return "acseTranType [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", typePrefix=" + typePrefix
+				+ ", tranTypeName=" + tranTypeName + ", defaultParticulars=" + defaultParticulars + ", masterTranType="
+				+ masterTranType + ", remarks=" + remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag
+				+ ", activeTag=" + activeTag + ", groupTag=" + groupTag + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }
