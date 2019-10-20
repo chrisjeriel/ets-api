@@ -376,6 +376,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public List<Insured> retMtnInsuredLov(HashMap<String, Object> params) throws SQLException {
+		System.out.println(params);
 		List<Insured> list = sqlSession.selectList("retMtnInsuredLov", params);
 		return list;
 	}

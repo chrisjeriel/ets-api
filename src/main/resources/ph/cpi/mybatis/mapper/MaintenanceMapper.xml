@@ -2819,9 +2819,9 @@
     						#{activeTag, jdbcType=VARCHAR},
     						#{remarks, jdbcType=VARCHAR},
     						#{createUser},
-    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						null,
     						#{updateUser},
-    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    						null
     		);
     		
     		#{outAdjId, mode=OUT, jdbcType=VARCHAR} := v_adj_id;
@@ -2846,9 +2846,9 @@
 		    							#{save.contactNo, jdbcType=VARCHAR},
 		    							#{save.emailAdd, jdbcType=VARCHAR},
 		    							#{createUser},
-			    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    						null,
 			    						#{updateUser},
-			    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    						null
 		    		            );
     		</foreach>
     	END;
