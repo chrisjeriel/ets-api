@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcseBudgetExpense {
+public class AcseBudExpMonthly {
 	private Integer budgetYear;
 	private Integer itemNo;
 	private Integer glAcctId;
@@ -16,6 +16,18 @@ public class AcseBudgetExpense {
 	private String slName;
 	private BigDecimal totalBudget;
 	private BigDecimal totalExpense;
+	private BigDecimal jan;
+	private BigDecimal feb;
+	private BigDecimal mar;
+	private BigDecimal apr;
+	private BigDecimal may;
+	private BigDecimal jun;
+	private BigDecimal jul;
+	private BigDecimal aug;
+	private BigDecimal sep;
+	private BigDecimal oct;
+	private BigDecimal nov;
+	private BigDecimal dec;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -86,6 +98,78 @@ public class AcseBudgetExpense {
 	public void setTotalExpense(BigDecimal totalExpense) {
 		this.totalExpense = totalExpense;
 	}
+	public BigDecimal getJan() {
+		return jan;
+	}
+	public void setJan(BigDecimal jan) {
+		this.jan = jan;
+	}
+	public BigDecimal getFeb() {
+		return feb;
+	}
+	public void setFeb(BigDecimal feb) {
+		this.feb = feb;
+	}
+	public BigDecimal getMar() {
+		return mar;
+	}
+	public void setMar(BigDecimal mar) {
+		this.mar = mar;
+	}
+	public BigDecimal getApr() {
+		return apr;
+	}
+	public void setApr(BigDecimal apr) {
+		this.apr = apr;
+	}
+	public BigDecimal getMay() {
+		return may;
+	}
+	public void setMay(BigDecimal may) {
+		this.may = may;
+	}
+	public BigDecimal getJun() {
+		return jun;
+	}
+	public void setJun(BigDecimal jun) {
+		this.jun = jun;
+	}
+	public BigDecimal getJul() {
+		return jul;
+	}
+	public void setJul(BigDecimal jul) {
+		this.jul = jul;
+	}
+	public BigDecimal getAug() {
+		return aug;
+	}
+	public void setAug(BigDecimal aug) {
+		this.aug = aug;
+	}
+	public BigDecimal getSep() {
+		return sep;
+	}
+	public void setSep(BigDecimal sep) {
+		this.sep = sep;
+	}
+	public BigDecimal getOct() {
+		return oct;
+	}
+	public void setOct(BigDecimal oct) {
+		this.oct = oct;
+	}
+	public BigDecimal getNov() {
+		return nov;
+	}
+	public void setNov(BigDecimal nov) {
+		this.nov = nov;
+	}
+	public BigDecimal getDec() {
+		return dec;
+	}
+	public void setDec(BigDecimal dec) {
+		this.dec = dec;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -112,10 +196,12 @@ public class AcseBudgetExpense {
 	}
 	@Override
 	public String toString() {
-		return "AcseBudgetExpense [budgetYear=" + budgetYear + ", itemNo=" + itemNo + ", glAcctId=" + glAcctId
+		return "AcseBudExpMonthly [budgetYear=" + budgetYear + ", itemNo=" + itemNo + ", glAcctId=" + glAcctId
 				+ ", glShortCd=" + glShortCd + ", glShortDesc=" + glShortDesc + ", slTypeCd=" + slTypeCd
 				+ ", slTypeName=" + slTypeName + ", slCd=" + slCd + ", slName=" + slName + ", totalBudget="
-				+ totalBudget + ", totalExpense=" + totalExpense + ", createUser=" + createUser + ", createDate="
+				+ totalBudget + ", totalExpense=" + totalExpense + ", jan=" + jan + ", feb=" + feb + ", mar=" + mar
+				+ ", apr=" + apr + ", may=" + may + ", jun=" + jun + ", jul=" + jul + ", aug=" + aug + ", sep=" + sep
+				+ ", oct=" + oct + ", nov=" + nov + ", dec=" + dec + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

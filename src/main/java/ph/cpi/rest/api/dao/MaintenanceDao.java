@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.maintenance.AcitChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcitCvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitDCBNo;
+import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcitJvSeries;
 import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
@@ -238,6 +239,7 @@ public interface MaintenanceDao {
 	public HashMap<String, Object> generateARSeries(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnDcbUser(final HashMap<String, Object> params) throws SQLException;
 	public List<Employee> retrieveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseChartAcct> retrieveMtnAcseChartAcct(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateCVSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateJVSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitArSeries> retrieveArSeries(final HashMap<String, Object> params) throws SQLException;
@@ -245,5 +247,4 @@ public interface MaintenanceDao {
 	public List<AcitJvSeries> retrieveJvSeries(final HashMap<String, Object> params) throws SQLException;
 	public AcitTranSeries maxTranNo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnEmployee(final HashMap<String, Object> params) throws SQLException;
-	
 }

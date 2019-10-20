@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
@@ -225,9 +226,33 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	}
 	
 	@Override
-	public Integer saveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
+	public HashMap<String, Object> saveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("saveAcseBudgetExpense", params);
-		return errorCode;
+		params.put("errorCode", errorCode);
+		return params;
 	}
 
+	@Override
+	public List<AcseBudExpMonthly> retrieveAcseBudExpMonthly(HashMap<String, Object> params) throws SQLException {
+		List<AcseBudExpMonthly> res = sqlSession.selectList("retrieveAcseBudExpMonthly", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveAcseBudExpMonthly(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("saveAcseBudExpMonthly",params);
+		return res;
+	}
+
+	@Override
+	public List<AcseBudExpMonthly> retrieveAcseActExpMonthly(HashMap<String, Object> params) throws SQLException {
+		List<AcseBudExpMonthly> res = sqlSession.selectList("retrieveAcseActExpMonthly", params);
+		return res;
+	}
+
+	@Override
+	public Integer printOr(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("printOr", params);
+		return res;
+	}
 }

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
@@ -32,6 +34,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
@@ -47,8 +50,10 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
@@ -63,6 +68,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
@@ -313,5 +319,33 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseBudgetExpense");
 		logger.info("SaveAcseBudgetExpenseRequest : " + sacprr.toString());
 		return acctServService.saveAcseBudgetExpense(sacprr);
+	}
+	
+	@GetMapping(path="retrieveAcseBudExpMonthly")
+	public @ResponseBody RetrieveAcseBudExpMonthlyResponse retrieveAcseBudExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseBudExpMonthly");
+		logger.info("RetrieveAcseBudExpMonthlyRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseBudExpMonthly(rabemr);
+	}
+	
+	@PostMapping(path="saveAcseBudExpMonthly")
+	public @ResponseBody SaveAcseBudExpMonthlyResponse saveAcseBudExpMonthly(@RequestBody SaveAcseBudExpMonthlyRequest sabemr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseBudExpMonthly");
+		logger.info("SaveAcseBudExpMonthlyRequest : " + sabemr.toString());
+		return acctServService.saveAcseBudExpMonthly(sabemr);
+	}
+	
+	@GetMapping(path="retrieveAcseActExpMonthly")
+	public @ResponseBody RetrieveAcseBudExpMonthlyResponse retrieveAcseActExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseActExpMonthly");
+		logger.info("RetrieveAcseBudExpMonthlyRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseActExpMonthly(rabemr);
+	}
+	
+	@PostMapping(path="printOr")
+	public @ResponseBody PrintOrResponse printOr(@RequestBody PrintOrRequest por) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printOr");
+		logger.info("PrintOrRequest : " + por.toString());
+		return acctServService.printOr(por);
 	}
 }
