@@ -120,6 +120,7 @@
 		<result property="val2"			column="VAL2"/>
 		<result property="val3"			column="VAL3"/>
 		<result property="val4"			column="VAL4"/> -->
+		<result property="editable"	column="EDITABLE"/>	
 	</resultMap>
 	
 	<select id="retrieveClaimHistory" resultMap="claimReserveMap" parameterType="java.util.Map">

@@ -125,7 +125,11 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnInsuredParams.put("corpTag",rmir.getCorpTag());
 		retrieveMtnInsuredParams.put("vatTag",rmir.getVatTag());
 		retrieveMtnInsuredParams.put("address",rmir.getAddress());
+		retrieveMtnInsuredParams.put("pagination",rmir.getPaginationRequest());
+		retrieveMtnInsuredParams.put("sort",rmir.getSortRequest());
+		retrieveMtnInsuredParams.put("search",rmir.getSearch());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
+		rmirResponse.setLength(maintenanceDao.retrieveMtnInsuredLength(retrieveMtnInsuredParams));
 		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
 		
 		return rmirResponse;
@@ -1299,6 +1303,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		CopyTreatyShareSetupResponse ctssResponse = new CopyTreatyShareSetupResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("checker", ctssr.getChecker());
+		params.put("currencyCd", ctssr.getCurrencyCd());
 		params.put("copyFromYear", ctssr.getCopyFromYear());
 		params.put("copyToYear", ctssr.getCopyToYear());
 		params.put("createUser", ctssr.getCreateUser());
