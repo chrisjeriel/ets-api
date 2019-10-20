@@ -25,9 +25,10 @@ public class UpdateAcitStatusRequest {
 class updateAcitStatusList{
 	
 	private String tranId;
-	private String  status;
+	private String status;
 	private String updateUser;
     private String tranClass;
+    private String cancelReason;
     
 	public String getTranId() {
 		return tranId;
@@ -53,11 +54,15 @@ class updateAcitStatusList{
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
 	}
-	
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	@Override
 	public String toString() {
-		return "updateAcitStatus [tranId=" + tranId + ", status=" + status + ", updateUser=" + updateUser
-				+ ", tranClass=" + tranClass + "]";
+		return "updateAcitStatusList [tranId=" + tranId + ", status=" + status + ", updateUser=" + updateUser
+				+ ", tranClass=" + tranClass + ", cancelReason=" + cancelReason + "]";
 	}
-	
 }
