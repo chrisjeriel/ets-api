@@ -1964,6 +1964,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String,Object> validate = new HashMap<String,Object>();
 		String procedureName = "";
 		Boolean proceed = false;
+		String prodReport = "";
 		
 		params.put("eomDate", samebr.getEomDate());
 		params.put("eomUser", samebr.getEomUser());
@@ -1995,31 +1996,47 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			}
 			
 			if(proceed) {
+				prodReport = "Initializing . . .";
 				wsController.onReceiveProdLog("Initializing . . .");
 				
 				if("Y".equals(samebr.getForce())) {
 					acctITDao.acitEomUpdateAcctEntDateNull(params);
 				}
 				
+				prodReport += "\nExtracting Inward Production . . .";
+				prodReport += "\nExtraction of Inward Production finished.";
+				
 				procedureName = "Extracting Inward Production";
 				wsController.onReceiveProdLog("Extracting Inward Production . . .");
 				acctITDao.acitEomExtUwprod(params);
 				wsController.onReceiveProdLog("Extraction of Inward Production finished.");
+				
+				prodReport += "\nGenerating Accounting Entries for Inward Production . . .";
+				prodReport += "\nGeneration of Accounting Entries for Inward Production finished.";
 				
 				procedureName = "Generating Accounting Entries for distribution of Premiums";
 				wsController.onReceiveProdLog("Generating Accounting Entries for Inward Production . . .");
 				acctITDao.acitEomCreateNetPremJv(params);
 				wsController.onReceiveProdLog("Generation of Accounting Entries for Inward Production finished.");
 				
+				prodReport += "\nExtracting Premium Reserve Retained . . .";
+				prodReport += "\nExtraction of Premium Reserve Retained finished.";
+				
 				procedureName = "Extracting Premium Reserve Retained";
 				wsController.onReceiveProdLog("Extracting Premium Reserve Retained . . .");
 				acctITDao.acitEomExtEomUpr(params);
 				wsController.onReceiveProdLog("Extraction of Premium Reserve Retained finished.");
 				
+				prodReport += "\nDistributing Inward Production . . .";
+				prodReport += "\nDistribution of Inward production finished.";
+				
 				procedureName = "Distributing Inward Production";
 				wsController.onReceiveProdLog("Distributing Inward Production . . .");
 				acctITDao.acitEomCreateUprJv(params);
 				wsController.onReceiveProdLog("Distribution of Inward production finished.");
+				
+				prodReport += "\nComputing Interest on Overdue Accounts . . .";
+				prodReport += "\nComputation of Interest on Overdue Accounts finished.";
 				
 				procedureName = "Computing Interest on Overdue Accounts";
 				wsController.onReceiveProdLog("Computing Interest on Overdue Accounts . . .");
@@ -2031,7 +2048,13 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				acctITDao.acitEomUpdateAcctEntDate(params);
 				
 				procedureName = "Producing Summary Report";
-				wsController.onReceiveProdLog(acctITDao.acitEomProdSummaryReport(params));
+				String summary = acctITDao.acitEomProdSummaryReport(params);
+				
+				prodReport += "\n\n" + summary;
+				wsController.onReceiveProdLog(summary);
+								
+				params.put("report", prodReport);
+				acctITDao.acitEomUpdateReport(params);
 				
 				acctITDao.commit();
 				res.setReturnCode(-1);
@@ -2056,6 +2079,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String,Object> validate = new HashMap<String,Object>();
 		String procedureName = "";
 		Boolean proceed = false;
+		String osReport = "";
 		
 		params.put("eomDate", samebr.getEomDate());
 		params.put("eomUser", samebr.getEomUser());
@@ -2087,36 +2111,55 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			}
 			
 			if(proceed) {
+				osReport = "Initializing . . .";
 				wsController.onReceiveOsLog("Initializing . . .");
 				
 				if("Y".equals(samebr.getForce())) {
 					acctITDao.acitEomUpdateAcctEntDateNull(params);
 				}
 				
+				osReport += "\nExtracting Outstanding Losses . . .";
+				osReport += "\nExtraction of Outstanding Losses finished.";
+				
 				procedureName = "Extracting Outstanding Losses";
 				wsController.onReceiveOsLog("Extracting Outstanding Losses . . .");
 				acctITDao.acitEomExtOsLoss(params);
 				wsController.onReceiveOsLog("Extraction of Outstanding Losses finished.");
+				
+				osReport += "\nGenerating Accounting Entries for Outstanding Losses . . .";
+				osReport += "\nGeneration of Accounting Entries for Outstanding Losses finished.";
 				
 				procedureName = "Generating Accounting Entries for Outstanding Losses";
 				wsController.onReceiveOsLog("Generating Accounting Entries for Outstanding Losses . . .");
 				acctITDao.acitEomCreateOsLossJv(params);
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Outstanding Losses finished.");
 				
+				osReport += "\nAllocating Paid Claims . . .";
+				osReport += "\nAllocation of Paid Claims finished.";
+				
 				procedureName = "Allocating Paid Claims";
 				wsController.onReceiveOsLog("Allocating Paid Claims . . .");
 				acctITDao.acitEomExtClmpayt(params);
 				wsController.onReceiveOsLog("Allocation of Paid Claims finished.");
+				
+				osReport += "\nGenerating Accounting Entries for Allocation of Paid Claims . . .";
+				osReport += "\nGeneration of Accounting Entries for Allocation of Paid Claims finished.";
 				
 				procedureName = "Generating Accounting Entries for Allocation of Paid Claims";
 				wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Paid Claims . . .");
 				acctITDao.acitEomCreateAllocPaidClmJv(params);
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Paid Claims finished.");
 				
+				osReport += "\nAllocating Claim Recovery and Overpayments . . .";
+				osReport += "\nAllocation of Claim Recovery and Overpayments finished.";
+				
 				procedureName = "Allocating Claim Recovery and Overpayments";
 				wsController.onReceiveOsLog("Allocating Claim Recovery and Overpayments . . .");
 				acctITDao.acitEomExtractClmRecover(params);
 				wsController.onReceiveOsLog("Allocation of Claim Recovery and Overpayments finished.");
+				
+				osReport += "\nGenerating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .";
+				osReport += "\nGeneration of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.";
 				
 				procedureName = "Generating Accounting Entries for Allocation of Claim Recovery and Overpayments";
 				wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .");
@@ -2124,8 +2167,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.");
 				wsController.onReceiveOsLog("");
 				
+				acctITDao.acitEomUpdateEomCloseTag(params);
+				acctITDao.acitEomUpdateAcctEntDate(params);
+				
 				procedureName = "Producing Summary Report";
-				wsController.onReceiveOsLog(acctITDao.acitEomBatchOsSummaryReport(params));
+				String summary = acctITDao.acitEomBatchOsSummaryReport(params);
+				
+				osReport += "\n\n" + summary;
+				wsController.onReceiveOsLog(summary);
+								
+				params.put("report", osReport);
+				acctITDao.acitEomUpdateReport(params);
 				
 				acctITDao.commit();
 				res.setReturnCode(-1);
@@ -2291,6 +2343,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	public RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
 		RetrieveAcitMonthEndUnpostedMonthsResponse res = new RetrieveAcitMonthEndUnpostedMonthsResponse();
 		res.setUnpostedMonthsList(acctITDao.retrieveAcitMonthEndUnpostedMonths());
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
+		RetrieveAcitMonthEndResponse res = new RetrieveAcitMonthEndResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("eomDate", ramer.getEomDate());
+		
+		res.setMonthEnd(acctITDao.retrieveAcitMonthEnd(params));
 		
 		return res;
 	}

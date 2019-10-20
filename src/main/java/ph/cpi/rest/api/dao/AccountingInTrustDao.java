@@ -40,6 +40,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -204,4 +205,6 @@ public interface AccountingInTrustDao {
 	public Integer acitEomPostToFiscalYear(final HashMap<String, Object> params) throws SQLException;
 	public Integer failedPosting(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException;
+	public Integer acitEomUpdateReport(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitMonthEnd> retrieveAcitMonthEnd(final HashMap<String, Object> params) throws SQLException;
 }

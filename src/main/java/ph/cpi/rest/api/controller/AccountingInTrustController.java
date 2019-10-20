@@ -811,4 +811,11 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEndUnpostedMonths");
 		return acctInTrustService.retrieveAcitMonthEndUnpostedMonths();
 	}
+	
+	@GetMapping(path="retrieveAcitMonthEnd")
+	public @ResponseBody RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEnd");
+		logger.info("RetrieveAcitMonthEndRequest : " + ramer.toString());
+		return acctInTrustService.retrieveAcitMonthEnd(ramer);
+	}
 }
