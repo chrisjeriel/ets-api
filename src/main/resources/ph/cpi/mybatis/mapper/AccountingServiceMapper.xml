@@ -598,6 +598,7 @@
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePrqTrans" id="acsePrqTransMap">
 		<result property="reqId" 		column="REQ_ID"/>
 		<result property="itemNo" 		column="ITEM_NO"/>
+		<result property="tranTypeCd" 	column="TRAN_TYPE_CD"/>
 		<result property="itemName" 	column="ITEM_NAME"/>
 		<result property="glAcctId" 	column="GL_ACCT_ID"/>
 		<result property="refNo" 		column="REF_NO"/>
@@ -633,6 +634,7 @@
 				ACSE_PRQ_TRANS_PKG.save_acse_prq_trans(
 					#{save.reqId,jdbcType=INTEGER},
 					#{save.itemNo,jdbcType=INTEGER},
+					#{save.tranTypeCd,jdbcType=INTEGER},
 					#{save.itemName,jdbcType=VARCHAR},
 					#{save.glAcctId,jdbcType=INTEGER},
 					#{save.refNo,jdbcType=VARCHAR},
