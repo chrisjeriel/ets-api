@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseWhTaxHistory;
 import ph.cpi.rest.api.model.maintenance.AcseWhtax;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -287,4 +288,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnSL(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseWhTaxHistory> retrieveAcseWhTaxHist(final HashMap<String, Object> params) throws SQLException;
 }

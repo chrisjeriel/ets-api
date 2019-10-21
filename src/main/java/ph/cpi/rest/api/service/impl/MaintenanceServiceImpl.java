@@ -3047,4 +3047,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseWhTaxHistResponse retrieveAcseWhTaxHist(RetrieveMtnAcseWhTaxHistRequest request)
+			throws SQLException {
+		RetrieveMtnAcseWhTaxHistResponse response = new RetrieveMtnAcseWhTaxHistResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("whTaxId", request.getWhTaxId());
+		params.put("histNo", request.getHistNo());
+		params.put("taxCd", request.getTaxCd());
+		response.setWhTaxHist(maintenanceDao.retrieveAcseWhTaxHist(params));
+		return response;
+	}
 }

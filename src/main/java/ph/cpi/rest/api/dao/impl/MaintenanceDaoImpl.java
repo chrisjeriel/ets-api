@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseWhTaxHistory;
 import ph.cpi.rest.api.model.maintenance.AcseWhtax;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -1362,5 +1363,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer errorCode = sqlSession.update("saveAcseAmtDtl",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcseWhTaxHistory> retrieveAcseWhTaxHist(HashMap<String, Object> params) throws SQLException {
+		List<AcseWhTaxHistory> list = sqlSession.selectList("retrieveAcseWhTaxHist", params);
+		return list;
 	}
 }

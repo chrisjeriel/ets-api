@@ -1340,4 +1340,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseDefAmtDtlRequest : " + request.toString());
 		return maintenanceService.saveAcseAmtDtl(request);
 	}
+	
+	@GetMapping(path="retrieveAcseWhTaxHist")
+	public @ResponseBody RetrieveMtnAcseWhTaxHistResponse retrieveAcseWhTaxHist(RetrieveMtnAcseWhTaxHistRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/retrieveAcseWhTaxHist");
+		logger.info("RetrieveMtnAcseWhTaxHistRequest : " + request.toString());
+		return maintenanceService.retrieveAcseWhTaxHist(request);
+	}
 }
