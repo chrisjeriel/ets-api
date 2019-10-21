@@ -184,5 +184,15 @@ public interface MaintenanceService {
 	public SaveMtnAcseTranTypeResponse saveAcseTranType(SaveMtnAcseTranTypeRequest request) throws SQLException;
 	public RetrieveMtnAcseDefAcctEntResponse retrieveAcseDefAcctEnt(RetrieveMtnAcseDefAcctEntRequest request) throws SQLException;
 	public SaveMtnAcseDefAcctEntResponse saveAcseDefAcctEnt(SaveMtnAcseDefAcctEntRequest request)throws SQLException;
-	
+	public SaveMtnGenTaxResponse saveMtnGenTax (SaveMtnGenTaxRequest smgt) throws SQLException;
+	public RetrieveMtnGenTaxHistResponse retrieveMtnGenTaxHist(RetrieveMtnGenTaxHistRequest rmgthr) throws SQLException;
+	public SaveMtnGenTaxHistResponse saveMtnGenTaxHist (SaveMtnGenTaxHistRequest smgth) throws SQLException;
+	public SaveMtnGenTaxRangeResponse saveMtnGenTaxRange (SaveMtnGenTaxRangeRequest smgtr) throws SQLException;
+	public RetrieveMtnGenTaxRangeResponse retrieveMtnGenTaxRange(RetrieveMtnGenTaxRangeRequest rmgtrr) throws SQLException;
+	public SaveMtnInvSecTypeResponse saveMtnInvSecType (SaveMtnInvSecTypeRequest smist) throws SQLException;
+	public RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(RetrieveMtnPayeeClassRequest rmpcr) throws SQLException;
+	public SaveMtnPayeeClassResponse saveMtnPayeeClass (SaveMtnPayeeClassRequest smpc) throws SQLException;
+	public SaveMtnSLTypeResponse saveMtnSLType (SaveMtnSLTypeRequest smst) throws SQLException;
+	public SaveMtnSLResponse saveMtnSL (SaveMtnSLRequest sms) throws SQLException;
+
 }

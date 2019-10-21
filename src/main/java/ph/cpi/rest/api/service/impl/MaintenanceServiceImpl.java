@@ -2860,4 +2860,173 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public SaveMtnGenTaxResponse saveMtnGenTax(SaveMtnGenTaxRequest smgt)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnGenTaxResponse response = new SaveMtnGenTaxResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smgt.getSaveList());
+		params.put("delList", smgt.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnGenTax(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnGenTaxHistResponse retrieveMtnGenTaxHist(
+			RetrieveMtnGenTaxHistRequest rmgthr) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnGenTaxHistResponse response = new RetrieveMtnGenTaxHistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("taxId", rmgthr.getTaxId());
+	    response.setGenTaxList(maintenanceDao.retrieveMtnGenTaxHist(params));
+		logger.info("RetrieveMtnGenTaxHistResponse : " + response);
+		return response;
+	}
+
+	@Override
+	public SaveMtnGenTaxHistResponse saveMtnGenTaxHist(
+			SaveMtnGenTaxHistRequest smgth) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnGenTaxHistResponse response = new SaveMtnGenTaxHistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smgth.getSaveList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnGenTaxHist(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnGenTaxRangeResponse saveMtnGenTaxRange(
+			SaveMtnGenTaxRangeRequest smgtr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnGenTaxRangeResponse response = new SaveMtnGenTaxRangeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smgtr.getSaveList());
+		params.put("delList", smgtr.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnGenTaxRange(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnGenTaxRangeResponse retrieveMtnGenTaxRange(
+			RetrieveMtnGenTaxRangeRequest rmgtrr) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnGenTaxRangeResponse response = new RetrieveMtnGenTaxRangeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("taxId", rmgtrr.getTaxId());
+	    response.setGenTaxListRange(maintenanceDao.retrieveMtnGenTaxRange(params));
+		logger.info("RetrieveMtnGenTaxRangeResponse : " + response);
+		return response;
+	}
+
+	@Override
+	public SaveMtnInvSecTypeResponse saveMtnInvSecType(
+			SaveMtnInvSecTypeRequest smist) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnInvSecTypeResponse response = new SaveMtnInvSecTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smist.getSaveList());
+		params.put("delList", smist.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnInvSecType(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(
+			RetrieveMtnPayeeClassRequest rmpcr) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnPayeeClassResponse response = new RetrieveMtnPayeeClassResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("payeeClassCd", rmpcr.getPayeeClassCd());
+		params.put("activeTag", rmpcr.getActiveTag());
+	    response.setPayeeClassList(maintenanceDao.retrieveMtnPayeeClass(params));
+		logger.info("RetrieveMtnPayeeClassResponse : " + response);
+		return response;
+	}
+
+	@Override
+	public SaveMtnPayeeClassResponse saveMtnPayeeClass(
+			SaveMtnPayeeClassRequest smpc) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnPayeeClassResponse response = new SaveMtnPayeeClassResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smpc.getSaveList());
+		params.put("delList", smpc.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnPayeeClass(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnSLTypeResponse saveMtnSLType(SaveMtnSLTypeRequest smst)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnSLTypeResponse response = new SaveMtnSLTypeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smst.getSaveList());
+		params.put("delList", smst.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnSLType(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnSLResponse saveMtnSL(SaveMtnSLRequest sms)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnSLResponse response = new SaveMtnSLResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", sms.getSaveList());
+		params.put("delList", sms.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnSL(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+	}
 }

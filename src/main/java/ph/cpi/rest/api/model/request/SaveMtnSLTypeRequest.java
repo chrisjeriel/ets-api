@@ -1,29 +1,49 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class SLType {
-	private Integer slTypeCd;
+public class SaveMtnSLTypeRequest {
+
+	private List<SaveSLType> saveList;
+	private List<SaveSLType> delList;
+	
+	public List<SaveSLType> getSaveList() {
+		return saveList;
+	}
+	public void setSaveList(List<SaveSLType> saveList) {
+		this.saveList = saveList;
+	}
+	public List<SaveSLType> getDelList() {
+		return delList;
+	}
+	public void setDelList(List<SaveSLType> delList) {
+		this.delList = delList;
+	}
+	
+	@Override
+	public String toString() {
+		return "SaveMtnSLTypeRequest [saveList=" + saveList + ", delList="
+				+ delList + "]";
+	}
+	
+}
+
+class SaveSLType{
+
+	private String slTypeCd;
 	private String slTypeName;
 	private String remarks;
 	private String autoTag;
 	private String activeTag;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
+	private String updateDate;
 	
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
-	public Integer getSlTypeCd() {
+	public String getSlTypeCd() {
 		return slTypeCd;
 	}
-	public void setSlTypeCd(Integer slTypeCd) {
+	public void setSlTypeCd(String slTypeCd) {
 		this.slTypeCd = slTypeCd;
 	}
 	public String getSlTypeName() {
@@ -56,10 +76,10 @@ public class SLType {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -68,19 +88,19 @@ public class SLType {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	
 	@Override
 	public String toString() {
-		return "SLType [slTypeCd=" + slTypeCd + ", slTypeName=" + slTypeName
-				+ ", remarks=" + remarks + ", autoTag=" + autoTag
+		return "SaveSLType [slTypeCd=" + slTypeCd + ", slTypeName="
+				+ slTypeName + ", remarks=" + remarks + ", autoTag=" + autoTag
 				+ ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

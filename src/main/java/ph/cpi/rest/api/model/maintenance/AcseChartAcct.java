@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.maintenance;
 import org.joda.time.DateTime;
 
 public class AcseChartAcct {
+	
 	private Integer glAcctId;
 	private Integer glAcctCategory;
 	private String glAcctCategoryDesc;
@@ -22,6 +23,7 @@ public class AcseChartAcct {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+
 	public Integer getGlAcctId() {
 		return glAcctId;
 	}
@@ -138,12 +140,18 @@ public class AcseChartAcct {
 	}
 	@Override
 	public String toString() {
-		return "AcseChartAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctCategoryDesc="
-				+ glAcctCategoryDesc + ", glAcctControl=" + glAcctControl + ", glAcctSub1=" + glAcctSub1
-				+ ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3=" + glAcctSub3 + ", shortDesc=" + shortDesc
-				+ ", longDesc=" + longDesc + ", shortCode=" + shortCode + ", slTypeCd=" + slTypeCd + ", slTypeName="
-				+ slTypeName + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "AcseChartAcct [glAcctId=" + glAcctId + ", glAcctCategory="
+				+ glAcctCategory + ", glAcctCategoryDesc=" + glAcctCategoryDesc
+				+ ", glAcctControl=" + glAcctControl + ", glAcctSub1="
+				+ glAcctSub1 + ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3="
+				+ glAcctSub3 + ", shortDesc=" + shortDesc + ", longDesc="
+				+ longDesc + ", shortCode=" + shortCode + ", slTypeCd="
+				+ slTypeCd + ", slTypeName=" + slTypeName + ", drCrTag="
+				+ drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
+				+ ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ "]";
 	}
+
+	
 }

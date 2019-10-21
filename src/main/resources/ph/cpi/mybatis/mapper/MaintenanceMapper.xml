@@ -3670,6 +3670,7 @@
 		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"			column="UPDATE_USER" />
 		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    	<result property="okDelete"				column="OK_DELETE" />
     </resultMap>
     
     <select id="retrieveMtnInvtSecType" resultMap="invtSecTypeMap">
@@ -3718,15 +3719,16 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.SLType" id="SLTypeMap">
-		<result property="slTypeCd" column="SL_TYPE_CD"/>
-		<result property="slTypeName" column="SL_TYPE_NAME"/>
-		<result property="remarks" column="REMARKS"/>
-		<result property="autoTag" column="AUTO_TAG"/>
-		<result property="activeTag" column="ACTIVE_TAG"/>
-		<result property="createUser" column="CREATE_USER"/>
-		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" column="UPDATE_USER"/>
-		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="slTypeCd" 	column="SL_TYPE_CD"/>
+		<result property="slTypeName" 	column="SL_TYPE_NAME"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="autoTag" 		column="AUTO_TAG"/>
+		<result property="activeTag" 	column="ACTIVE_TAG"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete" 	column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnSL" resultMap="SLMap">
@@ -4001,6 +4003,8 @@
 		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"			column="UPDATE_USER" />
 		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    	<result property="defaultGLBankAcctCd"  column="SHORT_CODE" />
+    	<result property="defaultGLBankAcctName" column="ACCOUNT_NAME" />
     </resultMap>
     
     <select id="retMtnGenTax" resultMap="genTaxMap" parameterType="java.util.Map">
@@ -4114,6 +4118,9 @@
 		<result property="updateUser"			column="UPDATE_USER" />
 		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 	    <result property="activeTag"			column="ACTIVE_TAG" />
+	    <result property="okDelete"				column="OK_DELETE" />
+	    <result property="genderDesc"		    column="GENDER_DESC" />
+	    <result property="civilStatusDesc"		column="CIVIL_STATUS_DESC" />
 	</resultMap>
 	
 	 <select id="retrieveMtnEmployee" resultMap="employeeMap" parameterType="java.util.Map">
@@ -4379,7 +4386,7 @@
 		END;
 	</update>
 
-     <update id="saveMtnEmployee" >
+     <update id="saveMtnEmployee">
 		BEGIN
 			<foreach collection="delList" item="item">
 				MTN_EMPLOYEE_PKG.del_mtn_employee(#{item.employeeId, jdbcType=VARCHAR},
@@ -4402,7 +4409,7 @@
 						#{item.supervisorName, jdbcType=VARCHAR},
 						CAST(to_timestamp(#{item.birthDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{item.civilStatus, jdbcType=VARCHAR},
-						#{item.presentAdd, jdbcType=VARCHAR},
+						#{item.presentAdd, jdbcType=VARCHAR}, 
 						#{item.permanentAdd, jdbcType=VARCHAR},
 						#{item.tin, jdbcType=VARCHAR},
 						#{item.sssNo, jdbcType=VARCHAR},
@@ -4420,6 +4427,7 @@
 			</foreach>
 		END;
 	</update>
+
 
 	<update id="saveMtnTranType" >
 		BEGIN
@@ -4619,4 +4627,203 @@
 		END;
 	</update>
 	
+	
+	<update id="saveMtnGenTax">
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_GENTAX_PKG.del_mtn_gentax(#{item.taxId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				MTN_GENTAX_PKG.save_mtn_gentax(#{item.taxId, jdbcType=VARCHAR},
+						#{item.taxCd,  jdbcType=VARCHAR},
+						#{item.taxName, jdbcType=VARCHAR},
+						#{item.chargeType, jdbcType=VARCHAR},
+						#{item.taxRate, jdbcType=VARCHAR},
+						#{item.amount, jdbcType=VARCHAR},
+						#{item.glAcctId, jdbcType=VARCHAR},
+						#{item.fixedTag, jdbcType=VARCHAR},
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR},				
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.GeneralTaxes" id="genTaxHistMap">
+		<result property="taxId"				column="TAX_ID" />
+		<result property="histNo"				column="HIST_NO" />
+		<result property="taxCd"				column="TAX_CD" />
+		<result property="taxName"				column="TAX_NAME" />
+		<result property="chargeType"			column="CHARGE_TYPE" />
+		<result property="taxRate"				column="RATE" />
+		<result property="amount"				column="AMOUNT" />
+		<result property="defaultAcitGl"		column="DEFAULT_ACIT_GL" />
+		<result property="defaultAcseGl"		column="DEFAULT_ACSE_GL" />
+		<result property="fixedTag"				column="FIXED_TAG" />
+		<result property="activeTag"			column="ACTIVE_TAG" />
+		<result property="remarks"				column="REMARKS" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="effDateTo"			column="EFF_DATE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="effDateFrom"			column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+    	<result property="defaultGLBankAcctCd"  column="SHORT_CODE" />
+    </resultMap>
+    
+    <select id="retrieveMtnGenTaxHist" resultMap="genTaxHistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_GENTAX_HIST_PKG.ret_mtn_gentax_hist(#{taxId, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="saveMtnGenTaxHist">
+		BEGIN
+			<foreach collection="saveList" item="item">
+				MTN_GENTAX_HIST_PKG.save_mtn_gentax_hist(#{item.taxId, jdbcType=VARCHAR},
+						#{item.histNo,  jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR},
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnGenTaxRange">
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_GENTAX_PKG.del_mtn_gentax_range(#{item.taxId, jdbcType=VARCHAR},
+											        #{item.rangeNo, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_GENTAX_PKG.save_mtn_gentax_range(#{item.taxId, jdbcType=VARCHAR},
+						#{item.rangeNo,  jdbcType=VARCHAR},
+						#{item.minVal, jdbcType=VARCHAR},
+						#{item.maxVal, jdbcType=VARCHAR},
+						#{item.rate, jdbcType=VARCHAR},
+						#{item.amount, jdbcType=VARCHAR});
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.GeneralTaxes" id="genTaxRangeMap">
+		<result property="taxId"				column="TAX_ID" />
+		<result property="rangeNo"				column="RANGE_NO" />
+		<result property="minVal"				column="MIN_VALUE" />
+		<result property="maxVal"				column="MAX_VALUE" />
+		<result property="taxRate"				column="RATE" />
+		<result property="amount"				column="AMOUNT" />
+    </resultMap>
+    
+    <select id="retrieveMtnGenTaxRange" resultMap="genTaxRangeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_GENTAX_PKG.ret_mtn_gentax_range(#{taxId, jdbcType=VARCHAR}))
+	</select>
+	
+    <update id="saveMtnInvSecType" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_INVSECURITY_PKG.del_mtn_invsectype(#{item.invtSecCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_INVSECURITY_PKG.save_mtn_invsectype(#{item.invtSecCd, jdbcType=VARCHAR},
+						#{item.secDesc,  jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR}, 	
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PayeeClass" id="payeeClassMap">
+    	<result property="payeeClassCd"			column="PAYEE_CLASS_CD" />
+		<result property="payeeClassName"		column="PAYEE_CLASS_NAME" />
+		<result property="remarks"				column="REMARKS" />
+		<result property="masterPayeeClass"		column="MASTER_PAYEE_CLASS" />
+		<result property="slTag"				column="SL_TAG" />
+		<result property="slTypeCd"				column="SL_TYPE_CD" />
+		<result property="slTypeName"		    column="SL_TYPE_NAME" />
+		<result property="autoTag"				column="AUTO_TAG" />
+		<result property="activeTag"			column="ACTIVE_TAG" />
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    	<result property="okDelete"				column="OK_DELETE" />
+    </resultMap>
+    
+    <select id="retrieveMtnPayeeClass" resultMap="payeeClassMap">
+		SELECT * FROM TABLE(MTN_PAYEE_CLASS_PKG.ret_mtn_payee_class(#{payeeClassCd, jdbcType=VARCHAR},
+													  			   #{activeTag, jdbcType=VARCHAR},
+													  			   '','','',''))
+	</select>
+	
+	 <update id="saveMtnPayeeClass" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_PAYEE_CLASS_PKG.del_mtn_payee_class(#{item.payeeClassCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_PAYEE_CLASS_PKG.save_mtn_payee_class(#{item.payeeClassCd, jdbcType=VARCHAR},
+						#{item.payeeClassName,  jdbcType=VARCHAR},
+						#{item.remarks, jdbcType=VARCHAR}, 
+						#{item.masterPayeeClass, jdbcType=VARCHAR}, 
+						#{item.slTag, jdbcType=VARCHAR}, 
+						#{item.slTypeCd, jdbcType=VARCHAR}, 
+						#{item.autoTag, jdbcType=VARCHAR}, 
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	 <update id="saveMtnSLType" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_SL_TYPE_PKG.del_mtn_sl_type(#{item.slTypeCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_SL_TYPE_PKG.save_mtn_sl_type(#{item.slTypeCd, jdbcType=VARCHAR},
+						#{item.slTypeName,  jdbcType=VARCHAR},
+						#{item.remarks,  jdbcType=VARCHAR},
+						#{item.autoTag, jdbcType=VARCHAR}, 
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveMtnSL" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_SL_PKG.del_mtn_sl(#{item.slTypeCd, jdbcType=VARCHAR},
+									  #{item.slCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_SL_PKG.save_mtn_sl(#{item.slTypeCd, jdbcType=VARCHAR},
+						#{item.slCd,  jdbcType=VARCHAR},
+						#{item.slName,  jdbcType=VARCHAR},
+						#{item.remarks,  jdbcType=VARCHAR},
+						#{item.autoTag, jdbcType=VARCHAR}, 
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+
 </mapper>

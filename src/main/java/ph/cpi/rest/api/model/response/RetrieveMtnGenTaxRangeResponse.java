@@ -4,18 +4,19 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
+import ph.cpi.rest.api.model.maintenance.GeneralTaxes;
 
-public class RetrieveMtnAcseChartAcctResponse {
-
-	private List<AcseChartAcct> list;
+public class RetrieveMtnGenTaxRangeResponse {
+	
+	private List<GeneralTaxes> genTaxListRange;
 	private PaginationResponse paginationResponse = new PaginationResponse();
 	private SortResponse sortResponse = new SortResponse();
-	public List<AcseChartAcct> getList() {
-		return list;
+	
+	public List<GeneralTaxes> getGenTaxListRange() {
+		return genTaxListRange;
 	}
-	public void setList(List<AcseChartAcct> list) {
-		this.list = list;
+	public void setGenTaxListRange(List<GeneralTaxes> genTaxListRange) {
+		this.genTaxListRange = genTaxListRange;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -29,9 +30,13 @@ public class RetrieveMtnAcseChartAcctResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcseChartAcctResponse [list=" + list + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnGenTaxRangeResponse [genTaxListRange="
+				+ genTaxListRange + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
+	
+
 }

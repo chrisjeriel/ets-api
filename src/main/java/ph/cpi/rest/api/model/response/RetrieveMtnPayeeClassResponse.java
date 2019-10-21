@@ -4,18 +4,19 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
+import ph.cpi.rest.api.model.maintenance.PayeeClass;
 
-public class RetrieveMtnAcseChartAcctResponse {
-
-	private List<AcseChartAcct> list;
-	private PaginationResponse paginationResponse = new PaginationResponse();
-	private SortResponse sortResponse = new SortResponse();
-	public List<AcseChartAcct> getList() {
-		return list;
+public class RetrieveMtnPayeeClassResponse {
+	
+	List<PayeeClass> payeeClassList;
+	private PaginationResponse paginationResponse;
+	private SortResponse sortResponse;
+	
+	public List<PayeeClass> getPayeeClassList() {
+		return payeeClassList;
 	}
-	public void setList(List<AcseChartAcct> list) {
-		this.list = list;
+	public void setPayeeClassList(List<PayeeClass> payeeClassList) {
+		this.payeeClassList = payeeClassList;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -29,9 +30,12 @@ public class RetrieveMtnAcseChartAcctResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcseChartAcctResponse [list=" + list + ", paginationResponse=" + paginationResponse
+		return "RetrieveMtnPayeeClassResponse [payeeClassList="
+				+ payeeClassList + ", paginationResponse=" + paginationResponse
 				+ ", sortResponse=" + sortResponse + "]";
 	}
+	
 }

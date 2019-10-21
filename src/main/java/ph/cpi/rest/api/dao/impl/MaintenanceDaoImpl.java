@@ -75,6 +75,7 @@ import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
 import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PayeeCeding;
+import ph.cpi.rest.api.model.maintenance.PayeeClass;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
 import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
@@ -1119,6 +1120,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
+	public Integer saveMtnEmployee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnEmployee",params);
+		return code;
+	}
+	
+	@Override
 	public List<AcseChartAcct> retrieveMtnAcseChartAcct(HashMap<String, Object> params) throws SQLException {
 		List<AcseChartAcct> res = sqlSession.selectList("retrieveMtnAcseChartAcct", params);
 		return res;
@@ -1143,6 +1152,21 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcitArSeries> res = sqlSession.selectList("retrieveArSeries", params);
 		return res;
 	}
+	@Override
+	public Integer saveMtnGenTax(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnGenTax",params);
+		return code;
+	}
+
+	@Override
+	public List<GeneralTaxes> retrieveMtnGenTaxHist(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxHist", params);
+		return res;
+	}
 
 	@Override
 	public List<AcitCvSeries> retrieveCvSeries(HashMap<String, Object> params) throws SQLException {
@@ -1159,6 +1183,30 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public AcitTranSeries maxTranNo(HashMap<String, Object> params) throws SQLException {
 		AcitTranSeries res = sqlSession.selectOne("maxTranNo",params);
+		return res;
+	}
+
+	@Override
+	public Integer saveMtnGenTaxHist(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnGenTaxHist",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnGenTaxRange(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnGenTaxRange",params);
+		return code;
+	}
+
+	@Override
+	public List<GeneralTaxes> retrieveMtnGenTaxRange(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxRange", params);
 		return res;
 	}
 
@@ -1208,6 +1256,22 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
+	public Integer saveMtnInvSecType(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnInvSecType",params);
+		return code;
+	}
+
+	@Override
+	public List<PayeeClass> retrieveMtnPayeeClass(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<PayeeClass> res = sqlSession.selectList("retrieveMtnPayeeClass", params);
+		return res;
+	}
+
+	@Override
 	public List<AcseWhtax> retrieveAcseWHTax(HashMap<String, Object> params) throws SQLException {
 		List<AcseWhtax> list = sqlSession.selectList("retrieveAcseWHTax",params);
 		return list;
@@ -1232,11 +1296,28 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcitDefaultAmtDtl> list = sqlSession.selectList("retrieveAcitDefAmt", params);
 		return list;
 	}
-	
+
 	@Override
-	public Integer saveMtnEmployee(HashMap<String, Object> params)
+	public Integer saveMtnPayeeClass(HashMap<String, Object> params)
 			throws SQLException {
-		Integer code = sqlSession.update("saveMtnEmployee",params);
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnPayeeClass",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnSLType(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnSLType",params);
+		return code;
+	}
+
+	@Override
+	public Integer saveMtnSL(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer code = sqlSession.update("saveMtnSL",params);
 		return code;
 	}
 

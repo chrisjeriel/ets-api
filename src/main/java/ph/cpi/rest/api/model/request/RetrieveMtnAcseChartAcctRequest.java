@@ -4,6 +4,7 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnAcseChartAcctRequest {
+
 	private String glAcctId;
 	private String glAcctCategory;
 	private String glAcctControl;
@@ -16,12 +17,14 @@ public class RetrieveMtnAcseChartAcctRequest {
 	private String activeTag;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
+
 	public String getGlAcctId() {
 		return glAcctId;
 	}
 	public void setGlAcctId(String glAcctId) {
 		this.glAcctId = glAcctId;
 	}
+
 	public String getGlAcctCategory() {
 		return glAcctCategory;
 	}
@@ -70,6 +73,7 @@ public class RetrieveMtnAcseChartAcctRequest {
 	public void setPostTag(String postTag) {
 		this.postTag = postTag;
 	}
+
 	public String getActiveTag() {
 		return activeTag;
 	}
@@ -88,6 +92,7 @@ public class RetrieveMtnAcseChartAcctRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+
 	@Override
 	public String toString() {
 		return "RetrieveMtnAcseChartAcctRequest [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory
@@ -96,4 +101,5 @@ public class RetrieveMtnAcseChartAcctRequest {
 				+ postTag + ", activeTag=" + activeTag + ", paginationRequest=" + paginationRequest + ", sortRequest="
 				+ sortRequest + "]";
 	}
+
 }
