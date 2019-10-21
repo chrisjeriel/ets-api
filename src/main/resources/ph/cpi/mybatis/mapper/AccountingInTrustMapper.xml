@@ -3957,8 +3957,15 @@
 		<result property="shortCode"			column="SHORT_CODE"/>
 		<result property="shortDesc"			column="SHORT_DESC"/>
 		<result property="longDesc"				column="LONG_DESC"/>
+		<result property="begDebitAmt"			column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"			column="BEG_CREDIT_AMT"/>
+		<result property="totalDebitAmt"		column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt"		column="TOTAL_CREDIT_AMT"/>
 		<result property="transDebitBal"		column="TRANS_DEBIT_BAL"/>
 		<result property="transCreditBal"		column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"			column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"			column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"			column="END_CREDIT_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveAcitMonthEndTrialBal" resultMap="acitEomMonthlyTotals" parameterType="java.util.Map">
