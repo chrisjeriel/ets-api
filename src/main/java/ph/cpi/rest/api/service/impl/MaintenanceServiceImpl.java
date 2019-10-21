@@ -3019,4 +3019,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException {
+		RetrieveMtnAcseDefAmtResponse response = new RetrieveMtnAcseDefAmtResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("itemNo", request.getItemNo());
+		response.setDefAmtDtl(maintenanceDao.retrieveAcseAmtDtl(params));
+		return response;
+	}
 }

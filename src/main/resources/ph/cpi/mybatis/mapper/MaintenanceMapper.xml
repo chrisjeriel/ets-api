@@ -4825,5 +4825,27 @@
 			</foreach>
 		END;
 	</update>
-
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl" id="acseAmtDtlMap">
+    	<result property="tranClass" 			column="TRANCLASS"/>
+		<result property="tranTypeCd" 			column="TRANTYPECD"/>
+		<result property="itemNo" 				column="ITEMNO"/>
+		<result property="itemText" 			column="ITEMTEXT"/>
+		<result property="defaultGl" 			column="DEFAULTGL"/>
+		<result property="shortCode" 			column="SHORTCODE"/>
+		<result property="acctAmtTag" 			column="ACCTAMTTAG"/>
+		<result property="signTag" 				column="SIGNTAG"/>
+		<result property="remarks" 				column="REMARKS"/>
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+    
+    <select id="retrieveAcseAmtDtl" resultMap="acseAmtDtlMap">
+		SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_amt_dtl(#{tranClass},
+													  		   #{tranTypeCd},
+													  		   #{itemNo, jdbcType=VARCHAR},
+													  			   '','','',''))
+	</select>
 </mapper>

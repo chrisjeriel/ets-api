@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
@@ -284,6 +285,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnPayeeClass(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSLType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSL(final HashMap<String, Object> params) throws SQLException;
-
-	
+	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
 }
