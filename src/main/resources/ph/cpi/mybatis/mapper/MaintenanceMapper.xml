@@ -3990,6 +3990,7 @@
 	<resultMap type="ph.cpi.rest.api.model.maintenance.GeneralTaxes" id="genTaxMap">
 		<result property="taxId"				column="TAX_ID" />
 		<result property="taxCd"				column="TAX_CD" />
+		<result property="birRlfType"			column="BIR_RLF_TYPE" />
 		<result property="taxName"				column="TAX_NAME" />
 		<result property="chargeType"			column="CHARGE_TYPE" />
 		<result property="taxRate"				column="RATE" />

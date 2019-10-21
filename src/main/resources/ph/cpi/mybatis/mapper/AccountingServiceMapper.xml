@@ -667,7 +667,7 @@
 					#{save.taxSeqno, jdbcType=INTEGER},
 					#{save.taxCd},
 					#{save.genType},
-					#{save.payor},
+					#{save.payor, jdbcType=VARCHAR},
 					#{save.baseAmt},
 					#{save.taxAmt},
 					#{save.createUser},
