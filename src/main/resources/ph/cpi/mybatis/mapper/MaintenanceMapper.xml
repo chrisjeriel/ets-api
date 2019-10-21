@@ -4342,7 +4342,7 @@
 		<result property="taxCd" column="TAX_CD"/>
 		<result property="taxName" column="TAX_NAME"/>
 		<result property="taxType" column="TAX_TYPE"/>
-		<result property="rate" column="RATE"/>
+		<result property="taxRate" column="RATE"/>
 		<result property="defaultAcitGl" column="DEFAULT_ACIT_GL"/>
 		<result property="defaultAcseGl" column="DEFAULT_ACSE_GL"/>
 		<result property="creditableTag" column="CREDITABLE_TAG"/>
@@ -4827,14 +4827,14 @@
 	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl" id="acseAmtDtlMap">
-    	<result property="tranClass" 			column="TRANCLASS"/>
-		<result property="tranTypeCd" 			column="TRANTYPECD"/>
-		<result property="itemNo" 				column="ITEMNO"/>
-		<result property="itemText" 			column="ITEMTEXT"/>
-		<result property="defaultGl" 			column="DEFAULTGL"/>
-		<result property="shortCode" 			column="SHORTCODE"/>
-		<result property="acctAmtTag" 			column="ACCTAMTTAG"/>
-		<result property="signTag" 				column="SIGNTAG"/>
+    	<result property="tranClass" 			column="TRAN_CLASS"/>
+		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
+		<result property="itemNo" 				column="ITEM_NO"/>
+		<result property="itemText" 			column="ITEM_TEXT"/>
+		<result property="defaultGl" 			column="DEFAULT_GL"/>
+		<result property="shortCode" 			column="SHORT_CODE"/>
+		<result property="acctAmtTag" 			column="ACCT_AMT_TAG"/>
+		<result property="signTag" 				column="SIGN_TAG"/>
 		<result property="remarks" 				column="REMARKS"/>
 		<result property="createUser"			column="CREATE_USER" />
 		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -4848,4 +4848,27 @@
 													  		   #{itemNo, jdbcType=VARCHAR},
 													  			   '','','',''))
 	</select>
+	
+	<update id="saveAcseAmtDtl" >
+		BEGIN
+			<foreach collection="delDefAmt" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_amt_dtl(#{del.tranClass},#{del.tranTypeCd},#{del.itemNo});
+			</foreach>
+			
+			<foreach collection="saveDefAmt" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_amt_dtl(#{save.tranClass},
+						#{save.tranTypeCd},
+						#{save.itemNo, jdbcType=VARCHAR},
+						#{save.itemText},
+						#{save.defaultGl},
+						#{save.acctAmtTag},
+						#{save.signTag},
+						#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser},
+						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

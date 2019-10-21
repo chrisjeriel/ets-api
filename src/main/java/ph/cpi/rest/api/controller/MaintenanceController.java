@@ -1333,4 +1333,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcseDefAmtRequest : " + request.toString());
 		return maintenanceService.retrieveAcseAmtDtl(request);
 	}
+	
+	@PostMapping(path="saveAcseAmtDtl")
+	public @ResponseBody SaveMtnAcseDefAmtDtlResponse saveAcseAmtDtl(@RequestBody SaveMtnAcseDefAmtDtlRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseAmtDtl");
+		logger.info("SaveMtnAcseDefAmtDtlRequest : " + request.toString());
+		return maintenanceService.saveAcseAmtDtl(request);
+	}
 }

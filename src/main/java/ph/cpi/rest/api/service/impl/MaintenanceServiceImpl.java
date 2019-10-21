@@ -3030,4 +3030,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setDefAmtDtl(maintenanceDao.retrieveAcseAmtDtl(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcseDefAmtDtlResponse saveAcseAmtDtl(SaveMtnAcseDefAmtDtlRequest request) throws SQLException {
+		SaveMtnAcseDefAmtDtlResponse response = new SaveMtnAcseDefAmtDtlResponse();
+		try {
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefAmt", request.getSaveDefAmt());
+			params.put("delDefAmt", request.getDelDefAmt());
+			HashMap<String,Object> res = maintenanceDao.saveAcseAmtDtl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

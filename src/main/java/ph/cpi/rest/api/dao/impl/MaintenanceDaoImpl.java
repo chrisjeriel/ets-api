@@ -1356,4 +1356,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcseDefaultAmtDtl> list = sqlSession.selectList("retrieveAcseAmtDtl", params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcseAmtDtl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseAmtDtl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

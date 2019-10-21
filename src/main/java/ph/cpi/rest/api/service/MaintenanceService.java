@@ -195,4 +195,5 @@ public interface MaintenanceService {
 	public SaveMtnSLTypeResponse saveMtnSLType (SaveMtnSLTypeRequest smst) throws SQLException;
 	public SaveMtnSLResponse saveMtnSL (SaveMtnSLRequest sms) throws SQLException;
 	public RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException;
+	public SaveMtnAcseDefAmtDtlResponse saveAcseAmtDtl(SaveMtnAcseDefAmtDtlRequest request) throws SQLException;
 }
