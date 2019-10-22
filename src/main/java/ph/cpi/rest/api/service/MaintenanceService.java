@@ -197,4 +197,5 @@ public interface MaintenanceService {
 	public RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException;
 	public SaveMtnAcseDefAmtDtlResponse saveAcseAmtDtl(SaveMtnAcseDefAmtDtlRequest request) throws SQLException;
 	public RetrieveMtnAcseWhTaxHistResponse retrieveAcseWhTaxHist(RetrieveMtnAcseWhTaxHistRequest request) throws SQLException;
+	public SaveMtnAcseWhTaxHistResponse saveAcseWhTaxHist(SaveMtnAcseWhTaxHistRequest request) throws SQLException;
 }

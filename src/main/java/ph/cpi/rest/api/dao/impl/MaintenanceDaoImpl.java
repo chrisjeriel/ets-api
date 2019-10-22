@@ -1370,4 +1370,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcseWhTaxHistory> list = sqlSession.selectList("retrieveAcseWhTaxHist", params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcseWhTaxHist(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseWhTaxHist",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

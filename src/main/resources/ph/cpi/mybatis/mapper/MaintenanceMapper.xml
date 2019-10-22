@@ -4878,6 +4878,7 @@
 		<result property="taxCd" 				column="TAX_CD"/>
 		<result property="taxName" 				column="TAX_NAME"/>
 		<result property="taxType" 				column="TAX_TYPE"/>
+		<result property="taxTypeDesc" 			column="TAX_TYPE_DESC"/>
 		<result property="rate" 				column="RATE"/>
 		<result property="defaultAcitGl" 		column="DEFAULT_ACIT_GL"/>
 		<result property="defaultAcseGl" 		column="DEFAULT_ACSE_GL"/>
@@ -4894,4 +4895,28 @@
     <select id="retrieveAcseWhTaxHist" resultMap="acseWhTaxHistMap">
 		SELECT * FROM TABLE(MTN_WHTAX_PKG.ret_whtax_hist(#{whTaxId}, #{histNo, jdbcType=VARCHAR}, #{taxCd, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveAcseWhTaxHist" >
+		BEGIN
+			
+			<foreach collection="saveWhTaxHist" item="save">
+				MTN_WHTAX_PKG.save_whtax_hist(#{save.whtaxId},
+						#{save.histNo},
+						#{save.taxCd},
+						#{save.taxName},
+						#{save.taxType},
+						#{save.rate},
+						#{save.defaultAcitGl, jdbcType=VARCHAR},
+						#{save.defaultAcseGl, jdbcType=VARCHAR},
+						#{save.creditableTag},
+						#{save.fixedTag},
+						#{save.activeTag},
+						#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser},
+						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

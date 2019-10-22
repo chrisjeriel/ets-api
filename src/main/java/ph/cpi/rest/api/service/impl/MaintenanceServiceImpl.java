@@ -3059,4 +3059,20 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setWhTaxHist(maintenanceDao.retrieveAcseWhTaxHist(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcseWhTaxHistResponse saveAcseWhTaxHist(SaveMtnAcseWhTaxHistRequest request) throws SQLException {
+		SaveMtnAcseWhTaxHistResponse response = new SaveMtnAcseWhTaxHistResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveWhTaxHist", request.getSaveWhTaxHist());
+			HashMap<String,Object> res = maintenanceDao.saveAcseWhTaxHist(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
