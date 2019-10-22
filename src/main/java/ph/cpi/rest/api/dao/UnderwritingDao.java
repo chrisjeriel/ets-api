@@ -123,4 +123,5 @@ public interface UnderwritingDao {
 	public BookingDate retrieveValidBookingDate(final HashMap<String, Object> params) throws SQLException;
 	
 	public Integer updatePolOpenCoverStatus(final HashMap<String, Object> params) throws SQLException;
+	public String validateForDist(final HashMap<String, Object> params) throws SQLException;
 }

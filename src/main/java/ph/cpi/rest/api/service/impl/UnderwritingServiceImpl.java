@@ -1,18 +1,17 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
@@ -86,6 +85,7 @@ import ph.cpi.rest.api.model.request.UpdatePolGenInfoSpoilageRequest;
 import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
+import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
@@ -157,6 +157,7 @@ import ph.cpi.rest.api.model.response.UpdatePolGenInfoSpoilageResponse;
 import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolOpenCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
+import ph.cpi.rest.api.model.underwriting.BatchDistribution;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
@@ -1697,6 +1698,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("distDateTo", rpdlr.getDistDateTo());
 		params.put("acctDateFrom", rpdlr.getAcctDateFrom());
 		params.put("acctDateTo", rpdlr.getAcctDateTo());
+		params.put("statusArr", rpdlr.getStatusArr());
 		response.setPolDistList(underwritingDao.retrievePolDistList(params));
 		
 		return response;
@@ -1833,6 +1835,28 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}catch(Exception e){
 			response.setReturnCode(0);
 		}
+		return response;
+	}
+
+	@Override
+	public BatchDistributionResponse batchDistribution(BatchDistributionRequest uphcsr) throws SQLException {
+		BatchDistributionResponse response = new BatchDistributionResponse();
+		for (BatchDistribution b : uphcsr.getDistList()) {
+			try{
+				HashMap<String, Object> params = new HashMap<String, Object>();
+				params.put("riskDistId",b.getRiskDistId());
+				params.put("altNo",b.getAltNo());
+				params.put("updateUser",uphcsr.getUser());
+				b.setMessage(underwritingDao.validateForDist(params));
+				if(b.getMessage().equals("Distributed")){
+					underwritingDao.distributeRiskDist(params);
+				}
+				response.getUpdateResult().add(b);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		logger.info("BatchDistributionResponse : "+ response.toString());
 		return response;
 	}
 }

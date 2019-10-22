@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
@@ -18,6 +20,14 @@ public class RetrievePolDistListRequest {
 	private String acctDateTo;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
+	
+	private List<String> statusArr;
+	public List<String> getStatusArr() {
+		return statusArr;
+	}
+	public void setStatusArr(List<String> statusArr) {
+		this.statusArr = statusArr;
+	}
 	public Integer getDistId() {
 		return distId;
 	}
@@ -108,7 +118,7 @@ public class RetrievePolDistListRequest {
 				+ ", policyNo=" + policyNo + ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc
 				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", distDateFrom=" + distDateFrom
 				+ ", distDateTo=" + distDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo=" + acctDateTo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", statusArr="
+				+ statusArr + "]";
 	}
-	
 }
