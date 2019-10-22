@@ -3694,11 +3694,13 @@
 		<result property="slTypeName" column="SL_TYPE_NAME"/>
 		<result property="drCrTag" column="DR_CR_TAG"/>
 		<result property="postTag" column="POST_TAG"/>
+		<result property="remarks"  column="REMARKS"/>
 		<result property="activeTag" column="ACTIVE_TAG"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="okDelete" column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnAcitChartAcct" resultMap="AcitChartAcct">
@@ -4167,10 +4169,12 @@
 		<result property="drCrTag" column="DR_CR_TAG"/>
 		<result property="postTag" column="POST_TAG"/>
 		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="remarks"  column="REMARKS"/>
 		<result property="createUser" column="CREATE_USER"/>
 		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="okDelete" column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMtnAcseChartAcct" resultMap="AcseChartAcctMap">
@@ -4911,6 +4915,36 @@
 						#{save.creditableTag},
 						#{save.fixedTag},
 						#{save.activeTag},
+						#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser},
+						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveAcitChartAcc" >
+		BEGIN
+			<foreach collection="deleteAcitChartAcct" item="del">
+				MTN_ACIT_CHART_ACCT_PKG.del_chart_acct(#{del.glAcctId});
+			</foreach>
+			
+			<foreach collection="saveAcitChartAcct" item="save">
+				MTN_ACIT_CHART_ACCT_PKG.save_chrt_acct(
+						#{save.glAcctId, jdbcType=VARCHAR}, 
+						#{save.glAcctCategory}, 
+						#{save.glAcctControl}, 
+						#{save.glAcctSub1}, 
+						#{save.glAcctSub2}, 
+						#{save.glAcctSub3}, 
+						#{save.shortDesc}, 
+						#{save.longDesc}, 
+						#{save.shortCode}, 
+						#{save.slTypeCd, jdbcType=VARCHAR}, 
+						#{save.drCrTag}, 
+						#{save.postTag}, 
+						#{save.activeTag}, 
 						#{save.remarks, jdbcType=VARCHAR},
 						#{save.createUser},
 						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),

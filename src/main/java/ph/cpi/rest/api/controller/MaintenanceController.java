@@ -1354,4 +1354,12 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseWhTaxHistRequest : " + request.toString());
 		return maintenanceService.saveAcseWhTaxHist(request);
 	}
+	
+	@PostMapping(path="saveAcitChartAcct")
+	public @ResponseBody SaveMtnAcitChartAcctResponse saveAcitChartAcct(@RequestBody SaveMtnAcitChartAcctRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcitChartAcct");
+		logger.info("SaveMtnAcitChartAcctRequest : " + request.toString());
+		return maintenanceService.saveAcitChartAcct(request);
+	}
+	
 }
