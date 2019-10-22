@@ -1,6 +1,5 @@
 package ph.cpi.rest.api.model.request;
 
-import java.util.Comparator;
 import java.util.List;
 
 import ph.cpi.rest.api.model.underwriting.BatchDistribution;

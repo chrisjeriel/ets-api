@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
+import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
@@ -86,6 +87,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
+import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
@@ -158,6 +160,7 @@ import ph.cpi.rest.api.model.response.UpdatePolHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolOpenCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.model.underwriting.BatchDistribution;
+import ph.cpi.rest.api.model.underwriting.BatchPost;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
@@ -1850,6 +1853,45 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				b.setMessage(underwritingDao.validateForDist(params));
 				if(b.getMessage().equals("Distributed")){
 					underwritingDao.distributeRiskDist(params);
+				}
+				response.getUpdateResult().add(b);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		logger.info("BatchDistributionResponse : "+ response.toString());
+		return response;
+	}
+
+	@Override
+	public BatchPostingResponse batchPosting(BatchPostingRequest uphcsr) throws SQLException {
+		BatchPostingResponse response = new BatchPostingResponse();
+		for (BatchPost b : uphcsr.getDistList()) {
+			try{
+				HashMap<String, Object> params = new HashMap<String, Object>();
+				
+//				private Integer riskDistId;
+//				private Integer policyId;
+//				private String policyNo;
+//				private String distId;
+//				private String createDate;
+//				private Integer altNo;
+//				private String message;
+				
+				params.put("riskDistId",b.getRiskDistId());
+				params.put("policyId", b.getPolicyId());
+				params.put("distId", b.getDistId());
+				params.put("altNo",b.getAltNo());
+				params.put("user",uphcsr.getUser());
+				
+				if(underwritingDao.retrieveInProgCoins(params).size() != 0){
+					b.setMessage("Unable to post the distribution to final. Some Co-Insurance policies are still In Progress.");
+				}else if(underwritingDao.retrieveMissingCoins(params).size() != 0){
+					b.setMessage("Unable to post the distribution to final. Co-Insurance policies must have alterations.");
+				};
+				if(b.getMessage()==null){
+					b.setMessage("Posted");
+					underwritingDao.postDistribution(params);
 				}
 				response.getUpdateResult().add(b);
 			}catch(Exception e){

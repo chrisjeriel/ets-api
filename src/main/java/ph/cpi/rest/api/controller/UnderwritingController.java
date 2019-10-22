@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
+import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
@@ -88,6 +89,7 @@ import ph.cpi.rest.api.model.request.UpdatePolHoldCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
+import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
@@ -700,5 +702,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/batchDistribution");
 		logger.info("batchDistributionRequest : " + uphcsr.toString());
 		return underwritingService.batchDistribution(uphcsr);
+	}
+	
+	@PostMapping(path="batchPosting")
+	public @ResponseBody BatchPostingResponse batchPosting(@RequestBody BatchPostingRequest uphcsr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/BatchPosting");
+		logger.info("BatchPostingRequest : " + uphcsr.toString());
+		return underwritingService.batchPosting(uphcsr);
 	}
 }
