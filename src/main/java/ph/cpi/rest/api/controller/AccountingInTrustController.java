@@ -825,4 +825,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveQSOADtlRequest : " + rqdr.toString());
 		return acctInTrustService.retrieveQSOADtl(rqdr);
 	}
+	
+	@PostMapping(path="saveAcitProfComm")
+	public @ResponseBody SaveAcitProfCommResponse saveAcitProfComm(@RequestBody SaveAcitProfCommRequest sapcr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitProfComm");
+		logger.info("SaveAcitProfCommRequest : " + sapcr.toString());
+		return acctInTrustService.saveAcitProfComm(sapcr);
+	}
 }
