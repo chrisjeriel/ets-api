@@ -2371,7 +2371,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				acctITDao.saveQSOA(params);
 				res.setReturnCode(-1);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setReturnCode(0);
@@ -2390,6 +2389,34 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("qsoaId", rqdr.getQsoaId());
 		
 		res.setQsoaDtlList(acctITDao.retrieveQSOADtl(params));
+		res.setQsoaDtlExcludeList(acctITDao.retrieveQSOADtlExclude(params));
+		res.setQsoaAcctReceivableList(acctITDao.retrieveQSOAAcctReceivable(params));
+		res.setQsoaRemittanceList(acctITDao.retrieveQSOARemittance(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException {
+		SaveAcitProfCommResponse res = new SaveAcitProfCommResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("cedingId", sapcr.getCedingId());
+		params.put("gnrtDate", sapcr.getGnrtDate());
+		params.put("createUser", sapcr.getCreateUser());
+		params.put("createDate", sapcr.getCreateDate());
+		params.put("updateUser", sapcr.getUpdateUser());
+		params.put("updateDate", sapcr.getUpdateDate());
+		
+		try {
+			acctITDao.saveAcitProfComm(params);
+			res.setReturnCode(-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Profit Commission Generation failed."));
+		}
 		
 		return res;
 	}

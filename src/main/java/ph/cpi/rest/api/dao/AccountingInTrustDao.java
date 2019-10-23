@@ -53,7 +53,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.QSOAAcctReceivable;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
+import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
+import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.maintenance.UserId;
@@ -211,4 +214,8 @@ public interface AccountingInTrustDao {
 	public String validateQsoaQtr(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQSOA(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOADtl> retrieveQSOADtl(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOADtlExclude> retrieveQSOADtlExclude(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitProfComm(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOAAcctReceivable> retrieveQSOAAcctReceivable(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOARemittance> retrieveQSOARemittance(final HashMap<String, Object> params) throws SQLException;
 }
