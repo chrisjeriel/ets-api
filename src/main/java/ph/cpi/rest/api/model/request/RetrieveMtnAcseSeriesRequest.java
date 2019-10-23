@@ -5,6 +5,9 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnAcseSeriesRequest {
 	private String tranClass;
+	private Integer tranFrom;
+	private Integer tranTo;
+	private Integer tranYear;
 	private String orType;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
@@ -14,7 +17,24 @@ public class RetrieveMtnAcseSeriesRequest {
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
 	}
-	
+	public Integer getTranFrom() {
+		return tranFrom;
+	}
+	public void setTranFrom(Integer tranFrom) {
+		this.tranFrom = tranFrom;
+	}
+	public Integer getTranTo() {
+		return tranTo;
+	}
+	public void setTranTo(Integer tranTo) {
+		this.tranTo = tranTo;
+	}
+	public Integer getTranYear() {
+		return tranYear;
+	}
+	public void setTranYear(Integer tranYear) {
+		this.tranYear = tranYear;
+	}
 	public String getOrType() {
 		return orType;
 	}
@@ -35,8 +55,9 @@ public class RetrieveMtnAcseSeriesRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcseSeriesRequest [tranClass=" + tranClass + ", orType=" + orType + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnAcseSeriesRequest [tranClass=" + tranClass + ", tranFrom=" + tranFrom + ", tranTo=" + tranTo
+				+ ", tranYear=" + tranYear + ", orType=" + orType + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

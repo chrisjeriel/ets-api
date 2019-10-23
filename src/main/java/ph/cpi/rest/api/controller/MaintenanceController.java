@@ -1250,11 +1250,11 @@ public class MaintenanceController {
 		return maintenanceService.retrieveAcseJVSeries(request);
 	}
 	
-	@GetMapping(path="acseMaxTranNo")
-	public @ResponseBody RetrieveMtnAcseSeriesResponse acseMaxTranNo(RetrieveMtnAcseSeriesRequest request) throws SQLException {
-		logger.info("GET: /api/maintenance-service/acseMaxTranNo");
+	@GetMapping(path="retrieveAcseAllowGenerate")
+	public @ResponseBody RetrieveMtnAcseSeriesResponse retrieveAcseAllowGenerate(RetrieveMtnAcseSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveAcseAllowGenerate");
 		logger.info("RetrieveMtnAcseSeriesRequest : " + request.toString());
-		return maintenanceService.acseMaxTranNo(request);
+		return maintenanceService.retrieveAcseAllowGenerate(request);
 	}
 	
 	@GetMapping(path="retrieveAcseWHTax")

@@ -4269,6 +4269,14 @@
         SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_series(#{tranClass},#{tranFrom},#{tranTo},#{year,jdbcType=VARCHAR}))
      </select>
      
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseTranSeries" id="acseSeriesMap">
+        <result property="allowGenerate" column="OK_GENERATE"/>
+     </resultMap>
+     
+     <select id="acseMaxTranNo" resultMap="acseSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_series(#{tranClass},#{tranFrom},#{tranTo},#{tranYear,jdbcType=VARCHAR},#{orType,jdbcType=VARCHAR}))
+     </select>
+     
      <update id="generateAcseCVSeries" >
 		BEGIN
 			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_cv(#{cvFrom},#{cvTo},#{cvYear},#{createUser},

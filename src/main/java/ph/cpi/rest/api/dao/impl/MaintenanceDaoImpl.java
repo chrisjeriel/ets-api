@@ -1246,7 +1246,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
-	public AcseTranSeries acseMaxTranNo(HashMap<String, Object> params) throws SQLException {
+	public AcseTranSeries retrieveAcseAllowGenerate(HashMap<String, Object> params) throws SQLException {
 		AcseTranSeries res = sqlSession.selectOne("acseMaxTranNo",params);
 		return res;
 	}
