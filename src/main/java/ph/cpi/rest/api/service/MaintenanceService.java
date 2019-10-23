@@ -165,7 +165,7 @@ public interface MaintenanceService {
 	public RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException;
 	public RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException;
 	public RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException;
-	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcitSeriesResponse retrieveAcitAllowGenerate(RetrieveMtnAcitSeriesRequest request) throws SQLException;
 	public GenerateAcseCVSeriesResponse generateAcseCVSeries(GenerateAcseCVSeriesRequest request) throws SQLException;
 	public GenerateAcseJVSeriesResponse generateAcseJVSeries(GenerateAcseJVSeriesRequest request) throws SQLException;
 	public GenerateAcseORSeriesResponse generateAcseORSeries(GenerateAcseORSeriesRequest request) throws SQLException;

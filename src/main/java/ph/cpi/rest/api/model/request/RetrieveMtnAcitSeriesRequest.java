@@ -5,6 +5,9 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnAcitSeriesRequest {
 	private String tranClass;
+	private Integer tranFrom;
+	private Integer tranTo;
+	private Integer year;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	public String getTranClass() {
@@ -12,6 +15,24 @@ public class RetrieveMtnAcitSeriesRequest {
 	}
 	public void setTranClass(String tranClass) {
 		this.tranClass = tranClass;
+	}
+	public Integer getTranFrom() {
+		return tranFrom;
+	}
+	public void setTranFrom(Integer tranFrom) {
+		this.tranFrom = tranFrom;
+	}
+	public Integer getTranTo() {
+		return tranTo;
+	}
+	public void setTranTo(Integer tranTo) {
+		this.tranTo = tranTo;
+	}
+	public Integer getYear() {
+		return year;
+	}
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -27,8 +48,9 @@ public class RetrieveMtnAcitSeriesRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcitSeriesRequest [tranClass=" + tranClass + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnAcitSeriesRequest [tranClass=" + tranClass + ", tranFrom=" + tranFrom + ", tranTo=" + tranTo
+				+ ", year=" + year + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
+	
 	
 }

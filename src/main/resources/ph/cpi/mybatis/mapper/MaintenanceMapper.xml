@@ -4262,11 +4262,11 @@
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.AcitTranSeries" id="tranSeriesMap">
-        <result property="TranNo" column="TRAN_NO"/>
+        <result property="allowGenerate" column="OK_GENERATE"/>
      </resultMap>
      
-     <select id="maxTranNo" resultMap="tranSeriesMap" parameterType="java.util.Map">
-        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_max_series(#{tranClass}))
+     <select id="allowGenerate" resultMap="tranSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_series(#{tranClass},#{tranFrom},#{tranTo},#{year,jdbcType=VARCHAR}))
      </select>
      
      <update id="generateAcseCVSeries" >

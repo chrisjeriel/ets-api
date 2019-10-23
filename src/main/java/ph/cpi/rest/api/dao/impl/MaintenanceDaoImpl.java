@@ -1180,8 +1180,8 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
-	public AcitTranSeries maxTranNo(HashMap<String, Object> params) throws SQLException {
-		AcitTranSeries res = sqlSession.selectOne("maxTranNo",params);
+	public AcitTranSeries retrieveAcitAllowGenerate(HashMap<String, Object> params) throws SQLException {
+		AcitTranSeries res = sqlSession.selectOne("allowGenerate",params);
 		return res;
 	}
 
