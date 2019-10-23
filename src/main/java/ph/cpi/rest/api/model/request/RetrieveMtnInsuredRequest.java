@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnInsuredRequest {
@@ -13,8 +14,9 @@ public class RetrieveMtnInsuredRequest {
 	private String corpTag;
 	private String vatTag;
 	private String address;
-	private PaginationRequest paginationRequest;
+	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
+	private SearchRequest search;
 	public String getInsuredId() {
 		return insuredId;
 	}
@@ -75,12 +77,18 @@ public class RetrieveMtnInsuredRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public SearchRequest getSearch() {
+		return search;
+	}
+	public void setSearch(SearchRequest search) {
+		this.search = search;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveMtnInsuredRequest [insuredId=" + insuredId + ", insuredName=" + insuredName + ", insuredAbbr="
 				+ insuredAbbr + ", activeTag=" + activeTag + ", insuredType=" + insuredType + ", corpTag=" + corpTag
 				+ ", vatTag=" + vatTag + ", address=" + address + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+				+ ", sortRequest=" + sortRequest + ", search=" + search + "]";
 	}
 	
 }

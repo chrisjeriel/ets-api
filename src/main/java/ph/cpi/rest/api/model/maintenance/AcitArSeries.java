@@ -12,6 +12,7 @@ public class AcitArSeries {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+
 	public Integer getMinArNo() {
 		return minArNo;
 	}
@@ -24,6 +25,7 @@ public class AcitArSeries {
 	public void setMaxArNo(Integer maxArNo) {
 		this.maxArNo = maxArNo;
 	}
+
 	public Integer getArNo() {
 		return arNo;
 	}
@@ -72,4 +74,5 @@ public class AcitArSeries {
 				+ ", usedTag=" + usedTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

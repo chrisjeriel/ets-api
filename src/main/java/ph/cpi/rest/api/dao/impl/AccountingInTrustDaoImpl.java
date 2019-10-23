@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
@@ -34,6 +36,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitInwPolPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -49,6 +53,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -61,6 +66,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
@@ -741,12 +747,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public Integer saveAcitQSOA(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("saveAcitQSOA", params);
-		return errorCode;
-	}
-
-	@Override
 	public List<AcitInwPolPayts> retrieveAcitInwPolPayts(HashMap<String, Object> params) throws SQLException {
 		List<AcitInwPolPayts> list = sqlSession.selectList("retrieveAcitInwPolPayts",params);
 		return list;
@@ -756,16 +756,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitCancelledTransactions> retrieveCancelledTrans(HashMap<String, Object> params) throws SQLException {
 		List<AcitCancelledTransactions>  list = sqlSession.selectList("retrieveCancelledTrans",params);
 		return list;
-	}
-	
-	@Override
-	public Integer acitEomCloseAcitTrans(HashMap<String, Object> params) throws SQLException {
-		return sqlSession.update("acitEomCloseAcitTrans", params);
-	}
-
-	@Override
-	public Integer acitEomDeleteAcitTrans(HashMap<String, Object> params) throws SQLException {
-		return sqlSession.update("acitEomDeleteAcitTrans", params);
 	}
 
 	@Override
@@ -806,6 +796,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return (String) params.get("extractSummary");
 	}
 
+	@Override
+	public void startTransaction() {
+		txStat = txManager.getTransaction(txDef);
+	}
+	
 	@Override
 	public void commit() {
 		txManager.commit(txStat);
@@ -858,5 +853,153 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("extractSummary", "");
 		sqlSession.selectOne("acitEomBatchOsSummaryReport", params);
 		return (String) params.get("extractSummary");
+	}
+
+	@Override
+	public HashMap<String, Object> validateEomStat(HashMap<String, Object> params) throws SQLException {
+		params.put("option", "");
+		params.put("message", "");
+		sqlSession.update("validateEomStat", params);
+		
+		return params;
+	}
+
+	@Override
+	public Integer acitEomUpdateEomCloseTag(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomUpdateEomCloseTag", params);
+	}
+
+	@Override
+	public Integer acitEomUpdateAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomUpdateAcctEntDate", params);
+	}
+
+	@Override
+	public Integer acitEomUpdateAcctEntDateNull(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("acitEomUpdateAcctEntDateNull", params);
+	}
+
+	@Override
+	public String validateTbDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTbDate", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public Integer acitEomDeleteMonthlyTotalsBackup() throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomDeleteMonthlyTotalsBackup");
+	}
+
+	@Override
+	public Integer acitEomInsertMonthlyTotalsBackup(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomInsertMonthlyTotalsBackup", params);
+	}
+
+	@Override
+	public Integer acitEomDeleteMonthlyTotals(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomDeleteMonthlyTotals", params);
+	}
+
+	@Override
+	public Integer acitEomCloseTrans(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCloseTrans", params);
+	}
+
+	@Override
+	public Integer acitEomDeleteTrans(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomDeleteTrans", params);
+	}
+
+	@Override
+	public Integer acitEomInsertMonthlyTotals(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomInsertMonthlyTotals", params);
+	}
+
+	@Override
+	public List<AcitEomMonthlyTotals> retrieveAcitMonthEndTrialBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitEomMonthlyTotals> res = sqlSession.selectList("retrieveAcitMonthEndTrialBal",params);
+		return res;
+	}
+
+	@Override
+	public String validatePrevMonth(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validatePrevMonth", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public String validateEqualTb(HashMap<String, Object> params) throws SQLException {
+		params.put("equalTb", "");
+		sqlSession.selectOne("validateEqualTb", params);
+		
+		return (String) params.get("equalTb");
+	}
+
+	@Override
+	public Integer acitEomPostToFiscalYear(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomPostToFiscalYear", params);
+	}
+
+	@Override
+	public Integer failedPosting(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("failedPosting", params);
+	}
+
+	@Override
+	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException {
+		List<AcitEomUnpostedMonth> res = sqlSession.selectList("retrieveAcitMonthEndUnpostedMonths");
+		return res;
+	}
+
+	@Override
+	public String validateCurrMonth(HashMap<String, Object> params) throws SQLException {
+		params.put("validateCurr", "");
+		sqlSession.selectOne("validateCurrMonth", params);
+		
+		return (String) params.get("validateCurr");
+	}
+
+	@Override
+	public Integer acitEomUpdateReport(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomUpdateReport", params);
+	}
+
+	@Override
+	public List<AcitMonthEnd> retrieveAcitMonthEnd(HashMap<String, Object> params) throws SQLException {
+		List<AcitMonthEnd> res = sqlSession.selectList("retrieveAcitMonthEnd", params);
+		return res;
+	}
+
+	@Override
+	public String validateQsoaQtr(HashMap<String, Object> params) throws SQLException {
+		params.put("validateQsoaQtr", "");
+		sqlSession.selectOne("validateQsoaQtr", params);
+		
+		return (String) params.get("validateQsoaQtr");
+	}
+
+	@Override
+	public Integer saveQSOA(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveQSOA", params);
+	}
+
+	@Override
+	public List<QSOADtl> retrieveQSOADtl(HashMap<String, Object> params) throws SQLException {
+		List<QSOADtl> res = sqlSession.selectList("retrieveQSOADtl", params);
+		return res;
 	}
 }

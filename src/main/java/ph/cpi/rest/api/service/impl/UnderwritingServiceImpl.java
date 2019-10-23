@@ -858,13 +858,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			spdResponse.setReturnCode((Integer) res.get("errorCode"));
 			spdResponse.setPolicyId((Integer) res.get("policyId"));
 			spdResponse.setPolicyNo((String) res.get("policyNo"));
+			
+			//spdResponse.setReturnCode(-1);
 		} catch (SQLException e) {
 			spdResponse.setReturnCode(0);
 			spdResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			e.printStackTrace();
 		}
 		
-		
+		logger.info(spdResponse.toString());
 		return spdResponse;
 	}
 	

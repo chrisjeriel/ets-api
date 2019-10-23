@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class CopyTreatyShareSetupRequest {
 
+	private String currencyCd;
 	private Integer checker;
 	private Integer copyFromYear;
 	private Integer copyToYear;
@@ -10,6 +11,12 @@ public class CopyTreatyShareSetupRequest {
 	private String updateUser;
 	private String updateDate;
 	
+	public String getCurrencyCd() {
+		return currencyCd;
+	}
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
+	}
 	public Integer getChecker() {
 		return checker;
 	}
@@ -54,8 +61,8 @@ public class CopyTreatyShareSetupRequest {
 	}
 	@Override
 	public String toString() {
-		return "CopyTreatyShareSetupRequest [checker=" + checker + ", copyFromYear=" + copyFromYear + ", copyToYear="
-				+ copyToYear + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "CopyTreatyShareSetupRequest [currencyCd=" + currencyCd + ", checker=" + checker + ", copyFromYear="
+				+ copyFromYear + ", copyToYear=" + copyToYear + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

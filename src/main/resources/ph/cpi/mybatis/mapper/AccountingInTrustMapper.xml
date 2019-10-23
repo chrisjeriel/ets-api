@@ -470,6 +470,7 @@
 		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="adjEntryTag" column="ADJ_ENTRY_TAG"/>
 		<association property="jvListings" resultMap="jvMap"></association>
 	</resultMap>
 	
@@ -637,7 +638,7 @@
 												  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{tranIdJv,jdbcType=VARCHAR}, #{jvYear,jdbcType=VARCHAR},
 												  #{jvNo,jdbcType=VARCHAR}, CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{jvStatus}, #{jvTranTypeCd}, 
-												  #{autoTag}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{autoTag}, #{adjEntryTag}, #{refnoTranId,jdbcType=INTEGER}, CAST(to_timestamp(#{refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 												  #{particulars}, #{currCd}, #{currRate}, #{jvAmt}, #{localAmt}, #{allocTag,jdbcType=VARCHAR}, #{allocTranId,jdbcType=VARCHAR}, 
 												  #{preparedBy,jdbcType=VARCHAR}, 
 												  CAST(to_timestamp(#{preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{approvedBy,jdbcType=VARCHAR}, 
@@ -1481,13 +1482,12 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOA" id="qsoaMap">
 		<result property="qsoaId" 			column="QSOA_ID"/>
+		<result property="currCd" 			column="CURR_CD"/>
 		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
 		<result property="quarterEnding" 	column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="qsoaStatus" 		column="QSOA_STATUS"/>
 		<result property="qsoaStatusDesc" 	column="QSOA_STATUS_DESC"/>
-		<result property="refNoTranId" 		column="REF_NO_TRAN_ID"/>
-		<result property="refNoDate" 		column="REF_NO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="totalDebitAmt" 	column="TOTAL_DEBIT_AMT"/>
 		<result property="totalCreditAmt" 	column="TOTAL_CREDIT_AMT"/>
 		<result property="createUser" 		column="CREATE_USER"/>
@@ -1498,7 +1498,7 @@
 	
 	<select id="retrieveQSOAList" resultMap="qsoaMap">
 		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_comp_qsoa_list(#{qsoaId, jdbcType=INTEGER},
-															 #{cedingId, jdbcType=VARCHAR},
+															 #{cedingId, jdbcType=INTEGER},
 															 #{fromQtr, jdbcType=INTEGER},
 															 #{fromYear, jdbcType=INTEGER},
 															 #{toQtr, jdbcType=INTEGER},
@@ -1689,7 +1689,7 @@
     
     <resultMap type="ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist" id="servFeeDistMap">
 		<result property="reqId" 		column="REQ_ID"/>
-		<result property="sfeeMm" 		column="SFEE_MM"/>
+		<result property="sfeeQtr" 		column="SFEE_QTR"/>
 		<result property="sfeeYear" 	column="SFEE_YEAR"/>
 		<result property="groupId" 		column="GROUP_ID"/>
 		<result property="groupName" 	column="GROUP_NAME"/>
@@ -1703,6 +1703,9 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quarter" 		column="QUARTER"/>
+		<result property="premWrtnCede" column="PREM_WRTN_CEDE"/>
+		<result property="netPremWrtn" 	column="NET_PREM_WRTN"/>
 		
 		<result property="cedingId" 	column="CEDING_ID"/>
 		<result property="cedingName" 	column="CEDING_NAME"/>
@@ -2881,7 +2884,8 @@
     				#{u.tranId},
 					#{u.status, jdbcType=VARCHAR},
 				    #{u.updateUser ,jdbcType=VARCHAR},
-				    #{u.tranClass, jdbcType=VARCHAR}
+				    #{u.tranClass, jdbcType=VARCHAR},
+				    #{u.cancelReason, jdbcType=VARCHAR}
     			);
     		</foreach>
     	END;
@@ -3648,7 +3652,7 @@
 																	#{save.itemNo,jdbcType=INTEGER},
 																	#{save.invtId},
 																	#{save.bank},
-																	#{save.bankAcct},
+																	#{save.bankAcct,jdbcType=INTEGER},
 																	#{save.currCd},
 																	#{save.currRate},
 																	#{save.invtAmt},
@@ -3670,20 +3674,6 @@
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{currCd}))
 	</select>
-	
-	<update id="saveAcitQSOA" parameterType="java.util.Map" statementType="CALLABLE">
-		BEGIN
-			ACIT_QSOA_PKG.gnrt_comp_qsoa(
-				#{cedingId, jdbcType=VARCHAR},
-				#{gnrtQtr, jdbcType=INTEGER},
-				#{gnrtYear, jdbcType=INTEGER},
-				#{createUser, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{updateUser, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-			);
-		END;
-	</update>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitInwPolPayts" id="AcitInwPolPaytsMap">
 		<result property="tranNo" column="TRAN_NO" />
@@ -3854,5 +3844,219 @@
 																														 #{eomUser, jdbcType=VARCHAR})
 		}
 	</update>
+	
+	<update id="validateEomStat" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.validate_eom_stat(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												 #{eomUser, jdbcType=VARCHAR},
+												 #{process, jdbcType=VARCHAR},
+												 #{option, mode=OUT, jdbcType=VARCHAR},
+												 #{message, mode=OUT, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateEomCloseTag" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_eom_close_tag(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													#{process, jdbcType=VARCHAR},
+													#{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateAcctEntDate" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_acctentdate(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												  TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												  #{process, jdbcType=VARCHAR},
+												  #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomUpdateAcctEntDateNull" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_acctentdate_null(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+													   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+													   #{process, jdbcType=VARCHAR},
+													   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateTbDate" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_TRIAL_BAL_PKG.validate_tb_date(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="acitEomDeleteMonthlyTotalsBackup">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_monthly_totals_backup();
+		END;
+	</update>
+	
+	<update id="acitEomInsertMonthlyTotalsBackup" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.insert_monthly_totals_backup(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomDeleteMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acitEomCloseTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.close_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										   #{includeMonth, jdbcType=VARCHAR},
+										   #{includeYear, jdbcType=VARCHAR},
+										   #{aeTag, jdbcType=VARCHAR},
+										   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomDeleteTrans" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.delete_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acitEomInsertMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.insert_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    		 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals" id="acitEomMonthlyTotals">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="currCd"				column="CURR_CD"/>
+		<result property="glAcctId"				column="GL_ACCT_ID"/>
+		<result property="shortCode"			column="SHORT_CODE"/>
+		<result property="shortDesc"			column="SHORT_DESC"/>
+		<result property="longDesc"				column="LONG_DESC"/>
+		<result property="begDebitAmt"			column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"			column="BEG_CREDIT_AMT"/>
+		<result property="totalDebitAmt"		column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt"		column="TOTAL_CREDIT_AMT"/>
+		<result property="transDebitBal"		column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"		column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"			column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"			column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"			column="END_CREDIT_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEndTrialBal" resultMap="acitEomMonthlyTotals" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_TRIAL_BAL_PKG.ret_monthly_totals(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<update id="validatePrevMonth" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_prev_month(#{eomMm, jdbcType=INTEGER},
+																										  	 #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="validateEqualTb" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{equalTb, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_equal_tb(#{eomMm, jdbcType=INTEGER},
+																										  #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="acitEomPostToFiscalYear" parameterType="java.util.Map">
+		BEGIN
+			ACIT_POST_TB_PKG.post_to_fiscal_year(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											    #{eomMm, jdbcType=INTEGER},
+											    #{eomYear, jdbcType=INTEGER},
+											    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="failedPosting" parameterType="java.util.Map">
+		BEGIN
+			ACIT_POST_TB_PKG.failed_posting(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomMm, jdbcType=INTEGER},
+										    #{eomYear, jdbcType=INTEGER},
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth" id="acitEomUnpostedMonth">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEndUnpostedMonths" resultMap="acitEomUnpostedMonth" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_POST_TB_PKG.ret_unposted_months())
+	</select>
+	
+	<update id="validateCurrMonth" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCurr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_POST_TB_PKG.validate_curr_month(#{eomMm, jdbcType=INTEGER},
+																										  	 	 #{eomYear, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<update id="acitEomUpdateReport" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_TRANS_PKG.update_batch_report(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+												   TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+												   #{report, jdbcType=VARCHAR},
+												   #{process, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd" id="acitMonthEnd">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="batchProdReport"		column="BATCH_PROD_REPORT"/>
+		<result property="batchOsReport"		column="BATCH_OS_REPORT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEnd" resultMap="acitMonthEnd" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_EOM_TRANS_PKG.ret_month_end(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<update id="validateQsoaQtr" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateQsoaQtr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_QSOA_PKG.validate_qsoa_qtr(#{cedingId, jdbcType=INTEGER},
+																											   #{qtr, jdbcType=INTEGER},
+																										  	   #{year, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<update id="saveQSOA" parameterType="java.util.Map">
+		BEGIN
+			ACIT_QSOA_PKG.gen_qsoa(#{cedingId, jdbcType=INTEGER},
+								   #{qtr, jdbcType=INTEGER},
+								   #{year, jdbcType=INTEGER},
+								   #{user, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOADtl" id="acitQSOADtl">
+		<result property="qsoaId"			column="QSOA_ID"/>
+		<result property="qsoaMapNo"		column="QSOA_MAP_NO"/>
+		<result property="particulars"		column="PARTICULARS"/>
+		<result property="debitAmt"			column="DEBIT_AMT"/>
+		<result property="creditAmt"		column="CREDIT_AMT"/>
+		<result property="creditAmt"		column="CREDIT_AMT"/>
+		<result property="createUser"		column="CREATE_USER"/>
+		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"		column="UPDATE_USER"/>
+		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveQSOADtl" resultMap="acitQSOADtl" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_qsoadtl_bd(#{qsoaId, jdbcType=INTEGER}))
+	</select>
 	
 </mapper>

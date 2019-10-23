@@ -13,9 +13,12 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -29,6 +32,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
@@ -43,9 +48,12 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -59,6 +67,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
@@ -758,6 +768,106 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("orDateTo", rabor.getOrDateTo());
 		params.put("tranTypeCd", rabor.getTranTypeCd());
 		response.setBatchOrList(acctServDao.retrieveAcseBatchOr(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcseBudgetExpenseResponse retrieveAcseBudgetExpense(RetrieveAcseBudgetExpenseRequest racprlp)
+			throws SQLException {
+		RetrieveAcseBudgetExpenseResponse racprlResponse =  new RetrieveAcseBudgetExpenseResponse();
+		HashMap<String, Object> rabeParams = new HashMap<String, Object>();
+		rabeParams.put("budgetYear", racprlp.getBudgetYear());
+		rabeParams.put("itemNo", racprlp.getItemNo());
+		racprlResponse.setAcseBudgetExpenseList(acctServDao.retrieveAcseBudgetExpense(rabeParams));
+		logger.info("RetrieveAcseBudgetExpenseResponse : " + racprlResponse.toString());
+		return racprlResponse;
+	}
+	
+	@Override
+	public SaveAcseBudgetExpenseResponse saveAcseBudgetExpense(SaveAcseBudgetExpenseRequest saber)
+			throws SQLException {
+		SaveAcseBudgetExpenseResponse sabeResponse = new SaveAcseBudgetExpenseResponse();
+		HashMap<String, Object> sabeParams = new HashMap<String, Object>();
+		try {
+			sabeParams.put("saveBudgetExpense", saber.getSaveBudgetExpense());
+			sabeParams.put("deleteBudgetExpense", saber.getDeleteBudgetExpense());
+			HashMap<String, Object> response = acctServDao.saveAcseBudgetExpense(sabeParams);
+			sabeResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (Exception e) {
+			sabeResponse.setReturnCode(0);
+			sabeResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		return sabeResponse;
+	}
+
+	@Override
+	public RetrieveAcseBudExpMonthlyResponse retrieveAcseBudExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr)
+			throws SQLException {
+		RetrieveAcseBudExpMonthlyResponse response = new RetrieveAcseBudExpMonthlyResponse();
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("budgetYear", rabemr.getBudgetYear());
+		params.put("itemNo", rabemr.getItemNo());
+		params.put("mm", rabemr.getMm());
+		response.setBudExpMonthlyList(acctServDao.retrieveAcseBudExpMonthly(params));
+		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public SaveAcseBudExpMonthlyResponse saveAcseBudExpMonthly(SaveAcseBudExpMonthlyRequest sabemr)
+			throws SQLException {
+		SaveAcseBudExpMonthlyResponse response = new SaveAcseBudExpMonthlyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveBudExpMonthly", sabemr.getSaveBudExpMonthly());
+		try{
+			response.setReturnCode(acctServDao.saveAcseBudExpMonthly(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseBudExpMonthlyResponse retrieveAcseActExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr)
+			throws SQLException {
+		RetrieveAcseBudExpMonthlyResponse response = new RetrieveAcseBudExpMonthlyResponse();
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("budgetYear", rabemr.getBudgetYear());
+		params.put("itemNo", rabemr.getItemNo());
+		params.put("mm", rabemr.getMm());
+		response.setBudExpMonthlyList(acctServDao.retrieveAcseActExpMonthly(params));
+		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public PrintOrResponse printOr(PrintOrRequest por) throws SQLException {
+		PrintOrResponse response = new PrintOrResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", por.getTranId());
+		params.put("orNo", por.getOrNo());
+		params.put("updateUser", por.getUpdateUser());
+		params.put("updateDate", por.getUpdateDate());
+		try{
+			response.setReturnCode(acctServDao.printOr(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to printing. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }

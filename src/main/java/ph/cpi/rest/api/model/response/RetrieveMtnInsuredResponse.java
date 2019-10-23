@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.maintenance.Insured;
 public class RetrieveMtnInsuredResponse extends Response{
 	
 	private List<Insured> insured;
+	private Integer length;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
@@ -31,10 +32,16 @@ public class RetrieveMtnInsuredResponse extends Response{
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	public Integer getLength() {
+		return length;
+	}
+	public void setLength(Integer length) {
+		this.length = length;
+	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnInsuredResponse [insured=" + insured + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnInsuredResponse [insured=" + insured + ", length=" + length + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 	
 	

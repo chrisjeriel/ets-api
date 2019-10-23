@@ -437,6 +437,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("jvTranTypeCd", raje.getJvTranTypeCd());
 			params.put("tranTypeName", raje.getTranTypeName());
 			params.put("autoTag", raje.getAutoTag());
+			params.put("adjEntryTag", raje.getAdjEntryTag());
 			params.put("refnoTranId", raje.getRefnoTranId());
 			params.put("refnoDate", raje.getRefnoDate());
 			params.put("particulars", raje.getParticulars());
@@ -1905,32 +1906,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
-	@Override
-	public SaveAcitQSOAResponse saveAcitQSOA(SaveAcitQSOARequest saqr) throws SQLException {
-		SaveAcitQSOAResponse saqResponse = new SaveAcitQSOAResponse();
-		HashMap<String,Object> saqParams = new HashMap<String,Object>();
-		
-		saqParams.put("cedingId", saqr.getCedingId());
-		saqParams.put("gnrtQtr", saqr.getGnrtQtr());
-		saqParams.put("gnrtYear", saqr.getGnrtYear());
-		saqParams.put("createUser", saqr.getCreateUser());
-		saqParams.put("createDate", saqr.getCreateDate());
-		saqParams.put("updateUser", saqr.getUpdateUser());
-		saqParams.put("updateDate", saqr.getUpdateDate());
-		
-		//add validation for already generated qsoa
-		try {
-			saqResponse.setReturnCode(acctITDao.saveAcitQSOA(saqParams));
-		} catch (Exception e) {
-			saqResponse.setReturnCode(0);
-			saqResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
-			e.printStackTrace();
-		}
-		
-		return saqResponse;
-	}
-
 	@Override
 	public RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar)
 			throws SQLException {
@@ -1960,49 +1935,111 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			throws SQLException {
 		SaveAcitMonthEndBatchProdResponse res = new SaveAcitMonthEndBatchProdResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
+		HashMap<String,Object> validate = new HashMap<String,Object>();
 		String procedureName = "";
+		Boolean proceed = false;
+		String prodReport = "";
 		
 		params.put("eomDate", samebr.getEomDate());
 		params.put("eomUser", samebr.getEomUser());
+		params.put("process", "PR");
 		
 		try {
-			wsController.onReceiveProdLog("Initializing . . .");
-			procedureName = "Extracting Inward Production";
-			wsController.onReceiveProdLog("Extracting Inward Production . . .");
-			res.setReturnCode(acctITDao.acitEomExtUwprod(params));
-			wsController.onReceiveProdLog("Extraction of Inward Production finished.");
+			if("N".equals(samebr.getForce())) {
+				validate = acctITDao.validateEomStat(params);
+				
+				switch ((String) validate.get("option")) {
+				case "N":
+					proceed = true;
+					break;
+				case "Y":
+					proceed = false;
+					res.setEomMessage((String) validate.get("message"));
+					res.setReturnCode(1);
+					break;
+				case "D":
+					proceed = false;
+					res.setEomMessage((String) validate.get("message"));
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
 			
-			procedureName = "Generating Accounting Entries for distribution of Premiums";
-			wsController.onReceiveProdLog("Generating Accounting Entries for Inward Production . . .");
-			res.setReturnCode(acctITDao.acitEomCreateNetPremJv(params));
-			wsController.onReceiveProdLog("Generation of Accounting Entries for Inward Production finished.");
-			
-			procedureName = "Extracting Premium Reserve Retained";
-			wsController.onReceiveProdLog("Extracting Premium Reserve Retained . . .");
-			res.setReturnCode(acctITDao.acitEomExtEomUpr(params));
-			wsController.onReceiveProdLog("Extraction of Premium Reserve Retained finished.");
-			
-			procedureName = "Distributing Inward Production";
-			wsController.onReceiveProdLog("Distributing Inward Production . . .");
-			res.setReturnCode(acctITDao.acitEomCreateUprJv(params));
-			wsController.onReceiveProdLog("Distribution of Inward production finished.");
-			
-			procedureName = "Computing Interest on Overdue Accounts";
-			wsController.onReceiveProdLog("Computing Interest on Overdue Accounts . . .");
-			res.setReturnCode(acctITDao.acitEomSaveOdInt(params));
-			wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
-			wsController.onReceiveProdLog("");
-			
-			procedureName = "Producing Summary Report";
-			wsController.onReceiveProdLog(acctITDao.acitEomProdSummaryReport(params));
-			
-			acctITDao.commit();
+			if(proceed) {
+				prodReport = "Initializing . . .";
+				wsController.onReceiveProdLog("Initializing . . .");
+				
+				if("Y".equals(samebr.getForce())) {
+					acctITDao.acitEomUpdateAcctEntDateNull(params);
+				}
+				
+				prodReport += "\nExtracting Inward Production . . .";
+				prodReport += "\nExtraction of Inward Production finished.";
+				
+				procedureName = "Extracting Inward Production";
+				wsController.onReceiveProdLog("Extracting Inward Production . . .");
+				acctITDao.acitEomExtUwprod(params);
+				wsController.onReceiveProdLog("Extraction of Inward Production finished.");
+				
+				prodReport += "\nGenerating Accounting Entries for Inward Production . . .";
+				prodReport += "\nGeneration of Accounting Entries for Inward Production finished.";
+				
+				procedureName = "Generating Accounting Entries for distribution of Premiums";
+				wsController.onReceiveProdLog("Generating Accounting Entries for Inward Production . . .");
+				acctITDao.acitEomCreateNetPremJv(params);
+				wsController.onReceiveProdLog("Generation of Accounting Entries for Inward Production finished.");
+				
+				prodReport += "\nExtracting Premium Reserve Retained . . .";
+				prodReport += "\nExtraction of Premium Reserve Retained finished.";
+				
+				procedureName = "Extracting Premium Reserve Retained";
+				wsController.onReceiveProdLog("Extracting Premium Reserve Retained . . .");
+				acctITDao.acitEomExtEomUpr(params);
+				wsController.onReceiveProdLog("Extraction of Premium Reserve Retained finished.");
+				
+				prodReport += "\nDistributing Inward Production . . .";
+				prodReport += "\nDistribution of Inward production finished.";
+				
+				procedureName = "Distributing Inward Production";
+				wsController.onReceiveProdLog("Distributing Inward Production . . .");
+				acctITDao.acitEomCreateUprJv(params);
+				wsController.onReceiveProdLog("Distribution of Inward production finished.");
+				
+				prodReport += "\nComputing Interest on Overdue Accounts . . .";
+				prodReport += "\nComputation of Interest on Overdue Accounts finished.";
+				
+				procedureName = "Computing Interest on Overdue Accounts";
+				wsController.onReceiveProdLog("Computing Interest on Overdue Accounts . . .");
+				acctITDao.acitEomSaveOdInt(params);
+				wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
+				wsController.onReceiveProdLog("");
+				
+				acctITDao.acitEomUpdateEomCloseTag(params);
+				acctITDao.acitEomUpdateAcctEntDate(params);
+				
+				procedureName = "Producing Summary Report";
+				String summary = acctITDao.acitEomProdSummaryReport(params);
+				
+				prodReport += "\n\n" + summary;
+				wsController.onReceiveProdLog(summary);
+								
+				params.put("report", prodReport);
+				acctITDao.acitEomUpdateReport(params);
+				
+				acctITDao.commit();
+				res.setReturnCode(-1);
+			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			acctITDao.rollback();
+			acctITDao.acitEomUpdateAcctEntDateNull(params);
 			wsController.onReceiveProdLog("An error occured while " + procedureName);
 			res.setReturnCode(0);
 			res.getErrorList().add(new Error("SQLException","Batch processing failed."));
-			e.printStackTrace();
 		}
 		
 		return res;
@@ -2013,55 +2050,346 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			throws SQLException {
 		SaveAcitMonthEndBatchOSResponse res = new SaveAcitMonthEndBatchOSResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
+		HashMap<String,Object> validate = new HashMap<String,Object>();
 		String procedureName = "";
+		Boolean proceed = false;
+		String osReport = "";
 		
 		params.put("eomDate", samebr.getEomDate());
 		params.put("eomUser", samebr.getEomUser());
+		params.put("process", "OS");
 		
 		try {
-			wsController.onReceiveOsLog("Initializing . . .");
-			procedureName = "Extracting Outstanding Losses";
-			wsController.onReceiveOsLog("Extracting Outstanding Losses . . .");
-			res.setReturnCode(acctITDao.acitEomExtOsLoss(params));
-			wsController.onReceiveOsLog("Extraction of Outstanding Losses finished.");
+			if("N".equals(samebr.getForce())) {
+				validate = acctITDao.validateEomStat(params);
+				
+				switch ((String) validate.get("option")) {
+				case "N":
+					proceed = true;
+					break;
+				case "Y":
+					proceed = false;
+					res.setEomMessage((String) validate.get("message"));
+					res.setReturnCode(1);
+					break;
+				case "D":
+					proceed = false;
+					res.setEomMessage((String) validate.get("message"));
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
 			
-			procedureName = "Generating Accounting Entries for Outstanding Losses";
-			wsController.onReceiveOsLog("Generating Accounting Entries for Outstanding Losses . . .");
-			res.setReturnCode(acctITDao.acitEomCreateOsLossJv(params));
-			wsController.onReceiveOsLog("Generation of Accounting Entries for Outstanding Losses finished.");
-			
-			procedureName = "Allocating Paid Claims";
-			wsController.onReceiveOsLog("Allocating Paid Claims . . .");
-			res.setReturnCode(acctITDao.acitEomExtClmpayt(params));
-			wsController.onReceiveOsLog("Allocation of Paid Claims finished.");
-			
-			procedureName = "Generating Accounting Entries for Allocation of Paid Claims";
-			wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Paid Claims . . .");
-			res.setReturnCode(acctITDao.acitEomCreateAllocPaidClmJv(params));
-			wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Paid Claims finished.");
-			
-			procedureName = "Allocating Claim Recovery and Overpayments";
-			wsController.onReceiveOsLog("Allocating Claim Recovery and Overpayments . . .");
-			res.setReturnCode(acctITDao.acitEomExtractClmRecover(params));
-			wsController.onReceiveOsLog("Allocation of Claim Recovery and Overpayments finished.");
-			
-			procedureName = "Generating Accounting Entries for Allocation of Claim Recovery and Overpayments";
-			wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .");
-			res.setReturnCode(acctITDao.acitEomCreateAllocRecoverJv(params));
-			wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.");
-			wsController.onReceiveOsLog("");
-			
-			procedureName = "Producing Summary Report";
-			wsController.onReceiveOsLog(acctITDao.acitEomBatchOsSummaryReport(params));
-			
-			acctITDao.commit();
+			if(proceed) {
+				osReport = "Initializing . . .";
+				wsController.onReceiveOsLog("Initializing . . .");
+				
+				if("Y".equals(samebr.getForce())) {
+					acctITDao.acitEomUpdateAcctEntDateNull(params);
+				}
+				
+				osReport += "\nExtracting Outstanding Losses . . .";
+				osReport += "\nExtraction of Outstanding Losses finished.";
+				
+				procedureName = "Extracting Outstanding Losses";
+				wsController.onReceiveOsLog("Extracting Outstanding Losses . . .");
+				acctITDao.acitEomExtOsLoss(params);
+				wsController.onReceiveOsLog("Extraction of Outstanding Losses finished.");
+				
+				osReport += "\nGenerating Accounting Entries for Outstanding Losses . . .";
+				osReport += "\nGeneration of Accounting Entries for Outstanding Losses finished.";
+				
+				procedureName = "Generating Accounting Entries for Outstanding Losses";
+				wsController.onReceiveOsLog("Generating Accounting Entries for Outstanding Losses . . .");
+				acctITDao.acitEomCreateOsLossJv(params);
+				wsController.onReceiveOsLog("Generation of Accounting Entries for Outstanding Losses finished.");
+				
+				osReport += "\nAllocating Paid Claims . . .";
+				osReport += "\nAllocation of Paid Claims finished.";
+				
+				procedureName = "Allocating Paid Claims";
+				wsController.onReceiveOsLog("Allocating Paid Claims . . .");
+				acctITDao.acitEomExtClmpayt(params);
+				wsController.onReceiveOsLog("Allocation of Paid Claims finished.");
+				
+				osReport += "\nGenerating Accounting Entries for Allocation of Paid Claims . . .";
+				osReport += "\nGeneration of Accounting Entries for Allocation of Paid Claims finished.";
+				
+				procedureName = "Generating Accounting Entries for Allocation of Paid Claims";
+				wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Paid Claims . . .");
+				acctITDao.acitEomCreateAllocPaidClmJv(params);
+				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Paid Claims finished.");
+				
+				osReport += "\nAllocating Claim Recovery and Overpayments . . .";
+				osReport += "\nAllocation of Claim Recovery and Overpayments finished.";
+				
+				procedureName = "Allocating Claim Recovery and Overpayments";
+				wsController.onReceiveOsLog("Allocating Claim Recovery and Overpayments . . .");
+				acctITDao.acitEomExtractClmRecover(params);
+				wsController.onReceiveOsLog("Allocation of Claim Recovery and Overpayments finished.");
+				
+				osReport += "\nGenerating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .";
+				osReport += "\nGeneration of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.";
+				
+				procedureName = "Generating Accounting Entries for Allocation of Claim Recovery and Overpayments";
+				wsController.onReceiveOsLog("Generating Accounting Entries for Allocation of Claim Recovery and Overpayments . . .");
+				acctITDao.acitEomCreateAllocRecoverJv(params);
+				wsController.onReceiveOsLog("Generation of Accounting Entries for Allocation of Claim Recovery and Overpayments finished.");
+				wsController.onReceiveOsLog("");
+				
+				acctITDao.acitEomUpdateEomCloseTag(params);
+				acctITDao.acitEomUpdateAcctEntDate(params);
+				
+				procedureName = "Producing Summary Report";
+				String summary = acctITDao.acitEomBatchOsSummaryReport(params);
+				
+				osReport += "\n\n" + summary;
+				wsController.onReceiveOsLog(summary);
+								
+				params.put("report", osReport);
+				acctITDao.acitEomUpdateReport(params);
+				
+				acctITDao.commit();
+				res.setReturnCode(-1);
+			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			acctITDao.rollback();
+			acctITDao.acitEomUpdateAcctEntDateNull(params);
 			wsController.onReceiveOsLog("An error occured while " + procedureName);
 			res.setReturnCode(0);
 			res.getErrorList().add(new Error("SQLException","Batch OS failed."));
-			e.printStackTrace();
 		}
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(SaveAcitMonthEndTrialBalRequest sametbr)
+			throws SQLException {
+		SaveAcitMonthEndTrialBalResponse res = new SaveAcitMonthEndTrialBalResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		String validate = "";
+		Boolean proceed = false;
+		
+		params.put("eomDate", sametbr.getEomDate());
+		params.put("eomUser", sametbr.getEomUser());
+		params.put("includeMonth", sametbr.getIncludeMonth());
+		params.put("includeYear", sametbr.getIncludeYear());
+		params.put("aeTag", sametbr.getAeTag());
+		
+		try {
+			if("N".equals(sametbr.getForce())) {
+				validate = acctITDao.validateTbDate(params);
+				
+				switch (validate) {
+				case "PROCEED":
+					proceed = true;
+					break;
+				case "RERUN":
+					proceed = false;
+					res.setReturnCode(1);
+					break;
+				case "POSTED_MONTH":
+					proceed = false;
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				acctITDao.startTransaction();
+				
+				if("Y".equals(sametbr.getForce())) {
+					acctITDao.acitEomDeleteMonthlyTotalsBackup();
+					acctITDao.acitEomInsertMonthlyTotalsBackup(params);
+					acctITDao.acitEomDeleteMonthlyTotals(params);
+				}
+				
+				acctITDao.acitEomCloseTrans(params);
+				acctITDao.acitEomDeleteTrans(params);
+				acctITDao.acitEomInsertMonthlyTotals(params);
+				
+				acctITDao.commit();
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			acctITDao.rollback();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Trial Balance Processing failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveAcitMonthEndTrialBalResponse retrieveAcitMonthEndTrialBal(
+			RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
+		RetrieveAcitMonthEndTrialBalResponse res = new RetrieveAcitMonthEndTrialBalResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("eomDate", rametbr.getEomDate());
+		
+		res.setMonthlyTotalsList(acctITDao.retrieveAcitMonthEndTrialBal(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public PostAcitMonthEndTrialBalResponse postAcitMonthEndTrialBal(PostAcitMonthEndTrialBalRequest pametbr)
+			throws SQLException {
+		PostAcitMonthEndTrialBalResponse res = new PostAcitMonthEndTrialBalResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		String validate = "";
+		Boolean proceed = false;
+		
+		params.put("eomDate", pametbr.getEomDate());
+		params.put("eomYear", pametbr.getEomYear());
+		params.put("eomMm", pametbr.getEomMm());
+		params.put("eomUser", pametbr.getEomUser());
+		
+		try {
+			validate = acctITDao.validatePrevMonth(params);
+				
+			switch (validate) {
+			case "0":
+				String validateCurrMonth = acctITDao.validateCurrMonth(params);
+				
+				//
+				switch (validateCurrMonth) {
+				case "0":
+					String equalTb = acctITDao.validateEqualTb(params);
+					proceed = "0".equals(equalTb);
+					res.setEomMessage(equalTb);
+					res.setReturnCode(1);
+					break;
+				case "1":
+					proceed = false;
+					res.setEomMessage("NOT_ALLOWED");
+					res.setReturnCode(1);
+					break;
+				default:
+					break;
+				}
+				//
+				
+				break;
+			case "1":
+				proceed = false;
+				res.setReturnCode(2);
+				break;
+			default:
+				break;
+			}
+			
+			if(proceed) {
+				acctITDao.startTransaction();
+				
+				acctITDao.acitEomPostToFiscalYear(params);
+				acctITDao.commit();
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			acctITDao.rollback();
+			acctITDao.failedPosting(params);
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Trial Balance Posting failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
+		RetrieveAcitMonthEndUnpostedMonthsResponse res = new RetrieveAcitMonthEndUnpostedMonthsResponse();
+		res.setUnpostedMonthsList(acctITDao.retrieveAcitMonthEndUnpostedMonths());
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
+		RetrieveAcitMonthEndResponse res = new RetrieveAcitMonthEndResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("eomDate", ramer.getEomDate());
+		
+		res.setMonthEnd(acctITDao.retrieveAcitMonthEnd(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException {
+		SaveQSOAResponse res = new SaveQSOAResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		Boolean proceed = false;
+		
+		params.put("cedingId", sqr.getCedingId());
+		params.put("qtr", sqr.getQtr());
+		params.put("year", sqr.getYear());
+		params.put("user", sqr.getUser());
+		
+		try {
+			if("N".equals(sqr.getForce())) {				
+				switch (acctITDao.validateQsoaQtr(params)) {
+				case "0":
+					proceed = true;
+					break;
+				case "1":
+					proceed = false;
+					res.setReturnCode(1);
+					break;
+				case "2":
+					proceed = false;
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				acctITDao.saveQSOA(params);
+				res.setReturnCode(-1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","QSOA Generation failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException {
+		RetrieveQSOADtlResponse res = new RetrieveQSOADtlResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("qsoaId", rqdr.getQsoaId());
+		
+		res.setQsoaDtlList(acctITDao.retrieveQSOADtl(params));
 		
 		return res;
 	}

@@ -156,10 +156,34 @@ public interface MaintenanceService {
 	public RetrieveMtnWhTaxResponse retrieveMtnWhTax(RetrieveMtnWhTaxRequest rmwt) throws SQLException;
 	public SaveMtnBussTypeResponse saveMtnBussType (SaveMtnBussTypeRequest smbtr) throws SQLException;
 	public RetrieveMtnAcseCheckSeriesResponse retrieveMtnAcseCheckSeries(RetrieveMtnAcseCheckSeriesRequest request) throws SQLException;
+	public GenerateAcitARSeriesResponse generateARSeries(GenerateAcitARSeriesRequest request)throws SQLException;
 	public SaveMtnDcbUserResponse saveMtnDcbUser (SaveMtnDcbUserRequest smdur) throws SQLException;
 	public RetrieveMtnEmployeeResponse retrieveMtnEmployee(RetrieveMtnEmployeeRequest rmer) throws SQLException;
-	public SaveMtnEmployeeResponse saveMtnEmployee (SaveMtnEmployeeRequest smer) throws SQLException;
 	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcct(RetrieveMtnAcseChartAcctRequest rmacar) throws SQLException;
+	public GenerateAcitCVSeriesResponse generateCVSeries(GenerateAcitCVSeriesRequest request) throws SQLException;
+	public GenerateAcitJVSeriesResponse generateJVSeries(GenerateAcitJVSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenARSeriesResponse retrieveArSeries(RetrieveMtnGenARSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenCVSeriesResponse retrieveCvSeries(RetrieveMtnGenCVSeriesRequest request) throws SQLException;
+	public RetrieveMtnGenJVSeriesResponse retrieveJvSeries(RetrieveMtnGenJVSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException;
+	public GenerateAcseCVSeriesResponse generateAcseCVSeries(GenerateAcseCVSeriesRequest request) throws SQLException;
+	public GenerateAcseJVSeriesResponse generateAcseJVSeries(GenerateAcseJVSeriesRequest request) throws SQLException;
+	public GenerateAcseORSeriesResponse generateAcseORSeries(GenerateAcseORSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcseGenORSeriesResponse retrieveAcseOrSeries(RetrieveMtnAcseGenORSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcseGenCVSeriesResponse retrieveAcseCVSeries(RetrieveMtnAcseGenCVSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcseGenJVSeriesResponse retrieveAcseJVSeries(RetrieveMtnAcseGenJVSeriesRequest request) throws SQLException;
+	public RetrieveMtnAcseSeriesResponse acseMaxTranNo(RetrieveMtnAcseSeriesRequest request)throws SQLException;
+	public RetrieveMtnAcseWhtaxResponse retrieveAcseWHTax(RetrieveMtnAcseWhtaxRequest request)throws SQLException;
+	public SaveMtnAcseWhTaxResponse saveMtnWhTax(SaveMtnAcseWhTaxRequest request)throws SQLException;
+	public SaveMtnAcitTranTypeResponse saveMtnTranType(SaveMtnAcitTranTypeRequest request)throws SQLException;
+	public RetrieveMtnAcitDefAmtDtlResponse retrieveAcitDefAmt(RetrieveMtnAcitDefAmtDtlRequest request)throws SQLException;
+	public SaveMtnEmployeeResponse saveMtnEmployee (SaveMtnEmployeeRequest smer) throws SQLException;
+	public SaveMtnAcitDefAmtDtlResponse saveMtnAcitDefAmt (SaveMtnAcitDefAmtDtlRequest request) throws SQLException;
+	public RetrieveMtnAcitDefAcctEntResponse retrieveAcitDefAcctEnt(RetrieveMtnAcitDefAcctEntRequest request) throws SQLException;
+	public SaveMtnAcitDefAcctEntriesResponse saveAcitDefAcctEnt(SaveMtnAcitDefAcctEntriesRequest request)throws SQLException;
+	public SaveMtnAcseTranTypeResponse saveAcseTranType(SaveMtnAcseTranTypeRequest request) throws SQLException;
+	public RetrieveMtnAcseDefAcctEntResponse retrieveAcseDefAcctEnt(RetrieveMtnAcseDefAcctEntRequest request) throws SQLException;
+	public SaveMtnAcseDefAcctEntResponse saveAcseDefAcctEnt(SaveMtnAcseDefAcctEntRequest request)throws SQLException;
 	public SaveMtnGenTaxResponse saveMtnGenTax (SaveMtnGenTaxRequest smgt) throws SQLException;
 	public RetrieveMtnGenTaxHistResponse retrieveMtnGenTaxHist(RetrieveMtnGenTaxHistRequest rmgthr) throws SQLException;
 	public SaveMtnGenTaxHistResponse saveMtnGenTaxHist (SaveMtnGenTaxHistRequest smgth) throws SQLException;
@@ -170,4 +194,5 @@ public interface MaintenanceService {
 	public SaveMtnPayeeClassResponse saveMtnPayeeClass (SaveMtnPayeeClassRequest smpc) throws SQLException;
 	public SaveMtnSLTypeResponse saveMtnSLType (SaveMtnSLTypeRequest smst) throws SQLException;
 	public SaveMtnSLResponse saveMtnSL (SaveMtnSLRequest sms) throws SQLException;
+
 }

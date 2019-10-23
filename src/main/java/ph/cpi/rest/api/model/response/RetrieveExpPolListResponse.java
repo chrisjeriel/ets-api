@@ -36,5 +36,12 @@ public class RetrieveExpPolListResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+
+	@Override
+	public String toString() {
+		return "RetrieveExpPolListResponse [expPolicyList=" + expPolicyList + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+	}
+	
 	
 }

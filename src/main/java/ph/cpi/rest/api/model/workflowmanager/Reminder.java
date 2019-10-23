@@ -17,6 +17,7 @@ public class Reminder {
 	private String	 referenceId;
 	private String	 details;
 	private String   assignedTo;
+	private String   assignedToGroup;
 	private String   status;
 	private String   createUser;
 	private DateTime createDate;
@@ -133,14 +134,24 @@ public class Reminder {
 	public void setUrgTag(String urgTag) {
 		this.urgTag = urgTag;
 	}
+	public String getAssignedToGroup() {
+		return assignedToGroup;
+	}
+	public void setAssignedToGroup(String assignedToGroup) {
+		this.assignedToGroup = assignedToGroup;
+	}
 	@Override
 	public String toString() {
-		return "Reminder [getReminderId()=" + getReminderId() + ", getTitle()=" + getTitle() + ", getReminder()="
-				+ getReminder() + ", getReminderDate()=" + getReminderDate() + ", getAlarmTime()=" + getAlarmTime()
-				+ ", getAssignedTo()=" + getAssignedTo() + ", getStatus()=" + getStatus() + ", getCreateUser()="
-				+ getCreateUser() + ", getCreateDate()=" + getCreateDate() + ", getUpdateUser()=" + getUpdateUser()
-				+ ", getUpdateDate()=" + getUpdateDate() + ", getModule()=" + getModule() + ", getReferenceId()="
-				+ getReferenceId() + ", getDetails()=" + getDetails() + ", getRelatedRecordList()="
-				+ getRelatedRecordList() + ", getImpTag()=" + getImpTag() + ", getUrgTag()=" + getUrgTag() + "]";
+		return "Reminder [reminderId=" + reminderId + ", title=" + title + ", reminder=" + reminder + ", reminderDate="
+				+ reminderDate + ", alarmTime=" + alarmTime + ", impTag=" + impTag + ", urgTag=" + urgTag + ", module="
+				+ module + ", referenceId=" + referenceId + ", details=" + details + ", assignedTo=" + assignedTo
+				+ ", assignedToGroup=" + assignedToGroup + ", status=" + status + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", relatedRecordList=" + relatedRecordList + "]";
+	}
+	
+	
+	public DateTime getReminderDateRealDate() {
+		return reminderDate;
 	}
 }

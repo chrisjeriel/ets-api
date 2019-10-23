@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -32,6 +35,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
+import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
@@ -46,9 +51,12 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -62,6 +70,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
+import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
@@ -79,7 +89,7 @@ import ph.cpi.rest.api.service.AccountingServService;
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", 
 						"http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", 
 						"http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
-						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200"})
+						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200", "http://192.10.10.210:8889", "http://192.10.10.210:4201"})
 @RequestMapping(path="/acct-serv-service")
 public class AccountingServiceController {
 	
@@ -306,4 +316,45 @@ public class AccountingServiceController {
 		return acctServService.retrieveAcseBatchOr(rabor);
 	}
 	
+	@GetMapping(path="retrieveAcseBudgetExpense")
+	public @ResponseBody RetrieveAcseBudgetExpenseResponse retrieveAcseBudgetExpense(RetrieveAcseBudgetExpenseRequest raber) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseBudgetExpense");
+		logger.info("RetrieveAcseBudgetExpenseRequest : " + raber.toString());
+		return acctServService.retrieveAcseBudgetExpense(raber);
+	}
+	
+	@PostMapping(path="saveAcseBudgetExpense")
+	public @ResponseBody SaveAcseBudgetExpenseResponse saveAcseBudgetExpense(@RequestBody SaveAcseBudgetExpenseRequest sacprr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseBudgetExpense");
+		logger.info("SaveAcseBudgetExpenseRequest : " + sacprr.toString());
+		return acctServService.saveAcseBudgetExpense(sacprr);
+	}
+	
+	@GetMapping(path="retrieveAcseBudExpMonthly")
+	public @ResponseBody RetrieveAcseBudExpMonthlyResponse retrieveAcseBudExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseBudExpMonthly");
+		logger.info("RetrieveAcseBudExpMonthlyRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseBudExpMonthly(rabemr);
+	}
+	
+	@PostMapping(path="saveAcseBudExpMonthly")
+	public @ResponseBody SaveAcseBudExpMonthlyResponse saveAcseBudExpMonthly(@RequestBody SaveAcseBudExpMonthlyRequest sabemr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseBudExpMonthly");
+		logger.info("SaveAcseBudExpMonthlyRequest : " + sabemr.toString());
+		return acctServService.saveAcseBudExpMonthly(sabemr);
+	}
+	
+	@GetMapping(path="retrieveAcseActExpMonthly")
+	public @ResponseBody RetrieveAcseBudExpMonthlyResponse retrieveAcseActExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseActExpMonthly");
+		logger.info("RetrieveAcseBudExpMonthlyRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseActExpMonthly(rabemr);
+	}
+	
+	@PostMapping(path="printOr")
+	public @ResponseBody PrintOrResponse printOr(@RequestBody PrintOrRequest por) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printOr");
+		logger.info("PrintOrRequest : " + por.toString());
+		return acctServService.printOr(por);
+	}
 }

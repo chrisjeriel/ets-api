@@ -236,6 +236,7 @@
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"		column="UPDATE_USER"/>
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
 	</resultMap>
 	
 	<select id="retrieveMntIntermediary" resultMap="mntIntMap" parameterType="java.util.Map">
@@ -330,9 +331,51 @@
 					#{corpTag,jdbcType=VARCHAR},
 					#{vatTag,jdbcType=VARCHAR},
 					#{address,jdbcType=VARCHAR},
-					'',1,'',''))
+					#{pagination.position,jdbcType=DECIMAL},
+					#{pagination.count,jdbcType=DECIMAL},
+					'',
+					''
+				))
+			WHERE 1=1
+			<if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	   </if>
+	   	   <if test="sort != null">
+	   	    	ORDER BY ${sort.sortKey} ${sort.order}
+	   	   </if>
+	   	   <if test="pagination.position != null">
+	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	   </if>
 	</select>
 	
+	<select id="retrieveMtnInsuredLength" resultType="java.lang.Integer" parameterType="java.util.Map">
+			SELECT count (INSURED_ID) FROM TABLE(MTN_INSURED_PKG.ret_mtn_insured(
+					#{insuredId,jdbcType=INTEGER},
+					#{insuredName,jdbcType=VARCHAR},
+					#{insuredAbbr,jdbcType=VARCHAR},
+					#{activeTag,jdbcType=VARCHAR},
+					#{insuredType,jdbcType=VARCHAR},
+					#{corpTag,jdbcType=VARCHAR},
+					#{vatTag,jdbcType=VARCHAR},
+					#{address,jdbcType=VARCHAR},
+					#{pagination.position,jdbcType=DECIMAL},
+					#{pagination.count,jdbcType=DECIMAL},
+					'',
+					''
+				))
+			WHERE 1=1
+			<if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	   </if>
+	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.EndtCode" id="endtCode">
 		<result property="lineCd" 		column="LINE_CD"/>
@@ -650,7 +693,16 @@
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{cedingAbbr, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{membershipDate, jdbcType=VARCHAR},#{terminationDate, jdbcType=VARCHAR},#{inactiveDate, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{govtTag, jdbcType=VARCHAR},#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
+            SELECT* FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},
+            														#{cedingName, jdbcType=VARCHAR},
+            														#{cedingAbbr, jdbcType=VARCHAR},
+            														#{address, jdbcType=VARCHAR},
+            														#{membershipDate, jdbcType=VARCHAR},
+            														#{terminationDate, jdbcType=VARCHAR},
+            														#{inactiveDate, jdbcType=VARCHAR},
+            														#{activeTag, jdbcType=VARCHAR},
+            														#{govtTag, jdbcType=VARCHAR},
+            														#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
      </select>
      
      
@@ -2218,13 +2270,14 @@
     
     <update id="checkTreatyYear" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
-			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_COMM_PKG.check_year(#{copyToYear, jdbcType=INTEGER})
+			#{checkResult, mode=OUT, javaType=Integer, jdbcType=INTEGER} := MTN_TREATY_COMM_PKG.check_year(#{currencyCd, jdbcType=INTEGER},#{copyToYear, jdbcType=INTEGER})
 		}	
 	</update>
 	
 	<update id="copyMtnTreatyComm" parameterType="java.util.Map">
 		BEGIN
 			MTN_TREATY_COMM_PKG.copy_treaty_com(
+				#{currencyCd, jdbcType=INTEGER},
 				#{copyFromYear, jdbcType=INTEGER},
 				#{copyToYear, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -2238,6 +2291,7 @@
 	<update id="copyMtnTreatyShare" parameterType="java.util.Map">
 		BEGIN
 			MTN_TREATY_SHARE_PKG.copy_treaty_share(
+				#{currencyCd, jdbcType=INTEGER},
 				#{copyFromYear, jdbcType=INTEGER},
 				#{copyToYear, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -2251,6 +2305,7 @@
 	<update id="copyMtnCedRetention" parameterType="java.util.Map">
 		BEGIN
 			MTN_CEDING_RETENTION_PKG.copy_mtn_ced_retention(
+				#{currencyCd, jdbcType=VARCHAR},
 				#{copyFromYear, jdbcType=INTEGER},
 				#{copyToYear, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
@@ -2819,9 +2874,9 @@
     						#{activeTag, jdbcType=VARCHAR},
     						#{remarks, jdbcType=VARCHAR},
     						#{createUser},
-    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						null,
     						#{updateUser},
-    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    						null
     		);
     		
     		#{outAdjId, mode=OUT, jdbcType=VARCHAR} := v_adj_id;
@@ -2846,9 +2901,9 @@
 		    							#{save.contactNo, jdbcType=VARCHAR},
 		    							#{save.emailAdd, jdbcType=VARCHAR},
 		    							#{createUser},
-			    						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    						null,
 			    						#{updateUser},
-			    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			    						null
 		    		            );
     		</foreach>
     	END;
@@ -2865,7 +2920,7 @@
 
 	<update id="saveMtnLossCd" parameterType="java.util.Map">
     	BEGIN
-    	
+    	null;
     	 <foreach collection="deleteLossCd" item="lossCd">
     			MTN_LOSS_CD_PKG.del_mtn_loss_cd(#{lossCd.lossCd,jdbcType=VARCHAR});
          </foreach>
@@ -3033,6 +3088,7 @@
 	    <result property="updateUser" 		column="UPDATE_USER"/>
 	    <result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	    <result property="okDelete" 		column="OK_DELETE"/>
+	    <result property="pctShareTsi"      column="PCT_SHARE_TSI"/>
      </resultMap>
      
      <select id="retrieveMtnSecIITrtyLimit" resultMap="seciiTrtyLimitMap" parameterType="java.util.Map">
@@ -3050,7 +3106,10 @@
     	BEGIN
     		<foreach collection="deleteSecIITrtyLimit" item="del">
 	    		MTN_SECII_TRTY_LIMIT_PKG.del_secii_trty_limit(
-			    	#{del.seciiTrtyLimId, jdbcType=INTEGER}
+			    	#{del.lineCd, jdbcType=VARCHAR},
+		    		#{del.lineClassCd, jdbcType=VARCHAR},
+		    		#{del.currencyCd, jdbcType=VARCHAR},
+		    		#{del.seciiTrtyLimId, jdbcType=INTEGER}
 			    );
     		</foreach>
     		<foreach collection="saveSecIITrtyLimit" item="save">
@@ -3060,6 +3119,7 @@
 		    		#{save.currencyCd, jdbcType=VARCHAR},
 		    		#{save.seciiTrtyLimId, jdbcType=INTEGER},
 		    		#{save.amount, jdbcType=DECIMAL},
+		    		#{save.pctShareTsi, jdbcType=DECIMAL},
 		    		CAST(to_timestamp(#{save.effDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 		    		#{save.activeTag, jdbcType=VARCHAR},
 		    		#{save.remarks, jdbcType=VARCHAR},
@@ -3395,6 +3455,7 @@
 
     <resultMap type="ph.cpi.rest.api.model.maintenance.MtnAcitTranType" id="mtnAcitTranTypeMap">
     	<result property="tranClass" 			column="TRAN_CLASS"/>
+    	<result property="tranClassName" 		column="TRAN_CLASS_NAME"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
 		<result property="typePrefix" 			column="TYPE_PREFIX"/>
 		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
@@ -3503,6 +3564,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"		column="OK_DELETE" />
     </resultMap>
     
     <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">
@@ -3842,6 +3904,7 @@
 
      <resultMap type="ph.cpi.rest.api.model.maintenance.MtnAcseTranType" id="mtnAcseTranTypeMap">
     	<result property="tranClass" 			column="TRAN_CLASS"/>
+    	<result property="tranName"				column="TRAN_CLASS_NAME"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
 		<result property="typePrefix" 			column="TYPE_PREFIX"/>
 		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
@@ -3879,6 +3942,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+    	<result property="okDelete"     column="OK_DELETE"/>
     </resultMap>
     
     <select id="retMtnAcseDCBNo" resultMap="acseDcbNoMap" parameterType="java.util.Map">
@@ -4096,7 +4160,242 @@
         ))
      </select>
      
-     <update id="saveMtnEmployee" >
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseChartAcct" id="AcseChartAcctMap">
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="glAcctCategory" column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctCategoryDesc" column="GL_ACCT_CATEGORY_DESC"/>
+		<result property="glAcctControl" column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1" column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2" column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3" column="GL_ACCT_SUB3"/>
+		<result property="shortDesc" column="SHORT_DESC"/>
+		<result property="longDesc" column="LONG_DESC"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="drCrTag" column="DR_CR_TAG"/>
+		<result property="postTag" column="POST_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveMtnAcseChartAcct" resultMap="AcseChartAcctMap">
+		SELECT * FROM TABLE(MTN_ACSE_CHART_ACCT_PKG.ret_mtn_acse_chart_acct(#{glAcctId, jdbcType=VARCHAR},
+				#{glAcctCategory, jdbcType=VARCHAR},
+				#{glAcctControl, jdbcType=VARCHAR},
+				#{glAcctSub1, jdbcType=VARCHAR},
+				#{glAcctSub2, jdbcType=VARCHAR},
+				#{glAcctSub3, jdbcType=VARCHAR},
+				#{slTypeCd, jdbcType=VARCHAR},
+				#{drCrTag, jdbcType=VARCHAR},
+				#{postTag, jdbcType=VARCHAR},
+				#{activeTag, jdbcType=VARCHAR}))
+	</select>
+
+     <update id="generateARSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_ar(#{arFrom},#{arTo},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateCVSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_cv(#{cvFrom},#{cvTo},#{cvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateJVSeries" >
+		BEGIN
+			MTN_ACIT_GENERATE_SERIES_PKG.gen_series_jv(#{jvFrom},#{jvTo},#{jvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitArSeries" id="arSeriesMap">
+        <result property="arNo" column="AR_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveArSeries" resultMap="arSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_ar_series(#{arFrom,jdbcType=VARCHAR},#{arTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCvSeries" id="cvSeriesMap">
+        <result property="cvYear" column="CV_YEAR"/>
+        <result property="cvNo" column="CV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveCvSeries" resultMap="cvSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_cv_series(#{cvYear,jdbcType=VARCHAR},#{cvFrom,jdbcType=VARCHAR},#{cvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitJvSeries" id="jvSeriesMap">
+        <result property="jvYear" column="JV_YEAR"/>
+        <result property="jvNo" column="JV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveJvSeries" resultMap="jvSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_jv_series(#{jvYear,jdbcType=VARCHAR},#{jvFrom,jdbcType=VARCHAR},#{jvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcitTranSeries" id="tranSeriesMap">
+        <result property="TranNo" column="TRAN_NO"/>
+     </resultMap>
+     
+     <select id="maxTranNo" resultMap="tranSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_SERIES_PKG.ret_mtn_max_series(#{tranClass}))
+     </select>
+     
+     <update id="generateAcseCVSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_cv(#{cvFrom},#{cvTo},#{cvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateAcseJVSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_jv(#{jvFrom},#{jvTo},#{jvYear},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateAcseORSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_or(#{orType},#{orFrom},#{orTo},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	 <resultMap type="ph.cpi.rest.api.model.maintenance.AcseOrSeries" id="orSeriesMap">
+        <result property="orType" column="OR_TYPE"/>
+        <result property="orNo" column="OR_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcseOrSeries" resultMap="orSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_or_series(#{orType,jdbcType=VARCHAR},#{orFrom,jdbcType=VARCHAR},#{orTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseCVSeries" id="cvAcseSeriesMap">
+        <result property="cvYear" column="CV_YEAR"/>
+        <result property="cvNo" column="CV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcseCVSeries" resultMap="cvAcseSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_cv_series(#{cvYear,jdbcType=VARCHAR},#{cvFrom,jdbcType=VARCHAR},#{cvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseJVSeries" id="jvAcseSeriesMap">
+        <result property="jvYear" column="JV_YEAR"/>
+        <result property="jvNo" column="JV_NO"/>
+		<result property="tranId" column="TRAN_ID"/>
+		<result property="usedTag" column="USED_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcseJVSeries" resultMap="jvAcseSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_jv_series(#{jvYear,jdbcType=VARCHAR},#{jvFrom,jdbcType=VARCHAR},#{jvTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+     </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseWhtax" id="mtnWhTaxMap">
+        <result property="whtaxId" column="WHTAX_ID"/>
+		<result property="taxCd" column="TAX_CD"/>
+		<result property="taxName" column="TAX_NAME"/>
+		<result property="taxType" column="TAX_TYPE"/>
+		<result property="rate" column="RATE"/>
+		<result property="defaultAcitGl" column="DEFAULT_ACIT_GL"/>
+		<result property="defaultAcseGl" column="DEFAULT_ACSE_GL"/>
+		<result property="creditableTag" column="CREDITABLE_TAG"/>
+		<result property="fixedTag" column="FIXED_TAG"/>
+		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcseWHTax" resultMap="mtnWhTaxMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_WHTAX_PKG.ret_mtn_whtax(#{whtaxId,jdbcType=VARCHAR},#{taxCd,jdbcType=VARCHAR},
+        												     #{taxType,jdbcType=VARCHAR},#{creditableTag,jdbcType=VARCHAR},
+        												     #{fixedTag,jdbcType=VARCHAR},#{activeTag,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+     </select>
+     
+     <update id="saveMtnWhTax" >
+		BEGIN
+			<foreach collection="delWhTax" item="del">
+				MTN_WHTAX_PKG.del_mtn_whtax(#{del.whtaxId});
+			</foreach>
+			<foreach collection="saveWhTax" item="save">
+				MTN_WHTAX_PKG.save_mtn_whtax(#{save.whtaxId,jdbcType=VARCHAR},
+											 #{save.taxCd},
+											 #{save.taxName},
+											 #{save.taxType},
+											 #{save.taxRate,jdbcType=INTEGER},
+											 #{save.defaultAcitGl,jdbcType=VARCHAR},
+											 #{save.defaultAcseGl,jdbcType=VARCHAR},
+											 #{save.creditableTag},
+											 #{save.fixedTag},
+											 #{save.activeTag},
+											 #{save.remarks,jdbcType=VARCHAR},
+											 #{save.createUser},
+											 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{save.updateUser},
+											 CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+
+     <update id="saveMtnEmployee">
 		BEGIN
 			<foreach collection="delList" item="item">
 				MTN_EMPLOYEE_PKG.del_mtn_employee(#{item.employeeId, jdbcType=VARCHAR},
@@ -4137,43 +4436,208 @@
 			</foreach>
 		END;
 	</update>
+
+
+	<update id="saveMtnTranType" >
+		BEGIN
+			<foreach collection="delTranType" item="del">
+				MTN_ACIT_TRAN_TYPE_PKG.del_mtn_tran_type(#{del.tranClass},#{del.tranTypeCd});
+			</foreach>
+			<foreach collection="saveTranType" item="save">
+				MTN_ACIT_TRAN_TYPE_PKG.save_mtn_tran_type(#{save.tranClass}, 
+                                                          #{save.tranTypeCd}, 
+                                                          #{save.typePrefix,jdbcType=VARCHAR}, 
+                                                          #{save.tranTypeName}, 
+                                                          #{save.defaultParticulars,jdbcType=VARCHAR}, 
+                                                          #{save.masterTranType,jdbcType=VARCHAR}, 
+                                                          #{save.remarks,jdbcType=VARCHAR}, 
+                                                          #{save.autoTag}, 
+                                                          #{save.baeTag}, 
+                                                          #{save.activeTag}, 
+                                                          #{save.groupTag,jdbcType=VARCHAR}, 
+                                                          #{save.createUser}, 
+                                                          CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                          #{save.updateUser}, 
+                                                          CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
 	
-     <resultMap type="ph.cpi.rest.api.model.maintenance.AcseChartAcct" id="AcseChartAcctMap">
-		<result property="glAcctId" column="GL_ACCT_ID"/>
-		<result property="glAcctCategory" column="GL_ACCT_CATEGORY"/>
-		<result property="glAcctCategoryDesc" column="GL_ACCT_CATEGORY_DESC"/>
-		<result property="glAcctControl" column="GL_ACCT_CONTROL"/>
-		<result property="glAcctSub1" column="GL_ACCT_SUB1"/>
-		<result property="glAcctSub2" column="GL_ACCT_SUB2"/>
-		<result property="glAcctSub3" column="GL_ACCT_SUB3"/>
-		<result property="shortDesc" column="SHORT_DESC"/>
-		<result property="longDesc" column="LONG_DESC"/>
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitDefaultAmtDtl" id="acitDefAmtMap">
+        <result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		<result property="itemNo" column="ITEM_NO"/>
+		<result property="itemText" column="ITEM_TEXT"/>
+		<result property="defaultGl" column="DEFAULT_GL"/>
 		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="acctAmtTag" column="ACCT_AMT_TAG"/>
+		<result property="signTag" column="SIGN_TAG"/>
+		<result property="remarks" column="REMARKS"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcitDefAmt" resultMap="acitDefAmtMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_acit_def_amt(#{tranClass},#{tranTypeCd},
+        												     		#{itemNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+     </select>
+     
+     <update id="saveMtnAcitDefAmt" >
+		BEGIN
+			<foreach collection="delDefAmt" item="del">
+				MTN_ACIT_TRAN_TYPE_PKG.del_def_amt_dtl(#{del.tranClass},#{del.tranTypeCd},#{del.itemNo});
+			</foreach>
+			<foreach collection="saveDefAmt" item="save">
+				MTN_ACIT_TRAN_TYPE_PKG.save_def_amt_dtl(#{save.tranClass},
+														#{save.tranTypeCd},
+														#{save.itemNo,jdbcType=VARCHAR},
+														#{save.itemText},
+														#{save.defaultGl},
+														#{save.acctAmtTag},
+														#{save.signTag},
+														#{save.remarks,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcitDefaultAccEntries" id="acitDefAcctMap">
+        <result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		<result property="entryNo" column="ENTRY_NO"/>
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="glShortDesc" column="GL_SHORT_DESC"/>
 		<result property="slTypeCd" column="SL_TYPE_CD"/>
 		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="sub1Dep" column="SUB1_DEPENDENCY"/>
+		<result property="sub2Dep" column="SUB2_DEPENDENCY"/>
+		<result property="sub3Dep" column="SUB3_DEPENDENCY"/>
 		<result property="drCrTag" column="DR_CR_TAG"/>
-		<result property="postTag" column="POST_TAG"/>
-		<result property="activeTag" column="ACTIVE_TAG"/>
+		<result property="tranAmtTag" column="TRAN_AMT_TAG"/>
+		<result property="netDrcrTag" column="NET_DRCR_TAG"/>
+		<result property="remarks"    column="REMARKS"/>
 		<result property="createUser" column="CREATE_USER"/>
-		<result property="createDate" column="CREATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="UPDATE_USER"/>
-		<result property="updateDate" column="UPDATE_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-	</resultMap>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcitDefAcctEnt" resultMap="acitDefAcctMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_acit_acct(#{tranClass},#{tranTypeCd},
+        												     		#{entryNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+     </select>
+     
+      <update id="saveAcitDefAcctEnt" >
+		BEGIN
+			<foreach collection="delAcctEnt" item="del">
+				MTN_ACIT_TRAN_TYPE_PKG.del_acct_ent(#{del.tranClass},#{del.tranTypeCd},#{del.entryNo});
+			</foreach>
+			<foreach collection="saveAcctEnt" item="save">
+				MTN_ACIT_TRAN_TYPE_PKG.save_acct_ent(#{save.tranClass},
+													 #{save.tranTypeCd},
+													 #{save.entryNo,jdbcType=VARCHAR},
+													 #{save.glAcctId},
+													 #{save.slTypeCd,jdbcType=VARCHAR},
+												  	 #{save.sub1Dep,jdbcType=VARCHAR},
+													 #{save.sub2Dep,jdbcType=VARCHAR},
+													 #{save.sub3Dep,jdbcType=VARCHAR},
+													 #{save.drCrTag},
+													 #{save.tranAmtTag},
+													 #{save.netDrcrTag},
+													 #{save.remarks,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
 	
-	<select id="retrieveMtnAcseChartAcct" resultMap="AcseChartAcctMap">
-		SELECT * FROM TABLE(MTN_ACSE_CHART_ACCT_PKG.ret_mtn_acse_chart_acct(#{glAcctId, jdbcType=VARCHAR},
-				#{glAcctCategory, jdbcType=VARCHAR},
-				#{glAcctControl, jdbcType=VARCHAR},
-				#{glAcctSub1, jdbcType=VARCHAR},
-				#{glAcctSub2, jdbcType=VARCHAR},
-				#{glAcctSub3, jdbcType=VARCHAR},
-				#{slTypeCd, jdbcType=VARCHAR},
-				#{drCrTag, jdbcType=VARCHAR},
-				#{postTag, jdbcType=VARCHAR},
-				#{activeTag, jdbcType=VARCHAR}))
-	</select>
+	<update id="saveAcseTranType" >
+		BEGIN
+			<foreach collection="delTranType" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_acse_tran_type(#{del.tranClass},#{del.tranTypeCd});
+			</foreach>
+			<foreach collection="saveTranType" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_acse_tran_type(#{save.tranClass},
+														#{save.tranTypeCd,jdbcType=VARCHAR},
+														#{save.typePrefix},
+														#{save.tranTypeName},
+														#{save.defaultParticulars,jdbcType=VARCHAR},
+														#{save.masterTranType,jdbcType=VARCHAR},
+														#{save.remarks,jdbcType=VARCHAR},
+														#{save.autoTag},
+														#{save.baeTag},
+														#{save.activeTag},
+														#{save.groupTag,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
 	
-	<update id="saveMtnGenTax" >
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries" id="acseDefAcctMap">
+        <result property="tranClass" column="TRAN_CLASS"/>
+		<result property="tranTypeCd" column="TRAN_TYPE_CD"/>
+		<result property="entryNo" column="ENTRY_NO"/>
+		<result property="glAcctId" column="GL_ACCT_ID"/>
+		<result property="shortCode" column="SHORT_CODE"/>
+		<result property="glShortDesc" column="GL_SHORT_DESC"/>
+		<result property="slTypeCd" column="SL_TYPE_CD"/>
+		<result property="slTypeName" column="SL_TYPE_NAME"/>
+		<result property="sub1Dep" column="SUB1_DEPENDENCY"/>
+		<result property="sub2Dep" column="SUB2_DEPENDENCY"/>
+		<result property="sub3Dep" column="SUB3_DEPENDENCY"/>
+		<result property="drCrTag" column="DR_CR_TAG"/>
+		<result property="tranAmtTag" column="TRAN_AMT_TAG"/>
+		<result property="netDrcrTag" column="NET_DRCR_TAG"/>
+		<result property="createUser" column="CREATE_USER"/>
+		<result property="createDate" column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" column="UPDATE_USER"/>
+		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcseDefAcctEnt" resultMap="acseDefAcctMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_acse_acct(#{tranClass},#{tranTypeCd},
+        												     		#{entryNo,jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+     </select>
+     
+     <update id="saveAcseDefAcctEnt" >
+		BEGIN
+			<foreach collection="delAcctEnt" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_def_acct_ent(#{del.tranClass},#{del.tranTypeCd},#{del.entryNo});
+			</foreach>
+			<foreach collection="saveAcctEnt" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_def_acct_ent(#{save.tranClass},
+													 #{save.tranTypeCd},
+													 #{save.entryNo,jdbcType=VARCHAR},
+													 #{save.glAcctId},
+													 #{save.slTypeCd,jdbcType=VARCHAR},
+												  	 #{save.sub1Dep,jdbcType=VARCHAR},
+													 #{save.sub2Dep,jdbcType=VARCHAR},
+													 #{save.sub3Dep,jdbcType=VARCHAR},
+													 #{save.drCrTag},
+													 #{save.tranAmtTag},
+													 #{save.netDrcrTag},
+													 #{save.remarks,jdbcType=VARCHAR},
+                                                        #{save.createUser}, 
+                                                        CAST(to_timestamp(#{save.createDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+                                                        #{save.updateUser}, 
+                                                        CAST(to_timestamp(#{save.updateDate},'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));                                                                
+			</foreach>
+		END;
+	</update>
+	
+	
+	<update id="saveMtnGenTax">
 		BEGIN
 			<foreach collection="delList" item="item">
 				MTN_GENTAX_PKG.del_mtn_gentax(#{item.taxId, jdbcType=VARCHAR});
@@ -4221,7 +4685,7 @@
 		SELECT * FROM TABLE(MTN_GENTAX_HIST_PKG.ret_mtn_gentax_hist(#{taxId, jdbcType=VARCHAR}))
 	</select>
 	
-	<update id="saveMtnGenTaxHist" >
+	<update id="saveMtnGenTaxHist">
 		BEGIN
 			<foreach collection="saveList" item="item">
 				MTN_GENTAX_HIST_PKG.save_mtn_gentax_hist(#{item.taxId, jdbcType=VARCHAR},
@@ -4233,7 +4697,7 @@
 		END;
 	</update>
 	
-	<update id="saveMtnGenTaxRange" >
+	<update id="saveMtnGenTaxRange">
 		BEGIN
 			<foreach collection="delList" item="item">
 				MTN_GENTAX_PKG.del_mtn_gentax_range(#{item.taxId, jdbcType=VARCHAR},

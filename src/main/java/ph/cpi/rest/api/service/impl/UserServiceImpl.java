@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.apache.tools.ant.types.CommandlineJava.SysProperties;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -177,6 +178,7 @@ public class UserServiceImpl implements UserService {
 		} catch (HibernateException e) {
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUHE", "HibernateException Exception : " + errorMsg));
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			e.printStackTrace();
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUDIV", "DataIntegrityViolation Exception : " + errorMsg));
 		} catch (SQLException sqle) {
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUSQL", "SQL Exception : " + errorMsg));
@@ -184,7 +186,7 @@ public class UserServiceImpl implements UserService {
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGEN", "General Exception"));
 		}
 		
-		
+		System.out.println("SaveMtnUserResponse : " + smuResponse);
 		return smuResponse;
 	}
 
