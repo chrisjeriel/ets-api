@@ -751,13 +751,6 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitSoaDue(raar);
 	}
 	
-	@PostMapping(path="saveAcitQSOA")
-	public @ResponseBody SaveAcitQSOAResponse saveAcitQSOA(@RequestBody SaveAcitQSOARequest saqr) throws SQLException {
-		logger.info("POST: /api/acct-in-trust-service/SaveAcitQSOARequest");
-		logger.info("SaveAcitQSOARequest : " + saqr.toString());
-		return acctInTrustService.saveAcitQSOA(saqr);
-	}
-	
 	@GetMapping(path="retrieveAcitInwPolPayts")
 	public @ResponseBody RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar) throws SQLException {
 		logger.info("POST: /api/acct-in-trust-service/RetrieveAcitInwPolPaytsRequest");
@@ -818,5 +811,19 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEnd");
 		logger.info("RetrieveAcitMonthEndRequest : " + ramer.toString());
 		return acctInTrustService.retrieveAcitMonthEnd(ramer);
+	}
+	
+	@PostMapping(path="saveQSOA")
+	public @ResponseBody SaveQSOAResponse saveQSOA(@RequestBody SaveQSOARequest sqr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveQSOA");
+		logger.info("PostAcitMonthEndTrialBalRequest : " + sqr.toString());
+		return acctInTrustService.saveQSOA(sqr);
+	}
+	
+	@GetMapping(path="retrieveQSOADtl")
+	public @ResponseBody RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveQSOADtl");
+		logger.info("RetrieveQSOADtlRequest : " + rqdr.toString());
+		return acctInTrustService.retrieveQSOADtl(rqdr);
 	}
 }

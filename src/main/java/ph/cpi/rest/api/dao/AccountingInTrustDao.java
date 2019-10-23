@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.maintenance.UserId;
@@ -163,7 +164,6 @@ public interface AccountingInTrustDao {
 	public List<AcitJVInvestmentPlacement> retrieveAcitJvInvPlacement(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitJVInvPlacement(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAcitSoaDue(final HashMap<String, Object> params) throws SQLException;
-	public Integer saveAcitQSOA(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitInwPolPayts> retrieveAcitInwPolPayts(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCancelledTransactions> retrieveCancelledTrans(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomExtUwprod(final HashMap<String, Object> params) throws SQLException;
@@ -207,4 +207,8 @@ public interface AccountingInTrustDao {
 	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException;
 	public Integer acitEomUpdateReport(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitMonthEnd> retrieveAcitMonthEnd(final HashMap<String, Object> params) throws SQLException;
+	
+	public String validateQsoaQtr(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveQSOA(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOADtl> retrieveQSOADtl(final HashMap<String, Object> params) throws SQLException;
 }

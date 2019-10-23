@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveQSOAListRequest {
 	
 	private Integer qsoaId;
-	private String cedingId;
+	private Integer cedingId;
 	private Integer fromQtr;
 	private Integer fromYear;
 	private Integer toQtr;
@@ -20,10 +20,10 @@ public class RetrieveQSOAListRequest {
 	public void setQsoaId(Integer qsoaId) {
 		this.qsoaId = qsoaId;
 	}
-	public String getCedingId() {
+	public Integer getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(String cedingId) {
+	public void setCedingId(Integer cedingId) {
 		this.cedingId = cedingId;
 	}
 	public Integer getFromQtr() {

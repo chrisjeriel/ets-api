@@ -7,13 +7,12 @@ import org.joda.time.DateTime;
 public class QSOA {
 
 	private Integer qsoaId;
+	private String currCd;
 	private String cedingId;
 	private String cedingName;
 	private DateTime quarterEnding;
 	private String qsoaStatus;
 	private String qsoaStatusDesc;
-	private String refNoTranId;
-	private DateTime refNoDate;
 	private BigDecimal totalDebitAmt;
 	private BigDecimal totalCreditAmt;
 	private String createUser;
@@ -26,6 +25,12 @@ public class QSOA {
 	}
 	public void setQsoaId(Integer qsoaId) {
 		this.qsoaId = qsoaId;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
 	}
 	public String getCedingId() {
 		return cedingId;
@@ -56,18 +61,6 @@ public class QSOA {
 	}
 	public void setQsoaStatusDesc(String qsoaStatusDesc) {
 		this.qsoaStatusDesc = qsoaStatusDesc;
-	}
-	public String getRefNoTranId() {
-		return refNoTranId;
-	}
-	public void setRefNoTranId(String refNoTranId) {
-		this.refNoTranId = refNoTranId;
-	}
-	public DateTime getRefNoDate() {
-		return refNoDate;
-	}
-	public void setRefNoDate(DateTime refNoDate) {
-		this.refNoDate = refNoDate;
 	}
 	public BigDecimal getTotalDebitAmt() {
 		return totalDebitAmt;
@@ -107,10 +100,10 @@ public class QSOA {
 	}
 	@Override
 	public String toString() {
-		return "QSOA [qsoaId=" + qsoaId + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", quarterEnding="
-				+ quarterEnding + ", qsoaStatus=" + qsoaStatus + ", qsoaStatusDesc=" + qsoaStatusDesc + ", refNoTranId="
-				+ refNoTranId + ", refNoDate=" + refNoDate + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt="
-				+ totalCreditAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "QSOA [qsoaId=" + qsoaId + ", currCd=" + currCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", quarterEnding=" + quarterEnding + ", qsoaStatus=" + qsoaStatus + ", qsoaStatusDesc="
+				+ qsoaStatusDesc + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
