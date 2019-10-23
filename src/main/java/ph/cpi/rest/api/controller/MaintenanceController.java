@@ -1362,4 +1362,10 @@ public class MaintenanceController {
 		return maintenanceService.saveAcitChartAcct(request);
 	}
 	
+	@PostMapping(path="saveAcseChartAcct")
+	public @ResponseBody SaveMtnAcseChartAcctResponse saveAcseChartAcct(@RequestBody SaveMtnAcseChartAcctRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseChartAcct");
+		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
+		return maintenanceService.saveAcseChartAcct(request);
+	}
 }

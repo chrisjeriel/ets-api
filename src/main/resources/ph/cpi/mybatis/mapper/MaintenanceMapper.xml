@@ -3571,7 +3571,7 @@
 			<foreach collection="delDCBNo" item="del">
 				MTN_ACIT_DCB_NO_PKG.del_mtn_acit_dcb_no(
 															#{del.dcbYear},
-															#{del.dcbNo},
+															#{del.dcbNo}
 				);
 			</foreach>
 			<foreach collection="saveDCBNo" item="save">
@@ -3951,7 +3951,7 @@
 			<foreach collection="delDCBNo" item="del">
 				MTN_ACSE_DCB_NO_PKG.del_mtn_acse_dcb_no(
 															#{del.dcbYear},
-															#{del.dcbNo},
+															#{del.dcbNo}
 				);
 			</foreach>
 			<foreach collection="saveDCBNo" item="save">
@@ -4932,6 +4932,36 @@
 			
 			<foreach collection="saveAcitChartAcct" item="save">
 				MTN_ACIT_CHART_ACCT_PKG.save_chrt_acct(
+						#{save.glAcctId, jdbcType=VARCHAR}, 
+						#{save.glAcctCategory}, 
+						#{save.glAcctControl}, 
+						#{save.glAcctSub1}, 
+						#{save.glAcctSub2}, 
+						#{save.glAcctSub3}, 
+						#{save.shortDesc}, 
+						#{save.longDesc}, 
+						#{save.shortCode}, 
+						#{save.slTypeCd, jdbcType=VARCHAR}, 
+						#{save.drCrTag}, 
+						#{save.postTag}, 
+						#{save.activeTag}, 
+						#{save.remarks, jdbcType=VARCHAR},
+						#{save.createUser},
+						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveAcseChartAcc" >
+		BEGIN
+			<foreach collection="deleteAcseChartAcct" item="del">
+				MTN_ACSE_CHART_ACCT_PKG.del_chrt_acc(#{del.glAcctId});
+			</foreach>
+			
+			<foreach collection="saveAcseChartAcct" item="save">
+				MTN_ACSE_CHART_ACCT_PKG.save_chrt_acc(
 						#{save.glAcctId, jdbcType=VARCHAR}, 
 						#{save.glAcctCategory}, 
 						#{save.glAcctControl}, 

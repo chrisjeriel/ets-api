@@ -3092,4 +3092,21 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcseChartAcctResponse saveAcseChartAcct(SaveMtnAcseChartAcctRequest request) throws SQLException {
+		SaveMtnAcseChartAcctResponse response = new SaveMtnAcseChartAcctResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcseChartAcct", request.getSaveAcseChartAcct());
+			params.put("deleteAcseChartAcct", request.getDeleteAcseChartAcct());
+			HashMap<String,Object> res = maintenanceDao.saveAcseChartAcc(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

@@ -1384,4 +1384,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcseChartAcc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseChartAcc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
