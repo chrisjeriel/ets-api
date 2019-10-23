@@ -1003,4 +1003,36 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseBatchOR" id="acseBatchOrMap">
+		<result property="tranId"               column="TRAN_ID" />
+		<result property="tranTypeCd"           column="TRAN_TYPE_CD" />
+		<result property="tranTypeName"         column="TRAN_TYPE_NAME" />
+		<result property="orType"               column="OR_TYPE" />
+		<result property="orNo"             	column="OR_NO" />
+		<result property="tranDate"             column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranStat"            	column="TRAN_STAT" />
+		<result property="tranStatDesc"         column="TRAN_STAT_DATE" />
+		<result property="orStat"             	column="OR_STAT" />
+		<result property="orStatDesc"           column="OR_STAT_DESC" />
+		<result property="payor"           	    column="PAYOR" />
+		<result property="particulars"          column="PARTICULARS" />
+		<result property="orAmt"             	column="OR_AMT" />
+		<result property="credit"             	column="CREDIT" />
+		<result property="debit"             	column="DEBIT" />
+		<result property="createUser"           column="CREATE_USER" />
+		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"           column="UPDATE_USER" />
+		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcseBatchOr" resultMap="acseBatchOrMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_BATCH_OR_PKG.ret_acse_batch_or(CAST(to_timestamp(#{orDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																CAST(to_timestamp(#{orDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{tranTypeCd, jdbcType=VARCHAR},
+																'',
+																'',
+																'',
+																''))
+	</select>
 </mapper>

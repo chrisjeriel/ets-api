@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -44,6 +45,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -742,6 +744,20 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseBatchOrResponse retrieveAcseBatchOr(
+			RetrieveAcseBatchOrRequest rabor) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcseBatchOrResponse response = new RetrieveAcseBatchOrResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("orDateFrom", rabor.getOrDateFrom());
+		params.put("orDateTo", rabor.getOrDateTo());
+		params.put("tranTypeCd", rabor.getTranTypeCd());
+		response.setBatchOrList(acctServDao.retrieveAcseBatchOr(params));
 		return response;
 	}
 }

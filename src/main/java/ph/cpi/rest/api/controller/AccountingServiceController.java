@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -47,6 +48,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -295,6 +297,13 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseOrServFee");
 		logger.info("SaveAcseOrServFeeRequest : " + saosfr.toString());
 		return acctServService.saveAcseOrServFee(saosfr);
+	}
+	
+	@GetMapping(path="retrieveAcseBatchOr")
+	public @ResponseBody RetrieveAcseBatchOrResponse retrieveAcseBatchOr(RetrieveAcseBatchOrRequest rabor) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseBatchOr");
+		logger.info("RetrieveAcseOrServFeeRequest : " + rabor.toString());
+		return acctServService.retrieveAcseBatchOr(rabor);
 	}
 	
 }

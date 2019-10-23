@@ -38,4 +38,5 @@ public interface AccountingServService {
 	public CancelOrResponse cancelOr(CancelOrRequest cor) throws SQLException;
 	public RetrieveAcseOrServFeeResponse retrieveAcseOrServFee(RetrieveAcseOrServFeeRequest raosfr) throws SQLException;
 	public SaveAcseOrServFeeResponse saveAcseOrServFee(SaveAcseOrServFeeRequest saosfr) throws SQLException;
+	public RetrieveAcseBatchOrResponse retrieveAcseBatchOr(RetrieveAcseBatchOrRequest rabor) throws SQLException;
 }
