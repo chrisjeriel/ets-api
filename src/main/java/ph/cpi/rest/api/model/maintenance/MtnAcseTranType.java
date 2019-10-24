@@ -19,6 +19,7 @@ public class MtnAcseTranType {
 	private String updateUser;
 	private DateTime updateDate;
 	private String groupTag;
+	private String okDelete;
 	public String getTranClass() {
 		return tranClass;
 	}
@@ -116,6 +117,13 @@ public class MtnAcseTranType {
 	public void setGroupTag(String groupTag) {
 		this.groupTag = groupTag;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "MtnAcseTranType [tranClass=" + tranClass + ", tranName=" + tranName + ", tranTypeCd=" + tranTypeCd
@@ -123,6 +131,7 @@ public class MtnAcseTranType {
 				+ defaultParticulars + ", masterTranType=" + masterTranType + ", remarks=" + remarks + ", autoTag="
 				+ autoTag + ", baeTag=" + baeTag + ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", groupTag=" + groupTag + "]";
+				+ ", groupTag=" + groupTag + ", okDelete=" + okDelete + "]";
 	}
+	
 }
