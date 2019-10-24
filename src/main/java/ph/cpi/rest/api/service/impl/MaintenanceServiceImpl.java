@@ -176,6 +176,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnDeductiblesParams.put("endtCd", rmdr.getEndtCd());
 		retrieveMtnDeductiblesParams.put("activeTag", rmdr.getActiveTag());
 		retrieveMtnDeductiblesParams.put("defaultTag", rmdr.getDefaultTag());
+		
+		retrieveMtnDeductiblesParams.put("deductibleTitle",rmdr.getDeductibleTitle());
+		retrieveMtnDeductiblesParams.put("deductibleType",rmdr.getDeductibleType());
+		retrieveMtnDeductiblesParams.put("rateFrom",rmdr.getRateFrom());
+		retrieveMtnDeductiblesParams.put("rateTo",rmdr.getRateTo());
+		retrieveMtnDeductiblesParams.put("amtFrom",rmdr.getAmtFrom());
+		retrieveMtnDeductiblesParams.put("amtTo",rmdr.getAmtTo());
+		retrieveMtnDeductiblesParams.put("deductibleText",rmdr.getDeductibleText());
 		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
 		
 		return rmdrResponse;

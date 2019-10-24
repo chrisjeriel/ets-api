@@ -489,7 +489,14 @@
 										'',
 										1,
 										'',
-										''))
+										'',
+										#{deductibleTitle,jdbcType=VARCHAR},
+										#{deductibleType,jdbcType=VARCHAR},
+										#{rateFrom,jdbcType=VARCHAR},
+										#{rateTo,jdbcType=VARCHAR},
+										#{amtFrom,jdbcType=VARCHAR},
+										#{amtTo,jdbcType=VARCHAR},
+										#{deductibleText,jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
