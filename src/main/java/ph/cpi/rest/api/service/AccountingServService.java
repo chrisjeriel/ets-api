@@ -45,4 +45,5 @@ public interface AccountingServService {
 	public SaveAcseBudExpMonthlyResponse saveAcseBudExpMonthly(SaveAcseBudExpMonthlyRequest sabemr) throws SQLException;
 	public RetrieveAcseBudExpMonthlyResponse retrieveAcseActExpMonthly(RetrieveAcseBudExpMonthlyRequest rabemr) throws SQLException;
 	public PrintOrResponse printOr(PrintOrRequest por) throws SQLException;
+	public PrintOrBatchResponse printOrBatch(PrintOrBatchRequest pobr) throws SQLException;
 }

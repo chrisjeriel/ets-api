@@ -1184,4 +1184,12 @@
 		END;
 	</update>
 	
+	<update id="printOrBatch" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="printOrList" item="save">
+				ACSE_OFFICIAL_RECEIPT_PKG.print_or(#{save.tranId,jdbcType=VARCHAR},#{save.orNo, jdbcType=VARCHAR},#{save.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{save.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

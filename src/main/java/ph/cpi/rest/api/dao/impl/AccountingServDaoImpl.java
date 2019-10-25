@@ -263,4 +263,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer res = sqlSession.update("printOr", params);
 		return res;
 	}
+	
+	@Override
+	public Integer printOrBatch(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("printOrBatch", params);
+		return res;
+	}
 }
