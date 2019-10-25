@@ -1,12 +1,32 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class AcseChartAcct {
-	
+public class SaveMtnAcseChartAcctRequest {
+	private List<acseChrtAcct> saveAcseChartAcct;
+	private List<acseChrtAcct> deleteAcseChartAcct;
+	public List<acseChrtAcct> getSaveAcseChartAcct() {
+		return saveAcseChartAcct;
+	}
+	public void setSaveAcseChartAcct(List<acseChrtAcct> saveAcseChartAcct) {
+		this.saveAcseChartAcct = saveAcseChartAcct;
+	}
+	public List<acseChrtAcct> getDeleteAcseChartAcct() {
+		return deleteAcseChartAcct;
+	}
+	public void setDeleteAcseChartAcct(List<acseChrtAcct> deleteAcseChartAcct) {
+		this.deleteAcseChartAcct = deleteAcseChartAcct;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnAcseChartAcctRequest [saveAcseChartAcct=" + saveAcseChartAcct + ", deleteAcseChartAcct="
+				+ deleteAcseChartAcct + "]";
+	}
+}
+
+class acseChrtAcct{
 	private Integer glAcctId;
 	private Integer glAcctCategory;
-	private String glAcctCategoryDesc;
 	private Integer glAcctControl;
 	private Integer glAcctSub1;
 	private Integer glAcctSub2;
@@ -15,17 +35,14 @@ public class AcseChartAcct {
 	private String longDesc;
 	private String shortCode;
 	private Integer slTypeCd;
-	private String slTypeName;
 	private String drCrTag;
 	private String postTag;
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
-
+	private String updateDate;
 	public Integer getGlAcctId() {
 		return glAcctId;
 	}
@@ -37,12 +54,6 @@ public class AcseChartAcct {
 	}
 	public void setGlAcctCategory(Integer glAcctCategory) {
 		this.glAcctCategory = glAcctCategory;
-	}
-	public String getGlAcctCategoryDesc() {
-		return glAcctCategoryDesc;
-	}
-	public void setGlAcctCategoryDesc(String glAcctCategoryDesc) {
-		this.glAcctCategoryDesc = glAcctCategoryDesc;
 	}
 	public Integer getGlAcctControl() {
 		return glAcctControl;
@@ -92,12 +103,6 @@ public class AcseChartAcct {
 	public void setSlTypeCd(Integer slTypeCd) {
 		this.slTypeCd = slTypeCd;
 	}
-	public String getSlTypeName() {
-		return slTypeName;
-	}
-	public void setSlTypeName(String slTypeName) {
-		this.slTypeName = slTypeName;
-	}
 	public String getDrCrTag() {
 		return drCrTag;
 	}
@@ -116,16 +121,22 @@ public class AcseChartAcct {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -134,35 +145,20 @@ public class AcseChartAcct {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
-	}
-	
-	public String getRemarks() {
-		return remarks;
-	}
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
 	}
 	@Override
 	public String toString() {
-		return "AcseChartAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctCategoryDesc="
-				+ glAcctCategoryDesc + ", glAcctControl=" + glAcctControl + ", glAcctSub1=" + glAcctSub1
-				+ ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3=" + glAcctSub3 + ", shortDesc=" + shortDesc
-				+ ", longDesc=" + longDesc + ", shortCode=" + shortCode + ", slTypeCd=" + slTypeCd + ", slTypeName="
-				+ slTypeName + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+		return "acseChrtAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctControl="
+				+ glAcctControl + ", glAcctSub1=" + glAcctSub1 + ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3="
+				+ glAcctSub3 + ", shortDesc=" + shortDesc + ", longDesc=" + longDesc + ", shortCode=" + shortCode
+				+ ", slTypeCd=" + slTypeCd + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-
 	
 }

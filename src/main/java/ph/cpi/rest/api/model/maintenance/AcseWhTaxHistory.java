@@ -1,15 +1,15 @@
 package ph.cpi.rest.api.model.maintenance;
 
-import java.math.BigDecimal;
-
 import org.joda.time.DateTime;
 
-public class AcseWhtax {
+public class AcseWhTaxHistory {
 	private Integer whtaxId;
+	private Integer histNo;
 	private String taxCd;
 	private String taxName;
 	private String taxType;
-	private BigDecimal taxRate;
+	private String taxTypeDesc;
+	private String rate;
 	private String defaultAcitGl;
 	private String defaultAcseGl;
 	private String creditableTag;
@@ -25,6 +25,12 @@ public class AcseWhtax {
 	}
 	public void setWhtaxId(Integer whtaxId) {
 		this.whtaxId = whtaxId;
+	}
+	public Integer getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(Integer histNo) {
+		this.histNo = histNo;
 	}
 	public String getTaxCd() {
 		return taxCd;
@@ -45,11 +51,17 @@ public class AcseWhtax {
 		this.taxType = taxType;
 	}
 	
-	public BigDecimal getTaxRate() {
-		return taxRate;
+	public String getTaxTypeDesc() {
+		return taxTypeDesc;
 	}
-	public void setTaxRate(BigDecimal taxRate) {
-		this.taxRate = taxRate;
+	public void setTaxTypeDesc(String taxTypeDesc) {
+		this.taxTypeDesc = taxTypeDesc;
+	}
+	public String getRate() {
+		return rate;
+	}
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 	public String getDefaultAcitGl() {
 		return defaultAcitGl;
@@ -113,11 +125,12 @@ public class AcseWhtax {
 	}
 	@Override
 	public String toString() {
-		return "AcseWhtax [whtaxId=" + whtaxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxType=" + taxType
-				+ ", taxRate=" + taxRate + ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl=" + defaultAcseGl
-				+ ", creditableTag=" + creditableTag + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "AcseWhTaxHistory [whtaxId=" + whtaxId + ", histNo=" + histNo + ", taxCd=" + taxCd + ", taxName="
+				+ taxName + ", taxType=" + taxType + ", taxTypeDesc=" + taxTypeDesc + ", rate=" + rate
+				+ ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl=" + defaultAcseGl + ", creditableTag="
+				+ creditableTag + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 	
 }

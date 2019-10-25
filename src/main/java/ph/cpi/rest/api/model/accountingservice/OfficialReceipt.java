@@ -30,6 +30,7 @@ public class OfficialReceipt {
 	private String prNo;
 	private DateTime prDate;
 	private String prPreparedBy;
+	private String vatTag;
 	private String payeeNo;
 	private String payeeClassCd;
 	private String payor;
@@ -196,6 +197,12 @@ public class OfficialReceipt {
 	public void setPrPreparedBy(String prPreparedBy) {
 		this.prPreparedBy = prPreparedBy;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	public String getPayeeNo() {
 		return payeeNo;
 	}
@@ -332,12 +339,12 @@ public class OfficialReceipt {
 				+ ", dcbBank=" + dcbBank + ", dcbBankName=" + dcbBankName + ", dcbBankAcct=" + dcbBankAcct
 				+ ", dcbBankAcctNo=" + dcbBankAcctNo + ", refNo=" + refNo + ", tranTypeCd=" + tranTypeCd
 				+ ", tranTypeName=" + tranTypeName + ", prNo=" + prNo + ", prDate=" + prDate + ", prPreparedBy="
-				+ prPreparedBy + ", payeeNo=" + payeeNo + ", payeeClassCd=" + payeeClassCd + ", payor=" + payor
-				+ ", mailAddress=" + mailAddress + ", bussTypeCd=" + bussTypeCd + ", tin=" + tin + ", refCd=" + refCd
-				+ ", currCd=" + currCd + ", orAmt=" + orAmt + ", currRate=" + currRate + ", particulars=" + particulars
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName
-				+ ", rstrctTranUp=" + rstrctTranUp + ", orDtlSum=" + orDtlSum + ", acctEntriesSum=" + acctEntriesSum
-				+ ", paytDtl=" + paytDtl + "]";
+				+ prPreparedBy + ", vatTag=" + vatTag + ", payeeNo=" + payeeNo + ", payeeClassCd=" + payeeClassCd
+				+ ", payor=" + payor + ", mailAddress=" + mailAddress + ", bussTypeCd=" + bussTypeCd + ", tin=" + tin
+				+ ", refCd=" + refCd + ", currCd=" + currCd + ", orAmt=" + orAmt + ", currRate=" + currRate
+				+ ", particulars=" + particulars + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingId=" + cedingId
+				+ ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp + ", orDtlSum=" + orDtlSum
+				+ ", acctEntriesSum=" + acctEntriesSum + ", paytDtl=" + paytDtl + "]";
 	}
 }

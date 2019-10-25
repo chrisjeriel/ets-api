@@ -1,15 +1,29 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import java.math.BigDecimal;
+import java.util.List;
 
-import org.joda.time.DateTime;
+public class SaveMtnAcseWhTaxHistRequest {
+	private List<whTaxHist> saveWhTaxHist;
+	public List<whTaxHist> getSaveWhTaxHist() {
+		return saveWhTaxHist;
+	}
+	public void setSaveWhTaxHist(List<whTaxHist> saveWhTaxHist) {
+		this.saveWhTaxHist = saveWhTaxHist;
+	}
+	@Override
+	public String toString() {
+		return "SaveMtnAcseWhTaxHistRequest [saveWhTaxHist=" + saveWhTaxHist + "]";
+	}
+	
+}
 
-public class AcseWhtax {
+class whTaxHist {
 	private Integer whtaxId;
+	private Integer histNo;
 	private String taxCd;
 	private String taxName;
 	private String taxType;
-	private BigDecimal taxRate;
+	private String rate;
 	private String defaultAcitGl;
 	private String defaultAcseGl;
 	private String creditableTag;
@@ -17,14 +31,20 @@ public class AcseWhtax {
 	private String activeTag;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
 	public Integer getWhtaxId() {
 		return whtaxId;
 	}
 	public void setWhtaxId(Integer whtaxId) {
 		this.whtaxId = whtaxId;
+	}
+	public Integer getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(Integer histNo) {
+		this.histNo = histNo;
 	}
 	public String getTaxCd() {
 		return taxCd;
@@ -44,12 +64,11 @@ public class AcseWhtax {
 	public void setTaxType(String taxType) {
 		this.taxType = taxType;
 	}
-	
-	public BigDecimal getTaxRate() {
-		return taxRate;
+	public String getRate() {
+		return rate;
 	}
-	public void setTaxRate(BigDecimal taxRate) {
-		this.taxRate = taxRate;
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 	public String getDefaultAcitGl() {
 		return defaultAcitGl;
@@ -93,10 +112,10 @@ public class AcseWhtax {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -105,19 +124,18 @@ public class AcseWhtax {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "AcseWhtax [whtaxId=" + whtaxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxType=" + taxType
-				+ ", taxRate=" + taxRate + ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl=" + defaultAcseGl
-				+ ", creditableTag=" + creditableTag + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "whTaxHist [whtaxId=" + whtaxId + ", histNo=" + histNo + ", taxCd=" + taxCd + ", taxName=" + taxName
+				+ ", taxType=" + taxType + ", rate=" + rate + ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl="
+				+ defaultAcseGl + ", creditableTag=" + creditableTag + ", fixedTag=" + fixedTag + ", activeTag="
+				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

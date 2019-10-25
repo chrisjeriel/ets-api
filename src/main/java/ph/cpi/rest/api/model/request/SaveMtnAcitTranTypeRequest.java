@@ -33,7 +33,6 @@ class tranType{
 	private String typePrefix;
 	private String tranTypeName;
 	private String defaultParticulars;
-	private Integer masterTranType;
 	private String remarks;
 	private String autoTag;
 	private String baeTag;
@@ -72,12 +71,6 @@ class tranType{
 	}
 	public void setDefaultParticulars(String defaultParticulars) {
 		this.defaultParticulars = defaultParticulars;
-	}
-	public Integer getMasterTranType() {
-		return masterTranType;
-	}
-	public void setMasterTranType(Integer masterTranType) {
-		this.masterTranType = masterTranType;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -136,10 +129,10 @@ class tranType{
 	@Override
 	public String toString() {
 		return "tranType [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", typePrefix=" + typePrefix
-				+ ", tranTypeName=" + tranTypeName + ", defaultParticulars=" + defaultParticulars + ", masterTranType="
-				+ masterTranType + ", remarks=" + remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag
-				+ ", activeTag=" + activeTag + ", groupTag=" + groupTag + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", tranTypeName=" + tranTypeName + ", defaultParticulars=" + defaultParticulars + ", remarks="
+				+ remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag + ", activeTag=" + activeTag + ", groupTag="
+				+ groupTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-
+	
 }

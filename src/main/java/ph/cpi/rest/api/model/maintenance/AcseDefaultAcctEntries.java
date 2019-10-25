@@ -17,6 +17,7 @@ public class AcseDefaultAcctEntries {
 	private String drCrTag;
 	private String tranAmtTag;
 	private String netDrcrTag;
+	private String remarks; 
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -44,6 +45,13 @@ public class AcseDefaultAcctEntries {
 	}
 	public void setGlAcctId(Integer glAcctId) {
 		this.glAcctId = glAcctId;
+	}
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public Integer getSlTypeCd() {
 		return slTypeCd;
@@ -136,8 +144,8 @@ public class AcseDefaultAcctEntries {
 				+ ", glAcctId=" + glAcctId + ", shortCode=" + shortCode + ", glShortDesc=" + glShortDesc + ", slTypeCd="
 				+ slTypeCd + ", slTypeName=" + slTypeName + ", sub1Dep=" + sub1Dep + ", sub2Dep=" + sub2Dep
 				+ ", sub3Dep=" + sub3Dep + ", drCrTag=" + drCrTag + ", tranAmtTag=" + tranAmtTag + ", netDrcrTag="
-				+ netDrcrTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ netDrcrTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

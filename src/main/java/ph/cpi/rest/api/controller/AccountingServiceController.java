@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
@@ -50,9 +52,11 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
@@ -307,6 +311,13 @@ public class AccountingServiceController {
 		return acctServService.saveAcseOrServFee(saosfr);
 	}
 	
+	@GetMapping(path="retrieveAcseBatchOr")
+	public @ResponseBody RetrieveAcseBatchOrResponse retrieveAcseBatchOr(RetrieveAcseBatchOrRequest rabor) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseBatchOr");
+		logger.info("RetrieveAcseOrServFeeRequest : " + rabor.toString());
+		return acctServService.retrieveAcseBatchOr(rabor);
+	}
+	
 	@GetMapping(path="retrieveAcseBudgetExpense")
 	public @ResponseBody RetrieveAcseBudgetExpenseResponse retrieveAcseBudgetExpense(RetrieveAcseBudgetExpenseRequest raber) throws SQLException {
 		logger.info("GET: /api/acct-serv-service/retrieveAcseBudgetExpense");
@@ -347,5 +358,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/printOr");
 		logger.info("PrintOrRequest : " + por.toString());
 		return acctServService.printOr(por);
+	}
+	
+	@PostMapping(path="printOrBatch")
+	public @ResponseBody PrintOrBatchResponse printOrBatch(@RequestBody PrintOrBatchRequest pobr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printOrBatch");
+		logger.info("PrintOrBatchRequest : " + pobr.toString());
+		return acctServService.printOrBatch(pobr);
 	}
 }

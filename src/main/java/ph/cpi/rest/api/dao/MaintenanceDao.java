@@ -19,9 +19,11 @@ import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseWhTaxHistory;
 import ph.cpi.rest.api.model.maintenance.AcseWhtax;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -255,14 +257,14 @@ public interface MaintenanceDao {
 	public List<AcitArSeries> retrieveArSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCvSeries> retrieveCvSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitJvSeries> retrieveJvSeries(final HashMap<String, Object> params) throws SQLException;
-	public AcitTranSeries maxTranNo(final HashMap<String, Object> params) throws SQLException;
+	public AcitTranSeries retrieveAcitAllowGenerate(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseCVSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseJVSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseORSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseOrSeries> retrieveAcseOrSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseCVSeries> retrieveAcseCVSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseJVSeries> retrieveAcseJVSeries(final HashMap<String, Object> params) throws SQLException;
-	public AcseTranSeries acseMaxTranNo(final HashMap<String, Object> params) throws SQLException;
+	public AcseTranSeries retrieveAcseAllowGenerate(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseWhtax> retrieveAcseWHTax(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnWhTax(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnTranType(final HashMap<String,Object> params) throws SQLException;
@@ -284,6 +286,10 @@ public interface MaintenanceDao {
 	public Integer saveMtnPayeeClass(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSLType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSL(final HashMap<String, Object> params) throws SQLException;
-
-	
+	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseWhTaxHistory> retrieveAcseWhTaxHist(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveAcseWhTaxHist(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveAcitChartAcc(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveAcseChartAcc(final HashMap<String, Object> params) throws SQLException;
 }
