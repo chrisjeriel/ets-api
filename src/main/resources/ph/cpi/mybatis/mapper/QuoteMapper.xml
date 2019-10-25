@@ -554,7 +554,11 @@
 															   '',
 															   '',
 															   '',
-															   ''))	a	
+															   '',
+															   #{siFrom, jdbcType=VARCHAR},
+															#{siTo, jdbcType=VARCHAR},
+															#{rateFrom, jdbcType=VARCHAR},
+															#{rateTo, jdbcType=VARCHAR}))	a	
 		   	  WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS_CD IN 
@@ -607,7 +611,10 @@
 															   '',
 															   '',
 															   '',
-															   ''))	a	
+															   '',#{siFrom, jdbcType=VARCHAR},
+															#{siTo, jdbcType=VARCHAR},
+															#{rateFrom, jdbcType=VARCHAR},
+															#{rateTo, jdbcType=VARCHAR}))	a
 		   	  WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS_CD IN 

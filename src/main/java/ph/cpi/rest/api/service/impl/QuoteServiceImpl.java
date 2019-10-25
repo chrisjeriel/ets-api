@@ -156,6 +156,11 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("search", rqlp.getSearch());
 			retrieveQuoteListingParams.put("openCoverTag", rqlp.getOpenCoverTag());
 			
+			retrieveQuoteListingParams.put("siFrom" , rqlp.getSiFrom());
+			retrieveQuoteListingParams.put("siTo" , rqlp.getSiTo());
+			retrieveQuoteListingParams.put("rateFrom" , rqlp.getRateFrom());
+			retrieveQuoteListingParams.put("rateTo" , rqlp.getRateTo());
+			
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
 			
