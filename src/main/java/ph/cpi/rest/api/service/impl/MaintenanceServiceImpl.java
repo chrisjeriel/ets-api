@@ -3115,4 +3115,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseDefTaxResponse retrieveAcseDefTax(RetrieveMtnAcseDefTaxRequest request) throws SQLException {
+		RetrieveMtnAcseDefTaxResponse response = new RetrieveMtnAcseDefTaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("taxId", request.getTaxId());
+		response.setDefTax(maintenanceDao.retrieveAcseDefTax(params));
+		return response;
+	}
 }

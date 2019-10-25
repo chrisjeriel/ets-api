@@ -5000,4 +5000,22 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultTax" id="acseDefTaxMap">
+    	<result property="tranClass" 			column="TRAN_CLASS"/>
+		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
+		<result property="taxId" 				column="TAX_ID"/>
+		<result property="taxRate" 				column="TAX_RATE"/>
+		<result property="fixedAmount" 			column="FIXED_AMOUNT"/>
+		<result property="particulars" 			column="PARTICULARS"/>
+		<result property="activeTag" 			column="ACTIVE_TAG"/>
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+	
+	 <select id="retrieveAcseDefTax" resultMap="acseDefTaxMap">
+		SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_deftax(#{tranClass}, #{tranTypeCd}, #{taxId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
 </mapper>
