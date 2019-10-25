@@ -412,7 +412,10 @@
 	</resultMap>
 	
 	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'','',
+															#{endtTitle,jdbcType=VARCHAR},
+															#{endtDesc,jdbcType=VARCHAR},
+															#{remarks,jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">

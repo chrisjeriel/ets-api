@@ -142,6 +142,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveEndtCodeParams = new HashMap<String, Object>();
 		retrieveEndtCodeParams.put("endtCd", recr.getEndtCd());
 		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
+		retrieveEndtCodeParams.put("endtTitle", recr.getEndtTitle());
+		retrieveEndtCodeParams.put("endtDesc", recr.getEndtDesc());
+		retrieveEndtCodeParams.put("remarks", recr.getRemarks());
 		
 		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
 		logger.info("recrResponse : " + recrResponse.toString());
