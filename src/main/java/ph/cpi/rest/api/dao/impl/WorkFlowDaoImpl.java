@@ -40,34 +40,24 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 
 	@Override
 	public List<Reminder> retrieveReminders(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<Reminder> reminderList = sqlSession.selectList("retrieveReminders", params);
-		logger.info("retrieveReminders DAOImpl : " + reminderList);
 		return reminderList;
 	}
 
 	@Override
 	public Integer saveReminders(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		
-		logger.info("WFM Dao");
-		logger.info(params.toString());
 		Integer errorCode = sqlSession.update("saveReminders", params);
 		return errorCode;
 	}
 
 	@Override
 	public List<Note> retrieveNotes(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<Note> noteList = sqlSession.selectList("retrieveNotes", params);
-		logger.info("retrieveNotes DAOImpl : " + noteList);
 		return noteList;
 	}
 
 	@Override
 	public Integer saveNotes(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
-		System.out.println("DAOIMPL saveNotes : " + params);
 		Integer errorCode = sqlSession.update("saveNotes", params);
 		return errorCode;
 	}
@@ -75,14 +65,12 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	@Override
 	public List<WfmTransaction> retrieveTransactions(HashMap<String, Object> params) throws SQLException {
 		List<WfmTransaction> transactionList = sqlSession.selectList("retrieveTransactions", params);
-		logger.info("retrieveTransactions DAOImpl : " + transactionList);
 		return transactionList;
 	}
 
 	@Override
 	public List<RelatedRecord> retrieveRelatedRecords(HashMap<String, Object> params) throws SQLException {
 		List<RelatedRecord> relatedRecordList = sqlSession.selectList("retrieveRelatedRecords", params);
-		logger.info("retrieveRelatedRecords DAOImpl : " + relatedRecordList);
 		return relatedRecordList;
 	}
 }

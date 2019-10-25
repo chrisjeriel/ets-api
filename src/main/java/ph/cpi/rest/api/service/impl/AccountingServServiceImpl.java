@@ -13,9 +13,11 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
@@ -47,9 +49,11 @@ import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
@@ -754,6 +758,20 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveAcseBatchOrResponse retrieveAcseBatchOr(
+			RetrieveAcseBatchOrRequest rabor) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcseBatchOrResponse response = new RetrieveAcseBatchOrResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("orDateFrom", rabor.getOrDateFrom());
+		params.put("orDateTo", rabor.getOrDateTo());
+		params.put("tranTypeCd", rabor.getTranTypeCd());
+		response.setBatchOrList(acctServDao.retrieveAcseBatchOr(params));
+		return response;
+	}
 	
 	@Override
 	public RetrieveAcseBudgetExpenseResponse retrieveAcseBudgetExpense(RetrieveAcseBudgetExpenseRequest racprlp)
@@ -842,6 +860,28 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("updateDate", por.getUpdateDate());
 		try{
 			response.setReturnCode(acctServDao.printOr(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to printing. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public PrintOrBatchResponse printOrBatch(PrintOrBatchRequest pobr)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		PrintOrBatchResponse response = new PrintOrBatchResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("printOrList", pobr.getPrintOrList());
+		try{
+			response.setReturnCode(acctServDao.printOrBatch(params));
 			logger.info(response.toString());
 		}catch (SQLException sqlex) {
 			response.setReturnCode(0);

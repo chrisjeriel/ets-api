@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
 import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
@@ -220,6 +221,13 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	}
 
 	@Override
+	public List<AcseBatchOR> retrieveAcseBatchOr(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcseBatchOR> res = sqlSession.selectList("retrieveAcseBatchOr", params);
+		return res;
+	}
+
 	public List<AcseBudgetExpense> retrieveAcseBudgetExpense(HashMap<String, Object> params) throws SQLException {
 		List<AcseBudgetExpense> acseBudgetExpenseList = sqlSession.selectList("retrieveAcseBudgetExpense", params);
 		return acseBudgetExpenseList;
@@ -253,6 +261,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer printOr(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("printOr", params);
+		return res;
+	}
+	
+	@Override
+	public Integer printOrBatch(HashMap<String, Object> params) throws SQLException {
+		Integer res = sqlSession.update("printOrBatch", params);
 		return res;
 	}
 }

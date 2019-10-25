@@ -51,7 +51,8 @@ import ph.cpi.rest.api.utils.PrintingUtility;
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", 
 						"http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", 
 						"http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
-						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200"})
+						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
 @RequestMapping(path="/util-service")
 public class UtilController {
 	
@@ -134,6 +135,7 @@ public class UtilController {
 				reportParam.put("ADVICE_NO", grmr.getReportRequest().get(i).getAdviceNo());
 				reportParam.put("HOLD_COV_ID", grmr.getReportRequest().get(i).getHoldCovId());
 				reportParam.put("USER_ID", grmr.getReportRequest().get(i).getUserId());
+				reportParam.put("TRAN_ID", grmr.getReportRequest().get(i).getTranId());
 				
 				try {
 					fileName = pu.generateJasperReport(reportParam, dbParams, null, outputPath, null);
@@ -175,9 +177,6 @@ public class UtilController {
 	 	            .contentType(MediaType.parseMediaType("application/pdf"))
 	 	            .body(resource);
 	    }
-	    
-	   
-	  
 	}
 		
 	@SuppressWarnings({ "unchecked", "rawtypes" })

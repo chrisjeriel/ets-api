@@ -14,8 +14,15 @@ public class AcitEomMonthlyTotals {
 	private String shortCode;
 	private String shortDesc;
 	private String longDesc;
+	private BigDecimal begDebitAmt;
+	private BigDecimal begCreditAmt;
+	private BigDecimal totalDebitAmt;
+	private BigDecimal totalCreditAmt;
 	private BigDecimal transDebitBal;
 	private BigDecimal transCreditBal;
+	private BigDecimal transBalance;
+	private BigDecimal endDebitAmt;
+	private BigDecimal endCreditAmt;
 	
 	public DateTime getEomDate() {
 		return eomDate;
@@ -65,6 +72,30 @@ public class AcitEomMonthlyTotals {
 	public void setLongDesc(String longDesc) {
 		this.longDesc = longDesc;
 	}
+	public BigDecimal getBegDebitAmt() {
+		return begDebitAmt;
+	}
+	public void setBegDebitAmt(BigDecimal begDebitAmt) {
+		this.begDebitAmt = begDebitAmt;
+	}
+	public BigDecimal getBegCreditAmt() {
+		return begCreditAmt;
+	}
+	public void setBegCreditAmt(BigDecimal begCreditAmt) {
+		this.begCreditAmt = begCreditAmt;
+	}
+	public BigDecimal getTotalDebitAmt() {
+		return totalDebitAmt;
+	}
+	public void setTotalDebitAmt(BigDecimal totalDebitAmt) {
+		this.totalDebitAmt = totalDebitAmt;
+	}
+	public BigDecimal getTotalCreditAmt() {
+		return totalCreditAmt;
+	}
+	public void setTotalCreditAmt(BigDecimal totalCreditAmt) {
+		this.totalCreditAmt = totalCreditAmt;
+	}
 	public BigDecimal getTransDebitBal() {
 		return transDebitBal;
 	}
@@ -77,11 +108,31 @@ public class AcitEomMonthlyTotals {
 	public void setTransCreditBal(BigDecimal transCreditBal) {
 		this.transCreditBal = transCreditBal;
 	}
+	public BigDecimal getTransBalance() {
+		return transBalance;
+	}
+	public void setTransBalance(BigDecimal transBalance) {
+		this.transBalance = transBalance;
+	}
+	public BigDecimal getEndDebitAmt() {
+		return endDebitAmt;
+	}
+	public void setEndDebitAmt(BigDecimal endDebitAmt) {
+		this.endDebitAmt = endDebitAmt;
+	}
+	public BigDecimal getEndCreditAmt() {
+		return endCreditAmt;
+	}
+	public void setEndCreditAmt(BigDecimal endCreditAmt) {
+		this.endCreditAmt = endCreditAmt;
+	}
 	@Override
 	public String toString() {
 		return "AcitEomMonthlyTotals [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd="
 				+ currCd + ", glAcctId=" + glAcctId + ", shortCode=" + shortCode + ", shortDesc=" + shortDesc
-				+ ", longDesc=" + longDesc + ", transDebitBal=" + transDebitBal + ", transCreditBal=" + transCreditBal
-				+ "]";
+				+ ", longDesc=" + longDesc + ", begDebitAmt=" + begDebitAmt + ", begCreditAmt=" + begCreditAmt
+				+ ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt + ", transDebitBal="
+				+ transDebitBal + ", transCreditBal=" + transCreditBal + ", transBalance=" + transBalance
+				+ ", endDebitAmt=" + endDebitAmt + ", endCreditAmt=" + endCreditAmt + "]";
 	}
 }
