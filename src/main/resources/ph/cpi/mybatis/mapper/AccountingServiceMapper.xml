@@ -66,6 +66,7 @@
 		<result property="prNo"          column="PR_NO"             />
 		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
+		<result property="vatTag"        column="VAT_TAG"          />
 		<result property="payeeNo"       column="PAYEE_NO"          />
 		<result property="payeeClassCd"  column="PAYEE_CLASS_CD"          />
 		<result property="payor"         column="PAYOR"             />
@@ -592,6 +593,14 @@
 					);
 				</foreach>
 			</foreach>
+			
+			ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
+													#{billId},
+													#{createUser},
+													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{updateUser},
+													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
 			END;
 	</update>
 

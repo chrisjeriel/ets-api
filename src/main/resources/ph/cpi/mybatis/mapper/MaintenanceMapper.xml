@@ -3655,6 +3655,7 @@
 		<result property="bankAcctNo2"	column="BANK_ACCT_NO2"/>
 		<result property="cedingId"	column="CEDING_ID"/>
 		<result property="bussTypeName"	column="BUSS_TYPE_NAME"/>
+		<result property="vatTag"	column="VAT_TAG"/>
 	</resultMap>
 	
 	<select id="retrieveMtnPayee" resultMap="payeeMap">
