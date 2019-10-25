@@ -66,6 +66,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.QSOAAcctReceivable;
+import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
+import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
+import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
@@ -746,12 +750,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
-	public Integer saveAcitQSOA(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("saveAcitQSOA", params);
-		return errorCode;
-	}
-
-	@Override
 	public List<AcitInwPolPayts> retrieveAcitInwPolPayts(HashMap<String, Object> params) throws SQLException {
 		List<AcitInwPolPayts> list = sqlSession.selectList("retrieveAcitInwPolPayts",params);
 		return list;
@@ -986,6 +984,48 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitMonthEnd> retrieveAcitMonthEnd(HashMap<String, Object> params) throws SQLException {
 		List<AcitMonthEnd> res = sqlSession.selectList("retrieveAcitMonthEnd", params);
+		return res;
+	}
+
+	@Override
+	public String validateQsoaQtr(HashMap<String, Object> params) throws SQLException {
+		params.put("validateQsoaQtr", "");
+		sqlSession.selectOne("validateQsoaQtr", params);
+		
+		return (String) params.get("validateQsoaQtr");
+	}
+
+	@Override
+	public Integer saveQSOA(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveQSOA", params);
+	}
+
+	@Override
+	public List<QSOADtl> retrieveQSOADtl(HashMap<String, Object> params) throws SQLException {
+		List<QSOADtl> res = sqlSession.selectList("retrieveQSOADtl", params);
+		return res;
+	}
+
+	@Override
+	public List<QSOADtlExclude> retrieveQSOADtlExclude(HashMap<String, Object> params) throws SQLException {
+		List<QSOADtlExclude> res = sqlSession.selectList("retrieveQSOADtlExclude", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveAcitProfComm(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveAcitProfComm", params);
+	}
+
+	@Override
+	public List<QSOAAcctReceivable> retrieveQSOAAcctReceivable(HashMap<String, Object> params) throws SQLException {
+		List<QSOAAcctReceivable> res = sqlSession.selectList("retrieveQSOAAcctReceivable", params);
+		return res;
+	}
+
+	@Override
+	public List<QSOARemittance> retrieveQSOARemittance(HashMap<String, Object> params) throws SQLException {
+		List<QSOARemittance> res = sqlSession.selectList("retrieveQSOARemittance", params);
 		return res;
 	}
 }

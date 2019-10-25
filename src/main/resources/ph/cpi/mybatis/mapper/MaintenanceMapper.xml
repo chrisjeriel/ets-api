@@ -700,7 +700,16 @@
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{cedingAbbr, jdbcType=VARCHAR},#{address, jdbcType=VARCHAR},#{membershipDate, jdbcType=VARCHAR},#{terminationDate, jdbcType=VARCHAR},#{inactiveDate, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{govtTag, jdbcType=VARCHAR},#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
+            SELECT* FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},
+            														#{cedingName, jdbcType=VARCHAR},
+            														#{cedingAbbr, jdbcType=VARCHAR},
+            														#{address, jdbcType=VARCHAR},
+            														#{membershipDate, jdbcType=VARCHAR},
+            														#{terminationDate, jdbcType=VARCHAR},
+            														#{inactiveDate, jdbcType=VARCHAR},
+            														#{activeTag, jdbcType=VARCHAR},
+            														#{govtTag, jdbcType=VARCHAR},
+            														#{membershipTag, jdbcType=VARCHAR}, null, null ,null, null))
      </select>
      
      

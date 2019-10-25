@@ -1912,32 +1912,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
-	@Override
-	public SaveAcitQSOAResponse saveAcitQSOA(SaveAcitQSOARequest saqr) throws SQLException {
-		SaveAcitQSOAResponse saqResponse = new SaveAcitQSOAResponse();
-		HashMap<String,Object> saqParams = new HashMap<String,Object>();
-		
-		saqParams.put("cedingId", saqr.getCedingId());
-		saqParams.put("gnrtQtr", saqr.getGnrtQtr());
-		saqParams.put("gnrtYear", saqr.getGnrtYear());
-		saqParams.put("createUser", saqr.getCreateUser());
-		saqParams.put("createDate", saqr.getCreateDate());
-		saqParams.put("updateUser", saqr.getUpdateUser());
-		saqParams.put("updateDate", saqr.getUpdateDate());
-		
-		//add validation for already generated qsoa
-		try {
-			saqResponse.setReturnCode(acctITDao.saveAcitQSOA(saqParams));
-		} catch (Exception e) {
-			saqResponse.setReturnCode(0);
-			saqResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
-			e.printStackTrace();
-		}
-		
-		return saqResponse;
-	}
-
 	@Override
 	public RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar)
 			throws SQLException {
@@ -2362,6 +2336,93 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("eomDate", ramer.getEomDate());
 		
 		res.setMonthEnd(acctITDao.retrieveAcitMonthEnd(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException {
+		SaveQSOAResponse res = new SaveQSOAResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		Boolean proceed = false;
+		
+		params.put("cedingId", sqr.getCedingId());
+		params.put("qtr", sqr.getQtr());
+		params.put("year", sqr.getYear());
+		params.put("user", sqr.getUser());
+		
+		try {
+			if("N".equals(sqr.getForce())) {				
+				switch (acctITDao.validateQsoaQtr(params)) {
+				case "0":
+					proceed = true;
+					break;
+				case "1":
+					proceed = false;
+					res.setReturnCode(1);
+					break;
+				case "2":
+					proceed = false;
+					res.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				acctITDao.saveQSOA(params);
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","QSOA Generation failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException {
+		RetrieveQSOADtlResponse res = new RetrieveQSOADtlResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("qsoaId", rqdr.getQsoaId());
+		
+		res.setQsoaDtlList(acctITDao.retrieveQSOADtl(params));
+		res.setQsoaDtlExcludeList(acctITDao.retrieveQSOADtlExclude(params));
+		res.setQsoaAcctReceivableList(acctITDao.retrieveQSOAAcctReceivable(params));
+		res.setQsoaRemittanceList(acctITDao.retrieveQSOARemittance(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException {
+		SaveAcitProfCommResponse res = new SaveAcitProfCommResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("cedingId", sapcr.getCedingId());
+		params.put("gnrtDate", sapcr.getGnrtDate());
+		params.put("createUser", sapcr.getCreateUser());
+		params.put("createDate", sapcr.getCreateDate());
+		params.put("updateUser", sapcr.getUpdateUser());
+		params.put("updateDate", sapcr.getUpdateDate());
+		
+		try {
+			acctITDao.saveAcitProfComm(params);
+			res.setReturnCode(-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Profit Commission Generation failed."));
+		}
 		
 		return res;
 	}
