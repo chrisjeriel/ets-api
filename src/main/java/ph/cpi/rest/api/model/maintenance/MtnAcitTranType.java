@@ -9,7 +9,6 @@ public class MtnAcitTranType {
 	private String typePrefix;
 	private String tranTypeName;
 	private String defaultParticulars;
-	private Integer masterTranType;
 	private String remarks;
 	private String autoTag;
 	private String baeTag;
@@ -57,12 +56,7 @@ public class MtnAcitTranType {
 	public void setDefaultParticulars(String defaultParticulars) {
 		this.defaultParticulars = defaultParticulars;
 	}
-	public Integer getMasterTranType() {
-		return masterTranType;
-	}
-	public void setMasterTranType(Integer masterTranType) {
-		this.masterTranType = masterTranType;
-	}
+	
 	public String getRemarks() {
 		return remarks;
 	}
@@ -128,10 +122,10 @@ public class MtnAcitTranType {
 	public String toString() {
 		return "MtnAcitTranType [tranClass=" + tranClass + ", tranClassName=" + tranClassName + ", tranTypeCd="
 				+ tranTypeCd + ", typePrefix=" + typePrefix + ", tranTypeName=" + tranTypeName + ", defaultParticulars="
-				+ defaultParticulars + ", masterTranType=" + masterTranType + ", remarks=" + remarks + ", autoTag="
-				+ autoTag + ", baeTag=" + baeTag + ", activeTag=" + activeTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", groupTag=" + groupTag + ", okDelete=" + okDelete + "]";
+				+ defaultParticulars + ", remarks=" + remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag
+				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", groupTag=" + groupTag + ", okDelete="
+				+ okDelete + "]";
 	}
 	
 }

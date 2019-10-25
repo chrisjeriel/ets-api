@@ -3451,7 +3451,6 @@
 		<result property="typePrefix" 			column="TYPE_PREFIX"/>
 		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
 		<result property="defaultParticulars" 	column="DEFAULT_PARTICULARS"/>
-		<result property="masterTranType" 		column="MASTER_TRAN_TYPE"/>
 		<result property="remarks" 				column="REMARKS"/>
 		<result property="autoTag" 				column="AUTO_TAG"/>
 		<result property="baeTag" 				column="BAE_TAG"/>
@@ -3903,7 +3902,6 @@
 		<result property="typePrefix" 			column="TYPE_PREFIX"/>
 		<result property="tranTypeName" 		column="TRAN_TYPE_NAME"/>
 		<result property="defaultParticulars" 	column="DEFAULT_PARTICULARS"/>
-		<result property="masterTranType" 		column="MASTER_TRAN_TYPE"/>
 		<result property="remarks" 				column="REMARKS"/>
 		<result property="autoTag" 				column="AUTO_TAG"/>
 		<result property="baeTag" 				column="BAE_TAG"/>
@@ -4454,7 +4452,6 @@
                                                           #{save.typePrefix,jdbcType=VARCHAR}, 
                                                           #{save.tranTypeName}, 
                                                           #{save.defaultParticulars,jdbcType=VARCHAR}, 
-                                                          #{save.masterTranType,jdbcType=VARCHAR}, 
                                                           #{save.remarks,jdbcType=VARCHAR}, 
                                                           #{save.autoTag}, 
                                                           #{save.baeTag}, 
@@ -4575,7 +4572,6 @@
 														#{save.typePrefix},
 														#{save.tranTypeName},
 														#{save.defaultParticulars,jdbcType=VARCHAR},
-														#{save.masterTranType,jdbcType=VARCHAR},
 														#{save.remarks,jdbcType=VARCHAR},
 														#{save.autoTag},
 														#{save.baeTag},
