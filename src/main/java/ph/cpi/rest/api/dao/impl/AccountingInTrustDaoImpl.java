@@ -975,4 +975,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		
 		return (String) params.get("validateCurr");
 	}
+
+	@Override
+	public Integer updateSoaCv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateSoaCv", params);
+		return errorCode;
+	}
 }

@@ -204,4 +204,7 @@ public interface AccountingInTrustDao {
 	public Integer acitEomPostToFiscalYear(final HashMap<String, Object> params) throws SQLException;
 	public Integer failedPosting(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException;
+	
+	
+	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
 }
