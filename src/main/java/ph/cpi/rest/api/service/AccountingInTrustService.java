@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
@@ -110,7 +111,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitJvInvPlacementResponse retrieveAcitJvInvPlacement (RetrieveAcitJvInvPlacementRequest request)throws SQLException;
 	public SaveAcitJVInvPlacementResponse saveAcitJVInvPlacement (SaveAcitJVInvPlacementRequest request)throws SQLException;
 	public RetrieveAcitSOADueResponse retrieveAcitSoaDue(RetrieveAcitSOADueRequest request )throws SQLException;
-	public SaveAcitQSOAResponse saveAcitQSOA(SaveAcitQSOARequest saqr) throws SQLException;
 	public RetrieveAcitInwPolPaytsResponse retrieveAcitInwPolPayts(RetrieveAcitInwPolPaytsRequest raar) throws SQLException;
 	public RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request ) throws SQLException;
 	public SaveAcitMonthEndBatchProdResponse saveAcitMonthEndBatchProd(SaveAcitMonthEndBatchProdRequest samebr) throws SQLException;
@@ -120,4 +120,6 @@ public interface AccountingInTrustService {
 	public PostAcitMonthEndTrialBalResponse postAcitMonthEndTrialBal(PostAcitMonthEndTrialBalRequest pametbr) throws SQLException;
 	public RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException;
 	public RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException;
+	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException;
+	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException;
 }

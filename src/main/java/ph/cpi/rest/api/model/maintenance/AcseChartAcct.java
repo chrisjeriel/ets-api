@@ -19,10 +19,12 @@ public class AcseChartAcct {
 	private String drCrTag;
 	private String postTag;
 	private String activeTag;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 
 	public Integer getGlAcctId() {
 		return glAcctId;
@@ -138,19 +140,28 @@ public class AcseChartAcct {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
-		return "AcseChartAcct [glAcctId=" + glAcctId + ", glAcctCategory="
-				+ glAcctCategory + ", glAcctCategoryDesc=" + glAcctCategoryDesc
-				+ ", glAcctControl=" + glAcctControl + ", glAcctSub1="
-				+ glAcctSub1 + ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3="
-				+ glAcctSub3 + ", shortDesc=" + shortDesc + ", longDesc="
-				+ longDesc + ", shortCode=" + shortCode + ", slTypeCd="
-				+ slTypeCd + ", slTypeName=" + slTypeName + ", drCrTag="
-				+ drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
-				+ ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ "]";
+		return "AcseChartAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctCategoryDesc="
+				+ glAcctCategoryDesc + ", glAcctControl=" + glAcctControl + ", glAcctSub1=" + glAcctSub1
+				+ ", glAcctSub2=" + glAcctSub2 + ", glAcctSub3=" + glAcctSub3 + ", shortDesc=" + shortDesc
+				+ ", longDesc=" + longDesc + ", shortCode=" + shortCode + ", slTypeCd=" + slTypeCd + ", slTypeName="
+				+ slTypeName + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 
 	

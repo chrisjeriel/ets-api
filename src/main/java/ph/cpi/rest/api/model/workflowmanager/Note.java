@@ -15,6 +15,7 @@ public class Note {
 	private String referenceId;
 	private String details;
 	private String assignedTo;
+	private String assignedToGroup;
 	private String status;
 	private String createUser;
 	private DateTime createDate;
@@ -119,14 +120,19 @@ public class Note {
 	public void setUrgTag(String urgTag) {
 		this.urgTag = urgTag;
 	}
+	public String getAssignedToGroup() {
+		return assignedToGroup;
+	}
+	public void setAssignedToGroup(String assignedToGroup) {
+		this.assignedToGroup = assignedToGroup;
+	}
 	@Override
 	public String toString() {
-		return "Note [getNoteId()=" + getNoteId() + ", getTitle()=" + getTitle() + ", getNote()=" + getNote()
-				+ ", getModule()=" + getModule() + ", getReferenceId()=" + getReferenceId() + ", getDetails()="
-				+ getDetails() + ", getAssignedTo()=" + getAssignedTo() + ", getStatus()=" + getStatus()
-				+ ", getCreateUser()=" + getCreateUser() + ", getCreateDate()=" + getCreateDate() + ", getUpdateUser()="
-				+ getUpdateUser() + ", getUpdateDate()=" + getUpdateDate() + ", getRelatedRecordList()="
-				+ getRelatedRecordList() + ", getImpTag()=" + getImpTag() + ", getUrgTag()=" + getUrgTag() + "]";
+		return "Note [noteId=" + noteId + ", title=" + title + ", note=" + note + ", impTag=" + impTag + ", urgTag="
+				+ urgTag + ", module=" + module + ", referenceId=" + referenceId + ", details=" + details
+				+ ", assignedTo=" + assignedTo + ", assignedToGroup=" + assignedToGroup + ", status=" + status
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", relatedRecordList=" + relatedRecordList + "]";
 	}
 	
 }

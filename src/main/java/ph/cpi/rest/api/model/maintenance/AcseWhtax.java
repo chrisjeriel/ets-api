@@ -9,7 +9,7 @@ public class AcseWhtax {
 	private String taxCd;
 	private String taxName;
 	private String taxType;
-	private BigDecimal rate;
+	private BigDecimal taxRate;
 	private String defaultAcitGl;
 	private String defaultAcseGl;
 	private String creditableTag;
@@ -44,11 +44,12 @@ public class AcseWhtax {
 	public void setTaxType(String taxType) {
 		this.taxType = taxType;
 	}
-	public BigDecimal getRate() {
-		return rate;
+	
+	public BigDecimal getTaxRate() {
+		return taxRate;
 	}
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
+	public void setTaxRate(BigDecimal taxRate) {
+		this.taxRate = taxRate;
 	}
 	public String getDefaultAcitGl() {
 		return defaultAcitGl;
@@ -113,11 +114,10 @@ public class AcseWhtax {
 	@Override
 	public String toString() {
 		return "AcseWhtax [whtaxId=" + whtaxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxType=" + taxType
-				+ ", rate=" + rate + ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl=" + defaultAcseGl
+				+ ", taxRate=" + taxRate + ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl=" + defaultAcseGl
 				+ ", creditableTag=" + creditableTag + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

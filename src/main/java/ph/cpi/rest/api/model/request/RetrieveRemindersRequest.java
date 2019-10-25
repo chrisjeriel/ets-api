@@ -10,6 +10,7 @@ public class RetrieveRemindersRequest {
 		private String  createUser;
 		private String  module;
 		private String  referenceId;
+		private String  status;
 		private PaginationRequest paginationRequest;
 		private SortRequest sortRequest;
 		
@@ -55,11 +56,16 @@ public class RetrieveRemindersRequest {
 		public void setReferenceId(String referenceId) {
 			this.referenceId = referenceId;
 		}
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
 		@Override
 		public String toString() {
 			return "RetrieveRemindersRequest [reminderId=" + reminderId + ", assignedTo=" + assignedTo + ", createUser="
-					+ createUser + ", module=" + module + ", referenceId=" + referenceId + ", paginationRequest="
-					+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+					+ createUser + ", module=" + module + ", referenceId=" + referenceId + ", status=" + status
+					+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 		}
-		
 }

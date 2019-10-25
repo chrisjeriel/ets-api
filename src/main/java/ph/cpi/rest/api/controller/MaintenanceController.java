@@ -21,7 +21,8 @@ import ph.cpi.rest.api.service.MaintenanceService;
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", 
 						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
 						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
-						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200"})
+						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
 @RequestMapping(path="/maintenance-service")
 public class MaintenanceController {
 	
@@ -1201,11 +1202,11 @@ public class MaintenanceController {
 		return maintenanceService.retrieveJvSeries(request);
 	}
 	
-	@GetMapping(path="maxTranNo")
-	public @ResponseBody RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException {
-		logger.info("GET: /api/maintenance-service/maxTranNo");
+	@GetMapping(path="retrieveAcitAllowGenerate")
+	public @ResponseBody RetrieveMtnAcitSeriesResponse retrieveAcitAllowGenerate(RetrieveMtnAcitSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveAcitAllowGenerate");
 		logger.info("RetrieveMtnAcitSeriesRequest : " + request.toString());
-		return maintenanceService.maxTranNo(request);
+		return maintenanceService.retrieveAcitAllowGenerate(request);
 	}
 	
 	@PostMapping(path="generateAcseCVSeries")
@@ -1250,11 +1251,11 @@ public class MaintenanceController {
 		return maintenanceService.retrieveAcseJVSeries(request);
 	}
 	
-	@GetMapping(path="acseMaxTranNo")
-	public @ResponseBody RetrieveMtnAcseSeriesResponse acseMaxTranNo(RetrieveMtnAcseSeriesRequest request) throws SQLException {
-		logger.info("GET: /api/maintenance-service/acseMaxTranNo");
+	@GetMapping(path="retrieveAcseAllowGenerate")
+	public @ResponseBody RetrieveMtnAcseSeriesResponse retrieveAcseAllowGenerate(RetrieveMtnAcseSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveAcseAllowGenerate");
 		logger.info("RetrieveMtnAcseSeriesRequest : " + request.toString());
-		return maintenanceService.acseMaxTranNo(request);
+		return maintenanceService.retrieveAcseAllowGenerate(request);
 	}
 	
 	@GetMapping(path="retrieveAcseWHTax")
@@ -1325,5 +1326,47 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveAcseDefAcctEnt");
 		logger.info("SaveMtnAcseDefAcctEntRequest : " + request.toString());
 		return maintenanceService.saveAcseDefAcctEnt(request);
+	}
+	
+	@GetMapping(path="retrieveAcseAmtDtl")
+	public @ResponseBody RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/retrieveAcseAmtDtl");
+		logger.info("RetrieveMtnAcseDefAmtRequest : " + request.toString());
+		return maintenanceService.retrieveAcseAmtDtl(request);
+	}
+	
+	@PostMapping(path="saveAcseAmtDtl")
+	public @ResponseBody SaveMtnAcseDefAmtDtlResponse saveAcseAmtDtl(@RequestBody SaveMtnAcseDefAmtDtlRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseAmtDtl");
+		logger.info("SaveMtnAcseDefAmtDtlRequest : " + request.toString());
+		return maintenanceService.saveAcseAmtDtl(request);
+	}
+	
+	@GetMapping(path="retrieveAcseWhTaxHist")
+	public @ResponseBody RetrieveMtnAcseWhTaxHistResponse retrieveAcseWhTaxHist(RetrieveMtnAcseWhTaxHistRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/retrieveAcseWhTaxHist");
+		logger.info("RetrieveMtnAcseWhTaxHistRequest : " + request.toString());
+		return maintenanceService.retrieveAcseWhTaxHist(request);
+	}
+	
+	@PostMapping(path="saveAcseWhTaxHist")
+	public @ResponseBody SaveMtnAcseWhTaxHistResponse saveAcseWhTaxHist(@RequestBody SaveMtnAcseWhTaxHistRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseWhTaxHist");
+		logger.info("SaveMtnAcseWhTaxHistRequest : " + request.toString());
+		return maintenanceService.saveAcseWhTaxHist(request);
+	}
+	
+	@PostMapping(path="saveAcitChartAcct")
+	public @ResponseBody SaveMtnAcitChartAcctResponse saveAcitChartAcct(@RequestBody SaveMtnAcitChartAcctRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcitChartAcct");
+		logger.info("SaveMtnAcitChartAcctRequest : " + request.toString());
+		return maintenanceService.saveAcitChartAcct(request);
+	}
+	
+	@PostMapping(path="saveAcseChartAcct")
+	public @ResponseBody SaveMtnAcseChartAcctResponse saveAcseChartAcct(@RequestBody SaveMtnAcseChartAcctRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseChartAcct");
+		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
+		return maintenanceService.saveAcseChartAcct(request);
 	}
 }

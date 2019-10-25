@@ -1,19 +1,20 @@
 package ph.cpi.rest.api.model.maintenance;
 
 public class AcseTranSeries {
-	private Integer TranNo;
+	private String allowGenerate;
 
-	public Integer getTranNo() {
-		return TranNo;
+	public String getAllowGenerate() {
+		return allowGenerate;
 	}
 
-	public void setTranNo(Integer tranNo) {
-		TranNo = tranNo;
+	public void setAllowGenerate(String allowGenerate) {
+		this.allowGenerate = allowGenerate;
 	}
 
 	@Override
 	public String toString() {
-		return "AcseTranSeries [TranNo=" + TranNo + "]";
+		return "AcseTranSeries [allowGenerate=" + allowGenerate + "]";
 	}
+
 	
 }
