@@ -360,9 +360,9 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.OrItemTaxes" id="taxAllocAssoc">
-		<result property="tranId"		column="TRAN_ID" />
-		<result property="billId"		column="BILL_ID" />
-		<result property="itemNo"		column="ITEM_NO" />
+		<result property="tranId"		column="TX_TRAN_ID" />
+		<result property="billId"		column="TX_BILL_ID" />
+		<result property="itemNo"		column="TX_ITEM_NO" />
 		<result property="taxType"		column="TAX_TYPE" />
 		<result property="taxCd"		column="TAX_CD" />
 		<result property="taxName"		column="TAX_NAME" />
@@ -667,7 +667,7 @@
 					#{save.taxSeqno, jdbcType=INTEGER},
 					#{save.taxCd},
 					#{save.genType},
-					#{save.payor},
+					#{save.payor, jdbcType=VARCHAR},
 					#{save.baseAmt},
 					#{save.taxAmt},
 					#{save.createUser},
