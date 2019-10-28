@@ -33,6 +33,21 @@ public class Payee {
 	private String bankAcctNo2;
 	private String cedingId;
 	private String bussTypeName;
+	private String autoTag;
+	private String activeTag;
+	
+	public String getAutoTag() {
+		return autoTag;
+	}
+	public void setAutoTag(String autoTag) {
+		this.autoTag = autoTag;
+	}
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
+	}
 	public String getPayeeNo() {
 		return payeeNo;
 	}
@@ -230,16 +245,24 @@ public class Payee {
 	
 	@Override
 	public String toString() {
-		return "Payee [payeeNo=" + payeeNo + ", payeeClassCd=" + payeeClassCd + ", payeeClassName=" + payeeClassName
-				+ ", payeeName=" + payeeName + ", refCd=" + refCd + ", bussTypeCd=" + bussTypeCd + ", tin=" + tin
-				+ ", contactNo=" + contactNo + ", mailAddress=" + mailAddress + ", email=" + email + ", remarks="
-				+ remarks + ", designation=" + designation + ", department=" + department + ", mailAddress2="
-				+ mailAddress2 + ", permAddress=" + permAddress + ", contactPerson1=" + contactPerson1
-				+ ", contactPerson2=" + contactPerson2 + ", phoneNo=" + phoneNo + ", mobileNo=" + mobileNo + ", faxNo="
-				+ faxNo + ", bankCd1=" + bankCd1 + ", bankBranch1=" + bankBranch1 + ", bankAcctType1=" + bankAcctType1
-				+ ", bankAcctName1=" + bankAcctName1 + ", bankAcctNo1=" + bankAcctNo1 + ", bankCd2=" + bankCd2
-				+ ", bankBranch2=" + bankBranch2 + ", bankAcctType2=" + bankAcctType2 + ", bankAcctName2="
-				+ bankAcctName2 + ", bankAcctNo2=" + bankAcctNo2 + ", cedingId=" + cedingId + ", bussTypeName="
-				+ bussTypeName + "]";
+		return "Payee [payeeNo=" + payeeNo + ", payeeClassCd=" + payeeClassCd
+				+ ", payeeClassName=" + payeeClassName + ", payeeName="
+				+ payeeName + ", refCd=" + refCd + ", bussTypeCd=" + bussTypeCd
+				+ ", tin=" + tin + ", contactNo=" + contactNo
+				+ ", mailAddress=" + mailAddress + ", email=" + email
+				+ ", remarks=" + remarks + ", designation=" + designation
+				+ ", department=" + department + ", mailAddress2="
+				+ mailAddress2 + ", permAddress=" + permAddress
+				+ ", contactPerson1=" + contactPerson1 + ", contactPerson2="
+				+ contactPerson2 + ", phoneNo=" + phoneNo + ", mobileNo="
+				+ mobileNo + ", faxNo=" + faxNo + ", bankCd1=" + bankCd1
+				+ ", bankBranch1=" + bankBranch1 + ", bankAcctType1="
+				+ bankAcctType1 + ", bankAcctName1=" + bankAcctName1
+				+ ", bankAcctNo1=" + bankAcctNo1 + ", bankCd2=" + bankCd2
+				+ ", bankBranch2=" + bankBranch2 + ", bankAcctType2="
+				+ bankAcctType2 + ", bankAcctName2=" + bankAcctName2
+				+ ", bankAcctNo2=" + bankAcctNo2 + ", cedingId=" + cedingId
+				+ ", bussTypeName=" + bussTypeName + ", autoTag=" + autoTag
+				+ ", activeTag=" + activeTag + "]";
 	}	
 }
