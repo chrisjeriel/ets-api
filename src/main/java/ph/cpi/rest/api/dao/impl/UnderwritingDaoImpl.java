@@ -669,4 +669,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		Integer code = sqlSession.update("updatePolOpenCoverStatu",params);
 		return code;
 	}
+
+	@Override
+	public String validateForDist(HashMap<String, Object> params) throws SQLException {
+		String msg = sqlSession.selectOne("validateForDist",params);
+		return msg;
+	}
 }

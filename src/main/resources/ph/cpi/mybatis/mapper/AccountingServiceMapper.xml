@@ -66,6 +66,7 @@
 		<result property="prNo"          column="PR_NO"             />
 		<result property="prDate"        column="PR_DATE"          typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="prPreparedBy"  column="PR_PREPARED_BY"    />
+		<result property="vatTag"        column="VAT_TAG"          />
 		<result property="payeeNo"       column="PAYEE_NO"          />
 		<result property="payeeClassCd"  column="PAYEE_CLASS_CD"          />
 		<result property="payor"         column="PAYOR"             />
@@ -592,12 +593,21 @@
 					);
 				</foreach>
 			</foreach>
+			
+			ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
+													#{billId},
+													#{createUser},
+													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{updateUser},
+													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
 			END;
 	</update>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePrqTrans" id="acsePrqTransMap">
 		<result property="reqId" 		column="REQ_ID"/>
 		<result property="itemNo" 		column="ITEM_NO"/>
+		<result property="tranTypeCd" 	column="TRAN_TYPE_CD"/>
 		<result property="itemName" 	column="ITEM_NAME"/>
 		<result property="glAcctId" 	column="GL_ACCT_ID"/>
 		<result property="refNo" 		column="REF_NO"/>
@@ -633,6 +643,7 @@
 				ACSE_PRQ_TRANS_PKG.save_acse_prq_trans(
 					#{save.reqId,jdbcType=INTEGER},
 					#{save.itemNo,jdbcType=INTEGER},
+					#{save.tranTypeCd,jdbcType=INTEGER},
 					#{save.itemName,jdbcType=VARCHAR},
 					#{save.glAcctId,jdbcType=INTEGER},
 					#{save.refNo,jdbcType=VARCHAR},

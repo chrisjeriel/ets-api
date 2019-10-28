@@ -1,7 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 public class SaveAcitCMDMRequest {
-	private String tranId;
+	private String memoId;
 	private String memoType;
 	private String memoTranType;
 	private String memoYear;
@@ -13,7 +13,13 @@ public class SaveAcitCMDMRequest {
 	private String memoStatus;
 	private String refNoTranId;
 	private String refNoDate;
-	private String payeeNo;
+	private String policyId;
+	private String instNo;
+	private String claimId;
+	private String projId;
+	private String histNo;
+	private String payeeClassCd;
+	private String payeeCd;
 	private String payee;
 	private String particulars;
 	private String currCd;
@@ -24,11 +30,11 @@ public class SaveAcitCMDMRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
-	public String getTranId() {
-		return tranId;
+	public String getMemoId() {
+		return memoId;
 	}
-	public void setTranId(String tranId) {
-		this.tranId = tranId;
+	public void setMemoId(String memoId) {
+		this.memoId = memoId;
 	}
 	public String getMemoType() {
 		return memoType;
@@ -96,11 +102,47 @@ public class SaveAcitCMDMRequest {
 	public void setRefNoDate(String refNoDate) {
 		this.refNoDate = refNoDate;
 	}
-	public String getPayeeNo() {
-		return payeeNo;
+	public String getPolicyId() {
+		return policyId;
 	}
-	public void setPayeeNo(String payeeNo) {
-		this.payeeNo = payeeNo;
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
+	}
+	public String getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(String instNo) {
+		this.instNo = instNo;
+	}
+	public String getClaimId() {
+		return claimId;
+	}
+	public void setClaimId(String claimId) {
+		this.claimId = claimId;
+	}
+	public String getProjId() {
+		return projId;
+	}
+	public void setProjId(String projId) {
+		this.projId = projId;
+	}
+	public String getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(String histNo) {
+		this.histNo = histNo;
+	}
+	public String getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(String payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
+	}
+	public String getPayeeCd() {
+		return payeeCd;
+	}
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
 	}
 	public String getPayee() {
 		return payee;
@@ -164,13 +206,16 @@ public class SaveAcitCMDMRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitCMDMRequest [tranId=" + tranId + ", memoType=" + memoType + ", memoTranType=" + memoTranType
+		return "SaveAcitCMDMRequest [memoId=" + memoId + ", memoType=" + memoType + ", memoTranType=" + memoTranType
 				+ ", memoYear=" + memoYear + ", memoMm=" + memoMm + ", memoSeqNo=" + memoSeqNo + ", tranTypeCd="
 				+ tranTypeCd + ", autoTag=" + autoTag + ", memoDate=" + memoDate + ", memoStatus=" + memoStatus
-				+ ", refNoTranId=" + refNoTranId + ", refNoDate=" + refNoDate + ", payeeNo=" + payeeNo + ", payee="
-				+ payee + ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", cmdmAmt=" + cmdmAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", refNoTranId=" + refNoTranId + ", refNoDate=" + refNoDate + ", policyId=" + policyId + ", instNo="
+				+ instNo + ", claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", payeeClassCd="
+				+ payeeClassCd + ", payeeCd=" + payeeCd + ", payee=" + payee + ", particulars=" + particulars
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", cmdmAmt=" + cmdmAmt + ", localAmt=" + localAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
+	
 	
 }
