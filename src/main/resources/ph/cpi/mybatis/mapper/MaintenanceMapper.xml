@@ -5005,6 +5005,8 @@
     	<result property="tranClass" 			column="TRAN_CLASS"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
 		<result property="taxId" 				column="TAX_ID"/>
+		<result property="taxCd"				column="TAX_CD"/>
+		<result property="taxDesc"				column="TAX_DESC"/>
 		<result property="taxRate" 				column="TAX_RATE"/>
 		<result property="fixedAmount" 			column="FIXED_AMOUNT"/>
 		<result property="particulars" 			column="PARTICULARS"/>

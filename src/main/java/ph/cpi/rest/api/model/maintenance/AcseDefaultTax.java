@@ -8,6 +8,8 @@ public class AcseDefaultTax {
 	private String tranClass;
 	private Integer tranTypeCd;
 	private Integer taxId;
+	private String taxCd;
+	private String taxDesc;
 	private BigDecimal taxRate;
 	private BigDecimal fixedAmount;
 	private String particulars;
@@ -33,6 +35,20 @@ public class AcseDefaultTax {
 	}
 	public void setTaxId(Integer taxId) {
 		this.taxId = taxId;
+	}
+	
+	public String getTaxCd() {
+		return taxCd;
+	}
+	public void setTaxCd(String taxCd) {
+		this.taxCd = taxCd;
+	}
+	
+	public String getTaxDesc() {
+		return taxDesc;
+	}
+	public void setTaxDesc(String taxDesc) {
+		this.taxDesc = taxDesc;
 	}
 	public BigDecimal getTaxRate() {
 		return taxRate;
@@ -84,10 +100,10 @@ public class AcseDefaultTax {
 	}
 	@Override
 	public String toString() {
-		return "AcseDefaultTax [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", taxId=" + taxId
+		return "AcseDefaultTax [tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd + ", taxId=" + taxId + ", taxCd="
+				+ taxCd + ", taxDesc=" + taxDesc + ", taxRate=" + taxRate + ", fixedAmount=" + fixedAmount
 				+ ", particulars=" + particulars + ", activeTag=" + activeTag + ", createUser=" + createUser
-				+ ", updateUser=" + updateUser + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }
