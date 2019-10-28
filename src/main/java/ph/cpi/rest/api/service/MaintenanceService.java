@@ -201,4 +201,5 @@ public interface MaintenanceService {
 	public SaveMtnAcitChartAcctResponse saveAcitChartAcct(SaveMtnAcitChartAcctRequest request) throws SQLException;
 	public SaveMtnAcseChartAcctResponse saveAcseChartAcct(SaveMtnAcseChartAcctRequest request) throws SQLException;
 	public RetrieveMtnAcseDefTaxResponse retrieveAcseDefTax(RetrieveMtnAcseDefTaxRequest request) throws SQLException;
+	public RetrieveMtnAcseDefWhTaxResponse retrieveAcseDefWhTax (RetrieveMtnAcseDefWhTaxRequest request) throws SQLException;
 }

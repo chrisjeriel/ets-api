@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultTax;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultWhTax;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
@@ -294,4 +295,6 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> saveAcitChartAcc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseChartAcc(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDefaultTax> retrieveAcseDefTax(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseDefaultWhTax> retrieveAcseDefWhTax(final HashMap<String, Object> params) throws SQLException;
+	
 }
