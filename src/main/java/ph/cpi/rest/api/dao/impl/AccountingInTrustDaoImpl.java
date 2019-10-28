@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
@@ -1027,5 +1025,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<QSOARemittance> retrieveQSOARemittance(HashMap<String, Object> params) throws SQLException {
 		List<QSOARemittance> res = sqlSession.selectList("retrieveQSOARemittance", params);
 		return res;
+	}
+
+	@Override
+	public Integer updateSoaCv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateSoaCv", params);
+		return errorCode;
 	}
 }

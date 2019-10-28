@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
 import ph.cpi.rest.api.model.accountingintrust.AcitInwPolPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVAcctTrtyBal;
@@ -58,7 +59,6 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
-import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
 public interface AccountingInTrustDao {
@@ -210,7 +210,6 @@ public interface AccountingInTrustDao {
 	public List<AcitEomUnpostedMonth> retrieveAcitMonthEndUnpostedMonths() throws SQLException;
 	public Integer acitEomUpdateReport(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitMonthEnd> retrieveAcitMonthEnd(final HashMap<String, Object> params) throws SQLException;
-	
 	public String validateQsoaQtr(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQSOA(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOADtl> retrieveQSOADtl(final HashMap<String, Object> params) throws SQLException;
@@ -218,4 +217,5 @@ public interface AccountingInTrustDao {
 	public Integer saveAcitProfComm(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOAAcctReceivable> retrieveQSOAAcctReceivable(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOARemittance> retrieveQSOARemittance(final HashMap<String, Object> params) throws SQLException;
+	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
 }
