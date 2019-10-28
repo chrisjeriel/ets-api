@@ -161,6 +161,8 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("rateFrom" , rqlp.getRateFrom());
 			retrieveQuoteListingParams.put("rateTo" , rqlp.getRateTo());
 			
+			retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
+			
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
 			

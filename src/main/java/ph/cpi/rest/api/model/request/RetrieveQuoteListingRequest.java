@@ -38,6 +38,7 @@ public class RetrieveQuoteListingRequest {
 	private String siTo;
 	private String rateFrom;
 	private String rateTo;
+	private String approvedBy;
 	
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
@@ -228,6 +229,12 @@ public class RetrieveQuoteListingRequest {
 	public void setRateTo(String rateTo) {
 		this.rateTo = rateTo;
 	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
@@ -237,8 +244,8 @@ public class RetrieveQuoteListingRequest {
 				+ ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom="
 				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDateFrom=" + expiryDateFrom
 				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser + ", siFrom="
-				+ siFrom + ", siTo=" + siTo + ", rateFrom=" + rateFrom + ", rateTo=" + rateTo + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + ", statusArr=" + statusArr + ", search=" + search
-				+ ", openCoverTag=" + openCoverTag + "]";
+				+ siFrom + ", siTo=" + siTo + ", rateFrom=" + rateFrom + ", rateTo=" + rateTo + ", approvedBy="
+				+ approvedBy + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
+				+ ", statusArr=" + statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + "]";
 	}
 }
