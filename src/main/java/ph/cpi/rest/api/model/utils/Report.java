@@ -7,7 +7,14 @@ public class Report {
 	private Integer adviceNo;
 	private Integer holdCovId;
 	private String userId;
+	private Integer tranId;
 	
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
 	public String getReportName() {
 		return reportName;
 	}
@@ -41,8 +48,9 @@ public class Report {
 	
 	@Override
 	public String toString() {
-		return "Report [reportName=" + reportName + ", quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", holdCovId="
-				+ holdCovId + ", userId=" + userId + "]";
+		return "Report [reportName=" + reportName + ", quoteId=" + quoteId
+				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId
+				+ ", userId=" + userId + ", tranId=" + tranId + "]";
 	}
 
 }

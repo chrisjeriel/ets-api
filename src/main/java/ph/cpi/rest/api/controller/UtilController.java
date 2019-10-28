@@ -135,6 +135,7 @@ public class UtilController {
 				reportParam.put("ADVICE_NO", grmr.getReportRequest().get(i).getAdviceNo());
 				reportParam.put("HOLD_COV_ID", grmr.getReportRequest().get(i).getHoldCovId());
 				reportParam.put("USER_ID", grmr.getReportRequest().get(i).getUserId());
+				reportParam.put("TRAN_ID", grmr.getReportRequest().get(i).getTranId());
 				
 				try {
 					fileName = pu.generateJasperReport(reportParam, dbParams, null, outputPath, null);
@@ -176,9 +177,6 @@ public class UtilController {
 	 	            .contentType(MediaType.parseMediaType("application/pdf"))
 	 	            .body(resource);
 	    }
-	    
-	   
-	  
 	}
 		
 	@SuppressWarnings({ "unchecked", "rawtypes" })

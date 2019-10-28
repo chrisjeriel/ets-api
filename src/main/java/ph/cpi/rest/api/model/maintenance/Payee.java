@@ -33,6 +33,7 @@ public class Payee {
 	private String bankAcctNo2;
 	private String cedingId;
 	private String bussTypeName;
+	private String vatTag;
 	public String getPayeeNo() {
 		return payeeNo;
 	}
@@ -227,6 +228,12 @@ public class Payee {
 	public void setBussTypeName(String bussTypeName) {
 		this.bussTypeName = bussTypeName;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	
 	@Override
 	public String toString() {
@@ -240,6 +247,6 @@ public class Payee {
 				+ ", bankAcctName1=" + bankAcctName1 + ", bankAcctNo1=" + bankAcctNo1 + ", bankCd2=" + bankCd2
 				+ ", bankBranch2=" + bankBranch2 + ", bankAcctType2=" + bankAcctType2 + ", bankAcctName2="
 				+ bankAcctName2 + ", bankAcctNo2=" + bankAcctNo2 + ", cedingId=" + cedingId + ", bussTypeName="
-				+ bussTypeName + "]";
+				+ bussTypeName + ", vatTag=" + vatTag + "]";
 	}	
 }

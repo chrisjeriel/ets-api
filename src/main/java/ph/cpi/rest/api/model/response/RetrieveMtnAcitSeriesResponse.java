@@ -5,14 +5,15 @@ import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.maintenance.AcitTranSeries;
 
 public class RetrieveMtnAcitSeriesResponse {
-	private AcitTranSeries maxTranNo;
+	private AcitTranSeries allowGenerate;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	public AcitTranSeries getMaxTranNo() {
-		return maxTranNo;
+	
+	public AcitTranSeries getAllowGenerate() {
+		return allowGenerate;
 	}
-	public void setMaxTranNo(AcitTranSeries maxTranNo) {
-		this.maxTranNo = maxTranNo;
+	public void setAllowGenerate(AcitTranSeries allowGenerate) {
+		this.allowGenerate = allowGenerate;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -28,8 +29,8 @@ public class RetrieveMtnAcitSeriesResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcitSeriesResponse [maxTranNo=" + maxTranNo + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnAcitSeriesResponse [allowGenerate=" + allowGenerate + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 	
 }

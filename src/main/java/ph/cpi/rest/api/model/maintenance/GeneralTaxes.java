@@ -28,6 +28,7 @@ public class GeneralTaxes {
 	private String rangeNo;
 	private BigDecimal maxVal;
 	private BigDecimal minVal;
+	private String birRlfType;
 	
 	public String getRangeNo() {
 		return rangeNo;
@@ -171,20 +172,21 @@ public class GeneralTaxes {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getBirRlfType() {
+		return birRlfType;
+	}
+	public void setBirRlfType(String birRlfType) {
+		this.birRlfType = birRlfType;
+	}
 	@Override
 	public String toString() {
-		return "GeneralTaxes [taxId=" + taxId + ", taxCd=" + taxCd
-				+ ", taxName=" + taxName + ", chargeType=" + chargeType
-				+ ", taxRate=" + taxRate + ", amount=" + amount
-				+ ", defaultAcitGl=" + defaultAcitGl + ", defaultAcseGl="
-				+ defaultAcseGl + ", fixedTag=" + fixedTag + ", activeTag="
-				+ activeTag + ", remarks=" + remarks + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate
-				+ ", defaultGLBankAcctCd=" + defaultGLBankAcctCd
-				+ ", defaultGLBankAcctName=" + defaultGLBankAcctName
-				+ ", effDateTo=" + effDateTo + ", effDateFrom=" + effDateFrom
-				+ ", histNo=" + histNo + ", rangeNo=" + rangeNo + ", maxVal="
-				+ maxVal + ", minVal=" + minVal + "]";
+		return "GeneralTaxes [taxId=" + taxId + ", taxCd=" + taxCd + ", taxName=" + taxName + ", chargeType="
+				+ chargeType + ", taxRate=" + taxRate + ", amount=" + amount + ", defaultAcitGl=" + defaultAcitGl
+				+ ", defaultAcseGl=" + defaultAcseGl + ", fixedTag=" + fixedTag + ", activeTag=" + activeTag
+				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", defaultGLBankAcctCd=" + defaultGLBankAcctCd
+				+ ", defaultGLBankAcctName=" + defaultGLBankAcctName + ", effDateTo=" + effDateTo + ", effDateFrom="
+				+ effDateFrom + ", histNo=" + histNo + ", rangeNo=" + rangeNo + ", maxVal=" + maxVal + ", minVal="
+				+ minVal + ", birRlfType=" + birRlfType + "]";
 	}
 }

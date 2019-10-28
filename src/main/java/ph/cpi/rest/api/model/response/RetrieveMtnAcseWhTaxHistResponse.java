@@ -1,19 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseWhTaxHistory;
 
-public class RetrieveMtnAcseSeriesResponse {
-	private AcseTranSeries allowGenerate;
+public class RetrieveMtnAcseWhTaxHistResponse {
+	private List<AcseWhTaxHistory> whTaxHist;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public AcseTranSeries getAllowGenerate() {
-		return allowGenerate;
+	public List<AcseWhTaxHistory> getWhTaxHist() {
+		return whTaxHist;
 	}
-	public void setAllowGenerate(AcseTranSeries allowGenerate) {
-		this.allowGenerate = allowGenerate;
+	public void setWhTaxHist(List<AcseWhTaxHistory> whTaxHist) {
+		this.whTaxHist = whTaxHist;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -29,8 +30,8 @@ public class RetrieveMtnAcseSeriesResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcseSeriesResponse [allowGenerate=" + allowGenerate + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnAcseWhTaxHistResponse [whTaxHist=" + whTaxHist + ", paginationResponse=" + paginationResponse
+				+ ", sortResponse=" + sortResponse + "]";
 	}
 	
 }

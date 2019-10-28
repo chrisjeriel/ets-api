@@ -1,19 +1,20 @@
 package ph.cpi.rest.api.model.response;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 
-public class RetrieveMtnAcseSeriesResponse {
-	private AcseTranSeries allowGenerate;
+public class RetrieveMtnAcseDefAmtResponse {
+	private List<AcseDefaultAmtDtl> defAmtDtl;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
-	
-	public AcseTranSeries getAllowGenerate() {
-		return allowGenerate;
+	public List<AcseDefaultAmtDtl> getDefAmtDtl() {
+		return defAmtDtl;
 	}
-	public void setAllowGenerate(AcseTranSeries allowGenerate) {
-		this.allowGenerate = allowGenerate;
+	public void setDefAmtDtl(List<AcseDefaultAmtDtl> defAmtDtl) {
+		this.defAmtDtl = defAmtDtl;
 	}
 	public PaginationResponse getPaginationResponse() {
 		return paginationResponse;
@@ -29,8 +30,8 @@ public class RetrieveMtnAcseSeriesResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcseSeriesResponse [allowGenerate=" + allowGenerate + ", paginationResponse="
-				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnAcseDefAmtResponse [paginationResponse=" + paginationResponse + ", sortResponse="
+				+ sortResponse + "]";
 	}
 	
 }

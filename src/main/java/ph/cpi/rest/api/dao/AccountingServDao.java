@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
 import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
@@ -49,10 +50,12 @@ public interface AccountingServDao {
 	public Integer cancelOr(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseOrServFee> retrieveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcseOrServFee(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseBatchOR> retrieveAcseBatchOr(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseBudgetExpense> retrieveAcseBudgetExpense(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String, Object> saveAcseBudgetExpense(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseBudExpMonthly> retrieveAcseBudExpMonthly(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcseBudExpMonthly(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseBudExpMonthly> retrieveAcseActExpMonthly(final HashMap<String, Object> params) throws SQLException;
 	public Integer printOr(final HashMap<String,Object> params) throws SQLException;
+	public Integer printOrBatch(final HashMap<String,Object> params) throws SQLException;
 }
