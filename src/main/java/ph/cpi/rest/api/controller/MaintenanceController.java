@@ -1383,4 +1383,11 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcseDefWhTaxRequest : " + request.toString());
 		return maintenanceService.retrieveAcseDefWhTax(request);
 	}
+	
+	@PostMapping(path="saveAcseDefTax")
+	public @ResponseBody SaveMtnAcseDefTaxResponse saveAcseDefTax(@RequestBody SaveMtnAcseDefTaxRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseDefTax");
+		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
+		return maintenanceService.saveAcseDefTax(request);
+	}
 }

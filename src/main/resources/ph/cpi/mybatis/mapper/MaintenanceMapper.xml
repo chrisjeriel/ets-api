@@ -5041,4 +5041,41 @@
 		SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_defwhtax(#{tranClass}, #{tranTypeCd}, #{whtaxId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
 	</select>
 	
+	<update id="saveAcseDefTax" >
+		BEGIN
+			<foreach collection="delDefTax" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_deftax(#{del.tranClass},#{del.tranTypeCd},#{del.taxId});
+			</foreach>
+			
+			<foreach collection="saveDefTax" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_deftax(
+						#{save.tranClass}, 
+						#{save.tranTypeCd}, 
+						#{save.taxId, jdbcType=VARCHAR},
+						#{save.particulars, jdbcType=VARCHAR}, 
+						#{save.activeTag, jdbcType=VARCHAR}, 
+						#{save.createUser},
+						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			
+			<foreach collection="delDefWhTax" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_defwhtax(#{del.tranClass},#{del.tranTypeCd},#{del.whTaxId});
+			</foreach>
+			
+			<foreach collection="saveDefWhTax" item="saved">
+				MTN_ACSE_TRAN_TYPE_PKG.save_defwhtax(
+						#{saved.tranClass}, 
+						#{saved.tranTypeCd}, 
+						#{saved.whTaxId, jdbcType=VARCHAR}, 
+						#{saved.particulars, jdbcType=VARCHAR}, 
+						#{saved.activeTag, jdbcType=VARCHAR}, 
+						#{saved.createUser},
+						CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{saved.updateUser},
+						CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

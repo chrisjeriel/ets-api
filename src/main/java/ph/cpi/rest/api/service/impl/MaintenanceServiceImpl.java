@@ -3138,4 +3138,23 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.setDefWhTax(maintenanceDao.retrieveAcseDefWhTax(params));
 		return response;
 	}
+
+	@Override
+	public SaveMtnAcseDefTaxResponse saveAcseDefTax(SaveMtnAcseDefTaxRequest request) throws SQLException {
+		SaveMtnAcseDefTaxResponse response = new SaveMtnAcseDefTaxResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefTax", request.getSaveDefTax());
+			params.put("delDefTax", request.getDelDefTax());
+			params.put("saveDefWhTax", request.getSaveDefWhTax());
+			params.put("delDefWhTax", request.getDelDefWhTax());
+			HashMap<String,Object> res = maintenanceDao.saveAcseDefTax(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

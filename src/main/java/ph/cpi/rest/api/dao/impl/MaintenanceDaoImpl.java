@@ -1405,4 +1405,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<AcseDefaultWhTax> list = sqlSession.selectList("retrieveAcseDefWhTax", params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> saveAcseDefTax(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseDefTax", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
