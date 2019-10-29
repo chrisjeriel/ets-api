@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.request;
 public class GenerateReportRequest {
 	
 	private String reportName;
+	private String reportId;
 	private Integer quoteId;
 	private Integer adviceNo;
 	private Integer holdCovId;
@@ -10,6 +11,12 @@ public class GenerateReportRequest {
 	private Integer tranId;
 	private Integer reqId;
 	
+	public String getReportId() {
+		return reportId;
+	}
+	public void setReportId(String reportId) {
+		this.reportId = reportId;
+	}
 	public String getReportName() {
 		return reportName;
 	}
@@ -55,8 +62,9 @@ public class GenerateReportRequest {
 	}
 	@Override
 	public String toString() {
-		return "GenerateReportRequest [reportName=" + reportName + ", quoteId=" + quoteId + ", adviceNo=" + adviceNo
-				+ ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId + ", reqId=" + reqId + "]";
+		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
+				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
+				+ ", reqId=" + reqId + "]";
 	}
 	
 }

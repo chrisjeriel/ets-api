@@ -421,4 +421,8 @@ public class QuoteDaoImpl implements QuoteDao{
 		return code;
 	}
 		
+	public Integer saveQuReptext(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveQuReptext",params);
+		return code;
+	}
 }

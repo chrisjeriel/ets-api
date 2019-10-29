@@ -35,6 +35,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuItemRequest;
+import ph.cpi.rest.api.model.request.SaveQuReptextRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
@@ -78,6 +79,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuReptextResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
@@ -484,5 +486,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/saveQuItem");
 		logger.info("saveQuItem : " + spir.toString());
 		return quoteService.saveQuItem(spir);
+	}
+	
+	@PostMapping(path="saveQuReptext")
+	public @ResponseBody SaveQuReptextResponse saveQuReptext(@RequestBody SaveQuReptextRequest spir ) throws SQLException {
+		logger.info("GET: /api/quote-service/saveQuReptext");
+		logger.info("saveQuReptext : " + spir.toString());
+		return quoteService.saveQuReptext(spir);
 	}
 }

@@ -1921,4 +1921,18 @@
 			QUOTE_ITEM_PKG.renumber_QUOTE_itm(#{quoteId},#{projId});
 		END;
 	</update>
+	
+	<update id="saveQuReptext" parameterType="java.util.Map">
+		BEGIN
+			QU_REPTEXT_PKG.save_qu_reptext(
+				#{quoteId, jdbcType=VARCHAR},#{reportId, jdbcType=VARCHAR},
+				#{reptext01, jdbcType=VARCHAR},#{reptext02, jdbcType=VARCHAR},
+				#{reptext03, jdbcType=VARCHAR},#{reptext04, jdbcType=VARCHAR},
+				#{reptext05, jdbcType=VARCHAR},#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 </mapper>

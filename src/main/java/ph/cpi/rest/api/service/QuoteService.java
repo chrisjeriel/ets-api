@@ -30,6 +30,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuItemRequest;
+import ph.cpi.rest.api.model.request.SaveQuReptextRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
@@ -75,6 +76,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SaveQuItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuReptextResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
@@ -155,5 +157,7 @@ public interface QuoteService {
 	
 	public RetrieveQuItemResponse retrieveQuItem(RetrieveQuItemRequest rpir) throws SQLException;
 	public SaveQuItemResponse saveQuItem(SaveQuItemRequest spir ) throws SQLException;
+	
+	public SaveQuReptextResponse saveQuReptext(SaveQuReptextRequest spir ) throws SQLException;
 
 }

@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuItemRequest;
+import ph.cpi.rest.api.model.request.SaveQuReptextRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
@@ -84,6 +85,7 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
 import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuReptextResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
@@ -1280,6 +1282,32 @@ public class QuoteServiceImpl implements QuoteService{
 			ex.printStackTrace();
 		}
 		return spiresponse;
+	}
+
+	@Override
+	public SaveQuReptextResponse saveQuReptext(SaveQuReptextRequest spir) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveQuReptextResponse response = new SaveQuReptextResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("quoteId", spir.getQuoteId());
+			params.put("reportId", spir.getReportId());
+			params.put("reptext01", spir.getReptext01());
+			params.put("reptext02", spir.getReptext02());
+			params.put("reptext03", spir.getReptext03());
+			params.put("reptext04", spir.getReptext04());
+			params.put("reptext05", spir.getReptext05());
+			params.put("createUser", spir.getCreateUser());
+			params.put("createDate", spir.getCreateDate());
+			params.put("updateUser", spir.getUpdateUser());
+			params.put("updateDate", spir.getUpdateDate());
+			response.setReturnCode(quoteDao.saveQuReptext(params));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 	
 
