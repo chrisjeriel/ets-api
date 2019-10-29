@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
@@ -58,6 +59,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
@@ -920,6 +922,16 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseChangeToNewCVResponse retrieveAcseChangeToNewCV(RetrieveAcseChangeToNewCVRequest request)
+			throws SQLException {
+		RetrieveAcseChangeToNewCVResponse response = new RetrieveAcseChangeToNewCVResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setCancelledOR(acctServDao.retrieveAcseChangeToNewCV(params));
 		return response;
 	}
 }

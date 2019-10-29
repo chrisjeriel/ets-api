@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
@@ -61,6 +62,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
@@ -374,7 +376,7 @@ public class AccountingServiceController {
 	@GetMapping(path="retrieveAcseChangeToNewOR")
 	public @ResponseBody RetrieveAcseChangeToNewORResponse retrieveAcseChangeToNewOR(RetrieveAcseChangeToNewORRequest rabemr) throws SQLException {
 		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNew");
-		logger.info("RetrieveAcseChangeToNewRequest : " + rabemr.toString());
+		logger.info("RetrieveAcseChangeToNewORRequest : " + rabemr.toString());
 		return acctServService.retrieveAcseChangeToNewOR(rabemr);
 	}
 	
@@ -383,5 +385,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/updateAcseChangeStat");
 		logger.info("UpdateAcseStatusRequest : " + pobr.toString());
 		return acctServService.updateAcseChangeStat(pobr);
+	}
+	
+	@GetMapping(path="retrieveAcseChangeToNewCV")
+	public @ResponseBody RetrieveAcseChangeToNewCVResponse retrieveAcseChangeToNewCV(RetrieveAcseChangeToNewCVRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNewCV");
+		logger.info("RetrieveAcseChangeToNewCVRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseChangeToNewCV(rabemr);
 	}
 }
