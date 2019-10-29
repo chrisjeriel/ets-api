@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -59,6 +60,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -365,5 +367,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/printOrBatch");
 		logger.info("PrintOrBatchRequest : " + pobr.toString());
 		return acctServService.printOrBatch(pobr);
+	}
+	
+	@GetMapping(path="retrieveAcseChangeToNew")
+	public @ResponseBody RetrieveAcseChangeToNewResponse retrieveAcseChangeToNew(RetrieveAcseChangeToNewRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNew");
+		logger.info("RetrieveAcseChangeToNewRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseChangeToNew(rabemr);
 	}
 }
