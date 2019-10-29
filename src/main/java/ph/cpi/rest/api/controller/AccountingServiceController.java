@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
@@ -63,6 +64,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
@@ -392,5 +394,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNewCV");
 		logger.info("RetrieveAcseChangeToNewCVRequest : " + rabemr.toString());
 		return acctServService.retrieveAcseChangeToNewCV(rabemr);
+	}
+	
+	@GetMapping(path="retrieveAcseChangeToNewJV")
+	public @ResponseBody RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV(RetrieveAcseChangeToNewJVRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNewJV");
+		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseChangeToNewJV(rabemr);
 	}
 }

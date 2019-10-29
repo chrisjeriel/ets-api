@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
@@ -932,6 +934,16 @@ public class AccountingServServiceImpl implements AccountingServService{
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranId", request.getTranId());
 		response.setCancelledOR(acctServDao.retrieveAcseChangeToNewCV(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV(RetrieveAcseChangeToNewJVRequest request)
+			throws SQLException {
+		RetrieveAcseChangeToNewJVResponse response = new RetrieveAcseChangeToNewJVResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setCancelledJV(acctServDao.retrieveAcseChangeToNewJV(params));
 		return response;
 	}
 }

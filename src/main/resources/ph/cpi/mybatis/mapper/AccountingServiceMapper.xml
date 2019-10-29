@@ -1259,4 +1259,31 @@
                                         #{tranId,jdbcType=INTEGER},
                                         '', '', '',''))
         </select>
+        
+        
+        <resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCancelledJV" id="AcseCancelledJVMap">
+            <result property="tranClass"              column="TRAN_CLASS"/>
+            <result property="tranId"                 column="TRAN_ID"/>
+            <result property="jvNo"                   column="JV_NO"/>
+            <result property="jvDate"                 column="JV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+            <result property="particulars"            column="PARTICULARS"/>
+            <result property="tranTypeCd"             column="TRAN_TYPE_CD"/>
+            <result property="tranTypeDesc"           column="TRAN_TYPE_DESC"/>
+            <result property="refNoTranId"            column="REFNO_TRAN_ID"/>
+            <result property="refNo"                  column="REFNO"/>
+            <result property="preparedBy"             column="PREPARED_BY"/>
+            <result property="jvStatus"               column="JV_STATUS"/>
+            <result property="status"                 column="STATUS"/>
+            <result property="amount"                 column="AMOUNT"/>
+            <result property="createUser"             column="CREATE_USER"/>
+            <result property="createDate"             column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+            <result property="updateUser"             column="UPDATE_USER"/>
+            <result property="updateDate"             column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+      </resultMap>
+      
+      <select id="retrieveAcseChangeToNewJV" resultMap="AcseCancelledJVMap" parameterType="java.util.Map">
+                SELECT * FROM TABLE(ACSE_CHANGE_STATUS_PKG.ret_cancel_jv(
+                                        #{tranId,jdbcType=INTEGER},
+                                        '', '', '',''))
+        </select>
 </mapper>

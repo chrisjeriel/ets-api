@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.accountingservice;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class AcseCancelledCV {
@@ -11,7 +13,7 @@ public class AcseCancelledCV {
 	private String cvStatus;
 	private String status;
 	private String particulars;
-	private String amount;
+	private BigDecimal amount;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -64,10 +66,10 @@ public class AcseCancelledCV {
 	public void setParticulars(String particulars) {
 		this.particulars = particulars;
 	}
-	public String getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 	public String getCreateUser() {
