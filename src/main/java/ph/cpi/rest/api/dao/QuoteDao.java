@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
+import ph.cpi.rest.api.model.quote.QuoteRepText;
 
 public interface QuoteDao {
 	
@@ -87,4 +88,5 @@ public interface QuoteDao {
 	public Integer saveQuItem(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveQuReptext(final HashMap<String, Object> params) throws SQLException;
 	
+	public QuoteRepText retrieveQuReptext(final HashMap<String, Object> params) throws SQLException;
 }

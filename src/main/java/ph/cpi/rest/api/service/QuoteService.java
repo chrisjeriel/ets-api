@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuReptextRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
@@ -56,6 +57,7 @@ import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuReptextResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
@@ -159,5 +161,7 @@ public interface QuoteService {
 	public SaveQuItemResponse saveQuItem(SaveQuItemRequest spir ) throws SQLException;
 	
 	public SaveQuReptextResponse saveQuReptext(SaveQuReptextRequest spir ) throws SQLException;
+	
+	public RetrieveQuReptextResponse retrieveQuReptext(RetrieveQuReptextRequest spir ) throws SQLException;
 
 }

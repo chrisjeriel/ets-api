@@ -1935,4 +1935,16 @@
 			);
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.QuoteRepText" id="QuoteRepTextMap">
+		<result property="repText01" 			column="REPTEXT01"/>
+		<result property="repText02" 			column="REPTEXT02"/>
+		<result property="repText03" 			column="REPTEXT03"/>
+		<result property="repText04" 			column="REPTEXT04"/>
+		<result property="repText05" 			column="REPTEXT05"/>
+	</resultMap>
+	
+	<select id="retrieveQuReptext" resultMap="QuoteRepTextMap">
+		SELECT * FROM TABLE( QU_REPTEXT_PKG.get_qu_reptext(#{quoteId},#{reportId}) )
+	</select>
 </mapper>

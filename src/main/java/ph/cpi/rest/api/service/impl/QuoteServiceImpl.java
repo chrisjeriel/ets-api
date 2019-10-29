@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,11 @@ import ph.cpi.rest.api.constants.ExceptionCodes;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
+import ph.cpi.rest.api.model.quote.QuoteRepText;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuReptextRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
@@ -66,6 +67,7 @@ import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuReptextResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
@@ -85,7 +87,6 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
-import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuReptextResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
@@ -1317,6 +1318,23 @@ public class QuoteServiceImpl implements QuoteService{
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveQuReptextResponse retrieveQuReptext(RetrieveQuReptextRequest spir) throws SQLException {
+		RetrieveQuReptextResponse response = new RetrieveQuReptextResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("quoteId", spir.getQuoteId());
+		params.put("reportId", spir.getReportId());
+		QuoteRepText text = quoteDao.retrieveQuReptext(params);
+		response.setRepText(
+				(text.getRepText01() != null ? text.getRepText01() : "") +
+				(text.getRepText02() != null ? text.getRepText02() : "") +
+				(text.getRepText03() != null ? text.getRepText03() : "") + 
+				(text.getRepText04() != null ? text.getRepText04() : "") +
+				(text.getRepText05() != null ? text.getRepText05() : "")
+				);
 		return response;
 	}
 	
