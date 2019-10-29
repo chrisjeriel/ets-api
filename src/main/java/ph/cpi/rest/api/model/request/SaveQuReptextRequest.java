@@ -3,11 +3,7 @@ package ph.cpi.rest.api.model.request;
 public class SaveQuReptextRequest {
 	private String quoteId;
 	private String reportId;
-	private String reptext01;
-	private String reptext02;
-	private String reptext03;
-	private String reptext04;
-	private String reptext05;
+	private String repText;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -24,35 +20,11 @@ public class SaveQuReptextRequest {
 	public void setReportId(String reportId) {
 		this.reportId = reportId;
 	}
-	public String getReptext01() {
-		return reptext01;
+	public String getRepText() {
+		return repText;
 	}
-	public void setReptext01(String reptext01) {
-		this.reptext01 = reptext01;
-	}
-	public String getReptext02() {
-		return reptext02;
-	}
-	public void setReptext02(String reptext02) {
-		this.reptext02 = reptext02;
-	}
-	public String getReptext03() {
-		return reptext03;
-	}
-	public void setReptext03(String reptext03) {
-		this.reptext03 = reptext03;
-	}
-	public String getReptext04() {
-		return reptext04;
-	}
-	public void setReptext04(String reptext04) {
-		this.reptext04 = reptext04;
-	}
-	public String getReptext05() {
-		return reptext05;
-	}
-	public void setReptext05(String reptext05) {
-		this.reptext05 = reptext05;
+	public void setRepText(String repText) {
+		this.repText = repText;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -80,10 +52,8 @@ public class SaveQuReptextRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveQuReptextRequest [quoteId=" + quoteId + ", reportId=" + reportId + ", reptext01=" + reptext01
-				+ ", reptext02=" + reptext02 + ", reptext03=" + reptext03 + ", reptext04=" + reptext04 + ", reptext05="
-				+ reptext05 + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+		return "SaveQuReptextRequest [quoteId=" + quoteId + ", reportId=" + reportId + ", repText=" + repText
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
 }

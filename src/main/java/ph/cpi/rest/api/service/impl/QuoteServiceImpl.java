@@ -2,6 +2,8 @@ package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -1292,11 +1294,19 @@ public class QuoteServiceImpl implements QuoteService{
 		try{
 			params.put("quoteId", spir.getQuoteId());
 			params.put("reportId", spir.getReportId());
-			params.put("reptext01", spir.getReptext01());
-			params.put("reptext02", spir.getReptext02());
-			params.put("reptext03", spir.getReptext03());
-			params.put("reptext04", spir.getReptext04());
-			params.put("reptext05", spir.getReptext05());
+			
+			String s = spir.getRepText();
+			if(s != null){
+				Matcher m = Pattern.compile("[\\s\\S]{1,3950}").matcher(s);
+				
+			    params.put("reptext01", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext02", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext03", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext04", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext05", m.find() ? s.substring(m.start(), m.end()) : "");
+			} 
+			logger.info("hereeeeee: " +params.toString());
+			
 			params.put("createUser", spir.getCreateUser());
 			params.put("createDate", spir.getCreateDate());
 			params.put("updateUser", spir.getUpdateUser());
