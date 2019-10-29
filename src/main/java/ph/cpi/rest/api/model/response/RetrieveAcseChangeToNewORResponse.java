@@ -6,7 +6,7 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
 
-public class RetrieveAcseChangeToNewResponse {
+public class RetrieveAcseChangeToNewORResponse {
 	private List<AcseCancelledOR> cancelledOR;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;

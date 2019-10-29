@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveAcseChangeToNewRequest {
+public class RetrieveAcseChangeToNewORRequest {
 	private Integer tranId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;

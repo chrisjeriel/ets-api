@@ -20,7 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -58,7 +58,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -898,12 +898,12 @@ public class AccountingServServiceImpl implements AccountingServService{
 	}
 	
 	@Override
-	public RetrieveAcseChangeToNewResponse retrieveAcseChangeToNew(RetrieveAcseChangeToNewRequest request)
+	public RetrieveAcseChangeToNewORResponse retrieveAcseChangeToNewOR(RetrieveAcseChangeToNewORRequest request)
 			throws SQLException {
-		RetrieveAcseChangeToNewResponse response = new RetrieveAcseChangeToNewResponse();
+		RetrieveAcseChangeToNewORResponse response = new RetrieveAcseChangeToNewORResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranId", request.getTranId());
-		response.setCancelledOR(acctServDao.retrieveAcseChangeToNew(params));
+		response.setCancelledOR(acctServDao.retrieveAcseChangeToNewOR(params));
 		return response;
 	}
 

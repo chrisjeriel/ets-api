@@ -59,6 +59,6 @@ public interface AccountingServDao {
 	public List<AcseBudExpMonthly> retrieveAcseActExpMonthly(final HashMap<String, Object> params) throws SQLException;
 	public Integer printOr(final HashMap<String,Object> params) throws SQLException;
 	public Integer printOrBatch(final HashMap<String,Object> params) throws SQLException;
-	public List<AcseCancelledOR> retrieveAcseChangeToNew(final HashMap<String,Object> params) throws SQLException;
+	public List<AcseCancelledOR> retrieveAcseChangeToNewOR(final HashMap<String,Object> params) throws SQLException;
 	public HashMap<String,Object> updateAcseChangeStat(final HashMap<String,Object> params) throws SQLException;
 }

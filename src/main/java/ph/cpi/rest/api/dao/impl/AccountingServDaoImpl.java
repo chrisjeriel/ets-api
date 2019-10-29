@@ -224,7 +224,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public List<AcseBatchOR> retrieveAcseBatchOr(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		List<AcseBatchOR> res = sqlSession.selectList("retrieveAcseBatchOr", params);
 		return res;
 	}
@@ -272,7 +271,7 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	}
 
 	@Override
-	public List<AcseCancelledOR> retrieveAcseChangeToNew(HashMap<String, Object> params) throws SQLException {
+	public List<AcseCancelledOR> retrieveAcseChangeToNewOR(HashMap<String, Object> params) throws SQLException {
 		List<AcseCancelledOR> list = sqlSession.selectList("retrieveAcseChangeToNew", params);
 		return list;
 	}
