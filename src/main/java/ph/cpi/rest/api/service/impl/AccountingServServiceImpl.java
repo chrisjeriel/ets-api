@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
@@ -84,6 +85,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Component
@@ -764,7 +766,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public RetrieveAcseBatchOrResponse retrieveAcseBatchOr(
 			RetrieveAcseBatchOrRequest rabor) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcseBatchOrResponse response = new RetrieveAcseBatchOrResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -878,7 +879,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public PrintOrBatchResponse printOrBatch(PrintOrBatchRequest pobr)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		PrintOrBatchResponse response = new PrintOrBatchResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("printOrList", pobr.getPrintOrList());
@@ -904,6 +904,22 @@ public class AccountingServServiceImpl implements AccountingServService{
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranId", request.getTranId());
 		response.setCancelledOR(acctServDao.retrieveAcseChangeToNew(params));
+		return response;
+	}
+
+	@Override
+	public UpdateAcseStatusResponse updateAcseChangeStat(UpdateAcseStatusRequest request) throws SQLException {
+		UpdateAcseStatusResponse response = new UpdateAcseStatusResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("changeStat", request.getChangeStat());
+			HashMap<String,Object> res = acctServDao.updateAcseChangeStat(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }

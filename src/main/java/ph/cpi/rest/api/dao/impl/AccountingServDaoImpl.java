@@ -276,4 +276,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<AcseCancelledOR> list = sqlSession.selectList("retrieveAcseChangeToNew", params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> updateAcseChangeStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcseChangeStat",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

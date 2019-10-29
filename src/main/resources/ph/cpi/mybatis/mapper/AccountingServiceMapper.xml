@@ -1226,4 +1226,15 @@
 					#{tranId,jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
+	
+	<update id="updateAcseChangeStat" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="changeStat" item="item">
+				ACSE_CHANGE_STATUS_PKG.acse_chng_stat(#{item.tranClass},
+													  #{item.tranId},
+													  #{item.updateUser},
+													  CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>
