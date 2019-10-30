@@ -1360,4 +1360,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public Integer saveMtnPayee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnPayee",params);
+		return errorCode;
+	}
 }
