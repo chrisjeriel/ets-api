@@ -794,7 +794,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqgiResponse.setReturnCode((Integer) res.get("errorCode"));
 			sqgiResponse.setQuoteId((Integer) res.get("outQuoteId"));
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			sqgiResponse.setReturnCode(0);
 			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
