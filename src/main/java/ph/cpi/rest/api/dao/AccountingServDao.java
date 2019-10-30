@@ -12,6 +12,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledCV;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledJV;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
+import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -65,4 +66,5 @@ public interface AccountingServDao {
 	public HashMap<String,Object> updateAcseChangeStat(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledCV> retrieveAcseChangeToNewCV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledJV> retrieveAcseChangeToNewJV(final HashMap<String,Object> params) throws SQLException;
+	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(final HashMap<String,Object> params) throws SQLException;
 }

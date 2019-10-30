@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCancelTransactionRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCancelTransactionResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
@@ -944,6 +946,19 @@ public class AccountingServServiceImpl implements AccountingServService{
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranId", request.getTranId());
 		response.setCancelledJV(acctServDao.retrieveAcseChangeToNewJV(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran(RetrieveAcseCancelTransactionRequest request)
+			throws SQLException {
+		RetrieveAcseCancelTransactionResponse response = new RetrieveAcseCancelTransactionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranId", request.getTranId());
+		params.put("cancelFrom", request.getCancelFrom());
+		params.put("cancelTo", request.getCancelTo());
+		response.setCancelledTran(acctServDao.retrieveAcseCancelledTran(params));
 		return response;
 	}
 }

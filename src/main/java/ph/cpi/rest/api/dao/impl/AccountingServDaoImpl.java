@@ -19,6 +19,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledCV;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledJV;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
+import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -294,6 +295,13 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public List<AcseCancelledJV> retrieveAcseChangeToNewJV(HashMap<String, Object> params) throws SQLException {
 		List<AcseCancelledJV> list = sqlSession.selectList("retrieveAcseChangeToNewJV", params);
+		return list;
+	}
+
+	@Override
+	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcseCancelledTransactions> list = sqlSession.selectList("retrieveAcseCancelledTran", params);
 		return list;
 	}
 }

@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCancelTransactionRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
@@ -63,6 +64,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCancelTransactionResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
@@ -401,5 +403,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNewJV");
 		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
 		return acctServService.retrieveAcseChangeToNewJV(rabemr);
+	}
+	
+	@GetMapping(path="retrieveAcseCancelledTran")
+	public @ResponseBody RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran(RetrieveAcseCancelTransactionRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseCancelledTran");
+		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseCancelledTran(rabemr);
 	}
 }

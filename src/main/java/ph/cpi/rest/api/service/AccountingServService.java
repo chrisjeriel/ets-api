@@ -50,4 +50,6 @@ public interface AccountingServService {
 	public UpdateAcseStatusResponse updateAcseChangeStat(UpdateAcseStatusRequest request) throws SQLException;
 	public RetrieveAcseChangeToNewCVResponse retrieveAcseChangeToNewCV (RetrieveAcseChangeToNewCVRequest request) throws SQLException;
 	public RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV (RetrieveAcseChangeToNewJVRequest request) throws SQLException;
+	public RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran (RetrieveAcseCancelTransactionRequest request) throws SQLException;
+	
 }
