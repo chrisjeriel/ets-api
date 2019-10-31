@@ -369,11 +369,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc());
 			saveQuoteAlopParams.put("address" , sqar.getAddress());
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness());
-			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			saveQuoteAlopParams.put("createUser", sqar.getCreateUser());
 			saveQuoteAlopParams.put("createDate", sqar.getCreateDate());
 			saveQuoteAlopParams.put("updateUser", sqar.getUpdateUser());
 			saveQuoteAlopParams.put("updateDate", sqar.getUpdateDate());
+			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
