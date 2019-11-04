@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 public class Competition {
 	private Integer quoteId;
+	private String quoteNo;
 	private Integer adviceNo;
 	private String cedingId;
 	private String cedingName;
@@ -26,6 +27,12 @@ public class Competition {
 	}
 	public void setQuoteId(Integer quoteId) {
 		this.quoteId = quoteId;
+	}
+	public String getQuoteNo() {
+		return quoteNo;
+	}
+	public void setQuoteNo(String quoteNo) {
+		this.quoteNo = quoteNo;
 	}
 	public Integer getAdviceNo() {
 		return adviceNo;
@@ -126,11 +133,12 @@ public class Competition {
 	
 	@Override
 	public String toString() {
-		return "Competition [quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", cedingId=" + cedingId + ", cedingName="
-				+ cedingName + ", cedingRepId=" + cedingRepId + ", cedingRepName=" + cedingRepName + ", position="
-				+ position + ", advOption=" + advOption + ", wordings=" + wordings + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", advWordCreateUser=" + advWordCreateUser + ", advWordCreateDate=" + advWordCreateDate
-				+ ", advWordUpdateUser=" + advWordUpdateUser + ", advWordUpdateDate=" + advWordUpdateDate + "]";
+		return "Competition [quoteId=" + quoteId + ", quoteNo=" + quoteNo + ", adviceNo=" + adviceNo + ", cedingId="
+				+ cedingId + ", cedingName=" + cedingName + ", cedingRepId=" + cedingRepId + ", cedingRepName="
+				+ cedingRepName + ", position=" + position + ", advOption=" + advOption + ", wordings=" + wordings
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", advWordCreateUser=" + advWordCreateUser + ", advWordCreateDate="
+				+ advWordCreateDate + ", advWordUpdateUser=" + advWordUpdateUser + ", advWordUpdateDate="
+				+ advWordUpdateDate + "]";
 	}
 }

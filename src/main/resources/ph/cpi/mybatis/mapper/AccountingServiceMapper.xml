@@ -884,6 +884,7 @@
 			   										#{attachment.updateUser},
 			   										CAST(to_timestamp(#{attachment.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		   </foreach>
+		   DBMS_OUTPUT.PUT_LINE('PLACEHOLDER');
 		   END;
 	</update>
 

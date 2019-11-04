@@ -773,6 +773,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
 		 <result property="quoteId"			 	 column="QUOTE_ID"/>
+		 <result property="quoteNo"			 	 column="QUOTE_NO"/>
 		 <result property="adviceNo"			 column="ADVICE_NO"/>
 		 <result property="cedingId"			 column="CEDING_ID"/>
 		 <result property="cedingName"			 column="CEDING_NAME"/>
