@@ -4,7 +4,6 @@ package ph.cpi.rest.api.controller;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -18,7 +17,6 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -46,6 +44,7 @@ import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
+import ph.cpi.rest.api.utils.ReportParameters;
 
 @Controller
 @CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", 
@@ -190,17 +189,22 @@ public class UtilController {
 		dbParams.put("username", username);
 		dbParams.put("password", password);
 		
-		PrintingUtility pu = new PrintingUtility();
-		HashMap reportParam = new HashMap<String, String>();
-		reportParam.put("QUOTE_ID", grr.getQuoteId());
-		reportParam.put("REPORT_NAME", grr.getReportName());
-		reportParam.put("ADVICE_NO", grr.getAdviceNo());
-		reportParam.put("HOLD_COV_ID", grr.getHoldCovId());
-		reportParam.put("USER_ID", grr.getUserId());
-		reportParam.put("TRAN_ID", grr.getTranId());
-		reportParam.put("REQ_ID", grr.getReqId());
 		String filename = "";
 		try {
+			PrintingUtility pu = new PrintingUtility();
+			HashMap reportParam = new HashMap<String, String>();
+			if (grr.getReportName().toUpperCase().contains("POLR044")) {
+				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
+			} else {
+				reportParam = ReportParameters.mapReportParams(grr);
+			}
+			
+			reportParam.put("REPORT_NAME", grr.getReportName());
+			
+			System.out.println("GENERATED REPORT PARAMS:");
+			System.out.println(reportParam);
+			
+			
 			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);
 		} catch (JRException e) {
 			// TODO Auto-generated catch block

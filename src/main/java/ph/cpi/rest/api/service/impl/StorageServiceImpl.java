@@ -32,8 +32,11 @@ public class StorageServiceImpl implements StorageService {
 	    }
 	
 	 @Override
-	    public void store(MultipartFile file) {
+	    public String store(MultipartFile file, String module, String refId) {
 	        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+	        String directory = module+"\\"+refId;
+	        String response = "";
+	        filename = module+"\\"+refId+"\\"+filename;
 	        try {
 	            if (file.isEmpty()) {
 	                throw new StorageException("Failed to store empty file " + filename);
@@ -45,13 +48,20 @@ public class StorageServiceImpl implements StorageService {
 	                                + filename);
 	            }
 	            try (InputStream inputStream = file.getInputStream()) {
+	            	Files.createDirectories(this.rootLocation.resolve(directory));
 	                Files.copy(inputStream, this.rootLocation.resolve(filename),
 	                    StandardCopyOption.REPLACE_EXISTING);
+	                response = "redirect:/";
 	            }
 	        }
 	        catch (IOException e) {
 	            throw new StorageException("Failed to store file " + filename, e);
 	        }
+	        catch (Exception f){
+	        	f.printStackTrace();
+	        	response = "File exceeded the maximum file size.";
+	        }
+	        return response;
 	    }
 
 		@Override
@@ -73,9 +83,9 @@ public class StorageServiceImpl implements StorageService {
 		    }
 
 		 @Override
-		    public Resource loadAsResource(String filename) {
+		    public Resource loadAsResource(String filename, String module, String refId) {
 		        try {
-		            Path file = load(filename);
+		            Path file = load(module+"\\"+refId+"\\"+filename);
 		            Resource resource = new UrlResource(file.toUri());
 		            if (resource.exists() || resource.isReadable()) {
 		                return resource;
@@ -98,8 +108,8 @@ public class StorageServiceImpl implements StorageService {
 		    }
 		 	
 		 	@Override
-		 	public Integer delete(String fileNames){
-		 		Path path = Paths.get(rootLocation + "\\" + fileNames);
+		 	public Integer delete(String fileNames, String module, String refId){
+		 		Path path = Paths.get(rootLocation + "\\" + module + "\\" + refId + "\\" + fileNames);
 		 		System.out.println(path);
 		 		if(FileSystemUtils.deleteRecursively(path.toFile())){
 		 			return 1;

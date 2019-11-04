@@ -16,6 +16,10 @@ import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
 import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
+import ph.cpi.rest.api.model.accountingservice.AcseCancelledCV;
+import ph.cpi.rest.api.model.accountingservice.AcseCancelledJV;
+import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
+import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -223,7 +227,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public List<AcseBatchOR> retrieveAcseBatchOr(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		List<AcseBatchOR> res = sqlSession.selectList("retrieveAcseBatchOr", params);
 		return res;
 	}
@@ -268,5 +271,37 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public Integer printOrBatch(HashMap<String, Object> params) throws SQLException {
 		Integer res = sqlSession.update("printOrBatch", params);
 		return res;
+	}
+
+	@Override
+	public List<AcseCancelledOR> retrieveAcseChangeToNewOR(HashMap<String, Object> params) throws SQLException {
+		List<AcseCancelledOR> list = sqlSession.selectList("retrieveAcseChangeToNew", params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> updateAcseChangeStat(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateAcseChangeStat",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcseCancelledCV> retrieveAcseChangeToNewCV(HashMap<String, Object> params) throws SQLException {
+		List<AcseCancelledCV> list = sqlSession.selectList("retrieveAcseChangeToNewCV",params);
+		return list;
+	}
+
+	@Override
+	public List<AcseCancelledJV> retrieveAcseChangeToNewJV(HashMap<String, Object> params) throws SQLException {
+		List<AcseCancelledJV> list = sqlSession.selectList("retrieveAcseChangeToNewJV", params);
+		return list;
+	}
+
+	@Override
+	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcseCancelledTransactions> list = sqlSession.selectList("retrieveAcseCancelledTran", params);
+		return list;
 	}
 }

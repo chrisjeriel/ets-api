@@ -412,7 +412,10 @@
 	</resultMap>
 	
 	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'','',
+															#{endtTitle,jdbcType=VARCHAR},
+															#{endtDesc,jdbcType=VARCHAR},
+															#{remarks,jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">
@@ -489,7 +492,14 @@
 										'',
 										1,
 										'',
-										''))
+										'',
+										#{deductibleTitle,jdbcType=VARCHAR},
+										#{deductibleType,jdbcType=VARCHAR},
+										#{rateFrom,jdbcType=VARCHAR},
+										#{rateTo,jdbcType=VARCHAR},
+										#{amtFrom,jdbcType=VARCHAR},
+										#{amtTo,jdbcType=VARCHAR},
+										#{deductibleText,jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
@@ -1193,11 +1203,11 @@
     </update>
     
     <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
-    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}) total_count from dual
+    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}) total_count from dual
      </select>
      
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
-     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
+     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}))
      </select>
      
      <update id="saveMtnIntermediary" parameterType="java.util.Map" statementType="CALLABLE">
@@ -5001,8 +5011,85 @@
 			</foreach>
 		END;
 	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultTax" id="acseDefTaxMap">
+    	<result property="tranClass" 			column="TRAN_CLASS"/>
+		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
+		<result property="taxId" 				column="TAX_ID"/>
+		<result property="taxCd"				column="TAX_CD"/>
+		<result property="taxDesc"				column="TAX_DESC"/>
+		<result property="taxRate" 				column="TAX_RATE"/>
+		<result property="fixedAmount" 			column="FIXED_AMOUNT"/>
+		<result property="particulars" 			column="PARTICULARS"/>
+		<result property="activeTag" 			column="ACTIVE_TAG"/>
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+	
+	 <select id="retrieveAcseDefTax" resultMap="acseDefTaxMap">
+		SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_deftax(#{tranClass}, #{tranTypeCd}, #{taxId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultWhTax" id="acsewhDefTaxMap">
+    	<result property="tranClass" 			column="TRAN_CLASS"/>
+		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>
+		<result property="whTaxId" 				column="WHTAX_ID"/>
+		<result property="taxCd" 				column="TAX_CD"/>
+		<result property="taxDesc" 				column="TAX_NAME"/>
+		<result property="taxRate" 				column="TAX_RATE"/>
+		<result property="particulars" 			column="PARTICULARS"/>
+		<result property="activeTag" 			column="ACTIVE_TAG"/>
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+    </resultMap>
+	
+	 <select id="retrieveAcseDefWhTax" resultMap="acsewhDefTaxMap">
+		SELECT * FROM TABLE(MTN_ACSE_TRAN_TYPE_PKG.ret_defwhtax(#{tranClass}, #{tranTypeCd}, #{whtaxId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+	</select>
+	
+	<update id="saveAcseDefTax" >
+		BEGIN
+			<foreach collection="delDefTax" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_deftax(#{del.tranClass},#{del.tranTypeCd},#{del.taxId});
+			</foreach>
+			
+			<foreach collection="saveDefTax" item="save">
+				MTN_ACSE_TRAN_TYPE_PKG.save_deftax(
+						#{save.tranClass}, 
+						#{save.tranTypeCd}, 
+						#{save.taxId, jdbcType=VARCHAR},
+						#{save.particulars, jdbcType=VARCHAR}, 
+						#{save.activeTag, jdbcType=VARCHAR}, 
+						#{save.createUser},
+						CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{save.updateUser},
+						CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			
+			<foreach collection="delDefWhTax" item="del">
+				MTN_ACSE_TRAN_TYPE_PKG.del_defwhtax(#{del.tranClass},#{del.tranTypeCd},#{del.whTaxId});
+			</foreach>
+			
+			<foreach collection="saveDefWhTax" item="saved">
+				MTN_ACSE_TRAN_TYPE_PKG.save_defwhtax(
+						#{saved.tranClass}, 
+						#{saved.tranTypeCd}, 
+						#{saved.whTaxId, jdbcType=VARCHAR}, 
+						#{saved.particulars, jdbcType=VARCHAR}, 
+						#{saved.activeTag, jdbcType=VARCHAR}, 
+						#{saved.createUser},
+						CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{saved.updateUser},
+						CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 	
 	<select id="retrieveMtnUserLov" resultMap="printableMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(MTN_USERS_PKG.ret_mtn_user_lov(#{searchStr, jdbcType=VARCHAR},null,null,null,null))
+		SELECT * FROM TABLE(MTN_USERS_PKG.ret_mtn_user_lov(#{searchStr, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 </mapper>

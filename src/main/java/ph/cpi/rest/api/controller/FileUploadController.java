@@ -54,11 +54,11 @@ public class FileUploadController {
 	 
 	 @GetMapping("/files/{filename:.+}")
 	    @ResponseBody
-	    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+	    public ResponseEntity<Resource> serveFile(@PathVariable String filename, String module, String refId) {
 
 		 logger.info("GET: /api/file-upload-service/files/");
 		 
-	        Resource file = storageService.loadAsResource(filename);
+	        Resource file = storageService.loadAsResource(filename, module, refId);
 	        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 	                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
 	    }
@@ -66,23 +66,23 @@ public class FileUploadController {
 	 
 	 @PostMapping("/")
 	    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file,
-	            RedirectAttributes redirectAttributes) {
+	            RedirectAttributes redirectAttributes, String module, String refId) {
 		 
 		 logger.info("POST: /api/file-upload-service/files/");
-	     
-		 storageService.store(file);
+	     String response = "";
+		 response = storageService.store(file, module, refId);
 	     redirectAttributes.addFlashAttribute("message",
 	                "You successfully uploaded " + file.getOriginalFilename() + "!");
 	     logger.info("You successfully uploaded " + file.getOriginalFilename() + "!");
-	     return "redirect:/";
+	     return response;
 	    }
 	 
 	 @DeleteMapping("/")
-	    public @ResponseBody String deleteFile(@RequestParam String fileNames) {
+	    public @ResponseBody String deleteFile(@RequestParam String fileNames, String module, String refId) {
 		 
 		 logger.info("POST: /api/file-upload-service/files/");
 	     
-		 Integer errorCode = storageService.delete(fileNames);
+		 Integer errorCode = storageService.delete(fileNames, module, refId);
 	     logger.info("You successfully deleted " + fileNames + "!");
 	     return errorCode.toString();
 	    }

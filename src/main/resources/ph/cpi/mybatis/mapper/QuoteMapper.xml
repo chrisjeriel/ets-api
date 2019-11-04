@@ -554,7 +554,14 @@
 															   '',
 															   '',
 															   '',
-															   ''))	a	
+															   '',
+															   #{siFrom, jdbcType=VARCHAR},
+															#{siTo, jdbcType=VARCHAR},
+															#{rateFrom, jdbcType=VARCHAR},
+															#{rateTo, jdbcType=VARCHAR},
+															#{approvedBy, jdbcType=VARCHAR}
+															))	a	
+															
 		   	  WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS_CD IN 
@@ -607,7 +614,11 @@
 															   '',
 															   '',
 															   '',
-															   ''))	a	
+															   '',#{siFrom, jdbcType=VARCHAR},
+															#{siTo, jdbcType=VARCHAR},
+															#{rateFrom, jdbcType=VARCHAR},
+															#{rateTo, jdbcType=VARCHAR},
+															#{approvedBy, jdbcType=VARCHAR}))	a
 		   	  WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS_CD IN 
@@ -773,6 +784,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Competition" id="competitionMap">
 		 <result property="quoteId"			 	 column="QUOTE_ID"/>
+		 <result property="quoteNo"			 	 column="QUOTE_NO"/>
 		 <result property="adviceNo"			 column="ADVICE_NO"/>
 		 <result property="cedingId"			 column="CEDING_ID"/>
 		 <result property="cedingName"			 column="CEDING_NAME"/>
@@ -994,6 +1006,8 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Alop" id="alopMap">
+		<result property="quoteId" 			column="QUOTE_ID"/>
+		<result property="quoteNo" 			column="QUOTE_NO"/>
 		<result property="insuredId" 		column="INS_ID"/>
 		<result property="insuredName" 		column="INSURED_NAME"/>
 		<result property="insuredDesc" 		column="INSURED_DESC"/>
@@ -1003,24 +1017,29 @@
 		<result property="createDate" 		column="CREATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<!-- <association property="alopItemList" resultMap="alopItemMap"></association> -->
+		<association property="alopDetails" resultMap="alopDetailsMap"></association>
         <!-- <association property="alopItem" resultMap="alopItemMap"></association> -->
 	</resultMap>
 		
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopDetails" id="alopDetailsMap">
-		<result property="annSi" 				column="ANN_SI"/>
-		<result property="maxIndemPdSi" 		column="MAX_INDEM_PD_SI"/>
-		<result property="issueDate" 			column="ISSUE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="expiryDate" 			column="EXPIRY_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="maxIndemPd" 			column="MAX_INDEM_PD"/>
-		<result property="indemFromDate" 		column="INDEM_FROM_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="timeExc" 				column="TIME_EXC"/>
-		<result property="repInterval" 			column="REP_INTERVAL"/>
-		<result property="createUserAlop" 		column="CREATE_USER_ALOP"/>
-		<result property="createDateAlop" 		column="CREATE_DATE_ALOP" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUserAlop" 		column="UPDATE_USER_ALOP"/>
-		<result property="updateDateAlop" 		column="UPDATE_DATE_ALOP" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="optionId"   			column="OPTION_ID"/>
+		<result property="optionId" column="OPTION_ID"/>
+		<result property="optionRt" column="PREM_RT"/>
+		<result property="condition" column="CONDITION"/>
+		<result property="commRtQuota" column="COMM_RT_QUOTA"/>
+		<result property="commRtSurplus" column="COMM_RT_SURPLUS"/>
+		<result property="commRtFac" column="COMM_RT_FAC"/>
+		<result property="annSi" column="ANN_SI"/>
+		<result property="maxIndemPdSi" column="MAX_INDEM_PD_SI"/>
+		<result property="issueDate" column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate" column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maxIndemPd" column="MAX_INDEM_PD"/>
+		<result property="indemFromDate" column="INDEM_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="timeExc" column="TIME_EXC"/>
+		<result property="repInterval" column="REP_INTERVAL"/>
+		<result property="createUserAlop" column="CREATE_USER_ALOP"/>
+		<result property="createDateAlop" column="CREATE_DATE_ALOP" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUserAlop" column="UPDATE_USER_ALOP"/>
+		<result property="updateDateAlop" column="UPDATE_DATE_ALOP" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="alopItemList" resultMap="alopItemMap"></association>
 	</resultMap>
 	
@@ -1088,11 +1107,11 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.AlopItem" id="alopItemMap">
-        <result property="itemNo" 	column="ITEM_NO"/>
-        <result property="quantity" 	column="QUANTITY"/>
-        <result property="description" 	column="DESCRIPTION"/>
-        <result property="importance" 	column="IMPORTANCE"/>
-        <result property="lossMin" 		column="LOSS_MIN"/>
+        <result property="itemNo" 			column="ITEM_NO"/>
+        <result property="quantity" 		column="QUANTITY"/>
+        <result property="description" 		column="DESCRIPTION"/>
+        <result property="importance" 		column="IMPORTANCE"/>
+        <result property="lossMin" 			column="LOSS_MIN"/>
         <result property="createUserItem" 	column="CREATE_USER_ITM"/>
         <result property="createDateItem" 	column="CREATE_DATE_ITM" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
         <result property="updateUserItem" 	column="UPDATE_USER_ITM"/>
@@ -1100,7 +1119,7 @@
 	</resultMap>
 	
     <select id="retrieveQuoteAlopItem" resultMap="alopItemMap" parameterType="java.util.Map">
-            SELECT * FROM TABLE(QU_ALOP_ITM_PKG.ret_qu_alop_itm(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},#{optionId},'',0,'',''))
+            SELECT * FROM TABLE(QU_ALOP_ITM_PKG.ret_qu_alop_itm(#{quoteId},#{quotationNo, jdbcType=VARCHAR},#{optionId},'','','',''))
     </select>
 
     <resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationMapAlop">
@@ -1123,15 +1142,13 @@
     </resultMap>  
     
     <resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="RetQuotationMap">
-    
 		<result property="quoteId" 			column="QUOTE_ID"/>
 		<result property="quotationNo" 		column="QUOTE_NO"/>
 		<association property="alop" 	resultMap="alopMap"></association>
-		<association property="optionsList" resultMap="options"></association>
     </resultMap>  
     
     <select id="retrieveQuoteAlop" resultMap="RetQuotationMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(QU_ALOP_PKG.ret_qu_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null))
+			SELECT * FROM TABLE(QU_ALOP_PKG.ret_qu_alop_test(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null))
     </select>
   
 	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map" statementType="CALLABLE">
@@ -1910,4 +1927,30 @@
 			QUOTE_ITEM_PKG.renumber_QUOTE_itm(#{quoteId},#{projId});
 		END;
 	</update>
+	
+	<update id="saveQuReptext" parameterType="java.util.Map">
+		BEGIN
+			QU_REPTEXT_PKG.save_qu_reptext(
+				#{quoteId, jdbcType=VARCHAR},#{reportId, jdbcType=VARCHAR},
+				#{reptext01, jdbcType=VARCHAR},#{reptext02, jdbcType=VARCHAR},
+				#{reptext03, jdbcType=VARCHAR},#{reptext04, jdbcType=VARCHAR},
+				#{reptext05, jdbcType=VARCHAR},#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.QuoteRepText" id="QuoteRepTextMap">
+		<result property="repText01" 			column="REPTEXT01"/>
+		<result property="repText02" 			column="REPTEXT02"/>
+		<result property="repText03" 			column="REPTEXT03"/>
+		<result property="repText04" 			column="REPTEXT04"/>
+		<result property="repText05" 			column="REPTEXT05"/>
+	</resultMap>
+	
+	<select id="retrieveQuReptext" resultMap="QuoteRepTextMap">
+		SELECT * FROM TABLE( QU_REPTEXT_PKG.get_qu_reptext(#{quoteId},#{reportId}) )
+	</select>
 </mapper>
