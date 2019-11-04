@@ -1369,4 +1369,11 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
 		return maintenanceService.saveAcseChartAcct(request);
 	}
+	
+	@GetMapping(path="retrieveMtnUserLov")
+	public @ResponseBody RetrieveMtnUserLovResponse retrieveMtnUserLov(RetrieveMtnUserLovRequest rmulr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnUserLov");
+		logger.info("RetrieveMtnUserLovRequest: " + rmulr.toString());
+		return maintenanceService.retrieveMtnUserLov(rmulr);
+	}
 }

@@ -5001,4 +5001,8 @@
 			</foreach>
 		END;
 	</update>
+	
+	<select id="retrieveMtnUserLov" resultMap="printableMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_USERS_PKG.ret_mtn_user_lov(#{searchStr, jdbcType=VARCHAR},null,null,null,null))
+	</select>
 </mapper>

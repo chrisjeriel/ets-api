@@ -3115,4 +3115,16 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnUserLovResponse retrieveMtnUserLov(RetrieveMtnUserLovRequest rmulr) throws SQLException {
+		RetrieveMtnUserLovResponse response = new RetrieveMtnUserLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("searchStr", rmulr.getSearchStr());
+		
+		response.setUserList(maintenanceDao.retrieveMtnUserLov(params));
+		
+		return response;
+	}
 }

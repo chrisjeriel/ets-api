@@ -292,4 +292,5 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> saveAcseWhTaxHist(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcitChartAcc(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseChartAcc(final HashMap<String, Object> params) throws SQLException;
+	public List<PrintableNames> retrieveMtnUserLov(final HashMap<String, Object> params) throws SQLException;
 }
