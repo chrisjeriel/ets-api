@@ -1037,7 +1037,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteChangeQuoteStatusParams.put("status", sqcqs.getStatusCd());
 			saveQuoteChangeQuoteStatusParams.put("reasonCd", sqcqs.getReasonCd());
 			saveQuoteChangeQuoteStatusParams.put("quoteList",sqcqs.getChangeQuoteStatus());
-			
+			saveQuoteChangeQuoteStatusParams.put("user",sqcqs.getUser());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteChangeQuoteStatus(saveQuoteChangeQuoteStatusParams);
 			

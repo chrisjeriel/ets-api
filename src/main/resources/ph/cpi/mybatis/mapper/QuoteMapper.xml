@@ -1481,7 +1481,7 @@
 		BEGIN
 		 <foreach collection="quoteList" item="quote">
 		 	QU_GEN_INFO_PKG.save_qu_chng_qu_stats(
-		 		#{quote.quoteId},#{status},#{reasonCd, jdbcType=VARCHAR}
+		 		#{quote.quoteId},#{status},#{reasonCd, jdbcType=VARCHAR},#{user}
 		 	);
 		 </foreach>
 		END;
