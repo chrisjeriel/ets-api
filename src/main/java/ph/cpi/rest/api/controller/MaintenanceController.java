@@ -1369,4 +1369,25 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
 		return maintenanceService.saveAcseChartAcct(request);
 	}
+	
+	@GetMapping(path="retrieveAcseDefTax")
+	public @ResponseBody RetrieveMtnAcseDefTaxResponse retrieveAcseDefTax(RetrieveMtnAcseDefTaxRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/retrieveAcseDefTax");
+		logger.info("RetrieveMtnAcseDefTaxRequest : " + request.toString());
+		return maintenanceService.retrieveAcseDefTax(request);
+	}
+	
+	@GetMapping(path="retrieveAcseDefWhTax")
+	public @ResponseBody RetrieveMtnAcseDefWhTaxResponse retrieveAcseDefWhTax(RetrieveMtnAcseDefWhTaxRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/retrieveAcseDefWhTax");
+		logger.info("RetrieveMtnAcseDefWhTaxRequest : " + request.toString());
+		return maintenanceService.retrieveAcseDefWhTax(request);
+	}
+	
+	@PostMapping(path="saveAcseDefTax")
+	public @ResponseBody SaveMtnAcseDefTaxResponse saveAcseDefTax(@RequestBody SaveMtnAcseDefTaxRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveAcseDefTax");
+		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
+		return maintenanceService.saveAcseDefTax(request);
+	}
 }

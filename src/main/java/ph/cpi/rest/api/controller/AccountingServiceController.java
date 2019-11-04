@@ -23,6 +23,10 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCancelTransactionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -49,6 +53,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
@@ -59,6 +64,10 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCancelTransactionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -85,6 +94,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Controller
@@ -365,5 +375,40 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/printOrBatch");
 		logger.info("PrintOrBatchRequest : " + pobr.toString());
 		return acctServService.printOrBatch(pobr);
+	}
+	
+	@GetMapping(path="retrieveAcseChangeToNewOR")
+	public @ResponseBody RetrieveAcseChangeToNewORResponse retrieveAcseChangeToNewOR(RetrieveAcseChangeToNewORRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNew");
+		logger.info("RetrieveAcseChangeToNewORRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseChangeToNewOR(rabemr);
+	}
+	
+	@PostMapping(path="updateAcseChangeStat")
+	public @ResponseBody UpdateAcseStatusResponse updateAcseChangeStat(@RequestBody UpdateAcseStatusRequest pobr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/updateAcseChangeStat");
+		logger.info("UpdateAcseStatusRequest : " + pobr.toString());
+		return acctServService.updateAcseChangeStat(pobr);
+	}
+	
+	@GetMapping(path="retrieveAcseChangeToNewCV")
+	public @ResponseBody RetrieveAcseChangeToNewCVResponse retrieveAcseChangeToNewCV(RetrieveAcseChangeToNewCVRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNewCV");
+		logger.info("RetrieveAcseChangeToNewCVRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseChangeToNewCV(rabemr);
+	}
+	
+	@GetMapping(path="retrieveAcseChangeToNewJV")
+	public @ResponseBody RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV(RetrieveAcseChangeToNewJVRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseChangeToNewJV");
+		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseChangeToNewJV(rabemr);
+	}
+	
+	@GetMapping(path="retrieveAcseCancelledTran")
+	public @ResponseBody RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran(RetrieveAcseCancelTransactionRequest rabemr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseCancelledTran");
+		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
+		return acctServService.retrieveAcseCancelledTran(rabemr);
 	}
 }
