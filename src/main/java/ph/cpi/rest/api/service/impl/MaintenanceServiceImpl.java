@@ -3128,4 +3128,46 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseDefTaxResponse retrieveAcseDefTax(RetrieveMtnAcseDefTaxRequest request) throws SQLException {
+		RetrieveMtnAcseDefTaxResponse response = new RetrieveMtnAcseDefTaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("taxId", request.getTaxId());
+		response.setDefTax(maintenanceDao.retrieveAcseDefTax(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDefWhTaxResponse retrieveAcseDefWhTax(RetrieveMtnAcseDefWhTaxRequest request)
+			throws SQLException {
+		RetrieveMtnAcseDefWhTaxResponse response = new RetrieveMtnAcseDefWhTaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("whTaxId", request.getWhTaxId());
+		response.setDefWhTax(maintenanceDao.retrieveAcseDefWhTax(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseDefTaxResponse saveAcseDefTax(SaveMtnAcseDefTaxRequest request) throws SQLException {
+		SaveMtnAcseDefTaxResponse response = new SaveMtnAcseDefTaxResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefTax", request.getSaveDefTax());
+			params.put("delDefTax", request.getDelDefTax());
+			params.put("saveDefWhTax", request.getSaveDefWhTax());
+			params.put("delDefWhTax", request.getDelDefWhTax());
+			HashMap<String,Object> res = maintenanceDao.saveAcseDefTax(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

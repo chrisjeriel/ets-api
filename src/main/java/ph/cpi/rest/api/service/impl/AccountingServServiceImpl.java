@@ -20,6 +20,10 @@ import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseCancelTransactionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewCVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -46,6 +50,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
@@ -56,6 +61,10 @@ import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseCancelTransactionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewCVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -82,6 +91,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
 @Component
@@ -762,7 +772,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public RetrieveAcseBatchOrResponse retrieveAcseBatchOr(
 			RetrieveAcseBatchOrRequest rabor) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcseBatchOrResponse response = new RetrieveAcseBatchOrResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -876,7 +885,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public PrintOrBatchResponse printOrBatch(PrintOrBatchRequest pobr)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		PrintOrBatchResponse response = new PrintOrBatchResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("printOrList", pobr.getPrintOrList());
@@ -892,6 +900,65 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcseChangeToNewORResponse retrieveAcseChangeToNewOR(RetrieveAcseChangeToNewORRequest request)
+			throws SQLException {
+		RetrieveAcseChangeToNewORResponse response = new RetrieveAcseChangeToNewORResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setCancelledOR(acctServDao.retrieveAcseChangeToNewOR(params));
+		return response;
+	}
+
+	@Override
+	public UpdateAcseStatusResponse updateAcseChangeStat(UpdateAcseStatusRequest request) throws SQLException {
+		UpdateAcseStatusResponse response = new UpdateAcseStatusResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("changeStat", request.getChangeStat());
+			HashMap<String,Object> res = acctServDao.updateAcseChangeStat(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseChangeToNewCVResponse retrieveAcseChangeToNewCV(RetrieveAcseChangeToNewCVRequest request)
+			throws SQLException {
+		RetrieveAcseChangeToNewCVResponse response = new RetrieveAcseChangeToNewCVResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setCancelledOR(acctServDao.retrieveAcseChangeToNewCV(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV(RetrieveAcseChangeToNewJVRequest request)
+			throws SQLException {
+		RetrieveAcseChangeToNewJVResponse response = new RetrieveAcseChangeToNewJVResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setCancelledJV(acctServDao.retrieveAcseChangeToNewJV(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran(RetrieveAcseCancelTransactionRequest request)
+			throws SQLException {
+		RetrieveAcseCancelTransactionResponse response = new RetrieveAcseCancelTransactionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranId", request.getTranId());
+		params.put("cancelFrom", request.getCancelFrom());
+		params.put("cancelTo", request.getCancelTo());
+		response.setCancelledTran(acctServDao.retrieveAcseCancelledTran(params));
 		return response;
 	}
 }
