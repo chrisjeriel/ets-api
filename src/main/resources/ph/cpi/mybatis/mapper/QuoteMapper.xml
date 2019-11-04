@@ -221,6 +221,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationListingMap">
 		<result property 	= "quotationNo"		column	= "QUOTE_NO"/>
+		<result property	= "holdCoverId"		column  = "HOLD_COV_ID"/>
 		<result property 	= "quoteId"			column	= "QUOTE_ID"/>
 		<result property 	= "cedingName"		column	= "CEDING_NAME"/>
 		<result property 	= "insuredDesc"		column	= "INSURED_DESC"/>
