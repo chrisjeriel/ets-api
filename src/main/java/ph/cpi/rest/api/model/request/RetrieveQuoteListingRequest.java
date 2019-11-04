@@ -33,6 +33,13 @@ public class RetrieveQuoteListingRequest {
 	private String expiryDateTo;
 	private String reqBy;
 	private String createUser;
+	
+	private String siFrom;
+	private String siTo;
+	private String rateFrom;
+	private String rateTo;
+	private String approvedBy;
+	
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
 	
@@ -197,6 +204,37 @@ public class RetrieveQuoteListingRequest {
 	public void setOpenCoverTag(String openCoverTag) {
 		this.openCoverTag = openCoverTag;
 	}
+	
+	public String getSiFrom() {
+		return siFrom;
+	}
+	public void setSiFrom(String siFrom) {
+		this.siFrom = siFrom;
+	}
+	public String getSiTo() {
+		return siTo;
+	}
+	public void setSiTo(String siTo) {
+		this.siTo = siTo;
+	}
+	public String getRateFrom() {
+		return rateFrom;
+	}
+	public void setRateFrom(String rateFrom) {
+		this.rateFrom = rateFrom;
+	}
+	public String getRateTo() {
+		return rateTo;
+	}
+	public void setRateTo(String rateTo) {
+		this.rateTo = rateTo;
+	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
@@ -205,8 +243,9 @@ public class RetrieveQuoteListingRequest {
 				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName
 				+ ", objectDesc=" + objectDesc + ", site=" + site + ", currencyCd=" + currencyCd + ", issueDateFrom="
 				+ issueDateFrom + ", issueDateTo=" + issueDateTo + ", expiryDateFrom=" + expiryDateFrom
-				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", statusArr="
-				+ statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + "]";
+				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser + ", siFrom="
+				+ siFrom + ", siTo=" + siTo + ", rateFrom=" + rateFrom + ", rateTo=" + rateTo + ", approvedBy="
+				+ approvedBy + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
+				+ ", statusArr=" + statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + "]";
 	}
 }

@@ -5,6 +5,7 @@ import ph.cpi.rest.api.model.utils.POLR044;
 public class GenerateReportRequest {
 	
 	private String reportName;
+	private String reportId;
 	private POLR044 polr044Params;
 	private Integer quoteId;
 	private Integer adviceNo;
@@ -13,6 +14,12 @@ public class GenerateReportRequest {
 	private Integer tranId;
 	private Integer reqId;
 	
+	public String getReportId() {
+		return reportId;
+	}
+	public void setReportId(String reportId) {
+		this.reportId = reportId;
+	}
 	public String getReportName() {
 		return reportName;
 	}
@@ -64,9 +71,9 @@ public class GenerateReportRequest {
 	}
 	@Override
 	public String toString() {
-		return "GenerateReportRequest [reportName=" + reportName + ", polr044Params=" + polr044Params + ", quoteId="
-				+ quoteId + ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId="
-				+ tranId + ", reqId=" + reqId + "]";
+		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", polr044Params="
+				+ polr044Params + ", quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId
+				+ ", userId=" + userId + ", tranId=" + tranId + ", reqId=" + reqId + "]";
 	}
 	
 }

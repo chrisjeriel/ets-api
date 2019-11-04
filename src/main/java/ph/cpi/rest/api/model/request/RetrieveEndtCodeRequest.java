@@ -7,6 +7,9 @@ public class RetrieveEndtCodeRequest {
 	
 	private String lineCd;
 	private Integer endtCd;
+	private String endtTitle;
+	private String endtDesc;
+	private String remarks;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
@@ -33,6 +36,24 @@ public class RetrieveEndtCodeRequest {
 	}
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
+	}
+	public String getEndtTitle() {
+		return endtTitle;
+	}
+	public void setEndtTitle(String endtTitle) {
+		this.endtTitle = endtTitle;
+	}
+	public String getEndtDesc() {
+		return endtDesc;
+	}
+	public void setEndtDesc(String endtDesc) {
+		this.endtDesc = endtDesc;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	@Override
 	public String toString() {

@@ -27,6 +27,10 @@ public class ReportParameters {
 		reportParams.put("P_REQ_ID", grr.getReqId());
 		reportParams.put("pReqId", grr.getReqId());
 		
+		
+		reportParams.put("P_REPORT_ID", grr.getReportId());
+		reportParams.put("pReportId", grr.getReportId());
+		
 		return reportParams;
 	}
 	

@@ -412,7 +412,10 @@
 	</resultMap>
 	
 	<select id="retrieveEndtCode" resultMap="endtCode" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'',''))
+		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'','',
+															#{endtTitle,jdbcType=VARCHAR},
+															#{endtDesc,jdbcType=VARCHAR},
+															#{remarks,jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">
@@ -489,7 +492,14 @@
 										'',
 										1,
 										'',
-										''))
+										'',
+										#{deductibleTitle,jdbcType=VARCHAR},
+										#{deductibleType,jdbcType=VARCHAR},
+										#{rateFrom,jdbcType=VARCHAR},
+										#{rateTo,jdbcType=VARCHAR},
+										#{amtFrom,jdbcType=VARCHAR},
+										#{amtTo,jdbcType=VARCHAR},
+										#{deductibleText,jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveMtnSectionCovers" resultMap="retrieveMtnSectionCoversMap" parameterType="java.util.Map">
@@ -1193,11 +1203,11 @@
     </update>
     
     <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
-    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}) total_count from dual
+    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}) total_count from dual
      </select>
      
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
-     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}))
+     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}))
      </select>
      
      <update id="saveMtnIntermediary" parameterType="java.util.Map" statementType="CALLABLE">

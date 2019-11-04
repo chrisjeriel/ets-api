@@ -554,7 +554,14 @@
 															   '',
 															   '',
 															   '',
-															   ''))	a	
+															   '',
+															   #{siFrom, jdbcType=VARCHAR},
+															#{siTo, jdbcType=VARCHAR},
+															#{rateFrom, jdbcType=VARCHAR},
+															#{rateTo, jdbcType=VARCHAR},
+															#{approvedBy, jdbcType=VARCHAR}
+															))	a	
+															
 		   	  WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS_CD IN 
@@ -607,7 +614,11 @@
 															   '',
 															   '',
 															   '',
-															   ''))	a	
+															   '',#{siFrom, jdbcType=VARCHAR},
+															#{siTo, jdbcType=VARCHAR},
+															#{rateFrom, jdbcType=VARCHAR},
+															#{rateTo, jdbcType=VARCHAR},
+															#{approvedBy, jdbcType=VARCHAR}))	a
 		   	  WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS_CD IN 
@@ -1916,4 +1927,30 @@
 			QUOTE_ITEM_PKG.renumber_QUOTE_itm(#{quoteId},#{projId});
 		END;
 	</update>
+	
+	<update id="saveQuReptext" parameterType="java.util.Map">
+		BEGIN
+			QU_REPTEXT_PKG.save_qu_reptext(
+				#{quoteId, jdbcType=VARCHAR},#{reportId, jdbcType=VARCHAR},
+				#{reptext01, jdbcType=VARCHAR},#{reptext02, jdbcType=VARCHAR},
+				#{reptext03, jdbcType=VARCHAR},#{reptext04, jdbcType=VARCHAR},
+				#{reptext05, jdbcType=VARCHAR},#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.QuoteRepText" id="QuoteRepTextMap">
+		<result property="repText01" 			column="REPTEXT01"/>
+		<result property="repText02" 			column="REPTEXT02"/>
+		<result property="repText03" 			column="REPTEXT03"/>
+		<result property="repText04" 			column="REPTEXT04"/>
+		<result property="repText05" 			column="REPTEXT05"/>
+	</resultMap>
+	
+	<select id="retrieveQuReptext" resultMap="QuoteRepTextMap">
+		SELECT * FROM TABLE( QU_REPTEXT_PKG.get_qu_reptext(#{quoteId},#{reportId}) )
+	</select>
 </mapper>

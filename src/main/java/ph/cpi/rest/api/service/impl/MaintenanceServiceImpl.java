@@ -142,6 +142,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveEndtCodeParams = new HashMap<String, Object>();
 		retrieveEndtCodeParams.put("endtCd", recr.getEndtCd());
 		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
+		retrieveEndtCodeParams.put("endtTitle", recr.getEndtTitle());
+		retrieveEndtCodeParams.put("endtDesc", recr.getEndtDesc());
+		retrieveEndtCodeParams.put("remarks", recr.getRemarks());
 		
 		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
 		logger.info("recrResponse : " + recrResponse.toString());
@@ -176,6 +179,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnDeductiblesParams.put("endtCd", rmdr.getEndtCd());
 		retrieveMtnDeductiblesParams.put("activeTag", rmdr.getActiveTag());
 		retrieveMtnDeductiblesParams.put("defaultTag", rmdr.getDefaultTag());
+		
+		retrieveMtnDeductiblesParams.put("deductibleTitle",rmdr.getDeductibleTitle());
+		retrieveMtnDeductiblesParams.put("deductibleType",rmdr.getDeductibleType());
+		retrieveMtnDeductiblesParams.put("rateFrom",rmdr.getRateFrom());
+		retrieveMtnDeductiblesParams.put("rateTo",rmdr.getRateTo());
+		retrieveMtnDeductiblesParams.put("amtFrom",rmdr.getAmtFrom());
+		retrieveMtnDeductiblesParams.put("amtTo",rmdr.getAmtTo());
+		retrieveMtnDeductiblesParams.put("deductibleText",rmdr.getDeductibleText());
 		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
 		
 		return rmdrResponse;
@@ -737,6 +748,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("lovParam", rmil.getLovParam());
 		params.put("page", rmil.getPaginationRequest());
 		params.put("sort", rmil.getSortRequest());
+		params.put("insuredName", rmil.getInsuredName());
+		params.put("address", rmil.getAddress());
 		rmilResponse.setList(maintenanceDao.retMtnInsuredLov(params));
 		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
 		
