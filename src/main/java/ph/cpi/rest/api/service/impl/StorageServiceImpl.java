@@ -32,9 +32,10 @@ public class StorageServiceImpl implements StorageService {
 	    }
 	
 	 @Override
-	    public void store(MultipartFile file, String module, String refId) {
+	    public String store(MultipartFile file, String module, String refId) {
 	        String filename = StringUtils.cleanPath(file.getOriginalFilename());
 	        String directory = module+"\\"+refId;
+	        String response = "";
 	        filename = module+"\\"+refId+"\\"+filename;
 	        try {
 	            if (file.isEmpty()) {
@@ -50,11 +51,17 @@ public class StorageServiceImpl implements StorageService {
 	            	Files.createDirectories(this.rootLocation.resolve(directory));
 	                Files.copy(inputStream, this.rootLocation.resolve(filename),
 	                    StandardCopyOption.REPLACE_EXISTING);
+	                response = "redirect:/";
 	            }
 	        }
 	        catch (IOException e) {
 	            throw new StorageException("Failed to store file " + filename, e);
 	        }
+	        catch (Exception f){
+	        	f.printStackTrace();
+	        	response = "File exceeded the maximum file size.";
+	        }
+	        return response;
 	    }
 
 		@Override

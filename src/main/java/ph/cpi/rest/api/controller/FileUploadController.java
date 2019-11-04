@@ -69,12 +69,12 @@ public class FileUploadController {
 	            RedirectAttributes redirectAttributes, String module, String refId) {
 		 
 		 logger.info("POST: /api/file-upload-service/files/");
-	     
-		 storageService.store(file, module, refId);
+	     String response = "";
+		 response = storageService.store(file, module, refId);
 	     redirectAttributes.addFlashAttribute("message",
 	                "You successfully uploaded " + file.getOriginalFilename() + "!");
 	     logger.info("You successfully uploaded " + file.getOriginalFilename() + "!");
-	     return "redirect:/";
+	     return response;
 	    }
 	 
 	 @DeleteMapping("/")
