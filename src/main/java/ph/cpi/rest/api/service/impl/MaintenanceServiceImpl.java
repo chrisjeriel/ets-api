@@ -505,6 +505,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnRiskParams = new HashMap<String, Object>();
 		
 		saveMtnRiskParams.put("riskId", smrr.getRiskId());
+		saveMtnRiskParams.put("oldRiskId", smrr.getOldRiskId());
 		saveMtnRiskParams.put("riskAbbr", smrr.getRiskAbbr());
 		saveMtnRiskParams.put("riskName", smrr.getRiskName());
 		saveMtnRiskParams.put("regionCd", smrr.getRegionCd());
