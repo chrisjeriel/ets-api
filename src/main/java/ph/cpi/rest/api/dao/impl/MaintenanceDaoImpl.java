@@ -1418,4 +1418,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<PrintableNames> list = sqlSession.selectList("retrieveMtnUserLov", params);
 		return list;
 	}
+
+	@Override
+	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnAcitTranType> list = sqlSession.selectList("retrieveMtnAcitTranTypeLov", params);
+		return list;
+	}
 }

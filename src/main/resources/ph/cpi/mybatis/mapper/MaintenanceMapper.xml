@@ -5092,4 +5092,16 @@
 	<select id="retrieveMtnUserLov" resultMap="printableMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(MTN_USERS_PKG.ret_mtn_user_lov(#{searchStr, jdbcType=VARCHAR},null,null,null,null))
 	</select>
+	
+	<select id="retrieveMtnAcitTranTypeLov" resultMap="mtnAcitTranTypeMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_ACIT_TRAN_TYPE_PKG.ret_mtn_acit_tran_type_lov(#{searchStr, jdbcType=VARCHAR},
+																			  #{tranClass, jdbcType=VARCHAR},
+																			  #{tranTypeCd, jdbcType=VARCHAR},
+																			  #{typePrefix, jdbcType=VARCHAR},
+																			  #{autoTag, jdbcType=VARCHAR},
+																			  #{baeTag, jdbcType=VARCHAR},
+																			  #{activeTag, jdbcType=VARCHAR},
+																			  '','','',''))
+	</select>
+	
 </mapper>

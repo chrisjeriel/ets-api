@@ -865,6 +865,7 @@ public class MaintenanceController {
 		logger.info("CopyClmCashCallRequest : " + cpmccr.toString());
 		return maintenanceService.copyMtnClmCashCall(cpmccr);
 	}
+	
 	@GetMapping(path="retrieveMtnAcitTranType")
 	public @ResponseBody RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranType");
@@ -1396,5 +1397,12 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnUserLov");
 		logger.info("RetrieveMtnUserLovRequest: " + rmulr.toString());
 		return maintenanceService.retrieveMtnUserLov(rmulr);
+	}
+	
+	@GetMapping(path="retrieveMtnAcitTranTypeLov")
+	public @ResponseBody RetrieveMtnAcitTranTypeLovResponse retrieveMtnAcitTranTypeLov(RetrieveMtnAcitTranTypeLovRequest rmtlr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranTypeLov");
+		logger.info("RetrieveMtnAcitTranTypeLovRequest : " + rmtlr.toString());
+		return maintenanceService.retrieveMtnAcitTranTypeLov(rmtlr);
 	}
 }
