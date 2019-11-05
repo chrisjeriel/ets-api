@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 public class AcsePrqTrans {
 	private Integer reqId;
 	private Integer itemNo;
+	private Integer tranTypeCd;
 	private String itemName;
 	private Integer glAcctId;
 	private String refNo;
@@ -31,6 +32,12 @@ public class AcsePrqTrans {
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public Integer getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(Integer tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public String getItemName() {
 		return itemName;
@@ -112,10 +119,10 @@ public class AcsePrqTrans {
 	}
 	@Override
 	public String toString() {
-		return "AcsePrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", itemName=" + itemName + ", glAcctId="
-				+ glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", acctCd=" + acctCd + "]";
+		return "AcsePrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", itemName="
+				+ itemName + ", glAcctId=" + glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", acctCd=" + acctCd + "]";
 	}
 }

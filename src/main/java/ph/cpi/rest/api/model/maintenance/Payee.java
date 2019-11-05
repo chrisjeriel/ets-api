@@ -44,6 +44,7 @@ public class Payee {
 	private String okDelete;
 	private String bank1;
 	private String bank2;
+	private String vatTag;
 	
 	public String getBank1() {
 		return bank1;
@@ -296,6 +297,12 @@ public class Payee {
 	public void setBussTypeName(String bussTypeName) {
 		this.bussTypeName = bussTypeName;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	
 	@Override
 	public String toString() {
@@ -320,6 +327,9 @@ public class Payee {
 				+ ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ ", bank1=" + bank1 + ", bank2=" + bank2 + "]";
-	}	
+				+ ", bank1=" + bank1 + ", bank2=" + bank2 + ", vatTag="
+				+ vatTag + "]";
+	}
+	
+
 }

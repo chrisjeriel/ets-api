@@ -2,8 +2,9 @@ package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import ph.cpi.rest.api.constants.ExceptionCodes;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
+import ph.cpi.rest.api.model.quote.QuoteRepText;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuReptextRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteApproverRequest;
@@ -38,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrieveQuoteListingOcRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteListingRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteOptionRequest;
 import ph.cpi.rest.api.model.request.SaveQuItemRequest;
+import ph.cpi.rest.api.model.request.SaveQuReptextRequest;
 import ph.cpi.rest.api.model.request.SaveQuotationCopyRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAdviceWordingsRequest;
 import ph.cpi.rest.api.model.request.SaveQuoteAlopItemRequest;
@@ -63,6 +67,7 @@ import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuReptextResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteApproverResponse;
@@ -82,8 +87,8 @@ import ph.cpi.rest.api.model.response.RetrieveQuoteHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingOcResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteListingResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteOptionResponse;
-import ph.cpi.rest.api.model.response.SavePolItemResponse;
 import ph.cpi.rest.api.model.response.SaveQuItemResponse;
+import ph.cpi.rest.api.model.response.SaveQuReptextResponse;
 import ph.cpi.rest.api.model.response.SaveQuotationCopyResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAdviceWordingsResponse;
 import ph.cpi.rest.api.model.response.SaveQuoteAlopItemResponse;
@@ -155,6 +160,13 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("sort", rqlp.getSortRequest());
 			retrieveQuoteListingParams.put("search", rqlp.getSearch());
 			retrieveQuoteListingParams.put("openCoverTag", rqlp.getOpenCoverTag());
+			
+			retrieveQuoteListingParams.put("siFrom" , rqlp.getSiFrom());
+			retrieveQuoteListingParams.put("siTo" , rqlp.getSiTo());
+			retrieveQuoteListingParams.put("rateFrom" , rqlp.getRateFrom());
+			retrieveQuoteListingParams.put("rateTo" , rqlp.getRateTo());
+			
+			retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
 			
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
@@ -369,11 +381,11 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteAlopParams.put("insuredDesc" , sqar.getInsuredDesc());
 			saveQuoteAlopParams.put("address" , sqar.getAddress());
 			saveQuoteAlopParams.put("insuredBusiness" , sqar.getInsuredBusiness());
-			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			saveQuoteAlopParams.put("createUser", sqar.getCreateUser());
 			saveQuoteAlopParams.put("createDate", sqar.getCreateDate());
 			saveQuoteAlopParams.put("updateUser", sqar.getUpdateUser());
 			saveQuoteAlopParams.put("updateDate", sqar.getUpdateDate());
+			saveQuoteAlopParams.put("alopDetails", sqar.getAlopDetails());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteAlop(saveQuoteAlopParams);
 			sqarResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -782,7 +794,7 @@ public class QuoteServiceImpl implements QuoteService{
 			sqgiResponse.setReturnCode((Integer) res.get("errorCode"));
 			sqgiResponse.setQuoteId((Integer) res.get("outQuoteId"));
 			sqgiResponse.setQuotationNo((String) res.get("quotationNo"));
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			sqgiResponse.setReturnCode(0);
 			sqgiResponse.getErrorList().add(new Error("SQLException","Please check the field values."));
 			ex.printStackTrace();
@@ -1024,6 +1036,7 @@ public class QuoteServiceImpl implements QuoteService{
 			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
 			saveQuoteChangeQuoteStatusParams.put("status", sqcqs.getStatusCd());
 			saveQuoteChangeQuoteStatusParams.put("reasonCd", sqcqs.getReasonCd());
+			saveQuoteChangeQuoteStatusParams.put("user", sqcqs.getUser());
 			saveQuoteChangeQuoteStatusParams.put("quoteList",sqcqs.getChangeQuoteStatus());
 			
 			
@@ -1240,6 +1253,7 @@ public class QuoteServiceImpl implements QuoteService{
 		uqsParams.put("quoteId", uqsr.getQuoteId());
 		uqsParams.put("status", uqsr.getStatus());
 		uqsParams.put("approvedBy", uqsr.getApprovedBy());
+		uqsParams.put("user", uqsr.getUser());
 		
 		uqsResponse.setReturnCode(quoteDao.updateQuoteStatus(uqsParams));
 		logger.info("UpdateQuoteStatusResponse : " + uqsResponse.toString());
@@ -1273,6 +1287,57 @@ public class QuoteServiceImpl implements QuoteService{
 			ex.printStackTrace();
 		}
 		return spiresponse;
+	}
+
+	@Override
+	public SaveQuReptextResponse saveQuReptext(SaveQuReptextRequest spir) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveQuReptextResponse response = new SaveQuReptextResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		try{
+			params.put("quoteId", spir.getQuoteId());
+			params.put("reportId", spir.getReportId());
+			
+			String s = spir.getRepText();
+			if(s != null){
+				Matcher m = Pattern.compile("[\\s\\S]{1,3950}").matcher(s);
+				
+			    params.put("reptext01", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext02", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext03", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext04", m.find() ? s.substring(m.start(), m.end()) : "");
+				params.put("reptext05", m.find() ? s.substring(m.start(), m.end()) : "");
+			} 
+			logger.info("hereeeeee: " +params.toString());
+			
+			params.put("createUser", spir.getCreateUser());
+			params.put("createDate", spir.getCreateDate());
+			params.put("updateUser", spir.getUpdateUser());
+			params.put("updateDate", spir.getUpdateDate());
+			response.setReturnCode(quoteDao.saveQuReptext(params));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveQuReptextResponse retrieveQuReptext(RetrieveQuReptextRequest spir) throws SQLException {
+		RetrieveQuReptextResponse response = new RetrieveQuReptextResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("quoteId", spir.getQuoteId());
+		params.put("reportId", spir.getReportId());
+		QuoteRepText text = quoteDao.retrieveQuReptext(params);
+		response.setRepText(
+				(text.getRepText01() != null ? text.getRepText01() : "") +
+				(text.getRepText02() != null ? text.getRepText02() : "") +
+				(text.getRepText03() != null ? text.getRepText03() : "") + 
+				(text.getRepText04() != null ? text.getRepText04() : "") +
+				(text.getRepText05() != null ? text.getRepText05() : "")
+				);
+		return response;
 	}
 	
 

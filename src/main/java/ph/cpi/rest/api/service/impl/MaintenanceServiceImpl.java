@@ -142,6 +142,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retrieveEndtCodeParams = new HashMap<String, Object>();
 		retrieveEndtCodeParams.put("endtCd", recr.getEndtCd());
 		retrieveEndtCodeParams.put("lineCd", recr.getLineCd());
+		retrieveEndtCodeParams.put("endtTitle", recr.getEndtTitle());
+		retrieveEndtCodeParams.put("endtDesc", recr.getEndtDesc());
+		retrieveEndtCodeParams.put("remarks", recr.getRemarks());
 		
 		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
 		logger.info("recrResponse : " + recrResponse.toString());
@@ -176,6 +179,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnDeductiblesParams.put("endtCd", rmdr.getEndtCd());
 		retrieveMtnDeductiblesParams.put("activeTag", rmdr.getActiveTag());
 		retrieveMtnDeductiblesParams.put("defaultTag", rmdr.getDefaultTag());
+		
+		retrieveMtnDeductiblesParams.put("deductibleTitle",rmdr.getDeductibleTitle());
+		retrieveMtnDeductiblesParams.put("deductibleType",rmdr.getDeductibleType());
+		retrieveMtnDeductiblesParams.put("rateFrom",rmdr.getRateFrom());
+		retrieveMtnDeductiblesParams.put("rateTo",rmdr.getRateTo());
+		retrieveMtnDeductiblesParams.put("amtFrom",rmdr.getAmtFrom());
+		retrieveMtnDeductiblesParams.put("amtTo",rmdr.getAmtTo());
+		retrieveMtnDeductiblesParams.put("deductibleText",rmdr.getDeductibleText());
 		rmdrResponse.setDeductibles(maintenanceDao.retrieveMtnDeductibles(retrieveMtnDeductiblesParams));
 		
 		return rmdrResponse;
@@ -737,6 +748,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("lovParam", rmil.getLovParam());
 		params.put("page", rmil.getPaginationRequest());
 		params.put("sort", rmil.getSortRequest());
+		params.put("insuredName", rmil.getInsuredName());
+		params.put("address", rmil.getAddress());
 		rmilResponse.setList(maintenanceDao.retMtnInsuredLov(params));
 		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
 		
@@ -2567,11 +2580,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
-	public RetrieveMtnAcitSeriesResponse maxTranNo(RetrieveMtnAcitSeriesRequest request) throws SQLException {
+	public RetrieveMtnAcitSeriesResponse retrieveAcitAllowGenerate(RetrieveMtnAcitSeriesRequest request) throws SQLException {
 		RetrieveMtnAcitSeriesResponse response = new RetrieveMtnAcitSeriesResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranClass", request.getTranClass());
-		response.setMaxTranNo(maintenanceDao.maxTranNo(params));
+		params.put("tranFrom", request.getTranFrom());
+		params.put("tranTo", request.getTranTo());
+		params.put("year", request.getYear());
+		response.setAllowGenerate(maintenanceDao.retrieveAcitAllowGenerate(params));
 		return response;
 	}
 
@@ -2681,12 +2697,15 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
-	public RetrieveMtnAcseSeriesResponse acseMaxTranNo(RetrieveMtnAcseSeriesRequest request) throws SQLException {
+	public RetrieveMtnAcseSeriesResponse retrieveAcseAllowGenerate(RetrieveMtnAcseSeriesRequest request) throws SQLException {
 		RetrieveMtnAcseSeriesResponse response =  new RetrieveMtnAcseSeriesResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("tranClass", request.getTranClass());
+		params.put("tranFrom", request.getTranFrom());
+		params.put("tranTo", request.getTranTo());
+		params.put("tranYear", request.getTranYear());
 		params.put("orType", request.getOrType());
-		response.setMaxTranNo(maintenanceDao.acseMaxTranNo(params));
+		response.setAllowGenerate(maintenanceDao.retrieveAcseAllowGenerate(params));
 		return response;
 	}
 
@@ -2864,7 +2883,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnGenTaxResponse saveMtnGenTax(SaveMtnGenTaxRequest smgt)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnGenTaxResponse response = new SaveMtnGenTaxResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2883,7 +2901,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnGenTaxHistResponse retrieveMtnGenTaxHist(
 			RetrieveMtnGenTaxHistRequest rmgthr) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveMtnGenTaxHistResponse response = new RetrieveMtnGenTaxHistResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("taxId", rmgthr.getTaxId());
@@ -2895,7 +2912,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnGenTaxHistResponse saveMtnGenTaxHist(
 			SaveMtnGenTaxHistRequest smgth) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnGenTaxHistResponse response = new SaveMtnGenTaxHistResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2913,7 +2929,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnGenTaxRangeResponse saveMtnGenTaxRange(
 			SaveMtnGenTaxRangeRequest smgtr) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnGenTaxRangeResponse response = new SaveMtnGenTaxRangeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2932,7 +2947,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnGenTaxRangeResponse retrieveMtnGenTaxRange(
 			RetrieveMtnGenTaxRangeRequest rmgtrr) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveMtnGenTaxRangeResponse response = new RetrieveMtnGenTaxRangeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("taxId", rmgtrr.getTaxId());
@@ -2944,7 +2958,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnInvSecTypeResponse saveMtnInvSecType(
 			SaveMtnInvSecTypeRequest smist) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnInvSecTypeResponse response = new SaveMtnInvSecTypeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2963,7 +2976,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public RetrieveMtnPayeeClassResponse retrieveMtnPayeeClass(
 			RetrieveMtnPayeeClassRequest rmpcr) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveMtnPayeeClassResponse response = new RetrieveMtnPayeeClassResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("payeeClassCd", rmpcr.getPayeeClassCd());
@@ -2976,7 +2988,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnPayeeClassResponse saveMtnPayeeClass(
 			SaveMtnPayeeClassRequest smpc) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnPayeeClassResponse response = new SaveMtnPayeeClassResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -2995,7 +3006,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnSLTypeResponse saveMtnSLType(SaveMtnSLTypeRequest smst)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnSLTypeResponse response = new SaveMtnSLTypeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -3014,7 +3024,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	@Override
 	public SaveMtnSLResponse saveMtnSL(SaveMtnSLRequest sms)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		SaveMtnSLResponse response = new SaveMtnSLResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
@@ -3045,6 +3054,137 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Please check the field values."));
 			e.printStackTrace();
+		}
+		return response;
+   }
+		
+	public RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException {
+		RetrieveMtnAcseDefAmtResponse response = new RetrieveMtnAcseDefAmtResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("itemNo", request.getItemNo());
+		response.setDefAmtDtl(maintenanceDao.retrieveAcseAmtDtl(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseDefAmtDtlResponse saveAcseAmtDtl(SaveMtnAcseDefAmtDtlRequest request) throws SQLException {
+		SaveMtnAcseDefAmtDtlResponse response = new SaveMtnAcseDefAmtDtlResponse();
+		try {
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefAmt", request.getSaveDefAmt());
+			params.put("delDefAmt", request.getDelDefAmt());
+			HashMap<String,Object> res = maintenanceDao.saveAcseAmtDtl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseWhTaxHistResponse retrieveAcseWhTaxHist(RetrieveMtnAcseWhTaxHistRequest request)
+			throws SQLException {
+		RetrieveMtnAcseWhTaxHistResponse response = new RetrieveMtnAcseWhTaxHistResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("whTaxId", request.getWhTaxId());
+		params.put("histNo", request.getHistNo());
+		params.put("taxCd", request.getTaxCd());
+		response.setWhTaxHist(maintenanceDao.retrieveAcseWhTaxHist(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseWhTaxHistResponse saveAcseWhTaxHist(SaveMtnAcseWhTaxHistRequest request) throws SQLException {
+		SaveMtnAcseWhTaxHistResponse response = new SaveMtnAcseWhTaxHistResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveWhTaxHist", request.getSaveWhTaxHist());
+			HashMap<String,Object> res = maintenanceDao.saveAcseWhTaxHist(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcitChartAcctResponse saveAcitChartAcct(SaveMtnAcitChartAcctRequest request) throws SQLException {
+		SaveMtnAcitChartAcctResponse response =  new SaveMtnAcitChartAcctResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcitChartAcct",request.getSaveAcitChartAcct());
+			params.put("deleteAcitChartAcct", request.getDeleteAcitChartAcct());
+			HashMap<String,Object> res = maintenanceDao.saveAcitChartAcc(params);
+		    response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseChartAcctResponse saveAcseChartAcct(SaveMtnAcseChartAcctRequest request) throws SQLException {
+		SaveMtnAcseChartAcctResponse response = new SaveMtnAcseChartAcctResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveAcseChartAcct", request.getSaveAcseChartAcct());
+			params.put("deleteAcseChartAcct", request.getDeleteAcseChartAcct());
+			HashMap<String,Object> res = maintenanceDao.saveAcseChartAcc(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDefTaxResponse retrieveAcseDefTax(RetrieveMtnAcseDefTaxRequest request) throws SQLException {
+		RetrieveMtnAcseDefTaxResponse response = new RetrieveMtnAcseDefTaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("taxId", request.getTaxId());
+		response.setDefTax(maintenanceDao.retrieveAcseDefTax(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseDefWhTaxResponse retrieveAcseDefWhTax(RetrieveMtnAcseDefWhTaxRequest request)
+			throws SQLException {
+		RetrieveMtnAcseDefWhTaxResponse response = new RetrieveMtnAcseDefWhTaxResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranClass", request.getTranClass());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("whTaxId", request.getWhTaxId());
+		response.setDefWhTax(maintenanceDao.retrieveAcseDefWhTax(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnAcseDefTaxResponse saveAcseDefTax(SaveMtnAcseDefTaxRequest request) throws SQLException {
+		SaveMtnAcseDefTaxResponse response = new SaveMtnAcseDefTaxResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDefTax", request.getSaveDefTax());
+			params.put("delDefTax", request.getDelDefTax());
+			params.put("saveDefWhTax", request.getSaveDefWhTax());
+			params.put("delDefWhTax", request.getDelDefWhTax());
+			HashMap<String,Object> res = maintenanceDao.saveAcseDefTax(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
 		}
 		return response;
 	}

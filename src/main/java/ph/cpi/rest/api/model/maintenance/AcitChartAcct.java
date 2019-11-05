@@ -18,10 +18,12 @@ public class AcitChartAcct {
 	private String drCrTag;
 	private String postTag;
 	private String activeTag;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String okDelete;
 	public Integer getGlAcctId() {
 		return glAcctId;
 	}
@@ -112,6 +114,13 @@ public class AcitChartAcct {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -136,6 +145,12 @@ public class AcitChartAcct {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "AcitChartAcct [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory + ", glAcctCategoryDesc="
@@ -144,6 +159,7 @@ public class AcitChartAcct {
 				+ ", longDesc=" + longDesc + ", shortCode=" + shortCode + ", slTypeCd=" + slTypeCd + ", slTypeName="
 				+ slTypeName + ", drCrTag=" + drCrTag + ", postTag=" + postTag + ", activeTag=" + activeTag
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
+	
 }

@@ -29,6 +29,7 @@ public class SaveAcsePrqTransRequest {
 class PrqTransAcse {
 	private String reqId;
 	private String itemNo;
+	private String tranTypeCd;
 	private String itemName;
 	private String glAcctId;
 	private String refNo;
@@ -52,6 +53,12 @@ class PrqTransAcse {
 	}
 	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(String tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
 	}
 	public String getItemName() {
 		return itemName;
@@ -127,9 +134,10 @@ class PrqTransAcse {
 	}
 	@Override
 	public String toString() {
-		return "PrqTransAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", itemName=" + itemName + ", glAcctId="
-				+ glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "PrqTransAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", itemName="
+				+ itemName + ", glAcctId=" + glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

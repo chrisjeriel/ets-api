@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
@@ -66,7 +64,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
+import ph.cpi.rest.api.model.accountingintrust.QSOAAcctReceivable;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
+import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
+import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
@@ -1001,5 +1002,34 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<QSOADtl> retrieveQSOADtl(HashMap<String, Object> params) throws SQLException {
 		List<QSOADtl> res = sqlSession.selectList("retrieveQSOADtl", params);
 		return res;
+	}
+
+	@Override
+	public List<QSOADtlExclude> retrieveQSOADtlExclude(HashMap<String, Object> params) throws SQLException {
+		List<QSOADtlExclude> res = sqlSession.selectList("retrieveQSOADtlExclude", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveAcitProfComm(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveAcitProfComm", params);
+	}
+
+	@Override
+	public List<QSOAAcctReceivable> retrieveQSOAAcctReceivable(HashMap<String, Object> params) throws SQLException {
+		List<QSOAAcctReceivable> res = sqlSession.selectList("retrieveQSOAAcctReceivable", params);
+		return res;
+	}
+
+	@Override
+	public List<QSOARemittance> retrieveQSOARemittance(HashMap<String, Object> params) throws SQLException {
+		List<QSOARemittance> res = sqlSession.selectList("retrieveQSOARemittance", params);
+		return res;
+	}
+
+	@Override
+	public Integer updateSoaCv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("updateSoaCv", params);
+		return errorCode;
 	}
 }

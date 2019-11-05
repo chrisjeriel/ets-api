@@ -40,7 +40,6 @@ public class PrintingUtility {
 												      dbParams.get("password").toString());
 
 		String reportName = reportParams.get("REPORT_NAME").toString();
-		HashMap<String, Object> mapRptParam = new HashMap<>();
 
 		reportPath = "C:\\ETS\\REPORTS\\" + reportName + "_MAIN.jrxml";
 		
@@ -53,26 +52,10 @@ public class PrintingUtility {
 		}
 
 		outputType = "pdf";
-		mapRptParam.put("P_QUOTE_ID", reportParams.get("QUOTE_ID"));
-		mapRptParam.put("pQuoteId", reportParams.get("QUOTE_ID"));
 		
-		mapRptParam.put("P_ADVICE_NO", reportParams.get("ADVICE_NO"));
-		mapRptParam.put("pAdviceNo", reportParams.get("ADVICE_NO"));
-		
-		mapRptParam.put("P_HOLD_COV_ID", reportParams.get("HOLD_COV_ID"));
-		mapRptParam.put("pHoldCovId", reportParams.get("HOLD_COV_ID"));
-		
-		mapRptParam.put("P_USER_ID", reportParams.get("USER_ID"));
-		mapRptParam.put("pUserId", reportParams.get("USER_ID"));
-		
-		mapRptParam.put("P_TRAN_ID", reportParams.get("TRAN_ID"));
-		mapRptParam.put("pTranId", reportParams.get("TRAN_ID"));
-		
-		mapRptParam.put("P_REQ_ID", reportParams.get("REQ_ID"));
-		mapRptParam.put("pReqId", reportParams.get("REQ_ID"));
 		
 		logger.info("generateJasperReport outputPath : " + outputPath);
-		JasperPrint jasperPrint = jasperPrint(conn, reportPath, mapRptParam);
+		JasperPrint jasperPrint = jasperPrint(conn, reportPath, reportParams);
 		
 		File file = new File(outputPath);
 		OutputStream out = new FileOutputStream(file);

@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Approver;
-import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.quote.AlopItem;
 import ph.cpi.rest.api.model.quote.Endorsements;
 import ph.cpi.rest.api.model.quote.EndorsementsOc;
@@ -27,6 +25,7 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
+import ph.cpi.rest.api.model.quote.QuoteRepText;
 
 @Component
 public class QuoteDaoImpl implements QuoteDao{
@@ -421,4 +420,14 @@ public class QuoteDaoImpl implements QuoteDao{
 		return code;
 	}
 		
+	public Integer saveQuReptext(HashMap<String, Object> params) throws SQLException {
+		Integer code = sqlSession.update("saveQuReptext",params);
+		return code;
+	}
+
+	@Override
+	public QuoteRepText retrieveQuReptext(HashMap<String, Object> params) throws SQLException {
+		QuoteRepText repText = sqlSession.selectOne("retrieveQuReptext",params);
+		return repText;
+	}
 }

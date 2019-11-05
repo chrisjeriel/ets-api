@@ -164,29 +164,35 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	public SaveAcitCMDMResponse saveAcitCMDM(SaveAcitCMDMRequest saprr) throws SQLException {
 		SaveAcitCMDMResponse response = new SaveAcitCMDMResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("tranId",saprr.getTranId());
-		params.put("memoType",saprr.getMemoType());
-		params.put("memoTranType",saprr.getMemoTranType());
-		params.put("memoYear",saprr.getMemoYear());
-		params.put("memoMm",saprr.getMemoMm());
-		params.put("memoSeqNo",saprr.getMemoSeqNo());
-		params.put("tranTypeCd",saprr.getTranTypeCd());
-		params.put("autoTag",saprr.getAutoTag());
-		params.put("memoDate",saprr.getMemoDate());
-		params.put("memoStatus",saprr.getMemoStatus());
-		params.put("refNoTranId",saprr.getRefNoTranId());
-		params.put("refNoDate",saprr.getRefNoDate());
-		params.put("payeeNo",saprr.getPayeeNo());
-		params.put("payee",saprr.getPayee());
-		params.put("particulars",saprr.getParticulars());
-		params.put("currCd",saprr.getCurrCd());
-		params.put("currRate",saprr.getCurrRate());
-		params.put("cmdmAmt",saprr.getCmdmAmt());
-		params.put("localAmt",saprr.getLocalAmt());
-		params.put("createUser",saprr.getCreateUser());
-		params.put("createDate",saprr.getCreateDate());
-		params.put("updateUser",saprr.getUpdateUser());
-		params.put("updateDate",saprr.getUpdateDate());
+		params.put("memoId", saprr.getMemoId());
+		params.put("memoType", saprr.getMemoType());
+		params.put("memoTranType", saprr.getMemoTranType());
+		params.put("memoYear", saprr.getMemoYear());
+		params.put("memoMm", saprr.getMemoMm());
+		params.put("memoSeqNo", saprr.getMemoSeqNo());
+		params.put("tranTypeCd", saprr.getTranTypeCd());
+		params.put("autoTag", saprr.getAutoTag());
+		params.put("memoDate", saprr.getMemoDate());
+		params.put("memoStatus", saprr.getMemoStatus());
+		params.put("refNoTranId", saprr.getRefNoTranId());
+		params.put("refNoDate", saprr.getRefNoDate());
+		params.put("policyId", saprr.getPolicyId());
+		params.put("instNo", saprr.getInstNo());
+		params.put("claimId", saprr.getClaimId());
+		params.put("projId", saprr.getProjId());
+		params.put("histNo", saprr.getHistNo());
+		params.put("payeeClassCd", saprr.getPayeeClassCd());
+		params.put("payeeCd", saprr.getPayeeCd());
+		params.put("payee", saprr.getPayee());
+		params.put("particulars", saprr.getParticulars());
+		params.put("currCd", saprr.getCurrCd());
+		params.put("currRate", saprr.getCurrRate());
+		params.put("cmdmAmt", saprr.getCmdmAmt());
+		params.put("localAmt", saprr.getLocalAmt());
+		params.put("createUser", saprr.getCreateUser());
+		params.put("createDate", saprr.getCreateDate());
+		params.put("updateUser", saprr.getUpdateUser());
+		params.put("updateDate", saprr.getUpdateDate());
 		try{
 			response.setReturnCode(acctITDao.saveAcitCMDM(params));
 			response.setCmdm(acctITDao.retrieveAcitCMDMList(params));
@@ -2371,7 +2377,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				acctITDao.saveQSOA(params);
 				res.setReturnCode(-1);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setReturnCode(0);
@@ -2390,6 +2395,34 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("qsoaId", rqdr.getQsoaId());
 		
 		res.setQsoaDtlList(acctITDao.retrieveQSOADtl(params));
+		res.setQsoaDtlExcludeList(acctITDao.retrieveQSOADtlExclude(params));
+		res.setQsoaAcctReceivableList(acctITDao.retrieveQSOAAcctReceivable(params));
+		res.setQsoaRemittanceList(acctITDao.retrieveQSOARemittance(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException {
+		SaveAcitProfCommResponse res = new SaveAcitProfCommResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("cedingId", sapcr.getCedingId());
+		params.put("gnrtDate", sapcr.getGnrtDate());
+		params.put("createUser", sapcr.getCreateUser());
+		params.put("createDate", sapcr.getCreateDate());
+		params.put("updateUser", sapcr.getUpdateUser());
+		params.put("updateDate", sapcr.getUpdateDate());
+		
+		try {
+			acctITDao.saveAcitProfComm(params);
+			res.setReturnCode(-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Profit Commission Generation failed."));
+		}
 		
 		return res;
 	}

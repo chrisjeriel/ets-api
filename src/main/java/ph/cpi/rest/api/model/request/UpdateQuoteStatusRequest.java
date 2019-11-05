@@ -5,7 +5,14 @@ public class UpdateQuoteStatusRequest {
 	private Integer quoteId;
 	private String status;
 	private String approvedBy;
+	private String user;
 	
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -26,7 +33,8 @@ public class UpdateQuoteStatusRequest {
 	}
 	@Override
 	public String toString() {
-		return "UpdateQuoteStatusRequest [quoteId=" + quoteId + ", status=" + status + ", approvedBy=" + approvedBy
+		return "UpdateQuoteStatusRequest [quoteId=" + quoteId + ", status="
+				+ status + ", approvedBy=" + approvedBy + ", user=" + user
 				+ "]";
 	}
 	

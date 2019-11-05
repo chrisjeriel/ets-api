@@ -28,9 +28,13 @@ import ph.cpi.rest.api.model.maintenance.AcseChartAcct;
 import ph.cpi.rest.api.model.maintenance.AcseCheckSeries;
 import ph.cpi.rest.api.model.maintenance.AcseDCBNo;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultTax;
+import ph.cpi.rest.api.model.maintenance.AcseDefaultWhTax;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
+import ph.cpi.rest.api.model.maintenance.AcseWhTaxHistory;
 import ph.cpi.rest.api.model.maintenance.AcseWhtax;
 import ph.cpi.rest.api.model.maintenance.Adjuster;
 import ph.cpi.rest.api.model.maintenance.AdviceWordings;
@@ -1122,7 +1126,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnEmployee(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnEmployee",params);
 		return code;
 	}
@@ -1155,7 +1158,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnGenTax(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnGenTax",params);
 		return code;
 	}
@@ -1163,7 +1165,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<GeneralTaxes> retrieveMtnGenTaxHist(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxHist", params);
 		return res;
 	}
@@ -1181,15 +1182,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
-	public AcitTranSeries maxTranNo(HashMap<String, Object> params) throws SQLException {
-		AcitTranSeries res = sqlSession.selectOne("maxTranNo",params);
+	public AcitTranSeries retrieveAcitAllowGenerate(HashMap<String, Object> params) throws SQLException {
+		AcitTranSeries res = sqlSession.selectOne("allowGenerate",params);
 		return res;
 	}
 
 	@Override
 	public Integer saveMtnGenTaxHist(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnGenTaxHist",params);
 		return code;
 	}
@@ -1197,7 +1197,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnGenTaxRange(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnGenTaxRange",params);
 		return code;
 	}
@@ -1205,7 +1204,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<GeneralTaxes> retrieveMtnGenTaxRange(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<GeneralTaxes> res = sqlSession.selectList("retrieveMtnGenTaxRange", params);
 		return res;
 	}
@@ -1250,7 +1248,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
-	public AcseTranSeries acseMaxTranNo(HashMap<String, Object> params) throws SQLException {
+	public AcseTranSeries retrieveAcseAllowGenerate(HashMap<String, Object> params) throws SQLException {
 		AcseTranSeries res = sqlSession.selectOne("acseMaxTranNo",params);
 		return res;
 	}
@@ -1258,7 +1256,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnInvSecType(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnInvSecType",params);
 		return code;
 	}
@@ -1266,7 +1263,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<PayeeClass> retrieveMtnPayeeClass(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		List<PayeeClass> res = sqlSession.selectList("retrieveMtnPayeeClass", params);
 		return res;
 	}
@@ -1300,7 +1296,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnPayeeClass(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnPayeeClass",params);
 		return code;
 	}
@@ -1308,7 +1303,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnSLType(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnSLType",params);
 		return code;
 	}
@@ -1316,7 +1310,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnSL(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer code = sqlSession.update("saveMtnSL",params);
 		return code;
 	}
@@ -1367,5 +1360,63 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnPayee",params);
 		return errorCode;
+	}
+	
+	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(HashMap<String, Object> params) throws SQLException {
+		List<AcseDefaultAmtDtl> list = sqlSession.selectList("retrieveAcseAmtDtl", params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseAmtDtl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseAmtDtl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcseWhTaxHistory> retrieveAcseWhTaxHist(HashMap<String, Object> params) throws SQLException {
+		List<AcseWhTaxHistory> list = sqlSession.selectList("retrieveAcseWhTaxHist", params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseWhTaxHist(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseWhTaxHist",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcitChartAcc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitChartAcc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseChartAcc(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseChartAcc",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcseDefaultTax> retrieveAcseDefTax(HashMap<String, Object> params) throws SQLException {
+		List<AcseDefaultTax> list = sqlSession.selectList("retrieveAcseDefTax", params);
+		return list;
+	}
+
+	@Override
+	public List<AcseDefaultWhTax> retrieveAcseDefWhTax(HashMap<String, Object> params) throws SQLException {
+		List<AcseDefaultWhTax> list = sqlSession.selectList("retrieveAcseDefWhTax", params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseDefTax(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseDefTax", params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

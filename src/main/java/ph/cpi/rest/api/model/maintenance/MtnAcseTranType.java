@@ -9,7 +9,6 @@ public class MtnAcseTranType {
 	private String typePrefix;
 	private String tranTypeName;
 	private String defaultParticulars;
-	private Integer masterTranType;
 	private String remarks;
 	private String autoTag;
 	private String baeTag;
@@ -19,6 +18,7 @@ public class MtnAcseTranType {
 	private String updateUser;
 	private DateTime updateDate;
 	private String groupTag;
+	private String okDelete;
 	public String getTranClass() {
 		return tranClass;
 	}
@@ -55,12 +55,6 @@ public class MtnAcseTranType {
 	}
 	public void setDefaultParticulars(String defaultParticulars) {
 		this.defaultParticulars = defaultParticulars;
-	}
-	public Integer getMasterTranType() {
-		return masterTranType;
-	}
-	public void setMasterTranType(Integer masterTranType) {
-		this.masterTranType = masterTranType;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -116,13 +110,21 @@ public class MtnAcseTranType {
 	public void setGroupTag(String groupTag) {
 		this.groupTag = groupTag;
 	}
+	
+	public String getOkDelete() {
+		return okDelete;
+	}
+	public void setOkDelete(String okDelete) {
+		this.okDelete = okDelete;
+	}
 	@Override
 	public String toString() {
 		return "MtnAcseTranType [tranClass=" + tranClass + ", tranName=" + tranName + ", tranTypeCd=" + tranTypeCd
 				+ ", typePrefix=" + typePrefix + ", tranTypeName=" + tranTypeName + ", defaultParticulars="
-				+ defaultParticulars + ", masterTranType=" + masterTranType + ", remarks=" + remarks + ", autoTag="
-				+ autoTag + ", baeTag=" + baeTag + ", activeTag=" + activeTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", groupTag=" + groupTag + "]";
+				+ defaultParticulars + ", remarks=" + remarks + ", autoTag=" + autoTag + ", baeTag=" + baeTag
+				+ ", activeTag=" + activeTag + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", groupTag=" + groupTag + ", okDelete="
+				+ okDelete + "]";
 	}
+	
 }

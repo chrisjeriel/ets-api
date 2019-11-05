@@ -20,6 +20,9 @@ public class AcitProfCommSumm {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String currCd;
+	private BigDecimal profitLossComm;
+	private BigDecimal profitLossTotal;
 	
 	public Integer getProfCommId() {
 		return profCommId;
@@ -105,14 +108,31 @@ public class AcitProfCommSumm {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
+	public BigDecimal getProfitLossComm() {
+		return profitLossComm;
+	}
+	public void setProfitLossComm(BigDecimal profitLossComm) {
+		this.profitLossComm = profitLossComm;
+	}
+	public BigDecimal getProfitLossTotal() {
+		return profitLossTotal;
+	}
+	public void setProfitLossTotal(BigDecimal profitLossTotal) {
+		this.profitLossTotal = profitLossTotal;
+	}
 	@Override
 	public String toString() {
 		return "AcitProfCommSumm [profCommId=" + profCommId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", cedingAbbr=" + cedingAbbr + ", month=" + month + ", year=" + year + ", profitLossAmt="
 				+ profitLossAmt + ", totIncome=" + totIncome + ", totOutgo=" + totOutgo + ", lossCarry=" + lossCarry
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", currCd=" + currCd + ", profitLossComm=" + profitLossComm
+				+ ", profitLossTotal=" + profitLossTotal + "]";
 	}
-
 }
