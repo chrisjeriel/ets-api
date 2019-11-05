@@ -1,11 +1,14 @@
 package ph.cpi.rest.api.service.impl;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,7 +131,44 @@ public class StorageServiceImpl implements StorageService {
 		        }
 		    }
 	
-	
+		    @Override
+		    public String copy(String module, String refId, String newId) {
+		        //String filename = StringUtils.cleanPath(file.getOriginalFilename());
+		    	String oldDirectory = module+"\\"+refId;
+		        String directory = module+"\\"+newId;
+		        String response = "";
+		        
+		        //filename = module+"\\"+refId+"\\"+filename;
+		        try {
+//		            if (file.isEmpty()) {
+//		                throw new StorageException("Failed to store empty file " + filename);
+//		            }
+//		            if (filename.contains("..")) {
+//		                // This is a security check
+//		                throw new StorageException(
+//		                        "Cannot store file with relative path outside current directory "
+//		                                + filename);
+//		            }
+	            	Files.createDirectories(this.rootLocation.resolve(directory));
+	            	DirectoryStream<Path> files = Files.newDirectoryStream(this.rootLocation.resolve(oldDirectory));
+	            	
+	            	Iterator<Path> iterator = files.iterator();
+	            	
+	            	while(iterator.hasNext()){
+	            		Path current = iterator.next();
+	            		Files.copy(current, this.rootLocation.resolve(directory+"\\"+current.getFileName()),StandardCopyOption.REPLACE_EXISTING);
+	            	}
+	                response = "redirect:/";
+		        }
+		        catch (IOException e) {
+		            throw new StorageException("Failed to copy " + oldDirectory + " to " + directory, e);
+		        }
+		        catch (Exception f){
+		        	f.printStackTrace();
+		        	response = "File exceeded the maximum file size.";
+		        }
+		        return response;
+		    }
 	
 
 }

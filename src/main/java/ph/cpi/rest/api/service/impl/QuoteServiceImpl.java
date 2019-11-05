@@ -112,6 +112,7 @@ import ph.cpi.rest.api.model.response.SearchQuoteInfoResponse;
 import ph.cpi.rest.api.model.response.UpdateHoldCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdateQuoteStatusResponse;
 import ph.cpi.rest.api.service.QuoteService;
+import ph.cpi.rest.api.service.StorageService;
 import ph.cpi.rest.api.utils.DateUtility;
 
 
@@ -121,6 +122,9 @@ public class QuoteServiceImpl implements QuoteService{
 	
 	@Autowired
 	QuoteDao quoteDao;
+	
+	@Autowired
+	StorageService storageService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
 	
@@ -785,7 +789,7 @@ public class QuoteServiceImpl implements QuoteService{
 				saveQuoteGeneralInfoParams.put("quoteId", res.get("quoteIdModif"));
 				
 				quoteDao.copyInternalCompetition(saveQuoteGeneralInfoParams);
-				
+				storageService.copy("quotation",saveQuoteGeneralInfoParams.get("quoteId").toString(),res.get("newQuoteId").toString());
 				if(comp == 1) {
 					quoteDao.copyCompetition(saveQuoteGeneralInfoParams);
 				}
@@ -1148,10 +1152,12 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuotationCopyParams.put("updateDate", sqcp.getUpdateDate());
 			
 			HashMap<String, Object> res = quoteDao.saveQuotationCopy(saveQuotationCopyParams);
+			storageService.copy("quotation",saveQuotationCopyParams.get("quoteId").toString(),(String) res.get("newQuoteId").toString());
 			
 			sqcResponse.setReturnCode((Integer) res.get("errorCode"));
 			sqcResponse.setQuoteId((Integer) res.get("newQuoteId"));
 			sqcResponse.setQuotationNo((String) res.get("newQuoteNo"));
+			
 		} catch (Exception e) {
 			sqcResponse.setReturnCode(0);
 			sqcResponse.setQuoteId(null);

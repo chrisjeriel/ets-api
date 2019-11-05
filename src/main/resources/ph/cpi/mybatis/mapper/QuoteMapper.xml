@@ -1786,6 +1786,32 @@
 			);
 		END;
 	</update>
+	
+	<update id="copyQuoteItems" parameterType="java.util.Map">
+		BEGIN
+			QUOTE_ITEM_PKG.copy_qu_item(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteAttachments" parameterType="java.util.Map">
+		BEGIN
+			QU_ATTACHMENT_PKG.copy_qu_attachment(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 	<!-- END COPY -->
 
 
