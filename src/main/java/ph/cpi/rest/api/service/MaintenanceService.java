@@ -129,7 +129,8 @@ public interface MaintenanceService {
 	public RetrieveMtnClmEventTypeLovResponse retrieveMtnClmEventTypeLov(RetrieveMtnClmEventTypeLovRequest rmcel) throws SQLException;
 	public RetrieveMtnClmEventLovResponse retrieveMtnClmEventLov(RetrieveMtnClmEventLovRequest rmcel) throws SQLException;
 	public RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattr ) throws SQLException;
-	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException; 
+	public RetrieveMtnBankResponse retrieveMtnBank(RetrieveMtnBankRequest rmbr) throws SQLException;
+	public RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException;
 	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException;
 	public RetrieveMtnAcitDCBNoResponse retrieveMtnAcitDCBNo(RetrieveMtnAcitDCBNoRequest rmaidcbr) throws SQLException;
 	public SaveMtnAcitDCBNoResponse saveMtnAcitDCBNo(SaveMtnAcitDCBNoRequest smaidcbr) throws SQLException;

@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BankLov;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
@@ -224,6 +225,7 @@ public interface MaintenanceDao {
 	public List<MtnClmEvent> retrieveMtnClmEventLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcitTranType> retrieveMtnAcitTranType(final HashMap<String, Object> params ) throws SQLException;
 	public List<Bank> retrieveMtnBank(final HashMap<String, Object> params) throws SQLException;
+	public List<BankLov> retrieveBankLov(final HashMap<String, Object> params) throws SQLException;
 	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDCBNo> retrieveMtnAcitDCBNo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnAcitDCBNo(final HashMap<String, Object> params) throws SQLException;

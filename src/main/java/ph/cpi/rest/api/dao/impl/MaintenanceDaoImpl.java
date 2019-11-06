@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BankLov;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
@@ -944,6 +945,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<Bank> retrieveMtnBank(HashMap<String, Object> params) throws SQLException {
 		List<Bank> res = sqlSession.selectList("retMtnBank", params);
+		return res;
+	}
+	
+	@Override
+	public List<BankLov> retrieveBankLov(HashMap<String, Object> params) throws SQLException {
+		List<BankLov> res = sqlSession.selectList("retBankLov", params);
 		return res;
 	}
 
