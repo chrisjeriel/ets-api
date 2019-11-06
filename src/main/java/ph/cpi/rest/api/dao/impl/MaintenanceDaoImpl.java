@@ -1413,4 +1413,16 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public List<PrintableNames> retrieveMtnUserLov(HashMap<String, Object> params) throws SQLException {
+		List<PrintableNames> list = sqlSession.selectList("retrieveMtnUserLov", params);
+		return list;
+	}
+
+	@Override
+	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnAcitTranType> list = sqlSession.selectList("retrieveMtnAcitTranTypeLov", params);
+		return list;
+	}
 }
