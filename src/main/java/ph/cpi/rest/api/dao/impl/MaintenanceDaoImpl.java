@@ -1356,6 +1356,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
+	public Integer saveMtnPayee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnPayee",params);
+		return errorCode;
+	}
+	
 	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(HashMap<String, Object> params) throws SQLException {
 		List<AcseDefaultAmtDtl> list = sqlSession.selectList("retrieveAcseAmtDtl", params);
 		return list;

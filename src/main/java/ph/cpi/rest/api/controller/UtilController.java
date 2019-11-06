@@ -127,14 +127,23 @@ public class UtilController {
 			String fileName = "";
 			String 	outputPath = FOLDER + "\\";
 			
+			
 			for(int i=0; i<grmr.getReportRequest().size(); i++){
 				
-				reportParam.put("QUOTE_ID", grmr.getReportRequest().get(i).getQuoteId());
+				reportParam.put("P_QUOTE_ID", grmr.getReportRequest().get(i).getQuoteId());
+				reportParam.put("pQuoteId", grmr.getReportRequest().get(i).getQuoteId());
 				reportParam.put("REPORT_NAME", grmr.getReportRequest().get(i).getReportName());
-				reportParam.put("ADVICE_NO", grmr.getReportRequest().get(i).getAdviceNo());
-				reportParam.put("HOLD_COV_ID", grmr.getReportRequest().get(i).getHoldCovId());
-				reportParam.put("USER_ID", grmr.getReportRequest().get(i).getUserId());
-				reportParam.put("TRAN_ID", grmr.getReportRequest().get(i).getTranId());
+				reportParam.put("P_ADVICE_NO", grmr.getReportRequest().get(i).getAdviceNo());
+				reportParam.put("pAdviceNo", grmr.getReportRequest().get(i).getAdviceNo());
+				reportParam.put("P_HOLD_COV_ID", grmr.getReportRequest().get(i).getHoldCovId());
+				reportParam.put("pHoldCovId", grmr.getReportRequest().get(i).getHoldCovId());
+				reportParam.put("P_USER_ID", grmr.getReportRequest().get(i).getUserId());
+				reportParam.put("pUserId", grmr.getReportRequest().get(i).getUserId());
+				reportParam.put("P_TRAN_ID", grmr.getReportRequest().get(i).getTranId());
+				reportParam.put("pTranId", grmr.getReportRequest().get(i).getTranId());
+				
+				System.out.println("GENERATED REPORT PARAMS:");
+				System.out.println(reportParam);
 				
 				try {
 					fileName = pu.generateJasperReport(reportParam, dbParams, null, outputPath, null);

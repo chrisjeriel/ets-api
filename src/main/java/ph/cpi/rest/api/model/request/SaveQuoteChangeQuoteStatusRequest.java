@@ -42,6 +42,7 @@ public class SaveQuoteChangeQuoteStatusRequest {
 		return "SaveQuoteChangeQuoteStatusRequest [statusCd=" + statusCd + ", reasonCd=" + reasonCd
 				+ ", changeQuoteStatus=" + changeQuoteStatus + ", user=" + user + "]";
 	}
+	
 }
 
 

@@ -1329,6 +1329,13 @@ public class MaintenanceController {
 		return maintenanceService.saveAcseDefAcctEnt(request);
 	}
 	
+	@PostMapping(path="saveMtnPayee")
+	public @ResponseBody SaveMtnPayeeResponse saveMtnPayee(@RequestBody SaveMtnPayeeRequest smp) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPayee");
+		logger.info("SaveMtnPayeeRequest : " + smp.toString());
+		return maintenanceService.saveMtnPayee(smp);
+	}
+	
 	@GetMapping(path="retrieveAcseAmtDtl")
 	public @ResponseBody RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException {
 		logger.info("POST: /api/maintenance-service/retrieveAcseAmtDtl");

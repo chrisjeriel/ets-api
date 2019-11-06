@@ -3676,7 +3676,15 @@
 		<result property="bankAcctNo2"	column="BANK_ACCT_NO2"/>
 		<result property="cedingId"	column="CEDING_ID"/>
 		<result property="bussTypeName"	column="BUSS_TYPE_NAME"/>
-		<result property="vatTag"	column="VAT_TAG"/>
+		<result property="autoTag"		column="AUTO_TAG"/>
+		<result property="activeTag"	column="ACTIVE_TAG"/>
+		<result property="createUser"			column="CREATE_USER" />
+		<result property="createDate"			column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"			column="UPDATE_USER" />
+		<result property="updateDate"			column="UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="bank1"		column="BANK_NAME1"/>
+		<result property="bank2"		column="BANK_NAME2"/>
+		<result property="vatTag"	    column="VAT_TAG"/>
 	</resultMap>
 	
 	<select id="retrieveMtnPayee" resultMap="payeeMap">
@@ -4860,6 +4868,52 @@
 		END;
 	</update>
 	
+	<update id="saveMtnPayee" >
+		BEGIN
+			<foreach collection="delList" item="item">
+				MTN_PAYEE_PKG.DEL_MTN_PAYEE(#{item.payeeNo, jdbcType=VARCHAR},
+									  #{item.payeeClassCd, jdbcType=VARCHAR});
+			</foreach>
+			
+			<foreach collection="saveList" item="item">
+				MTN_PAYEE_PKG.SAVE_MTN_PAYEE(#{item.payeeNo, jdbcType=VARCHAR},
+						#{item.payeeClassCd,  jdbcType=VARCHAR},
+						#{item.payeeName,  jdbcType=VARCHAR},
+						#{item.bussTypeCd,  jdbcType=VARCHAR},
+						#{item.tin,  jdbcType=VARCHAR},
+						#{item.contactNo,  jdbcType=VARCHAR},
+						#{item.mailAddress,  jdbcType=VARCHAR},
+						#{item.email,  jdbcType=VARCHAR},
+						#{item.remarks,  jdbcType=VARCHAR},
+						#{item.designation,  jdbcType=VARCHAR},
+						#{item.department,  jdbcType=VARCHAR},
+						#{item.mailAddress2,  jdbcType=VARCHAR},
+						#{item.permAddress,  jdbcType=VARCHAR},
+						#{item.contactPerson1,  jdbcType=VARCHAR},
+						#{item.contactPerson2,  jdbcType=VARCHAR},
+						#{item.phoneNo,  jdbcType=VARCHAR},
+						#{item.mobileNo,  jdbcType=VARCHAR},
+						#{item.faxNo,  jdbcType=VARCHAR},
+						#{item.bankCd1,  jdbcType=VARCHAR},
+						#{item.bankBranch1,  jdbcType=VARCHAR},
+						#{item.bankAcctType1,  jdbcType=VARCHAR},
+						#{item.bankAcctName1,  jdbcType=VARCHAR},
+						#{item.bankAcctNo1,  jdbcType=VARCHAR},
+						#{item.bankCd2,  jdbcType=VARCHAR},
+						#{item.bankBranch2,  jdbcType=VARCHAR},
+						#{item.bankAcctType2,  jdbcType=VARCHAR},
+						#{item.bankAcctName2,  jdbcType=VARCHAR},
+						#{item.bankAcctNo2,  jdbcType=VARCHAR},
+						#{item.activeTag, jdbcType=VARCHAR},
+						#{item.autoTag, jdbcType=VARCHAR}, 
+						#{item.createUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{item.updateUser, jdbcType=VARCHAR},
+						CAST(to_timestamp(#{item.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+
 	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl" id="acseAmtDtlMap">
     	<result property="tranClass" 			column="TRAN_CLASS"/>
 		<result property="tranTypeCd" 			column="TRAN_TYPE_CD"/>

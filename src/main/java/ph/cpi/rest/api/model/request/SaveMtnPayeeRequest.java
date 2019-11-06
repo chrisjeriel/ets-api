@@ -1,14 +1,40 @@
-package ph.cpi.rest.api.model.maintenance;
+package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
+import java.util.List;
 
-public class Payee {
+public class SaveMtnPayeeRequest {
+	
+	private List<savePayee> saveList;
+	private List<savePayee> delList;
+	
+	public List<savePayee> getSaveList() {
+		return saveList;
+	}
+
+	public void setSaveList(List<savePayee> saveList) {
+		this.saveList = saveList;
+	}
+
+	public List<savePayee> getDelList() {
+		return delList;
+	}
+
+	public void setDelList(List<savePayee> delList) {
+		this.delList = delList;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveMtnPayeeRequest [saveList=" + saveList + ", delList="
+				+ delList + "]";
+	}
+}
+
+class savePayee{
 	private String payeeNo;
-	private Integer payeeClassCd;
-	private String payeeClassName;
+	private String payeeClassCd;
 	private String payeeName;
-	private String refCd;
-	private Integer bussTypeCd;
+	private String bussTypeCd;
 	private String tin;
 	private String contactNo;
 	private String mailAddress;
@@ -23,103 +49,34 @@ public class Payee {
 	private String phoneNo;
 	private String mobileNo;
 	private String faxNo;
-	private Integer bankCd1;
+	private String bankCd1;
 	private String bankBranch1;
 	private String bankAcctType1;
 	private String bankAcctName1;
 	private String bankAcctNo1;
-	private Integer bankCd2;
+	private String bankCd2;
 	private String bankBranch2;
 	private String bankAcctType2;
 	private String bankAcctName2;
 	private String bankAcctNo2;
-	private String cedingId;
-	private String bussTypeName;
 	private String autoTag;
 	private String activeTag;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
-	private String okDelete;
-	private String bank1;
-	private String bank2;
-	private String vatTag;
+	private String updateDate;
 	
-	public String getBank1() {
-		return bank1;
-	}
-	public void setBank1(String bank1) {
-		this.bank1 = bank1;
-	}
-	public String getBank2() {
-		return bank2;
-	}
-	public void setBank2(String bank2) {
-		this.bank2 = bank2;
-	}
-	public String getCreateUser() {
-		return createUser;
-	}
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
-	public DateTime getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(DateTime createDate) {
-		this.createDate = createDate;
-	}
-	public String getUpdateUser() {
-		return updateUser;
-	}
-	public void setUpdateUser(String updateUser) {
-		this.updateUser = updateUser;
-	}
-	public DateTime getUpdateDate() {
-		return updateDate;
-	}
-	public void setUpdateDate(DateTime updateDate) {
-		this.updateDate = updateDate;
-	}
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
-
-	
-	
-	public String getAutoTag() {
-		return autoTag;
-	}
-	public void setAutoTag(String autoTag) {
-		this.autoTag = autoTag;
-	}
-	public String getActiveTag() {
-		return activeTag;
-	}
-	public void setActiveTag(String activeTag) {
-		this.activeTag = activeTag;
-	}
 	public String getPayeeNo() {
 		return payeeNo;
 	}
 	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
-	public Integer getPayeeClassCd() {
+	public String getPayeeClassCd() {
 		return payeeClassCd;
 	}
-	public void setPayeeClassCd(Integer payeeClassCd) {
+	public void setPayeeClassCd(String payeeClassCd) {
 		this.payeeClassCd = payeeClassCd;
-	}
-	public String getPayeeClassName() {
-		return payeeClassName;
-	}
-	public void setPayeeClassName(String payeeClassName) {
-		this.payeeClassName = payeeClassName;
 	}
 	public String getPayeeName() {
 		return payeeName;
@@ -127,16 +84,10 @@ public class Payee {
 	public void setPayeeName(String payeeName) {
 		this.payeeName = payeeName;
 	}
-	public String getRefCd() {
-		return refCd;
-	}
-	public void setRefCd(String refCd) {
-		this.refCd = refCd;
-	}
-	public Integer getBussTypeCd() {
+	public String getBussTypeCd() {
 		return bussTypeCd;
 	}
-	public void setBussTypeCd(Integer bussTypeCd) {
+	public void setBussTypeCd(String bussTypeCd) {
 		this.bussTypeCd = bussTypeCd;
 	}
 	public String getTin() {
@@ -223,10 +174,10 @@ public class Payee {
 	public void setFaxNo(String faxNo) {
 		this.faxNo = faxNo;
 	}
-	public Integer getBankCd1() {
+	public String getBankCd1() {
 		return bankCd1;
 	}
-	public void setBankCd1(Integer bankCd1) {
+	public void setBankCd1(String bankCd1) {
 		this.bankCd1 = bankCd1;
 	}
 	public String getBankBranch1() {
@@ -253,10 +204,10 @@ public class Payee {
 	public void setBankAcctNo1(String bankAcctNo1) {
 		this.bankAcctNo1 = bankAcctNo1;
 	}
-	public Integer getBankCd2() {
+	public String getBankCd2() {
 		return bankCd2;
 	}
-	public void setBankCd2(Integer bankCd2) {
+	public void setBankCd2(String bankCd2) {
 		this.bankCd2 = bankCd2;
 	}
 	public String getBankBranch2() {
@@ -283,33 +234,48 @@ public class Payee {
 	public void setBankAcctNo2(String bankAcctNo2) {
 		this.bankAcctNo2 = bankAcctNo2;
 	}
-	
-	public String getCedingId() {
-		return cedingId;
+	public String getAutoTag() {
+		return autoTag;
 	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
+	public void setAutoTag(String autoTag) {
+		this.autoTag = autoTag;
 	}
-	
-	public String getBussTypeName() {
-		return bussTypeName;
+	public String getActiveTag() {
+		return activeTag;
 	}
-	public void setBussTypeName(String bussTypeName) {
-		this.bussTypeName = bussTypeName;
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
 	}
-	public String getVatTag() {
-		return vatTag;
+	public String getCreateUser() {
+		return createUser;
 	}
-	public void setVatTag(String vatTag) {
-		this.vatTag = vatTag;
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 	
 	@Override
 	public String toString() {
-		return "Payee [payeeNo=" + payeeNo + ", payeeClassCd=" + payeeClassCd
-				+ ", payeeClassName=" + payeeClassName + ", payeeName="
-				+ payeeName + ", refCd=" + refCd + ", bussTypeCd=" + bussTypeCd
-				+ ", tin=" + tin + ", contactNo=" + contactNo
+		return "savePayee [payeeNo=" + payeeNo + ", payeeClassCd="
+				+ payeeClassCd + ", payeeName=" + payeeName + ", bussTypeCd="
+				+ bussTypeCd + ", tin=" + tin + ", contactNo=" + contactNo
 				+ ", mailAddress=" + mailAddress + ", email=" + email
 				+ ", remarks=" + remarks + ", designation=" + designation
 				+ ", department=" + department + ", mailAddress2="
@@ -322,14 +288,9 @@ public class Payee {
 				+ ", bankAcctNo1=" + bankAcctNo1 + ", bankCd2=" + bankCd2
 				+ ", bankBranch2=" + bankBranch2 + ", bankAcctType2="
 				+ bankAcctType2 + ", bankAcctName2=" + bankAcctName2
-				+ ", bankAcctNo2=" + bankAcctNo2 + ", cedingId=" + cedingId
-				+ ", bussTypeName=" + bussTypeName + ", autoTag=" + autoTag
+				+ ", bankAcctNo2=" + bankAcctNo2 + ", autoTag=" + autoTag
 				+ ", activeTag=" + activeTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ ", bank1=" + bank1 + ", bank2=" + bank2 + ", vatTag="
-				+ vatTag + "]";
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
-
 }

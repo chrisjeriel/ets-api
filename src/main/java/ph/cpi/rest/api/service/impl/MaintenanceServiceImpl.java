@@ -3041,6 +3041,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public SaveMtnPayeeResponse saveMtnPayee(SaveMtnPayeeRequest smp)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnPayeeResponse response = new SaveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smp.getSaveList());
+		params.put("delList", smp.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnPayee(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+   }
+		
 	public RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException {
 		RetrieveMtnAcseDefAmtResponse response = new RetrieveMtnAcseDefAmtResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();

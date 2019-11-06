@@ -288,6 +288,7 @@ public interface MaintenanceDao {
 	public Integer saveMtnPayeeClass(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSLType(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnSL(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnPayee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseAmtDtl(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseWhTaxHistory> retrieveAcseWhTaxHist(final HashMap<String, Object> params) throws SQLException;

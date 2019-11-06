@@ -1040,6 +1040,7 @@ public class QuoteServiceImpl implements QuoteService{
 			HashMap<String, Object> saveQuoteChangeQuoteStatusParams = new HashMap<String, Object>();
 			saveQuoteChangeQuoteStatusParams.put("status", sqcqs.getStatusCd());
 			saveQuoteChangeQuoteStatusParams.put("reasonCd", sqcqs.getReasonCd());
+			saveQuoteChangeQuoteStatusParams.put("user", sqcqs.getUser());
 			saveQuoteChangeQuoteStatusParams.put("quoteList",sqcqs.getChangeQuoteStatus());
 			saveQuoteChangeQuoteStatusParams.put("user",sqcqs.getUser());
 			
@@ -1258,6 +1259,7 @@ public class QuoteServiceImpl implements QuoteService{
 		uqsParams.put("quoteId", uqsr.getQuoteId());
 		uqsParams.put("status", uqsr.getStatus());
 		uqsParams.put("approvedBy", uqsr.getApprovedBy());
+		uqsParams.put("user", uqsr.getUser());
 		
 		uqsResponse.setReturnCode(quoteDao.updateQuoteStatus(uqsParams));
 		logger.info("UpdateQuoteStatusResponse : " + uqsResponse.toString());
