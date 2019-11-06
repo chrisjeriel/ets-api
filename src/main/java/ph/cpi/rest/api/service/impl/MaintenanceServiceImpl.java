@@ -2081,6 +2081,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		res.setBankList(maintenanceDao.retrieveMtnBank(params));
 		return res;
 	}
+	
+	@Override
+	public RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveBankLovResponse res = new RetrieveBankLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbr.getBankCd());
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		params.put("dcbTag", rmbr.getDcbTag());
+		res.setBankLovList(maintenanceDao.retrieveBankLov(params));
+		return res;
+	}
 
 	@Override
 	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {

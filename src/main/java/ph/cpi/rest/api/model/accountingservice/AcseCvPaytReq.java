@@ -19,7 +19,7 @@ public class AcseCvPaytReq {
 	private String requestedBy;
 	private String particulars;
 	private String currCd;
-	private Double currRate;
+	private BigDecimal currRate;
 	private BigDecimal reqAmt;
 	private BigDecimal localAmt;
 	private String createUser;
@@ -110,10 +110,10 @@ public class AcseCvPaytReq {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public Double getCurrRate() {
+	public BigDecimal getCurrRate() {
 		return currRate;
 	}
-	public void setCurrRate(Double currRate) {
+	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
 	public BigDecimal getReqAmt() {
