@@ -4,14 +4,14 @@ import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnPayeeRequest {
-	private Integer payeeNo;
+	private String payeeNo;
 	private Integer payeeClassCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	public Integer getPayeeNo() {
+	public String getPayeeNo() {
 		return payeeNo;
 	}
-	public void setPayeeNo(Integer payeeNo) {
+	public void setPayeeNo(String payeeNo) {
 		this.payeeNo = payeeNo;
 	}
 	public Integer getPayeeClassCd() {
