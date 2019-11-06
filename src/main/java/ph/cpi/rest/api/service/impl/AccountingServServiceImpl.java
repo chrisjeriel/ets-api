@@ -611,6 +611,8 @@ public class AccountingServServiceImpl implements AccountingServService{
 		SaveAcseAcctEntriesResponse response = new SaveAcseAcctEntriesResponse();
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("forApproval", request.getForApproval());
 			params.put("saveList", request.getSaveList());
 			params.put("delList", request.getDelList());
 			HashMap<String, Object> res = acctServDao.saveAcctEntries(params);
