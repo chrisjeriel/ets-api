@@ -188,6 +188,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public List<SectionCovers> retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
+		logger.info("retrieveSectionCovers DAO: " + params);
 		List<SectionCovers> sectionCovers = sqlSession.selectList("retrieveMtnSectionCovers", params);
 		return sectionCovers;
 	}
