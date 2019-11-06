@@ -459,7 +459,7 @@
 													#{updateUserJv}, 
 													CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 												  );
-				#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;							  
+				#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;	
 		END;
 	</update>
 	
