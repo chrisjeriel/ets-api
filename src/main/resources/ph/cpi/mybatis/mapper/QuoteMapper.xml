@@ -221,6 +221,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationListingMap">
 		<result property 	= "quotationNo"		column	= "QUOTE_NO"/>
+		<result property	= "holdCoverId"		column  = "HOLD_COV_ID"/>
 		<result property 	= "quoteId"			column	= "QUOTE_ID"/>
 		<result property 	= "cedingName"		column	= "CEDING_NAME"/>
 		<result property 	= "insuredDesc"		column	= "INSURED_DESC"/>
@@ -1480,7 +1481,7 @@
 		BEGIN
 		 <foreach collection="quoteList" item="quote">
 		 	QU_GEN_INFO_PKG.save_qu_chng_qu_stats(
-		 		#{quote.quoteId},#{status},#{reasonCd, jdbcType=VARCHAR}
+		 		#{quote.quoteId},#{status},#{reasonCd, jdbcType=VARCHAR},#{user}
 		 	);
 		 </foreach>
 		END;
@@ -1776,6 +1777,32 @@
 	<update id="copyQuoteAlop" parameterType="java.util.Map">
 		BEGIN
 			QU_ALOP_PKG.copy_qu_alop(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteItems" parameterType="java.util.Map">
+		BEGIN
+			QUOTE_ITEM_PKG.copy_qu_item(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteAttachments" parameterType="java.util.Map">
+		BEGIN
+			QU_ATTACHMENT_PKG.copy_qu_attachment(				
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
