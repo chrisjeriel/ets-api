@@ -5,8 +5,23 @@ import java.util.List;
 import org.apache.ibatis.type.Alias;
 
 public class SaveAcseAcctEntriesRequest {
+	private String tranId;
+	private String forApproval;
 	private List<acctEntries> saveList;
 	private List<acctEntries> delList;
+	
+	public String getTranId() {
+		return tranId;
+	}
+	public void setTranId(String tranId) {
+		this.tranId = tranId;
+	}
+	public String getForApproval() {
+		return forApproval;
+	}
+	public void setForApproval(String forApproval) {
+		this.forApproval = forApproval;
+	}
 	public List<acctEntries> getSaveList() {
 		return saveList;
 	}
@@ -21,7 +36,8 @@ public class SaveAcseAcctEntriesRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcseAcctEntriesRequest [saveList=" + saveList + ", delList=" + delList + "]";
+		return "SaveAcseAcctEntriesRequest [tranId=" + tranId + ", forApproval=" + forApproval + ", saveList="
+				+ saveList + ", delList=" + delList + "]";
 	}
 	
 }
