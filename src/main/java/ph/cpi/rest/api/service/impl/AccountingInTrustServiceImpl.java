@@ -2426,4 +2426,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
+
+
+	@Override
+	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(
+			RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException {
+		RetrieveAcitEditedAcctEntriesResponse response = new RetrieveAcitEditedAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raeaer.getTranId());
+		response.setEditedAcctEntries(acctITDao.retrieveAcitEditedAcctEntries(params));
+		logger.info(response.toString());
+		return response;
+	}
 }

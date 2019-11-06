@@ -250,6 +250,12 @@
 													  );
 				</foreach>
 		    END IF;
+		    
+		    <!-- Generate Tax Details -->
+		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message);
+		    
+		    <!-- Generate Accounting Entries -->
+		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message);
 		END;
 	</update>
 	
@@ -524,6 +530,7 @@
 	<update id="saveAcseOrTransDtl" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_item_no		NUMBER;
+			v_message		VARCHAR2(500);
 		BEGIN
 		
 			<!-- Save in ACSE_OR_TRANSUMM -->
@@ -601,7 +608,13 @@
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			
+			<!-- Generate Tax Details -->
+		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
+		    
+		    <!-- Generate Accounting Entries -->
+		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 			END;
+			
 	</update>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePrqTrans" id="acsePrqTransMap">
@@ -981,6 +994,8 @@
 	</select>
 	
 	<update id="saveAcseOrServFee" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_message	VARCHAR2(500);
 		BEGIN
 			<!-- Save in ACSE_OR_TRANSUMM -->
 			ACSE_OR_TRANSUMM_PKG.save_acse_transumm(
@@ -1013,6 +1028,12 @@
 														 #{save.updateUser, jdbcType=VARCHAR}, 
 														 CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
+			
+			<!-- Generate Tax Details -->
+		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
+		    
+		    <!-- Generate Accounting Entries -->
+		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 		END;
 	</update>
 	
