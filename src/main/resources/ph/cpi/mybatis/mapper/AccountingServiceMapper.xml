@@ -252,10 +252,10 @@
 		    END IF;
 		    
 		    <!-- Generate Tax Details -->
-		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message);
+		    <!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message); -->
 		    
 		    <!-- Generate Accounting Entries -->
-		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message);
+		    <!-- GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message); -->
 		END;
 	</update>
 	
@@ -604,6 +604,9 @@
 			<!-- Generate Tax Details -->
 		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
 		    
+		    <!-- Generate Accounting Entries -->
+		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
+		    
 		    ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
 													#{billId},
 													#{createUser},
@@ -611,8 +614,7 @@
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		    
-		    <!-- Generate Accounting Entries -->
-		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
+		    
 			END;
 			
 	</update>
@@ -726,7 +728,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd}))
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCv" id="acseCvMap">
