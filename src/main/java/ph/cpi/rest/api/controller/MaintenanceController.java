@@ -880,6 +880,13 @@ public class MaintenanceController {
 		return maintenanceService.retrieveMtnBank(rmbr);
 	}
 	
+	@GetMapping(path="retrieveBankLov")
+	public @ResponseBody RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveBankLov");
+		logger.info("RetrieveBankLovRequest : " + rmbr.toString());
+		return maintenanceService.retrieveBankLov(rmbr);
+	}
+	
 	@GetMapping(path="retrieveMtnBankAcct")
 	public @ResponseBody RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnBankAcct");

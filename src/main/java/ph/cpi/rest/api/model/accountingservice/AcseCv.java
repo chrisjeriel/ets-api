@@ -27,7 +27,7 @@ public class AcseCv {
 	private String checkClass;
 	private String checkClassDesc;
 	private String currCd;
-	private Double currRate;
+	private BigDecimal currRate;
 	private BigDecimal cvAmt;
 	private BigDecimal localAmt;
 	private String preparedBy;
@@ -233,11 +233,11 @@ public class AcseCv {
 		this.currCd = currCd;
 	}
 
-	public Double getCurrRate() {
+	public BigDecimal getCurrRate() {
 		return currRate;
 	}
 
-	public void setCurrRate(Double currRate) {
+	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
 
