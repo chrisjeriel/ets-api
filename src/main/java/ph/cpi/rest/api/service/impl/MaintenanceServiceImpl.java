@@ -505,6 +505,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnRiskParams = new HashMap<String, Object>();
 		
 		saveMtnRiskParams.put("riskId", smrr.getRiskId());
+		saveMtnRiskParams.put("oldRiskId", smrr.getOldRiskId());
 		saveMtnRiskParams.put("riskAbbr", smrr.getRiskAbbr());
 		saveMtnRiskParams.put("riskName", smrr.getRiskName());
 		saveMtnRiskParams.put("regionCd", smrr.getRegionCd());
@@ -2081,6 +2082,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		res.setBankList(maintenanceDao.retrieveMtnBank(params));
 		return res;
 	}
+	
+	@Override
+	public RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveBankLovResponse res = new RetrieveBankLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbr.getBankCd());
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		params.put("dcbTag", rmbr.getDcbTag());
+		res.setBankLovList(maintenanceDao.retrieveBankLov(params));
+		return res;
+	}
 
 	@Override
 	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
@@ -3040,6 +3053,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public SaveMtnPayeeResponse saveMtnPayee(SaveMtnPayeeRequest smp)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnPayeeResponse response = new SaveMtnPayeeResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("saveList", smp.getSaveList());
+		params.put("delList", smp.getDelList());
+		try{
+			response.setReturnCode(maintenanceDao.saveMtnPayee(params));
+		}catch(Exception e){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			e.printStackTrace();
+		}
+		return response;
+   }
+		
 	public RetrieveMtnAcseDefAmtResponse retrieveAcseAmtDtl(RetrieveMtnAcseDefAmtRequest request) throws SQLException {
 		RetrieveMtnAcseDefAmtResponse response = new RetrieveMtnAcseDefAmtResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();

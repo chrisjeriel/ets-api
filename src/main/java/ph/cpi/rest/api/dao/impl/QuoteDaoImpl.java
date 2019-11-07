@@ -336,6 +336,9 @@ public class QuoteDaoImpl implements QuoteDao{
 		sqlSession.update("copyQuoteOtherRates", params);
 		sqlSession.update("copyQuoteEndorsements", params);
 		sqlSession.update("copyQuoteAlop", params);
+		sqlSession.update("copyQuoteItems", params);
+		sqlSession.update("copyQuoteAttachments", params);
+		
 
 		return params;
 	}
@@ -351,6 +354,8 @@ public class QuoteDaoImpl implements QuoteDao{
 		sqlSession.update("copyQuoteOtherRates", params);
 		sqlSession.update("copyQuoteEndorsements", params);
 		sqlSession.update("copyQuoteAlop", params);
+		sqlSession.update("copyQuoteItems", params);
+		sqlSession.update("copyQuoteAttachments", params);
 		
 		return null;
 	}

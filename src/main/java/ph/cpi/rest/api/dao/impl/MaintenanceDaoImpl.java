@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BankLov;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
@@ -188,6 +189,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public List<SectionCovers> retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
+		logger.info("retrieveSectionCovers DAO: " + params);
 		List<SectionCovers> sectionCovers = sqlSession.selectList("retrieveMtnSectionCovers", params);
 		return sectionCovers;
 	}
@@ -945,6 +947,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<Bank> res = sqlSession.selectList("retMtnBank", params);
 		return res;
 	}
+	
+	@Override
+	public List<BankLov> retrieveBankLov(HashMap<String, Object> params) throws SQLException {
+		List<BankLov> res = sqlSession.selectList("retBankLov", params);
+		return res;
+	}
 
 	@Override
 	public List<BankAcct> retrieveMtnBankAcct(HashMap<String, Object> params) throws SQLException {
@@ -1355,6 +1363,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	}
 
 	@Override
+	public Integer saveMtnPayee(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnPayee",params);
+		return errorCode;
+	}
+	
 	public List<AcseDefaultAmtDtl> retrieveAcseAmtDtl(HashMap<String, Object> params) throws SQLException {
 		List<AcseDefaultAmtDtl> list = sqlSession.selectList("retrieveAcseAmtDtl", params);
 		return list;

@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class SaveMtnRiskRequest {
 	private String riskId;
+	private String oldRiskId;
 	private String riskAbbr;
 	private String riskName;
 	private String regionCd;
@@ -123,14 +124,17 @@ public class SaveMtnRiskRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveMtnRiskRequest [riskId=" + riskId + ", riskAbbr=" + riskAbbr + ", riskName=" + riskName
-				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
-				+ districtCd + ", latitude=" + latitude + ", longitude=" + longitude + ", zoneCd=" + zoneCd
-				+ ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", blockCd=" + blockCd
-				+ "]";
+		return "SaveMtnRiskRequest [riskId=" + riskId + ", oldRiskId=" + oldRiskId + ", riskAbbr=" + riskAbbr
+				+ ", riskName=" + riskName + ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd="
+				+ cityCd + ", districtCd=" + districtCd + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", zoneCd=" + zoneCd + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", blockCd=" + blockCd + "]";
 	}
-
-	
-	
+	public String getOldRiskId() {
+		return oldRiskId;
+	}
+	public void setOldRiskId(String oldRiskId) {
+		this.oldRiskId = oldRiskId;
+	}
 }

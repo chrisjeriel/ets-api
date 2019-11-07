@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 public class Quotation {
 	
 	private Integer quoteId;
+	private Integer holdCoverId;
 	private String quotationNo;
 	private String lineCd;
 	private String lineCdDesc;
@@ -465,30 +466,36 @@ public class Quotation {
 	public void setOptionRt(BigDecimal optionRt) {
 		this.optionRt = optionRt;
 	}
+	public Integer getHoldCoverId() {
+		return holdCoverId;
+	}
+	public void setHoldCoverId(Integer holdCoverId) {
+		this.holdCoverId = holdCoverId;
+	}
 	@Override
 	public String toString() {
-		return "Quotation [quoteId=" + quoteId + ", quotationNo=" + quotationNo + ", lineCd=" + lineCd + ", lineCdDesc="
-				+ lineCdDesc + ", quoteYear=" + quoteYear + ", quoteSeqNo=" + quoteSeqNo + ", quoteRevNo=" + quoteRevNo
-				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", cessionId=" + cessionId
-				+ ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc + ", lineClassCd="
-				+ lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId + ", principalName="
-				+ principalName + ", contractorId=" + contractorId + ", contractorName=" + contractorName
-				+ ", insuredDesc=" + insuredDesc + ", sumInsured=" + sumInsured + ", optionRt=" + optionRt
-				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", status=" + status + ", reinsurerId="
-				+ reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName
-				+ ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate="
-				+ reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd
-				+ ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag=" + indicativeTag
-				+ ", openCoverTag=" + openCoverTag + ", ocQuoteId=" + ocQuoteId + ", openCoverQuotationNo="
-				+ openCoverQuotationNo + ", declarationTag=" + declarationTag + ", preparedBy=" + preparedBy
-				+ ", approvedBy=" + approvedBy + ", printedBy=" + printedBy + ", printDate=" + printDate
-				+ ", openingParag=" + openingParag + ", closingParag=" + closingParag + ", reasonCd=" + reasonCd
-				+ ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", project=" + project + ", options=" + options + ", otherRates=" + otherRates + ", attachmentsList="
-				+ attachmentsList + ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList
-				+ ", optionsList=" + optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment="
-				+ attachment + "]";
+		return "Quotation [quoteId=" + quoteId + ", holdCoverId=" + holdCoverId + ", quotationNo=" + quotationNo
+				+ ", lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", quoteYear=" + quoteYear + ", quoteSeqNo="
+				+ quoteSeqNo + ", quoteRevNo=" + quoteRevNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc
+				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId
+				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contractorName="
+				+ contractorName + ", insuredDesc=" + insuredDesc + ", sumInsured=" + sumInsured + ", optionRt="
+				+ optionRt + ", policyId=" + policyId + ", policyNo=" + policyNo + ", status=" + status
+				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId
+				+ ", intmName=" + intmName + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
+				+ reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd="
+				+ currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag="
+				+ indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId=" + ocQuoteId
+				+ ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
+				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
+				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
+				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", project=" + project + ", options=" + options + ", otherRates="
+				+ otherRates + ", attachmentsList=" + attachmentsList + ", competitionsList=" + competitionsList
+				+ ", otherRatesList=" + otherRatesList + ", optionsList=" + optionsList + ", alop=" + alop
+				+ ", holdCover=" + holdCover + ", attachment=" + attachment + "]";
 	}
 	
 	
