@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -54,6 +55,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -961,6 +963,26 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("cancelFrom", request.getCancelFrom());
 		params.put("cancelTo", request.getCancelTo());
 		response.setCancelledTran(acctServDao.retrieveAcseCancelledTran(params));
+		return response;
+	}
+
+	@Override
+	public PrintAcseJvResponse printAcseJv(PrintAcseJvRequest request) throws SQLException {
+		PrintAcseJvResponse response = new PrintAcseJvResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("jvNo", request.getJvNo());
+			params.put("jvYear", request.getJvYear());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = acctServDao.printAcseJv(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 }
