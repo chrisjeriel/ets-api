@@ -99,6 +99,7 @@ import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
+import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -1899,6 +1900,13 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			}
 		}
 		logger.info("BatchDistributionResponse : "+ response.toString());
+		return response;
+	}
+
+	@Override
+	public RetrieveLastExtractInfoResponse retrieveLastExtractInfo() throws SQLException {
+		RetrieveLastExtractInfoResponse response = new RetrieveLastExtractInfoResponse();
+		response.setInfo(underwritingDao.retrieveLastExtractInfo());
 		return response;
 	}
 }

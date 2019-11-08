@@ -2848,4 +2848,14 @@
 	<select id="validateForDist" resultType="java.lang.String">
 		SELECT DIST_PKG.batch_dist_indv(#{riskDistId}, #{altNo},#{updateUser}) FROM DUAL
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo" id="LastExpiryExtractInfoMapper">
+		<result property="extractedBy" column="EXTRACT_USER"/>
+		<result property="extractionDate" column="EXTRACT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="getLastExtInfo" resultMap="LastExpiryExtractInfoMapper">
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_last_ext_info())
+	</select>
+	
 </mapper>
