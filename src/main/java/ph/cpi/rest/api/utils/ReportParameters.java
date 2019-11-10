@@ -21,6 +21,7 @@ public class ReportParameters {
 		reportParams.put("P_USER_ID", grr.getUserId());
 		reportParams.put("pUserId", grr.getUserId());
 		reportParams.put("P_PRINTED_BY", grr.getUserId());
+		reportParams.put("p_printed_by", grr.getUserId());
 		
 		reportParams.put("P_TRAN_ID", grr.getTranId());
 		reportParams.put("pTranId", grr.getTranId());
@@ -30,12 +31,15 @@ public class ReportParameters {
 		
 		
 		reportParams.put("P_REPORT_ID", grr.getReportId());
+		reportParams.put("p_report_id", grr.getReportId());
 		reportParams.put("pReportId", grr.getReportId());
 		
 		reportParams.put("P_CEDING_ID", grr.getCedingId());
+		reportParams.put("p_ceding_id", grr.getCedingId());
 		reportParams.put("pCedingId", grr.getReportId());
 		
 		reportParams.put("P_POLICY_ID", grr.getPolicyId());
+		reportParams.put("p_policy_id", grr.getPolicyId());
 		return reportParams;
 	}
 	
