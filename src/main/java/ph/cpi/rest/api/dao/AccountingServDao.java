@@ -67,4 +67,5 @@ public interface AccountingServDao {
 	public List<AcseCancelledCV> retrieveAcseChangeToNewCV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledJV> retrieveAcseChangeToNewJV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(final HashMap<String,Object> params) throws SQLException;
+	public HashMap<String,Object> printAcseJv(final HashMap<String,Object> params) throws SQLException;
 }
