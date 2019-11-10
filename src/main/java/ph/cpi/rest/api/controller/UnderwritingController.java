@@ -101,6 +101,7 @@ import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
+import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -710,5 +711,11 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/BatchPosting");
 		logger.info("BatchPostingRequest : " + uphcsr.toString());
 		return underwritingService.batchPosting(uphcsr);
+	}
+	
+	@GetMapping(path="retrieveLastExtractInfo")
+	public @ResponseBody RetrieveLastExtractInfoResponse retrieveLastExtractInfo() throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveLastExtractInfo");
+		return underwritingService.retrieveLastExtractInfo();
 	}
 }

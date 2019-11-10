@@ -13,6 +13,7 @@ import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
+import ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
@@ -124,4 +125,7 @@ public interface UnderwritingDao {
 	
 	public Integer updatePolOpenCoverStatus(final HashMap<String, Object> params) throws SQLException;
 	public String validateForDist(final HashMap<String, Object> params) throws SQLException;
+	
+	public LastExpiryExtractInfo retrieveLastExtractInfo() throws SQLException;
+	
 }
