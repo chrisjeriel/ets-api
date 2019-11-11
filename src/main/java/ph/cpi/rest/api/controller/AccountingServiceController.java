@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -57,6 +58,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -410,5 +412,12 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveAcseCancelledTran");
 		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
 		return acctServService.retrieveAcseCancelledTran(rabemr);
+	}
+	
+	@PostMapping(path="printAcseJv")
+	public @ResponseBody PrintAcseJvResponse printAcseJv(@RequestBody PrintAcseJvRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printAcseJv");
+		logger.info("PrintAcseJvRequest : " + request.toString());
+		return acctServService.printAcseJv(request);
 	}
 }

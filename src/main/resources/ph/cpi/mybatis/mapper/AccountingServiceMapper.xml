@@ -1335,5 +1335,16 @@
 																	 CAST(to_timestamp(#{cancelFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	CAST(to_timestamp(#{cancelTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),NULL,NULL,NULL,NULL))
 	</select>
+	
+	<update id="printAcseJv" parameterType="java.util.Map">
+		BEGIN
+			ACSE_JOURNAL_VOUCHER_PKG.print_jv(#{tranId},
+										      #{jvYear},
+										      #{jvNo},
+											  #{updateUser},
+											  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+		END;
+	</update>
         
 </mapper>

@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.InwPolBalance;
+import ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
@@ -674,5 +675,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public String validateForDist(HashMap<String, Object> params) throws SQLException {
 		String msg = sqlSession.selectOne("validateForDist",params);
 		return msg;
+	}
+
+	@Override
+	public LastExpiryExtractInfo retrieveLastExtractInfo() throws SQLException {
+		LastExpiryExtractInfo info = sqlSession.selectOne("getLastExtInfo");
+		return info;
 	}
 }

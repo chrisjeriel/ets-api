@@ -13,7 +13,21 @@ public class GenerateReportRequest {
 	private String userId;
 	private Integer tranId;
 	private Integer reqId;
+	private String cedingId;
+	private String policyId;
 	
+	public String getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
 	public String getReportId() {
 		return reportId;
 	}
@@ -73,7 +87,8 @@ public class GenerateReportRequest {
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", polr044Params="
 				+ polr044Params + ", quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId
-				+ ", userId=" + userId + ", tranId=" + tranId + ", reqId=" + reqId + "]";
+				+ ", userId=" + userId + ", tranId=" + tranId + ", reqId=" + reqId + ", cedingId=" + cedingId
+				+ ", policyId=" + policyId + "]";
 	}
 	
 }

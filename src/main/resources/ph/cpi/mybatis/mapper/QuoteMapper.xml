@@ -1861,7 +1861,7 @@
 	</update>
 	
 	<update id="updatePolicyStatus" parameterType="java.util.Map"> <!-- DONT FORGET TO INCLUDE IN QU_PKG -->
-		BEGIN
+		BEGIN	
 			MTN_USERS_PKG.update_policy_status(
 				#{policyId,jdbcType=INTEGER},
 				#{status,jdbcType=VARCHAR},

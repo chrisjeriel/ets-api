@@ -304,4 +304,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		List<AcseCancelledTransactions> list = sqlSession.selectList("retrieveAcseCancelledTran", params);
 		return list;
 	}
+
+	@Override
+	public HashMap<String, Object> printAcseJv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("printAcseJv", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

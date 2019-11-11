@@ -3,8 +3,6 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
@@ -94,6 +92,7 @@ import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
+import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -246,4 +245,5 @@ public interface UnderwritingService {
 	public UpdatePolOpenCoverStatusResponse updatePolOpenCoverStatus(UpdatePolOpenCoverStatusRequest uphcsr) throws SQLException;
 	public BatchDistributionResponse batchDistribution(BatchDistributionRequest uphcsr) throws SQLException;
 	public BatchPostingResponse batchPosting(BatchPostingRequest uphcsr) throws SQLException;
+	public RetrieveLastExtractInfoResponse retrieveLastExtractInfo() throws SQLException;
 }

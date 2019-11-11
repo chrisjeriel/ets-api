@@ -119,6 +119,7 @@
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lastAffectingPolId" 	column="LAST_AFFECTING_POL_ID"/>
+		
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
@@ -141,6 +142,7 @@
 		<result property="premAmt"  column="ALT_TOTAL_PREM"/>
 		<result property="status"   column="ALT_STATUS_DESC"/>
 		<result property="insured"   column="ALT_INSURED"/>
+		<result property="withDist" column="ALT_WITH_DIST"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
@@ -1609,13 +1611,15 @@
 		<result property="referenceId"		column="REFERENCE_ID" />		
 		<result property="module"			column="MODULE" />			
 		<result property="quotationNo"		column="QUOTATION_NO" />		
-		<result property="preparedBy"		column="PREPARED_BY" />		
+		<result property="preparedBy"		column="PREPARED_BY" />
+		<result property="assignedBy"		column="ASSIGNED_BY" />		
 		<result property="createDate"		column="CREATE_DATE" />
+		<result property="assignedDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	
 	</resultMap>
 	
 	<select id="retrieveWfmApprovals" parameterType="java.util.Map" resultMap="wfmApprovalsMap">
-		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.CREATE_DATE  FROM QUOTE_GEN_INFO a
+		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.ASSIGNED_BY, a.CREATE_DATE, a.UPDATE_DATE  FROM QUOTE_GEN_INFO a
 		 WHERE a.status = 'P'
 		   AND #{userId, jdbcType=VARCHAR} IN (SELECT user_id FROM TABLE(MTN_USERS_PKG.retrieve_quote_approver(a.quote_id,null,null,null,null)))
 	</select>
@@ -2846,4 +2850,14 @@
 	<select id="validateForDist" resultType="java.lang.String">
 		SELECT DIST_PKG.batch_dist_indv(#{riskDistId}, #{altNo},#{updateUser}) FROM DUAL
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo" id="LastExpiryExtractInfoMapper">
+		<result property="extractedBy" column="EXTRACT_USER"/>
+		<result property="extractionDate" column="EXTRACT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="getLastExtInfo" resultMap="LastExpiryExtractInfoMapper">
+		SELECT * FROM TABLE(DIST_EXT_PKG.get_last_ext_info())
+	</select>
+	
 </mapper>
