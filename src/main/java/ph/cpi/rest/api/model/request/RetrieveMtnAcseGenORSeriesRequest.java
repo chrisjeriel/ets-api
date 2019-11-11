@@ -8,6 +8,7 @@ public class RetrieveMtnAcseGenORSeriesRequest {
 	private Integer orTo;
 	private Integer orFrom;
 	private String usedTag;
+	private Integer rowNum;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	public String getOrType() {
@@ -47,10 +48,18 @@ public class RetrieveMtnAcseGenORSeriesRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	
+	public Integer getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(Integer rowNum) {
+		this.rowNum = rowNum;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveMtnAcseGenORSeriesRequest [orType=" + orType + ", orTo=" + orTo + ", orFrom=" + orFrom
-				+ ", usedTag=" + usedTag + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
-				+ "]";
+				+ ", usedTag=" + usedTag + ", rowNum=" + rowNum + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
+	
 }

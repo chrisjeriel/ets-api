@@ -2679,6 +2679,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("orTo", request.getOrTo());
 		params.put("orFrom", request.getOrFrom());
 		params.put("usedTag", request.getUsedTag());
+		params.put("rowNum", request.getRowNum());
 		response.setOrSeries(maintenanceDao.retrieveAcseOrSeries(params));
 		return response;
 	}

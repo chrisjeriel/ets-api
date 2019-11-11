@@ -4372,7 +4372,7 @@
      </resultMap>
      
      <select id="retrieveAcseOrSeries" resultMap="orSeriesMap" parameterType="java.util.Map">
-        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_or_series(#{orType,jdbcType=VARCHAR},#{orFrom,jdbcType=VARCHAR},#{orTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR}))
+        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_or_series(#{orType,jdbcType=VARCHAR},#{orFrom,jdbcType=VARCHAR},#{orTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR},#{rowNum,jdbcType=VARCHAR}))
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.AcseCVSeries" id="cvAcseSeriesMap">
