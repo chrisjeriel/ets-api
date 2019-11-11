@@ -604,9 +604,6 @@
 			<!-- Generate Tax Details -->
 		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
 		    
-		    <!-- Generate Accounting Entries -->
-		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
-		    
 		    ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
 													#{billId},
 													#{createUser},
@@ -614,7 +611,8 @@
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		    
-		    
+		    <!-- Generate Accounting Entries -->
+		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 			END;
 			
 	</update>
