@@ -1717,31 +1717,34 @@
     </update>
     
     <resultMap type="ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist" id="servFeeDistMap">
-		<result property="reqId" 		column="REQ_ID"/>
-		<result property="sfeeQtr" 		column="SFEE_QTR"/>
-		<result property="sfeeYear" 	column="SFEE_YEAR"/>
-		<result property="groupId" 		column="GROUP_ID"/>
-		<result property="groupName" 	column="GROUP_NAME"/>
-		<result property="groupShrPct" 	column="GROUP_SHR_PCT"/>
-		<result property="currCd" 		column="CURR_CD"/>
-		<result property="currRt" 		column="CURR_RT"/>
-		<result property="groupShrAmt" 	column="GROUP_SHR_AMT"/>
-		<result property="localAmt" 	column="LOCAL_AMT"/>
-		<result property="totalSfee" 	column="TOTAL_SFEE"/>
-		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="quarter" 		column="QUARTER"/>
-		<result property="premWrtnCede" column="PREM_WRTN_CEDE"/>
-		<result property="netPremWrtn" 	column="NET_PREM_WRTN"/>
+		<result property="reqId" 			column="REQ_ID"/>
+		<result property="sfeeQtr" 			column="SFEE_QTR"/>
+		<result property="sfeeYear" 		column="SFEE_YEAR"/>
+		<result property="groupId" 			column="GROUP_ID"/>
+		<result property="groupName" 		column="GROUP_NAME"/>
+		<result property="groupShrPct" 		column="GROUP_SHR_PCT"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRt" 			column="CURR_RT"/>
+		<result property="groupShrAmt" 		column="GROUP_SHR_AMT"/>
+		<result property="totalDueLocal" 	column="TOTAL_DUE_LOCAL"/>
+		<result property="totalSfee" 		column="TOTAL_SFEE"/>
+		<result property="totalVat" 		column="TOTAL_VAT"/>
+		<result property="totalWhtax" 		column="TOTAL_WHTAX"/>
+		<result property="totalDue" 		column="TOTAL_DUE"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quarter" 			column="QUARTER"/>
+		<result property="premWrtnCede" 	column="PREM_WRTN_CEDE"/>
+		<result property="netPremWrtn" 		column="NET_PREM_WRTN"/>
 		
-		<result property="cedingId" 	column="CEDING_ID"/>
-		<result property="cedingName" 	column="CEDING_NAME"/>
-		<result property="actualShrPct" column="ACTUAL_SHR_PCT"/>
-		<result property="actualShrAmt" column="ACTUAL_SHR_AMT"/>
-		<result property="baseShrPct" 	column="BASE_SHR_PCT"/>
-		<result property="baseShrAmt" 	column="BASE_SHR_AMT"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="actualShrPct" 	column="ACTUAL_SHR_PCT"/>
+		<result property="actualShrAmt" 	column="ACTUAL_SHR_AMT"/>
+		<result property="baseShrPct" 		column="BASE_SHR_PCT"/>
+		<result property="baseShrAmt" 		column="BASE_SHR_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">

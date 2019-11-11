@@ -15,8 +15,11 @@ public class AcctServFeeDist {
 	private String currCd;
 	private Double currRt;
 	private BigDecimal groupShrAmt;
-	private BigDecimal localAmt;
+	private BigDecimal totalDueLocal;
 	private BigDecimal totalSfee;
+	private BigDecimal totalVat;
+	private BigDecimal totalWhtax;
+	private BigDecimal totalDue;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -86,17 +89,35 @@ public class AcctServFeeDist {
 	public void setGroupShrAmt(BigDecimal groupShrAmt) {
 		this.groupShrAmt = groupShrAmt;
 	}
-	public BigDecimal getLocalAmt() {
-		return localAmt;
+	public BigDecimal getTotalDueLocal() {
+		return totalDueLocal;
 	}
-	public void setLocalAmt(BigDecimal localAmt) {
-		this.localAmt = localAmt;
+	public void setTotalDueLocal(BigDecimal totalDueLocal) {
+		this.totalDueLocal = totalDueLocal;
 	}
 	public BigDecimal getTotalSfee() {
 		return totalSfee;
 	}
 	public void setTotalSfee(BigDecimal totalSfee) {
 		this.totalSfee = totalSfee;
+	}
+	public BigDecimal getTotalVat() {
+		return totalVat;
+	}
+	public void setTotalVat(BigDecimal totalVat) {
+		this.totalVat = totalVat;
+	}
+	public BigDecimal getTotalWhtax() {
+		return totalWhtax;
+	}
+	public void setTotalWhtax(BigDecimal totalWhtax) {
+		this.totalWhtax = totalWhtax;
+	}
+	public BigDecimal getTotalDue() {
+		return totalDue;
+	}
+	public void setTotalDue(BigDecimal totalDue) {
+		this.totalDue = totalDue;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -180,8 +201,9 @@ public class AcctServFeeDist {
 	public String toString() {
 		return "AcctServFeeDist [reqId=" + reqId + ", sfeeQtr=" + sfeeQtr + ", sfeeYear=" + sfeeYear + ", groupId="
 				+ groupId + ", groupName=" + groupName + ", groupShrPct=" + groupShrPct + ", currCd=" + currCd
-				+ ", currRt=" + currRt + ", groupShrAmt=" + groupShrAmt + ", localAmt=" + localAmt + ", totalSfee="
-				+ totalSfee + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", currRt=" + currRt + ", groupShrAmt=" + groupShrAmt + ", totalDueLocal=" + totalDueLocal
+				+ ", totalSfee=" + totalSfee + ", totalVat=" + totalVat + ", totalWhtax=" + totalWhtax + ", totalDue="
+				+ totalDue + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", quarter=" + quarter + ", premWrtnCede=" + premWrtnCede
 				+ ", netPremWrtn=" + netPremWrtn + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", actualShrPct=" + actualShrPct + ", actualShrAmt=" + actualShrAmt + ", baseShrPct=" + baseShrPct
