@@ -34,6 +34,11 @@ public class AcctServFeeDist {
 	private BigDecimal actualShrAmt;
 	private Double baseShrPct;
 	private BigDecimal baseShrAmt;
+	private BigDecimal netDueLocal;
+	private BigDecimal sfeeAmt;
+	private BigDecimal vatAmt;
+	private BigDecimal whtaxAmt;
+	private BigDecimal netDue;
 	
 	public Integer getReqId() {
 		return reqId;
@@ -197,6 +202,36 @@ public class AcctServFeeDist {
 	public void setBaseShrAmt(BigDecimal baseShrAmt) {
 		this.baseShrAmt = baseShrAmt;
 	}
+	public BigDecimal getNetDueLocal() {
+		return netDueLocal;
+	}
+	public void setNetDueLocal(BigDecimal netDueLocal) {
+		this.netDueLocal = netDueLocal;
+	}
+	public BigDecimal getSfeeAmt() {
+		return sfeeAmt;
+	}
+	public void setSfeeAmt(BigDecimal sfeeAmt) {
+		this.sfeeAmt = sfeeAmt;
+	}
+	public BigDecimal getVatAmt() {
+		return vatAmt;
+	}
+	public void setVatAmt(BigDecimal vatAmt) {
+		this.vatAmt = vatAmt;
+	}
+	public BigDecimal getWhtaxAmt() {
+		return whtaxAmt;
+	}
+	public void setWhtaxAmt(BigDecimal whtaxAmt) {
+		this.whtaxAmt = whtaxAmt;
+	}
+	public BigDecimal getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(BigDecimal netDue) {
+		this.netDue = netDue;
+	}
 	@Override
 	public String toString() {
 		return "AcctServFeeDist [reqId=" + reqId + ", sfeeQtr=" + sfeeQtr + ", sfeeYear=" + sfeeYear + ", groupId="
@@ -207,6 +242,7 @@ public class AcctServFeeDist {
 				+ ", updateDate=" + updateDate + ", quarter=" + quarter + ", premWrtnCede=" + premWrtnCede
 				+ ", netPremWrtn=" + netPremWrtn + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", actualShrPct=" + actualShrPct + ", actualShrAmt=" + actualShrAmt + ", baseShrPct=" + baseShrPct
-				+ ", baseShrAmt=" + baseShrAmt + "]";
+				+ ", baseShrAmt=" + baseShrAmt + ", netDueLocal=" + netDueLocal + ", sfeeAmt=" + sfeeAmt + ", vatAmt="
+				+ vatAmt + ", whtaxAmt=" + whtaxAmt + ", netDue=" + netDue + "]";
 	}
 }

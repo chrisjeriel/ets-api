@@ -1443,6 +1443,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("quarter", sapsfr.getQuarter());
 		params.put("year", sapsfr.getYear());
 		params.put("servFeeAmt", sapsfr.getServFeeAmt());
+		params.put("netServFee", sapsfr.getNetServFee());
 		params.put("currCd", sapsfr.getCurrCd());
 		params.put("currRt", sapsfr.getCurrRt());
 		params.put("createUser", sapsfr.getCreateUser());

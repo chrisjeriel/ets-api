@@ -91,6 +91,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 			column="UPDATE_USER"/>
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="serviceFee" 			column="SERVICE_FEE"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCvPaytReqList" resultMap="acitCvPaytReqListMap" parameterType="java.util.Map">
@@ -1745,10 +1746,17 @@
 		<result property="actualShrAmt" 	column="ACTUAL_SHR_AMT"/>
 		<result property="baseShrPct" 		column="BASE_SHR_PCT"/>
 		<result property="baseShrAmt" 		column="BASE_SHR_AMT"/>
+		<result property="netDueLocal" 		column="NET_DUE_LOCAL"/>
+		<result property="sfeeAmt" 			column="SFEE_AMT"/>
+		<result property="vatAmt" 			column="VAT_AMT"/>
+		<result property="whtaxAmt" 		column="WHTAX_AMT"/>
+		<result property="netDue" 			column="NET_DUE"/>
 	</resultMap>
 	
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACCT_SERVFEE_MAIN_DIST_PKG.ret_servfee_main_gnrt(#{servFeeAmt, jdbcType=INTEGER},
+		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_servfee_main_gnrt(#{quarter, jdbcType=INTEGER},
+																			 #{year, jdbcType=INTEGER},
+																			 #{servFeeAmt, jdbcType=INTEGER},
 																			 #{currCd, jdbcType=VARCHAR},
 																			 #{currRt, jdbcType=INTEGER},
 																			 null,null,null,null))
@@ -2930,6 +2938,7 @@
 				#{quarter, jdbcType=INTEGER},
 				#{year, jdbcType=INTEGER},
 				#{servFeeAmt, jdbcType=INTEGER},
+				#{netServFee, jdbcType=INTEGER},
 				#{currCd, jdbcType=VARCHAR},
 				#{currRt, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},
