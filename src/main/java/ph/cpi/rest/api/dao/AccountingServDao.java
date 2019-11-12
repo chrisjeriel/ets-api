@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
 import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
@@ -67,4 +68,6 @@ public interface AccountingServDao {
 	public List<AcseCancelledCV> retrieveAcseChangeToNewCV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledJV> retrieveAcseChangeToNewJV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(final HashMap<String,Object> params) throws SQLException;
+	public List<AcseBatchInvoice> retrieveAcseBatchInvoice(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcseInvoice(final HashMap<String, Object> params) throws SQLException;
 }

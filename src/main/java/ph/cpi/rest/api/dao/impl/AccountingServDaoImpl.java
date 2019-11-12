@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
 import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
@@ -303,5 +304,22 @@ public class AccountingServDaoImpl implements AccountingServDao{
 			throws SQLException {
 		List<AcseCancelledTransactions> list = sqlSession.selectList("retrieveAcseCancelledTran", params);
 		return list;
+	}
+
+	@Override
+	public List<AcseBatchInvoice> retrieveAcseBatchInvoice(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		 List<AcseBatchInvoice> list = sqlSession.selectList("retrieveAcseBatchInvoice",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseInvoice(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcseInvoice",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

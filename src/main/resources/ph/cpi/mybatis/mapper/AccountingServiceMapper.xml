@@ -1308,5 +1308,67 @@
 																	 CAST(to_timestamp(#{cancelFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	CAST(to_timestamp(#{cancelTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),NULL,NULL,NULL,NULL))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice" id="acseBatchInvoiceMap">
+		<result property="invoiceId"            column="INVOICE_ID" />
+		<result property="invoiceNo"           	column="INVOICE_NO" />
+		<result property="invoiceDate"         	column="INVOICE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="invoiceStat"          column="INVOICE_STAT" />
+		<result property="invoiceStatDesc"      column="INVOICE_DESC" />
+		<result property="refNoTranId"          column="REFNO_TRAN_ID" />
+		<result property="refNoDate"            column="REFNO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="jvNo"         		column="JV_NO" />
+		<result property="jvDate"             	column="JV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="jvYear"         		column="JV_YEAR" />
+		<result property="payee"           		column="PAYEE" />
+		<result property="payeeNo"           	column="PAYEE_NO" />
+		<result property="particulars"          column="PARTICULARS" />
+		<result property="tranTypeCd"           column="TRAN_TYPE_CD" />
+		<result property="currCd"             	column="CURR_CD" />
+		<result property="currRate"             column="CURR_RATE" />
+	    <result property="invoiceAmt"           column="INVOICE_AMT" />
+		<result property="localAmt"             column="LOCAL_AMT" />
+		<result property="createUser"           column="CREATE_USER" />
+		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"           column="UPDATE_USER" />
+		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="autoTag"           	column="AUTO_TAG" />
+	</resultMap>
+	
+	<select id="retrieveAcseBatchInvoice" resultMap="acseBatchInvoiceMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_BATCH_INVOICE_PKG.ret_acse_batch_invoice(CAST(to_timestamp(#{jvDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																CAST(to_timestamp(#{jvDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{jvNo, jdbcType=VARCHAR},
+																#{jvTypeCd, jdbcType=VARCHAR},
+																'',
+																'',
+																'',
+																''))
+	</select>
+	
+	<update id="saveAcseInvoice" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(#{invoiceId, jdbcType=VARCHAR}, 
+													#{invoiceNo, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{invoiceDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{autoTag, jdbcType=VARCHAR}, 
+													#{refNoTranId, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{refNoDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{tranTypeCd, jdbcType=VARCHAR}, 
+													#{invoiceStat, jdbcType=VARCHAR}, 
+													#{payee, jdbcType=VARCHAR}, 
+													#{payeeNo, jdbcType=VARCHAR},
+													#{particulars, jdbcType=VARCHAR},
+													#{currCd, jdbcType=VARCHAR},
+													#{currRate, jdbcType=VARCHAR},
+													#{invoiceAmt, jdbcType=VARCHAR},
+													#{localAmt, jdbcType=VARCHAR},
+													#{createUser, jdbcType=VARCHAR},
+													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													#{updateUser, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)  
+												  );					  
+		END;
+	</update>
         
 </mapper>

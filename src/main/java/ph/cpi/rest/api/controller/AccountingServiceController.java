@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseBatchInvoiceRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBudgetExpenseRequest;
@@ -44,6 +45,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
@@ -61,6 +63,7 @@ import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseBatchInvoiceResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBudgetExpenseResponse;
@@ -85,6 +88,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
@@ -411,4 +415,20 @@ public class AccountingServiceController {
 		logger.info("RetrieveAcseChangeToNewJVRequest : " + rabemr.toString());
 		return acctServService.retrieveAcseCancelledTran(rabemr);
 	}
+	
+	@GetMapping(path="retrieveAcseBatchInvoice")
+	public @ResponseBody RetrieveAcseBatchInvoiceResponse retrieveAcseBatchInvoice(RetrieveAcseBatchInvoiceRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseBatchInvoice");
+		logger.info("RetrieveAcseBatchInvoiceRequest : " + request.toString());
+		return acctServService.retrieveAcseBatchInvoice(request);
+	}
+	
+	@PostMapping(path="saveAcseInvoice")
+	public @ResponseBody SaveAcseInvoiceResponse saveAcseInvoice(@RequestBody SaveAcseInvoiceRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseInvoice");
+		logger.info("SaveAcseInvoiceRequest : " + request.toString());
+		return acctServService.saveAcseInvoice(request);
+	}
+	
+	
 }
