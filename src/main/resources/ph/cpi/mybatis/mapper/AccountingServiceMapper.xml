@@ -251,11 +251,14 @@
 				</foreach>
 		    END IF;
 		    
-		    <!-- Generate Tax Details -->
-		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message);
+		    IF #{isPrint, jdbcType=VARCHAR} IS NULL THEN
+			    <!-- Generate Tax Details -->
+			    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message);
+			    
+			    <!-- Generate Accounting Entries -->
+			    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message);
+		    END IF;
 		    
-		    <!-- Generate Accounting Entries -->
-		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message);
 		END;
 	</update>
 	

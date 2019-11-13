@@ -47,6 +47,10 @@ public class SaveAcseOrTransRequest {
 	//ACSE_OR_PAYTDTL
 	private List<SaveOrPaytDtl> savePaytDtl;
 	private List<SaveOrPaytDtl> delPaytDtl;
+	
+	//Utility
+	private String isPrint;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -281,6 +285,13 @@ public class SaveAcseOrTransRequest {
 	public void setDelPaytDtl(List<SaveOrPaytDtl> delPaytDtl) {
 		this.delPaytDtl = delPaytDtl;
 	}
+	public String getIsPrint() {
+		return isPrint;
+	}
+	public void setIsPrint(String isPrint) {
+		this.isPrint = isPrint;
+	}
+	
 	@Override
 	public String toString() {
 		return "SaveAcseOrTransRequest [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
@@ -294,7 +305,7 @@ public class SaveAcseOrTransRequest {
 				+ ", mailAddress=" + mailAddress + ", bussTypeName=" + bussTypeName + ", tin=" + tin + ", particulars="
 				+ particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", orAmt=" + orAmt + ", allocTag="
 				+ allocTag + ", allocTranId=" + allocTranId + ", savePaytDtl=" + savePaytDtl + ", delPaytDtl="
-				+ delPaytDtl + "]";
+				+ delPaytDtl + ", isPrint=" + isPrint + "]";
 	}
 }
 
