@@ -1751,6 +1751,16 @@
 		<result property="vatAmt" 			column="VAT_AMT"/>
 		<result property="whtaxAmt" 		column="WHTAX_AMT"/>
 		<result property="netDue" 			column="NET_DUE"/>
+		
+		<association property="servFeeTotals" resultMap="servFeeTotalsMap"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcctServFeeTotals" id="servFeeTotalsMap">
+		<result property="totalSfeeAmt" 	column="TOTAL_SFEE_AMT"/>
+		<result property="mreSfeeAmt" 		column="MRE_SFEE_AMT"/>
+		<result property="totalVatAmt" 		column="TOTAL_VAT_AMT"/>
+		<result property="totalWhTaxAmt" 	column="TOTAL_WHTAX_AMT"/>
+		<result property="totalDue" 		column="TOTAL_DUE"/>
 	</resultMap>
 	
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
