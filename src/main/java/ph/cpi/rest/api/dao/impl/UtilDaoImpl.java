@@ -67,5 +67,11 @@ public class UtilDaoImpl implements UtilDao{
 		String fileName = sqlSession.selectOne("getReportFileName", params);
 		return fileName;
 	}
+
+	@Override
+	public String getReportPath() throws SQLException {
+		String path = sqlSession.selectOne("getReportPath");
+		return path;
+	}
 	
 }
