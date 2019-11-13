@@ -61,5 +61,9 @@
 		END;
 	</update>
 	
+	<select id="getReportFileName" resultType="java.lang.String" parameterType="java.util.Map" >
+		SELECT MTN_REPORTS_PKG.get_report_file_name(#{reportId}) FROM DUAL
+	</select>
+	
 	
 </mapper>

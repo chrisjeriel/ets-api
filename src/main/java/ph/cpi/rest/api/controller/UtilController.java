@@ -217,13 +217,14 @@ public class UtilController {
 		try {
 			PrintingUtility pu = new PrintingUtility();
 			HashMap reportParam = new HashMap<String, String>();
-			if (grr.getReportId().toUpperCase().contains("POLR044")) {
+			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
 			
-			reportParam.put("REPORT_NAME", grr.getReportName());
+			
+			reportParam.put("REPORT_NAME", utilService.getReportFileName(reportParam));
 			
 			System.out.println("GENERATED REPORT PARAMS:");
 			System.out.println(reportParam);

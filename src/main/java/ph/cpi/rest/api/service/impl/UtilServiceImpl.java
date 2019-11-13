@@ -62,6 +62,11 @@ public class UtilServiceImpl implements UtilService {
 		
 		return err;
 	}
+
+	@Override
+	public String getReportFileName(HashMap<String, Object> params) throws SQLException {
+		return utilDao.getReportFileName(params);
+	}
 	
 	
 

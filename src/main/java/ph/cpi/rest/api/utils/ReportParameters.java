@@ -34,6 +34,8 @@ public class ReportParameters {
 		reportParams.put("p_report_id", grr.getReportId());
 		reportParams.put("pReportId", grr.getReportId());
 		
+		reportParams.put("reportId", grr.getReportName());
+		
 		reportParams.put("P_CEDING_ID", grr.getCedingId());
 		reportParams.put("p_ceding_id", grr.getCedingId());
 		reportParams.put("pCedingId", grr.getReportId());
