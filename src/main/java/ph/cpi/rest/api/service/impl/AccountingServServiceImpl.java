@@ -205,13 +205,9 @@ public class AccountingServServiceImpl implements AccountingServService{
 				response.getErrorList().add(new Error("General Error","The specified OR No. is not yet generated. Please review your records and make the necessary changes."));
 			}
 		}catch(Throwable e){
-			Throwable t = e;
-			while(t.getCause() != null){
-				t = t.getCause();
-				if(t.toString().contains("unique constraint")){
-					response.getErrorList().add(new Error("General Error","The specified OR No. was already taken. Please review your records and make the necessary changes."));
-					break;
-				}
+			String t = e.toString();
+			if(t.contains("unique constraint")){
+				response.getErrorList().add(new Error("General Error","The specified OR No. was already taken. Please review your records and make the necessary changes."));
 			}
 			response.setReturnCode(0);
 			e.printStackTrace();
