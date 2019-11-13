@@ -27,7 +27,7 @@ public class UtilServiceImpl implements UtilService {
 		// TODO Auto-generated method stub
 		ExtractReportResponse err = new ExtractReportResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		String errorMsg = "Please check values.";
+		String errorMsg = "Please check field values.";
 	
 		try {
 			
@@ -41,6 +41,7 @@ public class UtilServiceImpl implements UtilService {
 			params.put("toDate", grr.getPolr044Params().getToDate());
 			params.put("incRecTag", grr.getPolr044Params().getIncRecTag());
 			params.put("extractCount", 0);
+			params.put("forceExtract", grr.getPolr044Params().getForceExtract());
 			
 			
 			err.setReturnCode(utilDao.extractReport(params));
@@ -55,7 +56,13 @@ public class UtilServiceImpl implements UtilService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			err.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGSQL", "SQL Exception : " + errorMsg));
-		} catch (Exception e) {
+		} catch (org.springframework.jdbc.UncategorizedSQLException e) {
+			e.printStackTrace();
+			if (e.getMessage().contains("Extracted records on the specified parameters already exists.")) {
+				errorMsg = "Extracted records on the specified parameters already exists. Do you want to extract the record again?";
+			}
+			err.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGUSE", errorMsg));
+		}catch (Exception e) {
 			e.printStackTrace();
 			err.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGGEN", "General Exception"));
 		}
