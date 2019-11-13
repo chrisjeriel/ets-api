@@ -13,4 +13,6 @@ public interface UtilService {
 
 	public ExtractReportResponse extractReport(GenerateReportRequest grr) throws SQLException;
 	public String getReportFileName(HashMap<String, Object> params) throws SQLException;
+	public String getReportPath() throws SQLException;
+	
 }

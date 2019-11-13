@@ -41,20 +41,21 @@ public class PrintingUtility {
 
 		
 		String reportName = reportParams.get("REPORT_NAME").toString();
-
-		reportPath = "C:\\ETS\\REPORTS\\" + reportName ;//+ "_MAIN.jrxml";
+		String path = reportParams.get("REPORT_PATH").toString();
+		
+		reportPath = path + reportName ;//+ "_MAIN.jrxml";
 		
 		String filename = reportName + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
 		
 		if (outputPath == null){
-		    outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
+		    outputPath = path+"Output\\" + filename;
 		} else {
 			outputPath = outputPath + filename;
 		}
 
 		outputType = "pdf";
 		
-		reportParams.put("SUBREPORT_DIR", "C:\\ETS\\REPORTS\\");
+		reportParams.put("SUBREPORT_DIR", path);
 		
 		
 		logger.info("generateJasperReport outputPath : " + outputPath);

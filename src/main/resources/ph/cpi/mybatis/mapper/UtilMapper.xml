@@ -65,5 +65,7 @@
 		SELECT MTN_REPORTS_PKG.get_report_file_name(#{reportId}) FROM DUAL
 	</select>
 	
-	
+	<select id="getReportPath" resultType="java.lang.String"  >
+		SELECT MTN_REPORTS_PKG.get_report_path() FROM DUAL
+	</select>
 </mapper>

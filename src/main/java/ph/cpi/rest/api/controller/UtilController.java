@@ -225,6 +225,7 @@ public class UtilController {
 			
 			
 			reportParam.put("REPORT_NAME", utilService.getReportFileName(reportParam));
+			reportParam.put("REPORT_PATH", utilService.getReportPath());
 			
 			System.out.println("GENERATED REPORT PARAMS:");
 			System.out.println(reportParam);
