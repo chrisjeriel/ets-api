@@ -25,11 +25,11 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 
-
-
 public class PrintingUtility {
-
+	
+	
 	private static final Logger logger = LoggerFactory.getLogger(PrintingUtility.class);
+	
 	
 	public String generateJasperReport(HashMap<String, Object> reportParams, HashMap<String, Object> dbParams, String reportPath, String outputPath,
 			String outputType) throws SQLException, JRException, IOException {
@@ -39,19 +39,23 @@ public class PrintingUtility {
 												      dbParams.get("username").toString(), 
 												      dbParams.get("password").toString());
 
+		
 		String reportName = reportParams.get("REPORT_NAME").toString();
-
-		reportPath = "C:\\ETS\\REPORTS\\" + reportName + "_MAIN.jrxml";
+		String path = reportParams.get("REPORT_PATH").toString();
+		
+		reportPath = path + reportName ;//+ "_MAIN.jrxml";
 		
 		String filename = reportName + "_" + DateTime.now().toLocalDateTime().toString().replace(':', '.') + ".pdf";
 		
 		if (outputPath == null){
-		    outputPath = "C:\\ETS\\REPORTS\\Output\\" + filename;
+		    outputPath = path+"Output\\" + filename;
 		} else {
 			outputPath = outputPath + filename;
 		}
 
 		outputType = "pdf";
+		
+		reportParams.put("SUBREPORT_DIR", path);
 		
 		
 		logger.info("generateJasperReport outputPath : " + outputPath);
