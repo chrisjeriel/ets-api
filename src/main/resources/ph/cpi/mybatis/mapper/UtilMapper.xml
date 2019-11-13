@@ -55,7 +55,7 @@
 												        #{dateRange, jdbcType=VARCHAR},
 												        CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												        'U',<!-- #{incRecTag, jdbcType=VARCHAR}, -->
+												         #{incRecTag, jdbcType=VARCHAR},
 												        #{extractCount, jdbcType=INTEGER, mode=OUT}
 												    );
 		END;
