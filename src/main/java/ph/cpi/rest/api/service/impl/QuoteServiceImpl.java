@@ -1261,7 +1261,19 @@ public class QuoteServiceImpl implements QuoteService{
 		uqsParams.put("approvedBy", uqsr.getApprovedBy());
 		uqsParams.put("user", uqsr.getUser());
 		
-		uqsResponse.setReturnCode(quoteDao.updateQuoteStatus(uqsParams));
+		try{
+			uqsResponse.setReturnCode(quoteDao.updateQuoteStatus(uqsParams));
+		}catch(SQLException ex){
+			ex.printStackTrace();
+			if(ex.getErrorCode()== 20000){
+				uqsResponse.setReturnCode(20000);
+				uqsResponse.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				uqsResponse.setReturnCode(0);
+				uqsResponse.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
+		
 		logger.info("UpdateQuoteStatusResponse : " + uqsResponse.toString());
 		return uqsResponse;
 	}

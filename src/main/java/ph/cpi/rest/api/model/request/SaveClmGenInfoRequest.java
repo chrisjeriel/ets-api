@@ -75,7 +75,7 @@ public class SaveClmGenInfoRequest {
 	private String testing;
 	private Integer ipl;
 	private Integer timeExc;
-	private Integer noClaimPd;
+	private String noClaimPd;
 	private String prjCreateUser;
 	private String prjCreateDate;
 	private String prjUpdateUser;
@@ -507,10 +507,10 @@ public class SaveClmGenInfoRequest {
 	public void setTimeExc(Integer timeExc) {
 		this.timeExc = timeExc;
 	}
-	public Integer getNoClaimPd() {
+	public String getNoClaimPd() {
 		return noClaimPd;
 	}
-	public void setNoClaimPd(Integer noClaimPd) {
+	public void setNoClaimPd(String noClaimPd) {
 		this.noClaimPd = noClaimPd;
 	}
 	public String getPrjCreateUser() {
