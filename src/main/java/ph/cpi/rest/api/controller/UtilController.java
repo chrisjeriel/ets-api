@@ -21,6 +21,7 @@ import java.util.HashMap;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -42,12 +44,14 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.response.ExtractReportResponse;
+import ph.cpi.rest.api.service.UtilService;
 import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
 import ph.cpi.rest.api.utils.ReportParameters;
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", 
+@CrossOrigin(origins = {"http://localhost:4200", "http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", 
 						"http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", 
 						"http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
@@ -65,6 +69,17 @@ public class UtilController {
 	
 	@Value("${spring.datasource.password}")
 	private String password;
+	
+	
+	@Autowired 
+	private UtilService utilService;
+	
+	@PostMapping(path="extractReport")
+	public @ResponseBody ExtractReportResponse extractReport(@RequestBody GenerateReportRequest request) throws SQLException {
+		logger.info("POST: /api/util-service/extractReport");
+		logger.info("extractReport : " + request.toString());
+		return utilService.extractReport(request);
+	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(path="generateReport/{quoteId}")
@@ -202,7 +217,7 @@ public class UtilController {
 		try {
 			PrintingUtility pu = new PrintingUtility();
 			HashMap reportParam = new HashMap<String, String>();
-			if (grr.getReportName().toUpperCase().contains("POLR044")) {
+			if (grr.getReportId().toUpperCase().contains("POLR044")) {
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);

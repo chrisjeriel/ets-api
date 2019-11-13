@@ -53,6 +53,8 @@ public class PrintingUtility {
 
 		outputType = "pdf";
 		
+		reportParams.put("SUBREPORT_DIR", "C:\\ETS\\REPORTS\\");
+		
 		
 		logger.info("generateJasperReport outputPath : " + outputPath);
 		JasperPrint jasperPrint = jasperPrint(conn, reportPath, reportParams);

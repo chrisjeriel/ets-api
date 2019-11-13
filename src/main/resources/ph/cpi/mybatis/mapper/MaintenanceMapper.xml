@@ -5184,5 +5184,5 @@
 																			  #{activeTag, jdbcType=VARCHAR},
 																			  '','','',''))
 	</select>
-	
+
 </mapper>

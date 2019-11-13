@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ph.cpi.mybatis.mapper.UtilMapper">
+	
+	<update id="extractPOLR044A" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044A_PKG.EXTRACT_POL_WRITTENCOMP(#{extractUser, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
+												  #{cedingIdParam, jdbcType=VARCHAR}, 
+												  #{dateParam, jdbcType=VARCHAR},
+												  #{dateRange, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{incRecTag, jdbcType=VARCHAR},
+												  #{extractCount, mode=OUT, jdbcType=INTEGER});
+		END;
+	</update>
+	
+	<update id="extractPOLR044B" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044B_PKG.extract_pol_expirylist (
+											        #{extractUser, jdbcType=VARCHAR}, 
+                                                    #{extractDate, jdbcType=VARCHAR}, 
+                                                    #{lineCdParam, jdbcType=VARCHAR}, 
+                                                    #{cedingIdParam, jdbcType=VARCHAR}, 
+                                                    #{dateRange, jdbcType=VARCHAR}, 
+                                                    CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  	CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											        #{extractCount, mode=OUT, jdbcType=INTEGER}
+										        );
+		END;
+	</update>
+	
+	<update id="extractPOLR044D" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044D_PKG.extract_pol_monytdissue(
+											        #{extractUser, jdbcType=VARCHAR},
+											        #{dateParam, jdbcType=VARCHAR},
+											        #{dateRange, jdbcType=VARCHAR},
+											        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											        #{extractCount, jdbcType=INTEGER, mode=OUT}
+											    );
+		END;
+	</update>
+	
+	<update id="extractPOLR044E" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044E_PKG.extract_pol_buswritten_ext (
+												        #{extractUser, jdbcType=VARCHAR}, 
+												        #{dateParam, jdbcType=VARCHAR}, 
+												        #{dateRange, jdbcType=VARCHAR},
+												        CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												        'U',<!-- #{incRecTag, jdbcType=VARCHAR}, -->
+												        #{extractCount, jdbcType=INTEGER, mode=OUT}
+												    );
+		END;
+	</update>
+	
+	
+</mapper>
