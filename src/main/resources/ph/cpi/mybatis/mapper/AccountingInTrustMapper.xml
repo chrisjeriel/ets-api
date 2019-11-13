@@ -833,7 +833,9 @@
 					<!-- Generate to Accounting Entries -->
 				END IF;
 			END IF;
-			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
+			IF #{isPrint, jdbcType=VARCHAR} IS NULL THEN
+				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
+			END IF;
 		END;
 	</update>
 	
