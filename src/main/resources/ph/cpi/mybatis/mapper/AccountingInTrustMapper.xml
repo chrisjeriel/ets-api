@@ -4167,4 +4167,9 @@
 		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
 	</select>
 	
+	<update id="validateCheckNo" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCheckNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHECK_VOUCHER_PKG.ret_mtn_check_no(#{bank},#{bankAcct},#{checkNo},#{tranId, jdbcType=INTEGER})
+		}
+	</update>
 </mapper>

@@ -1039,4 +1039,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		AcitEditedAcctEntries res = sqlSession.selectOne("retEditAcctEntries", params);
 		return res;
 	}
+
+	@Override
+	public String validateCheckNo(HashMap<String, Object> params) throws SQLException {
+		params.put("validateCheckNo", "");
+		sqlSession.update("validateCheckNo",params);
+		return (String) params.get("validateCheckNo");
+	}
 }

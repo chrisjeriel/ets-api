@@ -220,4 +220,6 @@ public interface AccountingInTrustDao {
 	public List<QSOARemittance> retrieveQSOARemittance(final HashMap<String, Object> params) throws SQLException;
 	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
 	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
+	
+	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
 }
