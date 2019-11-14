@@ -805,6 +805,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("blockCd" ,spgip.getBlockCd());
 			savePolGenInfoParams.put("latitude" ,spgip.getLatitude());
 			savePolGenInfoParams.put("longitude" ,spgip.getLongitude());
+			savePolGenInfoParams.put("coTermTag", spgip.getCoTermTag());
+			savePolGenInfoParams.put("coTermText", spgip.getCoTermText());
+			savePolGenInfoParams.put("mbiPolicyId", spgip.getMbiPolicyId());
 			
 			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
 			
