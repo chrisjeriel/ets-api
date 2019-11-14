@@ -87,6 +87,30 @@ public class Policy {
 	private List<EndtText> endtText;
 	
 	private Integer lastAffectingPolId;
+	
+	private String coTermTag;
+	private String coTermText;
+	private String mbiPolicyId;
+	
+	
+	public String getCoTermTag() {
+		return coTermTag;
+	}
+	public void setCoTermTag(String coTermTag) {
+		this.coTermTag = coTermTag;
+	}
+	public String getCoTermText() {
+		return coTermText;
+	}
+	public void setCoTermText(String coTermText) {
+		this.coTermText = coTermText;
+	}
+	public String getMbiPolicyId() {
+		return mbiPolicyId;
+	}
+	public void setMbiPolicyId(String mbiPolicyId) {
+		this.mbiPolicyId = mbiPolicyId;
+	}
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -588,7 +612,8 @@ public class Policy {
 				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
 				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
 				+ alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText + ", lastAffectingPolId="
-				+ lastAffectingPolId + "]";
+				+ lastAffectingPolId + ", coTermTag=" + coTermTag + ", coTermText=" + coTermText + ", mbiPolicyId="
+				+ mbiPolicyId + "]";
 	}
 	
 }
