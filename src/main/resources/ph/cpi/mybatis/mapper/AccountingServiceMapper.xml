@@ -607,13 +607,13 @@
 			<!-- Generate Tax Details -->
 		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
 		    
-		    ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
+		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
 													#{billId},
 													#{createUser},
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser},
-													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-		    
+													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
+		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    <!-- Generate Accounting Entries -->
 		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 			END;
