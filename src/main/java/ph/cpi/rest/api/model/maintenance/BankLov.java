@@ -8,9 +8,6 @@ public class BankLov {
 	private String officialName;
 	private String remarks;
 	private String activeTag;
-	private String currCd;
-	private String acitGlDepNo;
-	private String acseGlDepNo;
 	private String dcbTag;
 	private String createUser;
 	private DateTime createDate;
@@ -43,26 +40,8 @@ public class BankLov {
 	public String getActiveTag() {
 		return activeTag;
 	}
-	public String getCurrCd() {
-		return currCd;
-	}
-	public void setCurrCd(String currCd) {
-		this.currCd = currCd;
-	}
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
-	}
-	public String getAcitGlDepNo() {
-		return acitGlDepNo;
-	}
-	public void setAcitGlDepNo(String acitGlDepNo) {
-		this.acitGlDepNo = acitGlDepNo;
-	}
-	public String getAcseGlDepNo() {
-		return acseGlDepNo;
-	}
-	public void setAcseGlDepNo(String acseGlDepNo) {
-		this.acseGlDepNo = acseGlDepNo;
 	}
 	public String getDcbTag() {
 		return dcbTag;
@@ -97,8 +76,9 @@ public class BankLov {
 	@Override
 	public String toString() {
 		return "BankLov [bankCd=" + bankCd + ", shortName=" + shortName + ", officialName=" + officialName
-				+ ", remarks=" + remarks + ", activeTag=" + activeTag + ", currCd=" + currCd + ", acitGlDepNo="
-				+ acitGlDepNo + ", acseGlDepNo=" + acseGlDepNo + ", dcbTag=" + dcbTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", remarks=" + remarks + ", activeTag=" + activeTag + ", dcbTag=" + dcbTag + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
+	
 }
