@@ -1147,6 +1147,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuotationCopyParams.put("quoteYear", sqcp.getQuoteYear());
 			saveQuotationCopyParams.put("cedingId", sqcp.getCedingId());
 			saveQuotationCopyParams.put("riskId", sqcp.getRiskId());
+			saveQuotationCopyParams.put("autoIntComp", sqcp.getAutoIntComp());
 			saveQuotationCopyParams.put("createUser", sqcp.getCreateUser());
 			saveQuotationCopyParams.put("createDate", sqcp.getCreateDate());
 			saveQuotationCopyParams.put("updateUser", sqcp.getUpdateUser());

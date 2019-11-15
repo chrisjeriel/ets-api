@@ -388,6 +388,8 @@
 		<result property="altWordings" 			column="ALT_WORDINGS"/>
 		<result property="reasonCd" 			column="REASON_CD"/>
 		<result property="reasonDesc" 			column="DESCRIPTION_REASON"/>
+		<result property="autoIntComp" 			column="AUTO_INT_COMP"/>
+		<result property="intCompTag" 			column="INT_COMP_EDITABLE"/>
 		<result property="createUser" 			column="CREATE_USER"/> 
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 			column="UPDATE_USER"/> 
@@ -1668,6 +1670,7 @@
 				#{quoteYear, jdbcType=INTEGER},
 				#{cedingId, jdbcType=INTEGER},
 				#{riskId, jdbcType=INTEGER},
+				#{autoIntComp,jdbcType=VARCHAR},
 				#{createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},
@@ -1774,9 +1777,35 @@
 		END;
 	</update>
 	
+	<update id="copyQuoteAlopInfo" parameterType="java.util.Map">
+		BEGIN
+			QU_ALOP_PKG.copy_qu_alop_info(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
 	<update id="copyQuoteAlop" parameterType="java.util.Map">
 		BEGIN
 			QU_ALOP_PKG.copy_qu_alop(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteAlopItem" parameterType="java.util.Map">
+		BEGIN
+			QU_ALOP_ITM_PKG.copy_qu_alop_itm(				
 				#{newQuoteId, jdbcType=INTEGER},
 				#{quoteId, jdbcType=INTEGER},
 				#{createUser, jdbcType=VARCHAR},

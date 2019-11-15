@@ -64,6 +64,8 @@ public class UtilDaoImpl implements UtilDao{
 
 	@Override
 	public String getReportFileName(HashMap<String, Object> params) throws SQLException {
+		System.out.println(params);
+		
 		String fileName = sqlSession.selectOne("getReportFileName", params);
 		return fileName;
 	}

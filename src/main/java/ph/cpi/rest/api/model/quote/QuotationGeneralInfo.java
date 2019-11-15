@@ -55,6 +55,8 @@ public class QuotationGeneralInfo {
 	private String altWordings;
 	private String reasonCd;
 	private String reasonDesc;
+	private String autoIntComp;
+	private String intCompTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -90,6 +92,13 @@ public class QuotationGeneralInfo {
 	public void setQuoteYear(Integer quoteYear) {
 		this.quoteYear = quoteYear;
 	}
+	
+	public String getIntCompTag() {
+		return intCompTag;
+	}
+	public void setIntCompTag(String intCompTag) {
+		this.intCompTag = intCompTag;
+	}
 	public Integer getQuoteSeqNo() {
 		return quoteSeqNo;
 	}
@@ -113,6 +122,13 @@ public class QuotationGeneralInfo {
 	}
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
+	}
+	
+	public String getAutoIntComp() {
+		return autoIntComp;
+	}
+	public void setAutoIntComp(String autoIntComp) {
+		this.autoIntComp = autoIntComp;
 	}
 	public Integer getCessionId() {
 		return cessionId;
@@ -396,7 +412,8 @@ public class QuotationGeneralInfo {
 				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
 				+ ", altWordings=" + altWordings + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", autoIntComp=" + autoIntComp + ", intCompTag=" + intCompTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

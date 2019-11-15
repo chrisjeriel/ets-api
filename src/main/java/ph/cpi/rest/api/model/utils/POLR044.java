@@ -13,6 +13,7 @@ public class POLR044 {
 	private String fromDate;
 	private String toDate;
 	private String incRecTag;
+	private String forceExtract;
 	
 	public String getReportId() {
 		return reportId;
@@ -68,11 +69,18 @@ public class POLR044 {
 	public void setIncRecTag(String incRecTag) {
 		this.incRecTag = incRecTag;
 	}
+	public String getForceExtract() {
+		return forceExtract;
+	}
+	public void setForceExtract(String forceExtract) {
+		this.forceExtract = forceExtract;
+	}
 	@Override
 	public String toString() {
 		return "POLR044 [reportId=" + reportId + ", extractUser=" + extractUser + ", lineCdParam=" + lineCdParam
 				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag + "]";
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag + ", forceExtract="
+				+ forceExtract + "]";
 	}
-	
+
 }
