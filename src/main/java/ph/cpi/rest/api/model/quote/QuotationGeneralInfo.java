@@ -56,6 +56,7 @@ public class QuotationGeneralInfo {
 	private String reasonCd;
 	private String reasonDesc;
 	private String autoIntComp;
+	private String intCompTag;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -90,6 +91,13 @@ public class QuotationGeneralInfo {
 	}
 	public void setQuoteYear(Integer quoteYear) {
 		this.quoteYear = quoteYear;
+	}
+	
+	public String getIntCompTag() {
+		return intCompTag;
+	}
+	public void setIntCompTag(String intCompTag) {
+		this.intCompTag = intCompTag;
 	}
 	public Integer getQuoteSeqNo() {
 		return quoteSeqNo;
@@ -404,8 +412,8 @@ public class QuotationGeneralInfo {
 				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
 				+ ", altWordings=" + altWordings + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
-				+ ", autoIntComp=" + autoIntComp + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", autoIntComp=" + autoIntComp + ", intCompTag=" + intCompTag + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

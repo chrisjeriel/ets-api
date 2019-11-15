@@ -338,6 +338,7 @@ public class QuoteDaoImpl implements QuoteDao{
 		sqlSession.update("copyQuoteEndorsements", params);
 		sqlSession.update("copyQuoteAlopInfo", params);
 		sqlSession.update("copyQuoteAlop", params);
+		sqlSession.update("copyQuoteAlopItem", params);
 		sqlSession.update("copyQuoteItems", params);
 		sqlSession.update("copyQuoteAttachments", params);
 		
