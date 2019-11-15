@@ -419,7 +419,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
 		rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
-		logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
+		//logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
 		
 		return rplResponse;
 	}
