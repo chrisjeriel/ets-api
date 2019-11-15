@@ -120,6 +120,10 @@
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lastAffectingPolId" 	column="LAST_AFFECTING_POL_ID"/>
 		
+		<result property="coTermTag" column="CO_TERM_TAG"/>
+		<result property="coTermText" column="CO_TERM_TEXT"/>
+		<result property="mbiPolicyId" column="MBI_POLICY_ID"/>
+		
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
@@ -1072,7 +1076,10 @@
 											   #{prjUpdateUser, jdbcType=VARCHAR},
 											   CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											   #{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR},
-											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR}
+											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},
+											   #{coTermTag,jdbcType=VARCHAR},
+												#{coTermText,jdbcType=VARCHAR},
+												#{mbiPolicyId,jdbcType=VARCHAR}
 			);
 			
 			<!-- POL_WORDINGS_PKG.save_pol_wordings(
@@ -2127,6 +2134,7 @@
 		<result property="cessionId"			column="CESSION_ID" /> 
 		<result property="cessionDesc"			column="CESSION_DESC" /> 
 		<result property="cedingId"				column="CEDING_ID" /> 
+		<result property="cedingAbbr"			column="CEDING_ABBR" /> 
 		<result property="cedingName"			column="CEDING_NAME" /> 
 		<result property="lineClassCd"			column="LINE_CLASS_CD" /> 
 		<result property="quoteId"				column="QUOTE_ID" /> 

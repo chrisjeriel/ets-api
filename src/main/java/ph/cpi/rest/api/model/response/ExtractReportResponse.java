@@ -1,17 +1,28 @@
 package ph.cpi.rest.api.model.response;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class UpdateQuoteStatusResponse {
-	
+public class ExtractReportResponse {
+
+
+	private Integer returnCode;
+	private Map<String, Object> params = new HashMap<String, Object>();
 	private List<Error> errorList = new ArrayList<Error>();
 	private List<Message> messageList = new ArrayList<Message>();
-	private Integer returnCode;
 	
+	
+	public Integer getReturnCode() {
+		return returnCode;
+	}
+	public void setReturnCode(Integer returnCode) {
+		this.returnCode = returnCode;
+	}
 	public List<Error> getErrorList() {
 		return errorList;
 	}
@@ -24,16 +35,16 @@ public class UpdateQuoteStatusResponse {
 	public void setMessageList(List<Message> messageList) {
 		this.messageList = messageList;
 	}
-	public Integer getReturnCode() {
-		return returnCode;
+	public Map<String, Object> getParams() {
+		return params;
 	}
-	public void setReturnCode(Integer returnCode) {
-		this.returnCode = returnCode;
+	public void setParams(Map<String, Object> params) {
+		this.params = params;
 	}
 	@Override
 	public String toString() {
-		return "UpdateQuoteStatusResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+		return "ExtractReportResponse [returnCode=" + returnCode + ", params=" + params + ", errorList=" + errorList
+				+ ", messageList=" + messageList + "]";
 	}
 	
 }

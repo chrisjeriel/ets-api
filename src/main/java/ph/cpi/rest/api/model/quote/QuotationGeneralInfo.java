@@ -55,6 +55,7 @@ public class QuotationGeneralInfo {
 	private String altWordings;
 	private String reasonCd;
 	private String reasonDesc;
+	private String autoIntComp;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -113,6 +114,13 @@ public class QuotationGeneralInfo {
 	}
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
+	}
+	
+	public String getAutoIntComp() {
+		return autoIntComp;
+	}
+	public void setAutoIntComp(String autoIntComp) {
+		this.autoIntComp = autoIntComp;
 	}
 	public Integer getCessionId() {
 		return cessionId;
@@ -396,7 +404,8 @@ public class QuotationGeneralInfo {
 				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
 				+ ", altWordings=" + altWordings + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", autoIntComp=" + autoIntComp + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
+	
 }

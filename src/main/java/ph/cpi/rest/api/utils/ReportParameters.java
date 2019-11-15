@@ -34,6 +34,8 @@ public class ReportParameters {
 		reportParams.put("p_report_id", grr.getReportId());
 		reportParams.put("pReportId", grr.getReportId());
 		
+		reportParams.put("reportId", grr.getReportName());
+		
 		reportParams.put("P_CEDING_ID", grr.getCedingId());
 		reportParams.put("p_ceding_id", grr.getCedingId());
 		reportParams.put("pCedingId", grr.getReportId());
@@ -45,6 +47,12 @@ public class ReportParameters {
 	
 	public static HashMap<String, Object> mapPOLR044AParams(POLR044 param) {
 		HashMap<String, Object> POLR044AParams = new HashMap<String, Object>();
+		
+		POLR044AParams.put("P_REPORT_ID", param.getReportId());
+		POLR044AParams.put("p_report_id", param.getReportId());
+		POLR044AParams.put("pReportId", param.getReportId());
+		POLR044AParams.put("reportId", param.getReportId());
+		
 		POLR044AParams.put("P_EXTRACT_USER", param.getExtractUser());
 		POLR044AParams.put("P_LINE_CD_PARAM", param.getLineCdParam());
 		POLR044AParams.put("P_CEDING_ID_PARAM", param.getCedingIdParam());

@@ -805,6 +805,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("blockCd" ,spgip.getBlockCd());
 			savePolGenInfoParams.put("latitude" ,spgip.getLatitude());
 			savePolGenInfoParams.put("longitude" ,spgip.getLongitude());
+			savePolGenInfoParams.put("coTermTag", spgip.getCoTermTag());
+			savePolGenInfoParams.put("coTermText", spgip.getCoTermText());
+			savePolGenInfoParams.put("mbiPolicyId", spgip.getMbiPolicyId());
 			
 			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
 			
@@ -1303,7 +1306,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			pprResponse.setReturnCode(underwritingDao.postPolicy(params));
 		}catch(SQLException ex){
-			
+			ex.printStackTrace();
 			if(ex.getErrorCode()== 20000){
 				pprResponse.setReturnCode(20000);
 				pprResponse.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));

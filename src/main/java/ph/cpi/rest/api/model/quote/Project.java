@@ -35,7 +35,7 @@ public class Project {
 	private String testing;
 	private Integer ipl;
 	private Integer timeExc;
-	private Integer noClaimPd;
+	private String noClaimPd;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -216,10 +216,10 @@ public class Project {
 	public void setTimeExc(Integer timeExc) {
 		this.timeExc = timeExc;
 	}
-	public Integer getNoClaimPd() {
+	public String getNoClaimPd() {
 		return noClaimPd;
 	}
-	public void setNoClaimPd(Integer noClaimPd) {
+	public void setNoClaimPd(String noClaimPd) {
 		this.noClaimPd = noClaimPd;
 	}
 	public String getCreateUser() {

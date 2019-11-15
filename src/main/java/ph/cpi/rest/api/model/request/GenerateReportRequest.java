@@ -6,7 +6,6 @@ public class GenerateReportRequest {
 	
 	private String reportName;
 	private String reportId;
-	private POLR044 polr044Params;
 	private Integer quoteId;
 	private Integer adviceNo;
 	private Integer holdCovId;
@@ -15,6 +14,9 @@ public class GenerateReportRequest {
 	private Integer reqId;
 	private String cedingId;
 	private String policyId;
+	
+	private POLR044 polr044Params;
+	
 	
 	public String getPolicyId() {
 		return policyId;
