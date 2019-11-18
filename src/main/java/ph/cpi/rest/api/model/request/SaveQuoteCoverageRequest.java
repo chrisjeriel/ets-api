@@ -149,6 +149,7 @@ class SectionCovers {
 	private String createDate ;
 	private String updateUser ;
 	private String updateDate ;
+	private String remarks;
 	
 	
 	public String getLineCd() {
@@ -218,12 +219,18 @@ class SectionCovers {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", coverName="
 				+ coverName + ", bulletNo=" + bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", remarks=" + remarks + "]";
 	}
 	
 }

@@ -318,7 +318,8 @@
 		<result property="exPremAmt" 				column="EX_PREM_AMT"/>
 		<result property="exDiscTag" 				column="EX_DISC_TAG"/>
 		<result property="cumSi" 					column="CUM_SI"/>
-		<result property="cumPrem" 					column="CUM_PREM"/>	
+		<result property="cumPrem" 					column="CUM_PREM"/>
+		<result property="remarks" 					column="SEC_REMARKS"/>
 		<result property="createUserSec" 			column="CREATE_USER_SEC"/>
 		<result property="createDateSec" 			column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUserSec" 			column="UPDATE_USER_SEC"/>
@@ -698,7 +699,8 @@
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{sectioncovers.remarks,jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="deleteDeductibleList" item="deductible">

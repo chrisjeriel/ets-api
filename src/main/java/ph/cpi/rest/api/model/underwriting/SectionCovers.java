@@ -31,6 +31,7 @@ public class SectionCovers {
 	private DateTime createDateSec;
 	private String updateUserSec;
 	private DateTime updateDateSec;
+	private String remarks;
 	
 	private List<Deductibles> deductiblesSec;
 	
@@ -181,6 +182,12 @@ public class SectionCovers {
 	public void setDeductiblesSec(List<Deductibles> deductiblesSec) {
 		this.deductiblesSec = deductiblesSec;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "SectionCovers [lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", section=" + section + ", coverCd="
@@ -189,7 +196,7 @@ public class SectionCovers {
 				+ ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag
 				+ ", exPremRt=" + exPremRt + ", exPremAmt=" + exPremAmt + ", exDiscTag=" + exDiscTag + ", cumSi="
 				+ cumSi + ", cumPrem=" + cumPrem + ", createUserSec=" + createUserSec + ", createDateSec="
-				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec
-				+ ", deductiblesSec=" + deductiblesSec + "]";
+				+ createDateSec + ", updateUserSec=" + updateUserSec + ", updateDateSec=" + updateDateSec + ", remarks="
+				+ remarks + ", deductiblesSec=" + deductiblesSec + "]";
 	}
 }
