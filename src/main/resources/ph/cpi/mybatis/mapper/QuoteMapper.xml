@@ -221,6 +221,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.Quotation" id="quotationListingMap">
 		<result property 	= "quotationNo"		column	= "QUOTE_NO"/>
+		<result property	= "holdCoverId"		column  = "HOLD_COV_ID"/>
 		<result property 	= "quoteId"			column	= "QUOTE_ID"/>
 		<result property 	= "cedingName"		column	= "CEDING_NAME"/>
 		<result property 	= "insuredDesc"		column	= "INSURED_DESC"/>
@@ -1148,7 +1149,7 @@
     </resultMap>  
     
     <select id="retrieveQuoteAlop" resultMap="RetQuotationMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(QU_ALOP_PKG.ret_qu_alop_test(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null))
+			SELECT * FROM TABLE(QU_ALOP_PKG.ret_qu_alop(#{quoteId, jdbcType=VARCHAR},#{quotationNo, jdbcType=VARCHAR},null,null,null,null))
     </select>
   
 	<update id="saveQuoteAttachmentMap" parameterType="java.util.Map" statementType="CALLABLE">
@@ -1785,6 +1786,32 @@
 			);
 		END;
 	</update>
+	
+	<update id="copyQuoteItems" parameterType="java.util.Map">
+		BEGIN
+			QUOTE_ITEM_PKG.copy_qu_item(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
+	<update id="copyQuoteAttachments" parameterType="java.util.Map">
+		BEGIN
+			QU_ATTACHMENT_PKG.copy_qu_attachment(				
+				#{newQuoteId, jdbcType=INTEGER},
+				#{quoteId, jdbcType=INTEGER},
+				#{createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
 	<!-- END COPY -->
 
 
@@ -1834,7 +1861,7 @@
 	</update>
 	
 	<update id="updatePolicyStatus" parameterType="java.util.Map"> <!-- DONT FORGET TO INCLUDE IN QU_PKG -->
-		BEGIN
+		BEGIN	
 			MTN_USERS_PKG.update_policy_status(
 				#{policyId,jdbcType=INTEGER},
 				#{status,jdbcType=VARCHAR},

@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultTax;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultWhTax;
+import ph.cpi.rest.api.model.maintenance.AcseInvSeries;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
@@ -34,6 +35,7 @@ import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BankLov;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
@@ -224,6 +226,7 @@ public interface MaintenanceDao {
 	public List<MtnClmEvent> retrieveMtnClmEventLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcitTranType> retrieveMtnAcitTranType(final HashMap<String, Object> params ) throws SQLException;
 	public List<Bank> retrieveMtnBank(final HashMap<String, Object> params) throws SQLException;
+	public List<BankLov> retrieveBankLov(final HashMap<String, Object> params) throws SQLException;
 	public List<BankAcct> retrieveMtnBankAcct(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDCBNo> retrieveMtnAcitDCBNo(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnAcitDCBNo(final HashMap<String, Object> params) throws SQLException;
@@ -298,4 +301,7 @@ public interface MaintenanceDao {
 	public List<AcseDefaultTax> retrieveAcseDefTax(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDefaultWhTax> retrieveAcseDefWhTax(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveAcseDefTax(final HashMap<String, Object> params) throws SQLException;
+	public List<PrintableNames> retrieveMtnUserLov(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcseInvSeries> retrieveAcseInvSeries(final HashMap<String, Object> params) throws SQLException;
 }

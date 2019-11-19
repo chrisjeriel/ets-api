@@ -10,8 +10,8 @@ public class SaveQuoteChangeQuoteStatusRequest {
 	
 	private String statusCd;
 	private String reasonCd;
-	private String user;
 	private List<ChangeQuoteStatus> changeQuoteStatus;
+	private String user;
 	
 	public List<ChangeQuoteStatus> getChangeQuoteStatus() {
 		return changeQuoteStatus;
@@ -37,15 +37,11 @@ public class SaveQuoteChangeQuoteStatusRequest {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	
 	@Override
 	public String toString() {
-		return "SaveQuoteChangeQuoteStatusRequest [statusCd=" + statusCd
-				+ ", reasonCd=" + reasonCd + ", user=" + user
-				+ ", changeQuoteStatus=" + changeQuoteStatus + "]";
+		return "SaveQuoteChangeQuoteStatusRequest [statusCd=" + statusCd + ", reasonCd=" + reasonCd
+				+ ", changeQuoteStatus=" + changeQuoteStatus + ", user=" + user + "]";
 	}
-
-	
 	
 }
 

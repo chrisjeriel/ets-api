@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
+import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -30,6 +32,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -45,6 +48,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
@@ -59,6 +63,8 @@ import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
+import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -73,6 +79,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
@@ -88,6 +95,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
@@ -430,5 +438,33 @@ public class AccountingServiceController {
 		return acctServService.saveAcseInvoice(request);
 	}
 	
+	@PostMapping(path="printAcseJv")
+	public @ResponseBody PrintAcseJvResponse printAcseJv(@RequestBody PrintAcseJvRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printAcseJv");
+		logger.info("PrintAcseJvRequest : " + request.toString());
+		return acctServService.printAcseJv(request);
+	}
 	
+	@PostMapping(path="generateBatchInvoiceNo")
+	public @ResponseBody GenerateBatchInvoiceNoResponse generateBatchInvoiceNo(@RequestBody GenerateBatchInvoiceNoRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/generateBatchInvoiceNo");
+		logger.info("GenerateBatchInvoiceNoRequest : " + request.toString());
+		return acctServService.generateBatchInvoiceNo(request);
+				
+	}
+	
+	@GetMapping(path="retrieveAcseInvoiceItems")
+	public @ResponseBody RetrieveAcseInvoiceItemsResponse retrieveAcseInvoiceItem(RetrieveAcseInvoiceItemsRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseInvoiceItems");
+		logger.info("RetrieveAcseInvoiceItemsRequest : " + request.toString());
+		return acctServService.retrieveAcseInvoiceItems(request);
+	}
+	
+	@PostMapping(path="saveAcseInvoiceItem")
+	public @ResponseBody SaveAcseInvoiceItemResponse saveAcseInvoiceItem(@RequestBody SaveAcseInvoiceItemRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseInvoiceItem");
+		logger.info("SaveAcseInvoiceItemRequest : " + request.toString());
+		return acctServService.saveAcseInvoiceItem(request);
+	}
+
 }

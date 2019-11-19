@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultTax;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultWhTax;
+import ph.cpi.rest.api.model.maintenance.AcseInvSeries;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
@@ -43,6 +44,7 @@ import ph.cpi.rest.api.model.maintenance.Approver;
 import ph.cpi.rest.api.model.maintenance.ApproverFn;
 import ph.cpi.rest.api.model.maintenance.Bank;
 import ph.cpi.rest.api.model.maintenance.BankAcct;
+import ph.cpi.rest.api.model.maintenance.BankLov;
 import ph.cpi.rest.api.model.maintenance.BookingMonth;
 import ph.cpi.rest.api.model.maintenance.BussType;
 import ph.cpi.rest.api.model.maintenance.CATPeril;
@@ -188,6 +190,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public List<SectionCovers> retrieveSectionCovers(HashMap<String, Object> params) throws SQLException {
+		logger.info("retrieveSectionCovers DAO: " + params);
 		List<SectionCovers> sectionCovers = sqlSession.selectList("retrieveMtnSectionCovers", params);
 		return sectionCovers;
 	}
@@ -945,6 +948,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<Bank> res = sqlSession.selectList("retMtnBank", params);
 		return res;
 	}
+	
+	@Override
+	public List<BankLov> retrieveBankLov(HashMap<String, Object> params) throws SQLException {
+		List<BankLov> res = sqlSession.selectList("retBankLov", params);
+		return res;
+	}
 
 	@Override
 	public List<BankAcct> retrieveMtnBankAcct(HashMap<String, Object> params) throws SQLException {
@@ -1418,5 +1427,25 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		Integer errorCode = sqlSession.update("saveAcseDefTax", params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public List<PrintableNames> retrieveMtnUserLov(HashMap<String, Object> params) throws SQLException {
+		List<PrintableNames> list = sqlSession.selectList("retrieveMtnUserLov", params);
+		return list;
+	}
+
+	@Override
+	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(HashMap<String, Object> params) throws SQLException {
+		List<MtnAcitTranType> list = sqlSession.selectList("retrieveMtnAcitTranTypeLov", params);
+		return list;
+	}
+
+	@Override
+	public List<AcseInvSeries> retrieveAcseInvSeries(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcseInvSeries> list = sqlSession.selectList("retrieveAcseInvSeries", params);
+		return list;
 	}
 }

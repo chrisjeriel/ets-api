@@ -713,7 +713,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("slTypeCd", racitcmdmlr.getSlTypeCd()) ;
 		params.put("slCd", racitcmdmlr.getSlCd()) ;
 		response.setList(acctITDao.retrieveAcitAcctEntries(params));
-		System.out.println(response);
+		System.out.println(response.getList());
 		return response;
 	}
 
@@ -2425,5 +2425,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		
 		return res;
+	}
+
+
+	@Override
+	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(
+			RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException {
+		RetrieveAcitEditedAcctEntriesResponse response = new RetrieveAcitEditedAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raeaer.getTranId());
+		response.setEditedAcctEntries(acctITDao.retrieveAcitEditedAcctEntries(params));
+		logger.info(response.toString());
+		return response;
 	}
 }

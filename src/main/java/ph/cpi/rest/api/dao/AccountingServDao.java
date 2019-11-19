@@ -16,6 +16,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcseOrServFee;
@@ -70,4 +71,8 @@ public interface AccountingServDao {
 	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseBatchInvoice> retrieveAcseBatchInvoice(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcseInvoice(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> printAcseJv(final HashMap<String,Object> params) throws SQLException;
+	public Integer generateBatchInvoiceNo(final HashMap<String,Object> params) throws SQLException;
+	public List<AcseInvoiceItems> retrieveAcseInvoiceItems(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseInvoiceItem(final HashMap<String, Object> params) throws SQLException;
 }

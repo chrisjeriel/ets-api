@@ -4145,4 +4145,26 @@
 		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_remittance(#{qsoaId, jdbcType=INTEGER}))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries" id="editAcctEntriesMap">
+		<result property="tranId"       column="TRAN_ID" />
+		<result property="tranClass"    column="TRAN_CLASS" />
+		<result property="tranTypeName" column="TRAN_TYPE_NAME" />
+		<result property="histNo"       column="HIST_NO" />
+		<result property="refNo"        column="REF_NO" />
+		<result property="tranDate"     column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="payee"        column="PAYEE" />
+		<result property="particulars"  column="PARTICULARS" />
+		<result property="currCd"       column="CURR_CD" />
+		<result property="amount"       column="AMOUNT" />
+		<result property="localAmt"     column="LOCAL_AMT" />
+		<result property="status"       column="STATUS" />
+		<result property="reason"       column="REASON" />
+		<result property="editedBy"     column="EDITOR" />
+		<result property="editDate"     column="EDIT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retEditAcctEntries" resultMap="editAcctEntriesMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
+	</select>
+	
 </mapper>

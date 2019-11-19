@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 public class Risk {
 	
 	private Integer riskId;
+	private String oldRiskId;
 	private String riskAbbr;
 	private String riskName;
 	private Integer regionCd;
@@ -28,6 +29,12 @@ public class Risk {
 	private String updateUser;
 	private DateTime updateDate;
 	
+	public String getOldRiskId() {
+		return oldRiskId;
+	}
+	public void setOldRiskId(String oldRiskId) {
+		this.oldRiskId = oldRiskId;
+	}
 	public Integer getRiskId() {
 		return riskId;
 	}
@@ -168,12 +175,12 @@ public class Risk {
 	}
 	@Override
 	public String toString() {
-		return "Risk [riskId=" + riskId + ", riskAbbr=" + riskAbbr + ", riskName=" + riskName + ", regionCd=" + regionCd
-				+ ", regionDesc=" + regionDesc + ", provinceCd=" + provinceCd + ", provinceDesc=" + provinceDesc
-				+ ", cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtCd=" + districtCd + ", districtDesc="
-				+ districtDesc + ", blockCd=" + blockCd + ", blockDesc=" + blockDesc + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", zoneCd=" + zoneCd + ", zoneDesc=" + zoneDesc + ", activeTag="
-				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Risk [riskId=" + riskId + ", oldRiskId=" + oldRiskId + ", riskAbbr=" + riskAbbr + ", riskName="
+				+ riskName + ", regionCd=" + regionCd + ", regionDesc=" + regionDesc + ", provinceCd=" + provinceCd
+				+ ", provinceDesc=" + provinceDesc + ", cityCd=" + cityCd + ", cityDesc=" + cityDesc + ", districtCd="
+				+ districtCd + ", districtDesc=" + districtDesc + ", blockCd=" + blockCd + ", blockDesc=" + blockDesc
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", zoneCd=" + zoneCd + ", zoneDesc="
+				+ zoneDesc + ", activeTag=" + activeTag + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

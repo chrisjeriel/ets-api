@@ -2,16 +2,18 @@ package ph.cpi.rest.api.model.request;
 
 public class SaveAcseInvoiceRequest {
 	
-	private String invoiceId;    
+	private String invoiceId; 
 	private String invoiceNo;
 	private String invoiceDate;
 	private String autoTag;
 	private String refNoTranId;
 	private String refNoDate;
 	private String tranTypeCd;
+	private String tranClass;
 	private String invoiceStat;
-	private String payee;
-	private String payeeNo;
+	private String payor;
+	private String payeeCd;
+	private String payeeClassCd;
 	private String particulars;
 	private String currCd;
 	private String currRate;
@@ -22,12 +24,6 @@ public class SaveAcseInvoiceRequest {
 	private String updateUser;
 	private String updateDate;
 	
-	public String getInvoiceDate() {
-		return invoiceDate;
-	}
-	public void setInvoiceDate(String invoiceDate) {
-		this.invoiceDate = invoiceDate;
-	}
 	public String getInvoiceId() {
 		return invoiceId;
 	}
@@ -39,6 +35,12 @@ public class SaveAcseInvoiceRequest {
 	}
 	public void setInvoiceNo(String invoiceNo) {
 		this.invoiceNo = invoiceNo;
+	}
+	public String getInvoiceDate() {
+		return invoiceDate;
+	}
+	public void setInvoiceDate(String invoiceDate) {
+		this.invoiceDate = invoiceDate;
 	}
 	public String getAutoTag() {
 		return autoTag;
@@ -64,23 +66,35 @@ public class SaveAcseInvoiceRequest {
 	public void setTranTypeCd(String tranTypeCd) {
 		this.tranTypeCd = tranTypeCd;
 	}
+	public String getTranClass() {
+		return tranClass;
+	}
+	public void setTranClass(String tranClass) {
+		this.tranClass = tranClass;
+	}
 	public String getInvoiceStat() {
 		return invoiceStat;
 	}
 	public void setInvoiceStat(String invoiceStat) {
 		this.invoiceStat = invoiceStat;
 	}
-	public String getPayee() {
-		return payee;
+	public String getPayor() {
+		return payor;
 	}
-	public void setPayee(String payee) {
-		this.payee = payee;
+	public void setPayor(String payor) {
+		this.payor = payor;
 	}
-	public String getPayeeNo() {
-		return payeeNo;
+	public String getPayeeCd() {
+		return payeeCd;
 	}
-	public void setPayeeNo(String payeeNo) {
-		this.payeeNo = payeeNo;
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
+	}
+	public String getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(String payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
 	}
 	public String getParticulars() {
 		return particulars;
@@ -143,12 +157,16 @@ public class SaveAcseInvoiceRequest {
 				+ ", invoiceNo=" + invoiceNo + ", invoiceDate=" + invoiceDate
 				+ ", autoTag=" + autoTag + ", refNoTranId=" + refNoTranId
 				+ ", refNoDate=" + refNoDate + ", tranTypeCd=" + tranTypeCd
-				+ ", invoiceStat=" + invoiceStat + ", payee=" + payee
-				+ ", payeeNo=" + payeeNo + ", particulars=" + particulars
-				+ ", currCd=" + currCd + ", currRate=" + currRate
+				+ ", tranClass=" + tranClass + ", invoiceStat=" + invoiceStat
+				+ ", payor=" + payor + ", payeeCd=" + payeeCd
+				+ ", payeeClassCd=" + payeeClassCd + ", particulars="
+				+ particulars + ", currCd=" + currCd + ", currRate=" + currRate
 				+ ", invoiceAmt=" + invoiceAmt + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ "]";
 	}
+
+	
+	
 }

@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcseOrServFee;
@@ -321,5 +322,36 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("saveAcseInvoice",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public HashMap<String, Object> printAcseJv(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("printAcseJv", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Integer generateBatchInvoiceNo(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer res = sqlSession.update("generateBatchInvoiceNo", params);
+		return res;
+	}
+
+	@Override
+	public List<AcseInvoiceItems> retrieveAcseInvoiceItems(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcseInvoiceItems> res = sqlSession.selectList("retrieveAcseInvoiceItems", params);
+		return res;
+	}
+
+	@Override
+	public Integer saveAcseInvoiceItem(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveAcseInvoiceItem",params);
+		return errorCode;
 	}
 }

@@ -833,4 +833,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitProfCommRequest : " + sapcr.toString());
 		return acctInTrustService.saveAcitProfComm(sapcr);
 	}
+	
+	@GetMapping(path="retrieveAcitEditedAcctEntries")
+	public @ResponseBody RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitEditedAcctEntries");
+		logger.info("RetrieveAcitEditedAcctEntriesRequest : " + raeaer.toString());
+		return acctInTrustService.retrieveAcitEditedAcctEntries(raeaer);
+	}
 }

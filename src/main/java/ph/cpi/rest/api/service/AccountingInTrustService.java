@@ -122,4 +122,5 @@ public interface AccountingInTrustService {
 	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException;
 	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException;
 	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException;
+	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException;
 }

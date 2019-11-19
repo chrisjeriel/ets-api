@@ -865,6 +865,7 @@ public class MaintenanceController {
 		logger.info("CopyClmCashCallRequest : " + cpmccr.toString());
 		return maintenanceService.copyMtnClmCashCall(cpmccr);
 	}
+	
 	@GetMapping(path="retrieveMtnAcitTranType")
 	public @ResponseBody RetrieveMtnAcitTranTypeResponse retrieveMtnAcitTranType(RetrieveMtnAcitTranTypeRequest rmattp) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranType");
@@ -877,6 +878,13 @@ public class MaintenanceController {
 		logger.info("GET: /api/maintenance-service/retrieveMtnBank");
 		logger.info("RetrieveMtnBankRequest : " + rmbr.toString());
 		return maintenanceService.retrieveMtnBank(rmbr);
+	}
+	
+	@GetMapping(path="retrieveBankLov")
+	public @ResponseBody RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveBankLov");
+		logger.info("RetrieveBankLovRequest : " + rmbr.toString());
+		return maintenanceService.retrieveBankLov(rmbr);
 	}
 	
 	@GetMapping(path="retrieveMtnBankAcct")
@@ -1376,7 +1384,7 @@ public class MaintenanceController {
 		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
 		return maintenanceService.saveAcseChartAcct(request);
 	}
-	
+
 	@GetMapping(path="retrieveAcseDefTax")
 	public @ResponseBody RetrieveMtnAcseDefTaxResponse retrieveAcseDefTax(RetrieveMtnAcseDefTaxRequest request) throws SQLException {
 		logger.info("POST: /api/maintenance-service/retrieveAcseDefTax");
@@ -1396,5 +1404,33 @@ public class MaintenanceController {
 		logger.info("POST: /api/maintenance-service/saveAcseDefTax");
 		logger.info("SaveMtnAcseChartAcctRequest : " + request.toString());
 		return maintenanceService.saveAcseDefTax(request);
+	}
+	
+	@GetMapping(path="retrieveMtnUserLov")
+	public @ResponseBody RetrieveMtnUserLovResponse retrieveMtnUserLov(RetrieveMtnUserLovRequest rmulr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnUserLov");
+		logger.info("RetrieveMtnUserLovRequest: " + rmulr.toString());
+		return maintenanceService.retrieveMtnUserLov(rmulr);
+	}
+	
+	@GetMapping(path="retrieveMtnAcitTranTypeLov")
+	public @ResponseBody RetrieveMtnAcitTranTypeLovResponse retrieveMtnAcitTranTypeLov(RetrieveMtnAcitTranTypeLovRequest rmtlr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitTranTypeLov");
+		logger.info("RetrieveMtnAcitTranTypeLovRequest : " + rmtlr.toString());
+		return maintenanceService.retrieveMtnAcitTranTypeLov(rmtlr);
+	}
+	
+	/*@GetMapping(path="retrieveMtnPrqTypeLov")
+	public @ResponseBody RetrieveMtnPrqTypeLovResponse retrieveMtnPrqTypeLov(RetrieveMtnPrqTypeLovRequest rmptlr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPrqTypeLov");
+		logger.info("RetrieveMtnPrqTypeLovRequest : " + rmtlr.toString());
+		return maintenanceService.retrieveMtnPrqTypeLov(rmtlr);
+	}*/
+	
+	@GetMapping(path="retrieveMtnAcseInvSeries")
+	public @ResponseBody RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcseInvSeries");
+		logger.info("RetrieveMtnAcseGenInvSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveMtnAcseInvSeries(request);
 	}
 }

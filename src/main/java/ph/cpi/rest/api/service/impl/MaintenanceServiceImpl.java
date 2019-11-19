@@ -505,6 +505,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> saveMtnRiskParams = new HashMap<String, Object>();
 		
 		saveMtnRiskParams.put("riskId", smrr.getRiskId());
+		saveMtnRiskParams.put("oldRiskId", smrr.getOldRiskId());
 		saveMtnRiskParams.put("riskAbbr", smrr.getRiskAbbr());
 		saveMtnRiskParams.put("riskName", smrr.getRiskName());
 		saveMtnRiskParams.put("regionCd", smrr.getRegionCd());
@@ -2081,6 +2082,18 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		res.setBankList(maintenanceDao.retrieveMtnBank(params));
 		return res;
 	}
+	
+	@Override
+	public RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException {
+		RetrieveBankLovResponse res = new RetrieveBankLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("bankCd", rmbr.getBankCd());
+		params.put("officialName", rmbr.getOfficialName());
+		params.put("activeTag", rmbr.getActiveTag());
+		params.put("dcbTag", rmbr.getDcbTag());
+		res.setBankLovList(maintenanceDao.retrieveBankLov(params));
+		return res;
+	}
 
 	@Override
 	public RetrieveMtnBankAcctResponse retrieveMtnBankAcct(RetrieveMtnBankAcctRequest rmbar) throws SQLException {
@@ -2666,6 +2679,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("orTo", request.getOrTo());
 		params.put("orFrom", request.getOrFrom());
 		params.put("usedTag", request.getUsedTag());
+		params.put("rowNum", request.getRowNum());
 		response.setOrSeries(maintenanceDao.retrieveAcseOrSeries(params));
 		return response;
 	}
@@ -3187,5 +3201,51 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrieveMtnUserLovResponse retrieveMtnUserLov(RetrieveMtnUserLovRequest rmulr) throws SQLException {
+		RetrieveMtnUserLovResponse response = new RetrieveMtnUserLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("searchStr", rmulr.getSearchStr());
+		
+		response.setUserList(maintenanceDao.retrieveMtnUserLov(params));
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcitTranTypeLovResponse retrieveMtnAcitTranTypeLov(RetrieveMtnAcitTranTypeLovRequest rmtlr)
+			throws SQLException {
+		RetrieveMtnAcitTranTypeLovResponse response =  new RetrieveMtnAcitTranTypeLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("searchStr", rmtlr.getSearchStr());
+		params.put("tranClass", rmtlr.getTranClass());
+		params.put("tranTypeCd", rmtlr.getTranTypeCd());
+		params.put("typePrefix", rmtlr.getTypePrefix());
+		params.put("autoTag", rmtlr.getAutoTag());
+		params.put("baeTag", rmtlr.getBaeTag());
+		params.put("activeTag", rmtlr.getActiveTag());
+		
+		response.setTranTypeList(maintenanceDao.retrieveMtnAcitTranTypeLov(params));
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(
+			RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnAcseGenInvSeriesResponse rmagisResponse = new RetrieveMtnAcseGenInvSeriesResponse();
+		HashMap<String, Object> rmagisParams = new HashMap<String, Object>();
+		rmagisParams.put("invFrom",request.getInvFrom());
+		rmagisParams.put("invTo", request.getInvTo());
+		rmagisParams.put("usedTag", request.getUsedTag());
+		rmagisParams.put("rowNum", request.getRowNum());
+		rmagisResponse.setInvSeries(maintenanceDao.retrieveAcseInvSeries(rmagisParams));
+		return rmagisResponse;
+	
 	}
 }

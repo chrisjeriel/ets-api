@@ -21,5 +21,7 @@ public interface StorageService {
 	 void deleteAll();
 
 	 Integer delete(String fileNames, String module, String refId);
+	 
+	 public String copy(String module, String refId, String newId);
 	
 }

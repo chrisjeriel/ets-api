@@ -24,6 +24,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
@@ -218,4 +219,5 @@ public interface AccountingInTrustDao {
 	public List<QSOAAcctReceivable> retrieveQSOAAcctReceivable(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOARemittance> retrieveQSOARemittance(final HashMap<String, Object> params) throws SQLException;
 	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
+	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
 }

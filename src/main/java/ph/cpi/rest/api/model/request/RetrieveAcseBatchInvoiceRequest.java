@@ -2,41 +2,56 @@ package ph.cpi.rest.api.model.request;
 
 public class RetrieveAcseBatchInvoiceRequest {
 	
-	private String jvDateFrom;
-	private String jvDateTo;
-	private String jvNo;
-	private String jvTypeCd;
+	private String tranDateFrom;
+	private String tranDateTo;
+	private String tranNo;
+	private String tranTypeCd;
+	private String tranClass;
+	private String invoiceId;
 	
-	public String getJvDateFrom() {
-		return jvDateFrom;
+	public String getInvoiceId() {
+		return invoiceId;
 	}
-	public void setJvDateFrom(String jvDateFrom) {
-		this.jvDateFrom = jvDateFrom;
+	public void setInvoiceId(String invoiceId) {
+		this.invoiceId = invoiceId;
 	}
-	public String getJvDateTo() {
-		return jvDateTo;
+	public String getTranDateFrom() {
+		return tranDateFrom;
 	}
-	public void setJvDateTo(String jvDateTo) {
-		this.jvDateTo = jvDateTo;
+	public void setTranDateFrom(String tranDateFrom) {
+		this.tranDateFrom = tranDateFrom;
 	}
-	public String getJvNo() {
-		return jvNo;
+	public String getTranDateTo() {
+		return tranDateTo;
 	}
-	public void setJvNo(String jvNo) {
-		this.jvNo = jvNo;
+	public void setTranDateTo(String tranDateTo) {
+		this.tranDateTo = tranDateTo;
 	}
-	public String getJvTypeCd() {
-		return jvTypeCd;
+	public String getTranNo() {
+		return tranNo;
 	}
-	public void setJvTypeCd(String jvTypeCd) {
-		this.jvTypeCd = jvTypeCd;
+	public void setTranNo(String tranNo) {
+		this.tranNo = tranNo;
+	}
+	public String getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(String tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
+	}
+	public String getTranClass() {
+		return tranClass;
+	}
+	public void setTranClass(String tranClass) {
+		this.tranClass = tranClass;
 	}
 	
 	@Override
 	public String toString() {
-		return "RetrieveAcseBatchInvoiceRequest [jvDateFrom=" + jvDateFrom
-				+ ", jvDateTo=" + jvDateTo + ", jvNo=" + jvNo + ", jvTypeCd="
-				+ jvTypeCd + "]";
+		return "RetrieveAcseBatchInvoiceRequest [tranDateFrom=" + tranDateFrom
+				+ ", tranDateTo=" + tranDateTo + ", tranNo=" + tranNo
+				+ ", tranTypeCd=" + tranTypeCd + ", tranClass=" + tranClass
+				+ ", invoiceId=" + invoiceId + "]";
 	}
-
+	
 }

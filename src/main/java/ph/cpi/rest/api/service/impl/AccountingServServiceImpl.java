@@ -13,6 +13,8 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
+import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -27,6 +29,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrEntryRequest;
@@ -42,6 +45,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
@@ -56,6 +60,8 @@ import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
+import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -70,6 +76,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrEntryResponse;
@@ -85,6 +92,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
@@ -615,6 +623,8 @@ public class AccountingServServiceImpl implements AccountingServService{
 		SaveAcseAcctEntriesResponse response = new SaveAcseAcctEntriesResponse();
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("forApproval", request.getForApproval());
 			params.put("saveList", request.getSaveList());
 			params.put("delList", request.getDelList());
 			HashMap<String, Object> res = acctServDao.saveAcctEntries(params);
@@ -973,10 +983,12 @@ public class AccountingServServiceImpl implements AccountingServService{
 		RetrieveAcseBatchInvoiceResponse response = new RetrieveAcseBatchInvoiceResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		
-		params.put("jvDateFrom", request.getJvDateFrom());
-		params.put("jvDateTo", request.getJvDateTo());
-		params.put("jvNo", request.getJvNo());
-		params.put("jvTypeCd", request.getJvTypeCd());
+		params.put("tranDateFrom", request.getTranDateFrom());
+		params.put("tranDateTo", request.getTranDateTo());
+		params.put("tranNo", request.getTranNo());
+		params.put("tranTypeCd", request.getTranTypeCd());
+		params.put("tranClass", request.getTranClass());
+		params.put("invoiceId", request.getInvoiceId());
 		response.setBatchInvoiceList(acctServDao.retrieveAcseBatchInvoice(params));
 		return response;
 	}
@@ -996,8 +1008,10 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("refNoDate" , request.getRefNoDate());
 			params.put("tranTypeCd" , request.getTranTypeCd());
 			params.put("invoiceStat" , request.getInvoiceStat());
-			params.put("payee" , request.getPayee());
-			params.put("payeeNo" , request.getPayeeNo());
+			params.put("tranClass" , request.getTranClass());
+			params.put("payor" , request.getPayor());
+			params.put("payeeCd" , request.getPayeeCd());
+			params.put("payeeClassCd" , request.getPayeeClassCd());
 			params.put("particulars" , request.getParticulars());
 			params.put("currCd" , request.getCurrCd());
 			params.put("currRate" , request.getCurrRate());
@@ -1013,6 +1027,82 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			exc.printStackTrace();
+		}
+		return response;
+    }
+		
+	public PrintAcseJvResponse printAcseJv(PrintAcseJvRequest request) throws SQLException {
+		PrintAcseJvResponse response = new PrintAcseJvResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("jvNo", request.getJvNo());
+			params.put("jvYear", request.getJvYear());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = acctServDao.printAcseJv(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateBatchInvoiceNoResponse generateBatchInvoiceNo(
+			GenerateBatchInvoiceNoRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		GenerateBatchInvoiceNoResponse response = new GenerateBatchInvoiceNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("invoiceNoList", request.getInvoiceNoList());
+		try{
+			response.setReturnCode(acctServDao.generateBatchInvoiceNo(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to generate Invoice No. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to generate Invoice No. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseInvoiceItemsResponse retrieveAcseInvoiceItems(
+			RetrieveAcseInvoiceItemsRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveAcseInvoiceItemsResponse response = new RetrieveAcseInvoiceItemsResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("invoiceId", request.getInvoiceId());
+		response.setInvoiceItemList(acctServDao.retrieveAcseInvoiceItems(params));
+		return response;
+	}
+
+	@Override
+	public SaveAcseInvoiceItemResponse saveAcseInvoiceItem(
+			SaveAcseInvoiceItemRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveAcseInvoiceItemResponse response = new SaveAcseInvoiceItemResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("invoiceItemList", request.getInvoiceItemList());
+		try{
+			response.setReturnCode(acctServDao.saveAcseInvoiceItem(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to generate Invoice Item. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to generate Invoice Item. Check fields."));
+			ex.printStackTrace();
 		}
 		return response;
 	}

@@ -13,11 +13,13 @@ public class AcseBatchInvoice {
 	private String invoiceStatDesc;
 	private Integer refNoTranId;
 	private DateTime refNoDate;
-	private String jvNo;
-	private DateTime jvDate;
-	private String jvYear;
-	private String payee;
-	private String payeeNo;
+	private String tranClass;
+	private String tranNo;
+	private DateTime tranDate;
+	private String tranYear;
+	private String payor;
+	private String payeeCd;
+	private String payeeClassCd;
 	private String particulars;
 	private String tranTypeCd;
 	private String currCd;
@@ -29,26 +31,6 @@ public class AcseBatchInvoice {
 	private String updateUser;
 	private DateTime updateDate;
 	private String autoTag;
-	
-	public String getAutoTag() {
-		return autoTag;
-	}
-	public void setAutoTag(String autoTag) {
-		this.autoTag = autoTag;
-	}
-	public String getJvYear() {
-		return jvYear;
-	}
-	public void setJvYear(String jvYear) {
-		this.jvYear = jvYear;
-	}
-
-	public String getCurrCd() {
-		return currCd;
-	}
-	public void setCurrCd(String currCd) {
-		this.currCd = currCd;
-	}
 	
 	public Integer getInvoiceId() {
 		return invoiceId;
@@ -92,29 +74,47 @@ public class AcseBatchInvoice {
 	public void setRefNoDate(DateTime refNoDate) {
 		this.refNoDate = refNoDate;
 	}
-	public String getJvNo() {
-		return jvNo;
+	public String getTranClass() {
+		return tranClass;
 	}
-	public void setJvNo(String jvNo) {
-		this.jvNo = jvNo;
+	public void setTranClass(String tranClass) {
+		this.tranClass = tranClass;
 	}
-	public DateTime getJvDate() {
-		return jvDate;
+	public String getTranNo() {
+		return tranNo;
 	}
-	public void setJvDate(DateTime jvDate) {
-		this.jvDate = jvDate;
+	public void setTranNo(String tranNo) {
+		this.tranNo = tranNo;
 	}
-	public String getPayee() {
-		return payee;
+	public DateTime getTranDate() {
+		return tranDate;
 	}
-	public void setPayee(String payee) {
-		this.payee = payee;
+	public void setTranDate(DateTime tranDate) {
+		this.tranDate = tranDate;
 	}
-	public String getPayeeNo() {
-		return payeeNo;
+	public String getTranYear() {
+		return tranYear;
 	}
-	public void setPayeeNo(String payeeNo) {
-		this.payeeNo = payeeNo;
+	public void setTranYear(String tranYear) {
+		this.tranYear = tranYear;
+	}
+	public String getPayor() {
+		return payor;
+	}
+	public void setPayor(String payor) {
+		this.payor = payor;
+	}
+	public String getPayeeCd() {
+		return payeeCd;
+	}
+	public void setPayeeCd(String payeeCd) {
+		this.payeeCd = payeeCd;
+	}
+	public String getPayeeClassCd() {
+		return payeeClassCd;
+	}
+	public void setPayeeClassCd(String payeeClassCd) {
+		this.payeeClassCd = payeeClassCd;
 	}
 	public String getParticulars() {
 		return particulars;
@@ -127,6 +127,12 @@ public class AcseBatchInvoice {
 	}
 	public void setTranTypeCd(String tranTypeCd) {
 		this.tranTypeCd = tranTypeCd;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
 	}
 	public BigDecimal getCurrRate() {
 		return currRate;
@@ -170,6 +176,12 @@ public class AcseBatchInvoice {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getAutoTag() {
+		return autoTag;
+	}
+	public void setAutoTag(String autoTag) {
+		this.autoTag = autoTag;
+	}
 	
 	@Override
 	public String toString() {
@@ -177,14 +189,16 @@ public class AcseBatchInvoice {
 				+ invoiceNo + ", invoiceDate=" + invoiceDate + ", invoiceStat="
 				+ invoiceStat + ", invoiceStatDesc=" + invoiceStatDesc
 				+ ", refNoTranId=" + refNoTranId + ", refNoDate=" + refNoDate
-				+ ", jvNo=" + jvNo + ", jvDate=" + jvDate + ", jvYear="
-				+ jvYear + ", payee=" + payee + ", payeeNo=" + payeeNo
-				+ ", particulars=" + particulars + ", tranTypeCd=" + tranTypeCd
-				+ ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", invoiceAmt=" + invoiceAmt + ", localAmt=" + localAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", autoTag=" + autoTag + "]";
+				+ ", tranClass=" + tranClass + ", tranNo=" + tranNo
+				+ ", tranDate=" + tranDate + ", tranYear=" + tranYear
+				+ ", payor=" + payor + ", payeeCd=" + payeeCd
+				+ ", payeeClassCd=" + payeeClassCd + ", particulars="
+				+ particulars + ", tranTypeCd=" + tranTypeCd + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", invoiceAmt="
+				+ invoiceAmt + ", localAmt=" + localAmt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", autoTag="
+				+ autoTag + "]";
 	}
 
 }

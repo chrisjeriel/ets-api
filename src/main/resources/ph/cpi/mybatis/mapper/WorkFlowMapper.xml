@@ -44,7 +44,6 @@
     <update id="saveReminders" parameterType="java.util.Map" statementType="CALLABLE">
     	BEGIN
 			<foreach collection="reminderList" item="reminder">
-			BEGIN
 		    	WFM_REMINDERS_PKG.save_reminders(
 												   #{reminder.reminderId, jdbcType=INTEGER},
 												   #{reminder.title, jdbcType=VARCHAR},
@@ -61,7 +60,10 @@
 												   #{reminder.createUser, jdbcType=VARCHAR},
 												   #{reminder.updateUser, jdbcType=VARCHAR}									  
 				);
-			END;
+			</foreach>
+			
+			<foreach collection="delReminderList" item="delRem">
+				WFM_REMINDERS_PKG.del_reminders(#{delRem.reminderId, jdbcType=INTEGER});
 			</foreach>
 		END;
 	</update>
@@ -115,7 +117,7 @@
      <update id="saveNotes" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			<foreach collection="noteList" item="note">
-			BEGIN
+			<!-- BEGIN -->
 		    	WFM_NOTES_PKG.save_notes(
 											   #{note.noteId, jdbcType=INTEGER},
 											   #{note.title, jdbcType=VARCHAR},
@@ -130,7 +132,11 @@
 											   #{note.createUser, jdbcType=VARCHAR},
 											   #{note.updateUser, jdbcType=VARCHAR}
 				);
-			END;
+			<!-- END; -->
+			</foreach>
+			
+			<foreach collection="delNoteList" item="delNote">
+				WFM_NOTES_PKG.del_notes(#{delNote.noteId, jdbcType=INTEGER});
 			</foreach>
 		END;
 	</update>

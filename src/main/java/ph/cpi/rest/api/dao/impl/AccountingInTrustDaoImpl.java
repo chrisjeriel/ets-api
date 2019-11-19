@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.AcitInvestments;
@@ -1031,5 +1032,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer updateSoaCv(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("updateSoaCv", params);
 		return errorCode;
+	}
+
+	@Override
+	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries(HashMap<String, Object> params) throws SQLException {
+		AcitEditedAcctEntries res = sqlSession.selectOne("retEditAcctEntries", params);
+		return res;
 	}
 }
