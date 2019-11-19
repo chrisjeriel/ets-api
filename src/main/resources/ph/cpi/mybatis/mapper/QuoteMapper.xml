@@ -1195,7 +1195,7 @@
 		</foreach>
 		<foreach collection="saveAlopItemsList" item="alopItem">
 		    	QU_ALOP_ITM_PKG.save_qu_alop_itm
-		    	(#{quoteId},#{alopItem.optionId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+		    	(#{quoteId},#{alopItem.optionId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity, jdbcType=VARCHAR},
 		    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 		    	#{alopItem.createUserItem},
 		    	CAST(to_timestamp(#{alopItem.createDateItem}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
