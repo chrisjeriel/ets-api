@@ -5183,4 +5183,18 @@
 																			  '','','',''))
 	</select>
 
+	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseInvSeries" id="invSeriesMap">
+        <result property="invoiceNo" 	column="INVOICE_NO"/>
+		<result property="invoiceId" 	column="INVOICE_ID"/>
+		<result property="usedTag" 		column="USED_TAG"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
+     
+     <select id="retrieveAcseInvSeries" resultMap="invSeriesMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_inv_series(#{invFrom,jdbcType=VARCHAR},#{invTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR},#{rowNum,jdbcType=VARCHAR}))
+     </select>
+	
 </mapper>

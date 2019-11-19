@@ -51,5 +51,10 @@ public interface AccountingServService {
 	public RetrieveAcseChangeToNewCVResponse retrieveAcseChangeToNewCV (RetrieveAcseChangeToNewCVRequest request) throws SQLException;
 	public RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV (RetrieveAcseChangeToNewJVRequest request) throws SQLException;
 	public RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran (RetrieveAcseCancelTransactionRequest request) throws SQLException;
+	public RetrieveAcseBatchInvoiceResponse retrieveAcseBatchInvoice (RetrieveAcseBatchInvoiceRequest request) throws SQLException;
+	public SaveAcseInvoiceResponse saveAcseInvoice(SaveAcseInvoiceRequest request)throws SQLException;
 	public PrintAcseJvResponse printAcseJv (PrintAcseJvRequest request) throws SQLException;
+	public GenerateBatchInvoiceNoResponse generateBatchInvoiceNo (GenerateBatchInvoiceNoRequest request) throws SQLException;
+	public RetrieveAcseInvoiceItemsResponse retrieveAcseInvoiceItems (RetrieveAcseInvoiceItemsRequest request) throws SQLException;
+	public SaveAcseInvoiceItemResponse saveAcseInvoiceItem(SaveAcseInvoiceItemRequest request)throws SQLException;
 }

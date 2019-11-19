@@ -3234,4 +3234,19 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		return response;
 	}
+
+	@Override
+	public RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(
+			RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		RetrieveMtnAcseGenInvSeriesResponse rmagisResponse = new RetrieveMtnAcseGenInvSeriesResponse();
+		HashMap<String, Object> rmagisParams = new HashMap<String, Object>();
+		rmagisParams.put("invFrom",request.getInvFrom());
+		rmagisParams.put("invTo", request.getInvTo());
+		rmagisParams.put("usedTag", request.getUsedTag());
+		rmagisParams.put("rowNum", request.getRowNum());
+		rmagisResponse.setInvSeries(maintenanceDao.retrieveAcseInvSeries(rmagisParams));
+		return rmagisResponse;
+	
+	}
 }

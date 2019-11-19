@@ -469,7 +469,7 @@
 													#{updateUserJv}, 
 													CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 												  );
-				#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;	
+				#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;							  
 		END;
 	</update>
 	
@@ -534,7 +534,6 @@
 	<update id="saveAcseOrTransDtl" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_item_no		NUMBER;
-			v_message		VARCHAR2(500);
 		BEGIN
 		
 			<!-- Save in ACSE_OR_TRANSUMM -->
@@ -731,7 +730,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcctEntries" resultMap="acctEntryMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId, jdbcType=VARCHAR},#{glAcctId, jdbcType=VARCHAR},#{slTypeCd, jdbcType=VARCHAR},#{slCd, jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(ACSE_ACCT_ENTRIES_PKG.ret_acse_acc_entries(#{tranId},#{entryId},#{glAcctId},#{slTypeCd},#{slCd}))
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseCv" id="acseCvMap">
@@ -867,10 +866,6 @@
 					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
-			
-			IF #{forApproval, jdbcType=VARCHAR} IS NOT NULL THEN
-				ACSE_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId, jdbcType=VARCHAR},#{forApproval, jdbcType=VARCHAR});
-			END IF;
 		END;
 	</update>
 	
@@ -1067,12 +1062,6 @@
 					);
 				</foreach>
 			</foreach>
-			
-			<!-- Generate Tax Details -->
-		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
-		    
-		    <!-- Generate Accounting Entries -->
-		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 		END;
 	</update>
 	
@@ -1369,14 +1358,127 @@
 																	CAST(to_timestamp(#{cancelTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),NULL,NULL,NULL,NULL))
 	</select>
 	
-	<update id="printAcseJv" parameterType="java.util.Map">
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice" id="acseBatchInvoiceMap">
+		<result property="invoiceId"            column="INVOICE_ID" />
+		<result property="invoiceNo"           	column="INVOICE_NO" />
+		<result property="invoiceDate"         	column="INVOICE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="invoiceStat"          column="INVOICE_STAT" />
+		<result property="invoiceStatDesc"      column="INVOICE_DESC" />
+		<result property="refNoTranId"          column="REFNO_TRAN_ID" />
+		<result property="refNoDate"            column="REFNO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranClass"            column="TRAN_CLASS" />
+		<result property="tranNo"         		column="TRAN_NO" />
+		<result property="tranDate"             column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranYear"             column="TRAN_YEAR" />
+		<result property="payor"           		column="PAYOR" />
+		<result property="payeeClassCd"         column="PAYEE_CLASS_CD" />
+		<result property="payeeCd"         		column="PAYEE_CD" />
+		<result property="particulars"          column="PARTICULARS" />
+		<result property="tranTypeCd"           column="TRAN_TYPE_CD" />
+		<result property="currCd"             	column="CURR_CD" />
+		<result property="currRate"             column="CURR_RATE" />
+	    <result property="invoiceAmt"           column="INVOICE_AMT" />
+		<result property="localAmt"             column="LOCAL_AMT" />
+		<result property="createUser"           column="CREATE_USER" />
+		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"           column="UPDATE_USER" />
+		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="autoTag"           	column="AUTO_TAG" />
+	</resultMap>
+	
+	<select id="retrieveAcseBatchInvoice" resultMap="acseBatchInvoiceMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_BATCH_INVOICE_PKG.ret_acse_batch_invoice(CAST(to_timestamp(#{tranDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																CAST(to_timestamp(#{tranDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{tranNo, jdbcType=VARCHAR},
+																#{tranTypeCd, jdbcType=VARCHAR},
+																#{tranClass, jdbcType=VARCHAR},
+																#{invoiceId, jdbcType=VARCHAR},
+																'',
+																'',
+																'',
+																''))
+	</select>
+	
+	<update id="saveAcseInvoice" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			ACSE_JOURNAL_VOUCHER_PKG.print_jv(#{tranId},
-										      #{jvYear},
-										      #{jvNo},
-											  #{updateUser},
-											  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(#{invoiceId, jdbcType=VARCHAR}, 
+													#{invoiceNo, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{invoiceDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{autoTag, jdbcType=VARCHAR}, 
+													#{refNoTranId, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{refNoDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{tranTypeCd, jdbcType=VARCHAR}, 
+													#{tranClass, jdbcType=VARCHAR}, 
+													#{invoiceStat, jdbcType=VARCHAR}, 
+													#{payeeClassCd, jdbcType=VARCHAR}, 
+													#{payor, jdbcType=VARCHAR}, 
+													#{payeeCd, jdbcType=VARCHAR},
+													#{particulars, jdbcType=VARCHAR},
+													#{currCd, jdbcType=VARCHAR},
+													#{currRate, jdbcType=VARCHAR},
+													#{invoiceAmt, jdbcType=VARCHAR},
+													#{localAmt, jdbcType=VARCHAR},
+													#{createUser, jdbcType=VARCHAR},
+													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+													#{updateUser, jdbcType=VARCHAR}, 
+													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)  
+												  );					  
+		END;
+	</update>
+	
+	<update id="generateBatchInvoiceNo" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="invoiceNoList" item="list">
+				ACSE_BATCH_INVOICE_PKG.gen_acse_invoice_no(#{list.invoiceId,jdbcType=VARCHAR},#{list.invoiceNo, jdbcType=VARCHAR},#{list.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{list.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems" id="acseInvoiceItemMap">
+		<result property="invoiceId"            column="INVOICE_ID" />
+		<result property="itemNo"           	column="ITEM_NO" />
+		<result property="itemDesc"      		column="ITEM_DESC" />
+		<result property="currCd"             	column="CURR_CD" />
+		<result property="currRate"             column="CURR_RATE" />
+	    <result property="itemAmt"           	column="ITEM_AMT" />
+		<result property="localAmt"             column="LOCAL_AMT" />
+		<result property="createUser"           column="CREATE_USER" />
+		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"           column="UPDATE_USER" />
+		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcseInvoiceItems" resultMap="acseInvoiceItemMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_BATCH_INVOICE_PKG.ret_acse_inv_item(
+																#{invoiceId, jdbcType=VARCHAR},
+																'',
+																'',
+																'',
+																''))
+	</select>
+	
+	<update id="saveAcseInvoiceItem" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="invoiceDelItemList" item="list">
+				ACSE_BATCH_INVOICE_PKG.del_acse_inv_item(#{list.invoiceId,jdbcType=VARCHAR},
+				#{list.itemNo, jdbcType=VARCHAR});
+			</foreach>
 			
+		 	<foreach collection="invoiceItemList" item="list">
+				ACSE_BATCH_INVOICE_PKG.save_acse_inv_item(#{list.invoiceId,jdbcType=VARCHAR},
+				#{list.itemNo, jdbcType=VARCHAR},
+				#{list.itemDesc, jdbcType=VARCHAR},
+				#{list.currCd, jdbcType=VARCHAR},
+				#{list.currRate, jdbcType=VARCHAR},
+				#{list.itemAmt, jdbcType=VARCHAR},
+				#{list.localAmt, jdbcType=VARCHAR},
+				#{list.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{list.createDate,  jdbcType=VARCHAR}, 
+				'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{list.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{list.updateDate,  jdbcType=VARCHAR}, 
+				'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
 		END;
 	</update>
         

@@ -207,4 +207,5 @@ public interface MaintenanceService {
 	public SaveMtnAcseDefTaxResponse saveAcseDefTax (SaveMtnAcseDefTaxRequest request) throws SQLException;
 	public RetrieveMtnUserLovResponse retrieveMtnUserLov(RetrieveMtnUserLovRequest rmulr) throws SQLException;
 	public RetrieveMtnAcitTranTypeLovResponse retrieveMtnAcitTranTypeLov(RetrieveMtnAcitTranTypeLovRequest rmtlr) throws SQLException;
+	public RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException;
 }
