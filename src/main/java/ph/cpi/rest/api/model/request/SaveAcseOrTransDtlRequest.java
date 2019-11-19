@@ -255,6 +255,7 @@ class SaveOrItemTaxes{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String genType;
 	public String getTranId() {
 		return tranId;
 	}
@@ -321,11 +322,17 @@ class SaveOrItemTaxes{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getGenType() {
+		return genType;
+	}
+	public void setGenType(String genType) {
+		this.genType = genType;
+	}
 	@Override
 	public String toString() {
 		return "SaveOrItemTaxes [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType="
 				+ taxType + ", taxCd=" + taxCd + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", genType=" + genType + "]";
 	}
 }

@@ -13,8 +13,12 @@ public class SaveAcseOrServFeeRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
 	private List<ServFeeOr> saveServFee;
 	private List<ServFeeOr> delServFee;
+	
+	private List<saveOrItemTaxesServFee> delOrItemTaxes;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -75,12 +79,18 @@ public class SaveAcseOrServFeeRequest {
 	public void setDelServFee(List<ServFeeOr> delServFee) {
 		this.delServFee = delServFee;
 	}
+	public List<saveOrItemTaxesServFee> getDelOrItemTaxes() {
+		return delOrItemTaxes;
+	}
+	public void setDelOrItemTaxes(List<saveOrItemTaxesServFee> delOrItemTaxes) {
+		this.delOrItemTaxes = delOrItemTaxes;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseOrServFeeRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
 				+ ", totalLocalAmt=" + totalLocalAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveServFee=" + saveServFee
-				+ ", delServFee=" + delServFee + "]";
+				+ ", delServFee=" + delServFee + ", delOrItemTaxes=" + delOrItemTaxes + "]";
 	}
 	
 }
@@ -100,6 +110,9 @@ class ServFeeOr{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	private List<saveOrItemTaxesServFee> taxAllocation;
+	
 	public String getTranId() {
 		return tranId;
 	}
@@ -172,11 +185,113 @@ class ServFeeOr{
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<saveOrItemTaxesServFee> getTaxAllocation() {
+		return taxAllocation;
+	}
+	public void setTaxAllocation(List<saveOrItemTaxesServFee> taxAllocation) {
+		this.taxAllocation = taxAllocation;
+	}
 	@Override
 	public String toString() {
 		return "ServFeeOr [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", servFeeAmt=" + servFeeAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation
+				+ "]";
+	}
+}
+
+@Alias("saveOrItemTaxesServFee")
+class saveOrItemTaxesServFee{
+	private String tranId;
+	private String billId;
+	private String itemNo;
+	private String taxType;
+	private String taxCd;
+	private String taxRate;
+	private String taxAmt;
+	private String createUser;
+	private String createDate;
+	private String updateUser;
+	private String updateDate;
+	private String genType;
+	public String getTranId() {
+		return tranId;
+	}
+	public void setTranId(String tranId) {
+		this.tranId = tranId;
+	}
+	public String getBillId() {
+		return billId;
+	}
+	public void setBillId(String billId) {
+		this.billId = billId;
+	}
+	public String getItemNo() {
+		return itemNo;
+	}
+	public void setItemNo(String itemNo) {
+		this.itemNo = itemNo;
+	}
+	public String getTaxType() {
+		return taxType;
+	}
+	public void setTaxType(String taxType) {
+		this.taxType = taxType;
+	}
+	public String getTaxCd() {
+		return taxCd;
+	}
+	public void setTaxCd(String taxCd) {
+		this.taxCd = taxCd;
+	}
+	public String getTaxRate() {
+		return taxRate;
+	}
+	public void setTaxRate(String taxRate) {
+		this.taxRate = taxRate;
+	}
+	public String getTaxAmt() {
+		return taxAmt;
+	}
+	public void setTaxAmt(String taxAmt) {
+		this.taxAmt = taxAmt;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	public String getGenType() {
+		return genType;
+	}
+	public void setGenType(String genType) {
+		this.genType = genType;
+	}
+	@Override
+	public String toString() {
+		return "saveOrItemTaxesServFee [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType="
+				+ taxType + ", taxCd=" + taxCd + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", genType=" + genType + "]";
 	}
 }

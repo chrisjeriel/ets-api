@@ -17,6 +17,7 @@ public class OrItemTaxes {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String genType;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -89,12 +90,18 @@ public class OrItemTaxes {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getGenType() {
+		return genType;
+	}
+	public void setGenType(String genType) {
+		this.genType = genType;
+	}
 	@Override
 	public String toString() {
 		return "OrItemTaxes [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType=" + taxType
 				+ ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", genType=" + genType + "]";
 	}
 	
 }
