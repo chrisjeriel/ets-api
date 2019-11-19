@@ -382,6 +382,7 @@
 		<result property="createDate"	column="TX_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"	column="TX_UPDATE_USER" />
 		<result property="updateDate"	column="TX_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="genType"		column="TX_GEN_TYPE" />
 	</resultMap>
 	
 	<select id="retOrTransDtl" resultMap="acseOrTransDtlMap" parameterType="java.util.Map">
@@ -599,7 +600,8 @@
 																#{save.createUser},
 																CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{save.updateUser},
-																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{saveTaxes.genType}
 					);
 				</foreach>
 			</foreach>
@@ -607,13 +609,13 @@
 			<!-- Generate Tax Details -->
 		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
 		    
-		    ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
+		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
 													#{billId},
 													#{createUser},
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser},
-													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
-		    
+													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
+		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    <!-- Generate Accounting Entries -->
 		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 			END;
@@ -992,6 +994,7 @@
 		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"           column="UPDATE_USER" />
 		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<association property="taxAllocation" resultMap="taxAllocAssoc" />
 	</resultMap>
 	
 	<select id="retAcseOrServFee" resultMap="acseOrServFeeMap" parameterType="java.util.Map">
@@ -1003,6 +1006,7 @@
 	<update id="saveAcseOrServFee" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_message	VARCHAR2(500);
+			v_item_no	NUMBER;
 		BEGIN
 			<!-- Save in ACSE_OR_TRANSUMM -->
 			ACSE_OR_TRANSUMM_PKG.save_acse_transumm(
@@ -1015,14 +1019,25 @@
 														#{updateUser},
 														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
+			<foreach item="del" collection="delOrItemTaxes">
+				<!-- Delete data from ACSE_OR_ITEMTAXES first since it's a child table -->
+				ACSE_OR_ITEMTAXES_PKG.del_or_itemtaxes(
+													#{del.tranId},
+													#{del.billId},
+													#{del.itemNo},
+													#{del.taxType},
+													#{del.taxCd}
+												);
+				
+			</foreach>
 			<foreach collection="delServFee" item="del">
 				ACSE_OR_SERVFEE_PKG.del_acse_or_servfee(#{del.tranId}, 
 														#{del.billId},
 														  #{del.itemNo});
 			</foreach>
-			
 			<foreach collection="saveServFee" item="save">
-				ACSE_OR_SERVFEE_PKG.save_acse_or_servfee(#{save.tranId},
+				ACSE_OR_SERVFEE_PKG.save_acse_or_servfee(v_item_no,
+														 #{save.tranId},
 														 #{save.billId},
 														 #{save.itemNo, jdbcType=VARCHAR},
 														 CAST(to_timestamp(#{save.quarterEnding, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -1034,6 +1049,23 @@
 														 CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														 #{save.updateUser, jdbcType=VARCHAR}, 
 														 CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			   <!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_SERVFEE item -->
+				<foreach item="saveTaxes" collection="save.taxAllocation">
+					ACSE_OR_ITEMTAXES_PKG.save_or_itemtaxes(
+																#{saveTaxes.tranId},
+																#{saveTaxes.billId},
+																v_item_no,	<!-- Based on the output parameter in ACSE_OR_TRANSDTL_PKG.save_or_transdtl PROCEDURE -->
+																#{saveTaxes.taxType},
+																#{saveTaxes.taxCd},
+																#{saveTaxes.taxRate, jdbcType=VARCHAR},
+																#{saveTaxes.taxAmt, jdbcType=VARCHAR},
+																#{save.createUser},
+																CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{save.updateUser},
+																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{saveTaxes.genType}
+					);
+				</foreach>
 			</foreach>
 			
 			<!-- Generate Tax Details -->

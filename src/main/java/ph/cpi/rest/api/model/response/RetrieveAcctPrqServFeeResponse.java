@@ -39,7 +39,7 @@ public class RetrieveAcctPrqServFeeResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitServFeeMainGnrtResponse [mainDistList=" + mainDistList + ", subDistList=" + subDistList
+		return "RetrieveAcctPrqServFeeResponse [mainDistList=" + mainDistList + ", subDistList=" + subDistList
 				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

@@ -8,6 +8,7 @@ public class SaveAcctPrqServFeeRequest {
 	private Integer quarter;
 	private Integer year;
 	private BigDecimal servFeeAmt;
+	private BigDecimal netServFee;
 	private String currCd;
 	private Double currRt;
 	private String createUser;
@@ -38,6 +39,12 @@ public class SaveAcctPrqServFeeRequest {
 	}
 	public void setServFeeAmt(BigDecimal servFeeAmt) {
 		this.servFeeAmt = servFeeAmt;
+	}
+	public BigDecimal getNetServFee() {
+		return netServFee;
+	}
+	public void setNetServFee(BigDecimal netServFee) {
+		this.netServFee = netServFee;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -78,7 +85,8 @@ public class SaveAcctPrqServFeeRequest {
 	@Override
 	public String toString() {
 		return "SaveAcctPrqServFeeRequest [reqId=" + reqId + ", quarter=" + quarter + ", year=" + year + ", servFeeAmt="
-				+ servFeeAmt + ", currCd=" + currCd + ", currRt=" + currRt + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ servFeeAmt + ", netServFee=" + netServFee + ", currCd=" + currCd + ", currRt=" + currRt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

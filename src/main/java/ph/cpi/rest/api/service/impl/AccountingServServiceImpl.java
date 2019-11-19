@@ -755,6 +755,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("updateDate", saosfr.getUpdateDate());
 		params.put("delServFee", saosfr.getDelServFee());
 		params.put("saveServFee", saosfr.getSaveServFee());
+		params.put("delOrItemTaxes", saosfr.getDelOrItemTaxes());
 		try{
 			response.setReturnCode(acctServDao.saveAcseOrServFee(params));
 			logger.info("SaveAcseOrServFeeResponse : "+ response);
