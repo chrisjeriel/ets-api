@@ -2870,4 +2870,13 @@
 		SELECT * FROM TABLE(DIST_EXT_PKG.get_last_ext_info())
 	</select>
 	
+	<select id="retrieveNegateDistList" resultMap="polDistListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_PKG.get_negate_list(
+															#{policyNo, jdbcType=VARCHAR},
+															#{cedingName, jdbcType=VARCHAR},
+															#{insuredDesc, jdbcType=VARCHAR},
+															#{riskName, jdbcType=VARCHAR}
+															))								    
+	</select>
+	
 </mapper>

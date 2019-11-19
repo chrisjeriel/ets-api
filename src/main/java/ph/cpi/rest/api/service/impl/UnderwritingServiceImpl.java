@@ -1912,4 +1912,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		response.setInfo(underwritingDao.retrieveLastExtractInfo());
 		return response;
 	}
+
+	@Override
+	public RetrievePolDistListResponse retrieveNegateDistList(RetrievePolDistListRequest rpdir) throws SQLException {
+		RetrievePolDistListResponse response = new RetrievePolDistListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyNo", rpdir.getPolicyNo());
+		params.put("cedingName", rpdir.getCedingName());
+		params.put("insuredDesc", rpdir.getInsuredDesc());
+		params.put("riskName", rpdir.getRiskName());
+		response.setPolDistList(underwritingDao.retrieveNegateDistList(params));
+		return response;
+	}
 }

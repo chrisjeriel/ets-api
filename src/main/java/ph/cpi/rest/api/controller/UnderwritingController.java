@@ -718,4 +718,11 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveLastExtractInfo");
 		return underwritingService.retrieveLastExtractInfo();
 	}
+	
+	@GetMapping(path="retrieveNegateDistList")
+	public @ResponseBody RetrievePolDistListResponse retrieveNegateDistList(RetrievePolDistListRequest rpdir) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveNegateDistList");
+		logger.info("RetrieveNegateDistListRequest : " + rpdir.toString());
+		return underwritingService.retrieveNegateDistList(rpdir);
+	}
 }
