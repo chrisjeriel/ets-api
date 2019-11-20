@@ -534,6 +534,7 @@
 	<update id="saveAcseOrTransDtl" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_item_no		NUMBER;
+			v_message       VARCHAR2(500);
 		BEGIN
 		
 			<!-- Save in ACSE_OR_TRANSUMM -->
