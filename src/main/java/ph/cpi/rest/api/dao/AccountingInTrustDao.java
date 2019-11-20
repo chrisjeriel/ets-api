@@ -222,4 +222,5 @@ public interface AccountingInTrustDao {
 	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
 	
 	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> validateServfee(final HashMap<String, Object> params) throws SQLException;
 }

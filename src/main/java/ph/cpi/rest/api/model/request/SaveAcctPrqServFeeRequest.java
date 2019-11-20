@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class SaveAcctPrqServFeeRequest {
 
+	private String force; 
 	private Integer reqId;
 	private Integer quarter;
 	private Integer year;
@@ -16,6 +17,12 @@ public class SaveAcctPrqServFeeRequest {
 	private String updateUser;
 	private String updateDate;
 	
+	public String getForce() {
+		return force;
+	}
+	public void setForce(String force) {
+		this.force = force;
+	}
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -84,9 +91,9 @@ public class SaveAcctPrqServFeeRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcctPrqServFeeRequest [reqId=" + reqId + ", quarter=" + quarter + ", year=" + year + ", servFeeAmt="
-				+ servFeeAmt + ", netServFee=" + netServFee + ", currCd=" + currCd + ", currRt=" + currRt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+		return "SaveAcctPrqServFeeRequest [force=" + force + ", reqId=" + reqId + ", quarter=" + quarter + ", year="
+				+ year + ", servFeeAmt=" + servFeeAmt + ", netServFee=" + netServFee + ", currCd=" + currCd
+				+ ", currRt=" + currRt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
