@@ -649,6 +649,7 @@
 		<result property="bulletNo" 		column="BULLET_NO" />
 		<result property="sumInsured" 		column="SUM_INSURED" />
 		<result property="addSi" 			column="ADD_SI" />
+		<result property="remarks" 			column="SEC_REMARKS" />
 		<result property="createUser" 		column="SEC_CREATE_USER" />
 		<result property="createDate" 		column="SEC_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="SEC_UPDATE_USER" />
@@ -1194,7 +1195,7 @@
 		</foreach>
 		<foreach collection="saveAlopItemsList" item="alopItem">
 		    	QU_ALOP_ITM_PKG.save_qu_alop_itm
-		    	(#{quoteId},#{alopItem.optionId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity},
+		    	(#{quoteId},#{alopItem.optionId},#{alopItem.itemNo, jdbcType=VARCHAR},#{alopItem.quantity, jdbcType=VARCHAR},
 		    	#{alopItem.description},#{alopItem.importance, jdbcType=VARCHAR},#{alopItem.lossMin, jdbcType=VARCHAR},
 		    	#{alopItem.createUserItem},
 		    	CAST(to_timestamp(#{alopItem.createDateItem}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
@@ -1305,7 +1306,7 @@
 	   (#{quoteId},#{projId},#{riskId},#{sectioncovers.lineCd},#{sectioncovers.section},#{sectioncovers.coverCd},#{sectioncovers.coverName},#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 	   #{sectioncovers.addSi},#{sectioncovers.createUser},
 	   CAST(to_timestamp(#{sectioncovers.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{sectioncovers.updateUser},
-	   SYSDATE);
+	   SYSDATE, #{sectioncovers.remarks,jdbcType=VARCHAR});
 	   </foreach>
 	   
 	   

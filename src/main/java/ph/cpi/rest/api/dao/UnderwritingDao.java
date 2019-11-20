@@ -128,4 +128,6 @@ public interface UnderwritingDao {
 	
 	public LastExpiryExtractInfo retrieveLastExtractInfo() throws SQLException;
 	
+	public List<PolDistList> retrieveNegateDistList(final HashMap<String, Object> params) throws SQLException;
+	
 }

@@ -12,6 +12,7 @@ public class SectionCovers {
 	private String bulletNo;
 	private BigDecimal sumInsured;
 	private String addSi;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -77,12 +78,17 @@ public class SectionCovers {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "SectionCovers [coverCd=" + coverCd + ", coverName=" + coverName + ", section=" + section + ", bulletNo="
-				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ bulletNo + ", sumInsured=" + sumInsured + ", addSi=" + addSi + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
-	
-	
 }

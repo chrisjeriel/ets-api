@@ -462,6 +462,7 @@ class SectionCoversUw {
 	private String createDateSec;
 	private String updateUserSec;
 	private String updateDateSec;
+	private String remarks;
 	
 	public String getLineCd() {
 		return lineCd;
@@ -578,6 +579,12 @@ class SectionCoversUw {
 	public void setExDiscTag(String exDiscTag) {
 		this.exDiscTag = exDiscTag;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "SectionCoversUw [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", coverName="
@@ -585,7 +592,7 @@ class SectionCoversUw {
 				+ ", premAmt=" + premAmt + ", addSi=" + addSi + ", discountTag=" + discountTag + ", exDiscTag="
 				+ exDiscTag + ", exPremRt=" + exPremRt + ", exPremAmt=" + exPremAmt + ", cumSi=" + cumSi + ", cumPrem="
 				+ cumPrem + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
-				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
+				+ updateUserSec + ", updateDateSec=" + updateDateSec + ", remarks=" + remarks + "]";
 	}
 }
 
