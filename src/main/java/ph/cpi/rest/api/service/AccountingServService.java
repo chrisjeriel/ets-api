@@ -52,4 +52,5 @@ public interface AccountingServService {
 	public RetrieveAcseChangeToNewJVResponse retrieveAcseChangeToNewJV (RetrieveAcseChangeToNewJVRequest request) throws SQLException;
 	public RetrieveAcseCancelTransactionResponse retrieveAcseCancelledTran (RetrieveAcseCancelTransactionRequest request) throws SQLException;
 	public PrintAcseJvResponse printAcseJv (PrintAcseJvRequest request) throws SQLException;
+	public CopyAcseExpenseBudgetResponse copyAcseExpenseBudget (CopyAcseExpenseBudgetRequest request) throws SQLException;
 }

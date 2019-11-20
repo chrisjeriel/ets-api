@@ -1344,5 +1344,11 @@
 			
 		END;
 	</update>
+	
+	<update id="copyAcseExpenseBudget" parameterType="java.util.Map">
+		BEGIN
+			ACSE_BUDGET_EXPENSE_PKG.copy_exp_budget(#{originYear},#{desYear},null,null,null,null);
+		END;
+	</update>
         
 </mapper>
