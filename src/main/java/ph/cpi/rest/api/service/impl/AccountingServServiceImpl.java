@@ -513,6 +513,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		try {
 			saptParams.put("deletePrqTrans", saptr.getDeletePrqTrans());
 			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
+			saptParams.put("delCvItemTaxes", saptr.getDelCvItemTaxes());
 			
 			HashMap<String, Object> response = acctServDao.saveAcsePrqTrans(saptParams);
 			saptResponse.setReturnCode((Integer) response.get("errorCode"));

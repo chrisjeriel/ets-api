@@ -638,6 +638,23 @@
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="acctCd" 		column="ACCT_CD"/>
+		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.CvItemTaxes" id="taxAllocAssocCv">
+		<result property="reqId"		column="TX_REQ_ID" />
+		<result property="itemNo"		column="TX_ITEM_NO" />
+		<result property="taxSeqNo"		column="TX_TAX_SEQ_NO" />
+		<result property="taxType"		column="TAX_TYPE" />
+		<result property="taxCd"		column="TAX_CD" />
+		<result property="taxName"		column="TAX_NAME" />
+		<result property="taxRate"			column="RATE" />
+		<result property="taxAmt"		column="AMOUNT" />
+		<result property="createUser"	column="TX_CREATE_USER" />
+		<result property="createDate"	column="TX_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser"	column="TX_UPDATE_USER" />
+		<result property="updateDate"	column="TX_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="genType"		column="TX_GEN_TYPE" />
 	</resultMap>
 	
 	<select id="retrieveAcsePrqTrans" resultMap="acsePrqTransMap" parameterType="java.util.Map">
@@ -648,7 +665,19 @@
 	</select>
 	
 	<update id="saveAcsePrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_item_no		NUMBER;
 		BEGIN
+			<foreach item="del" collection="delCvItemTaxes">
+				<!-- Delete data from ACSE_CV_ITEMTAXES first since it's a child table -->
+				ACSE_CV_ITEMTAXES_PKG.del_cv_itemtaxes(
+													#{del.reqId},
+													#{del.itemNo},
+													#{del.taxType},
+													#{del.taxCd}
+												);
+				
+			</foreach>
 			<foreach collection="deletePrqTrans" item="del">
 				ACSE_PRQ_TRANS_PKG.del_acse_prq_trans(
 					#{del.reqId,jdbcType=INTEGER},
@@ -657,9 +686,10 @@
 			</foreach>
 			
 			<foreach collection="savePrqTrans" item="save">
+				v_item_no := #{save.itemNo,jdbcType=INTEGER};
 				ACSE_PRQ_TRANS_PKG.save_acse_prq_trans(
 					#{save.reqId,jdbcType=INTEGER},
-					#{save.itemNo,jdbcType=INTEGER},
+					v_item_no,
 					#{save.tranTypeCd,jdbcType=INTEGER},
 					#{save.itemName,jdbcType=VARCHAR},
 					#{save.glAcctId,jdbcType=INTEGER},
@@ -674,6 +704,22 @@
 					#{save.updateUser, jdbcType=VARCHAR}, 
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				<foreach item="saveTaxes" collection="save.taxAllocation">
+					ACSE_CV_ITEMTAXES_PKG.save_cv_itemtaxes(
+																#{saveTaxes.reqId},
+																v_item_no,	<!-- Based on the output parameter in ACSE_OR_TRANSDTL_PKG.save_or_transdtl PROCEDURE -->
+																#{saveTaxes.taxSeqNo, jdbcType=VARCHAR},
+																#{saveTaxes.taxType},
+																#{saveTaxes.taxCd},
+																#{saveTaxes.taxRate, jdbcType=VARCHAR},
+																#{saveTaxes.taxAmt, jdbcType=VARCHAR},
+																#{save.createUser},
+																CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{save.updateUser},
+																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{saveTaxes.genType}
+					);
+				</foreach>
 			</foreach>
 		END;
 	</update>
