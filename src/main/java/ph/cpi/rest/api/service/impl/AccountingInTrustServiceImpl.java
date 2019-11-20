@@ -1561,10 +1561,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			sacParams.put("mainTranIdOut","");
 			sacParams.put("tranId",sacr.getTranId());
 	        sacParams.put("cvYear", sacr.getCvYear());
+	        sacParams.put("checkId", sacr.getCheckId());
 	        sacParams.put("cvNo", sacr.getCvNo());
 	        sacParams.put("cvDate", sacr.getCvDate());
 	        sacParams.put("cvStatus", sacr.getCvStatus());
-	        //sacParams.put("payeeNo", sacr.getPayeeNo());
 	        sacParams.put("paytReqType", sacr.getPaytReqType());
 	        sacParams.put("payeeClassCd", sacr.getPayeeClassCd());
 	        sacParams.put("payeeCd", sacr.getPayeeCd());
@@ -1592,11 +1592,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("closeDate", sacr.getCloseDate());
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
-	        
-	        HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
-	        sacResponse.setReturnCode((Integer) response.get("errorCode"));
-	        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
-	        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+
+	        String checkNo = acctITDao.validateCheckNo(sacParams);
+	        if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
+	        	HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
+		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
+		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
+		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+		        sacResponse.setReturnCode(-1);
+	        }else {
+	        	sacResponse.setReturnCode(2);
+	        	sacResponse.setCheckNo(checkNo);
+	        }
 		} catch (SQLException sqlex) {
 			sacResponse.setReturnCode(0);
 			sacResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -1748,6 +1756,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
 		try {
 			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
 			

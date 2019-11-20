@@ -13,6 +13,7 @@ public class SaveAcitCvResponse {
 	private Integer tranIdOut;
 	private Integer cvNoOut;
 	private Integer mainTranIdOut;
+	private String checkNo;
 	public List<Error> getErrorList() {
 		return errorList;
 	}
@@ -49,10 +50,16 @@ public class SaveAcitCvResponse {
 	public void setMainTranIdOut(Integer mainTranIdOut) {
 		this.mainTranIdOut = mainTranIdOut;
 	}
+	public String getCheckNo() {
+		return checkNo;
+	}
+	public void setCheckNo(String checkNo) {
+		this.checkNo = checkNo;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcitCvResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
 				+ returnCode + ", tranIdOut=" + tranIdOut + ", cvNoOut=" + cvNoOut + ", mainTranIdOut=" + mainTranIdOut
-				+ "]";
+				+ ", checkNo=" + checkNo + "]";
 	}
 }
