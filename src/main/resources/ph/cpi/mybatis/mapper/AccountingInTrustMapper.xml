@@ -3303,6 +3303,7 @@
 		BEGIN
 			ACIT_CHECK_VOUCHER_PKG.up_acit_cv_stat(
 				#{tranId, jdbcType=INTEGER},
+				#{checkId, jdbcType=INTEGER},
 				#{cvStatus, jdbcType=VARCHAR},
 				#{updateUser, jdbcType=VARCHAR}
 			);

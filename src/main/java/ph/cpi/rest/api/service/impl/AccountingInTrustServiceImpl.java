@@ -1754,6 +1754,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
 		try {
 			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
 			
