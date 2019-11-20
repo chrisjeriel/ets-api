@@ -6,10 +6,40 @@ import org.joda.time.DateTime;
 
 
 public class SaveAcsePrqTransRequest {
+	private String reqId;
+	private String tranTypeCd;
+	private String createUser;
+	private String updateUser;
+	
 	private List<PrqTransAcse> deletePrqTrans;
 	private List<PrqTransAcse> savePrqTrans;
 	private List<SaveCvItemTaxes> delCvItemTaxes;
 	
+	
+	public String getReqId() {
+		return reqId;
+	}
+	public void setReqId(String reqId) {
+		this.reqId = reqId;
+	}
+	public String getTranTypeCd() {
+		return tranTypeCd;
+	}
+	public void setTranTypeCd(String tranTypeCd) {
+		this.tranTypeCd = tranTypeCd;
+	}
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
 	public List<PrqTransAcse> getDeletePrqTrans() {
 		return deletePrqTrans;
 	}
@@ -30,7 +60,8 @@ public class SaveAcsePrqTransRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcsePrqTransRequest [deletePrqTrans=" + deletePrqTrans + ", savePrqTrans=" + savePrqTrans
+		return "SaveAcsePrqTransRequest [reqId=" + reqId + ", tranTypeCd=" + tranTypeCd + ", createUser=" + createUser
+				+ ", updateUser=" + updateUser + ", deletePrqTrans=" + deletePrqTrans + ", savePrqTrans=" + savePrqTrans
 				+ ", delCvItemTaxes=" + delCvItemTaxes + "]";
 	}
 }

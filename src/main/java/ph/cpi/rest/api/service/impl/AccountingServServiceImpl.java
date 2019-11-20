@@ -511,6 +511,10 @@ public class AccountingServServiceImpl implements AccountingServService{
 		SaveAcsePrqTransResponse saptResponse = new SaveAcsePrqTransResponse();
 		HashMap<String, Object> saptParams = new HashMap<String, Object>();
 		try {
+			saptParams.put("reqId", saptr.getReqId());
+			saptParams.put("tranTypeCd", saptr.getTranTypeCd());
+			saptParams.put("createUser", saptr.getCreateUser());
+			saptParams.put("updateUser", saptr.getUpdateUser());
 			saptParams.put("deletePrqTrans", saptr.getDeletePrqTrans());
 			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
 			saptParams.put("delCvItemTaxes", saptr.getDelCvItemTaxes());

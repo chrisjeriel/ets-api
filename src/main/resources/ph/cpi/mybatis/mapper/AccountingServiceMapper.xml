@@ -667,10 +667,6 @@
 	<update id="saveAcsePrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_item_no		NUMBER;
-			v_req_id     		ACSE_PAYMENT_REQUEST.REQ_ID%TYPE;
-			v_tran_type_cd      ACSE_PAYMENT_REQUEST.TRAN_TYPE_CD%TYPE;
-			v_create_user       ACSE_PAYMENT_REQUEST.CREATE_USER%TYPE;
-			v_update_user       ACSE_PAYMENT_REQUEST.UPDATE_USER%TYPE;
 		BEGIN
 			<foreach item="del" collection="delCvItemTaxes">
 				<!-- Delete data from ACSE_CV_ITEMTAXES first since it's a child table -->
@@ -724,13 +720,9 @@
 																#{saveTaxes.genType}
 					);
 				</foreach>
-				v_req_id 	   := #{save.reqId,jdbcType=INTEGER};
-				v_tran_type_cd := #{save.tranTypeCd,jdbcType=INTEGER};
-				v_create_user  := #{save.createUser, jdbcType=VARCHAR};
-				v_update_user  := #{save.updateUser, jdbcType=VARCHAR};
 			</foreach>
 			
-			ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,v_tran_type_cd,v_create_user,v_update_user,v_req_id);
+			ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,#{tranTypeCd},#{createUser},#{updateUser},#{reqId});
 		END;
 	</update>
 	
