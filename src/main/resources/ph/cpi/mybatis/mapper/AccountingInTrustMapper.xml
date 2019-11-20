@@ -3128,7 +3128,6 @@
 		<result property="cvDate"			column="CV_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cvStatus"			column="CV_STATUS"/>
 		<result property="cvStatusDesc"		column="CV_STATUS_DESC"/>
-		<!-- <result property="payeeNo"			column="PAYEE_NO"/> -->
 		<result property="paytReqType"		column="PAYT_REQ_TYPE"/>
 		<result property="paytReqTypeDesc"	column="PAYT_REQ_TYPE_DESC"/>
 		<result property="payeeClassCd"		column="PAYEE_CLASS_CD"/>
@@ -3139,6 +3138,7 @@
 		<result property="bankDesc"			column="BANK_DESC"/>
 		<result property="bankAcct"			column="BANK_ACCT"/>
 		<result property="bankAcctDesc"		column="BANK_ACCT_DESC"/>
+		<result property="checkId"			column="CHECK_ID"/>
 		<result property="checkNo"			column="CHECK_NO"/>
 		<result property="checkDate"		column="CHECK_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="checkClass"		column="CHECK_CLASS"/>
@@ -3198,7 +3198,6 @@
 				#{cvNo, jdbcType=INTEGER},
 				CAST(to_timestamp(#{cvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{cvStatus, jdbcType=VARCHAR},
-				<!-- #{payeeNo, jdbcType=INTEGER}, -->
 				#{paytReqType, jdbcType=INTEGER},
 				#{payeeClassCd, jdbcType=INTEGER},
 				#{payeeCd, jdbcType=VARCHAR},
@@ -3206,6 +3205,7 @@
 				#{particulars, jdbcType=VARCHAR},
 				#{bank, jdbcType=INTEGER},
 				#{bankAcct, jdbcType=INTEGER},
+				#{checkId,mode=INOUT, jdbcType=INTEGER},
 				#{checkNo, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{checkDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{checkClass, jdbcType=VARCHAR},
@@ -3327,6 +3327,7 @@
 		BEGIN
 			ACIT_CHECK_VOUCHER_PKG.up_acit_cv_stat(
 				#{tranId, jdbcType=INTEGER},
+				#{checkId, jdbcType=INTEGER},
 				#{cvStatus, jdbcType=VARCHAR},
 				#{updateUser, jdbcType=VARCHAR}
 			);
@@ -4191,4 +4192,9 @@
 		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
 	</select>
 	
+	<update id="validateCheckNo" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCheckNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHECK_VOUCHER_PKG.ret_mtn_check_no(#{bank},#{bankAcct},#{checkNo},#{tranId, jdbcType=INTEGER})
+		}
+	</update>
 </mapper>
