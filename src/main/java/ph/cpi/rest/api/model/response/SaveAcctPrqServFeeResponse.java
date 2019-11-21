@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.response;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class SaveAcctPrqServFeeResponse {
 	private Integer returnCode;
 	private List<Error> errorList = new ArrayList<Error>();
 	private List<Message> messageList = new ArrayList<Message>();
+	private String refNo;
+	private BigDecimal amount;
 	
 	public Integer getReturnCode() {
 		return returnCode;
@@ -30,9 +33,21 @@ public class SaveAcctPrqServFeeResponse {
 	public void setMessageList(List<Message> messageList) {
 		this.messageList = messageList;
 	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcctPrqServFeeResponse [returnCode=" + returnCode + ", errorList=" + errorList + ", messageList="
-				+ messageList + "]";
+				+ messageList + ", refNo=" + refNo + ", amount=" + amount + "]";
 	}
 }

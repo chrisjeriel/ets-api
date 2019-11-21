@@ -1763,6 +1763,7 @@
 		<result property="totalVatAmt" 		column="TOTAL_VAT_AMT"/>
 		<result property="totalWhTaxAmt" 	column="TOTAL_WHTAX_AMT"/>
 		<result property="totalDue" 		column="TOTAL_DUE"/>
+		<result property="mreInvoiceId" 	column="MRE_INVOICE_ID"/>
 	</resultMap>
 	
 	<select id="retrieveAcitServFeeMainGnrt" resultMap="servFeeDistMap" parameterType="java.util.Map">
@@ -4196,5 +4197,17 @@
 		{CALL
 			#{validateCheckNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHECK_VOUCHER_PKG.ret_mtn_check_no(#{bank},#{bankAcct},#{checkNo},#{tranId, jdbcType=INTEGER})
 		}
+	</update>
+	
+	<update id="validateServfee" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACCT_SERVFEE_DTL_DIST_PKG.validate_servfee(#{reqId, jdbcType=INTEGER},
+													   #{quarter, jdbcType=INTEGER},
+													   #{year, jdbcType=INTEGER},
+													   #{valReqId, mode=OUT, jdbcType=INTEGER},
+													   #{refNo, mode=OUT, jdbcType=VARCHAR},
+													   #{amount, mode=OUT, jdbcType=DECIMAL},
+													   #{return, mode=OUT, jdbcType=INTEGER});
+		END;
 	</update>
 </mapper>

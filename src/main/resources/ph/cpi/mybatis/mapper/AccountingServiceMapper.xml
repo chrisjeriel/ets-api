@@ -705,6 +705,7 @@
 					#{save.updateUser, jdbcType=VARCHAR}, 
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
+				
 				<foreach item="saveTaxes" collection="save.taxAllocation">
 					ACSE_CV_ITEMTAXES_PKG.save_cv_itemtaxes(
 																#{saveTaxes.reqId},

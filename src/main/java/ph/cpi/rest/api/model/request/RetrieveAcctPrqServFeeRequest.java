@@ -7,6 +7,7 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveAcctPrqServFeeRequest {
 
+	private String force;
 	private String retType;
 	private Integer reqId;
 	private Integer quarter;
@@ -15,9 +16,16 @@ public class RetrieveAcctPrqServFeeRequest {
 	private BigDecimal servFeeAmt;
 	private String currCd;
 	private Double currRt;
+	private String updateUser;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
+	public String getForce() {
+		return force;
+	}
+	public void setForce(String force) {
+		this.force = force;
+	}
 	public String getRetType() {
 		return retType;
 	}
@@ -66,6 +74,12 @@ public class RetrieveAcctPrqServFeeRequest {
 	public void setCurrRt(Double currRt) {
 		this.currRt = currRt;
 	}
+	public String getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(String updateUser) {
+		this.updateUser = updateUser;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -80,9 +94,9 @@ public class RetrieveAcctPrqServFeeRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcctPrqServFeeRequest [retType=" + retType + ", reqId=" + reqId + ", quarter=" + quarter
-				+ ", year=" + year + ", groupId=" + groupId + ", servFeeAmt=" + servFeeAmt + ", currCd=" + currCd
-				+ ", currRt=" + currRt + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
-				+ "]";
+		return "RetrieveAcctPrqServFeeRequest [force=" + force + ", retType=" + retType + ", reqId=" + reqId
+				+ ", quarter=" + quarter + ", year=" + year + ", groupId=" + groupId + ", servFeeAmt=" + servFeeAmt
+				+ ", currCd=" + currCd + ", currRt=" + currRt + ", updateUser=" + updateUser + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }

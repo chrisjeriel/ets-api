@@ -1046,4 +1046,14 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		sqlSession.update("validateCheckNo",params);
 		return (String) params.get("validateCheckNo");
 	}
+
+	@Override
+	public HashMap<String, Object> validateServfee(HashMap<String, Object> params) throws SQLException {
+		params.put("valReqId", "");
+		params.put("refNo", "");
+		params.put("amount", "");
+		params.put("return", "");
+		sqlSession.update("validateServfee", params);
+		return params;
+	}
 }

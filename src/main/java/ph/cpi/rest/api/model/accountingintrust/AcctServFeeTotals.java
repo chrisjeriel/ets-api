@@ -9,6 +9,7 @@ public class AcctServFeeTotals {
 	private BigDecimal totalVatAmt;
 	private BigDecimal totalWhTaxAmt;
 	private BigDecimal totalDue;
+	private Integer mreInvoiceId;
 	
 	public BigDecimal getTotalSfeeAmt() {
 		return totalSfeeAmt;
@@ -40,9 +41,16 @@ public class AcctServFeeTotals {
 	public void setTotalDue(BigDecimal totalDue) {
 		this.totalDue = totalDue;
 	}
+	public Integer getMreInvoiceId() {
+		return mreInvoiceId;
+	}
+	public void setMreInvoiceId(Integer mreInvoiceId) {
+		this.mreInvoiceId = mreInvoiceId;
+	}
 	@Override
 	public String toString() {
 		return "AcctServFeeTotals [totalSfeeAmt=" + totalSfeeAmt + ", mreSfeeAmt=" + mreSfeeAmt + ", totalVatAmt="
-				+ totalVatAmt + ", totalWhTaxAmt=" + totalWhTaxAmt + ", totalDue=" + totalDue + "]";
+				+ totalVatAmt + ", totalWhTaxAmt=" + totalWhTaxAmt + ", totalDue=" + totalDue + ", mreInvoiceId="
+				+ mreInvoiceId + "]";
 	}
 }
