@@ -4049,6 +4049,7 @@
 		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="eomMm"				column="EOM_MM"/>
 		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="qtrMonth"				column="QTR_MONTH"/>
 	</resultMap>
 	
 	<select id="retrieveAcitMonthEndUnpostedMonths" resultMap="acitEomUnpostedMonth" parameterType="java.util.Map">
@@ -4210,4 +4211,9 @@
 													   #{return, mode=OUT, jdbcType=INTEGER});
 		END;
 	</update>
+	
+	<select id="retrieveAcctPrqServFeeMonths" resultMap="acitEomUnpostedMonth" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_unposted_months(#{quarter, jdbcType=INTEGER},
+													   					  #{year, jdbcType=INTEGER}))
+	</select>
 </mapper>

@@ -1056,4 +1056,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		sqlSession.update("validateServfee", params);
 		return params;
 	}
+
+	@Override
+	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(HashMap<String, Object> params) throws SQLException {
+		List<AcitEomUnpostedMonth> res = sqlSession.selectList("retrieveAcctPrqServFeeMonths", params);
+		return res;
+	}
 }
