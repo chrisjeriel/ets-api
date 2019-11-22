@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.response;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
@@ -12,6 +13,9 @@ public class RetrieveAcctPrqServFeeResponse {
 	private List<AcctServFeeDist> subDistList;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
+	private Integer returnCode;
+	private String refNo;
+	private BigDecimal amount;
 	
 	public List<AcctServFeeDist> getMainDistList() {
 		return mainDistList;
@@ -37,9 +41,28 @@ public class RetrieveAcctPrqServFeeResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
+	public Integer getReturnCode() {
+		return returnCode;
+	}
+	public void setReturnCode(Integer returnCode) {
+		this.returnCode = returnCode;
+	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcctPrqServFeeResponse [mainDistList=" + mainDistList + ", subDistList=" + subDistList
-				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + ", returnCode="
+				+ returnCode + ", refNo=" + refNo + ", amount=" + amount + "]";
 	}
 }

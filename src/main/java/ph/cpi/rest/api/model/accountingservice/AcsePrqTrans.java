@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.accountingservice;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
@@ -21,6 +22,9 @@ public class AcsePrqTrans {
 	private String updateUser;
 	private DateTime updateDate;
 	private String acctCd;
+	
+	private List<CvItemTaxes> taxAllocation;
+	
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -117,12 +121,18 @@ public class AcsePrqTrans {
 	public void setAcctCd(String acctCd) {
 		this.acctCd = acctCd;
 	}
+	public List<CvItemTaxes> getTaxAllocation() {
+		return taxAllocation;
+	}
+	public void setTaxAllocation(List<CvItemTaxes> taxAllocation) {
+		this.taxAllocation = taxAllocation;
+	}
 	@Override
 	public String toString() {
 		return "AcsePrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", itemName="
 				+ itemName + ", glAcctId=" + glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd="
 				+ currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", acctCd=" + acctCd + "]";
+				+ ", updateDate=" + updateDate + ", acctCd=" + acctCd + ", taxAllocation=" + taxAllocation + "]";
 	}
 }
