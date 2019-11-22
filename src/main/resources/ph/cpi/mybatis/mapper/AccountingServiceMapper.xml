@@ -615,6 +615,7 @@
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
+			ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    <!-- Generate Accounting Entries -->
 		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
@@ -1114,9 +1115,10 @@
 				</foreach>
 			</foreach>
 			<!-- Generate Tax Details -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
+			<!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message); -->
 			    
-			ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser},#{updateUser});
+			ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
+		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    
 		    <!-- Generate Accounting Entries -->
 			GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
