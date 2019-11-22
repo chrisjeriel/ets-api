@@ -107,8 +107,8 @@
 		
 		<dependency>
 		    <groupId>ph.cpi.rest</groupId>
-		    <artifactId>pmmsc-rep-fonts</artifactId>
-		    <version>1.0.1</version>
+		    <artifactId>pmmsc-rep-fonts2</artifactId>
+		    <version>1.0.0</version>
 		</dependency>
 		
 		<dependency>
