@@ -1593,8 +1593,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
 
-	        String checkNo = acctITDao.validateCheckNo(sacParams);
-	        if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        String checkNo = acctITDao.validateCheckNo(sacParams);	        
+	        if(checkNo.equalsIgnoreCase("-100")) {
+	        	sacResponse.setReturnCode(-100);
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
 	        	HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
 		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
