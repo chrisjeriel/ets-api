@@ -1023,6 +1023,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("updateDate" , request.getUpdateDate());
 			HashMap<String, Object> res = acctServDao.saveAcseInvoice(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
+			response.setInvoiceIdOut((Integer) res.get("invoiceIdOut"));
 		}catch(Exception exc){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -1092,6 +1093,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		SaveAcseInvoiceItemResponse response = new SaveAcseInvoiceItemResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("invoiceItemList", request.getInvoiceItemList());
+		params.put("invoiceDelItemList", request.getInvoiceDelItemList());
 		try{
 			response.setReturnCode(acctServDao.saveAcseInvoiceItem(params));
 			logger.info(response.toString());

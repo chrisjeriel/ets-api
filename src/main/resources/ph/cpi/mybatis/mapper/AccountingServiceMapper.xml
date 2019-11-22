@@ -1351,8 +1351,11 @@
 	</select>
 	
 	<update id="saveAcseInvoice" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_invoice_id	ACSE_INVOICES.INVOICE_ID%TYPE;
 		BEGIN
-			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(#{invoiceId, jdbcType=VARCHAR}, 
+			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(v_invoice_id, 
+												    #{invoiceId, jdbcType=VARCHAR}, 
 													#{invoiceNo, jdbcType=VARCHAR}, 
 													CAST(to_timestamp(#{invoiceDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{autoTag, jdbcType=VARCHAR}, 
@@ -1373,7 +1376,9 @@
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 													#{updateUser, jdbcType=VARCHAR}, 
 													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)  
-												  );					  
+												  );	
+				#{invoiceIdOut, mode=OUT, jdbcType=INTEGER} := v_invoice_id;													  
+				  
 		END;
 	</update>
 	

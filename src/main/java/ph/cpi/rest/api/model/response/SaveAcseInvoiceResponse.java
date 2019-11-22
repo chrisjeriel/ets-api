@@ -11,7 +11,14 @@ public class SaveAcseInvoiceResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private Integer returnCode;
+	private Integer invoiceIdOut;
 
+	public Integer getInvoiceIdOut() {
+		return invoiceIdOut;
+	}
+	public void setInvoiceIdOut(Integer invoiceIdOut) {
+		this.invoiceIdOut = invoiceIdOut;
+	}
 	public List<Error> getErrorList() {
 		if (errorList == null) {
 			errorList = new ArrayList<Error>();
@@ -36,9 +43,9 @@ public class SaveAcseInvoiceResponse {
 	
 	@Override
 	public String toString() {
-		return "SAveAcseInvoiceResponse [errorList=" + errorList
+		return "SaveAcseInvoiceResponse [errorList=" + errorList
 				+ ", messageList=" + messageList + ", returnCode=" + returnCode
-				+ "]";
+				+ ", invoiceIdOut=" + invoiceIdOut + "]";
 	}
 	
 }
