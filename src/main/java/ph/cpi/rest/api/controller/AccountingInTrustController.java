@@ -840,4 +840,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitEditedAcctEntriesRequest : " + raeaer.toString());
 		return acctInTrustService.retrieveAcitEditedAcctEntries(raeaer);
 	}
+	
+	@GetMapping(path="retrieveAcitOsQsoa")
+	public @ResponseBody RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitOsQsoa");
+		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
+		return acctInTrustService.retrieveAcitOsQsoa(raoqp);
+	}
 }

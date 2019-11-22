@@ -2541,4 +2541,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		logger.info(response.toString());
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
+		RetrieveAcitOsQsoaResponse res = new RetrieveAcitOsQsoaResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("qsoaId", raoqp.getQsoaId());
+		params.put("currCd", raoqp.getCurrCd());
+		params.put("cedingId", raoqp.getCedingId());
+		
+		res.setOsQsoaList(acctITDao.retrieveAcitOsQsoa(params));
+		
+		return res;
+	}
 }

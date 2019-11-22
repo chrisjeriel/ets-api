@@ -4216,4 +4216,21 @@
 		SELECT * FROM TABLE(ACCT_SERVFEE_DTL_DIST_PKG.ret_unposted_months(#{quarter, jdbcType=INTEGER},
 													   					  #{year, jdbcType=INTEGER}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa" id="acitOsQsoaMap">
+		<result property="qsoaId"       	column="QSOA_ID" />
+		<result property="quarterEnding"    column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="currCd"       	column="CURR_CD" />
+		<result property="cedingId"       	column="CEDING_ID" />
+		<result property="netQsoaAmt"       column="NET_QSOA_AMT" />
+		<result property="cumPayt"	        column="CUM_PAYT" />
+		<result property="remainingBal"	    column="REMAINING_BAL" />
+	</resultMap>
+	
+	<select id="retrieveAcitOsQsoa" resultMap="acitOsQsoaMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_QSOA_PAYTS_PKG.ret_os_qsoa(#{qsoaId, jdbcType=INTEGER},
+															#{currCd, jdbcType=VARCHAR},
+															#{cedingId, jdbcType=VARCHAR}))
+	</select>
+	
 </mapper>
