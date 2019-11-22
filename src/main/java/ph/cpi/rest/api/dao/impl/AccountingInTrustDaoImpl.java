@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
+import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -1055,5 +1056,17 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("return", "");
 		sqlSession.update("validateServfee", params);
 		return params;
+	}
+
+	@Override
+	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(HashMap<String, Object> params) throws SQLException {
+		List<AcitEomUnpostedMonth> res = sqlSession.selectList("retrieveAcctPrqServFeeMonths", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitOsQsoa> retrieveAcitOsQsoa(HashMap<String, Object> params) throws SQLException {
+		List<AcitOsQsoa> res = sqlSession.selectList("retrieveAcitOsQsoa", params);
+		return res;
 	}
 }
