@@ -8,6 +8,7 @@ public class AcitArNegTrtyBal {
 	private Integer tranId;
 	private Integer billId;
 	private Integer itemNo;
+	private Integer qsoaId;
 	private DateTime quarterEnding;
 	private String currCd;
 	private BigDecimal currRate;
@@ -35,6 +36,12 @@ public class AcitArNegTrtyBal {
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public DateTime getQuarterEnding() {
 		return quarterEnding;
@@ -93,9 +100,9 @@ public class AcitArNegTrtyBal {
 	
 	@Override
 	public String toString() {
-		return "AcitArNegTrtyBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
-				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balPaytAmt=" + balPaytAmt
-				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+		return "AcitArNegTrtyBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", qsoaId=" + qsoaId
+				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balPaytAmt="
+				+ balPaytAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

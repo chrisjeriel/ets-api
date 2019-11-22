@@ -2194,6 +2194,7 @@
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo, jdbcType=VARCHAR},
+														#{save.qsoaId},
 														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.currCd},
 														#{save.currRate},

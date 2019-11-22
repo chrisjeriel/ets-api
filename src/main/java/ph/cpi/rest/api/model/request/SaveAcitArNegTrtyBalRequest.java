@@ -89,6 +89,7 @@ class SaveNegTrtyBal{
 	private String tranId;
 	private String billId;
 	private String itemNo;
+	private String qsoaId;
 	private String quarterEnding;
 	private String currCd;
 	private String currRate;
@@ -115,6 +116,12 @@ class SaveNegTrtyBal{
 	}
 	public void setItemNo(String itemNo) {
 		this.itemNo = itemNo;
+	}
+	public String getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(String qsoaId) {
+		this.qsoaId = qsoaId;
 	}
 	public String getQuarterEnding() {
 		return quarterEnding;
@@ -172,9 +179,9 @@ class SaveNegTrtyBal{
 	}
 	@Override
 	public String toString() {
-		return "SaveNegTrtyBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
-				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balPaytAmt=" + balPaytAmt
-				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+		return "SaveNegTrtyBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", qsoaId=" + qsoaId
+				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balPaytAmt="
+				+ balPaytAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
