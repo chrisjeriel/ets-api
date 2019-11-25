@@ -40,6 +40,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.sf.jasperreports.engine.JRException;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
@@ -393,5 +394,11 @@ public class UtilController {
 	    return ResponseEntity.ok()
 	            .contentType(MediaType.parseMediaType("application/pdf"))
 	            .body(resource);
+	}
+	
+	@PostMapping(path="uploadDataTable")
+	public @ResponseBody Response uploadDataTable() throws SQLException {
+		logger.info("POST: /api/util-service/uploadDataTable");
+		return utilService.uploadDataTable();
 	}
 }
