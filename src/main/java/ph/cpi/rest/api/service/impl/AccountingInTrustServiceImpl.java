@@ -993,18 +993,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 					rasfmgResponse.setReturnCode(0);
 					break;
 				case 1:
-					// retrieve list of unposted months
+					rasfmgResponse.setUnpostedMonthsList(acctITDao.retrieveAcctPrqServFeeMonths(rasfmParams));
 					rasfmgResponse.setReturnCode(1);
 					break;
 				case 2:
 					rasfmgResponse.setRefNo((String) res.get("refNo"));
 					rasfmgResponse.setReturnCode(2);
-//					rasfmgResponse.setReturnCode(0);
 					break;
 				case 3:
 					rasfmgResponse.setRefNo((String) res.get("refNo"));
 					rasfmgResponse.setReturnCode(3);
-//					rasfmgResponse.setReturnCode(0);
 					break;
 				case 4:
 					rasfmgResponse.setRefNo((String) res.get("refNo"));
@@ -2542,5 +2540,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setEditedAcctEntries(acctITDao.retrieveAcitEditedAcctEntries(params));
 		logger.info(response.toString());
 		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
+		RetrieveAcitOsQsoaResponse res = new RetrieveAcitOsQsoaResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("qsoaId", raoqp.getQsoaId());
+		params.put("currCd", raoqp.getCurrCd());
+		params.put("cedingId", raoqp.getCedingId());
+		
+		res.setOsQsoaList(acctITDao.retrieveAcitOsQsoa(params));
+		
+		return res;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 
 public class RetrieveAcctPrqServFeeResponse {
 
@@ -16,6 +17,8 @@ public class RetrieveAcctPrqServFeeResponse {
 	private Integer returnCode;
 	private String refNo;
 	private BigDecimal amount;
+	
+	private List<AcitEomUnpostedMonth> unpostedMonthsList;
 	
 	public List<AcctServFeeDist> getMainDistList() {
 		return mainDistList;
@@ -59,10 +62,17 @@ public class RetrieveAcctPrqServFeeResponse {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
+	public List<AcitEomUnpostedMonth> getUnpostedMonthsList() {
+		return unpostedMonthsList;
+	}
+	public void setUnpostedMonthsList(List<AcitEomUnpostedMonth> unpostedMonthsList) {
+		this.unpostedMonthsList = unpostedMonthsList;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcctPrqServFeeResponse [mainDistList=" + mainDistList + ", subDistList=" + subDistList
 				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + ", returnCode="
-				+ returnCode + ", refNo=" + refNo + ", amount=" + amount + "]";
+				+ returnCode + ", refNo=" + refNo + ", amount=" + amount + ", unpostedMonthsList=" + unpostedMonthsList
+				+ "]";
 	}
 }

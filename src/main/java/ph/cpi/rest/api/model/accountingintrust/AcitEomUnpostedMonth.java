@@ -6,6 +6,7 @@ public class AcitEomUnpostedMonth {
 
 	private Integer eomMm;
 	private Integer eomYear;
+	private String qtrMonth;
 	private DateTime eomDate;
 	
 	public Integer getEomMm() {
@@ -20,6 +21,12 @@ public class AcitEomUnpostedMonth {
 	public void setEomYear(Integer eomYear) {
 		this.eomYear = eomYear;
 	}
+	public String getQtrMonth() {
+		return qtrMonth;
+	}
+	public void setQtrMonth(String qtrMonth) {
+		this.qtrMonth = qtrMonth;
+	}
 	public DateTime getEomDate() {
 		return eomDate;
 	}
@@ -28,6 +35,7 @@ public class AcitEomUnpostedMonth {
 	}
 	@Override
 	public String toString() {
-		return "UnpostedMonth [eomMm=" + eomMm + ", eomYear=" + eomYear + "]";
+		return "AcitEomUnpostedMonth [eomMm=" + eomMm + ", eomYear=" + eomYear + ", qtrMonth=" + qtrMonth + ", eomDate="
+				+ eomDate + "]";
 	}
 }
