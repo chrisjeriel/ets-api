@@ -1433,4 +1433,12 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnAcseGenInvSeriesRequest : " + request.toString());
 		return maintenanceService.retrieveMtnAcseInvSeries(request);
 	}
+	
+	@GetMapping(path="retrieveMtnGlSubDepNo")
+	public @ResponseBody RetrieveMtnGlSubDepNoResponse retrieveMtnGlSubDepNo(RetrieveMtnGlSubDepNoRequest rmgsdnr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnGlSubDepNo");
+		logger.info("RetrieveMtnGlSubDepNoRequest : " + rmgsdnr.toString());
+		return maintenanceService.retrieveMtnGlSubDepNo(rmgsdnr);
+	}
+
 }

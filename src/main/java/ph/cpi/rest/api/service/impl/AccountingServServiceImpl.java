@@ -38,6 +38,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
@@ -53,6 +54,7 @@ import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
@@ -86,6 +88,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
@@ -101,6 +104,7 @@ import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
@@ -575,6 +579,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			sacParams.put("mainTranIdOut","");
 			sacParams.put("tranId",sacr.getTranId());
 	        sacParams.put("cvYear", sacr.getCvYear());
+	        sacParams.put("checkId", sacr.getCheckId());
 	        sacParams.put("cvNo", sacr.getCvNo());
 	        sacParams.put("cvDate", sacr.getCvDate());
 	        sacParams.put("cvStatus", sacr.getCvStatus());
@@ -606,10 +611,20 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
 	        
-	        HashMap<String, Object> response = acctServDao.saveAcseCv(sacParams);
-	        sacResponse.setReturnCode((Integer) response.get("errorCode"));
-	        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
-	        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+	        String checkNo = acctServDao.validateCheckNo(sacParams);
+	        if(checkNo.equalsIgnoreCase("-100")) {
+	        	sacResponse.setReturnCode(-100);
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
+	        	HashMap<String, Object> response = acctServDao.saveAcseCv(sacParams);
+		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
+		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
+		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+		        sacResponse.setReturnCode(-1);
+	        }else {
+	        	sacResponse.setReturnCode(2);
+	        	sacResponse.setCheckNo(checkNo);
+	        }
 		} catch (SQLException sqlex) {
 			sacResponse.setReturnCode(0);
 			sacResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -675,6 +690,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
 		try {
 			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
 			
@@ -1128,5 +1144,38 @@ public class AccountingServServiceImpl implements AccountingServService{
 			ex.printStackTrace();
 		}
 		return response;
+	}
+
+	@Override
+	public RetrieveAcsePerDiemResponse retrieveAcsePerDiem(RetrieveAcsePerDiemRequest rapdp) throws SQLException {
+		RetrieveAcsePerDiemResponse raptResponse =  new RetrieveAcsePerDiemResponse();
+		HashMap<String, Object> rapdParams = new HashMap<String, Object>();
+		rapdParams.put("reqId", rapdp.getReqId());
+		rapdParams.put("itemNo", rapdp.getItemNo());
+		raptResponse.setAcsePerDiem(acctServDao.retrieveAcsePerDiem(rapdParams));
+		logger.info("RetrieveAcsePerDiemResponse : " + raptResponse.toString());
+		return raptResponse;
+	}
+
+	@Override
+	public SaveAcsePerDiemResponse saveAcsePerDiem(SaveAcsePerDiemRequest saptr) throws SQLException {
+		SaveAcsePerDiemResponse sapdResponse = new SaveAcsePerDiemResponse();
+		HashMap<String, Object> sapdParams = new HashMap<String, Object>();
+		try {
+			sapdParams.put("deletePerDiem", saptr.getDeletePerDiem());
+			sapdParams.put("savePerDiem", saptr.getSavePerDiem());
+			
+			HashMap<String, Object> response = acctServDao.saveAcsePerDiem(sapdParams);
+			sapdResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			sapdResponse.setReturnCode(0);
+			sapdResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			sapdResponse.setReturnCode(0);
+			sapdResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return sapdResponse;
 	}
 }

@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcseOrServFee;
 import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcsePerDiem;
 import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
@@ -77,4 +78,7 @@ public interface AccountingServDao {
 	public Integer saveAcseInvoiceItem(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> copyAcseExpenseBudget(final HashMap<String,Object> params) throws SQLException;
 	
+	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
+	public List<AcsePerDiem> retrieveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
 }

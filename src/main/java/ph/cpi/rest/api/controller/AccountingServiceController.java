@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
@@ -56,6 +57,7 @@ import ph.cpi.rest.api.model.request.SaveAcseOrServFeeRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.SaveAcseOrTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePaytReqRequest;
+import ph.cpi.rest.api.model.request.SaveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
@@ -89,6 +91,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
@@ -104,6 +107,7 @@ import ph.cpi.rest.api.model.response.SaveAcseOrServFeeResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.SaveAcseOrTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePaytReqResponse;
+import ph.cpi.rest.api.model.response.SaveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
@@ -474,6 +478,20 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/copyAcseExpenseBudget");
 		logger.info("CopyAcseExpenseBudgetRequest : " + request.toString());
 		return acctServService.copyAcseExpenseBudget(request);
+	}
+	
+	@GetMapping(path="retrieveAcsePerDiem")
+	public @ResponseBody RetrieveAcsePerDiemResponse retrieveAcsePerDiem(RetrieveAcsePerDiemRequest rapdr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcsePerDiem");
+		logger.info("RetrieveAcsePerDiemRequest : " + rapdr.toString());
+		return acctServService.retrieveAcsePerDiem(rapdr);
+	}
+
+	@PostMapping(path="saveAcsePerDiem")
+	public @ResponseBody SaveAcsePerDiemResponse saveAcsePerDiem(@RequestBody SaveAcsePerDiemRequest sapdr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcsePerDiem");
+		logger.info("SaveAcsePerDiemRequest : " + sapdr.toString());
+		return acctServService.saveAcsePerDiem(sapdr);
 	}
 	
 }

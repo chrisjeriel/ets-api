@@ -14,6 +14,7 @@ public class SaveAcseCvRequest {
     private String particulars;
     private String bank;
     private String bankAcct;
+    private Integer checkId;
     private String checkNo;
     private String checkDate;
     private String checkClass;
@@ -110,6 +111,12 @@ public class SaveAcseCvRequest {
 	}
 	public void setBankAcct(String bankAcct) {
 		this.bankAcct = bankAcct;
+	}
+	public Integer getCheckId() {
+		return checkId;
+	}
+	public void setCheckId(Integer checkId) {
+		this.checkId = checkId;
 	}
 	public String getCheckNo() {
 		return checkNo;
@@ -230,12 +237,13 @@ public class SaveAcseCvRequest {
 		return "SaveAcseCvRequest [tranId=" + tranId + ", mainTranId=" + mainTranId + ", cvYear=" + cvYear + ", cvNo="
 				+ cvNo + ", cvDate=" + cvDate + ", cvStatus=" + cvStatus + ", paytReqType=" + paytReqType
 				+ ", payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd + ", payee=" + payee + ", particulars="
-				+ particulars + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo + ", checkDate="
-				+ checkDate + ", checkClass=" + checkClass + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", cvAmt=" + cvAmt + ", localAmt=" + localAmt + ", preparedBy=" + preparedBy + ", preparedDate="
-				+ preparedDate + ", certifiedBy=" + certifiedBy + ", certifiedDate=" + certifiedDate + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", tranStat=" + tranStat + ", closeDate=" + closeDate + ", deleteDate=" + deleteDate
-				+ ", postDate=" + postDate + "]";
+				+ particulars + ", bank=" + bank + ", bankAcct=" + bankAcct + ", checkId=" + checkId + ", checkNo="
+				+ checkNo + ", checkDate=" + checkDate + ", checkClass=" + checkClass + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", cvAmt=" + cvAmt + ", localAmt=" + localAmt + ", preparedBy="
+				+ preparedBy + ", preparedDate=" + preparedDate + ", certifiedBy=" + certifiedBy + ", certifiedDate="
+				+ certifiedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat + ", closeDate=" + closeDate
+				+ ", deleteDate=" + deleteDate + ", postDate=" + postDate + "]";
 	}
+	
 }

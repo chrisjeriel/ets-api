@@ -3249,4 +3249,17 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return rmagisResponse;
 	
 	}
+
+	@Override
+	public RetrieveMtnGlSubDepNoResponse retrieveMtnGlSubDepNo(RetrieveMtnGlSubDepNoRequest rmgsdnr)
+			throws SQLException {
+		RetrieveMtnGlSubDepNoResponse rmgsdnResponse = new RetrieveMtnGlSubDepNoResponse();
+		HashMap<String, Object> rmgsdnParams = new HashMap<String, Object>();
+		rmgsdnParams.put("depCd",rmgsdnr.getDepCd());
+		rmgsdnParams.put("depNo",rmgsdnr.getDepNo());
+		rmgsdnResponse.setGlSubDepNoList(maintenanceDao.retrieveMtnGlSubDepNo(rmgsdnParams));
+		return rmgsdnResponse;
+	}
+
+	
 }
