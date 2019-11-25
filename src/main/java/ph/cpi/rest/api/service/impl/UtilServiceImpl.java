@@ -1,8 +1,17 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
+import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
 import ph.cpi.rest.api.service.UtilService;
@@ -78,6 +88,38 @@ public class UtilServiceImpl implements UtilService {
 	@Override
 	public String getReportPath() throws SQLException {
 		return utilDao.getReportPath();
+	}
+
+	@Override
+	public Response uploadDataTable() throws SQLException {
+		Response resp = new Response();
+		
+		String SAMPLE_XLSX_FILE_PATH = "C:\\Users\\PMMSC-TOTZ\\Documents\\PMMSC\\sample-spreadsheet.xlsx";
+		
+        try {
+			Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
+			
+			System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
+			
+			DataFormatter dataFormatter = new DataFormatter();
+			
+			for(Sheet sheet: workbook) {
+	            System.out.println("=> " + sheet.getSheetName());
+	            
+	            for (Row row: sheet) {
+	                for(Cell cell: row) {
+	                    String cellValue = dataFormatter.formatCellValue(cell);
+	                    System.out.print(cellValue + "\t");
+	                }
+	                System.out.println();
+	            }
+	        }
+			
+		} catch (EncryptedDocumentException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return resp;
 	}
 	
 	
