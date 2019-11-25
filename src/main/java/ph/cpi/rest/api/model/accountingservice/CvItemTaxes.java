@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class OrItemTaxes {
-	private Integer tranId;
-	private Integer billId;
+public class CvItemTaxes {
+	private Integer reqId;
 	private Integer itemNo;
+	private Integer taxSeqNo;
 	private String taxType;
 	private String taxCd;
 	private String taxName;
@@ -18,23 +18,23 @@ public class OrItemTaxes {
 	private String updateUser;
 	private DateTime updateDate;
 	private String genType;
-	public Integer getTranId() {
-		return tranId;
+	public Integer getReqId() {
+		return reqId;
 	}
-	public void setTranId(Integer tranId) {
-		this.tranId = tranId;
-	}
-	public Integer getBillId() {
-		return billId;
-	}
-	public void setBillId(Integer billId) {
-		this.billId = billId;
+	public void setReqId(Integer reqId) {
+		this.reqId = reqId;
 	}
 	public Integer getItemNo() {
 		return itemNo;
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
+	}
+	public Integer getTaxSeqNo() {
+		return taxSeqNo;
+	}
+	public void setTaxSeqNo(Integer taxSeqNo) {
+		this.taxSeqNo = taxSeqNo;
 	}
 	public String getTaxType() {
 		return taxType;
@@ -98,7 +98,7 @@ public class OrItemTaxes {
 	}
 	@Override
 	public String toString() {
-		return "OrItemTaxes [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType=" + taxType
+		return "CvItemTaxes [reqId=" + reqId + ", itemNo=" + itemNo + ", taxSeqNo=" + taxSeqNo + ", taxType=" + taxType
 				+ ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", genType=" + genType + "]";

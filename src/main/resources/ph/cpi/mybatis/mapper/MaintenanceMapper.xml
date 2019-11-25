@@ -5182,7 +5182,7 @@
 																			  #{activeTag, jdbcType=VARCHAR},
 																			  '','','',''))
 	</select>
-	
+
 	<resultMap type="ph.cpi.rest.api.model.maintenance.AcseInvSeries" id="invSeriesMap">
         <result property="invoiceNo" 	column="INVOICE_NO"/>
 		<result property="invoiceId" 	column="INVOICE_ID"/>

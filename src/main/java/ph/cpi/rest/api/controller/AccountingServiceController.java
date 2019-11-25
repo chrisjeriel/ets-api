@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
+import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
@@ -63,6 +64,7 @@ import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
+import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
@@ -467,4 +469,11 @@ public class AccountingServiceController {
 		return acctServService.saveAcseInvoiceItem(request);
 	}
 
+	@PostMapping(path="copyAcseExpenseBudget")
+	public @ResponseBody CopyAcseExpenseBudgetResponse copyAcseExpenseBudget(@RequestBody CopyAcseExpenseBudgetRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/copyAcseExpenseBudget");
+		logger.info("CopyAcseExpenseBudgetRequest : " + request.toString());
+		return acctServService.copyAcseExpenseBudget(request);
+	}
+	
 }
