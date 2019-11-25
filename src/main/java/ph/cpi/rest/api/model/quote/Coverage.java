@@ -22,6 +22,7 @@ public class Coverage {
 	private DateTime updateDate;
 	
 	private BigDecimal totalValue;
+	private String alopFlag;
 	
 	private List<SectionCovers> sectionCovers;
 	
@@ -112,12 +113,20 @@ public class Coverage {
 	public void setTotalValue(BigDecimal totalValue) {
 		this.totalValue = totalValue;
 	}
+	
+	public String getAlopFlag() {
+		return alopFlag;
+	}
+	public void setAlopFlag(String alopFlag) {
+		this.alopFlag = alopFlag;
+	}
 	@Override
 	public String toString() {
 		return "Coverage [riskId=" + riskId + ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi
 				+ ", sectionIIISi=" + sectionIIISi + ", totalSi=" + totalSi + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", totalValue="
-				+ totalValue + ", sectionCovers=" + sectionCovers + "]";
+				+ totalValue + ", alopFlag=" + alopFlag + ", sectionCovers=" + sectionCovers + "]";
 	}
+	
 }

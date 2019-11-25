@@ -30,6 +30,8 @@ public class AcitPrqTrans {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private BigDecimal serviceFee;
+	
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -180,6 +182,12 @@ public class AcitPrqTrans {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getServiceFee() {
+		return serviceFee;
+	}
+	public void setServiceFee(BigDecimal serviceFee) {
+		this.serviceFee = serviceFee;
+	}
 	@Override
 	public String toString() {
 		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
@@ -189,6 +197,6 @@ public class AcitPrqTrans {
 				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
 				+ currAmt + ", localAmt=" + localAmt + ", allotedAmt=" + allotedAmt + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", serviceFee=" + serviceFee + "]";
 	}
 }

@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.maintenance.AcseDefaultAcctEntries;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultAmtDtl;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultTax;
 import ph.cpi.rest.api.model.maintenance.AcseDefaultWhTax;
+import ph.cpi.rest.api.model.maintenance.AcseInvSeries;
 import ph.cpi.rest.api.model.maintenance.AcseJVSeries;
 import ph.cpi.rest.api.model.maintenance.AcseOrSeries;
 import ph.cpi.rest.api.model.maintenance.AcseTranSeries;
@@ -1437,6 +1438,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(HashMap<String, Object> params) throws SQLException {
 		List<MtnAcitTranType> list = sqlSession.selectList("retrieveMtnAcitTranTypeLov", params);
+		return list;
+	}
+
+	@Override
+	public List<AcseInvSeries> retrieveAcseInvSeries(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		List<AcseInvSeries> list = sqlSession.selectList("retrieveAcseInvSeries", params);
 		return list;
 	}
 }

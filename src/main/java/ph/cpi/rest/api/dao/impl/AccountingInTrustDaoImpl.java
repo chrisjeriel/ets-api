@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
+import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -1037,6 +1038,35 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries(HashMap<String, Object> params) throws SQLException {
 		AcitEditedAcctEntries res = sqlSession.selectOne("retEditAcctEntries", params);
+		return res;
+	}
+
+	@Override
+	public String validateCheckNo(HashMap<String, Object> params) throws SQLException {
+		params.put("validateCheckNo", "");
+		sqlSession.update("validateCheckNo",params);
+		return (String) params.get("validateCheckNo");
+	}
+
+	@Override
+	public HashMap<String, Object> validateServfee(HashMap<String, Object> params) throws SQLException {
+		params.put("valReqId", "");
+		params.put("refNo", "");
+		params.put("amount", "");
+		params.put("return", "");
+		sqlSession.update("validateServfee", params);
+		return params;
+	}
+
+	@Override
+	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(HashMap<String, Object> params) throws SQLException {
+		List<AcitEomUnpostedMonth> res = sqlSession.selectList("retrieveAcctPrqServFeeMonths", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitOsQsoa> retrieveAcitOsQsoa(HashMap<String, Object> params) throws SQLException {
+		List<AcitOsQsoa> res = sqlSession.selectList("retrieveAcitOsQsoa", params);
 		return res;
 	}
 }

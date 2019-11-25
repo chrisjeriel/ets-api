@@ -6,6 +6,7 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
+import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
 import ph.cpi.rest.api.model.accountingservice.AcseBudExpMonthly;
 import ph.cpi.rest.api.model.accountingservice.AcseBudgetExpense;
@@ -15,6 +16,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
 import ph.cpi.rest.api.model.accountingservice.AcseOrServFee;
@@ -67,5 +69,12 @@ public interface AccountingServDao {
 	public List<AcseCancelledCV> retrieveAcseChangeToNewCV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledJV> retrieveAcseChangeToNewJV(final HashMap<String,Object> params) throws SQLException;
 	public List<AcseCancelledTransactions> retrieveAcseCancelledTran(final HashMap<String,Object> params) throws SQLException;
+	public List<AcseBatchInvoice> retrieveAcseBatchInvoice(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcseInvoice(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> printAcseJv(final HashMap<String,Object> params) throws SQLException;
+	public Integer generateBatchInvoiceNo(final HashMap<String,Object> params) throws SQLException;
+	public List<AcseInvoiceItems> retrieveAcseInvoiceItems(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseInvoiceItem(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> copyAcseExpenseBudget(final HashMap<String,Object> params) throws SQLException;
+	
 }

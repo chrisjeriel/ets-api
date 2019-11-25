@@ -1423,7 +1423,14 @@ public class MaintenanceController {
 	/*@GetMapping(path="retrieveMtnPrqTypeLov")
 	public @ResponseBody RetrieveMtnPrqTypeLovResponse retrieveMtnPrqTypeLov(RetrieveMtnPrqTypeLovRequest rmptlr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnPrqTypeLov");
-		logger.info("RetrieveMtnPrqTypeLovRequest : " + rmtlr.toString());
-		return maintenanceService.retrieveMtnPrqTypeLov(rmtlr);
+		logger.info("RetrieveMtnPrqTypeLovRequest : " + rmptlr.toString());
+		return maintenanceService.retrieveMtnPrqTypeLov(rmptlr);
 	}*/
+	
+	@GetMapping(path="retrieveMtnAcseInvSeries")
+	public @ResponseBody RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcseInvSeries");
+		logger.info("RetrieveMtnAcseGenInvSeriesRequest : " + request.toString());
+		return maintenanceService.retrieveMtnAcseInvSeries(request);
+	}
 }

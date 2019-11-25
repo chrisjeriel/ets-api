@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
+import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
@@ -220,4 +221,9 @@ public interface AccountingInTrustDao {
 	public List<QSOARemittance> retrieveQSOARemittance(final HashMap<String, Object> params) throws SQLException;
 	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
 	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
+	
+	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> validateServfee(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitOsQsoa> retrieveAcitOsQsoa(final HashMap<String, Object> params) throws SQLException;
 }

@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.accountingservice;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
@@ -17,6 +18,9 @@ public class AcseOrServFee {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	List<OrItemTaxes> taxAllocation;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -89,11 +93,18 @@ public class AcseOrServFee {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<OrItemTaxes> getTaxAllocation() {
+		return taxAllocation;
+	}
+	public void setTaxAllocation(List<OrItemTaxes> taxAllocation) {
+		this.taxAllocation = taxAllocation;
+	}
 	@Override
 	public String toString() {
 		return "AcseOrServFee [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", servFeeAmt=" + servFeeAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation
+				+ "]";
 	}
 }

@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -980,8 +981,47 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rasfmParams.put("currRt", rasfr.getCurrRt());
 		
 		if(rasfr.getRetType().equals("generate")) {
+			HashMap<String, Object> res = acctITDao.validateServfee(rasfmParams);
+			Integer returnCd = (Integer) res.get("return");
+			
 			rasfmgResponse.setMainDistList(acctITDao.retrieveAcctPrqServFeeMainGnrt(rasfmParams));
 			rasfmgResponse.setSubDistList(acctITDao.retrieveAcctPrqServFeeSubGnrt(rasfmParams));
+			
+			if("N".equals(rasfr.getForce())) {
+				switch (returnCd) {
+				case 0:
+					rasfmgResponse.setReturnCode(0);
+					break;
+				case 1:
+					rasfmgResponse.setUnpostedMonthsList(acctITDao.retrieveAcctPrqServFeeMonths(rasfmParams));
+					rasfmgResponse.setReturnCode(1);
+					break;
+				case 2:
+					rasfmgResponse.setRefNo((String) res.get("refNo"));
+					rasfmgResponse.setReturnCode(2);
+					break;
+				case 3:
+					rasfmgResponse.setRefNo((String) res.get("refNo"));
+					rasfmgResponse.setReturnCode(3);
+					break;
+				case 4:
+					rasfmgResponse.setRefNo((String) res.get("refNo"));
+					rasfmgResponse.setAmount((BigDecimal) res.get("amount"));
+					rasfmgResponse.setReturnCode(4);
+					break;
+				}
+			} else {
+				HashMap<String, Object> cancelReq = new HashMap<String, Object>();
+				
+				cancelReq.put("reqId", res.get("valReqId"));
+				cancelReq.put("reqStatus", "X");
+				cancelReq.put("updateUser", rasfr.getUpdateUser());
+				cancelReq.put("approvedBy", "");
+				cancelReq.put("approvedDate", "");
+				
+				acctITDao.updateAcitPaytReqStat(cancelReq);
+				rasfmgResponse.setReturnCode(0);
+			}
 		} else if(rasfr.getRetType().equals("normal")) {
 			HashMap<String, Object> res = acctITDao.retrieveAcctPrqServFee(rasfmParams);
 			
@@ -1440,10 +1480,12 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	public SaveAcctPrqServFeeResponse saveAcctPrqServFee(SaveAcctPrqServFeeRequest sapsfr) throws SQLException {
 		SaveAcctPrqServFeeResponse response = new SaveAcctPrqServFeeResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		
 		params.put("reqId", sapsfr.getReqId());
 		params.put("quarter", sapsfr.getQuarter());
 		params.put("year", sapsfr.getYear());
 		params.put("servFeeAmt", sapsfr.getServFeeAmt());
+		params.put("netServFee", sapsfr.getNetServFee());
 		params.put("currCd", sapsfr.getCurrCd());
 		params.put("currRt", sapsfr.getCurrRt());
 		params.put("createUser", sapsfr.getCreateUser());
@@ -1453,11 +1495,62 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		try {
 			response.setReturnCode(acctITDao.saveAcctPrqServFee(params));
+			response.setReturnCode(-1);
+			
+			/*Boolean proceed = false;
+			HashMap<String, Object> res = acctITDao.validateServfee(params);
+			Integer returnCd = (Integer) res.get("return");
+			
+			if("N".equals(sapsfr.getForce())) {
+				switch (returnCd) {
+				case 0:
+					proceed = true;
+					break;
+				case 1:
+					proceed = false;
+					// retrieve list of unposted months
+					response.setReturnCode(1);
+					break;
+				case 2:
+					proceed = false;
+					response.setRefNo((String) res.get("refNo"));
+					response.setReturnCode(2);
+					break;
+				case 3:
+					proceed = false;
+					response.setRefNo((String) res.get("refNo"));
+					response.setReturnCode(3);
+					break;
+				case 4:
+					proceed = false;
+					response.setRefNo((String) res.get("refNo"));
+					response.setAmount((BigDecimal) res.get("amount"));
+					response.setReturnCode(4);
+					break;
+				}
+			} else {
+				HashMap<String, Object> cancelReq = new HashMap<String, Object>();
+				
+				cancelReq.put("reqId", res.get("valReqId"));
+				cancelReq.put("reqStatus", "X");
+				cancelReq.put("updateUser", sapsfr.getUpdateUser());
+				cancelReq.put("approvedBy", "");
+				cancelReq.put("approvedDate", "");
+				
+				acctITDao.updateAcitPaytReqStat(cancelReq);
+				proceed = true;
+			}
+			
+			if(proceed) {
+				response.setReturnCode(acctITDao.saveAcctPrqServFee(params));
+				response.setReturnCode(-1);
+			}*/
 		} catch (Exception e) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			e.printStackTrace();
 		}
+		
 		return response;
 	}
 
@@ -1560,10 +1653,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			sacParams.put("mainTranIdOut","");
 			sacParams.put("tranId",sacr.getTranId());
 	        sacParams.put("cvYear", sacr.getCvYear());
+	        sacParams.put("checkId", sacr.getCheckId());
 	        sacParams.put("cvNo", sacr.getCvNo());
 	        sacParams.put("cvDate", sacr.getCvDate());
 	        sacParams.put("cvStatus", sacr.getCvStatus());
-	        //sacParams.put("payeeNo", sacr.getPayeeNo());
 	        sacParams.put("paytReqType", sacr.getPaytReqType());
 	        sacParams.put("payeeClassCd", sacr.getPayeeClassCd());
 	        sacParams.put("payeeCd", sacr.getPayeeCd());
@@ -1591,11 +1684,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("closeDate", sacr.getCloseDate());
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
-	        
-	        HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
-	        sacResponse.setReturnCode((Integer) response.get("errorCode"));
-	        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
-	        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+
+	        String checkNo = acctITDao.validateCheckNo(sacParams);	        
+	        if(checkNo.equalsIgnoreCase("-100")) {
+	        	sacResponse.setReturnCode(-100);
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
+	        	HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
+		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
+		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
+		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
+		        sacResponse.setReturnCode(-1);
+	        }else {
+	        	sacResponse.setReturnCode(2);
+	        	sacResponse.setCheckNo(checkNo);
+	        }
 		} catch (SQLException sqlex) {
 			sacResponse.setReturnCode(0);
 			sacResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -1747,6 +1850,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> uacsParams = new HashMap<String, Object>();
 		try {
 			uacsParams.put("tranId", uacsr.getTranId());
+			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
 			
@@ -2438,5 +2542,19 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setEditedAcctEntries(acctITDao.retrieveAcitEditedAcctEntries(params));
 		logger.info(response.toString());
 		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
+		RetrieveAcitOsQsoaResponse res = new RetrieveAcitOsQsoaResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("qsoaId", raoqp.getQsoaId());
+		params.put("currCd", raoqp.getCurrCd());
+		params.put("cedingId", raoqp.getCedingId());
+		
+		res.setOsQsoaList(acctITDao.retrieveAcitOsQsoa(params));
+		
+		return res;
 	}
 }

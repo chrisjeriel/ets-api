@@ -94,7 +94,19 @@ public class FileUploadController {
 	    }
 	
 	
-	
+	 @PostMapping("/uploadFileToDB")
+	    public @ResponseBody String handleFileUploadToDB(@RequestParam("file") MultipartFile file,
+	            RedirectAttributes redirectAttributes, String module, String refId, String tableName) {
+		 
+		 logger.info("POST: /api/file-upload-service/uploadFileToDB/");
+	     String response = "";
+		 response = storageService.store(file, module, refId);
+	     redirectAttributes.addFlashAttribute("message",
+	                "You successfully uploaded " + file.getOriginalFilename() + "!");
+	     logger.info("You successfully uploaded " + file.getOriginalFilename() + "!");
+	     logger.info("Now uploading to "+ tableName);
+	     return response;
+	    }
 	
 	
 	
