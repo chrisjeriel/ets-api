@@ -3174,6 +3174,7 @@
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		
 		<result property="refNo" 			column="REF_NO"/>
+		<result property="checkStatus"	 	column="CHECK_STATUS"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
