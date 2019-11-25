@@ -2137,6 +2137,7 @@
 		<result property="tranId"			column="TRAN_ID"		/>
 		<result property="billId"			column="BILL_ID"		/>
 		<result property="itemNo"			column="ITEM_NO"		/>
+		<result property="qsoaId"			column="QSOA_ID"		/>
 		<result property="quarterEnding"	column="QUARTER_ENDING"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd"			column="CURR_CD"		/>
 		<result property="currRate"			column="CURR_RATE"		/>
@@ -2204,6 +2205,20 @@
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+					);
+					
+					ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(
+													   #{save.tranId},
+														#{save.qsoaId},
+														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.currCd},
+														#{save.currRate},
+														#{save.balPaytAmt},
+														#{save.localAmt},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
