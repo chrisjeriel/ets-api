@@ -354,4 +354,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer errorCode = sqlSession.update("saveAcseInvoiceItem",params);
 		return errorCode;
 	}
+	
+	@Override
+	public HashMap<String, Object> copyAcseExpenseBudget(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("copyAcseExpenseBudget",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
