@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
@@ -335,7 +336,9 @@ public class QuoteDaoImpl implements QuoteDao{
 		sqlSession.update("copyQuoteDeductibles", params);
 		sqlSession.update("copyQuoteOtherRates", params);
 		sqlSession.update("copyQuoteEndorsements", params);
+		sqlSession.update("copyQuoteAlopInfo", params);
 		sqlSession.update("copyQuoteAlop", params);
+		sqlSession.update("copyQuoteAlopItem", params);
 		sqlSession.update("copyQuoteItems", params);
 		sqlSession.update("copyQuoteAttachments", params);
 		
@@ -353,6 +356,7 @@ public class QuoteDaoImpl implements QuoteDao{
 		sqlSession.update("copyQuoteDeductibles", params);
 		sqlSession.update("copyQuoteOtherRates", params);
 		sqlSession.update("copyQuoteEndorsements", params);
+		sqlSession.update("copyQuoteAlopInfo", params);
 		sqlSession.update("copyQuoteAlop", params);
 		sqlSession.update("copyQuoteItems", params);
 		sqlSession.update("copyQuoteAttachments", params);
@@ -389,7 +393,12 @@ public class QuoteDaoImpl implements QuoteDao{
 
 	@Override
 	public Integer updateQuoteStatus(HashMap<String, Object> params) throws SQLException {
-		Integer errorCode = sqlSession.update("updateQuoteStatus", params);
+		Integer errorCode ;
+		try{
+			errorCode = sqlSession.update("updateQuoteStatus", params);
+		}catch (UncategorizedSQLException e){
+			throw (SQLException) e.getCause();
+		}
 		return errorCode;
 	}
 

@@ -881,7 +881,7 @@ public class MaintenanceController {
 	}
 	
 	@GetMapping(path="retrieveBankLov")
-	public @ResponseBody RetrieveBankLovResponse retrieveBankLov(RetrieveMtnBankRequest rmbr) throws SQLException {
+	public @ResponseBody RetrieveBankLovResponse retrieveBankLov(RetrieveBankLovRequest rmbr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveBankLov");
 		logger.info("RetrieveBankLovRequest : " + rmbr.toString());
 		return maintenanceService.retrieveBankLov(rmbr);

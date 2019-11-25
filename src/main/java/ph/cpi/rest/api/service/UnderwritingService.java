@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
@@ -246,4 +247,5 @@ public interface UnderwritingService {
 	public BatchDistributionResponse batchDistribution(BatchDistributionRequest uphcsr) throws SQLException;
 	public BatchPostingResponse batchPosting(BatchPostingRequest uphcsr) throws SQLException;
 	public RetrieveLastExtractInfoResponse retrieveLastExtractInfo() throws SQLException;
+	public RetrievePolDistListResponse retrieveNegateDistList(RetrievePolDistListRequest rpdir) throws SQLException;
 }

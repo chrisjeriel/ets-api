@@ -682,4 +682,10 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		LastExpiryExtractInfo info = sqlSession.selectOne("getLastExtInfo");
 		return info;
 	}
+
+	@Override
+	public List<PolDistList> retrieveNegateDistList(HashMap<String, Object> params) throws SQLException {
+		List<PolDistList> list = sqlSession.selectList("retrieveNegateDistList",params);
+		return list;
+	}
 }

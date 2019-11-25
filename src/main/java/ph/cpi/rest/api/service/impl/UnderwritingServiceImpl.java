@@ -419,7 +419,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
 		rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
-		logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
+		//logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
 		
 		return rplResponse;
 	}
@@ -805,6 +805,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("blockCd" ,spgip.getBlockCd());
 			savePolGenInfoParams.put("latitude" ,spgip.getLatitude());
 			savePolGenInfoParams.put("longitude" ,spgip.getLongitude());
+			savePolGenInfoParams.put("coTermTag", spgip.getCoTermTag());
+			savePolGenInfoParams.put("coTermText", spgip.getCoTermText());
+			savePolGenInfoParams.put("mbiPolicyId", spgip.getMbiPolicyId());
 			
 			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
 			
@@ -1303,7 +1306,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try{
 			pprResponse.setReturnCode(underwritingDao.postPolicy(params));
 		}catch(SQLException ex){
-			
+			ex.printStackTrace();
 			if(ex.getErrorCode()== 20000){
 				pprResponse.setReturnCode(20000);
 				pprResponse.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
@@ -1907,6 +1910,18 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	public RetrieveLastExtractInfoResponse retrieveLastExtractInfo() throws SQLException {
 		RetrieveLastExtractInfoResponse response = new RetrieveLastExtractInfoResponse();
 		response.setInfo(underwritingDao.retrieveLastExtractInfo());
+		return response;
+	}
+
+	@Override
+	public RetrievePolDistListResponse retrieveNegateDistList(RetrievePolDistListRequest rpdir) throws SQLException {
+		RetrievePolDistListResponse response = new RetrievePolDistListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyNo", rpdir.getPolicyNo());
+		params.put("cedingName", rpdir.getCedingName());
+		params.put("insuredDesc", rpdir.getInsuredDesc());
+		params.put("riskName", rpdir.getRiskName());
+		response.setPolDistList(underwritingDao.retrieveNegateDistList(params));
 		return response;
 	}
 }

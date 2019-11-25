@@ -56,7 +56,7 @@ class Items {
 	private String	serialNo;
 	private String	location;
 	private String  chamberNo;
-	private Integer	noClaimPd;
+	private String	noClaimPd;
 	private Integer ipl;
 	private String  relativeImp;
 	private String  standbyUnit;
@@ -126,10 +126,10 @@ class Items {
 	public void setChamberNo(String chamberNo) {
 		this.chamberNo = chamberNo;
 	}
-	public Integer getNoClaimPd() {
+	public String getNoClaimPd() {
 		return noClaimPd;
 	}
-	public void setNoClaimPd(Integer noClaimPd) {
+	public void setNoClaimPd(String noClaimPd) {
 		this.noClaimPd = noClaimPd;
 	}
 	public Integer getIpl() {

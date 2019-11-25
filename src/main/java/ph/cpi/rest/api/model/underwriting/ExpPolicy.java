@@ -23,6 +23,7 @@ public class ExpPolicy {
 	private String cessionDesc;
 	private String cedingId;
 	private String cedingName;
+	private String cedingAbbr;
 	private String lineClassCd; 
 	private String quoteId; 
 	private String optionId; 
@@ -436,6 +437,12 @@ public class ExpPolicy {
 	public void setNrReasonDesc(String nrReasonDesc) {
 		this.nrReasonDesc = nrReasonDesc;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "ExpPolicy [policyId=" + policyId + ", policyNo=" + policyNo + ", extractUser=" + extractUser
@@ -444,19 +451,20 @@ public class ExpPolicy {
 				+ ", balanceTag=" + balanceTag + ", claimTag=" + claimTag + ", reminderTag=" + reminderTag
 				+ ", nrReasonCd=" + nrReasonCd + ", nrReasonDesc=" + nrReasonDesc + ", cessionId=" + cessionId
 				+ ", cessionDesc=" + cessionDesc + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", lineClassCd=" + lineClassCd + ", quoteId=" + quoteId + ", optionId=" + optionId + ", coRefNo="
-				+ coRefNo + ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
-				+ ", intmId=" + intmId + ", prinId=" + prinId + ", contractorId=" + contractorId + ", insuredDesc="
-				+ insuredDesc + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom
-				+ ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo
-				+ ", issueDate=" + issueDate + ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate="
-				+ acctDate + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", bookedTag=" + bookedTag
-				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
-				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
-				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
-				+ ", excludeDistTag=" + excludeDistTag + ", remarks=" + remarks + ", changes=" + changes
-				+ ", projectList=" + projectList + ", itemList=" + itemList + ", deductiblesList=" + deductiblesList
-				+ ", sectionCoverList=" + sectionCoverList + ", coverageList=" + coverageList + ", catPerilList="
-				+ catPerilList + ", endorsementList=" + endorsementList + "]";
+				+ ", cedingAbbr=" + cedingAbbr + ", lineClassCd=" + lineClassCd + ", quoteId=" + quoteId + ", optionId="
+				+ optionId + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId + ", riBinderNo=" + riBinderNo
+				+ ", mbiRefNo=" + mbiRefNo + ", intmId=" + intmId + ", prinId=" + prinId + ", contractorId="
+				+ contractorId + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate + ", expiryDate="
+				+ expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom="
+				+ maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", issueDate=" + issueDate + ", effDate="
+				+ effDate + ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd=" + currencyCd
+				+ ", currencyRt=" + currencyRt + ", bookedTag=" + bookedTag + ", govtTag=" + govtTag + ", openCoverTag="
+				+ openCoverTag + ", holdCoverTag=" + holdCoverTag + ", declarationTag=" + declarationTag
+				+ ", minDepTag=" + minDepTag + ", altTag=" + altTag + ", specialPolicyTag=" + specialPolicyTag
+				+ ", instTag=" + instTag + ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag
+				+ ", remarks=" + remarks + ", changes=" + changes + ", projectList=" + projectList + ", itemList="
+				+ itemList + ", deductiblesList=" + deductiblesList + ", sectionCoverList=" + sectionCoverList
+				+ ", coverageList=" + coverageList + ", catPerilList=" + catPerilList + ", endorsementList="
+				+ endorsementList + "]";
 	}
 }

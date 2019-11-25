@@ -7,6 +7,7 @@ public class SaveQuotationCopyRequest {
 	private String quoteYear;
 	private String cedingId;
 	private String riskId;
+	private String autoIntComp;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -42,6 +43,13 @@ public class SaveQuotationCopyRequest {
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
+	
+	public String getAutoIntComp() {
+		return autoIntComp;
+	}
+	public void setAutoIntComp(String autoIntComp) {
+		this.autoIntComp = autoIntComp;
+	}
 	public String getRiskId() {
 		return riskId;
 	}
@@ -75,8 +83,9 @@ public class SaveQuotationCopyRequest {
 	@Override
 	public String toString() {
 		return "SaveQuotationCopyRequest [copyingType=" + copyingType + ", quoteId=" + quoteId + ", lineCd=" + lineCd
-				+ ", quoteYear=" + quoteYear + ", cedingId=" + cedingId + ", riskId=" + riskId + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
-	}	
+				+ ", quoteYear=" + quoteYear + ", cedingId=" + cedingId + ", riskId=" + riskId + ", autoIntComp="
+				+ autoIntComp + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + "]";
+	}
+	
 }

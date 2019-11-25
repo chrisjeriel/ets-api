@@ -80,6 +80,29 @@ public class SavePolGenInfoRequest {
 	private String longitude;
 	private SavePolWordings polWordings;
 	
+	private String coTermTag;
+	private String coTermText;
+	private String mbiPolicyId;
+	
+	
+	public String getCoTermTag() {
+		return coTermTag;
+	}
+	public void setCoTermTag(String coTermTag) {
+		this.coTermTag = coTermTag;
+	}
+	public String getCoTermText() {
+		return coTermText;
+	}
+	public void setCoTermText(String coTermText) {
+		this.coTermText = coTermText;
+	}
+	public String getMbiPolicyId() {
+		return mbiPolicyId;
+	}
+	public void setMbiPolicyId(String mbiPolicyId) {
+		this.mbiPolicyId = mbiPolicyId;
+	}
 	public String getSavingType() {
 		return savingType;
 	}
@@ -561,7 +584,7 @@ public class SavePolGenInfoRequest {
 				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + ", regionCd=" + regionCd
 				+ ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd="
 				+ blockCd + ", latitude=" + latitude + ", longitude=" + longitude + ", polWordings=" + polWordings
-				+ "]";
+				+ ", coTermTag=" + coTermTag + ", coTermText=" + coTermText + ", mbiPolicyId=" + mbiPolicyId + "]";
 	}
 	
 	

@@ -120,6 +120,10 @@
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="lastAffectingPolId" 	column="LAST_AFFECTING_POL_ID"/>
 		
+		<result property="coTermTag" column="CO_TERM_TAG"/>
+		<result property="coTermText" column="CO_TERM_TEXT"/>
+		<result property="mbiPolicyId" column="MBI_POLICY_ID"/>
+		
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
@@ -314,7 +318,8 @@
 		<result property="exPremAmt" 				column="EX_PREM_AMT"/>
 		<result property="exDiscTag" 				column="EX_DISC_TAG"/>
 		<result property="cumSi" 					column="CUM_SI"/>
-		<result property="cumPrem" 					column="CUM_PREM"/>	
+		<result property="cumPrem" 					column="CUM_PREM"/>
+		<result property="remarks" 					column="SEC_REMARKS"/>
 		<result property="createUserSec" 			column="CREATE_USER_SEC"/>
 		<result property="createDateSec" 			column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUserSec" 			column="UPDATE_USER_SEC"/>
@@ -694,7 +699,8 @@
 													#{sectioncovers.cumSi}, #{sectioncovers.cumPrem}, 
 													#{sectioncovers.createUserSec},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{sectioncovers.remarks,jdbcType=VARCHAR});
 			</foreach>
 			
 			<foreach collection="deleteDeductibleList" item="deductible">
@@ -1072,7 +1078,10 @@
 											   #{prjUpdateUser, jdbcType=VARCHAR},
 											   CAST(to_timestamp(#{prjUpdateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											   #{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR},
-											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR}
+											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},
+											   #{coTermTag,jdbcType=VARCHAR},
+												#{coTermText,jdbcType=VARCHAR},
+												#{mbiPolicyId,jdbcType=VARCHAR}
 			);
 			
 			<!-- POL_WORDINGS_PKG.save_pol_wordings(
@@ -2127,6 +2136,7 @@
 		<result property="cessionId"			column="CESSION_ID" /> 
 		<result property="cessionDesc"			column="CESSION_DESC" /> 
 		<result property="cedingId"				column="CEDING_ID" /> 
+		<result property="cedingAbbr"			column="CEDING_ABBR" /> 
 		<result property="cedingName"			column="CEDING_NAME" /> 
 		<result property="lineClassCd"			column="LINE_CLASS_CD" /> 
 		<result property="quoteId"				column="QUOTE_ID" /> 
@@ -2858,6 +2868,15 @@
 	
 	<select id="getLastExtInfo" resultMap="LastExpiryExtractInfoMapper">
 		SELECT * FROM TABLE(DIST_EXT_PKG.get_last_ext_info())
+	</select>
+	
+	<select id="retrieveNegateDistList" resultMap="polDistListMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_PKG.get_negate_list(
+															#{policyNo, jdbcType=VARCHAR},
+															#{cedingName, jdbcType=VARCHAR},
+															#{insuredDesc, jdbcType=VARCHAR},
+															#{riskName, jdbcType=VARCHAR}
+															))								    
 	</select>
 	
 </mapper>
