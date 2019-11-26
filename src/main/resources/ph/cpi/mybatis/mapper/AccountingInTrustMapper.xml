@@ -4213,6 +4213,7 @@
 		<result property="payee"        column="PAYEE" />
 		<result property="particulars"  column="PARTICULARS" />
 		<result property="currCd"       column="CURR_CD" />
+		<result property="currRate"     column="CURR_RATE" />
 		<result property="amount"       column="AMOUNT" />
 		<result property="localAmt"     column="LOCAL_AMT" />
 		<result property="status"       column="STATUS" />
