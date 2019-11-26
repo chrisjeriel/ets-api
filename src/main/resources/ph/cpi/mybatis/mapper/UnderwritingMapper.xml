@@ -124,6 +124,10 @@
 		<result property="coTermText" column="CO_TERM_TEXT"/>
 		<result property="mbiPolicyId" column="MBI_POLICY_ID"/>
 		
+		<result property="coAltRefNo"   column="CO_ALT_REF_NO"/>
+		<result property="repPolicyNo"   column="REP_POLICY_NO"/>
+		<result property="oldPolicyNo"   column="OLD_POLICY_NO"/>
+		
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
@@ -1081,7 +1085,8 @@
 											   #{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},
 											   #{coTermTag,jdbcType=VARCHAR},
 												#{coTermText,jdbcType=VARCHAR},
-												#{mbiPolicyId,jdbcType=VARCHAR}
+												#{mbiPolicyId,jdbcType=VARCHAR},
+												#{coAltRefNo,jdbcType=VARCHAR}
 			);
 			
 			<!-- POL_WORDINGS_PKG.save_pol_wordings(

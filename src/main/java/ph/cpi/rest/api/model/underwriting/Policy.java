@@ -92,7 +92,29 @@ public class Policy {
 	private String coTermText;
 	private String mbiPolicyId;
 	
+	private String coAltRefNo;
+	private String repPolicyNo;
+	private String oldPolicyNo;
 	
+	
+	public String getCoAltRefNo() {
+		return coAltRefNo;
+	}
+	public void setCoAltRefNo(String coAltRefNo) {
+		this.coAltRefNo = coAltRefNo;
+	}
+	public String getRepPolicyNo() {
+		return repPolicyNo;
+	}
+	public void setRepPolicyNo(String repPolicyNo) {
+		this.repPolicyNo = repPolicyNo;
+	}
+	public String getOldPolicyNo() {
+		return oldPolicyNo;
+	}
+	public void setOldPolicyNo(String oldPolicyNo) {
+		this.oldPolicyNo = oldPolicyNo;
+	}
 	public String getCoTermTag() {
 		return coTermTag;
 	}
@@ -613,7 +635,8 @@ public class Policy {
 				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
 				+ alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText + ", lastAffectingPolId="
 				+ lastAffectingPolId + ", coTermTag=" + coTermTag + ", coTermText=" + coTermText + ", mbiPolicyId="
-				+ mbiPolicyId + "]";
+				+ mbiPolicyId + ", coAltRefNo=" + coAltRefNo + ", repPolicyNo=" + repPolicyNo + ", oldPolicyNo="
+				+ oldPolicyNo + "]";
 	}
 	
 }

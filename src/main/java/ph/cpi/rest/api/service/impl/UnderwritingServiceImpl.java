@@ -808,6 +808,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("coTermTag", spgip.getCoTermTag());
 			savePolGenInfoParams.put("coTermText", spgip.getCoTermText());
 			savePolGenInfoParams.put("mbiPolicyId", spgip.getMbiPolicyId());
+			savePolGenInfoParams.put("coAltRefNo", spgip.getCoAltRefNo());
 			
 			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
 			
@@ -1814,6 +1815,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		response.setInstTag(underwritingDao.getInstTag(params));
 		if(response.getInstTag().equals("N")){
 			response.setAcctDate(underwritingDao.getAcctingDate(params));
+			response.setBookingDate(underwritingDao.retrievePolInwardBal(params).get(0).getInwPolBalance().get(0).getBookingDate());
 		}
 		logger.info("RetrievePolInstTagAcctDateResponse: "+ response.toString());
 		return response;
