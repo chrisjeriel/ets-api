@@ -2818,7 +2818,11 @@
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
-														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.prevPaytAmt, jdbcType=INTEGER},
+														#{save.prevBalance, jdbcType=INTEGER},
+														#{save.newPaytAmt, jdbcType=INTEGER},
+														#{save.newBalance, jdbcType=INTEGER}
 				);
 				
 				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
