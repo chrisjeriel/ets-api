@@ -32,7 +32,7 @@ public class SaveAcitInvestmentsRequest {
 } 
 
 class AcitInvt {
-	
+
 	private String 		invtId;
 	private String 		invtCd;
 	private String  	bank;
@@ -63,6 +63,28 @@ class AcitInvt {
 	private String      amortEff;
 	private String      amortized;
 	private String      parCost;
+	private String      partialPullOutTag;
+	private String      partialPullOutDate;
+	private String      partialPullOutAmt;
+	
+	public String getPartialPullOutTag() {
+		return partialPullOutTag;
+	}
+	public void setPartialPullOutTag(String partialPullOutTag) {
+		this.partialPullOutTag = partialPullOutTag;
+	}
+	public String getPartialPullOutDate() {
+		return partialPullOutDate;
+	}
+	public void setPartialPullOutDate(String partialPullOutDate) {
+		this.partialPullOutDate = partialPullOutDate;
+	}
+	public String getPartialPullOutAmt() {
+		return partialPullOutAmt;
+	}
+	public void setPartialPullOutAmt(String partialPullOutAmt) {
+		this.partialPullOutAmt = partialPullOutAmt;
+	}
 	
 	public String getAmortEff() {
 		return amortEff;
@@ -250,15 +272,23 @@ class AcitInvt {
 	
 	@Override
 	public String toString() {
-		return "AcitInvt [invtId=" + invtId + ", invtCd=" + invtCd + ", bank=" + bank + ", certNo=" + certNo
-				+ ", invtType=" + invtType + ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus + ", matPeriod="
-				+ matPeriod + ", durUnit=" + durUnit + ", intRt=" + intRt + ", purDate=" + purDate + ", matDate="
-				+ matDate + ", currSeq=" + currSeq + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
-				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
-				+ ", matVal=" + matVal + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", slCd=" + slCd + ", preTerminatedTag="
-				+ preTerminatedTag + ", termDate=" + termDate + ", amortEff=" + amortEff + ", amortized=" + amortized
-				+ ", parCost=" + parCost + "]";
+		return "AcitInvt [invtId=" + invtId + ", invtCd=" + invtCd + ", bank="
+				+ bank + ", certNo=" + certNo + ", invtType=" + invtType
+				+ ", invtSecCd=" + invtSecCd + ", invtStatus=" + invtStatus
+				+ ", matPeriod=" + matPeriod + ", durUnit=" + durUnit
+				+ ", intRt=" + intRt + ", purDate=" + purDate + ", matDate="
+				+ matDate + ", currSeq=" + currSeq + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", invtAmt=" + invtAmt
+				+ ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge
+				+ ", whtaxAmt=" + whtaxAmt + ", matVal=" + matVal
+				+ ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", slCd=" + slCd + ", preTerminatedTag=" + preTerminatedTag
+				+ ", termDate=" + termDate + ", amortEff=" + amortEff
+				+ ", amortized=" + amortized + ", parCost=" + parCost
+				+ ", partialPullOutTag=" + partialPullOutTag
+				+ ", partialPullOutDate=" + partialPullOutDate
+				+ ", partialPullOutAmt=" + partialPullOutAmt + "]";
 	}
 	
 	

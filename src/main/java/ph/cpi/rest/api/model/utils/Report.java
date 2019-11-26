@@ -8,7 +8,36 @@ public class Report {
 	private Integer holdCovId;
 	private String userId;
 	private Integer tranId;
+	private String reportId;
+	private Integer reqId;
+	private String cedingId;
+	private String policyId;
 	
+	public String getReportId() {
+		return reportId;
+	}
+	public void setReportId(String reportId) {
+		this.reportId = reportId;
+	}
+	public Integer getReqId() {
+		return reqId;
+	}
+	public void setReqId(Integer reqId) {
+		this.reqId = reqId;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(String policyId) {
+		this.policyId = policyId;
+	}
+
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -50,7 +79,9 @@ public class Report {
 	public String toString() {
 		return "Report [reportName=" + reportName + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId
-				+ ", userId=" + userId + ", tranId=" + tranId + "]";
+				+ ", userId=" + userId + ", tranId=" + tranId + ", reportId="
+				+ reportId + ", reqId=" + reqId + ", cedingId=" + cedingId
+				+ ", policyId=" + policyId + "]";
 	}
 
 }

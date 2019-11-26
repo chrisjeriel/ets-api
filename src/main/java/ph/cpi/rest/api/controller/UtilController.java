@@ -140,23 +140,49 @@ public class UtilController {
 			
 			PrintingUtility pu = new PrintingUtility();
 			HashMap reportParam = new HashMap<String, String>();
+			
 			String fileName = "";
 			String 	outputPath = FOLDER + "\\";
 			
-			
 			for(int i=0; i<grmr.getReportRequest().size(); i++){
-				
+	
 				reportParam.put("P_QUOTE_ID", grmr.getReportRequest().get(i).getQuoteId());
 				reportParam.put("pQuoteId", grmr.getReportRequest().get(i).getQuoteId());
-				reportParam.put("REPORT_NAME", grmr.getReportRequest().get(i).getReportName());
+				
 				reportParam.put("P_ADVICE_NO", grmr.getReportRequest().get(i).getAdviceNo());
 				reportParam.put("pAdviceNo", grmr.getReportRequest().get(i).getAdviceNo());
+				
 				reportParam.put("P_HOLD_COV_ID", grmr.getReportRequest().get(i).getHoldCovId());
 				reportParam.put("pHoldCovId", grmr.getReportRequest().get(i).getHoldCovId());
+				
 				reportParam.put("P_USER_ID", grmr.getReportRequest().get(i).getUserId());
 				reportParam.put("pUserId", grmr.getReportRequest().get(i).getUserId());
+				reportParam.put("P_PRINTED_BY", grmr.getReportRequest().get(i).getUserId());
+				reportParam.put("p_printed_by", grmr.getReportRequest().get(i).getUserId());
+				
 				reportParam.put("P_TRAN_ID", grmr.getReportRequest().get(i).getTranId());
 				reportParam.put("pTranId", grmr.getReportRequest().get(i).getTranId());
+				
+				reportParam.put("P_REQ_ID", grmr.getReportRequest().get(i).getReqId());
+				reportParam.put("pReqId", grmr.getReportRequest().get(i).getReqId());
+				
+				
+				reportParam.put("P_REPORT_ID", grmr.getReportRequest().get(i).getReportId());
+				reportParam.put("p_report_id", grmr.getReportRequest().get(i).getReportId());
+				reportParam.put("pReportId", grmr.getReportRequest().get(i).getReportId());
+				
+				reportParam.put("reportId", grmr.getReportRequest().get(i).getReportName());
+				reportParam.put("P_CEDING_ID", grmr.getReportRequest().get(i).getCedingId());
+				reportParam.put("p_ceding_id", grmr.getReportRequest().get(i).getCedingId());
+				reportParam.put("pCedingId", grmr.getReportRequest().get(i).getCedingId());
+				
+				reportParam.put("P_POLICY_ID", grmr.getReportRequest().get(i).getPolicyId());
+				reportParam.put("p_policy_id", grmr.getReportRequest().get(i).getPolicyId());
+
+
+				reportParam.put("REPORT_NAME", utilService.getReportFileName(reportParam));
+				reportParam.put("REPORT_PATH", utilService.getReportPath());
+				
 				
 				System.out.println("GENERATED REPORT PARAMS:");
 				System.out.println(reportParam);
