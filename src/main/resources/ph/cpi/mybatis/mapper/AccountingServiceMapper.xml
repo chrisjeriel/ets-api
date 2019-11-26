@@ -1564,6 +1564,7 @@
 		<result property="directorId" 		column="DIRECTOR_ID"/>
 		<result property="directorName" 	column="DIRECTOR_NAME"/>
 		<result property="feeType" 			column="FEE_TYPE"/>
+		<result property="feeTypeDesc" 		column="FEE_TYPE_DESC"/>
 		<result property="currCd" 			column="CURR_CD"/>
 		<result property="currRate" 		column="CURR_RATE"/>
 		<result property="feeAmt" 			column="FEE_AMT"/>

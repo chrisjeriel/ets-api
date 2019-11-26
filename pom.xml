@@ -105,11 +105,11 @@
 		    <version>1.0.0</version>
 		</dependency>
 				
-		<dependency>
+		<!-- <dependency>
 		    <groupId>ph.cpi.rest</groupId>
 		    <artifactId>pmmsc-rep-fonts2</artifactId>
 		    <version>1.0.0</version>
-		</dependency>
+		</dependency> -->
 		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

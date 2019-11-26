@@ -10,6 +10,7 @@ public class AcsePerDiem {
 	private String directorId;
 	private String directorName;
 	private Integer feeType;
+	private String feeTypeDesc;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal feeAmt;
@@ -47,6 +48,12 @@ public class AcsePerDiem {
 	}
 	public void setFeeType(Integer feeType) {
 		this.feeType = feeType;
+	}
+	public String getFeeTypeDesc() {
+		return feeTypeDesc;
+	}
+	public void setFeeTypeDesc(String feeTypeDesc) {
+		this.feeTypeDesc = feeTypeDesc;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -99,8 +106,9 @@ public class AcsePerDiem {
 	@Override
 	public String toString() {
 		return "AcsePerDiem [reqId=" + reqId + ", itemNo=" + itemNo + ", directorId=" + directorId + ", directorName="
-				+ directorName + ", feeType=" + feeType + ", currCd=" + currCd + ", currRate=" + currRate + ", feeAmt="
-				+ feeAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ directorName + ", feeType=" + feeType + ", feeTypeDesc=" + feeTypeDesc + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", feeAmt=" + feeAmt + ", localAmt=" + localAmt + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }
