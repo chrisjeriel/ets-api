@@ -2141,6 +2141,11 @@
 		<result property="quarterEnding"	column="QUARTER_ENDING"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd"			column="CURR_CD"		/>
 		<result property="currRate"			column="CURR_RATE"		/>
+		<result property="netQsoaAmt"		column="NET_QSOA_AMT"	/>
+		<result property="prevPaytAmt"		column="PREV_PAYT_AMT"	/>
+		<result property="prevBalance"		column="PREV_BALANCE"	/>
+		<result property="newPaytAmt"		column="NEW_PAYT_AMT"	/>
+		<result property="newBalance"		column="NEW_BALANCE"	/>
 		<result property="balPaytAmt"		column="BAL_PAYT_AMT"	/>
 		<result property="localAmt"			column="LOCAL_AMT"		/>
 		<result property="createUser"		column="CREATE_USER"	/>
@@ -2188,6 +2193,11 @@
 														#{del.billId},
 														#{del.itemNo}				
 					);
+					
+					ACIT_QSOA_PAYTS_PKG.del_qsoa_payts(
+														#{del.tranId},
+														#{del.qsoaId}
+					);
 				</foreach>
 				<!-- Save from ACIT_AR_INVPULLOUT_PKG -->
 				<foreach collection="saveNegTrtyBal" item="save">
@@ -2199,6 +2209,10 @@
 														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.currCd},
 														#{save.currRate},
+														#{save.prevPaytAmt},
+														#{save.prevBalance},
+														#{save.newPaytAmt},
+														#{save.newBalance},
 														#{save.balPaytAmt},
 														#{save.localAmt},
 														#{save.createUser},

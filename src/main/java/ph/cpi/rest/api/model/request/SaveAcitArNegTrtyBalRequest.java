@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class SaveAcitArNegTrtyBalRequest {
@@ -93,6 +94,11 @@ class SaveNegTrtyBal{
 	private String quarterEnding;
 	private String currCd;
 	private String currRate;
+	private BigDecimal netQsoaAmt;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	private String balPaytAmt;
 	private String localAmt;
 	private String createUser;
@@ -140,6 +146,36 @@ class SaveNegTrtyBal{
 	}
 	public void setCurrRate(String currRate) {
 		this.currRate = currRate;
+	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
 	}
 	public String getBalPaytAmt() {
 		return balPaytAmt;

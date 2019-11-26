@@ -12,6 +12,11 @@ public class AcitArNegTrtyBal {
 	private DateTime quarterEnding;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal netQsoaAmt;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	private BigDecimal balPaytAmt;
 	private BigDecimal localAmt;
 	private String createUser;
@@ -61,6 +66,36 @@ public class AcitArNegTrtyBal {
 	public void setCurrRate(BigDecimal currRate) {
 		this.currRate = currRate;
 	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	public BigDecimal getBalPaytAmt() {
 		return balPaytAmt;
 	}
@@ -101,8 +136,10 @@ public class AcitArNegTrtyBal {
 	@Override
 	public String toString() {
 		return "AcitArNegTrtyBal [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", qsoaId=" + qsoaId
-				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", balPaytAmt="
-				+ balPaytAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", quarterEnding=" + quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", netQsoaAmt="
+				+ netQsoaAmt + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt="
+				+ newPaytAmt + ", newBalance=" + newBalance + ", balPaytAmt=" + balPaytAmt + ", localAmt=" + localAmt
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }
