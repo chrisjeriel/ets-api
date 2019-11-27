@@ -847,4 +847,18 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitOsQsoa(raoqp);
 	}
+	
+	@PostMapping(path="saveAcitMonthEndTBTempClose")
+	public @ResponseBody SaveAcitMonthEndTBTempCloseResponse saveAcitMonthEndTBTempClose(@RequestBody SaveAcitMonthEndTBTempCloseRequest sametcr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndTBTempClose");
+		logger.info("SaveAcitMonthEndTBTempCloseRequest : " + sametcr.toString());
+		return acctInTrustService.saveAcitMonthEndTBTempClose(sametcr);
+	}
+	
+	@PostMapping(path="saveAcitMonthEndTBReopen")
+	public @ResponseBody SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(@RequestBody SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndTBReopen");
+		logger.info("SaveAcitMonthEndTBReopenRequest : " + sametrr.toString());
+		return acctInTrustService.saveAcitMonthEndTBReopen(sametrr);
+	}
 }

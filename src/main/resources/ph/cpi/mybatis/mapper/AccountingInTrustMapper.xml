@@ -2457,6 +2457,10 @@
 		<result property="createDate" column="TRYTY_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="TRYTY_UPDATE_USER"/>
 		<result property="updateDate" column="TRYTY_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="prevPaytAmt" column="QSOA_PREV_PAYT_AMT"/>
+		<result property="prevBalance" column="QSOA_PREV_BALANCE"/>
+		<result property="newPaytAmt" column="QSOA_NEW_PAYT_AMT"/>
+		<result property="newBalance" column="QSOA_NEW_BALANCE"/>
 		<association property="clmOffset" resultMap="jvClmOffsetMap"></association>
 	</resultMap>
 	
@@ -2491,7 +2495,11 @@
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
-														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.prevPaytAmt, jdbcType=INTEGER},
+														#{save.prevBalance, jdbcType=INTEGER},
+														#{save.newPaytAmt, jdbcType=INTEGER},
+														#{save.newBalance, jdbcType=INTEGER}
 				);
 				
 				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
@@ -4257,5 +4265,39 @@
 															#{currCd, jdbcType=VARCHAR},
 															#{cedingId, jdbcType=VARCHAR}))
 	</select>
+	
+	<update id="saveAcitMonthEndTBTempClose" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.temp_close_tb(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateTempClose" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_TRIAL_BAL_PKG.validate_temp_close(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="saveAcitMonthEndTBReopen" parameterType="java.util.Map">
+		BEGIN
+			ACIT_TRIAL_BAL_PKG.reopen_close_tb(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateReopen" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_TRIAL_BAL_PKG.validate_reopen(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="acitEomCreateLossResDepJv" parameterType="java.util.Map">
+		BEGIN
+			ACIT_EOM_LOSSRESDEP_PKG.create_lossresdep_jv(TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'MM')),
+														 TO_NUMBER(TO_CHAR(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 'YYYY')),
+														 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
 	
 </mapper>

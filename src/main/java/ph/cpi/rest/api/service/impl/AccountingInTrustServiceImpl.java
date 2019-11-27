@@ -2127,6 +2127,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				wsController.onReceiveProdLog("Computing Interest on Overdue Accounts . . .");
 				acctITDao.acitEomSaveOdInt(params);
 				wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
+				
+				procedureName = "Creating Loss Reserve Deposit";
+				acctITDao.acitEomCreateLossResDepJv(params);
 				wsController.onReceiveProdLog("");
 				
 				acctITDao.acitEomUpdateEomCloseTag(params);
@@ -2309,6 +2312,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				case "POSTED_MONTH":
 					proceed = false;
 					res.setReturnCode(2);
+					break;
+				case "TEMP_CLOSE_TB":
+					proceed = false;
+					res.setReturnCode(3);
+					break;
+				case "UWPROD_UNDONE":
+					proceed = false;
+					res.setReturnCode(4);
+					break;
+				case "OSPROD_UNDONE":
+					proceed = false;
+					res.setReturnCode(5);
 					break;
 				default:
 					break;
@@ -2554,6 +2569,100 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId", raoqp.getCedingId());
 		
 		res.setOsQsoaList(acctITDao.retrieveAcitOsQsoa(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitMonthEndTBTempCloseResponse saveAcitMonthEndTBTempClose(SaveAcitMonthEndTBTempCloseRequest sametcr)
+			throws SQLException {
+		SaveAcitMonthEndTBTempCloseResponse res = new SaveAcitMonthEndTBTempCloseResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("eomDate", sametcr.getEomDate());
+		params.put("eomUser", sametcr.getEomUser());
+		
+		try {
+			Boolean proceed = false;
+			String validate = acctITDao.validateTempClose(params);
+			
+			switch (validate) {
+			case "PROCEED":
+				proceed = true;
+				break;
+			case "POSTED_MONTH":
+				proceed = false;
+				res.setReturnCode(1);
+				break;
+			case "TEMP_CLOSE_TB":
+				proceed = false;
+				res.setReturnCode(2);
+				break;
+			case "UWPROD_UNDONE":
+				proceed = false;
+				res.setReturnCode(3);
+				break;
+			case "OSPROD_UNDONE":
+				proceed = false;
+				res.setReturnCode(4);
+				break;
+			default:
+				break;
+			}
+			
+			if(proceed) {
+				acctITDao.saveAcitMonthEndTBTempClose(params);
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Temporary closing failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr)
+			throws SQLException {
+		SaveAcitMonthEndTBReopenResponse res = new SaveAcitMonthEndTBReopenResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("eomDate", sametrr.getEomDate());
+		params.put("eomUser", sametrr.getEomUser());
+		
+		try {
+			Boolean proceed = false;
+			String validate = acctITDao.validateReopen(params);
+			
+			switch (validate) {
+			case "PROCEED":
+				proceed = true;
+				break;
+			case "POSTED_MONTH":
+				proceed = false;
+				res.setReturnCode(1);
+				break;
+			case "NOT_YET_CLOSED":
+				proceed = false;
+				res.setReturnCode(2);
+				break;
+			default:
+				break;
+			}
+			
+			if(proceed) {
+				acctITDao.saveAcitMonthEndTBReopen(params);
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Reopening failed."));
+		}
 		
 		return res;
 	}
