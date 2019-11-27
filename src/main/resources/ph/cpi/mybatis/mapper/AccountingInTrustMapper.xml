@@ -2711,6 +2711,13 @@
 		<result property="createDate" 		column="TRYTY_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="TRYTY_UPDATE_USER"/>
 		<result property="updateDate" 		column="TRYTY_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		
+		<result property="netQsoaAmt" 		column="NET_QSOA_AMT"/>
+		<result property="prevPaytAmt" 		column="QSOA_PREV_PAYT_AMT"/>
+		<result property="prevBalance" 		column="QSOA_PREV_BALANCE"/>
+		<result property="newPaytAmt" 		column="QSOA_NEW_PAYT_AMT"/>
+		<result property="newBalance" 		column="QSOA_NEW_BALANCE"/>
+		
 		<association property="acctOffset" resultMap="acctOffsetMap"></association>
 		<association property="trtyInvmt" resultMap="invOffsetMap"></association>
 	</resultMap>
