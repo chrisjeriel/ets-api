@@ -2592,7 +2592,7 @@
 	<update id="processRenewablePolicyWC" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			{CALL
-				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{policyNo, mode=OUT, jdbcType=VARCHAR},#{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
 												#{procBy, jdbcType=VARCHAR}, #{summaryTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{remarks, jdbcType=VARCHAR});
 			}	
 		END;
@@ -2601,7 +2601,7 @@
 	<update id="processRenewablePolicyAI" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			{CALL
-				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
+				DIST_EXT_PKG.gen_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{policyNo, mode=OUT, jdbcType=VARCHAR}, #{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
 												#{procBy, jdbcType=VARCHAR}, #{summaryTag, jdbcType=VARCHAR}, #{renewalFlag, jdbcType=VARCHAR}, #{remarks, jdbcType=VARCHAR});
 			}	
 		END;
@@ -2611,6 +2611,23 @@
 		BEGIN
 			{CALL
 				DIST_EXT_PKG.upd_non_renewal_policy(#{policyId, jdbcType=VARCHAR}, #{nrReasonCd, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+			}	
+		END;
+	</update>
+
+	<update id="extractRenExpPolicy" parameterType="java.util.Map">
+		BEGIN
+			{CALL
+				DIST_EXT_PKG.extract_ren_exp_policy(#{policyId, jdbcType=VARCHAR}, #{procBy, jdbcType=VARCHAR});
+			}	
+		END;
+	</update>
+	
+	<update id="genRenExpPolicy" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			{CALL
+				DIST_EXT_PKG.gen_ren_exp_policy(#{policyId, jdbcType=VARCHAR}, #{policyNo, mode=OUT, jdbcType=VARCHAR},#{newPolicyId, mode=OUT, jdbcType=VARCHAR}, #{newPolicyNo, mode=OUT, jdbcType=VARCHAR}, 
+												#{procBy, jdbcType=VARCHAR});
 			}	
 		END;
 	</update>

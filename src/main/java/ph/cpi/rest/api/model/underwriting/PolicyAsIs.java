@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.underwriting;
 public class PolicyAsIs {
 	
 	private String policyId;
+	private String policyNo;
 	private String summaryTag;
 	private String newPolicyId;
 	private String newPolicyNo;
@@ -54,12 +55,19 @@ public class PolicyAsIs {
 	public void setProcBy(String procBy) {
 		this.procBy = procBy;
 	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
 	@Override
 	public String toString() {
-		return "PolicyAsIs [policyId=" + policyId + ", summaryTag=" + summaryTag + ", newPolicyId=" + newPolicyId
-				+ ", newPolicyNo=" + newPolicyNo + ", procBy=" + procBy + ", renewalFlag=" + renewalFlag + ", remarks="
-				+ remarks + "]";
+		return "PolicyAsIs [policyId=" + policyId + ", policyNo=" + policyNo + ", summaryTag=" + summaryTag
+				+ ", newPolicyId=" + newPolicyId + ", newPolicyNo=" + newPolicyNo + ", procBy=" + procBy
+				+ ", renewalFlag=" + renewalFlag + ", remarks=" + remarks + "]";
 	}
+	
 	
 	
 }

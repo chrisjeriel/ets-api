@@ -130,4 +130,6 @@ public interface UnderwritingDao {
 	
 	public List<PolDistList> retrieveNegateDistList(final HashMap<String, Object> params) throws SQLException;
 	
+	public HashMap<String, Object> extractRenExpPolicy(final HashMap<String, Object> params) throws SQLException;
+	
 }

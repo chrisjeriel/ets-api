@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
+import ph.cpi.rest.api.model.request.ExtractRenExpPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -90,6 +92,7 @@ import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
+import ph.cpi.rest.api.model.response.ExtractRenExpPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -1923,5 +1926,37 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("riskName", rpdir.getRiskName());
 		response.setPolDistList(underwritingDao.retrieveNegateDistList(params));
 		return response;
+	}
+
+	@Override
+	public ExtractRenExpPolicyResponse extractRenExpPolicy(ExtractRenExpPolicyRequest erepr) throws SQLException {
+		ExtractRenExpPolicyResponse resp = new ExtractRenExpPolicyResponse();
+		
+		
+		
+		String errorMsg = "";
+		
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			PolicyAsIs renPol = new PolicyAsIs();
+			renPol.setPolicyId(erepr.getPolicyId());
+			renPol.setProcBy(erepr.getExtractUser());
+			params.put("renPol", renPol);
+			
+			resp.setRenewedPolicy((PolicyAsIs) underwritingDao.extractRenExpPolicy(params).get("renPol"));
+		} catch (HibernateException e) {
+			errorMsg = e.getMessage();
+			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGHE", "HibernateException Exception : " + errorMsg));
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			errorMsg = e.getMessage();
+			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGDIV", "DataIntegrityViolation Exception : " + errorMsg));
+		} catch (SQLException sqle) { 
+			errorMsg = sqle.getMessage();
+			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGSQL", "SQL Exception : " + errorMsg)); 
+		} catch (Exception e) {
+			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGGEN", "General Exception"));
+		}
+		
+		return resp;
 	}
 }
