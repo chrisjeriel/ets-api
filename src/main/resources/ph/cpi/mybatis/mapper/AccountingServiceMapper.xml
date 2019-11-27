@@ -609,14 +609,16 @@
 			<!-- Generate Tax Details -->
 		    <!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message); -->
 		    
-		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
+		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId}, 
 													#{billId},
 													#{createUser},
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
+													
 			ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
+		    
 		    <!-- Generate Accounting Entries -->
 		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 			END;
@@ -1464,8 +1466,11 @@
 	</select>
 	
 	<update id="saveAcseInvoice" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_invoice_id	ACSE_INVOICES.INVOICE_ID%TYPE;
 		BEGIN
-			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(#{invoiceId, jdbcType=VARCHAR}, 
+			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(v_invoice_id, 
+												    #{invoiceId, jdbcType=VARCHAR}, 
 													#{invoiceNo, jdbcType=VARCHAR}, 
 													CAST(to_timestamp(#{invoiceDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{autoTag, jdbcType=VARCHAR}, 
@@ -1486,7 +1491,9 @@
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 													#{updateUser, jdbcType=VARCHAR}, 
 													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)  
-												  );					  
+												  );	
+				#{invoiceIdOut, mode=OUT, jdbcType=INTEGER} := v_invoice_id;													  
+				  
 		END;
 	</update>
 	
@@ -1610,5 +1617,12 @@
 		END;
 	</update>
 	
+	<update id="generateBatchOrNo" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="orNoList" item="list">
+				ACSE_BATCH_OR_PKG.gen_acse_or_no(#{list.tranId,jdbcType=VARCHAR},#{list.orType, jdbcType=VARCHAR},#{list.orNo, jdbcType=VARCHAR},#{list.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{list.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
         
 </mapper>

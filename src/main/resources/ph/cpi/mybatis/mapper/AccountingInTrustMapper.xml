@@ -214,7 +214,9 @@
 		<result property="priceCost"			    	column="AMORT_INVT_AMT" />
 		<result property="amortEff"			    	    column="AMORT_EFF_PCT" />
 		<result property="processing"		    	    column="PROCESSING" />
-		
+		<result property="partialPullOutTag"		    column="PARTIAL_PULLOUT_TAG" />
+		<result property="partialPullOutDate"			column="PARTIAL_PULLOUT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="partialPullOutAmt"		    column="PARTIAL_PULLOUT_AMT" />
 	</resultMap>
 	
 	<select id="retrieveInvestmentList" resultMap="acitInvestmentsList" parameterType="java.util.Map">
@@ -267,7 +269,10 @@
 			   									CAST(to_timestamp(#{investments.termDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   									#{investments.amortized, jdbcType=VARCHAR},
 			   									#{investments.amortEff, jdbcType=VARCHAR},
-			   									#{investments.parCost, jdbcType=VARCHAR});
+			   									#{investments.parCost, jdbcType=VARCHAR},
+			   									#{investments.partialPullOutTag, jdbcType=VARCHAR},
+			   									CAST(to_timestamp(#{investments.partialPullOutDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   									#{investments.partialPullOutAmt, jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
 		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
