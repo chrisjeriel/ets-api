@@ -506,9 +506,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 			}
 			
 			for (PolicyWithChanges renPol : ((List<PolicyWithChanges>) params.get("renWithChangesPolicyList"))) {
-				logger.info("renWithChangesPolicyList renPol : " + renPol);
-				sqlSession.update("processRenewablePolicyAI",renPol);
-				logger.info("renWithChangesPolicyList renPol after AI : " + renPol);
+				/*
+				 * logger.info("renWithChangesPolicyList renPol : " + renPol);
+				 * sqlSession.update("processRenewablePolicyAI",renPol);
+				 * logger.info("renWithChangesPolicyList renPol after AI : " + renPol);
+				 */
 				sqlSession.update("processRenewablePolicyWC",renPol);
 				logger.info("renWithChangesPolicyList renPol after WC: " + renPol);
 			}
@@ -687,5 +689,19 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<PolDistList> retrieveNegateDistList(HashMap<String, Object> params) throws SQLException {
 		List<PolDistList> list = sqlSession.selectList("retrieveNegateDistList",params);
 		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> extractRenExpPolicy(HashMap<String, Object> params) throws SQLException {
+		PolicyAsIs renPol =  (PolicyAsIs) params.get("renPol");
+		
+		logger.info("DAO extractRenExpPolicy : " + renPol);
+		
+		sqlSession.update("extractRenExpPolicy",renPol);
+		
+		sqlSession.update("genRenExpPolicy",renPol);
+		
+		logger.info("DAO extractRenExpPolicy AfterProcess : " + renPol);
+		return params;
 	}
 }

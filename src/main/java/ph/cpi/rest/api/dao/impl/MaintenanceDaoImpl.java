@@ -74,6 +74,7 @@ import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
 import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
+import ph.cpi.rest.api.model.maintenance.MtnGlSubDepNo;
 import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
@@ -1447,5 +1448,11 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		// TODO Auto-generated method stub
 		List<AcseInvSeries> list = sqlSession.selectList("retrieveAcseInvSeries", params);
 		return list;
+	}
+
+	@Override
+	public List<MtnGlSubDepNo> retrieveMtnGlSubDepNo(HashMap<String, Object> params) throws SQLException {
+		List<MtnGlSubDepNo> glSubDepNoList = sqlSession.selectList("retrieveMtnGlSubDepNo", params);
+		return glSubDepNoList;
 	}
 }

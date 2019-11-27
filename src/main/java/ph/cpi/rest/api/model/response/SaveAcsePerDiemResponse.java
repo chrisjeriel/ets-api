@@ -6,23 +6,11 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class SaveAcseInvoiceResponse {
-	
-	private List<Error> errorList;
-	private List<Message> messageList;
+public class SaveAcsePerDiemResponse {
+	private List<Error> errorList = new ArrayList<Error>();
+	private List<Message> messageList = new ArrayList<Message>();
 	private Integer returnCode;
-	private Integer invoiceIdOut;
-
-	public Integer getInvoiceIdOut() {
-		return invoiceIdOut;
-	}
-	public void setInvoiceIdOut(Integer invoiceIdOut) {
-		this.invoiceIdOut = invoiceIdOut;
-	}
 	public List<Error> getErrorList() {
-		if (errorList == null) {
-			errorList = new ArrayList<Error>();
-		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
@@ -40,12 +28,9 @@ public class SaveAcseInvoiceResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	
 	@Override
 	public String toString() {
-		return "SaveAcseInvoiceResponse [errorList=" + errorList
-				+ ", messageList=" + messageList + ", returnCode=" + returnCode
-				+ ", invoiceIdOut=" + invoiceIdOut + "]";
+		return "SaveAcsePerDiemResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + "]";
 	}
-	
 }

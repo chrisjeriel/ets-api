@@ -609,14 +609,16 @@
 			<!-- Generate Tax Details -->
 		    <!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message); -->
 		    
-		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId},
+		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId}, 
 													#{billId},
 													#{createUser},
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
+													
 			ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
 		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
+		    
 		    <!-- Generate Accounting Entries -->
 		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
 			END;
@@ -802,6 +804,7 @@
 		<result property="bankDesc"			column="BANK_DESC"/>
 		<result property="bankAcct"			column="BANK_ACCT"/>
 		<result property="bankAcctDesc"		column="BANK_ACCT_DESC"/>
+		<result property="checkId"			column="CHECK_ID"/>
 		<result property="checkNo"			column="CHECK_NO"/>
 		<result property="checkDate"		column="CHECK_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="checkClass"		column="CHECK_CLASS"/>
@@ -836,6 +839,7 @@
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		
 		<result property="refNo" 			column="REF_NO"/>
+		<result property="checkStatus"	 	column="CHECK_STATUS"/>
 	</resultMap>
 	
 	<select id="retrieveAcseCv" resultMap="acseCvMap" parameterType="java.util.Map">
@@ -868,6 +872,7 @@
 				#{particulars, jdbcType=VARCHAR},
 				#{bank, jdbcType=INTEGER},
 				#{bankAcct, jdbcType=INTEGER},
+				#{checkId,mode=INOUT, jdbcType=INTEGER},
 				#{checkNo, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{checkDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{checkClass, jdbcType=VARCHAR},
@@ -960,6 +965,7 @@
 		BEGIN
 			ACSE_CHECK_VOUCHER_PKG.up_acse_cv_stat(
 				#{tranId, jdbcType=INTEGER},
+				#{checkId, jdbcType=INTEGER},
 				#{cvStatus, jdbcType=VARCHAR},
 				#{updateUser, jdbcType=VARCHAR}
 			);
@@ -1460,8 +1466,11 @@
 	</select>
 	
 	<update id="saveAcseInvoice" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_invoice_id	ACSE_INVOICES.INVOICE_ID%TYPE;
 		BEGIN
-			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(#{invoiceId, jdbcType=VARCHAR}, 
+			ACSE_BATCH_INVOICE_PKG.save_acse_invoice(v_invoice_id, 
+												    #{invoiceId, jdbcType=VARCHAR}, 
 													#{invoiceNo, jdbcType=VARCHAR}, 
 													CAST(to_timestamp(#{invoiceDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{autoTag, jdbcType=VARCHAR}, 
@@ -1482,7 +1491,9 @@
 													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 													#{updateUser, jdbcType=VARCHAR}, 
 													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)  
-												  );					  
+												  );	
+				#{invoiceIdOut, mode=OUT, jdbcType=INTEGER} := v_invoice_id;													  
+				  
 		END;
 	</update>
 	
@@ -1545,6 +1556,72 @@
 	<update id="copyAcseExpenseBudget" parameterType="java.util.Map">
 		BEGIN
 			ACSE_BUDGET_EXPENSE_PKG.copy_exp_budget(#{originYear},#{desYear},null,null,null,null);
+		END;
+	</update>
+	
+	<update id="validateCheckNoAcse" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCheckNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_CHECK_VOUCHER_PKG.ret_mtn_check_no(#{bank},#{bankAcct},#{checkNo},#{tranId, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePerDiem" id="acsePerDiemMap">
+		<result property="reqId" 			column="REQ_ID"/>
+		<result property="itemNo" 			column="ITEM_NO"/>
+		<result property="directorId" 		column="DIRECTOR_ID"/>
+		<result property="directorName" 	column="DIRECTOR_NAME"/>
+		<result property="feeType" 			column="FEE_TYPE"/>
+		<result property="feeTypeDesc" 		column="FEE_TYPE_DESC"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="feeAmt" 			column="FEE_AMT"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcsePerDiem" resultMap="acsePerDiemMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_PRQ_PER_DIEM_PKG.ret_acse_perdiem(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+	<update id="saveAcsePerDiem" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deletePerDiem" item="del">
+				ACSE_PRQ_PER_DIEM_PKG.del_acse_perdiem(
+					#{del.reqId,jdbcType=INTEGER},
+					#{del.itemNo,jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="savePerDiem" item="save">
+				ACSE_PRQ_PER_DIEM_PKG.save_acse_perdiem(
+					#{save.reqId,jdbcType=INTEGER},
+					#{save.itemNo,jdbcType=INTEGER},
+					#{save.directorId,jdbcType=INTEGER},
+					#{save.directorName,jdbcType=INTEGER},
+					#{save.feeType,jdbcType=INTEGER},
+					#{save.currCd,jdbcType=INTEGER},
+					#{save.currRate,jdbcType=INTEGER},
+					#{save.feeAmt,jdbcType=INTEGER},
+					#{save.localAmt,jdbcType=INTEGER},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR}, 
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<update id="generateBatchOrNo" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="orNoList" item="list">
+				ACSE_BATCH_OR_PKG.gen_acse_or_no(#{list.tranId,jdbcType=VARCHAR},#{list.orType, jdbcType=VARCHAR},#{list.orNo, jdbcType=VARCHAR},#{list.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{list.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
 		END;
 	</update>
         

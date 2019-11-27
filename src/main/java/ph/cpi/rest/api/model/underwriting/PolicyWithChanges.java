@@ -4,6 +4,7 @@ import java.util.List;
 
 public class PolicyWithChanges {
 	private String policyId;
+	private String policyNo;
 	private String newPolicyId;
 	private String newPolicyNo;
 	private List<ExpProject> projectList;
@@ -76,11 +77,17 @@ public class PolicyWithChanges {
 	public void setRenewalFlag(String renewalFlag) {
 		this.renewalFlag = renewalFlag;
 	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
 	@Override
 	public String toString() {
-		return "PolicyWithChanges [policyId=" + policyId + ", newPolicyId=" + newPolicyId + ", newPolicyNo="
-				+ newPolicyNo + ", projectList=" + projectList + ", secCovList=" + secCovList + ", deductiblesList="
-				+ deductiblesList + ", summaryTag=" + summaryTag + ", procBy=" + procBy + ", remarks=" + remarks
-				+ ", renewalFlag=" + renewalFlag + "]";
+		return "PolicyWithChanges [policyId=" + policyId + ", policyNo=" + policyNo + ", newPolicyId=" + newPolicyId
+				+ ", newPolicyNo=" + newPolicyNo + ", projectList=" + projectList + ", secCovList=" + secCovList
+				+ ", deductiblesList=" + deductiblesList + ", summaryTag=" + summaryTag + ", procBy=" + procBy
+				+ ", remarks=" + remarks + ", renewalFlag=" + renewalFlag + "]";
 	}
 }

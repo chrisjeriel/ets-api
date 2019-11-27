@@ -214,7 +214,9 @@
 		<result property="priceCost"			    	column="AMORT_INVT_AMT" />
 		<result property="amortEff"			    	    column="AMORT_EFF_PCT" />
 		<result property="processing"		    	    column="PROCESSING" />
-		
+		<result property="partialPullOutTag"		    column="PARTIAL_PULLOUT_TAG" />
+		<result property="partialPullOutDate"			column="PARTIAL_PULLOUT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="partialPullOutAmt"		    column="PARTIAL_PULLOUT_AMT" />
 	</resultMap>
 	
 	<select id="retrieveInvestmentList" resultMap="acitInvestmentsList" parameterType="java.util.Map">
@@ -267,7 +269,10 @@
 			   									CAST(to_timestamp(#{investments.termDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 			   									#{investments.amortized, jdbcType=VARCHAR},
 			   									#{investments.amortEff, jdbcType=VARCHAR},
-			   									#{investments.parCost, jdbcType=VARCHAR});
+			   									#{investments.parCost, jdbcType=VARCHAR},
+			   									#{investments.partialPullOutTag, jdbcType=VARCHAR},
+			   									CAST(to_timestamp(#{investments.partialPullOutDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			   									#{investments.partialPullOutAmt, jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
 		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
@@ -2137,9 +2142,15 @@
 		<result property="tranId"			column="TRAN_ID"		/>
 		<result property="billId"			column="BILL_ID"		/>
 		<result property="itemNo"			column="ITEM_NO"		/>
+		<result property="qsoaId"			column="QSOA_ID"		/>
 		<result property="quarterEnding"	column="QUARTER_ENDING"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="currCd"			column="CURR_CD"		/>
 		<result property="currRate"			column="CURR_RATE"		/>
+		<result property="netQsoaAmt"		column="NET_QSOA_AMT"	/>
+		<result property="prevPaytAmt"		column="PREV_PAYT_AMT"	/>
+		<result property="prevBalance"		column="PREV_BALANCE"	/>
+		<result property="newPaytAmt"		column="NEW_PAYT_AMT"	/>
+		<result property="newBalance"		column="NEW_BALANCE"	/>
 		<result property="balPaytAmt"		column="BAL_PAYT_AMT"	/>
 		<result property="localAmt"			column="LOCAL_AMT"		/>
 		<result property="createUser"		column="CREATE_USER"	/>
@@ -2187,6 +2198,11 @@
 														#{del.billId},
 														#{del.itemNo}				
 					);
+					
+					ACIT_QSOA_PAYTS_PKG.del_qsoa_payts(
+														#{del.tranId},
+														#{del.qsoaId}
+					);
 				</foreach>
 				<!-- Save from ACIT_AR_INVPULLOUT_PKG -->
 				<foreach collection="saveNegTrtyBal" item="save">
@@ -2194,6 +2210,25 @@
 														#{save.tranId},
 														#{save.billId},
 														#{save.itemNo, jdbcType=VARCHAR},
+														#{save.qsoaId},
+														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.currCd},
+														#{save.currRate},
+														#{save.prevPaytAmt},
+														#{save.prevBalance},
+														#{save.newPaytAmt},
+														#{save.newBalance},
+														#{save.balPaytAmt},
+														#{save.localAmt},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+					);
+					
+					ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(
+													   #{save.tranId},
+														#{save.qsoaId},
 														CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.currCd},
 														#{save.currRate},
@@ -2202,7 +2237,7 @@
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
-														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 					);
 				</foreach>
 				<!-- Generate Amount Details -->
@@ -4183,6 +4218,7 @@
 		<result property="payee"        column="PAYEE" />
 		<result property="particulars"  column="PARTICULARS" />
 		<result property="currCd"       column="CURR_CD" />
+		<result property="currRate"     column="CURR_RATE" />
 		<result property="amount"       column="AMOUNT" />
 		<result property="localAmt"     column="LOCAL_AMT" />
 		<result property="status"       column="STATUS" />

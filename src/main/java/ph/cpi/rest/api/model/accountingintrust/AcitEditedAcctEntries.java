@@ -14,6 +14,7 @@ public class AcitEditedAcctEntries {
 	private String payee;
 	private String particulars;
 	private String currCd;
+	private BigDecimal currRate;
 	private BigDecimal amount;
 	private BigDecimal localAmt;
 	private String status;
@@ -74,6 +75,12 @@ public class AcitEditedAcctEntries {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
+	public BigDecimal getCurrRate() {
+		return currRate;
+	}
+	public void setCurrRate(BigDecimal currRate) {
+		this.currRate = currRate;
+	}
 	public BigDecimal getAmount() {
 		return amount;
 	}
@@ -114,8 +121,8 @@ public class AcitEditedAcctEntries {
 	public String toString() {
 		return "AcitEditedAcctEntries [tranId=" + tranId + ", tranClass=" + tranClass + ", tranTypeName=" + tranTypeName
 				+ ", histNo=" + histNo + ", refNo=" + refNo + ", tranDate=" + tranDate + ", payee=" + payee
-				+ ", particulars=" + particulars + ", currCd=" + currCd + ", amount=" + amount + ", localAmt="
-				+ localAmt + ", status=" + status + ", reason=" + reason + ", editedBy=" + editedBy + ", editDate="
-				+ editDate + "]";
+				+ ", particulars=" + particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", amount="
+				+ amount + ", localAmt=" + localAmt + ", status=" + status + ", reason=" + reason + ", editedBy="
+				+ editedBy + ", editDate=" + editDate + "]";
 	}
 }

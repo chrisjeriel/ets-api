@@ -5196,5 +5196,19 @@
      <select id="retrieveAcseInvSeries" resultMap="invSeriesMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_ACSE_SERIES_PKG.ret_mtn_inv_series(#{invFrom,jdbcType=VARCHAR},#{invTo,jdbcType=VARCHAR},#{usedTag,jdbcType=VARCHAR},#{rowNum,jdbcType=VARCHAR}))
      </select>
+     
+     <resultMap type="ph.cpi.rest.api.model.maintenance.MtnGlSubDepNo" id="mtnGlSubDepNoMap">
+     	<result property="depCd" 		column="DEP_CD"/>
+		<result property="depNo" 		column="DEP_NO"/>
+		<result property="description" 	column="DESCRIPTION"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     </resultMap>
 	
+	<select id="retrieveMtnGlSubDepNo" resultMap="mtnGlSubDepNoMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(MTN_GLSUB_DEP_NO_PKG.ret_mtn_glsubdepno(#{depCd,jdbcType=VARCHAR},#{depNo,jdbcType=INTEGER},'','','',''))
+     </select>
 </mapper>

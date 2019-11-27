@@ -65,6 +65,7 @@ import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
 import ph.cpi.rest.api.model.maintenance.MtnClmEventType;
 import ph.cpi.rest.api.model.maintenance.MtnCurrency;
+import ph.cpi.rest.api.model.maintenance.MtnGlSubDepNo;
 import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
@@ -304,4 +305,6 @@ public interface MaintenanceDao {
 	public List<PrintableNames> retrieveMtnUserLov(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcseInvSeries> retrieveAcseInvSeries(final HashMap<String, Object> params) throws SQLException;
+	public List<MtnGlSubDepNo> retrieveMtnGlSubDepNo(final HashMap<String, Object> params) throws SQLException;
+	
 }
