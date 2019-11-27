@@ -23,6 +23,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -389,5 +390,18 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("generateBatchOrNo", params);
 		return res;
+	}
+
+	@Override
+	public List<AcseInsuranceExp> retrieveAcseInsuranceExp(HashMap<String, Object> params) throws SQLException {
+		List<AcseInsuranceExp> acseInsuranceExpList = sqlSession.selectList("retrieveAcseInsuranceExp", params);
+		return acseInsuranceExpList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseInsuranceExp(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseInsuranceExp", params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }
