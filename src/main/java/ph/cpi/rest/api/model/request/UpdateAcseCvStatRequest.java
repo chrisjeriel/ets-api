@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class UpdateAcseCvStatRequest {
 	private String tranId;
+	private String checkId;
 	private String cvStatus;
 	private String updateUser;
 	public String getTranId() {
@@ -9,6 +10,12 @@ public class UpdateAcseCvStatRequest {
 	}
 	public void setTranId(String tranId) {
 		this.tranId = tranId;
+	}
+	public String getCheckId() {
+		return checkId;
+	}
+	public void setCheckId(String checkId) {
+		this.checkId = checkId;
 	}
 	public String getCvStatus() {
 		return cvStatus;
@@ -24,7 +31,7 @@ public class UpdateAcseCvStatRequest {
 	}
 	@Override
 	public String toString() {
-		return "UpdateAcseCvStatRequest [tranId=" + tranId + ", cvStatus=" + cvStatus + ", updateUser=" + updateUser
-				+ "]";
+		return "UpdateAcseCvStatRequest [tranId=" + tranId + ", checkId=" + checkId + ", cvStatus=" + cvStatus
+				+ ", updateUser=" + updateUser + "]";
 	}
 }
