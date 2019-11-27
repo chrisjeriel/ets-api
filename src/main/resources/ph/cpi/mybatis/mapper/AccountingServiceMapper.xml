@@ -1554,5 +1554,13 @@
 			ACSE_BUDGET_EXPENSE_PKG.copy_exp_budget(#{originYear},#{desYear},null,null,null,null);
 		END;
 	</update>
+	
+	<update id="generateBatchOrNo" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="orNoList" item="list">
+				ACSE_BATCH_OR_PKG.gen_acse_or_no(#{list.tranId,jdbcType=VARCHAR},#{list.orType, jdbcType=VARCHAR},#{list.orNo, jdbcType=VARCHAR},#{list.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{list.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
         
 </mapper>

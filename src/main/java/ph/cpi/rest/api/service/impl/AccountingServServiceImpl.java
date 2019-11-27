@@ -15,6 +15,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
+import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
@@ -63,6 +64,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
+import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
@@ -1127,6 +1129,28 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}catch(Exception ex){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public GenerateBatchOrNoResponse generateBatchOrNo(
+			GenerateBatchOrNoRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		GenerateBatchOrNoResponse response = new GenerateBatchOrNoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("orNoList", request.getOrNoList());
+		try{
+			response.setReturnCode(acctServDao.generateBatchOrNo(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to generate OR No. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to generate OR No. Check fields."));
 			ex.printStackTrace();
 		}
 		return response;
