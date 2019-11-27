@@ -680,6 +680,21 @@ public class ClaimsServiceImpl implements ClaimsService {
 		RetrieveClmPaytReqInqResponse response = new RetrieveClmPaytReqInqResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("claimNo", rcprr.getClaimNo());
+		params.put("histNo", rcprr.getHistNo());
+		params.put("policyNo", rcprr.getPolicyNo());
+		params.put("paytReqNo", rcprr.getPaytReqNo());
+		params.put("payee", rcprr.getPayee());
+		params.put("paytType", rcprr.getPaytType());
+		params.put("currCd", rcprr.getCurrCd());
+		params.put("resAmt", rcprr.getResAmt());
+		params.put("particulars", rcprr.getParticulars());
+		params.put("reqDate", rcprr.getReqDate());
+		params.put("reqBy", rcprr.getReqBy());
+		params.put("acctRef", rcprr.getAcctRef());
+		params.put("tranDate", rcprr.getTranDate());
+		params.put("insuredDesc", rcprr.getInsuredDesc());
+		params.put("riskName", rcprr.getRiskName());
+		params.put("lossDate", rcprr.getLossDate());
 		response.setList(claimsDao.retrieveClmPaytReqInq(params));
 		return response;
 	}
