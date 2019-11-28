@@ -17,7 +17,7 @@ import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
-import ph.cpi.rest.api.model.request.ExtractRenExpPolicyRequest;
+import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -93,7 +93,7 @@ import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
-import ph.cpi.rest.api.model.response.ExtractRenExpPolicyResponse;
+import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -728,9 +728,9 @@ public class UnderwritingController {
 		return underwritingService.retrieveNegateDistList(rpdir);
 	}
 	
-	@PostMapping(path="extractRenExpPolicy")
-	public @ResponseBody ExtractRenExpPolicyResponse extractRenExpPolicy(@RequestBody ExtractRenExpPolicyRequest erepr) throws SQLException {
-		logger.info("POST: /api/underwriting-service/extractRenExpPolicy");
+	@PostMapping(path="extGenRenExpPolicy")
+	public @ResponseBody ExtGenRenExpPolicyResponse extGenRenExpPolicy(@RequestBody ExtGenRenExpPolicyRequest erepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/extGenRenExpPolicy");
 		logger.info("ExtractRenExpPolicyRequest : " + erepr.toString());
 		return underwritingService.extractRenExpPolicy(erepr);
 	}

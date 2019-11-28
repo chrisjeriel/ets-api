@@ -34,4 +34,5 @@ public class WebSocketController {
 	public void onReceiveAlert(String message) {
 		this.template.convertAndSend("/alert", message);
 	}
+	
 }

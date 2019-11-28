@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
-public class ExtractRenExpPolicyRequest {
+public class ExtGenRenExpPolicyRequest {
 	String policyId;
 	String extractUser;
 	public String getPolicyId() {

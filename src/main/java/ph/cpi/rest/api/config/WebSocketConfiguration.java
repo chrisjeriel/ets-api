@@ -14,7 +14,8 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		registry.addEndpoint("/extractionLog",
 							 "/telegram",
-							 "/notifications")
+							 "/notifications",
+							 "/moduleSecurity")
 				.setAllowedOrigins("*")
 				.withSockJS();
 	}
@@ -24,7 +25,11 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
         registry.setApplicationDestinationPrefixes("/app")
                 .enableSimpleBroker("/prodLogs", "/osLogs",
                 					"/chat",
-                					"/alert");
+                					"/alert",
+                					"/pol-issuance");
     }
+	
+	
+
 
 }

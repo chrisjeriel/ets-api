@@ -16,7 +16,7 @@ import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
-import ph.cpi.rest.api.model.request.ExtractRenExpPolicyRequest;
+import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -92,7 +92,7 @@ import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
-import ph.cpi.rest.api.model.response.ExtractRenExpPolicyResponse;
+import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -1929,8 +1929,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	}
 
 	@Override
-	public ExtractRenExpPolicyResponse extractRenExpPolicy(ExtractRenExpPolicyRequest erepr) throws SQLException {
-		ExtractRenExpPolicyResponse resp = new ExtractRenExpPolicyResponse();
+	public ExtGenRenExpPolicyResponse extractRenExpPolicy(ExtGenRenExpPolicyRequest erepr) throws SQLException {
+		ExtGenRenExpPolicyResponse resp = new ExtGenRenExpPolicyResponse();
 		
 		
 		

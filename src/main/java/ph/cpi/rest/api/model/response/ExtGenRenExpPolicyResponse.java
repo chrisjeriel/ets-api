@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.response;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 
-public class ExtractRenExpPolicyResponse extends Response{
+public class ExtGenRenExpPolicyResponse extends Response{
 	
 	private PolicyAsIs renewedPolicy;
 	
