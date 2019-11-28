@@ -369,4 +369,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		Integer res = sqlSession.update("generateBatchOrNo", params);
 		return res;
 	}
+
+	@Override
+	public Integer printInvoiceBatch(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer res = sqlSession.update("printInvoiceBatch", params);
+		return res;
+	}
 }

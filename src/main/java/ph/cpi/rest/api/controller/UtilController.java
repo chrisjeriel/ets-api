@@ -178,6 +178,8 @@ public class UtilController {
 				
 				reportParam.put("P_POLICY_ID", grmr.getReportRequest().get(i).getPolicyId());
 				reportParam.put("p_policy_id", grmr.getReportRequest().get(i).getPolicyId());
+				
+				reportParam.put("P_INVOICE_ID", grmr.getReportRequest().get(i).getInvoiceId());
 
 
 				reportParam.put("REPORT_NAME", utilService.getReportFileName(reportParam));
