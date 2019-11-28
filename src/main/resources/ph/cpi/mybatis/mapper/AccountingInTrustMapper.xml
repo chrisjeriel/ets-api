@@ -4278,4 +4278,12 @@
 		END;
 	</update>
 	
+	<update id="SaveAcitCloseOpenDcb" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="saveDcb" item="item">
+				ACIT_DCB_NO_PKG.save_remarks(#{item.dcbYear},#{item.dcbNo},#{item.remarks}, #{item.updateUser});
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

@@ -854,4 +854,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitDcbCollectionRequest : " + sapcr.toString());
 		return acctInTrustService.saveDcbCollection(sapcr);
 	}
+	
+	@PostMapping(path="saveAcitCloseOpenDcb")
+	public @ResponseBody SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(@RequestBody SaveAcitCloseOpenDcbRequest sapcr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/SaveAcitCloseOpenDcb");
+		logger.info("SaveAcitCloseOpenDcbRequest : " + sapcr.toString());
+		return acctInTrustService.SaveAcitCloseOpenDcb(sapcr);
+	}
 }

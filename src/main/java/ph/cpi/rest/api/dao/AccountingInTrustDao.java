@@ -227,4 +227,5 @@ public interface AccountingInTrustDao {
 	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitOsQsoa> retrieveAcitOsQsoa(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveDcbCollection(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> SaveAcitCloseOpenDcb(final HashMap<String, Object> params) throws SQLException;
 }

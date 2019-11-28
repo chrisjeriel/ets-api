@@ -1076,4 +1076,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> SaveAcitCloseOpenDcb(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("SaveAcitCloseOpenDcb",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
