@@ -175,7 +175,7 @@
 		<result property="profitLossAmt" 				column="PROFIT_LOSS_AMT"/>
 		<result property="totIncome" 					column="TOTAL_INCOME"/>
 		<result property="totOutgo" 					column="TOTAL_OUTGO"/>
-		<result property="lossCarry" 					column="LOSS_CARRY"/>
+		<result property="carryAmt" 					column="CARRY_AMT"/>
 		<result property="createUser" 					column="CREATE_USER"/>
 		<result property="createDate" 					column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 					column="UPDATE_USER"/>
@@ -2457,6 +2457,7 @@
 		<result property="createDate" column="TRYTY_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" column="TRYTY_UPDATE_USER"/>
 		<result property="updateDate" column="TRYTY_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="netQsoaAmt" column="NET_QSOA_AMT"/>
 		<result property="prevPaytAmt" column="QSOA_PREV_PAYT_AMT"/>
 		<result property="prevBalance" column="QSOA_PREV_BALANCE"/>
 		<result property="newPaytAmt" column="QSOA_NEW_PAYT_AMT"/>
@@ -3646,7 +3647,11 @@
 															 #{saved.localAmt},#{saved.actualBalPaid},#{saved.createUser},
 															 CAST(to_timestamp(#{saved.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															 #{saved.updateUser},
-															 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+															 CAST(to_timestamp(#{saved.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{saved.prevPaytAmt, jdbcType=INTEGER},
+															 #{saved.prevBalance, jdbcType=INTEGER},
+															 #{saved.newPaytAmt, jdbcType=INTEGER},
+															 #{saved.newBalance, jdbcType=INTEGER}
 													  		);
 					ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{saved.tranId},
 														#{saved.qsoaId, jdbcType=INTEGER},

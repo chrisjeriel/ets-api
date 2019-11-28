@@ -15,7 +15,7 @@ public class AcitProfCommSumm {
 	private BigDecimal profitLossAmt;
 	private BigDecimal totIncome;
 	private BigDecimal totOutgo;
-	private BigDecimal lossCarry;
+	private BigDecimal carryAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -78,11 +78,11 @@ public class AcitProfCommSumm {
 	public void setTotOutgo(BigDecimal totOutgo) {
 		this.totOutgo = totOutgo;
 	}
-	public BigDecimal getLossCarry() {
-		return lossCarry;
+	public BigDecimal getCarryAmt() {
+		return carryAmt;
 	}
-	public void setLossCarry(BigDecimal lossCarry) {
-		this.lossCarry = lossCarry;
+	public void setCarryAmt(BigDecimal carryAmt) {
+		this.carryAmt = carryAmt;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -130,7 +130,7 @@ public class AcitProfCommSumm {
 	public String toString() {
 		return "AcitProfCommSumm [profCommId=" + profCommId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", cedingAbbr=" + cedingAbbr + ", month=" + month + ", year=" + year + ", profitLossAmt="
-				+ profitLossAmt + ", totIncome=" + totIncome + ", totOutgo=" + totOutgo + ", lossCarry=" + lossCarry
+				+ profitLossAmt + ", totIncome=" + totIncome + ", totOutgo=" + totOutgo + ", carryAmt=" + carryAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", currCd=" + currCd + ", profitLossComm=" + profitLossComm
 				+ ", profitLossTotal=" + profitLossTotal + "]";

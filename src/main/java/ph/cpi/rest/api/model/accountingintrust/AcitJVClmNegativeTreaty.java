@@ -21,6 +21,7 @@ public class AcitJVClmNegativeTreaty {
 	private String updateUser;
 	private DateTime updateDate;
 	private List <AcitJVClaimOffset> clmOffset;
+	private BigDecimal netQsoaAmt;
 	private BigDecimal prevPaytAmt;
 	private BigDecimal prevBalance;
 	private BigDecimal newPaytAmt;
@@ -116,6 +117,12 @@ public class AcitJVClmNegativeTreaty {
 	public void setClmOffset(List<AcitJVClaimOffset> clmOffset) {
 		this.clmOffset = clmOffset;
 	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
 	public BigDecimal getPrevPaytAmt() {
 		return prevPaytAmt;
 	}
@@ -146,7 +153,8 @@ public class AcitJVClmNegativeTreaty {
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt="
 				+ localAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + ", prevPaytAmt=" + prevPaytAmt
-				+ ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + "]";
+				+ ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + ", netQsoaAmt=" + netQsoaAmt
+				+ ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt
+				+ ", newBalance=" + newBalance + "]";
 	}
 }

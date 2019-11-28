@@ -220,6 +220,10 @@ class acctTrty {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -305,13 +309,37 @@ class acctTrty {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	@Override
 	public String toString() {
 		return "acctTrty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId + ", quarterEnding="
 				+ quarterEnding + ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate
 				+ ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid=" + actualBalPaid
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance
+				+ ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + "]";
 	}
-	
 }
