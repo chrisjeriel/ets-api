@@ -861,4 +861,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitCloseOpenDcbRequest : " + sapcr.toString());
 		return acctInTrustService.SaveAcitCloseOpenDcb(sapcr);
 	}
+	
+	@GetMapping(path="retrieveAcitDcbCollection")
+	public @ResponseBody RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitDcbCollection");
+		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
+		return acctInTrustService.retrieveAcitDcbCollection(raoqp);
+	}
 }

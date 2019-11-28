@@ -4286,4 +4286,16 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitDcbCollection" id="dcbCollectMap">
+		<result property="paytMode" column="PAYTMODE"/>
+		<result property="paytModeDesc" column="PAYTMODE_DESC"/>
+		<result property="orgAmt" column="ORG_AMT"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitDcbCollection" resultMap="dcbCollectMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_DCB_NO_PKG.ret_dcb_coll(#{dcbYear},#{dcbNo},null,null,null,null))
+	</select>
 </mapper>

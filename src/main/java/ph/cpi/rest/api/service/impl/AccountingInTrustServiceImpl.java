@@ -2591,4 +2591,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest request)
+			throws SQLException {
+		RetrieveAcitDcbCollectionResponse response = new RetrieveAcitDcbCollectionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setDcbCollection(acctITDao.retrieveAcitDcbCollection(params));
+		return response;
+	}
 }
