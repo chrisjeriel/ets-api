@@ -464,6 +464,7 @@
 		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
 		<result property="arDtlSum"      column="ARDTL_SUM"       />
 		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
+		<result property="acctEntDate"    column="ACCT_ENT_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	

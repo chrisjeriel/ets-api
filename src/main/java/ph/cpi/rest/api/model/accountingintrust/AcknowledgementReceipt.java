@@ -49,6 +49,7 @@ public class AcknowledgementReceipt {
 	private Integer rstrctTranUp;
 	private BigDecimal arDtlSum;
 	private BigDecimal acctEntriesSum;
+	private DateTime acctEntDate;
 	private List<ARPaymentDetails> paytDtl;
 	
 	public Integer getTranId() {
@@ -309,6 +310,12 @@ public class AcknowledgementReceipt {
 	public void setAcctEntriesSum(BigDecimal acctEntriesSum) {
 		this.acctEntriesSum = acctEntriesSum;
 	}
+	public DateTime getAcctEntDate() {
+		return acctEntDate;
+	}
+	public void setAcctEntDate(DateTime acctEntDate) {
+		this.acctEntDate = acctEntDate;
+	}
 	public List<ARPaymentDetails> getPaytDtl() {
 		return paytDtl;
 	}
@@ -329,6 +336,7 @@ public class AcknowledgementReceipt {
 				+ arAmt + ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp
-				+ ", arDtlSum=" + arDtlSum + ", acctEntriesSum=" + acctEntriesSum + ", paytDtl=" + paytDtl + "]";
+				+ ", arDtlSum=" + arDtlSum + ", acctEntriesSum=" + acctEntriesSum + ", acctEntDate=" + acctEntDate
+				+ ", paytDtl=" + paytDtl + "]";
 	}
 }
