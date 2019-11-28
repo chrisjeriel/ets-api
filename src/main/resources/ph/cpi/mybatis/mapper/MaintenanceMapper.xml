@@ -3593,7 +3593,9 @@
 		<result property="dcbNo"		column="DCB_NO" />
 		<result property="dcbDate"		column="DCB_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="dcbStatus"	column="DCB_STATUS" />
+		<result property="dcbStatDesc"	column="DCB_STAT_DESC" />
 		<result property="remarks"		column="REMARKS" />
+		<result property="closeDate"	column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="autoTag"		column="AUTO_TAG" />
 		<result property="createUser"	column="CREATE_USER" />
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>

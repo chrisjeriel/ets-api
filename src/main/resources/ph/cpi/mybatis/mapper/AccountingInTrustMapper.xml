@@ -4270,4 +4270,12 @@
 															#{cedingId, jdbcType=VARCHAR}))
 	</select>
 	
+	<update id="saveDcbCollection" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="updateDcb" item="item">
+				ACIT_DCB_NO_PKG.update_dcb(#{item.dcbYear},#{item.dcbNo},#{item.dcbStat}, #{item.updateUser});
+			</foreach>
+		END;
+	</update>
+	
 </mapper>
