@@ -2557,4 +2557,27 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
+
+
+	@Override
+	public EditInTrustAccountingEntriesResponse editAcctEnt(EditInTrustAccountingEntriesRequest eitaer)
+			throws SQLException {
+		EditInTrustAccountingEntriesResponse response = new EditInTrustAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", eitaer.getTranId());
+		params.put("histNo", eitaer.getHistNo());
+		params.put("reason", eitaer.getReason());
+		params.put("createUser", eitaer.getCreateUser());
+		params.put("updateUser", eitaer.getUpdateUser());
+		params.put("saveList", eitaer.getSaveList());
+		params.put("delList", eitaer.getDelList());
+		try{
+			response.setReturnCode(acctITDao.editAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
 }

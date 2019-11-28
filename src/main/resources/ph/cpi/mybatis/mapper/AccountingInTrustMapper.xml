@@ -4271,4 +4271,38 @@
 															#{cedingId, jdbcType=VARCHAR}))
 	</select>
 	
+	<update id="editAcctEnt" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_hist_no	NUMBER;
+		BEGIN
+			v_hist_no := ACIT_ACCTENTRIES_HIST_PKG.get_next_histno(#{tranId});
+			
+			<!-- Prepare backup before updating main accounting entries table -->
+			ACIT_ACCTENTRIES_HIST_PKG.(#{tranId},v_hist_no,#{reason},#{createUser}, #{updateUser});
+			<!-- Update Accounting Entries -->
+			<foreach collection="delList" item="item">
+				ACIT_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				ACIT_ACCT_ENTRIES_PKG.save_acit_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

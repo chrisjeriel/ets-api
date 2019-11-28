@@ -847,4 +847,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitOsQsoa(raoqp);
 	}
+	
+	@PostMapping(path="editAcctEnt")
+	public @ResponseBody EditInTrustAccountingEntriesResponse editAcctEnt(@RequestBody EditInTrustAccountingEntriesRequest eitaer) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/editAcctEnt");
+		logger.info("EditInTrustAccountingEntriesRequest : " + eitaer.toString());
+		return acctInTrustService.editAcctEnt(eitaer);
+	}
 }

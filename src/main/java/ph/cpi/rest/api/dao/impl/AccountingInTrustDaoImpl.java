@@ -1069,4 +1069,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitOsQsoa> res = sqlSession.selectList("retrieveAcitOsQsoa", params);
 		return res;
 	}
+
+	@Override
+	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("editAcctEnt",params);
+	}
 }
