@@ -55,6 +55,7 @@ public class AcitCv {
 	private DateTime mainCreateDate;
 	private String mainUpdateUser;
 	private DateTime mainUpdateDate;
+	private DateTime mainAcctEntDate;
 	
 	private String refNo;
 	private String checkStatus;
@@ -354,6 +355,12 @@ public class AcitCv {
 	public void setMainUpdateDate(DateTime mainUpdateDate) {
 		this.mainUpdateDate = mainUpdateDate;
 	}
+	public DateTime getMainAcctEntDate() {
+		return mainAcctEntDate;
+	}
+	public void setMainAcctEntDate(DateTime mainAcctEntDate) {
+		this.mainAcctEntDate = mainAcctEntDate;
+	}
 	public String getRefNo() {
 		return refNo;
 	}
@@ -383,7 +390,7 @@ public class AcitCv {
 				+ mainTranClassNo + ", mainTranStat=" + mainTranStat + ", mainTranStatDesc=" + mainTranStatDesc
 				+ ", mainCloseDate=" + mainCloseDate + ", mainDeleteDate=" + mainDeleteDate + ", mainPostDate="
 				+ mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate=" + mainCreateDate
-				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", refNo=" + refNo
-				+ ", checkStatus=" + checkStatus + "]";
+				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", mainAcctEntDate="
+				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + "]";
 	}
 }
