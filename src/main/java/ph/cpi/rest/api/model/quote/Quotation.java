@@ -75,7 +75,14 @@ public class Quotation {
 	private Alop alop;
 	private HoldCover holdCover;
 	private Attachment attachment;
+	private String intCompId;
 	
+	public String getIntCompId() {
+		return intCompId;
+	}
+	public void setIntCompId(String intCompId) {
+		this.intCompId = intCompId;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -495,7 +502,7 @@ public class Quotation {
 				+ ", updateDate=" + updateDate + ", project=" + project + ", options=" + options + ", otherRates="
 				+ otherRates + ", attachmentsList=" + attachmentsList + ", competitionsList=" + competitionsList
 				+ ", otherRatesList=" + otherRatesList + ", optionsList=" + optionsList + ", alop=" + alop
-				+ ", holdCover=" + holdCover + ", attachment=" + attachment + "]";
+				+ ", holdCover=" + holdCover + ", attachment=" + attachment + ", intCompId=" + intCompId + "]";
 	}
 	
 	

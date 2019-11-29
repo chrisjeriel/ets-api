@@ -60,6 +60,7 @@
 		<result property="preparedBy"		column="PREPARED_BY"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="sumInsured"		column="TOTAL_SI"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="firstOptionRt"	column="OPTION_RT"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
+		<result property="intCompId" column="LIST_INT_COMP_ID" />
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
@@ -274,6 +275,7 @@
 		<result property="createDate" 		column="OPT_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
 		<result property="updateUser" 		column="OPT_UPDATE_USER"/>
 		<result property="updateDate" 		column="OPT_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.LocalDateTypeHandler"/>
+		<result property="remarks" 			column="REMARKS"/>
 		<association property="deductiblesList" resultMap="assocDeductibles"/>
 		<association property="otherRatesList" 	resultMap="assocOtherRates"/>
 	</resultMap>
@@ -1562,7 +1564,7 @@
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{quoteOption.remarks,jdbcType=VARCHAR});
 		   </foreach>
 		   
 		   <!-- <foreach collection="deleteDeductibleList" item="deductible">
@@ -1602,7 +1604,7 @@
 		   	   #{quoteOption.condition,jdbcType=VARCHAR},#{quoteOption.commRtQuota},#{quoteOption.commRtSurplus},
 		   	   #{quoteOption.commRtFac},#{quoteOption.createUser},
 		   	   CAST(to_timestamp(#{quoteOption.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
-		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE));
+		   	   #{quoteOption.updateUser},CAST(to_timestamp(#{quoteOption.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{quoteOption.remarks,jdbcType=VARCHAR});
 		   	   
 		   	   <foreach collection="quoteOption.otherRatesList" item="otherRates">
 					QU_OTHER_RT_PKG.save_qu_oth_rt(

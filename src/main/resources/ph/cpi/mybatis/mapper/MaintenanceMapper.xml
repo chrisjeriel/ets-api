@@ -966,13 +966,13 @@
      </resultMap>
      
      <select id="retrieveMtnCATPeril" resultMap="catPerilMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_CAT_PERIL_PKG.retrieve_mtn_cat_peril(#{lineCd, jdbcType=VARCHAR},
+    	SELECT * FROM TABLE(MTN_CAT_PERIL_PKG.retrieve_mtn_cat_peril(#{lineCd, jdbcType=VARCHAR},
 												  #{objectId, jdbcType=VARCHAR}, 
 												  #{catPerilId, jdbcType=INTEGER},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.MtnCharges" id="chargesMap">
@@ -991,11 +991,11 @@
      </resultMap>
      
      <select id="retrieveMtnCharges" resultMap="chargesMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_CHARGES_PKG.retrieve_mtn_charges(#{chargeCd, jdbcType=INTEGER},
+    	SELECT * FROM TABLE(MTN_CHARGES_PKG.retrieve_mtn_charges(#{chargeCd, jdbcType=INTEGER},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
      </select>
      
     <update id="saveMtnLine" parameterType="java.util.Map">
@@ -1106,12 +1106,12 @@
     </update>
     
     <select id="retrieveMtnSpoilageReason" resultMap="spoilMap" parameterType="java.util.Map">
-    	SELECT * FROM MTN_SPOIL_PKG.ret_mtn_spoil(#{spoilCd, jdbcType=VARCHAR},
+    	SELECT * FROM TABLE(MTN_SPOIL_PKG.ret_mtn_spoil(#{spoilCd, jdbcType=VARCHAR},
     											  #{activeTag, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR})
+												  #{order, jdbcType=VARCHAR}))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.maintenance.MtnPolWordings" id="MtnPolWordingsMap">
@@ -1147,7 +1147,7 @@
     </resultMap>
     
     <select id="retMtnPolWordings" resultMap="MtnPolWordingsMap" parameterType="java.util.Map">
-    	select * from MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{wordType, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null)
+    	select * from TABLE(MTN_POL_WORDINGS_PKG.ret_mtn_pol_wordings(#{lineCd, jdbcType=VARCHAR},#{wordingCd, jdbcType=VARCHAR},#{wordType, jdbcType=VARCHAR},#{activeTag, jdbcType=VARCHAR},#{defaultTag, jdbcType=VARCHAR},#{ocTag, jdbcType=VARCHAR},null,null,null,null))
      </select>
      
     <update id="saveMtnInsured" parameterType="java.util.Map" statementType="CALLABLE">

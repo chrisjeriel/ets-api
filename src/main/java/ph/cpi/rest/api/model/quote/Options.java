@@ -21,6 +21,14 @@ public class Options {
 	private List<Deductibles> deductiblesList;
 	private List<Endorsments> endorsments;
 	private AlopDetails alopDetails;
+	private String remarks;
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public Integer getOptionId() {
 		return optionId;
 	}
@@ -119,7 +127,7 @@ public class Options {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", deductibles=" + deductibles + ", otherRatesList=" + otherRatesList
 				+ ", deductiblesList=" + deductiblesList + ", endorsments=" + endorsments + ", alopDetails="
-				+ alopDetails + "]";
+				+ alopDetails + ", remarks=" + remarks + "]";
 	}
 	
 	

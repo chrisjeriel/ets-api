@@ -83,8 +83,15 @@ public class SavePolGenInfoRequest {
 	private String coTermTag;
 	private String coTermText;
 	private String mbiPolicyId;
+	private String coAltRefNo;
 	
 	
+	public String getCoAltRefNo() {
+		return coAltRefNo;
+	}
+	public void setCoAltRefNo(String coAltRefNo) {
+		this.coAltRefNo = coAltRefNo;
+	}
 	public String getCoTermTag() {
 		return coTermTag;
 	}

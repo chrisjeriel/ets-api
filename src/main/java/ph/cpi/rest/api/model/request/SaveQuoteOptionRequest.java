@@ -52,8 +52,15 @@ class QuoteOption{
 	private String updateDate;
 	private List<OtherRates> otherRatesList;
 	private List<Deductibles> deductiblesList;
+	private String remarks;
 
 	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getOptionId() {
 		return optionId;
 	}
@@ -134,7 +141,7 @@ class QuoteOption{
 				+ ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", otherRatesList=" + otherRatesList + ", deductiblesList="
-				+ deductiblesList + "]";
+				+ deductiblesList + ", remarks=" + remarks + "]";
 	}
 	
 	
