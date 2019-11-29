@@ -2,22 +2,22 @@ package ph.cpi.rest.api.model.request;
 
 public class ExtGenRenExpPolicyRequest {
 	String policyId;
-	String extractUser;
+	String procBy;
 	public String getPolicyId() {
 		return policyId;
 	}
 	public void setPolicyId(String policyId) {
 		this.policyId = policyId;
 	}
-	public String getExtractUser() {
-		return extractUser;
+	public String getProcBy() {
+		return procBy;
 	}
-	public void setExtractUser(String extractUser) {
-		this.extractUser = extractUser;
+	public void setProcBy(String procBy) {
+		this.procBy = procBy;
 	}
 	@Override
 	public String toString() {
-		return "ExtractRenExpPolicyRequest [policyId=" + policyId + ", extractUser=" + extractUser + "]";
+		return "ExtGenRenExpPolicyRequest [policyId=" + policyId + ", procBy=" + procBy + "]";
 	}
 	
 }

@@ -1940,7 +1940,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			PolicyAsIs renPol = new PolicyAsIs();
 			renPol.setPolicyId(erepr.getPolicyId());
-			renPol.setProcBy(erepr.getExtractUser());
+			renPol.setProcBy(erepr.getProcBy());
 			params.put("renPol", renPol);
 			
 			resp.setRenewedPolicy((PolicyAsIs) underwritingDao.extractRenExpPolicy(params).get("renPol"));

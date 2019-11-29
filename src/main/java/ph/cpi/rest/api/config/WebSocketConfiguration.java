@@ -26,7 +26,11 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
                 .enableSimpleBroker("/prodLogs", "/osLogs",
                 					"/chat",
                 					"/alert",
-                					"/pol-issuance");
+                					"/pol-issuance",
+                					"/pol-alteration",
+                					"/pol-oc",
+                					"/quote-processing",
+                					"/clm-processing");
     }
 	
 	
