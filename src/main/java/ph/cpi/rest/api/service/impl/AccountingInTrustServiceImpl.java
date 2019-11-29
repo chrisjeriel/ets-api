@@ -2557,4 +2557,38 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
+
+
+	@Override
+	public SaveAcitDcbCollectionResponse saveDcbCollection(SaveAcitDcbCollectionRequest request) throws SQLException {
+		SaveAcitDcbCollectionResponse response = new SaveAcitDcbCollectionResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("updateDcb", request.getUpdateDcb());
+			HashMap<String,Object> res = acctITDao.saveDcbCollection(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(SaveAcitCloseOpenDcbRequest request) throws SQLException {
+		SaveAcitCloseOpenDcbResponse response = new SaveAcitCloseOpenDcbResponse();
+		try {
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDcb", request.getSaveDcb());
+			HashMap<String,Object> res =  acctITDao.SaveAcitCloseOpenDcb(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

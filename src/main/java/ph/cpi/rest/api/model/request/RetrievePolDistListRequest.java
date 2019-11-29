@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationRequest;
@@ -14,6 +15,8 @@ public class RetrievePolDistListRequest {
 	private String insuredDesc;
 	private String riskName;
 	private String currencyCd;
+	private String lineCd;
+	private BigDecimal totalSi;
 	private String distDateFrom;
 	private String distDateTo;
 	private String acctDateFrom;
@@ -33,6 +36,19 @@ public class RetrievePolDistListRequest {
 	}
 	public void setDistId(Integer distId) {
 		this.distId = distId;
+	}
+	
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public BigDecimal getTotalSi() {
+		return totalSi;
+	}
+	public void setTotalSi(BigDecimal totalSi) {
+		this.totalSi = totalSi;
 	}
 	public Integer getRiskDistId() {
 		return riskDistId;
@@ -116,9 +132,10 @@ public class RetrievePolDistListRequest {
 	public String toString() {
 		return "RetrievePolDistListRequest [distId=" + distId + ", riskDistId=" + riskDistId + ", status=" + status
 				+ ", policyNo=" + policyNo + ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc
-				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", distDateFrom=" + distDateFrom
-				+ ", distDateTo=" + distDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo=" + acctDateTo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", statusArr="
-				+ statusArr + "]";
+				+ ", riskName=" + riskName + ", currencyCd=" + currencyCd + ", lineCd=" + lineCd + ", totalSi="
+				+ totalSi + ", distDateFrom=" + distDateFrom + ", distDateTo=" + distDateTo + ", acctDateFrom="
+				+ acctDateFrom + ", acctDateTo=" + acctDateTo + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + ", statusArr=" + statusArr + "]";
 	}
+	
 }

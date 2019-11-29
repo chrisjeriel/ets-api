@@ -1041,6 +1041,22 @@
 	</resultMap>
 	
 	<select id="retrieveClmPaytReqInq" resultMap="ClaimPaytReqInqMap">
-		SELECT * FROM TABLE(CLM_PAYT_REQ_PKG.ret_clm_payt_req_inq(NULL))
+		SELECT * FROM TABLE(CLM_PAYT_REQ_PKG.ret_clm_payt_req_inq(#{claimNo,jdbcType=VARCHAR},
+															      #{histNo, jdbcType=VARCHAR},
+																  #{policyNo, jdbcType=VARCHAR},
+																  #{paytReqNo, jdbcType=VARCHAR},
+																  #{payee, jdbcType=VARCHAR},
+																  #{paytType, jdbcType=VARCHAR},
+																  #{currCd, jdbcType=VARCHAR},
+																  #{resAmt, jdbcType=VARCHAR},
+																  #{particulars, jdbcType=VARCHAR},
+																  CAST(to_timestamp(#{reqDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																  #{reqBy, jdbcType=VARCHAR},
+																  #{acctRef, jdbcType=VARCHAR},
+																  CAST(to_timestamp(#{tranDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																  #{insuredDesc, jdbcType=VARCHAR},
+																  #{riskName, jdbcType=VARCHAR},
+																  CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+																  ))
 	</select>
 </mapper>

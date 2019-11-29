@@ -124,4 +124,6 @@ public interface AccountingInTrustService {
 	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException;
 	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException;
 	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException;
+	public SaveAcitDcbCollectionResponse saveDcbCollection(SaveAcitDcbCollectionRequest request) throws SQLException;
+	public SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(SaveAcitCloseOpenDcbRequest request) throws SQLException;
 }

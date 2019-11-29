@@ -1069,4 +1069,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitOsQsoa> res = sqlSession.selectList("retrieveAcitOsQsoa", params);
 		return res;
 	}
+
+	@Override
+	public HashMap<String, Object> saveDcbCollection(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveDcbCollection",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> SaveAcitCloseOpenDcb(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("SaveAcitCloseOpenDcb",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

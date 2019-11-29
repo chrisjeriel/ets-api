@@ -7,7 +7,9 @@ public class AcitDCBNo {
 	private Integer dcbNo;
 	private DateTime dcbDate;
 	private String dcbStatus;
+	private String dcbStatDesc;
 	private String remarks;
+	private DateTime closeDate;
 	private String autoTag;
 	private String createUser;
 	private DateTime createDate;
@@ -26,6 +28,20 @@ public class AcitDCBNo {
 	}
 	public void setDcbNo(Integer dcbNo) {
 		this.dcbNo = dcbNo;
+	}
+	
+	public DateTime getCloseDate() {
+		return closeDate;
+	}
+	public void setCloseDate(DateTime closeDate) {
+		this.closeDate = closeDate;
+	}
+	
+	public String getDcbStatDesc() {
+		return dcbStatDesc;
+	}
+	public void setDcbStatDesc(String dcbStatDesc) {
+		this.dcbStatDesc = dcbStatDesc;
 	}
 	public DateTime getDcbDate() {
 		return dcbDate;
@@ -86,9 +102,9 @@ public class AcitDCBNo {
 	@Override
 	public String toString() {
 		return "AcitDCBNo [dcbYear=" + dcbYear + ", dcbNo=" + dcbNo + ", dcbDate=" + dcbDate + ", dcbStatus="
-				+ dcbStatus + ", remarks=" + remarks + ", autoTag=" + autoTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", okDelete=" + okDelete + "]";
+				+ dcbStatus + ", dcbStatDesc=" + dcbStatDesc + ", remarks=" + remarks + ", closeDate=" + closeDate
+				+ ", autoTag=" + autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
 	}
 	
 }
