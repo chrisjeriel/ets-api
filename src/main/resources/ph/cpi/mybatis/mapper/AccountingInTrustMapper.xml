@@ -3207,7 +3207,7 @@
 		<result property="mainCreateDate" 	column="MAIN_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainUpdateUser" 	column="MAIN_UPDATE_USER"/>
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="mainAcctEntDate" 	column="MAIN_ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainAcctEntDate" 	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		
 		<result property="refNo" 			column="REF_NO"/>
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
