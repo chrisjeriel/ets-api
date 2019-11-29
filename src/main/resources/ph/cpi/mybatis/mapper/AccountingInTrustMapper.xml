@@ -217,6 +217,7 @@
 		<result property="partialPullOutTag"		    column="PARTIAL_PULLOUT_TAG" />
 		<result property="partialPullOutDate"			column="PARTIAL_PULLOUT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="partialPullOutAmt"		    column="PARTIAL_PULLOUT_AMT" />
+		<result property="refInvtId"		    		column="REF_INVT_ID" />
 	</resultMap>
 	
 	<select id="retrieveInvestmentList" resultMap="acitInvestmentsList" parameterType="java.util.Map">
@@ -272,10 +273,13 @@
 			   									#{investments.parCost, jdbcType=VARCHAR},
 			   									#{investments.partialPullOutTag, jdbcType=VARCHAR},
 			   									CAST(to_timestamp(#{investments.partialPullOutDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-			   									#{investments.partialPullOutAmt, jdbcType=VARCHAR});
+			   									#{investments.partialPullOutAmt, jdbcType=VARCHAR},
+			   									#{investments.refInvtId, jdbcType=VARCHAR});
 		   </foreach>
 		   <foreach collection="delAcitInvestments" item="investments">
-		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR});
+		   		ACIT_INVESTMENTS_PKG.del_invt(#{investments.invtId, jdbcType=VARCHAR},
+		   									  #{investments.refInvtId, jdbcType=VARCHAR},
+		   									  #{investments.updateUser, jdbcType=VARCHAR});
 		   </foreach>
 		END;
 	</update>

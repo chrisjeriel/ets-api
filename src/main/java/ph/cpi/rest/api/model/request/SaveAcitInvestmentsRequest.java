@@ -66,7 +66,14 @@ class AcitInvt {
 	private String      partialPullOutTag;
 	private String      partialPullOutDate;
 	private String      partialPullOutAmt;
+	private String		refInvtId;
 	
+	public String getRefInvtId() {
+		return refInvtId;
+	}
+	public void setRefInvtId(String refInvtId) {
+		this.refInvtId = refInvtId;
+	}
 	public String getPartialPullOutTag() {
 		return partialPullOutTag;
 	}
