@@ -854,4 +854,11 @@ public class AccountingInTrustController {
 		logger.info("EditInTrustAccountingEntriesRequest : " + eitaer.toString());
 		return acctInTrustService.editAcctEnt(eitaer);
 	}
+	
+	@PostMapping(path="restoreAcctEnt")
+	public @ResponseBody RestoreInTrustAccountingEntriesResponse restoreAcctEnt(@RequestBody RestoreInTrustAccountingEntriesRequest ritaer) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/restoreAcctEnt");
+		logger.info("RestoreInTrustAccountingEntriesRequest : " + ritaer.toString());
+		return acctInTrustService.restoreAcctEnt(ritaer);
+	}
 }

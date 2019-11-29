@@ -2580,4 +2580,22 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+
+
+	@Override
+	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
+			throws SQLException {
+		RestoreInTrustAccountingEntriesResponse response = new RestoreInTrustAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", ritaer.getTranId());
+		params.put("histNo", ritaer.getHistNo());
+		try{
+			response.setReturnCode(acctITDao.restoreAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
 }

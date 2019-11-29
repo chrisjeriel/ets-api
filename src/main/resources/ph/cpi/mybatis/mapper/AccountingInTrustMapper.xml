@@ -4282,7 +4282,7 @@
 			v_hist_no := ACIT_ACCTENTRIES_HIST_PKG.get_next_histno(#{tranId});
 			
 			<!-- Prepare backup before updating main accounting entries table -->
-			ACIT_ACCTENTRIES_HIST_PKG.(#{tranId},v_hist_no,#{reason},#{createUser}, #{updateUser});
+			ACIT_ACCTENTRIES_HIST_PKG.edit_acct_entries(#{tranId},v_hist_no,#{reason},#{createUser}, #{updateUser});
 			<!-- Update Accounting Entries -->
 			<foreach collection="delList" item="item">
 				ACIT_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
@@ -4306,6 +4306,13 @@
 					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
+		END;
+	</update>
+	
+	<update id="restoreAcctEnt" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_ACCTENTRIES_HIST_PKG.restore_acct_entries(#{tranId, jdbcType=INTEGER},
+													   #{histNo, jdbcType=INTEGER});
 		END;
 	</update>
 	

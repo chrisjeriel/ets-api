@@ -1074,4 +1074,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.update("editAcctEnt",params);
 	}
+
+	@Override
+	public Integer restoreAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("restoreAcctEnt",params);
+	}
 }
