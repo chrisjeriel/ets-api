@@ -2598,4 +2598,29 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
+			throws SQLException {
+		RetrieveAcitAcctEntInqResponse response = new RetrieveAcitAcctEntInqResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", raaeir.getTranClass());
+		params.put("tranDateFrom", raaeir.getTranDateFrom());
+		params.put("tranDateTo", raaeir.getTranDateTo());
+		response.setEdtAcctEntList(acctITDao.retrieveEditedAcctEntInq(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr)
+			throws SQLException {
+		RetrieveAcitAcctEntBackupResponse response = new RetrieveAcitAcctEntBackupResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaebr.getTranId());
+		params.put("histNo", raaebr.getHistNo());
+		response.setBackupAcctEnt(acctITDao.retrieveAcctEntInqDtl(params));
+		return response;
+	}
 }

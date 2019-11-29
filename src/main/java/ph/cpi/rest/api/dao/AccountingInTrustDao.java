@@ -228,4 +228,6 @@ public interface AccountingInTrustDao {
 	public List<AcitOsQsoa> retrieveAcitOsQsoa(final HashMap<String, Object> params) throws SQLException;
 	public Integer editAcctEnt(final HashMap<String, Object> params) throws SQLException;
 	public Integer restoreAcctEnt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitEditedAcctEntries> retrieveEditedAcctEntInq(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAcctEntries> retrieveAcctEntInqDtl(final HashMap<String, Object> params) throws SQLException;
 }

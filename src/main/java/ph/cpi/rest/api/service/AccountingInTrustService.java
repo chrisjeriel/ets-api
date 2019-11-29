@@ -126,4 +126,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException;
 	public EditInTrustAccountingEntriesResponse editAcctEnt(EditInTrustAccountingEntriesRequest eitaer) throws SQLException;
 	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer) throws SQLException;
+	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir) throws SQLException;
+	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr) throws SQLException;
 }

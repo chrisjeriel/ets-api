@@ -861,4 +861,18 @@ public class AccountingInTrustController {
 		logger.info("RestoreInTrustAccountingEntriesRequest : " + ritaer.toString());
 		return acctInTrustService.restoreAcctEnt(ritaer);
 	}
+	
+	@GetMapping(path="retrieveAcctEntInq")
+	public @ResponseBody RetrieveAcitAcctEntInqResponse retrieveAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntInq");
+		logger.info("RetrieveAcitAcctEntInqRequest : " + raaeir.toString());
+		return acctInTrustService.retrieveAcitAcctEntInq(raaeir)	;
+	}
+	
+	@GetMapping(path="retrieveAcctEntBackup")
+	public @ResponseBody RetrieveAcitAcctEntBackupResponse retrieveAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntBackup");
+		logger.info("RetrieveAcitAcctEntBackupRequest : " + raaebr.toString());
+		return acctInTrustService.retrieveAcitAcctEntBackup(raaebr)	;
+	}
 }

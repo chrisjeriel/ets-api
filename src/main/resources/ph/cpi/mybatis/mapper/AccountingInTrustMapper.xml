@@ -1520,6 +1520,12 @@
 				#{slCd, jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrieveAcitAcctEntriesInqDtl" resultMap="AcctEntriesMap">
+		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_eaeinq_dtl(
+				#{tranId},
+				#{histNo}))
+	</select>
+	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOA" id="qsoaMap">
 		<result property="qsoaId" 			column="QSOA_ID"/>
 		<result property="currCd" 			column="CURR_CD"/>
@@ -4234,6 +4240,12 @@
 	
 	<select id="retEditAcctEntries" resultMap="editAcctEntriesMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
+	</select>
+	
+	<select id="retEditAcctEntriesInq" resultMap="editAcctEntriesMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries_inq(#{tranClass, jdbcType=VARCHAR}, 
+																		     CAST(to_timestamp(#{tranDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																		     CAST(to_timestamp(#{tranDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
 	</select>
 	
 	<update id="validateCheckNo" parameterType="java.util.Map" statementType="CALLABLE">
