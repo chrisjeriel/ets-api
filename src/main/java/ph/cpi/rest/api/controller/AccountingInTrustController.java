@@ -868,4 +868,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitDcbCollection(raoqp);
 	}
+	
+	@GetMapping(path="retrieveAcitBankDetails")
+	public @ResponseBody RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitBankDetails");
+		logger.info("RetrieveAcitDcbBankDetailsRequest : " + raoqp.toString());
+		return acctInTrustService.retrieveAcitBankDetails(raoqp);
+	}
 }
