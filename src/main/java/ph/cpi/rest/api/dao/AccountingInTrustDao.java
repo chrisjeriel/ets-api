@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
@@ -62,6 +63,8 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
+import ph.cpi.rest.api.model.request.UploadAcctEntryRequest;
+import ph.cpi.rest.api.model.response.UploadAcctEntryResponse;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -226,4 +229,9 @@ public interface AccountingInTrustDao {
 	public HashMap<String, Object> validateServfee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitOsQsoa> retrieveAcitOsQsoa(final HashMap<String, Object> params) throws SQLException;
+	
+	public Integer deleteAcctEntry(HashMap<String, Object> params) throws SQLException;
+	public Integer uploadAcctEntry(List<AcctEntryRowUpload> aeruList) throws SQLException;
+	
+	
 }

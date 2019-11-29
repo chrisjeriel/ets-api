@@ -4271,4 +4271,29 @@
 															#{cedingId, jdbcType=VARCHAR}))
 	</select>
 	
+	<update id="deleteAcctEntry" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACCT_ENTRY_UPLOAD_PKG.delete_acct_entries(#{acctType, jdbcType=VARCHAR}, #{tranClass, jdbcType=VARCHAR}, #{tranId, jdbcType=INTEGER});
+		END;
+	</update>
+	
+	<update id="uploadAcctEntry" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACCT_ENTRY_UPLOAD_PKG.upload_acct_entry(
+											        #{acctType, jdbcType=VARCHAR},
+											        #{tranClass, jdbcType=VARCHAR},
+											        #{tranId, jdbcType=INTEGER},
+											        #{acctCode, jdbcType=VARCHAR}, 
+											        #{acctName, jdbcType=VARCHAR}, 
+											        #{slTypeCd, jdbcType=INTEGER}, 
+											        #{slTypeName, jdbcType=VARCHAR}, 
+											        #{slCode, jdbcType=INTEGER}, 
+											        #{slName, jdbcType=VARCHAR}, 
+											        #{debitAmt, jdbcType=INTEGER}, 
+											        #{creditAmt, jdbcType=INTEGER},
+											        #{procBy, jdbcType=VARCHAR}
+												   );
+		END;
+	</update>
+	
 </mapper>

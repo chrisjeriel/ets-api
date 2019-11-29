@@ -15,6 +15,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
@@ -1068,5 +1069,23 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitOsQsoa> retrieveAcitOsQsoa(HashMap<String, Object> params) throws SQLException {
 		List<AcitOsQsoa> res = sqlSession.selectList("retrieveAcitOsQsoa", params);
 		return res;
+	}
+	
+	@Override
+	public Integer deleteAcctEntry(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("deleteAcctEntry", params);
+	}
+	
+	@Override
+	public Integer uploadAcctEntry(List<AcctEntryRowUpload> aeruList) throws SQLException {
+		Integer errorCode = 0;
+		
+		for (AcctEntryRowUpload aeru : aeruList) {
+			txManager.getTransaction(txDef);
+			errorCode = sqlSession.update("uploadAcctEntry", aeru);
+		}
+		
+		return errorCode;
 	}
 }

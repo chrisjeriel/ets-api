@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -2554,6 +2555,31 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("cedingId", raoqp.getCedingId());
 		
 		res.setOsQsoaList(acctITDao.retrieveAcitOsQsoa(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public UploadAcctEntryResponse uploadAcctEntry(UploadAcctEntryRequest uaer) throws SQLException {
+		UploadAcctEntryResponse res = new UploadAcctEntryResponse();
+		
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("acctType", uaer.getAeruList().get(0).getAcctType());
+			params.put("tranClass", uaer.getAeruList().get(0).getTranClass());
+			params.put("tranId", uaer.getAeruList().get(0).getTranId());
+			
+			acctITDao.deleteAcctEntry(params);
+			acctITDao.uploadAcctEntry(uaer.getAeruList());
+			
+			acctITDao.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			acctITDao.rollback();
+			res.getErrorList().add(new Error("Exception", e.getMessage()));
+		}
+		
 		
 		return res;
 	}
