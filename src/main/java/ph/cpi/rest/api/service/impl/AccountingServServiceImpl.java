@@ -31,6 +31,8 @@ import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseDcbBankDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseDcbCollectionRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -82,6 +84,8 @@ import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseDcbBankDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseDcbCollectionResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -1002,7 +1006,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public RetrieveAcseBatchInvoiceResponse retrieveAcseBatchInvoice(
 			RetrieveAcseBatchInvoiceRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcseBatchInvoiceResponse response = new RetrieveAcseBatchInvoiceResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		
@@ -1019,7 +1022,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public SaveAcseInvoiceResponse saveAcseInvoice(
 			SaveAcseInvoiceRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcseInvoiceResponse response = new SaveAcseInvoiceResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1077,7 +1079,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public GenerateBatchInvoiceNoResponse generateBatchInvoiceNo(
 			GenerateBatchInvoiceNoRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		
 		GenerateBatchInvoiceNoResponse response = new GenerateBatchInvoiceNoResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1100,7 +1101,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public RetrieveAcseInvoiceItemsResponse retrieveAcseInvoiceItems(
 			RetrieveAcseInvoiceItemsRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcseInvoiceItemsResponse response = new RetrieveAcseInvoiceItemsResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		
@@ -1112,7 +1112,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public SaveAcseInvoiceItemResponse saveAcseInvoiceItem(
 			SaveAcseInvoiceItemRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcseInvoiceItemResponse response = new SaveAcseInvoiceItemResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("invoiceItemList", request.getInvoiceItemList());
@@ -1202,6 +1201,28 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("General Exception","Unable to generate OR No. Check fields."));
 			ex.printStackTrace();
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcseDcbCollectionRequest request)
+			throws SQLException {
+		RetrieveAcseDcbCollectionResponse response = new RetrieveAcseDcbCollectionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object> ();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setDcbCollection(acctServDao.retrieveAcseDcbCollection(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcseDcbBankDetailsRequest request)
+			throws SQLException {
+		RetrieveAcseDcbBankDetailsResponse response = new RetrieveAcseDcbBankDetailsResponse();
+		HashMap<String,Object> params = new HashMap<String,Object> ();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setBankDetails(acctServDao.retrieveAcseBankDetails(params));
 		return response;
 	}
 }
