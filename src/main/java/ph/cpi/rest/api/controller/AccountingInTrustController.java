@@ -847,4 +847,32 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitOsQsoa(raoqp);
 	}
+	
+	@PostMapping(path="editAcctEnt")
+	public @ResponseBody EditInTrustAccountingEntriesResponse editAcctEnt(@RequestBody EditInTrustAccountingEntriesRequest eitaer) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/editAcctEnt");
+		logger.info("EditInTrustAccountingEntriesRequest : " + eitaer.toString());
+		return acctInTrustService.editAcctEnt(eitaer);
+	}
+	
+	@PostMapping(path="restoreAcctEnt")
+	public @ResponseBody RestoreInTrustAccountingEntriesResponse restoreAcctEnt(@RequestBody RestoreInTrustAccountingEntriesRequest ritaer) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/restoreAcctEnt");
+		logger.info("RestoreInTrustAccountingEntriesRequest : " + ritaer.toString());
+		return acctInTrustService.restoreAcctEnt(ritaer);
+	}
+	
+	@GetMapping(path="retrieveAcctEntInq")
+	public @ResponseBody RetrieveAcitAcctEntInqResponse retrieveAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntInq");
+		logger.info("RetrieveAcitAcctEntInqRequest : " + raaeir.toString());
+		return acctInTrustService.retrieveAcitAcctEntInq(raaeir)	;
+	}
+	
+	@GetMapping(path="retrieveAcctEntBackup")
+	public @ResponseBody RetrieveAcitAcctEntBackupResponse retrieveAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntBackup");
+		logger.info("RetrieveAcitAcctEntBackupRequest : " + raaebr.toString());
+		return acctInTrustService.retrieveAcitAcctEntBackup(raaebr)	;
+	}
 }

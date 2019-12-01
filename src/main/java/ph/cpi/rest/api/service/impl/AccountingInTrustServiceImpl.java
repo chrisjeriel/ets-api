@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -2582,5 +2581,70 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		
 		return res;
+	}
+	
+	@Override
+	public EditInTrustAccountingEntriesResponse editAcctEnt(EditInTrustAccountingEntriesRequest eitaer)
+			throws SQLException {
+		EditInTrustAccountingEntriesResponse response = new EditInTrustAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", eitaer.getTranId());
+		params.put("histNo", eitaer.getHistNo());
+		params.put("reason", eitaer.getReason());
+		params.put("createUser", eitaer.getCreateUser());
+		params.put("updateUser", eitaer.getUpdateUser());
+		params.put("saveList", eitaer.getSaveList());
+		params.put("delList", eitaer.getDelList());
+		try{
+			response.setReturnCode(acctITDao.editAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
+
+
+	@Override
+	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
+			throws SQLException {
+		RestoreInTrustAccountingEntriesResponse response = new RestoreInTrustAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", ritaer.getTranId());
+		params.put("histNo", ritaer.getHistNo());
+		try{
+			response.setReturnCode(acctITDao.restoreAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
+			throws SQLException {
+		RetrieveAcitAcctEntInqResponse response = new RetrieveAcitAcctEntInqResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", raaeir.getTranClass());
+		params.put("tranDateFrom", raaeir.getTranDateFrom());
+		params.put("tranDateTo", raaeir.getTranDateTo());
+		response.setEdtAcctEntList(acctITDao.retrieveEditedAcctEntInq(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr)
+			throws SQLException {
+		RetrieveAcitAcctEntBackupResponse response = new RetrieveAcitAcctEntBackupResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaebr.getTranId());
+		params.put("histNo", raaebr.getHistNo());
+		response.setBackupAcctEnt(acctITDao.retrieveAcctEntInqDtl(params));
+		return response;
 	}
 }

@@ -399,6 +399,7 @@
 		<result property="createDate"		column="CREATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
 		<result property="updateDate"		column="UPDATE_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="acctEntDate"		column="ACCT_ENT_DATE"	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 	</resultMap>
 	
 	<select id="retArList" resultMap="arListMap" parameterType="java.util.Map">
@@ -507,6 +508,7 @@
 		<result property="updateUser" column="UPDATE_USER"/>
 		<result property="updateDate" column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="adjEntryTag" column="ADJ_ENTRY_TAG"/>
+		<result property="acctEntDate" column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<association property="jvListings" resultMap="jvMap"></association>
 	</resultMap>
 	
@@ -1516,6 +1518,12 @@
 				#{glAcctId, jdbcType=VARCHAR},
 				#{slTypeCd, jdbcType=VARCHAR},
 				#{slCd, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveAcitAcctEntriesInqDtl" resultMap="AcctEntriesMap">
+		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_eaeinq_dtl(
+				#{tranId},
+				#{histNo}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOA" id="qsoaMap">
@@ -3211,6 +3219,8 @@
 		
 		<result property="refNo" 			column="REF_NO"/>
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
+		
+		<result property="acctEntDate" 	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
@@ -4232,6 +4242,12 @@
 		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
 	</select>
 	
+	<select id="retEditAcctEntriesInq" resultMap="editAcctEntriesMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_ACCTENTRIES_HIST_PKG.ret_edtacctentries_inq(#{tranClass, jdbcType=VARCHAR}, 
+																		     CAST(to_timestamp(#{tranDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																		     CAST(to_timestamp(#{tranDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
 	<update id="validateCheckNo" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{validateCheckNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHECK_VOUCHER_PKG.ret_mtn_check_no(#{bank},#{bankAcct},#{checkNo},#{tranId, jdbcType=INTEGER})
@@ -4293,6 +4309,47 @@
 											        #{creditAmt, jdbcType=INTEGER},
 											        #{procBy, jdbcType=VARCHAR}
 												   );
+		END;
+	</update>
+	
+	<update id="editAcctEnt" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_hist_no	NUMBER;
+		BEGIN
+			v_hist_no := ACIT_ACCTENTRIES_HIST_PKG.get_next_histno(#{tranId});
+			
+			<!-- Prepare backup before updating main accounting entries table -->
+			ACIT_ACCTENTRIES_HIST_PKG.edit_acct_entries(#{tranId},v_hist_no,#{reason},#{createUser}, #{updateUser});
+			<!-- Update Accounting Entries -->
+			<foreach collection="delList" item="item">
+				ACIT_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				ACIT_ACCT_ENTRIES_PKG.save_acit_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<update id="restoreAcctEnt" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_ACCTENTRIES_HIST_PKG.restore_acct_entries(#{tranId, jdbcType=INTEGER},
+													   #{histNo, jdbcType=INTEGER});
 		END;
 	</update>
 	

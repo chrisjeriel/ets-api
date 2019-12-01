@@ -63,8 +63,6 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
-import ph.cpi.rest.api.model.request.UploadAcctEntryRequest;
-import ph.cpi.rest.api.model.response.UploadAcctEntryResponse;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -233,5 +231,8 @@ public interface AccountingInTrustDao {
 	public Integer deleteAcctEntry(HashMap<String, Object> params) throws SQLException;
 	public Integer uploadAcctEntry(List<AcctEntryRowUpload> aeruList) throws SQLException;
 	
-	
+	public Integer editAcctEnt(final HashMap<String, Object> params) throws SQLException;
+	public Integer restoreAcctEnt(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitEditedAcctEntries> retrieveEditedAcctEntInq(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAcctEntries> retrieveAcctEntInqDtl(final HashMap<String, Object> params) throws SQLException;
 }

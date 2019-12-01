@@ -1088,4 +1088,24 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		
 		return errorCode;
 	}
+
+	@Override
+	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("editAcctEnt",params);
+	}
+
+	@Override
+	public Integer restoreAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("restoreAcctEnt",params);
+	}
+
+	@Override
+	public List<AcitEditedAcctEntries> retrieveEditedAcctEntInq(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retEditAcctEntriesInq", params);
+	}
+
+	@Override
+	public List<AcitAcctEntries> retrieveAcctEntInqDtl(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcitAcctEntriesInqDtl", params);
+	}
 }
