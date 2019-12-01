@@ -35,6 +35,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitDcbBankDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcitDcbCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
@@ -1141,5 +1143,31 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer acitEomCreateLossResDepJv(HashMap<String, Object> params) throws SQLException {
 		txManager.getTransaction(txDef);
 		return sqlSession.update("acitEomCreateLossResDepJv", params);
+	}
+
+	@Override
+	public HashMap<String, Object> saveDcbCollection(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveDcbCollection",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> SaveAcitCloseOpenDcb(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("SaveAcitCloseOpenDcb",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitDcbCollection> retrieveAcitDcbCollection(HashMap<String, Object> params) throws SQLException {
+		List<AcitDcbCollection> res = sqlSession.selectList("retrieveAcitDcbCollection", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitDcbBankDetails> retrieveAcitBankDetails(HashMap<String, Object> params) throws SQLException {
+		List<AcitDcbBankDetails> res = sqlSession.selectList("retrieveAcitBankDetails", params);
+		return res;
 	}
 }

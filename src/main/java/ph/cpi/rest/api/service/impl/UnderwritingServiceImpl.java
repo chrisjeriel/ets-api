@@ -1701,10 +1701,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("distId", rpdlr.getDistId());
 		params.put("riskDistId", rpdlr.getRiskDistId());
 		params.put("status", rpdlr.getStatus());
+		params.put("lineCd", rpdlr.getLineCd());
 		params.put("policyNo", rpdlr.getPolicyNo());
 		params.put("cedingName", rpdlr.getCedingName());
 		params.put("insuredDesc", rpdlr.getInsuredDesc());
 		params.put("riskName", rpdlr.getRiskName());
+		params.put("totalSi", rpdlr.getTotalSi());
 		params.put("distDateFrom", rpdlr.getDistDateFrom());
 		params.put("distDateTo", rpdlr.getDistDateTo());
 		params.put("acctDateFrom", rpdlr.getAcctDateFrom());

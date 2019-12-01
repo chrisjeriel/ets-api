@@ -25,6 +25,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitDcbBankDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcitDcbCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
@@ -237,4 +239,8 @@ public interface AccountingInTrustDao {
 	public Integer saveAcitMonthEndTBReopen(final HashMap<String, Object> params) throws SQLException;
 	public String validateReopen(final HashMap<String, Object> params) throws SQLException;
 	public Integer acitEomCreateLossResDepJv(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveDcbCollection(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> SaveAcitCloseOpenDcb(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitDcbCollection> retrieveAcitDcbCollection(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitDcbBankDetails> retrieveAcitBankDetails(final HashMap<String, Object> params) throws SQLException;
 }

@@ -23,6 +23,8 @@ import ph.cpi.rest.api.model.accountingservice.AcseCancelledOR;
 import ph.cpi.rest.api.model.accountingservice.AcseCancelledTransactions;
 import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
+import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
+import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -311,7 +313,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public List<AcseBatchInvoice> retrieveAcseBatchInvoice(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		 List<AcseBatchInvoice> list = sqlSession.selectList("retrieveAcseBatchInvoice",params);
 		return list;
 	}
@@ -319,7 +320,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public HashMap<String, Object> saveAcseInvoice(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveAcseInvoice",params);
 		params.put("errorCode", errorCode);
 		return params;
@@ -335,7 +335,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer generateBatchInvoiceNo(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("generateBatchInvoiceNo", params);
 		return res;
 	}
@@ -343,7 +342,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public List<AcseInvoiceItems> retrieveAcseInvoiceItems(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<AcseInvoiceItems> res = sqlSession.selectList("retrieveAcseInvoiceItems", params);
 		return res;
 	}
@@ -351,7 +349,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer saveAcseInvoiceItem(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveAcseInvoiceItem",params);
 		return errorCode;
 	}
@@ -386,8 +383,19 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer generateBatchOrNo(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("generateBatchOrNo", params);
+		return res;
+	}
+
+	@Override
+	public List<AcseDcbCollection> retrieveAcseDcbCollection(HashMap<String, Object> params) throws SQLException {
+		List<AcseDcbCollection> res = sqlSession.selectList("retrieveAcseDcbCollection",params);
+		return res;
+	}
+
+	@Override
+	public List<AcseDcbBankDetails> retrieveAcseBankDetails(HashMap<String, Object> params) throws SQLException {
+		List<AcseDcbBankDetails> res = sqlSession.selectList("retrieveAcseBankDetails", params); 
 		return res;
 	}
 }

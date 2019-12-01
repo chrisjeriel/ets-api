@@ -131,4 +131,8 @@ public interface AccountingInTrustService {
 	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr) throws SQLException;
 	public SaveAcitMonthEndTBTempCloseResponse saveAcitMonthEndTBTempClose(SaveAcitMonthEndTBTempCloseRequest sametcr) throws SQLException;
 	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException;
+	public SaveAcitDcbCollectionResponse saveDcbCollection(SaveAcitDcbCollectionRequest request) throws SQLException;
+	public SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(SaveAcitCloseOpenDcbRequest request) throws SQLException;
+	public RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest request) throws SQLException;
+	public RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest request) throws SQLException;
 }

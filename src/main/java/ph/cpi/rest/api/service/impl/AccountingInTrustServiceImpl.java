@@ -2620,6 +2620,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
+	public SaveAcitDcbCollectionResponse saveDcbCollection(SaveAcitDcbCollectionRequest request) throws SQLException {
+		SaveAcitDcbCollectionResponse response = new SaveAcitDcbCollectionResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("updateDcb", request.getUpdateDcb());
+			HashMap<String,Object> res = acctITDao.saveDcbCollection(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
 
 	@Override
 	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
@@ -2638,6 +2653,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
+	public SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(SaveAcitCloseOpenDcbRequest request) throws SQLException {
+		SaveAcitCloseOpenDcbResponse response = new SaveAcitCloseOpenDcbResponse();
+		try {
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDcb", request.getSaveDcb());
+			HashMap<String,Object> res =  acctITDao.SaveAcitCloseOpenDcb(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
 
 	@Override
 	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
@@ -2648,6 +2678,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranDateFrom", raaeir.getTranDateFrom());
 		params.put("tranDateTo", raaeir.getTranDateTo());
 		response.setEdtAcctEntList(acctITDao.retrieveEditedAcctEntInq(params));
+		return response;
+	}
+	
+	public RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest request)
+			throws SQLException {
+		RetrieveAcitDcbCollectionResponse response = new RetrieveAcitDcbCollectionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setDcbCollection(acctITDao.retrieveAcitDcbCollection(params));
 		return response;
 	}
 
@@ -2755,4 +2795,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
+	
+	public RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest request)
+			throws SQLException {
+		RetrieveAcitDcbBankDetailsResponse response = new RetrieveAcitDcbBankDetailsResponse();
+		HashMap<String,Object> params = new HashMap<String,Object> ();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setBankDetails(acctITDao.retrieveAcitBankDetails(params));
+		return response;
+	}
+	
 }
