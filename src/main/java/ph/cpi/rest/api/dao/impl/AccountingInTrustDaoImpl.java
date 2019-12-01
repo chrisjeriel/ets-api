@@ -1090,6 +1090,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	}
 
 	@Override
+	public Integer saveAcitMonthEndTBTempClose(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitMonthEndTBTempClose", params);
+		return errorCode;
+	}
+
+	@Override
 	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.update("editAcctEnt",params);
 	}
@@ -1107,5 +1113,33 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitAcctEntries> retrieveAcctEntInqDtl(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveAcitAcctEntriesInqDtl", params);
+	}
+	
+	@Override
+	public String validateTempClose(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTempClose", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public Integer saveAcitMonthEndTBReopen(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitMonthEndTBReopen", params);
+		return errorCode;
+	}
+
+	@Override
+	public String validateReopen(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateReopen", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public Integer acitEomCreateLossResDepJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateLossResDepJv", params);
 	}
 }

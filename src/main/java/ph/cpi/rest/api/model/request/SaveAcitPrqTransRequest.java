@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class SaveAcitPrqTransRequest {
@@ -48,6 +49,11 @@ class PrqTrans {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private Integer qsoaId;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	
 	private SavePrqInwPolLoc inwPol;
 	
@@ -201,6 +207,36 @@ class PrqTrans {
 	public void setInwPol(SavePrqInwPolLoc inwPol) {
 		this.inwPol = inwPol;
 	}
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
+	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	@Override
 	public String toString() {
 		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId=" + claimId
@@ -209,7 +245,9 @@ class PrqTrans {
 				+ transdtlType + ", itemName=" + itemName + ", paymentFor=" + paymentFor + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", allotedAmt="
 				+ allotedAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", inwPol=" + inwPol + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", qsoaId=" + qsoaId + ", prevPaytAmt="
+				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt + ", newBalance="
+				+ newBalance + ", inwPol=" + inwPol + "]";
 	}
 }
 	

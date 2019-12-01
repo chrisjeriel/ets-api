@@ -129,4 +129,6 @@ public interface AccountingInTrustService {
 	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer) throws SQLException;
 	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir) throws SQLException;
 	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr) throws SQLException;
+	public SaveAcitMonthEndTBTempCloseResponse saveAcitMonthEndTBTempClose(SaveAcitMonthEndTBTempCloseRequest sametcr) throws SQLException;
+	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException;
 }

@@ -32,6 +32,13 @@ public class AcitPrqTrans {
 	private DateTime updateDate;
 	private BigDecimal serviceFee;
 	
+	private Integer qsoaId;
+	private BigDecimal netQsoaAmt;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
+	
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -188,6 +195,42 @@ public class AcitPrqTrans {
 	public void setServiceFee(BigDecimal serviceFee) {
 		this.serviceFee = serviceFee;
 	}
+	public Integer getQsoaId() {
+		return qsoaId;
+	}
+	public void setQsoaId(Integer qsoaId) {
+		this.qsoaId = qsoaId;
+	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	@Override
 	public String toString() {
 		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
@@ -197,6 +240,8 @@ public class AcitPrqTrans {
 				+ ", paymentFor=" + paymentFor + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
 				+ currAmt + ", localAmt=" + localAmt + ", allotedAmt=" + allotedAmt + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", serviceFee=" + serviceFee + "]";
+				+ ", updateDate=" + updateDate + ", serviceFee=" + serviceFee + ", qsoaId=" + qsoaId + ", netQsoaAmt="
+				+ netQsoaAmt + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt="
+				+ newPaytAmt + ", newBalance=" + newBalance + "]";
 	}
 }

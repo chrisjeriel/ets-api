@@ -90,6 +90,10 @@ class negativeTreaty {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -194,6 +198,30 @@ class negativeTreaty {
 	public void setHistNo(Integer histNo) {
 		this.histNo = histNo;
 	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	@Override
 	public String toString() {
 		return "negativeTreaty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterNo=" + quarterNo
@@ -201,9 +229,9 @@ class negativeTreaty {
 				+ currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt + ", actualBalPaid="
 				+ actualBalPaid + ", claimId=" + claimId + ", projId=" + projId + ", histNo=" + histNo + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt="
+				+ newPaytAmt + ", newBalance=" + newBalance + "]";
 	}
-	
 }
 
 
