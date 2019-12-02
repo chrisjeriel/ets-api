@@ -416,8 +416,14 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer printInvoiceBatch(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("printInvoiceBatch", params);
 		return res;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseCloseOpenDcb(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseCloseOpenDcb",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

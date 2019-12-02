@@ -90,5 +90,5 @@ public interface AccountingServDao {
 	public List<AcseDcbBankDetails> retrieveAcseBankDetails(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseInsuranceExp> retrieveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
-
+	public HashMap<String,Object> saveAcseCloseOpenDcb(final HashMap<String, Object> params) throws SQLException;
 }

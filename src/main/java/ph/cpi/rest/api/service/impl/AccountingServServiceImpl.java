@@ -50,6 +50,7 @@ import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCloseOpenDcbRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
@@ -106,6 +107,7 @@ import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCloseOpenDcbResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
@@ -1191,7 +1193,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public GenerateBatchOrNoResponse generateBatchOrNo(
 			GenerateBatchOrNoRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		GenerateBatchOrNoResponse response = new GenerateBatchOrNoResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("orNoList", request.getOrNoList());
@@ -1268,7 +1269,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public PrintInvoiceBatchResponse printInvoiceBatch(
 			PrintInvoiceBatchRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		PrintInvoiceBatchResponse response = new PrintInvoiceBatchResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("printInvoiceList", request.getPrintInvoiceList());
@@ -1280,6 +1280,22 @@ public class AccountingServServiceImpl implements AccountingServService{
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to batch printing. Check fields."));
 			sqlex.printStackTrace();
 		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public SaveAcseCloseOpenDcbResponse saveAcseCloseOpenDcb(SaveAcseCloseOpenDcbRequest request) throws SQLException {
+		SaveAcseCloseOpenDcbResponse response = new SaveAcseCloseOpenDcbResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDcb", request.getSaveDcb());
+			HashMap<String,Object> res = acctServDao.saveAcseCloseOpenDcb(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
 			ex.printStackTrace();

@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCloseOpenDcbRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
@@ -109,6 +110,7 @@ import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCloseOpenDcbResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
@@ -546,5 +548,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/printInvoiceBatch");
 		logger.info("PrintInvoiceBatchRequest : " + request.toString());
 		return acctServService.printInvoiceBatch(request);
+	}
+	
+	@PostMapping(path="saveAcseCloseOpenDcb")
+	public @ResponseBody SaveAcseCloseOpenDcbResponse saveAcseCloseOpenDcb(@RequestBody SaveAcseCloseOpenDcbRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseCloseOpenDcb");
+		logger.info("SaveAcseCloseOpenDcbRequest : " + request.toString());
+		return acctServService.saveAcseCloseOpenDcb(request);
 	}
 }
