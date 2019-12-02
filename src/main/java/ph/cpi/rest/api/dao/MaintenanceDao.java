@@ -101,6 +101,7 @@ public interface MaintenanceDao {
 
 	public Risk retrieveMtnRisk(final HashMap<String, Object> params) throws SQLException;
 	public List<Risk> retrieveMtnRiskListing(final HashMap<String, Object> params) throws SQLException;
+	public Integer retrieveMtnRiskListingCount(final HashMap<String, Object> params) throws SQLException;
 	public List<SectionCovers> retrieveSectionCovers(final HashMap<String, Object> params) throws SQLException;
 	public List<Cession> retrieveTypeOfCession(final HashMap<String, Object> params) throws SQLException;
 	public List<Insured> retrieveMtnInsured(final HashMap<String, Object> params) throws SQLException;

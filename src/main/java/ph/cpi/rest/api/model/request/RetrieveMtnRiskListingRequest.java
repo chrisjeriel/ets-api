@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnRiskListingRequest {
@@ -16,9 +17,16 @@ public class RetrieveMtnRiskListingRequest {
 	private String latitude;
 	private String longitude;
 	private String activeTag;
-	private PaginationRequest paginationRequest;
+	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
+	private SearchRequest search;
 	
+	public SearchRequest getSearch() {
+		return search;
+	}
+	public void setSearch(SearchRequest search) {
+		this.search = search;
+	}
 	public String getRiskId() {
 		return riskId;
 	}
@@ -103,6 +111,6 @@ public class RetrieveMtnRiskListingRequest {
 				+ ", regionDesc=" + regionDesc + ", provinceDesc=" + provinceDesc + ", cityDesc=" + cityDesc
 				+ ", districtDesc=" + districtDesc + ", blockDesc=" + blockDesc + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", activeTag=" + activeTag + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+				+ ", sortRequest=" + sortRequest + ", search=" + search + "]";
 	}
 }
