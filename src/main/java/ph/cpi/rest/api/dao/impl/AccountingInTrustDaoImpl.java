@@ -1170,4 +1170,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitDcbBankDetails> res = sqlSession.selectList("retrieveAcitBankDetails", params);
 		return res;
 	}
+	
+	@Override
+	public String validateTranAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validateTranAcctEntDate", "");
+		System.out.println(params);
+		sqlSession.update("validateTranAcctEntDate",params);
+		return (String) params.get("validateTranAcctEntDate");
+	}
 }

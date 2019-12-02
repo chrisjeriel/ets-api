@@ -4474,4 +4474,14 @@
 		SELECT * FROM TABLE(ACIT_DCB_NO_PKG.ret_dcb_bank_sum(#{dcbYear},#{dcbNo},null,null,null,null))
 	</select>
 	
+	<update id="validateTranAcctEntDate" parameterType="java.util.Map" statementType="CALLABLE">
+		<!-- BEGIN
+			<foreach collection="indiv" item="item"> -->
+				{CALL
+					#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
+				}
+			<!-- </foreach>
+		END; -->
+	</update>
+	
 </mapper>

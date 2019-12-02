@@ -13,12 +13,11 @@ public class UpdateAcitStatusRequest {
 	public void setUpdateAcitStatusList(List<updateAcitStatusList> updateAcitStatusList) {
 		this.updateAcitStatusList = updateAcitStatusList;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "UpdateAcitStatusRequest [updateAcitStatusList=" + updateAcitStatusList + "]";
 	}
-
 }
 
 
