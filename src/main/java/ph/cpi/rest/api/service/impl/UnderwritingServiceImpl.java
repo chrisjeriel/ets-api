@@ -1510,14 +1510,20 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> wriskLimitParam = new HashMap<String, Object>();
 		HashMap<String, Object> riskDistWparamParam = new HashMap<String, Object>();
 		distWriskParam.put("policyId", rrdr.getPolicyId());
-		response.setDistWrisk(underwritingDao.retrieveDistWrisk(distWriskParam));
-		response.setWriskLimit(underwritingDao.retrieveWriskLimit(distWriskParam));
-		riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
-		riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
-		riskDistWparamParam.put("policyId", rrdr.getPolicyId());
-		response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
-		response.setUndistAlt(underwritingDao.retrieveUndistAlt(distWriskParam));
-		response.setDistAlt(underwritingDao.retrieveDistAlt(distWriskParam));
+		
+		try{
+			response.setDistWrisk(underwritingDao.retrieveDistWrisk(distWriskParam));
+			response.setWriskLimit(underwritingDao.retrieveWriskLimit(distWriskParam));
+			riskDistWparamParam.put("riskDistId", response.getDistWrisk().getRiskDistId());
+			riskDistWparamParam.put("altNo", response.getDistWrisk().getAltNo());
+			riskDistWparamParam.put("policyId", rrdr.getPolicyId());
+			response.setDistRiskWparam(underwritingDao.retrieveDistRiskWparam(riskDistWparamParam));
+			response.setUndistAlt(underwritingDao.retrieveUndistAlt(distWriskParam));
+			response.setDistAlt(underwritingDao.retrieveDistAlt(distWriskParam));
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		return response;
 	}
 
