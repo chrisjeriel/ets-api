@@ -1314,6 +1314,8 @@
 	   
 	   
 		QU_ENDT_PKG.add_vib_endt(#{quoteId},#{updateUser});
+		
+		QU_OTHER_RT_PKG.update_int_comp(#{quoteId},NULL,NULL);
 	   
 	END;
 	</update>
