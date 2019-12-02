@@ -848,6 +848,48 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitOsQsoa(raoqp);
 	}
 	
+	@PostMapping(path="editAcctEnt")
+	public @ResponseBody EditInTrustAccountingEntriesResponse editAcctEnt(@RequestBody EditInTrustAccountingEntriesRequest eitaer) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/editAcctEnt");
+		logger.info("EditInTrustAccountingEntriesRequest : " + eitaer.toString());
+		return acctInTrustService.editAcctEnt(eitaer);
+	}
+	
+	@PostMapping(path="restoreAcctEnt")
+	public @ResponseBody RestoreInTrustAccountingEntriesResponse restoreAcctEnt(@RequestBody RestoreInTrustAccountingEntriesRequest ritaer) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/restoreAcctEnt");
+		logger.info("RestoreInTrustAccountingEntriesRequest : " + ritaer.toString());
+		return acctInTrustService.restoreAcctEnt(ritaer);
+	}
+	
+	@GetMapping(path="retrieveAcctEntInq")
+	public @ResponseBody RetrieveAcitAcctEntInqResponse retrieveAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntInq");
+		logger.info("RetrieveAcitAcctEntInqRequest : " + raaeir.toString());
+		return acctInTrustService.retrieveAcitAcctEntInq(raaeir)	;
+	}
+	
+	@GetMapping(path="retrieveAcctEntBackup")
+	public @ResponseBody RetrieveAcitAcctEntBackupResponse retrieveAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntBackup");
+		logger.info("RetrieveAcitAcctEntBackupRequest : " + raaebr.toString());
+		return acctInTrustService.retrieveAcitAcctEntBackup(raaebr)	;
+	}
+	
+	@PostMapping(path="saveAcitMonthEndTBTempClose")
+	public @ResponseBody SaveAcitMonthEndTBTempCloseResponse saveAcitMonthEndTBTempClose(@RequestBody SaveAcitMonthEndTBTempCloseRequest sametcr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndTBTempClose");
+		logger.info("SaveAcitMonthEndTBTempCloseRequest : " + sametcr.toString());
+		return acctInTrustService.saveAcitMonthEndTBTempClose(sametcr);
+	}
+	
+	@PostMapping(path="saveAcitMonthEndTBReopen")
+	public @ResponseBody SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(@RequestBody SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitMonthEndTBReopen");
+		logger.info("SaveAcitMonthEndTBReopenRequest : " + sametrr.toString());
+		return acctInTrustService.saveAcitMonthEndTBReopen(sametrr);
+	}
+
 	@PostMapping(path="saveAcitDcbCollection")
 	public @ResponseBody SaveAcitDcbCollectionResponse saveAcitDcbCollection(@RequestBody SaveAcitDcbCollectionRequest sapcr) throws SQLException {
 		logger.info("POST: /api/acct-in-trust-service/saveAcitDcbCollection");
@@ -860,5 +902,19 @@ public class AccountingInTrustController {
 		logger.info("POST: /api/acct-in-trust-service/SaveAcitCloseOpenDcb");
 		logger.info("SaveAcitCloseOpenDcbRequest : " + sapcr.toString());
 		return acctInTrustService.SaveAcitCloseOpenDcb(sapcr);
+	}
+	
+	@GetMapping(path="retrieveAcitDcbCollection")
+	public @ResponseBody RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitDcbCollection");
+		logger.info("RetrieveAcitOsQsoaRequest : " + raoqp.toString());
+		return acctInTrustService.retrieveAcitDcbCollection(raoqp);
+	}
+	
+	@GetMapping(path="retrieveAcitBankDetails")
+	public @ResponseBody RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitBankDetails");
+		logger.info("RetrieveAcitDcbBankDetailsRequest : " + raoqp.toString());
+		return acctInTrustService.retrieveAcitBankDetails(raoqp);
 	}
 }

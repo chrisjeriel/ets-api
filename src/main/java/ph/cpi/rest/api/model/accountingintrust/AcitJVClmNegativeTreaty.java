@@ -21,6 +21,11 @@ public class AcitJVClmNegativeTreaty {
 	private String updateUser;
 	private DateTime updateDate;
 	private List <AcitJVClaimOffset> clmOffset;
+	private BigDecimal netQsoaAmt;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -112,14 +117,44 @@ public class AcitJVClmNegativeTreaty {
 	public void setClmOffset(List<AcitJVClaimOffset> clmOffset) {
 		this.clmOffset = clmOffset;
 	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVClmNegativeTreaty [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", quarterEnding=" + quarterEnding
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt="
 				+ localAmt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + "]";
+				+ ", updateDate=" + updateDate + ", clmOffset=" + clmOffset + ", netQsoaAmt=" + netQsoaAmt
+				+ ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt
+				+ ", newBalance=" + newBalance + "]";
 	}
-	
-	
 }

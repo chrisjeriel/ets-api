@@ -14,6 +14,7 @@ public class AcitOsQsoa {
 	private BigDecimal netQsoaAmt;
 	private BigDecimal cumPayt;
 	private BigDecimal remainingBal;
+	private String processing;
 	
 	public Integer getQsoaId() {
 		return qsoaId;
@@ -57,10 +58,16 @@ public class AcitOsQsoa {
 	public void setRemainingBal(BigDecimal remainingBal) {
 		this.remainingBal = remainingBal;
 	}
+	public String getProcessing() {
+		return processing;
+	}
+	public void setProcessing(String processing) {
+		this.processing = processing;
+	}
 	@Override
 	public String toString() {
 		return "AcitOsQsoa [qsoaId=" + qsoaId + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
 				+ ", cedingId=" + cedingId + ", netQsoaAmt=" + netQsoaAmt + ", cumPayt=" + cumPayt + ", remainingBal="
-				+ remainingBal + "]";
+				+ remainingBal + ", processing=" + processing + "]";
 	}
 }

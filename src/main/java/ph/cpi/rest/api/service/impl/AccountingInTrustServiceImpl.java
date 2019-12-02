@@ -2127,6 +2127,9 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				wsController.onReceiveProdLog("Computing Interest on Overdue Accounts . . .");
 				acctITDao.acitEomSaveOdInt(params);
 				wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
+				
+				procedureName = "Creating Loss Reserve Deposit";
+				acctITDao.acitEomCreateLossResDepJv(params);
 				wsController.onReceiveProdLog("");
 				
 				acctITDao.acitEomUpdateEomCloseTag(params);
@@ -2309,6 +2312,18 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				case "POSTED_MONTH":
 					proceed = false;
 					res.setReturnCode(2);
+					break;
+				case "TEMP_CLOSE_TB":
+					proceed = false;
+					res.setReturnCode(3);
+					break;
+				case "UWPROD_UNDONE":
+					proceed = false;
+					res.setReturnCode(4);
+					break;
+				case "OSPROD_UNDONE":
+					proceed = false;
+					res.setReturnCode(5);
 					break;
 				default:
 					break;
@@ -2560,6 +2575,51 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
+	public UploadAcctEntryResponse uploadAcctEntry(UploadAcctEntryRequest uaer) throws SQLException {
+		UploadAcctEntryResponse res = new UploadAcctEntryResponse();
+		
+		try {
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("acctType", uaer.getAeruList().get(0).getAcctType());
+			params.put("tranClass", uaer.getAeruList().get(0).getTranClass());
+			params.put("tranId", uaer.getAeruList().get(0).getTranId());
+			
+			acctITDao.deleteAcctEntry(params);
+			acctITDao.uploadAcctEntry(uaer.getAeruList());
+			
+			acctITDao.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			acctITDao.rollback();
+			res.getErrorList().add(new Error("Exception", e.getMessage()));
+		}
+		
+		
+		return res;
+	}
+	
+	@Override
+	public EditInTrustAccountingEntriesResponse editAcctEnt(EditInTrustAccountingEntriesRequest eitaer)
+			throws SQLException {
+		EditInTrustAccountingEntriesResponse response = new EditInTrustAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", eitaer.getTranId());
+		params.put("histNo", eitaer.getHistNo());
+		params.put("reason", eitaer.getReason());
+		params.put("createUser", eitaer.getCreateUser());
+		params.put("updateUser", eitaer.getUpdateUser());
+		params.put("saveList", eitaer.getSaveList());
+		params.put("delList", eitaer.getDelList());
+		try{
+			response.setReturnCode(acctITDao.editAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
+
 	public SaveAcitDcbCollectionResponse saveDcbCollection(SaveAcitDcbCollectionRequest request) throws SQLException {
 		SaveAcitDcbCollectionResponse response = new SaveAcitDcbCollectionResponse();
 		try{
@@ -2577,6 +2637,22 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
+	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
+			throws SQLException {
+		RestoreInTrustAccountingEntriesResponse response = new RestoreInTrustAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", ritaer.getTranId());
+		params.put("histNo", ritaer.getHistNo());
+		try{
+			response.setReturnCode(acctITDao.restoreAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
+
 	public SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(SaveAcitCloseOpenDcbRequest request) throws SQLException {
 		SaveAcitCloseOpenDcbResponse response = new SaveAcitCloseOpenDcbResponse();
 		try {
@@ -2591,4 +2667,143 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
+			throws SQLException {
+		RetrieveAcitAcctEntInqResponse response = new RetrieveAcitAcctEntInqResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", raaeir.getTranClass());
+		params.put("tranDateFrom", raaeir.getTranDateFrom());
+		params.put("tranDateTo", raaeir.getTranDateTo());
+		response.setEdtAcctEntList(acctITDao.retrieveEditedAcctEntInq(params));
+		return response;
+	}
+	
+	public RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest request)
+			throws SQLException {
+		RetrieveAcitDcbCollectionResponse response = new RetrieveAcitDcbCollectionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setDcbCollection(acctITDao.retrieveAcitDcbCollection(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr)
+			throws SQLException {
+		RetrieveAcitAcctEntBackupResponse response = new RetrieveAcitAcctEntBackupResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaebr.getTranId());
+		params.put("histNo", raaebr.getHistNo());
+		response.setBackupAcctEnt(acctITDao.retrieveAcctEntInqDtl(params));
+		return response;
+	}
+	
+	@Override
+	public SaveAcitMonthEndTBTempCloseResponse saveAcitMonthEndTBTempClose(SaveAcitMonthEndTBTempCloseRequest sametcr)
+			throws SQLException {
+		SaveAcitMonthEndTBTempCloseResponse res = new SaveAcitMonthEndTBTempCloseResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("eomDate", sametcr.getEomDate());
+		params.put("eomUser", sametcr.getEomUser());
+		
+		try {
+			Boolean proceed = false;
+			String validate = acctITDao.validateTempClose(params);
+			
+			switch (validate) {
+			case "PROCEED":
+				proceed = true;
+				break;
+			case "POSTED_MONTH":
+				proceed = false;
+				res.setReturnCode(1);
+				break;
+			case "TEMP_CLOSE_TB":
+				proceed = false;
+				res.setReturnCode(2);
+				break;
+			case "UWPROD_UNDONE":
+				proceed = false;
+				res.setReturnCode(3);
+				break;
+			case "OSPROD_UNDONE":
+				proceed = false;
+				res.setReturnCode(4);
+				break;
+			default:
+				break;
+			}
+			
+			if(proceed) {
+				acctITDao.saveAcitMonthEndTBTempClose(params);
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Temporary closing failed."));
+		}
+		
+		return res;
+	}
+
+
+	@Override
+	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr)
+			throws SQLException {
+		SaveAcitMonthEndTBReopenResponse res = new SaveAcitMonthEndTBReopenResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("eomDate", sametrr.getEomDate());
+		params.put("eomUser", sametrr.getEomUser());
+		
+		try {
+			Boolean proceed = false;
+			String validate = acctITDao.validateReopen(params);
+			
+			switch (validate) {
+			case "PROCEED":
+				proceed = true;
+				break;
+			case "POSTED_MONTH":
+				proceed = false;
+				res.setReturnCode(1);
+				break;
+			case "NOT_YET_CLOSED":
+				proceed = false;
+				res.setReturnCode(2);
+				break;
+			default:
+				break;
+			}
+			
+			if(proceed) {
+				acctITDao.saveAcitMonthEndTBReopen(params);
+				res.setReturnCode(-1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Reopening failed."));
+		}
+		
+		return res;
+	}
+	
+	public RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest request)
+			throws SQLException {
+		RetrieveAcitDcbBankDetailsResponse response = new RetrieveAcitDcbBankDetailsResponse();
+		HashMap<String,Object> params = new HashMap<String,Object> ();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setBankDetails(acctITDao.retrieveAcitBankDetails(params));
+		return response;
+	}
+	
 }

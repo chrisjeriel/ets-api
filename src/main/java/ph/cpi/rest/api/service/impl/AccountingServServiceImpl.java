@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
+import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -31,6 +32,9 @@ import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseDcbBankDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseDcbCollectionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -48,6 +52,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
@@ -68,6 +73,7 @@ import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
+import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -82,6 +88,9 @@ import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseDcbBankDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseDcbCollectionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -99,6 +108,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
@@ -1002,7 +1012,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public RetrieveAcseBatchInvoiceResponse retrieveAcseBatchInvoice(
 			RetrieveAcseBatchInvoiceRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcseBatchInvoiceResponse response = new RetrieveAcseBatchInvoiceResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		
@@ -1019,7 +1028,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public SaveAcseInvoiceResponse saveAcseInvoice(
 			SaveAcseInvoiceRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcseInvoiceResponse response = new SaveAcseInvoiceResponse();
 		try{
 			HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1077,7 +1085,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public GenerateBatchInvoiceNoResponse generateBatchInvoiceNo(
 			GenerateBatchInvoiceNoRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		
 		GenerateBatchInvoiceNoResponse response = new GenerateBatchInvoiceNoResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -1100,7 +1107,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public RetrieveAcseInvoiceItemsResponse retrieveAcseInvoiceItems(
 			RetrieveAcseInvoiceItemsRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveAcseInvoiceItemsResponse response = new RetrieveAcseInvoiceItemsResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		
@@ -1112,7 +1118,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public SaveAcseInvoiceItemResponse saveAcseInvoiceItem(
 			SaveAcseInvoiceItemRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveAcseInvoiceItemResponse response = new SaveAcseInvoiceItemResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("invoiceItemList", request.getInvoiceItemList());
@@ -1204,4 +1209,82 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveAcseDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcseDcbCollectionRequest request)
+			throws SQLException {
+		RetrieveAcseDcbCollectionResponse response = new RetrieveAcseDcbCollectionResponse();
+		HashMap<String,Object> params = new HashMap<String,Object> ();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setDcbCollection(acctServDao.retrieveAcseDcbCollection(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcseDcbBankDetailsRequest request)
+			throws SQLException {
+		RetrieveAcseDcbBankDetailsResponse response = new RetrieveAcseDcbBankDetailsResponse();
+		HashMap<String,Object> params = new HashMap<String,Object> ();
+		params.put("dcbYear", request.getDcbYear());
+		params.put("dcbNo",request.getDcbNo());
+		response.setBankDetails(acctServDao.retrieveAcseBankDetails(params));
+		return response;
+	}
+	
+	@Override
+	public RetrieveAcseInsuranceExpResponse retrieveAcseInsuranceExp(RetrieveAcseInsuranceExpRequest rapdp) throws SQLException {
+		RetrieveAcseInsuranceExpResponse raieResponse =  new RetrieveAcseInsuranceExpResponse();
+		HashMap<String, Object> raieParams = new HashMap<String, Object>();
+		raieParams.put("reqId", rapdp.getReqId());
+		raieParams.put("itemNo", rapdp.getItemNo());
+		raieResponse.setAcseInsuranceExp(acctServDao.retrieveAcseInsuranceExp(raieParams));
+		logger.info("RetrieveAcseInsuranceExpResponse : " + raieResponse.toString());
+		return raieResponse;
+	}
+	
+	@Override
+	public SaveAcseInsuranceExpResponse saveAcseInsuranceExp(SaveAcseInsuranceExpRequest saier) throws SQLException {
+		SaveAcseInsuranceExpResponse saieResponse = new SaveAcseInsuranceExpResponse();
+		HashMap<String, Object> saieParams = new HashMap<String, Object>();
+		try {
+			saieParams.put("deleteInsuranceExp", saier.getDeleteInsuranceExp());
+			saieParams.put("saveInsuranceExp", saier.getSaveInsuranceExp());
+			
+			HashMap<String, Object> response = acctServDao.saveAcseInsuranceExp(saieParams);
+			saieResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			saieResponse.setReturnCode(0);
+			saieResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			saieResponse.setReturnCode(0);
+			saieResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return saieResponse;
+	}
+	
+	@Override
+	public PrintInvoiceBatchResponse printInvoiceBatch(
+			PrintInvoiceBatchRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		PrintInvoiceBatchResponse response = new PrintInvoiceBatchResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("printInvoiceList", request.getPrintInvoiceList());
+		try{
+			response.setReturnCode(acctServDao.printInvoiceBatch(params));
+			logger.info(response.toString());
+		}catch (SQLException sqlex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to batch printing. Check fields."));
+			sqlex.printStackTrace();
+		}catch (Exception ex) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+	
 }

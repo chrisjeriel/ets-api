@@ -23,6 +23,11 @@ public class AcitJVAcctTrtyBal {
 	private DateTime updateDate;
 	private List <AcitJVAcctOffset> acctOffset;
 	private List <AcitJVInvestmentOffset> trtyInvmt;
+	private BigDecimal netQsoaAmt;
+	private BigDecimal prevPaytAmt;
+	private BigDecimal prevBalance;
+	private BigDecimal newPaytAmt;
+	private BigDecimal newBalance;
 	
 	public String getCedingName() {
 		return cedingName;
@@ -129,6 +134,36 @@ public class AcitJVAcctTrtyBal {
 	public void setTrtyInvmt(List<AcitJVInvestmentOffset> trtyInvmt) {
 		this.trtyInvmt = trtyInvmt;
 	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
+	public BigDecimal getPrevPaytAmt() {
+		return prevPaytAmt;
+	}
+	public void setPrevPaytAmt(BigDecimal prevPaytAmt) {
+		this.prevPaytAmt = prevPaytAmt;
+	}
+	public BigDecimal getPrevBalance() {
+		return prevBalance;
+	}
+	public void setPrevBalance(BigDecimal prevBalance) {
+		this.prevBalance = prevBalance;
+	}
+	public BigDecimal getNewPaytAmt() {
+		return newPaytAmt;
+	}
+	public void setNewPaytAmt(BigDecimal newPaytAmt) {
+		this.newPaytAmt = newPaytAmt;
+	}
+	public BigDecimal getNewBalance() {
+		return newBalance;
+	}
+	public void setNewBalance(BigDecimal newBalance) {
+		this.newBalance = newBalance;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVAcctTrtyBal [tranId=" + tranId + ", quarterNo=" + quarterNo + ", qsoaId=" + qsoaId + ", cedingId="
@@ -136,7 +171,7 @@ public class AcitJVAcctTrtyBal {
 				+ ", currRate=" + currRate + ", balanceAmt=" + balanceAmt + ", localAmt=" + localAmt
 				+ ", actualBalPaid=" + actualBalPaid + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", acctOffset=" + acctOffset
-				+ ", trtyInvmt=" + trtyInvmt + "]";
+				+ ", trtyInvmt=" + trtyInvmt + ", netQsoaAmt=" + netQsoaAmt + ", prevPaytAmt=" + prevPaytAmt
+				+ ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + "]";
 	}
-	
 }

@@ -838,6 +838,7 @@
 		<result property="mainCreateDate" 	column="MAIN_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainUpdateUser" 	column="MAIN_UPDATE_USER"/>
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainAcctEntDate" 	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		
 		<result property="refNo" 			column="REF_NO"/>
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
@@ -1622,6 +1623,98 @@
 		BEGIN
 		 	<foreach collection="orNoList" item="list">
 				ACSE_BATCH_OR_PKG.gen_acse_or_no(#{list.tranId,jdbcType=VARCHAR},#{list.orType, jdbcType=VARCHAR},#{list.orNo, jdbcType=VARCHAR},#{list.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{list.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+    
+    <resultMap type="ph.cpi.rest.api.model.accountingservice.AcseDcbCollection" id="dcbCollectMap">
+		<result property="paytMode" column="PAYTMODE"/>
+		<result property="paytModeDesc" column="PAYTMODE_DESC"/>
+		<result property="orgAmt" column="ORG_AMT"/>
+		<result property="currCd" column="CURR_CD"/>
+		<result property="currRate" column="CURR_RATE"/>
+		<result property="localAmt" column="LOCAL_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcseDcbCollection" resultMap="dcbCollectMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_DCB_NO_PKG.ret_dcb_coll(#{dcbYear},#{dcbNo},null,null,null,null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails" id="bankDetailsMap">
+		<result property="bankCd" 		column="DCB_BANK"/>
+		<result property="bankName" 	column="DCB_BANK_NAME"/>
+		<result property="acctNo" 		column="DCB_ACCT_NO"/>
+		<result property="paytMode" 	column="PAYT_MODE"/>
+		<result property="paytModeDesc" column="PAYT_MODE_DESC"/>
+		<result property="orgAmt" 		column="ORG_AMT"/>
+		<result property="currCd" 		column="CURR_CD"/>
+		<result property="currRate" 	column="CURR_RATE"/>
+		<result property="localAmt" 	column="LOCAL_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcseBankDetails" resultMap="bankDetailsMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_DCB_NO_PKG.ret_dcb_bank_sum(#{dcbYear},#{dcbNo},null,null,null,null))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp" id="acseInsuranceExpMap">
+		<result property="reqId" 				column="REQ_ID"/>
+		<result property="itemNo" 				column="ITEM_NO"/>
+		<result property="insuredTypeCd" 		column="INSURED_TYPE_CD"/>
+		<result property="insuredCd" 			column="INSURED_CD"/>
+		<result property="insuredName" 			column="INSURED_NAME"/>
+		<result property="insuranceType" 		column="INSURANCE_TYPE"/>
+		<result property="insuranceTypeDesc"	column="INSURANCE_TYPE_DESC"/>
+		<result property="currCd" 				column="CURR_CD"/>
+		<result property="currRate" 			column="CURR_RATE"/>
+		<result property="insuredAmt" 			column="INSURED_AMT"/>
+		<result property="localAmt" 			column="LOCAL_AMT"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcseInsuranceExp" resultMap="acseInsuranceExpMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_PRQ_INSURANCE_EXP_PKG.ret_acse_ins_exp(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+    
+    <update id="saveAcseInsuranceExp" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deleteInsuranceExp" item="del">
+				ACSE_PRQ_INSURANCE_EXP_PKG.del_acse_ins_exp(
+					#{del.reqId,jdbcType=INTEGER},
+					#{del.itemNo,jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="saveInsuranceExp" item="save">
+				ACSE_PRQ_INSURANCE_EXP_PKG.save_acse_ins_exp(
+					#{save.reqId,jdbcType=INTEGER},
+					#{save.itemNo,jdbcType=INTEGER},
+					#{save.insuredTypeCd,jdbcType=INTEGER},
+					#{save.insuredCd,jdbcType=VARCHAR},
+					#{save.insuredName,jdbcType=VARCHAR},
+					#{save.insuranceType,jdbcType=INTEGER},
+					#{save.currCd,jdbcType=VARCHAR},
+					#{save.currRate,jdbcType=INTEGER},
+					#{save.insuredAmt,jdbcType=INTEGER},
+					#{save.localAmt,jdbcType=INTEGER},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR}, 
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<update id="printInvoiceBatch" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="printInvoiceList" item="save">
+				ACSE_BATCH_INVOICE_PKG.print_invoice(#{save.invoiceId,jdbcType=VARCHAR},#{save.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{save.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			</foreach>
 		END;
 	</update>

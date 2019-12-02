@@ -21,6 +21,7 @@ public class AcitTransactions {
 	private String updateUser;
 	private DateTime updateDate;
 	private String adjEntryTag;
+	private DateTime acctEntDate;
 	
 	private AcitJVListing jvListings;
 	
@@ -120,6 +121,12 @@ public class AcitTransactions {
 	public void setAdjEntryTag(String adjEntryTag) {
 		this.adjEntryTag = adjEntryTag;
 	}
+	public DateTime getAcctEntDate() {
+		return acctEntDate;
+	}
+	public void setAcctEntDate(DateTime acctEntDate) {
+		this.acctEntDate = acctEntDate;
+	}
 	public AcitJVListing getJvListings() {
 		return jvListings;
 	}
@@ -133,6 +140,6 @@ public class AcitTransactions {
 				+ ", tranStat=" + tranStat + ", tranStatDesc=" + tranStatDesc + ", closeDate=" + closeDate
 				+ ", deleteDate=" + deleteDate + ", postDate=" + postDate + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", adjEntryTag=" + adjEntryTag + ", jvListings=" + jvListings + "]";
+				+ ", adjEntryTag=" + adjEntryTag + ", acctEntDate=" + acctEntDate + ", jvListings=" + jvListings + "]";
 	}
 }

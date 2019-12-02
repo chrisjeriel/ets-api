@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
+import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -34,6 +35,9 @@ import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewJVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseChangeToNewORRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseDcbBankDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseDcbCollectionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -51,6 +55,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
@@ -71,6 +76,7 @@ import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
+import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -85,6 +91,9 @@ import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewJVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseChangeToNewORResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseDcbBankDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseDcbCollectionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -102,6 +111,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
@@ -503,4 +513,38 @@ public class AccountingServiceController {
 		return acctServService.generateBatchOrNo(request);
 	}
 	
+	@GetMapping(path="retrieveAcseDcbCollection")
+	public @ResponseBody RetrieveAcseDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcseDcbCollectionRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitDcbCollection");
+		logger.info("RetrieveAcseDcbCollectionRequest : " + raoqp.toString());
+		return acctServService.retrieveAcitDcbCollection(raoqp);
+	}
+	
+	@GetMapping(path="retrieveAcseBankDetails")
+	public @ResponseBody RetrieveAcseDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcseDcbBankDetailsRequest raoqp) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcseBankDetails");
+		logger.info("RetrieveAcitDcbBankDetailsRequest : " + raoqp.toString());
+		return acctServService.retrieveAcitBankDetails(raoqp);
+	}
+
+	@GetMapping(path="retrieveAcseInsuranceExp")
+	public @ResponseBody RetrieveAcseInsuranceExpResponse retrieveAcseInsuranceExp(RetrieveAcseInsuranceExpRequest raier) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseInsuranceExp");
+		logger.info("RetrieveAcseInsuranceExpRequest : " + raier.toString());
+		return acctServService.retrieveAcseInsuranceExp(raier);
+	}
+
+	@PostMapping(path="saveAcseInsuranceExp")
+	public @ResponseBody SaveAcseInsuranceExpResponse saveAcseInsuranceExp(@RequestBody SaveAcseInsuranceExpRequest saier) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseInsuranceExp");
+		logger.info("SaveAcseInsuranceExpRequest : " + saier.toString());
+		return acctServService.saveAcseInsuranceExp(saier);
+	}
+	
+	@PostMapping(path="printInvoiceBatch")
+	public @ResponseBody PrintInvoiceBatchResponse printInvoiceBatch(@RequestBody PrintInvoiceBatchRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/printInvoiceBatch");
+		logger.info("PrintInvoiceBatchRequest : " + request.toString());
+		return acctServService.printInvoiceBatch(request);
+	}
 }

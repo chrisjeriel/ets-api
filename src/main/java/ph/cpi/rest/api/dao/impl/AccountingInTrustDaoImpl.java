@@ -15,6 +15,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
@@ -34,6 +35,8 @@ import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
+import ph.cpi.rest.api.model.accountingintrust.AcitDcbBankDetails;
+import ph.cpi.rest.api.model.accountingintrust.AcitDcbCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
@@ -1069,6 +1072,78 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitOsQsoa> res = sqlSession.selectList("retrieveAcitOsQsoa", params);
 		return res;
 	}
+	
+	@Override
+	public Integer deleteAcctEntry(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("deleteAcctEntry", params);
+	}
+	
+	@Override
+	public Integer uploadAcctEntry(List<AcctEntryRowUpload> aeruList) throws SQLException {
+		Integer errorCode = 0;
+		
+		for (AcctEntryRowUpload aeru : aeruList) {
+			txManager.getTransaction(txDef);
+			errorCode = sqlSession.update("uploadAcctEntry", aeru);
+		}
+		
+		return errorCode;
+	}
+
+	@Override
+	public Integer saveAcitMonthEndTBTempClose(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitMonthEndTBTempClose", params);
+		return errorCode;
+	}
+
+	@Override
+	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("editAcctEnt",params);
+	}
+
+	@Override
+	public Integer restoreAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("restoreAcctEnt",params);
+	}
+
+	@Override
+	public List<AcitEditedAcctEntries> retrieveEditedAcctEntInq(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retEditAcctEntriesInq", params);
+	}
+
+	@Override
+	public List<AcitAcctEntries> retrieveAcctEntInqDtl(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcitAcctEntriesInqDtl", params);
+	}
+	
+	@Override
+	public String validateTempClose(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTempClose", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public Integer saveAcitMonthEndTBReopen(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcitMonthEndTBReopen", params);
+		return errorCode;
+	}
+
+	@Override
+	public String validateReopen(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateReopen", params);
+		
+		return (String) params.get("validate");
+	}
+
+	@Override
+	public Integer acitEomCreateLossResDepJv(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acitEomCreateLossResDepJv", params);
+	}
 
 	@Override
 	public HashMap<String, Object> saveDcbCollection(HashMap<String, Object> params) throws SQLException {
@@ -1082,5 +1157,17 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("SaveAcitCloseOpenDcb",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+
+	@Override
+	public List<AcitDcbCollection> retrieveAcitDcbCollection(HashMap<String, Object> params) throws SQLException {
+		List<AcitDcbCollection> res = sqlSession.selectList("retrieveAcitDcbCollection", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitDcbBankDetails> retrieveAcitBankDetails(HashMap<String, Object> params) throws SQLException {
+		List<AcitDcbBankDetails> res = sqlSession.selectList("retrieveAcitBankDetails", params);
+		return res;
 	}
 }
