@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-import ph.cpi.rest.api.model.accountingintrust.AcitDcbBankDetails;
-import ph.cpi.rest.api.model.accountingintrust.AcitDcbCollection;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -20,6 +18,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
+import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -88,4 +87,7 @@ public interface AccountingServDao {
 	public HashMap<String, Object> saveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDcbCollection> retrieveAcseDcbCollection(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDcbBankDetails> retrieveAcseBankDetails(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseInsuranceExp> retrieveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
+
 }

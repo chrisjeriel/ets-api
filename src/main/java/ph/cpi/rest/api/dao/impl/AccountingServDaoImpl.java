@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
+import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherList;
@@ -397,5 +398,18 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public List<AcseDcbBankDetails> retrieveAcseBankDetails(HashMap<String, Object> params) throws SQLException {
 		List<AcseDcbBankDetails> res = sqlSession.selectList("retrieveAcseBankDetails", params); 
 		return res;
+	}
+
+	@Override
+	public List<AcseInsuranceExp> retrieveAcseInsuranceExp(HashMap<String, Object> params) throws SQLException {
+		List<AcseInsuranceExp> acseInsuranceExpList = sqlSession.selectList("retrieveAcseInsuranceExp", params);
+		return acseInsuranceExpList;
+	}
+
+	@Override
+	public HashMap<String, Object> saveAcseInsuranceExp(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseInsuranceExp", params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

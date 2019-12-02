@@ -33,6 +33,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseDcbBankDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseDcbCollectionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVListRequest;
@@ -50,6 +51,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
 import ph.cpi.rest.api.model.request.SaveAcseJVEntryRequest;
@@ -86,6 +88,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseDcbBankDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseDcbCollectionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVListResponse;
@@ -103,6 +106,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
 import ph.cpi.rest.api.model.response.SaveAcseJVEntryResponse;
@@ -1225,4 +1229,38 @@ public class AccountingServServiceImpl implements AccountingServService{
 		response.setBankDetails(acctServDao.retrieveAcseBankDetails(params));
 		return response;
 	}
+	
+	@Override
+	public RetrieveAcseInsuranceExpResponse retrieveAcseInsuranceExp(RetrieveAcseInsuranceExpRequest rapdp) throws SQLException {
+		RetrieveAcseInsuranceExpResponse raieResponse =  new RetrieveAcseInsuranceExpResponse();
+		HashMap<String, Object> raieParams = new HashMap<String, Object>();
+		raieParams.put("reqId", rapdp.getReqId());
+		raieParams.put("itemNo", rapdp.getItemNo());
+		raieResponse.setAcseInsuranceExp(acctServDao.retrieveAcseInsuranceExp(raieParams));
+		logger.info("RetrieveAcseInsuranceExpResponse : " + raieResponse.toString());
+		return raieResponse;
+	}
+	
+	@Override
+	public SaveAcseInsuranceExpResponse saveAcseInsuranceExp(SaveAcseInsuranceExpRequest saier) throws SQLException {
+		SaveAcseInsuranceExpResponse saieResponse = new SaveAcseInsuranceExpResponse();
+		HashMap<String, Object> saieParams = new HashMap<String, Object>();
+		try {
+			saieParams.put("deleteInsuranceExp", saier.getDeleteInsuranceExp());
+			saieParams.put("saveInsuranceExp", saier.getSaveInsuranceExp());
+			
+			HashMap<String, Object> response = acctServDao.saveAcseInsuranceExp(saieParams);
+			saieResponse.setReturnCode((Integer) response.get("errorCode"));
+		} catch (SQLException sqlex) {
+			saieResponse.setReturnCode(0);
+			saieResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			saieResponse.setReturnCode(0);
+			saieResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return saieResponse;
+	}
+
 }

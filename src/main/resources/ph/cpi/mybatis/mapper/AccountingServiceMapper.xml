@@ -838,6 +838,7 @@
 		<result property="mainCreateDate" 	column="MAIN_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainUpdateUser" 	column="MAIN_UPDATE_USER"/>
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mainAcctEntDate" 	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		
 		<result property="refNo" 			column="REF_NO"/>
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
@@ -1654,4 +1655,60 @@
 	<select id="retrieveAcseBankDetails" resultMap="bankDetailsMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACSE_DCB_NO_PKG.ret_dcb_bank_sum(#{dcbYear},#{dcbNo},null,null,null,null))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp" id="acseInsuranceExpMap">
+		<result property="reqId" 				column="REQ_ID"/>
+		<result property="itemNo" 				column="ITEM_NO"/>
+		<result property="insuredTypeCd" 		column="INSURED_TYPE_CD"/>
+		<result property="insuredCd" 			column="INSURED_CD"/>
+		<result property="insuredName" 			column="INSURED_NAME"/>
+		<result property="insuranceType" 		column="INSURANCE_TYPE"/>
+		<result property="insuranceTypeDesc"	column="INSURANCE_TYPE_DESC"/>
+		<result property="currCd" 				column="CURR_CD"/>
+		<result property="currRate" 			column="CURR_RATE"/>
+		<result property="insuredAmt" 			column="INSURED_AMT"/>
+		<result property="localAmt" 			column="LOCAL_AMT"/>
+		<result property="createUser" 			column="CREATE_USER"/>
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 			column="UPDATE_USER"/>
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcseInsuranceExp" resultMap="acseInsuranceExpMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_PRQ_INSURANCE_EXP_PKG.ret_acse_ins_exp(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
+    
+    <update id="saveAcseInsuranceExp" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			<foreach collection="deleteInsuranceExp" item="del">
+				ACSE_PRQ_INSURANCE_EXP_PKG.del_acse_ins_exp(
+					#{del.reqId,jdbcType=INTEGER},
+					#{del.itemNo,jdbcType=INTEGER}
+				);
+			</foreach>
+			
+			<foreach collection="saveInsuranceExp" item="save">
+				ACSE_PRQ_INSURANCE_EXP_PKG.save_acse_ins_exp(
+					#{save.reqId,jdbcType=INTEGER},
+					#{save.itemNo,jdbcType=INTEGER},
+					#{save.insuredTypeCd,jdbcType=INTEGER},
+					#{save.insuredCd,jdbcType=VARCHAR},
+					#{save.insuredName,jdbcType=VARCHAR},
+					#{save.insuranceType,jdbcType=INTEGER},
+					#{save.currCd,jdbcType=VARCHAR},
+					#{save.currRate,jdbcType=INTEGER},
+					#{save.insuredAmt,jdbcType=INTEGER},
+					#{save.localAmt,jdbcType=INTEGER},
+					#{save.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser, jdbcType=VARCHAR}, 
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+		END;
+	</update>
+	
 </mapper>
