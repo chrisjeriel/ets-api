@@ -1711,4 +1711,12 @@
 		END;
 	</update>
 	
+	<update id="printInvoiceBatch" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="printInvoiceList" item="save">
+				ACSE_BATCH_INVOICE_PKG.print_invoice(#{save.invoiceId,jdbcType=VARCHAR},#{save.updateUser, jdbcType=VARCHAR},CAST(to_timestamp(#{save.updateDate,  jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+        
 </mapper>

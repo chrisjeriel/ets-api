@@ -12,7 +12,14 @@ public class Report {
 	private Integer reqId;
 	private String cedingId;
 	private String policyId;
+	private String invoiceId;
 	
+	public String getInvoiceId() {
+		return invoiceId;
+	}
+	public void setInvoiceId(String invoiceId) {
+		this.invoiceId = invoiceId;
+	}
 	public String getReportId() {
 		return reportId;
 	}
@@ -81,7 +88,7 @@ public class Report {
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId
 				+ ", userId=" + userId + ", tranId=" + tranId + ", reportId="
 				+ reportId + ", reqId=" + reqId + ", cedingId=" + cedingId
-				+ ", policyId=" + policyId + "]";
+				+ ", policyId=" + policyId + ", invoiceId=" + invoiceId + "]";
 	}
 
 }

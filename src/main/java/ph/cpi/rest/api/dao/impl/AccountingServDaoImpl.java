@@ -412,4 +412,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public Integer printInvoiceBatch(HashMap<String, Object> params)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		Integer res = sqlSession.update("printInvoiceBatch", params);
+		return res;
+	}
 }

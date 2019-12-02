@@ -43,7 +43,14 @@ public class AcitInvestments {
 	private String		partialPullOutTag;
 	private DateTime    partialPullOutDate;
 	private BigDecimal	partialPullOutAmt;
+	private String 		refInvtId;
 	
+	public String getRefInvtId() {
+		return refInvtId;
+	}
+	public void setRefInvtId(String refInvtId) {
+		this.refInvtId = refInvtId;
+	}
 	public String getPartialPullOutTag() {
 		return partialPullOutTag;
 	}
@@ -293,6 +300,7 @@ public class AcitInvestments {
 				+ priceCost + ", processing=" + processing
 				+ ", partialPullOutTag=" + partialPullOutTag
 				+ ", partialPullOutDate=" + partialPullOutDate
-				+ ", partialPullOutAmt=" + partialPullOutAmt + "]";
+				+ ", partialPullOutAmt=" + partialPullOutAmt + ", refInvtId="
+				+ refInvtId + "]";
 	}	
 }

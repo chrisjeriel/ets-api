@@ -11,6 +11,7 @@ import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
+import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -66,6 +67,7 @@ import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
+import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -173,4 +175,6 @@ public interface AccountingServService {
 	public RetrieveAcseDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcseDcbBankDetailsRequest request) throws SQLException;
 	public RetrieveAcseInsuranceExpResponse retrieveAcseInsuranceExp(RetrieveAcseInsuranceExpRequest raiep ) throws SQLException;
 	public SaveAcseInsuranceExpResponse saveAcseInsuranceExp(SaveAcseInsuranceExpRequest saptr) throws SQLException;
+	public PrintInvoiceBatchResponse printInvoiceBatch(PrintInvoiceBatchRequest request) throws SQLException;
+	
 }
