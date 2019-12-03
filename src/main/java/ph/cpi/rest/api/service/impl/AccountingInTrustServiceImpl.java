@@ -2579,6 +2579,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		UploadAcctEntryResponse res = new UploadAcctEntryResponse();
 		
 		try {
+			acctITDao.startTransaction();
+			
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("acctType", uaer.getAeruList().get(0).getAcctType());
 			params.put("tranClass", uaer.getAeruList().get(0).getTranClass());
@@ -2588,6 +2590,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			acctITDao.uploadAcctEntry(uaer.getAeruList());
 			
 			acctITDao.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			acctITDao.rollback();
