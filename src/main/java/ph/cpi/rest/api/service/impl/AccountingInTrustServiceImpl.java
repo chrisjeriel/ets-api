@@ -1602,7 +1602,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		boolean stop = false;
 		for(String i : res) {
-			if(i == null) {
+			if(i != null) {
 				stop = true;
 				break;
 			}
