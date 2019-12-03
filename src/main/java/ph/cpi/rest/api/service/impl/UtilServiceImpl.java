@@ -2,8 +2,11 @@ package ph.cpi.rest.api.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -20,8 +23,11 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
 import ph.cpi.rest.api.model.Response;
+import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.request.UploadAcctEntryRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
+import ph.cpi.rest.api.service.AccountingInTrustService;
 import ph.cpi.rest.api.service.UtilService;
 
 @Component
@@ -29,6 +35,9 @@ public class UtilServiceImpl implements UtilService {
 	
 	@Autowired
 	UtilDao utilDao;
+	
+	@Autowired
+	private AccountingInTrustService acctInTrustService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UtilServiceImpl.class);
 
@@ -91,10 +100,10 @@ public class UtilServiceImpl implements UtilService {
 	}
 
 	@Override
-	public Response uploadDataTable() throws SQLException {
+	public Response uploadDataTable(String filePath, String acctType, String tranClass, String tranId, String procBy) throws SQLException {
 		Response resp = new Response();
 		
-		String SAMPLE_XLSX_FILE_PATH = "C:\\Users\\PMMSC-TOTZ\\Documents\\PMMSC\\sample-spreadsheet.xlsx";
+		String SAMPLE_XLSX_FILE_PATH = filePath;
 		
         try {
 			Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
@@ -103,17 +112,59 @@ public class UtilServiceImpl implements UtilService {
 			
 			DataFormatter dataFormatter = new DataFormatter();
 			
+			List<AcctEntryRowUpload> aeruList = new ArrayList<AcctEntryRowUpload>();
+			
+			List<String> titles = new ArrayList<String>();
+			
 			for(Sheet sheet: workbook) {
 	            System.out.println("=> " + sheet.getSheetName());
 	            
+	            
 	            for (Row row: sheet) {
-	                for(Cell cell: row) {
-	                    String cellValue = dataFormatter.formatCellValue(cell);
-	                    System.out.print(cellValue + "\t");
-	                }
-	                System.out.println();
+	            	if (row.getRowNum() == 0) {
+	            		for(Cell cell: row) {
+		                    String cellValue = dataFormatter.formatCellValue(cell);
+		                    titles.add(cellValue);
+		                }
+	            	} else {
+	            		AcctEntryRowUpload aeru = new AcctEntryRowUpload();
+	            		aeru.setAcctType(acctType);
+	            		aeru.setTranClass(tranClass);
+	            		aeru.setTranId(tranId);
+	            		aeru.setProcBy(procBy);
+	            		
+	            		for (int i = 0; i < titles.size(); i++) {
+	            			if ("ACCT_CODE".equalsIgnoreCase(titles.get(i))) {
+	            				aeru.setAcctCode(dataFormatter.formatCellValue(row.getCell(i)));
+	            			} else if ("ACCT_NAME".equalsIgnoreCase(titles.get(i))) {
+	            				aeru.setAcctName(dataFormatter.formatCellValue(row.getCell(i)));
+	            			} else if ("SL_TYPE".equalsIgnoreCase(titles.get(i))) {
+	            				aeru.setSlTypeCd(dataFormatter.formatCellValue(row.getCell(i)));
+	            			} else if ("SL_TYPE_NAME".equalsIgnoreCase(titles.get(i))) {
+	            				aeru.setSlTypeName(dataFormatter.formatCellValue(row.getCell(i)));
+	            			} else if ("SL_CODE".equalsIgnoreCase(titles.get(i))) {
+	            				aeru.setSlCode(dataFormatter.formatCellValue(row.getCell(i)));
+	            			} else if ("SL_NAME".equalsIgnoreCase(titles.get(i))) {
+	            				aeru.setSlName(dataFormatter.formatCellValue(row.getCell(i)));
+	            			} else if ("DEBIT_AMT".equalsIgnoreCase(titles.get(i))) {
+	            				String val = dataFormatter.formatCellValue(row.getCell(i));
+	            				val = "".equalsIgnoreCase(val) ? "0" : val; 
+	            				aeru.setDebitAmt(new BigDecimal(val));
+	            			} else if ("CREDIT_AMT".equalsIgnoreCase(titles.get(i))) {
+	            				String val = dataFormatter.formatCellValue(row.getCell(i));
+	            				val = "".equalsIgnoreCase(val) ? "0" : val; 
+	            				aeru.setCreditAmt(new BigDecimal(val));
+	            			} 
+						}
+	            		aeruList.add(aeru);
+	            	}
 	            }
 	        }
+			
+			UploadAcctEntryRequest req = new UploadAcctEntryRequest();
+			req.setAeruList(aeruList);
+			acctInTrustService.uploadAcctEntry(req);
+			
 			
 		} catch (EncryptedDocumentException | IOException e) {
 			e.printStackTrace();
