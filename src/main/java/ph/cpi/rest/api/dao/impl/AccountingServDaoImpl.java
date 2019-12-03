@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
+import ph.cpi.rest.api.model.accountingservice.AcseEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -419,5 +420,30 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("printInvoiceBatch", params);
 		return res;
+	}
+
+	@Override
+	public AcseEditedAcctEntries retrieveAcseEditedAcctEntries(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("retEditAcctEntriesServ", params);
+	}
+
+	@Override
+	public List<AcseEditedAcctEntries> retrieveEditedAcctEntInq(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retEditAcctEntriesInqServ", params);
+	}
+
+	@Override
+	public List<AcseAcctEntries> retrieveAcctEntInqDtl(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcseAcctEntriesInqDtl", params);
+	}
+
+	@Override
+	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("editAcctEntServ",params);
+	}
+
+	@Override
+	public Integer restoreAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("restoreAcctEntServ",params);
 	}
 }
