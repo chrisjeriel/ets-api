@@ -5,6 +5,15 @@ import ph.cpi.rest.api.model.Response;
 public class SaveMtnUserResponse extends Response{
 	
 	private Integer returnCode;
+	private String password;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public Integer getReturnCode() {
 		return returnCode;

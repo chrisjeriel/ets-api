@@ -14,10 +14,24 @@ public class GenerateReportRequest {
 	private Integer reqId;
 	private String cedingId;
 	private String policyId;
+	private String pctValue;
+	private String inclEndt;
 	
 	private POLR044 polr044Params;
 	
 	
+	public String getPctValue() {
+		return pctValue;
+	}
+	public void setPctValue(String pctValue) {
+		this.pctValue = pctValue;
+	}
+	public String getInclEndt() {
+		return inclEndt;
+	}
+	public void setInclEndt(String inclEndt) {
+		this.inclEndt = inclEndt;
+	}
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -87,10 +101,10 @@ public class GenerateReportRequest {
 	}
 	@Override
 	public String toString() {
-		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", polr044Params="
-				+ polr044Params + ", quoteId=" + quoteId + ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId
-				+ ", userId=" + userId + ", tranId=" + tranId + ", reqId=" + reqId + ", cedingId=" + cedingId
-				+ ", policyId=" + policyId + "]";
+		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
+				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
+				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
+				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + "]";
 	}
 	
 }

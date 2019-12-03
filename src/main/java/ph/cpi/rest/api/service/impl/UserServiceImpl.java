@@ -174,6 +174,9 @@ public class UserServiceImpl implements UserService {
 		
 		try {
 			smuResponse.setReturnCode(userDao.saveMtnUser(saveMtnUserParams));
+			if(smur.getUsersList().size() == 1 && smuResponse.getReturnCode() == -1){
+				smuResponse.setPassword(smur.getUsersList().get(0).getPassword());
+			}
 			logger.info("saveMtnUser : " + smuResponse.toString());
 		} catch (HibernateException e) {
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUHE", "HibernateException Exception : " + errorMsg));
@@ -181,8 +184,10 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUDIV", "DataIntegrityViolation Exception : " + errorMsg));
 		} catch (SQLException sqle) {
+			sqle.printStackTrace();
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUSQL", "SQL Exception : " + errorMsg));
 		} catch (Exception e) {
+			e.printStackTrace();
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGEN", "General Exception"));
 		}
 		
