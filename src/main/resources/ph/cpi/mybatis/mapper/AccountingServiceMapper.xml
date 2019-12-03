@@ -1726,4 +1726,12 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="saveAcseDcbCollection" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="updateDcb" item="save">
+				ACSE_DCB_NO_PKG.update_dcb(#{save.dcbYear},#{save.dcbNo},#{save.dcbStat},#{save.updateUser});
+			</foreach>
+		END;
+	</update>
 </mapper>

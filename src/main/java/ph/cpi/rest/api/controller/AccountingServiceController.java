@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCloseOpenDcbRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseDcbCollectionRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
@@ -113,6 +114,7 @@ import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCloseOpenDcbResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseDcbCollectionResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
@@ -555,5 +557,12 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/saveAcseCloseOpenDcb");
 		logger.info("SaveAcseCloseOpenDcbRequest : " + request.toString());
 		return acctServService.saveAcseCloseOpenDcb(request);
+	}
+	
+	@PostMapping(path="saveDcbCollection")
+	public @ResponseBody SaveAcseDcbCollectionResponse saveDcbCollection(@RequestBody SaveAcseDcbCollectionRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveDcbCollection");
+		logger.info("SaveAcseDcbCollectionRequest : " + request.toString());
+		return acctServService.saveDcbCollection(request);
 	}
 }

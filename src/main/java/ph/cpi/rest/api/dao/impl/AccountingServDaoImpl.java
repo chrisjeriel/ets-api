@@ -426,4 +426,11 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> saveDcbCollection(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseDcbCollection",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
