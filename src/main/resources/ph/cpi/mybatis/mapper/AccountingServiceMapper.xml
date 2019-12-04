@@ -1795,4 +1795,21 @@
 		END;
 	</update>
     
+    
+    <update id="saveAcseCloseOpenDcb" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="saveDcb" item="save">
+				ACSE_DCB_NO_PKG.save_remarks(#{save.dcbYear},#{save.dcbNo},#{save.remarks},#{save.updateUser});
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveAcseDcbCollection" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="updateDcb" item="save">
+				ACSE_DCB_NO_PKG.update_dcb(#{save.dcbYear},#{save.dcbNo},#{save.dcbStat},#{save.updateUser});
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

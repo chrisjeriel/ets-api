@@ -55,8 +55,10 @@ import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCloseOpenDcbRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseDcbCollectionRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
@@ -116,8 +118,10 @@ import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCloseOpenDcbResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseDcbCollectionResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
@@ -1201,7 +1205,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public GenerateBatchOrNoResponse generateBatchOrNo(
 			GenerateBatchOrNoRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		GenerateBatchOrNoResponse response = new GenerateBatchOrNoResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("orNoList", request.getOrNoList());
@@ -1278,7 +1281,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public PrintInvoiceBatchResponse printInvoiceBatch(
 			PrintInvoiceBatchRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		PrintInvoiceBatchResponse response = new PrintInvoiceBatchResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("printInvoiceList", request.getPrintInvoiceList());
@@ -1329,6 +1331,22 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		return response;
 	}
+	
+	@Override
+	public SaveAcseCloseOpenDcbResponse saveAcseCloseOpenDcb(SaveAcseCloseOpenDcbRequest request) throws SQLException {
+		SaveAcseCloseOpenDcbResponse response = new SaveAcseCloseOpenDcbResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDcb", request.getSaveDcb());
+			HashMap<String,Object> res = acctServDao.saveAcseCloseOpenDcb(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 
 	@Override
 	public RestoreServiceAccountingEntriesResponse restoreAcctEnt(RestoreServiceAccountingEntriesRequest rsaer)
@@ -1367,6 +1385,22 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("tranId", raaebr.getTranId());
 		params.put("histNo", raaebr.getHistNo());
 		response.setBackupAcctEnt(acctServDao.retrieveAcctEntInqDtl(params));
+		return response;
+	}
+	
+	@Override
+	public SaveAcseDcbCollectionResponse saveDcbCollection(SaveAcseDcbCollectionRequest request) throws SQLException {
+		SaveAcseDcbCollectionResponse response = new SaveAcseDcbCollectionResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("updateDcb", request.getUpdateDcb());
+			HashMap<String,Object> res = acctServDao.saveDcbCollection(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
+			ex.printStackTrace();
+		}
 		return response;
 	}
 	
