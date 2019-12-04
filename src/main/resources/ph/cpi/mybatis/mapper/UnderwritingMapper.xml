@@ -261,6 +261,15 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Coverage" id="coverageMap">
+		<result property="prevSectionISi" 			column="PREV_CUM_SECI_SI"/>	 
+		<result property="prevSectionIISi" 			column="PREV_CUM_SECII_SI"/>	 
+		<result property="prevSectionIIISi" 			column="PREV_CUM_SECIII_SI"/>	 
+		<result property="prevTotalSi" 			column="PREV_CUM_TSI"/>	 
+		<result property="prevSectionIPrem" 			column="PREV_CUM_SECI_PREM"/>	 
+		<result property="prevSectionIIPrem" 			column="PREV_CUM_SECII_PREM"/>	 
+		<result property="prevSectionIIIPrem" 			column="PREV_CUM_SECIII_PREM"/>	 
+		<result property="prevTotalPrem" 			column="PREV_CUM_TPREM"/>	 
+		
 		<result property="sectionISi" 			column="SECTION_I_SI"/>
 		<result property="sectionIISi" 			column="SECTION_II_SI"/>
 		<result property="sectionIIISi" 		column="SECTION_III_SI"/>

@@ -275,22 +275,97 @@
 	</select>
 	
 	<select id="retrieveMtnRiskListing" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
-															  #{riskAbbr, jdbcType=VARCHAR},
-															  #{riskName, jdbcType=VARCHAR},
-															  #{regionDesc, jdbcType=VARCHAR},
-															  #{provinceDesc, jdbcType=VARCHAR},
-															  #{cityDesc, jdbcType=VARCHAR},
-															  #{districtDesc, jdbcType=VARCHAR},
-															  #{blockDesc, jdbcType=VARCHAR},
-															  #{latitude, jdbcType=VARCHAR},
-															  #{longitude, jdbcType=VARCHAR},
-															  #{activeTag, jdbcType=VARCHAR},
-															  null,
-															  null,
-															  null,
-															  null
-															  ))
+		SELECT * 
+				FROM	
+					(
+						SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
+																			  #{riskAbbr, jdbcType=VARCHAR},
+																			  #{riskName, jdbcType=VARCHAR},
+																			  #{regionDesc, jdbcType=VARCHAR},
+																			  #{provinceDesc, jdbcType=VARCHAR},
+																			  #{cityDesc, jdbcType=VARCHAR},
+																			  #{districtDesc, jdbcType=VARCHAR},
+																			  #{blockDesc, jdbcType=VARCHAR},
+																			  #{latitude, jdbcType=VARCHAR},
+																			  #{longitude, jdbcType=VARCHAR},
+																			  #{activeTag, jdbcType=VARCHAR},
+																			  null,
+																			  null,
+																			  null,
+																			  null
+																			  ))
+						 WHERE  1=1
+						<if test="search != null">
+						 	 AND
+						  	<foreach item="col" index="index" collection="search.searchCols"
+						        open="(" separator=" OR " close=")">
+						      UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+							</foreach>
+						</if>
+						 
+						 <if test="altNo != null">
+						  	<if test="altNo == 0">
+						  		AND ALT_NO = 0
+						  	</if>
+						  	
+						  	<if test="altNo > 0">
+						  		AND ALT_NO != 0
+						  	</if>
+						 </if>
+						 <if test="sort != null">
+						  	ORDER BY ${sort.sortKey} ${sort.order}
+						 </if>
+						  	   
+						 ) a		
+		 <if test="pagination.position != null">
+	   	   	OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	 </if>												  
+																			  
+	</select>
+	
+	<select id="retrieveMtnRiskListingCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+				FROM	
+					(
+						SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
+																			  #{riskAbbr, jdbcType=VARCHAR},
+																			  #{riskName, jdbcType=VARCHAR},
+																			  #{regionDesc, jdbcType=VARCHAR},
+																			  #{provinceDesc, jdbcType=VARCHAR},
+																			  #{cityDesc, jdbcType=VARCHAR},
+																			  #{districtDesc, jdbcType=VARCHAR},
+																			  #{blockDesc, jdbcType=VARCHAR},
+																			  #{latitude, jdbcType=VARCHAR},
+																			  #{longitude, jdbcType=VARCHAR},
+																			  #{activeTag, jdbcType=VARCHAR},
+																			  null,
+																			  null,
+																			  null,
+																			  null
+																			  ))
+						 WHERE  1=1
+						<if test="search != null">
+						 	 AND
+						  	<foreach item="col" index="index" collection="search.searchCols"
+						        open="(" separator=" OR " close=")">
+						      UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+							</foreach>
+						</if>
+						 
+						 <if test="altNo != null">
+						  	<if test="altNo == 0">
+						  		AND ALT_NO = 0
+						  	</if>
+						  	
+						  	<if test="altNo > 0">
+						  		AND ALT_NO != 0
+						  	</if>
+						 </if>
+						 <if test="sort != null">
+						  	ORDER BY ${sort.sortKey} ${sort.order}
+						 </if>
+						  	   
+						 ) a														  
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">

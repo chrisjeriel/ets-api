@@ -49,7 +49,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnRiskParams.put("count", rmrp.getPaginationRequest().getCount());
 		retrieveMtnRiskParams.put("sortKey", rmrp.getSortRequest().getSortKey());
 		retrieveMtnRiskParams.put("order", rmrp.getSortRequest().getOrder());*/
-		retrieveMtnRiskParams.put("listing", false);
+		
 		
 		rmrResponse.setRisk(maintenanceDao.retrieveMtnRisk(retrieveMtnRiskParams));
 		logger.info("retrieveMtnRiskResponse : " + rmrResponse.toString());
@@ -74,9 +74,12 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnRiskListingParams.put("longitude", rmrlp.getLongitude());
 		retrieveMtnRiskListingParams.put("activeTag", rmrlp.getActiveTag());
 		retrieveMtnRiskListingParams.put("listing", true);
+		retrieveMtnRiskListingParams.put("pagination", rmrlp.getPaginationRequest());
+		retrieveMtnRiskListingParams.put("sort", rmrlp.getSortRequest());
+		retrieveMtnRiskListingParams.put("search", rmrlp.getSearch());
 		
 		rmrlResponse.setRisk(maintenanceDao.retrieveMtnRiskListing(retrieveMtnRiskListingParams));
-		
+		rmrlResponse.setCount(maintenanceDao.retrieveMtnRiskListingCount(retrieveMtnRiskListingParams));
 		logger.info("retrieveMtnRiskListingResponse : " + rmrlResponse.toString());
 		
 		return rmrlResponse;
