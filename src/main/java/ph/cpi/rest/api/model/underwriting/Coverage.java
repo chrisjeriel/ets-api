@@ -9,6 +9,15 @@ import org.joda.time.DateTime;
 @Alias("UnderwritingCoverage")
 public class Coverage {
 	
+	private BigDecimal prevSectionISi;
+	private BigDecimal prevSectionIISi;
+	private BigDecimal prevSectionIIISi;
+	private BigDecimal prevTotalSi;
+	private BigDecimal prevSectionIPrem;
+	private BigDecimal prevSectionIIPrem;
+	private BigDecimal prevSectionIIIPrem;
+	private BigDecimal prevTotalPrem;
+	
 	private BigDecimal sectionISi;
 	private BigDecimal sectionIISi;
 	private BigDecimal sectionIIISi;
@@ -49,6 +58,70 @@ public class Coverage {
 	private String holdCoverTag;
 	private String extensionTag;
 	private List<SectionCovers> sectionCovers;
+
+	public BigDecimal getPrevSectionISi() {
+		return prevSectionISi;
+	}
+
+	public void setPrevSectionISi(BigDecimal prevSectionISi) {
+		this.prevSectionISi = prevSectionISi;
+	}
+
+	public BigDecimal getPrevSectionIISi() {
+		return prevSectionIISi;
+	}
+
+	public void setPrevSectionIISi(BigDecimal prevSectionIISi) {
+		this.prevSectionIISi = prevSectionIISi;
+	}
+
+	public BigDecimal getPrevSectionIIISi() {
+		return prevSectionIIISi;
+	}
+
+	public void setPrevSectionIIISi(BigDecimal prevSectionIIISi) {
+		this.prevSectionIIISi = prevSectionIIISi;
+	}
+
+	public BigDecimal getPrevTotalSi() {
+		return prevTotalSi;
+	}
+
+	public void setPrevTotalSi(BigDecimal prevTotalSi) {
+		this.prevTotalSi = prevTotalSi;
+	}
+
+	public BigDecimal getPrevSectionIPrem() {
+		return prevSectionIPrem;
+	}
+
+	public void setPrevSectionIPrem(BigDecimal prevSectionIPrem) {
+		this.prevSectionIPrem = prevSectionIPrem;
+	}
+
+	public BigDecimal getPrevSectionIIPrem() {
+		return prevSectionIIPrem;
+	}
+
+	public void setPrevSectionIIPrem(BigDecimal prevSectionIIPrem) {
+		this.prevSectionIIPrem = prevSectionIIPrem;
+	}
+
+	public BigDecimal getPrevSectionIIIPrem() {
+		return prevSectionIIIPrem;
+	}
+
+	public void setPrevSectionIIIPrem(BigDecimal prevSectionIIIPrem) {
+		this.prevSectionIIIPrem = prevSectionIIIPrem;
+	}
+
+	public BigDecimal getPrevTotalPrem() {
+		return prevTotalPrem;
+	}
+
+	public void setPrevTotalPrem(BigDecimal prevTotalPrem) {
+		this.prevTotalPrem = prevTotalPrem;
+	}
 
 	public BigDecimal getSectionISi() {
 		return sectionISi;
@@ -375,19 +448,22 @@ public class Coverage {
 
 	@Override
 	public String toString() {
-		return "Coverage [sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
-				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
-				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt="
-				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
-				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
-				+ ", exSeciPrem=" + exSeciPrem + ", exSeciiPrem=" + exSeciiPrem + ", exSeciiiPrem=" + exSeciiiPrem
-				+ ", exTprem=" + exTprem + ", exCumTprem=" + exCumTprem + ", exDays=" + exDays + ", totalDays="
-				+ totalDays + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
-				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
-				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota
-				+ ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", holdCoverTag=" + holdCoverTag + ", extensionTag=" + extensionTag + ", sectionCovers="
-				+ sectionCovers + "]";
+		return "Coverage [prevSectionISi=" + prevSectionISi + ", prevSectionIISi=" + prevSectionIISi
+				+ ", prevSectionIIISi=" + prevSectionIIISi + ", prevTotalSi=" + prevTotalSi + ", prevSectionIPrem="
+				+ prevSectionIPrem + ", prevSectionIIPrem=" + prevSectionIIPrem + ", prevSectionIIIPrem="
+				+ prevSectionIIIPrem + ", prevTotalPrem=" + prevTotalPrem + ", sectionISi=" + sectionISi
+				+ ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi + ", totalSi=" + totalSi
+				+ ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem + ", sectionIIIPrem="
+				+ sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt=" + holdCoverPremAmt
+				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml="
+				+ pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks + ", exSeciPrem=" + exSeciPrem
+				+ ", exSeciiPrem=" + exSeciiPrem + ", exSeciiiPrem=" + exSeciiiPrem + ", exTprem=" + exTprem
+				+ ", exCumTprem=" + exCumTprem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
+				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
+				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
+				+ ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus
+				+ ", commRtFac=" + commRtFac + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", holdCoverTag=" + holdCoverTag
+				+ ", extensionTag=" + extensionTag + ", sectionCovers=" + sectionCovers + "]";
 	}
 }
