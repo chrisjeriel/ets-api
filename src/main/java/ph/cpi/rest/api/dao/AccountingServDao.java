@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -18,6 +20,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
+import ph.cpi.rest.api.model.accountingservice.AcseEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -90,5 +93,11 @@ public interface AccountingServDao {
 	public List<AcseDcbBankDetails> retrieveAcseBankDetails(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseInsuranceExp> retrieveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
+	
+	public AcseEditedAcctEntries retrieveAcseEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
+	public List<AcseEditedAcctEntries> retrieveEditedAcctEntInq(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseAcctEntries> retrieveAcctEntInqDtl(final HashMap<String, Object> params) throws SQLException;
+	public Integer editAcctEnt(final HashMap<String, Object> params) throws SQLException;
+	public Integer restoreAcctEnt(final HashMap<String, Object> params) throws SQLException;
 
 }
