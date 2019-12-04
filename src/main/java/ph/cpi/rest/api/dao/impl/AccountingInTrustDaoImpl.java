@@ -1085,6 +1085,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		
 		for (AcctEntryRowUpload aeru : aeruList) {
 			txManager.getTransaction(txDef);
+			System.out.println("DAOUPLOAD");
+			System.out.println(aeru);
+			System.out.println("DAOUPLOAD");
 			errorCode = sqlSession.update("uploadAcctEntry", aeru);
 		}
 		

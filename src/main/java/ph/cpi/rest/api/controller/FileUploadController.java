@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.controller;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ph.cpi.rest.api.service.StorageService;
+import ph.cpi.rest.api.service.UtilService;
+import ph.cpi.rest.api.service.impl.UtilServiceImpl;
 import ph.cpi.rest.api.storage.StorageFileNotFoundException;
 
 @Controller
@@ -36,6 +39,9 @@ public class FileUploadController {
 	
 	 private final StorageService storageService;
 	 private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
+	 
+	 @Autowired 
+		private UtilService utilService;
 	 
 	 @Autowired
 	    public FileUploadController(StorageService storageService) {
@@ -92,24 +98,39 @@ public class FileUploadController {
 		    logger.info("Error uploading files");
 	        return ResponseEntity.notFound().build();
 	    }
+	 
+//	 aeru.setAcctType("");
+//		aeru.setTranClass("");
+//		aeru.setTranId("");
+//		aeru.setProcBy("");
 	
 	
 	 @PostMapping("/uploadFileToDB")
 	    public @ResponseBody String handleFileUploadToDB(@RequestParam("file") MultipartFile file,
-	            RedirectAttributes redirectAttributes, String module, String refId, String tableName) {
+	            RedirectAttributes redirectAttributes, String table, String acctType, String tranClass, String tranId, String procBy) {
 		 
 		 logger.info("POST: /api/file-upload-service/uploadFileToDB/");
 	     String response = "";
-		 response = storageService.store(file, module, refId);
+	     String refFolder = table + "//" + procBy + "//" + acctType;
+		 response = storageService.store(file, refFolder, tranId);
 	     redirectAttributes.addFlashAttribute("message",
 	                "You successfully uploaded " + file.getOriginalFilename() + "!");
 	     logger.info("You successfully uploaded " + file.getOriginalFilename() + "!");
-	     logger.info("Now uploading to "+ tableName);
+	     logger.info("Now uploading to "+ refFolder);
+	     Resource upFile = storageService.loadAsResource(file.getOriginalFilename(), refFolder, tranId);
+	     System.out.println(upFile);
+	     System.out.println(upFile.getFilename());
+	     try {
+			System.out.println(upFile.getURI().toString());
+			System.out.println(upFile.getURL());
+			
+			utilService.uploadDataTable(upFile.getURL().toString().replace("file:/", ""), acctType, tranClass, tranId, procBy);
+			
+		} catch (IOException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	     
 	     return response;
 	    }
-	
-	
-	
-	
-
 }

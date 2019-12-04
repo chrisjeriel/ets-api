@@ -42,6 +42,12 @@ public class ReportParameters {
 		
 		reportParams.put("P_POLICY_ID", grr.getPolicyId());
 		reportParams.put("p_policy_id", grr.getPolicyId());
+		
+		reportParams.put("P_PCT_VALUE", grr.getPctValue());
+		reportParams.put("p_pct_value", grr.getPctValue());
+		
+		reportParams.put("P_INCL_ENDT", grr.getInclEndt());
+		reportParams.put("p_incl_endt", grr.getInclEndt());
 		return reportParams;
 	}
 	

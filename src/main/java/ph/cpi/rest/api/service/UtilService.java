@@ -15,6 +15,6 @@ public interface UtilService {
 	public ExtractReportResponse extractReport(GenerateReportRequest grr) throws SQLException;
 	public String getReportFileName(HashMap<String, Object> params) throws SQLException;
 	public String getReportPath() throws SQLException;
-	public Response uploadDataTable() throws SQLException;
+	public Response uploadDataTable(String filePath, String acctType, String tranClass, String tranId, String procBy) throws SQLException;
 	
 }

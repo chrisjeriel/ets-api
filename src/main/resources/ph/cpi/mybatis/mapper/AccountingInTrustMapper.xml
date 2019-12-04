@@ -4335,20 +4335,20 @@
 		END;
 	</update>
 	
-	<update id="uploadAcctEntry" parameterType="java.util.Map" statementType="CALLABLE">
+	<update id="uploadAcctEntry" parameterType="ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload" statementType="CALLABLE">
 		BEGIN
 			ACCT_ENTRY_UPLOAD_PKG.upload_acct_entry(
 											        #{acctType, jdbcType=VARCHAR},
 											        #{tranClass, jdbcType=VARCHAR},
-											        #{tranId, jdbcType=INTEGER},
+											        #{tranId, jdbcType=VARCHAR},
 											        #{acctCode, jdbcType=VARCHAR}, 
 											        #{acctName, jdbcType=VARCHAR}, 
-											        #{slTypeCd, jdbcType=INTEGER}, 
+											        #{slTypeCd, jdbcType=VARCHAR}, 
 											        #{slTypeName, jdbcType=VARCHAR}, 
-											        #{slCode, jdbcType=INTEGER}, 
+											        #{slCode, jdbcType=VARCHAR}, 
 											        #{slName, jdbcType=VARCHAR}, 
-											        #{debitAmt, jdbcType=INTEGER}, 
-											        #{creditAmt, jdbcType=INTEGER},
+											        #{debitAmt, jdbcType=VARCHAR}, 
+											        #{creditAmt, jdbcType=VARCHAR},
 											        #{procBy, jdbcType=VARCHAR}
 												   );
 		END;
