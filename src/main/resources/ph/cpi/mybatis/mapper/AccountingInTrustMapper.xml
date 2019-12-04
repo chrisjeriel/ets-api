@@ -4474,4 +4474,13 @@
 		SELECT * FROM TABLE(ACIT_DCB_NO_PKG.ret_dcb_bank_sum(#{dcbYear},#{dcbNo},null,null,null,null))
 	</select>
 	
+	<!-- <select id="retrieveProfCommSumm" resultMap="acitProfCommSumm" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_profcomm_summ(
+					#{profcommId,jdbcType=INTEGER},
+					#{cedingId, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{dateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{dateTo}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					'', '', '',''))
+	</select> -->
+	
 </mapper>

@@ -71,9 +71,6 @@ public interface AccountingInTrustDao {
 	public List<AcitPaytReq> retrieveAcitPaytReq(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitTransactions> retrieveAcitJVListings(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcitPaytReq(final HashMap<String, Object> params) throws SQLException;
-
-//	public List<AcitProfCommSumm> retrieveProfCommSumm(final HashMap<String, Object> params ) throws SQLException;
-//	public List<AcitProfCommDtl> retrieveProfCommDtl(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitInvestments> retrieveInvestmentList(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveAcitInvestments(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitCMDM> retrieveAcitCMDMList(final HashMap<String, Object> params) throws SQLException;
@@ -243,4 +240,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> SaveAcitCloseOpenDcb(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDcbCollection> retrieveAcitDcbCollection(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDcbBankDetails> retrieveAcitBankDetails(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitProfCommSumm> retrievePCSummPerCeding(final HashMap<String, Object> params ) throws SQLException;
 }
