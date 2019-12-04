@@ -243,4 +243,6 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> SaveAcitCloseOpenDcb(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDcbCollection> retrieveAcitDcbCollection(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitDcbBankDetails> retrieveAcitBankDetails(final HashMap<String, Object> params) throws SQLException;
+	public String validateTranAcctEntDate(final HashMap<String, Object> params) throws SQLException;
+
 }

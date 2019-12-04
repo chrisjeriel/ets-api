@@ -10,6 +10,7 @@ public class UpdateAcitStatusResponse {
 	
 	private List<Error> errorList;
 	private List<Message> messageList;
+	private List<String> invalidTranNos;
 	private Integer returnCode;
 	
 	public List<Error> getErrorList() {
@@ -36,11 +37,15 @@ public class UpdateAcitStatusResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	
+	public List<String> getInvalidTranNos() {
+		return invalidTranNos;
+	}
+	public void setInvalidTranNos(List<String> invalidTranNos) {
+		this.invalidTranNos = invalidTranNos;
+	}
 	@Override
 	public String toString() {
-		return "UpdateAcitStatusResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + "]";
+		return "UpdateAcitStatusResponse [errorList=" + errorList + ", messageList=" + messageList + ", invalidTranNos="
+				+ invalidTranNos + ", returnCode=" + returnCode + "]";
 	}
-	
 }
