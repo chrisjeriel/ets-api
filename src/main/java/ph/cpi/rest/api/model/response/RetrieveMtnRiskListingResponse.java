@@ -9,9 +9,16 @@ import ph.cpi.rest.api.model.maintenance.Risk;
 public class RetrieveMtnRiskListingResponse {
 
 	private List<Risk> risk;
+	private Integer count;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public List<Risk> getRisk() {
 		return risk;
 	}
@@ -32,7 +39,7 @@ public class RetrieveMtnRiskListingResponse {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnRiskListingResponse [risk=" + risk + ", paginationResponse=" + paginationResponse
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrieveMtnRiskListingResponse [risk=" + risk + ", count=" + count + ", paginationResponse="
+				+ paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

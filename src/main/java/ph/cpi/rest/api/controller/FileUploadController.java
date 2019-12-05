@@ -111,7 +111,7 @@ public class FileUploadController {
 		 
 		 logger.info("POST: /api/file-upload-service/uploadFileToDB/");
 	     String response = "";
-	     String refFolder = table + "//" + procBy + "//" + acctType;
+	     String refFolder = table + "//" + procBy + "//" + acctType + "//" + tranClass;
 		 response = storageService.store(file, refFolder, tranId);
 	     redirectAttributes.addFlashAttribute("message",
 	                "You successfully uploaded " + file.getOriginalFilename() + "!");

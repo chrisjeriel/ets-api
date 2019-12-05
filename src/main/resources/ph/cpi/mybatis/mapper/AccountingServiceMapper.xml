@@ -1718,6 +1718,83 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseEditedAcctEntries" id="editAcctEntriesMapServ">
+		<result property="tranId"       column="TRAN_ID" />
+		<result property="tranClass"    column="TRAN_CLASS" />
+		<result property="tranTypeName" column="TRAN_TYPE_NAME" />
+		<result property="histNo"       column="HIST_NO" />
+		<result property="refNo"        column="REF_NO" />
+		<result property="tranDate"     column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="payee"        column="PAYEE" />
+		<result property="particulars"  column="PARTICULARS" />
+		<result property="currCd"       column="CURR_CD" />
+		<result property="currRate"     column="CURR_RATE" />
+		<result property="amount"       column="AMOUNT" />
+		<result property="localAmt"     column="LOCAL_AMT" />
+		<result property="status"       column="STATUS" />
+		<result property="reason"       column="REASON" />
+		<result property="editedBy"     column="EDITOR" />
+		<result property="editDate"     column="EDIT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retEditAcctEntriesServ" resultMap="editAcctEntriesMapServ" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
+	</select>
+	
+	<select id="retEditAcctEntriesInqServ" resultMap="editAcctEntriesMapServ" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ACCTENTRIES_HIST_PKG.ret_edtacctentries_inq(#{tranClass, jdbcType=VARCHAR}, 
+																		     CAST(to_timestamp(#{tranDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																		     CAST(to_timestamp(#{tranDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<select id="retrieveAcseAcctEntriesInqDtl" resultMap="acctEntryMap">
+		SELECT * FROM TABLE(ACSE_ACCTENTRIES_HIST_PKG.ret_eaeinq_dtl(
+				#{tranId},
+				#{histNo}))
+	</select>
+    
+    <update id="editAcctEntServ" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_hist_no	NUMBER;
+		BEGIN
+			v_hist_no := ACSE_ACCTENTRIES_HIST_PKG.get_next_histno(#{tranId});
+			
+			<!-- Prepare backup before updating main accounting entries table -->
+			ACSE_ACCTENTRIES_HIST_PKG.edit_acct_entries(#{tranId},v_hist_no,#{reason},#{createUser}, #{updateUser});
+			<!-- Update Accounting Entries -->
+			<foreach collection="delList" item="item">
+				ACSE_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				ACSE_ACCT_ENTRIES_PKG.save_acse_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				</foreach>
+		END;
+	</update>
+	
+	<update id="restoreAcctEntServ" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_ACCTENTRIES_HIST_PKG.restore_acct_entries(#{tranId, jdbcType=INTEGER},
+													   #{histNo, jdbcType=INTEGER});
+		END;
+	</update>
+    
     
     <update id="saveAcseCloseOpenDcb" parameterType="java.util.Map">
 		BEGIN
@@ -1734,4 +1811,5 @@
 			</foreach>
 		END;
 	</update>
+	
 </mapper>

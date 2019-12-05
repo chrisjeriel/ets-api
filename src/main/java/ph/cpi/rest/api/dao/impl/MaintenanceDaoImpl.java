@@ -164,6 +164,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<Risk> riskList = sqlSession.selectList("retrieveMtnRiskListing", params);
 		return riskList;
 	}
+	
+	@Override
+	public Integer retrieveMtnRiskListingCount(HashMap<String, Object> params) throws SQLException {
+		Integer count =(Integer) sqlSession.selectOne("retrieveMtnRiskListingCount", params);
+		return count;
+	}
 
 	public List<Region> retrieveMtnRegion(HashMap<String, Object> params) throws SQLException {
 		List<Region> region = sqlSession.selectList("retrieveMtnRegion", params);

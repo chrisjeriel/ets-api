@@ -2,9 +2,12 @@ package ph.cpi.rest.api.service.impl;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
+import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -1587,7 +1591,30 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		UpdateAcitStatusResponse response = new UpdateAcitStatusResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("updateAcitStatusList", uasr.getUpdateAcitStatusList());
-		response.setReturnCode(acctITDao.updateAcitStatus(params));
+		
+		List<String> res = new ArrayList<String>();
+		HashMap<String, Object> prm = new HashMap<String, Object>();
+		
+		for(int i=0; i < uasr.getUpdateAcitStatusList().size();i++) {
+			prm.put("indiv", uasr.getUpdateAcitStatusList().get(i));
+			res.add(acctITDao.validateTranAcctEntDate(prm));
+		}
+		
+		boolean stop = false;
+		for(String i : res) {
+			if(i != null) {
+				stop = true;
+				break;
+			}
+		}
+		
+		if(stop) {
+			response.setReturnCode(0);
+			response.setInvalidTranNos(res);
+		}else {
+			response.setReturnCode(acctITDao.updateAcitStatus(params));
+			response.setReturnCode(-1);
+		}
 		
 		return response;
 	}
