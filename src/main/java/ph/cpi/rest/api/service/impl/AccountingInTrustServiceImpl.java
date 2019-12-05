@@ -877,7 +877,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
 		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
-//		rapcdrResponse.setAcitProfCommSumm(acctITDao.retrievePCSummPerCeding(rapcdrParams));
+		rapcdrResponse.setAcitProfCommSumm(acctITDao.retrievePCSummPerCeding(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
 	}
