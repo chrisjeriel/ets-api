@@ -924,6 +924,9 @@
 					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
+			IF #{forApproval, jdbcType=VARCHAR} IS NOT NULL THEN
+				ACSE_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId, jdbcType=VARCHAR},#{forApproval, jdbcType=VARCHAR});
+			END IF;
 		END;
 	</update>
 	
