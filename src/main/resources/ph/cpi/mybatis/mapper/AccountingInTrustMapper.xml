@@ -797,7 +797,7 @@
 				</foreach>
 				
 				<!-- IF TRAN TYPE IS LOSS RESERVE DEPOSIT -->
-				IF #{tranTypeCd} <![CDATA[ = ]]> 6 OR #{tranTypeCd} <![CDATA[ = ]]> 7 THEN
+				IF #{tranTypeCd} <![CDATA[ = ]]> 6 OR #{tranTypeCd} <![CDATA[ = ]]> 7 OR #{tranTypeCd} <![CDATA[ = ]]> 4 THEN
 					
 					<!-- Save to ACIT_AR_TRANSUMM -->
 					ACIT_AR_TRANSUMM_PKG.save_acit_transumm(v_tran_id,
@@ -842,6 +842,24 @@
 															#{arAmt} * #{currRate},
 															#{refNo, jdbcType=VARCHAR},
 															'Payment for Advances by Service',
+															#{createUser},
+															CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{updateUser},
+															CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+						);
+					ELSIF #{tranTypeCd} <![CDATA[ = ]]> 4 THEN
+						ACIT_AR_TRANSDTL_PKG.save_ar_transdtl(
+															v_tran_id,
+															1,
+															1,
+															NULL,
+															'Payment of Claim Cash Call by Company',
+															#{currCd},
+															#{currRate},
+															#{arAmt},
+															#{arAmt} * #{currRate},
+															#{refNo, jdbcType=VARCHAR},
+															'Payment of Claim Cash Call by Company',
 															#{createUser},
 															CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 															#{updateUser},
