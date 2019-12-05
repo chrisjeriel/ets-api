@@ -1174,7 +1174,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public String validateTranAcctEntDate(HashMap<String, Object> params) throws SQLException {
 		params.put("validateTranAcctEntDate", "");
-		System.out.println(params);
 		sqlSession.update("validateTranAcctEntDate",params);
 		return (String) params.get("validateTranAcctEntDate");
 	}

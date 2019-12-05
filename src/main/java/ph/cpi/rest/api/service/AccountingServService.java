@@ -59,6 +59,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
@@ -115,6 +116,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 
 @Service
@@ -176,5 +178,5 @@ public interface AccountingServService {
 	public RetrieveAcseInsuranceExpResponse retrieveAcseInsuranceExp(RetrieveAcseInsuranceExpRequest raiep ) throws SQLException;
 	public SaveAcseInsuranceExpResponse saveAcseInsuranceExp(SaveAcseInsuranceExpRequest saptr) throws SQLException;
 	public PrintInvoiceBatchResponse printInvoiceBatch(PrintInvoiceBatchRequest request) throws SQLException;
-	
+	public UpdateAcseStatResponse updateAcseStat(UpdateAcseStatRequest uasr ) throws SQLException;
 }

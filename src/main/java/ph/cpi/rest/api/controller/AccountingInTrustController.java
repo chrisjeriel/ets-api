@@ -565,8 +565,6 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/UpdateAcitStatusRequest");
 		logger.info("UpdateAcitStatusRequest : " + uasr.toString());
 		return acctInTrustService.updateAcitStatus(uasr);
-		
-	
 	}
 	
 	@PostMapping(path="saveAcctPrqServFee")
