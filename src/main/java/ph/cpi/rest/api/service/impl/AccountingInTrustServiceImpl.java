@@ -2594,7 +2594,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			acctITDao.rollback();
-			res.getErrorList().add(new Error("Exception", e.getMessage()));
+			res.getErrorList().add(new Error("Exception", e.getCause().toString().substring(32, e.getCause().toString().indexOf("\n"))));
 		}
 		
 		
