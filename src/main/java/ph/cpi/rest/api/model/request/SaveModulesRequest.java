@@ -9,6 +9,7 @@ public class SaveModulesRequest {
 	
 	String accessLevel;
 	List<SaveModule> moduleList;
+	List<SaveModule> delModuleList;
 	List<Module> mtnModuleList;
 	List<Module> delMtnModuleList;
 	
@@ -24,6 +25,13 @@ public class SaveModulesRequest {
 	public void setModuleList(List<SaveModule> moduleList) {
 		this.moduleList = moduleList;
 	}
+	
+	public List<SaveModule> getDelModuleList() {
+		return delModuleList;
+	}
+	public void setDelModuleList(List<SaveModule> delModuleList) {
+		this.delModuleList = delModuleList;
+	}
 	public List<Module> getMtnModuleList() {
 		return mtnModuleList;
 	}
@@ -36,5 +44,9 @@ public class SaveModulesRequest {
 	public void setDelMtnModuleList(List<Module> delMtnModuleList) {
 		this.delMtnModuleList = delMtnModuleList;
 	}
-	
+	@Override
+	public String toString() {
+		return "SaveModulesRequest [accessLevel=" + accessLevel + ", moduleList=" + moduleList + ", delModuleList="
+				+ delModuleList + ", mtnModuleList=" + mtnModuleList + ", delMtnModuleList=" + delMtnModuleList + "]";
+	}
 }
