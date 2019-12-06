@@ -2833,4 +2833,15 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 	
+	@Override
+	public RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest rachp) throws SQLException {
+		RetrieveAcitClmHistResponse rachResponse =  new RetrieveAcitClmHistResponse();
+		HashMap<String, Object> rachParams = new HashMap<String, Object>();
+		rachParams.put("reqId", rachp.getReqId());
+		rachParams.put("itemNo", rachp.getItemNo());
+		rachResponse.setAcitClmHistList(acctITDao.retrieveAcitClmHist(rachParams));
+		logger.info("RetrieveAcitClmHistResponse : " + rachResponse.toString());
+		return rachResponse;
+	}
+	
 }

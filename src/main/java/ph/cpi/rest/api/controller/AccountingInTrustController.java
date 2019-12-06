@@ -915,4 +915,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitDcbBankDetailsRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitBankDetails(raoqp);
 	}
+	
+	@GetMapping(path="retrieveAcitClmHist")
+	public @ResponseBody RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest rachr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitClmHist");
+		logger.info("RetrieveAcitClmHistRequest : " + rachr.toString());
+		return acctInTrustService.retrieveAcitClmHist(rachr);
+	}
 }

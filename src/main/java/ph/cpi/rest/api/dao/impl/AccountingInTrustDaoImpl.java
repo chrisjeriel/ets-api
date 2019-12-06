@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitAttachments;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitClmHist;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
@@ -1176,5 +1177,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("validateTranAcctEntDate", "");
 		sqlSession.update("validateTranAcctEntDate",params);
 		return (String) params.get("validateTranAcctEntDate");
+	}
+	
+	@Override
+	public List<AcitClmHist> retrieveAcitClmHist(HashMap<String, Object> params) throws SQLException {
+		List<AcitClmHist> acitClmHistList  = sqlSession.selectList("retrieveAcitClmHist", params);
+		return acitClmHistList;
 	}
 }
