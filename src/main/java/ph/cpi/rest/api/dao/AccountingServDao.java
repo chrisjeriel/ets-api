@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -100,5 +101,5 @@ public interface AccountingServDao {
 	public HashMap<String,Object> saveDcbCollection(final HashMap<String, Object> params) throws SQLException;
 	public Integer updateAcseStat(final HashMap<String, Object> params ) throws SQLException;
 	public String validateTranAcctEntDate(final HashMap<String, Object> params) throws SQLException;
-	
+	public AcctServFeeDist retrieveOrSFeeDtlDist (final HashMap<String, Object> params) throws SQLException;
 }

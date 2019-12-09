@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -471,5 +472,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("validateTranAcctEntDate", "");
 		sqlSession.update("validateTranAcctEntDateAcse",params);
 		return (String) params.get("validateTranAcctEntDate");
+	}
+
+	@Override
+	public AcctServFeeDist retrieveOrSFeeDtlDist(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("retOrServFeeDtlDist", params);
 	}
 }
