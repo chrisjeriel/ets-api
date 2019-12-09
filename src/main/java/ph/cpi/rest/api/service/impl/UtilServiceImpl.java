@@ -19,14 +19,17 @@ import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
+import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.request.UploadAcctEntryRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
+import ph.cpi.rest.api.model.response.UploadAcctEntryResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 import ph.cpi.rest.api.service.UtilService;
 
@@ -100,7 +103,7 @@ public class UtilServiceImpl implements UtilService {
 	}
 
 	@Override
-	public Response uploadDataTable(String filePath, String acctType, String tranClass, String tranId, String procBy) throws SQLException {
+	public Response uploadDataTable(String filePath, String acctType, String tranClass, String tranId, String procBy) throws SQLException, EncryptedDocumentException, UncategorizedSQLException {
 		Response resp = new Response();
 		
 		String SAMPLE_XLSX_FILE_PATH = filePath;
@@ -162,12 +165,17 @@ public class UtilServiceImpl implements UtilService {
 	        }
 			
 			UploadAcctEntryRequest req = new UploadAcctEntryRequest();
+			UploadAcctEntryResponse res = new UploadAcctEntryResponse();
 			req.setAeruList(aeruList);
-			acctInTrustService.uploadAcctEntry(req);
+			res = acctInTrustService.uploadAcctEntry(req);
+			if(res.getErrorList().size() != 0){
+				resp.getErrorList().add(new Error("SQLException",res.getErrorList().get(0).getErrorMessage()));
+				throw new SQLException();
+			}
 			
-			
-		} catch (EncryptedDocumentException | IOException e) {
+		} catch (EncryptedDocumentException | IOException | UncategorizedSQLException | SQLException e) {
 			e.printStackTrace();
+			resp.getErrorList().add(new Error("General Error",e.getMessage()));
 		}
 		
 		return resp;
