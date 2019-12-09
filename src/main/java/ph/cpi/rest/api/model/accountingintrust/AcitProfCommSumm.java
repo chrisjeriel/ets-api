@@ -23,6 +23,7 @@ public class AcitProfCommSumm {
 	private String currCd;
 	private BigDecimal profitLossComm;
 	private BigDecimal profitLossTotal;
+	private String carryDesc;
 	
 	public Integer getProfCommId() {
 		return profCommId;
@@ -126,6 +127,12 @@ public class AcitProfCommSumm {
 	public void setProfitLossTotal(BigDecimal profitLossTotal) {
 		this.profitLossTotal = profitLossTotal;
 	}
+	public String getCarryDesc() {
+		return carryDesc;
+	}
+	public void setCarryDesc(String carryDesc) {
+		this.carryDesc = carryDesc;
+	}
 	@Override
 	public String toString() {
 		return "AcitProfCommSumm [profCommId=" + profCommId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
@@ -133,6 +140,6 @@ public class AcitProfCommSumm {
 				+ profitLossAmt + ", totIncome=" + totIncome + ", totOutgo=" + totOutgo + ", carryAmt=" + carryAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", currCd=" + currCd + ", profitLossComm=" + profitLossComm
-				+ ", profitLossTotal=" + profitLossTotal + "]";
+				+ ", profitLossTotal=" + profitLossTotal + ", carryDesc=" + carryDesc + "]";
 	}
 }

@@ -4,10 +4,12 @@ import java.util.List;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
+import ph.cpi.rest.api.model.accountingintrust.AcitProfCommSumm;
 
 public class RetrieveAcitProfCommDtlResponse {
 
 		private List<AcitProfCommDtl> acitProfCommDtl;
+		private List<AcitProfCommSumm> acitProfCommSumm;
 		private PaginationResponse paginationResponse;
 		private SortResponse sortResponse;
 		
@@ -16,6 +18,12 @@ public class RetrieveAcitProfCommDtlResponse {
 		}
 		public void setAcitProfCommDtl(List<AcitProfCommDtl> acitProfCommDtl) {
 			this.acitProfCommDtl = acitProfCommDtl;
+		}
+		public List<AcitProfCommSumm> getAcitProfCommSumm() {
+			return acitProfCommSumm;
+		}
+		public void setAcitProfCommSumm(List<AcitProfCommSumm> acitProfCommSumm) {
+			this.acitProfCommSumm = acitProfCommSumm;
 		}
 		public PaginationResponse getPaginationResponse() {
 			return paginationResponse;
@@ -29,10 +37,10 @@ public class RetrieveAcitProfCommDtlResponse {
 		public void setSortResponse(SortResponse sortResponse) {
 			this.sortResponse = sortResponse;
 		}
-		
 		@Override
 		public String toString() {
-			return "RetrieveAcitProfCommDtlResponse [acitProfCommDtl=" + acitProfCommDtl + ", paginationResponse="
-					+ paginationResponse + ", sortResponse=" + sortResponse + "]";
+			return "RetrieveAcitProfCommDtlResponse [acitProfCommDtl=" + acitProfCommDtl + ", acitProfCommSumm="
+					+ acitProfCommSumm + ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse
+					+ "]";
 		}
 }

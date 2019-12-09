@@ -117,33 +117,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return saprResponse;
 	}
 
-
-//	@Override
-//	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
-//			throws SQLException {
-//		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
-//		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
-//		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
-//		rapcsrParams.put("cedingId", rapcsr.getCedingId());
-//		rapcsrParams.put("month", rapcsr.getMonth());
-//		rapcsrParams.put("year", rapcsr.getYear());
-//		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
-//		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
-//		return rapcsrResponse;
-//	}
-
-
-//	@Override
-//	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
-//			throws SQLException {
-//		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
-//		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
-//		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
-//		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
-//		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
-//		return rapcdrResponse;
-//	}
-
 	@Override
 	public RetrieveAcitCMDMListResponse retrieveAcitCMDMList(RetrieveAcitCMDMListRequest racitcmdmlr)
 			throws SQLException {
@@ -908,10 +881,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
 		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+		rapcdrResponse.setAcitProfCommSumm(acctITDao.retrievePCSummPerCeding(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
 	}
-
 
 	@Override
 	public RetrieveAcitPrqInwPolResponse retrieveAcitPrqInwPol(RetrieveAcitPrqInwPolRequest rapipp)
