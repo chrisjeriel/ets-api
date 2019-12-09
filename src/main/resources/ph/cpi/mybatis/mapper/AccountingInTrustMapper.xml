@@ -4495,17 +4495,44 @@
 	</select>
 	
 	<update id="validateTranAcctEntDate" parameterType="java.util.Map" statementType="CALLABLE">
-		<!-- BEGIN
-			<foreach collection="indiv" item="item"> -->
-				{CALL
-					#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
-				}
-			<!-- </foreach>
-		END; -->
+		{CALL
+			#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
+		}
 	</update>
 
 	<select id="retrievePCSummPerCeding" resultMap="acitProfCommSumm" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_pc_summ_ceding(#{profcommId,jdbcType=INTEGER}))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitClmHist" id="acitClmHistMap">
+		<result property="reqId"         column="REQ_ID"/>
+        <result property="itemNo"             column="ITEM_NO"/>
+        <result property="claimId"            column="CLAIM_ID"/>
+        <result property="claimNo"            column="CLAIM_NO"/>
+        <result property="histNo"             column="HIST_NO"/>
+        <result property="histCategory"       column="HIST_CATEGORY"/>
+        <result property="histCatDesc"        column="HIST_CAT_DESC"/>
+        <result property="histType"           column="HIST_TYPE"/>
+        <result property="histTypeDesc"       column="HIST_TYPE_DESC"/>
+        <result property="paymentFor"         column="PAYMENT_FOR"/>
+        <result property="insuredDesc"        column="INSURED_DESC"/>
+        <result property="exGratia"           column="EX_GRATIA"/>
+        <result property="currCd"             column="CURR_CD"/>
+        <result property="currRate"           column="CURR_RATE"/>
+        <result property="reserveAmt"         column="RESERVE_AMT"/>
+        <result property="approvedAmt"        column="APPROVED_AMT"/>
+        <result property="currAmt"            column="CURR_AMT"/>
+        <result property="localAmt"           column="LOCAL_AMT"/>
+        <result property="createUser"         column="CREATE_USER"/>
+        <result property="createDate"         column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+        <result property="updateUser"         column="UPDATE_USER"/>
+        <result property="updateDate"         column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcitClmHist" resultMap="acitClmHistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PRQ_TRANS_PKG.ret_acit_clm_hist(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
 </mapper>

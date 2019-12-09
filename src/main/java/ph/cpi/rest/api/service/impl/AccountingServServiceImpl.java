@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +74,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
@@ -135,6 +138,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -1403,5 +1407,38 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		return response;
 	}
+	
+	@Override
+    public UpdateAcseStatResponse updateAcseStat(UpdateAcseStatRequest uasr) throws SQLException {
+		UpdateAcseStatResponse response = new UpdateAcseStatResponse();
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("updateAcseStatList", uasr.getUpdateAcseStatList());
+        
+        List<String> res = new ArrayList<String>();
+        HashMap<String, Object> prm = new HashMap<String, Object>();
+        
+        for(int i=0; i < uasr.getUpdateAcseStatList().size();i++) {
+            prm.put("indiv", uasr.getUpdateAcseStatList().get(i));
+            res.add(acctServDao.validateTranAcctEntDate(prm));
+        }
+        
+        boolean stop = false;
+        for(String i : res) {
+            if(i != null) {
+                stop = true;
+                break;
+            }
+        }
+        
+        if(stop) {
+            response.setReturnCode(0);
+            response.setInvalidTranNos(res);
+        }else {
+            response.setReturnCode(acctServDao.updateAcseStat(params));
+            response.setReturnCode(-1);
+        }
+        
+        return response;
+    }
 	
 }
