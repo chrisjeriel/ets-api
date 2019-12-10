@@ -2385,7 +2385,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitMonthEndTrialBalResponse retrieveAcitMonthEndTrialBal(
 			RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
@@ -2398,7 +2397,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public PostAcitMonthEndTrialBalResponse postAcitMonthEndTrialBal(PostAcitMonthEndTrialBalRequest pametbr)
@@ -2465,7 +2463,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
 		RetrieveAcitMonthEndUnpostedMonthsResponse res = new RetrieveAcitMonthEndUnpostedMonthsResponse();
@@ -2473,7 +2470,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
@@ -2486,7 +2482,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException {
@@ -2533,7 +2528,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException {
 		RetrieveQSOADtlResponse res = new RetrieveQSOADtlResponse();
@@ -2548,7 +2542,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException {
@@ -2574,7 +2567,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(
 			RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException {
@@ -2585,7 +2577,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		logger.info(response.toString());
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
@@ -2599,7 +2590,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public UploadAcctEntryResponse uploadAcctEntry(UploadAcctEntryRequest uaer) throws SQLException {
@@ -2665,7 +2655,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
 			throws SQLException {
@@ -2698,7 +2687,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
 			throws SQLException {
@@ -2720,7 +2708,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setDcbCollection(acctITDao.retrieveAcitDcbCollection(params));
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr)
@@ -2782,7 +2769,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr)
@@ -2846,7 +2832,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		logger.info("RetrieveAcitClmHistResponse : " + rachResponse.toString());
 		return rachResponse;
 	}
-
 
 	@Override
 	public SaveAcitProfCommTranResponse saveAcitProfCommTran(SaveAcitProfCommTranRequest saptr) throws SQLException {

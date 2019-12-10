@@ -54,6 +54,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
@@ -118,6 +119,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
@@ -619,5 +621,12 @@ public class AccountingServiceController {
         logger.info("UpdateAcseStatRequest : " + uasr.toString());
         return acctServService.updateAcseStat(uasr);
     }
+    
+    @PostMapping(path="saveAcitMonthEndTrialBal")
+	public @ResponseBody SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(@RequestBody SaveAcitMonthEndTrialBalRequest sametbr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcitMonthEndTrialBal");
+		logger.info("SaveAcitMonthEndTrialBalRequest : " + sametbr.toString());
+		return acctServService.saveAcitMonthEndTrialBal(sametbr);
+	}
     
 }

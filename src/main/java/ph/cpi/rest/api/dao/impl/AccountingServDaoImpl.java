@@ -472,4 +472,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		sqlSession.update("validateTranAcctEntDateAcse",params);
 		return (String) params.get("validateTranAcctEntDate");
 	}
+	
+	@Override
+	public String validateTbDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTbDate", params);
+		
+		return (String) params.get("validate");
+	}
 }

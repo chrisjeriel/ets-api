@@ -101,4 +101,5 @@ public interface AccountingServDao {
 	public Integer updateAcseStat(final HashMap<String, Object> params ) throws SQLException;
 	public String validateTranAcctEntDate(final HashMap<String, Object> params) throws SQLException;
 	
+	public String validateTbDate(final HashMap<String, Object> params) throws SQLException;
 }

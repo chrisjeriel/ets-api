@@ -1834,5 +1834,11 @@
 			#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
 		}
 	</update>
+	
+	<update id="validateTbDate" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_tb_date(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
         
 </mapper>

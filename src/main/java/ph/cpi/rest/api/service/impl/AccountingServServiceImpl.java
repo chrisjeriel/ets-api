@@ -53,6 +53,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.SaveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
@@ -117,6 +118,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.SaveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
@@ -1441,4 +1443,70 @@ public class AccountingServServiceImpl implements AccountingServService{
         return response;
     }
 	
+	@Override
+	public SaveAcitMonthEndTrialBalResponse saveAcitMonthEndTrialBal(SaveAcitMonthEndTrialBalRequest sametbr)
+			throws SQLException {
+		SaveAcitMonthEndTrialBalResponse res = new SaveAcitMonthEndTrialBalResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		String validate = "";
+		Boolean proceed = false;
+		
+		params.put("eomDate", sametbr.getEomDate());
+		params.put("eomUser", sametbr.getEomUser());
+		params.put("includeMonth", sametbr.getIncludeMonth());
+		params.put("includeYear", sametbr.getIncludeYear());
+		params.put("aeTag", sametbr.getAeTag());
+		
+		try {
+			if("N".equals(sametbr.getForce())) {
+				validate = acctServDao.validateTbDate(params);
+				
+				switch (validate) {
+				case "PROCEED":
+					proceed = true;
+					break;
+				case "RERUN":
+					proceed = false;
+					res.setReturnCode(1);
+					break;
+				case "POSTED_MONTH":
+					proceed = false;
+					res.setReturnCode(2);
+					break;
+				case "TEMP_CLOSE_TB":
+					proceed = false;
+					res.setReturnCode(3);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			/*if(proceed) {
+				acctITDao.startTransaction();
+				
+				if("Y".equals(sametbr.getForce())) {
+					acctITDao.acitEomDeleteMonthlyTotalsBackup();
+					acctITDao.acitEomInsertMonthlyTotalsBackup(params);
+					acctITDao.acitEomDeleteMonthlyTotals(params);
+				}
+				
+				acctITDao.acitEomCloseTrans(params);
+				acctITDao.acitEomDeleteTrans(params);
+				acctITDao.acitEomInsertMonthlyTotals(params);
+				
+				acctITDao.commit();
+				res.setReturnCode(-1);
+			}*/
+		} catch (Exception e) {
+			e.printStackTrace();
+//			acctITDao.rollback();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Trial Balance Processing failed."));
+		}
+		
+		return res;
+	}
 }
