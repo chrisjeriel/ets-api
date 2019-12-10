@@ -47,6 +47,8 @@ public class SaveAcitJVEntryRequest {
 	private String updateUserJv;
 	private String updateDateJv;
 	
+	private Integer profCommId;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -287,6 +289,12 @@ public class SaveAcitJVEntryRequest {
 	public void setUpdateDateJv(String updateDateJv) {
 		this.updateDateJv = updateDateJv;
 	}
+	public Integer getProfCommId() {
+		return profCommId;
+	}
+	public void setProfCommId(Integer profCommId) {
+		this.profCommId = profCommId;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcitJVEntryRequest [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
@@ -301,6 +309,6 @@ public class SaveAcitJVEntryRequest {
 				+ ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate
 				+ ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUserJv=" + createUserJv
 				+ ", createDateJv=" + createDateJv + ", updateUserJv=" + updateUserJv + ", updateDateJv=" + updateDateJv
-				+ "]";
+				+ ", profCommId=" + profCommId + "]";
 	}
 }

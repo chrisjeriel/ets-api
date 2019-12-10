@@ -908,4 +908,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitClmHistRequest : " + rachr.toString());
 		return acctInTrustService.retrieveAcitClmHist(rachr);
 	}
+	
+	@PostMapping(path="saveAcitProfCommTran")
+	public @ResponseBody SaveAcitProfCommTranResponse saveAcitProfcommTran(@RequestBody SaveAcitProfCommTranRequest saptr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitProfCommTran");
+		logger.info("SaveAcitProfcommTranRequest : " + saptr.toString());
+		return acctInTrustService.saveAcitProfCommTran(saptr);
+	}
 }
