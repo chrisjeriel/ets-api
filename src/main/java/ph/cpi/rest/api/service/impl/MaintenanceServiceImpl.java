@@ -754,6 +754,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("sort", rmil.getSortRequest());
 		params.put("insuredName", rmil.getInsuredName());
 		params.put("address", rmil.getAddress());
+		params.put("insuredAbbr", rmil.getInsuredAbbr());
 		rmilResponse.setList(maintenanceDao.retMtnInsuredLov(params));
 		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
 		

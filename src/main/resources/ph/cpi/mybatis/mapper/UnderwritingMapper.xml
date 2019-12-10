@@ -1189,8 +1189,8 @@
 			</foreach>
 			<foreach collection="savePolInward" item="polInward">
 				POL_INWARD_PKG.save_inw(#{policyId},#{polInward.instNo},
-						CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						TRUNC(CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)),
+						TRUNC(CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)),
 						#{polInward.premAmt}, #{polInward.commRt}, #{polInward.commAmt}, 
 						#{polInward.otherChargesInw}, #{polInward.amtDue},#{polInward.createUser},
 						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
