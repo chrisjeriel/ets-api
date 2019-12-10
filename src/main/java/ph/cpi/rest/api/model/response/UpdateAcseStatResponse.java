@@ -6,8 +6,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class UpdateAcitStatusResponse {
-	
+public class UpdateAcseStatResponse {
 	private List<Error> errorList;
 	private List<Message> messageList;
 	private List<String> invalidTranNos;
@@ -45,7 +44,7 @@ public class UpdateAcitStatusResponse {
 	}
 	@Override
 	public String toString() {
-		return "UpdateAcitStatusResponse [errorList=" + errorList + ", messageList=" + messageList + ", invalidTranNos="
+		return "UpdateAcseStatResponse [errorList=" + errorList + ", messageList=" + messageList + ", invalidTranNos="
 				+ invalidTranNos + ", returnCode=" + returnCode + "]";
 	}
 }

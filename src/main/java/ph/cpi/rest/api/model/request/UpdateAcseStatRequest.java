@@ -2,33 +2,29 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-public class UpdateAcitStatusRequest {
+public class UpdateAcseStatRequest {
+	private List<AcseStat> updateAcseStatList;
 
-	private List<updateAcitStatusList> updateAcitStatusList;
-
-	public List<updateAcitStatusList> getUpdateAcitStatusList() {
-		return updateAcitStatusList;
+	public List<AcseStat> getUpdateAcseStatList() {
+		return updateAcseStatList;
 	}
 
-	public void setUpdateAcitStatusList(List<updateAcitStatusList> updateAcitStatusList) {
-		this.updateAcitStatusList = updateAcitStatusList;
+	public void setUpdateAcseStatList(List<AcseStat> updateAcseStatList) {
+		this.updateAcseStatList = updateAcseStatList;
 	}
 
 	@Override
 	public String toString() {
-		return "UpdateAcitStatusRequest [updateAcitStatusList=" + updateAcitStatusList + "]";
+		return "UpdateAcseStatRequest [updateAcseStatList=" + updateAcseStatList + "]";
 	}
 }
 
-
-class updateAcitStatusList{
-	
+class AcseStat {
 	private String tranId;
 	private String status;
 	private String updateUser;
-    private String tranClass;
-    private String cancelReason;
-    
+	private String tranClass;
+	private String cancelReason;
 	public String getTranId() {
 		return tranId;
 	}
@@ -61,7 +57,7 @@ class updateAcitStatusList{
 	}
 	@Override
 	public String toString() {
-		return "updateAcitStatusList [tranId=" + tranId + ", status=" + status + ", updateUser=" + updateUser
-				+ ", tranClass=" + tranClass + ", cancelReason=" + cancelReason + "]";
+		return "AcseStat [tranId=" + tranId + ", status=" + status + ", updateUser=" + updateUser + ", tranClass="
+				+ tranClass + ", cancelReason=" + cancelReason + "]";
 	}
 }

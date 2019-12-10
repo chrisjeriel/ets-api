@@ -3,24 +3,22 @@ package ph.cpi.rest.api.model.request;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
-public class RetrieveMtnTransactionsRequest {
-
-	private String moduleId;
-	private Integer tranCd;
+public class RetrieveAcitClmHistRequest {
+	private String reqId;
+	private String itemNo;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
-	
-	public String getModuleId() {
-		return moduleId;
+	public String getReqId() {
+		return reqId;
 	}
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
+	public void setReqId(String reqId) {
+		this.reqId = reqId;
 	}
-	public Integer getTranCd() {
-		return tranCd;
+	public String getItemNo() {
+		return itemNo;
 	}
-	public void setTranCd(Integer tranCd) {
-		this.tranCd = tranCd;
+	public void setItemNo(String itemNo) {
+		this.itemNo = itemNo;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -36,8 +34,7 @@ public class RetrieveMtnTransactionsRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnTransactionsRequest [moduleId=" + moduleId + ", tranCd=" + tranCd + ", paginationRequest="
+		return "RetrieveAcitClmHistRequest [reqId=" + reqId + ", itemNo=" + itemNo + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
-	
 }

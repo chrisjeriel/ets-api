@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
+import ph.cpi.rest.api.model.accountingservice.AcseEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -416,8 +417,59 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer printInvoiceBatch(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("printInvoiceBatch", params);
 		return res;
+	}
+
+	@Override
+	public AcseEditedAcctEntries retrieveAcseEditedAcctEntries(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("retEditAcctEntriesServ", params);
+	}
+
+	@Override
+	public List<AcseEditedAcctEntries> retrieveEditedAcctEntInq(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retEditAcctEntriesInqServ", params);
+	}
+
+	@Override
+	public List<AcseAcctEntries> retrieveAcctEntInqDtl(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcseAcctEntriesInqDtl", params);
+	}
+
+	@Override
+	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("editAcctEntServ",params);
+	}
+
+	@Override
+	public Integer restoreAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("restoreAcctEntServ",params);
+	}
+	
+	@Override
+	public HashMap<String, Object> saveAcseCloseOpenDcb(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseCloseOpenDcb",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveDcbCollection(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseDcbCollection",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+    public Integer updateAcseStat(HashMap<String, Object> params) throws SQLException {
+        Integer errorCode = sqlSession.update("updateAcseStat", params);
+        return errorCode;
+    }
+	
+	@Override
+	public String validateTranAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validateTranAcctEntDate", "");
+		sqlSession.update("validateTranAcctEntDateAcse",params);
+		return (String) params.get("validateTranAcctEntDate");
 	}
 }

@@ -6,26 +6,17 @@ import java.util.List;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 
-public class UpdateAcitStatusResponse {
-	
-	private List<Error> errorList;
-	private List<Message> messageList;
-	private List<String> invalidTranNos;
+public class UploadFileToDBResponse {
+	private List<Error> errorList = new ArrayList<Error>();
+	private List<Message> messageList = new ArrayList<Message>();
 	private Integer returnCode;
-	
 	public List<Error> getErrorList() {
-		if (errorList == null) {
-			errorList = new ArrayList<Error>();
-		}
 		return errorList;
 	}
 	public void setErrorList(List<Error> errorList) {
 		this.errorList = errorList;
 	}
 	public List<Message> getMessageList() {
-		if (messageList == null) {
-			messageList = new ArrayList<Message>();
-		}
 		return messageList;
 	}
 	public void setMessageList(List<Message> messageList) {
@@ -37,15 +28,10 @@ public class UpdateAcitStatusResponse {
 	public void setReturnCode(Integer returnCode) {
 		this.returnCode = returnCode;
 	}
-	public List<String> getInvalidTranNos() {
-		return invalidTranNos;
-	}
-	public void setInvalidTranNos(List<String> invalidTranNos) {
-		this.invalidTranNos = invalidTranNos;
-	}
 	@Override
 	public String toString() {
-		return "UpdateAcitStatusResponse [errorList=" + errorList + ", messageList=" + messageList + ", invalidTranNos="
-				+ invalidTranNos + ", returnCode=" + returnCode + "]";
+		return "UploadFileToDBResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
+				+ returnCode + "]";
 	}
+	
 }

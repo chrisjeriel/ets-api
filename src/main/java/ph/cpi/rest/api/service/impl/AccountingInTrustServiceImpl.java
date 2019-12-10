@@ -2,9 +2,12 @@ package ph.cpi.rest.api.service.impl;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
+import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -112,33 +116,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return saprResponse;
 	}
-
-
-//	@Override
-//	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
-//			throws SQLException {
-//		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
-//		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
-//		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
-//		rapcsrParams.put("cedingId", rapcsr.getCedingId());
-//		rapcsrParams.put("month", rapcsr.getMonth());
-//		rapcsrParams.put("year", rapcsr.getYear());
-//		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
-//		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
-//		return rapcsrResponse;
-//	}
-
-
-//	@Override
-//	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
-//			throws SQLException {
-//		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
-//		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
-//		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
-//		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
-//		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
-//		return rapcdrResponse;
-//	}
 
 	@Override
 	public RetrieveAcitCMDMListResponse retrieveAcitCMDMList(RetrieveAcitCMDMListRequest racitcmdmlr)
@@ -904,10 +881,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
 		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+		rapcdrResponse.setAcitProfCommSumm(acctITDao.retrievePCSummPerCeding(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
 	}
-
 
 	@Override
 	public RetrieveAcitPrqInwPolResponse retrieveAcitPrqInwPol(RetrieveAcitPrqInwPolRequest rapipp)
@@ -1587,7 +1564,30 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		UpdateAcitStatusResponse response = new UpdateAcitStatusResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("updateAcitStatusList", uasr.getUpdateAcitStatusList());
-		response.setReturnCode(acctITDao.updateAcitStatus(params));
+		
+		List<String> res = new ArrayList<String>();
+		HashMap<String, Object> prm = new HashMap<String, Object>();
+		
+		for(int i=0; i < uasr.getUpdateAcitStatusList().size();i++) {
+			prm.put("indiv", uasr.getUpdateAcitStatusList().get(i));
+			res.add(acctITDao.validateTranAcctEntDate(prm));
+		}
+		
+		boolean stop = false;
+		for(String i : res) {
+			if(i != null) {
+				stop = true;
+				break;
+			}
+		}
+		
+		if(stop) {
+			response.setReturnCode(0);
+			response.setInvalidTranNos(res);
+		}else {
+			response.setReturnCode(acctITDao.updateAcitStatus(params));
+			response.setReturnCode(-1);
+		}
 		
 		return response;
 	}
@@ -2579,6 +2579,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		UploadAcctEntryResponse res = new UploadAcctEntryResponse();
 		
 		try {
+			acctITDao.startTransaction();
+			
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("acctType", uaer.getAeruList().get(0).getAcctType());
 			params.put("tranClass", uaer.getAeruList().get(0).getTranClass());
@@ -2588,10 +2590,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			acctITDao.uploadAcctEntry(uaer.getAeruList());
 			
 			acctITDao.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			acctITDao.rollback();
-			res.getErrorList().add(new Error("Exception", e.getMessage()));
+			res.getErrorList().add(new Error("Exception", e.getCause().toString().substring(32, e.getCause().toString().indexOf("\n"))));
 		}
 		
 		
@@ -2804,6 +2807,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("dcbNo",request.getDcbNo());
 		response.setBankDetails(acctITDao.retrieveAcitBankDetails(params));
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest rachp) throws SQLException {
+		RetrieveAcitClmHistResponse rachResponse =  new RetrieveAcitClmHistResponse();
+		HashMap<String, Object> rachParams = new HashMap<String, Object>();
+		rachParams.put("reqId", rachp.getReqId());
+		rachParams.put("itemNo", rachp.getItemNo());
+		rachResponse.setAcitClmHistList(acctITDao.retrieveAcitClmHist(rachParams));
+		logger.info("RetrieveAcitClmHistResponse : " + rachResponse.toString());
+		return rachResponse;
 	}
 	
 }

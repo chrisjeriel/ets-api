@@ -17,12 +17,16 @@ import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
+import ph.cpi.rest.api.model.request.EditServiceAccountingEntriesRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
+import ph.cpi.rest.api.model.request.RestoreServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntBackupRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntInqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchInvoiceRequest;
@@ -37,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseDcbBankDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseDcbCollectionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseEditedAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -53,8 +58,10 @@ import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCloseOpenDcbRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseDcbCollectionRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
@@ -68,17 +75,22 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
+import ph.cpi.rest.api.model.response.EditServiceAccountingEntriesResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
+import ph.cpi.rest.api.model.response.RestoreServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntInqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchInvoiceResponse;
@@ -93,6 +105,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseDcbBankDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseDcbCollectionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseEditedAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -109,8 +122,10 @@ import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCloseOpenDcbResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseDcbCollectionResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
@@ -124,6 +139,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -547,4 +563,61 @@ public class AccountingServiceController {
 		logger.info("PrintInvoiceBatchRequest : " + request.toString());
 		return acctServService.printInvoiceBatch(request);
 	}
+	
+	@GetMapping(path="retrieveAcseEditedAcctEntries")
+	public @ResponseBody RetrieveAcseEditedAcctEntriesResponse retrieveAcseEditedAcctEntries(RetrieveAcseEditedAcctEntriesRequest raeaer) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseEditedAcctEntries");
+		logger.info("RetrieveAcseEditedAcctEntriesRequest : " + raeaer.toString());
+		return acctServService.retrieveAcseEditedAcctEntries(raeaer);
+	}
+	
+	@PostMapping(path="editAcctEntServ")
+	public @ResponseBody EditServiceAccountingEntriesResponse editAcctEntServ(@RequestBody EditServiceAccountingEntriesRequest esaer) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/editAcctEntServ");
+		logger.info("EditServiceAccountingEntriesRequest : " + esaer.toString());
+		return acctServService.editAcctEnt(esaer);
+	}
+	
+	@PostMapping(path="restoreAcctEntServ")
+	public @ResponseBody RestoreServiceAccountingEntriesResponse restoreAcctEntServ(@RequestBody RestoreServiceAccountingEntriesRequest rsaer) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/restoreAcctEntServ");
+		logger.info("RestoreInTrustAccountingEntriesRequest : " + rsaer.toString());
+		return acctServService.restoreAcctEnt(rsaer);
+	}
+	
+	@GetMapping(path="retrieveAcctEntInqServ")
+	public @ResponseBody RetrieveAcseAcctEntInqResponse retrieveAcctEntInqServ(RetrieveAcseAcctEntInqRequest raaeir) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcctEntInqServ");
+		logger.info("RetrieveAcseAcctEntInqRequest : " + raaeir.toString());
+		return acctServService.retrieveAcseAcctEntInq(raaeir)	;
+	}
+	
+	@GetMapping(path="retrieveAcctEntBackupServ")
+	public @ResponseBody RetrieveAcseAcctEntBackupResponse retrieveAcctEntBackupServ(RetrieveAcseAcctEntBackupRequest raaebr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcctEntBackupServ");
+		logger.info("RetrieveAcseAcctEntBackupRequest : " + raaebr.toString());
+		return acctServService.retrieveAcseAcctEntBackup(raaebr);
+	}
+	
+	@PostMapping(path="saveAcseCloseOpenDcb")
+	public @ResponseBody SaveAcseCloseOpenDcbResponse saveAcseCloseOpenDcb(@RequestBody SaveAcseCloseOpenDcbRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseCloseOpenDcb");
+		logger.info("SaveAcseCloseOpenDcbRequest : " + request.toString());
+		return acctServService.saveAcseCloseOpenDcb(request);
+	}
+	
+	@PostMapping(path="saveDcbCollection")
+	public @ResponseBody SaveAcseDcbCollectionResponse saveDcbCollection(@RequestBody SaveAcseDcbCollectionRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveDcbCollection");
+		logger.info("SaveAcseDcbCollectionRequest : " + request.toString());
+		return acctServService.saveDcbCollection(request);
+	}
+	
+    @PostMapping(path="updateAcseStat")
+    public @ResponseBody UpdateAcseStatResponse updateAcseStatus(@RequestBody UpdateAcseStatRequest uasr) throws SQLException {
+        logger.info("GET: /api/acct-serv-service/UpdateAcseStatRequest");
+        logger.info("UpdateAcseStatRequest : " + uasr.toString());
+        return acctServService.updateAcseStat(uasr);
+    }
+    
 }

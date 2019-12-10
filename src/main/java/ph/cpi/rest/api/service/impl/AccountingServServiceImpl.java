@@ -1,7 +1,9 @@
 package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +16,16 @@ import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
+import ph.cpi.rest.api.model.request.EditServiceAccountingEntriesRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
+import ph.cpi.rest.api.model.request.RestoreServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntBackupRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntInqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchInvoiceRequest;
@@ -34,6 +40,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseCvRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseDcbBankDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseDcbCollectionRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseEditedAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseInvoiceItemsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseJVEntryRequest;
@@ -50,8 +57,10 @@ import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudgetExpenseRequest;
+import ph.cpi.rest.api.model.request.SaveAcseCloseOpenDcbRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.SaveAcseCvRequest;
+import ph.cpi.rest.api.model.request.SaveAcseDcbCollectionRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceItemRequest;
 import ph.cpi.rest.api.model.request.SaveAcseInvoiceRequest;
@@ -65,17 +74,22 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
+import ph.cpi.rest.api.model.response.EditServiceAccountingEntriesResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
+import ph.cpi.rest.api.model.response.RestoreServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntInqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchInvoiceResponse;
@@ -90,6 +104,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseCvResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseDcbBankDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseDcbCollectionResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseEditedAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseInvoiceItemsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseJVEntryResponse;
@@ -106,8 +121,10 @@ import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudgetExpenseResponse;
+import ph.cpi.rest.api.model.response.SaveAcseCloseOpenDcbResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.SaveAcseCvResponse;
+import ph.cpi.rest.api.model.response.SaveAcseDcbCollectionResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceItemResponse;
 import ph.cpi.rest.api.model.response.SaveAcseInvoiceResponse;
@@ -121,6 +138,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -1191,7 +1209,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public GenerateBatchOrNoResponse generateBatchOrNo(
 			GenerateBatchOrNoRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		GenerateBatchOrNoResponse response = new GenerateBatchOrNoResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("orNoList", request.getOrNoList());
@@ -1268,7 +1285,6 @@ public class AccountingServServiceImpl implements AccountingServService{
 	@Override
 	public PrintInvoiceBatchResponse printInvoiceBatch(
 			PrintInvoiceBatchRequest request) throws SQLException {
-		// TODO Auto-generated method stub
 		PrintInvoiceBatchResponse response = new PrintInvoiceBatchResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("printInvoiceList", request.getPrintInvoiceList());
@@ -1286,5 +1302,143 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		return response;
 	}
+
+	@Override
+	public RetrieveAcseEditedAcctEntriesResponse retrieveAcseEditedAcctEntries(
+			RetrieveAcseEditedAcctEntriesRequest raeaer) throws SQLException {
+		RetrieveAcseEditedAcctEntriesResponse response = new RetrieveAcseEditedAcctEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raeaer.getTranId());
+		response.setEditedAcctEntries(acctServDao.retrieveAcseEditedAcctEntries(params));
+		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public EditServiceAccountingEntriesResponse editAcctEnt(EditServiceAccountingEntriesRequest esaer)
+			throws SQLException {
+		EditServiceAccountingEntriesResponse response = new EditServiceAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", esaer.getTranId());
+		params.put("histNo", esaer.getHistNo());
+		params.put("reason", esaer.getReason());
+		params.put("createUser", esaer.getCreateUser());
+		params.put("updateUser", esaer.getUpdateUser());
+		params.put("saveList", esaer.getSaveList());
+		params.put("delList", esaer.getDelList());
+		try{
+			response.setReturnCode(acctServDao.editAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
+	
+	@Override
+	public SaveAcseCloseOpenDcbResponse saveAcseCloseOpenDcb(SaveAcseCloseOpenDcbRequest request) throws SQLException {
+		SaveAcseCloseOpenDcbResponse response = new SaveAcseCloseOpenDcbResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveDcb", request.getSaveDcb());
+			HashMap<String,Object> res = acctServDao.saveAcseCloseOpenDcb(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public RestoreServiceAccountingEntriesResponse restoreAcctEnt(RestoreServiceAccountingEntriesRequest rsaer)
+			throws SQLException {
+		RestoreServiceAccountingEntriesResponse response = new RestoreServiceAccountingEntriesResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rsaer.getTranId());
+		params.put("histNo", rsaer.getHistNo());
+		try{
+			response.setReturnCode(acctServDao.restoreAcctEnt(params));
+		}catch(SQLException e){
+			e.printStackTrace();
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException", "Error editing accounting entries."));
+		}
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseAcctEntInqResponse retrieveAcseAcctEntInq(RetrieveAcseAcctEntInqRequest raaeir)
+			throws SQLException {
+		RetrieveAcseAcctEntInqResponse response = new RetrieveAcseAcctEntInqResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranClass", raaeir.getTranClass());
+		params.put("tranDateFrom", raaeir.getTranDateFrom());
+		params.put("tranDateTo", raaeir.getTranDateTo());
+		response.setEdtAcctEntList(acctServDao.retrieveEditedAcctEntInq(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseAcctEntBackupResponse retrieveAcseAcctEntBackup(RetrieveAcseAcctEntBackupRequest raaebr)
+			throws SQLException {
+		RetrieveAcseAcctEntBackupResponse response = new RetrieveAcseAcctEntBackupResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", raaebr.getTranId());
+		params.put("histNo", raaebr.getHistNo());
+		response.setBackupAcctEnt(acctServDao.retrieveAcctEntInqDtl(params));
+		return response;
+	}
+	
+	@Override
+	public SaveAcseDcbCollectionResponse saveDcbCollection(SaveAcseDcbCollectionRequest request) throws SQLException {
+		SaveAcseDcbCollectionResponse response = new SaveAcseDcbCollectionResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("updateDcb", request.getUpdateDcb());
+			HashMap<String,Object> res = acctServDao.saveDcbCollection(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to batch printing. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+	
+	@Override
+    public UpdateAcseStatResponse updateAcseStat(UpdateAcseStatRequest uasr) throws SQLException {
+		UpdateAcseStatResponse response = new UpdateAcseStatResponse();
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("updateAcseStatList", uasr.getUpdateAcseStatList());
+        
+        List<String> res = new ArrayList<String>();
+        HashMap<String, Object> prm = new HashMap<String, Object>();
+        
+        for(int i=0; i < uasr.getUpdateAcseStatList().size();i++) {
+            prm.put("indiv", uasr.getUpdateAcseStatList().get(i));
+            res.add(acctServDao.validateTranAcctEntDate(prm));
+        }
+        
+        boolean stop = false;
+        for(String i : res) {
+            if(i != null) {
+                stop = true;
+                break;
+            }
+        }
+        
+        if(stop) {
+            response.setReturnCode(0);
+            response.setInvalidTranNos(res);
+        }else {
+            response.setReturnCode(acctServDao.updateAcseStat(params));
+            response.setReturnCode(-1);
+        }
+        
+        return response;
+    }
 	
 }

@@ -424,9 +424,4 @@ public class UtilController {
 	            .body(resource);
 	}
 	
-	@PostMapping(path="uploadDataTable")
-	public @ResponseBody Response uploadDataTable() throws SQLException {
-		logger.info("POST: /api/util-service/uploadDataTable");
-		return utilService.uploadDataTable();
-	}
 }
