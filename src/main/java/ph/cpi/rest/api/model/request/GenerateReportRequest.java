@@ -19,6 +19,10 @@ public class GenerateReportRequest {
 	
 	private POLR044 polr044Params;
 	
+	private String printerName;
+	private String pageOrientation;
+	private String paperSize;
+	
 	
 	public String getPctValue() {
 		return pctValue;
@@ -99,12 +103,31 @@ public class GenerateReportRequest {
 	public void setPolr044Params(POLR044 polr044Params) {
 		this.polr044Params = polr044Params;
 	}
+	public String getPrinterName() {
+		return printerName;
+	}
+	public void setPrinterName(String printerName) {
+		this.printerName = printerName;
+	}
+	public String getPageOrientation() {
+		return pageOrientation;
+	}
+	public void setPageOrientation(String pageOrientation) {
+		this.pageOrientation = pageOrientation;
+	}
+	public String getPaperSize() {
+		return paperSize;
+	}
+	public void setPaperSize(String paperSize) {
+		this.paperSize = paperSize;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
-				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + "]";
+				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + ", printerName=" + printerName
+				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + "]";
 	}
 	
 }
