@@ -55,6 +55,7 @@ class saveAcitJVEntryList{
 	private Integer jvTranTypeCd;
 	private String 	tranTypeName;
 	private String 	autoTag;
+	private String adjEntryTag;
 	private Integer refnoTranId;
 	private String 	refnoDate;
 	private String particulars;
@@ -72,6 +73,13 @@ class saveAcitJVEntryList{
 	private String createDateJv;
 	private String updateUserJv;
 	private String updateDateJv;
+	
+	public String getAdjEntryTag() {
+		return adjEntryTag;
+	}
+	public void setAdjEntryTag(String adjEntryTag) {
+		this.adjEntryTag = adjEntryTag;
+	}
 	
 	public Integer getTranType() {
 		return tranType;
@@ -317,19 +325,28 @@ class saveAcitJVEntryList{
 	
 	@Override
 	public String toString() {
-		return "saveAcitJVEntryList [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
-				+ ", tranTypeCd=" + tranTypeCd + ", tranType=" + tranType + ", tranYear=" + tranYear + ", tranClassNo="
-				+ tranClassNo + ", tranStat=" + tranStat + ", closeDate=" + closeDate + ", deleteDate=" + deleteDate
-				+ ", postDate=" + postDate + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", tranIdJv=" + tranIdJv + ", jvYear="
-				+ jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate + ", jvStatus=" + jvStatus + ", jvTranTypeCd="
-				+ jvTranTypeCd + ", tranTypeName=" + tranTypeName + ", autoTag=" + autoTag + ", refnoTranId="
-				+ refnoTranId + ", refnoDate=" + refnoDate + ", particulars=" + particulars + ", currCd=" + currCd
-				+ ", currRate=" + currRate + ", jvAmt=" + jvAmt + ", localAmt=" + localAmt + ", allocTag=" + allocTag
-				+ ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate
-				+ ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUserJv=" + createUserJv
-				+ ", createDateJv=" + createDateJv + ", updateUserJv=" + updateUserJv + ", updateDateJv=" + updateDateJv
-				+ "]";
+		return "saveAcitJVEntryList [tranId=" + tranId + ", tranDate="
+				+ tranDate + ", tranClass=" + tranClass + ", tranTypeCd="
+				+ tranTypeCd + ", tranType=" + tranType + ", tranYear="
+				+ tranYear + ", tranClassNo=" + tranClassNo + ", tranStat="
+				+ tranStat + ", closeDate=" + closeDate + ", deleteDate="
+				+ deleteDate + ", postDate=" + postDate + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", tranIdJv="
+				+ tranIdJv + ", jvYear=" + jvYear + ", jvNo=" + jvNo
+				+ ", jvDate=" + jvDate + ", jvStatus=" + jvStatus
+				+ ", jvTranTypeCd=" + jvTranTypeCd + ", tranTypeName="
+				+ tranTypeName + ", autoTag=" + autoTag + ", adjEntryTag="
+				+ adjEntryTag + ", refnoTranId=" + refnoTranId + ", refnoDate="
+				+ refnoDate + ", particulars=" + particulars + ", currCd="
+				+ currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt
+				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag
+				+ ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy
+				+ ", preparedDate=" + preparedDate + ", approvedBy="
+				+ approvedBy + ", approvedDate=" + approvedDate
+				+ ", createUserJv=" + createUserJv + ", createDateJv="
+				+ createDateJv + ", updateUserJv=" + updateUserJv
+				+ ", updateDateJv=" + updateDateJv + "]";
 	}
 	
 }

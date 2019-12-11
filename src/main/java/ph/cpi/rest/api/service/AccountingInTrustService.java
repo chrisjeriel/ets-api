@@ -135,4 +135,5 @@ public interface AccountingInTrustService {
 	public SaveAcitCloseOpenDcbResponse SaveAcitCloseOpenDcb(SaveAcitCloseOpenDcbRequest request) throws SQLException;
 	public RetrieveAcitDcbCollectionResponse retrieveAcitDcbCollection(RetrieveAcitDcbCollectionRequest request) throws SQLException;
 	public RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest request) throws SQLException;
+	public RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest raptp ) throws SQLException;
 }

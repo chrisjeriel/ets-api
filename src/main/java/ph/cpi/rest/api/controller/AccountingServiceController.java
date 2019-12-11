@@ -75,6 +75,7 @@ import ph.cpi.rest.api.model.request.SaveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.SaveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseCvStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcsePaytReqStatRequest;
+import ph.cpi.rest.api.model.request.UpdateAcseStatRequest;
 import ph.cpi.rest.api.model.request.UpdateAcseStatusRequest;
 import ph.cpi.rest.api.model.response.ApproveJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
@@ -138,6 +139,7 @@ import ph.cpi.rest.api.model.response.SaveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.SaveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseCvStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcsePaytReqStatResponse;
+import ph.cpi.rest.api.model.response.UpdateAcseStatResponse;
 import ph.cpi.rest.api.model.response.UpdateAcseStatusResponse;
 import ph.cpi.rest.api.service.AccountingServService;
 
@@ -610,4 +612,12 @@ public class AccountingServiceController {
 		logger.info("SaveAcseDcbCollectionRequest : " + request.toString());
 		return acctServService.saveDcbCollection(request);
 	}
+	
+    @PostMapping(path="updateAcseStat")
+    public @ResponseBody UpdateAcseStatResponse updateAcseStatus(@RequestBody UpdateAcseStatRequest uasr) throws SQLException {
+        logger.info("GET: /api/acct-serv-service/UpdateAcseStatRequest");
+        logger.info("UpdateAcseStatRequest : " + uasr.toString());
+        return acctServService.updateAcseStat(uasr);
+    }
+    
 }

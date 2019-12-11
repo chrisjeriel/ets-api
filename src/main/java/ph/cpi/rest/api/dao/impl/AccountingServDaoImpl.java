@@ -459,4 +459,17 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+    public Integer updateAcseStat(HashMap<String, Object> params) throws SQLException {
+        Integer errorCode = sqlSession.update("updateAcseStat", params);
+        return errorCode;
+    }
+	
+	@Override
+	public String validateTranAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validateTranAcctEntDate", "");
+		sqlSession.update("validateTranAcctEntDateAcse",params);
+		return (String) params.get("validateTranAcctEntDate");
+	}
 }

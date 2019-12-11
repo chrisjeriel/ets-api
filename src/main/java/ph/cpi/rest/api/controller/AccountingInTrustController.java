@@ -55,20 +55,6 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitPaytReq(saprr);
 	}
 	
-//	@GetMapping(path="retrieveAcitProfCommSumm")
-//	public @ResponseBody RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr) throws SQLException {
-//		logger.info("GET: /api/acct-in-trust-service/retrieveAcitProfCommSumm");
-//		logger.info("RetrieveAcitProfCommSummRequest : " + rapcsr.toString());
-//		return acctInTrustService.retrieveAcitProfCommSumm(rapcsr);
-//	}
-	
-//	@GetMapping(path="retrieveAcitProfCommDtl")
-//	public @ResponseBody RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr) throws SQLException {
-//		logger.info("GET: /api/acct-in-trust-service/retrieveAcitProfCommDtl");
-//		logger.info("RetrieveAcitProfCommDtlRequest : " + rapcdr.toString());
-//		return acctInTrustService.retrieveAcitProfCommDtl(rapcdr);
-//	}
-	
 	@GetMapping(path="retrieveAcitInvestmentsList")
 	public @ResponseBody RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentList(RetrieveAcitInvestmentsListRequest railr) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitInvestmentsList");
@@ -565,8 +551,6 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/UpdateAcitStatusRequest");
 		logger.info("UpdateAcitStatusRequest : " + uasr.toString());
 		return acctInTrustService.updateAcitStatus(uasr);
-		
-	
 	}
 	
 	@PostMapping(path="saveAcctPrqServFee")
@@ -916,5 +900,12 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitBankDetails");
 		logger.info("RetrieveAcitDcbBankDetailsRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitBankDetails(raoqp);
+	}
+	
+	@GetMapping(path="retrieveAcitClmHist")
+	public @ResponseBody RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest rachr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitClmHist");
+		logger.info("RetrieveAcitClmHistRequest : " + rachr.toString());
+		return acctInTrustService.retrieveAcitClmHist(rachr);
 	}
 }

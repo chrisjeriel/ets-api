@@ -183,6 +183,7 @@
 		<result property="currCd" 						column="CURR_CD"/>
 		<result property="profitLossComm" 				column="PROFIT_LOSS_COMM"/>
 		<result property="profitLossTotal" 				column="PROFIT_LOSS_TOTAL"/>
+		<result property="carryDesc" 					column="CARRY_DESC"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitInvestments" id="acitInvestmentsList">
@@ -797,7 +798,7 @@
 				</foreach>
 				
 				<!-- IF TRAN TYPE IS LOSS RESERVE DEPOSIT -->
-				IF #{tranTypeCd} <![CDATA[ = ]]> 6 OR #{tranTypeCd} <![CDATA[ = ]]> 7 THEN
+				IF #{tranTypeCd} <![CDATA[ = ]]> 6 OR #{tranTypeCd} <![CDATA[ = ]]> 7 OR #{tranTypeCd} <![CDATA[ = ]]> 4 THEN
 					
 					<!-- Save to ACIT_AR_TRANSUMM -->
 					ACIT_AR_TRANSUMM_PKG.save_acit_transumm(v_tran_id,
@@ -847,6 +848,24 @@
 															#{updateUser},
 															CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
 						);
+					ELSIF #{tranTypeCd} <![CDATA[ = ]]> 4 THEN
+						ACIT_AR_TRANSDTL_PKG.save_ar_transdtl(
+															v_tran_id,
+															1,
+															1,
+															NULL,
+															'Payment of Claim Cash Call by Company',
+															#{currCd},
+															#{currRate},
+															#{arAmt},
+															#{arAmt} * #{currRate},
+															#{refNo, jdbcType=VARCHAR},
+															'Payment of Claim Cash Call by Company',
+															#{createUser},
+															CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{updateUser},
+															CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
+						);
 					END IF;
 					<!-- Generate to Amount Details -->
 					<!-- GENERATE_DEFAULT_AMT('AR', #{tranTypeCd}, #{tranId}, #{updateUser}); -->
@@ -862,29 +881,51 @@
 	<update id="saveAcitJVEntryList" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_tran_id	ACIT_TRANSACTIONS.TRAN_ID%TYPE;
-			v_message   VARCHAR2(500);
 		BEGIN
 		  <foreach collection="saveAcitJVEntryList" item="save">
-			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv(v_tran_id,#{save.tranId, jdbcType=VARCHAR}, 
-												  CAST(to_timestamp(#{save.tranDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{save.tranType,jdbcType=INTEGER},
-												  #{save.tranYear,jdbcType=VARCHAR}, #{save.tranClassNo,jdbcType=VARCHAR}, 
-												  #{save.tranStat}, CAST(to_timestamp(#{save.closeDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv(v_tran_id,
+												#{save.tranId, jdbcType=VARCHAR}, 
+												CAST(to_timestamp(#{save.tranDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{save.tranType,jdbcType=INTEGER},
+												#{save.tranYear,jdbcType=VARCHAR},
+												#{save.tranClassNo,jdbcType=VARCHAR}, 
+												  #{save.tranStat}, 
+												  CAST(to_timestamp(#{save.closeDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{save.deleteDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{save.postDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  #{save.createUser}, CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{save.updateUser},   
+												  #{save.createUser}, 
+												  CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												   #{save.updateUser},   
 												  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  #{save.tranIdJv,jdbcType=VARCHAR}, #{save.jvYear,jdbcType=VARCHAR},
-												  #{save.jvNo,jdbcType=VARCHAR}, CAST(to_timestamp(#{save.jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{save.jvStatus}, #{save.jvTranTypeCd}, 
-												  #{save.autoTag}, #{save.refnoTranId,jdbcType=VARCHAR}, CAST(to_timestamp(#{save.refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-												  #{save.particulars}, #{save.currCd}, #{save.currRate}, #{save.jvAmt}, #{save.localAmt}, #{save.allocTag,jdbcType=VARCHAR}, #{save.allocTranId,jdbcType=VARCHAR}, 
+												  #{save.tranIdJv,jdbcType=VARCHAR}, 
+												  #{save.jvYear,jdbcType=VARCHAR},
+												  #{save.jvNo,jdbcType=VARCHAR}, 
+												  CAST(to_timestamp(#{save.jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{save.jvStatus}, 
+												  #{save.jvTranTypeCd}, 
+												  #{save.autoTag}, 
+												  #{save.adjEntryTag,jdbcType=VARCHAR}, 
+												  #{save.refnoTranId,jdbcType=VARCHAR}, 
+												  CAST(to_timestamp(#{save.refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{save.particulars}, 
+												  #{save.currCd}, 
+												  #{save.currRate}, 
+												  #{save.jvAmt}, 
+												  #{save.localAmt}, 
+												  #{save.allocTag,jdbcType=VARCHAR}, 
+												  #{save.allocTranId,jdbcType=VARCHAR}, 
 												  #{save.preparedBy,jdbcType=VARCHAR}, 
-												  CAST(to_timestamp(#{save.preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{save.approvedBy,jdbcType=VARCHAR}, 
+												  CAST(to_timestamp(#{save.preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{save.approvedBy,jdbcType=VARCHAR}, 
 												  CAST(to_timestamp(#{save.approvedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-												  #{save.createUserJv}, CAST(to_timestamp(#{save.createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{save.updateUserJv}, 
+												  #{save.createUserJv}, 
+												  CAST(to_timestamp(#{save.createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												  #{save.updateUserJv}, 
 												  CAST(to_timestamp(#{save.updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
-			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{save.jvTranTypeCd}, v_tran_id, v_message);
+			
 			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
+			   
 				<foreach collection="saveAcitAllocInvtIncome" item="save">
 					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
 														v_tran_id,
@@ -896,6 +937,7 @@
 														
 													  );
 				</foreach>
+
 			END IF; 
 			
 		</foreach>
@@ -1477,8 +1519,7 @@
 		<result property="tranClass" 					column="TRAN_CLASS"/>
 		<result property="tranNo" 						column="TRAN_NO"/>
 		<result property="tranDate" 					column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
-		<result property="payor" 						column="PAYOR"/>
-		<result property="arStatus" 					column="AR_STATUS"/>
+		<result property="arStatus" 					column="STATUS"/>
 		<result property="statusDesc" 					column="STATUS_DESC"/>
 		<result property="particulars" 					column="PARTICULARS"/>
 		<result property="bankCharge" 					column="BANK_CHARGE"/>
@@ -1499,7 +1540,7 @@
 					'', '', '',''))
 	</select>
 	
-		<select id="retrieveAcitAllInvestmentIncomeInvtId" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
+	<select id="retrieveAcitAllInvestmentIncomeInvtId" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_ALL_INVT_INC_PKG.ret_all_invt_inc_invtid(
 					#{tranId, jdbcType=VARCHAR},
 					'', '', '',''))
@@ -1556,6 +1597,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="refNo" 			column="REFERENCE_NO"/>
 	</resultMap>
 	
 	<select id="retrieveQSOAList" resultMap="qsoaMap">
@@ -4475,13 +4517,44 @@
 	</select>
 	
 	<update id="validateTranAcctEntDate" parameterType="java.util.Map" statementType="CALLABLE">
-		<!-- BEGIN
-			<foreach collection="indiv" item="item"> -->
-				{CALL
-					#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
-				}
-			<!-- </foreach>
-		END; -->
+		{CALL
+			#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
+		}
 	</update>
+
+	<select id="retrievePCSummPerCeding" resultMap="acitProfCommSumm" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_pc_summ_ceding(#{profcommId,jdbcType=INTEGER}))
+	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitClmHist" id="acitClmHistMap">
+		<result property="reqId"         column="REQ_ID"/>
+        <result property="itemNo"             column="ITEM_NO"/>
+        <result property="claimId"            column="CLAIM_ID"/>
+        <result property="claimNo"            column="CLAIM_NO"/>
+        <result property="histNo"             column="HIST_NO"/>
+        <result property="histCategory"       column="HIST_CATEGORY"/>
+        <result property="histCatDesc"        column="HIST_CAT_DESC"/>
+        <result property="histType"           column="HIST_TYPE"/>
+        <result property="histTypeDesc"       column="HIST_TYPE_DESC"/>
+        <result property="paymentFor"         column="PAYMENT_FOR"/>
+        <result property="insuredDesc"        column="INSURED_DESC"/>
+        <result property="exGratia"           column="EX_GRATIA"/>
+        <result property="currCd"             column="CURR_CD"/>
+        <result property="currRate"           column="CURR_RATE"/>
+        <result property="reserveAmt"         column="RESERVE_AMT"/>
+        <result property="approvedAmt"        column="APPROVED_AMT"/>
+        <result property="currAmt"            column="CURR_AMT"/>
+        <result property="localAmt"           column="LOCAL_AMT"/>
+        <result property="createUser"         column="CREATE_USER"/>
+        <result property="createDate"         column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+        <result property="updateUser"         column="UPDATE_USER"/>
+        <result property="updateDate"         column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+	</resultMap>
+	
+	<select id="retrieveAcitClmHist" resultMap="acitClmHistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PRQ_TRANS_PKG.ret_acit_clm_hist(
+					#{reqId,jdbcType=INTEGER},
+					#{itemNo, jdbcType=INTEGER},
+					'', '', '',''))
+	</select>
 </mapper>

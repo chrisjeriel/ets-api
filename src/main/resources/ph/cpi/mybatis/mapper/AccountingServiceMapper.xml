@@ -1815,4 +1815,24 @@
 		END;
 	</update>
 	
+	<update id="updateAcseStat" parameterType="java.util.Map">
+        BEGIN
+            <foreach collection="updateAcseStatList" item="u">
+                ACSE_CHANGE_STATUS_PKG.acse_change_stats(
+                    #{u.tranId},
+                    #{u.status, jdbcType=VARCHAR},
+                    #{u.updateUser ,jdbcType=VARCHAR},
+                    #{u.tranClass, jdbcType=VARCHAR},
+                    #{u.cancelReason, jdbcType=VARCHAR}
+                );
+            </foreach>
+        END;
+    </update>
+    
+    <update id="validateTranAcctEntDateAcse" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
+		}
+	</update>
+        
 </mapper>

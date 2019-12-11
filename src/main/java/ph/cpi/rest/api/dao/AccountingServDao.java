@@ -91,13 +91,14 @@ public interface AccountingServDao {
 	public List<AcseDcbBankDetails> retrieveAcseBankDetails(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseInsuranceExp> retrieveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcseInsuranceExp(final HashMap<String, Object> params) throws SQLException;
-	
 	public AcseEditedAcctEntries retrieveAcseEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
 	public List<AcseEditedAcctEntries> retrieveEditedAcctEntInq(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseAcctEntries> retrieveAcctEntInqDtl(final HashMap<String, Object> params) throws SQLException;
 	public Integer editAcctEnt(final HashMap<String, Object> params) throws SQLException;
 	public Integer restoreAcctEnt(final HashMap<String, Object> params) throws SQLException;
-
 	public HashMap<String,Object> saveAcseCloseOpenDcb(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveDcbCollection(final HashMap<String, Object> params) throws SQLException;
+	public Integer updateAcseStat(final HashMap<String, Object> params ) throws SQLException;
+	public String validateTranAcctEntDate(final HashMap<String, Object> params) throws SQLException;
+	
 }

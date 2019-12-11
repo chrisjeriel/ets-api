@@ -19,6 +19,7 @@ public class QSOA {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String refNo;
 	
 	public Integer getQsoaId() {
 		return qsoaId;
@@ -98,12 +99,18 @@ public class QSOA {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getRefNo() {
+		return refNo;
+	}
+	public void setRefNo(String refNo) {
+		this.refNo = refNo;
+	}
 	@Override
 	public String toString() {
 		return "QSOA [qsoaId=" + qsoaId + ", currCd=" + currCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName
 				+ ", quarterEnding=" + quarterEnding + ", qsoaStatus=" + qsoaStatus + ", qsoaStatusDesc="
 				+ qsoaStatusDesc + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", refNo=" + refNo + "]";
 	}
 }
