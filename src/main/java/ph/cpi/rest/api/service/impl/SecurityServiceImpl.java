@@ -120,6 +120,11 @@ public class SecurityServiceImpl implements SecurityService{
 			params.put("transactionList", str.getTransactionList());
 			params.put("delTranList", str.getDelTranList());
 			response.setReturnCode(securityDao.saveGroupTransactions(params));
+		}else if("MTN".equalsIgnoreCase(str.getAccessLevel())){
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("transactionList", str.getTransactionList());
+			params.put("delTranList", str.getDelTranList());
+			response.setReturnCode(securityDao.saveMtnTransactions(params));
 		}
 		
 		return response;
