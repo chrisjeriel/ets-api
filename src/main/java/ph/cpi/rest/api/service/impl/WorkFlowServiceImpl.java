@@ -3,12 +3,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.Error;
@@ -27,6 +30,7 @@ import ph.cpi.rest.api.model.response.SaveNotesResponse;
 import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
+import ph.cpi.rest.api.model.workflowmanager.UserNotif;
 import ph.cpi.rest.api.service.WorkFlowService;
 
 @Component
@@ -38,6 +42,9 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	WebSocketController wsController;
 	
 	private static final Logger logger = LoggerFactory.getLogger(WorkFlowServiceImpl.class);
 
@@ -117,6 +124,8 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			ex.printStackTrace();
 		}
 			
+		retrieveNotifCount();
+		
 
 		return srResponse;
 	}
@@ -194,6 +203,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			ex.printStackTrace();
 		}
 		
+		retrieveNotifCount();
 		
 		return snResponse;
 	}
@@ -234,4 +244,16 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		return resp;
 	}
 
+	public void retrieveNotifCount() throws SQLException {
+		List<UserNotif> unList = new ArrayList<UserNotif>();
+		unList = workFlowDao.retrieveUserNotif();
+		
+		System.out.println("retrieveNotifCount");
+		System.out.println(unList);
+		wsController.onReceiveNotifSync(unList.toString());
+	}
+	
+	
 }
+
+
