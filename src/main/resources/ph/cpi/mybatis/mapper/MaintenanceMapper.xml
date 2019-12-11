@@ -5290,4 +5290,13 @@
 	<select id="retrieveMtnGlSubDepNo" resultMap="mtnGlSubDepNoMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_GLSUB_DEP_NO_PKG.ret_mtn_glsubdepno(#{depCd,jdbcType=VARCHAR},#{depNo,jdbcType=INTEGER},'','','',''))
      </select>
+     
+     <update id="generateAcseInvoiceSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_invoice(#{invoiceFrom},#{invoiceTo},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>

@@ -880,52 +880,62 @@
 	
 	<update id="saveAcitJVEntryList" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
-			v_tran_id	ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+			v_tran_id		ACIT_TRANSACTIONS.TRAN_ID%TYPE;
+			v_tran_type_cd 	ACIT_TRANSACTIONS.TRAN_TYPE_CD%TYPE;
+			v_message 		VARCHAR2(500);
+			
+		TYPE acit_tran_type IS RECORD (
+			TRAN_ID			ACIT_TRANSACTIONS.TRAN_ID%TYPE,
+        	TRAN_TYPE_CD  	ACIT_TRANSACTIONS.TRAN_TYPE_CD%TYPE
+    	);
+    
+    	TYPE acit_tran_tab     IS TABLE OF acit_tran_type;
+		acit_tran_arr          acit_tran_tab;
+	
 		BEGIN
-		  <foreach collection="saveAcitJVEntryList" item="save">
-			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv(v_tran_id,
+		 <foreach collection="saveAcitJvEntryList" item="save">
+			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv_list(v_tran_id,
 												#{save.tranId, jdbcType=VARCHAR}, 
 												CAST(to_timestamp(#{save.tranDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												#{save.tranType,jdbcType=INTEGER},
 												#{save.tranYear,jdbcType=VARCHAR},
 												#{save.tranClassNo,jdbcType=VARCHAR}, 
-												  #{save.tranStat}, 
-												  CAST(to_timestamp(#{save.closeDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  CAST(to_timestamp(#{save.deleteDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  CAST(to_timestamp(#{save.postDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  #{save.createUser}, 
-												  CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												   #{save.updateUser},   
-												  CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  #{save.tranIdJv,jdbcType=VARCHAR}, 
-												  #{save.jvYear,jdbcType=VARCHAR},
-												  #{save.jvNo,jdbcType=VARCHAR}, 
-												  CAST(to_timestamp(#{save.jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  #{save.jvStatus}, 
-												  #{save.jvTranTypeCd}, 
-												  #{save.autoTag}, 
-												  #{save.adjEntryTag,jdbcType=VARCHAR}, 
-												  #{save.refnoTranId,jdbcType=VARCHAR}, 
-												  CAST(to_timestamp(#{save.refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-												  #{save.particulars}, 
-												  #{save.currCd}, 
-												  #{save.currRate}, 
-												  #{save.jvAmt}, 
-												  #{save.localAmt}, 
-												  #{save.allocTag,jdbcType=VARCHAR}, 
-												  #{save.allocTranId,jdbcType=VARCHAR}, 
-												  #{save.preparedBy,jdbcType=VARCHAR}, 
-												  CAST(to_timestamp(#{save.preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-												  #{save.approvedBy,jdbcType=VARCHAR}, 
-												  CAST(to_timestamp(#{save.approvedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-												  #{save.createUserJv}, 
-												  CAST(to_timestamp(#{save.createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-												  #{save.updateUserJv}, 
-												  CAST(to_timestamp(#{save.updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+												#{save.tranStat}, 
+												CAST(to_timestamp(#{save.closeDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.deleteDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												CAST(to_timestamp(#{save.postDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{save.createUser}, 
+												CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{save.updateUser},   
+												CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{save.tranIdJv,jdbcType=VARCHAR}, 
+												#{save.jvYear,jdbcType=VARCHAR},
+												#{save.jvNo,jdbcType=VARCHAR}, 
+												CAST(to_timestamp(#{save.jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{save.jvStatus}, 
+												#{save.jvTranTypeCd}, 
+												#{save.autoTag}, 
+												#{save.adjEntryTag,jdbcType=VARCHAR}, 
+												#{save.refnoTranId,jdbcType=VARCHAR}, 
+												CAST(to_timestamp(#{save.refnoDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.particulars}, 
+												#{save.currCd}, 
+												#{save.currRate}, 
+												#{save.jvAmt}, 
+												#{save.localAmt}, 
+												#{save.allocTag,jdbcType=VARCHAR}, 
+												#{save.allocTranId,jdbcType=VARCHAR}, 
+												#{save.preparedBy,jdbcType=VARCHAR}, 
+												CAST(to_timestamp(#{save.preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.approvedBy,jdbcType=VARCHAR}, 
+												CAST(to_timestamp(#{save.approvedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.createUserJv}, 
+												CAST(to_timestamp(#{save.createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
+												#{save.updateUserJv}, 
+												CAST(to_timestamp(#{save.updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
 			
 			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
-			   
 				<foreach collection="saveAcitAllocInvtIncome" item="save">
 					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
 														v_tran_id,
@@ -934,15 +944,19 @@
 														CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
-														
 													  );
 				</foreach>
-
 			END IF; 
-			
-		</foreach>
-		
-		
+	    </foreach>
+	    
+	    SELECT TRAN_ID, TRAN_TYPE_CD 
+	    	BULK COLLECT INTO acit_tran_arr
+	    	FROM TABLE (ACIT_ALL_INVT_INC_PKG.ret_jv_list(v_tran_id,null,null,null,null));
+
+	      FOR i IN acit_tran_arr.FIRST..acit_tran_arr.LAST  LOOP
+	      	GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV',acit_tran_arr(i).TRAN_TYPE_CD, acit_tran_arr(i).TRAN_ID, v_message);
+	      END LOOP;
+	   
 	END;
 		
 	</update> 

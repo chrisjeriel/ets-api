@@ -307,5 +307,6 @@ public interface MaintenanceDao {
 	public List<MtnAcitTranType> retrieveMtnAcitTranTypeLov(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcseInvSeries> retrieveAcseInvSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnGlSubDepNo> retrieveMtnGlSubDepNo(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> generateAcseInvoiceSeries(final HashMap<String, Object> params) throws SQLException;
 	
 }
