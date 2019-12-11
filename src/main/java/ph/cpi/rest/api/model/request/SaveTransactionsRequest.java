@@ -40,6 +40,14 @@ public class SaveTransactionsRequest {
 class delModuleTran {
 	private String userId;
 	private Integer tranCd;
+	private String userGrp;
+	
+	public String getUserGrp() {
+		return userGrp;
+	}
+	public void setUserGrp(String userGrp) {
+		this.userGrp = userGrp;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -54,9 +62,7 @@ class delModuleTran {
 	}
 	@Override
 	public String toString() {
-		return "delUserTran [userId=" + userId + ", tranCd=" + tranCd + "]";
+		return "delModuleTran [userId=" + userId + ", tranCd=" + tranCd + ", userGrp=" + userGrp + "]";
 	}
-	
-	
 	
 }

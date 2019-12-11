@@ -25,4 +25,6 @@ public interface SecurityDao {
 	public Integer saveGroupModules(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveMtnModules(final HashMap<String, Object> params) throws SQLException;
 	
+	public Integer saveMtnTransactions(final HashMap<String, Object> params) throws SQLException;
+	
 }
