@@ -1455,4 +1455,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<MtnGlSubDepNo> glSubDepNoList = sqlSession.selectList("retrieveMtnGlSubDepNo", params);
 		return glSubDepNoList;
 	}
+
+	@Override
+	public HashMap<String, Object> generateAcseInvoiceSeries(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("generateAcseInvoiceSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
