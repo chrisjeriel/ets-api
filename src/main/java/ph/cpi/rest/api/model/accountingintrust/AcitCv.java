@@ -402,5 +402,4 @@ public class AcitCv {
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
 				+ "]";
 	}
-	
 }

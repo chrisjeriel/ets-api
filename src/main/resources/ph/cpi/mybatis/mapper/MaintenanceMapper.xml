@@ -4003,17 +4003,18 @@
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCheckSeries" id="acitCheckSeriesMap">
-     	<result property="bank"			column="BANK"/>
-		<result property="bankAcct"		column="BANK_ACCT"/>
-		<result property="checkNo"		column="CHECK_NO"/>
-		<result property="checkPrefix"	column="CHECK_PREFIX"/>
-		<result property="tranId"		column="TRAN_ID"/>
-		<result property="usedTag"		column="USED_TAG"/>
-		<result property="checkStatus"	column="CHECK_STATUS"/>
-		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     	<result property="bank"				column="BANK"/>
+		<result property="bankAcct"			column="BANK_ACCT"/>
+		<result property="checkNo"			column="CHECK_NO"/>
+		<result property="checkPrefix"		column="CHECK_PREFIX"/>
+		<result property="tranId"			column="TRAN_ID"/>
+		<result property="usedTag"			column="USED_TAG"/>
+		<result property="checkStatus"		column="CHECK_STATUS"/>
+		<result property="checkStatusDesc"	column="CHECK_STATUS_DESC"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
      </resultMap>
      
      <select id="retrieveMtnAcitCheckSeries" resultMap="acitCheckSeriesMap" parameterType="java.util.Map">
