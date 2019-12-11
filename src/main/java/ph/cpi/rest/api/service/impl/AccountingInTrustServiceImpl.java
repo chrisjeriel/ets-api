@@ -440,9 +440,30 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("createDateJv", raje.getCreateDateJv());
 			params.put("updateUserJv", raje.getUpdateUser());
 			params.put("updateDateJv", raje.getUpdateDateJv());
-			HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
-			response.setReturnCode((Integer) res.get("errorCode"));
-			response.setTranIdOut((Integer) res.get("tranIdOut"));
+			
+			Boolean proceed = false;
+			
+			if(raje.getJvTranTypeCd() == 28) {
+				params.put("profCommId", raje.getProfCommId());
+				String tranNo = acctITDao.validateProfCommTran(params);
+				proceed = tranNo == null;
+				
+				if(!proceed) {
+					response.setReturnCode(1);
+					response.setTranNo(tranNo);
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
+				response.setReturnCode((Integer) res.get("errorCode"));
+				response.setTranIdOut((Integer) res.get("tranIdOut"));
+				
+				res.put("tranId", res.get("tranIdOut"));
+				response.setTranNo(acctITDao.getAcitTranNo(res));
+			}
 		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -476,6 +497,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rapcsrParams.put("dateTo", rapcsr.getDateTo());
 		rapcsrParams.put("dateFrom", rapcsr.getDateFrom());
 		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
+		rapcsrResponse.setAcitProfCommParams(acctITDao.retrieveProfCommParams());
 		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
 		return rapcsrResponse;
 	}
@@ -2128,8 +2150,13 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				acctITDao.acitEomSaveOdInt(params);
 				wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
 				
+				prodReport += "\nCreating Loss Reserve Deposit . . .";
+				prodReport += "\nCreation of Loss Reserve Deposit finished.";
+				
 				procedureName = "Creating Loss Reserve Deposit";
+				wsController.onReceiveProdLog("Creating Loss Reserve Deposit . . .");
 				acctITDao.acitEomCreateLossResDepJv(params);
+				wsController.onReceiveProdLog("Creation of Loss Reserve Deposit finished.");
 				wsController.onReceiveProdLog("");
 				
 				acctITDao.acitEomUpdateEomCloseTag(params);
@@ -2358,7 +2385,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitMonthEndTrialBalResponse retrieveAcitMonthEndTrialBal(
 			RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
@@ -2371,7 +2397,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public PostAcitMonthEndTrialBalResponse postAcitMonthEndTrialBal(PostAcitMonthEndTrialBalRequest pametbr)
@@ -2438,7 +2463,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
 		RetrieveAcitMonthEndUnpostedMonthsResponse res = new RetrieveAcitMonthEndUnpostedMonthsResponse();
@@ -2446,7 +2470,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
@@ -2459,7 +2482,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException {
@@ -2506,7 +2528,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException {
 		RetrieveQSOADtlResponse res = new RetrieveQSOADtlResponse();
@@ -2521,7 +2542,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException {
@@ -2547,7 +2567,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(
 			RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException {
@@ -2558,7 +2577,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		logger.info(response.toString());
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
@@ -2572,7 +2590,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public UploadAcctEntryResponse uploadAcctEntry(UploadAcctEntryRequest uaer) throws SQLException {
@@ -2638,7 +2655,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
 			throws SQLException {
@@ -2671,7 +2687,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
 			throws SQLException {
@@ -2693,7 +2708,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setDcbCollection(acctITDao.retrieveAcitDcbCollection(params));
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr)
@@ -2756,7 +2770,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr)
 			throws SQLException {
@@ -2818,6 +2831,27 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rachResponse.setAcitClmHistList(acctITDao.retrieveAcitClmHist(rachParams));
 		logger.info("RetrieveAcitClmHistResponse : " + rachResponse.toString());
 		return rachResponse;
+	}
+
+	@Override
+	public SaveAcitProfCommTranResponse saveAcitProfCommTran(SaveAcitProfCommTranRequest saptr) throws SQLException {
+		SaveAcitProfCommTranResponse res = new SaveAcitProfCommTranResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("profCommId", saptr.getProfCommId());
+		params.put("tranId", saptr.getTranId());
+		params.put("updateUser", saptr.getUpdateUser());
+		params.put("updateDate", saptr.getUpdateDate());
+		
+		try {
+			acctITDao.saveAcitProfCommTran(params);
+			res.setReturnCode(-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Update failed."));
+		}
+		
+		return res;
 	}
 	
 }

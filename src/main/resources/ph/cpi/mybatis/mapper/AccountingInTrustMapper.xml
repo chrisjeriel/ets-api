@@ -4557,4 +4557,30 @@
 					#{itemNo, jdbcType=INTEGER},
 					'', '', '',''))
 	</select>
+	
+	<update id="saveAcitProfCommTran" parameterType="java.util.Map">
+		BEGIN
+			ACIT_PROFCOMM_PKG.update_tran_id(#{profCommId, jdbcType=INTEGER},
+											 #{tranId, jdbcType=INTEGER},
+											 #{updateUser, jdbcType=VARCHAR},
+											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="getAcitTranNo" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			#{tranNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := GET_ACIT_TRAN_NO(#{tranId, jdbcType=INTEGER});
+		END;
+	</update>
+	
+	<update id="validateProfCommTran" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			#{tranNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_PROFCOMM_PKG.validate_profcomm_tran(#{profCommId, jdbcType=INTEGER});
+		END;
+	</update>
+	
+	<select id="retrieveProfCommParams" resultMap="acitProfCommSumm" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_PROFCOMM_PKG.ret_pc_params())
+	</select>
+	
 </mapper>

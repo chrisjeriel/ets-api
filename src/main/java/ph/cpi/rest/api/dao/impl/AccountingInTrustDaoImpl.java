@@ -1180,4 +1180,29 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitClmHist> acitClmHistList  = sqlSession.selectList("retrieveAcitClmHist", params);
 		return acitClmHistList;
 	}
+
+	@Override
+	public Integer saveAcitProfCommTran(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveAcitProfCommTran", params);
+	}
+
+	@Override
+	public String getAcitTranNo(HashMap<String, Object> params) throws SQLException {
+		params.put("tranNo", "");
+		sqlSession.update("getAcitTranNo",params);
+		return (String) params.get("tranNo");
+	}
+
+	@Override
+	public String validateProfCommTran(HashMap<String, Object> params) throws SQLException {
+		params.put("tranNo", "");
+		sqlSession.update("validateProfCommTran",params);
+		return (String) params.get("tranNo");
+	}
+
+	@Override
+	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException {
+		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommParams");
+		return acitProfCommSummList;
+	}
 }

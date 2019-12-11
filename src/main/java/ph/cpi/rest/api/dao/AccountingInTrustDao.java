@@ -244,4 +244,8 @@ public interface AccountingInTrustDao {
 	public String validateTranAcctEntDate(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitProfCommSumm> retrievePCSummPerCeding(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitClmHist> retrieveAcitClmHist(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitProfCommTran(final HashMap<String, Object> params) throws SQLException;
+	public String getAcitTranNo(final HashMap<String, Object> params) throws SQLException;
+	public String validateProfCommTran(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException;
 }

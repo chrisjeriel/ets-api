@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -101,4 +103,29 @@ public interface AccountingServDao {
 	public Integer updateAcseStat(final HashMap<String, Object> params ) throws SQLException;
 	public String validateTranAcctEntDate(final HashMap<String, Object> params) throws SQLException;
 	
+	public String validateTbDate(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomInsertEndOfMonth(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomCloseTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomDeleteTrans(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomDeleteMonthlyTotals(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomInsertMonthlyTotals(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomDeleteMonthlyTotalsBackup() throws SQLException;
+	public Integer acseEomInsertMonthlyTotalsBackup(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitEomMonthlyTotals> retrieveAcseMonthEndTrialBal(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitEomUnpostedMonth> retrieveAcseMonthEndUnpostedMonths() throws SQLException;
+	
+	public void startTransaction();
+	public void commit();
+	public void rollback();
+	
+	public String validatePrevMonth(final HashMap<String, Object> params) throws SQLException;
+	public String validateCurrMonth(final HashMap<String, Object> params) throws SQLException;
+	public String validateEqualTb(final HashMap<String, Object> params) throws SQLException;
+	public Integer acseEomPostToFiscalYear(final HashMap<String, Object> params) throws SQLException;
+	public Integer failedPosting(final HashMap<String, Object> params) throws SQLException;
+	public String validateTempClose(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseMonthEndTBTempClose(final HashMap<String, Object> params) throws SQLException;
+	public String validateReopen(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcseMonthEndTBReopen(final HashMap<String, Object> params) throws SQLException;
+	public String checkEom(final HashMap<String, Object> params) throws SQLException;
 }
