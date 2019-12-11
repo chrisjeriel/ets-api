@@ -1996,4 +1996,17 @@
 		}
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist" id="orServFeeDtlDistMap">
+		<result property="actualShrAmt"       column="ACTUAL_SHR_AMT" />
+		<result property="invoiceId"    	  column="INVOICE_ID" />
+	</resultMap>
+	
+	<select id="retOrServFeeDtlDist" resultMap="orServFeeDtlDistMap">
+		SELECT * FROM TABLE(ACSE_OR_SERVFEE_PKG.ret_srvdtldist(
+																        #{cedingId},
+																        #{sFeeYear},
+																        #{sFeeQtr}
+																    ))
+	</select>
+        
 </mapper>

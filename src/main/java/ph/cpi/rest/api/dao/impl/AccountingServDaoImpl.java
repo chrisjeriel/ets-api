@@ -14,6 +14,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
@@ -632,4 +633,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		
 		return (String) params.get("checkEom");
 	}
+
+	@Override
+	public AcctServFeeDist retrieveOrSFeeDtlDist(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("retOrServFeeDtlDist", params);
+	}
+	
 }

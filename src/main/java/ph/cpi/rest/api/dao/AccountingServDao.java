@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
@@ -128,4 +129,6 @@ public interface AccountingServDao {
 	public String validateReopen(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcseMonthEndTBReopen(final HashMap<String, Object> params) throws SQLException;
 	public String checkEom(final HashMap<String, Object> params) throws SQLException;
+	public AcctServFeeDist retrieveOrSFeeDtlDist (final HashMap<String, Object> params) throws SQLException;
+	
 }

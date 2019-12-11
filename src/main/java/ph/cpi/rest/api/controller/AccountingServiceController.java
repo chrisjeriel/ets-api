@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveOrSFeeDtlDistRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBReopenRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBTempCloseRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTrialBalRequest;
@@ -126,6 +127,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTrialBalResponse;
@@ -671,4 +673,12 @@ public class AccountingServiceController {
 		logger.info("SaveAcitMonthEndTBReopenRequest : " + sametrr.toString());
 		return acctServService.saveAcseMonthEndTBReopen(sametrr);
 	}
+    
+    @GetMapping(path="retrieveOrSFeeDtlDist")
+	public @ResponseBody RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveOrSFeeDtlDist");
+		logger.info("RetrieveOrSFeeDtlDistRequest : " + rosfddr.toString());
+		return acctServService.retrieveOrSFeeDtlDist(rosfddr);
+	}
+    
 }

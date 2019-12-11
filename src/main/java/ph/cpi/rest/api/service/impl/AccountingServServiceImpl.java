@@ -55,6 +55,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveOrSFeeDtlDistRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBReopenRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBTempCloseRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTrialBalRequest;
@@ -125,6 +126,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTrialBalResponse;
@@ -1451,6 +1453,18 @@ public class AccountingServServiceImpl implements AccountingServService{
         
         return response;
     }
+
+	@Override
+	public RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr)
+			throws SQLException {
+		RetrieveOrSFeeDtlDistResponse response = new RetrieveOrSFeeDtlDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("cedingId", rosfddr.getCedingId());
+		params.put("sFeeYear", rosfddr.getsFeeYear());
+		params.put("sFeeQtr", rosfddr.getsFeeQtr());
+		response.setServFeeDist(acctServDao.retrieveOrSFeeDtlDist(params));
+		return response;
+	}
 	
 	@Override
 	public SaveAcitMonthEndTrialBalResponse saveAcseMonthEndTrialBal(SaveAcitMonthEndTrialBalRequest sametbr)
