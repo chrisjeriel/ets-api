@@ -1835,10 +1835,165 @@
 		}
 	</update>
 	
-	<update id="validateTbDate" parameterType="java.util.Map" statementType="CALLABLE">
+	<update id="validateTbDateSe" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
 			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_tb_date(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
 		}
 	</update>
-        
+	
+	<update id="acseEomInsertEndOfMonth" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.insert_end_of_month(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    	   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomCloseTrans" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.close_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										   #{includeMonth, jdbcType=VARCHAR},
+										   #{includeYear, jdbcType=VARCHAR},
+										   #{aeTag, jdbcType=VARCHAR},
+										   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomDeleteTrans" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.delete_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomDeleteMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.delete_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acseEomInsertMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.insert_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    		 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomDeleteMonthlyTotalsBackup">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.delete_monthly_totals_backup();
+		END;
+	</update>
+	
+	<update id="acseEomInsertMonthlyTotalsBackup" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.insert_monthly_totals_backup(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals" id="acseEomMonthlyTotals">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="currCd"				column="CURR_CD"/>
+		<result property="glAcctId"				column="GL_ACCT_ID"/>
+		<result property="shortCode"			column="SHORT_CODE"/>
+		<result property="shortDesc"			column="SHORT_DESC"/>
+		<result property="longDesc"				column="LONG_DESC"/>
+		<result property="begDebitAmt"			column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"			column="BEG_CREDIT_AMT"/>
+		<result property="totalDebitAmt"		column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt"		column="TOTAL_CREDIT_AMT"/>
+		<result property="transDebitBal"		column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"		column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"			column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"			column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"			column="END_CREDIT_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcseMonthEndTrialBal" resultMap="acseEomMonthlyTotals" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_TRIAL_BAL_PKG.ret_monthly_totals(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth" id="acseEomUnpostedMonth">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="qtrMonth"				column="QTR_MONTH"/>
+	</resultMap>
+	
+	<select id="retrieveAcseMonthEndUnpostedMonths" resultMap="acseEomUnpostedMonth" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_POST_TB_PKG.ret_unposted_months())
+	</select>
+	
+	<update id="validatePrevMonthSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_POST_TB_PKG.validate_prev_month(#{eomMm, jdbcType=INTEGER},
+																										  	 #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+
+	<update id="validateCurrMonthSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCurr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_POST_TB_PKG.validate_curr_month(#{eomMm, jdbcType=INTEGER},
+																										  	 	 #{eomYear, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<update id="validateEqualTbSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{equalTb, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_POST_TB_PKG.validate_equal_tb(#{eomMm, jdbcType=INTEGER},
+																										  #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="acseEomPostToFiscalYear" parameterType="java.util.Map">
+		BEGIN
+			ACSE_POST_TB_PKG.post_to_fiscal_year(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											    #{eomMm, jdbcType=INTEGER},
+											    #{eomYear, jdbcType=INTEGER},
+											    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="failedPostingSe" parameterType="java.util.Map">
+		BEGIN
+			ACSE_POST_TB_PKG.failed_posting(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomMm, jdbcType=INTEGER},
+										    #{eomYear, jdbcType=INTEGER},
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateTempCloseSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_temp_close(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="saveAcseMonthEndTBTempClose" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.temp_close_tb(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateReopenSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_reopen(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="saveAcseMonthEndTBReopen" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.reopen_close_tb(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="checkEom" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkEom, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.check_eom(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
 </mapper>
