@@ -7,30 +7,36 @@ import org.apache.ibatis.type.Alias;
 
 public class SaveAcitJVEntryListRequest {
 	
-	private List<saveAcitJVEntryList> saveAcitJVEntryList;
 	private List<acitAllocInvtInc> saveAcitAllocInvtIncome;
+	private List<acitJvEntryList> saveAcitJvEntryList;
 	
-	public List<saveAcitJVEntryList> getSaveAcitJVEntryList() {
-		return saveAcitJVEntryList;
+	public List<acitJvEntryList> getSaveAcitJvEntryList() {
+		return saveAcitJvEntryList;
 	}
-	public void setSaveAcitJVEntryList(List<saveAcitJVEntryList> saveAcitJVEntryList) {
-		this.saveAcitJVEntryList = saveAcitJVEntryList;
+	public void setSaveAcitJvEntryList(List<acitJvEntryList> saveAcitJvEntryList) {
+		this.saveAcitJvEntryList = saveAcitJvEntryList;
 	}
+	
+	
 	public List<acitAllocInvtInc> getSaveAcitAllocInvtIncome() {
 		return saveAcitAllocInvtIncome;
 	}
-	public void setSaveAcitAllocInvtIncome(List<acitAllocInvtInc> saveAcitAllocInvtIncome) {
+	public void setSaveAcitAllocInvtIncome(
+			List<acitAllocInvtInc> saveAcitAllocInvtIncome) {
 		this.saveAcitAllocInvtIncome = saveAcitAllocInvtIncome;
 	}
 	
 	@Override
 	public String toString() {
-		return "SaveAcitJVEntryListRequest [saveAcitJVEntryList=" + saveAcitJVEntryList + ", saveAcitAllocInvtIncome="
-				+ saveAcitAllocInvtIncome + "]";
+		return "SaveAcitJVEntryListRequest [saveAcitAllocInvtIncome="
+				+ saveAcitAllocInvtIncome + ", saveAcitJvEntryList="
+				+ saveAcitJvEntryList + "]";
 	}
 }
 
-class saveAcitJVEntryList{
+@Alias ("acitJvEntryList")
+class acitJvEntryList{
+	
 	private Integer tranId;
 	private String 	tranDate;
 	private String 	tranClass;
@@ -46,7 +52,6 @@ class saveAcitJVEntryList{
 	private String 	createDate;
 	private String 	updateUser;
 	private String 	updateDate;
-	
 	private Integer tranIdJv;
 	private Integer jvYear;
 	private Integer jvNo;
@@ -74,20 +79,6 @@ class saveAcitJVEntryList{
 	private String updateUserJv;
 	private String updateDateJv;
 	
-	public String getAdjEntryTag() {
-		return adjEntryTag;
-	}
-	public void setAdjEntryTag(String adjEntryTag) {
-		this.adjEntryTag = adjEntryTag;
-	}
-	
-	public Integer getTranType() {
-		return tranType;
-	}
-	public void setTranType(Integer tranType) {
-		this.tranType = tranType;
-	}
-	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -111,6 +102,12 @@ class saveAcitJVEntryList{
 	}
 	public void setTranTypeCd(Integer tranTypeCd) {
 		this.tranTypeCd = tranTypeCd;
+	}
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
 	}
 	public Integer getTranYear() {
 		return tranYear;
@@ -220,6 +217,12 @@ class saveAcitJVEntryList{
 	public void setAutoTag(String autoTag) {
 		this.autoTag = autoTag;
 	}
+	public String getAdjEntryTag() {
+		return adjEntryTag;
+	}
+	public void setAdjEntryTag(String adjEntryTag) {
+		this.adjEntryTag = adjEntryTag;
+	}
 	public Integer getRefnoTranId() {
 		return refnoTranId;
 	}
@@ -325,23 +328,23 @@ class saveAcitJVEntryList{
 	
 	@Override
 	public String toString() {
-		return "saveAcitJVEntryList [tranId=" + tranId + ", tranDate="
-				+ tranDate + ", tranClass=" + tranClass + ", tranTypeCd="
-				+ tranTypeCd + ", tranType=" + tranType + ", tranYear="
-				+ tranYear + ", tranClassNo=" + tranClassNo + ", tranStat="
-				+ tranStat + ", closeDate=" + closeDate + ", deleteDate="
-				+ deleteDate + ", postDate=" + postDate + ", createUser="
-				+ createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", tranIdJv="
-				+ tranIdJv + ", jvYear=" + jvYear + ", jvNo=" + jvNo
-				+ ", jvDate=" + jvDate + ", jvStatus=" + jvStatus
-				+ ", jvTranTypeCd=" + jvTranTypeCd + ", tranTypeName="
-				+ tranTypeName + ", autoTag=" + autoTag + ", adjEntryTag="
-				+ adjEntryTag + ", refnoTranId=" + refnoTranId + ", refnoDate="
-				+ refnoDate + ", particulars=" + particulars + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", jvAmt=" + jvAmt
-				+ ", localAmt=" + localAmt + ", allocTag=" + allocTag
-				+ ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy
+		return "acitJvEntry [tranId=" + tranId + ", tranDate=" + tranDate
+				+ ", tranClass=" + tranClass + ", tranTypeCd=" + tranTypeCd
+				+ ", tranType=" + tranType + ", tranYear=" + tranYear
+				+ ", tranClassNo=" + tranClassNo + ", tranStat=" + tranStat
+				+ ", closeDate=" + closeDate + ", deleteDate=" + deleteDate
+				+ ", postDate=" + postDate + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", tranIdJv=" + tranIdJv
+				+ ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate="
+				+ jvDate + ", jvStatus=" + jvStatus + ", jvTranTypeCd="
+				+ jvTranTypeCd + ", tranTypeName=" + tranTypeName
+				+ ", autoTag=" + autoTag + ", adjEntryTag=" + adjEntryTag
+				+ ", refnoTranId=" + refnoTranId + ", refnoDate=" + refnoDate
+				+ ", particulars=" + particulars + ", currCd=" + currCd
+				+ ", currRate=" + currRate + ", jvAmt=" + jvAmt + ", localAmt="
+				+ localAmt + ", allocTag=" + allocTag + ", allocTranId="
+				+ allocTranId + ", preparedBy=" + preparedBy
 				+ ", preparedDate=" + preparedDate + ", approvedBy="
 				+ approvedBy + ", approvedDate=" + approvedDate
 				+ ", createUserJv=" + createUserJv + ", createDateJv="
@@ -350,7 +353,6 @@ class saveAcitJVEntryList{
 	}
 	
 }
-
 @Alias ("acitAllocInvtInc")
 class acitAllocInvtInc{
 

@@ -1100,8 +1100,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVEntryListResponse response = new SaveAcitJVEntryListResponse();
 		try {
 			HashMap<String, Object> params = new HashMap<String, Object>();
-			params.put("saveAcitJVEntryList", sajel.getSaveAcitJVEntryList());
 			params.put("saveAcitAllocInvtIncome", sajel.getSaveAcitAllocInvtIncome());
+			params.put("saveAcitJvEntryList", sajel.getSaveAcitJvEntryList());
 			HashMap<String, Object> res = acctITDao.saveAcitJVEntryList(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setTranIdOut((Integer) res.get("tranIdOut"));
