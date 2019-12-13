@@ -3677,6 +3677,7 @@
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
     	<result property="okDelete"		column="OK_DELETE" />
+    	<result property="nextDcbNo"	column="NEXT_DCB_NO" />
     </resultMap>
     
     <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">

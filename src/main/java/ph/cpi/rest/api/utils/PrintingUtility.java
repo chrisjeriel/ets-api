@@ -175,9 +175,15 @@ public class PrintingUtility {
 	    }
 	    logger.info("Page Orientation => " + pageOrientation);
 	    logger.info("Paper size => " + paperSize);
-	    //PDRectangle mediaBox = page.getMediaBox();
+	    PDRectangle mediaBox = page.getMediaBox();
 	    page = document.getPage(0);
-	    //page.setMediaBox(new PDRectangle(mediaBox.getLowerLeftX(),mediaBox.getLowerLeftY(),mediaBox.getWidth()/(1.5),mediaBox.getHeight()/2));
+	    if("HALFLETTER".equals(paperSize.toUpperCase())){
+		    logger.info("x " + mediaBox.getLowerLeftX());
+		    logger.info("y " + mediaBox.getLowerLeftY());
+		    logger.info("width " + mediaBox.getWidth());
+		    logger.info("height " + mediaBox.getHeight());
+		    page.setMediaBox(new PDRectangle(mediaBox.getLowerLeftX(),mediaBox.getLowerLeftY()-200,mediaBox.getWidth(),mediaBox.getHeight()));
+	    }
 	    document.removePage(0);
 	    document.addPage(page);
 	    PDFPrintable printable = new PDFPrintable(document, Scaling.SCALE_TO_FIT);
