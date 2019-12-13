@@ -16,6 +16,7 @@ import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.RelatedRecord;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
+import ph.cpi.rest.api.model.workflowmanager.UserNotif;
 import ph.cpi.rest.api.model.workflowmanager.WfmTransaction;
 
 @Component
@@ -72,5 +73,11 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	public List<RelatedRecord> retrieveRelatedRecords(HashMap<String, Object> params) throws SQLException {
 		List<RelatedRecord> relatedRecordList = sqlSession.selectList("retrieveRelatedRecords", params);
 		return relatedRecordList;
+	}
+
+	@Override
+	public List<UserNotif> retrieveUserNotif() throws SQLException {
+		List<UserNotif> unList = sqlSession.selectList("retrieveNotifCount");
+		return unList;
 	}
 }

@@ -754,6 +754,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("sort", rmil.getSortRequest());
 		params.put("insuredName", rmil.getInsuredName());
 		params.put("address", rmil.getAddress());
+		params.put("insuredAbbr", rmil.getInsuredAbbr());
 		rmilResponse.setList(maintenanceDao.retMtnInsuredLov(params));
 		rmilResponse.setCount(maintenanceDao.retMtnInsuredLovCount(params));
 		
@@ -3289,6 +3290,29 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		
 		return gmacsResponse;
+	}
+
+	@Override
+	public GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(
+			GenerateAcseInvoiceSeriesRequest request) throws SQLException {
+		// TODO Auto-generated method stub
+		GenerateAcseInvoiceSeriesResponse response = new GenerateAcseInvoiceSeriesResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("invoiceFrom", request.getInvoiceFrom());
+			params.put("invoiceTo",request.getInvoiceTo());
+			params.put("createUser", request.getCreateUser());
+			params.put("createDate", request.getCreateDate());
+			params.put("updateUser", request.getUpdateUser());
+			params.put("updateDate", request.getUpdateDate());
+			HashMap<String,Object> res = maintenanceDao.generateAcseInvoiceSeries(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
 	}
 
 	

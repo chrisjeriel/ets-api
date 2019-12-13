@@ -210,4 +210,5 @@ public interface MaintenanceService {
 	public RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException;
 	public RetrieveMtnGlSubDepNoResponse retrieveMtnGlSubDepNo(RetrieveMtnGlSubDepNoRequest request) throws SQLException;
 	public GenerateMtnAcitCheckSeriesResponse generateMtnAcitCheckSeries(GenerateMtnAcitCheckSeriesRequest sacr) throws SQLException;
+	public GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(GenerateAcseInvoiceSeriesRequest request) throws SQLException;
 }

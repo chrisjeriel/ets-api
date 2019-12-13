@@ -154,11 +154,22 @@
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
      </resultMap>
      
-	<select id="retrieveTransactions" resultMap="wfmTransactionMap" parameterType="java.util.Map">
+     
+     
+	 <select id="retrieveTransactions" resultMap="wfmTransactionMap" parameterType="java.util.Map">
     	SELECT * FROM TABLE(WFM_TRANSACTIONS_PKG.retrieve_transactions(#{tranTitle, jdbcType=VARCHAR},
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR},
 												  #{order, jdbcType=VARCHAR}))
-     </select>
+      </select>
+      
+      <resultMap type="ph.cpi.rest.api.model.workflowmanager.UserNotif" id="unMap">
+		<result property="user"		column="ASSIGNED_TO" />
+		<result property="count"			column="COUNT_" />
+	  </resultMap>
+     
+      <select id="retrieveNotifCount" resultMap="unMap" parameterType="java.util.Map">
+    	 SELECT * FROM TABLE(wfm_notes_pkg.ret_notes_inc)
+      </select>
 </mapper>

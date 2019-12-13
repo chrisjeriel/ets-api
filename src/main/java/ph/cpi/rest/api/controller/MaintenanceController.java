@@ -1440,12 +1440,19 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnGlSubDepNoRequest : " + rmgsdnr.toString());
 		return maintenanceService.retrieveMtnGlSubDepNo(rmgsdnr);
 	}
-	
+
 	@PostMapping(path="generateMtnAcitCheckSeries")
 	public @ResponseBody GenerateMtnAcitCheckSeriesResponse generateMtnAcitCheckSeries(@RequestBody GenerateMtnAcitCheckSeriesRequest gmacsr) throws SQLException {
 		logger.info("POST: /api/maintenance-service/generateMtnAcitCheckSeries");
 		logger.info("generateMtnAcitCheckSeriesRequest : " + gmacsr.toString());
 		return maintenanceService.generateMtnAcitCheckSeries(gmacsr);
+	}
+	
+	@PostMapping(path="generateAcseInvoiceSeries")
+	public @ResponseBody GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(@RequestBody GenerateAcseInvoiceSeriesRequest request) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateAcseInvoiceSeries");
+		logger.info("GenerateAcseInvoiceSeriesRequest : " + request.toString());
+		return maintenanceService.generateAcseInvoiceSeries(request);
 	}
 
 }

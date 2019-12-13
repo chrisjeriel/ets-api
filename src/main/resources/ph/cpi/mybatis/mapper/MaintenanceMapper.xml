@@ -1280,11 +1280,11 @@
     </update>
     
     <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
-    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}) total_count from dual
+    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR},#{insuredAbbr, jdbcType=VARCHAR }) total_count from dual
      </select>
      
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
-     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}))
+     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR},#{insuredAbbr, jdbcType=VARCHAR }))
      </select>
      
      <update id="saveMtnIntermediary" parameterType="java.util.Map" statementType="CALLABLE">
@@ -5300,6 +5300,15 @@
 				#{checkNoTo, jdbcType=INTEGER},
 				#{user,jdbcType=VARCHAR}
 			);
+		END;
+	</update>
+
+     <update id="generateAcseInvoiceSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_invoice(#{invoiceFrom},#{invoiceTo},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
 </mapper>

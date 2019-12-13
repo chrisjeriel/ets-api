@@ -1468,5 +1468,14 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> generateAcseInvoiceSeries(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("generateAcseInvoiceSeries",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
 
