@@ -12,7 +12,14 @@ public class SaveQuotationCopyRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String cessionId;
 	
+	public String getCessionId() {
+		return cessionId;
+	}
+	public void setCessionId(String cessionId) {
+		this.cessionId = cessionId;
+	}
 	public String getCopyingType() {
 		return copyingType;
 	}
