@@ -5311,4 +5311,16 @@
 						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<update id="generateMtnAcseCheckSeries" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			MTN_ACSE_CHECK_SERIES_PKG.gen_acse_check_series(
+				#{bank,jdbcType=INTEGER},
+				#{bankAcct,jdbcType=INTEGER},
+				#{checkNoFrom, jdbcType=INTEGER},
+				#{checkNoTo, jdbcType=INTEGER},
+				#{user,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
 </mapper>

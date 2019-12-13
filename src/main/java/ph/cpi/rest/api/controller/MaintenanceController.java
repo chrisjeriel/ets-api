@@ -1454,5 +1454,12 @@ public class MaintenanceController {
 		logger.info("GenerateAcseInvoiceSeriesRequest : " + request.toString());
 		return maintenanceService.generateAcseInvoiceSeries(request);
 	}
+	
+	@PostMapping(path="generateMtnAcseCheckSeries")
+    public @ResponseBody GenerateMtnAcseCheckSeriesResponse generateMtnAcseCheckSeries(@RequestBody GenerateMtnAcseCheckSeriesRequest gmacsr) throws SQLException {
+        logger.info("POST: /api/maintenance-service/generateMtnAcseCheckSeries");
+        logger.info("generateMtnAcseCheckSeriesRequest : " + gmacsr.toString());
+        return maintenanceService.generateMtnAcseCheckSeries(gmacsr);
+    }
 
 }
