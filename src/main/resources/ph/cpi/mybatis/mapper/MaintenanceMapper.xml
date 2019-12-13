@@ -5285,9 +5285,21 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     </resultMap>
+     </resultMap>	
 	
 	<select id="retrieveMtnGlSubDepNo" resultMap="mtnGlSubDepNoMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_GLSUB_DEP_NO_PKG.ret_mtn_glsubdepno(#{depCd,jdbcType=VARCHAR},#{depNo,jdbcType=INTEGER},'','','',''))
      </select>
+     
+     <update id="generateMtnAcitCheckSeries" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			MTN_ACIT_CHECK_SERIES_PKG.gen_acit_check_series(
+				#{bank,jdbcType=INTEGER},
+				#{bankAcct,jdbcType=INTEGER},
+				#{checkNoFrom, jdbcType=INTEGER},
+				#{checkNoTo, jdbcType=INTEGER},
+				#{user,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
 </mapper>
