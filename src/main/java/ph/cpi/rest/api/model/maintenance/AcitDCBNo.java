@@ -16,6 +16,7 @@ public class AcitDCBNo {
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
+	private Integer nextDcbNo;
 	
 	public Integer getDcbYear() {
 		return dcbYear;
@@ -99,12 +100,20 @@ public class AcitDCBNo {
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
+	
+	public Integer getNextDcbNo() {
+		return nextDcbNo;
+	}
+	public void setNextDcbNo(Integer nextDcbNo) {
+		this.nextDcbNo = nextDcbNo;
+	}
 	@Override
 	public String toString() {
 		return "AcitDCBNo [dcbYear=" + dcbYear + ", dcbNo=" + dcbNo + ", dcbDate=" + dcbDate + ", dcbStatus="
 				+ dcbStatus + ", dcbStatDesc=" + dcbStatDesc + ", remarks=" + remarks + ", closeDate=" + closeDate
 				+ ", autoTag=" + autoTag + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", nextDcbNo=" + nextDcbNo
+				+ "]";
 	}
 	
 }

@@ -20,11 +20,13 @@ import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.EditServiceAccountingEntriesRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
+import ph.cpi.rest.api.model.request.PostAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.PrintAcseJvRequest;
 import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RestoreServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntBackupRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntInqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
@@ -54,6 +56,10 @@ import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
+import ph.cpi.rest.api.model.request.RetrieveOrSFeeDtlDistRequest;
+import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBReopenRequest;
+import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBTempCloseRequest;
+import ph.cpi.rest.api.model.request.SaveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.SaveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.SaveAcseBudExpMonthlyRequest;
@@ -84,11 +90,14 @@ import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.EditServiceAccountingEntriesResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
+import ph.cpi.rest.api.model.response.PostAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.PrintAcseJvResponse;
 import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RestoreServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndTrialBalResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndUnpostedMonthsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntInqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
@@ -118,6 +127,10 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
+import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
+import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
+import ph.cpi.rest.api.model.response.SaveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.SaveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.SaveAcseBudExpMonthlyResponse;
@@ -619,5 +632,53 @@ public class AccountingServiceController {
         logger.info("UpdateAcseStatRequest : " + uasr.toString());
         return acctServService.updateAcseStat(uasr);
     }
+    
+    @PostMapping(path="saveAcseMonthEndTrialBal")
+	public @ResponseBody SaveAcitMonthEndTrialBalResponse saveAcseMonthEndTrialBal(@RequestBody SaveAcitMonthEndTrialBalRequest sametbr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseMonthEndTrialBal");
+		logger.info("SaveAcitMonthEndTrialBalRequest : " + sametbr.toString());
+		return acctServService.saveAcseMonthEndTrialBal(sametbr);
+	}
+    
+    @GetMapping(path="retrieveAcseMonthEndTrialBal")
+	public @ResponseBody RetrieveAcitMonthEndTrialBalResponse retrieveAcseMonthEndTrialBal(RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseMonthEndTrialBal");
+		logger.info("RetrieveAcitMonthEndTrialBalRequest : " + rametbr.toString());
+		return acctServService.retrieveAcseMonthEndTrialBal(rametbr);
+	}
+    
+    @GetMapping(path="retrieveAcseMonthEndUnpostedMonths")
+	public @ResponseBody RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcseMonthEndUnpostedMonths() throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseMonthEndUnpostedMonths");
+		return acctServService.retrieveAcseMonthEndUnpostedMonths();
+	}
+    
+    @PostMapping(path="postAcseMonthEndTrialBal")
+	public @ResponseBody PostAcitMonthEndTrialBalResponse postAcseMonthEndTrialBal(@RequestBody PostAcitMonthEndTrialBalRequest pametbr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/postAcseMonthEndTrialBal");
+		logger.info("PostAcitMonthEndTrialBalRequest : " + pametbr.toString());
+		return acctServService.postAcseMonthEndTrialBal(pametbr);
+	}
+    
+    @PostMapping(path="saveAcseMonthEndTBTempClose")
+	public @ResponseBody SaveAcitMonthEndTBTempCloseResponse saveAcseMonthEndTBTempClose(@RequestBody SaveAcitMonthEndTBTempCloseRequest sametcr) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/saveAcseMonthEndTBTempClose");
+		logger.info("SaveAcitMonthEndTBTempCloseRequest : " + sametcr.toString());
+		return acctServService.saveAcseMonthEndTBTempClose(sametcr);
+	}
+    
+    @PostMapping(path="saveAcseMonthEndTBReopen")
+	public @ResponseBody SaveAcitMonthEndTBReopenResponse saveAcseMonthEndTBReopen(@RequestBody SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcseMonthEndTBReopen");
+		logger.info("SaveAcitMonthEndTBReopenRequest : " + sametrr.toString());
+		return acctServService.saveAcseMonthEndTBReopen(sametrr);
+	}
+    
+    @GetMapping(path="retrieveOrSFeeDtlDist")
+	public @ResponseBody RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveOrSFeeDtlDist");
+		logger.info("RetrieveOrSFeeDtlDistRequest : " + rosfddr.toString());
+		return acctServService.retrieveOrSFeeDtlDist(rosfddr);
+	}
     
 }

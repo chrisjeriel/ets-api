@@ -30,7 +30,8 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
                 					"/pol-alteration",
                 					"/pol-oc",
                 					"/quote-processing",
-                					"/clm-processing");
+                					"/clm-processing",
+                					"/notif-sync");
     }
 	
 	

@@ -35,4 +35,9 @@ public class WebSocketController {
 		this.template.convertAndSend("/alert", message);
 	}
 	
+	@MessageMapping("/send/notif-sync")
+	public void onReceiveNotifSync(String message) {
+		this.template.convertAndSend("/notif-sync", message);
+	}
+	
 }

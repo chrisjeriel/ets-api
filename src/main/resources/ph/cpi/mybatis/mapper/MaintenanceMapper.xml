@@ -3677,6 +3677,7 @@
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
     	<result property="okDelete"		column="OK_DELETE" />
+    	<result property="nextDcbNo"	column="NEXT_DCB_NO" />
     </resultMap>
     
     <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">
@@ -4003,17 +4004,18 @@
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCheckSeries" id="acitCheckSeriesMap">
-     	<result property="bank"			column="BANK"/>
-		<result property="bankAcct"		column="BANK_ACCT"/>
-		<result property="checkNo"		column="CHECK_NO"/>
-		<result property="checkPrefix"	column="CHECK_PREFIX"/>
-		<result property="tranId"		column="TRAN_ID"/>
-		<result property="usedTag"		column="USED_TAG"/>
-		<result property="checkStatus"	column="CHECK_STATUS"/>
-		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     	<result property="bank"				column="BANK"/>
+		<result property="bankAcct"			column="BANK_ACCT"/>
+		<result property="checkNo"			column="CHECK_NO"/>
+		<result property="checkPrefix"		column="CHECK_PREFIX"/>
+		<result property="tranId"			column="TRAN_ID"/>
+		<result property="usedTag"			column="USED_TAG"/>
+		<result property="checkStatus"		column="CHECK_STATUS"/>
+		<result property="checkStatusDesc"	column="CHECK_STATUS_DESC"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
      </resultMap>
      
      <select id="retrieveMtnAcitCheckSeries" resultMap="acitCheckSeriesMap" parameterType="java.util.Map">
@@ -5289,4 +5291,13 @@
 	<select id="retrieveMtnGlSubDepNo" resultMap="mtnGlSubDepNoMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_GLSUB_DEP_NO_PKG.ret_mtn_glsubdepno(#{depCd,jdbcType=VARCHAR},#{depNo,jdbcType=INTEGER},'','','',''))
      </select>
+     
+     <update id="generateAcseInvoiceSeries" >
+		BEGIN
+			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_invoice(#{invoiceFrom},#{invoiceTo},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 </mapper>

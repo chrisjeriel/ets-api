@@ -4,9 +4,32 @@ public class SaveTransaction {
 	private String userId;
 	private String userGrp;
 	private Integer tranCd;    
+	private String tranDesc;
 	private String remarks;    
 	private String createUser;
+	private String createDate;
 	private String updateUser;
+	private String updateDate;
+	
+	
+	public String getTranDesc() {
+		return tranDesc;
+	}
+	public void setTranDesc(String tranDesc) {
+		this.tranDesc = tranDesc;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -45,8 +68,8 @@ public class SaveTransaction {
 	}
 	@Override
 	public String toString() {
-		return "SaveTransaction [userId=" + userId + ", userGrp=" + userGrp + ", tranCd=" + tranCd + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", updateUser=" + updateUser + "]";
+		return "SaveTransaction [userId=" + userId + ", userGrp=" + userGrp + ", tranCd=" + tranCd + ", tranDesc="
+				+ tranDesc + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

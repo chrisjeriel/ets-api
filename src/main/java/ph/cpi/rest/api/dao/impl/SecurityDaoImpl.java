@@ -92,6 +92,9 @@ public class SecurityDaoImpl implements SecurityDao {
 		return respCode;
 	}
 
-	
-	
+	@Override
+	public Integer saveMtnTransactions(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnTransactions",params);
+		return errorCode;
+	}
 }
