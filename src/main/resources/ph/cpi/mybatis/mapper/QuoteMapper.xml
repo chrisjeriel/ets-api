@@ -1681,7 +1681,8 @@
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				#{cessionId, jdbcType=VARCHAR}
+				#{cessionId, jdbcType=VARCHAR},
+				#{reinsurerId, jdbcType=VARCHAR}
 			);
 		END;
 	</update>

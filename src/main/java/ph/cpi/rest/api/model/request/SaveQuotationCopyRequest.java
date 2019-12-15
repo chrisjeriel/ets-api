@@ -13,7 +13,16 @@ public class SaveQuotationCopyRequest {
 	private String updateUser;
 	private String updateDate;
 	private String cessionId;
+	private String reinsurerId;
 	
+	
+	
+	public String getReinsurerId() {
+		return reinsurerId;
+	}
+	public void setReinsurerId(String reinsurerId) {
+		this.reinsurerId = reinsurerId;
+	}
 	public String getCessionId() {
 		return cessionId;
 	}
@@ -92,7 +101,8 @@ public class SaveQuotationCopyRequest {
 		return "SaveQuotationCopyRequest [copyingType=" + copyingType + ", quoteId=" + quoteId + ", lineCd=" + lineCd
 				+ ", quoteYear=" + quoteYear + ", cedingId=" + cedingId + ", riskId=" + riskId + ", autoIntComp="
 				+ autoIntComp + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", cessionId=" + cessionId + ", reinsurerId="
+				+ reinsurerId + "]";
 	}
 	
 }
