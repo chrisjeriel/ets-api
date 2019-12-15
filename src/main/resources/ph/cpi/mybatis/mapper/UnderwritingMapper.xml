@@ -309,6 +309,7 @@
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="holdCoverTag" 		column="HOLD_COVER"/>
 		<result property="extensionTag" 		column="EXTENSION_TAG"/>
+		<result property="premDepPct" 			column="PREM_DEP_PCT"/>
 		<association property="sectionCovers" resultMap ="sectionCoversMap"></association>
 	</resultMap>
 	
@@ -695,7 +696,7 @@
 										   #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem}, #{commRtQuota},#{commRtSurplus},#{commRtFac}, #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{premDepPct, jdbcType=INTEGER});
 			
 			<foreach collection="deleteSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.del_pol_cover(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
