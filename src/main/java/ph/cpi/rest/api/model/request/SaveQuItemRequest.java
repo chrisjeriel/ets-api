@@ -63,6 +63,13 @@ class QuItems {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String section;
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
+	}
 	public Integer getItemNo() {
 		return itemNo;
 	}

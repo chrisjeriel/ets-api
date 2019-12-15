@@ -24,7 +24,14 @@ public class Item {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String section;
 	
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
+	}
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -142,7 +149,7 @@ public class Item {
 				+ ", serialNo=" + serialNo + ", location=" + location + ", chamberNo=" + chamberNo + ", noClaimPd="
 				+ noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp + ", standbyUnit=" + standbyUnit
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", section=" + section + "]";
 	}
 	
 	

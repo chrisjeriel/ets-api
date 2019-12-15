@@ -452,6 +452,7 @@
 		<result property="relativeImp" 		column="RELATIVE_IMP"/> 
 		<result property="standbyUnit" 		column="STANDBY_UNIT"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="section"			column="SECTION"/>
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -1009,6 +1010,7 @@
 				#{Items.ipl, jdbcType=INTEGER},
 				#{Items.relativeImp, jdbcType=VARCHAR},
 				#{Items.standbyUnit, jdbcType=VARCHAR},
+				#{Items.section, jdbcType=VARCHAR},
 				#{Items.createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{Items.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{Items.updateUser, jdbcType=VARCHAR},
