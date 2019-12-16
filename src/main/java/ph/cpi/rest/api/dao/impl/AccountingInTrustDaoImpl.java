@@ -54,8 +54,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVInvestmentPlacement;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -1211,6 +1213,19 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitUnappliedCollection> retrieveUnappliedCollection(HashMap<String, Object> params)
 			throws SQLException {
 		List<AcitUnappliedCollection> response = sqlSession.selectList("retrieveUnappliedCollection",params);
+		return response;
+	}
+
+	@Override
+	public List<AcitJVUnappliedCollection> retrieveJvUnappliedCollection(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcitJVUnappliedCollection> response = sqlSession.selectList("retrieveJvUnappColl", params);
+		return response;
+	}
+
+	@Override
+	public List<AcitJvUnappInw> retrieveInwUnappliedCollection(HashMap<String, Object> params) throws SQLException {
+		List<AcitJvUnappInw> response = sqlSession.selectList("retrieveInwUnappliedCollection", params);
 		return response;
 	}
 }

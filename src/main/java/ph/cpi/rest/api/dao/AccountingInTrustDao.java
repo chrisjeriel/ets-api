@@ -44,8 +44,10 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVInvestmentPlacement;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -250,4 +252,6 @@ public interface AccountingInTrustDao {
 	public String validateProfCommTran(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException;
 	public List<AcitUnappliedCollection> retrieveUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitJVUnappliedCollection> retrieveJvUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitJvUnappInw> retrieveInwUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 }

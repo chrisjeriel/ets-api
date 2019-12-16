@@ -922,4 +922,18 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitUnappliedCollRequest : " + request.toString());
 		return acctInTrustService.retrieveUnappliedCollection(request);
 	}
+	
+	@GetMapping(path="retrieveJvUnappliedCollection")
+	public @ResponseBody RetrieveAcitJvUnappCollResponse retrieveJvUnappliedCollection(RetrieveAcitJvUnappCollRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveJvUnappliedCollection");
+		logger.info("RetrieveAcitJvUnappCollRequest : " + request.toString());
+		return acctInTrustService.retrieveJvUnappliedCollection(request);
+	}
+	
+	@GetMapping(path="retrieveInwUnappliedCollection")
+	public @ResponseBody RetrieveAcitJvUnappliedInwResponse retrieveInwUnappliedCollection(RetrieveAcitJvUnappliedInwRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveInwUnappliedCollection");
+		logger.info("RetrieveAcitJvUnappliedInwRequest : " + request.toString());
+		return acctInTrustService.retrieveInwUnappliedCollection(request);
+	}
 }

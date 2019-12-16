@@ -2864,5 +2864,30 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setUnappliedColl(acctITDao.retrieveUnappliedCollection(params));
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitJvUnappCollResponse retrieveJvUnappliedCollection(RetrieveAcitJvUnappCollRequest request)
+			throws SQLException {
+		RetrieveAcitJvUnappCollResponse response = new RetrieveAcitJvUnappCollResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setUnappliedColl(acctITDao.retrieveJvUnappliedCollection(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJvUnappliedInwResponse retrieveInwUnappliedCollection(RetrieveAcitJvUnappliedInwRequest request)
+			throws SQLException {
+		RetrieveAcitJvUnappliedInwResponse response = new RetrieveAcitJvUnappliedInwResponse();
+		
+		HashMap<String,Object> params  = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		params.put("policyId", request.getPolicyId());
+		params.put("instNo", request.getInstNo());
+		response.setInwUnappColl(acctITDao.retrieveInwUnappliedCollection(params));
+		return response;
+	}
 	
 }
