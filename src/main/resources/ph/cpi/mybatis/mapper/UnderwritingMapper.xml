@@ -173,6 +173,7 @@
 		<result property="distStatDesc"			column="DIST_STAT_DESC" />
 		<result property="quoteId"				column="QUOTE_ID"/> <!-- added by CJS for WFMServices -->
 		<result property="quotationNo"			column="QUOTATION_NO"/> <!-- added by CJS for WFMServices -->
+		<result property="createUser"			column="CREATE_USER"/>
 		<association property="project" 		resultMap="projectMap"/>
 	</resultMap>
 	
