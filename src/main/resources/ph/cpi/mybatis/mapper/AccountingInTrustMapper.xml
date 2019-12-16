@@ -874,7 +874,7 @@
 					<!-- Generate to Accounting Entries -->
 				END IF;
 			END IF;
-			IF #{isPrint, jdbcType=VARCHAR} IS NULL THEN
+			IF #{isPrint, jdbcType=VARCHAR} IS NULL AND #{genAcctEnt} <![CDATA[ = ]]> 'Y' THEN
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
 			END IF;
 		END;
