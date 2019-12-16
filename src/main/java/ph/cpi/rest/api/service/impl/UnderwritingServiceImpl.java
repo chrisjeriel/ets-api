@@ -519,6 +519,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("saveDeductibleList",spcr.getSaveDeductibleList());
 			savePolCoverageParams.put("deleteDeductibleList",spcr.getDeleteDeductibleList());
 			savePolCoverageParams.put("changeTag",spcr.getChangeTag());
+			savePolCoverageParams.put("premDepPct",spcr.getPremDepPct());
 			
 			HashMap<String, Object> res = underwritingDao.savePolCoverage(savePolCoverageParams);
 			spcResponse.setReturnCode((Integer) res.get("errorCode"));

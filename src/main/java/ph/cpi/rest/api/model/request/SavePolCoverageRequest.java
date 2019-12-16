@@ -48,12 +48,21 @@ public class SavePolCoverageRequest {
 	private String updateUser;
 	private String updateDate;
 	private String changeTag;
+	private BigDecimal premDepPct;
 	
 	private List<SectionCoversUw> saveSectionCovers;
 	private List<SectionCoversUw> deleteSectionCovers;
 	List<UwDeductible> saveDeductibleList;
 	List<UwDeductible> deleteDeductibleList;
 	
+	public BigDecimal getPremDepPct() {
+		return premDepPct;
+	}
+
+	public void setPremDepPct(BigDecimal premDepPct) {
+		this.premDepPct = premDepPct;
+	}
+
 	public BigDecimal getPolicyId() {
 		return policyId;
 	}
@@ -435,9 +444,9 @@ public class SavePolCoverageRequest {
 				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota
 				+ ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", changeTag=" + changeTag + ", saveSectionCovers=" + saveSectionCovers + ", deleteSectionCovers="
-				+ deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList + ", deleteDeductibleList="
-				+ deleteDeductibleList + "]";
+				+ ", changeTag=" + changeTag + ", premDepPct=" + premDepPct + ", saveSectionCovers=" + saveSectionCovers
+				+ ", deleteSectionCovers=" + deleteSectionCovers + ", saveDeductibleList=" + saveDeductibleList
+				+ ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
 }
 

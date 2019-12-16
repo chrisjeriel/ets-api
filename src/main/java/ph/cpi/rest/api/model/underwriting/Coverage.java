@@ -17,6 +17,7 @@ public class Coverage {
 	private BigDecimal prevSectionIIPrem;
 	private BigDecimal prevSectionIIIPrem;
 	private BigDecimal prevTotalPrem;
+	private BigDecimal premDepPct;
 	
 	private BigDecimal sectionISi;
 	private BigDecimal sectionIISi;
@@ -58,6 +59,15 @@ public class Coverage {
 	private String holdCoverTag;
 	private String extensionTag;
 	private List<SectionCovers> sectionCovers;
+
+	
+	public BigDecimal getPremDepPct() {
+		return premDepPct;
+	}
+
+	public void setPremDepPct(BigDecimal premDepPct) {
+		this.premDepPct = premDepPct;
+	}
 
 	public BigDecimal getPrevSectionISi() {
 		return prevSectionISi;
@@ -451,19 +461,20 @@ public class Coverage {
 		return "Coverage [prevSectionISi=" + prevSectionISi + ", prevSectionIISi=" + prevSectionIISi
 				+ ", prevSectionIIISi=" + prevSectionIIISi + ", prevTotalSi=" + prevTotalSi + ", prevSectionIPrem="
 				+ prevSectionIPrem + ", prevSectionIIPrem=" + prevSectionIIPrem + ", prevSectionIIIPrem="
-				+ prevSectionIIIPrem + ", prevTotalPrem=" + prevTotalPrem + ", sectionISi=" + sectionISi
-				+ ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi + ", totalSi=" + totalSi
-				+ ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem + ", sectionIIIPrem="
-				+ sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt=" + holdCoverPremAmt
-				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml="
-				+ pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks + ", exSeciPrem=" + exSeciPrem
-				+ ", exSeciiPrem=" + exSeciiPrem + ", exSeciiiPrem=" + exSeciiiPrem + ", exTprem=" + exTprem
-				+ ", exCumTprem=" + exCumTprem + ", exDays=" + exDays + ", totalDays=" + totalDays + ", cumSecISi="
-				+ cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi + ", cumTSi=" + cumTSi
-				+ ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem + ", cumSecIIIPrem=" + cumSecIIIPrem
-				+ ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota + ", commRtSurplus=" + commRtSurplus
-				+ ", commRtFac=" + commRtFac + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", holdCoverTag=" + holdCoverTag
-				+ ", extensionTag=" + extensionTag + ", sectionCovers=" + sectionCovers + "]";
+				+ prevSectionIIIPrem + ", prevTotalPrem=" + prevTotalPrem + ", premDepPct=" + premDepPct
+				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
+				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
+				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt="
+				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="
+				+ pctShare + ", pctPml=" + pctPml + ", totalValue=" + totalValue + ", remarks=" + remarks
+				+ ", exSeciPrem=" + exSeciPrem + ", exSeciiPrem=" + exSeciiPrem + ", exSeciiiPrem=" + exSeciiiPrem
+				+ ", exTprem=" + exTprem + ", exCumTprem=" + exCumTprem + ", exDays=" + exDays + ", totalDays="
+				+ totalDays + ", cumSecISi=" + cumSecISi + ", cumSecIISi=" + cumSecIISi + ", cumSecIIISi=" + cumSecIIISi
+				+ ", cumTSi=" + cumTSi + ", cumSecIPrem=" + cumSecIPrem + ", cumSecIIPrem=" + cumSecIIPrem
+				+ ", cumSecIIIPrem=" + cumSecIIIPrem + ", cumTPrem=" + cumTPrem + ", commRtQuota=" + commRtQuota
+				+ ", commRtSurplus=" + commRtSurplus + ", commRtFac=" + commRtFac + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", holdCoverTag=" + holdCoverTag + ", extensionTag=" + extensionTag + ", sectionCovers="
+				+ sectionCovers + "]";
 	}
 }

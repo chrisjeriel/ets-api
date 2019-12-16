@@ -64,8 +64,16 @@ class Items {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String section;
 	
 	
+	
+	public String getSection() {
+		return section;
+	}
+	public void setSection(String section) {
+		this.section = section;
+	}
 	public Integer getItemNo() {
 		return itemNo;
 	}
@@ -176,12 +184,12 @@ class Items {
 	}
 	@Override
 	public String toString() {
-		return "Item [itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc
-				+ ", makeYear=" + makeYear + ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured
-				+ ", stockType=" + stockType + ", serialNo=" + serialNo + ", location=" + location + ", chamberNo="
-				+ chamberNo + ", noClaimPd=" + noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp
-				+ ", standbyUnit=" + standbyUnit + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "Items [itemNo=" + itemNo + ", quantity=" + quantity + ", itemDesc=" + itemDesc + ", makeYear="
+				+ makeYear + ", deductibleTxt=" + deductibleTxt + ", sumInsured=" + sumInsured + ", stockType="
+				+ stockType + ", serialNo=" + serialNo + ", location=" + location + ", chamberNo=" + chamberNo
+				+ ", noClaimPd=" + noClaimPd + ", ipl=" + ipl + ", relativeImp=" + relativeImp + ", standbyUnit="
+				+ standbyUnit + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", section=" + section + "]";
 	}
 	
 }
