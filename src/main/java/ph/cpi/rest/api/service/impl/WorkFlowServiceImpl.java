@@ -3,8 +3,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,18 +14,21 @@ import ph.cpi.rest.api.dao.UserDao;
 import ph.cpi.rest.api.dao.WorkFlowDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.maintenance.Users;
+import ph.cpi.rest.api.model.request.ChangeRNStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
 import ph.cpi.rest.api.model.request.RetrieveRelatedRecordsRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
+import ph.cpi.rest.api.model.response.ChangeRNStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
 import ph.cpi.rest.api.model.response.RetrieveRelatedRecordsResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
 import ph.cpi.rest.api.model.response.RetrieveWfmTransactionsResponse;
 import ph.cpi.rest.api.model.response.SaveNotesResponse;
 import ph.cpi.rest.api.model.response.SaveRemindersResponse;
+import ph.cpi.rest.api.model.workflowmanager.NRStatus;
 import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
 import ph.cpi.rest.api.model.workflowmanager.UserNotif;
@@ -251,6 +252,23 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		System.out.println("retrieveNotifCount");
 		System.out.println(unList);
 		wsController.onReceiveNotifSync(unList.toString());
+	}
+
+	@Override
+	public ChangeRNStatusResponse changeRNStatus(ChangeRNStatusRequest rrrr) throws SQLException {
+		ChangeRNStatusResponse resp = new ChangeRNStatusResponse();
+		try {
+			for (NRStatus nrs : rrrr.getRnStatusList()) {
+				workFlowDao.changeRNStatus(nrs);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Error err = new Error("RNEX01", ex.getMessage());
+			resp.getErrorList().add(err);
+		}
+		
+		retrieveNotifCount();
+		return resp;
 	}
 	
 	
