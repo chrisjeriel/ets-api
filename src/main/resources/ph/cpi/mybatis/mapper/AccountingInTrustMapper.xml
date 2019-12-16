@@ -478,6 +478,8 @@
 		<result property="arDtlSum"      column="ARDTL_SUM"       />
 		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
 		<result property="acctEntDate"    column="ACCT_ENT_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="reopenTag" column="REOPEN_TAG"       />
+		<result property="reopenDate"    column="REOPEN_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	
@@ -1173,7 +1175,7 @@
 	
 	<update id="cancelAr" parameterType="java.util.Map">
 		BEGIN
-			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{reopen, jdbcType=VARCHAR});
 		END;
 	</update>
 	

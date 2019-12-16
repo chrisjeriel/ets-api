@@ -608,6 +608,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranId",car.getTranId());
 		params.put("updateUser", car.getUpdateUser());
 		params.put("updateDate", car.getUpdateDate());
+		params.put("reopen", car.getReopen());
 		try{
 			response.setReturnCode(acctITDao.cancelAr(params));
 		}catch(Exception e){
