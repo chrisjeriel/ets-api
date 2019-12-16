@@ -1461,6 +1461,13 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		List<MtnGlSubDepNo> glSubDepNoList = sqlSession.selectList("retrieveMtnGlSubDepNo", params);
 		return glSubDepNoList;
 	}
+	
+	@Override
+	public HashMap<String, Object> generateMtnAcitCheckSeries(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("generateMtnAcitCheckSeries", params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 
 	@Override
 	public HashMap<String, Object> generateAcseInvoiceSeries(
@@ -1470,4 +1477,12 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+    public HashMap<String, Object> generateMtnAcseCheckSeries(HashMap<String, Object> params) throws SQLException {
+        Integer errorCode = sqlSession.update("generateMtnAcseCheckSeries", params);
+        params.put("errorCode", errorCode);
+        return params;
+    }
 }
+
