@@ -2853,5 +2853,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
+
+
+	@Override
+	public RetrieveAcitUnappliedCollResponse retrieveUnappliedCollection(RetrieveAcitUnappliedCollRequest request)
+			throws SQLException {
+		RetrieveAcitUnappliedCollResponse response  =  new RetrieveAcitUnappliedCollResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("cedingId", request.getCedingId());
+		response.setUnappliedColl(acctITDao.retrieveUnappliedCollection(params));
+		return response;
+	}
 	
 }

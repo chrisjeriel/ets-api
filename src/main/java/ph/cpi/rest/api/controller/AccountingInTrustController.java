@@ -915,4 +915,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitProfcommTranRequest : " + saptr.toString());
 		return acctInTrustService.saveAcitProfCommTran(saptr);
 	}
+	
+	@GetMapping(path="retrieveUnappliedCollection")
+	public @ResponseBody RetrieveAcitUnappliedCollResponse retrieveUnappliedCollection(RetrieveAcitUnappliedCollRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveUnappliedCollection");
+		logger.info("RetrieveAcitUnappliedCollRequest : " + request.toString());
+		return acctInTrustService.retrieveUnappliedCollection(request);
+	}
 }

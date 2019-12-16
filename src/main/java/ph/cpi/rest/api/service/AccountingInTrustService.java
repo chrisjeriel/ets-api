@@ -137,4 +137,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitDcbBankDetailsResponse retrieveAcitBankDetails(RetrieveAcitDcbBankDetailsRequest request) throws SQLException;
 	public RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest raptp ) throws SQLException;
 	public SaveAcitProfCommTranResponse saveAcitProfCommTran(SaveAcitProfCommTranRequest saptr) throws SQLException;
+	public RetrieveAcitUnappliedCollResponse retrieveUnappliedCollection(RetrieveAcitUnappliedCollRequest request) throws SQLException;
+	
 }

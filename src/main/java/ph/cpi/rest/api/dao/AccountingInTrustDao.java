@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
+import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
@@ -248,4 +249,5 @@ public interface AccountingInTrustDao {
 	public String getAcitTranNo(final HashMap<String, Object> params) throws SQLException;
 	public String validateProfCommTran(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException;
+	public List<AcitUnappliedCollection> retrieveUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 }
