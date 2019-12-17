@@ -49,6 +49,7 @@ public class SaveAcitArTransRequest {
 	
 	//Utility
 	private String isPrint;
+	private String genAcctEnt;
 	
 	public String getTranId() {
 		return tranId;
@@ -284,7 +285,12 @@ public class SaveAcitArTransRequest {
 	public void setIsPrint(String isPrint) {
 		this.isPrint = isPrint;
 	}
-	
+	public String getGenAcctEnt() {
+		return genAcctEnt;
+	}
+	public void setGenAcctEnt(String genAcctEnt) {
+		this.genAcctEnt = genAcctEnt;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcitArTransRequest [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
@@ -298,7 +304,7 @@ public class SaveAcitArTransRequest {
 				+ ", bussTypeName=" + bussTypeName + ", tin=" + tin + ", particulars=" + particulars + ", currCd="
 				+ currCd + ", currRate=" + currRate + ", arAmt=" + arAmt + ", allocTag=" + allocTag + ", allocTranId="
 				+ allocTranId + ", savePaytDtl=" + savePaytDtl + ", delPaytDtl=" + delPaytDtl + ", isPrint=" + isPrint
-				+ "]";
+				+ ", genAcctEnt=" + genAcctEnt + "]";
 	}
 }
 

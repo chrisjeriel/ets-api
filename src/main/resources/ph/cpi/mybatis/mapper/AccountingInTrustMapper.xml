@@ -478,6 +478,8 @@
 		<result property="arDtlSum"      column="ARDTL_SUM"       />
 		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
 		<result property="acctEntDate"    column="ACCT_ENT_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="reopenTag" column="REOPEN_TAG"       />
+		<result property="reopenDate"    column="REOPEN_DATE"      typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<association property="paytDtl"  resultMap="paytDtlAssoc"   />
 	</resultMap>
 	
@@ -872,7 +874,7 @@
 					<!-- Generate to Accounting Entries -->
 				END IF;
 			END IF;
-			IF #{isPrint, jdbcType=VARCHAR} IS NULL THEN
+			IF #{isPrint, jdbcType=VARCHAR} IS NULL AND #{genAcctEnt} <![CDATA[ = ]]> 'Y' THEN
 				GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('AR', #{tranTypeCd}, v_tran_id, v_message);
 			END IF;
 		END;
@@ -1173,7 +1175,7 @@
 	
 	<update id="cancelAr" parameterType="java.util.Map">
 		BEGIN
-			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			ACIT_ACKGT_RECEIPT_PKG.cancel_ar(#{tranId},#{updateUser},CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{reopen, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -2158,27 +2160,12 @@
 				
 			</foreach>
 			
-			SELECT NVL(SUM(TOTAL_LOCAL_AMT), 0)
-			  INTO v_total_payts
-			  FROM ACIT_AR_TRANSUMM
-			 WHERE TRAN_ID = #{tranId};
-			
-			SELECT AR_AMT * CURR_RATE
-			  INTO v_ar_amt
-			  FROM ACIT_ACKGT_RECEIPT
-			 WHERE TRAN_ID = #{tranId};
-			 
-			 SELECT NVL(SUM(MATURITY_VALUE), 0)
-			   INTO v_tot_payt_inv
-			   FROM ACIT_AR_INVPULLOUT
-			  WHERE TRAN_ID = #{tranId};
-			 
 			 <!-- IF (#{totalLocalAmt} - v_total_payts) + v_total_payts <![CDATA[ <= ]]> v_ar_amt THEN -->
 				<!-- Save to ACIT_AR_TRANSUMM -->
 				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
 														#{billId},
 														#{billType},
-														v_tot_payt_inv + #{totalLocalAmt},
+														#{totalLocalAmt},
 														null,
 														#{createUser},
 														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -2201,12 +2188,29 @@
 														#{save.bankCharge},
 														#{save.whtaxAmt},
 														#{save.maturityValue},
+														#{save.localAmt},
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)				
 					);
 				</foreach>
+				
+				SELECT NVL(SUM(LOCAL_AMT), 0)
+				   INTO v_tot_payt_inv
+				   FROM ACIT_AR_INVPULLOUT
+				  WHERE TRAN_ID = #{tranId};
+				
+				ACIT_AR_TRANSUMM_PKG.save_acit_transumm(#{tranId},
+														#{billId},
+														#{billType},
+														v_tot_payt_inv,
+														null,
+														#{createUser},
+														CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{updateUser},
+														CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														);
 				<!-- UPDATE AR PARTICULARS -->
 				ACIT_AR_INVPULLOUT_PKG.update_particulars(#{tranId},#{billId});
 				<!-- Generate to Amount Details -->
