@@ -4657,27 +4657,34 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw" id="inwCollMap">
-		<result property="tranId" 		column="TRAN_ID"/>
-		<result property="policyId" 	column="POLICY_ID"/>
-		<result property="policyNo" 	column="POLICY_NO"/>
-		<result property="instNo" 		column="INST_NO"/>
-		<result property="cedingName" 	column="CEDING_NAME"/>
-		<result property="cedingId" 	column="CEDING_ID"/>
-		<result property="currCd" 		column="CURR_CD"/>
-		<result property="currRate" 	column="CURR_RATE"/>
-		<result property="premAmt" 		column="PREM_AMT"/>
-		<result property="riComm" 		column="RI_COMM"/>
-		<result property="riCommVat" 	column="RI_COMM_VAT"/>
-		<result property="charges" 		column="CHARGES"/>
-		<result property="netDue" 		column="NET_DUE"/>
-		<result property="prevBalance"  column="PREV_BALANCE"/>
-		<result property="prevPaytAmt"  column="PREV_PAYT_AMT"/>
-		<result property="balPaytAmt" 	column="BAL_PAYT_AMT"/>
-		<result property="localAmt" 	column="LOCAL_AMT"/>
-		<result property="newPaytAmt" 	column="NEW_PAYT_AMT"/>
-		<result property="newBalance" 	column="NEW_BALANCE"/>
-		<result property="overdueInt" 	column="OVERDUE_INT"/>
-		<result property="remarks" 		column="REMARKS"/>
+		<result property="tranId" 		 column="TRAN_ID"/>
+		<result property="policyId" 	 column="POLICY_ID"/>
+		<result property="policyNo" 	 column="POLICY_NO"/>
+		<result property="instNo" 		 column="INST_NO"/>
+		<result property="cedingName" 	 column="CEDING_NAME"/>
+		<result property="cedingId" 	 column="CEDING_ID"/>
+		<result property="currCd" 		 column="CURR_CD"/>
+		<result property="currRate" 	 column="CURR_RATE"/>
+		<result property="prevPremAmt" 	 column="PREV_PREMIUM"/>
+		<result property="prevRiComm" 	 column="PREV_RI_COMM"/>
+		<result property="prevRiCommVat" column="PREV_RI_COMM_VAT"/>
+		<result property="prevCharges" 	 column="PREV_CHARGES"/>
+		<result property="prevNetDue" 	 column="PREV_NET_DUE"/>
+		<result property="coRefNo" 	 	 column="CO_REF_NO"/>
+		<result property="dueDate" 	 	 column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="premAmt" 		 column="PREM_AMT"/>
+		<result property="riComm" 		 column="RI_COMM"/>
+		<result property="riCommVat" 	 column="RI_COMM_VAT"/>
+		<result property="charges" 		 column="CHARGES"/>
+		<result property="netDue" 		 column="NET_DUE"/>
+		<result property="balance"  	 column="PREV_BALANCE"/>
+		<result property="cumPayment"    column="PREV_PAYT_AMT"/>
+		<result property="paytAmt" 		 column="BAL_PAYT_AMT"/>
+		<result property="localAmt" 	 column="LOCAL_AMT"/>
+		<result property="totalPayt" 	 column="NEW_PAYT_AMT"/>
+		<result property="remainingBal"  column="NEW_BALANCE"/>
+		<result property="overdueInt" 	 column="OVERDUE_INT"/>
+		<result property="remarks" 		 column="REMARKS"/>
 		<result property="createUser" 	 column="CREATE_USER"/>
 		<result property="createDate" 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"  	 column="UPDATE_USER"/>
@@ -4687,4 +4694,75 @@
 	<select id="retrieveInwUnappliedCollection" resultMap="inwCollMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_JV_UNAPP_INW_PKG.ret_unapp_inw(#{tranId},#{policyId, jdbcType=VARCHAR},#{instNo, jdbcType=VARCHAR},null,null,null,null))
 	</select>
+	
+	<update id="saveJVUnappliedColl" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delUnappliedColl" item="del">
+				ACIT_JV_UNAPP_INW_PKG.save_jv_unapp_coll(#{del.tranId},
+														#{del.refTranId},
+														#{del.refBillId},
+														#{del.refItemNo});
+			</foreach>
+			
+			<foreach collection="saveUnappliedColl" item="save">
+				ACIT_JV_UNAPP_INW_PKG.save_jv_unapp_coll(#{save.tranId},
+														#{save.refTranId},
+														#{save.refBillId},
+														#{save.refItemNo},
+														#{save.transdtlType},
+														#{save.itemName},
+														#{save.currCd},
+														#{save.currRate},
+														#{save.prevPaytAmt},
+														#{save.prevBalance},
+														#{save.unappliedAmt},
+														#{save.actualBalPaid},
+														#{save.localAmt},
+														#{save.newPaytAmt},
+														#{save.newBalance},
+														#{save.refNo, jdbcType=VARCHAR},
+														#{save.remarks , jdbcType=VARCHAR},
+														#{save.createUser},
+														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.updateUser},
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+			
+		END;
+	</update>
+	
+	<update id="saveJVInwUnappliedColl" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delInwCollection" item="del">
+				ACIT_JV_UNAPP_INW_PKG.del_jv_inw(#{del.tranId},
+											     #{del.policyId},
+												 #{del.instNo});
+			</foreach>
+			
+			<foreach collection="saveInwCollection" item="save">
+				ACIT_JV_UNAPP_INW_PKG.save_jv_inw(  #{save.tranId},
+													#{save.policyId},
+													#{save.instNo},
+													#{save.currCd},
+													#{save.currRate},
+													#{save.premAmt},
+													#{save.riComm},
+													#{save.riCommVat},
+													#{save.charges},
+													#{save.netDue, jdbcType=VARCHAR},
+													#{save.balance},
+													#{save.cumPayment},
+													#{save.paytAmt},
+													#{save.localAmt},
+													#{save.totalPayt},
+													#{save.remainingBal},
+													#{save.overdueInt, jdbcType=VARCHAR},
+													#{save.remarks, jdbcType=VARCHAR},
+													#{save.createUser},
+													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{save.updateUser},
+													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
 </mapper>

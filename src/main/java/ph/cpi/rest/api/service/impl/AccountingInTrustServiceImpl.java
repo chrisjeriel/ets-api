@@ -2889,5 +2889,41 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setInwUnappColl(acctITDao.retrieveInwUnappliedCollection(params));
 		return response;
 	}
+
+
+	@Override
+	public SaveAcitJVUnappCollResponse saveJVUnappliedColl(SaveAcitJVUnappCollRequest request) throws SQLException {
+		SaveAcitJVUnappCollResponse response = new SaveAcitJVUnappCollResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveUnappliedColl", request.getSaveUnappliedColl());
+			params.put("delUnappliedColl", request.getDelUnappliedColl());
+			HashMap<String,Object> res = acctITDao.saveJVUnappliedColl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVInwUnappResponse saveJVInwUnappliedColl(SaveAcitJVInwUnappRequest request) throws SQLException {
+		SaveAcitJVInwUnappResponse response = new SaveAcitJVInwUnappResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveInwCollection", request.getSaveInwCollection());
+			params.put("delInwCollection", request.getDelInwCollection());
+			HashMap<String,Object> res = acctITDao.saveJVInwUnappliedColl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 	
 }

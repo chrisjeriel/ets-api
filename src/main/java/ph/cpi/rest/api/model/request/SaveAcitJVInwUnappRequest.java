@@ -1,25 +1,45 @@
-package ph.cpi.rest.api.model.accountingintrust;
+package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.joda.time.DateTime;
 
-public class AcitJvUnappInw {
+public class SaveAcitJVInwUnappRequest {
+	
+	private List<InwUnappliedCollection> saveInwCollection;
+	private List<InwUnappliedCollection> delInwCollection;
+
+	public List<InwUnappliedCollection> getSaveInwCollection() {
+		return saveInwCollection;
+	}
+
+	public void setSaveInwCollection(List<InwUnappliedCollection> saveInwCollection) {
+		this.saveInwCollection = saveInwCollection;
+	}
+	
+	
+	public List<InwUnappliedCollection> getDelInwCollection() {
+		return delInwCollection;
+	}
+
+	public void setDelInwCollection(List<InwUnappliedCollection> delInwCollection) {
+		this.delInwCollection = delInwCollection;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveAcitJVInwUnappRequest [saveInwCollection=" + saveInwCollection + ", delInwCollection="
+				+ delInwCollection + "]";
+	}
+}
+
+class InwUnappliedCollection {
 	private Integer tranId;
 	private Integer policyId;
-	private String policyNo;
-	private String cedingId;
-	private String cedingName;
 	private Integer instNo;
 	private String currCd;
-	private String coRefNo;
-	private DateTime dueDate;
 	private BigDecimal currRate;
-	private BigDecimal prevPremAmt;
-	private BigDecimal prevRiComm; 
-	private BigDecimal prevRiCommVat;
-	private BigDecimal prevCharges;
-	private BigDecimal prevNetDue;
 	private BigDecimal premAmt;
 	private BigDecimal riComm;
 	private BigDecimal riCommVat;
@@ -34,9 +54,9 @@ public class AcitJvUnappInw {
 	private BigDecimal overdueInt;
 	private String remarks;
 	private String createUser;
-	private DateTime createDate;
+	private String createDate;
 	private String updateUser;
-	private DateTime updateDate;
+	private String updateDate;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -49,74 +69,11 @@ public class AcitJvUnappInw {
 	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
-	
-	public String getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(String policyNo) {
-		this.policyNo = policyNo;
-	}
-	
-	public String getCoRefNo() {
-		return coRefNo;
-	}
-	public void setCoRefNo(String coRefNo) {
-		this.coRefNo = coRefNo;
-	}
-	public DateTime getDueDate() {
-		return dueDate;
-	}
-	public void setDueDate(DateTime dueDate) {
-		this.dueDate = dueDate;
-	}
 	public Integer getInstNo() {
 		return instNo;
 	}
 	public void setInstNo(Integer instNo) {
 		this.instNo = instNo;
-	}
-	
-	public BigDecimal getPrevPremAmt() {
-		return prevPremAmt;
-	}
-	public void setPrevPremAmt(BigDecimal prevPremAmt) {
-		this.prevPremAmt = prevPremAmt;
-	}
-	public BigDecimal getPrevRiComm() {
-		return prevRiComm;
-	}
-	public void setPrevRiComm(BigDecimal prevRiComm) {
-		this.prevRiComm = prevRiComm;
-	}
-	public BigDecimal getPrevRiCommVat() {
-		return prevRiCommVat;
-	}
-	public void setPrevRiCommVat(BigDecimal prevRiCommVat) {
-		this.prevRiCommVat = prevRiCommVat;
-	}
-	public BigDecimal getPrevCharges() {
-		return prevCharges;
-	}
-	public void setPrevCharges(BigDecimal prevCharges) {
-		this.prevCharges = prevCharges;
-	}
-	public BigDecimal getPrevNetDue() {
-		return prevNetDue;
-	}
-	public void setPrevNetDue(BigDecimal prevNetDue) {
-		this.prevNetDue = prevNetDue;
-	}
-	public String getCedingId() {
-		return cedingId;
-	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
-	}
-	public String getCedingName() {
-		return cedingName;
-	}
-	public void setCedingName(String cedingName) {
-		this.cedingName = cedingName;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -179,6 +136,12 @@ public class AcitJvUnappInw {
 	public void setPaytAmt(BigDecimal paytAmt) {
 		this.paytAmt = paytAmt;
 	}
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
+	}
 	public BigDecimal getTotalPayt() {
 		return totalPayt;
 	}
@@ -191,13 +154,6 @@ public class AcitJvUnappInw {
 	public void setRemainingBal(BigDecimal remainingBal) {
 		this.remainingBal = remainingBal;
 	}
-	public BigDecimal getLocalAmt() {
-		return localAmt;
-	}
-	public void setLocalAmt(BigDecimal localAmt) {
-		this.localAmt = localAmt;
-	}
-	
 	public BigDecimal getOverdueInt() {
 		return overdueInt;
 	}
@@ -216,10 +172,10 @@ public class AcitJvUnappInw {
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public DateTime getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(DateTime createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -228,25 +184,21 @@ public class AcitJvUnappInw {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public DateTime getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(DateTime updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 	@Override
 	public String toString() {
-		return "AcitJvUnappInw [tranId=" + tranId + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId="
-				+ cedingId + ", cedingName=" + cedingName + ", instNo=" + instNo + ", currCd=" + currCd + ", coRefNo="
-				+ coRefNo + ", dueDate=" + dueDate + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt
-				+ ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges
-				+ ", prevNetDue=" + prevNetDue + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat="
-				+ riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", balance=" + balance + ", cumPayment="
-				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", totalPayt=" + totalPayt
-				+ ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt + ", remarks=" + remarks
+		return "InwUnappliedCollection [tranId=" + tranId + ", policyId=" + policyId + ", instNo=" + instNo
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
+				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", balance=" + balance
+				+ ", cumPayment=" + cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", totalPayt="
+				+ totalPayt + ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + "]";
 	}
-	
 	
 }

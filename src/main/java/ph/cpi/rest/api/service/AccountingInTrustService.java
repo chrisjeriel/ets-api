@@ -140,5 +140,7 @@ public interface AccountingInTrustService {
 	public RetrieveAcitUnappliedCollResponse retrieveUnappliedCollection(RetrieveAcitUnappliedCollRequest request) throws SQLException;
 	public RetrieveAcitJvUnappCollResponse retrieveJvUnappliedCollection(RetrieveAcitJvUnappCollRequest request) throws SQLException;
 	public RetrieveAcitJvUnappliedInwResponse retrieveInwUnappliedCollection(RetrieveAcitJvUnappliedInwRequest request) throws SQLException;
+	public SaveAcitJVUnappCollResponse saveJVUnappliedColl(SaveAcitJVUnappCollRequest request) throws SQLException;
+	public SaveAcitJVInwUnappResponse saveJVInwUnappliedColl(SaveAcitJVInwUnappRequest request) throws SQLException;
 	
 }

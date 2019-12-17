@@ -254,4 +254,6 @@ public interface AccountingInTrustDao {
 	public List<AcitUnappliedCollection> retrieveUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitJVUnappliedCollection> retrieveJvUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitJvUnappInw> retrieveInwUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String,Object> saveJVUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String,Object> saveJVInwUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
 }

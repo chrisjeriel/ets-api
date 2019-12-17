@@ -936,4 +936,18 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitJvUnappliedInwRequest : " + request.toString());
 		return acctInTrustService.retrieveInwUnappliedCollection(request);
 	}
+	
+	@PostMapping(path="saveJVUnappliedColl")
+	public @ResponseBody SaveAcitJVUnappCollResponse saveJVUnappliedColl(@RequestBody SaveAcitJVUnappCollRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVUnappliedColl");
+		logger.info("SaveAcitJVUnappCollRequest : " + request.toString());
+		return acctInTrustService.saveJVUnappliedColl(request);
+	}
+	
+	@PostMapping(path="saveJVInwUnappliedColl")
+	public @ResponseBody SaveAcitJVInwUnappResponse saveJVInwUnappliedColl(@RequestBody SaveAcitJVInwUnappRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVInwUnappliedColl");
+		logger.info("SaveAcitJVInwUnappRequest : " + request.toString());
+		return acctInTrustService.saveJVInwUnappliedColl(request);
+	}
 }

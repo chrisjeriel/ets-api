@@ -1228,4 +1228,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJvUnappInw> response = sqlSession.selectList("retrieveInwUnappliedCollection", params);
 		return response;
 	}
+
+	@Override
+	public HashMap<String, Object> saveJVUnappliedColl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveJVUnappliedColl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveJVInwUnappliedColl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveJVInwUnappliedColl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
