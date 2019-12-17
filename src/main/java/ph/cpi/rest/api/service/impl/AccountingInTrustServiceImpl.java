@@ -774,6 +774,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateDate", saatdr.getUpdateDate());
 		params.put("saveTransDtl", saatdr.getSaveTransDtl());
 		params.put("delTransDtl", saatdr.getDelTransDtl());
+		params.put("genAcctEnt", saatdr.getGenAcctEnt());
 		try{
 			HashMap<String, Object> res = acctITDao.saveArTransDtl(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
