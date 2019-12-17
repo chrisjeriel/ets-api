@@ -1,8 +1,13 @@
 package ph.cpi.rest.api.utils;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.POLR044;
 
 public class ReportParameters {
@@ -69,6 +74,42 @@ public class ReportParameters {
 		POLR044AParams.put("P_INC_REC_TAG", param.getIncRecTag());
 		
 		return POLR044AParams;
+	}
+	
+	public static HashMap<String, Object> mapACITR061Params(ACITR061 param) throws ParseException {
+		HashMap<String, Object> ACITR061Params = new HashMap<String, Object>();
+		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date d;
+		*/
+		
+		ACITR061Params.put("P_REPORT_ID", param.getReportId());
+		ACITR061Params.put("p_report_id", param.getReportId());
+		ACITR061Params.put("pReportId", param.getReportId());
+		ACITR061Params.put("reportId", param.getReportId());
+		
+		ACITR061Params.put("P_PAYMENT_MODE", param.getPaytMode());
+		ACITR061Params.put("P_PAYMENT_TYPE", param.getPaytType());
+		ACITR061Params.put("P_CHK_DATE", param.getChkDate());
+		
+		ACITR061Params.put("P_FROM_DATE", param.getFromDate());
+		ACITR061Params.put("P_TO_DATE", param.getToDate());
+		
+		/*d = sdf.parse(param.getFromDate());
+		Timestamp fromDate = new Timestamp(d.getTime());
+		ACITR061Params.put("P_FROM_DATE", fromDate);
+		d = sdf.parse(param.getToDate());
+		Timestamp toDate = new Timestamp(d.getTime());
+		ACITR061Params.put("P_TO_DATE", toDate);*/
+		
+		
+		ACITR061Params.put("P_INC_CLOSED_TRAN", param.getIncClosedTran());
+		ACITR061Params.put("P_CLOSED_TRANS", param.getIncClosedTran());
+		ACITR061Params.put("P_INC_CANCEL_TRAN", param.getIncCancelTran());
+		ACITR061Params.put("P_CANCELLED_TRANS", param.getIncCancelTran());
+		ACITR061Params.put("P_TRANPOST_DATE", param.getTranPostDate());
+		ACITR061Params.put("P_PRINTED_BY", param.getPrintedBy());
+		
+		return ACITR061Params;
 	}
 	
 }
