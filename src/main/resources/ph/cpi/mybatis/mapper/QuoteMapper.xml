@@ -564,17 +564,12 @@
 															#{siTo, jdbcType=VARCHAR},
 															#{rateFrom, jdbcType=VARCHAR},
 															#{rateTo, jdbcType=VARCHAR},
-															#{approvedBy, jdbcType=VARCHAR}
+															#{approvedBy, jdbcType=VARCHAR},
+															#{statusArrStr,jdbcType=VARCHAR}
 															))	a	
 															
 		   	  WHERE  1=1
-		   	   <if test="statusArr != null">
-			   	AND   STATUS_CD IN 
-				   	   	<foreach item="item" index="index" collection="statusArr"
-			             open="(" separator="," close=")">
-					        #{item}
-					    </foreach>
-		   	   </if>
+		   	   
 		   	   <if test="openCoverTag != null">
 				   	AND   OP_COV_TAG = #{openCoverTag}
 		   	   </if>
@@ -623,15 +618,9 @@
 															#{siTo, jdbcType=VARCHAR},
 															#{rateFrom, jdbcType=VARCHAR},
 															#{rateTo, jdbcType=VARCHAR},
-															#{approvedBy, jdbcType=VARCHAR}))	a
+															#{approvedBy, jdbcType=VARCHAR},
+															#{statusArrStr,jdbcType=VARCHAR}))	a
 		   	  WHERE  1=1
-		   	   <if test="statusArr != null">
-			   	AND   STATUS_CD IN 
-				   	   	<foreach item="item" index="index" collection="statusArr"
-			             open="(" separator="," close=")">
-					        #{item}
-					    </foreach>
-		   	   </if>
 		   	   <if test="openCoverTag != null">
 				   	AND   OP_COV_TAG = #{openCoverTag}
 		   	   </if>
