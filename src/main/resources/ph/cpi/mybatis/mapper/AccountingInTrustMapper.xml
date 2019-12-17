@@ -3477,6 +3477,7 @@
 				#{tranId, jdbcType=INTEGER},
 				#{checkId, jdbcType=INTEGER},
 				#{cvStatus, jdbcType=VARCHAR},
+				#{printType, jdbcType=VARCHAR},
 				#{updateUser, jdbcType=VARCHAR}
 			);
 		END;
