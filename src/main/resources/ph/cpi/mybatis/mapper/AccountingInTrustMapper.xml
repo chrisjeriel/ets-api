@@ -403,6 +403,7 @@
 		<result property="tranStat"			column="TRAN_STAT_CD" />
 		<result property="arStatDesc"		column="AR_STATUS" />
 		<result property="tranStatDesc"		column="TRAN_STAT" />
+		<result property="tranTypeCd"		column="TRAN_TYPE_CD" />
 		<result property="tranTypeName"		column="TRAN_TYPE_NAME" />
 		<result property="payor"			column="PAYOR" />
 		<result property="arAmt"			column="AR_AMT" />
@@ -3081,7 +3082,8 @@
 					#{u.status, jdbcType=VARCHAR},
 				    #{u.updateUser ,jdbcType=VARCHAR},
 				    #{u.tranClass, jdbcType=VARCHAR},
-				    #{u.cancelReason, jdbcType=VARCHAR}
+				    #{u.cancelReason, jdbcType=VARCHAR},
+				    #{u.reopen, jdbcType=VARCHAR}
     			);
     		</foreach>
     	END;
