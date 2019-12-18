@@ -27,6 +27,7 @@ public class AcitUnappliedCollection {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String processing;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -66,6 +67,13 @@ public class AcitUnappliedCollection {
 	}
 	public BigDecimal getUnappliedAmt() {
 		return unappliedAmt;
+	}
+	
+	public String getProcessing() {
+		return processing;
+	}
+	public void setProcessing(String processing) {
+		this.processing = processing;
 	}
 	public void setUnappliedAmt(BigDecimal unappliedAmt) {
 		this.unappliedAmt = unappliedAmt;
@@ -168,7 +176,8 @@ public class AcitUnappliedCollection {
 				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", unappliedAmt=" + unappliedAmt + ", actualBalPaid="
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
 				+ ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing="
+				+ processing + "]";
 	}
 	
 	

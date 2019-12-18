@@ -4598,6 +4598,7 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection" id="unappliedMap">
+		<result property="processing" 			column="PROCESSING"/>
 		<result property="tranId" 				column="TRAN_ID"/>
 		<result property="billId" 				column="BILL_ID"/>
 		<result property="itemNo" 				column="ITEM_NO"/>
@@ -4629,6 +4630,8 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJVUnappliedCollection" id="unappColMap">
 		<result property="tranId" 		 column="TRAN_ID"/>
+		<result property="cedingId" 	 column="CEDING_ID"/>
+		<result property="cedingName" 	 column="CEDING_NAME"/>
 		<result property="refTranId" 	 column="REF_TRAN_ID"/>
 		<result property="refBillId" 	 column="REF_BILL_ID"/>
 		<result property="refItemNo" 	 column="REF_ITEM_NO"/>
@@ -4709,7 +4712,8 @@
 														#{save.refTranId},
 														#{save.refBillId},
 														#{save.refItemNo},
-														#{save.transdtlType},
+														#{save.cedingId},
+														#{save.transdtlType, jdbcType=VARCHAR},
 														#{save.itemName},
 														#{save.currCd},
 														#{save.currRate},
@@ -4726,6 +4730,13 @@
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
 														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			
+				ACIT_UNAPPLIED_COLL_PKG.save_unapp_payts(
+													     #{save.tranId},
+														 #{save.refTranId},
+														 #{save.refBillId},
+														 #{save.refItemNo}
+														);
 			</foreach>
 			
 		END;
@@ -4762,6 +4773,14 @@
 													CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{save.updateUser},
 													CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				
+				ACIT_INWPOL_PAYTS_PKG.save_inwpol_payts(
+															#{save.tranId},
+															#{save.policyId},
+															#{save.instNo},
+															#{save.paytType, jdbcType=VARCHAR}, <!-- PAYT TYPE 1 FOR JV. CHANGE AS NECESSARY -->
+															5
+				);
 			</foreach>
 		END;
 	</update>

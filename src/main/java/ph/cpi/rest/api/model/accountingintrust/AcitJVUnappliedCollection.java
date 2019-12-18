@@ -6,6 +6,8 @@ import org.joda.time.DateTime;
 
 public class AcitJVUnappliedCollection {
 	private Integer tranId;
+	private String cedingId;
+	private String cedingName;
 	private Integer refTranId;
 	private Integer refBillId;
 	private Integer refItemNo;
@@ -38,6 +40,19 @@ public class AcitJVUnappliedCollection {
 	}
 	public void setRefTranId(Integer refTranId) {
 		this.refTranId = refTranId;
+	}
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public Integer getRefBillId() {
 		return refBillId;

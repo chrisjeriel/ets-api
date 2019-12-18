@@ -38,6 +38,7 @@ class InwUnappliedCollection {
 	private Integer tranId;
 	private Integer policyId;
 	private Integer instNo;
+	private Integer paytType;
 	private String currCd;
 	private BigDecimal currRate;
 	private BigDecimal premAmt;
@@ -80,6 +81,13 @@ class InwUnappliedCollection {
 	}
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
+	}
+	
+	public Integer getPaytType() {
+		return paytType;
+	}
+	public void setPaytType(Integer paytType) {
+		this.paytType = paytType;
 	}
 	public BigDecimal getCurrRate() {
 		return currRate;
@@ -193,12 +201,12 @@ class InwUnappliedCollection {
 	@Override
 	public String toString() {
 		return "InwUnappliedCollection [tranId=" + tranId + ", policyId=" + policyId + ", instNo=" + instNo
-				+ ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt + ", riComm=" + riComm
-				+ ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", balance=" + balance
-				+ ", cumPayment=" + cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", totalPayt="
-				+ totalPayt + ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", paytType=" + paytType + ", currCd=" + currCd + ", currRate=" + currRate + ", premAmt=" + premAmt
+				+ ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue
+				+ ", balance=" + balance + ", cumPayment=" + cumPayment + ", paytAmt=" + paytAmt + ", localAmt="
+				+ localAmt + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal + ", overdueInt="
+				+ overdueInt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 }

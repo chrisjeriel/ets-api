@@ -38,6 +38,7 @@ class unappliedColl {
 	private Integer refTranId;
 	private Integer refBillId;
 	private Integer refItemNo;
+	private String cedingId;
 	private String transdtlType;
 	private String itemName;
 	private String currCd;
@@ -66,6 +67,13 @@ class unappliedColl {
 	}
 	public void setRefTranId(Integer refTranId) {
 		this.refTranId = refTranId;
+	}
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
 	}
 	public Integer getRefBillId() {
 		return refBillId;
@@ -184,12 +192,12 @@ class unappliedColl {
 	@Override
 	public String toString() {
 		return "unappliedColl [tranId=" + tranId + ", refTranId=" + refTranId + ", refBillId=" + refBillId
-				+ ", refItemNo=" + refItemNo + ", transdtlType=" + transdtlType + ", itemName=" + itemName + ", currCd="
-				+ currCd + ", currRate=" + currRate + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance
-				+ ", unappliedAmt=" + unappliedAmt + ", actualBalPaid=" + actualBalPaid + ", localAmt=" + localAmt
-				+ ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + ", refNo=" + refNo + ", remarks="
-				+ remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", refItemNo=" + refItemNo + ", cedingId=" + cedingId + ", transdtlType=" + transdtlType
+				+ ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPaytAmt="
+				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", unappliedAmt=" + unappliedAmt + ", actualBalPaid="
+				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
+				+ ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 	
 	
