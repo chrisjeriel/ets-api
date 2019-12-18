@@ -256,6 +256,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("savePaytDtl", soetr.getSavePaytDtl());
 		params.put("delPaytDtl", soetr.getDelPaytDtl());
 		params.put("isPrint", soetr.getIsPrint());
+		params.put("genAcctEnt", soetr.getGenAcctEnt());
 		try{
 			HashMap<String, Object> daoResponse = acctServDao.saveOrEntry(params);
 			response.setReturnCode(Integer.parseInt(daoResponse.get("errorCode").toString()));

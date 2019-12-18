@@ -133,7 +133,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnInsuredParams.put("search",rmir.getSearch());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
 		rmirResponse.setLength(maintenanceDao.retrieveMtnInsuredLength(retrieveMtnInsuredParams));
-		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
+		/* logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString()); */ //Removed, causes log issues.
 		
 		return rmirResponse;
 	}
@@ -3266,6 +3266,33 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public GenerateMtnAcitCheckSeriesResponse generateMtnAcitCheckSeries(GenerateMtnAcitCheckSeriesRequest gmacs)
+			throws SQLException {
+		GenerateMtnAcitCheckSeriesResponse gmacsResponse = new GenerateMtnAcitCheckSeriesResponse();
+		HashMap<String, Object> gmacsParams = new HashMap<String, Object>();
+		try {
+			gmacsParams.put("bank",gmacs.getBank());
+			gmacsParams.put("bankAcct",gmacs.getBankAcct());
+			gmacsParams.put("checkNoFrom",gmacs.getCheckNoFrom());
+			gmacsParams.put("checkNoTo",gmacs.getCheckNoTo());
+			gmacsParams.put("user",gmacs.getUser());
+			HashMap<String, Object> response = maintenanceDao.generateMtnAcitCheckSeries(gmacsParams);
+			gmacsResponse.setReturnCode((Integer) response.get("errorCode"));
+			gmacsResponse.setReturnCode(-1);
+		} catch (SQLException sqlex) {
+			gmacsResponse.setReturnCode(0);
+			gmacsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			sqlex.printStackTrace();
+		} catch (Exception ex) {
+			gmacsResponse.setReturnCode(0);
+			gmacsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		
+		return gmacsResponse;
+	}
+
+	@Override
 	public GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(
 			GenerateAcseInvoiceSeriesRequest request) throws SQLException {
 		// TODO Auto-generated method stub
@@ -3288,5 +3315,30 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		return response;
 	}
 
-	
+	@Override
+    public GenerateMtnAcseCheckSeriesResponse generateMtnAcseCheckSeries(GenerateMtnAcseCheckSeriesRequest gmacs)
+            throws SQLException {
+        GenerateMtnAcseCheckSeriesResponse gmacsResponse = new GenerateMtnAcseCheckSeriesResponse();
+        HashMap<String, Object> gmacsParams = new HashMap<String, Object>();
+        try {
+            gmacsParams.put("bank",gmacs.getBank());
+            gmacsParams.put("bankAcct",gmacs.getBankAcct());
+            gmacsParams.put("checkNoFrom",gmacs.getCheckNoFrom());
+            gmacsParams.put("checkNoTo",gmacs.getCheckNoTo());
+            gmacsParams.put("user",gmacs.getUser());
+            HashMap<String, Object> response = maintenanceDao.generateMtnAcseCheckSeries(gmacsParams);
+            gmacsResponse.setReturnCode((Integer) response.get("errorCode"));
+            gmacsResponse.setReturnCode(-1);
+        } catch (SQLException sqlex) {
+            gmacsResponse.setReturnCode(0);
+            gmacsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+            sqlex.printStackTrace();
+        } catch (Exception ex) {
+            gmacsResponse.setReturnCode(0);
+            gmacsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+            ex.printStackTrace();
+        }
+        
+        return gmacsResponse;
+    }
 }

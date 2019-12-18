@@ -1440,6 +1440,13 @@ public class MaintenanceController {
 		logger.info("RetrieveMtnGlSubDepNoRequest : " + rmgsdnr.toString());
 		return maintenanceService.retrieveMtnGlSubDepNo(rmgsdnr);
 	}
+
+	@PostMapping(path="generateMtnAcitCheckSeries")
+	public @ResponseBody GenerateMtnAcitCheckSeriesResponse generateMtnAcitCheckSeries(@RequestBody GenerateMtnAcitCheckSeriesRequest gmacsr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/generateMtnAcitCheckSeries");
+		logger.info("generateMtnAcitCheckSeriesRequest : " + gmacsr.toString());
+		return maintenanceService.generateMtnAcitCheckSeries(gmacsr);
+	}
 	
 	@PostMapping(path="generateAcseInvoiceSeries")
 	public @ResponseBody GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(@RequestBody GenerateAcseInvoiceSeriesRequest request) throws SQLException {
@@ -1447,5 +1454,12 @@ public class MaintenanceController {
 		logger.info("GenerateAcseInvoiceSeriesRequest : " + request.toString());
 		return maintenanceService.generateAcseInvoiceSeries(request);
 	}
+	
+	@PostMapping(path="generateMtnAcseCheckSeries")
+    public @ResponseBody GenerateMtnAcseCheckSeriesResponse generateMtnAcseCheckSeries(@RequestBody GenerateMtnAcseCheckSeriesRequest gmacsr) throws SQLException {
+        logger.info("POST: /api/maintenance-service/generateMtnAcseCheckSeries");
+        logger.info("generateMtnAcseCheckSeriesRequest : " + gmacsr.toString());
+        return maintenanceService.generateMtnAcseCheckSeries(gmacsr);
+    }
 
 }

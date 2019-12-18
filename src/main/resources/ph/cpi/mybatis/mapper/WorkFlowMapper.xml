@@ -172,4 +172,19 @@
       <select id="retrieveNotifCount" resultMap="unMap" parameterType="java.util.Map">
     	 SELECT * FROM TABLE(wfm_notes_pkg.ret_notes_inc)
       </select>
+      
+      <update id="changeStatusNotes" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		WFM_NOTES_PKG.update_status(#{id, jdbcType=INTEGER},
+									    #{status, jdbcType=VARCHAR});
+		END;
+	  </update>
+	  
+	  <update id="changeStatusReminders" parameterType="java.util.Map" statementType="CALLABLE">
+    	BEGIN
+    		WFM_REMINDERS_PKG.update_status(#{id, jdbcType=INTEGER},
+									    #{status, jdbcType=VARCHAR});
+		END;
+	  </update>
+      
 </mapper>

@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 public class CancelArRequest {
 	private String tranId;
+	private String reopen;
 	private String updateUser;
 	private String updateDate;
 	
@@ -10,6 +11,12 @@ public class CancelArRequest {
 	}
 	public void setTranId(String tranId) {
 		this.tranId = tranId;
+	}
+	public String getReopen() {
+		return reopen;
+	}
+	public void setReopen(String reopen) {
+		this.reopen = reopen;
 	}
 	public String getUpdateUser() {
 		return updateUser;
@@ -26,6 +33,7 @@ public class CancelArRequest {
 	
 	@Override
 	public String toString() {
-		return "CancelArRequest [tranId=" + tranId + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+		return "CancelArRequest [tranId=" + tranId + ", reopen=" + reopen + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

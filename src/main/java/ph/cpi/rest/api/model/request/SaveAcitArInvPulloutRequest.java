@@ -98,6 +98,7 @@ class SaveArInvPullout{
 	private String bankCharge;
 	private String whtaxAmt;
 	private String maturityValue;
+	private String localAmt;
 	private String createUser;
 	private String createDate;
 	private String updateUser;
@@ -173,6 +174,12 @@ class SaveArInvPullout{
 	}
 	public void setMaturityValue(String maturityValue) {
 		this.maturityValue = maturityValue;
+	}
+	public String getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(String localAmt) {
+		this.localAmt = localAmt;
 	}
 	public String getCreateUser() {
 		return createUser;
