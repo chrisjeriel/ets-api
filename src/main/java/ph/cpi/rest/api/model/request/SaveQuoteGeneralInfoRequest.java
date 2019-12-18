@@ -66,7 +66,15 @@ public class SaveQuoteGeneralInfoRequest {
 	private String prjCreateDate;
 	private String prjUpdateUser;
 	private String prjUpdateDate;
+	private String mbiQuoteId;
 	
+	
+	public String getMbiQuoteId() {
+		return mbiQuoteId;
+	}
+	public void setMbiQuoteId(String mbiQuoteId) {
+		this.mbiQuoteId = mbiQuoteId;
+	}
 	public String getSavingType() {
 		return savingType;
 	}
@@ -479,6 +487,7 @@ public class SaveQuoteGeneralInfoRequest {
 				+ pctShare + ", totalValue=" + totalValue + ", objectId=" + objectId + ", site=" + site + ", duration="
 				+ duration + ", testing=" + testing + ", ipl=" + ipl + ", timeExc=" + timeExc + ", noClaimPd="
 				+ noClaimPd + ", prjCreateUser=" + prjCreateUser + ", prjCreateDate=" + prjCreateDate
-				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + "]";
+				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + ", mbiQuoteId=" + mbiQuoteId
+				+ "]";
 	}
 }

@@ -777,6 +777,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("prjCreateDate", sqgip.getPrjCreateDate());
 			saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
 			saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
+			saveQuoteGeneralInfoParams.put("mbiQuoteId", sqgip.getMbiQuoteId());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);					
 			
