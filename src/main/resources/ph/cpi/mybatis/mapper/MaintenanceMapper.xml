@@ -211,6 +211,7 @@
 		<result property="updateUser" 		column="UPDATE_USER"/> 
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="okDelete"			column="OK_DELETE"/>
+		<result property="premDepTag"		column="PREM_DEP_TAG"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.LineClass" id="mntLineClassMap">
@@ -275,22 +276,97 @@
 	</select>
 	
 	<select id="retrieveMtnRiskListing" resultMap="retrieveMtnRiskMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
-															  #{riskAbbr, jdbcType=VARCHAR},
-															  #{riskName, jdbcType=VARCHAR},
-															  #{regionDesc, jdbcType=VARCHAR},
-															  #{provinceDesc, jdbcType=VARCHAR},
-															  #{cityDesc, jdbcType=VARCHAR},
-															  #{districtDesc, jdbcType=VARCHAR},
-															  #{blockDesc, jdbcType=VARCHAR},
-															  #{latitude, jdbcType=VARCHAR},
-															  #{longitude, jdbcType=VARCHAR},
-															  #{activeTag, jdbcType=VARCHAR},
-															  null,
-															  null,
-															  null,
-															  null
-															  ))
+		SELECT * 
+				FROM	
+					(
+						SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
+																			  #{riskAbbr, jdbcType=VARCHAR},
+																			  #{riskName, jdbcType=VARCHAR},
+																			  #{regionDesc, jdbcType=VARCHAR},
+																			  #{provinceDesc, jdbcType=VARCHAR},
+																			  #{cityDesc, jdbcType=VARCHAR},
+																			  #{districtDesc, jdbcType=VARCHAR},
+																			  #{blockDesc, jdbcType=VARCHAR},
+																			  #{latitude, jdbcType=VARCHAR},
+																			  #{longitude, jdbcType=VARCHAR},
+																			  #{activeTag, jdbcType=VARCHAR},
+																			  null,
+																			  null,
+																			  null,
+																			  null
+																			  ))
+						 WHERE  1=1
+						<if test="search != null">
+						 	 AND
+						  	<foreach item="col" index="index" collection="search.searchCols"
+						        open="(" separator=" OR " close=")">
+						      UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+							</foreach>
+						</if>
+						 
+						 <if test="altNo != null">
+						  	<if test="altNo == 0">
+						  		AND ALT_NO = 0
+						  	</if>
+						  	
+						  	<if test="altNo > 0">
+						  		AND ALT_NO != 0
+						  	</if>
+						 </if>
+						 <if test="sort != null">
+						  	ORDER BY ${sort.sortKey} ${sort.order}
+						 </if>
+						  	   
+						 ) a		
+		 <if test="pagination.position != null">
+	   	   	OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	 </if>												  
+																			  
+	</select>
+	
+	<select id="retrieveMtnRiskListingCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+				FROM	
+					(
+						SELECT * FROM TABLE(MTN_RISK_PKG.ret_mtn_risk_listing(#{riskId, jdbcType=INTEGER},
+																			  #{riskAbbr, jdbcType=VARCHAR},
+																			  #{riskName, jdbcType=VARCHAR},
+																			  #{regionDesc, jdbcType=VARCHAR},
+																			  #{provinceDesc, jdbcType=VARCHAR},
+																			  #{cityDesc, jdbcType=VARCHAR},
+																			  #{districtDesc, jdbcType=VARCHAR},
+																			  #{blockDesc, jdbcType=VARCHAR},
+																			  #{latitude, jdbcType=VARCHAR},
+																			  #{longitude, jdbcType=VARCHAR},
+																			  #{activeTag, jdbcType=VARCHAR},
+																			  null,
+																			  null,
+																			  null,
+																			  null
+																			  ))
+						 WHERE  1=1
+						<if test="search != null">
+						 	 AND
+						  	<foreach item="col" index="index" collection="search.searchCols"
+						        open="(" separator=" OR " close=")">
+						      UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+							</foreach>
+						</if>
+						 
+						 <if test="altNo != null">
+						  	<if test="altNo == 0">
+						  		AND ALT_NO = 0
+						  	</if>
+						  	
+						  	<if test="altNo > 0">
+						  		AND ALT_NO != 0
+						  	</if>
+						 </if>
+						 <if test="sort != null">
+						  	ORDER BY ${sort.sortKey} ${sort.order}
+						 </if>
+						  	   
+						 ) a														  
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.Insured" id="insuredMap">
@@ -704,7 +780,7 @@
      </resultMap>
      
      <select id="retMtnCedingCompanyListing" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},
+            SELECT * FROM TABLE(MTN_CED_COM_PKG.ret_mtn_ced_com_list(#{cedingId, jdbcType=VARCHAR},
             														#{cedingName, jdbcType=VARCHAR},
             														#{cedingAbbr, jdbcType=VARCHAR},
             														#{address, jdbcType=VARCHAR},
@@ -1205,11 +1281,11 @@
     </update>
     
     <select id="retMtnInsuredLovCount" resultType="java.lang.Integer" parameterType="java.util.Map">
-    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}) total_count from dual
+    	SELECT mtn_insured_pkg.ret_mtn_insured_lov_count(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR},#{insuredAbbr, jdbcType=VARCHAR }) total_count from dual
      </select>
      
      <select id="retMtnInsuredLov" resultMap="insuredMap" parameterType="java.util.Map">
-     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR}))
+     	SELECT * from table(mtn_insured_pkg.ret_mtn_insured_lov(#{lovParam, jdbcType=VARCHAR}, #{page.position, jdbcType=VARCHAR}, #{page.count, jdbcType=VARCHAR}, #{sort.sortKey, jdbcType=VARCHAR}, #{sort.order, jdbcType=VARCHAR}, #{insuredName, jdbcType=VARCHAR}, #{address, jdbcType=VARCHAR},#{insuredAbbr, jdbcType=VARCHAR }))
      </select>
      
      <update id="saveMtnIntermediary" parameterType="java.util.Map" statementType="CALLABLE">
@@ -3602,6 +3678,7 @@
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
     	<result property="okDelete"		column="OK_DELETE" />
+    	<result property="nextDcbNo"	column="NEXT_DCB_NO" />
     </resultMap>
     
     <select id="retMtnAcitDCBNo" resultMap="dcbNoMap" parameterType="java.util.Map">
@@ -3928,17 +4005,18 @@
      </select>
      
      <resultMap type="ph.cpi.rest.api.model.maintenance.AcitCheckSeries" id="acitCheckSeriesMap">
-     	<result property="bank"			column="BANK"/>
-		<result property="bankAcct"		column="BANK_ACCT"/>
-		<result property="checkNo"		column="CHECK_NO"/>
-		<result property="checkPrefix"	column="CHECK_PREFIX"/>
-		<result property="tranId"		column="TRAN_ID"/>
-		<result property="usedTag"		column="USED_TAG"/>
-		<result property="checkStatus"	column="CHECK_STATUS"/>
-		<result property="createUser" 	column="CREATE_USER"/>
-		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		<result property="updateUser" 	column="UPDATE_USER"/>
-		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+     	<result property="bank"				column="BANK"/>
+		<result property="bankAcct"			column="BANK_ACCT"/>
+		<result property="checkNo"			column="CHECK_NO"/>
+		<result property="checkPrefix"		column="CHECK_PREFIX"/>
+		<result property="tranId"			column="TRAN_ID"/>
+		<result property="usedTag"			column="USED_TAG"/>
+		<result property="checkStatus"		column="CHECK_STATUS"/>
+		<result property="checkStatusDesc"	column="CHECK_STATUS_DESC"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
      </resultMap>
      
      <select id="retrieveMtnAcitCheckSeries" resultMap="acitCheckSeriesMap" parameterType="java.util.Map">
@@ -3986,11 +4064,13 @@
 		<result property="dcbStatus"	column="DCB_STATUS" />
 		<result property="remarks"		column="REMARKS" />
 		<result property="autoTag"		column="AUTO_TAG" />
+		<result property="closeDate"	column="CLOSE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="createUser"	column="CREATE_USER" />
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
     	<result property="okDelete"     column="OK_DELETE"/>
+    	<result property="nextDcbNo"     column="NEXT_DCB_NO"/>
     </resultMap>
     
     <select id="retMtnAcseDCBNo" resultMap="acseDcbNoMap" parameterType="java.util.Map">
@@ -5208,18 +5288,42 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-     </resultMap>
+     </resultMap>	
 	
 	<select id="retrieveMtnGlSubDepNo" resultMap="mtnGlSubDepNoMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(MTN_GLSUB_DEP_NO_PKG.ret_mtn_glsubdepno(#{depCd,jdbcType=VARCHAR},#{depNo,jdbcType=INTEGER},'','','',''))
      </select>
      
+     <update id="generateMtnAcitCheckSeries" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			MTN_ACIT_CHECK_SERIES_PKG.gen_acit_check_series(
+				#{bank,jdbcType=INTEGER},
+				#{bankAcct,jdbcType=INTEGER},
+				#{checkNoFrom, jdbcType=INTEGER},
+				#{checkNoTo, jdbcType=INTEGER},
+				#{user,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
+
      <update id="generateAcseInvoiceSeries" >
 		BEGIN
 			MTN_ACSE_GENERATE_SERIES_PKG.gen_series_invoice(#{invoiceFrom},#{invoiceTo},#{createUser},
 						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 						#{updateUser},
 						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="generateMtnAcseCheckSeries" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			MTN_ACSE_CHECK_SERIES_PKG.gen_acse_check_series(
+				#{bank,jdbcType=INTEGER},
+				#{bankAcct,jdbcType=INTEGER},
+				#{checkNoFrom, jdbcType=INTEGER},
+				#{checkNoTo, jdbcType=INTEGER},
+				#{user,jdbcType=VARCHAR}
+			);
 		END;
 	</update>
 </mapper>

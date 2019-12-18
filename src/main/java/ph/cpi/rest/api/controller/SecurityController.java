@@ -52,7 +52,7 @@ public class SecurityController {
 	@GetMapping(path="retrieveMtnTransactions")
 	public @ResponseBody RetrieveMtnTransactionsResponse retrieveMtnTransactions(RetrieveMtnTransactionsRequest rmtr) throws SQLException {
 		logger.info("GET: /api/security-service/retrieveMtnTransactions");
-		logger.info("SaveClaimHistoryRequest : " + rmtr.toString());
+		logger.info("RetrieveMtnTransactionsRequest : " + rmtr.toString());
 		return securityService.retrieveMtnTransactions(rmtr);
 	}
 	

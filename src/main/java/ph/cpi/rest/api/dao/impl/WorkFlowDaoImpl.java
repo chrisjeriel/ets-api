@@ -13,9 +13,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import ph.cpi.rest.api.dao.WorkFlowDao;
+import ph.cpi.rest.api.model.workflowmanager.NRStatus;
 import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.RelatedRecord;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
+import ph.cpi.rest.api.model.workflowmanager.UserNotif;
 import ph.cpi.rest.api.model.workflowmanager.WfmTransaction;
 
 @Component
@@ -72,5 +74,23 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	public List<RelatedRecord> retrieveRelatedRecords(HashMap<String, Object> params) throws SQLException {
 		List<RelatedRecord> relatedRecordList = sqlSession.selectList("retrieveRelatedRecords", params);
 		return relatedRecordList;
+	}
+
+	@Override
+	public List<UserNotif> retrieveUserNotif() throws SQLException {
+		List<UserNotif> unList = sqlSession.selectList("retrieveNotifCount");
+		return unList;
+	}
+
+	@Override
+	public Integer changeRNStatus(NRStatus param) throws SQLException {
+		Integer errorCode = 0;
+		if ("note".equalsIgnoreCase(param.getType())) {
+			errorCode = sqlSession.update("changeStatusNotes", param);
+		} else if ("reminder".equalsIgnoreCase(param.getType())) {
+			errorCode = sqlSession.update("changeStatusReminders", param);
+		}
+		
+		return errorCode;
 	}
 }

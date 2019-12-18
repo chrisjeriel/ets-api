@@ -36,7 +36,14 @@ public class RetrievePolicyListingRequest {
 	private List<String> statusArr;
 	private SearchRequest search;
 	private Integer altNo;
+	private String lineCd;
 	
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
 	public String getPolicyNo() {
 		return policyNo;
 	}
@@ -210,6 +217,6 @@ public class RetrievePolicyListingRequest {
 				+ inceptDateFrom + ", inceptDateTo=" + inceptDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo="
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + ", statusArr=" + statusArr + ", search=" + search + ", altNo="
-				+ altNo + "]";
+				+ altNo + ", lineCd=" + lineCd + "]";
 	}
 }

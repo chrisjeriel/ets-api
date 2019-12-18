@@ -34,5 +34,10 @@ public class RetrieveMtnTransactionsRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	@Override
+	public String toString() {
+		return "RetrieveMtnTransactionsRequest [moduleId=" + moduleId + ", tranCd=" + tranCd + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+	}
 	
 }

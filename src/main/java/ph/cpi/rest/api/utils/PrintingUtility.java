@@ -1,7 +1,12 @@
 package ph.cpi.rest.api.utils;
 
 import java.awt.image.BufferedImage;
+import java.awt.print.PrinterAbortException;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -11,7 +16,22 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.common.PDStream;
+import org.apache.pdfbox.printing.Orientation;
+import org.apache.pdfbox.printing.PDFPageable;
+import org.apache.pdfbox.printing.PDFPrintable;
+import org.apache.pdfbox.printing.Scaling;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +72,7 @@ public class PrintingUtility {
 		} else {
 			outputPath = outputPath + filename;
 		}
-
+		
 		outputType = "pdf";
 		
 		reportParams.put("SUBREPORT_DIR", path);
@@ -83,7 +103,9 @@ public class PrintingUtility {
 			logger.info("Generating " + file.getName() + " done!");
 			out.close();
 		}
-		
+		logger.info(path);
+		logger.info(filename);
+		logger.info(file.getAbsolutePath());
 		return file.getAbsolutePath();
 	}
 
@@ -110,6 +132,92 @@ public class PrintingUtility {
 			conn.close();
 		}
 
+	}
+	
+	public String directPrint(String absolutePath, PrintService printer, String paperSize, String pageOrientation) throws PrintException, IOException, PrinterException{
+		logger.info("ABsolUte PaTh : " + absolutePath);
+		logger.info(printer.getName());
+		String result = "";
+		PDDocument document = PDDocument.load(new File(absolutePath));
+		PDPage page = null;
+		paperSize = paperSize == null ? "" : paperSize;
+		pageOrientation = pageOrientation == null ? "" : pageOrientation;
+	    switch(paperSize.toUpperCase()){
+	    	case "A0":
+	    		page = new PDPage(PDRectangle.A0);
+	    		break;
+	    	case "A1":
+	    		page = new PDPage(PDRectangle.A1);
+	    		break;
+	    	case "A2":
+	    		page = new PDPage(PDRectangle.A2);
+	    		break;
+	    	case "A3":
+	    		page = new PDPage(PDRectangle.A3);
+	    		break;
+	    	case "A4":
+	    		page = new PDPage(PDRectangle.A4);
+	    		break;
+	    	case "A5":
+	    		page = new PDPage(PDRectangle.A5);
+	    		break;
+	    	case "A6":
+	    		page = new PDPage(PDRectangle.A6);
+	    		break;
+	    	case "LETTER":
+	    		page = new PDPage(PDRectangle.LETTER);
+	    		break;
+	    	case "LEGAL":
+	    		page = new PDPage(PDRectangle.LEGAL);
+	    		break;
+	    	default:
+	    		page = new PDPage(PDRectangle.LETTER);
+	    }
+	    logger.info("Page Orientation => " + pageOrientation);
+	    logger.info("Paper size => " + paperSize);
+	    PDRectangle mediaBox = page.getMediaBox();
+	    page = document.getPage(0);
+	    if("HALFLETTER".equals(paperSize.toUpperCase())){
+		    logger.info("x " + mediaBox.getLowerLeftX());
+		    logger.info("y " + mediaBox.getLowerLeftY());
+		    logger.info("width " + mediaBox.getWidth());
+		    logger.info("height " + mediaBox.getHeight());
+		    page.setMediaBox(new PDRectangle(mediaBox.getLowerLeftX(),mediaBox.getLowerLeftY()-200,mediaBox.getWidth(),mediaBox.getHeight()));
+	    }
+	    document.removePage(0);
+	    document.addPage(page);
+	    PDFPrintable printable = new PDFPrintable(document, Scaling.SCALE_TO_FIT);
+		try{
+			PrinterJob job = PrinterJob.getPrinterJob();
+		    job.setPrintable(printable);
+		    switch(pageOrientation.toUpperCase()){
+		    	case "LANDSCAPE":
+		    		job.setPageable(new PDFPageable(document, Orientation.LANDSCAPE));
+		    	break;
+		    	case "PORTRAIT":
+		    		job.setPageable(new PDFPageable(document, Orientation.PORTRAIT));
+		    	break;
+		    	default:
+		    		job.setPageable(new PDFPageable(document, Orientation.AUTO));
+		    }
+		    job.setPrintService(printer);
+		    job.print();
+		    result = "success";
+		    logger.info("print job success");
+		}catch(PrinterException e){
+			e.printStackTrace();
+			if(e instanceof PrinterAbortException){
+				result = "Print was aborted";
+				throw new PrinterAbortException();
+			}else{
+				result = "Failed";
+				throw new PrinterException();
+			}
+			
+		}finally{
+			document.close();  
+		}
+		return result;
 	}
 	
 }

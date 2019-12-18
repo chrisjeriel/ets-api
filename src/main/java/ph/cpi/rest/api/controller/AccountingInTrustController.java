@@ -55,20 +55,6 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitPaytReq(saprr);
 	}
 	
-//	@GetMapping(path="retrieveAcitProfCommSumm")
-//	public @ResponseBody RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr) throws SQLException {
-//		logger.info("GET: /api/acct-in-trust-service/retrieveAcitProfCommSumm");
-//		logger.info("RetrieveAcitProfCommSummRequest : " + rapcsr.toString());
-//		return acctInTrustService.retrieveAcitProfCommSumm(rapcsr);
-//	}
-	
-//	@GetMapping(path="retrieveAcitProfCommDtl")
-//	public @ResponseBody RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr) throws SQLException {
-//		logger.info("GET: /api/acct-in-trust-service/retrieveAcitProfCommDtl");
-//		logger.info("RetrieveAcitProfCommDtlRequest : " + rapcdr.toString());
-//		return acctInTrustService.retrieveAcitProfCommDtl(rapcdr);
-//	}
-	
 	@GetMapping(path="retrieveAcitInvestmentsList")
 	public @ResponseBody RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentList(RetrieveAcitInvestmentsListRequest railr) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitInvestmentsList");
@@ -565,8 +551,6 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/UpdateAcitStatusRequest");
 		logger.info("UpdateAcitStatusRequest : " + uasr.toString());
 		return acctInTrustService.updateAcitStatus(uasr);
-		
-	
 	}
 	
 	@PostMapping(path="saveAcctPrqServFee")
@@ -760,7 +744,7 @@ public class AccountingInTrustController {
 
 	@GetMapping(path="retrieveCancelledTrans")
 	public @ResponseBody RetrieveAcitCancelTransactionResponse retrieveCancelledTrans(RetrieveAcitCancelTransactionRequest request) throws SQLException {
-		logger.info("GET: /api/acct-serv-service/retrieveCancelledTrans");
+		logger.info("GET: /api/acct-in-trust-service/retrieveCancelledTrans");
 		logger.info("RetrieveAcseCancelTransactionRequest : " + request.toString());
 		return acctInTrustService.retrieveCancelledTrans(request);
 	}
@@ -781,7 +765,7 @@ public class AccountingInTrustController {
 	
 	@GetMapping(path="retrieveAcitMonthEndTrialBal")
 	public @ResponseBody RetrieveAcitMonthEndTrialBalResponse retrieveAcitMonthEndTrialBal(RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
-		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEndTrialBal");
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitMonthEndTrialBal");
 		logger.info("retrieveAcitMonthEndTrialBalRequest : " + rametbr.toString());
 		return acctInTrustService.retrieveAcitMonthEndTrialBal(rametbr);
 	}
@@ -802,13 +786,13 @@ public class AccountingInTrustController {
 	
 	@GetMapping(path="retrieveAcitMonthEndUnpostedMonths")
 	public @ResponseBody RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
-		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEndUnpostedMonths");
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitMonthEndUnpostedMonths");
 		return acctInTrustService.retrieveAcitMonthEndUnpostedMonths();
 	}
 	
 	@GetMapping(path="retrieveAcitMonthEnd")
 	public @ResponseBody RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
-		logger.info("GET: /api/acct-serv-service/retrieveAcitMonthEnd");
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitMonthEnd");
 		logger.info("RetrieveAcitMonthEndRequest : " + ramer.toString());
 		return acctInTrustService.retrieveAcitMonthEnd(ramer);
 	}
@@ -916,5 +900,19 @@ public class AccountingInTrustController {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitBankDetails");
 		logger.info("RetrieveAcitDcbBankDetailsRequest : " + raoqp.toString());
 		return acctInTrustService.retrieveAcitBankDetails(raoqp);
+	}
+	
+	@GetMapping(path="retrieveAcitClmHist")
+	public @ResponseBody RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest rachr) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitClmHist");
+		logger.info("RetrieveAcitClmHistRequest : " + rachr.toString());
+		return acctInTrustService.retrieveAcitClmHist(rachr);
+	}
+	
+	@PostMapping(path="saveAcitProfCommTran")
+	public @ResponseBody SaveAcitProfCommTranResponse saveAcitProfcommTran(@RequestBody SaveAcitProfCommTranRequest saptr) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitProfCommTran");
+		logger.info("SaveAcitProfcommTranRequest : " + saptr.toString());
+		return acctInTrustService.saveAcitProfCommTran(saptr);
 	}
 }

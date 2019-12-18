@@ -209,5 +209,8 @@ public interface MaintenanceService {
 	public RetrieveMtnAcitTranTypeLovResponse retrieveMtnAcitTranTypeLov(RetrieveMtnAcitTranTypeLovRequest rmtlr) throws SQLException;
 	public RetrieveMtnAcseGenInvSeriesResponse retrieveMtnAcseInvSeries(RetrieveMtnAcseGenInvSeriesRequest request) throws SQLException;
 	public RetrieveMtnGlSubDepNoResponse retrieveMtnGlSubDepNo(RetrieveMtnGlSubDepNoRequest request) throws SQLException;
+	public GenerateMtnAcitCheckSeriesResponse generateMtnAcitCheckSeries(GenerateMtnAcitCheckSeriesRequest sacr) throws SQLException;
 	public GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(GenerateAcseInvoiceSeriesRequest request) throws SQLException;
+	public GenerateMtnAcseCheckSeriesResponse generateMtnAcseCheckSeries(GenerateMtnAcseCheckSeriesRequest sacr) throws SQLException;
+
 }

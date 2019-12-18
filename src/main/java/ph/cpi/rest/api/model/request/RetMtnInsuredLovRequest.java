@@ -8,8 +8,16 @@ public class RetMtnInsuredLovRequest {
 	private String lovParam;
 	private String insuredName;
 	private String address;
+	private String insuredAbbr;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	
+	public String getInsuredAbbr() {
+		return insuredAbbr;
+	}
+	public void setInsuredAbbr(String insuredAbbr) {
+		this.insuredAbbr = insuredAbbr;
+	}
 	public String getLovParam() {
 		return lovParam;
 	}
@@ -43,7 +51,8 @@ public class RetMtnInsuredLovRequest {
 	@Override
 	public String toString() {
 		return "RetMtnInsuredLovRequest [lovParam=" + lovParam + ", insuredName=" + insuredName + ", address=" + address
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", insuredAbbr=" + insuredAbbr + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
 	
 }

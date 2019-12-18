@@ -22,7 +22,15 @@ public class Line {
 	private String alopTag;
 	private String retAmtTag;
 	private String okDelete;
+	private String premDepTag;
 	
+	
+	public String getPremDepTag() {
+		return premDepTag;
+	}
+	public void setPremDepTag(String premDepTag) {
+		this.premDepTag = premDepTag;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -144,6 +152,7 @@ public class Line {
 				+ renewalTag + ", openCoverTag=" + openCoverTag + ", referenceNo=" + referenceNo + ", sortSeq="
 				+ sortSeq + ", remarks=" + remarks + ", menuLineTag=" + menuLineTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", alopTag=" + alopTag + ", retAmtTag=" + retAmtTag + ", okDelete=" + okDelete + "]";
+				+ ", alopTag=" + alopTag + ", retAmtTag=" + retAmtTag + ", okDelete=" + okDelete + ", premDepTag="
+				+ premDepTag + "]";
 	}
 }

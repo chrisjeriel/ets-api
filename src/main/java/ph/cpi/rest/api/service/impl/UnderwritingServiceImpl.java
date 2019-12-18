@@ -412,6 +412,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("acctDateFrom", rplp.getAcctDateFrom());
 		retrievePolicyListingParams.put("acctDateTo", rplp.getAcctDateTo());
 		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
+		retrievePolicyListingParams.put("lineCd", rplp.getLineCd());
 		
 		retrievePolicyListingParams.put("statusArr",rplp.getStatusArr());
 		
@@ -519,6 +520,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageParams.put("saveDeductibleList",spcr.getSaveDeductibleList());
 			savePolCoverageParams.put("deleteDeductibleList",spcr.getDeleteDeductibleList());
 			savePolCoverageParams.put("changeTag",spcr.getChangeTag());
+			savePolCoverageParams.put("premDepPct",spcr.getPremDepPct());
 			
 			HashMap<String, Object> res = underwritingDao.savePolCoverage(savePolCoverageParams);
 			spcResponse.setReturnCode((Integer) res.get("errorCode"));

@@ -87,13 +87,19 @@
      <update id="saveUserTransactions" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="transactionList" item="tranItem">
-			BEGIN
-		    	MTN_SECURITY_PKG.save_user_transaction(#{tranItem.userId, jdbcType=VARCHAR},
-		    										   #{tranItem.tranCd, jdbcType=INTEGER},
-		    										   #{tranItem.remarks, jdbcType=VARCHAR},
-		    										   #{tranItem.createUser, jdbcType=VARCHAR},
-		    										   #{tranItem.updateUser, jdbcType=VARCHAR});
-			END;
+				BEGIN
+			    	MTN_SECURITY_PKG.save_user_transaction(#{tranItem.userId, jdbcType=VARCHAR},
+			    										   #{tranItem.tranCd, jdbcType=INTEGER},
+			    										   #{tranItem.remarks, jdbcType=VARCHAR},
+			    										   #{tranItem.createUser, jdbcType=VARCHAR},
+			    										   #{tranItem.updateUser, jdbcType=VARCHAR});
+				END;
+			</foreach>
+			
+			<foreach collection="delTranList" item="del">
+				BEGIN
+			    	MTN_SECURITY_PKG.del_mtn_mdl_tran(#{del.userId},#{del.tranCd});
+			   	END;
 			</foreach>
 		END;
 	</update>
@@ -110,6 +116,12 @@
 		    										   #{modItem.updateUser, jdbcType=VARCHAR});
 			END;
 			</foreach>
+			
+			<foreach collection="delModuleList" item="del">
+			BEGIN
+		    	MTN_SECURITY_PKG.del_mtn_user_mdl(#{del.userId}, #{del.tranCd}, #{del.moduleId});
+			END;
+			</foreach>
 		END;
 	</update>
 	
@@ -122,6 +134,13 @@
 		    										   #{tranItem.remarks, jdbcType=VARCHAR},
 		    										   #{tranItem.createUser, jdbcType=VARCHAR},
 		    										   #{tranItem.updateUser, jdbcType=VARCHAR});
+			END;
+			</foreach>
+			
+			<foreach collection="delTranList" item="del">
+			BEGIN
+		    	MTN_SECURITY_PKG.del_usergrp_tran(#{del.userGrp, jdbcType=VARCHAR},
+		    									  #{del.tranCd, jdbcType=INTEGER});
 			END;
 			</foreach>
 		END;
@@ -138,6 +157,12 @@
 		    										   #{modItem.createUser, jdbcType=VARCHAR},
 		    										   #{modItem.updateUser, jdbcType=VARCHAR});
 			END;
+			</foreach>
+			
+			<foreach collection="delModuleList" item="del">
+				BEGIN
+			    	MTN_SECURITY_PKG.del_usergrp_mdl(#{del.userGrp}, #{del.tranCd}, #{del.moduleId});
+				END;
 			</foreach>
 		END;
 	</update>
@@ -163,4 +188,25 @@
 		END;
 	</update>
 	
+	<update id="saveMtnTransactions" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="transactionList" item="tranItem">
+				BEGIN
+			    	MTN_SECURITY_PKG.save_mtn_transaction(#{tranItem.tranCd, jdbcType=INTEGER},
+			    										  #{tranItem.tranDesc, jdbcType=VARCHAR},
+			    										   #{tranItem.remarks, jdbcType=VARCHAR},
+			    										   #{tranItem.createUser, jdbcType=VARCHAR},
+			    										   SYSDATE,
+			    										   #{tranItem.updateUser, jdbcType=VARCHAR},
+			    										   SYSDATE);
+				END;
+			</foreach>
+			
+			<foreach collection="delTranList" item="del">
+				BEGIN
+			    	MTN_SECURITY_PKG.del_mtn_tran(#{del.tranCd});
+			   	END;
+			</foreach>
+		END;
+	</update>
 </mapper>

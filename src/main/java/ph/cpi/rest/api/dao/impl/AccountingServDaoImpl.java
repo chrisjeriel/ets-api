@@ -9,8 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
+import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
+import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -25,6 +31,7 @@ import ph.cpi.rest.api.model.accountingservice.AcseCv;
 import ph.cpi.rest.api.model.accountingservice.AcseCvPaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbBankDetails;
 import ph.cpi.rest.api.model.accountingservice.AcseDcbCollection;
+import ph.cpi.rest.api.model.accountingservice.AcseEditedAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseInsuranceExp;
 import ph.cpi.rest.api.model.accountingservice.AcseInvoiceItems;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
@@ -41,6 +48,13 @@ import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
 public class AccountingServDaoImpl implements AccountingServDao{
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private PlatformTransactionManager txManager;
+	
+	private DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
+	
+	private TransactionStatus txStat;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccountingInTrustDaoImpl.class);
 
@@ -416,8 +430,213 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public Integer printInvoiceBatch(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer res = sqlSession.update("printInvoiceBatch", params);
 		return res;
 	}
+
+	@Override
+	public AcseEditedAcctEntries retrieveAcseEditedAcctEntries(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("retEditAcctEntriesServ", params);
+	}
+
+	@Override
+	public List<AcseEditedAcctEntries> retrieveEditedAcctEntInq(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retEditAcctEntriesInqServ", params);
+	}
+
+	@Override
+	public List<AcseAcctEntries> retrieveAcctEntInqDtl(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcseAcctEntriesInqDtl", params);
+	}
+
+	@Override
+	public Integer editAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("editAcctEntServ",params);
+	}
+
+	@Override
+	public Integer restoreAcctEnt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("restoreAcctEntServ",params);
+	}
+	
+	@Override
+	public HashMap<String, Object> saveAcseCloseOpenDcb(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseCloseOpenDcb",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveDcbCollection(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseDcbCollection",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+	
+	@Override
+    public Integer updateAcseStat(HashMap<String, Object> params) throws SQLException {
+        Integer errorCode = sqlSession.update("updateAcseStat", params);
+        return errorCode;
+    }
+	
+	@Override
+	public String validateTranAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validateTranAcctEntDate", "");
+		sqlSession.update("validateTranAcctEntDateAcse",params);
+		return (String) params.get("validateTranAcctEntDate");
+	}
+	
+	@Override
+	public String validateTbDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTbDateSe", params);
+		
+		return (String) params.get("validate");
+	}
+	
+	@Override
+	public void startTransaction() {
+		txStat = txManager.getTransaction(txDef);
+	}
+	
+	@Override
+	public void commit() {
+		txManager.commit(txStat);
+	}
+
+	@Override
+	public void rollback() {
+		txManager.rollback(txStat);
+	}
+	
+	@Override
+	public Integer acseEomInsertEndOfMonth(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomInsertEndOfMonth", params);
+	}
+	
+	@Override
+	public Integer acseEomCloseTrans(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomCloseTrans", params);
+	}
+	
+	@Override
+	public Integer acseEomDeleteTrans(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomDeleteTrans", params);
+	}
+	
+	@Override
+	public Integer acseEomDeleteMonthlyTotals(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomDeleteMonthlyTotals", params);
+	}
+	
+	@Override
+	public Integer acseEomInsertMonthlyTotals(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomInsertMonthlyTotals", params);
+	}
+	
+	@Override
+	public Integer acseEomDeleteMonthlyTotalsBackup() throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomDeleteMonthlyTotalsBackup");
+	}
+	
+	@Override
+	public Integer acseEomInsertMonthlyTotalsBackup(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomInsertMonthlyTotalsBackup", params);
+	}
+	
+	@Override
+	public List<AcitEomMonthlyTotals> retrieveAcseMonthEndTrialBal(HashMap<String, Object> params) throws SQLException {
+		List<AcitEomMonthlyTotals> res = sqlSession.selectList("retrieveAcseMonthEndTrialBal",params);
+		return res;
+	}
+	
+	@Override
+	public List<AcitEomUnpostedMonth> retrieveAcseMonthEndUnpostedMonths() throws SQLException {
+		List<AcitEomUnpostedMonth> res = sqlSession.selectList("retrieveAcseMonthEndUnpostedMonths");
+		return res;
+	}
+	
+	@Override
+	public String validatePrevMonth(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validatePrevMonthSe", params);
+		
+		return (String) params.get("validate");
+	}
+	
+	@Override
+	public String validateCurrMonth(HashMap<String, Object> params) throws SQLException {
+		params.put("validateCurr", "");
+		sqlSession.selectOne("validateCurrMonthSe", params);
+		
+		return (String) params.get("validateCurr");
+	}
+	
+	@Override
+	public String validateEqualTb(HashMap<String, Object> params) throws SQLException {
+		params.put("equalTb", "");
+		sqlSession.selectOne("validateEqualTbSe", params);
+		
+		return (String) params.get("equalTb");
+	}
+	
+	@Override
+	public Integer acseEomPostToFiscalYear(HashMap<String, Object> params) throws SQLException {
+		txManager.getTransaction(txDef);
+		return sqlSession.update("acseEomPostToFiscalYear", params);
+	}
+	
+	@Override
+	public Integer failedPosting(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("failedPostingSe", params);
+	}
+	
+	@Override
+	public String validateTempClose(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateTempCloseSe", params);
+		
+		return (String) params.get("validate");
+	}
+	
+	@Override
+	public Integer saveAcseMonthEndTBTempClose(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseMonthEndTBTempClose", params);
+		return errorCode;
+	}
+	
+	@Override
+	public String validateReopen(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		sqlSession.selectOne("validateReopenSe", params);
+		
+		return (String) params.get("validate");
+	}
+	
+	@Override
+	public Integer saveAcseMonthEndTBReopen(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveAcseMonthEndTBReopen", params);
+		return errorCode;
+	}
+
+	@Override
+	public String checkEom(HashMap<String, Object> params) throws SQLException {
+		params.put("checkEom", "");
+		sqlSession.selectOne("checkEom", params);
+		
+		return (String) params.get("checkEom");
+	}
+
+	@Override
+	public AcctServFeeDist retrieveOrSFeeDtlDist(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectOne("retOrServFeeDtlDist", params);
+	}
+	
 }

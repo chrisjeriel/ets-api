@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ph.cpi.rest.api.model.request.ChangeRNStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
 import ph.cpi.rest.api.model.request.RetrieveRelatedRecordsRequest;
 import ph.cpi.rest.api.model.request.RetrieveRemindersRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmTransactionsRequest;
 import ph.cpi.rest.api.model.request.SaveNotesRequest;
 import ph.cpi.rest.api.model.request.SaveRemindersRequest;
+import ph.cpi.rest.api.model.response.ChangeRNStatusResponse;
 import ph.cpi.rest.api.model.response.RetrieveNotesResponse;
 import ph.cpi.rest.api.model.response.RetrieveRelatedRecordsResponse;
 import ph.cpi.rest.api.model.response.RetrieveRemindersResponse;
@@ -80,4 +82,13 @@ public class WorkFlowController {
 		logger.info("RetrieveRelatedRecordsRequest : " + rrrr.toString());
 		return workFlowService.retrieveRelatedRecords(rrrr);
 	}
+	
+	@PostMapping(path="changeRNStatus")
+	public @ResponseBody ChangeRNStatusResponse changeRNStatus(@RequestBody ChangeRNStatusRequest snreq) throws SQLException {
+		logger.info("POST: /api/work-flow-service/changeRNStatus");
+		logger.info("ChangeRNStatusRequest : " + snreq.toString());
+		return workFlowService.changeRNStatus(snreq);
+	}
+	
+	
 }

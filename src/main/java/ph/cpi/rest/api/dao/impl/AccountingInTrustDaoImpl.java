@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitArTransDtl;
 import ph.cpi.rest.api.model.accountingintrust.AcitAttachments;
 import ph.cpi.rest.api.model.accountingintrust.AcitCMDM;
 import ph.cpi.rest.api.model.accountingintrust.AcitCancelledTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitClmHist;
 import ph.cpi.rest.api.model.accountingintrust.AcitClmResHistPayts;
 import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.accountingintrust.AcitCvPaytReq;
@@ -108,18 +109,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
-
-//	@Override
-//	public List<AcitProfCommSumm> retrieveProfCommSumm(HashMap<String, Object> params) throws SQLException {
-//		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommSumm", params);
-//		return acitProfCommSummList;
-//	}
-//
-//	@Override
-//	public List<AcitProfCommDtl> retrieveProfCommDtl(HashMap<String, Object> params) throws SQLException {
-//		List<AcitProfCommDtl> acitProfCommDtlList = sqlSession.selectList("retrieveProfCommDtl", params);
-//		return acitProfCommDtlList;
-//	}
 
 	@Override
 	public List<AcitInvestments> retrieveInvestmentList(HashMap<String, Object> params) throws SQLException {
@@ -356,7 +345,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
-
 	
 	@Override
 	public List<AcitProfCommSumm> retrieveProfCommSumm(HashMap<String, Object> params) throws SQLException {
@@ -1085,6 +1073,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		
 		for (AcctEntryRowUpload aeru : aeruList) {
 			txManager.getTransaction(txDef);
+			System.out.println("DAOUPLOAD");
+			System.out.println(aeru);
+			System.out.println("DAOUPLOAD");
 			errorCode = sqlSession.update("uploadAcctEntry", aeru);
 		}
 		
@@ -1169,5 +1160,49 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitDcbBankDetails> retrieveAcitBankDetails(HashMap<String, Object> params) throws SQLException {
 		List<AcitDcbBankDetails> res = sqlSession.selectList("retrieveAcitBankDetails", params);
 		return res;
+	}
+	
+	@Override
+	public String validateTranAcctEntDate(HashMap<String, Object> params) throws SQLException {
+		params.put("validateTranAcctEntDate", "");
+		sqlSession.update("validateTranAcctEntDate",params);
+		return (String) params.get("validateTranAcctEntDate");
+	}
+
+	@Override
+	public List<AcitProfCommSumm> retrievePCSummPerCeding(HashMap<String, Object> params) throws SQLException {
+		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrievePCSummPerCeding", params);
+		return acitProfCommSummList;
+	}
+	
+	@Override
+	public List<AcitClmHist> retrieveAcitClmHist(HashMap<String, Object> params) throws SQLException {
+		List<AcitClmHist> acitClmHistList  = sqlSession.selectList("retrieveAcitClmHist", params);
+		return acitClmHistList;
+	}
+
+	@Override
+	public Integer saveAcitProfCommTran(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveAcitProfCommTran", params);
+	}
+
+	@Override
+	public String getAcitTranNo(HashMap<String, Object> params) throws SQLException {
+		params.put("tranNo", "");
+		sqlSession.update("getAcitTranNo",params);
+		return (String) params.get("tranNo");
+	}
+
+	@Override
+	public String validateProfCommTran(HashMap<String, Object> params) throws SQLException {
+		params.put("tranNo", "");
+		sqlSession.update("validateProfCommTran",params);
+		return (String) params.get("tranNo");
+	}
+
+	@Override
+	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException {
+		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommParams");
+		return acitProfCommSummList;
 	}
 }

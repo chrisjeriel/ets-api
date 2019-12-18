@@ -173,6 +173,7 @@
 		<result property="distStatDesc"			column="DIST_STAT_DESC" />
 		<result property="quoteId"				column="QUOTE_ID"/> <!-- added by CJS for WFMServices -->
 		<result property="quotationNo"			column="QUOTATION_NO"/> <!-- added by CJS for WFMServices -->
+		<result property="createUser"			column="CREATE_USER"/>
 		<association property="project" 		resultMap="projectMap"/>
 	</resultMap>
 	
@@ -261,6 +262,15 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Coverage" id="coverageMap">
+		<result property="prevSectionISi" 			column="PREV_CUM_SECI_SI"/>	 
+		<result property="prevSectionIISi" 			column="PREV_CUM_SECII_SI"/>	 
+		<result property="prevSectionIIISi" 			column="PREV_CUM_SECIII_SI"/>	 
+		<result property="prevTotalSi" 			column="PREV_CUM_TSI"/>	 
+		<result property="prevSectionIPrem" 			column="PREV_CUM_SECI_PREM"/>	 
+		<result property="prevSectionIIPrem" 			column="PREV_CUM_SECII_PREM"/>	 
+		<result property="prevSectionIIIPrem" 			column="PREV_CUM_SECIII_PREM"/>	 
+		<result property="prevTotalPrem" 			column="PREV_CUM_TPREM"/>	 
+		
 		<result property="sectionISi" 			column="SECTION_I_SI"/>
 		<result property="sectionIISi" 			column="SECTION_II_SI"/>
 		<result property="sectionIIISi" 		column="SECTION_III_SI"/>
@@ -300,6 +310,7 @@
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="holdCoverTag" 		column="HOLD_COVER"/>
 		<result property="extensionTag" 		column="EXTENSION_TAG"/>
+		<result property="premDepPct" 			column="PREM_DEP_PCT"/>
 		<association property="sectionCovers" resultMap ="sectionCoversMap"></association>
 	</resultMap>
 	
@@ -442,6 +453,7 @@
 		<result property="relativeImp" 		column="RELATIVE_IMP"/> 
 		<result property="standbyUnit" 		column="STANDBY_UNIT"/> 
 		<result property="createUser" 		column="CREATE_USER"/> 
+		<result property="section"			column="SECTION"/>
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 		column="UPDATE_USER"/> 
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -686,7 +698,7 @@
 										   #{cumSecIISi}, #{cumSecIIISi}, #{cumTSi}, 
 										   #{cumSecIPrem}, #{cumSecIIPrem}, #{cumSecIIIPrem}, #{cumTPrem}, #{commRtQuota},#{commRtSurplus},#{commRtFac}, #{createUser}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
-										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+										   #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{premDepPct, jdbcType=INTEGER});
 			
 			<foreach collection="deleteSectionCovers" item="sectioncovers">
 				POL_SEC_COVER_PKG.del_pol_cover(#{policyId},#{projId},#{riskId},#{sectioncovers.lineCd}, 
@@ -850,7 +862,8 @@
 															 null,
 															 null,
 															 null,
-															 null))
+															 null,
+															 #{lineCd, jdbcType=VARCHAR}))
 															 WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS IN 
@@ -914,7 +927,8 @@
 												 null,
 												 null,
 												 null,
-												 null))
+												 null,
+												#{lineCd, jdbcType=VARCHAR}))
 												 WHERE  1=1
 	  	   <if test="statusArr != null">
 		   		AND   STATUS IN 
@@ -999,6 +1013,7 @@
 				#{Items.ipl, jdbcType=INTEGER},
 				#{Items.relativeImp, jdbcType=VARCHAR},
 				#{Items.standbyUnit, jdbcType=VARCHAR},
+				#{Items.section, jdbcType=VARCHAR},
 				#{Items.createUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{Items.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{Items.updateUser, jdbcType=VARCHAR},
@@ -1180,8 +1195,8 @@
 			</foreach>
 			<foreach collection="savePolInward" item="polInward">
 				POL_INWARD_PKG.save_inw(#{policyId},#{polInward.instNo},
-						CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-						CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						TRUNC(CAST(to_timestamp(#{polInward.dueDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)),
+						TRUNC(CAST(to_timestamp(#{polInward.bookingDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)),
 						#{polInward.premAmt}, #{polInward.commRt}, #{polInward.commAmt}, 
 						#{polInward.otherChargesInw}, #{polInward.amtDue},#{polInward.createUser},
 						CAST(to_timestamp(#{polInward.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{polInward.updateUser},
@@ -1636,6 +1651,7 @@
 		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.ASSIGNED_BY, a.CREATE_DATE, a.UPDATE_DATE  FROM QUOTE_GEN_INFO a
 		 WHERE a.status = 'P'
 		   AND #{userId, jdbcType=VARCHAR} IN (SELECT user_id FROM TABLE(MTN_USERS_PKG.retrieve_quote_approver(a.quote_id,null,null,null,null)))
+      ORDER BY a.CREATE_DATE DESC
 	</select>
 
 	<select id="retrievePolCoverageAlt" resultMap="policyMap" parameterType="java.util.Map">

@@ -252,9 +252,10 @@
 				</foreach>
 		    END IF;
 		    
-		    IF #{isPrint, jdbcType=VARCHAR} IS NULL THEN
+		    IF #{isPrint, jdbcType=VARCHAR} IS NULL AND #{genAcctEnt} <![CDATA[ = ]]> 'Y' THEN
 			    <!-- Generate Tax Details -->
-			    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message);
+			    <!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message); -->
+			    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', v_tran_id, #{tranTypeCd}, #{createUser}, #{updateUser});
 			    
 			    <!-- Generate Accounting Entries -->
 			    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message);
@@ -924,6 +925,9 @@
 					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
+			IF #{forApproval, jdbcType=VARCHAR} IS NOT NULL THEN
+				ACSE_JOURNAL_VOUCHER_PKG.acct_entry_apprvl(#{tranId, jdbcType=VARCHAR},#{forApproval, jdbcType=VARCHAR});
+			END IF;
 		END;
 	</update>
 	
@@ -1718,5 +1722,292 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseEditedAcctEntries" id="editAcctEntriesMapServ">
+		<result property="tranId"       column="TRAN_ID" />
+		<result property="tranClass"    column="TRAN_CLASS" />
+		<result property="tranTypeName" column="TRAN_TYPE_NAME" />
+		<result property="histNo"       column="HIST_NO" />
+		<result property="refNo"        column="REF_NO" />
+		<result property="tranDate"     column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="payee"        column="PAYEE" />
+		<result property="particulars"  column="PARTICULARS" />
+		<result property="currCd"       column="CURR_CD" />
+		<result property="currRate"     column="CURR_RATE" />
+		<result property="amount"       column="AMOUNT" />
+		<result property="localAmt"     column="LOCAL_AMT" />
+		<result property="status"       column="STATUS" />
+		<result property="reason"       column="REASON" />
+		<result property="editedBy"     column="EDITOR" />
+		<result property="editDate"     column="EDIT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retEditAcctEntriesServ" resultMap="editAcctEntriesMapServ" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ACCTENTRIES_HIST_PKG.ret_edtacctentries(#{tranId}))
+	</select>
+	
+	<select id="retEditAcctEntriesInqServ" resultMap="editAcctEntriesMapServ" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_ACCTENTRIES_HIST_PKG.ret_edtacctentries_inq(#{tranClass, jdbcType=VARCHAR}, 
+																		     CAST(to_timestamp(#{tranDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																		     CAST(to_timestamp(#{tranDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<select id="retrieveAcseAcctEntriesInqDtl" resultMap="acctEntryMap">
+		SELECT * FROM TABLE(ACSE_ACCTENTRIES_HIST_PKG.ret_eaeinq_dtl(
+				#{tranId},
+				#{histNo}))
+	</select>
+    
+    <update id="editAcctEntServ" parameterType="java.util.Map" statementType="CALLABLE">
+		DECLARE
+			v_hist_no	NUMBER;
+		BEGIN
+			v_hist_no := ACSE_ACCTENTRIES_HIST_PKG.get_next_histno(#{tranId});
+			
+			<!-- Prepare backup before updating main accounting entries table -->
+			ACSE_ACCTENTRIES_HIST_PKG.edit_acct_entries(#{tranId},v_hist_no,#{reason},#{createUser}, #{updateUser});
+			<!-- Update Accounting Entries -->
+			<foreach collection="delList" item="item">
+				ACSE_ACCT_ENTRIES_PKG.del_acct_acc_entries(#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR});
+			</foreach>
+			<foreach collection="saveList" item="item">
+				ACSE_ACCT_ENTRIES_PKG.save_acse_acc_entries(
+					#{item.tranId, jdbcType=VARCHAR},
+					#{item.entryId, jdbcType=VARCHAR},
+					#{item.glAcctId, jdbcType=VARCHAR},
+					#{item.slTypeCd, jdbcType=VARCHAR},
+					#{item.slCd, jdbcType=VARCHAR},
+					#{item.creditAmt, jdbcType=VARCHAR},
+					#{item.debitAmt, jdbcType=VARCHAR},
+					#{item.foreignCreditAmt, jdbcType=VARCHAR},
+					#{item.foreignDebitAmt, jdbcType=VARCHAR},
+					#{item.autoTag, jdbcType=VARCHAR},
+					#{item.createUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{item.updateUser, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{item.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				</foreach>
+		END;
+	</update>
+	
+	<update id="restoreAcctEntServ" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_ACCTENTRIES_HIST_PKG.restore_acct_entries(#{tranId, jdbcType=INTEGER},
+													   #{histNo, jdbcType=INTEGER});
+		END;
+	</update>
+    
+    
+    <update id="saveAcseCloseOpenDcb" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="saveDcb" item="save">
+				ACSE_DCB_NO_PKG.save_remarks(#{save.dcbYear},#{save.dcbNo},#{save.remarks},#{save.updateUser});
+			</foreach>
+		END;
+	</update>
+	
+	<update id="saveAcseDcbCollection" parameterType="java.util.Map">
+		BEGIN
+		 	<foreach collection="updateDcb" item="save">
+				ACSE_DCB_NO_PKG.update_dcb(#{save.dcbYear},#{save.dcbNo},#{save.dcbStat},#{save.updateUser});
+			</foreach>
+		END;
+	</update>
+	
+	<update id="updateAcseStat" parameterType="java.util.Map">
+        BEGIN
+            <foreach collection="updateAcseStatList" item="u">
+                ACSE_CHANGE_STATUS_PKG.acse_change_stats(
+                    #{u.tranId},
+                    #{u.status, jdbcType=VARCHAR},
+                    #{u.updateUser ,jdbcType=VARCHAR},
+                    #{u.tranClass, jdbcType=VARCHAR},
+                    #{u.cancelReason, jdbcType=VARCHAR}
+                );
+            </foreach>
+        END;
+    </update>
+    
+    <update id="validateTranAcctEntDateAcse" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateTranAcctEntDate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_CHANGE_STATUS_PKG.chkTransAcctEntDate(#{indiv.tranId, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<update id="validateTbDateSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_tb_date(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="acseEomInsertEndOfMonth" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.insert_end_of_month(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    	   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomCloseTrans" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.close_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										   #{includeMonth, jdbcType=VARCHAR},
+										   #{includeYear, jdbcType=VARCHAR},
+										   #{aeTag, jdbcType=VARCHAR},
+										   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomDeleteTrans" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.delete_trans(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomDeleteMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.delete_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="acseEomInsertMonthlyTotals" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.insert_monthly_totals(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    		 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="acseEomDeleteMonthlyTotalsBackup">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.delete_monthly_totals_backup();
+		END;
+	</update>
+	
+	<update id="acseEomInsertMonthlyTotalsBackup" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.insert_monthly_totals_backup(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals" id="acseEomMonthlyTotals">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="currCd"				column="CURR_CD"/>
+		<result property="glAcctId"				column="GL_ACCT_ID"/>
+		<result property="shortCode"			column="SHORT_CODE"/>
+		<result property="shortDesc"			column="SHORT_DESC"/>
+		<result property="longDesc"				column="LONG_DESC"/>
+		<result property="begDebitAmt"			column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"			column="BEG_CREDIT_AMT"/>
+		<result property="totalDebitAmt"		column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt"		column="TOTAL_CREDIT_AMT"/>
+		<result property="transDebitBal"		column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"		column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"			column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"			column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"			column="END_CREDIT_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcseMonthEndTrialBal" resultMap="acseEomMonthlyTotals" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_TRIAL_BAL_PKG.ret_monthly_totals(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth" id="acseEomUnpostedMonth">
+		<result property="eomDate"				column="EOM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="qtrMonth"				column="QTR_MONTH"/>
+	</resultMap>
+	
+	<select id="retrieveAcseMonthEndUnpostedMonths" resultMap="acseEomUnpostedMonth" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACSE_POST_TB_PKG.ret_unposted_months())
+	</select>
+	
+	<update id="validatePrevMonthSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_POST_TB_PKG.validate_prev_month(#{eomMm, jdbcType=INTEGER},
+																										  	 #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+
+	<update id="validateCurrMonthSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validateCurr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_POST_TB_PKG.validate_curr_month(#{eomMm, jdbcType=INTEGER},
+																										  	 	 #{eomYear, jdbcType=INTEGER})
+		}
+	</update>
+	
+	<update id="validateEqualTbSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{equalTb, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_POST_TB_PKG.validate_equal_tb(#{eomMm, jdbcType=INTEGER},
+																										  #{eomYear, jdbcType=INTEGER})
+		}	
+	</update>
+	
+	<update id="acseEomPostToFiscalYear" parameterType="java.util.Map">
+		BEGIN
+			ACSE_POST_TB_PKG.post_to_fiscal_year(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											    #{eomMm, jdbcType=INTEGER},
+											    #{eomYear, jdbcType=INTEGER},
+											    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="failedPostingSe" parameterType="java.util.Map">
+		BEGIN
+			ACSE_POST_TB_PKG.failed_posting(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{eomMm, jdbcType=INTEGER},
+										    #{eomYear, jdbcType=INTEGER},
+										    #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateTempCloseSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_temp_close(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="saveAcseMonthEndTBTempClose" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.temp_close_tb(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="validateReopenSe" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{validate, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.validate_reopen(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<update id="saveAcseMonthEndTBReopen" parameterType="java.util.Map">
+		BEGIN
+			ACSE_TRIAL_BAL_PKG.reopen_close_tb(CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   #{eomUser, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="checkEom" parameterType="java.util.Map" statementType="CALLABLE">
+		{CALL
+			#{checkEom, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACSE_TRIAL_BAL_PKG.check_eom(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE))
+		}
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist" id="orServFeeDtlDistMap">
+		<result property="actualShrAmt"       column="ACTUAL_SHR_AMT" />
+		<result property="invoiceId"    	  column="INVOICE_ID" />
+	</resultMap>
+	
+	<select id="retOrServFeeDtlDist" resultMap="orServFeeDtlDistMap">
+		SELECT * FROM TABLE(ACSE_OR_SERVFEE_PKG.ret_srvdtldist(
+																        #{cedingId},
+																        #{sFeeYear},
+																        #{sFeeQtr}
+																    ))
+	</select>
         
 </mapper>

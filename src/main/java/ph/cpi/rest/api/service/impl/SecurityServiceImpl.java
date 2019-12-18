@@ -113,11 +113,18 @@ public class SecurityServiceImpl implements SecurityService{
 		if ("USER".equalsIgnoreCase(str.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("transactionList", str.getTransactionList());
+			params.put("delTranList", str.getDelTranList());
 			response.setReturnCode(securityDao.saveUserTransactions(params));
 		} else if  ("USER_GROUP".equalsIgnoreCase(str.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("transactionList", str.getTransactionList());
+			params.put("delTranList", str.getDelTranList());
 			response.setReturnCode(securityDao.saveGroupTransactions(params));
+		}else if("MTN".equalsIgnoreCase(str.getAccessLevel())){
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("transactionList", str.getTransactionList());
+			params.put("delTranList", str.getDelTranList());
+			response.setReturnCode(securityDao.saveMtnTransactions(params));
 		}
 		
 		return response;
@@ -131,10 +138,12 @@ public class SecurityServiceImpl implements SecurityService{
 		if ("USER".equalsIgnoreCase(smr.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("moduleList", smr.getModuleList());
+			params.put("delModuleList", smr.getDelModuleList());
 			response.setReturnCode(securityDao.saveUserModules(params));
 		} else if  ("USER_GROUP".equalsIgnoreCase(smr.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("moduleList", smr.getModuleList());
+			params.put("delModuleList", smr.getDelModuleList());
 			response.setReturnCode(securityDao.saveGroupModules(params));
 		} else if ("MTN".equalsIgnoreCase(smr.getAccessLevel())) {
 			HashMap<String, Object> params = new HashMap<String, Object>();

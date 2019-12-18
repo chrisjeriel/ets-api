@@ -1152,6 +1152,8 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuotationCopyParams.put("createDate", sqcp.getCreateDate());
 			saveQuotationCopyParams.put("updateUser", sqcp.getUpdateUser());
 			saveQuotationCopyParams.put("updateDate", sqcp.getUpdateDate());
+			saveQuotationCopyParams.put("cessionId", sqcp.getCessionId());
+			saveQuotationCopyParams.put("reinsurerId", sqcp.getReinsurerId());	
 			
 			HashMap<String, Object> res = quoteDao.saveQuotationCopy(saveQuotationCopyParams);
 			storageService.copy("quotation",saveQuotationCopyParams.get("quoteId").toString(),(String) res.get("newQuoteId").toString());

@@ -9,11 +9,13 @@ public class AcseDCBNo {
 	private String dcbStatus;
 	private String remarks;
 	private String autoTag;
+	private DateTime closeDate;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
+	private Integer nextDcbNo;
 	
 	public Integer getDcbYear() {
 		return dcbYear;
@@ -51,6 +53,13 @@ public class AcseDCBNo {
 	public void setAutoTag(String autoTag) {
 		this.autoTag = autoTag;
 	}
+	
+	public DateTime getCloseDate() {
+		return closeDate;
+	}
+	public void setCloseDate(DateTime closeDate) {
+		this.closeDate = closeDate;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -83,12 +92,18 @@ public class AcseDCBNo {
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
+	public Integer getNextDcbNo() {
+		return nextDcbNo;
+	}
+	public void setNextDcbNo(Integer nextDcbNo) {
+		this.nextDcbNo = nextDcbNo;
+	}
 	@Override
 	public String toString() {
 		return "AcseDCBNo [dcbYear=" + dcbYear + ", dcbNo=" + dcbNo + ", dcbDate=" + dcbDate + ", dcbStatus="
-				+ dcbStatus + ", remarks=" + remarks + ", autoTag=" + autoTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", okDelete=" + okDelete + "]";
+				+ dcbStatus + ", remarks=" + remarks + ", autoTag=" + autoTag + ", closeDate=" + closeDate
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", nextDcbNo=" + nextDcbNo + "]";
 	}
 	
 }

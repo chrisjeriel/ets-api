@@ -1,6 +1,8 @@
 package ph.cpi.rest.api.controller;
 
 
+import java.awt.print.PrinterAbortException;
+import java.awt.print.PrinterException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,8 +17,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.print.PrintException;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -40,12 +47,16 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.sf.jasperreports.engine.JRException;
+import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
+import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.service.UtilService;
 import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -249,6 +260,9 @@ public class UtilController {
 			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
 				System.out.println("POLR044");
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR061")) {
+				System.out.println("POLR044");
+				reportParam = ReportParameters.mapACITR061Params(grr.getAcitr061Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
@@ -266,6 +280,9 @@ public class UtilController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -424,9 +441,93 @@ public class UtilController {
 	            .body(resource);
 	}
 	
-	@PostMapping(path="uploadDataTable")
-	public @ResponseBody Response uploadDataTable() throws SQLException {
-		logger.info("POST: /api/util-service/uploadDataTable");
-		return utilService.uploadDataTable();
+	@GetMapping(path="retrievePrinters")
+	public @ResponseBody ArrayList<String> retrievePrinters() throws SQLException {
+		PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
+		ArrayList<String> printerNames = new ArrayList<String>();
+		for(PrintService printer : printServices){
+			logger.info(printer.getName());
+			printerNames.add(printer.getName());
+		}
+		return printerNames;
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@GetMapping(path="directPrint")
+	public @ResponseBody Response directPrint(GenerateReportRequest grr) throws SQLException, IOException, PrintException, PrinterException {
+		logger.info("GET: /api/util-service/directPrint");
+		logger.info("generateReportRequest : " + grr.toString());
+		Response response = new Response();
+		PrintService[] printServices = PrintServiceLookup.lookupPrintServices(null, null);
+		PrintService chosenPrinter = null;
+		String result = "";
+		HashMap dbParams = new HashMap<String, String>();
+		dbParams.put("dbUrl", dbUrl);
+		dbParams.put("username", username);
+		dbParams.put("password", password);
+		
+		String filename = "";
+		try {
+			PrintingUtility pu = new PrintingUtility();
+			HashMap reportParam = new HashMap<String, String>();
+			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
+				System.out.println("POLR044");
+				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
+			} else {
+				reportParam = ReportParameters.mapReportParams(grr);
+			}
+			
+			
+			reportParam.put("REPORT_NAME", utilService.getReportFileName(reportParam));
+			reportParam.put("REPORT_PATH", utilService.getReportPath());
+			
+			System.out.println("GENERATED REPORT PARAMS:");
+			System.out.println(reportParam);
+			
+			for(PrintService printer : printServices){
+				logger.info(printer.getName());
+				if(printer.getName().equals(grr.getPrinterName())){
+					chosenPrinter = printer;
+					logger.info("CHOSEN : " + chosenPrinter.toString());
+					break;
+				}
+			}
+			if(chosenPrinter == null){
+				result = "Printer not found.";
+				response.getErrorList().add(new Error("Error", result));
+				return response;
+			}
+			
+			filename = pu.generateJasperReport(reportParam, dbParams, null, null, null);
+			result = pu.directPrint(filename, chosenPrinter, grr.getPaperSize(), grr.getPageOrientation());
+			response.getMessageList().add(new Message("Message", result));
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PrintException e) {
+			result = "Failed";
+			response.getErrorList().add(new Error("Error", result));
+			e.printStackTrace();
+		} catch (PrinterException e) {
+			if(e instanceof PrinterAbortException){
+				result = "Print was aborted";
+			}else{
+				result = "Failed";
+			}
+			response.getErrorList().add(new Error("Error", result));
+			e.printStackTrace();
+		}
+		
+
+		File file = new File(filename);
+		logger.info("FILE filename: " + filename);
+	    logger.info("FILE Absolute Path: " + file.getAbsolutePath());
+	    Path path = Paths.get(file.getAbsolutePath());
+	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+		return response;
+	}
+	
 }

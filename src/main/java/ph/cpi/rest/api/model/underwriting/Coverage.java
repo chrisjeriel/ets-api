@@ -9,6 +9,16 @@ import org.joda.time.DateTime;
 @Alias("UnderwritingCoverage")
 public class Coverage {
 	
+	private BigDecimal prevSectionISi;
+	private BigDecimal prevSectionIISi;
+	private BigDecimal prevSectionIIISi;
+	private BigDecimal prevTotalSi;
+	private BigDecimal prevSectionIPrem;
+	private BigDecimal prevSectionIIPrem;
+	private BigDecimal prevSectionIIIPrem;
+	private BigDecimal prevTotalPrem;
+	private BigDecimal premDepPct;
+	
 	private BigDecimal sectionISi;
 	private BigDecimal sectionIISi;
 	private BigDecimal sectionIIISi;
@@ -49,6 +59,79 @@ public class Coverage {
 	private String holdCoverTag;
 	private String extensionTag;
 	private List<SectionCovers> sectionCovers;
+
+	
+	public BigDecimal getPremDepPct() {
+		return premDepPct;
+	}
+
+	public void setPremDepPct(BigDecimal premDepPct) {
+		this.premDepPct = premDepPct;
+	}
+
+	public BigDecimal getPrevSectionISi() {
+		return prevSectionISi;
+	}
+
+	public void setPrevSectionISi(BigDecimal prevSectionISi) {
+		this.prevSectionISi = prevSectionISi;
+	}
+
+	public BigDecimal getPrevSectionIISi() {
+		return prevSectionIISi;
+	}
+
+	public void setPrevSectionIISi(BigDecimal prevSectionIISi) {
+		this.prevSectionIISi = prevSectionIISi;
+	}
+
+	public BigDecimal getPrevSectionIIISi() {
+		return prevSectionIIISi;
+	}
+
+	public void setPrevSectionIIISi(BigDecimal prevSectionIIISi) {
+		this.prevSectionIIISi = prevSectionIIISi;
+	}
+
+	public BigDecimal getPrevTotalSi() {
+		return prevTotalSi;
+	}
+
+	public void setPrevTotalSi(BigDecimal prevTotalSi) {
+		this.prevTotalSi = prevTotalSi;
+	}
+
+	public BigDecimal getPrevSectionIPrem() {
+		return prevSectionIPrem;
+	}
+
+	public void setPrevSectionIPrem(BigDecimal prevSectionIPrem) {
+		this.prevSectionIPrem = prevSectionIPrem;
+	}
+
+	public BigDecimal getPrevSectionIIPrem() {
+		return prevSectionIIPrem;
+	}
+
+	public void setPrevSectionIIPrem(BigDecimal prevSectionIIPrem) {
+		this.prevSectionIIPrem = prevSectionIIPrem;
+	}
+
+	public BigDecimal getPrevSectionIIIPrem() {
+		return prevSectionIIIPrem;
+	}
+
+	public void setPrevSectionIIIPrem(BigDecimal prevSectionIIIPrem) {
+		this.prevSectionIIIPrem = prevSectionIIIPrem;
+	}
+
+	public BigDecimal getPrevTotalPrem() {
+		return prevTotalPrem;
+	}
+
+	public void setPrevTotalPrem(BigDecimal prevTotalPrem) {
+		this.prevTotalPrem = prevTotalPrem;
+	}
 
 	public BigDecimal getSectionISi() {
 		return sectionISi;
@@ -375,7 +458,11 @@ public class Coverage {
 
 	@Override
 	public String toString() {
-		return "Coverage [sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
+		return "Coverage [prevSectionISi=" + prevSectionISi + ", prevSectionIISi=" + prevSectionIISi
+				+ ", prevSectionIIISi=" + prevSectionIIISi + ", prevTotalSi=" + prevTotalSi + ", prevSectionIPrem="
+				+ prevSectionIPrem + ", prevSectionIIPrem=" + prevSectionIIPrem + ", prevSectionIIIPrem="
+				+ prevSectionIIIPrem + ", prevTotalPrem=" + prevTotalPrem + ", premDepPct=" + premDepPct
+				+ ", sectionISi=" + sectionISi + ", sectionIISi=" + sectionIISi + ", sectionIIISi=" + sectionIIISi
 				+ ", totalSi=" + totalSi + ", sectionIPrem=" + sectionIPrem + ", sectionIIPrem=" + sectionIIPrem
 				+ ", sectionIIIPrem=" + sectionIIIPrem + ", totalPrem=" + totalPrem + ", holdCoverPremAmt="
 				+ holdCoverPremAmt + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", pctShare="

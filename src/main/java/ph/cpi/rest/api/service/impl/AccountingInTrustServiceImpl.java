@@ -2,9 +2,12 @@ package ph.cpi.rest.api.service.impl;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
+import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -112,33 +116,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return saprResponse;
 	}
-
-
-//	@Override
-//	public RetrieveAcitProfCommSummResponse retrieveAcitProfCommSumm(RetrieveAcitProfCommSummRequest rapcsr)
-//			throws SQLException {
-//		RetrieveAcitProfCommSummResponse rapcsrResponse =  new RetrieveAcitProfCommSummResponse();
-//		HashMap<String, Object> rapcsrParams = new HashMap<String, Object>();
-//		rapcsrParams.put("profcommId", rapcsr.getProfcommId());
-//		rapcsrParams.put("cedingId", rapcsr.getCedingId());
-//		rapcsrParams.put("month", rapcsr.getMonth());
-//		rapcsrParams.put("year", rapcsr.getYear());
-//		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
-//		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
-//		return rapcsrResponse;
-//	}
-
-
-//	@Override
-//	public RetrieveAcitProfCommDtlResponse retrieveAcitProfCommDtl(RetrieveAcitProfCommDtlRequest rapcdr)
-//			throws SQLException {
-//		RetrieveAcitProfCommDtlResponse rapcdrResponse =  new RetrieveAcitProfCommDtlResponse();
-//		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
-//		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
-//		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
-//		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
-//		return rapcdrResponse;
-//	}
 
 	@Override
 	public RetrieveAcitCMDMListResponse retrieveAcitCMDMList(RetrieveAcitCMDMListRequest racitcmdmlr)
@@ -385,6 +362,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("savePaytDtl", saatr.getSavePaytDtl());
 		params.put("delPaytDtl", saatr.getDelPaytDtl());
 		params.put("isPrint", saatr.getIsPrint());
+		params.put("genAcctEnt", saatr.getGenAcctEnt());
 		try{
 			HashMap<String, Object> daoResponse = acctITDao.saveAcitArTrans(params);
 			response.setReturnCode(Integer.parseInt(daoResponse.get("errorCode").toString()));
@@ -463,9 +441,30 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("createDateJv", raje.getCreateDateJv());
 			params.put("updateUserJv", raje.getUpdateUser());
 			params.put("updateDateJv", raje.getUpdateDateJv());
-			HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
-			response.setReturnCode((Integer) res.get("errorCode"));
-			response.setTranIdOut((Integer) res.get("tranIdOut"));
+			
+			Boolean proceed = false;
+			
+			if(raje.getJvTranTypeCd() == 28) {
+				params.put("profCommId", raje.getProfCommId());
+				String tranNo = acctITDao.validateProfCommTran(params);
+				proceed = tranNo == null;
+				
+				if(!proceed) {
+					response.setReturnCode(1);
+					response.setTranNo(tranNo);
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
+				response.setReturnCode((Integer) res.get("errorCode"));
+				response.setTranIdOut((Integer) res.get("tranIdOut"));
+				
+				res.put("tranId", res.get("tranIdOut"));
+				response.setTranNo(acctITDao.getAcitTranNo(res));
+			}
 		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -499,6 +498,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rapcsrParams.put("dateTo", rapcsr.getDateTo());
 		rapcsrParams.put("dateFrom", rapcsr.getDateFrom());
 		rapcsrResponse.setAcitProfCommSummList(acctITDao.retrieveProfCommSumm(rapcsrParams));
+		rapcsrResponse.setAcitProfCommParams(acctITDao.retrieveProfCommParams());
 		logger.info("RetrieveAcitProfCommSummResponse : " + rapcsrResponse.toString());
 		return rapcsrResponse;
 	}
@@ -609,6 +609,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranId",car.getTranId());
 		params.put("updateUser", car.getUpdateUser());
 		params.put("updateDate", car.getUpdateDate());
+		params.put("reopen", car.getReopen());
 		try{
 			response.setReturnCode(acctITDao.cancelAr(params));
 		}catch(Exception e){
@@ -773,6 +774,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateDate", saatdr.getUpdateDate());
 		params.put("saveTransDtl", saatdr.getSaveTransDtl());
 		params.put("delTransDtl", saatdr.getDelTransDtl());
+		params.put("genAcctEnt", saatdr.getGenAcctEnt());
 		try{
 			HashMap<String, Object> res = acctITDao.saveArTransDtl(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
@@ -904,10 +906,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> rapcdrParams = new HashMap<String, Object>();
 		rapcdrParams.put("profcommId", rapcdr.getProfcommId());		
 		rapcdrResponse.setAcitProfCommDtl(acctITDao.retrieveProfCommDtl(rapcdrParams));
+		rapcdrResponse.setAcitProfCommSumm(acctITDao.retrievePCSummPerCeding(rapcdrParams));
 		logger.info("RetrieveAcitProfCommDtlResponse : " + rapcdrResponse.toString());
 		return rapcdrResponse;
 	}
-
 
 	@Override
 	public RetrieveAcitPrqInwPolResponse retrieveAcitPrqInwPol(RetrieveAcitPrqInwPolRequest rapipp)
@@ -1587,7 +1589,30 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		UpdateAcitStatusResponse response = new UpdateAcitStatusResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("updateAcitStatusList", uasr.getUpdateAcitStatusList());
-		response.setReturnCode(acctITDao.updateAcitStatus(params));
+		
+		List<String> res = new ArrayList<String>();
+		HashMap<String, Object> prm = new HashMap<String, Object>();
+		
+		for(int i=0; i < uasr.getUpdateAcitStatusList().size();i++) {
+			prm.put("indiv", uasr.getUpdateAcitStatusList().get(i));
+			res.add(acctITDao.validateTranAcctEntDate(prm));
+		}
+		
+		boolean stop = false;
+		for(String i : res) {
+			if(i != null) {
+				stop = true;
+				break;
+			}
+		}
+		
+		if(stop) {
+			response.setReturnCode(0);
+			response.setInvalidTranNos(res);
+		}else {
+			response.setReturnCode(acctITDao.updateAcitStatus(params));
+			response.setReturnCode(-1);
+		}
 		
 		return response;
 	}
@@ -1852,6 +1877,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			uacsParams.put("tranId", uacsr.getTranId());
 			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("printType", uacsr.getPrintType());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
 			
 			HashMap<String, Object> response = acctITDao.updateAcitCvStat(uacsParams);
@@ -2128,8 +2154,13 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				acctITDao.acitEomSaveOdInt(params);
 				wsController.onReceiveProdLog("Computation of Interest on Overdue Accounts finished.");
 				
+				prodReport += "\nCreating Loss Reserve Deposit . . .";
+				prodReport += "\nCreation of Loss Reserve Deposit finished.";
+				
 				procedureName = "Creating Loss Reserve Deposit";
+				wsController.onReceiveProdLog("Creating Loss Reserve Deposit . . .");
 				acctITDao.acitEomCreateLossResDepJv(params);
+				wsController.onReceiveProdLog("Creation of Loss Reserve Deposit finished.");
 				wsController.onReceiveProdLog("");
 				
 				acctITDao.acitEomUpdateEomCloseTag(params);
@@ -2358,7 +2389,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitMonthEndTrialBalResponse retrieveAcitMonthEndTrialBal(
 			RetrieveAcitMonthEndTrialBalRequest rametbr) throws SQLException {
@@ -2371,7 +2401,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public PostAcitMonthEndTrialBalResponse postAcitMonthEndTrialBal(PostAcitMonthEndTrialBalRequest pametbr)
@@ -2438,7 +2467,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitMonthEndUnpostedMonthsResponse retrieveAcitMonthEndUnpostedMonths() throws SQLException {
 		RetrieveAcitMonthEndUnpostedMonthsResponse res = new RetrieveAcitMonthEndUnpostedMonthsResponse();
@@ -2446,7 +2474,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public RetrieveAcitMonthEndResponse retrieveAcitMonthEnd(RetrieveAcitMonthEndRequest ramer) throws SQLException {
@@ -2459,7 +2486,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveQSOAResponse saveQSOA(SaveQSOARequest sqr) throws SQLException {
@@ -2506,7 +2532,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveQSOADtlResponse retrieveQSOADtl(RetrieveQSOADtlRequest rqdr) throws SQLException {
 		RetrieveQSOADtlResponse res = new RetrieveQSOADtlResponse();
@@ -2521,7 +2546,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-
 
 	@Override
 	public SaveAcitProfCommResponse saveAcitProfComm(SaveAcitProfCommRequest sapcr) throws SQLException {
@@ -2547,7 +2571,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public RetrieveAcitEditedAcctEntriesResponse retrieveAcitEditedAcctEntries(
 			RetrieveAcitEditedAcctEntriesRequest raeaer) throws SQLException {
@@ -2558,7 +2581,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		logger.info(response.toString());
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitOsQsoaResponse retrieveAcitOsQsoa(RetrieveAcitOsQsoaRequest raoqp) throws SQLException {
@@ -2573,12 +2595,13 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public UploadAcctEntryResponse uploadAcctEntry(UploadAcctEntryRequest uaer) throws SQLException {
 		UploadAcctEntryResponse res = new UploadAcctEntryResponse();
 		
 		try {
+			acctITDao.startTransaction();
+			
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("acctType", uaer.getAeruList().get(0).getAcctType());
 			params.put("tranClass", uaer.getAeruList().get(0).getTranClass());
@@ -2588,10 +2611,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			acctITDao.uploadAcctEntry(uaer.getAeruList());
 			
 			acctITDao.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			acctITDao.rollback();
-			res.getErrorList().add(new Error("Exception", e.getMessage()));
+			res.getErrorList().add(new Error("Exception", e.getCause().toString().substring(32, e.getCause().toString().indexOf("\n"))));
 		}
 		
 		
@@ -2635,7 +2659,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RestoreInTrustAccountingEntriesResponse restoreAcctEnt(RestoreInTrustAccountingEntriesRequest ritaer)
 			throws SQLException {
@@ -2668,7 +2691,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RetrieveAcitAcctEntInqResponse retrieveAcitAcctEntInq(RetrieveAcitAcctEntInqRequest raaeir)
 			throws SQLException {
@@ -2690,7 +2712,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setDcbCollection(acctITDao.retrieveAcitDcbCollection(params));
 		return response;
 	}
-
 
 	@Override
 	public RetrieveAcitAcctEntBackupResponse retrieveAcitAcctEntBackup(RetrieveAcitAcctEntBackupRequest raaebr)
@@ -2753,7 +2774,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return res;
 	}
 
-
 	@Override
 	public SaveAcitMonthEndTBReopenResponse saveAcitMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr)
 			throws SQLException {
@@ -2804,6 +2824,38 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("dcbNo",request.getDcbNo());
 		response.setBankDetails(acctITDao.retrieveAcitBankDetails(params));
 		return response;
+	}
+	
+	@Override
+	public RetrieveAcitClmHistResponse retrieveAcitClmHist(RetrieveAcitClmHistRequest rachp) throws SQLException {
+		RetrieveAcitClmHistResponse rachResponse =  new RetrieveAcitClmHistResponse();
+		HashMap<String, Object> rachParams = new HashMap<String, Object>();
+		rachParams.put("reqId", rachp.getReqId());
+		rachParams.put("itemNo", rachp.getItemNo());
+		rachResponse.setAcitClmHistList(acctITDao.retrieveAcitClmHist(rachParams));
+		logger.info("RetrieveAcitClmHistResponse : " + rachResponse.toString());
+		return rachResponse;
+	}
+
+	@Override
+	public SaveAcitProfCommTranResponse saveAcitProfCommTran(SaveAcitProfCommTranRequest saptr) throws SQLException {
+		SaveAcitProfCommTranResponse res = new SaveAcitProfCommTranResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("profCommId", saptr.getProfCommId());
+		params.put("tranId", saptr.getTranId());
+		params.put("updateUser", saptr.getUpdateUser());
+		params.put("updateDate", saptr.getUpdateDate());
+		
+		try {
+			acctITDao.saveAcitProfCommTran(params);
+			res.setReturnCode(-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Update failed."));
+		}
+		
+		return res;
 	}
 	
 }
