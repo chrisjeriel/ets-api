@@ -735,6 +735,7 @@
 		   	</foreach>
 		   	
 		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag,jdbcType=VARCHAR});
+		   	POL_SEC_COVER_PKG.pro_rate_hold_cov_prem(#{policyId});
 		END;
 	</update>
 	
