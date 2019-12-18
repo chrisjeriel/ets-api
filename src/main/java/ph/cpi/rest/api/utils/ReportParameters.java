@@ -90,6 +90,10 @@ public class ReportParameters {
 		ACITR061Params.put("P_PAYMENT_MODE", param.getPaytMode());
 		ACITR061Params.put("P_PAYMENT_TYPE", param.getPaytType());
 		ACITR061Params.put("P_CHK_DATE", param.getChkDate());
+		ACITR061Params.put("P_JV_TYPE", param.getJvType());
+		ACITR061Params.put("P_BANK", param.getBank());
+		ACITR061Params.put("P_BANK_ACCT", param.getBankAcct());
+		ACITR061Params.put("P_SORT_BY", param.getSortBy());
 		
 		ACITR061Params.put("P_FROM_DATE", param.getFromDate());
 		ACITR061Params.put("P_TO_DATE", param.getToDate());
