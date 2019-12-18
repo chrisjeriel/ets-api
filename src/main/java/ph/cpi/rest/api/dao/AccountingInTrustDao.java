@@ -48,6 +48,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -256,4 +257,5 @@ public interface AccountingInTrustDao {
 	public List<AcitJvUnappInw> retrieveInwUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String,Object> saveJVUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String,Object> saveJVInwUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitJvUnappliedTreaty> retrieveTrtyUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 }

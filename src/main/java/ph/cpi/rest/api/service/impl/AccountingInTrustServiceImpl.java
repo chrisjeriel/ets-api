@@ -2925,5 +2925,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		}
 		return response;
 	}
-	
+
+
+	@Override
+	public RetrieveAcitJvUnappliedTrtyResponse retrieveTrtyUnappliedCollection(
+			RetrieveAcitJvUnappliedTrtyRequest request) throws SQLException {
+		RetrieveAcitJvUnappliedTrtyResponse response =  new RetrieveAcitJvUnappliedTrtyResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		params.put("qsoaId", request.getQsoaId());
+		response.setTrtyUnappColl(acctITDao.retrieveTrtyUnappliedCollection(params));
+		return response;
+	}
 }

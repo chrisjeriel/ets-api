@@ -950,4 +950,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitJVInwUnappRequest : " + request.toString());
 		return acctInTrustService.saveJVInwUnappliedColl(request);
 	}
+	
+	@GetMapping(path="retrieveTrtyUnappliedCollection")
+	public @ResponseBody RetrieveAcitJvUnappliedTrtyResponse retrieveTrtyUnappliedCollection(RetrieveAcitJvUnappliedTrtyRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveTrtyUnappliedCollection");
+		logger.info("RetrieveAcitJvUnappliedInwRequest : " + request.toString());
+		return acctInTrustService.retrieveTrtyUnappliedCollection(request);
+	}
 }

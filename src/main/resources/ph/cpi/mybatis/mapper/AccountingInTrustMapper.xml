@@ -4784,4 +4784,29 @@
 			</foreach>
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty" id="trtyUnappColMap">
+		<result property="tranId" 		 column="TRAN_ID"/>
+        <result property="qsoaId" 		 column="QSOA_ID"/>
+        <result property="quarterEnding" column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+        <result property="cedingId" 	 column="CEDING_ID"/>
+        <result property="cedingName" 	 column="CEDING_NAME"/>
+        <result property="currCd" 	     column="CURR_CD"/>
+        <result property="currRate" 	 column="CURR_RATE"/>
+        <result property="prevPaytAmt" 	 column="PREV_PAYT_AMT"/>
+        <result property="prevBalance" 	 column="PREV_BALANCE"/>
+        <result property="balanceAmt" 	 column="BALANCE_AMT"/>
+        <result property="actualBalPaid" column="ACTUAL_BAL_PAID"/>
+        <result property="localAmt" 	 column="LOCAL_AMT"/>
+        <result property="newPaytAmt" 	 column="NEW_PAYT_AMT"/>
+        <result property="newBalance" 	 column="NEW_BALANCE"/>
+		<result property="createUser" 	 column="CREATE_USER"/>
+		<result property="createDate" 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"  	 column="UPDATE_USER"/>
+		<result property="updateDate"  	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveTrtyUnappliedCollection" resultMap="trtyUnappColMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JV_UNAPP_INW_PKG.ret_unapp_trty(#{tranId},#{qsoaId},null,null,null,null))
+	</select>
 </mapper>
