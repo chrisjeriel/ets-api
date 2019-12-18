@@ -4807,6 +4807,6 @@
 	</resultMap>
 	
 	<select id="retrieveTrtyUnappliedCollection" resultMap="trtyUnappColMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JV_UNAPP_INW_PKG.ret_unapp_trty(#{tranId},#{qsoaId},null,null,null,null))
+		SELECT * FROM TABLE(ACIT_JV_UNAPP_INW_PKG.ret_unapp_trty(#{tranId},#{qsoaId, jdbcType=VARCHAR},null,null,null,null))
 	</select>
 </mapper>
