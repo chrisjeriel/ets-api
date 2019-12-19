@@ -4792,6 +4792,7 @@
         <result property="cedingId" 	 column="CEDING_ID"/>
         <result property="cedingName" 	 column="CEDING_NAME"/>
         <result property="currCd" 	     column="CURR_CD"/>
+        <result property="netQsoaAmt" 	 column="QSOA_NET_DUE"/>
         <result property="currRate" 	 column="CURR_RATE"/>
         <result property="prevPaytAmt" 	 column="PREV_PAYT_AMT"/>
         <result property="prevBalance" 	 column="PREV_BALANCE"/>
@@ -4831,10 +4832,23 @@
 													 #{save.localAmt},
 													 #{save.newPaytAmt},
 													 #{save.newBalance},
+													 #{save.createUser},
 													 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													 #{save.updateUser},
 													 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 				
+				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(#{save.tranId},
+														 #{save.qsoaId, jdbcType=INTEGER},
+														 CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.currCd},
+														 #{save.currRate},
+														 #{save.balanceAmt},
+														 #{save.localAmt},
+														 #{save.createUser},
+														 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
 			</foreach>
 		END;
 	</update>

@@ -12,6 +12,7 @@ public class AcitJvUnappliedTreaty {
 	private String cedingName;
 	private String currCd;
 	private BigDecimal currRate;
+	private BigDecimal netQsoaAmt;
 	private BigDecimal prevPaytAmt;
 	private BigDecimal prevBalance;
 	private BigDecimal balanceAmt;
@@ -52,6 +53,13 @@ public class AcitJvUnappliedTreaty {
 	}
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
+	}
+	
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
 	}
 	public String getCurrCd() {
 		return currCd;
@@ -135,9 +143,9 @@ public class AcitJvUnappliedTreaty {
 	public String toString() {
 		return "AcitJvUnappliedTreaty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterEnding=" + quarterEnding
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", currCd=" + currCd + ", currRate="
-				+ currRate + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", balanceAmt="
-				+ balanceAmt + ", actualBalPaid=" + actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt="
-				+ newPaytAmt + ", newBalance=" + newBalance + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ currRate + ", netQsoaAmt=" + netQsoaAmt + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance="
+				+ prevBalance + ", balanceAmt=" + balanceAmt + ", actualBalPaid=" + actualBalPaid + ", localAmt="
+				+ localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
