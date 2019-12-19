@@ -1,6 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.utils.ACITR061;
+import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
 
 public class GenerateReportRequest {
@@ -20,6 +21,7 @@ public class GenerateReportRequest {
 	
 	private POLR044 polr044Params;
 	private ACITR061 acitr061Params;
+	private CLMR010 clmr010Params;
 	
 	private String printerName;
 	private String pageOrientation;
@@ -129,14 +131,20 @@ public class GenerateReportRequest {
 	public void setAcitr061Params(ACITR061 acitr061Params) {
 		this.acitr061Params = acitr061Params;
 	}
+	public CLMR010 getClmr010Params() {
+		return clmr010Params;
+	}
+	public void setClmr010Params(CLMR010 clmr010Params) {
+		this.clmr010Params = clmr010Params;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
 				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + ", acitr061Params=" + acitr061Params
-				+ ", printerName=" + printerName + ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize
-				+ "]";
+				+ ", clmr010Params=" + clmr010Params + ", printerName=" + printerName + ", pageOrientation="
+				+ pageOrientation + ", paperSize=" + paperSize + "]";
 	}
 	
 }
