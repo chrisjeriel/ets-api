@@ -306,6 +306,24 @@
 		END;
 	</update>
 	
+	<update id="extractBRDRX" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACIT_BRDRX_EXT_PKG.extract_acit_brdrx(#{extractUser, jdbcType=VARCHAR},
+												#{osPaidTag, jdbcType=VARCHAR},
+												#{extTypeTag, jdbcType=VARCHAR},
+												#{dateParam, jdbcType=VARCHAR},
+												#{dateRange, jdbcType=VARCHAR},
+												CAST(to_timestamp(#{dateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											    CAST(to_timestamp(#{dateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												#{lineCd, jdbcType=VARCHAR},
+												#{cessionId, jdbcType=VARCHAR},
+												#{extractCount, mode=OUT, jdbcType=INTEGER},
+												#{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	
+	
 	<select id="getReportFileName" resultType="java.lang.String" parameterType="java.util.Map" >
 		SELECT MTN_REPORTS_PKG.get_report_file_name(#{reportId}) FROM DUAL
 	</select>

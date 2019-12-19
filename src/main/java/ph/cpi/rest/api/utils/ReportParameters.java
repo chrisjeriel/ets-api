@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
@@ -151,4 +152,36 @@ public class ReportParameters {
 		return CLMR010Params;
 	}
 	
+	public static HashMap<String, Object> mapACITR052Params(ACITR052 param) throws ParseException {
+		HashMap<String, Object> ACITR052Params = new HashMap<String, Object>();
+		
+		//Report Purposes
+		ACITR052Params.put("P_EXTRACT_USER", param.getExtractUser());
+		ACITR052Params.put("P_OS_PAID_TAG", param.getOsPaidTag());
+		ACITR052Params.put("P_EXT_TYPE_TAG", param.getExtTypeTag());
+		ACITR052Params.put("P_DATE_PARAM", param.getDateParam());
+		ACITR052Params.put("P_DATE_RANGE", param.getDateRange());
+		ACITR052Params.put("P_DATE_FROM", param.getDateFrom());
+		ACITR052Params.put("P_DATE_TO", param.getDateTo());
+		ACITR052Params.put("P_LINE_CD", param.getLineCd());
+		ACITR052Params.put("P_CESSION_ID", param.getCessionId());
+		ACITR052Params.put("P_FORCE_EXTRACT", param.getForceExtract());
+		ACITR052Params.put("P_PRINTED_BY", param.getExtractUser());
+		ACITR052Params.put("P_REPORT_ID", param.getReportId());
+		
+		//Extract MyBatis Purposes
+		ACITR052Params.put("extractUser", param.getExtractUser());
+		ACITR052Params.put("osPaidTag", param.getOsPaidTag());
+		ACITR052Params.put("extTypeTag", param.getExtTypeTag());
+		ACITR052Params.put("dateParam", param.getDateParam());
+		ACITR052Params.put("dateRange", param.getDateRange());
+		ACITR052Params.put("dateFrom", param.getDateFrom());
+		ACITR052Params.put("dateTo", param.getDateTo());
+		ACITR052Params.put("lineCd", param.getLineCd());
+		ACITR052Params.put("cessionId", param.getCessionId());
+		ACITR052Params.put("forceExtract", param.getForceExtract());
+		ACITR052Params.put("reportId", param.getReportId());
+		
+		return ACITR052Params;
+	}
 }

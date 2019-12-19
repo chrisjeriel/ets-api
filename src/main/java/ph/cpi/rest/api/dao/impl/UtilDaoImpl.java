@@ -25,6 +25,7 @@ public class UtilDaoImpl implements UtilDao{
 		logger.info("extractReport DAO : " + params);
 		Integer resultCode = 99;
 		String extractionMethod = "";
+		String reportId = (String) params.get("reportId");
 		
 		if ("POLR044A".equalsIgnoreCase((String) params.get("reportId"))) {
             	extractionMethod = "extractPOLR044A";
@@ -70,7 +71,13 @@ public class UtilDaoImpl implements UtilDao{
             extractionMethod = "extractACITR048A";
         } else if ("CLMR010A".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractCLMR010A";
-        }
+        } 
+		
+		
+		if (reportId.toUpperCase().contains("ACITR052")) {
+			extractionMethod = "extractBRDRX";
+		}
+		
 		resultCode = sqlSession.update(extractionMethod, params);
 		
 		return resultCode;
