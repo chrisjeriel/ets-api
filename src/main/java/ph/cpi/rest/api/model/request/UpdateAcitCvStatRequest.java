@@ -6,6 +6,7 @@ public class UpdateAcitCvStatRequest {
 	private String cvStatus;
 	private String printType;
 	private String updateUser;
+	private String cancelReason;
 	public String getTranId() {
 		return tranId;
 	}
@@ -36,13 +37,15 @@ public class UpdateAcitCvStatRequest {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	@Override
 	public String toString() {
 		return "UpdateAcitCvStatRequest [tranId=" + tranId + ", checkId=" + checkId + ", cvStatus=" + cvStatus
-				+ ", printType=" + printType + ", updateUser=" + updateUser + ", getTranId()=" + getTranId()
-				+ ", getCheckId()=" + getCheckId() + ", getCvStatus()=" + getCvStatus() + ", getPrintType()="
-				+ getPrintType() + ", getUpdateUser()=" + getUpdateUser() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", printType=" + printType + ", updateUser=" + updateUser + ", cancelReason=" + cancelReason + "]";
 	}
-
 }

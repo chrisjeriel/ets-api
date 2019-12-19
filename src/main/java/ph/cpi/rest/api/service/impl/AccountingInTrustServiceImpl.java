@@ -1879,6 +1879,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
 			uacsParams.put("printType", uacsr.getPrintType());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
+			uacsParams.put("cancelReason", uacsr.getCancelReason());
 			
 			HashMap<String, Object> response = acctITDao.updateAcitCvStat(uacsParams);
 			

@@ -62,6 +62,8 @@ public class AcitCv {
 	
 	private DateTime acctEntDate;
 	
+	private String cancelReason;
+	
 	public String getCvGenNo() {
 		return cvGenNo;
 	}
@@ -381,6 +383,12 @@ public class AcitCv {
 	public void setAcctEntDate(DateTime acctEntDate) {
 		this.acctEntDate = acctEntDate;
 	}
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	@Override
 	public String toString() {
 		return "AcitCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -400,6 +408,6 @@ public class AcitCv {
 				+ mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate=" + mainCreateDate
 				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", mainAcctEntDate="
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
-				+ "]";
+				+ ", cancelReason=" + cancelReason + "]";
 	}
 }
