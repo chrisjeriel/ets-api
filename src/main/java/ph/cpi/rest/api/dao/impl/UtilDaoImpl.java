@@ -56,6 +56,20 @@ public class UtilDaoImpl implements UtilDao{
                 extractionMethod = "extractPOLR044P";
         } else if ("POLR044Q".equalsIgnoreCase((String) params.get("reportId"))) {
                 extractionMethod = "extractPOLR044Q";
+        } else if ("ACITR061F".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractACITR061F";
+        } else if ("ACITR061G".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractACITR061G";
+        } else if ("POLR044V".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR044V";
+        } else if ("POLR044W".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR044W";
+        } else if ("POLR044X".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR044X";
+        } else if ("ACITR048A".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractACITR048A";
+        } else if ("CLMR010A".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractCLMR010A";
         }
 		resultCode = sqlSession.update(extractionMethod, params);
 		

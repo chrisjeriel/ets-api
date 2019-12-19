@@ -412,6 +412,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("acctDateFrom", rplp.getAcctDateFrom());
 		retrievePolicyListingParams.put("acctDateTo", rplp.getAcctDateTo());
 		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
+		retrievePolicyListingParams.put("lineCd", rplp.getLineCd());
 		
 		retrievePolicyListingParams.put("statusArr",rplp.getStatusArr());
 		

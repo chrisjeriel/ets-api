@@ -12,6 +12,8 @@ public class SaveAcitArTransDtlRequest {
 	private String updateUser;
 	private String updateDate;
 	
+	private String genAcctEnt;
+	
 	private List<SaveArTransDtl> saveTransDtl;
 	private List<SaveArTransDtl> delTransDtl;
 	
@@ -63,6 +65,12 @@ public class SaveAcitArTransDtlRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getGenAcctEnt() {
+		return genAcctEnt;
+	}
+	public void setGenAcctEnt(String genAcctEnt) {
+		this.genAcctEnt = genAcctEnt;
+	}
 	public List<SaveArTransDtl> getSaveTransDtl() {
 		return saveTransDtl;
 	}
@@ -80,8 +88,8 @@ public class SaveAcitArTransDtlRequest {
 	public String toString() {
 		return "SaveAcitArTransDtlRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
 				+ ", totalLocalAmt=" + totalLocalAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveTransDtl=" + saveTransDtl
-				+ ", delTransDtl=" + delTransDtl + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", genAcctEnt=" + genAcctEnt
+				+ ", saveTransDtl=" + saveTransDtl + ", delTransDtl=" + delTransDtl + "]";
 	}
 }
 

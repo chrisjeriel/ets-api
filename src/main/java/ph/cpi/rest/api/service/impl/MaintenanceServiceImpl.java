@@ -133,7 +133,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnInsuredParams.put("search",rmir.getSearch());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
 		rmirResponse.setLength(maintenanceDao.retrieveMtnInsuredLength(retrieveMtnInsuredParams));
-		logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString());
+		/* logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString()); */ //Removed, causes log issues.
 		
 		return rmirResponse;
 	}

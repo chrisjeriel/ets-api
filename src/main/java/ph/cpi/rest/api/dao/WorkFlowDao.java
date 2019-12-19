@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import ph.cpi.rest.api.model.workflowmanager.NRStatus;
 import ph.cpi.rest.api.model.workflowmanager.Note;
 import ph.cpi.rest.api.model.workflowmanager.RelatedRecord;
 import ph.cpi.rest.api.model.workflowmanager.Reminder;
@@ -19,5 +20,6 @@ public interface WorkFlowDao {
 	public List<WfmTransaction> retrieveTransactions(final HashMap<String, Object> params) throws SQLException;	
 	public List<RelatedRecord> retrieveRelatedRecords(final HashMap<String, Object> params) throws SQLException;
 	public List<UserNotif> retrieveUserNotif() throws SQLException;
+	public Integer changeRNStatus(NRStatus param) throws SQLException;
 	
 }

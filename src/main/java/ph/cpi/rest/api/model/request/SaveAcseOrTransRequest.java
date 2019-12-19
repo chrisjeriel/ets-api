@@ -50,6 +50,7 @@ public class SaveAcseOrTransRequest {
 	
 	//Utility
 	private String isPrint;
+	private String genAcctEnt;
 	
 	public String getTranId() {
 		return tranId;
@@ -291,7 +292,12 @@ public class SaveAcseOrTransRequest {
 	public void setIsPrint(String isPrint) {
 		this.isPrint = isPrint;
 	}
-	
+	public String getGenAcctEnt() {
+		return genAcctEnt;
+	}
+	public void setGenAcctEnt(String genAcctEnt) {
+		this.genAcctEnt = genAcctEnt;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseOrTransRequest [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
@@ -305,7 +311,7 @@ public class SaveAcseOrTransRequest {
 				+ ", mailAddress=" + mailAddress + ", bussTypeName=" + bussTypeName + ", tin=" + tin + ", particulars="
 				+ particulars + ", currCd=" + currCd + ", currRate=" + currRate + ", orAmt=" + orAmt + ", allocTag="
 				+ allocTag + ", allocTranId=" + allocTranId + ", savePaytDtl=" + savePaytDtl + ", delPaytDtl="
-				+ delPaytDtl + ", isPrint=" + isPrint + "]";
+				+ delPaytDtl + ", isPrint=" + isPrint + ", genAcctEnt=" + genAcctEnt + "]";
 	}
 }
 

@@ -362,6 +362,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("savePaytDtl", saatr.getSavePaytDtl());
 		params.put("delPaytDtl", saatr.getDelPaytDtl());
 		params.put("isPrint", saatr.getIsPrint());
+		params.put("genAcctEnt", saatr.getGenAcctEnt());
 		try{
 			HashMap<String, Object> daoResponse = acctITDao.saveAcitArTrans(params);
 			response.setReturnCode(Integer.parseInt(daoResponse.get("errorCode").toString()));
@@ -608,6 +609,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranId",car.getTranId());
 		params.put("updateUser", car.getUpdateUser());
 		params.put("updateDate", car.getUpdateDate());
+		params.put("reopen", car.getReopen());
 		try{
 			response.setReturnCode(acctITDao.cancelAr(params));
 		}catch(Exception e){
@@ -772,6 +774,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("updateDate", saatdr.getUpdateDate());
 		params.put("saveTransDtl", saatdr.getSaveTransDtl());
 		params.put("delTransDtl", saatdr.getDelTransDtl());
+		params.put("genAcctEnt", saatdr.getGenAcctEnt());
 		try{
 			HashMap<String, Object> res = acctITDao.saveArTransDtl(params);
 			response.setReturnCode(Integer.parseInt(res.get("errorCode").toString()));
@@ -1874,6 +1877,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			uacsParams.put("tranId", uacsr.getTranId());
 			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("printType", uacsr.getPrintType());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
 			
 			HashMap<String, Object> response = acctITDao.updateAcitCvStat(uacsParams);
