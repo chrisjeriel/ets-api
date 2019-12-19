@@ -2937,4 +2937,23 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setTrtyUnappColl(acctITDao.retrieveTrtyUnappliedCollection(params));
 		return response;
 	}
+
+
+	@Override
+	public SaveAcitJvUnappliedTrtyResponse saveJVTrtyUnappliedColl(SaveAcitJvUnappliedTrtyRequest request)
+			throws SQLException {
+		SaveAcitJvUnappliedTrtyResponse response = new SaveAcitJvUnappliedTrtyResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveTrtyUnapplied", request.getSaveTrtyUnapplied());
+			params.put("delTrtyUnapplied", request.getDelTrtyUnapplied());
+			HashMap<String,Object> res = acctITDao.saveJVTrtyUnappliedColl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

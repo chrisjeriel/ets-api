@@ -1250,4 +1250,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitJvUnappliedTreaty> response = sqlSession.selectList("retrieveTrtyUnappliedCollection", params);
 		return response;
 	}
+
+	@Override
+	public HashMap<String, Object> saveJVTrtyUnappliedColl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveJVTrtyUnappliedColl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

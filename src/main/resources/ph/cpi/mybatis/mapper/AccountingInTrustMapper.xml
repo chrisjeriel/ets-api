@@ -4701,7 +4701,7 @@
 	<update id="saveJVUnappliedColl" parameterType="java.util.Map">
 		BEGIN
 			<foreach collection="delUnappliedColl" item="del">
-				ACIT_JV_UNAPP_INW_PKG.save_jv_unapp_coll(#{del.tranId},
+				ACIT_JV_UNAPP_INW_PKG.del_jv_unapp_coll(#{del.tranId},
 														#{del.refTranId},
 														#{del.refBillId},
 														#{del.refItemNo});
@@ -4809,4 +4809,34 @@
 	<select id="retrieveTrtyUnappliedCollection" resultMap="trtyUnappColMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_JV_UNAPP_INW_PKG.ret_unapp_trty(#{tranId},#{qsoaId, jdbcType=VARCHAR},null,null,null,null))
 	</select>
+	
+	<update id="saveJVTrtyUnappliedColl" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delTrtyUnapplied" item="del">
+				ACIT_JV_UNAPP_INW_PKG.del_jv_trty(#{del.tranId},
+											     #{del.qsoaId});
+			</foreach>
+			
+			<foreach collection="saveTrtyUnapplied" item="save">
+				ACIT_JV_UNAPP_INW_PKG.save_jv_trty(  #{save.tranId},
+											 		 #{save.qsoaId},
+											 		 CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 		 #{save.cedingId},
+													 #{save.currCd},
+													 #{save.currRate},
+													 #{save.prevPaytAmt},
+													 #{save.prevBalance},
+													 #{save.balanceAmt},
+													 #{save.actualBalPaid},
+													 #{save.localAmt},
+													 #{save.newPaytAmt},
+													 #{save.newBalance},
+													 CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													 #{save.updateUser},
+													 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+				
+			</foreach>
+		END;
+	</update>
+	
 </mapper>

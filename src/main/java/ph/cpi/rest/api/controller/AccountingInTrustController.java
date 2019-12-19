@@ -957,4 +957,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitJvUnappliedInwRequest : " + request.toString());
 		return acctInTrustService.retrieveTrtyUnappliedCollection(request);
 	}
+	
+	@PostMapping(path="saveJVTrtyUnappliedColl")
+	public @ResponseBody SaveAcitJvUnappliedTrtyResponse saveJVTrtyUnappliedColl(@RequestBody SaveAcitJvUnappliedTrtyRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVTrtyUnappliedColl");
+		logger.info("SaveAcitJvUnappliedTrtyRequest : " + request.toString());
+		return acctInTrustService.saveJVTrtyUnappliedColl(request);
+	}
 }
