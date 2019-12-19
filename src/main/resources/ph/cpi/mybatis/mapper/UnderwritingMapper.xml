@@ -735,6 +735,7 @@
 		   	</foreach>
 		   	
 		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag,jdbcType=VARCHAR});
+		   	POL_SEC_COVER_PKG.pro_rate_hold_cov_prem(#{policyId});
 		END;
 	</update>
 	
@@ -2580,8 +2581,16 @@
 		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrievePolDistCum" resultMap="retPolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist_cum(#{policyId},#{distId, jdbcType=VARCHAR}))
+	</select>
+	
 	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},#{policyId},null,null,null,null))
+	</select>
+	
+	<select id="retrievePolPoolDistCum" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding_cum(#{distId},#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">
