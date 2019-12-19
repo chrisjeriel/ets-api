@@ -942,6 +942,7 @@
 					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
 														v_tran_id,
 														#{save.refTranId, jdbcType=VARCHAR},
+														#{save.refInvtId, jdbcType=VARCHAR},
 														#{save.createUser, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser, jdbcType=VARCHAR},
