@@ -2009,6 +2009,7 @@
 		<result property="bankCharge"           column="BANK_CHARGE" />
 		<result property="whtaxAmt"             column="WHTAX_AMT" />
 		<result property="maturityValue"        column="MATURITY_VALUE" />
+		<result property="localAmt"        		column="LOCAL_AMT" />
 		<result property="createUser"           column="CREATE_USER" />
 		<result property="createDate"           column="CREATE_DATE"    typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"           column="UPDATE_USER" />
@@ -2200,7 +2201,10 @@
 					);
 				</foreach>
 				
-				SELECT NVL(SUM(LOCAL_AMT), 0)
+				SELECT NVL(SUM(CASE
+						            WHEN PULLOUT_TYPE = 'F' THEN MATURITY_VALUE * CURR_RATE
+						            WHEN PULLOUT_TYPE = 'I' THEN (INCOME_AMT - (BANK_CHARGE + WHTAX_AMT)) * CURR_RATE
+						        END), 0)
 				   INTO v_tot_payt_inv
 				   FROM ACIT_AR_INVPULLOUT
 				  WHERE TRAN_ID = #{tranId};
