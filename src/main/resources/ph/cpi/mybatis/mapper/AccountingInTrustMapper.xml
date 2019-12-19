@@ -190,6 +190,7 @@
 		<result property="invtId" 						column="INVT_ID"/>
 		<result property="invtCd" 						column="INVT_CODE"/>
 		<result property="bank" 						column="BANK"/>
+		<result property="bankName" 					column="BANK_NAME"/>
 		<result property="certNo" 						column="CERT_NO"/>
 		<result property="invtType" 					column="INVT_TYPE"/>
 		<result property="invtTypeDesc" 				column="INVT_TYPE_DESC"/>
