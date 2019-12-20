@@ -173,6 +173,7 @@
 		<result property="distStatDesc"			column="DIST_STAT_DESC" />
 		<result property="quoteId"				column="QUOTE_ID"/> <!-- added by CJS for WFMServices -->
 		<result property="quotationNo"			column="QUOTATION_NO"/> <!-- added by CJS for WFMServices -->
+		<result property="createUser"			column="CREATE_USER"/>
 		<association property="project" 		resultMap="projectMap"/>
 	</resultMap>
 	
@@ -734,6 +735,7 @@
 		   	</foreach>
 		   	
 		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag,jdbcType=VARCHAR});
+		   	POL_SEC_COVER_PKG.pro_rate_hold_cov_prem(#{policyId});
 		END;
 	</update>
 	
@@ -861,7 +863,8 @@
 															 null,
 															 null,
 															 null,
-															 null))
+															 null,
+															 #{lineCd, jdbcType=VARCHAR}))
 															 WHERE  1=1
 		   	   <if test="statusArr != null">
 			   	AND   STATUS IN 
@@ -925,7 +928,8 @@
 												 null,
 												 null,
 												 null,
-												 null))
+												 null,
+												#{lineCd, jdbcType=VARCHAR}))
 												 WHERE  1=1
 	  	   <if test="statusArr != null">
 		   		AND   STATUS IN 
@@ -1648,6 +1652,7 @@
 		SELECT a.quote_id REFERENCE_ID, 'Quotation' MODULE, get_quote_no(a.quote_id) QUOTATION_NO, a.PREPARED_BY, a.ASSIGNED_BY, a.CREATE_DATE, a.UPDATE_DATE  FROM QUOTE_GEN_INFO a
 		 WHERE a.status = 'P'
 		   AND #{userId, jdbcType=VARCHAR} IN (SELECT user_id FROM TABLE(MTN_USERS_PKG.retrieve_quote_approver(a.quote_id,null,null,null,null)))
+      ORDER BY a.CREATE_DATE DESC
 	</select>
 
 	<select id="retrievePolCoverageAlt" resultMap="policyMap" parameterType="java.util.Map">
@@ -2576,8 +2581,16 @@
 		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrievePolDistCum" resultMap="retPolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist_cum(#{policyId},#{distId, jdbcType=VARCHAR}))
+	</select>
+	
 	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},#{policyId},null,null,null,null))
+	</select>
+	
+	<select id="retrievePolPoolDistCum" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding_cum(#{distId},#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">

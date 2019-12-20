@@ -17,6 +17,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -259,6 +260,15 @@ public class UtilController {
 			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
 				System.out.println("POLR044");
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR061")) {
+				System.out.println("ACITR061");
+				reportParam = ReportParameters.mapACITR061Params(grr.getAcitr061Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("CLMR010")) {
+				System.out.println("CLMR010");
+				reportParam = ReportParameters.mapCLMR010Params(grr.getClmr010Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR052")) {
+				System.out.println("ACITR052");
+				reportParam = ReportParameters.mapACITR052Params(grr.getAcitr052Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
@@ -276,6 +286,9 @@ public class UtilController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

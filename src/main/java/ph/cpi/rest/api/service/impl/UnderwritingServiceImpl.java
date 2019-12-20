@@ -412,6 +412,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("acctDateFrom", rplp.getAcctDateFrom());
 		retrievePolicyListingParams.put("acctDateTo", rplp.getAcctDateTo());
 		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
+		retrievePolicyListingParams.put("lineCd", rplp.getLineCd());
 		
 		retrievePolicyListingParams.put("statusArr",rplp.getStatusArr());
 		
@@ -1474,6 +1475,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rpcrResponse.setMissingCoins(underwritingDao.retrieveMissingCoins(params));
 		return rpcrResponse;
 	}
+	
+	@Override
+	public RetrievePolDistResponse retrievePolDistCum(RetrievePolDistRequest rpcr) throws SQLException {
+		RetrievePolDistResponse rpcrResponse = new RetrievePolDistResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpcr.getPolicyId());
+		params.put("distId", rpcr.getDistId());
+		rpcrResponse.setPolDistribution(underwritingDao.retrievePolDistCum(params));
+		return rpcrResponse;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -1576,6 +1587,17 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("distId", rpdr.getRiskDistId());
 		params.put("policyId", rpdr.getPolicyId());
 		response.setPoolDistList(underwritingDao.retrievePolPoolDist(params));
+		return response;
+	}
+	
+	@Override
+	public RetrievePoolDistributionResponse retrievePolPoolDistCum(RetrievePoolDistributionRequest rpdr)
+			throws SQLException {
+		RetrievePoolDistributionResponse response = new RetrievePoolDistributionResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("distId", rpdr.getRiskDistId());
+		params.put("policyId", rpdr.getPolicyId());
+		response.setPoolDistList(underwritingDao.retrievePolPoolDistCum(params));
 		return response;
 	}
 	

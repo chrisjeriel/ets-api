@@ -54,8 +54,11 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVInvestmentPlacement;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -67,6 +70,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
+import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
@@ -1204,5 +1208,53 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException {
 		List<AcitProfCommSumm> acitProfCommSummList = sqlSession.selectList("retrieveProfCommParams");
 		return acitProfCommSummList;
+	}
+
+	@Override
+	public List<AcitUnappliedCollection> retrieveUnappliedCollection(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcitUnappliedCollection> response = sqlSession.selectList("retrieveUnappliedCollection",params);
+		return response;
+	}
+
+	@Override
+	public List<AcitJVUnappliedCollection> retrieveJvUnappliedCollection(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcitJVUnappliedCollection> response = sqlSession.selectList("retrieveJvUnappColl", params);
+		return response;
+	}
+
+	@Override
+	public List<AcitJvUnappInw> retrieveInwUnappliedCollection(HashMap<String, Object> params) throws SQLException {
+		List<AcitJvUnappInw> response = sqlSession.selectList("retrieveInwUnappliedCollection", params);
+		return response;
+	}
+
+	@Override
+	public HashMap<String, Object> saveJVUnappliedColl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveJVUnappliedColl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveJVInwUnappliedColl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveJVInwUnappliedColl",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<AcitJvUnappliedTreaty> retrieveTrtyUnappliedCollection(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcitJvUnappliedTreaty> response = sqlSession.selectList("retrieveTrtyUnappliedCollection", params);
+		return response;
+	}
+
+	@Override
+	public HashMap<String, Object> saveJVTrtyUnappliedColl(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveJVTrtyUnappliedColl",params);
+		params.put("errorCode", errorCode);
+		return params;
 	}
 }

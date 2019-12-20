@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -171,10 +172,13 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("rateTo" , rqlp.getRateTo());
 			
 			retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
-			
+			retrieveQuoteListingParams.put("statusArrStr", StringUtils.join(rqlp.getStatusArr(),','));
+			logger.info("before retrieve");
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
+			logger.info("after retrieve list");
 			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
-			
+			logger.info("after retrieve count");
+//			rqlResponse.setLength(43);
 //			rqlResponse.setLength(516);
 			
 			logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
@@ -773,6 +777,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteGeneralInfoParams.put("prjCreateDate", sqgip.getPrjCreateDate());
 			saveQuoteGeneralInfoParams.put("prjUpdateUser", sqgip.getPrjUpdateUser());
 			saveQuoteGeneralInfoParams.put("prjUpdateDate", sqgip.getPrjUpdateDate());	
+			saveQuoteGeneralInfoParams.put("mbiQuoteId", sqgip.getMbiQuoteId());
 			
 			HashMap<String, Object> res = quoteDao.saveQuoteGeneralInfo(saveQuoteGeneralInfoParams);					
 			

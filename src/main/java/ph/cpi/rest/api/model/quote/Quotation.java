@@ -76,7 +76,14 @@ public class Quotation {
 	private HoldCover holdCover;
 	private Attachment attachment;
 	private String intCompId;
+	private String mbiQuoteId;
 	
+	public String getMbiQuoteId() {
+		return mbiQuoteId;
+	}
+	public void setMbiQuoteId(String mbiQuoteId) {
+		this.mbiQuoteId = mbiQuoteId;
+	}
 	public String getIntCompId() {
 		return intCompId;
 	}
@@ -502,7 +509,8 @@ public class Quotation {
 				+ ", updateDate=" + updateDate + ", project=" + project + ", options=" + options + ", otherRates="
 				+ otherRates + ", attachmentsList=" + attachmentsList + ", competitionsList=" + competitionsList
 				+ ", otherRatesList=" + otherRatesList + ", optionsList=" + optionsList + ", alop=" + alop
-				+ ", holdCover=" + holdCover + ", attachment=" + attachment + ", intCompId=" + intCompId + "]";
+				+ ", holdCover=" + holdCover + ", attachment=" + attachment + ", intCompId=" + intCompId
+				+ ", mbiQuoteId=" + mbiQuoteId + "]";
 	}
 	
 	

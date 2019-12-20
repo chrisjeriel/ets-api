@@ -1,5 +1,8 @@
 package ph.cpi.rest.api.model.request;
 
+import ph.cpi.rest.api.model.utils.ACITR052;
+import ph.cpi.rest.api.model.utils.ACITR061;
+import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
 
 public class GenerateReportRequest {
@@ -18,6 +21,9 @@ public class GenerateReportRequest {
 	private String inclEndt;
 	
 	private POLR044 polr044Params;
+	private ACITR061 acitr061Params;
+	private CLMR010 clmr010Params;
+	private ACITR052 acitr052Params;
 	
 	private String printerName;
 	private String pageOrientation;
@@ -121,13 +127,32 @@ public class GenerateReportRequest {
 	public void setPaperSize(String paperSize) {
 		this.paperSize = paperSize;
 	}
+	public ACITR061 getAcitr061Params() {
+		return acitr061Params;
+	}
+	public void setAcitr061Params(ACITR061 acitr061Params) {
+		this.acitr061Params = acitr061Params;
+	}
+	public CLMR010 getClmr010Params() {
+		return clmr010Params;
+	}
+	public void setClmr010Params(CLMR010 clmr010Params) {
+		this.clmr010Params = clmr010Params;
+	}
+	public ACITR052 getAcitr052Params() {
+		return acitr052Params;
+	}
+	public void setAcitr052Params(ACITR052 acitr052Params) {
+		this.acitr052Params = acitr052Params;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
-				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + ", printerName=" + printerName
-				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + "]";
+				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + ", acitr061Params=" + acitr061Params
+				+ ", clmr010Params=" + clmr010Params + ", acitr052Params=" + acitr052Params + ", printerName="
+				+ printerName + ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + "]";
 	}
 	
 }

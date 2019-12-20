@@ -214,6 +214,7 @@ public interface UnderwritingService {
 	public ExtractExpiringPolicyResponse extractExpiringPolicy(ExtractExpiringPolicyRequest eepr) throws SQLException;
 	public RetrieveExpPolListResponse retrieveExpPolList(RetrieveExpPolListRequest replr) throws SQLException;
 	public RetrievePolDistResponse retrievePolDist(RetrievePolDistRequest rpcr) throws SQLException;
+	public RetrievePolDistResponse retrievePolDistCum(RetrievePolDistRequest rpcr) throws SQLException;
 	
 	public ProcessRenewablePolicyResponse processRenewablePolicy (ProcessRenewablePolicyRequest prpr) throws SQLException; 
 	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException;
@@ -222,6 +223,7 @@ public interface UnderwritingService {
 
 	public PostDistributionResponse postDistribution(PostDistributionRequest pdr) throws SQLException;
 	public RetrievePoolDistributionResponse retrievePolPoolDist(RetrievePoolDistributionRequest rpdr) throws SQLException;
+	public RetrievePoolDistributionResponse retrievePolPoolDistCum(RetrievePoolDistributionRequest rpdr) throws SQLException;
 
 	public RetrievePolForPurgingResponse retrievePolForPurging(RetrievePolForPurgingRequest rpfpr)throws SQLException;
 	public PurgeExpiringPolResponse purgeExpiryPol(PurgeExpiringPolRequest spfcr) throws SQLException;

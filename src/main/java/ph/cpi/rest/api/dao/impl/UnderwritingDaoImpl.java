@@ -457,6 +457,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		PolDistribution polDistribution = sqlSession.selectOne("retrievePolDist",params);
 		return polDistribution;
 	}
+	
+	@Override
+	public PolDistribution retrievePolDistCum(HashMap<String, Object> params) throws SQLException {
+		PolDistribution polDistribution = sqlSession.selectOne("retrievePolDistCum",params);
+		return polDistribution;
+	}
 
 	@Override
 	public DistWrisk retrieveDistWrisk(HashMap<String, Object> params) throws SQLException {
@@ -491,6 +497,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public List<PoolDistribution> retrievePolPoolDist(HashMap<String, Object> params) throws SQLException {
 		List<PoolDistribution> res = sqlSession.selectList("retrievePolPoolDist", params);
+		return res;
+	}
+	
+	@Override
+	public List<PoolDistribution> retrievePolPoolDistCum(HashMap<String, Object> params) throws SQLException {
+		List<PoolDistribution> res = sqlSession.selectList("retrievePolPoolDistCum", params);
 		return res;
 	}
 	
