@@ -46,7 +46,14 @@ public class RetrieveQuoteListingRequest {
 	private List<String> statusArr;
 	private SearchRequest search;
 	private String openCoverTag;
+	private String recount;
 	
+	public String getRecount() {
+		return recount;
+	}
+	public void setRecount(String recount) {
+		this.recount = recount;
+	}
 	public List<String> getStatusArr() {
 		return statusArr;
 	}
@@ -246,6 +253,7 @@ public class RetrieveQuoteListingRequest {
 				+ ", expiryDateTo=" + expiryDateTo + ", reqBy=" + reqBy + ", createUser=" + createUser + ", siFrom="
 				+ siFrom + ", siTo=" + siTo + ", rateFrom=" + rateFrom + ", rateTo=" + rateTo + ", approvedBy="
 				+ approvedBy + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
-				+ ", statusArr=" + statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + "]";
+				+ ", statusArr=" + statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + ", recount="
+				+ recount + "]";
 	}
 }

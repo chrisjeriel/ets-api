@@ -53,6 +53,12 @@ public class ReportParameters {
 		
 		reportParams.put("P_INCL_ENDT", grr.getInclEndt());
 		reportParams.put("p_incl_endt", grr.getInclEndt());
+		reportParams.put("P_INST_NO", grr.getInstNo());
+		
+		reportParams.put("P_DIST_ID", grr.getDistId());
+		reportParams.put("P_HIST_NO", grr.getHistNo());
+		reportParams.put("P_DRAFT_TAG", grr.getDraftTag());
+		
 		return reportParams;
 	}
 	

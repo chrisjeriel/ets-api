@@ -173,11 +173,13 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
 			retrieveQuoteListingParams.put("statusArrStr", StringUtils.join(rqlp.getStatusArr(),','));
-			logger.info("before retrieve");
+			logger.info((String)retrieveQuoteListingParams.get("statusArrStr"));
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			logger.info("after retrieve list");
-			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
-			logger.info("after retrieve count");
+			if(!rqlp.getRecount().equals("N")){
+				rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
+				logger.info("after retrieve count");
+			}
 //			rqlResponse.setLength(43);
 //			rqlResponse.setLength(516);
 			
