@@ -190,6 +190,7 @@
 		<result property="invtId" 						column="INVT_ID"/>
 		<result property="invtCd" 						column="INVT_CODE"/>
 		<result property="bank" 						column="BANK"/>
+		<result property="bankName" 					column="BANK_NAME"/>
 		<result property="certNo" 						column="CERT_NO"/>
 		<result property="invtType" 					column="INVT_TYPE"/>
 		<result property="invtTypeDesc" 				column="INVT_TYPE_DESC"/>
@@ -897,7 +898,7 @@
 	
 		BEGIN
 		 <foreach collection="saveAcitJvEntryList" item="save">
-			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv_list(v_tran_id,
+			ACIT_JOURNAL_VOUCHER_PKG.save_acit_jv(v_tran_id,
 												#{save.tranId, jdbcType=VARCHAR}, 
 												CAST(to_timestamp(#{save.tranDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												#{save.tranType,jdbcType=INTEGER},
@@ -936,13 +937,14 @@
 												CAST(to_timestamp(#{save.createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 												#{save.updateUserJv}, 
 												CAST(to_timestamp(#{save.updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+												
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
-			
 			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
 				<foreach collection="saveAcitAllocInvtIncome" item="save">
 					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
 														v_tran_id,
 														#{save.refTranId, jdbcType=VARCHAR},
+														#{save.refInvtId, jdbcType=VARCHAR},
 														#{save.createUser, jdbcType=VARCHAR},
 														CAST(to_timestamp(#{save.createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser, jdbcType=VARCHAR},
