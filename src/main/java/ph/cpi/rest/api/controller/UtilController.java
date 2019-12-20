@@ -269,6 +269,9 @@ public class UtilController {
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR052")) {
 				System.out.println("ACITR052");
 				reportParam = ReportParameters.mapACITR052Params(grr.getAcitr052Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER060")) {
+				System.out.println("ACSER060");
+				reportParam = ReportParameters.mapACSER060Params(grr.getAcser060Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
