@@ -3322,11 +3322,10 @@
 		<result property="mainUpdateUser" 	column="MAIN_UPDATE_USER"/>
 		<result property="mainUpdateDate" 	column="MAIN_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mainAcctEntDate" 	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
-		
 		<result property="refNo" 			column="REF_NO"/>
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
-		
-		<result property="acctEntDate" 	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctEntDate" 		column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cancelReason"	 	column="CANCEL_REASON"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
@@ -3484,7 +3483,8 @@
 				#{checkId, jdbcType=INTEGER},
 				#{cvStatus, jdbcType=VARCHAR},
 				#{printType, jdbcType=VARCHAR},
-				#{updateUser, jdbcType=VARCHAR}
+				#{updateUser, jdbcType=VARCHAR},
+				#{cancelReason, jdbcType=VARCHAR}
 			);
 		END;
 	</update>
