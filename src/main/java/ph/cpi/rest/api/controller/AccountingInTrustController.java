@@ -915,4 +915,53 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitProfcommTranRequest : " + saptr.toString());
 		return acctInTrustService.saveAcitProfCommTran(saptr);
 	}
+	
+	@GetMapping(path="retrieveUnappliedCollection")
+	public @ResponseBody RetrieveAcitUnappliedCollResponse retrieveUnappliedCollection(RetrieveAcitUnappliedCollRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveUnappliedCollection");
+		logger.info("RetrieveAcitUnappliedCollRequest : " + request.toString());
+		return acctInTrustService.retrieveUnappliedCollection(request);
+	}
+	
+	@GetMapping(path="retrieveJvUnappliedCollection")
+	public @ResponseBody RetrieveAcitJvUnappCollResponse retrieveJvUnappliedCollection(RetrieveAcitJvUnappCollRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveJvUnappliedCollection");
+		logger.info("RetrieveAcitJvUnappCollRequest : " + request.toString());
+		return acctInTrustService.retrieveJvUnappliedCollection(request);
+	}
+	
+	@GetMapping(path="retrieveInwUnappliedCollection")
+	public @ResponseBody RetrieveAcitJvUnappliedInwResponse retrieveInwUnappliedCollection(RetrieveAcitJvUnappliedInwRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveInwUnappliedCollection");
+		logger.info("RetrieveAcitJvUnappliedInwRequest : " + request.toString());
+		return acctInTrustService.retrieveInwUnappliedCollection(request);
+	}
+	
+	@PostMapping(path="saveJVUnappliedColl")
+	public @ResponseBody SaveAcitJVUnappCollResponse saveJVUnappliedColl(@RequestBody SaveAcitJVUnappCollRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVUnappliedColl");
+		logger.info("SaveAcitJVUnappCollRequest : " + request.toString());
+		return acctInTrustService.saveJVUnappliedColl(request);
+	}
+	
+	@PostMapping(path="saveJVInwUnappliedColl")
+	public @ResponseBody SaveAcitJVInwUnappResponse saveJVInwUnappliedColl(@RequestBody SaveAcitJVInwUnappRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVInwUnappliedColl");
+		logger.info("SaveAcitJVInwUnappRequest : " + request.toString());
+		return acctInTrustService.saveJVInwUnappliedColl(request);
+	}
+	
+	@GetMapping(path="retrieveTrtyUnappliedCollection")
+	public @ResponseBody RetrieveAcitJvUnappliedTrtyResponse retrieveTrtyUnappliedCollection(RetrieveAcitJvUnappliedTrtyRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveTrtyUnappliedCollection");
+		logger.info("RetrieveAcitJvUnappliedInwRequest : " + request.toString());
+		return acctInTrustService.retrieveTrtyUnappliedCollection(request);
+	}
+	
+	@PostMapping(path="saveJVTrtyUnappliedColl")
+	public @ResponseBody SaveAcitJvUnappliedTrtyResponse saveJVTrtyUnappliedColl(@RequestBody SaveAcitJvUnappliedTrtyRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVTrtyUnappliedColl");
+		logger.info("SaveAcitJvUnappliedTrtyRequest : " + request.toString());
+		return acctInTrustService.saveJVTrtyUnappliedColl(request);
+	}
 }

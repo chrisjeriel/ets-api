@@ -2858,5 +2858,107 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return res;
 	}
-	
+
+
+	@Override
+	public RetrieveAcitUnappliedCollResponse retrieveUnappliedCollection(RetrieveAcitUnappliedCollRequest request)
+			throws SQLException {
+		RetrieveAcitUnappliedCollResponse response  =  new RetrieveAcitUnappliedCollResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("cedingId", request.getCedingId());
+		response.setUnappliedColl(acctITDao.retrieveUnappliedCollection(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJvUnappCollResponse retrieveJvUnappliedCollection(RetrieveAcitJvUnappCollRequest request)
+			throws SQLException {
+		RetrieveAcitJvUnappCollResponse response = new RetrieveAcitJvUnappCollResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		response.setUnappliedColl(acctITDao.retrieveJvUnappliedCollection(params));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJvUnappliedInwResponse retrieveInwUnappliedCollection(RetrieveAcitJvUnappliedInwRequest request)
+			throws SQLException {
+		RetrieveAcitJvUnappliedInwResponse response = new RetrieveAcitJvUnappliedInwResponse();
+		
+		HashMap<String,Object> params  = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		params.put("policyId", request.getPolicyId());
+		params.put("instNo", request.getInstNo());
+		response.setInwUnappColl(acctITDao.retrieveInwUnappliedCollection(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVUnappCollResponse saveJVUnappliedColl(SaveAcitJVUnappCollRequest request) throws SQLException {
+		SaveAcitJVUnappCollResponse response = new SaveAcitJVUnappCollResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveUnappliedColl", request.getSaveUnappliedColl());
+			params.put("delUnappliedColl", request.getDelUnappliedColl());
+			HashMap<String,Object> res = acctITDao.saveJVUnappliedColl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVInwUnappResponse saveJVInwUnappliedColl(SaveAcitJVInwUnappRequest request) throws SQLException {
+		SaveAcitJVInwUnappResponse response = new SaveAcitJVInwUnappResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveInwCollection", request.getSaveInwCollection());
+			params.put("delInwCollection", request.getDelInwCollection());
+			HashMap<String,Object> res = acctITDao.saveJVInwUnappliedColl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJvUnappliedTrtyResponse retrieveTrtyUnappliedCollection(
+			RetrieveAcitJvUnappliedTrtyRequest request) throws SQLException {
+		RetrieveAcitJvUnappliedTrtyResponse response =  new RetrieveAcitJvUnappliedTrtyResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("tranId", request.getTranId());
+		params.put("qsoaId", request.getQsoaId());
+		response.setTrtyUnappColl(acctITDao.retrieveTrtyUnappliedCollection(params));
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJvUnappliedTrtyResponse saveJVTrtyUnappliedColl(SaveAcitJvUnappliedTrtyRequest request)
+			throws SQLException {
+		SaveAcitJvUnappliedTrtyResponse response = new SaveAcitJvUnappliedTrtyResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveTrtyUnapplied", request.getSaveTrtyUnapplied());
+			params.put("delTrtyUnapplied", request.getDelTrtyUnapplied());
+			HashMap<String,Object> res = acctITDao.saveJVTrtyUnappliedColl(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
