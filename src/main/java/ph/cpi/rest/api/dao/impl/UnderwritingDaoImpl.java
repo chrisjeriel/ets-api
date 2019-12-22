@@ -68,7 +68,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public List<Policy> retrievePolCoInsurance(HashMap<String, Object> params) throws SQLException {
 		List<Policy> policy = sqlSession.selectList("retrievePolCoInsurance",params);
-		logger.info("retrievePolCoInsurance DAOImpl : " + policy);
 		return policy;
 	}
 	
@@ -81,7 +80,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Policy retrievePolicyCoverage(HashMap<String, Object> params) throws SQLException {
 		Policy policy = sqlSession.selectOne("retrievePolCoverage",params);
-		logger.info("retrievePolCoverage DAOImpl : " + policy);
 		return policy;
 	}
 
@@ -107,22 +105,18 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Policy retrievePolItem(HashMap<String, Object> params) throws SQLException {
 		Policy polItem = sqlSession.selectOne("retrievePolItem",params);
-		logger.info("retrievePolItem DAOImpl : " + polItem);
 		return polItem;
 	}
 
 	@Override
 	public Policy retrievePolCATPeril(HashMap<String, Object> params) throws SQLException {
 		Policy polCATPeril = sqlSession.selectOne("retrievePolCATPeril", params);
-		logger.info("retrievePolCATPeril DAOImpl : " + polCATPeril);
 		return polCATPeril;
 	}
 
 	@Override
 	public Policy retrievePolGenInfo(HashMap<String, Object> params) throws SQLException {
 		Policy policy = sqlSession.selectOne("retrievePolGenInfo", params);
-		logger.info("retrievePolGenInfo DAOImpl : " + policy);
-		
 		return policy;
 	}
 	
@@ -221,7 +215,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public OpenPolicy retrievePolCoverageOc(HashMap<String, Object> params) throws SQLException {
 		OpenPolicy policyOc = sqlSession.selectOne("retrievePolCoverageOc",params);
-		logger.info("retrievePolCoverageOc DAOImpl : " + policyOc);
 		return policyOc;
 	}
 
@@ -342,14 +335,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public PolicyOc retrievePolGenInfoOc(HashMap<String, Object> params) throws SQLException {
 		PolicyOc policyOc = sqlSession.selectOne("retrievePolGenInfoOc", params);
-		logger.info("retrievePolGenInfoOc DAOImpl : " + policyOc);
 		return policyOc;
 	}
 	
 	@Override
 	public Policy retrievePolicyCoverageAlt(HashMap<String, Object> params) throws SQLException {
 		Policy policy = sqlSession.selectOne("retrievePolCoverageAlt",params);
-		logger.info("retrievePolCoverageAlt DAOImpl : " + policy);
 		return policy;
 	}
 	
@@ -424,7 +415,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Policy retrievePolicyFullCoverage(HashMap<String, Object> params) throws SQLException {
 		Policy policy = sqlSession.selectOne("retrievePolFullCoverage",params);
-		logger.info("retrievePolFullCoverage DAOImpl : " + policy);
 		return policy;
 	}
 
@@ -439,16 +429,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public HashMap<String, Object> extractExpiringPolicy(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("extractExpiringPolicy",params);
 		params.put("errorCode", errorCode);
-		
-		logger.info("extractExpiringPolicy DAO :" + params);
 		return params;
 	}
 
 	@Override
 	public List<ExpPolicy> retrieveExpPolList(HashMap<String, Object> params) throws SQLException {
-		logger.info("retrieveExpPolList DAO params:" + params);
 		List<ExpPolicy> expPolicyList = sqlSession.selectList("retrieveExpPolList", params);
-		logger.info("expPolicyList: " + expPolicyList.size());
 		return expPolicyList;
 	}
 
@@ -509,11 +495,9 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HashMap<String, Object> processRenewablePolicy(HashMap<String, Object> params) throws SQLException {
-		logger.info("processRenewablePolicy DAO : " + params);
 		
 		try {
 			for (PolicyAsIs renPol : ((List<PolicyAsIs>) params.get("renAsIsPolicyList"))) {
-				logger.info("renAsIsPolicyList renPol : " + renPol);
 				sqlSession.update("processRenewablePolicyAI",renPol);
 			}
 			
@@ -524,11 +508,9 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 				 * logger.info("renWithChangesPolicyList renPol after AI : " + renPol);
 				 */
 				sqlSession.update("processRenewablePolicyWC",renPol);
-				logger.info("renWithChangesPolicyList renPol after WC: " + renPol);
 			}
 			
 			for (PolicyNonRenewal renPol : ((List<PolicyNonRenewal>) params.get("nonRenPolicyList"))) {
-				logger.info("nonRenPolicyList renPol : " + renPol);
 				sqlSession.update("processRenewablePolicyNR",renPol);
 			}
 		} catch(Exception ex) {
@@ -706,14 +688,8 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public HashMap<String, Object> extractRenExpPolicy(HashMap<String, Object> params) throws SQLException {
 		PolicyAsIs renPol =  (PolicyAsIs) params.get("renPol");
-		
-		logger.info("DAO extractRenExpPolicy : " + renPol);
-		
 		sqlSession.update("extractRenExpPolicy",renPol);
-		
 		sqlSession.update("genRenExpPolicy",renPol);
-		
-		logger.info("DAO extractRenExpPolicy AfterProcess : " + renPol);
 		return params;
 	}
 }

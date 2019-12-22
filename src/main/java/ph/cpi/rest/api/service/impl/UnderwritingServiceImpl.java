@@ -1979,15 +1979,19 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			resp.setRenewedPolicy((PolicyAsIs) underwritingDao.extractRenExpPolicy(params).get("renPol"));
 		} catch (HibernateException e) {
 			errorMsg = e.getMessage();
+			e.printStackTrace();
 			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGHE", "HibernateException Exception : " + errorMsg));
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
 			errorMsg = e.getMessage();
+			e.printStackTrace();
 			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGDIV", "DataIntegrityViolation Exception : " + errorMsg));
 		} catch (SQLException sqle) { 
 			errorMsg = sqle.getMessage();
+			sqle.printStackTrace();
 			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGSQL", "SQL Exception : " + errorMsg)); 
 		} catch (Exception e) {
-			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGGEN", "General Exception"));
+			e.printStackTrace();
+			resp.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGGEN", "General Exception : " + e.getMessage()));
 		}
 		
 		return resp;
