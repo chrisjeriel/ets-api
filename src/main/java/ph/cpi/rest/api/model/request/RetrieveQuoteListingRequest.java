@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationRequest;
@@ -43,7 +44,7 @@ public class RetrieveQuoteListingRequest {
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
 	
-	private List<String> statusArr;
+	private List<String> statusArr = new ArrayList<String>();
 	private SearchRequest search;
 	private String openCoverTag;
 	private String recount;

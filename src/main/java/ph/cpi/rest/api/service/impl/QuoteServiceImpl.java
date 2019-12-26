@@ -195,6 +195,8 @@ public class QuoteServiceImpl implements QuoteService{
 			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_GEN_001, ExceptionCodes.QUEX_GEN_001_MSG));
 		} catch (DataIntegrityViolationException dive){
 			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return rqlResponse;
