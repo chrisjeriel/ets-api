@@ -357,11 +357,18 @@ class acitJvEntryList{
 class acitAllocInvtInc{
 
 	private String refTranId;
+	private String refInvtId;
 	private String createDate;
 	private String createUser;
 	private String updateDate;
 	private String updateUser;
 	
+	public String getRefInvtId() {
+		return refInvtId;
+	}
+	public void setRefInvtId(String refInvtId) {
+		this.refInvtId = refInvtId;
+	}
 	public String getRefTranId() {
 		return refTranId;
 	}
@@ -394,8 +401,10 @@ class acitAllocInvtInc{
 	}
 	@Override
 	public String toString() {
-		return "acitAllocInvtInc [refTranId=" + refTranId + ", createDate=" + createDate + ", createUser=" + createUser
-				+ ", updateDate=" + updateDate + ", updateUser=" + updateUser + "]";
+		return "acitAllocInvtInc [refTranId=" + refTranId + ", refInvtId="
+				+ refInvtId + ", createDate=" + createDate + ", createUser="
+				+ createUser + ", updateDate=" + updateDate + ", updateUser="
+				+ updateUser + "]";
 	}
 	
 	

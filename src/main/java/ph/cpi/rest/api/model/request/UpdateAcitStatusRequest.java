@@ -28,6 +28,7 @@ class updateAcitStatusList{
 	private String updateUser;
     private String tranClass;
     private String cancelReason;
+    private String reopen;
     
 	public String getTranId() {
 		return tranId;
@@ -59,9 +60,15 @@ class updateAcitStatusList{
 	public void setCancelReason(String cancelReason) {
 		this.cancelReason = cancelReason;
 	}
+	public String getReopen() {
+		return reopen;
+	}
+	public void setReopen(String reopen) {
+		this.reopen = reopen;
+	}
 	@Override
 	public String toString() {
 		return "updateAcitStatusList [tranId=" + tranId + ", status=" + status + ", updateUser=" + updateUser
-				+ ", tranClass=" + tranClass + ", cancelReason=" + cancelReason + "]";
+				+ ", tranClass=" + tranClass + ", cancelReason=" + cancelReason + ", reopen=" + reopen + "]";
 	}
 }

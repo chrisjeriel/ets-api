@@ -1,7 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
-public class ACITR061 {
-	
+public class ACSER060 {
+
 	private String reportId;
 	private String reportName;
 	private String tranPostDate;
@@ -19,7 +19,6 @@ public class ACITR061 {
 	private String bank;
 	private String bankAcct;
 	private String sortBy;
-	
 	public String getReportId() {
 		return reportId;
 	}
@@ -124,7 +123,7 @@ public class ACITR061 {
 	}
 	@Override
 	public String toString() {
-		return "ACITR061 [reportId=" + reportId + ", reportName=" + reportName + ", tranPostDate=" + tranPostDate
+		return "ACSER060 [reportId=" + reportId + ", reportName=" + reportName + ", tranPostDate=" + tranPostDate
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", paytType=" + paytType + ", paytMode=" + paytMode
 				+ ", reportType=" + reportType + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
 				+ ", destination=" + destination + ", printedBy=" + printedBy + ", chkDate=" + chkDate + ", jvType="

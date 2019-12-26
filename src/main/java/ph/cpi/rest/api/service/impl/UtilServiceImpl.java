@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.response.ExtractReportResponse;
 import ph.cpi.rest.api.model.response.UploadAcctEntryResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 import ph.cpi.rest.api.service.UtilService;
+import ph.cpi.rest.api.utils.ReportParameters;
 
 @Component
 public class UtilServiceImpl implements UtilService {
@@ -52,19 +53,27 @@ public class UtilServiceImpl implements UtilService {
 		String errorMsg = "Please check field values.";
 	
 		try {
+			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
+				params.put("reportId", grr.getPolr044Params().getReportId());
+				params.put("extractUser", grr.getPolr044Params().getExtractUser());
+				params.put("lineCdParam", grr.getPolr044Params().getLineCdParam());
+				params.put("cedingIdParam", grr.getPolr044Params().getCedingIdParam());
+				params.put("dateParam", grr.getPolr044Params().getDateParam());
+				params.put("dateRange", grr.getPolr044Params().getDateRange());
+				params.put("fromDate", grr.getPolr044Params().getFromDate());
+				params.put("toDate", grr.getPolr044Params().getToDate());
+				params.put("incRecTag", grr.getPolr044Params().getIncRecTag());
+				
+				params.put("forceExtract", grr.getPolr044Params().getForceExtract());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("CLMR010")) {
+				params = ReportParameters.mapCLMR010Params(grr.getClmr010Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR052")) {
+				params = ReportParameters.mapACITR052Params(grr.getAcitr052Params());
+			}
 			
-			params.put("reportId", grr.getPolr044Params().getReportId());
-			params.put("extractUser", grr.getPolr044Params().getExtractUser());
-			params.put("lineCdParam", grr.getPolr044Params().getLineCdParam());
-			params.put("cedingIdParam", grr.getPolr044Params().getCedingIdParam());
-			params.put("dateParam", grr.getPolr044Params().getDateParam());
-			params.put("dateRange", grr.getPolr044Params().getDateRange());
-			params.put("fromDate", grr.getPolr044Params().getFromDate());
-			params.put("toDate", grr.getPolr044Params().getToDate());
-			params.put("incRecTag", grr.getPolr044Params().getIncRecTag());
 			params.put("extractCount", 0);
-			params.put("forceExtract", grr.getPolr044Params().getForceExtract());
 			
+			System.out.println(params);
 			
 			err.setReturnCode(utilDao.extractReport(params));
 			err.setParams(params);

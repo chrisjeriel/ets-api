@@ -261,8 +261,17 @@ public class UtilController {
 				System.out.println("POLR044");
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR061")) {
-				System.out.println("POLR044");
+				System.out.println("ACITR061");
 				reportParam = ReportParameters.mapACITR061Params(grr.getAcitr061Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("CLMR010")) {
+				System.out.println("CLMR010");
+				reportParam = ReportParameters.mapCLMR010Params(grr.getClmr010Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR052")) {
+				System.out.println("ACITR052");
+				reportParam = ReportParameters.mapACITR052Params(grr.getAcitr052Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER060")) {
+				System.out.println("ACSER060");
+				reportParam = ReportParameters.mapACSER060Params(grr.getAcser060Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
@@ -454,7 +463,7 @@ public class UtilController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping(path="directPrint")
-	public @ResponseBody Response directPrint(GenerateReportRequest grr) throws SQLException, IOException, PrintException, PrinterException {
+	public @ResponseBody Response directPrint(GenerateReportRequest grr) throws SQLException, IOException, PrintException, PrinterException, ParseException {
 		logger.info("GET: /api/util-service/directPrint");
 		logger.info("generateReportRequest : " + grr.toString());
 		Response response = new Response();
@@ -473,6 +482,18 @@ public class UtilController {
 			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
 				System.out.println("POLR044");
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR061")) {
+				System.out.println("ACITR061");
+				reportParam = ReportParameters.mapACITR061Params(grr.getAcitr061Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("CLMR010")) {
+				System.out.println("CLMR010");
+				reportParam = ReportParameters.mapCLMR010Params(grr.getClmr010Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR052")) {
+				System.out.println("ACITR052");
+				reportParam = ReportParameters.mapACITR052Params(grr.getAcitr052Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER060")) {
+				System.out.println("ACSER060");
+				reportParam = ReportParameters.mapACSER060Params(grr.getAcser060Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
@@ -518,6 +539,9 @@ public class UtilController {
 				result = "Failed";
 			}
 			response.getErrorList().add(new Error("Error", result));
+			e.printStackTrace();
+		}catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
