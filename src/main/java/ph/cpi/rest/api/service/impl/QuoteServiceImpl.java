@@ -177,7 +177,8 @@ public class QuoteServiceImpl implements QuoteService{
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			logger.info("after retrieve list");
 			if(!rqlp.getRecount().equals("N")){
-				rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
+//				rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
+				rqlResponse.setLength(rqlResponse.getQuotationList().get(0).getCnt());
 				logger.info("after retrieve count");
 			}
 //			rqlResponse.setLength(43);

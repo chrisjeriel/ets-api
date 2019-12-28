@@ -568,7 +568,8 @@
 															#{approvedBy, jdbcType=VARCHAR},
 															#{line,jdbcType=VARCHAR},
 															#{statusArrStr,jdbcType=VARCHAR},
-															'%'||#{search.value,jdbcType=VARCHAR}||'%',
+															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
+																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
 															#{openCoverTag,jdbcType=VARCHAR}
 															))		a
 															
@@ -597,7 +598,7 @@
 	</select>
 	
 	<select id="retrieveQuoteListingLength"  parameterType="java.util.Map" resultType="java.lang.Integer">
-			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG2.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG_3.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
@@ -626,7 +627,8 @@
 															#{approvedBy, jdbcType=VARCHAR},
 															#{line,jdbcType=VARCHAR},
 															#{statusArrStr,jdbcType=VARCHAR},
-															'%'||#{search.value,jdbcType=VARCHAR}||'%',
+															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
+																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
 															#{openCoverTag,jdbcType=VARCHAR}
 															))	a
 	</select>

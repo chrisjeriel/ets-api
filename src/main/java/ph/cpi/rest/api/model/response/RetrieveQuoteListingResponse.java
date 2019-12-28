@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.response;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,11 @@ import ph.cpi.rest.api.model.quote.Quotation;
 public class RetrieveQuoteListingResponse extends Response{
 
 	private List<Quotation> quotationList;
-	private Integer length;
-	public Integer getLength() {
+	private BigDecimal length;
+	public BigDecimal getLength() {
 		return length;
 	}
-	public void setLength(Integer length) {
+	public void setLength(BigDecimal length) {
 		this.length = length;
 	}
 	private PaginationResponse paginationResponse;
