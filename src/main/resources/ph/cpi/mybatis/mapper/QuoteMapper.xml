@@ -595,7 +595,7 @@
 		   
 		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
 		   	   <if test="pagination.position != null">
-		   	   		OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+		   	   		OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} *5 ROWS ONLY
 		   	   </if>
 		   	   
 	</select>
