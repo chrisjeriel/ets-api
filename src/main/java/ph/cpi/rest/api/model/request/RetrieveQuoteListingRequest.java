@@ -47,7 +47,7 @@ public class RetrieveQuoteListingRequest {
 	private List<String> statusArr = new ArrayList<String>();
 	private SearchRequest search;
 	private String openCoverTag;
-	private String recount;
+	private String recount = "Y";
 	
 	public String getRecount() {
 		return recount;
