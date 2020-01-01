@@ -540,7 +540,7 @@
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
 		SELECT * FROM (
 			SELECT a.* <if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> 
-				FROM TABLE(QU_GEN_INFO_PKG_3.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+				FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
@@ -601,7 +601,7 @@
 	</select>
 	
 	<select id="retrieveQuoteListingLength"  parameterType="java.util.Map" resultType="java.lang.Integer">
-			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG_3.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
