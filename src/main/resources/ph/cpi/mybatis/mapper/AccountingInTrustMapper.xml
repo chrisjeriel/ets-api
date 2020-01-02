@@ -1416,6 +1416,7 @@
 		<result property="billId"			column="BILL_ID" />
 		<result property="itemNo"			column="ITEM_NO" />
 		<result property="transdtlType"		column="TRANSDTL_TYPE" />
+		<result property="transdtlName"		column="TRANSDTL_NAME" />
 		<result property="itemName"			column="ITEM_NAME" />
 		<result property="currCd"			column="CURR_CD" />
 		<result property="currRate"			column="CURR_RATE" />
