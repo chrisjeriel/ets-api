@@ -3328,6 +3328,7 @@
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
 		<result property="acctEntDate" 		column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cancelReason"	 	column="CANCEL_REASON"/>
+		<result property="prlExist"		 	column="PRL_EXIST"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
