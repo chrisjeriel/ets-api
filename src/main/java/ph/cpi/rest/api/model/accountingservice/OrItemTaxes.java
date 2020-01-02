@@ -13,11 +13,13 @@ public class OrItemTaxes {
 	private String taxName;
 	private BigDecimal taxRate;
 	private BigDecimal taxAmt;
+	private BigDecimal taxBaseAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private String genType;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -66,6 +68,12 @@ public class OrItemTaxes {
 	public void setTaxAmt(BigDecimal taxAmt) {
 		this.taxAmt = taxAmt;
 	}
+	public BigDecimal getTaxBaseAmt() {
+		return taxBaseAmt;
+	}
+	public void setTaxBaseAmt(BigDecimal taxBaseAmt) {
+		this.taxBaseAmt = taxBaseAmt;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -100,8 +108,7 @@ public class OrItemTaxes {
 	public String toString() {
 		return "OrItemTaxes [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType=" + taxType
 				+ ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", genType=" + genType + "]";
+				+ ", taxBaseAmt=" + taxBaseAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", genType=" + genType + "]";
 	}
-	
 }

@@ -31,8 +31,35 @@ public class GenerateReportRequest {
 	private String printerName;
 	private String pageOrientation;
 	private String paperSize;
+	private String instNo;
+	private String distId;
+	private String histNo;
+	private String draftTag;
 	
-	
+	public String getDraftTag() {
+		return draftTag;
+	}
+	public void setDraftTag(String draftTag) {
+		this.draftTag = draftTag;
+	}
+	public String getDistId() {
+		return distId;
+	}
+	public void setDistId(String distId) {
+		this.distId = distId;
+	}
+	public String getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(String histNo) {
+		this.histNo = histNo;
+	}
+	public String getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(String instNo) {
+		this.instNo = instNo;
+	}
 	public String getPctValue() {
 		return pctValue;
 	}
@@ -160,9 +187,8 @@ public class GenerateReportRequest {
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
 				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + ", acitr061Params=" + acitr061Params
-				+ ", clmr010Params=" + clmr010Params + ", acitr052Params=" + acitr052Params + ", acser060Params="
-				+ acser060Params + ", printerName=" + printerName + ", pageOrientation=" + pageOrientation
-				+ ", paperSize=" + paperSize + "]";
+				+ ", printerName=" + printerName + ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize
+				+ ", instNo=" + instNo + ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + "]";
 	}
 	
 }

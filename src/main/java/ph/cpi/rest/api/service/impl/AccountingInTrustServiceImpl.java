@@ -2901,6 +2901,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVUnappCollResponse response = new SaveAcitJVUnappCollResponse();
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveUnappliedColl", request.getSaveUnappliedColl());
 			params.put("delUnappliedColl", request.getDelUnappliedColl());
 			HashMap<String,Object> res = acctITDao.saveJVUnappliedColl(params);
@@ -2919,6 +2921,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJVInwUnappResponse response = new SaveAcitJVInwUnappResponse();
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveInwCollection", request.getSaveInwCollection());
 			params.put("delInwCollection", request.getDelInwCollection());
 			HashMap<String,Object> res = acctITDao.saveJVInwUnappliedColl(params);

@@ -6,9 +6,28 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class SaveAcitJVUnappCollRequest {
+	private Integer tranId;
+	private Integer tranType;
 	private List<unappliedColl> saveUnappliedColl;
 	private List<unappliedColl> delUnappliedColl;
 	
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
+
 	public List<unappliedColl> getSaveUnappliedColl() {
 		return saveUnappliedColl;
 	}
@@ -28,8 +47,8 @@ public class SaveAcitJVUnappCollRequest {
 
 	@Override
 	public String toString() {
-		return "SaveAcitJVUnappCollRequest [saveUnappliedColl=" + saveUnappliedColl + ", delUnappliedColl="
-				+ delUnappliedColl + "]";
+		return "SaveAcitJVUnappCollRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveUnappliedColl="
+				+ saveUnappliedColl + ", delUnappliedColl=" + delUnappliedColl + "]";
 	}
 }
 
