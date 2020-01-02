@@ -7,7 +7,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class Quotation {
-	
+	private BigDecimal cnt;
 	private Integer quoteId;
 	private Integer holdCoverId;
 	private String quotationNo;
@@ -78,6 +78,12 @@ public class Quotation {
 	private String intCompId;
 	private String mbiQuoteId;
 	
+	public BigDecimal getCnt() {
+		return cnt;
+	}
+	public void setCnt(BigDecimal cnt) {
+		this.cnt = cnt;
+	}
 	public String getMbiQuoteId() {
 		return mbiQuoteId;
 	}
@@ -488,20 +494,20 @@ public class Quotation {
 	}
 	@Override
 	public String toString() {
-		return "Quotation [quoteId=" + quoteId + ", holdCoverId=" + holdCoverId + ", quotationNo=" + quotationNo
-				+ ", lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", quoteYear=" + quoteYear + ", quoteSeqNo="
-				+ quoteSeqNo + ", quoteRevNo=" + quoteRevNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCdDesc=" + lineClassCdDesc
-				+ ", lineClassCd=" + lineClassCd + ", lineClassDesc=" + lineClassDesc + ", principalId=" + principalId
-				+ ", principalName=" + principalName + ", contractorId=" + contractorId + ", contractorName="
-				+ contractorName + ", insuredDesc=" + insuredDesc + ", sumInsured=" + sumInsured + ", optionRt="
-				+ optionRt + ", policyId=" + policyId + ", policyNo=" + policyNo + ", status=" + status
-				+ ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", intmId=" + intmId
-				+ ", intmName=" + intmName + ", issueDate=" + issueDate + ", expiryDate=" + expiryDate + ", reqBy="
-				+ reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode + ", mbiRefNo=" + mbiRefNo + ", currencyCd="
-				+ currencyCd + ", currencyRt=" + currencyRt + ", govtTag=" + govtTag + ", indicativeTag="
-				+ indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId=" + ocQuoteId
-				+ ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
+		return "Quotation [cnt=" + cnt + ", quoteId=" + quoteId + ", holdCoverId=" + holdCoverId + ", quotationNo="
+				+ quotationNo + ", lineCd=" + lineCd + ", lineCdDesc=" + lineCdDesc + ", quoteYear=" + quoteYear
+				+ ", quoteSeqNo=" + quoteSeqNo + ", quoteRevNo=" + quoteRevNo + ", cedingId=" + cedingId
+				+ ", cedingName=" + cedingName + ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc
+				+ ", lineClassCdDesc=" + lineClassCdDesc + ", lineClassCd=" + lineClassCd + ", lineClassDesc="
+				+ lineClassDesc + ", principalId=" + principalId + ", principalName=" + principalName
+				+ ", contractorId=" + contractorId + ", contractorName=" + contractorName + ", insuredDesc="
+				+ insuredDesc + ", sumInsured=" + sumInsured + ", optionRt=" + optionRt + ", policyId=" + policyId
+				+ ", policyNo=" + policyNo + ", status=" + status + ", reinsurerId=" + reinsurerId + ", reinsurerName="
+				+ reinsurerName + ", intmId=" + intmId + ", intmName=" + intmName + ", issueDate=" + issueDate
+				+ ", expiryDate=" + expiryDate + ", reqBy=" + reqBy + ", reqDate=" + reqDate + ", reqMode=" + reqMode
+				+ ", mbiRefNo=" + mbiRefNo + ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", govtTag="
+				+ govtTag + ", indicativeTag=" + indicativeTag + ", openCoverTag=" + openCoverTag + ", ocQuoteId="
+				+ ocQuoteId + ", openCoverQuotationNo=" + openCoverQuotationNo + ", declarationTag=" + declarationTag
 				+ ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", printedBy=" + printedBy
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt

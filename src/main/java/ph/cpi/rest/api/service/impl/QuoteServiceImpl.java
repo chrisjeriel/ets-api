@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 import ph.cpi.rest.api.constants.ExceptionCodes;
 import ph.cpi.rest.api.dao.QuoteDao;
 import ph.cpi.rest.api.model.Error;
@@ -173,11 +175,19 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
 			retrieveQuoteListingParams.put("statusArrStr", StringUtils.join(rqlp.getStatusArr(),','));
-			logger.info("before retrieve");
+			retrieveQuoteListingParams.put("recount", rqlp.getRecount());
+			
+			
+			logger.info((String)retrieveQuoteListingParams.get("statusArrStr"));
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
 			logger.info("after retrieve list");
-			rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
-			logger.info("after retrieve count");
+			if(!rqlp.getRecount().equals("N") && rqlResponse.getQuotationList().size() !=0 ){
+//				rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
+				rqlResponse.setLength(rqlResponse.getQuotationList().get(0).getCnt());
+				logger.info("after retrieve count");
+			}else if(!rqlp.getRecount().equals("N") && rqlResponse.getQuotationList().size() ==0) {
+				rqlResponse.setLength(BigDecimal.valueOf(0));
+			}
 //			rqlResponse.setLength(43);
 //			rqlResponse.setLength(516);
 			
@@ -193,6 +203,8 @@ public class QuoteServiceImpl implements QuoteService{
 			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_GEN_001, ExceptionCodes.QUEX_GEN_001_MSG));
 		} catch (DataIntegrityViolationException dive){
 			rqlResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return rqlResponse;

@@ -7,8 +7,27 @@ import org.joda.time.DateTime;
 
 public class SaveAcitJVInwUnappRequest {
 	
+	private Integer tranId;
+	private Integer tranType;
 	private List<InwUnappliedCollection> saveInwCollection;
 	private List<InwUnappliedCollection> delInwCollection;
+	
+
+	public Integer getTranId() {
+		return tranId;
+	}
+
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+
+	public Integer getTranType() {
+		return tranType;
+	}
+
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
 
 	public List<InwUnappliedCollection> getSaveInwCollection() {
 		return saveInwCollection;
@@ -29,8 +48,8 @@ public class SaveAcitJVInwUnappRequest {
 
 	@Override
 	public String toString() {
-		return "SaveAcitJVInwUnappRequest [saveInwCollection=" + saveInwCollection + ", delInwCollection="
-				+ delInwCollection + "]";
+		return "SaveAcitJVInwUnappRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveInwCollection="
+				+ saveInwCollection + ", delInwCollection=" + delInwCollection + "]";
 	}
 }
 

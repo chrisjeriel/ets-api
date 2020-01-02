@@ -378,8 +378,9 @@
 		<result property="taxType"		column="TAX_TYPE" />
 		<result property="taxCd"		column="TAX_CD" />
 		<result property="taxName"		column="TAX_NAME" />
-		<result property="taxRate"			column="RATE" />
+		<result property="taxRate"		column="RATE" />
 		<result property="taxAmt"		column="AMOUNT" />
+		<result property="taxBaseAmt"	column="BASE_AMT" />
 		<result property="createUser"	column="TX_CREATE_USER" />
 		<result property="createDate"	column="TX_CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"	column="TX_UPDATE_USER" />

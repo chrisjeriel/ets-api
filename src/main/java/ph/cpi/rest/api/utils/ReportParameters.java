@@ -6,6 +6,7 @@ import java.util.HashMap;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
+import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
 
@@ -52,6 +53,12 @@ public class ReportParameters {
 		
 		reportParams.put("P_INCL_ENDT", grr.getInclEndt());
 		reportParams.put("p_incl_endt", grr.getInclEndt());
+		reportParams.put("P_INST_NO", grr.getInstNo());
+		
+		reportParams.put("P_DIST_ID", grr.getDistId());
+		reportParams.put("P_HIST_NO", grr.getHistNo());
+		reportParams.put("P_DRAFT_TAG", grr.getDraftTag());
+		
 		return reportParams;
 	}
 	
@@ -183,5 +190,45 @@ public class ReportParameters {
 		ACITR052Params.put("reportId", param.getReportId());
 		
 		return ACITR052Params;
+	}
+	
+	public static HashMap<String, Object> mapACSER060Params(ACSER060 param) throws ParseException {
+		HashMap<String, Object> ACSER060Params = new HashMap<String, Object>();
+		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date d;
+		*/
+		
+		ACSER060Params.put("P_REPORT_ID", param.getReportId());
+		ACSER060Params.put("p_report_id", param.getReportId());
+		ACSER060Params.put("pReportId", param.getReportId());
+		ACSER060Params.put("reportId", param.getReportId());
+		
+		ACSER060Params.put("P_PAYMENT_MODE", param.getPaytMode());
+		ACSER060Params.put("P_PAYMENT_TYPE", param.getPaytType());
+		ACSER060Params.put("P_CHK_DATE", param.getChkDate());
+		ACSER060Params.put("P_JV_TYPE", param.getJvType());
+		ACSER060Params.put("P_BANK", param.getBank());
+		ACSER060Params.put("P_BANK_ACCT", param.getBankAcct());
+		ACSER060Params.put("P_SORT_BY", param.getSortBy());
+		
+		ACSER060Params.put("P_FROM_DATE", param.getFromDate());
+		ACSER060Params.put("P_TO_DATE", param.getToDate());
+		
+		/*d = sdf.parse(param.getFromDate());
+		Timestamp fromDate = new Timestamp(d.getTime());
+		ACSER060Params.put("P_FROM_DATE", fromDate);
+		d = sdf.parse(param.getToDate());
+		Timestamp toDate = new Timestamp(d.getTime());
+		ACSER060Params.put("P_TO_DATE", toDate);*/
+		
+		
+		ACSER060Params.put("P_INC_CLOSED_TRAN", param.getIncClosedTran());
+		ACSER060Params.put("P_CLOSED_TRANS", param.getIncClosedTran());
+		ACSER060Params.put("P_INC_CANCEL_TRAN", param.getIncCancelTran());
+		ACSER060Params.put("P_CANCELLED_TRANS", param.getIncCancelTran());
+		ACSER060Params.put("P_TRANPOST_DATE", param.getTranPostDate());
+		ACSER060Params.put("P_PRINTED_BY", param.getPrintedBy());
+		
+		return ACSER060Params;
 	}
 }
