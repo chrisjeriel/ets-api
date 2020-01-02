@@ -61,6 +61,7 @@
 		<result property="sumInsured"		column="TOTAL_SI"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="firstOptionRt"	column="OPTION_RT"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="intCompId" column="LIST_INT_COMP_ID" />
+		<result property="cnt"	     column="cnt"/>
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
@@ -537,8 +538,9 @@
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
-		SELECT a.* FROM (
-			SELECT ROWNUM rown, a.* FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+		SELECT * FROM (
+			SELECT a.* <if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> 
+				FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
@@ -567,11 +569,15 @@
 															#{rateTo, jdbcType=VARCHAR},
 															#{approvedBy, jdbcType=VARCHAR},
 															#{line,jdbcType=VARCHAR},
-															#{statusArrStr,jdbcType=VARCHAR}
-															))	a	
+															#{statusArrStr,jdbcType=VARCHAR},
+															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
+																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
+															#{openCoverTag,jdbcType=VARCHAR}
+															))		a
+															)
 															
 		   	  WHERE  1=1
-		   	   
+		   	   <!-- 
 		   	   <if test="openCoverTag != null">
 				   	AND   OP_COV_TAG = #{openCoverTag}
 		   	   </if>
@@ -581,14 +587,15 @@
 			             open="(" separator=" OR " close=")">
 					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
 				    </foreach>
-		   	   </if>
+		   	   </if> -->
 		   	   <if test="sort != null">
 		   	    	ORDER BY ${sort.sortKey} ${sort.order}
 		   	   </if>
-		   ) a	 	
+		   	   
+		   
 		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
 		   	   <if test="pagination.position != null">
-		   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+		   	   		OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} *5 ROWS ONLY
 		   	   </if>
 		   	   
 	</select>
@@ -622,18 +629,11 @@
 															#{rateTo, jdbcType=VARCHAR},
 															#{approvedBy, jdbcType=VARCHAR},
 															#{line,jdbcType=VARCHAR},
-															#{statusArrStr,jdbcType=VARCHAR}))	a
-		   	  WHERE  1=1
-		   	   <if test="openCoverTag != null">
-				   	AND   OP_COV_TAG = #{openCoverTag}
-		   	   </if>
-		   	   <if test="search != null">
-		   	   	 AND
-		   	    	<foreach item="col" index="index" collection="search.searchCols"
-			             open="(" separator=" OR " close=")">
-					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
-				    </foreach>
-		   	   </if>
+															#{statusArrStr,jdbcType=VARCHAR},
+															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
+																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
+															#{openCoverTag,jdbcType=VARCHAR}
+															))	a
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">

@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.underwriting.BookingDate;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
@@ -691,5 +692,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		sqlSession.update("extractRenExpPolicy",renPol);
 		sqlSession.update("genRenExpPolicy",renPol);
 		return params;
+	}
+
+	@Override
+	public Cession getPolCession(HashMap<String, Object> params) throws SQLException {
+		Cession cession = sqlSession.selectOne("getPolCession",params);
+		return cession;
 	}
 }

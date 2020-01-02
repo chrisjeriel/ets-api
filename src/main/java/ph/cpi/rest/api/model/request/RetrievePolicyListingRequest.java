@@ -32,12 +32,26 @@ public class RetrievePolicyListingRequest {
 	private String statusDesc;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
+	private String recount = "Y";
 	
 	private List<String> statusArr;
 	private SearchRequest search;
 	private Integer altNo;
 	private String lineCd;
+	private String length;
 	
+	public String getLength() {
+		return length;
+	}
+	public void setLength(String length) {
+		this.length = length;
+	}
+	public String getRecount() {
+		return recount;
+	}
+	public void setRecount(String recount) {
+		this.recount = recount;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -216,7 +230,7 @@ public class RetrievePolicyListingRequest {
 				+ ", expiryDateFrom=" + expiryDateFrom + ", expiryDateTo=" + expiryDateTo + ", inceptDateFrom="
 				+ inceptDateFrom + ", inceptDateTo=" + inceptDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo="
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + ", statusArr=" + statusArr + ", search=" + search + ", altNo="
-				+ altNo + ", lineCd=" + lineCd + "]";
+				+ ", sortRequest=" + sortRequest + ", recount=" + recount + ", statusArr=" + statusArr + ", search="
+				+ search + ", altNo=" + altNo + ", lineCd=" + lineCd + "]";
 	}
 }

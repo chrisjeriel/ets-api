@@ -422,7 +422,11 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
 		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
-		rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
+		if(!rplp.getRecount().equals("N")){
+			rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
+		}else{
+			rplResponse.setLength(Integer.parseInt(rplp.getLength()));
+		}
 		//logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
 		
 		return rplResponse;
@@ -1851,6 +1855,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			response.setAcctDate(underwritingDao.getAcctingDate(params));
 			response.setBookingDate(underwritingDao.retrievePolInwardBal(params).get(0).getInwPolBalance().get(0).getBookingDate());
 		}
+		response.setCession(underwritingDao.getPolCession(params));
 		logger.info("RetrievePolInstTagAcctDateResponse: "+ response.toString());
 		return response;
 	}
