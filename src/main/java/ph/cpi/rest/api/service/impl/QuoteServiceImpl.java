@@ -178,20 +178,16 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("recount", rqlp.getRecount());
 			
 			
-			logger.info((String)retrieveQuoteListingParams.get("statusArrStr"));
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
-			logger.info("after retrieve list");
 			if(!rqlp.getRecount().equals("N") && rqlResponse.getQuotationList().size() !=0 ){
 //				rqlResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
 				rqlResponse.setLength(rqlResponse.getQuotationList().get(0).getCnt());
-				logger.info("after retrieve count");
 			}else if(!rqlp.getRecount().equals("N") && rqlResponse.getQuotationList().size() ==0) {
 				rqlResponse.setLength(BigDecimal.valueOf(0));
 			}
 //			rqlResponse.setLength(43);
 //			rqlResponse.setLength(516);
 			
-			logger.info("retrieveQuoteListingResponse : " + rqlResponse.toString());
 			
 			if (rqlResponse.getQuotationList().size() == 0) {
 				rqlResponse.getMessageList().add(new Message(ExceptionCodes.QUEX_GEN_000, ExceptionCodes.QUEX_GEN_000_MSG));
@@ -241,7 +237,6 @@ public class QuoteServiceImpl implements QuoteService{
 			
 			rqloResponse.setQuotationOcList(quoteDao.retrieveQuoteListingOc(retrieveQuoteListingOcParams));
 			
-			logger.info("retrieveQuoteListingOcResponse : " + rqloResponse.toString());
 		} catch (Exception ex) {
 			rqloResponse.getErrorList().add(new Error(ExceptionCodes.QUEX_RQL_002, ExceptionCodes.QUEX_RQL_002_MSG));
 		}
@@ -259,8 +254,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqoResponse.setQuotation(quoteDao.retrieveQuoteOption(retrieveQuoteOptionParams));
 		
-		logger.info("retrieveQuoteOptionResponse : " + rqoResponse.toString());
-		
 		return rqoResponse;
 	}
 	
@@ -272,8 +265,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteCoverageParams.put("quotationNo", rqcr.getQuotationNo());
 		
 		rqcrResponse.setQuotation(quoteDao.retrieveQuoteCoverage(retrieveQuoteCoverageParams));
-		
-		logger.info("retrieveQuoteCoverageResponse : " + rqcrResponse.toString());
 		
 		return rqcrResponse;
 	}
@@ -289,8 +280,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqdocrResponse.setQuotationOC(quoteDao.retrieveQuoteDetailsOc(retrieveQuoteDetailsOcParams));
 		
-		logger.info("retrieveQuoteDetailsOcResponse : " + rqdocrResponse.toString());
-		
 		return rqdocrResponse;
 	}
 
@@ -305,8 +294,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDetails(retrieveQuoteDetailsParams));
 		
-		logger.info("retrieveQuoteDetailsResponse : " + rqdrResponse.toString());
-		
 		return rqdrResponse;
 	}
 
@@ -318,7 +305,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteHoldCoveParams.put("holdCoverId", rqhcp.getHoldCoverId());
 		retrieveQuoteHoldCoveParams.put("holdCoverNo", rqhcp.getHoldCoverNo());
 		rqhcResponse.setQuotation(quoteDao.retrieveQuoteHoldCover(retrieveQuoteHoldCoveParams));
-		logger.info("retrieveQuoteHoldCoverResponse : " + rqhcResponse.toString());
 		
 		return rqhcResponse;
 	}
@@ -332,7 +318,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteGeneralInfoOcParams.put("openQuotationNo", rqgiocp.getOpenQuotationNo());
 		rqgiocResponse.setQuotationOc(quoteDao.retrieveQuoteGeneralInfoOc(retrieveQuoteGeneralInfoOcParams));
 		rqgiocResponse.setProjectOc(quoteDao.retrieveQuoteProjectOc(retrieveQuoteGeneralInfoOcParams));
-		logger.info("retrieveQuoteGeneralInfoOcResponse : " + rqgiocResponse.toString());
 		
 		return rqgiocResponse;
 	}
@@ -365,7 +350,6 @@ public class QuoteServiceImpl implements QuoteService{
 			ex.printStackTrace();
 		}
 		
-		logger.info("RetrieveQuoteHoldCoverResponse : " + rqhcResponse);
 		
 		return rqhcResponse;
 	}
@@ -456,8 +440,6 @@ public class QuoteServiceImpl implements QuoteService{
 		rqaocResponse.getSortResponse().setSortKey(rqaor.getSortRequest().getSortKey());
 		rqaocResponse.getSortResponse().setOrder(rqaor.getSortRequest().getOrder());
 		
-		logger.info("retrieveQuoteAttachmentOcResponse : " + rqaocResponse.toString());
-		
 		return rqaocResponse;
 	}
 
@@ -471,8 +453,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAttachmentParams.put("quotationNo", rqat.getQuotationNo());
 		
 		rqatResponse.setQuotation(quoteDao.retrieveQuoteAttachmentList(retrieveQuoteAttachmentParams));
-		
-		logger.info("retrieveQuoteAttachmentResponse : " + rqatResponse.toString());
 		
 		return rqatResponse;
 	}
@@ -490,8 +470,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAlopItemParams.put("optionId", retQuoteAlopItem.getOptionId());
 		
 		retQuoteAlopItemResponse.setAlopItem(quoteDao.retrieveAlopItemList(retrieveQuoteAlopItemParams));
-		
-		logger.info("retrieveQuoteAlopItemResponse : " + retQuoteAlopItemResponse.toString());
 		return retQuoteAlopItemResponse;
 	}
 
@@ -513,8 +491,6 @@ public class QuoteServiceImpl implements QuoteService{
 		rqcrResponse.getPaginationResponse().setCount(rqcr.getPaginationRequest().getCount());
 		rqcrResponse.getSortResponse().setSortKey(rqcr.getSortRequest().getSortKey());
 		rqcrResponse.getSortResponse().setOrder(rqcr.getSortRequest().getOrder());
-		
-		logger.info("retrieveQuoteCompetitionResponse : " + rqcrResponse.toString());
 		
 		return rqcrResponse;
 	}
@@ -538,8 +514,6 @@ public class QuoteServiceImpl implements QuoteService{
 		rqcorResponse.getSortResponse().setSortKey(rqcor.getSortRequest().getSortKey());
 		rqcorResponse.getSortResponse().setOrder(rqcor.getSortRequest().getOrder());
 		
-		logger.info("retrieveQuoteCoverageOcResponse : " + rqcorResponse.toString());
-		
 		return rqcorResponse;
 	}
 
@@ -553,8 +527,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteAlopParams.put("quotationNo", rqap.getQuotationNo() );
 		
 		rqaResponse.setQuotation(quoteDao.retrieveQuoteAlop(retrieveQuoteAlopParams));
-
-		logger.info("retrieveQuoteAlopResponse : " + rqaResponse.toString());
 		
 		return rqaResponse;
 	}
@@ -651,8 +623,6 @@ public class QuoteServiceImpl implements QuoteService{
 		
 		rqgiResponse.setQuotationGeneralInfo(quoteDao.retrieveQuoteGeneralInfo(retrieveQuoteGeneralInfoParams));
 		rqgiResponse.setProject(quoteDao.retrieveQuoteProject(retrieveQuoteGeneralInfoParams));
-		logger.info("retrieveQuoteGeneralInfoResponse : " + rqgiResponse.toString());
-		// TODO Auto-generated method stub
 		return rqgiResponse;
 	}
 
@@ -667,8 +637,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteEndorsementsParams.put("optionId", rqerp.getOptionId());
 		//retrieveQuoteEndorsementsParams.put("deleteEndorsements", rqerp.get)
 		rqeResponse.setEndorsements(quoteDao.retrieveQuoteEndorsements(retrieveQuoteEndorsementsParams));
-		logger.info("retrieveQuoteEndorsementsResponse : " + rqerp.toString());
-		// TODO Auto-generated method stub
 		return rqeResponse;
 	}
 
@@ -681,7 +649,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteEndorsementsOcParams.put("quoteId",rqerop.getQuoteId());
 		retrieveQuoteEndorsementsOcParams.put("quotationNo", rqerop.getQuotationNo());
 		rqeoResponse.setEndorsementsOc(quoteDao.retrieveQuoteEndorsementsOc(retrieveQuoteEndorsementsOcParams));
-		logger.info("retrieveQuoteEndorsementsOcResponse : " + rqerop.toString());
 		return rqeoResponse;
 	}
 	
@@ -1144,8 +1111,6 @@ public class QuoteServiceImpl implements QuoteService{
 		retrieveQuoteDeductiblesParams.put("endtCd", rqdr.getEndtCd());
 		rqdrResponse.setQuotation(quoteDao.retrieveQuoteDeductibles(retrieveQuoteDeductiblesParams));
 		
-		logger.info("retrieveQuoteDeductiblesResponse : " + rqdrResponse.toString());
-		
 		return rqdrResponse;
 	}
 
@@ -1231,8 +1196,6 @@ public class QuoteServiceImpl implements QuoteService{
 		searchQuoteInfoParams.put("quoteRevNo", sqip.getQuoteRevNo());
 		searchQuoteInfoParams.put("quoteCedingId", sqip.getQuoteCedingId());
 		sqiResponse.setQuotation(quoteDao.searchQuoteInfo(searchQuoteInfoParams));
-		
-		logger.info("searchQuoteInfoResponse : " + sqiResponse.toString());
 		return sqiResponse;
 	}
 
@@ -1254,7 +1217,6 @@ public class QuoteServiceImpl implements QuoteService{
 		updateHoldCoverStatusParams.put("hcStatus", uhcr.getHcStatus());
 		updateHoldCoverStatusParams.put("quoStatus", uhcr.getQuoStatus());
 		uhcrResponse.setReturnCode(quoteDao.updateHoldCoverStatus(updateHoldCoverStatusParams));
-		logger.info("updateHoldCoverStatus : " + uhcrResponse.toString());
 		
 		return uhcrResponse;
 	}
@@ -1267,7 +1229,6 @@ public class QuoteServiceImpl implements QuoteService{
 		rqaParams.put("quoteId", rqaRequest.getQuoteId());
 		
 		rqaResponse.setApproverList(quoteDao.retrieveQuoteApprover(rqaParams));
-		logger.info("rqaResponse : " + rqaResponse.toString());
 		return rqaResponse;
 	}
 
@@ -1294,7 +1255,6 @@ public class QuoteServiceImpl implements QuoteService{
 			}
 		}
 		
-		logger.info("UpdateQuoteStatusResponse : " + uqsResponse.toString());
 		return uqsResponse;
 	}
 
@@ -1305,7 +1265,6 @@ public class QuoteServiceImpl implements QuoteService{
 		params.put("quoteId", rpir.getQuoteId());
 		
 		response.setItems(quoteDao.retrieveQuItem(params));
-		logger.info("RetrieveQuItemResponse : " + response.toString());
 		return response;
 	}
 
@@ -1346,7 +1305,6 @@ public class QuoteServiceImpl implements QuoteService{
 				params.put("reptext04", m.find() ? s.substring(m.start(), m.end()) : "");
 				params.put("reptext05", m.find() ? s.substring(m.start(), m.end()) : "");
 			} 
-			logger.info("hereeeeee: " +params.toString());
 			
 			params.put("createUser", spir.getCreateUser());
 			params.put("createDate", spir.getCreateDate());
