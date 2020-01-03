@@ -13,11 +13,13 @@ public class CvItemTaxes {
 	private String taxName;
 	private BigDecimal taxRate;
 	private BigDecimal taxAmt;
+	private BigDecimal taxBaseAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
 	private String genType;
+	
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -66,6 +68,12 @@ public class CvItemTaxes {
 	public void setTaxAmt(BigDecimal taxAmt) {
 		this.taxAmt = taxAmt;
 	}
+	public BigDecimal getTaxBaseAmt() {
+		return taxBaseAmt;
+	}
+	public void setTaxBaseAmt(BigDecimal taxBaseAmt) {
+		this.taxBaseAmt = taxBaseAmt;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -100,8 +108,7 @@ public class CvItemTaxes {
 	public String toString() {
 		return "CvItemTaxes [reqId=" + reqId + ", itemNo=" + itemNo + ", taxSeqNo=" + taxSeqNo + ", taxType=" + taxType
 				+ ", taxCd=" + taxCd + ", taxName=" + taxName + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", genType=" + genType + "]";
+				+ ", taxBaseAmt=" + taxBaseAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", genType=" + genType + "]";
 	}
-	
 }
