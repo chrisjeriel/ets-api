@@ -63,6 +63,7 @@ public class AcitCv {
 	private DateTime acctEntDate;
 	
 	private String cancelReason;
+	private String prlExist;
 	
 	public String getCvGenNo() {
 		return cvGenNo;
@@ -389,6 +390,12 @@ public class AcitCv {
 	public void setCancelReason(String cancelReason) {
 		this.cancelReason = cancelReason;
 	}
+	public String getPrlExist() {
+		return prlExist;
+	}
+	public void setPrlExist(String prlExist) {
+		this.prlExist = prlExist;
+	}
 	@Override
 	public String toString() {
 		return "AcitCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -408,6 +415,6 @@ public class AcitCv {
 				+ mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate=" + mainCreateDate
 				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", mainAcctEntDate="
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
-				+ ", cancelReason=" + cancelReason + "]";
+				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + "]";
 	}
 }
