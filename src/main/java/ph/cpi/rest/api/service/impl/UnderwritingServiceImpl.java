@@ -421,6 +421,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("search", rplp.getSearch());
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
 		
+		retrievePolicyListingParams.put("mode", rplp.getMode());
+		retrievePolicyListingParams.put("recount", rplp.getRecount());
+		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
 		if(!rplp.getRecount().equals("N")){
 			rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));

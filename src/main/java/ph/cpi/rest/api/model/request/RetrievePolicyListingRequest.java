@@ -39,9 +39,16 @@ public class RetrievePolicyListingRequest {
 	private Integer altNo;
 	private String lineCd;
 	private String length;
+	private String mode;
 	
 	public String getLength() {
 		return length;
+	}
+	public String getMode() {
+		return mode;
+	}
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 	public void setLength(String length) {
 		this.length = length;
@@ -231,6 +238,6 @@ public class RetrievePolicyListingRequest {
 				+ inceptDateFrom + ", inceptDateTo=" + inceptDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo="
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + ", recount=" + recount + ", statusArr=" + statusArr + ", search="
-				+ search + ", altNo=" + altNo + ", lineCd=" + lineCd + "]";
+				+ search + ", altNo=" + altNo + ", lineCd=" + lineCd + ", length=" + length + ", mode=" + mode + "]";
 	}
 }
