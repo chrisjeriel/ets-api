@@ -5,6 +5,8 @@ import java.util.List;
 public class SaveAcsePerDiemRequest {
 	private List<PerDiemAcse> deletePerDiem;
 	private List<PerDiemAcse> savePerDiem;
+	private List<SaveCvItemTaxes> delCvItemTaxes;
+	
 	public List<PerDiemAcse> getDeletePerDiem() {
 		return deletePerDiem;
 	}
@@ -17,9 +19,16 @@ public class SaveAcsePerDiemRequest {
 	public void setSavePerDiem(List<PerDiemAcse> savePerDiem) {
 		this.savePerDiem = savePerDiem;
 	}
+	public List<SaveCvItemTaxes> getDelCvItemTaxes() {
+		return delCvItemTaxes;
+	}
+	public void setDelCvItemTaxes(List<SaveCvItemTaxes> delCvItemTaxes) {
+		this.delCvItemTaxes = delCvItemTaxes;
+	}
 	@Override
 	public String toString() {
-		return "SaveAcsePerDiemRequest [deletePerDiem=" + deletePerDiem + ", savePerDiem=" + savePerDiem + "]";
+		return "SaveAcsePerDiemRequest [deletePerDiem=" + deletePerDiem + ", savePerDiem=" + savePerDiem
+				+ ", delCvItemTaxes=" + delCvItemTaxes + "]";
 	}
 }
 
@@ -37,6 +46,9 @@ class PerDiemAcse {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	private List<SaveCvItemTaxes> taxAllocation;
+	
 	public String getReqId() {
 		return reqId;
 	}
@@ -115,11 +127,19 @@ class PerDiemAcse {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<SaveCvItemTaxes> getTaxAllocation() {
+		return taxAllocation;
+	}
+	public void setTaxAllocation(List<SaveCvItemTaxes> taxAllocation) {
+		this.taxAllocation = taxAllocation;
+	}
 	@Override
 	public String toString() {
 		return "PerDiemAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", directorId=" + directorId + ", directorName="
 				+ directorName + ", feeType=" + feeType + ", currCd=" + currCd + ", currRate=" + currRate + ", feeAmt="
 				+ feeAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation
+				+ "]";
 	}
+	
 }
