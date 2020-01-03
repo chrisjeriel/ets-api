@@ -52,7 +52,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		
 		rmrResponse.setRisk(maintenanceDao.retrieveMtnRisk(retrieveMtnRiskParams));
-		logger.info("retrieveMtnRiskResponse : " + rmrResponse.toString());
 		return rmrResponse;
 	}
 	
@@ -80,7 +79,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		rmrlResponse.setRisk(maintenanceDao.retrieveMtnRiskListing(retrieveMtnRiskListingParams));
 		rmrlResponse.setCount(maintenanceDao.retrieveMtnRiskListingCount(retrieveMtnRiskListingParams));
-		logger.info("retrieveMtnRiskListingResponse : " + rmrlResponse.toString());
 		
 		return rmrlResponse;
 	}
@@ -95,8 +93,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnSectionCoversParams.put("coverCd", rmscp.getCoverCd());
 		
 		rmscResponse.setSectionCovers(maintenanceDao.retrieveSectionCovers(retrieveMtnSectionCoversParams));
-		
-		logger.info("retrieveMtnSectionCoversResponse : " + rmscResponse.toString());
 
 		return rmscResponse;
 	}
@@ -110,8 +106,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnTypeOfCessionParams.put("cessionId", rmtcp.getCessionId());
 		
 		rmtcResponse.setCession(maintenanceDao.retrieveTypeOfCession(retrieveMtnTypeOfCessionParams));
-		
-		logger.info("retrieveMtnTypeOfCessionResponse : " + rmtcResponse.toString());
 		
 		return rmtcResponse;
 	}
@@ -133,7 +127,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnInsuredParams.put("search",rmir.getSearch());
 		rmirResponse.setInsured(maintenanceDao.retrieveMtnInsured(retrieveMtnInsuredParams));
 		rmirResponse.setLength(maintenanceDao.retrieveMtnInsuredLength(retrieveMtnInsuredParams));
-		/* logger.info("retrieveMtnInsuredResponse : " + rmirResponse.toString()); */ //Removed, causes log issues.
 		
 		return rmirResponse;
 	}
@@ -150,7 +143,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveEndtCodeParams.put("remarks", recr.getRemarks());
 		
 		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
-		logger.info("recrResponse : " + recrResponse.toString());
 		
 		return recrResponse;
 	}
@@ -165,8 +157,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnDistrictParams.put("districtCd", rmdr.getDistrictCd());
 		retrieveMtnDistrictParams.put("activeTag", rmdr.getActiveTag());
 		rmdrResponse.setRegion(maintenanceDao.retrieveMtnDistrict(retrieveMtnDistrictParams));
-		
-		logger.info("retrieveMtnDistrict : " + rmdrResponse.toString());
 		
 		return rmdrResponse;
 	}
@@ -203,7 +193,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnRegionParams.put("regionCd", rmrp.getRegionCd());
 		retrieveMtnRegionParams.put("from", "retrieveMtnRegion");
 		rmrResponse.setRegion(maintenanceDao.retrieveMtnRegion(retrieveMtnRegionParams));
-		logger.info("retrieveMtnRegionResponse :" + rmrResponse.toString());
 		
 		return rmrResponse;
 	}
@@ -217,8 +206,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnProvinceParams.put("provinceCd", rmpp.getProvinceCd());
 		retrieveMtnProvinceParams.put("from", "retrieveMtnProvince");
 		rmpResponse.setRegion(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
-		//rmpResponse.getRegion().setProvinceList(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));
-		logger.info("retrieveMtnProvinceResponse :" + rmpResponse.toString());
+		//rmpResponse.getRegion().setProvinceList(maintenanceDao.retrieveMtnProvince(retrieveMtnProvinceParams));\
 		
 		return rmpResponse;
 	}
@@ -231,7 +219,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnObjectParams.put("objectId", rmop.getObjectId());
 		retrieveMtnObjectParams.put("lineCd", rmop.getLineCd());
 		rmoResponse.setObject(maintenanceDao.retrieveMtnObject(retrieveMtnObjectParams));
-		logger.info("retrieveMtnObjectResponse :" + rmoResponse.toString());
 		
 		return rmoResponse;
 	}
@@ -244,7 +231,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnQuoteWordingsParams.put("lineCd", rmqwp.getLineCd());
 		retrieveMtnQuoteWordingsParams.put("wordType", rmqwp.getWordType());
 		rmqwResponse.setQuoteWordings(maintenanceDao.retrieveMtnQuoteWordings(retrieveMtnQuoteWordingsParams));
-		logger.info("retrieveMtnQuoteWordingsResponse :" + rmqwResponse.toString());
+//		logger.info("retrieveMtnQuoteWordingsResponse :" + rmqwResponse.toString());
 
 		return rmqwResponse;
 	}
@@ -267,7 +254,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmcrResponse.getPaginationResponse().setCount(rmcr.getPaginationRequest().getCount());
 		rmcrResponse.getSortResponse().setSortKey(rmcr.getSortRequest().getSortKey());
 		rmcrResponse.getSortResponse().setOrder(rmcr.getSortRequest().getOrder());
-		logger.info("retrieveMtnCityResponse : " + rmcrResponse.toString());
 		
 		return rmcrResponse;
 	}
@@ -288,8 +274,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmczrResponse.getPaginationResponse().setCount(rmczr.getPaginationRequest().getCount());
 		rmczrResponse.getSortResponse().setSortKey(rmczr.getSortRequest().getSortKey());
 		rmczrResponse.getSortResponse().setOrder(rmczr.getSortRequest().getOrder());
-		
-		logger.info("retrieveMtnCrestaZoneResponse : " + rmczrResponse.toString());
 		
 		return rmczrResponse;
 	}
@@ -313,7 +297,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmcrResponse.getSortResponse().setSortKey(rmcr.getSortRequest().getSortKey());
 		rmcrResponse.getSortResponse().setOrder(rmcr.getSortRequest().getOrder());
 		
-		logger.info("retrieveMtnCurrencyResponse : " + rmcrResponse.toString());
 		
 		return rmcrResponse;
 	}
@@ -330,8 +313,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         retrieveMtnAdviceWordingsParams.put("adviceWordId", retMtnAdviceWordings.getAdviceWordId());
         
         rmawResponse.setAdviceWordings(maintenanceDao.retrieveMaintenanceAdviceWordings(retrieveMtnAdviceWordingsParams));
-        
-        logger.info("retrieveMaintenanceAdviceWordingsResponse : " + rmawResponse.toString());
         
         
         return rmawResponse;
@@ -353,7 +334,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         retrieveMtnBlockParams.put("activeTag", retMtnBlock.getActiveTag());
         rmbResponse.setRegion(maintenanceDao.retrieveMaintenanceBlockList(retrieveMtnBlockParams));
         
-        logger.info("retrieveMaintenanceBlockResponse : " + rmbResponse.toString());
         
 		return rmbResponse;
 	}
@@ -461,7 +441,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 
 		rmiResponse.setIntermediary(maintenanceDao.retrieveMntIntermediary(retrieveMtnIntermediaryParams));
 			
-		logger.info("retrieveMtnIntermediaryResponse : " + rmiResponse.toString());
 		
 		return rmiResponse;
 	}
@@ -474,7 +453,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnLineParams.put("lineCd", rmlp.getLineCd());
 		
 		rmlResponse.setLine(maintenanceDao.retrieveMntLine(retrieveMtnLineParams));
-		logger.info("retrieveMtnLineResponse : " + rmlResponse.toString());
 		return rmlResponse;
 	}
 
@@ -487,7 +465,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnLineClassParams.put("lineClassCd", rmlcp.getLineClassCd());
 		
 		rmlcResponse.setLineClass(maintenanceDao.retrieveMntLineClass(retrieveMtnLineClassParams));
-		logger.info("retrieveMtnLineClassResponse : " + rmlcResponse.toString());
 		return rmlcResponse;
 	}
 	
@@ -498,7 +475,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnLineClassParams.put("saveLineClass", smlcr.getSaveLineClass());
 		saveMtnLineClassParams.put("deleteLineClass", smlcr.getDeleteLineClass());
 		smlcrResponse.setReturnCode(maintenanceDao.saveMtnLineClass(saveMtnLineClassParams));
-		logger.info("SaveMtnLineClassResponse : " + smlcrResponse.toString());
 		return smlcrResponse;
 	}
 
@@ -539,7 +515,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			ex.printStackTrace();
 		}
 		
-		System.out.println("smrrResponse: " + smrrResponse);
 		return smrrResponse;
 	}
 
@@ -593,7 +568,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		rmsclResponse.setSectionCovers(maintenanceDao.retrieveSectionCoversLov(retrieveMtnSectionCoversLovParams));
 		
-		logger.info("retrieveMtnSectionCoversLovResponse : " + rmsclResponse.toString());
 
 		return rmsclResponse;
 	}
@@ -626,8 +600,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnLineParams.put("saveLine", smlr.getSaveLine());
 		saveMtnLineParams.put("deleteLine",smlr.getDeleteLine());
         smlResponse.setReturnCode(maintenanceDao.saveMtnLine(saveMtnLineParams));
-		logger.info("SaveMtnLineResponse : " + smlResponse.toString());
-
 		return smlResponse;
 	}
 	
@@ -664,7 +636,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnDeductiblesParams.put("saveDeductibles", smdr.getSaveDeductibles());
 		saveMtnDeductiblesParams.put("deleteDeductibles", smdr.getDeleteDeductibles());
 		smdResponse.setReturnCode(maintenanceDao.saveMtnDeductibles(saveMtnDeductiblesParams));
-		logger.info("SaveMtnDeductiblesResponse : " + smdResponse.toString());
 		return smdResponse;
 	}
 
@@ -676,7 +647,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveMtnSpoilageReasonParams.put("spoilCd", rmsrr.getSpoilCd());
 		retrieveMtnSpoilageReasonParams.put("activeTag", rmsrr.getActiveTag());
 		rsrResponse.setSpoilageReason(maintenanceDao.retrieveMtnSpoilageReason(retrieveMtnSpoilageReasonParams));
-		logger.info("RetrieveMtnSpoilageReasonResponse : " + rsrResponse.toString());
 		return rsrResponse;
 	}
 
@@ -691,7 +661,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("defaultTag" , rmpwr.getDefaultTag());
 		params.put("ocTag" , rmpwr.getOcTag());
 		rmpwrResponse.setMtnPolWordings(maintenanceDao.retMtnPolWordings(params));
-		logger.info("RetMtnPolWordingsResponse : " + rmpwrResponse.toString());
 		return rmpwrResponse;
 	}
 	
@@ -727,9 +696,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		smiResponse.setReturnCode((Integer) result.get("errorCode"));
 		smiResponse.setInsuredIdOut((Integer) result.get("insuredIdOut"));
-		
-		logger.info("SaveMtnInsuredResponse : " + smiResponse.toString());
-		System.out.println(saveMtnInsuredParams);
 
 		return smiResponse;
 	}
@@ -741,7 +707,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnTypeOfCessionParams.put("saveTypeOfCession", smtocr.getSaveTypeOfCession());
 		saveMtnTypeOfCessionParams.put("deleteTypeOfCession", smtocr.getDeleteTypeOfCession());
 		smtocResponse.setReturnCode(maintenanceDao.saveMtnTypeOfCession(saveMtnTypeOfCessionParams));
-		logger.info("SaveMtnTypeOfCessionResponse : " + smtocResponse.toString());
 		return smtocResponse;
 	}
 	
@@ -791,8 +756,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		smiResponse.setReturnCode((Integer) result.get("errorCode"));
 		smiResponse.setIntmIdOut((Integer) result.get("intmIdOut"));
-		
-		logger.info("SaveMtnIntermediaryResponse : " + smiResponse.toString());
 		
 		return smiResponse;
 	}
@@ -854,7 +817,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		
 		rmcrResponse.setCurrencyCd((maintenanceDao.retrieveMtnCurrencyRt(retrieveMtnCurrRtParams)));
 		
-		logger.info("retrieveMtnCurrRtResponse : " + rmcrResponse.toString());
 		
 		return rmcrResponse;
 	}
@@ -943,7 +905,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			saveMtnObjectParams.put("deleteObject", smor.getDeleteObject());
 			saveMtnObjectParams.put("saveObject", smor.getSaveObject());
 			smoResponse.setReturnCode(maintenanceDao.saveMtnObject(saveMtnObjectParams));
-			logger.info("SaveMtnLineObjectResponse : " + smoResponse.toString());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			smoResponse.setReturnCode(0);
@@ -1198,7 +1159,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnRegionParams.put("saveRegion", smrr.getSaveRegion());
 		saveMtnRegionParams.put("deleteRegion", smrr.getDeleteRegion());
 		smrResponse.setReturnCode(maintenanceDao.saveMtnRegion(saveMtnRegionParams));
-		logger.info("SaveMtnRegionResponse : " + smrResponse.toString());
 		return smrResponse;
 	}
 
@@ -1210,7 +1170,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnProvinceParams.put("saveProvince", smpr.getSaveProvince());
 		saveMtnProvinceParams.put("deleteProvince", smpr.getDeleteProvince());
 		smpResponse.setReturnCode(maintenanceDao.saveMtnProvince(saveMtnProvinceParams));
-		logger.info("SaveMtnProvinceResponse : " + smpResponse.toString());
 		return smpResponse;
 	}
 
@@ -1241,8 +1200,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		response.getPaginationResponse().setCount(rmtcr.getPaginationRequest().getCount());
 		response.getSortResponse().setSortKey(rmtcr.getSortRequest().getSortKey());
 		response.getSortResponse().setOrder(rmtcr.getSortRequest().getOrder());
-		
-		logger.info("RetrieveMtnTreatyCommissionResponse : " + response.toString());
 		
 		return response;
 	}
@@ -1604,7 +1561,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		saveMtnCityParams.put("saveCity", smcr.getSaveCity());
 		saveMtnCityParams.put("deleteCity", smcr.getDeleteCity());
 		smcResponse.setReturnCode(maintenanceDao.saveMtnCity(saveMtnCityParams));
-		logger.info("SaveMtnCityResponse : " + smcResponse.toString());
 		return smcResponse;
 	}
 
@@ -1773,7 +1729,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retMtnClmEventTypeParams = new HashMap<String, Object>();
 		retMtnClmEventTypeParams.put("eventTypeCd", rmcetr.getEventTypeCd());
 		rmcetResponse.setEventTypeList(maintenanceDao.retrieveMtnEventType(retMtnClmEventTypeParams));
-		logger.info("RetrieveMtnClmEventTypeResponse: " + rmcetResponse.toString());
 		return rmcetResponse;
 	}
 
@@ -1784,7 +1739,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smcetParams.put("saveEventType", smcetr.getSaveEventType());
 		smcetParams.put("deleteEventType",smcetr.getDeleteEventType());
 		smcetResponse.setReturnCode(maintenanceDao.saveMtnClmEventType(smcetParams));
-		logger.info("SaveMtnClmEventTypeResponse : " + smcetResponse.toString());
 		return smcetResponse;
 	}
 	
@@ -1795,7 +1749,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> retMtnClmEventParams = new HashMap<String, Object>();
 		retMtnClmEventParams.put("eventCd", rmcer.getEventCd());
 		rmceResponse.setEventList(maintenanceDao.retrieveMtnEvent(retMtnClmEventParams));
-		logger.info("RetrieveMtnClmEventTypeResponse: " + rmceResponse.toString());
 		return rmceResponse;
 	}
 
@@ -1806,7 +1759,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smceParams.put("saveEvent", smcer.getSaveEvent());
 		smceParams.put("deleteEvent",smcer.getDeleteEvent());
 		smceResponse.setReturnCode(maintenanceDao.saveMtnClmEvent(smceParams));
-		logger.info("SaveMtnClmEventTypeResponse : " + smceResponse.toString());
 		return smceResponse;
 	}
 	
@@ -1991,7 +1943,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveClmCashCallParams.put("treatyCedId", rccp.getTreatyCedId());
 		retrieveClmCashCallParams.put("currCd", rccp.getCurrCd());
 		rccResponse.setCashCallList(maintenanceDao.retrieveMtnCashCall(retrieveClmCashCallParams));
-		logger.info("retrieveMtnClmCashCallResponse : " + rccResponse.toString());
 		return rccResponse;
 	}
 
@@ -2071,7 +2022,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmattParams.put("baeTag", rmattr.getBaeTag());
 		rmattParams.put("activeTag", rmattr.getActiveTag());
 		rmattResponse.setTranTypeList(maintenanceDao.retrieveMtnAcitTranType(rmattParams));
-		logger.info("RetrieveMtnAcitTranTypeResponse : " + rmattResponse.toString());
 		return rmattResponse;
 	}
 
@@ -2171,7 +2121,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmbmParams.put("bookingMm", rbmr.getBookingMm());
 		rmbmParams.put("bookingYear", rbmr.getBookingYear());
 		rmbmResponse.setBookingMonthList(maintenanceDao.retrieveMtnBookingMonth(rmbmParams));
-		logger.info("RetrieveMtnBookingMonthResponse : " + rmbmResponse.toString());
 		return rmbmResponse;
 	}
 
@@ -2184,7 +2133,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmistParams.put("invtSecCd", rist.getInvtSecCd());
 		rmistParams.put("activeTag", rist.getActiveTag());
 		rmistResponse.setInvSecTypeList(maintenanceDao.retrieveMtnInvtSecurityType(rmistParams));
-		logger.info("RetrieveMtnInvtSecurityTypeResponse : " + rmistResponse.toString());
 		return rmistResponse;
 	}
 	
@@ -2340,7 +2288,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("baeTag", rmattr.getBaeTag());
 		params.put("activeTag", rmattr.getActiveTag());
 		response.setTranTypeList(maintenanceDao.retrieveMtnAcseTranType(params));
-		logger.info("RetrieveMtnAcseTranTypeResponse : " + response.toString());
 		return response;
 	}
 
@@ -2397,7 +2344,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("fixedTag", rmgtr.getFixedTag());
 		params.put("activeTag", rmgtr.getActiveTag());
 		response.setGenTaxList(maintenanceDao.retrieveMtnGenTax(params));
-		logger.info("RetrieveMtnGenTaxResponse : " + response);
 		return response;
 	}
 
@@ -2412,7 +2358,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("fixedTag", rmwt.getFixedTag());
 		params.put("activeTag", rmwt.getActiveTag());
 		response.setWhTaxList(maintenanceDao.retrieveMtnWhTax(params));
-		logger.info("RetrieveMtnWhTaxResponse : " + response);
 		return response;
 	}
 	
@@ -2461,7 +2406,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("companyId", rmer.getCompanyId());
 		params.put("employeeId", rmer.getEmployeeId());
 		response.setEmployeeList(maintenanceDao.retrieveMtnEmployee(params));
-		logger.info("RetrieveMtnEmployeeResponse : " + response);
 		return response;
 		
 	}
@@ -2924,7 +2868,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("taxId", rmgthr.getTaxId());
 	    response.setGenTaxList(maintenanceDao.retrieveMtnGenTaxHist(params));
-		logger.info("RetrieveMtnGenTaxHistResponse : " + response);
 		return response;
 	}
 
@@ -2970,7 +2913,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("taxId", rmgtrr.getTaxId());
 	    response.setGenTaxListRange(maintenanceDao.retrieveMtnGenTaxRange(params));
-		logger.info("RetrieveMtnGenTaxRangeResponse : " + response);
 		return response;
 	}
 
@@ -3000,7 +2942,6 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("payeeClassCd", rmpcr.getPayeeClassCd());
 		params.put("activeTag", rmpcr.getActiveTag());
 	    response.setPayeeClassList(maintenanceDao.retrieveMtnPayeeClass(params));
-		logger.info("RetrieveMtnPayeeClassResponse : " + response);
 		return response;
 	}
 

@@ -248,4 +248,10 @@ public class ClaimsDaoImpl implements ClaimsDao {
 		Integer length = (Integer) sqlSession.selectOne("retrieveClaimListingLength",params);
 		return length;
 	}
+
+	@Override
+	public String checkExistingClaim(HashMap<String, Object> params) throws SQLException {
+		String result = (String) sqlSession.selectOne("checkExistingClaim",params);
+		return result;
+	}
 }

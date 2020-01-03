@@ -95,4 +95,5 @@ public interface ClaimsService {
 	public RedistributeClaimReserveDistResponse redistributeClaimReserveDist(RedistributeClaimReserveDistRequest ucdr) throws SQLException;
 
 	public RetrieveClmPaytReqInqResponse retrieveClmPaytReqInq(RetrieveClmPaytReqInqRequest rcprr) throws SQLException;
+	public String checkExistingClaim(String policyId) throws SQLException;
 }
