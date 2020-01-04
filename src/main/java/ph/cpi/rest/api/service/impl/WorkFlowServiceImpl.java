@@ -217,7 +217,6 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			retrieveTransactionParams.put("tranTitle",rwtr.getTranTitle());
 			
 			resp.setTransactionList(workFlowDao.retrieveTransactions(retrieveTransactionParams));
-			logger.info("RetrieveWfmTransactionsResponse : " + resp.toString());
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -236,8 +235,6 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 			retrieveRelatedRecordsParams.put("referenceId",rrrr.getReferenceId());
 			
 			resp.setRelatedRecordList(workFlowDao.retrieveRelatedRecords(retrieveRelatedRecordsParams));
-			logger.info("RetrieveRelatedRecordsResponse : " + resp.toString());
-			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

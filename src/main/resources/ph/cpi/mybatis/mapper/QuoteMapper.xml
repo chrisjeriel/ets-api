@@ -540,7 +540,7 @@
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
 		SELECT * FROM (
 			SELECT a.* <if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> 
-				FROM TABLE(QU_GEN_INFO_PKG_3.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+				FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
@@ -595,13 +595,13 @@
 		   
 		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
 		   	   <if test="pagination.position != null">
-		   	   		OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} *5 ROWS ONLY
+		   	   		OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count}  ROWS ONLY
 		   	   </if>
 		   	   
 	</select>
 	
 	<select id="retrieveQuoteListingLength"  parameterType="java.util.Map" resultType="java.lang.Integer">
-			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG_3.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+			SELECT COUNT(*) FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
@@ -1270,6 +1270,9 @@
 				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{mbiQuoteId, jdbcType=VARCHAR}
 			);
+			
+			
+        	QU_GEN_INFO_PKG.update_int_comp(#{outQuoteId, mode=OUT, jdbcType=INTEGER});
 		END;
 	</update>
 

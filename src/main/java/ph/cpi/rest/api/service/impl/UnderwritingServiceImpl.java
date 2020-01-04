@@ -186,7 +186,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolInwardBalParams.put("policyId", rpibp.getPolicyId());
 		retrievePolInwardBalParams.put("policyNo",rpibp.getPolicyNo());
 		rpibResponse.setPolicyList(underwritingDao.retrievePolInwardBal(retrievePolInwardBalParams));
-		logger.info("retrievePolInwardBalResponseTest : " + rpibResponse.toString());
+		
 		
 		return rpibResponse;
 	}
@@ -199,7 +199,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolCoInsuranceParams.put("policyId",rpcip.getPolicyId());
 		retrievePolCoInsuranceParams.put("policyNo",rpcip.getPolicyNo());
 		rpcoiResponse.setPolicy(underwritingDao.retrievePolCoInsurance(retrievePolCoInsuranceParams));
-		logger.info("retrievePolCoInsuranceResponse : " + rpcoiResponse.toString());
+		
 		
 		return rpcoiResponse;
 	}
@@ -215,7 +215,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolDeductiblesParams.put("endtCd", rpdr.getEndtCd());
 		rpdResponse.setPolicy(underwritingDao.retrievePolicyDeductibles(retrievePolDeductiblesParams));
 		
-		logger.info("retrievePolicyDeductiblesResponse : " + rpdResponse.toString());
+		
 		
 		return rpdResponse;
 	}
@@ -230,7 +230,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverage(retrievePolCoverageParams));
 		
-		logger.info("retrievePolCoverageResponse : " + rpcResponse.toString());
+		
 		
 		return rpcResponse;
 	}
@@ -243,7 +243,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolAttachmentParams.put("policyNo", rpar.getPolicyNo());
 		
 		rpaResponse.setPolAttachmentList(underwritingDao.retrievePolAttachmentList(retrievePolAttachmentParams));
-		logger.info("retrievePolAttachmentResponse : " + rpaResponse.toString());
+		
 		return rpaResponse;
 	}
 
@@ -255,7 +255,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolEndtParams.put("policyNo", rper.getPolicyNo());
 		
 		rpeResponse.setEndtList(underwritingDao.retrievePolEndtList(retrievePolEndtParams));
-		logger.info("RetrievePolEndtResponse : " + rpeResponse.toString());
+		
 		return rpeResponse;
 	}
 	
@@ -269,7 +269,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolItemParams.put("policyNo", rpir.getPolicyNo());
 		
 		rpiresponse.setPolicy(underwritingDao.retrievePolItem(retrievePolItemParams));
-		logger.info("retrievePolItemResponse : " + rpiresponse.toString());
+		
 		return rpiresponse;
 	}
 
@@ -283,7 +283,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolCATPerilParams.put("policyNo", rpcpr.getPolicyNo());
 	
 		rpcpresponse.setPolicy(underwritingDao.retrievePolCATPeril(retrievePolCATPerilParams));
-		logger.info("retrievePolCATPerilResponse : " + rpcpresponse.toString());
+		
 		
 		return rpcpresponse;
 	}
@@ -297,7 +297,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolGenInfoParams.put("policyNo", rpgip.getPolicyNo());
 		
 		rpgiResponse.setPolicy(underwritingDao.retrievePolGenInfo(retrievePolGenInfoParams));
-		logger.info("retrievePolGenInfoResponse : " + rpgiResponse.toString());
+		
 		
 		return rpgiResponse;
 	}
@@ -421,13 +421,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("search", rplp.getSearch());
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
 		
+		retrievePolicyListingParams.put("mode", rplp.getMode());
+		retrievePolicyListingParams.put("recount", rplp.getRecount());
+		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
 		if(!rplp.getRecount().equals("N")){
 			rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
 		}else{
 			rplResponse.setLength(Integer.parseInt(rplp.getLength()));
 		}
-		//logger.info("retrievePolicyListingResponse : " + rplResponse.toString());
+		
 		
 		return rplResponse;
 	}
@@ -584,7 +587,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolAttachmentOcParams.put("openPolicyNo", rpaor.getOpenPolicyNo());
 		
 		rpaoResponse.setAttachmentsList(underwritingDao.retrievePolAttachmentOcList(retrievePolAttachmentOcParams));
-		logger.info("retrievePolAttachmentResponse : " + rpaoResponse.toString());
+		
 		return rpaoResponse;
 	}
 
@@ -596,7 +599,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolEndtOcParams.put("openPolicyNo", rpeor.getOpenPolicyNo());
 		
 		rpeoResponse.setEndtOcList(underwritingDao.retrievePolEndtOcList(retrievePolEndtOcParams));
-		logger.info("RetrievePolEndtOcResponse : " + rpeoResponse.toString());
+		
 		return rpeoResponse;
 	}
 
@@ -661,7 +664,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			
 			rpcResponse.setPolicyOc(underwritingDao.retrievePolCoverageOc(retrievePolCoverageOcParams));
 			
-			logger.info("retrievePolCoverageResponse : " + rpcResponse.toString());
+			
 			
 			return rpcResponse;
 	}
@@ -884,7 +887,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			e.printStackTrace();
 		}
 		
-		logger.info(spdResponse.toString());
+		
 		return spdResponse;
 	}
 	
@@ -998,7 +1001,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
 			
 			rplResponse.setPolicyList(underwritingDao.retrievePolicyOcListing(retrievePolicyListingParams));
-			logger.info("retrievePolicyOCListingResponse : " + rplResponse.toString());
+			
 			
 			return rplResponse;
 	}
@@ -1058,7 +1061,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rqaParams.put("policyId", rpaRequest.getPolicyId());
 		
 		rqaResponse.setApproverList(underwritingDao.retrievePolicyApprover(rqaParams));
-		logger.info("rqaResponse : " + rqaResponse.toString());
+		
 		return rqaResponse;
 	}
 
@@ -1082,7 +1085,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		rwarParams.put("userId", rwar.getUserId());
 		
 		rwaResponse.setApprovalList(underwritingDao.retrieveWfmApprovals(rwarParams));
-		logger.info("rqaResponse : " + rwaResponse.toString());
+		
 		return rwaResponse;
 	}
 
@@ -1127,7 +1130,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("order", rpgior.getSortRequest().getOrder());*/
 		rpgioResponse.setPolicyOc(underwritingDao.retrievePolGenInfoOc(params));
 		//rpgioResponse.setPaginationResponse(paginationResponse);;
-		logger.info("RetrievePolGenInfoOcResponse : " + rpgioResponse.toString());
+		
 		return rpgioResponse;
 	}
 	
@@ -1146,7 +1149,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverageAlt(retrievePolCoverageAltParams));
 		
-		logger.info("retrievePolCoverageAltResponse : " + rpcResponse.toString());
+		
 		
 		return rpcResponse;
 	}
@@ -1209,7 +1212,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				upgisResponse.getErrorList().add(new Error("SQLException","Please check field values."));
 			}
 		}
-		logger.info("UpdatePolGenInfoSpoilageResponse : "+upgisResponse.toString());
+		
 		return upgisResponse;
 	}
 	
@@ -1325,7 +1328,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				pprResponse.getErrorList().add(new Error("SQLException","Please check field values."));
 			}
 		}
-		logger.info("postPolicy : " + pprResponse.toString());
+		
 		return pprResponse;
 	}
 	
@@ -1364,7 +1367,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rpfcResponse.setPolicy(underwritingDao.retrievePolicyFullCoverage(retrievePolFullCoverageParams));
 		
-		logger.info("retrievePolFullCoverageResponse : " + rpfcResponse.toString());
+		
 		
 		return rpfcResponse;
 	}
@@ -1463,7 +1466,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		replResponse.setExpPolicyList(underwritingDao.retrieveExpPolList(retrieveExpPolListParams));
 		
-		logger.info("RetrieveExpPolListResponse : " + replResponse.toString());
+		
 		
 		return replResponse;
 	}
@@ -1503,7 +1506,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			processRenewablePolicyParams.put("renWithChangesPolicyList", prpr.getRenWithChangesPolicyList());
 			processRenewablePolicyParams.put("nonRenPolicyList", prpr.getNonRenPolicyList());
 			
-			logger.info(processRenewablePolicyParams.toString());
+			
 			
 			daoResp = (underwritingDao.processRenewablePolicy(processRenewablePolicyParams));
 			prpResponse.setRenAsIsPolicyList((List<PolicyAsIs>) daoResp.get("renAsIsPolicyList"));
@@ -1514,8 +1517,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			prpResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
-		logger.info("POST DAO prpResponse : " + daoResp);
-		logger.info("POST prpResponse : " + prpResponse.toString());
+		
+		
 		return prpResponse;
 	}
 	
@@ -1700,7 +1703,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
 			}
 		}catch (Exception ex){
-			logger.info(ex.getMessage());
+			
 			srdrResponse.setReturnCode(0);
 			srdrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 //			ex.printStackTrace();
@@ -1723,7 +1726,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			drrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
 			ex.printStackTrace();
 		}
-		logger.info(drrResponse.toString());
+		
 		return drrResponse;
 	}
 
@@ -1856,7 +1859,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			response.setBookingDate(underwritingDao.retrievePolInwardBal(params).get(0).getInwPolBalance().get(0).getBookingDate());
 		}
 		response.setCession(underwritingDao.getPolCession(params));
-		logger.info("RetrievePolInstTagAcctDateResponse: "+ response.toString());
+		
 		return response;
 	}
 
@@ -1904,7 +1907,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				e.printStackTrace();
 			}
 		}
-		logger.info("BatchDistributionResponse : "+ response.toString());
+		
 		return response;
 	}
 
@@ -1943,7 +1946,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				e.printStackTrace();
 			}
 		}
-		logger.info("BatchDistributionResponse : "+ response.toString());
+		
 		return response;
 	}
 
