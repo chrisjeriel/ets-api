@@ -39,7 +39,7 @@ public class RetrievePolicyListingRequest {
 	private Integer altNo;
 	private String lineCd;
 	private String length;
-	private String mode;
+	private String mode = "";
 	
 	public String getLength() {
 		return length;

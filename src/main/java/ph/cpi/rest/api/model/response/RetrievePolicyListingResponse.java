@@ -1,5 +1,6 @@
 package ph.cpi.rest.api.model.response;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
@@ -9,7 +10,7 @@ import ph.cpi.rest.api.model.underwriting.Policy;
 public class RetrievePolicyListingResponse {
 
 	private List<Policy> policyList;
-	private Integer length;
+	private BigDecimal length;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
@@ -31,10 +32,10 @@ public class RetrievePolicyListingResponse {
 	public void setSortResponse(SortResponse sortResponse) {
 		this.sortResponse = sortResponse;
 	}
-	public Integer getLength() {
+	public BigDecimal getLength() {
 		return length;
 	}
-	public void setLength(Integer length) {
+	public void setLength(BigDecimal length) {
 		this.length = length;
 	}
 	@Override

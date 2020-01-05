@@ -135,13 +135,30 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public List<Policy> retrievePolicyListing(HashMap<String, Object> params) throws SQLException {
-		List<Policy> policyList = sqlSession.selectList("retrievePolicyListing", params);
+		List<Policy> policyList;
+		switch(params.get("mode").toString()){
+			case "inquiry": 
+				policyList = sqlSession.selectList("retrievePolicyListingInq", params);
+				break;
+			default: 
+				policyList = sqlSession.selectList("retrievePolicyListing", params);
+		}
+
+		 
 		return policyList;
 	}
 	
 	@Override
 	public Integer retrievePolicyLength(HashMap<String, Object> params) throws SQLException {
-		Integer length = (Integer) sqlSession.selectOne("retrievePolicyLength", params);
+		Integer length;
+		switch(params.get("mode").toString()){
+			case "inquiry": 
+				length = (Integer) sqlSession.selectOne("retrievePolicyInqLength", params);
+				break;
+			default: 
+				length = (Integer) sqlSession.selectOne("retrievePolicyLength", params);
+		}
+		
 		return length;
 	}
 	

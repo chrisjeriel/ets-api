@@ -839,7 +839,7 @@
 		SELECT * 
 			FROM	
 				(
-					SELECT * FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+					SELECT a.*<if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
 															 #{cedingName, jdbcType=VARCHAR},
 															 #{lineClassDesc, jdbcType=VARCHAR},
@@ -865,15 +865,9 @@
 															 null,
 															 null,
 															 null,
-															 #{lineCd, jdbcType=VARCHAR}))
+															 #{lineCd, jdbcType=VARCHAR},
+															 #{statusArrStr, jdbcType=VARCHAR})) a
 															 WHERE  1=1
-		   	   <if test="statusArr != null">
-			   	AND   STATUS IN 
-				   	   	<foreach item="item" index="index" collection="statusArr"
-			             open="(" separator="," close=")">
-					        #{item}
-					    </foreach>
-		   	   </if>
 		   	   <if test="search != null and search.value != null">
 		   	   	 AND
 		   	    	<foreach item="col" index="index" collection="search.searchCols"
@@ -930,15 +924,9 @@
 												 null,
 												 null,
 												 null,
-												#{lineCd, jdbcType=VARCHAR}))
+												#{lineCd, jdbcType=VARCHAR},
+											    #{statusArrStr, jdbcType=VARCHAR}))
 												 WHERE  1=1
-	  	   <if test="statusArr != null">
-		   		AND   STATUS IN 
-			   	   	<foreach item="item" index="index" collection="statusArr"
-		             open="(" separator="," close=")">
-				        #{item}
-				    </foreach>
-	  	   </if>
 	  	   <if test="search != null">
 	  	   	 AND
 	  	    	<foreach item="col" index="index" collection="search.searchCols"
@@ -962,7 +950,7 @@
 		SELECT * 
 			FROM	
 				(
-					SELECT a.*<if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing_inquiry(#{policyNo, jdbcType=VARCHAR},
+					SELECT a.*<if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
 															 #{cessionDesc, jdbcType=VARCHAR},
 															 #{cedingName, jdbcType=VARCHAR},
 															 #{lineClassDesc, jdbcType=VARCHAR},
@@ -988,7 +976,8 @@
 															 null,
 															 null,
 															 null,
-															 #{lineCd, jdbcType=VARCHAR}))a
+															 #{lineCd, jdbcType=VARCHAR},
+															 #{statusArrStr, jdbcType=VARCHAR}))a
 															 WHERE  1=1
 		   	   
 		   	   <if test="search != null and search.value != null">
@@ -999,19 +988,57 @@
 				    </foreach>
 		   	   </if>
 		   	   
-		   	   
 		   	   <if test="sort != null">
 		   	    	ORDER BY ${sort.sortKey} ${sort.order}
 		   	   </if>
 		   	   
 		   ) a	 	
-		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
 	   	   <if test="pagination.position != null">
 	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} * 10 ROWS ONLY
 	   	   </if>
 	   	   
 	</select> 
 	
+	<select id="retrievePolicyInqLength" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM TABLE(POL_GEN_INFO_PKG.ret_pol_listing(#{policyNo, jdbcType=VARCHAR},
+															 #{cessionDesc, jdbcType=VARCHAR},
+															 #{cedingName, jdbcType=VARCHAR},
+															 #{lineClassDesc, jdbcType=VARCHAR},
+															 #{insuredDesc, jdbcType=VARCHAR},
+															 #{riskName, jdbcType=VARCHAR},
+															 #{objectDesc, jdbcType=VARCHAR},
+															 #{site, jdbcType=VARCHAR},
+															 #{currencyCd, jdbcType=VARCHAR},
+															 #{totalSiLess, jdbcType=DECIMAL},
+															 #{totalSiGrt, jdbcType=DECIMAL},
+															 #{totalPremLess, jdbcType=DECIMAL},
+															 #{totalPremGrt, jdbcType=DECIMAL},
+															 CAST(to_timestamp(#{issueDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{issueDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{inceptDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{expiryDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 CAST(to_timestamp(#{acctDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															 #{statusDesc, jdbcType=VARCHAR},
+															 null,
+															 null,
+															 null,
+															 null,
+															 #{lineCd, jdbcType=VARCHAR},
+															 #{statusArrStr, jdbcType=VARCHAR}))a
+			WHERE  1=1
+		   	   
+		   	   <if test="search != null and search.value != null">
+		   	   	 AND
+		   	    	<foreach item="col" index="index" collection="search.searchCols"
+			             open="(" separator=" OR " close=")">
+					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+				    </foreach>
+		   	   </if>
+	   	   
+	</select> 
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="retPolHoldCoverMap">
 		<result property="policyId" 			column="POLICY_ID"/>

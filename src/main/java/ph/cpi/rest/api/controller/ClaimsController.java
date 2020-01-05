@@ -104,6 +104,13 @@ public class ClaimsController {
 		return claimsService.retrieveClaimListing(rclr);
 	}
 	
+	@GetMapping(path="retrieveClaimListingLength")
+	public @ResponseBody String retrieveClaimListingLength(RetrieveClaimListingRequest rclr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClaimListingLength");
+		logger.info("retrieveClaimListingLength : " + rclr.toString());
+		return claimsService.retrieveClaimListingLength(rclr);
+	}
+	
 	@GetMapping(path="retrieveClmGenInfo")
 	public @ResponseBody RetrieveClmGenInfoResponse retrieveClmGenInfo(RetrieveClmGenInfoRequest rcgir) throws SQLException {
 		logger.info("GET: /api/claims-service/retrieveClmGenInfo");

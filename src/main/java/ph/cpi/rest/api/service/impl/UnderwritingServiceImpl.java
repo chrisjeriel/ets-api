@@ -1,9 +1,11 @@
 package ph.cpi.rest.api.service.impl;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -423,16 +425,62 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		retrievePolicyListingParams.put("mode", rplp.getMode());
 		retrievePolicyListingParams.put("recount", rplp.getRecount());
+		retrievePolicyListingParams.put("statusArrStr", StringUtils.join(rplp.getStatusArr(),','));
 		
 		rplResponse.setPolicyList(underwritingDao.retrievePolicyListing(retrievePolicyListingParams));
-		if(!rplp.getRecount().equals("N")){
-			rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
-		}else{
-			rplResponse.setLength(Integer.parseInt(rplp.getLength()));
-		}
-		
+		// if(!rplp.getRecount().equals("N")){
+		// 	rplResponse.setLength(underwritingDao.retrievePolicyLength(retrievePolicyListingParams));
+		// }else{
+		// 	rplResponse.setLength(Integer.parseInt(rplp.getLength()));
+		// }
+		if(!rplp.getRecount().equals("N") && rplResponse.getPolicyList().size() !=0 ){
+//				rplResponse.setLength(quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams));
+				rplResponse.setLength(rplResponse.getPolicyList().get(0).getCnt());
+			}else if(!rplp.getRecount().equals("N") && rplResponse.getPolicyList().size() ==0) {
+				rplResponse.setLength(BigDecimal.valueOf(0));
+			}
 		
 		return rplResponse;
+	}
+	
+	public String retrievePolicyListingLength(RetrievePolicyListingRequest rplp) throws SQLException{
+		HashMap<String, Object> retrievePolicyListingParams = new HashMap<String, Object>();
+		
+		retrievePolicyListingParams.put("policyNo", rplp.getPolicyNo());
+		retrievePolicyListingParams.put("cessionDesc", rplp.getCessionDesc());
+		retrievePolicyListingParams.put("cedingName", rplp.getCedingName());
+		retrievePolicyListingParams.put("lineClassDesc", rplp.getLineClassDesc());
+		retrievePolicyListingParams.put("insuredDesc", rplp.getInsuredDesc());
+		retrievePolicyListingParams.put("riskName", rplp.getRiskName());
+		retrievePolicyListingParams.put("objectDesc", rplp.getObjectDesc());
+		retrievePolicyListingParams.put("site", rplp.getSite());
+		retrievePolicyListingParams.put("currencyCd", rplp.getCurrencyCd());
+		retrievePolicyListingParams.put("totalSiLess", rplp.getTotalSiLess());
+		retrievePolicyListingParams.put("totalSiGrt", rplp.getTotalSiGrt());
+		retrievePolicyListingParams.put("totalPremLess", rplp.getTotalPremLess());
+		retrievePolicyListingParams.put("totalPremGrt", rplp.getTotalPremGrt());
+		retrievePolicyListingParams.put("issueDateFrom", rplp.getIssueDateFrom());
+		retrievePolicyListingParams.put("issueDateTo", rplp.getIssueDateTo());
+		retrievePolicyListingParams.put("expiryDateFrom", rplp.getExpiryDateFrom());
+		retrievePolicyListingParams.put("expiryDateTo", rplp.getExpiryDateTo());
+		retrievePolicyListingParams.put("inceptDateFrom", rplp.getInceptDateFrom());
+		retrievePolicyListingParams.put("inceptDateTo", rplp.getInceptDateTo());
+		retrievePolicyListingParams.put("acctDateFrom", rplp.getAcctDateFrom());
+		retrievePolicyListingParams.put("acctDateTo", rplp.getAcctDateTo());
+		retrievePolicyListingParams.put("statusDesc", rplp.getStatusDesc());
+		retrievePolicyListingParams.put("lineCd", rplp.getLineCd());
+		
+		retrievePolicyListingParams.put("statusArr",rplp.getStatusArr());
+		
+		retrievePolicyListingParams.put("pagination", rplp.getPaginationRequest());
+		retrievePolicyListingParams.put("sort", rplp.getSortRequest());
+		retrievePolicyListingParams.put("search", rplp.getSearch());
+		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
+		
+		retrievePolicyListingParams.put("mode", rplp.getMode());
+		retrievePolicyListingParams.put("statusArrStr", StringUtils.join(rplp.getStatusArr(),','));
+		
+		return underwritingDao.retrievePolicyLength(retrievePolicyListingParams).toString();
 	}
 	
 	@Override

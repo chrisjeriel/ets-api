@@ -252,4 +252,6 @@ public interface UnderwritingService {
 	public RetrieveLastExtractInfoResponse retrieveLastExtractInfo() throws SQLException;
 	public RetrievePolDistListResponse retrieveNegateDistList(RetrievePolDistListRequest rpdir) throws SQLException;
 	public ExtGenRenExpPolicyResponse extractRenExpPolicy(ExtGenRenExpPolicyRequest erepr) throws SQLException;
+	
+	public String retrievePolicyListingLength(RetrievePolicyListingRequest rplp) throws SQLException;
 }

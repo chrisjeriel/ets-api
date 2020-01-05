@@ -318,6 +318,12 @@ public class UnderwritingController {
 		logger.info("RetrievePolicyListing : " + rplp.toString());
 		return underwritingService.retrievePolicyListing(rplp);
 	}
+	@GetMapping(path="retrievePolicyListingLength")
+	public @ResponseBody String retrievePolicyListingLength(RetrievePolicyListingRequest rplp) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolicyListing");
+		logger.info("retrievePolicyListingLength : " + rplp.toString());
+		return underwritingService.retrievePolicyListingLength(rplp);
+	}
 	
 	@PostMapping(path="savePolAlop")
 	public @ResponseBody SavePolAlopResponse savePolAlop(@RequestBody SavePolAlopRequest spap) throws SQLException {
