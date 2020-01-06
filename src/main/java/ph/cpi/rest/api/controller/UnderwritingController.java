@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrievePolDistInstRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
+import ph.cpi.rest.api.model.request.RetrievePolEndtDedRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
@@ -117,6 +118,7 @@ import ph.cpi.rest.api.model.response.RetrievePolDistInstResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
+import ph.cpi.rest.api.model.response.RetrievePolEndtDedResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
@@ -747,5 +749,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/extGenRenExpPolicy");
 		logger.info("ExtractRenExpPolicyRequest : " + erepr.toString());
 		return underwritingService.extractRenExpPolicy(erepr);
+	}
+	
+	@GetMapping(path="retrievePolEndtDed")
+	public @ResponseBody RetrievePolEndtDedResponse retrievePolEndtDed(RetrievePolEndtDedRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolEndtDed");
+		logger.info("RetrievePolEndtDedRequest : " + rpedr.toString());
+		return underwritingService.retrievePolEndtDed(rpedr);
 	}
 }

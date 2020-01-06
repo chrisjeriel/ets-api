@@ -19,6 +19,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.underwriting.BookingDate;
+import ph.cpi.rest.api.model.underwriting.Deductibles;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
@@ -698,5 +699,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Cession getPolCession(HashMap<String, Object> params) throws SQLException {
 		Cession cession = sqlSession.selectOne("getPolCession",params);
 		return cession;
+	}
+
+	@Override
+	public List<Deductibles> retrievePolEndtDed(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("retrievePolEndtDed",params);
 	}
 }
