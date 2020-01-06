@@ -1450,15 +1450,20 @@
 				QU_ENDT_PKG.save_qu_endt(
 					#{quoteId,jdbcType=INTEGER},#{optionId,jdbcType=INTEGER},#{endo.endtCd,jdbcType=INTEGER},
 					#{endo.remarks,jdbcType=VARCHAR},#{endo.createUser,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{endo.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),
+					NULL,
 					#{endo.updateUser,jdbcType=VARCHAR},
-					CAST(to_timestamp(#{endo.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+					NULL
 				);
 			</foreach>
 			
 			<foreach collection="saveDeductibleList" item="deductible">
 			   		QU_DEDUCTIBLES_PKG.save_qu_deductible(
-			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE),#{deductible.updateUser},CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS.ff3"Z"') AS DATE)
+			   			#{quoteId},#{optionId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd},
+			   			#{deductible.deductibleRt,jdbcType=VARCHAR},#{deductible.deductibleAmt,jdbcType=VARCHAR},
+			   			#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
+			   			NULL,
+			   			#{deductible.updateUser},
+			   			NULL
 			   		);
 			</foreach>
 		END;
