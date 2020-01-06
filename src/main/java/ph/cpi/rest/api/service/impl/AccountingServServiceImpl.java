@@ -736,7 +736,9 @@ public class AccountingServServiceImpl implements AccountingServService{
 			uacsParams.put("tranId", uacsr.getTranId());
 			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("printType", uacsr.getPrintType());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
+			uacsParams.put("cancelReason", uacsr.getCancelReason());
 			
 			HashMap<String, Object> response = acctServDao.updateAcseCvStat(uacsParams);
 			

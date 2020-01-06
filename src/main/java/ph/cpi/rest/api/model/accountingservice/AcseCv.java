@@ -59,6 +59,12 @@ public class AcseCv {
 	
 	private String refNo;
 	private String checkStatus;
+	
+	private DateTime acctEntDate;
+	
+	private String cancelReason;
+	private String prlExist;
+	
 	public String getCvGenNo() {
 		return cvGenNo;
 	}
@@ -371,6 +377,24 @@ public class AcseCv {
 	public void setCheckStatus(String checkStatus) {
 		this.checkStatus = checkStatus;
 	}
+	public DateTime getAcctEntDate() {
+		return acctEntDate;
+	}
+	public void setAcctEntDate(DateTime acctEntDate) {
+		this.acctEntDate = acctEntDate;
+	}
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
+	public String getPrlExist() {
+		return prlExist;
+	}
+	public void setPrlExist(String prlExist) {
+		this.prlExist = prlExist;
+	}
 	@Override
 	public String toString() {
 		return "AcseCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -389,6 +413,7 @@ public class AcseCv {
 				+ ", mainCloseDate=" + mainCloseDate + ", mainDeleteDate=" + mainDeleteDate + ", mainPostDate="
 				+ mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate=" + mainCreateDate
 				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", mainAcctEntDate="
-				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + "]";
+				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
+				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + "]";
 	}
 }
