@@ -2009,7 +2009,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		RetrievePolEndtDedResponse response = new RetrievePolEndtDedResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId", rpedr.getPolicyId());
-		params.put("endtCode", rpedr.getEndtCd());
+		params.put("lineCd", rpedr.getLineCd());
 		response.setDeductibles(underwritingDao.retrievePolEndtDed(params));
 		logger.info(response.toString());
 		return response;

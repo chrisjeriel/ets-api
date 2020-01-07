@@ -439,7 +439,7 @@
 	
 	<select id="retrievePolEndtDed" resultMap="assocDeductiblesMap" parameterType="java.util.Map">
 			SELECT * FROM TABLE(POL_ENDT_PKG.ret_pol_endt_ded(#{policyId, jdbcType=INTEGER},
-															  #{endtCode, jdbcType=VARCHAR}))
+															  #{lineCd, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Item" id="assocItemsMap">

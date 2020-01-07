@@ -2,21 +2,22 @@ package ph.cpi.rest.api.model.request;
 
 public class RetrievePolEndtDedRequest {
 	private String policyId;
-	private String endtCd;
+	private String lineCd;
 	public String getPolicyId() {
 		return policyId;
 	}
 	public void setPolicyId(String policyId) {
 		this.policyId = policyId;
 	}
-	public String getEndtCd() {
-		return endtCd;
+	public String getLineCd() {
+		return lineCd;
 	}
-	public void setEndtCd(String endtCd) {
-		this.endtCd = endtCd;
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
 	}
 	@Override
 	public String toString() {
-		return "RetrievePolEndtDedRequest [policyId=" + policyId + ", endtCd=" + endtCd + "]";
+		return "RetrievePolEndtDedRequest [policyId=" + policyId + ", lineCd=" + lineCd + "]";
 	}
+	
 }
