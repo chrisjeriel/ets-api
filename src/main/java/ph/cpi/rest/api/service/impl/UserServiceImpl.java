@@ -72,8 +72,6 @@ public class UserServiceImpl implements UserService {
 		uResponse.getPaginationResponse().setCount(rmur.getPaginationRequest().getCount());
 		uResponse.getSortResponse().setSortKey(rmur.getSortRequest().getSortKey());
 		uResponse.getSortResponse().setOrder(rmur.getSortRequest().getOrder());
-		
-		logger.info("retrieveMtnUsersResponse : " + uResponse.toString());
 		return uResponse;
 	}
 
@@ -85,8 +83,6 @@ public class UserServiceImpl implements UserService {
 		params.put("userId", rmuar.getUserId());
 		
 		uaResponse.setUserAccessList(userDao.retrieveMtnUserAccess(params));
-		
-		logger.info("retrieveMtnUserAccessResponse : " + uaResponse.toString());
 		return uaResponse;
 	}
 
@@ -98,8 +94,6 @@ public class UserServiceImpl implements UserService {
 		params.put("userGrp", rmugr.getUserGrp());
 	
 		ugResponse.setUserGroups(userDao.retrieveMtnUserGroup(params));
-		
-		logger.info("retrieveMtnUserGroupResponse : " + ugResponse.toString());
 		return ugResponse;
 	}
 
@@ -135,8 +129,6 @@ public class UserServiceImpl implements UserService {
 		saveApprovalParams.put("updateDate",sar.getUpdateDate());
 		
 		saResponse.setReturnCode(userDao.saveApproval(saveApprovalParams));
-		
-		logger.info("saveApproval : " + saResponse.toString());
 		return saResponse;
 	}
 
@@ -177,7 +169,6 @@ public class UserServiceImpl implements UserService {
 			if(smur.getUsersList().size() == 1 && smuResponse.getReturnCode() == -1){
 				smuResponse.setPassword(smur.getUsersList().get(0).getPassword());
 			}
-			logger.info("saveMtnUser : " + smuResponse.toString());
 		} catch (HibernateException e) {
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUHE", "HibernateException Exception : " + errorMsg));
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {
@@ -191,7 +182,6 @@ public class UserServiceImpl implements UserService {
 			smuResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGEN", "General Exception"));
 		}
 		
-		System.out.println("SaveMtnUserResponse : " + smuResponse);
 		return smuResponse;
 	}
 
@@ -205,7 +195,6 @@ public class UserServiceImpl implements UserService {
 		
 		try {
 			smugResponse.setReturnCode(userDao.saveMtnUserGrp(saveMtnUserGrpParams));
-			logger.info("saveMtnUserGrp : " + smugResponse.toString());
 		} catch (HibernateException e) {
 			smugResponse.getErrorList().add(new ph.cpi.rest.api.model.Error("SMUGHE", "HibernateException Exception : " + errorMsg));
 		} catch (org.springframework.dao.DataIntegrityViolationException e) {

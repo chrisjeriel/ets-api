@@ -274,4 +274,11 @@ public class ClaimsController {
 		logger.info("RetrieveClmPaytReqInqRequest : " + rcprr.toString());
 		return claimsService.retrieveClmPaytReqInq(rcprr);
 	}
+	
+	@GetMapping(path="checkExistingClaim")
+	public @ResponseBody String checkExistingClaim(String policyId) throws SQLException {
+		logger.info("GET: /api/claims-service/checkExistingClaim");
+		logger.info("checkExistingClaim : " + policyId.toString());
+		return claimsService.checkExistingClaim(policyId);
+	}
 }

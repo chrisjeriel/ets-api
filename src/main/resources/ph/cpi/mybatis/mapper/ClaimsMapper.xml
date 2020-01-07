@@ -1059,4 +1059,8 @@
 																  CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 																  ))
 	</select>
+	
+	<select id="checkExistingClaim" resultType="java.lang.String">
+		SELECT CLM_GEN_INFO_PKG.check_exist_clm(#{policyId}) FROM DUAL 
+	</select>
 </mapper>

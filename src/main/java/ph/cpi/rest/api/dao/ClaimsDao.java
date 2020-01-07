@@ -51,4 +51,6 @@ public interface ClaimsDao {
 	public List<ClaimPaytReqInq> retrieveClmPaytReqInq(final HashMap<String, Object> params) throws SQLException;
 
 	public Integer retrieveClaimListingLength(final HashMap<String, Object> params) throws SQLException;
+	
+	public String checkExistingClaim(final HashMap<String, Object> params) throws SQLException;
 }
