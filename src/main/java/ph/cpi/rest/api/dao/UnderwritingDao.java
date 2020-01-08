@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.underwriting.BookingDate;
+import ph.cpi.rest.api.model.underwriting.Deductibles;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
@@ -136,5 +137,6 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> extractRenExpPolicy(final HashMap<String, Object> params) throws SQLException;
 	
 	public Cession getPolCession(final HashMap<String, Object> params) throws SQLException;
-	
+
+	public List<Deductibles> retrievePolEndtDed(final HashMap<String, Object> params) throws SQLException;
 }

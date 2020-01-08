@@ -42,6 +42,7 @@ import ph.cpi.rest.api.model.request.RetrievePolDistInstRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
+import ph.cpi.rest.api.model.request.RetrievePolEndtDedRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
@@ -118,6 +119,7 @@ import ph.cpi.rest.api.model.response.RetrievePolDistInstResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
+import ph.cpi.rest.api.model.response.RetrievePolEndtDedResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
@@ -2051,5 +2053,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		}
 		
 		return resp;
+	}
+
+	@Override
+	public RetrievePolEndtDedResponse retrievePolEndtDed(RetrievePolEndtDedRequest rpedr) throws SQLException {
+		RetrievePolEndtDedResponse response = new RetrievePolEndtDedResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpedr.getPolicyId());
+		params.put("lineCd", rpedr.getLineCd());
+		response.setDeductibles(underwritingDao.retrievePolEndtDed(params));
+		logger.info(response.toString());
+		return response;
 	}
 }
