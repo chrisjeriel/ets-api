@@ -254,8 +254,8 @@
 		    
 		    IF #{isPrint, jdbcType=VARCHAR} IS NULL AND #{genAcctEnt} <![CDATA[ = ]]> 'Y' THEN
 			    <!-- Generate Tax Details -->
-			    <!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message); -->
-			    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', v_tran_id, #{tranTypeCd}, #{createUser}, #{updateUser});
+			    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{tranTypeCd}, v_tran_id, v_message);
+			    <!-- ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', v_tran_id, #{tranTypeCd}, #{createUser}, #{updateUser}); -->
 			    
 			    <!-- Generate Accounting Entries -->
 			    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{tranTypeCd}, v_tran_id, v_message);
@@ -619,8 +619,9 @@
 													#{updateUser},
 													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
 													
-			ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
-		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
+			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser}); -->
+		    <!-- ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});  -->
+		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
 		    
 		    <!-- Generate Accounting Entries -->
 		    GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
@@ -675,6 +676,7 @@
 	<update id="saveAcsePrqTrans" parameterType="java.util.Map" statementType="CALLABLE">
 		DECLARE
 			v_item_no		NUMBER;
+			v_message		VARCHAR2(500);
 		BEGIN
 			<foreach item="del" collection="delCvItemTaxes">
 				<!-- Delete data from ACSE_CV_ITEMTAXES first since it's a child table -->
@@ -731,7 +733,8 @@
 				</foreach>
 			</foreach>
 			
-			ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,#{tranTypeCd},#{createUser},#{updateUser},#{reqId});
+			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,#{tranTypeCd},#{createUser},#{updateUser},#{reqId}); -->
+			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', #{tranTypeCd}, #{reqId}, v_message);
 		END;
 	</update>
 	
@@ -1135,8 +1138,10 @@
 			<!-- Generate Tax Details -->
 			<!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message); -->
 			    
-			ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
-		    ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});
+			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser}); -->
+		    <!-- ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser}); -->
+		    
+		    GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
 		    
 		    <!-- Generate Accounting Entries -->
 			GENERATE_ACCSE_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('OR', #{billType}, #{tranId}, v_message);
@@ -1607,6 +1612,7 @@
 			v_item_no		NUMBER;
 			v_create_user   VARCHAR2(10);
 			v_update_user	VARCHAR2(10);
+			v_message		VARCHAR2(500);
 		BEGIN
 			<foreach item="del" collection="delCvItemTaxes">
 				v_req_id := #{del.reqId,jdbcType=INTEGER};
@@ -1670,7 +1676,8 @@
 				</foreach>
 			</foreach>
 			
-			ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,6,v_create_user,v_update_user,v_req_id);
+			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,6,v_create_user,v_update_user,v_req_id); -->
+			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', 6, v_req_id, v_message);
 		END;
 	</update>
 	
@@ -1743,6 +1750,7 @@
 			v_item_no		NUMBER;
 			v_create_user   VARCHAR2(10);
 			v_update_user	VARCHAR2(10);
+			v_message		VARCHAR2(500);
 		BEGIN
 			<foreach item="del" collection="delCvItemTaxes">
 				<!-- Delete data from ACSE_CV_ITEMTAXES first since it's a child table -->
@@ -1806,7 +1814,8 @@
 					);
 				</foreach>	
 			</foreach>
-			ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,7,v_create_user,v_update_user,v_req_id);
+			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,7,v_create_user,v_update_user,v_req_id); -->
+			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', 7, v_req_id, v_message);
 		END;
 	</update>
 	
