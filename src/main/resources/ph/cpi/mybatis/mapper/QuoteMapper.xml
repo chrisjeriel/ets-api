@@ -1272,7 +1272,7 @@
 			);
 			
 			
-        	QU_GEN_INFO_PKG.update_int_comp(#{outQuoteId, mode=OUT, jdbcType=INTEGER});
+        	<!-- QU_GEN_INFO_PKG.update_int_comp(#{outQuoteId, mode=OUT, jdbcType=INTEGER}); -->
 		END;
 	</update>
 
