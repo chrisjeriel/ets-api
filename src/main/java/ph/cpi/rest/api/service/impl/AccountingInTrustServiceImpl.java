@@ -1710,8 +1710,12 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
 
-	        String checkNo = acctITDao.validateCheckNo(sacParams);	        
-	        if(checkNo.equalsIgnoreCase("-100")) {
+	        String checkNo = acctITDao.validateCheckNo(sacParams);	   
+	        String isCvNoAvail =  acctITDao.isCvNoAvail();
+
+	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
+	        	sacResponse.setReturnCode(-300);
+	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
 	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
