@@ -139,6 +139,13 @@ public class QuoteController {
 		return quoteService.retrieveQuoteListing(rqlp);
 	}
 	
+	@GetMapping(path="retrieveQuoteListingLength")
+	public @ResponseBody String retrieveQuoteListingLength(RetrieveQuoteListingRequest rqlp) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteListingLength");
+		logger.info("RetrieveQuoteListingRequest : " + rqlp.toString());
+		return quoteService.retrieveQuoteListingLength(rqlp);
+	}
+	
 	
 	@GetMapping(path="retrieveQuoteHoldCover")
 	public @ResponseBody RetrieveQuoteHoldCoverResponse retrieveQuoteHoldCover(RetrieveQuoteHoldCoverRequest rqhcp) throws SQLException {

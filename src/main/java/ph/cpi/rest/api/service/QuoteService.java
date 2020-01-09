@@ -161,5 +161,7 @@ public interface QuoteService {
 	public SaveQuReptextResponse saveQuReptext(SaveQuReptextRequest spir ) throws SQLException;
 	
 	public RetrieveQuReptextResponse retrieveQuReptext(RetrieveQuReptextRequest spir ) throws SQLException;
+	
+	public String retrieveQuoteListingLength(RetrieveQuoteListingRequest rqlp) throws SQLException;
 
 }

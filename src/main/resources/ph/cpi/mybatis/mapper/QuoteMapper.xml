@@ -623,7 +623,8 @@
 															   '',
 															   '',
 															   '',
-															   '',#{siFrom, jdbcType=VARCHAR},
+															   '',
+															   #{siFrom, jdbcType=VARCHAR},
 															#{siTo, jdbcType=VARCHAR},
 															#{rateFrom, jdbcType=VARCHAR},
 															#{rateTo, jdbcType=VARCHAR},
@@ -634,6 +635,8 @@
 																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
 															#{openCoverTag,jdbcType=VARCHAR}
 															))	a
+															
+															
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
