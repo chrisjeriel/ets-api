@@ -5,6 +5,7 @@ import java.util.List;
 public class SaveAcseInsuranceExpRequest {
 	private List<InsExpAcse> deleteInsuranceExp;
 	private List<InsExpAcse> saveInsuranceExp;
+	private List<SaveCvItemTaxes> delCvItemTaxes;
 	public List<InsExpAcse> getDeleteInsuranceExp() {
 		return deleteInsuranceExp;
 	}
@@ -17,10 +18,16 @@ public class SaveAcseInsuranceExpRequest {
 	public void setSaveInsuranceExp(List<InsExpAcse> saveInsuranceExp) {
 		this.saveInsuranceExp = saveInsuranceExp;
 	}
+	public List<SaveCvItemTaxes> getDelCvItemTaxes() {
+		return delCvItemTaxes;
+	}
+	public void setDelCvItemTaxes(List<SaveCvItemTaxes> delCvItemTaxes) {
+		this.delCvItemTaxes = delCvItemTaxes;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseInsuranceExpRequest [deleteInsuranceExp=" + deleteInsuranceExp + ", saveInsuranceExp="
-				+ saveInsuranceExp + "]";
+				+ saveInsuranceExp + ", delCvItemTaxes=" + delCvItemTaxes + "]";
 	}
 }
 
@@ -39,6 +46,9 @@ class InsExpAcse {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	private List<SaveCvItemTaxes> taxAllocation;
+	
 	public String getReqId() {
 		return reqId;
 	}
@@ -123,12 +133,18 @@ class InsExpAcse {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public List<SaveCvItemTaxes> getTaxAllocation() {
+		return taxAllocation;
+	}
+	public void setTaxAllocation(List<SaveCvItemTaxes> taxAllocation) {
+		this.taxAllocation = taxAllocation;
+	}
 	@Override
 	public String toString() {
 		return "InsExpAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", insuredTypeCd=" + insuredTypeCd + ", insuredCd="
 				+ insuredCd + ", insuredName=" + insuredName + ", insuranceType=" + insuranceType + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", insuredAmt=" + insuredAmt + ", localAmt=" + localAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", taxAllocation=" + taxAllocation + "]";
 	}
 }
