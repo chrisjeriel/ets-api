@@ -1575,6 +1575,10 @@
 		}
 	</update>
 	
+	<select id="isCvNoAvailAcse" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT PMMSC.ACSE_CHECK_VOUCHER_PKG.is_cv_no_avail FROM DUAL
+	</select>
+	
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcsePerDiem" id="acsePerDiemMap">
 		<result property="reqId" 			column="REQ_ID"/>
 		<result property="itemNo" 			column="ITEM_NO"/>

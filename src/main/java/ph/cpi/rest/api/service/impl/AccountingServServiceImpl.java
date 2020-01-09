@@ -656,7 +656,11 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        sacParams.put("postDate", sacr.getPostDate());
 	        
 	        String checkNo = acctServDao.validateCheckNo(sacParams);
-	        if(checkNo.equalsIgnoreCase("-100")) {
+	        String isCvNoAvail =  acctServDao.isCvNoAvail();
+	        
+	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
+	        	sacResponse.setReturnCode(-300);
+	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
 	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
