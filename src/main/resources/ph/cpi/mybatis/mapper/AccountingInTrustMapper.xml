@@ -3328,6 +3328,7 @@
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
 		<result property="acctEntDate" 		column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cancelReason"	 	column="CANCEL_REASON"/>
+		<result property="prlExist"		 	column="PRL_EXIST"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
@@ -4366,6 +4367,10 @@
 			#{validateCheckNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_CHECK_VOUCHER_PKG.ret_mtn_check_no(#{bank},#{bankAcct},#{checkNo},#{tranId, jdbcType=INTEGER})
 		}
 	</update>
+	
+	<select id="isCvNoAvail" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT PMMSC.ACIT_CHECK_VOUCHER_PKG.is_cv_no_avail FROM DUAL
+	</select>
 	
 	<update id="validateServfee" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN

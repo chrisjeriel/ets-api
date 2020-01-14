@@ -6,6 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 public class Policy {
+	private BigDecimal cnt;
 	private Integer policyId;
 	private String policyNo;
 	private String lineCd;
@@ -97,6 +98,12 @@ public class Policy {
 	private String oldPolicyNo;
 	
 	
+	public BigDecimal getCnt() {
+		return cnt;
+	}
+	public void setCnt(BigDecimal cnt) {
+		this.cnt = cnt;
+	}
 	public String getCoAltRefNo() {
 		return coAltRefNo;
 	}
@@ -609,34 +616,34 @@ public class Policy {
 	}
 	@Override
 	public String toString() {
-		return "Policy [policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd + ", lineCdDesc="
-				+ lineCdDesc + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId=" + cedingId
-				+ ", cedingName=" + cedingName + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", cessionId="
-				+ cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd + ", lineClassDesc="
-				+ lineClassDesc + ", quoteId=" + quoteId + ", optionId=" + optionId + ", quotationNo=" + quotationNo
-				+ ", holdCoverNo=" + holdCoverNo + ", status=" + status + ", statusDesc=" + statusDesc + ", coRefNo="
-				+ coRefNo + ", reinsurerId=" + reinsurerId + ", reinsurerName=" + reinsurerName + ", riBinderNo="
-				+ riBinderNo + ", mbiRefNo=" + mbiRefNo + ", policyIdOc=" + policyIdOc + ", openPolicyNo="
-				+ openPolicyNo + ", refOpenPolNo=" + refOpenPolNo + ", intmId=" + intmId + ", intmName=" + intmName
-				+ ", principalId=" + principalId + ", principalName=" + principalName + ", contractorId=" + contractorId
-				+ ", contractorName=" + contractorName + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate
-				+ ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo
-				+ ", maintenanceFrom=" + maintenanceFrom + ", maintenanceTo=" + maintenanceTo + ", issueDate="
-				+ issueDate + ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate=" + acctDate
-				+ ", currencyCd=" + currencyCd + ", currencyRt=" + currencyRt + ", bookedTag=" + bookedTag
-				+ ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag + ", holdCoverTag=" + holdCoverTag
-				+ ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag + ", altTag=" + altTag
-				+ ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag + ", extensionTag=" + extensionTag
-				+ ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId + ", wordings=" + wordings
-				+ ", distStatDesc=" + distStatDesc + ", premTag=" + premTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", deductibles=" + deductibles + ", project=" + project + ", endorsements=" + endorsements
-				+ ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance=" + coInsurance
-				+ ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril + ", alterationHist="
-				+ alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText + ", lastAffectingPolId="
-				+ lastAffectingPolId + ", coTermTag=" + coTermTag + ", coTermText=" + coTermText + ", mbiPolicyId="
-				+ mbiPolicyId + ", coAltRefNo=" + coAltRefNo + ", repPolicyNo=" + repPolicyNo + ", oldPolicyNo="
-				+ oldPolicyNo + "]";
+		return "Policy [cnt=" + cnt + ", policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd
+				+ ", lineCdDesc=" + lineCdDesc + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo + ", cedingId="
+				+ cedingId + ", cedingName=" + cedingName + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo
+				+ ", cessionId=" + cessionId + ", cessionDesc=" + cessionDesc + ", lineClassCd=" + lineClassCd
+				+ ", lineClassDesc=" + lineClassDesc + ", quoteId=" + quoteId + ", optionId=" + optionId
+				+ ", quotationNo=" + quotationNo + ", holdCoverNo=" + holdCoverNo + ", status=" + status
+				+ ", statusDesc=" + statusDesc + ", coRefNo=" + coRefNo + ", reinsurerId=" + reinsurerId
+				+ ", reinsurerName=" + reinsurerName + ", riBinderNo=" + riBinderNo + ", mbiRefNo=" + mbiRefNo
+				+ ", policyIdOc=" + policyIdOc + ", openPolicyNo=" + openPolicyNo + ", refOpenPolNo=" + refOpenPolNo
+				+ ", intmId=" + intmId + ", intmName=" + intmName + ", principalId=" + principalId + ", principalName="
+				+ principalName + ", contractorId=" + contractorId + ", contractorName=" + contractorName
+				+ ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
+				+ ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", maintenanceFrom=" + maintenanceFrom
+				+ ", maintenanceTo=" + maintenanceTo + ", issueDate=" + issueDate + ", effDate=" + effDate
+				+ ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd=" + currencyCd + ", currencyRt="
+				+ currencyRt + ", bookedTag=" + bookedTag + ", govtTag=" + govtTag + ", openCoverTag=" + openCoverTag
+				+ ", holdCoverTag=" + holdCoverTag + ", declarationTag=" + declarationTag + ", minDepTag=" + minDepTag
+				+ ", altTag=" + altTag + ", specialPolicyTag=" + specialPolicyTag + ", instTag=" + instTag
+				+ ", extensionTag=" + extensionTag + ", excludeDistTag=" + excludeDistTag + ", coinsGrpId=" + coinsGrpId
+				+ ", wordings=" + wordings + ", distStatDesc=" + distStatDesc + ", premTag=" + premTag + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + ", deductibles=" + deductibles + ", project=" + project + ", endorsements="
+				+ endorsements + ", attachments=" + attachments + ", inwPolBalance=" + inwPolBalance + ", coInsurance="
+				+ coInsurance + ", alop=" + alop + ", holdCoverList=" + holdCoverList + ", catPeril=" + catPeril
+				+ ", alterationHist=" + alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText
+				+ ", lastAffectingPolId=" + lastAffectingPolId + ", coTermTag=" + coTermTag + ", coTermText="
+				+ coTermText + ", mbiPolicyId=" + mbiPolicyId + ", coAltRefNo=" + coAltRefNo + ", repPolicyNo="
+				+ repPolicyNo + ", oldPolicyNo=" + oldPolicyNo + "]";
 	}
 	
 }

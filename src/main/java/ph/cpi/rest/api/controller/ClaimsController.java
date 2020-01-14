@@ -74,7 +74,7 @@ import ph.cpi.rest.api.service.ClaimsService;
 						"http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", 
 						"http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888", 
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
-						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201","http://192.168.1.4:4200"})
 @RequestMapping(path="/claims-service")
 public class ClaimsController {
 	
@@ -102,6 +102,13 @@ public class ClaimsController {
 		logger.info("GET: /api/claims-service/retrieveClaimListing");
 		logger.info("RetrieveClaimListingRequest : " + rclr.toString());
 		return claimsService.retrieveClaimListing(rclr);
+	}
+	
+	@GetMapping(path="retrieveClaimListingLength")
+	public @ResponseBody String retrieveClaimListingLength(RetrieveClaimListingRequest rclr) throws SQLException {
+		logger.info("GET: /api/claims-service/retrieveClaimListingLength");
+		logger.info("retrieveClaimListingLength : " + rclr.toString());
+		return claimsService.retrieveClaimListingLength(rclr);
 	}
 	
 	@GetMapping(path="retrieveClmGenInfo")

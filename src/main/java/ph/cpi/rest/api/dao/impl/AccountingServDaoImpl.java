@@ -381,6 +381,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		sqlSession.update("validateCheckNoAcse",params);
 		return (String) params.get("validateCheckNo");
 	}
+	
+	@Override
+	public String isCvNoAvail() throws SQLException {
+		String result = sqlSession.selectOne("isCvNoAvailAcse");
+		return result;
+	}
 
 	@Override
 	public List<AcsePerDiem> retrieveAcsePerDiem(HashMap<String, Object> params) throws SQLException {

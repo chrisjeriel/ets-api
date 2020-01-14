@@ -656,7 +656,11 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        sacParams.put("postDate", sacr.getPostDate());
 	        
 	        String checkNo = acctServDao.validateCheckNo(sacParams);
-	        if(checkNo.equalsIgnoreCase("-100")) {
+	        String isCvNoAvail =  acctServDao.isCvNoAvail();
+	        
+	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
+	        	sacResponse.setReturnCode(-300);
+	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
 	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
@@ -736,7 +740,9 @@ public class AccountingServServiceImpl implements AccountingServService{
 			uacsParams.put("tranId", uacsr.getTranId());
 			uacsParams.put("checkId", uacsr.getCheckId());
 			uacsParams.put("cvStatus", uacsr.getCvStatus());
+			uacsParams.put("printType", uacsr.getPrintType());
 			uacsParams.put("updateUser", uacsr.getUpdateUser());
+			uacsParams.put("cancelReason", uacsr.getCancelReason());
 			
 			HashMap<String, Object> response = acctServDao.updateAcseCvStat(uacsParams);
 			
@@ -1205,6 +1211,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		try {
 			sapdParams.put("deletePerDiem", saptr.getDeletePerDiem());
 			sapdParams.put("savePerDiem", saptr.getSavePerDiem());
+			sapdParams.put("delCvItemTaxes", saptr.getDelCvItemTaxes());
 			
 			HashMap<String, Object> response = acctServDao.saveAcsePerDiem(sapdParams);
 			sapdResponse.setReturnCode((Integer) response.get("errorCode"));
@@ -1281,6 +1288,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		try {
 			saieParams.put("deleteInsuranceExp", saier.getDeleteInsuranceExp());
 			saieParams.put("saveInsuranceExp", saier.getSaveInsuranceExp());
+			saieParams.put("delCvItemTaxes", saier.getDelCvItemTaxes());
 			
 			HashMap<String, Object> response = acctServDao.saveAcseInsuranceExp(saieParams);
 			saieResponse.setReturnCode((Integer) response.get("errorCode"));

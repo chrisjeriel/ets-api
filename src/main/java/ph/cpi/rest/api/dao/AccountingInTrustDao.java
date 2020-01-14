@@ -227,6 +227,7 @@ public interface AccountingInTrustDao {
 	public Integer updateSoaCv(final HashMap<String, Object> params) throws SQLException;
 	public AcitEditedAcctEntries retrieveAcitEditedAcctEntries (final HashMap<String, Object> params) throws SQLException;
 	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
+	public String isCvNoAvail() throws SQLException;
 	public HashMap<String, Object> validateServfee(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitEomUnpostedMonth> retrieveAcctPrqServFeeMonths(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitOsQsoa> retrieveAcitOsQsoa(final HashMap<String, Object> params) throws SQLException;

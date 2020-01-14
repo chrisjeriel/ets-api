@@ -41,6 +41,7 @@ import ph.cpi.rest.api.model.request.RetrievePolDistInstRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistRequest;
 import ph.cpi.rest.api.model.request.RetrievePolDistWarningRequest;
+import ph.cpi.rest.api.model.request.RetrievePolEndtDedRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtOcRequest;
 import ph.cpi.rest.api.model.request.RetrievePolEndtRequest;
 import ph.cpi.rest.api.model.request.RetrievePolForPurgingRequest;
@@ -117,6 +118,7 @@ import ph.cpi.rest.api.model.response.RetrievePolDistInstResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistResponse;
 import ph.cpi.rest.api.model.response.RetrievePolDistWarningResponse;
+import ph.cpi.rest.api.model.response.RetrievePolEndtDedResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtOcResponse;
 import ph.cpi.rest.api.model.response.RetrievePolEndtResponse;
 import ph.cpi.rest.api.model.response.RetrievePolForPurgingResponse;
@@ -171,7 +173,7 @@ import ph.cpi.rest.api.service.UnderwritingService;
 						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
 						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
-						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201","http://192.168.1.4:4200"})
 @RequestMapping(path="/underwriting-service")
 public class UnderwritingController {
 
@@ -317,6 +319,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolicyListing");
 		logger.info("RetrievePolicyListing : " + rplp.toString());
 		return underwritingService.retrievePolicyListing(rplp);
+	}
+	@GetMapping(path="retrievePolicyListingLength")
+	public @ResponseBody String retrievePolicyListingLength(RetrievePolicyListingRequest rplp) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolicyListing");
+		logger.info("retrievePolicyListingLength : " + rplp.toString());
+		return underwritingService.retrievePolicyListingLength(rplp);
 	}
 	
 	@PostMapping(path="savePolAlop")
@@ -747,5 +755,12 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/extGenRenExpPolicy");
 		logger.info("ExtractRenExpPolicyRequest : " + erepr.toString());
 		return underwritingService.extractRenExpPolicy(erepr);
+	}
+	
+	@GetMapping(path="retrievePolEndtDed")
+	public @ResponseBody RetrievePolEndtDedResponse retrievePolEndtDed(RetrievePolEndtDedRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolEndtDed");
+		logger.info("RetrievePolEndtDedRequest : " + rpedr.toString());
+		return underwritingService.retrievePolEndtDed(rpedr);
 	}
 }

@@ -69,6 +69,7 @@ public interface ClaimsService {
 	public RetrieveClaimHistoryResponse retrieveClaimHistory(RetrieveClaimHistoryRequest rchp ) throws SQLException;
 	public SaveClaimHistoryResponse saveClaimHistory(SaveClaimHistoryRequest schr) throws SQLException;
 	public RetrieveClaimListingResponse retrieveClaimListing(RetrieveClaimListingRequest rclr) throws SQLException;
+	public String retrieveClaimListingLength(RetrieveClaimListingRequest rclr) throws SQLException;
 	public RetrieveClmGenInfoResponse retrieveClmGenInfo(RetrieveClmGenInfoRequest rcgir) throws SQLException;
 	public RetrieveClaimSecCoverResponse retrieveClaimSecCover(RetrieveClaimSecCoverRequest rcsr)throws SQLException;
 	public SaveClaimSecCoverResponse saveClaimSecCover(SaveClaimSecCoverRequest scsr)throws SQLException;

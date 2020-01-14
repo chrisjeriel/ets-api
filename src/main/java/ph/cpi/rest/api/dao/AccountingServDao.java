@@ -88,6 +88,7 @@ public interface AccountingServDao {
 	public Integer printInvoiceBatch(final HashMap<String,Object> params) throws SQLException;
 	
 	public String validateCheckNo(final HashMap<String, Object> params) throws SQLException;
+	public String isCvNoAvail() throws SQLException;
 	public List<AcsePerDiem> retrieveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveAcsePerDiem(final HashMap<String, Object> params) throws SQLException;
 	public List<AcseDcbCollection> retrieveAcseDcbCollection(final HashMap<String, Object> params) throws SQLException;

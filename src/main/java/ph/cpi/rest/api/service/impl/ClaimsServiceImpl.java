@@ -134,7 +134,7 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("search", rclr.getSearch());
 		params.put("fromInq", rclr.getFromInq());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
-		response.setLength(claimsDao.retrieveClaimListingLength(params));
+//		response.setLength(claimsDao.retrieveClaimListingLength(params));
 		return response;
 	}
 
@@ -692,5 +692,31 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId", policyId);
 		return claimsDao.checkExistingClaim(params);
+	}
+
+	@Override
+	public String retrieveClaimListingLength(RetrieveClaimListingRequest rclr) throws SQLException {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("claimNo", rclr.getClaimNo());
+		params.put("cedingName", rclr.getCedingName());
+		params.put("clmStatus", rclr.getClmStatus());
+		params.put("policyNo", rclr.getPolicyNo());
+		params.put("insuredDesc", rclr.getInsuredDesc());
+		params.put("riskName", rclr.getRiskName());
+		params.put("lossDateFrom", rclr.getLossDateFrom());
+		params.put("lossDateTo", rclr.getLossDateTo());
+		params.put("totalResFrom", rclr.getTotalResFrom());
+		params.put("totalResTo", rclr.getTotalResTo());
+		params.put("totalPaytFrom", rclr.getTotalPaytFrom());
+		params.put("totalPaytTo", rclr.getTotalPaytTo());
+		params.put("adjName", rclr.getAdjName());
+		params.put("currencyCd", rclr.getCurrencyCd());
+		params.put("processedBy", rclr.getProcessedBy());
+		
+		params.put("pagination", rclr.getPaginationRequest());
+		params.put("sort", rclr.getSortRequest());
+		params.put("search", rclr.getSearch());
+		params.put("fromInq", rclr.getFromInq());
+		return claimsDao.retrieveClaimListingLength(params).toString();
 	}
 }
