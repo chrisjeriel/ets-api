@@ -65,6 +65,13 @@ public class AcseCv {
 	private String cancelReason;
 	private String prlExist;
 	
+	private String disbType;
+	private Integer destBank;
+	private String destBankDesc;
+	private String destAcctNo;
+	private String destAcctName;
+	private String btRefNo;
+	
 	public String getCvGenNo() {
 		return cvGenNo;
 	}
@@ -395,6 +402,42 @@ public class AcseCv {
 	public void setPrlExist(String prlExist) {
 		this.prlExist = prlExist;
 	}
+	public String getDisbType() {
+		return disbType;
+	}
+	public void setDisbType(String disbType) {
+		this.disbType = disbType;
+	}
+	public Integer getDestBank() {
+		return destBank;
+	}
+	public void setDestBank(Integer destBank) {
+		this.destBank = destBank;
+	}
+	public String getDestBankDesc() {
+		return destBankDesc;
+	}
+	public void setDestBankDesc(String destBankDesc) {
+		this.destBankDesc = destBankDesc;
+	}
+	public String getDestAcctNo() {
+		return destAcctNo;
+	}
+	public void setDestAcctNo(String destAcctNo) {
+		this.destAcctNo = destAcctNo;
+	}
+	public String getDestAcctName() {
+		return destAcctName;
+	}
+	public void setDestAcctName(String destAcctName) {
+		this.destAcctName = destAcctName;
+	}
+	public String getBtRefNo() {
+		return btRefNo;
+	}
+	public void setBtRefNo(String btRefNo) {
+		this.btRefNo = btRefNo;
+	}
 	@Override
 	public String toString() {
 		return "AcseCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -414,6 +457,36 @@ public class AcseCv {
 				+ mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate=" + mainCreateDate
 				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", mainAcctEntDate="
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
-				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + "]";
+				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + ", disbType=" + disbType + ", destBank="
+				+ destBank + ", destBankDesc=" + destBankDesc + ", destAcctNo=" + destAcctNo + ", destAcctName="
+				+ destAcctName + ", btRefNo=" + btRefNo + ", getCvGenNo()=" + getCvGenNo() + ", getTranId()="
+				+ getTranId() + ", getCvYear()=" + getCvYear() + ", getCvNo()=" + getCvNo() + ", getCvDate()="
+				+ getCvDate() + ", getCvStatus()=" + getCvStatus() + ", getCvStatusDesc()=" + getCvStatusDesc()
+				+ ", getPaytReqType()=" + getPaytReqType() + ", getPaytReqTypeDesc()=" + getPaytReqTypeDesc()
+				+ ", getPayeeClassCd()=" + getPayeeClassCd() + ", getPayeeCd()=" + getPayeeCd() + ", getPayee()="
+				+ getPayee() + ", getParticulars()=" + getParticulars() + ", getBank()=" + getBank()
+				+ ", getBankDesc()=" + getBankDesc() + ", getBankAcct()=" + getBankAcct() + ", getBankAcctDesc()="
+				+ getBankAcctDesc() + ", getCheckId()=" + getCheckId() + ", getCheckNo()=" + getCheckNo()
+				+ ", getCheckDate()=" + getCheckDate() + ", getCheckClass()=" + getCheckClass()
+				+ ", getCheckClassDesc()=" + getCheckClassDesc() + ", getCurrCd()=" + getCurrCd() + ", getCurrRate()="
+				+ getCurrRate() + ", getCvAmt()=" + getCvAmt() + ", getLocalAmt()=" + getLocalAmt()
+				+ ", getPreparedBy()=" + getPreparedBy() + ", getPreparedDate()=" + getPreparedDate()
+				+ ", getCertifiedBy()=" + getCertifiedBy() + ", getCertifiedDate()=" + getCertifiedDate()
+				+ ", getCreateUser()=" + getCreateUser() + ", getCreateDate()=" + getCreateDate() + ", getUpdateUser()="
+				+ getUpdateUser() + ", getUpdateDate()=" + getUpdateDate() + ", getMainTranId()=" + getMainTranId()
+				+ ", getMainTranDate()=" + getMainTranDate() + ", getMainTranClass()=" + getMainTranClass()
+				+ ", getMainTranTypeCd()=" + getMainTranTypeCd() + ", getMainTranYear()=" + getMainTranYear()
+				+ ", getMainTranClassNo()=" + getMainTranClassNo() + ", getMainTranStat()=" + getMainTranStat()
+				+ ", getMainTranStatDesc()=" + getMainTranStatDesc() + ", getMainCloseDate()=" + getMainCloseDate()
+				+ ", getMainDeleteDate()=" + getMainDeleteDate() + ", getMainPostDate()=" + getMainPostDate()
+				+ ", getMainCreateUser()=" + getMainCreateUser() + ", getMainCreateDate()=" + getMainCreateDate()
+				+ ", getMainUpdateUser()=" + getMainUpdateUser() + ", getMainUpdateDate()=" + getMainUpdateDate()
+				+ ", getMainAcctEntDate()=" + getMainAcctEntDate() + ", getRefNo()=" + getRefNo()
+				+ ", getCheckStatus()=" + getCheckStatus() + ", getAcctEntDate()=" + getAcctEntDate()
+				+ ", getCancelReason()=" + getCancelReason() + ", getPrlExist()=" + getPrlExist() + ", getDisbType()="
+				+ getDisbType() + ", getDestBank()=" + getDestBank() + ", getDestBankDesc()=" + getDestBankDesc()
+				+ ", getDestAcctNo()=" + getDestAcctNo() + ", getDestAcctName()=" + getDestAcctName()
+				+ ", getBtRefNo()=" + getBtRefNo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 }

@@ -850,6 +850,12 @@
 		<result property="acctEntDate" 		column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cancelReason"	 	column="CANCEL_REASON"/>
 		<result property="prlExist"		 	column="PRL_EXIST"/>
+		<result property="disbType"		 	column="DISB_TYPE"/>
+		<result property="destBank"		 	column="DEST_BANK"/>
+		<result property="destBankDesc"		column="DEST_BANK_DESC"/>
+		<result property="destAcctNo"		column="DEST_ACCT_NO"/>
+		<result property="destAcctName"		column="DEST_ACCT_NAME"/>
+		<result property="btRefNo"		 	column="BT_REF_NO"/>
 	</resultMap>
 	
 	<select id="retrieveAcseCv" resultMap="acseCvMap" parameterType="java.util.Map">
