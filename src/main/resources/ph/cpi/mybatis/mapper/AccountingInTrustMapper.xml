@@ -4368,6 +4368,10 @@
 		}
 	</update>
 	
+	<select id="isCvNoAvail" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT PMMSC.ACIT_CHECK_VOUCHER_PKG.is_cv_no_avail FROM DUAL
+	</select>
+	
 	<update id="validateServfee" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ACCT_SERVFEE_DTL_DIST_PKG.validate_servfee(#{reqId, jdbcType=INTEGER},
