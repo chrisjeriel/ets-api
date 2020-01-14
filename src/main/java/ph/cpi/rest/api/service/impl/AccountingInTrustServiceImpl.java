@@ -1722,14 +1722,14 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        	sacResponse.setReturnCode(-300);
 	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
-	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo()) || sacr.getDisbType().equals("BT")) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
 	        	HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
 		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
 		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
 		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
 		        sacResponse.setReturnCode(-1);
-	        }else {
+	        } else if(sacr.getDisbType().equals("CK")) {
 	        	sacResponse.setReturnCode(2);
 	        	sacResponse.setCheckNo(checkNo);
 	        }
