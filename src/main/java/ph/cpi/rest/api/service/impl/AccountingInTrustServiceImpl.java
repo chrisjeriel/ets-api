@@ -1709,6 +1709,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("closeDate", sacr.getCloseDate());
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
+	        sacParams.put("disbType", sacr.getDisbType());
+	        sacParams.put("destAcctNo", sacr.getDestAcctNo());
+	        sacParams.put("destAcctName", sacr.getDestAcctName());
+	        sacParams.put("btRefNo", sacr.getBtRefNo());
+	        sacParams.put("swiftCd", sacr.getSwiftCd());
 
 	        String checkNo = acctITDao.validateCheckNo(sacParams);	   
 	        String isCvNoAvail =  acctITDao.isCvNoAvail();

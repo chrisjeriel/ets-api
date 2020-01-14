@@ -856,6 +856,7 @@
 		<result property="destAcctNo"		column="DEST_ACCT_NO"/>
 		<result property="destAcctName"		column="DEST_ACCT_NAME"/>
 		<result property="btRefNo"		 	column="BT_REF_NO"/>
+		<result property="swiftCd"		 	column="SWIFT_CD"/>
 	</resultMap>
 	
 	<select id="retrieveAcseCv" resultMap="acseCvMap" parameterType="java.util.Map">
@@ -908,7 +909,13 @@
 				#{tranStat, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{closeDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{deleteDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{disbType, jdbcType=VARCHAR},
+				#{destBank, jdbcType=INTEGER},
+				#{destAcctNo, jdbcType=VARCHAR},
+				#{destAcctName, jdbcType=VARCHAR},
+				#{btRefNo, jdbcType=VARCHAR},
+				#{swiftCd, jdbcType=VARCHAR}
 			);
 		END;
 	</update>

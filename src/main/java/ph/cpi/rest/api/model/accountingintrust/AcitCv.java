@@ -71,6 +71,7 @@ public class AcitCv {
 	private String destAcctNo;
 	private String destAcctName;
 	private String btRefNo;
+	private String swiftCd;
 	
 	public String getCvGenNo() {
 		return cvGenNo;
@@ -439,6 +440,12 @@ public class AcitCv {
 	public void setBtRefNo(String btRefNo) {
 		this.btRefNo = btRefNo;
 	}
+	public String getSwiftCd() {
+		return swiftCd;
+	}
+	public void setSwiftCd(String swiftCd) {
+		this.swiftCd = swiftCd;
+	}
 	@Override
 	public String toString() {
 		return "AcitCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -460,6 +467,6 @@ public class AcitCv {
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
 				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + ", disbType=" + disbType + ", destBank="
 				+ destBank + ", destBankDesc=" + destBankDesc + ", destAcctNo=" + destAcctNo + ", destAcctName="
-				+ destAcctName + ", btRefNo=" + btRefNo + "]";
+				+ destAcctName + ", btRefNo=" + btRefNo + ", swiftCd=" + swiftCd + "]";
 	}
 }

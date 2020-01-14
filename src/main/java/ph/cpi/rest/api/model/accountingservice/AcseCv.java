@@ -71,6 +71,7 @@ public class AcseCv {
 	private String destAcctNo;
 	private String destAcctName;
 	private String btRefNo;
+	private String swiftCd;
 	
 	public String getCvGenNo() {
 		return cvGenNo;
@@ -438,6 +439,12 @@ public class AcseCv {
 	public void setBtRefNo(String btRefNo) {
 		this.btRefNo = btRefNo;
 	}
+	public String getSwiftCd() {
+		return swiftCd;
+	}
+	public void setSwiftCd(String swiftCd) {
+		this.swiftCd = swiftCd;
+	}
 	@Override
 	public String toString() {
 		return "AcseCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -459,34 +466,6 @@ public class AcseCv {
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
 				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + ", disbType=" + disbType + ", destBank="
 				+ destBank + ", destBankDesc=" + destBankDesc + ", destAcctNo=" + destAcctNo + ", destAcctName="
-				+ destAcctName + ", btRefNo=" + btRefNo + ", getCvGenNo()=" + getCvGenNo() + ", getTranId()="
-				+ getTranId() + ", getCvYear()=" + getCvYear() + ", getCvNo()=" + getCvNo() + ", getCvDate()="
-				+ getCvDate() + ", getCvStatus()=" + getCvStatus() + ", getCvStatusDesc()=" + getCvStatusDesc()
-				+ ", getPaytReqType()=" + getPaytReqType() + ", getPaytReqTypeDesc()=" + getPaytReqTypeDesc()
-				+ ", getPayeeClassCd()=" + getPayeeClassCd() + ", getPayeeCd()=" + getPayeeCd() + ", getPayee()="
-				+ getPayee() + ", getParticulars()=" + getParticulars() + ", getBank()=" + getBank()
-				+ ", getBankDesc()=" + getBankDesc() + ", getBankAcct()=" + getBankAcct() + ", getBankAcctDesc()="
-				+ getBankAcctDesc() + ", getCheckId()=" + getCheckId() + ", getCheckNo()=" + getCheckNo()
-				+ ", getCheckDate()=" + getCheckDate() + ", getCheckClass()=" + getCheckClass()
-				+ ", getCheckClassDesc()=" + getCheckClassDesc() + ", getCurrCd()=" + getCurrCd() + ", getCurrRate()="
-				+ getCurrRate() + ", getCvAmt()=" + getCvAmt() + ", getLocalAmt()=" + getLocalAmt()
-				+ ", getPreparedBy()=" + getPreparedBy() + ", getPreparedDate()=" + getPreparedDate()
-				+ ", getCertifiedBy()=" + getCertifiedBy() + ", getCertifiedDate()=" + getCertifiedDate()
-				+ ", getCreateUser()=" + getCreateUser() + ", getCreateDate()=" + getCreateDate() + ", getUpdateUser()="
-				+ getUpdateUser() + ", getUpdateDate()=" + getUpdateDate() + ", getMainTranId()=" + getMainTranId()
-				+ ", getMainTranDate()=" + getMainTranDate() + ", getMainTranClass()=" + getMainTranClass()
-				+ ", getMainTranTypeCd()=" + getMainTranTypeCd() + ", getMainTranYear()=" + getMainTranYear()
-				+ ", getMainTranClassNo()=" + getMainTranClassNo() + ", getMainTranStat()=" + getMainTranStat()
-				+ ", getMainTranStatDesc()=" + getMainTranStatDesc() + ", getMainCloseDate()=" + getMainCloseDate()
-				+ ", getMainDeleteDate()=" + getMainDeleteDate() + ", getMainPostDate()=" + getMainPostDate()
-				+ ", getMainCreateUser()=" + getMainCreateUser() + ", getMainCreateDate()=" + getMainCreateDate()
-				+ ", getMainUpdateUser()=" + getMainUpdateUser() + ", getMainUpdateDate()=" + getMainUpdateDate()
-				+ ", getMainAcctEntDate()=" + getMainAcctEntDate() + ", getRefNo()=" + getRefNo()
-				+ ", getCheckStatus()=" + getCheckStatus() + ", getAcctEntDate()=" + getAcctEntDate()
-				+ ", getCancelReason()=" + getCancelReason() + ", getPrlExist()=" + getPrlExist() + ", getDisbType()="
-				+ getDisbType() + ", getDestBank()=" + getDestBank() + ", getDestBankDesc()=" + getDestBankDesc()
-				+ ", getDestAcctNo()=" + getDestAcctNo() + ", getDestAcctName()=" + getDestAcctName()
-				+ ", getBtRefNo()=" + getBtRefNo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ destAcctName + ", btRefNo=" + btRefNo + ", swiftCd=" + swiftCd + "]";
 	}
 }
