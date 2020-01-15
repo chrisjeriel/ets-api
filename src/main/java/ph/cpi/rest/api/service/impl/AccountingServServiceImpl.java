@@ -655,6 +655,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
 	        sacParams.put("disbType", sacr.getDisbType());
+	        sacParams.put("destBank", sacr.getDestBank());
 	        sacParams.put("destAcctNo", sacr.getDestAcctNo());
 	        sacParams.put("destAcctName", sacr.getDestAcctName());
 	        sacParams.put("btRefNo", sacr.getBtRefNo());
@@ -667,14 +668,14 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        	sacResponse.setReturnCode(-300);
 	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
-	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo()) || sacr.getDisbType().equals("BT")) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
 	        	HashMap<String, Object> response = acctServDao.saveAcseCv(sacParams);
 		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
 		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
 		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
 		        sacResponse.setReturnCode(-1);
-	        }else {
+	        } else if(sacr.getDisbType().equals("CK")) {
 	        	sacResponse.setReturnCode(2);
 	        	sacResponse.setCheckNo(checkNo);
 	        }
