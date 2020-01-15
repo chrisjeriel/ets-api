@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfo;
 import ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc;
 import ph.cpi.rest.api.model.quote.QuotationOc;
+import ph.cpi.rest.api.model.quote.QuoteLOV;
 import ph.cpi.rest.api.model.quote.QuoteRepText;
 
 @Component
@@ -40,9 +41,6 @@ public class QuoteDaoImpl implements QuoteDao{
 	@Value("${spring.datasource.password}")
 	private String password;
 	
-	@Autowired
-	private PlatformTransactionManager txManager;
-
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -87,8 +85,6 @@ public class QuoteDaoImpl implements QuoteDao{
 	
 	public Quotation retrieveQuoteCoverage(HashMap<String, Object> params) throws SQLException {
 		Quotation quotation = sqlSession.selectOne("retrieveQuoteCoverage", params);
-		
-		logger.info("retrieveQuoteCoverage DAOImpl : " + quotation);
 		
 		return quotation;
 	}
@@ -304,9 +300,6 @@ public class QuoteDaoImpl implements QuoteDao{
 		return params;
 	}
 	
-	@Autowired
-	private PlatformTransactionManager transactionManager;
-	
 	public Integer saveQuoteOptionAll(HashMap<String, Object> params) throws SQLException {
 		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveQuoteOptionsAll",params);
@@ -443,5 +436,14 @@ public class QuoteDaoImpl implements QuoteDao{
 	public QuoteRepText retrieveQuReptext(HashMap<String, Object> params) throws SQLException {
 		QuoteRepText repText = sqlSession.selectOne("retrieveQuReptext",params);
 		return repText;
+	}
+
+	@Override
+	public List<QuoteLOV> retrieveQuListingLOV(HashMap<String, Object> params) throws SQLException {
+		List<QuoteLOV> list = null;
+		if(params.get("mode")!= null && params.get("mode").equals("createPol")){
+			list =  sqlSession.selectList("retrieveQuListingLOVcreatePol",params);
+		}
+		return list;
 	}
 }

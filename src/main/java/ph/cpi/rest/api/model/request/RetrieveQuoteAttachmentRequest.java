@@ -1,9 +1,5 @@
 package ph.cpi.rest.api.model.request;
 
-import java.util.List;
-
-import ph.cpi.rest.api.model.Error;
-import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 

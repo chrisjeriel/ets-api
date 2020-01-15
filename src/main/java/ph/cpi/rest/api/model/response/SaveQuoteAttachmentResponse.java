@@ -3,8 +3,6 @@ package ph.cpi.rest.api.model.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.DateTime;
-
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 

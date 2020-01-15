@@ -2,15 +2,12 @@ package ph.cpi.rest.api.service.impl;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.SecurityDao;
-import ph.cpi.rest.api.model.maintenance.SaveTransaction;
 import ph.cpi.rest.api.model.request.RetrieveModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnModulesRequest;
 import ph.cpi.rest.api.model.request.RetrieveMtnTransactionsRequest;

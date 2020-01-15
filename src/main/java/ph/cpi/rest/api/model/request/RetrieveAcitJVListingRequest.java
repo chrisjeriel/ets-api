@@ -2,7 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
-import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 
 public class RetrieveAcitJVListingRequest {
 	private Integer tranId;

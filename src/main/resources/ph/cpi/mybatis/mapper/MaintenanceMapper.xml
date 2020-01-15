@@ -689,7 +689,7 @@
 	</resultMap>
 	
 	<select id="retMtnAdviceWordings" resultMap="adviceWordingsMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(MTN_ADV_WORD_PKG.ret_adv_wordings(#{adviceWordId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
+            SELECT * FROM TABLE(MTN_ADV_WORD_PKG.ret_adv_wordings(#{adviceWordId, jdbcType=VARCHAR},NULL,NULL,NULL,NULL))
      </select>
      
      
@@ -862,7 +862,7 @@
    
      
      <select id="retMtnCedingCompany" resultMap="maintenanceCedingCompanyMap" parameterType="java.util.Map">
-            SELECT* FROM TABLE(MTN_CED_REP_PKG.ret_ced_com(#{cedingId, jdbcType=VARCHAR},null,null,null,null))
+            SELECT * FROM TABLE(MTN_CED_REP_PKG.ret_ced_com(#{cedingId, jdbcType=VARCHAR},null,null,null,null))
      </select>
   	
   	<update id="saveMtnRisk" parameterType="java.util.Map" statementType="CALLABLE">
@@ -1021,7 +1021,7 @@
     </resultMap>
     
     <select id="retrieveMtnReportsParam" resultMap="reportsParamMap" parameterType="java.util.Map">
-    	SELECT* FROM TABLE(MTN_REP_PARAM_PKG.ret_mtn_rep_param(#{reportId, jdbcType=VARCHAR},null,null,null,null))
+    	SELECT * FROM TABLE(MTN_REP_PARAM_PKG.ret_mtn_rep_param(#{reportId, jdbcType=VARCHAR},null,null,null,null))
     </select>
     
     

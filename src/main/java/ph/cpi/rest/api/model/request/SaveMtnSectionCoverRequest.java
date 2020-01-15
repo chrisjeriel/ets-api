@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import org.joda.time.DateTime;
-
 public class SaveMtnSectionCoverRequest {
 	List<SaveSectionCover> saveSectionCover;
 	List<SaveSectionCover> delSectionCover;

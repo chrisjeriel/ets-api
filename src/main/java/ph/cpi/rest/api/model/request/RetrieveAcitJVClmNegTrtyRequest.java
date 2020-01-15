@@ -1,10 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
-import ph.cpi.rest.api.model.accountingintrust.AcitJVClmNegativeTreaty;
 
 public class RetrieveAcitJVClmNegTrtyRequest {
 	private Integer tranId;

@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 @Alias("UnderwritingCATPeril")
 public class CATPeril {
