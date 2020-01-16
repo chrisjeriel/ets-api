@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import ph.cpi.rest.api.controller.WebSocketController;
 import ph.cpi.rest.api.dao.AccountingInTrustDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
-import ph.cpi.rest.api.model.accountingintrust.AcitCv;
 import ph.cpi.rest.api.model.request.*;
 import ph.cpi.rest.api.model.response.*;
 import ph.cpi.rest.api.service.AccountingInTrustService;
@@ -458,18 +455,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			}
 			
 			if(proceed) {
-				HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
-				response.setReturnCode((Integer) res.get("errorCode"));
-				response.setTranIdOut((Integer) res.get("tranIdOut"));
+				String checkSeries = acctITDao.checkAcitJvSeries();
 				
-				res.put("tranId", res.get("tranIdOut"));
-				response.setTranNo(acctITDao.getAcitTranNo(res));
+				if(checkSeries.equals("Y")) {
+					HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
+					response.setReturnCode((Integer) res.get("errorCode"));
+					response.setTranIdOut((Integer) res.get("tranIdOut"));
+					
+					res.put("tranId", res.get("tranIdOut"));
+					response.setTranNo(acctITDao.getAcitTranNo(res));
+					response.setReturnCode(-1);
+				} else {
+					response.setReturnCode(100);
+				}
 			}
 		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
 		}
+		
 		return response;
 	}
 

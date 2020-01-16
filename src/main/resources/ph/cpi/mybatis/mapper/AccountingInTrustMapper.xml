@@ -4894,4 +4894,8 @@
 		END;
 	</update>
 	
+	<select id="checkAcitJvSeries" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT ACIT_JOURNAL_VOUCHER_PKG.check_acit_jv_series FROM DUAL
+	</select>
+	
 </mapper>

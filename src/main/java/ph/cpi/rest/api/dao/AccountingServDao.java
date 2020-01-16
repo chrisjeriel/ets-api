@@ -131,5 +131,6 @@ public interface AccountingServDao {
 	public Integer saveAcseMonthEndTBReopen(final HashMap<String, Object> params) throws SQLException;
 	public String checkEom(final HashMap<String, Object> params) throws SQLException;
 	public AcctServFeeDist retrieveOrSFeeDtlDist (final HashMap<String, Object> params) throws SQLException;
+	public String checkAcseJvSeries() throws SQLException;
 	
 }
