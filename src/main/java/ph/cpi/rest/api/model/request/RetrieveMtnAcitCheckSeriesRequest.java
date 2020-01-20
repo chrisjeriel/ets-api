@@ -7,6 +7,9 @@ public class RetrieveMtnAcitCheckSeriesRequest {
 	private String bank;
 	private String bankAcct;
 	private String checkNo;
+	private String srchFrom;
+	private String srchTo;
+	private String from;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getBank() {
@@ -27,6 +30,24 @@ public class RetrieveMtnAcitCheckSeriesRequest {
 	public void setCheckNo(String checkNo) {
 		this.checkNo = checkNo;
 	}
+	public String getSrchFrom() {
+		return srchFrom;
+	}
+	public void setSrchFrom(String srchFrom) {
+		this.srchFrom = srchFrom;
+	}
+	public String getSrchTo() {
+		return srchTo;
+	}
+	public void setSrchTo(String srchTo) {
+		this.srchTo = srchTo;
+	}
+	public String getFrom() {
+		return from;
+	}
+	public void setFrom(String from) {
+		this.from = from;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -42,6 +63,7 @@ public class RetrieveMtnAcitCheckSeriesRequest {
 	@Override
 	public String toString() {
 		return "RetrieveMtnAcitCheckSeriesRequest [bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", srchFrom=" + srchFrom + ", srchTo=" + srchTo + ", from=" + from + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }
