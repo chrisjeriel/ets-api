@@ -3,8 +3,6 @@ package ph.cpi.rest.api.model.request;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.joda.time.DateTime;
-
 public class SaveAcitJVInwUnappRequest {
 	
 	private Integer tranId;

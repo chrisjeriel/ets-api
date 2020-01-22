@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.request;
 
-import org.joda.time.DateTime;
-
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 

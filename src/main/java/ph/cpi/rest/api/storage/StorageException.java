@@ -2,7 +2,12 @@ package ph.cpi.rest.api.storage;
 
 public class StorageException extends RuntimeException {
 	
-	 public StorageException(String message) {
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -547531914406843559L;
+
+	public StorageException(String message) {
 	        super(message);
 	    }
 	 

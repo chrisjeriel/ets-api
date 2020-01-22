@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.response;
 
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.Quotation;

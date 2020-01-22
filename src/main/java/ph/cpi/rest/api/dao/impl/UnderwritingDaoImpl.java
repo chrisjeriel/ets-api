@@ -54,9 +54,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	private String password;
 	
 	@Autowired
-	private PlatformTransactionManager txManager;
-	
-	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(UnderwritingDaoImpl.class);

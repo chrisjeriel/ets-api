@@ -33,9 +33,6 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 	private String password;
 	
 	@Autowired
-	private PlatformTransactionManager txManager;
-	
-	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(WorkFlowDaoImpl.class);

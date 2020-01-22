@@ -54,9 +54,7 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
-import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
-import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.service.UtilService;
 import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -550,7 +548,7 @@ public class UtilController {
 		logger.info("FILE filename: " + filename);
 	    logger.info("FILE Absolute Path: " + file.getAbsolutePath());
 	    Path path = Paths.get(file.getAbsolutePath());
-	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+	    new ByteArrayResource(Files.readAllBytes(path));
 		return response;
 	}
 	

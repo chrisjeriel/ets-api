@@ -1,7 +1,5 @@
 package ph.cpi.rest.api.model.utils;
 
-import org.joda.time.DateTime;
-
 public class POLR044 {
 
 	private String reportId;

@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.model.quote;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 public class AlopItem {
 	private Integer itemNo;
