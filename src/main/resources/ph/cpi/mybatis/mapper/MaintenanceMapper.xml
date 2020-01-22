@@ -3867,7 +3867,7 @@
 		<result property="okDelete" 	column="OK_DELETE"/>
 	</resultMap>
 	
-	<select id="retrieveMtnSL" resultMap="SLMap">
+	<select id="retrieveMtnSL" resultMap="SLMap">	
 		SELECT * FROM TABLE(MTN_SL_PKG.RET_MTN_SL(#{slTypeCd,jdbcType=VARCHAR},#{slCd,jdbcType=VARCHAR},#{payeeNo,jdbcType=VARCHAR},#{autoTag,jdbcType=VARCHAR},#{activeTag,jdbcType=VARCHAR}))
 	</select>
 	
