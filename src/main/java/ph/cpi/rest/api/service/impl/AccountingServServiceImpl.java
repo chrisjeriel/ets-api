@@ -398,9 +398,16 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("updateUserJv" , request.getUpdateUserJv());
 			params.put("updateDateJv" , request.getUpdateDateJv());
 			
-			HashMap<String, Object> res = acctServDao.saveJVEntry(params);
-			response.setReturnCode((Integer) res.get("errorCode"));
-			response.setTranIdOut((Integer) res.get("tranIdOut"));
+			String checkSeries = acctServDao.checkAcseJvSeries();
+			
+			if(checkSeries.equals("Y")) {
+				HashMap<String, Object> res = acctServDao.saveJVEntry(params);
+				response.setReturnCode((Integer) res.get("errorCode"));
+				response.setTranIdOut((Integer) res.get("tranIdOut"));
+				response.setReturnCode(-1);
+			} else {
+				response.setReturnCode(100);
+			}
 		}catch(Exception exc){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -654,18 +661,28 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        sacParams.put("closeDate", sacr.getCloseDate());
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
+	        sacParams.put("disbType", sacr.getDisbType());
+	        sacParams.put("destBank", sacr.getDestBank());
+	        sacParams.put("destAcctNo", sacr.getDestAcctNo());
+	        sacParams.put("destAcctName", sacr.getDestAcctName());
+	        sacParams.put("btRefNo", sacr.getBtRefNo());
+	        sacParams.put("swiftCd", sacr.getSwiftCd());
 	        
 	        String checkNo = acctServDao.validateCheckNo(sacParams);
-	        if(checkNo.equalsIgnoreCase("-100")) {
+	        String isCvNoAvail =  acctServDao.isCvNoAvail();
+	        
+	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
+	        	sacResponse.setReturnCode(-300);
+	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
-	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo()) || sacr.getDisbType().equals("BT")) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
 	        	HashMap<String, Object> response = acctServDao.saveAcseCv(sacParams);
 		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
 		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
 		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
 		        sacResponse.setReturnCode(-1);
-	        }else {
+	        } else if(sacr.getDisbType().equals("CK")) {
 	        	sacResponse.setReturnCode(2);
 	        	sacResponse.setCheckNo(checkNo);
 	        }

@@ -455,18 +455,26 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			}
 			
 			if(proceed) {
-				HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
-				response.setReturnCode((Integer) res.get("errorCode"));
-				response.setTranIdOut((Integer) res.get("tranIdOut"));
+				String checkSeries = acctITDao.checkAcitJvSeries();
 				
-				res.put("tranId", res.get("tranIdOut"));
-				response.setTranNo(acctITDao.getAcitTranNo(res));
+				if(checkSeries.equals("Y")) {
+					HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
+					response.setReturnCode((Integer) res.get("errorCode"));
+					response.setTranIdOut((Integer) res.get("tranIdOut"));
+					
+					res.put("tranId", res.get("tranIdOut"));
+					response.setTranNo(acctITDao.getAcitTranNo(res));
+					response.setReturnCode(-1);
+				} else {
+					response.setReturnCode(100);
+				}
 			}
 		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
 			sqlex.printStackTrace();
 		}
+		
 		return response;
 	}
 
@@ -1706,18 +1714,28 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 	        sacParams.put("closeDate", sacr.getCloseDate());
 	        sacParams.put("deleteDate", sacr.getDeleteDate());
 	        sacParams.put("postDate", sacr.getPostDate());
+	        sacParams.put("disbType", sacr.getDisbType());
+	        sacParams.put("destBank", sacr.getDestBank());
+	        sacParams.put("destAcctNo", sacr.getDestAcctNo());
+	        sacParams.put("destAcctName", sacr.getDestAcctName());
+	        sacParams.put("btRefNo", sacr.getBtRefNo());
+	        sacParams.put("swiftCd", sacr.getSwiftCd());
 
-	        String checkNo = acctITDao.validateCheckNo(sacParams);	        
-	        if(checkNo.equalsIgnoreCase("-100")) {
+	        String checkNo = acctITDao.validateCheckNo(sacParams);	   
+	        String isCvNoAvail =  acctITDao.isCvNoAvail();
+
+	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
+	        	sacResponse.setReturnCode(-300);
+	        }else if(checkNo.equalsIgnoreCase("-100")) {
 	        	sacResponse.setReturnCode(-100);
-	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo())) {
+	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo()) || sacr.getDisbType().equals("BT")) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));
 	        	HashMap<String, Object> response = acctITDao.saveAcitCv(sacParams);
 		        sacResponse.setReturnCode((Integer) response.get("errorCode"));
 		        sacResponse.setTranIdOut((Integer) response.get("tranIdOut"));
 		        sacResponse.setMainTranIdOut((Integer) response.get("mainTranIdOut"));
 		        sacResponse.setReturnCode(-1);
-	        }else {
+	        } else if(sacr.getDisbType().equals("CK")) {
 	        	sacResponse.setReturnCode(2);
 	        	sacResponse.setCheckNo(checkNo);
 	        }

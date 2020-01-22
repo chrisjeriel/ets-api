@@ -4026,6 +4026,9 @@
      		#{bank, jdbcType=INTEGER},
      		#{bankAcct, jdbcType=INTEGER},
      		#{checkNo, jdbcType=VARCHAR},
+     		#{srchFrom, jdbcType=VARCHAR},
+     		#{srchTo, jdbcType=VARCHAR},
+     		#{from, jdbcType=VARCHAR},
      		NULL,NULL,NULL,NULL
      	))
      </select>
@@ -4287,6 +4290,9 @@
             #{bank, jdbcType=INTEGER},
             #{bankAcct, jdbcType=INTEGER},
             #{checkNo, jdbcType=VARCHAR},
+            #{srchFrom, jdbcType=VARCHAR},
+            #{srchTo, jdbcType=VARCHAR},
+            #{from, jdbcType=VARCHAR},
             NULL,NULL,NULL,NULL
         ))
      </select>

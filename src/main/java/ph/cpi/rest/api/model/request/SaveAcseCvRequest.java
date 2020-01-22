@@ -34,6 +34,12 @@ public class SaveAcseCvRequest {
     private String closeDate;
     private String deleteDate;
     private String postDate;
+    private String disbType;
+   	private String destBank;
+   	private String destAcctNo;
+   	private String destAcctName;
+   	private String btRefNo;
+   	private String swiftCd;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -232,6 +238,42 @@ public class SaveAcseCvRequest {
 	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
+	public String getDisbType() {
+		return disbType;
+	}
+	public void setDisbType(String disbType) {
+		this.disbType = disbType;
+	}
+	public String getDestBank() {
+		return destBank;
+	}
+	public void setDestBank(String destBank) {
+		this.destBank = destBank;
+	}
+	public String getDestAcctNo() {
+		return destAcctNo;
+	}
+	public void setDestAcctNo(String destAcctNo) {
+		this.destAcctNo = destAcctNo;
+	}
+	public String getDestAcctName() {
+		return destAcctName;
+	}
+	public void setDestAcctName(String destAcctName) {
+		this.destAcctName = destAcctName;
+	}
+	public String getBtRefNo() {
+		return btRefNo;
+	}
+	public void setBtRefNo(String btRefNo) {
+		this.btRefNo = btRefNo;
+	}
+	public String getSwiftCd() {
+		return swiftCd;
+	}
+	public void setSwiftCd(String swiftCd) {
+		this.swiftCd = swiftCd;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseCvRequest [tranId=" + tranId + ", mainTranId=" + mainTranId + ", cvYear=" + cvYear + ", cvNo="
@@ -243,7 +285,8 @@ public class SaveAcseCvRequest {
 				+ preparedBy + ", preparedDate=" + preparedDate + ", certifiedBy=" + certifiedBy + ", certifiedDate="
 				+ certifiedDate + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + ", tranStat=" + tranStat + ", closeDate=" + closeDate
-				+ ", deleteDate=" + deleteDate + ", postDate=" + postDate + "]";
+				+ ", deleteDate=" + deleteDate + ", postDate=" + postDate + ", disbType=" + disbType + ", destBank="
+				+ destBank + ", destAcctNo=" + destAcctNo + ", destAcctName=" + destAcctName + ", btRefNo=" + btRefNo
+				+ ", swiftCd=" + swiftCd + "]";
 	}
-	
 }

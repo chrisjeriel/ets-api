@@ -2272,6 +2272,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		rmacsParams.put("bank",rmacs.getBank());
 		rmacsParams.put("bankAcct", rmacs.getBankAcct());
 		rmacsParams.put("checkNo",rmacs.getCheckNo());
+		rmacsParams.put("srchFrom",rmacs.getSrchFrom());
+		rmacsParams.put("srchTo",rmacs.getSrchTo());
+		rmacsParams.put("from",rmacs.getFrom());
 		rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcitCheckSeries(rmacsParams));
 		return rmacsResponse;
 	}
@@ -2418,6 +2421,9 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         rmacsParams.put("bank",rmacs.getBank());
         rmacsParams.put("bankAcct", rmacs.getBankAcct());
         rmacsParams.put("checkNo",rmacs.getCheckNo());
+        rmacsParams.put("srchFrom",rmacs.getSrchFrom());
+        rmacsParams.put("srchTo",rmacs.getSrchTo());
+        rmacsParams.put("from",rmacs.getFrom());
         rmacsResponse.setCheckSeriesList(maintenanceDao.retrieveMtnAcseCheckSeries(rmacsParams));
         return rmacsResponse;
     }
