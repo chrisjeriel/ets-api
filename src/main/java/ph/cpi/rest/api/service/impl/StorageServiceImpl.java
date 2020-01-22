@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.service.impl;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -137,7 +136,7 @@ public class StorageServiceImpl implements StorageService {
 		    	String oldDirectory = module+"\\"+refId;
 		        String directory = module+"\\"+newId;
 		        String response = "";
-		        
+		        DirectoryStream<Path> files = null;
 		        //filename = module+"\\"+refId+"\\"+filename;
 		        try {
 //		            if (file.isEmpty()) {
@@ -151,7 +150,7 @@ public class StorageServiceImpl implements StorageService {
 //		            }
 		        	if(Files.exists(this.rootLocation.resolve(oldDirectory))){
 		        		Files.createDirectories(this.rootLocation.resolve(directory));
-		            	DirectoryStream<Path> files = Files.newDirectoryStream(this.rootLocation.resolve(oldDirectory));
+		            	files = Files.newDirectoryStream(this.rootLocation.resolve(oldDirectory));
 		            	
 		            	Iterator<Path> iterator = files.iterator();
 		            	
@@ -169,9 +168,13 @@ public class StorageServiceImpl implements StorageService {
 		        catch (Exception f){
 		        	f.printStackTrace();
 		        	response = "File exceeded the maximum file size.";
+		        }finally{
+		        	try {
+						files.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 		        }
 		        return response;
 		    }
-	
-
 }

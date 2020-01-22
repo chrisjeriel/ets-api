@@ -2130,5 +2130,9 @@
 																        #{sFeeQtr}
 																    ))
 	</select>
-        
+	
+	<select id="checkAcseJvSeries" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT ACSE_JOURNAL_VOUCHER_PKG.check_acse_jv_series FROM DUAL
+	</select>
+
 </mapper>

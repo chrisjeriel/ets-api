@@ -4,8 +4,6 @@ import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-
 import org.apache.commons.io.input.AutoCloseInputStream;
 
 public class LazyFileInputStream extends AutoCloseInputStream {

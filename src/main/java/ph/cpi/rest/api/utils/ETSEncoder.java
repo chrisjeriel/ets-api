@@ -200,7 +200,7 @@ public class ETSEncoder {
 		SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy_kk-mm-ss");
 		String fl = "/ARCHIVE/ETS_WEB_" + f.format(new Date()) + ".key";
 		File file2 = new File(fileDir + fl);
-		FileOutputStream fos;
+		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(file2);
 			byte[] kb = key.getEncoded();
@@ -213,6 +213,12 @@ public class ETSEncoder {
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.error("ERROR MESSAGE: " + e.getMessage() + "\nCAUSE: " + e.getCause());
+		}finally{
+			try {
+				fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -3,7 +3,6 @@ package ph.cpi.rest.api.model.quote;
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 public class HoldCover {
 	private Integer holdCoverId ;

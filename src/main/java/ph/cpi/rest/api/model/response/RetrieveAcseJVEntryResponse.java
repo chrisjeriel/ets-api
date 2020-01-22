@@ -3,7 +3,6 @@ package ph.cpi.rest.api.model.response;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry;
-import ph.cpi.rest.api.model.accountingservice.AcseTransactions;
 
 public class RetrieveAcseJVEntryResponse {
 	private AcseJournalVoucherEntry jvEntry;

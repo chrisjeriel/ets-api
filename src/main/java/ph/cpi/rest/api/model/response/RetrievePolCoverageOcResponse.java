@@ -3,7 +3,6 @@ package ph.cpi.rest.api.model.response;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
-import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolCoverageOcResponse {
 	private OpenPolicy policyOc;

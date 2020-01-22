@@ -1,10 +1,7 @@
 package ph.cpi.rest.api.model.response;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Message;
 

@@ -2023,4 +2023,16 @@
 	<select id="retrieveQuReptext" resultMap="QuoteRepTextMap">
 		SELECT * FROM TABLE( QU_REPTEXT_PKG.get_qu_reptext(#{quoteId},#{reportId}) )
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.quote.QuoteLOV" id="QuoteLOVMap">
+		<result property="quoteId" 	   column="QUOTE_ID"/>
+		<result property="quotationNo" column="QUOTATION_NO"/>
+		<result property="cedingName"  column="CEDING_NAME"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
+		<result property="riskName"    column="RISK_NAME"/>
+	</resultMap>
+	
+	<select id="retrieveQuListingLOVcreatePol" resultMap="QuoteLOVMap">
+		SELECT * FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing_lov_create_pol(#{quotationNo, jdbcType=VARCHAR},#{cedingName, jdbcType=VARCHAR},#{insuredDesc, jdbcType=VARCHAR},#{riskName, jdbcType=VARCHAR}))
+	</select>
 </mapper>

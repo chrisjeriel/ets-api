@@ -398,9 +398,16 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("updateUserJv" , request.getUpdateUserJv());
 			params.put("updateDateJv" , request.getUpdateDateJv());
 			
-			HashMap<String, Object> res = acctServDao.saveJVEntry(params);
-			response.setReturnCode((Integer) res.get("errorCode"));
-			response.setTranIdOut((Integer) res.get("tranIdOut"));
+			String checkSeries = acctServDao.checkAcseJvSeries();
+			
+			if(checkSeries.equals("Y")) {
+				HashMap<String, Object> res = acctServDao.saveJVEntry(params);
+				response.setReturnCode((Integer) res.get("errorCode"));
+				response.setTranIdOut((Integer) res.get("tranIdOut"));
+				response.setReturnCode(-1);
+			} else {
+				response.setReturnCode(100);
+			}
 		}catch(Exception exc){
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));

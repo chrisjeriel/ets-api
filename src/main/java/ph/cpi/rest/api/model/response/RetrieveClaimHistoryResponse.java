@@ -5,9 +5,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.claims.CheckHist;
-import ph.cpi.rest.api.model.claims.ClaimHistory;
 import ph.cpi.rest.api.model.claims.ClaimReserve;
-import ph.cpi.rest.api.model.claims.Claims;
 
 public class RetrieveClaimHistoryResponse {
 	private List<ClaimReserve> claimReserveList;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 @Alias("MaintenanceSectionCovers")
 public class SectionCovers {

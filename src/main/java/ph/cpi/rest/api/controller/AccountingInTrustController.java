@@ -29,9 +29,6 @@ public class AccountingInTrustController {
 	@Autowired
 	private AccountingInTrustService acctInTrustService;
 	
-	@Autowired
-	private WebSocketController webSocketController;
-	
 	private static final Logger logger = LoggerFactory.getLogger(ClaimsController.class);
 	
 	@GetMapping(path="retrieveAcitCvPaytReqList")

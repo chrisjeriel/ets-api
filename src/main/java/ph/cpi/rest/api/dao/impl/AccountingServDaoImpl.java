@@ -645,4 +645,10 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		return sqlSession.selectOne("retOrServFeeDtlDist", params);
 	}
 	
+	@Override
+	public String checkAcseJvSeries() throws SQLException {
+		String result = sqlSession.selectOne("checkAcseJvSeries");
+		return result;
+	}
+	
 }

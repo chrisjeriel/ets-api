@@ -5,7 +5,6 @@ import java.util.List;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.maintenance.Module;
 import ph.cpi.rest.api.model.maintenance.UserWithGrpModule;
 
 public class RetrieveModulesResponse {

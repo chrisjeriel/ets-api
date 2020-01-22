@@ -3,7 +3,6 @@ package ph.cpi.rest.api.service.impl;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import org.apache.tools.ant.types.CommandlineJava.SysProperties;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

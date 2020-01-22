@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.response;
 
 import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.SortResponse;
-import ph.cpi.rest.api.model.underwriting.CATPeril;
-import ph.cpi.rest.api.model.underwriting.Item;
 import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolCATPerilResponse {
