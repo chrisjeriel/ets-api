@@ -734,7 +734,7 @@
 			</foreach>
 			
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,#{tranTypeCd},#{createUser},#{updateUser},#{reqId}); -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', #{tranTypeCd}, #{reqId}, v_message);
+			GENERATE_ACCSE_TAXES.GENERATE_PRQ_ITEMTAXES('PRQ', #{tranTypeCd}, #{reqId}, v_message);
 		END;
 	</update>
 	
@@ -1694,7 +1694,7 @@
 			</foreach>
 			
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,6,v_create_user,v_update_user,v_req_id); -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', 6, v_req_id, v_message);
+			GENERATE_ACCSE_TAXES.GENERATE_PRQ_ITEMTAXES('PRQ', 6, v_req_id, v_message);
 		END;
 	</update>
 	
@@ -1832,7 +1832,7 @@
 				</foreach>	
 			</foreach>
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,7,v_create_user,v_update_user,v_req_id); -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', 7, v_req_id, v_message);
+			GENERATE_ACCSE_TAXES.GENERATE_PRQ_ITEMTAXES('PRQ', 7, v_req_id, v_message);
 		END;
 	</update>
 	
