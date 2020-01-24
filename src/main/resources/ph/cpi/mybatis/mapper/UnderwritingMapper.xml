@@ -735,6 +735,7 @@
 		   	</foreach>
 		   	
 		   	POL_ENDT_PKG.add_vib_endt(#{policyId},#{updateUser},#{changeTag,jdbcType=VARCHAR});
+		   	POL_SEC_COVER_PKG.pro_rate_hold_cov_prem(#{policyId});
 		END;
 	</update>
 	
@@ -872,7 +873,7 @@
 					        #{item}
 					    </foreach>
 		   	   </if>
-		   	   <if test="search != null">
+		   	   <if test="search != null and search.value != null">
 		   	   	 AND
 		   	    	<foreach item="col" index="index" collection="search.searchCols"
 			             open="(" separator=" OR " close=")">
@@ -896,7 +897,7 @@
 		   ) a	 	
 		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
 	   	   <if test="pagination.position != null">
-	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} * 10 ROWS ONLY
 	   	   </if>
 	   	   
 	</select> 
@@ -2529,6 +2530,7 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolDistribution" id="retPolDistMap">
 		<result property="distNo"			column="DIST_ID" />
+		<result property="histNo"			column="HIST_NO" />
 		<result property="policyNo"			column="POLICY_NO" />
 		<result property="cedingName"		column="CEDING_NAME" />
 		<result property="riskDistNo"		column="RISK_DIST_ID" />
@@ -2580,8 +2582,16 @@
 		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist(#{policyId},#{distId, jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrievePolDistCum" resultMap="retPolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_pol_dist_cum(#{policyId},#{distId, jdbcType=VARCHAR}))
+	</select>
+	
 	<select id="retrievePolPoolDist" resultMap="retPoolDistMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding(#{distId},#{policyId},null,null,null,null))
+	</select>
+	
+	<select id="retrievePolPoolDistCum" resultMap="retPoolDistMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(DIST_POL_WCEDING_PKG.ret_pol_wceding_cum(#{distId},#{policyId},null,null,null,null))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolForPurging" id="purgingMap">
@@ -2919,4 +2929,20 @@
 															))								    
 	</select>
 	
+	<select id="getPolCession" resultMap="getPolCessionMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_PKG.get_type_of_cession(#{policyId}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.Cession" id="getPolCessionMap">
+		<result property="cessionId" 		column="CESSION_ID"/>
+		<result property="cessionAbbr" 		column="CESSION_ABBR"/>
+		<result property="description" 		column="DESCRIPTION"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"			column="OK_DELETE"/>
+	</resultMap>
 </mapper>

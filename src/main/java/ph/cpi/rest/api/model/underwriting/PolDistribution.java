@@ -5,6 +5,7 @@ import java.util.List;
 
 public class PolDistribution {
 	private String distNo;
+	private String histNo;
 	private String policyNo;
 	private String cedingName;
 	private String riskDistNo;
@@ -36,6 +37,12 @@ public class PolDistribution {
     private BigDecimal premTotal;
     private BigDecimal commAmtTotal;
     
+	public String getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(String histNo) {
+		this.histNo = histNo;
+	}
 	public String getDistNo() {
 		return distNo;
 	}
@@ -200,10 +207,10 @@ public class PolDistribution {
 	}
 	@Override
 	public String toString() {
-		return "PolDistribution [distNo=" + distNo + ", policyNo=" + policyNo + ", cedingName=" + cedingName
-				+ ", riskDistNo=" + riskDistNo + ", status=" + status + ", insured=" + insured + ", sumInsured="
-				+ sumInsured + ", premium=" + premium + ", riskName=" + riskName + ", retLine=" + retLine
-				+ ", autoCalc=" + autoCalc + ", trtyListPerSec=" + trtyListPerSec + ", ret1SecI=" + ret1SecI
+		return "PolDistribution [distNo=" + distNo + ", histNo=" + histNo + ", policyNo=" + policyNo + ", cedingName="
+				+ cedingName + ", riskDistNo=" + riskDistNo + ", status=" + status + ", insured=" + insured
+				+ ", sumInsured=" + sumInsured + ", premium=" + premium + ", riskName=" + riskName + ", retLine="
+				+ retLine + ", autoCalc=" + autoCalc + ", trtyListPerSec=" + trtyListPerSec + ", ret1SecI=" + ret1SecI
 				+ ", ret1SecII=" + ret1SecII + ", ret1SecIII=" + ret1SecIII + ", ret1Prem=" + ret1Prem
 				+ ", ret1CommAmt=" + ret1CommAmt + ", ret2SecI=" + ret2SecI + ", ret2SecII=" + ret2SecII
 				+ ", ret2SecIII=" + ret2SecIII + ", ret2Prem=" + ret2Prem + ", ret2CommAmt=" + ret2CommAmt

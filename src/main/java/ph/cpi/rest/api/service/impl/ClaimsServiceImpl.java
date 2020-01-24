@@ -97,7 +97,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		}
 		
 		rchResponse.setClaimReserveList(claimsDao.retrieveClaimHistory(retClmHistoryParams));
-		logger.info("RetrieveClaimHistoryResponse : " + rchResponse.toString());
 		return rchResponse;
 	}
 
@@ -107,7 +106,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> saveClmHistoryParams = new HashMap<String, Object>();
 		saveClmHistoryParams.put("saveClaimHistory",schr.getSaveClaimHistory());
 		schResponse.setReturnCode(claimsDao.saveClaimHistory(saveClmHistoryParams));
-		logger.info("SaveClaimHistoryResponse : " + schResponse.toString());
 		return schResponse;
 	}
 
@@ -137,7 +135,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("fromInq", rclr.getFromInq());
 		response.setClaimsList(claimsDao.retrieveClaimListing(params));
 		response.setLength(claimsDao.retrieveClaimListingLength(params));
-		logger.info(response.toString());
 		return response;
 	}
 
@@ -213,7 +210,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		retrieveClaimsAttachmentParams.put("claimId",rcar.getClaimId());
 		retrieveClaimsAttachmentParams.put("claimNo", rcar.getClaimNo());
 		rcaResponse.setClaimsAttachmentList(claimsDao.retrieveClaimsAttachmentList(retrieveClaimsAttachmentParams));
-		logger.info("retrieveClaimsAttachmentResponse : " + rcaResponse.toString());
 		return rcaResponse;
 	}
 
@@ -230,7 +226,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 			HashMap<String, Object> res = claimsDao.saveClaimsAttachment(saveClmAttachmentParams);
 			scaResponse.setReturnCode((Integer) res.get("errorCode"));
 			scaResponse.setUploadDate((String) res.get("uploadDate"));
-			logger.info("retrieveClaimsAttachmentResponse : " + scaResponse.toString());
 		}catch (SQLException ex) {
 			scaResponse.setReturnCode(0);
 			scaResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
@@ -268,7 +263,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		clmApprovedAmtParams.put("claimId",rcaap.getClaimId());
 		clmApprovedAmtParams.put("histNo",rcaap.getHistNo());
 		rcaaResponse.setClaimApprovedAmtList(claimsDao.retrieveClaimApprovedAmt(clmApprovedAmtParams));
-		logger.info("RetrieveClaimApprovedAmtResponse : " + rcaaResponse.toString());
 		return rcaaResponse;
 	}
 
@@ -278,7 +272,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		HashMap<String, Object> saveClmApprovedAmtParams = new HashMap<String, Object>();
 		saveClmApprovedAmtParams.put("saveClaimApprovedAmt", scaar.getSaveClaimApprovedAmt());
 		scaaResponse.setReturnCode(claimsDao.saveClaimApprovedAmt(saveClmApprovedAmtParams));
-		logger.info("SaveClaimApprovedAmtResponse : " + scaaResponse.toString());
 		return scaaResponse;
 	}
 
@@ -289,7 +282,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 		retClmReserveParams.put("claimId", rchp.getClaimId());
 		retClmReserveParams.put("claimNo", rchp.getClaimNo());
 		rcrResponse.setClaims(claimsDao.retrieveClaimReserve(retClmReserveParams));
-		logger.info("RetrieveClaimReserveResponse : " + rcrResponse.toString());
 		return rcrResponse;
 	}
 
@@ -304,7 +296,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 			forChecking.put("claimId", i.getClaimId());
 			forChecking.put("clmStatCd", i.getClmStatCd());
 			chkResult = claimsDao.checkReserve(forChecking);
-			logger.info(chkResult.toString());
 			if(chkResult == 1){
 				i.setClmStatDesc("Unable to change the status of the claim. Please zero out the reserved amount first.");
 			}else if(chkResult == 2){
@@ -460,7 +451,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 			HashMap<String, Object> response = claimsDao.saveClaimResStat(scrsParams);
 			
 			scrsResponse.setReturnCode((Integer) response.get("errorCode"));
-			logger.info("SaveClaimResStatResponse : " + scrsResponse.toString());
 		}catch (SQLException ex) {
 			scrsResponse.setReturnCode(0);
 			scrsResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
@@ -530,7 +520,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 			
 			HashMap<String, Object> response = claimsDao.saveClaimReserve(scrParams);
 			scrResponse.setReturnCode((Integer) response.get("errorCode"));
-			logger.info("SaveClaimReserveResponse : " + scrResponse.toString());
 		}catch (Exception ex) {
 			scrResponse.setReturnCode(0);
 			scrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
@@ -548,7 +537,6 @@ public class ClaimsServiceImpl implements ClaimsService {
 			
 			HashMap<String, Object> response = claimsDao.saveClaimPaytReq(scprParams);
 			scprResponse.setReturnCode((Integer) response.get("errorCode"));
-			logger.info("SaveClaimPaytReqResponse : " + scprResponse.toString());
 		}catch (Exception ex) {
 			scprResponse.setReturnCode(0);
 			scprResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
@@ -697,5 +685,12 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("lossDate", rcprr.getLossDate());
 		response.setList(claimsDao.retrieveClmPaytReqInq(params));
 		return response;
+	}
+
+	@Override
+	public String checkExistingClaim(String policyId) throws SQLException {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", policyId);
+		return claimsDao.checkExistingClaim(params);
 	}
 }

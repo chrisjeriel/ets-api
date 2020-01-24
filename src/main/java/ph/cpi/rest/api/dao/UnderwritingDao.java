@@ -7,6 +7,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import ph.cpi.rest.api.model.Approver;
+import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.underwriting.BookingDate;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
@@ -83,6 +84,7 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> extractExpiringPolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<ExpPolicy> retrieveExpPolList(final HashMap<String, Object> params) throws SQLException;
 	public PolDistribution retrievePolDist(final HashMap<String, Object> params ) throws SQLException;
+	public PolDistribution retrievePolDistCum(final HashMap<String, Object> params ) throws SQLException;
 	public DistWrisk retrieveDistWrisk(final HashMap<String, Object> params) throws SQLException;
 	public List<WriskLimit> retrieveWriskLimit(final HashMap<String, Object> params) throws SQLException;
 	public List<PoolDistribution> retrievePoolDist(final HashMap<String, Object> params) throws SQLException;
@@ -91,6 +93,7 @@ public interface UnderwritingDao {
 	
 	public Integer postDistribution(final HashMap<String, Object> params ) throws SQLException;
 	public List<PoolDistribution> retrievePolPoolDist(final HashMap<String, Object> params) throws SQLException;
+	public List<PoolDistribution> retrievePolPoolDistCum(final HashMap<String, Object> params) throws SQLException;
 	
 	public HashMap<String, Object> processRenewablePolicy(final HashMap<String, Object> params ) throws SQLException;
 	public List<PolForPurging> retrievePolForPurging(final HashMap<String, Object> params) throws SQLException;
@@ -131,5 +134,7 @@ public interface UnderwritingDao {
 	public List<PolDistList> retrieveNegateDistList(final HashMap<String, Object> params) throws SQLException;
 	
 	public HashMap<String, Object> extractRenExpPolicy(final HashMap<String, Object> params) throws SQLException;
+	
+	public Cession getPolCession(final HashMap<String, Object> params) throws SQLException;
 	
 }

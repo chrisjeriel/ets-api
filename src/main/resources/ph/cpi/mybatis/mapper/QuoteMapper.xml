@@ -61,6 +61,7 @@
 		<result property="sumInsured"		column="TOTAL_SI"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="firstOptionRt"	column="OPTION_RT"/> <!-- Added by Neco, 05/22/2019, Reason: For Change Quote Status -->
 		<result property="intCompId" column="LIST_INT_COMP_ID" />
+		<result property="cnt"	     column="cnt"/>
 		<association property="project" 	resultMap="assocProject"/>
 	</resultMap>
 	
@@ -396,6 +397,7 @@
 		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 			column="UPDATE_USER"/> 
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="mbiQuoteId" 			column="MBI_QUOTE_ID"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.EndorsementsOc" id="quoteEndorsementsOcMap">
@@ -536,8 +538,9 @@
 	</select>
 	
 	<select id="retrieveQuoteListing" resultMap="retrieveQuoteListingMap" parameterType="java.util.Map">
-		SELECT a.* FROM (
-			SELECT ROWNUM rown, a.* FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
+		SELECT * FROM (
+			SELECT a.* <if test='!recount.equals("N")'>,COUNT(*) OVER (PARTITION BY 1) CNT</if> 
+				FROM TABLE(QU_GEN_INFO_PKG.ret_qu_listing(#{quotationNo, jdbcType=VARCHAR},
 															   #{cessionDesc, jdbcType=VARCHAR},
 															   #{lineClassCdDesc, jdbcType=VARCHAR},
 															   #{status, jdbcType=INTEGER},
@@ -564,17 +567,17 @@
 															#{siTo, jdbcType=VARCHAR},
 															#{rateFrom, jdbcType=VARCHAR},
 															#{rateTo, jdbcType=VARCHAR},
-															#{approvedBy, jdbcType=VARCHAR}
-															))	a	
+															#{approvedBy, jdbcType=VARCHAR},
+															#{line,jdbcType=VARCHAR},
+															#{statusArrStr,jdbcType=VARCHAR},
+															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
+																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
+															#{openCoverTag,jdbcType=VARCHAR}
+															))		a
+															)
 															
 		   	  WHERE  1=1
-		   	   <if test="statusArr != null">
-			   	AND   STATUS_CD IN 
-				   	   	<foreach item="item" index="index" collection="statusArr"
-			             open="(" separator="," close=")">
-					        #{item}
-					    </foreach>
-		   	   </if>
+		   	   <!-- 
 		   	   <if test="openCoverTag != null">
 				   	AND   OP_COV_TAG = #{openCoverTag}
 		   	   </if>
@@ -584,14 +587,15 @@
 			             open="(" separator=" OR " close=")">
 					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
 				    </foreach>
-		   	   </if>
+		   	   </if> -->
 		   	   <if test="sort != null">
 		   	    	ORDER BY ${sort.sortKey} ${sort.order}
 		   	   </if>
-		   ) a	 	
+		   	   
+		   
 		   	   <!-- WHERE ROWNUM BETWEEN #{pagination.start} AND #{pagination.end} -->
 		   	   <if test="pagination.position != null">
-		   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+		   	   		OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} *5 ROWS ONLY
 		   	   </if>
 		   	   
 	</select>
@@ -623,25 +627,13 @@
 															#{siTo, jdbcType=VARCHAR},
 															#{rateFrom, jdbcType=VARCHAR},
 															#{rateTo, jdbcType=VARCHAR},
-															#{approvedBy, jdbcType=VARCHAR}))	a
-		   	  WHERE  1=1
-		   	   <if test="statusArr != null">
-			   	AND   STATUS_CD IN 
-				   	   	<foreach item="item" index="index" collection="statusArr"
-			             open="(" separator="," close=")">
-					        #{item}
-					    </foreach>
-		   	   </if>
-		   	   <if test="openCoverTag != null">
-				   	AND   OP_COV_TAG = #{openCoverTag}
-		   	   </if>
-		   	   <if test="search != null">
-		   	   	 AND
-		   	    	<foreach item="col" index="index" collection="search.searchCols"
-			             open="(" separator=" OR " close=")">
-					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
-				    </foreach>
-		   	   </if>
+															#{approvedBy, jdbcType=VARCHAR},
+															#{line,jdbcType=VARCHAR},
+															#{statusArrStr,jdbcType=VARCHAR},
+															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
+																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
+															#{openCoverTag,jdbcType=VARCHAR}
+															))	a
 	</select>
 
 	<resultMap type="ph.cpi.rest.api.model.quote.SectionCovers" id="sectionCovers">
@@ -1275,7 +1267,8 @@
 				#{prjCreateUser, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{prjCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{prjUpdateUser, jdbcType=VARCHAR},
-				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{prjUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{mbiQuoteId, jdbcType=VARCHAR}
 			);
 		END;
 	</update>

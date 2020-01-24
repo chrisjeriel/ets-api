@@ -235,7 +235,14 @@ class CedingRep{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String polSignatory;
 	
+	public String getPolSignatory() {
+		return polSignatory;
+	}
+	public void setPolSignatory(String polSignatory) {
+		this.polSignatory = polSignatory;
+	}
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -340,6 +347,6 @@ class CedingRep{
 				+ ", defaultTag=" + defaultTag + ", position=" + position + ", department=" + department
 				+ ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", eSignature=" + eSignature + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", polSignatory=" + polSignatory + "]";
 	}
 }

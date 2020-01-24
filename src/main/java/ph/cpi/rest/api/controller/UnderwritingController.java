@@ -552,6 +552,13 @@ public class UnderwritingController {
 		return underwritingService.retrievePolDist(rpcr);
 	}
 	
+	@GetMapping(path="retrievePolDistCum")
+	public @ResponseBody RetrievePolDistResponse retrievePolDistCum(RetrievePolDistRequest rpcr) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolDistCum");
+		logger.info("RetrievePolDistRequest : " + rpcr.toString());
+		return underwritingService.retrievePolDistCum(rpcr);
+	}
+	
 	@PostMapping(path="processRenewablePolicy")
 	public @ResponseBody ProcessRenewablePolicyResponse processRenewablePolicy(@RequestBody ProcessRenewablePolicyRequest prpr) throws SQLException {
 		logger.info("POST: /api/underwriting-service/processRenewablePolicy");
@@ -592,6 +599,13 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolPoolDist");
 		logger.info("RetrievePolPoolDistributionRequest : " + rpdr.toString());
 		return underwritingService.retrievePolPoolDist(rpdr);
+	}
+	
+	@GetMapping(path="retrievePolPoolDistCum")
+	public @ResponseBody RetrievePoolDistributionResponse retrievePolPoolDistCum(RetrievePoolDistributionRequest rpdr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrievePolPoolDistCum");
+		logger.info("RetrievePolPoolDistributionRequest : " + rpdr.toString());
+		return underwritingService.retrievePolPoolDistCum(rpdr);
 	}
 	
 	@GetMapping(path="retrievePolForPurging")

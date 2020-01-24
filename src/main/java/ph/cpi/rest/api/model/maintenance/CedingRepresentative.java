@@ -20,8 +20,19 @@ public class CedingRepresentative {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String polSignatory;
 	
 	
+	public String getPolSignatory() {
+		return polSignatory;
+	}
+
+
+	public void setPolSignatory(String polSignatory) {
+		this.polSignatory = polSignatory;
+	}
+
+
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -199,7 +210,7 @@ public class CedingRepresentative {
 				+ lastName + ", fullName=" + fullName + ", defaultTag=" + defaultTag + ", position=" + position
 				+ ", department=" + department + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", eSignature="
 				+ eSignature + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", polSignatory=" + polSignatory + "]";
 	}
 	
 	

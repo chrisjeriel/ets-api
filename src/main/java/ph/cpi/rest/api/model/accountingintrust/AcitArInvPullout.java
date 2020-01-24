@@ -28,6 +28,7 @@ public class AcitArInvPullout {
 	private BigDecimal bankCharge;
 	private BigDecimal whtaxAmt;
 	private BigDecimal maturityValue;
+	private BigDecimal localAmt;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -171,6 +172,12 @@ public class AcitArInvPullout {
 	public void setMaturityValue(BigDecimal maturityValue) {
 		this.maturityValue = maturityValue;
 	}
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -205,7 +212,7 @@ public class AcitArInvPullout {
 				+ ", purchasedDate=" + purchasedDate + ", maturityDate=" + maturityDate + ", pulloutType=" + pulloutType
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt=" + invtAmt + ", incomeAmt=" + incomeAmt
 				+ ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt + ", maturityValue=" + maturityValue
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

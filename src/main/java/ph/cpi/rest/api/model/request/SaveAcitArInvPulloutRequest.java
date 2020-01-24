@@ -210,7 +210,7 @@ class SaveArInvPullout{
 		return "SaveArInvPullout [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", invtId=" + invtId
 				+ ", pulloutType=" + pulloutType + ", currCd=" + currCd + ", currRate=" + currRate + ", invtAmt="
 				+ invtAmt + ", incomeAmt=" + incomeAmt + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
-				+ ", maturityValue=" + maturityValue + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", maturityValue=" + maturityValue + ", localAmt=" + localAmt + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

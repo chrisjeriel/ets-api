@@ -44,8 +44,11 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJVInvestmentPlacement;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVPremResReleased;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVQuarterPremRes;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVRollOver;
+import ph.cpi.rest.api.model.accountingintrust.AcitJVUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcitJVinvPullOut;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
+import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
@@ -57,6 +60,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
+import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
@@ -248,4 +252,12 @@ public interface AccountingInTrustDao {
 	public String getAcitTranNo(final HashMap<String, Object> params) throws SQLException;
 	public String validateProfCommTran(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitProfCommSumm> retrieveProfCommParams() throws SQLException;
+	public List<AcitUnappliedCollection> retrieveUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitJVUnappliedCollection> retrieveJvUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitJvUnappInw> retrieveInwUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String,Object> saveJVUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String,Object> saveJVInwUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitJvUnappliedTreaty> retrieveTrtyUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
+	public HashMap<String,Object> saveJVTrtyUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
+	
 }

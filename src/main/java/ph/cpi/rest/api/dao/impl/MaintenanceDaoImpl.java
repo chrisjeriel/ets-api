@@ -284,7 +284,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<LineClass> retrieveMntLineClass(HashMap<String, Object> params) throws SQLException {
 		List<LineClass> lineClass = sqlSession.selectList("retrieveMntLineClass", params);
-		System.out.println("retrieveMntLineClassDao : " + lineClass);
+		logger.info("retrieveMntLineClassDao : " + lineClass);
 		return lineClass;
 	}
 

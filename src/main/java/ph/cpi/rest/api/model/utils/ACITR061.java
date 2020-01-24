@@ -15,6 +15,10 @@ public class ACITR061 {
 	private String destination;
 	private String printedBy;
 	private String chkDate;
+	private String jvType;
+	private String bank;
+	private String bankAcct;
+	private String sortBy;
 	
 	public String getReportId() {
 		return reportId;
@@ -94,12 +98,37 @@ public class ACITR061 {
 	public void setChkDate(String chkDate) {
 		this.chkDate = chkDate;
 	}
+	public String getJvType() {
+		return jvType;
+	}
+	public void setJvType(String jvType) {
+		this.jvType = jvType;
+	}
+	public String getBank() {
+		return bank;
+	}
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	public String getBankAcct() {
+		return bankAcct;
+	}
+	public void setBankAcct(String bankAcct) {
+		this.bankAcct = bankAcct;
+	}
+	public String getSortBy() {
+		return sortBy;
+	}
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
+	}
 	@Override
 	public String toString() {
 		return "ACITR061 [reportId=" + reportId + ", reportName=" + reportName + ", tranPostDate=" + tranPostDate
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", paytType=" + paytType + ", paytMode=" + paytMode
 				+ ", reportType=" + reportType + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
-				+ ", destination=" + destination + ", printedBy=" + printedBy + ", chkDate=" + chkDate + "]";
+				+ ", destination=" + destination + ", printedBy=" + printedBy + ", chkDate=" + chkDate + ", jvType="
+				+ jvType + ", bank=" + bank + ", bankAcct=" + bankAcct + ", sortBy=" + sortBy + "]";
 	}
 	
 }

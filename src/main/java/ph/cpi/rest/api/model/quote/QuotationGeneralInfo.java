@@ -61,7 +61,15 @@ public class QuotationGeneralInfo {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String mbiQuoteId;
 	
+	
+	public String getMbiQuoteId() {
+		return mbiQuoteId;
+	}
+	public void setMbiQuoteId(String mbiQuoteId) {
+		this.mbiQuoteId = mbiQuoteId;
+	}
 	public Integer getQuoteId() {
 		return quoteId;
 	}
@@ -413,7 +421,8 @@ public class QuotationGeneralInfo {
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
 				+ ", altWordings=" + altWordings + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
 				+ ", autoIntComp=" + autoIntComp + ", intCompTag=" + intCompTag + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", mbiQuoteId=" + mbiQuoteId + "]";
 	}
 	
 }
