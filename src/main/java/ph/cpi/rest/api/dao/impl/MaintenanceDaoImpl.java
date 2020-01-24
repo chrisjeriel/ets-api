@@ -77,6 +77,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnGlSubDepNo;
 import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.MtnReportsRange;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
@@ -1373,7 +1374,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public Integer saveMtnPayee(HashMap<String, Object> params)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("saveMtnPayee",params);
 		return errorCode;
 	}
@@ -1451,7 +1451,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public List<AcseInvSeries> retrieveAcseInvSeries(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		List<AcseInvSeries> list = sqlSession.selectList("retrieveAcseInvSeries", params);
 		return list;
 	}
@@ -1472,7 +1471,6 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public HashMap<String, Object> generateAcseInvoiceSeries(
 			HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("generateAcseInvoiceSeries",params);
 		params.put("errorCode", errorCode);
 		return params;
@@ -1484,5 +1482,18 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
         params.put("errorCode", errorCode);
         return params;
     }
+
+	@Override
+	public List<MtnReportsRange> retrieveMtnReportRange(HashMap<String, Object> params) throws SQLException {
+		List<MtnReportsRange> list = sqlSession.selectList("retrieveMtnReportRange",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnReportsRange(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnReportsRange",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }
 

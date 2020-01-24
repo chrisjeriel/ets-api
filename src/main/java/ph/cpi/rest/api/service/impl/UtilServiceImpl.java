@@ -58,6 +58,8 @@ public class UtilServiceImpl implements UtilService {
 				params.put("extractUser", grr.getPolr044Params().getExtractUser());
 				params.put("lineCdParam", grr.getPolr044Params().getLineCdParam());
 				params.put("cedingIdParam", grr.getPolr044Params().getCedingIdParam());
+				params.put("currCdParam", grr.getPolr044Params().getCurrCdParam());
+				System.out.println("cuuuuurrrrrcd --> " + grr.getPolr044Params().getCurrCdParam());
 				params.put("dateParam", grr.getPolr044Params().getDateParam());
 				params.put("dateRange", grr.getPolr044Params().getDateRange());
 				params.put("fromDate", grr.getPolr044Params().getFromDate());

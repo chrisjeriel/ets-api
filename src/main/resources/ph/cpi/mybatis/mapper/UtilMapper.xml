@@ -17,7 +17,8 @@
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{incRecTag, jdbcType=VARCHAR},
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -32,7 +33,8 @@
                                                     CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  	CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											        #{extractCount, mode=OUT, jdbcType=INTEGER},
-											        #{forceExtract, jdbcType=VARCHAR}
+											        #{forceExtract, jdbcType=VARCHAR},
+											        #{currCdParam, jdbcType=VARCHAR}
 										        );
 		END;
 	</update>
@@ -60,7 +62,8 @@
 												        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												        #{incRecTag, jdbcType=VARCHAR},
 												        #{extractCount, jdbcType=INTEGER, mode=OUT},
-												        #{forceExtract, jdbcType=VARCHAR}
+												        #{forceExtract, jdbcType=VARCHAR},
+												        #{currCdParam, jdbcType=VARCHAR}
 												    );
 		END;
 	</update>
@@ -76,7 +79,8 @@
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{incRecTag, jdbcType=VARCHAR},
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -91,7 +95,8 @@
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{incRecTag, jdbcType=VARCHAR},
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -105,7 +110,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -118,7 +124,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -131,7 +138,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -145,7 +153,8 @@
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{incRecTag, jdbcType=VARCHAR},
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -171,7 +180,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 
@@ -185,7 +195,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -198,7 +209,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -211,7 +223,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	

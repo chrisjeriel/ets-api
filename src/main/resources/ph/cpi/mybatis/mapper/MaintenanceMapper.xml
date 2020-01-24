@@ -5328,4 +5328,29 @@
 			);
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.MtnReportsRange" id="mtnRepRangeMap">
+		<result property="userId" 			column="USER_ID"/>
+		<result property="siRange" 			column="SI_RANGE"/>
+		<result property="amount" 			column="AMOUNT"/>
+	</resultMap>
+	
+	<select id="retrieveMtnReportRange" resultMap="mtnRepRangeMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_REPORTS_RANGE_PKG.ret_mtn_rep_range(#{userId},'', '', '', ''))
+	</select>
+	
+	<update id="saveMtnReportsRange">
+		BEGIN
+			<foreach collection="delReportsRange" item="del">
+				MTN_REPORTS_RANGE_PKG.del_mtn_rep_range(#{del.userId},
+														 #{del.siRange});
+			</foreach>
+			
+			<foreach collection="saveReportsRange" item="save">
+				MTN_REPORTS_RANGE_PKG.save_mtn_rep_range(#{save.userId},
+														 #{save.siRange},
+														 #{save.amount});
+			</foreach>
+		END;
+	</update>
 </mapper>
