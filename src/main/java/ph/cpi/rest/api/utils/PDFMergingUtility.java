@@ -46,10 +46,11 @@ public class PDFMergingUtility {
 		List<InputStream> sources = prepareLazyInputStreamSources(inputSourceDirectory);
 		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
 		merge(sources,fileOutputStream,mergedFileTitle, creator,  subject, maxMainMemoryBytes,  maxStorageBytes);
- 
+		
 		long t2 = System.currentTimeMillis();
 		System.out.println("Total time taken in merging " + sources.size()
 				+ " pdf files were " + (t2 - t1) + " milisecond.");
+		fileOutputStream.close();
 	}
  
 	protected List<InputStream> prepareLazyInputStreamSources(
@@ -109,6 +110,8 @@ public class PDFMergingUtility {
 		} catch (TransformerException e) {
 			throw new IOException("Problem while merging PDFs", e);
 		} finally {
+			cosStream.close();
+			
 			for (InputStream source : sources) {
 				IOUtils.closeQuietly(source);
 			}
@@ -166,16 +169,20 @@ public class PDFMergingUtility {
 		// Create and return XMP data structure in XML format
 		ByteArrayOutputStream xmpOutputStream = null;
 		OutputStream cosXMPStream = null;
+		PDMetadata pdfMetaData = null;
 		try {
 			xmpOutputStream = new ByteArrayOutputStream();
 			cosXMPStream = cosStream.createOutputStream();
 			new XmpSerializer().serialize(xmpMetadata, xmpOutputStream, true);
 			cosXMPStream.write(xmpOutputStream.toByteArray());
-			return new PDMetadata(cosStream);
+			pdfMetaData = new PDMetadata(cosStream);
 		} finally {
+			cosStream.close();
+			cosXMPStream.close();
 			IOUtils.closeQuietly(xmpOutputStream);
 			IOUtils.closeQuietly(cosXMPStream);
 		}
+		return pdfMetaData;
 	}
 
 }

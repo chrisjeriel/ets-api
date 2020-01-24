@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
-import ph.cpi.rest.api.model.claims.UpdateClaim;
-
 public class PrintOrBatchRequest {
 	private List<PrintBatchOr> printOrList;
 	public List<PrintBatchOr> getPrintOrList() {

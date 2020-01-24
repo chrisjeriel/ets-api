@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-import org.joda.time.DateTime;
 public class SaveAcitJvNegTrtyRequest {
 	private Integer tranId;
 	private Integer tranType;

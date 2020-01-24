@@ -746,7 +746,7 @@
 			</foreach>
 			
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,#{tranTypeCd},#{createUser},#{updateUser},#{reqId}); -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', #{tranTypeCd}, #{reqId}, v_message);
+			GENERATE_ACCSE_TAXES.GENERATE_PRQ_ITEMTAXES('PRQ', #{tranTypeCd}, #{reqId}, v_message);
 		END;
 	</update>
 	
@@ -862,6 +862,13 @@
 		<result property="acctEntDate" 		column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cancelReason"	 	column="CANCEL_REASON"/>
 		<result property="prlExist"		 	column="PRL_EXIST"/>
+		<result property="disbType"		 	column="DISB_TYPE"/>
+		<result property="destBank"		 	column="DEST_BANK"/>
+		<result property="destBankDesc"		column="DEST_BANK_DESC"/>
+		<result property="destAcctNo"		column="DEST_ACCT_NO"/>
+		<result property="destAcctName"		column="DEST_ACCT_NAME"/>
+		<result property="btRefNo"		 	column="BT_REF_NO"/>
+		<result property="swiftCd"		 	column="SWIFT_CD"/>
 	</resultMap>
 	
 	<select id="retrieveAcseCv" resultMap="acseCvMap" parameterType="java.util.Map">
@@ -914,7 +921,13 @@
 				#{tranStat, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{closeDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{deleteDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{disbType, jdbcType=VARCHAR},
+				#{destBank, jdbcType=INTEGER},
+				#{destAcctNo, jdbcType=VARCHAR},
+				#{destAcctName, jdbcType=VARCHAR},
+				#{btRefNo, jdbcType=VARCHAR},
+				#{swiftCd, jdbcType=VARCHAR}
 			);
 		END;
 	</update>
@@ -1693,7 +1706,7 @@
 			</foreach>
 			
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,6,v_create_user,v_update_user,v_req_id); -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', 6, v_req_id, v_message);
+			GENERATE_ACCSE_TAXES.GENERATE_PRQ_ITEMTAXES('PRQ', 6, v_req_id, v_message);
 		END;
 	</update>
 	
@@ -1831,7 +1844,7 @@
 				</foreach>	
 			</foreach>
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,7,v_create_user,v_update_user,v_req_id); -->
-			GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('PRQ', 7, v_req_id, v_message);
+			GENERATE_ACCSE_TAXES.GENERATE_PRQ_ITEMTAXES('PRQ', 7, v_req_id, v_message);
 		END;
 	</update>
 	
@@ -2129,5 +2142,9 @@
 																        #{sFeeQtr}
 																    ))
 	</select>
-        
+	
+	<select id="checkAcseJvSeries" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT ACSE_JOURNAL_VOUCHER_PKG.check_acse_jv_series FROM DUAL
+	</select>
+
 </mapper>

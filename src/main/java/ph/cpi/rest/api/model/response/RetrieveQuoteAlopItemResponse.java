@@ -6,7 +6,6 @@ import ph.cpi.rest.api.model.PaginationResponse;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.SortResponse;
 import ph.cpi.rest.api.model.quote.AlopItem;
-import ph.cpi.rest.api.model.quote.Quotation;
 
 public class RetrieveQuoteAlopItemResponse extends Response {
 	private List<AlopItem> alopItem;

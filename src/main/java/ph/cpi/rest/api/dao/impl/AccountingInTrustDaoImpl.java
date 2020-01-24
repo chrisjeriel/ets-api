@@ -1263,4 +1263,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public String checkAcitJvSeries() throws SQLException {
+		String result = sqlSession.selectOne("checkAcitJvSeries");
+		return result;
+	}
 }

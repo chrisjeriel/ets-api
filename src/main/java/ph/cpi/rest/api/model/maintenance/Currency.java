@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.model.maintenance;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 public class Currency {
 	private String currencyCd;

@@ -1576,7 +1576,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	public RetrieveRiskDistributionResponse retrieveRiskDist(RetrieveRiskDistributionRequest rrdr) throws SQLException {
 		RetrieveRiskDistributionResponse response = new RetrieveRiskDistributionResponse();
 		HashMap<String, Object> distWriskParam = new HashMap<String, Object>();
-		HashMap<String, Object> wriskLimitParam = new HashMap<String, Object>();
+		new HashMap<String, Object>();
 		HashMap<String, Object> riskDistWparamParam = new HashMap<String, Object>();
 		distWriskParam.put("policyId", rrdr.getPolicyId());
 		

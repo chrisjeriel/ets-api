@@ -3,7 +3,6 @@ package ph.cpi.rest.api.model.maintenance;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 public class Province {
 	

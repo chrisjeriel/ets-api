@@ -65,6 +65,14 @@ public class AcseCv {
 	private String cancelReason;
 	private String prlExist;
 	
+	private String disbType;
+	private Integer destBank;
+	private String destBankDesc;
+	private String destAcctNo;
+	private String destAcctName;
+	private String btRefNo;
+	private String swiftCd;
+	
 	public String getCvGenNo() {
 		return cvGenNo;
 	}
@@ -395,6 +403,48 @@ public class AcseCv {
 	public void setPrlExist(String prlExist) {
 		this.prlExist = prlExist;
 	}
+	public String getDisbType() {
+		return disbType;
+	}
+	public void setDisbType(String disbType) {
+		this.disbType = disbType;
+	}
+	public Integer getDestBank() {
+		return destBank;
+	}
+	public void setDestBank(Integer destBank) {
+		this.destBank = destBank;
+	}
+	public String getDestBankDesc() {
+		return destBankDesc;
+	}
+	public void setDestBankDesc(String destBankDesc) {
+		this.destBankDesc = destBankDesc;
+	}
+	public String getDestAcctNo() {
+		return destAcctNo;
+	}
+	public void setDestAcctNo(String destAcctNo) {
+		this.destAcctNo = destAcctNo;
+	}
+	public String getDestAcctName() {
+		return destAcctName;
+	}
+	public void setDestAcctName(String destAcctName) {
+		this.destAcctName = destAcctName;
+	}
+	public String getBtRefNo() {
+		return btRefNo;
+	}
+	public void setBtRefNo(String btRefNo) {
+		this.btRefNo = btRefNo;
+	}
+	public String getSwiftCd() {
+		return swiftCd;
+	}
+	public void setSwiftCd(String swiftCd) {
+		this.swiftCd = swiftCd;
+	}
 	@Override
 	public String toString() {
 		return "AcseCv [cvGenNo=" + cvGenNo + ", tranId=" + tranId + ", cvYear=" + cvYear + ", cvNo=" + cvNo
@@ -414,6 +464,8 @@ public class AcseCv {
 				+ mainPostDate + ", mainCreateUser=" + mainCreateUser + ", mainCreateDate=" + mainCreateDate
 				+ ", mainUpdateUser=" + mainUpdateUser + ", mainUpdateDate=" + mainUpdateDate + ", mainAcctEntDate="
 				+ mainAcctEntDate + ", refNo=" + refNo + ", checkStatus=" + checkStatus + ", acctEntDate=" + acctEntDate
-				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + "]";
+				+ ", cancelReason=" + cancelReason + ", prlExist=" + prlExist + ", disbType=" + disbType + ", destBank="
+				+ destBank + ", destBankDesc=" + destBankDesc + ", destAcctNo=" + destAcctNo + ", destAcctName="
+				+ destAcctName + ", btRefNo=" + btRefNo + ", swiftCd=" + swiftCd + "]";
 	}
 }
