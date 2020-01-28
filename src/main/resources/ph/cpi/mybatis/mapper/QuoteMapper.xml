@@ -573,6 +573,8 @@
 															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
 																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
 															#{openCoverTag,jdbcType=VARCHAR}
+															<!-- ,
+															#{riskId,jdbcType=VARCHAR} -->
 															))		a
 															)
 															
@@ -634,6 +636,8 @@
 															CASE WHEN #{search.value,jdbcType=VARCHAR} IS NULL THEN NULL
 																ELSE '%'||#{search.value,jdbcType=VARCHAR}||'%' END,
 															#{openCoverTag,jdbcType=VARCHAR}
+															<!-- ,
+															#{riskId,jdbcType=VARCHAR} -->
 															))	a
 															
 															
