@@ -48,6 +48,7 @@ public class RetrieveQuoteListingRequest {
 	private SearchRequest search;
 	private String openCoverTag;
 	private String recount = "Y";
+	private String riskId;
 	
 	public String getRecount() {
 		return recount;
@@ -243,6 +244,12 @@ public class RetrieveQuoteListingRequest {
 	public void setApprovedBy(String approvedBy) {
 		this.approvedBy = approvedBy;
 	}
+	public String getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(String riskId) {
+		this.riskId = riskId;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveQuoteListingRequest [quotationNo=" + quotationNo + ", quoteId=" + quoteId + ", cessionDesc="
@@ -255,6 +262,6 @@ public class RetrieveQuoteListingRequest {
 				+ siFrom + ", siTo=" + siTo + ", rateFrom=" + rateFrom + ", rateTo=" + rateTo + ", approvedBy="
 				+ approvedBy + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest
 				+ ", statusArr=" + statusArr + ", search=" + search + ", openCoverTag=" + openCoverTag + ", recount="
-				+ recount + "]";
+				+ recount + ", riskId=" + riskId + "]";
 	}
 }

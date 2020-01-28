@@ -6,8 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -131,7 +129,6 @@ public class QuoteServiceImpl implements QuoteService{
 	@Autowired
 	StorageService storageService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(QuoteServiceImpl.class);
 	
 	@Override
 	public RetrieveQuoteListingResponse retrieveQuoteListing(RetrieveQuoteListingRequest rqlp) throws SQLException {
@@ -178,6 +175,7 @@ public class QuoteServiceImpl implements QuoteService{
 			retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
 			retrieveQuoteListingParams.put("statusArrStr", StringUtils.join(rqlp.getStatusArr(),','));
 			retrieveQuoteListingParams.put("recount", rqlp.getRecount());
+			retrieveQuoteListingParams.put("riskId", rqlp.getRiskId());
 			
 			
 			rqlResponse.setQuotationList(quoteDao.retrieveQuoteListing(retrieveQuoteListingParams));
@@ -287,7 +285,6 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public RetrieveQuoteDetailsResponse retrieveQuoteDetails(RetrieveQuoteDetailsRequest rqdr) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveQuoteDetailsResponse rqdrResponse = new RetrieveQuoteDetailsResponse();
 		
 		HashMap<String, Object> retrieveQuoteDetailsParams = new HashMap<String, Object>();
@@ -462,7 +459,6 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public RetrieveQuoteAlopItemResponse retrieveQuoteAlopItem(RetrieveQuoteAlopItemRequest retQuoteAlopItem)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		
 		RetrieveQuoteAlopItemResponse retQuoteAlopItemResponse = new RetrieveQuoteAlopItemResponse();
 		
@@ -645,7 +641,6 @@ public class QuoteServiceImpl implements QuoteService{
 	@Override
 	public RetrieveQuoteEndorsementsOcResponse retrieveQuoteEndorsementsOc(RetrieveQuoteEndorsementsOcRequest rqerop)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		RetrieveQuoteEndorsementsOcResponse rqeoResponse = new RetrieveQuoteEndorsementsOcResponse();
 		HashMap<String, Object> retrieveQuoteEndorsementsOcParams = new HashMap<String, Object>();
 		retrieveQuoteEndorsementsOcParams.put("quoteId",rqerop.getQuoteId());
@@ -859,7 +854,6 @@ public class QuoteServiceImpl implements QuoteService{
 		}
 		
 		return sqoResponse;
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -903,7 +897,6 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public SaveQuoteOtherRatesResponse saveQuoteOtherRates(SaveQuoteOtherRatesRequest sqorr) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveQuoteOtherRatesResponse sqorResponse = new SaveQuoteOtherRatesResponse();
 		try{
 			HashMap<String, Object> saveQuoteOtherRatesParams = new HashMap<String, Object>();
@@ -1290,7 +1283,6 @@ public class QuoteServiceImpl implements QuoteService{
 
 	@Override
 	public SaveQuReptextResponse saveQuReptext(SaveQuReptextRequest spir) throws SQLException {
-		// TODO Auto-generated method stub
 		SaveQuReptextResponse response = new SaveQuReptextResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		try{
@@ -1381,6 +1373,7 @@ public class QuoteServiceImpl implements QuoteService{
 				retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
 				retrieveQuoteListingParams.put("statusArrStr", StringUtils.join(rqlp.getStatusArr(),','));
 				retrieveQuoteListingParams.put("recount", rqlp.getRecount());
+				retrieveQuoteListingParams.put("riskId", rqlp.getRiskId());
 				
 			
 			
