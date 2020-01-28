@@ -10,6 +10,7 @@ public class AcseCheckSeries {
 	private Integer tranId;
 	private String usedTag;
 	private String checkStatus;
+	private String checkStatusDesc;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
@@ -56,6 +57,12 @@ public class AcseCheckSeries {
 	public void setCheckStatus(String checkStatus) {
 		this.checkStatus = checkStatus;
 	}
+	public String getCheckStatusDesc() {
+		return checkStatusDesc;
+	}
+	public void setCheckStatusDesc(String checkStatusDesc) {
+		this.checkStatusDesc = checkStatusDesc;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
@@ -84,7 +91,7 @@ public class AcseCheckSeries {
 	public String toString() {
 		return "AcseCheckSeries [bank=" + bank + ", bankAcct=" + bankAcct + ", checkNo=" + checkNo + ", checkPrefix="
 				+ checkPrefix + ", tranId=" + tranId + ", usedTag=" + usedTag + ", checkStatus=" + checkStatus
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", checkStatusDesc=" + checkStatusDesc + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }
