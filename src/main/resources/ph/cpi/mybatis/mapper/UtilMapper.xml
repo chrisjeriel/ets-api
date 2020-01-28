@@ -39,6 +39,22 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR044C" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044C_PKG.extract_pol_prod_stat_ext(
+				#{extractUser, jdbcType=VARCHAR}, 
+				#{dateParam, jdbcType=VARCHAR},
+				#{dateRange, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{incRecTag, jdbcType=VARCHAR},
+				#{currCdParam, jdbcType=VARCHAR},
+				#{lineCdParam, jdbcType=VARCHAR},
+				#{extractCount, mode=OUT, jdbcType=INTEGER},
+				#{forceExtract, jdbcType=VARCHAR}
+		    );
+		END;
+	</update>
+	
 	<update id="extractPOLR044D" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044D_PKG.extract_pol_monytdissue(
@@ -47,7 +63,8 @@
 											        #{dateRange, jdbcType=VARCHAR},
 											        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											        #{extractCount, jdbcType=INTEGER, mode=OUT},
-											        #{forceExtract, jdbcType=VARCHAR}
+											        #{forceExtract, jdbcType=VARCHAR},
+											        #{currCdParam, jdbcType=VARCHAR}
 											    );
 		END;
 	</update>
@@ -65,6 +82,22 @@
 												        #{forceExtract, jdbcType=VARCHAR},
 												        #{currCdParam, jdbcType=VARCHAR}
 												    );
+		END;
+	</update>
+	
+	<update id="extractPOLR044F" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044F_PKG.extract_pol_premprod_comp_ext(
+				#{extractUser, jdbcType=VARCHAR}, 
+				#{dateParam, jdbcType=VARCHAR},
+				#{dateRange, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{incRecTag, jdbcType=VARCHAR},
+				#{currCdParam, jdbcType=VARCHAR},
+				#{cedingIdParam, jdbcType=VARCHAR},
+				#{extractCount, mode=OUT, jdbcType=INTEGER},
+				#{forceExtract, jdbcType=VARCHAR}
+		    );
 		END;
 	</update>
 	
@@ -166,7 +199,8 @@
 												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR});
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
 		END;
 	</update>
 	
