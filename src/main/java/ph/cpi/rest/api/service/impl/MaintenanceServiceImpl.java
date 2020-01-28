@@ -3288,4 +3288,31 @@ public class MaintenanceServiceImpl implements MaintenanceService{
         
         return gmacsResponse;
     }
+
+	@Override
+	public RetrieveMtnReportsRangeResponse retrieveMtnReportsRange(RetrieveMtnReportsRangeRequest rmrrr)
+			throws SQLException {
+		RetrieveMtnReportsRangeResponse response  =  new RetrieveMtnReportsRangeResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("userId", rmrrr.getUserId());
+		response.setReportsRange(maintenanceDao.retrieveMtnReportRange(params));
+		return response;
+	}
+
+	@Override
+	public SaveMtnReportsRangeResponse saveMtnReportsRange(SaveMtnReportsRangeRequest request) throws SQLException {
+		SaveMtnReportsRangeResponse response = new SaveMtnReportsRangeResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveReportsRange", request.getSaveReportsRange());
+			params.put("delReportsRange", request.getDelReportsRange());
+			HashMap<String,Object> res = maintenanceDao.saveMtnReportsRange(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
