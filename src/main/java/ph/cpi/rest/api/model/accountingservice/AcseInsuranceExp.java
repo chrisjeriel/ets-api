@@ -21,6 +21,8 @@ public class AcseInsuranceExp {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String reimburseTag;
+	private String accruedTag;
 	
 	private List<CvItemTaxes> taxAllocation;
 	
@@ -114,6 +116,18 @@ public class AcseInsuranceExp {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getReimburseTag() {
+		return reimburseTag;
+	}
+	public void setReimburseTag(String reimburseTag) {
+		this.reimburseTag = reimburseTag;
+	}
+	public String getAccruedTag() {
+		return accruedTag;
+	}
+	public void setAccruedTag(String accruedTag) {
+		this.accruedTag = accruedTag;
+	}
 	public List<CvItemTaxes> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -127,6 +141,7 @@ public class AcseInsuranceExp {
 				+ ", insuranceTypeDesc=" + insuranceTypeDesc + ", currCd=" + currCd + ", currRate=" + currRate
 				+ ", insuredAmt=" + insuredAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", reimburseTag=" + reimburseTag + ", accruedTag=" + accruedTag + ", taxAllocation=" + taxAllocation
+				+ "]";
 	}
 }
