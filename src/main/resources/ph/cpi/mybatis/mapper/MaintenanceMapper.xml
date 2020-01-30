@@ -3868,7 +3868,7 @@
 	</resultMap>
 	
 	<select id="retrieveMtnSL" resultMap="SLMap">
-		SELECT * FROM TABLE(MTN_SL_PKG.RET_MTN_SL(#{slTypeCd,jdbcType=VARCHAR},#{slCd,jdbcType=VARCHAR},#{payeeNo,jdbcType=VARCHAR},#{autoTag,jdbcType=VARCHAR},#{activeTag,jdbcType=VARCHAR}))
+		SELECT * FROM TABLE(MTN_SL_PKG.RET_MTN_SL(#{slTypeCd,jdbcType=VARCHAR},#{slCd,jdbcType=VARCHAR},#{payeeNo,jdbcType=VARCHAR},#{autoTag,jdbcType=VARCHAR},#{activeTag,jdbcType=VARCHAR},#{slTypeCdArr,jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.SL" id="SLMap">
