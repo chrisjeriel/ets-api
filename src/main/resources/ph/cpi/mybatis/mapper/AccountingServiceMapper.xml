@@ -1753,6 +1753,7 @@
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="reimburseTag" 		column="REIMBURSE_TAG"/>
 		<result property="accruedTag" 			column="ACCRUED_TAG"/>
+		<result property="remarks" 				column="REMARKS"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1815,7 +1816,8 @@
 					#{save.updateUser, jdbcType=VARCHAR}, 
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.reimburseTag, jdbcType=VARCHAR},
-					#{save.accruedTag, jdbcType=VARCHAR}
+					#{save.accruedTag, jdbcType=VARCHAR},
+					#{save.remarks, jdbcType=VARCHAR}
 				);
 				
 				<foreach item="saveTaxes" collection="save.taxAllocation">

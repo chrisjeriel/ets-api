@@ -48,6 +48,7 @@ class InsExpAcse {
 	private String updateDate;
 	private String reimburseTag;
 	private String accruedTag;
+	private String remarks;
 	
 	private List<SaveCvItemTaxes> taxAllocation;
 	
@@ -147,6 +148,12 @@ class InsExpAcse {
 	public void setAccruedTag(String accruedTag) {
 		this.accruedTag = accruedTag;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public List<SaveCvItemTaxes> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -159,7 +166,7 @@ class InsExpAcse {
 				+ insuredCd + ", insuredName=" + insuredName + ", insuranceType=" + insuranceType + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", insuredAmt=" + insuredAmt + ", localAmt=" + localAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", reimburseTag=" + reimburseTag + ", accruedTag=" + accruedTag + ", taxAllocation="
-				+ taxAllocation + "]";
+				+ updateDate + ", reimburseTag=" + reimburseTag + ", accruedTag=" + accruedTag + ", remarks=" + remarks
+				+ ", taxAllocation=" + taxAllocation + "]";
 	}
 }
