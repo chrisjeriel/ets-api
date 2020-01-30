@@ -1461,5 +1461,18 @@ public class MaintenanceController {
         logger.info("generateMtnAcseCheckSeriesRequest : " + gmacsr.toString());
         return maintenanceService.generateMtnAcseCheckSeries(gmacsr);
     }
-
+	
+	@GetMapping(path="retrieveMtnReportsRange")
+	public @ResponseBody RetrieveMtnReportsRangeResponse retrieveMtnReportsRange(RetrieveMtnReportsRangeRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnReportsRange");
+		logger.info("RetrieveMtnReportsRangeRequest : " + request.toString());
+		return maintenanceService.retrieveMtnReportsRange(request);
+	}
+	
+	@PostMapping(path="saveMtnReportsRange")
+    public @ResponseBody SaveMtnReportsRangeResponse saveMtnReportsRange(@RequestBody SaveMtnReportsRangeRequest request) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnReportsRange");
+        logger.info("SaveMtnReportsRangeRequest : " + request.toString());
+        return maintenanceService.saveMtnReportsRange(request);
+    }
 }

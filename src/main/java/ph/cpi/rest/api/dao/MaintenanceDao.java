@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.maintenance.MtnCurrency;
 import ph.cpi.rest.api.model.maintenance.MtnGlSubDepNo;
 import ph.cpi.rest.api.model.maintenance.MtnLossCd;
 import ph.cpi.rest.api.model.maintenance.MtnPolWordings;
+import ph.cpi.rest.api.model.maintenance.MtnReportsRange;
 import ph.cpi.rest.api.model.maintenance.NonRenewalReason;
 import ph.cpi.rest.api.model.maintenance.Object_;
 import ph.cpi.rest.api.model.maintenance.Parameters;
@@ -310,5 +311,6 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> generateMtnAcitCheckSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> generateAcseInvoiceSeries(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> generateMtnAcseCheckSeries(final HashMap<String, Object> params) throws SQLException;
-
+	public List<MtnReportsRange>  retrieveMtnReportRange(final HashMap<String,Object> params) throws SQLException;
+	public HashMap<String,Object> saveMtnReportsRange(final HashMap<String,Object> params) throws SQLException;
 }

@@ -31,10 +31,14 @@ public class UtilDaoImpl implements UtilDao{
             	extractionMethod = "extractPOLR044A";
         } else if ("POLR044B".equalsIgnoreCase((String) params.get("reportId"))) {
                 extractionMethod = "extractPOLR044B";
+        } else if ("POLR044C".equalsIgnoreCase((String) params.get("reportId"))) {
+            	extractionMethod = "extractPOLR044C";
         } else if ("POLR044D".equalsIgnoreCase((String) params.get("reportId"))) {
                 extractionMethod = "extractPOLR044D";
         } else if ("POLR044E".equalsIgnoreCase((String) params.get("reportId"))) {
                 extractionMethod = "extractPOLR044E";
+        } else if ("POLR044F".equalsIgnoreCase((String) params.get("reportId"))) {
+            	extractionMethod = "extractPOLR044F";
         } else if ("POLR044G".equalsIgnoreCase((String) params.get("reportId"))) {
                 extractionMethod = "extractPOLR044G";
         } else if ("POLR044H".equalsIgnoreCase((String) params.get("reportId"))) {
