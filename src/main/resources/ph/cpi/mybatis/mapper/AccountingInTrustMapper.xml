@@ -667,8 +667,19 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJvList" resultMap="transactionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv(
-					#{tranId,jdbcType=INTEGER},
+		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_list(
+					#{tranId, jdbcType=INTEGER},
+					#{jvNo, jdbcType=VARCHAR},
+					#{jvDateFrom, jdbcType=VARCHAR},
+					#{jvDateTo, jdbcType=VARCHAR},
+					#{particulars, jdbcType=VARCHAR},
+					#{tranTypeName, jdbcType=VARCHAR},
+					#{refNo, jdbcType=VARCHAR},
+					#{preparedBy, jdbcType=VARCHAR},
+					#{jvAmtFrom, jdbcType=INTEGER},
+					#{jvAmtTo, jdbcType=INTEGER},
+					#{tranStat, jdbcType=VARCHAR},
+					#{jvStat, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 	

@@ -1,3 +1,4 @@
+
 package ph.cpi.rest.api.service.impl;
 
 import java.math.BigDecimal;
@@ -201,6 +202,17 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVListingResponse response = new RetrieveAcitJVListingResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", rajl.getTranId());
+		params.put("jvNo", rajl.getJvNo());
+		params.put("jvDateFrom", rajl.getJvDateFrom());
+		params.put("jvDateTo", rajl.getJvDateTo());
+		params.put("particulars", rajl.getParticulars());
+		params.put("tranTypeName", rajl.getTranTypeName());
+		params.put("refNo", rajl.getRefNo());
+		params.put("preparedBy", rajl.getPreparedBy());
+		params.put("jvAmtFrom", rajl.getJvAmtFrom());
+		params.put("jvAmtTo", rajl.getJvAmtTo());
+		params.put("tranStat", rajl.getTranStat());
+		params.put("jvStat", rajl.getJvStat());
 		response.setTransactions(acctITDao.retrieveAcitJVListings(params));
 		return response;
 	}
