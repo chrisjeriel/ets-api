@@ -1680,6 +1680,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("updateDate", smar.getUpdateDate());
 			params.put("saveAdjRepList", smar.getSaveAdjRepList());
 			params.put("delAdjRepList", smar.getDelAdjRepList());
+			params.put("accreditedTag", smar.getAccreditedTag());
 			HashMap<String, Object> res = maintenanceDao.saveMtnAdjuster(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setOutAdjId((String) res.get("outAdjId"));

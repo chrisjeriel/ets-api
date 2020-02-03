@@ -1133,7 +1133,7 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuotationCopyParams.put("reinsurerId", sqcp.getReinsurerId());	
 			
 			HashMap<String, Object> res = quoteDao.saveQuotationCopy(saveQuotationCopyParams);
-			storageService.copy("quotation",saveQuotationCopyParams.get("quoteId").toString(),(String) res.get("newQuoteId").toString());
+			//storageService.copy("quotation",saveQuotationCopyParams.get("quoteId").toString(),(String) res.get("newQuoteId").toString());
 			
 			sqcResponse.setReturnCode((Integer) res.get("errorCode"));
 			sqcResponse.setQuoteId((Integer) res.get("newQuoteId"));
