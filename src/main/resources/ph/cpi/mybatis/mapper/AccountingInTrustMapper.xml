@@ -670,8 +670,8 @@
 		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_list(
 					#{tranId, jdbcType=INTEGER},
 					#{jvNo, jdbcType=VARCHAR},
-					#{jvDateFrom, jdbcType=VARCHAR},
-					#{jvDateTo, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{jvDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{jvDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{particulars, jdbcType=VARCHAR},
 					#{tranTypeName, jdbcType=VARCHAR},
 					#{refNo, jdbcType=VARCHAR},
