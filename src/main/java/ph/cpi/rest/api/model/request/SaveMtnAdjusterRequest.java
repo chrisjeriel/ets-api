@@ -19,7 +19,15 @@ public class SaveMtnAdjusterRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String accreditedTag;
 	
+	public String getAccreditedTag() {
+		return accreditedTag;
+	}
+	public void setAccreditedTag(String accreditedTag) {
+		this.accreditedTag = accreditedTag;
+	}
+
 	private List<AdjRep> delAdjRepList;
 	private List<AdjRep> saveAdjRepList;
 	
@@ -122,12 +130,12 @@ public class SaveMtnAdjusterRequest {
 	
 	@Override
 	public String toString() {
-		return "SaveMtnAdjusterRequest [adjId=" + adjId + ", adjName=" + adjName
-				+ ", addrLine1=" + addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd="
-				+ zipCd + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + ", delAdjRepList=" + delAdjRepList + ", saveAdjRepList="
-				+ saveAdjRepList + "]";
+		return "SaveMtnAdjusterRequest [adjId=" + adjId + ", adjName=" + adjName + ", addrLine1=" + addrLine1
+				+ ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", zipCd=" + zipCd + ", contactNo="
+				+ contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", accreditedTag=" + accreditedTag + ", delAdjRepList=" + delAdjRepList
+				+ ", saveAdjRepList=" + saveAdjRepList + "]";
 	}
 }
 

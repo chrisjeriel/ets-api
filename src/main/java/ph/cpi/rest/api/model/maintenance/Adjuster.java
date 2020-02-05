@@ -15,6 +15,7 @@ public class Adjuster {
 	private String contactNo;
 	private String emailAdd;
 	private String activeTag;
+	private String accreditedTag;
 	private String remarks;
 	private String createUser;
 	private DateTime createDate;
@@ -25,6 +26,14 @@ public class Adjuster {
 
 	public String getAdjId() {
 		return adjId;
+	}
+
+	public String getAccreditedTag() {
+		return accreditedTag;
+	}
+
+	public void setAccreditedTag(String accreditedTag) {
+		this.accreditedTag = accreditedTag;
 	}
 
 	public void setAdjId(String adjId) {
@@ -153,11 +162,11 @@ public class Adjuster {
 
 	@Override
 	public String toString() {
-		return "Adjuster [adjId=" + adjId + ", adjName=" + adjName + ", addrLine1="
-				+ addrLine1 + ", addrLine2=" + addrLine2 + ", addrLine3=" + addrLine3 + ", fullAddress=" + fullAddress
-				+ ", zipCd=" + zipCd + ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag="
-				+ activeTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", adjRepresentative="
-				+ adjRepresentative + "]";
+		return "Adjuster [adjId=" + adjId + ", adjName=" + adjName + ", addrLine1=" + addrLine1 + ", addrLine2="
+				+ addrLine2 + ", addrLine3=" + addrLine3 + ", fullAddress=" + fullAddress + ", zipCd=" + zipCd
+				+ ", contactNo=" + contactNo + ", emailAdd=" + emailAdd + ", activeTag=" + activeTag
+				+ ", accreditedTag=" + accreditedTag + ", remarks=" + remarks + ", createUser=" + createUser
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", adjRepresentative=" + adjRepresentative + "]";
 	}
 }

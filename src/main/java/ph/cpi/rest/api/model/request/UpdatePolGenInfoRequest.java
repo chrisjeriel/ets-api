@@ -12,7 +12,14 @@ public class UpdatePolGenInfoRequest {
 	private String longitude;
 	private String updateUser;
 	private String updateDate;
+	private String coAltRefNo;
 
+	public String getCoAltRefNo() {
+		return coAltRefNo;
+	}
+	public void setCoAltRefNo(String coAltRefNo) {
+		this.coAltRefNo = coAltRefNo;
+	}
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -78,6 +85,6 @@ public class UpdatePolGenInfoRequest {
 		return "UpdatePolGenInfoRequest [policyId=" + policyId + ", riskId=" + riskId + ", coRefNo=" + coRefNo
 				+ ", riBinderNo=" + riBinderNo + ", intmId=" + intmId + ", projDesc=" + projDesc + ", latitude="
 				+ latitude + ", longitude=" + longitude + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ "]";
+				+ ", coAltRefNo=" + coAltRefNo + "]";
 	}
 }

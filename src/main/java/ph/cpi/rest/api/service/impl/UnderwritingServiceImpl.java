@@ -1348,6 +1348,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			updatePolGenInfoParams.put("longtitude", uppgif.getLongitude());
 			updatePolGenInfoParams.put("updateUser",uppgif.getUpdateUser());
 			updatePolGenInfoParams.put("updateDate",uppgif.getUpdateDate());
+			updatePolGenInfoParams.put("coAltRefNo",uppgif.getCoAltRefNo());
+			
 			uppgifResponse.setReturnCode(underwritingDao.updatePolGenInfo(updatePolGenInfoParams));
 		}catch(Exception ex){
 			uppgifResponse.setReturnCode(0);

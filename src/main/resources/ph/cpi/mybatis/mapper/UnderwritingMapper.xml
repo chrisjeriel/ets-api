@@ -1982,7 +1982,8 @@
 											 #{latitude, jdbcType=VARCHAR},
 											 #{longtitude, jdbcType=VARCHAR},
 											 #{updateUser, jdbcType=VARCHAR},
-											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											 #{coAltRefNo, jdbcType=VARCHAR}
 											 );
 		END;
 	</update>

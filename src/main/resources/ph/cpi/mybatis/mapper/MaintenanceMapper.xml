@@ -2879,6 +2879,7 @@
 		<result property="contactNo"		column="CONTACT_NO" />
 		<result property="emailAdd"			column="EMAIL_ADD" />
 		<result property="activeTag"		column="ACTIVE_TAG" />
+		<result property="accreditedTag"	column="ACCREDITED_TAG" />
 		<result property="remarks"			column="REMARKS" />
 		<result property="createUser"		column="CREATE_USER" />
 		<result property="createDate"		column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -2919,6 +2920,7 @@
 		<result property="createDate"		column="CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="accreditedTag" 	column="ACCREDITED_TAG"/>
 		<association property="adjRepresentative" resultMap="adjRepresentativeAssoc" />
      </resultMap>
      
@@ -2966,7 +2968,8 @@
     						#{createUser},
     						null,
     						#{updateUser},
-    						null
+    						null,
+    						#{accreditedTag ,jdbcType=VARCHAR}
     		);
     		
     		#{outAdjId, mode=OUT, jdbcType=VARCHAR} := v_adj_id;
