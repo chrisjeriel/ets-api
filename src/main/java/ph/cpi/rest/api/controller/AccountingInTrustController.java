@@ -961,4 +961,11 @@ public class AccountingInTrustController {
 		logger.info("SaveAcitJvUnappliedTrtyRequest : " + request.toString());
 		return acctInTrustService.saveJVTrtyUnappliedColl(request);
 	}
+	
+	@GetMapping(path="retrieveAcitJVListingLength")
+	public @ResponseBody String retrieveAcitJVListingLength(RetrieveAcitJVListingRequest rajll) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVListingLength");
+		logger.info("RetrieveAcitJVListingLengthRequest : " + rajll.toString());
+		return acctInTrustService.retrieveAcitJvListingLength(rajll);
+	}
 }

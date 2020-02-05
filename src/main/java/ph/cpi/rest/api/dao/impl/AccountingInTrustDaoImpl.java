@@ -1269,4 +1269,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		String result = sqlSession.selectOne("checkAcitJvSeries");
 		return result;
 	}
+
+	@Override
+	public Integer retrieveAcitJvListingLength(HashMap<String, Object> params) throws SQLException {
+		Integer length = (Integer) sqlSession.selectOne("retrieveAcitJvListingLength", params);
+		return length;
+	}
 }
