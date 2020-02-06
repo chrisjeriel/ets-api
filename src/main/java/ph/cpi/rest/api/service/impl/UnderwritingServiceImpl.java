@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
+import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -106,6 +107,7 @@ import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -908,7 +910,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolicyDetailsParams.put("createUser", spdp.getCreateUser());
 			savePolicyDetailsParams.put("createDate", spdp.getCreateDate());
 			savePolicyDetailsParams.put("updateUser", spdp.getUpdateUser());
-			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());			
+			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());	
+			savePolicyDetailsParams.put("riskId", spdp.getRiskId());
+			savePolicyDetailsParams.put("coinsGrpId", spdp.getCoinsGrpId());			
+			
 			
 			HashMap<String, Object> res = new HashMap<String, Object>();
 			
@@ -2065,6 +2070,26 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("lineCd", rpedr.getLineCd());
 		response.setDeductibles(underwritingDao.retrievePolEndtDed(params));
 		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr)
+			throws SQLException {
+		RetrieveOpenCoverPolListResponse response = new RetrieveOpenCoverPolListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", rpedr.getPolicyIdOc());
+		params.put("lineCd", rpedr.getLineCd());
+		params.put("polYear", rpedr.getPolYear());
+		params.put("polSeqNo", rpedr.getPolSeqNo());
+		params.put("cedingId", rpedr.getCedingId());
+		params.put("coSeriesNo", rpedr.getCoSeriesNo());
+		params.put("altNo", rpedr.getAltNo());
+		params.put("policyNo", rpedr.getPolicyNo());
+		params.put("openPolNo", rpedr.getOpenPolNo());
+		params.put("riskName", rpedr.getRiskName());
+		
+		response.setPolList(underwritingDao.retrieveOpenCoverPolList(params));
 		return response;
 	}
 }

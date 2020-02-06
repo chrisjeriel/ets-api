@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
-import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
+import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
+import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -93,8 +94,8 @@ import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
-import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
+import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -105,6 +106,7 @@ import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -762,5 +764,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolEndtDed");
 		logger.info("RetrievePolEndtDedRequest : " + rpedr.toString());
 		return underwritingService.retrievePolEndtDed(rpedr);
+	}
+	
+	@GetMapping(path="retrieveOpenCoverPolList")
+	public @ResponseBody RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveOpenCoverPolList");
+		logger.info("RetrieveOpenCoverPolListRequest : " + rpedr.toString());
+		return underwritingService.retrieveOpenCoverPolList(rpedr);
 	}
 }

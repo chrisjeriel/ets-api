@@ -1508,7 +1508,8 @@
 												  #{createUser, jdbcType=VARCHAR},
 												  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{updateUser, jdbcType=VARCHAR},
-												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{riskId, jdbcType=VARCHAR}
 											     );
 		END;
 	</update>
@@ -1523,7 +1524,9 @@
 												   #{createUser, jdbcType=VARCHAR},
 												   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												   #{updateUser, jdbcType=VARCHAR},
-												   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{riskId, jdbcType=VARCHAR},
+												  #{coinsGrpId, jdbcType=VARCHAR}
 											      );
 		END;
 	</update>
@@ -1538,7 +1541,8 @@
 													#{createUser, jdbcType=VARCHAR},
 													CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser, jdbcType=VARCHAR},
-													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  	#{riskId, jdbcType=VARCHAR}
 											   		);
 		END;
 	</update>	
@@ -1685,6 +1689,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.ProjectOc" id="PolProjOcListingMap">
+		<result property="riskId" 				column="RISK_ID"/>
 		<result property="riskName"           	column="RISK_NAME"/>
         <result property="objectDesc"           column="OBJECT_DESC"/>
         <result property="site"           		column="SITE"/>
@@ -3034,5 +3039,29 @@
 		<result property="okDelete"			column="OK_DELETE"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcList" id="PolOcListMap">
+		<result property="policyId" column="POLICY_ID" />
+		<result property="policyNo" column="POLICY_NO" />
+		<result property="policyIdOc" column="POLICY_ID_OC" />
+		<result property="policyNoOc" column="POLICY_NO_OC" />
+		<result property="riskId" column="RISK_ID" />
+		<result property="riskName" column="RISK_NAME" />
+		<result property="coinsGrpId" column="COINS_GRP_ID" />
+	</resultMap>
+	
+	<select id="retrieveOpenCoverPolList" resultMap="PolOcListMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_OC_PKG.ret_create_oc_pol_lov(
+			#{policyIdOc, jdbcType=VARCHAR},
+			#{lineCd, jdbcType=VARCHAR},
+			#{polYear, jdbcType=VARCHAR},
+			#{polSeqNo, jdbcType=VARCHAR},
+			#{cedingId, jdbcType=VARCHAR},
+			#{coSeriesNo, jdbcType=VARCHAR},
+			#{altNo, jdbcType=VARCHAR},
+			#{policyNo, jdbcType=VARCHAR},
+			#{openPolNo, jdbcType=VARCHAR},
+			#{riskName, jdbcType=VARCHAR}
+		))
+	</select>
 	
 </mapper>

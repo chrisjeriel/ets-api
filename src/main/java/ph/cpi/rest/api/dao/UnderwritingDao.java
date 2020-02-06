@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
+import ph.cpi.rest.api.model.underwriting.PolOcList;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PoolDistribution;
@@ -139,4 +140,6 @@ public interface UnderwritingDao {
 	public Cession getPolCession(final HashMap<String, Object> params) throws SQLException;
 
 	public List<Deductibles> retrievePolEndtDed(final HashMap<String, Object> params) throws SQLException;
+	
+	public List<PolOcList> retrieveOpenCoverPolList(final HashMap<String, Object> params) throws SQLException;
 }

@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
@@ -18,6 +19,7 @@ import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
+import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -96,6 +98,7 @@ import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -257,4 +260,5 @@ public interface UnderwritingService {
 	public RetrievePolEndtDedResponse retrievePolEndtDed(RetrievePolEndtDedRequest rpedr) throws SQLException;
 	
 	public String retrievePolicyListingLength(RetrievePolicyListingRequest rplp) throws SQLException;
+	public RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr) throws SQLException;
 }
