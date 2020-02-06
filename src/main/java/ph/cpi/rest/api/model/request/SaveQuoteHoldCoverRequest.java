@@ -20,6 +20,15 @@ public class SaveQuoteHoldCoverRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	
+	private String totalNoDays;
+	private String premAmt;
+	private String commAmt;
+	private String vatRiComm;
+	private String netDue;
+	private String currCd;
+	private String currRt;
+	
 	public String getQuoteId() {
 		return quoteId;
 	}
@@ -134,6 +143,48 @@ public class SaveQuoteHoldCoverRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getTotalNoDays() {
+		return totalNoDays;
+	}
+	public void setTotalNoDays(String totalNoDays) {
+		this.totalNoDays = totalNoDays;
+	}
+	public String getPremAmt() {
+		return premAmt;
+	}
+	public void setPremAmt(String premAmt) {
+		this.premAmt = premAmt;
+	}
+	public String getCommAmt() {
+		return commAmt;
+	}
+	public void setCommAmt(String commAmt) {
+		this.commAmt = commAmt;
+	}
+	public String getVatRiComm() {
+		return vatRiComm;
+	}
+	public void setVatRiComm(String vatRiComm) {
+		this.vatRiComm = vatRiComm;
+	}
+	public String getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(String netDue) {
+		this.netDue = netDue;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
+	public String getCurrRt() {
+		return currRt;
+	}
+	public void setCurrRt(String currRt) {
+		this.currRt = currRt;
+	}
 	@Override
 	public String toString() {
 		return "SaveQuoteHoldCoverRequest [quoteId=" + quoteId + ", holdCoverId=" + holdCoverId + ", lineCd=" + lineCd
@@ -141,6 +192,8 @@ public class SaveQuoteHoldCoverRequest {
 				+ holdCoverRevNo + ", optionId=" + optionId + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo
 				+ ", compRefHoldCovNo=" + compRefHoldCovNo + ", status=" + status + ", reqBy=" + reqBy + ", reqDate="
 				+ reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", totalNoDays=" + totalNoDays + ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", vatRiComm="
+				+ vatRiComm + ", netDue=" + netDue + ", currCd=" + currCd + ", currRt=" + currRt + "]";
 	}
 }

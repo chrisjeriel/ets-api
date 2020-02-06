@@ -819,6 +819,14 @@ public class QuoteServiceImpl implements QuoteService{
 			saveQuoteHoldCoverParams.put("updateUser", sqhcr.getUpdateUser());
 			saveQuoteHoldCoverParams.put("updateDate", sqhcr.getUpdateDate());
 			
+			saveQuoteHoldCoverParams.put("totalNoDays", sqhcr.getTotalNoDays());
+			saveQuoteHoldCoverParams.put("premAmt", sqhcr.getPremAmt());
+			saveQuoteHoldCoverParams.put("commAmt", sqhcr.getCommAmt());
+			saveQuoteHoldCoverParams.put("vatRiComm", sqhcr.getVatRiComm());
+			saveQuoteHoldCoverParams.put("netDue", sqhcr.getNetDue());
+			saveQuoteHoldCoverParams.put("currCd", sqhcr.getCurrCd());
+			saveQuoteHoldCoverParams.put("currRt", sqhcr.getCurrRt());
+			
 			HashMap<String, Object> response = quoteDao.saveQuoteHoldCover(saveQuoteHoldCoverParams);
 			
 			sqhcrResponse.setReturnCode((Integer) response.get("errorCode"));
