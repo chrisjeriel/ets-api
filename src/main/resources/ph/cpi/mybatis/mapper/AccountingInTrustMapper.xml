@@ -561,6 +561,7 @@
 		<result property="updateUser" 		column="JV_UPDATE_USER"/>
 		<result property="updateDate" 		column="JV_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="approveJV" 		column="APPROVE_JV"/>
+		<result property="jvNo2" 			column="JV_NO2"/>
 		<association property="inwPolBal" resultMap="inwPolBalMap"></association>
 	
 	</resultMap>
@@ -667,9 +668,31 @@
 	</resultMap>
 	
 	<select id="retrieveAcitJvList" resultMap="transactionMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv(
-					#{tranId,jdbcType=INTEGER},
-					'', '', '',''))
+		<!-- SELECT *
+		  FROM ( -->
+				SELECT * FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_list(
+							#{tranId, jdbcType=INTEGER},
+							#{jvNo, jdbcType=VARCHAR},
+							CAST(to_timestamp(#{jvDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							CAST(to_timestamp(#{jvDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+							#{particulars, jdbcType=VARCHAR},
+							#{tranTypeName, jdbcType=VARCHAR},
+							#{refNo, jdbcType=VARCHAR},
+							#{preparedBy, jdbcType=VARCHAR},
+							#{jvAmtFrom, jdbcType=INTEGER},
+							#{jvAmtTo, jdbcType=INTEGER},
+							#{tranStat, jdbcType=VARCHAR},
+							#{jvStat, jdbcType=VARCHAR},
+							'', '', '',''))
+		<!-- 	   )
+		 WHERE 1=1
+  	    <if test="sort != null">
+  	    	ORDER BY ${sort.sortKey} ${sort.order}
+  	    </if>
+
+  		<if test="pagination.position != null">
+			OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count}  ROWS ONLY
+		</if> -->
 	</select>
 	
 	<select id="retrieveAcitJvEntry" resultMap="transactionMap" parameterType="java.util.Map">
@@ -4896,6 +4919,23 @@
 	
 	<select id="checkAcitJvSeries" resultType="java.lang.String" statementType="CALLABLE">
 		SELECT ACIT_JOURNAL_VOUCHER_PKG.check_acit_jv_series FROM DUAL
+	</select>
+	
+	<select id="retrieveAcitJvListingLength"  parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM TABLE(ACIT_JOURNAL_VOUCHER_PKG.ret_acit_jv_list(
+								   #{tranId, jdbcType=INTEGER},
+							 	   #{jvNo, jdbcType=VARCHAR},
+								   CAST(to_timestamp(#{jvDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+								   CAST(to_timestamp(#{jvDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+								   #{particulars, jdbcType=VARCHAR},
+								   #{tranTypeName, jdbcType=VARCHAR},
+								   #{refNo, jdbcType=VARCHAR},
+								   #{preparedBy, jdbcType=VARCHAR},
+								   #{jvAmtFrom, jdbcType=INTEGER},
+								   #{jvAmtTo, jdbcType=INTEGER},
+								   #{tranStat, jdbcType=VARCHAR},
+								   #{jvStat, jdbcType=VARCHAR},
+								   '', '', '',''))
 	</select>
 	
 </mapper>

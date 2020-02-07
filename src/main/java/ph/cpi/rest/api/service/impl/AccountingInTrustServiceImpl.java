@@ -1,3 +1,4 @@
+
 package ph.cpi.rest.api.service.impl;
 
 import java.math.BigDecimal;
@@ -201,6 +202,21 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		RetrieveAcitJVListingResponse response = new RetrieveAcitJVListingResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", rajl.getTranId());
+		params.put("jvNo", rajl.getJvNo());
+		params.put("jvDateFrom", rajl.getJvDateFrom());
+		params.put("jvDateTo", rajl.getJvDateTo());
+		params.put("particulars", rajl.getParticulars());
+		params.put("tranTypeName", rajl.getTranTypeName());
+		params.put("refNo", rajl.getRefNo());
+		params.put("preparedBy", rajl.getPreparedBy());
+		params.put("jvAmtFrom", rajl.getJvAmtFrom());
+		params.put("jvAmtTo", rajl.getJvAmtTo());
+		params.put("tranStat", rajl.getTranStat());
+		params.put("jvStat", rajl.getJvStat());
+		
+		params.put("pagination", rajl.getPaginationRequest());
+		params.put("sort", rajl.getSortRequest());
+		
 		response.setTransactions(acctITDao.retrieveAcitJVListings(params));
 		return response;
 	}
@@ -2979,5 +2995,25 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			ex.printStackTrace();
 		}
 		return response;
+	}
+
+
+	@Override
+	public String retrieveAcitJvListingLength(RetrieveAcitJVListingRequest rajll) throws SQLException {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", rajll.getTranId());
+		params.put("jvNo", rajll.getJvNo());
+		params.put("jvDateFrom", rajll.getJvDateFrom());
+		params.put("jvDateTo", rajll.getJvDateTo());
+		params.put("particulars", rajll.getParticulars());
+		params.put("tranTypeName", rajll.getTranTypeName());
+		params.put("refNo", rajll.getRefNo());
+		params.put("preparedBy", rajll.getPreparedBy());
+		params.put("jvAmtFrom", rajll.getJvAmtFrom());
+		params.put("jvAmtTo", rajll.getJvAmtTo());
+		params.put("tranStat", rajll.getTranStat());
+		params.put("jvStat", rajll.getJvStat());
+		
+		return acctITDao.retrieveAcitJvListingLength(params).toString();
 	}
 }

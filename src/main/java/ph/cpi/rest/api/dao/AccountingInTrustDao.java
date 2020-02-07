@@ -261,4 +261,5 @@ public interface AccountingInTrustDao {
 	public List<AcitJvUnappliedTreaty> retrieveTrtyUnappliedCollection(final HashMap<String, Object> params ) throws SQLException;
 	public HashMap<String,Object> saveJVTrtyUnappliedColl(final HashMap<String, Object> params ) throws SQLException;
 	public String checkAcitJvSeries() throws SQLException;
+	public Integer retrieveAcitJvListingLength(final HashMap<String, Object> params) throws SQLException;
 }

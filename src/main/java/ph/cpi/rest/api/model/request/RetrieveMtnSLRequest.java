@@ -9,6 +9,7 @@ public class RetrieveMtnSLRequest {
 	private String payeeNo;
 	private String autoTag;
 	private String activeTag;
+	private String slTypeCdArr;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	public String getSlTypeCd() {
@@ -41,6 +42,12 @@ public class RetrieveMtnSLRequest {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	public String getSlTypeCdArr() {
+		return slTypeCdArr;
+	}
+	public void setSlTypeCdArr(String slTypeCdArr) {
+		this.slTypeCdArr = slTypeCdArr;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -56,8 +63,8 @@ public class RetrieveMtnSLRequest {
 	@Override
 	public String toString() {
 		return "RetrieveMtnSLRequest [slTypeCd=" + slTypeCd + ", slCd=" + slCd + ", payeeNo=" + payeeNo + ", autoTag="
-				+ autoTag + ", activeTag=" + activeTag + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ autoTag + ", activeTag=" + activeTag + ", slTypeCdArr=" + slTypeCdArr + ", paginationRequest="
+				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

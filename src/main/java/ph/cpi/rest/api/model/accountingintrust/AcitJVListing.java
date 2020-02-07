@@ -38,6 +38,7 @@ public class AcitJVListing {
 	private String updateUser;
 	private DateTime updateDate;
 	private String approveJV;
+	private String jvNo2;
 	
 	private List<AcitJVAdjstInwPolBal> inwPolBal;
 	public Integer getTranId() {
@@ -242,6 +243,12 @@ public class AcitJVListing {
 	public void setApproveJV(String approveJV) {
 		this.approveJV = approveJV;
 	}
+	public String getJvNo2() {
+		return jvNo2;
+	}
+	public void setJvNo2(String jvNo2) {
+		this.jvNo2 = jvNo2;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVListing [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate
@@ -254,7 +261,7 @@ public class AcitJVListing {
 				+ ", approvedBy=" + approvedBy + ", approvedName=" + approvedName + ", approvedPosition="
 				+ approvedPosition + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", approveJV=" + approveJV
-				+ ", inwPolBal=" + inwPolBal + "]";
+				+ ", jvNo2=" + jvNo2 + ", inwPolBal=" + inwPolBal + "]";
 	}
 	
 }

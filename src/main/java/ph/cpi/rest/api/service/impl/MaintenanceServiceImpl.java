@@ -2176,6 +2176,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("payeeNo", rbmr.getPayeeNo());
 		params.put("autoTag", rbmr.getAutoTag());
 		params.put("activeTag", rbmr.getActiveTag());
+		params.put("slTypeCdArr", rbmr.getSlTypeCdArr());
 		response.setList(maintenanceDao.retrieveMtnSL(params));
 		return response;
 	}
