@@ -26,6 +26,7 @@ import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
+import ph.cpi.rest.api.model.request.RetrieveEditableDistListRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
@@ -104,6 +105,7 @@ import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
+import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
@@ -771,5 +773,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveOpenCoverPolList");
 		logger.info("RetrieveOpenCoverPolListRequest : " + rpedr.toString());
 		return underwritingService.retrieveOpenCoverPolList(rpedr);
+	}
+	
+	@GetMapping(path="retrieveEditableDistList")
+	public @ResponseBody RetrieveEditableDistListResponse retrieveEditableDistList(RetrieveEditableDistListRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveEditableDistList");
+		logger.info("RetrieveEditableDistListRequest : " + rpedr.toString());
+		return underwritingService.retrieveEditableDistList(rpedr);
 	}
 }

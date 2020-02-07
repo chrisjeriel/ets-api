@@ -3064,4 +3064,26 @@
 		))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyLOV" id="EditableDistListMap">
+		<result property="policyId" column="POLICY_ID" />
+		<result property="policyNo" column="POLICY_NO" />
+		<result property="riskName" column="RISK_NAME" />
+		<result property="cedingName" column="CEDING_NAME" />
+		<result property="insuredDesc" column="INSURED_DESC" />
+	</resultMap>
+	
+	<select id="retrieveEditableDistList" resultMap="EditableDistListMap">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_editable_dist_list(
+			#{lineCd, jdbcType=VARCHAR},
+			#{polYear, jdbcType=VARCHAR},
+			#{polSeqNo, jdbcType=VARCHAR},
+			#{cedingId, jdbcType=VARCHAR},
+			#{coSeriesNo, jdbcType=VARCHAR},
+			#{altNo, jdbcType=VARCHAR},
+			#{policyNo, jdbcType=VARCHAR},
+			#{cedingName, jdbcType=VARCHAR},
+			#{riskName, jdbcType=VARCHAR}
+		))
+	</select>
+	
 </mapper>

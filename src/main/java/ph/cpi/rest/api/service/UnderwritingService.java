@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
+import ph.cpi.rest.api.model.request.RetrieveEditableDistListRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
@@ -96,6 +97,7 @@ import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
+import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
@@ -261,4 +263,5 @@ public interface UnderwritingService {
 	
 	public String retrievePolicyListingLength(RetrievePolicyListingRequest rplp) throws SQLException;
 	public RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr) throws SQLException;
+	public RetrieveEditableDistListResponse retrieveEditableDistList(RetrieveEditableDistListRequest rpedr) throws SQLException;
 }

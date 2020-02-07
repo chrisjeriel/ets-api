@@ -27,6 +27,7 @@ import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
+import ph.cpi.rest.api.model.request.RetrieveEditableDistListRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
 import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
@@ -105,6 +106,7 @@ import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
+import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
 import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
@@ -267,7 +269,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	
 	@Override
 	public RetrievePolItemResponse retrievePolItem(RetrievePolItemRequest rpir) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrievePolItemResponse rpiresponse = new RetrievePolItemResponse();
 		HashMap<String, Object> retrievePolItemParams = new HashMap<String, Object>();
 		
@@ -281,7 +282,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 
 	@Override
 	public RetrievePolCATPerilResponse retrievePolCATPeril(RetrievePolCATPerilRequest rpcpr) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrievePolCATPerilResponse rpcpresponse = new RetrievePolCATPerilResponse();
 		HashMap<String, Object> retrievePolCATPerilParams = new HashMap<String, Object>();
 		
@@ -489,7 +489,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	
 	@Override
 	public SavePolAttachmentResponse savePolAttachments(SavePolAttachmentRequest spar) throws SQLException {
-		// TODO Auto-generated method stub
 		SavePolAttachmentResponse spaResponse = new SavePolAttachmentResponse();
 		try{
 			HashMap<String, Object> savePolAttachmentParams = new HashMap<String, Object>();
@@ -593,7 +592,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 
 	@Override
 	public SavePolHoldCoverResponse savePolHoldCover(SavePolHoldCoverRequest sphcr) throws SQLException {
-		// TODO Auto-generated method stub
 		SavePolHoldCoverResponse sphcResponse= new SavePolHoldCoverResponse();
 		try{
 			HashMap<String, Object> savePolHoldCoverParams = new HashMap<String, Object>();
@@ -632,7 +630,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	@Override
 	public RetrievePolAttachmentOcResponse retrievePolAttachmentOc(RetrievePolAttachmentOcRequest rpaor)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		RetrievePolAttachmentOcResponse rpaoResponse = new RetrievePolAttachmentOcResponse();
 		HashMap<String, Object> retrievePolAttachmentOcParams = new HashMap<String, Object>();
 		retrievePolAttachmentOcParams.put("policyIdOc", rpaor.getPolicyIdOc());
@@ -2090,6 +2087,25 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("riskName", rpedr.getRiskName());
 		
 		response.setPolList(underwritingDao.retrieveOpenCoverPolList(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveEditableDistListResponse retrieveEditableDistList(RetrieveEditableDistListRequest rpedr)
+			throws SQLException {
+		RetrieveEditableDistListResponse response = new RetrieveEditableDistListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lineCd", rpedr.getLineCd());
+		params.put("polYear", rpedr.getPolYear());
+		params.put("polSeqNo", rpedr.getPolSeqNo());
+		params.put("cedingId", rpedr.getCedingId());
+		params.put("coSeriesNo", rpedr.getCoSeriesNo());
+		params.put("altNo", rpedr.getAltNo());
+		params.put("policyNo", rpedr.getPolicyNo());
+		params.put("riskName", rpedr.getRiskName());
+		params.put("cedingName", rpedr.getCedingName());
+		
+		response.setPolList(underwritingDao.retrieveEditableDistList(params));
 		return response;
 	}
 }

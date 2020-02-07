@@ -34,6 +34,7 @@ import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.PolOcList;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
+import ph.cpi.rest.api.model.underwriting.PolicyLOV;
 import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
@@ -718,4 +719,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<PolOcList> retrieveOpenCoverPolList(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveOpenCoverPolList",params);
 	}
+
+	@Override
+	public List<PolicyLOV> retrieveEditableDistList(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveEditableDistList",params);
+	}
+	
+	
 }
