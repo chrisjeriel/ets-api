@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 import java.math.BigDecimal;
 
-import org.joda.time.DateTime;
-
 public class SaveAcitJVEntryRequest {
 	private Integer tranId;
 	private String 	tranDate;

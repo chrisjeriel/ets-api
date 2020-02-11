@@ -2,11 +2,6 @@ package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
-import ph.cpi.rest.api.model.maintenance.Block;
-import ph.cpi.rest.api.model.maintenance.City;
-import ph.cpi.rest.api.model.maintenance.District;
-import ph.cpi.rest.api.model.maintenance.Province;
-import ph.cpi.rest.api.model.maintenance.Region;
 
 public class RetrieveMtnBlockRequest {
 	private Integer regionCd;

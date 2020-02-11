@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuListingLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuReptextRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
@@ -62,6 +63,7 @@ import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuListingLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuReptextResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -111,7 +113,7 @@ import ph.cpi.rest.api.service.QuoteService;
 						"http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", 
 						"http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
-						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201","http://192.168.1.4:4200"})
 @RequestMapping(path="/quote-service")
 public class QuoteController {
 	
@@ -137,6 +139,13 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuoteListing");
 		logger.info("RetrieveQuoteListingRequest : " + rqlp.toString());
 		return quoteService.retrieveQuoteListing(rqlp);
+	}
+	
+	@GetMapping(path="retrieveQuoteListingLength")
+	public @ResponseBody String retrieveQuoteListingLength(RetrieveQuoteListingRequest rqlp) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuoteListingLength");
+		logger.info("RetrieveQuoteListingRequest : " + rqlp.toString());
+		return quoteService.retrieveQuoteListingLength(rqlp);
 	}
 	
 	
@@ -502,5 +511,12 @@ public class QuoteController {
 		logger.info("GET: /api/quote-service/retrieveQuReptext");
 		logger.info("RetrieveQuReptext : " + spir.toString());
 		return quoteService.retrieveQuReptext(spir);
+	}
+	
+	@GetMapping(path="retrieveQuListingLOV")
+	public @ResponseBody RetrieveQuListingLOVResponse retrieveQuListingLOV(RetrieveQuListingLOVRequest spir ) throws SQLException {
+		logger.info("GET: /api/quote-service/retrieveQuListingLOV");
+		logger.info("RetrieveQuListingLOV : " + spir.toString());
+		return quoteService.retrieveQuListingLOV(spir);
 	}
 }

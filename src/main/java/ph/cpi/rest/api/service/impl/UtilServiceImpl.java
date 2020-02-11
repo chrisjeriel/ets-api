@@ -58,6 +58,8 @@ public class UtilServiceImpl implements UtilService {
 				params.put("extractUser", grr.getPolr044Params().getExtractUser());
 				params.put("lineCdParam", grr.getPolr044Params().getLineCdParam());
 				params.put("cedingIdParam", grr.getPolr044Params().getCedingIdParam());
+				params.put("currCdParam", grr.getPolr044Params().getCurrCdParam());
+				System.out.println("cuuuuurrrrrcd --> " + grr.getPolr044Params().getCurrCdParam());
 				params.put("dateParam", grr.getPolr044Params().getDateParam());
 				params.put("dateRange", grr.getPolr044Params().getDateRange());
 				params.put("fromDate", grr.getPolr044Params().getFromDate());
@@ -116,9 +118,9 @@ public class UtilServiceImpl implements UtilService {
 		Response resp = new Response();
 		
 		String SAMPLE_XLSX_FILE_PATH = filePath;
-		
+		Workbook workbook = null;
         try {
-			Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
+			workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
 			
 			System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
 			
@@ -185,6 +187,12 @@ public class UtilServiceImpl implements UtilService {
 		} catch (EncryptedDocumentException | IOException | UncategorizedSQLException | SQLException e) {
 			e.printStackTrace();
 			resp.getErrorList().add(new Error("General Error",e.getMessage()));
+		} finally {
+			try {
+				workbook.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return resp;

@@ -22,7 +22,7 @@ import ph.cpi.rest.api.service.MaintenanceService;
 						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
 						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
-						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201","http://192.168.1.4:4200"})
 @RequestMapping(path="/maintenance-service")
 public class MaintenanceController {
 	
@@ -1461,5 +1461,32 @@ public class MaintenanceController {
         logger.info("generateMtnAcseCheckSeriesRequest : " + gmacsr.toString());
         return maintenanceService.generateMtnAcseCheckSeries(gmacsr);
     }
-
+	
+	@GetMapping(path="retrieveMtnReportsRange")
+	public @ResponseBody RetrieveMtnReportsRangeResponse retrieveMtnReportsRange(RetrieveMtnReportsRangeRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnReportsRange");
+		logger.info("RetrieveMtnReportsRangeRequest : " + request.toString());
+		return maintenanceService.retrieveMtnReportsRange(request);
+	}
+	
+	@PostMapping(path="saveMtnReportsRange")
+    public @ResponseBody SaveMtnReportsRangeResponse saveMtnReportsRange(@RequestBody SaveMtnReportsRangeRequest request) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnReportsRange");
+        logger.info("SaveMtnReportsRangeRequest : " + request.toString());
+        return maintenanceService.saveMtnReportsRange(request);
+    }
+	
+	@PostMapping(path="generateMtnBookingMth")
+    public @ResponseBody GenerateMtnBookingMthResponse generateMtnBookingMth(@RequestBody GenerateMtnBookingMthRequest gmbmr) throws SQLException {
+        logger.info("POST: /api/maintenance-service/generateMtnBookingMth");
+        logger.info("GenerateMtnBookingMthRequest : " + gmbmr.toString());
+        return maintenanceService.generateMtnBookingMth(gmbmr);
+    }
+	
+	@PostMapping(path="saveMtnBookingMth")
+    public @ResponseBody SaveMtnBookingMthResponse saveMtnBookingMth(@RequestBody SaveMtnBookingMthRequest smbmr) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnBookingMth");
+        logger.info("SaveMtnBookingMthRequest : " + smbmr.toString());
+        return maintenanceService.saveMtnBookingMth(smbmr);
+    }
 }

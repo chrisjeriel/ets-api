@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.quote.QuoteRepText;
 import ph.cpi.rest.api.model.request.CopyEndorsementRequest;
 import ph.cpi.rest.api.model.request.RenumberQuoteOptionsRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuItemRequest;
+import ph.cpi.rest.api.model.request.RetrieveQuListingLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuReptextRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrieveQuoteAlopRequest;
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.request.UpdateQuoteStatusRequest;
 import ph.cpi.rest.api.model.response.CopyEndorsementResponse;
 import ph.cpi.rest.api.model.response.RenumberQuoteOptionsResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuItemResponse;
+import ph.cpi.rest.api.model.response.RetrieveQuListingLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuReptextResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrieveQuoteAlopResponse;
@@ -1333,6 +1335,70 @@ public class QuoteServiceImpl implements QuoteService{
 				(text.getRepText04() != null ? text.getRepText04() : "") +
 				(text.getRepText05() != null ? text.getRepText05() : "")
 				);
+		return response;
+	}
+
+	@Override
+	public String retrieveQuoteListingLength(RetrieveQuoteListingRequest rqlp) throws SQLException {
+			
+				HashMap<String, Object> retrieveQuoteListingParams = new HashMap<String, Object>();
+				retrieveQuoteListingParams.put("quotationNo", rqlp.getQuotationNo());
+				retrieveQuoteListingParams.put("quoteId", rqlp.getQuoteId());
+				retrieveQuoteListingParams.put("cessionDesc", rqlp.getCessionDesc());
+				retrieveQuoteListingParams.put("lineClassCdDesc", rqlp.getLineClassCdDesc());
+				retrieveQuoteListingParams.put("status", rqlp.getStatus());
+				retrieveQuoteListingParams.put("cedingName", rqlp.getCedingName());
+				retrieveQuoteListingParams.put("principalName", rqlp.getPrincipalName());
+				retrieveQuoteListingParams.put("contractorName", rqlp.getContractorName());
+				retrieveQuoteListingParams.put("insuredDesc", rqlp.getInsuredDesc());
+				retrieveQuoteListingParams.put("riskName", rqlp.getRiskName());
+				retrieveQuoteListingParams.put("objectDesc", rqlp.getObjectDesc());
+				retrieveQuoteListingParams.put("site", rqlp.getSite());
+				retrieveQuoteListingParams.put("policyNo", ""); //from policy table
+				retrieveQuoteListingParams.put("currencyCd", rqlp.getCurrencyCd());
+//				retrieveQuoteListingParams.put("issueDate", rqlp.getIssueDate().isEmpty() ? rqlp.getIssueDate() : date.toDate(rqlp.getIssueDate()));
+//				retrieveQuoteListingParams.put("expiryDate", rqlp.getExpiryDate().isEmpty() ? rqlp.getExpiryDate() : date.toDate(rqlp.getExpiryDate()));
+				retrieveQuoteListingParams.put("issueDateFrom", rqlp.getIssueDateFrom());
+				retrieveQuoteListingParams.put("issueDateTo", rqlp.getIssueDateTo());
+				retrieveQuoteListingParams.put("expiryDateFrom", rqlp.getExpiryDateFrom());
+				retrieveQuoteListingParams.put("expiryDateTo", rqlp.getExpiryDateTo());
+				retrieveQuoteListingParams.put("reqBy", rqlp.getReqBy());
+				retrieveQuoteListingParams.put("createUser", rqlp.getCreateUser());
+				retrieveQuoteListingParams.put("line", rqlp.getLine());
+				
+				retrieveQuoteListingParams.put("statusArr",rqlp.getStatusArr());
+				
+				retrieveQuoteListingParams.put("pagination", rqlp.getPaginationRequest());
+				retrieveQuoteListingParams.put("sort", rqlp.getSortRequest());
+				retrieveQuoteListingParams.put("search", rqlp.getSearch());
+				retrieveQuoteListingParams.put("openCoverTag", rqlp.getOpenCoverTag());
+				
+				retrieveQuoteListingParams.put("siFrom" , rqlp.getSiFrom());
+				retrieveQuoteListingParams.put("siTo" , rqlp.getSiTo());
+				retrieveQuoteListingParams.put("rateFrom" , rqlp.getRateFrom());
+				retrieveQuoteListingParams.put("rateTo" , rqlp.getRateTo());
+				
+				retrieveQuoteListingParams.put("approvedBy" , rqlp.getApprovedBy());
+				retrieveQuoteListingParams.put("statusArrStr", StringUtils.join(rqlp.getStatusArr(),','));
+				retrieveQuoteListingParams.put("recount", rqlp.getRecount());
+				
+			
+			
+			return quoteDao.retrieveQuoteListingLength(retrieveQuoteListingParams).toString();
+		
+	}
+
+	@Override
+	public RetrieveQuListingLOVResponse retrieveQuListingLOV(RetrieveQuListingLOVRequest spir) throws SQLException {
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("mode", spir.getMode());
+		params.put("cedingName", spir.getCedingName());
+		params.put("insuredDesc", spir.getInsuredDesc());
+		params.put("riskName", spir.getRiskName());
+		params.put("quotationNo", spir.getQuotationNo());
+		
+		RetrieveQuListingLOVResponse response = new RetrieveQuListingLOVResponse();
+		response.setQuotationList(quoteDao.retrieveQuListingLOV(params));
 		return response;
 	}
 	

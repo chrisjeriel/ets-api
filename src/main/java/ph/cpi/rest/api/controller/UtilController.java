@@ -54,9 +54,7 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
-import ph.cpi.rest.api.model.request.SaveAcseInsuranceExpRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
-import ph.cpi.rest.api.model.response.SaveAcseInsuranceExpResponse;
 import ph.cpi.rest.api.service.UtilService;
 import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -67,7 +65,7 @@ import ph.cpi.rest.api.utils.ReportParameters;
 						"http://192.168.99.163:4200", "http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", 
 						"http://192.10.10.230:8888", "http://192.10.10.149:4200", "http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
-						"http://192.10.10.210:8889", "http://192.10.10.210:4201"})
+						"http://192.10.10.210:8889", "http://192.10.10.210:4201","http://192.168.1.4:4200"})
 @RequestMapping(path="/util-service")
 public class UtilController {
 	
@@ -550,7 +548,7 @@ public class UtilController {
 		logger.info("FILE filename: " + filename);
 	    logger.info("FILE Absolute Path: " + file.getAbsolutePath());
 	    Path path = Paths.get(file.getAbsolutePath());
-	    ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+	    new ByteArrayResource(Files.readAllBytes(path));
 		return response;
 	}
 	

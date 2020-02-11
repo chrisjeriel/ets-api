@@ -2,8 +2,6 @@ package ph.cpi.rest.api.model.accountingintrust;
 
 import java.math.BigDecimal;
 
-import org.joda.time.DateTime;
-
 public class AcitUPRPerLine {
 	private String lineCd;
 	private BigDecimal premGross;

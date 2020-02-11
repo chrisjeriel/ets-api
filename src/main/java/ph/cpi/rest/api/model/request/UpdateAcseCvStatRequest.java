@@ -4,7 +4,9 @@ public class UpdateAcseCvStatRequest {
 	private String tranId;
 	private String checkId;
 	private String cvStatus;
+	private String printType;
 	private String updateUser;
+	private String cancelReason;
 	public String getTranId() {
 		return tranId;
 	}
@@ -29,9 +31,21 @@ public class UpdateAcseCvStatRequest {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
+	public String getPrintType() {
+		return printType;
+	}
+	public void setPrintType(String printType) {
+		this.printType = printType;
+	}
+	public String getCancelReason() {
+		return cancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
 	@Override
 	public String toString() {
 		return "UpdateAcseCvStatRequest [tranId=" + tranId + ", checkId=" + checkId + ", cvStatus=" + cvStatus
-				+ ", updateUser=" + updateUser + "]";
+				+ ", printType=" + printType + ", updateUser=" + updateUser + ", cancelReason=" + cancelReason + "]";
 	}
 }

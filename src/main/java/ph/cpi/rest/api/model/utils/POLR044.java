@@ -1,13 +1,12 @@
 package ph.cpi.rest.api.model.utils;
 
-import org.joda.time.DateTime;
-
 public class POLR044 {
 
 	private String reportId;
 	private String extractUser;
 	private String lineCdParam;
 	private String cedingIdParam;
+	private String currCdParam;
 	private String dateParam;
 	private String dateRange;
 	private String fromDate;
@@ -26,6 +25,13 @@ public class POLR044 {
 	}
 	public void setExtractUser(String extractUser) {
 		this.extractUser = extractUser;
+	}
+	
+	public String getCurrCdParam() {
+		return currCdParam;
+	}
+	public void setCurrCdParam(String currCdParam) {
+		this.currCdParam = currCdParam;
 	}
 	public String getLineCdParam() {
 		return lineCdParam;
@@ -78,9 +84,9 @@ public class POLR044 {
 	@Override
 	public String toString() {
 		return "POLR044 [reportId=" + reportId + ", extractUser=" + extractUser + ", lineCdParam=" + lineCdParam
-				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag + ", forceExtract="
-				+ forceExtract + "]";
+				+ ", cedingIdParam=" + cedingIdParam + ", currCdParam=" + currCdParam + ", dateParam=" + dateParam
+				+ ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag="
+				+ incRecTag + ", forceExtract=" + forceExtract + "]";
 	}
-
+	
 }

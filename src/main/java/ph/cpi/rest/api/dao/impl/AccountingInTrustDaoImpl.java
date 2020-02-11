@@ -1042,6 +1042,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		sqlSession.update("validateCheckNo",params);
 		return (String) params.get("validateCheckNo");
 	}
+	
+	@Override
+	public String isCvNoAvail() throws SQLException {
+		String result = sqlSession.selectOne("isCvNoAvail");
+		return result;
+	}
 
 	@Override
 	public HashMap<String, Object> validateServfee(HashMap<String, Object> params) throws SQLException {
@@ -1256,5 +1262,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		Integer errorCode = sqlSession.update("saveJVTrtyUnappliedColl",params);
 		params.put("errorCode", errorCode);
 		return params;
+	}
+	
+	@Override
+	public String checkAcitJvSeries() throws SQLException {
+		String result = sqlSession.selectOne("checkAcitJvSeries");
+		return result;
 	}
 }

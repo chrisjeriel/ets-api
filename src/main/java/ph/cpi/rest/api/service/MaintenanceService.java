@@ -212,5 +212,9 @@ public interface MaintenanceService {
 	public GenerateMtnAcitCheckSeriesResponse generateMtnAcitCheckSeries(GenerateMtnAcitCheckSeriesRequest sacr) throws SQLException;
 	public GenerateAcseInvoiceSeriesResponse generateAcseInvoiceSeries(GenerateAcseInvoiceSeriesRequest request) throws SQLException;
 	public GenerateMtnAcseCheckSeriesResponse generateMtnAcseCheckSeries(GenerateMtnAcseCheckSeriesRequest sacr) throws SQLException;
-
+	public RetrieveMtnReportsRangeResponse	retrieveMtnReportsRange(RetrieveMtnReportsRangeRequest rmrrr) throws SQLException;
+	public SaveMtnReportsRangeResponse saveMtnReportsRange(SaveMtnReportsRangeRequest request) throws SQLException;
+	public GenerateMtnBookingMthResponse generateMtnBookingMth(GenerateMtnBookingMthRequest gmbmr) throws SQLException;
+	public SaveMtnBookingMthResponse saveMtnBookingMth(SaveMtnBookingMthRequest smbmr) throws SQLException;
+	
 }

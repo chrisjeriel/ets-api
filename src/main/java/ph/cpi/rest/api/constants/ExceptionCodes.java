@@ -2,8 +2,6 @@ package ph.cpi.rest.api.constants;
 
 public class ExceptionCodes {
 	
-	private static boolean DEBUG_MODE = false;
-	
 	public static String QUEX_GEN_000 = "QUEX_GEN_000";
 	public static String QUEX_GEN_000_MSG = "No rows returned.";
 	

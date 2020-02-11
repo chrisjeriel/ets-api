@@ -3328,6 +3328,15 @@
 		<result property="checkStatus"	 	column="CHECK_STATUS"/>
 		<result property="acctEntDate" 		column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cancelReason"	 	column="CANCEL_REASON"/>
+		<result property="prlExist"		 	column="PRL_EXIST"/>
+		<result property="disbType"		 	column="DISB_TYPE"/>
+		<result property="destBank"		 	column="DEST_BANK"/>
+		<result property="destBankDesc"		column="DEST_BANK_DESC"/>
+		<result property="destAcctNo"		column="DEST_ACCT_NO"/>
+		<result property="destAcctName"		column="DEST_ACCT_NAME"/>
+		<result property="btRefNo"		 	column="BT_REF_NO"/>
+		<result property="swiftCd"		 	column="SWIFT_CD"/>
+		
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
@@ -3380,7 +3389,13 @@
 				#{tranStat, jdbcType=VARCHAR},
 				CAST(to_timestamp(#{closeDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				CAST(to_timestamp(#{deleteDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{postDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{disbType, jdbcType=VARCHAR},
+				#{destBank, jdbcType=INTEGER},
+				#{destAcctNo, jdbcType=VARCHAR},
+				#{destAcctName, jdbcType=VARCHAR},
+				#{btRefNo, jdbcType=VARCHAR},
+				#{swiftCd, jdbcType=VARCHAR}
 			);
 		END;
 	</update>
@@ -4367,6 +4382,10 @@
 		}
 	</update>
 	
+	<select id="isCvNoAvail" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT PMMSC.ACIT_CHECK_VOUCHER_PKG.is_cv_no_avail FROM DUAL
+	</select>
+	
 	<update id="validateServfee" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ACCT_SERVFEE_DTL_DIST_PKG.validate_servfee(#{reqId, jdbcType=INTEGER},
@@ -4874,5 +4893,9 @@
 			</foreach>
 		END;
 	</update>
+	
+	<select id="checkAcitJvSeries" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT ACIT_JOURNAL_VOUCHER_PKG.check_acit_jv_series FROM DUAL
+	</select>
 	
 </mapper>

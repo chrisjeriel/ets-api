@@ -3,7 +3,6 @@ package ph.cpi.rest.api.model.request;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
-import org.joda.time.DateTime;
 
 public class SaveMtnParametersRequest {
 	private List<MtnParameters> delParameters;

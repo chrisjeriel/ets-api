@@ -19,6 +19,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Approver;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.underwriting.BookingDate;
+import ph.cpi.rest.api.model.underwriting.Deductibles;
 import ph.cpi.rest.api.model.underwriting.DistCoIns;
 import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
@@ -51,9 +52,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	
 	@Value("${spring.datasource.password}")
 	private String password;
-	
-	@Autowired
-	private PlatformTransactionManager txManager;
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -135,13 +133,28 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public List<Policy> retrievePolicyListing(HashMap<String, Object> params) throws SQLException {
-		List<Policy> policyList = sqlSession.selectList("retrievePolicyListing", params);
+		List<Policy> policyList;
+		/*
+		 * switch(params.get("mode").toString()){ case "inquiry": policyList =
+		 * sqlSession.selectList("retrievePolicyListingInq", params); break; default:
+		 * 
+		 * }
+		 */
+
+		policyList = sqlSession.selectList("retrievePolicyListing", params);
 		return policyList;
 	}
 	
 	@Override
 	public Integer retrievePolicyLength(HashMap<String, Object> params) throws SQLException {
-		Integer length = (Integer) sqlSession.selectOne("retrievePolicyLength", params);
+		Integer length;
+		/*
+		 * switch(params.get("mode").toString()){ case "inquiry": length = (Integer)
+		 * sqlSession.selectOne("retrievePolicyInqLength", params); break; default:
+		 * 
+		 * }
+		 */
+		length = (Integer) sqlSession.selectOne("retrievePolicyLength", params);
 		return length;
 	}
 	
@@ -698,5 +711,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public Cession getPolCession(HashMap<String, Object> params) throws SQLException {
 		Cession cession = sqlSession.selectOne("getPolCession",params);
 		return cession;
+	}
+
+	@Override
+	public List<Deductibles> retrievePolEndtDed(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("retrievePolEndtDed",params);
 	}
 }

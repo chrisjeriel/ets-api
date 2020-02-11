@@ -381,6 +381,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		sqlSession.update("validateCheckNoAcse",params);
 		return (String) params.get("validateCheckNo");
 	}
+	
+	@Override
+	public String isCvNoAvail() throws SQLException {
+		String result = sqlSession.selectOne("isCvNoAvailAcse");
+		return result;
+	}
 
 	@Override
 	public List<AcsePerDiem> retrieveAcsePerDiem(HashMap<String, Object> params) throws SQLException {
@@ -637,6 +643,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	@Override
 	public AcctServFeeDist retrieveOrSFeeDtlDist(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectOne("retOrServFeeDtlDist", params);
+	}
+	
+	@Override
+	public String checkAcseJvSeries() throws SQLException {
+		String result = sqlSession.selectOne("checkAcseJvSeries");
+		return result;
 	}
 	
 }
