@@ -2933,6 +2933,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistPolInst" id="DistPolInstMap">
 		<result property="distId" column="DIST_ID"/>
 		<result property="policyNo" column="POLICY_NO"/>
+		<result property="histNo" column="HIST_NO"/>
 		<result property="instNo" column="INST_NO"/>
 		<result property="dueDate" column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="bookingDate" column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
