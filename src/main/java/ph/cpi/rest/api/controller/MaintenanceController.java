@@ -1475,4 +1475,19 @@ public class MaintenanceController {
         logger.info("SaveMtnReportsRangeRequest : " + request.toString());
         return maintenanceService.saveMtnReportsRange(request);
     }
+	
+	@PostMapping(path="generateMtnBookingMth")
+    public @ResponseBody GenerateMtnBookingMthResponse generateMtnBookingMth(@RequestBody GenerateMtnBookingMthRequest gmbmr) throws SQLException {
+        logger.info("POST: /api/maintenance-service/generateMtnBookingMth");
+        logger.info("GenerateMtnBookingMthRequest : " + gmbmr.toString());
+        return maintenanceService.generateMtnBookingMth(gmbmr);
+    }
+	
+	@PostMapping(path="saveMtnBookingMth")
+    public @ResponseBody SaveMtnBookingMthResponse saveMtnBookingMth(@RequestBody SaveMtnBookingMthRequest smbmr) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnBookingMth");
+        logger.info("SaveMtnBookingMthRequest : " + smbmr.toString());
+        return maintenanceService.saveMtnBookingMth(smbmr);
+    }
+
 }

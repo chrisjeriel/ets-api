@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 public class BookingMonth {
 	private String  	bookingMm;
+	private String  	bookingMmName;
 	private Integer 	bookingYear;
 	private String  	bookedTag;
 	private String  	remarks;
@@ -11,6 +12,21 @@ public class BookingMonth {
 	private DateTime  	createDate;
 	private String  	updateUser;
 	private DateTime  	updateDate;
+	private String  	tempClosedTag;
+	
+	public String getBookingMmName() {
+		return bookingMmName;
+	}
+	public void setBookingMmName(String bookingMmName) {
+		this.bookingMmName = bookingMmName;
+	}
+	public String getTempClosedTag() {
+		return tempClosedTag;
+	}
+	public void setTempClosedTag(String tempClosedTag) {
+		this.tempClosedTag = tempClosedTag;
+	}
+	
 	public String getBookingMm() {
 		return bookingMm;
 	}
@@ -61,8 +77,11 @@ public class BookingMonth {
 	}
 	@Override
 	public String toString() {
-		return "BookingMonth [bookingMm=" + bookingMm + ", bookingYear=" + bookingYear + ", bookedTag=" + bookedTag
-				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+		return "BookingMonth [bookingMm=" + bookingMm + ", bookingMmName="
+				+ bookingMmName + ", bookingYear=" + bookingYear
+				+ ", bookedTag=" + bookedTag + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", tempClosedTag=" + tempClosedTag + "]";
 	}
 }

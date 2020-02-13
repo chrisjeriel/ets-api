@@ -3317,4 +3317,53 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public GenerateMtnBookingMthResponse generateMtnBookingMth(
+			GenerateMtnBookingMthRequest gmbmr) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		GenerateMtnBookingMthResponse gmacsResponse = new GenerateMtnBookingMthResponse();
+	        HashMap<String, Object> params = new HashMap<String, Object>();
+	        try {
+	        	params.put("year",gmbmr.getYear());
+	        	params.put("createUser",gmbmr.getCreateUser());
+	        	params.put("createDate",gmbmr.getCreateDate());
+	        	params.put("updateUser",gmbmr.getUpdateUser());
+	        	params.put("updateDate",gmbmr.getUpdateDate());
+	        	
+	            HashMap<String, Object> response = maintenanceDao.generateMtnBookingMth(params);
+	            gmacsResponse.setReturnCode((Integer) response.get("errorCode"));
+	            gmacsResponse.setReturnCode(-1);
+	        } catch (SQLException sqlex) {
+	        	gmacsResponse.setReturnCode(0);
+	        	gmacsResponse.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+	            sqlex.printStackTrace();
+	        } catch (Exception ex) {
+	        	gmacsResponse.setReturnCode(0);
+	        	gmacsResponse.getErrorList().add(new Error("General Exception","Unable to proceed to saving. Check fields."));
+	            ex.printStackTrace();
+	        }
+	        
+	        return gmacsResponse;
+	}
+
+	@Override
+	public SaveMtnBookingMthResponse saveMtnBookingMth(
+			SaveMtnBookingMthRequest smbmr) throws SQLException {
+		// TODO Auto-generated method stub
+		SaveMtnBookingMthResponse response = new SaveMtnBookingMthResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveBookingMth", smbmr.getSaveBookingMth());
+			HashMap<String,Object> res = maintenanceDao.saveMtnBookingMth(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
 }
