@@ -53,7 +53,7 @@ public class UtilServiceImpl implements UtilService {
 		String errorMsg = "Please check field values.";
 	
 		try {
-			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
+			if (grr.getReportId() != null && (grr.getReportId().toUpperCase().contains("POLR044") || grr.getReportId().toUpperCase().contains("POLR052"))) {
 				params.put("reportId", grr.getPolr044Params().getReportId());
 				params.put("extractUser", grr.getPolr044Params().getExtractUser());
 				params.put("lineCdParam", grr.getPolr044Params().getLineCdParam());
