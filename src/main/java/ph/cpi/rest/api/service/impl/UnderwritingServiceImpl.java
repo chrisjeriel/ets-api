@@ -68,6 +68,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -146,6 +147,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -1750,17 +1752,20 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("updateUser",srdr.getUpdateUser());
 		params.put("trtyLimitSec2", srdr.getTrtyLimitSec2());
 		params.put("seciiPremTag", srdr.getSeciiPremTag());
+		params.put("saveList", srdr.getTreatyList());
 		try {
 			if(srdr.getAutoCalc().equals("Y")){
 				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
-			}else{
+			}else if(!srdr.getManualTag()){
 				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
+			}else{
+				srdrResponse.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
 			}
 		}catch (Exception ex){
 			
 			srdrResponse.setReturnCode(0);
 			srdrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
-//			ex.printStackTrace();
+			ex.printStackTrace();
 		}
 		return srdrResponse;
 	}
@@ -2106,6 +2111,30 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("cedingName", rpedr.getCedingName());
 		
 		response.setPolList(underwritingDao.retrieveEditableDistList(params));
+		return response;
+	}
+
+	@Override
+	public SaveManualDistRiskTreatyResponse saveManualDistRiskTreaty(SaveManualDistRiskTreatyRequest erepr)
+			throws SQLException {
+		SaveManualDistRiskTreatyResponse response = new SaveManualDistRiskTreatyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("riskDistId", erepr.getRiskDistId());
+		params.put("altNo", erepr.getAltNo());
+		params.put("updateUser", erepr.getUpdateUser());
+		params.put("saveList", erepr.getSaveList());
+		try{
+			response.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
+		}catch(SQLException ex){
+			ex.printStackTrace();
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
 		return response;
 	}
 }

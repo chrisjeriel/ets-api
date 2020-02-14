@@ -67,6 +67,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -145,6 +146,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -780,5 +782,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrieveEditableDistList");
 		logger.info("RetrieveEditableDistListRequest : " + rpedr.toString());
 		return underwritingService.retrieveEditableDistList(rpedr);
+	}
+	
+	@PostMapping(path="saveManualDistRiskTreaty")
+	public @ResponseBody SaveManualDistRiskTreatyResponse saveManualDistRiskTreaty(@RequestBody SaveManualDistRiskTreatyRequest erepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveManualDistRiskTreaty");
+		logger.info("SaveManualDistRiskTreatyRequest : " + erepr.toString());
+		return underwritingService.saveManualDistRiskTreaty(erepr);
 	}
 }

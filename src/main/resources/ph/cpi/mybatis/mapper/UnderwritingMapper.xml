@@ -2508,6 +2508,7 @@
 		<result property="treatyName"   column="TREATY_NAME" />
 		<result property="trtyCedId"    column="TRTY_CED_ID" />
 		<result property="trtyCedName"  column="TRTY_CED_NAME" />
+		<result property="retLayer" 	column="RET_LAYER"/>
 		<result property="pctShare"     column="PCT_SHARE" />
 		<result property="siAmt"        column="SI_AMT" />
 		<result property="premAmt"      column="T_PREM_AMT" />
@@ -3087,4 +3088,26 @@
 		))
 	</select>
 	
+	<update id="saveManualDistRiskTreaty">
+		BEGIN
+			NULL;
+			<foreach collection="delWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.del_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
+				DIST_POL_WPARAM_PKG.save_dp_wparam(#{wparam.distId},#{policyId},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
+			</foreach>
+			<foreach collection="saveWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
+				DIST_POL_WPARAM_PKG.save_dp_wparam(#{wparam.distId},#{policyId},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
+			</foreach>
+			<foreach collection="saveList" item="item">
+				dist_risk_wtreaty_pkg.save_dist_risk_wtreaty(#{riskDistId},#{altNo},#{item.treatyId},
+																#{item.trtyCedId},
+																#{item.retLayer},
+																#{item.siAmt},
+																#{item.premAmt},#{updateUser});
+			</foreach>
+			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{trtyLimitSec2, jdbcType=VARCHAR},#{seciiPremTag, jdbcType=VARCHAR},#{updateUser});
+			DIST_PKG.dist_manual(#{riskDistId},#{altNo},#{updateUser});
+		END;
+	</update>
 </mapper>

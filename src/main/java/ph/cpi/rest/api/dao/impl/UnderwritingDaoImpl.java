@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -723,6 +724,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public List<PolicyLOV> retrieveEditableDistList(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveEditableDistList",params);
+	}
+
+	@Override
+	public Integer saveManualDistRiskTreaty(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveManualDistRiskTreaty",params);
 	}
 	
 	
