@@ -49,6 +49,7 @@
 		<result property="optionRt" 		column="OPTION_RT"/>
 		<result property="policyNo" 		column="POLICY_NO"/>
 		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="currencyRt" 		column="CURRENCY_RT"/>
 		<result property="reasonCd"			column="REASON_CD"/>
 		<result property="reasonDesc"		column="DESCRIPTION"/>		
 		<result property="issueDate" 		column="ISSUE_DATE" 	typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
@@ -135,6 +136,14 @@
 		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"          column = "UPDATE_USER"/>
 		<result property = "updateDate"          column = "UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+		<result property = "totalNoDays"         column = "TOTAL_NO_DAYS"/>
+		<result property = "premAmt"          	 column = "PREM_AMT"/>
+		<result property = "commAmt"             column = "COMM_AMT"/>
+		<result property = "vatRiComm"           column = "VAT_RI_COMM"/>
+		<result property = "netDue"          	 column = "NET_DUE"/>
+		<result property = "currCd"          	 column = "CURR_CD"/>
+		<result property = "currRt"          	 column = "CURR_RT"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.QuotationGeneralInfoOc" id="quotationOcMap">
@@ -262,6 +271,14 @@
 		<result property = "createUser"          column = "CREATE_USER"/>
 		<result property = "createDate"          column = "CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property = "updateUser"          column = "UPDATE_USER"/>
+		
+		<result property = "totalNoDays"         column = "TOTAL_NO_DAYS"/>
+		<result property = "premAmt"          	 column = "PREM_AMT"/>
+		<result property = "commAmt"             column = "COMM_AMT"/>
+		<result property = "vatRiComm"           column = "VAT_RI_COMM"/>
+		<result property = "netDue"          	 column = "NET_DUE"/>
+		<result property = "currCd"          	 column = "CURR_CD"/>
+		<result property = "currRt"          	 column = "CURR_RT"/>
 	</resultMap>
 	
 	
@@ -1384,7 +1401,15 @@
 				#{createUser,jdbcType=VARCHAR},
 				CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 				#{updateUser,jdbcType=VARCHAR},
-				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				
+				#{totalNoDays,jdbcType=INTEGER},
+				#{premAmt,jdbcType=INTEGER},
+				#{commAmt,jdbcType=INTEGER},
+				#{vatRiComm,jdbcType=INTEGER},
+				#{netDue,jdbcType=INTEGER},
+				#{currCd,jdbcType=VARCHAR},
+				#{currRt,jdbcType=INTEGER}
 			);
 		END;
 	</update>

@@ -27,7 +27,9 @@ import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
+import ph.cpi.rest.api.model.request.RetrieveEditableDistListRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
+import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -66,6 +68,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -104,8 +107,10 @@ import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
+import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -142,6 +147,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -265,7 +271,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	
 	@Override
 	public RetrievePolItemResponse retrievePolItem(RetrievePolItemRequest rpir) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrievePolItemResponse rpiresponse = new RetrievePolItemResponse();
 		HashMap<String, Object> retrievePolItemParams = new HashMap<String, Object>();
 		
@@ -279,7 +284,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 
 	@Override
 	public RetrievePolCATPerilResponse retrievePolCATPeril(RetrievePolCATPerilRequest rpcpr) throws SQLException {
-		// TODO Auto-generated method stub
 		RetrievePolCATPerilResponse rpcpresponse = new RetrievePolCATPerilResponse();
 		HashMap<String, Object> retrievePolCATPerilParams = new HashMap<String, Object>();
 		
@@ -487,7 +491,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	
 	@Override
 	public SavePolAttachmentResponse savePolAttachments(SavePolAttachmentRequest spar) throws SQLException {
-		// TODO Auto-generated method stub
 		SavePolAttachmentResponse spaResponse = new SavePolAttachmentResponse();
 		try{
 			HashMap<String, Object> savePolAttachmentParams = new HashMap<String, Object>();
@@ -591,7 +594,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 
 	@Override
 	public SavePolHoldCoverResponse savePolHoldCover(SavePolHoldCoverRequest sphcr) throws SQLException {
-		// TODO Auto-generated method stub
 		SavePolHoldCoverResponse sphcResponse= new SavePolHoldCoverResponse();
 		try{
 			HashMap<String, Object> savePolHoldCoverParams = new HashMap<String, Object>();
@@ -630,7 +632,6 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 	@Override
 	public RetrievePolAttachmentOcResponse retrievePolAttachmentOc(RetrievePolAttachmentOcRequest rpaor)
 			throws SQLException {
-		// TODO Auto-generated method stub
 		RetrievePolAttachmentOcResponse rpaoResponse = new RetrievePolAttachmentOcResponse();
 		HashMap<String, Object> retrievePolAttachmentOcParams = new HashMap<String, Object>();
 		retrievePolAttachmentOcParams.put("policyIdOc", rpaor.getPolicyIdOc());
@@ -908,7 +909,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolicyDetailsParams.put("createUser", spdp.getCreateUser());
 			savePolicyDetailsParams.put("createDate", spdp.getCreateDate());
 			savePolicyDetailsParams.put("updateUser", spdp.getUpdateUser());
-			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());			
+			savePolicyDetailsParams.put("updateDate", spdp.getUpdateDate());	
+			savePolicyDetailsParams.put("riskId", spdp.getRiskId());
+			savePolicyDetailsParams.put("coinsGrpId", spdp.getCoinsGrpId());			
+			
 			
 			HashMap<String, Object> res = new HashMap<String, Object>();
 			
@@ -1748,17 +1752,20 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("updateUser",srdr.getUpdateUser());
 		params.put("trtyLimitSec2", srdr.getTrtyLimitSec2());
 		params.put("seciiPremTag", srdr.getSeciiPremTag());
+		params.put("saveList", srdr.getTreatyList());
 		try {
 			if(srdr.getAutoCalc().equals("Y")){
 				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
-			}else{
+			}else if(!srdr.getManualTag()){
 				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
+			}else{
+				srdrResponse.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
 			}
 		}catch (Exception ex){
 			
 			srdrResponse.setReturnCode(0);
 			srdrResponse.getErrorList().add(new Error("SQLException", "An error has occured. Please check your field values."));
-//			ex.printStackTrace();
+			ex.printStackTrace();
 		}
 		return srdrResponse;
 	}
@@ -2065,6 +2072,69 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("lineCd", rpedr.getLineCd());
 		response.setDeductibles(underwritingDao.retrievePolEndtDed(params));
 		logger.info(response.toString());
+		return response;
+	}
+
+	@Override
+	public RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr)
+			throws SQLException {
+		RetrieveOpenCoverPolListResponse response = new RetrieveOpenCoverPolListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", rpedr.getPolicyIdOc());
+		params.put("lineCd", rpedr.getLineCd());
+		params.put("polYear", rpedr.getPolYear());
+		params.put("polSeqNo", rpedr.getPolSeqNo());
+		params.put("cedingId", rpedr.getCedingId());
+		params.put("coSeriesNo", rpedr.getCoSeriesNo());
+		params.put("altNo", rpedr.getAltNo());
+		params.put("policyNo", rpedr.getPolicyNo());
+		params.put("openPolNo", rpedr.getOpenPolNo());
+		params.put("riskName", rpedr.getRiskName());
+		
+		response.setPolList(underwritingDao.retrieveOpenCoverPolList(params));
+		return response;
+	}
+
+	@Override
+	public RetrieveEditableDistListResponse retrieveEditableDistList(RetrieveEditableDistListRequest rpedr)
+			throws SQLException {
+		RetrieveEditableDistListResponse response = new RetrieveEditableDistListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("lineCd", rpedr.getLineCd());
+		params.put("polYear", rpedr.getPolYear());
+		params.put("polSeqNo", rpedr.getPolSeqNo());
+		params.put("cedingId", rpedr.getCedingId());
+		params.put("coSeriesNo", rpedr.getCoSeriesNo());
+		params.put("altNo", rpedr.getAltNo());
+		params.put("policyNo", rpedr.getPolicyNo());
+		params.put("riskName", rpedr.getRiskName());
+		params.put("cedingName", rpedr.getCedingName());
+		
+		response.setPolList(underwritingDao.retrieveEditableDistList(params));
+		return response;
+	}
+
+	@Override
+	public SaveManualDistRiskTreatyResponse saveManualDistRiskTreaty(SaveManualDistRiskTreatyRequest erepr)
+			throws SQLException {
+		SaveManualDistRiskTreatyResponse response = new SaveManualDistRiskTreatyResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("riskDistId", erepr.getRiskDistId());
+		params.put("altNo", erepr.getAltNo());
+		params.put("updateUser", erepr.getUpdateUser());
+		params.put("saveList", erepr.getSaveList());
+		try{
+			response.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
+		}catch(SQLException ex){
+			ex.printStackTrace();
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
 		return response;
 	}
 }

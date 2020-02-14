@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +32,10 @@ import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
+import ph.cpi.rest.api.model.underwriting.PolOcList;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
+import ph.cpi.rest.api.model.underwriting.PolicyLOV;
 import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyOc;
 import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
@@ -160,7 +163,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	
 	@Override
 	public HashMap<String, Object> savePolAttachments(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("savePolAttachment",params);
 		params.put("errorCode", errorCode);
 		return params;
@@ -181,14 +183,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public PolicyOc retrievePolAttachmentOcList(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		PolicyOc attachmentsOcList = sqlSession.selectOne("retrievePolAttachmentOc", params);
 		return attachmentsOcList;
 	}
 
 	@Override
 	public PolicyOc retrievePolEndtOcList(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		PolicyOc endorsementsOcList = sqlSession.selectOne("retrievePolEndtOc", params);
 		return endorsementsOcList;
 	}
@@ -323,7 +323,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public List<Approver> retrievePolicyApprover(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("retrievePolicyApprover", params);
 	}
 	
@@ -404,7 +403,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public Integer updatePolGenInfo(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		Integer errorCode = sqlSession.update("updatePolGenInfo", params);
 		return errorCode;
 	}
@@ -715,7 +713,23 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 
 	@Override
 	public List<Deductibles> retrievePolEndtDed(HashMap<String, Object> params) throws SQLException {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("retrievePolEndtDed",params);
 	}
+
+	@Override
+	public List<PolOcList> retrieveOpenCoverPolList(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveOpenCoverPolList",params);
+	}
+
+	@Override
+	public List<PolicyLOV> retrieveEditableDistList(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveEditableDistList",params);
+	}
+
+	@Override
+	public Integer saveManualDistRiskTreaty(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveManualDistRiskTreaty",params);
+	}
+	
+	
 }

@@ -14,7 +14,21 @@ public class SavePolicyDetailsRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String coinsGrpId;
+	private String riskId;
 	
+	public String getCoinsGrpId() {
+		return coinsGrpId;
+	}
+	public void setCoinsGrpId(String coinsGrpId) {
+		this.coinsGrpId = coinsGrpId;
+	}
+	public String getRiskId() {
+		return riskId;
+	}
+	public void setRiskId(String riskId) {
+		this.riskId = riskId;
+	}
 	public String getCheckingType() {
 		return checkingType;
 	}
@@ -92,6 +106,7 @@ public class SavePolicyDetailsRequest {
 		return "SavePolicyDetailsRequest [checkingType=" + checkingType + ", lineCd=" + lineCd + ", quotationNo="
 				+ quotationNo + ", holdCoverNo=" + holdCoverNo + ", openPolicyNo=" + openPolicyNo + ", optionId="
 				+ optionId + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", coinsGrpId=" + coinsGrpId + ", riskId=" + riskId + "]";
 	}
 }

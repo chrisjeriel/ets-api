@@ -7,6 +7,7 @@ public class DistRiskWtreaty {
 	private String treatyName;
 	private String trtyCedId;
 	private String trtyCedName;
+	private String retLayer;
 	private Double pctShare;
 	private Double siAmt;
 	private Double premAmt;
@@ -18,6 +19,13 @@ public class DistRiskWtreaty {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	public String getRetLayer() {
+		return retLayer;
+	}
+	public void setRetLayer(String retLayer) {
+		this.retLayer = retLayer;
+	}
 	public Integer getTreatyId() {
 		return treatyId;
 	}
@@ -111,9 +119,9 @@ public class DistRiskWtreaty {
 	@Override
 	public String toString() {
 		return "DistRiskWtreaty [treatyId=" + treatyId + ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId
-				+ ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", siAmt=" + siAmt + ", premAmt="
-				+ premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", netDue="
-				+ netDue + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", trtyCedName=" + trtyCedName + ", retLayer=" + retLayer + ", pctShare=" + pctShare + ", siAmt="
+				+ siAmt + ", premAmt=" + premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm="
+				+ vatRiComm + ", netDue=" + netDue + ", createUser=" + createUser + ", createDate=" + createDate
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
 	}
 }

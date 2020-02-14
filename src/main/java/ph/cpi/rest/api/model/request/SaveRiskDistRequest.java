@@ -10,9 +10,24 @@ public class SaveRiskDistRequest {
 	private String altNo;
 	private String retLineAmt;
 	private String autoCalc;
+	private Boolean manualTag = false;
 	private String updateUser;
 	private String seciiPremTag;
 	private String trtyLimitSec2;
+	private List<DistRiskTreaty> treatyList;
+	
+	public Boolean getManualTag() {
+		return manualTag;
+	}
+	public void setManualTag(String manualTag) {
+		this.manualTag = manualTag.equals("Y");
+	}
+	public List<DistRiskTreaty> getTreatyList() {
+		return treatyList;
+	}
+	public void setTreatyList(List<DistRiskTreaty> treatyList) {
+		this.treatyList = treatyList;
+	}
 	public List<WParam> getSaveWParam() {
 		return saveWParam;
 	}
@@ -77,9 +92,10 @@ public class SaveRiskDistRequest {
 	public String toString() {
 		return "SaveRiskDistRequest [saveWParam=" + saveWParam + ", delWParam=" + delWParam + ", policyId=" + policyId
 				+ ", riskDistId=" + riskDistId + ", altNo=" + altNo + ", retLineAmt=" + retLineAmt + ", autoCalc="
-				+ autoCalc + ", updateUser=" + updateUser + ", seciiPremTag=" + seciiPremTag + ", trtyLimitSec2="
-				+ trtyLimitSec2 + "]";
+				+ autoCalc + ", manualTag=" + manualTag + ", updateUser=" + updateUser + ", seciiPremTag="
+				+ seciiPremTag + ", trtyLimitSec2=" + trtyLimitSec2 + ", treatyList=" + treatyList + "]";
 	}
+	
 }
 
 class WParam{
@@ -174,5 +190,4 @@ class WParam{
 				+ ", commRt=" + commRt + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
 				+ updateUser + ", updateDate=" + updateDate + "]";
 	}
-	
 }

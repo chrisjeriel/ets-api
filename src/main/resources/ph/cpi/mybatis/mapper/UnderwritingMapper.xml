@@ -1508,7 +1508,8 @@
 												  #{createUser, jdbcType=VARCHAR},
 												  CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												  #{updateUser, jdbcType=VARCHAR},
-												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												  CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{riskId, jdbcType=VARCHAR}
 											     );
 		END;
 	</update>
@@ -1523,7 +1524,9 @@
 												   #{createUser, jdbcType=VARCHAR},
 												   CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 												   #{updateUser, jdbcType=VARCHAR},
-												   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+												   CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{riskId, jdbcType=VARCHAR},
+												  #{coinsGrpId, jdbcType=VARCHAR}
 											      );
 		END;
 	</update>
@@ -1538,7 +1541,8 @@
 													#{createUser, jdbcType=VARCHAR},
 													CAST(to_timestamp(#{createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 													#{updateUser, jdbcType=VARCHAR},
-													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  	#{riskId, jdbcType=VARCHAR}
 											   		);
 		END;
 	</update>	
@@ -1685,6 +1689,7 @@
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.ProjectOc" id="PolProjOcListingMap">
+		<result property="riskId" 				column="RISK_ID"/>
 		<result property="riskName"           	column="RISK_NAME"/>
         <result property="objectDesc"           column="OBJECT_DESC"/>
         <result property="site"           		column="SITE"/>
@@ -2503,6 +2508,7 @@
 		<result property="treatyName"   column="TREATY_NAME" />
 		<result property="trtyCedId"    column="TRTY_CED_ID" />
 		<result property="trtyCedName"  column="TRTY_CED_NAME" />
+		<result property="retLayer" 	column="RET_LAYER"/>
 		<result property="pctShare"     column="PCT_SHARE" />
 		<result property="siAmt"        column="SI_AMT" />
 		<result property="premAmt"      column="T_PREM_AMT" />
@@ -2928,6 +2934,7 @@
 	<resultMap type="ph.cpi.rest.api.model.underwriting.DistPolInst" id="DistPolInstMap">
 		<result property="distId" column="DIST_ID"/>
 		<result property="policyNo" column="POLICY_NO"/>
+		<result property="histNo" column="HIST_NO"/>
 		<result property="instNo" column="INST_NO"/>
 		<result property="dueDate" column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="bookingDate" column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -3034,5 +3041,73 @@
 		<result property="okDelete"			column="OK_DELETE"/>
 	</resultMap>
 	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcList" id="PolOcListMap">
+		<result property="policyId" column="POLICY_ID" />
+		<result property="policyNo" column="POLICY_NO" />
+		<result property="policyIdOc" column="POLICY_ID_OC" />
+		<result property="policyNoOc" column="POLICY_NO_OC" />
+		<result property="riskId" column="RISK_ID" />
+		<result property="riskName" column="RISK_NAME" />
+		<result property="coinsGrpId" column="COINS_GRP_ID" />
+	</resultMap>
 	
+	<select id="retrieveOpenCoverPolList" resultMap="PolOcListMap">
+		SELECT * FROM TABLE(POL_GEN_INFO_OC_PKG.ret_create_oc_pol_lov(
+			#{policyIdOc, jdbcType=VARCHAR},
+			#{lineCd, jdbcType=VARCHAR},
+			#{polYear, jdbcType=VARCHAR},
+			#{polSeqNo, jdbcType=VARCHAR},
+			#{cedingId, jdbcType=VARCHAR},
+			#{coSeriesNo, jdbcType=VARCHAR},
+			#{altNo, jdbcType=VARCHAR},
+			#{policyNo, jdbcType=VARCHAR},
+			#{openPolNo, jdbcType=VARCHAR},
+			#{riskName, jdbcType=VARCHAR}
+		))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolicyLOV" id="EditableDistListMap">
+		<result property="policyId" column="POLICY_ID" />
+		<result property="policyNo" column="POLICY_NO" />
+		<result property="riskName" column="RISK_NAME" />
+		<result property="cedingName" column="CEDING_NAME" />
+		<result property="insuredDesc" column="INSURED_DESC" />
+	</resultMap>
+	
+	<select id="retrieveEditableDistList" resultMap="EditableDistListMap">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_editable_dist_list(
+			#{lineCd, jdbcType=VARCHAR},
+			#{polYear, jdbcType=VARCHAR},
+			#{polSeqNo, jdbcType=VARCHAR},
+			#{cedingId, jdbcType=VARCHAR},
+			#{coSeriesNo, jdbcType=VARCHAR},
+			#{altNo, jdbcType=VARCHAR},
+			#{policyNo, jdbcType=VARCHAR},
+			#{cedingName, jdbcType=VARCHAR},
+			#{riskName, jdbcType=VARCHAR}
+		))
+	</select>
+	
+	<update id="saveManualDistRiskTreaty">
+		BEGIN
+			NULL;
+			<foreach collection="delWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.del_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
+				DIST_POL_WPARAM_PKG.save_dp_wparam(#{wparam.distId},#{policyId},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId});
+			</foreach>
+			<foreach collection="saveWParam" item="wparam">
+				DIST_RISK_WPARAM_PKG.save_dr_wparam(#{wparam.riskDistId},#{wparam.altNo},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.pctShare},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
+				DIST_POL_WPARAM_PKG.save_dp_wparam(#{wparam.distId},#{policyId},#{wparam.treatyYear},#{wparam.treatyId},#{wparam.trtyCedId},#{wparam.commRt},#{wparam.createUser},CAST(to_timestamp(#{wparam.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{wparam.updateUser},sysdate);
+			</foreach>
+			<foreach collection="saveList" item="item">
+				dist_risk_wtreaty_pkg.save_dist_risk_wtreaty(#{riskDistId},#{altNo},#{item.treatyId},
+																#{item.trtyCedId},
+																#{item.retLayer},
+																#{item.siAmt},
+																#{item.premAmt},#{updateUser});
+			</foreach>
+			DIST_WRISK_PKG.save_dist_wrisk(#{riskDistId},#{altNo},#{retLineAmt},#{autoCalc},#{trtyLimitSec2, jdbcType=VARCHAR},#{seciiPremTag, jdbcType=VARCHAR},#{updateUser});
+			DIST_PKG.dist_manual(#{riskDistId},#{altNo},#{updateUser});
+		END;
+	</update>
 </mapper>

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
-import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
+import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -26,7 +26,9 @@ import ph.cpi.rest.api.model.request.ProcessRenewablePolicyRequest;
 import ph.cpi.rest.api.model.request.PurgeExpiringPolRequest;
 import ph.cpi.rest.api.model.request.RetrieveAlterationsPerPolicyRequest;
 import ph.cpi.rest.api.model.request.RetrieveDistCoInsRequest;
+import ph.cpi.rest.api.model.request.RetrieveEditableDistListRequest;
 import ph.cpi.rest.api.model.request.RetrieveExpPolListRequest;
+import ph.cpi.rest.api.model.request.RetrieveOpenCoverPolListRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAlopRequest;
 import ph.cpi.rest.api.model.request.RetrievePolAttachmentOcRequest;
@@ -65,6 +67,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopRequest;
@@ -93,8 +96,8 @@ import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
-import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
+import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -103,8 +106,10 @@ import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
+import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAttachmentOcResponse;
@@ -141,6 +146,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopResponse;
@@ -762,5 +768,26 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolEndtDed");
 		logger.info("RetrievePolEndtDedRequest : " + rpedr.toString());
 		return underwritingService.retrievePolEndtDed(rpedr);
+	}
+	
+	@GetMapping(path="retrieveOpenCoverPolList")
+	public @ResponseBody RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveOpenCoverPolList");
+		logger.info("RetrieveOpenCoverPolListRequest : " + rpedr.toString());
+		return underwritingService.retrieveOpenCoverPolList(rpedr);
+	}
+	
+	@GetMapping(path="retrieveEditableDistList")
+	public @ResponseBody RetrieveEditableDistListResponse retrieveEditableDistList(RetrieveEditableDistListRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveEditableDistList");
+		logger.info("RetrieveEditableDistListRequest : " + rpedr.toString());
+		return underwritingService.retrieveEditableDistList(rpedr);
+	}
+	
+	@PostMapping(path="saveManualDistRiskTreaty")
+	public @ResponseBody SaveManualDistRiskTreatyResponse saveManualDistRiskTreaty(@RequestBody SaveManualDistRiskTreatyRequest erepr) throws SQLException {
+		logger.info("POST: /api/underwriting-service/saveManualDistRiskTreaty");
+		logger.info("SaveManualDistRiskTreatyRequest : " + erepr.toString());
+		return underwritingService.saveManualDistRiskTreaty(erepr);
 	}
 }

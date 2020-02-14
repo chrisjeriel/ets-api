@@ -9,6 +9,7 @@ public class DistPolInst {
 	private Integer distId;
 	private String policyNo;
 	private Integer instNo;
+	private Integer histNo;
 	private DateTime dueDate;
 	private DateTime bookingDate;
 	private DateTime acctEntDate;
@@ -22,6 +23,12 @@ public class DistPolInst {
 	private String updateUser;
 	private DateTime updateDate;
 	List <DistPolInstTreaty> treatyList;
+	public Integer getHistNo() {
+		return histNo;
+	}
+	public void setHistNo(Integer histNo) {
+		this.histNo = histNo;
+	}
 	public Integer getDistId() {
 		return distId;
 	}
@@ -120,10 +127,10 @@ public class DistPolInst {
 	}
 	@Override
 	public String toString() {
-		return "DistPolInst [distId=" + distId + ", policyNo=" + policyNo + ", instNo=" + instNo + ", dueDate="
-				+ dueDate + ", bookingDate=" + bookingDate + ", acctEntDate=" + acctEntDate + ", premAmt=" + premAmt
-				+ ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", netDue=" + netDue
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", treatyList=" + treatyList + "]";
+		return "DistPolInst [distId=" + distId + ", policyNo=" + policyNo + ", instNo=" + instNo + ", histNo=" + histNo
+				+ ", dueDate=" + dueDate + ", bookingDate=" + bookingDate + ", acctEntDate=" + acctEntDate
+				+ ", premAmt=" + premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm
+				+ ", netDue=" + netDue + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
+				+ updateUser + ", updateDate=" + updateDate + ", treatyList=" + treatyList + "]";
 	}
 }
