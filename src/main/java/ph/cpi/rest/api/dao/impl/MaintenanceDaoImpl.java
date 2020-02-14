@@ -1495,5 +1495,24 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public HashMap<String, Object> generateMtnBookingMth(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		 Integer errorCode = sqlSession.update("generateMtnBookingMth", params);
+	     params.put("errorCode", errorCode);
+	     return params;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnBookingMth(
+			HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		Integer errorCode = sqlSession.update("saveMtnBookingMth",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
 }
 

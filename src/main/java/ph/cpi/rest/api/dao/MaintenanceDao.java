@@ -313,4 +313,6 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> generateMtnAcseCheckSeries(final HashMap<String, Object> params) throws SQLException;
 	public List<MtnReportsRange>  retrieveMtnReportRange(final HashMap<String,Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnReportsRange(final HashMap<String,Object> params) throws SQLException;
+	public HashMap<String,Object> generateMtnBookingMth(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> saveMtnBookingMth(final HashMap<String,Object> params) throws SQLException;
 }

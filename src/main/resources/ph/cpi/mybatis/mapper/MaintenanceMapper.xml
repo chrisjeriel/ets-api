@@ -3605,6 +3605,7 @@
 
 	<resultMap type="ph.cpi.rest.api.model.maintenance.BookingMonth" id="bookingMonthMap">
 		<result property="bookingMm" 	column="BOOKING_MM"/>
+		<result property="bookingMmName" column="BOOKING_MM_NAME"/>
 		<result property="bookingYear" 	column="BOOKING_YEAR"/>
 		<result property="bookedTag" 	column="BOOKED_TAG"/>
 		<result property="remarks" 		column="REMARKS"/>
@@ -3612,6 +3613,7 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/> 
 		<result property="updateUser" 	column="UPDATE_USER"/> 
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tempClosedTag" 	column="TEMP_CLOSE_TAG"/>
 	</resultMap>
 	
 	<select id="retrieveMtnBookingMonth" resultMap="bookingMonthMap" parameterType="java.util.Map">
@@ -5362,4 +5364,27 @@
 			</foreach>
 		END;
 	</update>
+	
+	<update id="generateMtnBookingMth" >
+		BEGIN
+			MTN_BOOKING_MONTH_PKG.gen_booking_mth(#{year},#{createUser},
+						CAST(to_timestamp(#{createDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{updateUser},
+						CAST(to_timestamp(#{updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
+	<update id="saveMtnBookingMth">
+		BEGIN
+			<foreach collection="saveBookingMth" item="save">
+				MTN_BOOKING_MONTH_PKG.save_booking_mth(	 #{save.bookingMm},
+														 #{save.bookingYear},
+														 #{save.tempClosedTag},
+														 #{save.remarks,jdbcType=VARCHAR},
+														 #{save.updateUser},
+														 CAST(to_timestamp(#{save.updateDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+
 </mapper>

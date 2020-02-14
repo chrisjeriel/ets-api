@@ -510,6 +510,18 @@
 		END;
 	</update>
 	
+	<update id="printAcseJv" parameterType="java.util.Map">
+		BEGIN
+			ACSE_JOURNAL_VOUCHER_PKG.print_jv(
+				#{tranId},
+				#{jvYear},
+				#{jvNo},
+				#{updateUser},
+				CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+		END;
+	</update>
+	
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseTaxDetails" id="taxDtlMap">
 		<result property="tranId" 			column="TRAN_ID"/>
 		<result property="taxType"      	column="TAX_TYPE"/>
