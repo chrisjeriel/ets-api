@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -263,7 +262,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return params;
 	}
 	
-	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public HashMap<String, Object> savePolicyDetails(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePDGenInfo",params);
