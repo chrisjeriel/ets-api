@@ -255,7 +255,7 @@ public class UtilController {
 		try {
 			PrintingUtility pu = new PrintingUtility();
 			HashMap reportParam = new HashMap<String, String>();
-			if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("POLR044")) {
+			if (grr.getReportId() != null && (grr.getReportId().toUpperCase().contains("POLR044") || grr.getReportId().toUpperCase().contains("POLR052"))) {
 				System.out.println("POLR044");
 				reportParam = ReportParameters.mapPOLR044AParams(grr.getPolr044Params());
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR061")) {

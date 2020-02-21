@@ -82,14 +82,18 @@ public class UtilDaoImpl implements UtilDao{
 			extractionMethod = "extractBRDRX";
 		}
 		
-		if ("POL052A".equalsIgnoreCase((String) params.get("reportId"))) {
-			extractionMethod = "extractPOL052A";
-		} else if ("POL052B".equalsIgnoreCase((String) params.get("reportId"))) {
-            extractionMethod = "extractPOL052B";
-        } else if ("POL052C".equalsIgnoreCase((String) params.get("reportId"))) {
-            extractionMethod = "extractPOL052C";
-        } else if ("POL052D".equalsIgnoreCase((String) params.get("reportId"))) {
-            extractionMethod = "extractPOL052D";
+		if ("POLR052A".equalsIgnoreCase((String) params.get("reportId"))) {
+			extractionMethod = "extractPOLR052A";
+		} else if ("POLR052B".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052B";
+        } else if ("POLR052C".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052C";
+        } else if ("POLR052D".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052D";
+        } else if ("POLR052E".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052E";
+        } else if ("POLR052F".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052F";
         }
 		
 		resultCode = sqlSession.update(extractionMethod, params);
