@@ -3110,4 +3110,28 @@
 			DIST_PKG.dist_manual(#{riskDistId},#{altNo},#{updateUser});
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcLov" id="PolOcLovMap">
+		<result property="policyIdOc"	column="POLICY_ID_OC"/>
+		<result property="policyNoOc"	column="POLICY_NO_OC"/>
+		<result property="riskName"	column="RISK_NAME"/>
+		<result property="insuredDesc"	column="INSURED_DESC"/>
+		<result property="cedingName"	column="CEDING_NAME"/>
+	</resultMap>
+	
+	<select id="retrieveCreateOcAltLov" resultMap="PolOcLovMap">
+		SELECT * FROM TABLE (POL_GEN_INFO_OC_PKG.ret_create_oc_alt_lov(
+					#{policyIdOc, jdbcType=VARCHAR},
+					#{lineCd, jdbcType=VARCHAR},
+					#{polYear, jdbcType=VARCHAR},
+					#{polSeqNo, jdbcType=VARCHAR},
+					#{cedingId, jdbcType=VARCHAR},
+					#{coSeriesNo, jdbcType=VARCHAR},
+					#{altNo, jdbcType=VARCHAR},
+					#{policyNo, jdbcType=VARCHAR},
+					#{openPolNo, jdbcType=VARCHAR},
+					#{riskName, jdbcType=VARCHAR}
+				)
+			)
+	</select>
 </mapper>

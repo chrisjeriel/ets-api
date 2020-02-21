@@ -32,6 +32,7 @@ import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
 import ph.cpi.rest.api.model.underwriting.PolOcList;
+import ph.cpi.rest.api.model.underwriting.PolOcLov;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 import ph.cpi.rest.api.model.underwriting.PolicyLOV;
@@ -727,6 +728,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Integer saveManualDistRiskTreaty(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.update("saveManualDistRiskTreaty",params);
+	}
+
+	@Override
+	public List<PolOcLov> retrieveCreateOcAltLov(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveCreateOcAltLov",params);
 	}
 	
 	

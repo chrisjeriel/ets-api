@@ -3,14 +3,14 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
+import ph.cpi.rest.api.model.request.CreateOcAltRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
-import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
+import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.GenHundredValPolPrintingRequest;
 import ph.cpi.rest.api.model.request.NegateDistributionRequest;
 import ph.cpi.rest.api.model.request.PostDistributionRequest;
@@ -88,9 +88,10 @@ import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
+import ph.cpi.rest.api.model.response.CreateOcAltResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
-import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
+import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.GenHundredValPolPrintingResponse;
 import ph.cpi.rest.api.model.response.NegateDistributionResponse;
 import ph.cpi.rest.api.model.response.PostDistributionResponse;
@@ -98,6 +99,7 @@ import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveCreateOcAltLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -268,4 +270,6 @@ public interface UnderwritingService {
 	public RetrieveOpenCoverPolListResponse retrieveOpenCoverPolList(RetrieveOpenCoverPolListRequest rpedr) throws SQLException;
 	public RetrieveEditableDistListResponse retrieveEditableDistList(RetrieveEditableDistListRequest rpedr) throws SQLException;
 	public SaveManualDistRiskTreatyResponse saveManualDistRiskTreaty(SaveManualDistRiskTreatyRequest erepr) throws SQLException;
+	public RetrieveCreateOcAltLovResponse retrieveCreateOcAltLov(RetrieveOpenCoverPolListRequest rpedr) throws SQLException;
+	public CreateOcAltResponse createOcAlt(CreateOcAltRequest rpedr) throws SQLException;
 }

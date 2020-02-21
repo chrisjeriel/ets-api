@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
+import ph.cpi.rest.api.model.request.CreateOcAltRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
@@ -95,6 +96,7 @@ import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
+import ph.cpi.rest.api.model.response.CreateOcAltResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
@@ -105,6 +107,7 @@ import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveCreateOcAltLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -789,5 +792,19 @@ public class UnderwritingController {
 		logger.info("POST: /api/underwriting-service/saveManualDistRiskTreaty");
 		logger.info("SaveManualDistRiskTreatyRequest : " + erepr.toString());
 		return underwritingService.saveManualDistRiskTreaty(erepr);
+	}
+	
+	@GetMapping(path="retrieveCreateOcAltLov")
+	public @ResponseBody RetrieveCreateOcAltLovResponse retrieveCreateOcAltLov(RetrieveOpenCoverPolListRequest rpedr) throws SQLException{
+		logger.info("GET: /api/underwriting-service/retrieveCreateOcAltLov");
+		logger.info("RetrieveCreateOcAltLovRequest : " + rpedr.toString());
+		return underwritingService.retrieveCreateOcAltLov(rpedr);
+	}
+	
+	@PostMapping(path="createOcAlt")
+	public @ResponseBody CreateOcAltResponse createOcAlt(@RequestBody CreateOcAltRequest rpedr) throws SQLException{
+		logger.info("POST: /api/underwriting-service/createOcAlt");
+		logger.info("CreateOcAltResponse : " + rpedr.toString());
+		return underwritingService.createOcAlt(rpedr);
 	}
 }
