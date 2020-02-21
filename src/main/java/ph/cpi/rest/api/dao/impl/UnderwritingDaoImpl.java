@@ -734,6 +734,12 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public List<PolOcLov> retrieveCreateOcAltLov(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveCreateOcAltLov",params);
 	}
+
+	@Override
+	public HashMap<String, Object> createOcAlt(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("createOcAlt",params);
+		return params;
+	}
 	
 	
 }

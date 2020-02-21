@@ -3134,4 +3134,14 @@
 				)
 			)
 	</select>
+	
+	<update id="createOcAlt" statementType="CALLABLE" parameterType="java.util.Map" >
+		BEGIN
+			CREATE_OC_ALT_PKG.create_alt_oc(#{policyIdOc},
+											#{newPolId , mode=INOUT, jdbcType=VARCHAR},
+											#{newPolNo, mode=INOUT, jdbcType=VARCHAR},
+											#{user},
+											#{msg, mode=INOUT, jdbcType=VARCHAR});	
+		 END;
+	</update>
 </mapper>

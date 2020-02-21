@@ -2169,7 +2169,16 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyIdOc", rpedr.getPolicyIdOc());
 		params.put("user",rpedr.getUser());
+		params.put("newPolId","");
+		params.put("newPolNo","");
+		params.put("msg","");
+		logger.info(params.toString());
+		params = underwritingDao.createOcAlt(params);
 		
+		response.setPolicyIdOc(params.get("newPolId").toString());
+		response.setPolicyNoOc(params.get("newPolNo").toString());
+		response.setMsg(params.get("msg").toString());
+		logger.info(response.toString());
 		return response;
 	}
 }

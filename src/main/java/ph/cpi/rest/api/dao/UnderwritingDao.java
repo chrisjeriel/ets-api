@@ -147,5 +147,6 @@ public interface UnderwritingDao {
 	public List<PolicyLOV> retrieveEditableDistList(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveManualDistRiskTreaty(HashMap<String, Object> params)throws SQLException;
 	public List<PolOcLov> retrieveCreateOcAltLov (HashMap<String, Object> params)throws SQLException;
+	public HashMap<String, Object> createOcAlt(HashMap<String, Object> params)throws SQLException;
 	
 }
