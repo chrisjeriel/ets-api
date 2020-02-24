@@ -2172,13 +2172,17 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("newPolId","");
 		params.put("newPolNo","");
 		params.put("msg","");
-		logger.info(params.toString());
-		params = underwritingDao.createOcAlt(params);
+		try {
+			params = underwritingDao.createOcAlt(params);
+
+			logger.info(params.toString());
+			response.setMsg(params.get("msg").toString());
+			response.setPolicyIdOc(params.get("newPolId").toString());
+			response.setPolicyNoOc(params.get("newPolNo").toString());
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		
-		response.setPolicyIdOc(params.get("newPolId").toString());
-		response.setPolicyNoOc(params.get("newPolNo").toString());
-		response.setMsg(params.get("msg").toString());
-		logger.info(response.toString());
 		return response;
 	}
 }
