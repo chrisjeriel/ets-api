@@ -11,6 +11,8 @@ public class CLMR010 {
 	private String fromDate;
 	private String toDate;
 	private String forceExtract;
+	private String currCdParam;
+	private String extTypeTag;
 	
 	public String getExtractUser() {
 		return extractUser;
@@ -66,11 +68,24 @@ public class CLMR010 {
 	public void setReportId(String reportId) {
 		this.reportId = reportId;
 	}
+	public String getCurrCdParam() {
+		return currCdParam;
+	}
+	public void setCurrCdParam(String currCdParam) {
+		this.currCdParam = currCdParam;
+	}
+	public String getExtTypeTag() {
+		return extTypeTag;
+	}
+	public void setExtTypeTag(String extTypeTag) {
+		this.extTypeTag = extTypeTag;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010 [reportId=" + reportId + ", extractUser=" + extractUser + ", lineCdParam=" + lineCdParam
 				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", forceExtract=" + forceExtract + "]";
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", forceExtract=" + forceExtract + ", currCdParam="
+				+ currCdParam + ", extTypeTag=" + extTypeTag + "]";
 	}
 	
 }

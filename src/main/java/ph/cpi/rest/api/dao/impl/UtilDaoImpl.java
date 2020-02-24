@@ -56,11 +56,11 @@ public class UtilDaoImpl implements UtilDao{
         } else if ("POLR044N".equalsIgnoreCase((String) params.get("reportId"))) {
                 extractionMethod = "extractPOLR044N";
         } else if ("POLR044O".equalsIgnoreCase((String) params.get("reportId"))) {
-                extractionMethod = "extractPOLR044O";
+        	extractionMethod = "extractPOLR044O";
         } else if ("POLR044P".equalsIgnoreCase((String) params.get("reportId"))) {
-                extractionMethod = "extractPOLR044P";
+        	extractionMethod = "extractPOLR044P";
         } else if ("POLR044Q".equalsIgnoreCase((String) params.get("reportId"))) {
-                extractionMethod = "extractPOLR044Q";
+        	extractionMethod = "extractPOLR044Q";
         } else if ("ACITR061F".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractACITR061F";
         } else if ("ACITR061G".equalsIgnoreCase((String) params.get("reportId"))) {
@@ -94,7 +94,9 @@ public class UtilDaoImpl implements UtilDao{
             extractionMethod = "extractPOLR052E";
         } else if ("POLR052F".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractPOLR052F";
-        }
+        } else if (((String) params.get("reportId")).toUpperCase().contains("CLMR010")) {
+            extractionMethod = "extract" + ((String) params.get("reportId"));
+        } 
 		
 		resultCode = sqlSession.update(extractionMethod, params);
 		
