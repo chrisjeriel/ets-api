@@ -90,5 +90,8 @@ public class WorkFlowController {
 		return workFlowService.changeRNStatus(snreq);
 	}
 	
-	
+	@GetMapping(path="retrieveDBName")
+	public @ResponseBody String retrieveDBName() throws SQLException {
+		return workFlowService.retrieveDBName();
+	}
 }

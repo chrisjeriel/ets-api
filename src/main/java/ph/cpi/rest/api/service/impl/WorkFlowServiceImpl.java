@@ -267,6 +267,11 @@ public class WorkFlowServiceImpl implements WorkFlowService {
 		retrieveNotifCount();
 		return resp;
 	}
+
+	@Override
+	public String retrieveDBName() throws SQLException {
+		return workFlowDao.retrieveDBName();
+	}
 	
 	
 }

@@ -1310,6 +1310,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("createDate",spgip.getCreateDate());
 		params.put("updateUser",spgip.getUpdateUser());
 		params.put("updateDate",spgip.getUpdateDate());
+		params.put("remarks",spgip.getRemarks());
 
 		params.put("projId",spgip.getProjId());
 		params.put("projDesc",spgip.getProjDesc());
@@ -2180,7 +2181,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			response.setPolicyIdOc(params.get("newPolId").toString());
 			response.setPolicyNoOc(params.get("newPolNo").toString());
 		}catch(Exception ex) {
-			ex.printStackTrace();
+			if(response.getMsg() == null) {
+				ex.printStackTrace();
+			}
 		}
 		
 		return response;

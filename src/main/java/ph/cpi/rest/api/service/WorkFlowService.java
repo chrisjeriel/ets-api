@@ -3,6 +3,7 @@ package ph.cpi.rest.api.service;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ph.cpi.rest.api.model.request.ChangeRNStatusRequest;
 import ph.cpi.rest.api.model.request.RetrieveNotesRequest;
@@ -30,5 +31,6 @@ public interface WorkFlowService {
 	public RetrieveWfmTransactionsResponse retrieveTransactions(RetrieveWfmTransactionsRequest rrrq) throws SQLException;
 	public RetrieveRelatedRecordsResponse retrieveRelatedRecords(RetrieveRelatedRecordsRequest rrrr) throws SQLException;
 	public ChangeRNStatusResponse changeRNStatus(ChangeRNStatusRequest rrrr) throws SQLException;
+	public String retrieveDBName() throws SQLException;
 	
 }
