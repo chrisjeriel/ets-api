@@ -57,6 +57,7 @@ import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInstTagAcctDateRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolOcInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
@@ -138,6 +139,7 @@ import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInstTagAcctDateResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolOcInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
@@ -2186,6 +2188,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			}
 		}
 		
+		return response;
+	}
+
+	@Override
+	public RetrievePolOcInfoResponse retrievePolOcInfo(RetrievePolOcInfoRequest rpedr) throws SQLException {
+		RetrievePolOcInfoResponse response = new RetrievePolOcInfoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",rpedr.getPolicyId());
+		response.setPolicy(underwritingDao.retrievePolOcInfo(params));
 		return response;
 	}
 }

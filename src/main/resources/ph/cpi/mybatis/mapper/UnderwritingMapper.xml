@@ -3146,4 +3146,69 @@
 											#{msg, mode=INOUT, jdbcType=VARCHAR});	
 		 END;
 	</update>
+	
+	<select id="retrievePolOcInfo" resultMap="PolOcInfoMap">
+		SELECT * FROM TABLE(pol_gen_info_oc_info_pkg.RET_POL_INFO(#{policyId}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfo" id="PolOcInfoMap">
+		<result property="policyId"	column="POLICY_ID"/>
+		<result property="policyNo"	column="POLICY_NO"/>
+		<result property="lineCd"	column="LINE_CD"/>
+		<result property="lineDesc"	column="LINE_DESC"/>
+		<result property="cedingId"	column="CEDING_ID"/>
+		<result property="cedingName"	column="CEDING_NAME"/>
+		<result property="cessionId"	column="CESSION_ID"/>
+		<result property="cessionDesc"	column="CESSION_DESC"/>
+		<result property="lineClassCd"	column="LINE_CLASS_CD"/>
+		<result property="lineClassDesc"	column="LINE_CLASS_DESC"/>
+		<result property="quoteId"	column="QUOTE_ID"/>
+		<result property="quotationNo"	column="QUOTATION_NO"/>
+		<result property="status"	column="STATUS"/>
+		<result property="statusDesc"	column="STATUS_DESC"/>
+		<result property="coRefNo"	column="CO_REF_NO"/>
+		<result property="reinsurerId"	column="REINSURER_ID"/>
+		<result property="reinsurerName"	column="REINSURER_NAME"/>
+		<result property="riBinderNo"	column="RI_BINDER_NO"/>
+		<result property="intmId"	column="INTM_ID"/>
+		<result property="intmName"	column="INTM_NAME"/>
+		<result property="inceptDate"	column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate"	column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lapseFrom"	column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lapseTo"	column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"	column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDate"	column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="distDate"	column="DIST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctDate"	column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="riskName"	column="RISK_NAME"/>
+		
+		<association property="altList" 	resultMap="PolOcAltListMap"/>
+		<association property="subPolList" 	resultMap="PolOcSubPolListMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfoAlt" id="PolOcAltListMap">
+		<result property="policyId"	column="ALT_POLICY_ID_OC"/>
+		<result property="policyNo"	column="ALT_POLICY_NO_OC"/>
+		<result property="effDate"	column="ALT_EFF_DATE_OC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"	column="ALT_ISSUE_DATE_OC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quotationNo"	column="ALT_QUOTATION_NO_OC"/>
+		<result property="totalSi"	column="ALT_TOTAL_SI_OC"/>
+		<result property="totalPrem"	column="ALT_TOTAL_PREM_OC"/>
+		<result property="statusDesc"	column="ALT_STATUS_DESC_OC"/>
+		<result property="insured"	column="ALT_INSURED_OC"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfoAlt" id="PolOcSubPolListMap">
+		<result property="policyId"	column="ALT_POLICY_ID"/>
+		<result property="policyNo"	column="ALT_POLICY_NO"/>
+		<result property="effDate"	column="ALT_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"	column="ALT_ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quotationNo"	column="ALT_QUOTATION_NO"/>
+		<result property="totalSi"	column="ALT_TOTAL_SI"/>
+		<result property="totalPrem"	column="ALT_TOTAL_PREM"/>
+		<result property="statusDesc"	column="ALT_STATUS_DESC"/>
+		<result property="insured"	column="ALT_INSURED"/>
+	</resultMap>
+	
+	
 </mapper>

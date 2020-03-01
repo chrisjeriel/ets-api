@@ -20,6 +20,7 @@ import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
+import ph.cpi.rest.api.model.underwriting.PolOcInfo;
 import ph.cpi.rest.api.model.underwriting.PolOcList;
 import ph.cpi.rest.api.model.underwriting.PolOcLov;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -148,5 +149,6 @@ public interface UnderwritingDao {
 	public Integer saveManualDistRiskTreaty(HashMap<String, Object> params)throws SQLException;
 	public List<PolOcLov> retrieveCreateOcAltLov (HashMap<String, Object> params)throws SQLException;
 	public HashMap<String, Object> createOcAlt(HashMap<String, Object> params)throws SQLException;
+	public PolOcInfo retrievePolOcInfo(HashMap<String, Object> params) throws SQLException;
 	
 }

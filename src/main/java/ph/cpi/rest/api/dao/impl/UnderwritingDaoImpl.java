@@ -31,6 +31,7 @@ import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
+import ph.cpi.rest.api.model.underwriting.PolOcInfo;
 import ph.cpi.rest.api.model.underwriting.PolOcList;
 import ph.cpi.rest.api.model.underwriting.PolOcLov;
 import ph.cpi.rest.api.model.underwriting.Policy;
@@ -739,6 +740,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public HashMap<String, Object> createOcAlt(HashMap<String, Object> params) throws SQLException {
 		sqlSession.update("createOcAlt",params);
 		return params;
+	}
+
+	@Override
+	public PolOcInfo retrievePolOcInfo(HashMap<String, Object> params) throws SQLException {
+		return (PolOcInfo) sqlSession.selectOne("retrievePolOcInfo",params);
 	}
 	
 	
