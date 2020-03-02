@@ -1844,6 +1844,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER" />
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="remarks" 			column="REMARKS" />
 		<association property="project"		resultMap="assocProjOcMap" />
 	</resultMap>
 	
@@ -1914,7 +1915,8 @@
 				#{regionCd},#{provinceCd},#{cityCd},#{districtCd, jdbcType=VARCHAR},#{blockCd, jdbcType=VARCHAR},
 				#{latitude, jdbcType=VARCHAR},#{longitude, jdbcType=VARCHAR},#{projCreateUser},
 				CAST(to_timestamp(#{projCreateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{projUpdateUser},
-				CAST(to_timestamp(#{projUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				CAST(to_timestamp(#{projUpdateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{remarks, jdbcType=VARCHAR}
 			);
 		END;
 	</update>
@@ -3110,4 +3112,103 @@
 			DIST_PKG.dist_manual(#{riskDistId},#{altNo},#{updateUser});
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcLov" id="PolOcLovMap">
+		<result property="policyIdOc"	column="POLICY_ID_OC"/>
+		<result property="policyNoOc"	column="POLICY_NO_OC"/>
+		<result property="riskName"	column="RISK_NAME"/>
+		<result property="insuredDesc"	column="INSURED_DESC"/>
+		<result property="cedingName"	column="CEDING_NAME"/>
+	</resultMap>
+	
+	<select id="retrieveCreateOcAltLov" resultMap="PolOcLovMap">
+		SELECT * FROM TABLE (POL_GEN_INFO_OC_PKG.ret_create_oc_alt_lov(
+					#{policyIdOc, jdbcType=VARCHAR},
+					#{lineCd, jdbcType=VARCHAR},
+					#{polYear, jdbcType=VARCHAR},
+					#{polSeqNo, jdbcType=VARCHAR},
+					#{cedingId, jdbcType=VARCHAR},
+					#{coSeriesNo, jdbcType=VARCHAR},
+					#{altNo, jdbcType=VARCHAR},
+					#{policyNo, jdbcType=VARCHAR},
+					#{openPolNo, jdbcType=VARCHAR},
+					#{riskName, jdbcType=VARCHAR}
+				)
+			)
+	</select>
+	
+	<update id="createOcAlt" statementType="CALLABLE" parameterType="java.util.Map" >
+		BEGIN
+			CREATE_OC_ALT_PKG.create_alt_oc(#{policyIdOc},
+											#{newPolId , mode=INOUT, jdbcType=VARCHAR},
+											#{newPolNo, mode=INOUT, jdbcType=VARCHAR},
+											#{user},
+											#{msg, mode=INOUT, jdbcType=VARCHAR});	
+		 END;
+	</update>
+	
+	<select id="retrievePolOcInfo" resultMap="PolOcInfoMap">
+		SELECT * FROM TABLE(pol_gen_info_oc_info_pkg.RET_POL_INFO(#{policyId}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfo" id="PolOcInfoMap">
+		<result property="policyId"	column="POLICY_ID"/>
+		<result property="policyNo"	column="POLICY_NO"/>
+		<result property="lineCd"	column="LINE_CD"/>
+		<result property="lineDesc"	column="LINE_DESC"/>
+		<result property="cedingId"	column="CEDING_ID"/>
+		<result property="cedingName"	column="CEDING_NAME"/>
+		<result property="cessionId"	column="CESSION_ID"/>
+		<result property="cessionDesc"	column="CESSION_DESC"/>
+		<result property="lineClassCd"	column="LINE_CLASS_CD"/>
+		<result property="lineClassDesc"	column="LINE_CLASS_DESC"/>
+		<result property="quoteId"	column="QUOTE_ID"/>
+		<result property="quotationNo"	column="QUOTATION_NO"/>
+		<result property="status"	column="STATUS"/>
+		<result property="statusDesc"	column="STATUS_DESC"/>
+		<result property="coRefNo"	column="CO_REF_NO"/>
+		<result property="reinsurerId"	column="REINSURER_ID"/>
+		<result property="reinsurerName"	column="REINSURER_NAME"/>
+		<result property="riBinderNo"	column="RI_BINDER_NO"/>
+		<result property="intmId"	column="INTM_ID"/>
+		<result property="intmName"	column="INTM_NAME"/>
+		<result property="inceptDate"	column="INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="expiryDate"	column="EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lapseFrom"	column="LAPSE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="lapseTo"	column="LAPSE_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"	column="ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="effDate"	column="EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="distDate"	column="DIST_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctDate"	column="ACCT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="riskName"	column="RISK_NAME"/>
+		
+		<association property="altList" 	resultMap="PolOcAltListMap"/>
+		<association property="subPolList" 	resultMap="PolOcSubPolListMap"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfoAlt" id="PolOcAltListMap">
+		<result property="policyId"	column="ALT_POLICY_ID_OC"/>
+		<result property="policyNo"	column="ALT_POLICY_NO_OC"/>
+		<result property="effDate"	column="ALT_EFF_DATE_OC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"	column="ALT_ISSUE_DATE_OC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quotationNo"	column="ALT_QUOTATION_NO_OC"/>
+		<result property="totalSi"	column="ALT_TOTAL_SI_OC"/>
+		<result property="totalPrem"	column="ALT_TOTAL_PREM_OC"/>
+		<result property="statusDesc"	column="ALT_STATUS_DESC_OC"/>
+		<result property="insured"	column="ALT_INSURED_OC"/>
+	</resultMap>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfoAlt" id="PolOcSubPolListMap">
+		<result property="policyId"	column="ALT_POLICY_ID"/>
+		<result property="policyNo"	column="ALT_POLICY_NO"/>
+		<result property="effDate"	column="ALT_EFF_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="issueDate"	column="ALT_ISSUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="quotationNo"	column="ALT_QUOTATION_NO"/>
+		<result property="totalSi"	column="ALT_TOTAL_SI"/>
+		<result property="totalPrem"	column="ALT_TOTAL_PREM"/>
+		<result property="statusDesc"	column="ALT_STATUS_DESC"/>
+		<result property="insured"	column="ALT_INSURED"/>
+	</resultMap>
+	
+	
 </mapper>

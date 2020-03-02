@@ -34,6 +34,7 @@ public class SavePolGenInfoOcRequest {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String remarks;
 	
 	private String projId;
 	private String projDesc;
@@ -54,6 +55,12 @@ public class SavePolGenInfoOcRequest {
 	private String projCreateDate;
 	private String projUpdateUser;
 	private String projUpdateDate;
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getPolicyIdOc() {
 		return policyIdOc;
 	}
@@ -377,13 +384,13 @@ public class SavePolGenInfoOcRequest {
 				+ expiryDate + ", lapseFrom=" + lapseFrom + ", lapseTo=" + lapseTo + ", issueDate=" + issueDate
 				+ ", effDate=" + effDate + ", distDate=" + distDate + ", acctDate=" + acctDate + ", currencyCd="
 				+ currencyCd + ", currencyRt=" + currencyRt + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", projId=" + projId
-				+ ", projDesc=" + projDesc + ", riskId=" + riskId + ", maxSi=" + maxSi + ", objectId=" + objectId
-				+ ", site=" + site + ", duration=" + duration + ", testing=" + testing + ", regionCd=" + regionCd
-				+ ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd="
-				+ blockCd + ", latitude=" + latitude + ", longitude=" + longitude + ", projCreateUser=" + projCreateUser
-				+ ", projCreateDate=" + projCreateDate + ", projUpdateUser=" + projUpdateUser + ", projUpdateDate="
-				+ projUpdateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", remarks=" + remarks
+				+ ", projId=" + projId + ", projDesc=" + projDesc + ", riskId=" + riskId + ", maxSi=" + maxSi
+				+ ", objectId=" + objectId + ", site=" + site + ", duration=" + duration + ", testing=" + testing
+				+ ", regionCd=" + regionCd + ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd="
+				+ districtCd + ", blockCd=" + blockCd + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", projCreateUser=" + projCreateUser + ", projCreateDate=" + projCreateDate + ", projUpdateUser="
+				+ projUpdateUser + ", projUpdateDate=" + projUpdateDate + "]";
 	}
 	
 	

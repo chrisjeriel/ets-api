@@ -52,11 +52,18 @@ public class PolicyOc {
 	private Integer	optionId;
 	private Float optionRt;
 	private String condition;
+	private String remarks;
 	
 	private ProjectOc project;
 	private List<AttachmentOc> attachmentsOc;
 	private List<EndtOc> endorsementsOc;
 	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public Integer getPolicyIdOc() {
 		return policyIdOc;
 	}
@@ -373,7 +380,7 @@ public class PolicyOc {
 				+ currencyCd + ", currencyRt=" + currencyRt + ", coRefNo=" + coRefNo + ", riBinderNo=" + riBinderNo
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", optionId=" + optionId + ", optionRt=" + optionRt + ", condition="
-				+ condition + ", project=" + project + ", attachmentsOc=" + attachmentsOc + ", endorsementsOc="
-				+ endorsementsOc + "]";
+				+ condition + ", remarks=" + remarks + ", project=" + project + ", attachmentsOc=" + attachmentsOc
+				+ ", endorsementsOc=" + endorsementsOc + "]";
 	}
 }

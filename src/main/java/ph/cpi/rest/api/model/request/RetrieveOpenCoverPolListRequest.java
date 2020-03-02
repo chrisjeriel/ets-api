@@ -1,8 +1,5 @@
 package ph.cpi.rest.api.model.request;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;

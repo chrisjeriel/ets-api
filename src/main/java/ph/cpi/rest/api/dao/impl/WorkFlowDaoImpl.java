@@ -90,4 +90,9 @@ public class WorkFlowDaoImpl implements WorkFlowDao {
 		
 		return errorCode;
 	}
+
+	@Override
+	public String retrieveDBName() throws SQLException {
+		return sqlSession.selectOne("retrieveDBName");
+	}
 }

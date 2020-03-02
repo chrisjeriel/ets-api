@@ -21,5 +21,6 @@ public interface WorkFlowDao {
 	public List<RelatedRecord> retrieveRelatedRecords(final HashMap<String, Object> params) throws SQLException;
 	public List<UserNotif> retrieveUserNotif() throws SQLException;
 	public Integer changeRNStatus(NRStatus param) throws SQLException;
+	public String retrieveDBName() throws SQLException;
 	
 }

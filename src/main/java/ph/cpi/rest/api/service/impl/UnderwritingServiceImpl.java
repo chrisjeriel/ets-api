@@ -16,6 +16,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
+import ph.cpi.rest.api.model.request.CreateOcAltRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
 import ph.cpi.rest.api.model.request.ExtGenRenExpPolicyRequest;
@@ -56,6 +57,7 @@ import ph.cpi.rest.api.model.request.RetrievePolHoldCoverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInstTagAcctDateRequest;
 import ph.cpi.rest.api.model.request.RetrievePolInwardBalRequest;
 import ph.cpi.rest.api.model.request.RetrievePolItemRequest;
+import ph.cpi.rest.api.model.request.RetrievePolOcInfoRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyApproverRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyDeductiblesRequest;
 import ph.cpi.rest.api.model.request.RetrievePolicyInformationRequest;
@@ -96,6 +98,7 @@ import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
+import ph.cpi.rest.api.model.response.CreateOcAltResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
 import ph.cpi.rest.api.model.response.ExtGenRenExpPolicyResponse;
@@ -106,6 +109,7 @@ import ph.cpi.rest.api.model.response.PostPolicyResponse;
 import ph.cpi.rest.api.model.response.ProcessRenewablePolicyResponse;
 import ph.cpi.rest.api.model.response.PurgeExpiringPolResponse;
 import ph.cpi.rest.api.model.response.RetrieveAlterationsPerPolicyResponse;
+import ph.cpi.rest.api.model.response.RetrieveCreateOcAltLovResponse;
 import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
@@ -135,6 +139,7 @@ import ph.cpi.rest.api.model.response.RetrievePolHoldCoverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInstTagAcctDateResponse;
 import ph.cpi.rest.api.model.response.RetrievePolInwardBalResponse;
 import ph.cpi.rest.api.model.response.RetrievePolItemResponse;
+import ph.cpi.rest.api.model.response.RetrievePolOcInfoResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyApproverResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyDeductiblesResponse;
 import ph.cpi.rest.api.model.response.RetrievePolicyInformationResponse;
@@ -1307,6 +1312,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("createDate",spgip.getCreateDate());
 		params.put("updateUser",spgip.getUpdateUser());
 		params.put("updateDate",spgip.getUpdateDate());
+		params.put("remarks",spgip.getRemarks());
 
 		params.put("projId",spgip.getProjId());
 		params.put("projDesc",spgip.getProjDesc());
@@ -2135,6 +2141,62 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				response.getErrorList().add(new Error("SQLException","Please check field values."));
 			}
 		}
+		return response;
+	}
+
+	@Override
+	public RetrieveCreateOcAltLovResponse retrieveCreateOcAltLov(RetrieveOpenCoverPolListRequest rpedr)
+			throws SQLException {
+		RetrieveCreateOcAltLovResponse response = new RetrieveCreateOcAltLovResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", rpedr.getPolicyIdOc());
+		params.put("lineCd", rpedr.getLineCd());
+		params.put("polYear", rpedr.getPolYear());
+		params.put("polSeqNo", rpedr.getPolSeqNo());
+		params.put("cedingId", rpedr.getCedingId());
+		params.put("coSeriesNo", rpedr.getCoSeriesNo());
+		params.put("altNo", rpedr.getAltNo());
+		params.put("policyNo", rpedr.getPolicyNo());
+		params.put("openPolNo", rpedr.getOpenPolNo());
+		params.put("riskName", rpedr.getRiskName());
+		params.put("paginationRequest", rpedr.getPaginationRequest());
+		params.put("sortRequest", rpedr.getSortRequest());
+		params.put("search", rpedr.getSearch());
+		response.setPolList(underwritingDao.retrieveCreateOcAltLov(params));
+		return response;
+	}
+
+	@Override
+	public CreateOcAltResponse createOcAlt(CreateOcAltRequest rpedr) throws SQLException {
+		CreateOcAltResponse response = new CreateOcAltResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyIdOc", rpedr.getPolicyIdOc());
+		params.put("user",rpedr.getUser());
+		params.put("newPolId","");
+		params.put("newPolNo","");
+		params.put("msg","");
+		try {
+			params = underwritingDao.createOcAlt(params);
+
+			logger.info(params.toString());
+			response.setMsg(params.get("msg").toString());
+			response.setPolicyIdOc(params.get("newPolId").toString());
+			response.setPolicyNoOc(params.get("newPolNo").toString());
+		}catch(Exception ex) {
+			if(response.getMsg() == null) {
+				ex.printStackTrace();
+			}
+		}
+		
+		return response;
+	}
+
+	@Override
+	public RetrievePolOcInfoResponse retrievePolOcInfo(RetrievePolOcInfoRequest rpedr) throws SQLException {
+		RetrievePolOcInfoResponse response = new RetrievePolOcInfoResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId",rpedr.getPolicyId());
+		response.setPolicy(underwritingDao.retrievePolOcInfo(params));
 		return response;
 	}
 }

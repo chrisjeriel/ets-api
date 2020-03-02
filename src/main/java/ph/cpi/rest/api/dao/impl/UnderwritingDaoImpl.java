@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
-//import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +31,9 @@ import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
 import ph.cpi.rest.api.model.underwriting.PolForPurging;
+import ph.cpi.rest.api.model.underwriting.PolOcInfo;
 import ph.cpi.rest.api.model.underwriting.PolOcList;
+import ph.cpi.rest.api.model.underwriting.PolOcLov;
 import ph.cpi.rest.api.model.underwriting.Policy;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 import ph.cpi.rest.api.model.underwriting.PolicyLOV;
@@ -263,7 +264,6 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return params;
 	}
 	
-	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public HashMap<String, Object> savePolicyDetails(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePDGenInfo",params);
@@ -729,6 +729,22 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Integer saveManualDistRiskTreaty(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.update("saveManualDistRiskTreaty",params);
+	}
+
+	@Override
+	public List<PolOcLov> retrieveCreateOcAltLov(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveCreateOcAltLov",params);
+	}
+
+	@Override
+	public HashMap<String, Object> createOcAlt(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("createOcAlt",params);
+		return params;
+	}
+
+	@Override
+	public PolOcInfo retrievePolOcInfo(HashMap<String, Object> params) throws SQLException {
+		return (PolOcInfo) sqlSession.selectOne("retrievePolOcInfo",params);
 	}
 	
 	

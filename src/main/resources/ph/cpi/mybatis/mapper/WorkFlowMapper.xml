@@ -187,4 +187,7 @@
 		END;
 	  </update>
       
+      <select id="retrieveDBName" resultType="java.lang.String">
+      		SELECT NAME FROM V$DATABASE
+      </select>
 </mapper>
