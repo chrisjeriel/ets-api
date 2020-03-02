@@ -22,6 +22,7 @@ public class AcsePrqTrans {
 	private String updateUser;
 	private DateTime updateDate;
 	private String acctCd;
+	private Integer vatTag;
 	
 	private List<CvItemTaxes> taxAllocation;
 	
@@ -127,12 +128,19 @@ public class AcsePrqTrans {
 	public void setTaxAllocation(List<CvItemTaxes> taxAllocation) {
 		this.taxAllocation = taxAllocation;
 	}
+	public Integer getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "AcsePrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", itemName="
 				+ itemName + ", glAcctId=" + glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd="
 				+ currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", acctCd=" + acctCd + ", taxAllocation=" + taxAllocation + "]";
+				+ ", updateDate=" + updateDate + ", acctCd=" + acctCd + ", vatTag=" + vatTag + ", taxAllocation="
+				+ taxAllocation + "]";
 	}
 }

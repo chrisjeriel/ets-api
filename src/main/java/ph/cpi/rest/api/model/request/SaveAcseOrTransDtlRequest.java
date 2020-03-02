@@ -108,6 +108,7 @@ class SaveOrTransDtl{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String vatTag;
 	
 	private List<SaveOrItemTaxes> taxAllocation;
 
@@ -231,13 +232,21 @@ class SaveOrTransDtl{
 		this.taxAllocation = taxAllocation;
 	}
 
+	public String getVatTag() {
+		return vatTag;
+	}
+
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
+
 	@Override
 	public String toString() {
 		return "SaveOrTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", itemName="
 				+ itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
 				+ localAmt + ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", vatTag=" + vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 	
 }

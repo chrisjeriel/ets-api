@@ -368,6 +368,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="vatTag"		column="VAT_TAG" />
 		<association property="taxAllocation" resultMap="taxAllocAssoc" />
 	</resultMap>
 	
@@ -600,7 +601,8 @@
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
-														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.vatTag}
 				);
 				<!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_TRANSDTL item -->
 				<foreach item="saveTaxes" collection="save.taxAllocation">
@@ -618,6 +620,8 @@
 																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{saveTaxes.genType}
 					);
+					
+					GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
 				</foreach>
 			</foreach>
 			
@@ -658,6 +662,7 @@
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="acctCd" 		column="ACCT_CD"/>
+		<result property="vatTag" 		column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1086,6 +1091,7 @@
 		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"           column="UPDATE_USER" />
 		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="vatTag"				column="VAT_TAG" />
 		<association property="taxAllocation" resultMap="taxAllocAssoc" />
 	</resultMap>
 	

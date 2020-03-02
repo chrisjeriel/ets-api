@@ -18,6 +18,7 @@ public class AcseOrServFee {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private Integer vatTag;
 	
 	List<OrItemTaxes> taxAllocation;
 	
@@ -99,12 +100,18 @@ public class AcseOrServFee {
 	public void setTaxAllocation(List<OrItemTaxes> taxAllocation) {
 		this.taxAllocation = taxAllocation;
 	}
+	public Integer getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "AcseOrServFee [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", servFeeAmt=" + servFeeAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation
-				+ "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", vatTag=" + vatTag
+				+ ", taxAllocation=" + taxAllocation + "]";
 	}
 }

@@ -20,6 +20,7 @@ public class OrTransDtl {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private Integer vatTag;
 	
 	private List<OrItemTaxes> taxAllocation;
 
@@ -143,13 +144,21 @@ public class OrTransDtl {
 		this.taxAllocation = taxAllocation;
 	}
 
+	public Integer getVatTag() {
+		return vatTag;
+	}
+
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
+
 	@Override
 	public String toString() {
 		return "OrTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", itemName=" + itemName
 				+ ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
 				+ ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation="
-				+ taxAllocation + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", vatTag=" + vatTag
+				+ ", taxAllocation=" + taxAllocation + "]";
 	}
 
 	
