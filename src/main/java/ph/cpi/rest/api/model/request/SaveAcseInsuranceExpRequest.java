@@ -49,6 +49,7 @@ class InsExpAcse {
 	private String reimburseTag;
 	private String accruedTag;
 	private String remarks;
+	private String vatTag;
 	
 	private List<SaveCvItemTaxes> taxAllocation;
 	
@@ -160,6 +161,12 @@ class InsExpAcse {
 	public void setTaxAllocation(List<SaveCvItemTaxes> taxAllocation) {
 		this.taxAllocation = taxAllocation;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "InsExpAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", insuredTypeCd=" + insuredTypeCd + ", insuredCd="
@@ -167,6 +174,6 @@ class InsExpAcse {
 				+ ", currRate=" + currRate + ", insuredAmt=" + insuredAmt + ", localAmt=" + localAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
 				+ updateDate + ", reimburseTag=" + reimburseTag + ", accruedTag=" + accruedTag + ", remarks=" + remarks
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", vatTag=" + vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 }

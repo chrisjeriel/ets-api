@@ -46,6 +46,7 @@ class PerDiemAcse {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String vatTag;
 	
 	private List<SaveCvItemTaxes> taxAllocation;
 	
@@ -133,13 +134,19 @@ class PerDiemAcse {
 	public void setTaxAllocation(List<SaveCvItemTaxes> taxAllocation) {
 		this.taxAllocation = taxAllocation;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "PerDiemAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", directorId=" + directorId + ", directorName="
 				+ directorName + ", feeType=" + feeType + ", currCd=" + currCd + ", currRate=" + currRate + ", feeAmt="
 				+ feeAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation
-				+ "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", vatTag=" + vatTag
+				+ ", taxAllocation=" + taxAllocation + "]";
 	}
 	
 }

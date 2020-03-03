@@ -80,6 +80,7 @@ class PrqTransAcse {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String vatTag;
 	
 	private List<SaveCvItemTaxes> taxAllocation;
 	
@@ -179,13 +180,19 @@ class PrqTransAcse {
 	public void setTaxAllocation(List<SaveCvItemTaxes> taxAllocation) {
 		this.taxAllocation = taxAllocation;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "PrqTransAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", itemName="
 				+ itemName + ", glAcctId=" + glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd="
 				+ currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation + "]";
+				+ ", updateDate=" + updateDate + ", vatTag=" + vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 }
 

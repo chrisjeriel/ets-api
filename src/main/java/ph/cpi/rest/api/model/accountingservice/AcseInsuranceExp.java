@@ -24,6 +24,7 @@ public class AcseInsuranceExp {
 	private String reimburseTag;
 	private String accruedTag;
 	private String remarks;
+	private Integer vatTag;
 	
 	private List<CvItemTaxes> taxAllocation;
 	
@@ -141,6 +142,12 @@ public class AcseInsuranceExp {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public Integer getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "AcseInsuranceExp [reqId=" + reqId + ", itemNo=" + itemNo + ", insuredTypeCd=" + insuredTypeCd
@@ -148,7 +155,7 @@ public class AcseInsuranceExp {
 				+ ", insuranceTypeDesc=" + insuranceTypeDesc + ", currCd=" + currCd + ", currRate=" + currRate
 				+ ", insuredAmt=" + insuredAmt + ", localAmt=" + localAmt + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", reimburseTag=" + reimburseTag + ", accruedTag=" + accruedTag + ", remarks=" + remarks
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", reimburseTag=" + reimburseTag + ", accruedTag=" + accruedTag + ", remarks=" + remarks + ", vatTag="
+				+ vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 }

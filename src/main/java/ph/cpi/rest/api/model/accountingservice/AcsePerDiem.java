@@ -20,6 +20,7 @@ public class AcsePerDiem {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private Integer vatTag;
 	
 	private List<CvItemTaxes> taxAllocation;
 	
@@ -113,12 +114,18 @@ public class AcsePerDiem {
 	public void setTaxAllocation(List<CvItemTaxes> taxAllocation) {
 		this.taxAllocation = taxAllocation;
 	}
+	public Integer getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
 	@Override
 	public String toString() {
 		return "AcsePerDiem [reqId=" + reqId + ", itemNo=" + itemNo + ", directorId=" + directorId + ", directorName="
 				+ directorName + ", feeType=" + feeType + ", feeTypeDesc=" + feeTypeDesc + ", currCd=" + currCd
 				+ ", currRate=" + currRate + ", feeAmt=" + feeAmt + ", localAmt=" + localAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", taxAllocation=" + taxAllocation + "]";
+				+ updateDate + ", vatTag=" + vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 }

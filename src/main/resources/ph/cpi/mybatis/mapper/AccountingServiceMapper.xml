@@ -729,7 +729,8 @@
 					#{save.createUser, jdbcType=VARCHAR},
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.updateUser, jdbcType=VARCHAR}, 
-					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 				<foreach item="saveTaxes" collection="save.taxAllocation">
@@ -747,6 +748,8 @@
 																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{saveTaxes.genType}
 					);
+					
+					GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.currAmt,jdbcType=INTEGER}, v_message);
 				</foreach>
 			</foreach>
 			
@@ -1147,7 +1150,8 @@
 														 CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														 #{save.updateUser, jdbcType=VARCHAR}, 
 														 CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														 #{save.invoiceId, jdbcType=VARCHAR});
+														 #{save.invoiceId, jdbcType=VARCHAR},
+														 #{save.vatTag});
 			   <!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_SERVFEE item -->
 				<foreach item="saveTaxes" collection="save.taxAllocation">
 					ACSE_OR_ITEMTAXES_PKG.save_or_itemtaxes(
@@ -1164,6 +1168,8 @@
 																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{saveTaxes.genType}
 					);
+					
+					GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
 				</foreach>
 			</foreach>
 			<!-- Generate Tax Details -->
@@ -1632,6 +1638,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="vatTag" 			column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1690,7 +1697,8 @@
 					v_create_user,
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					v_update_user, 
-					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 				<foreach item="saveTaxes" collection="save.taxAllocation">
@@ -1708,6 +1716,8 @@
 																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{saveTaxes.genType}
 					);
+					
+					GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.feeAmt, jdbcType=INTEGER}, v_message);
 				</foreach>
 			</foreach>
 			
@@ -1772,6 +1782,7 @@
 		<result property="reimburseTag" 		column="REIMBURSE_TAG"/>
 		<result property="accruedTag" 			column="ACCRUED_TAG"/>
 		<result property="remarks" 				column="REMARKS"/>
+		<result property="vatTag" 				column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1835,7 +1846,8 @@
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.reimburseTag, jdbcType=VARCHAR},
 					#{save.accruedTag, jdbcType=VARCHAR},
-					#{save.remarks, jdbcType=VARCHAR}
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 				<foreach item="saveTaxes" collection="save.taxAllocation">
@@ -1853,6 +1865,8 @@
 																CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{saveTaxes.genType}
 					);
+					
+					GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.insuredAmt, jdbcType=INTEGER}, v_message);
 				</foreach>	
 			</foreach>
 			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('PRQ',NULL,7,v_create_user,v_update_user,v_req_id); -->
