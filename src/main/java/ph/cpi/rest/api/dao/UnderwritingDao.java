@@ -150,5 +150,6 @@ public interface UnderwritingDao {
 	public List<PolOcLov> retrieveCreateOcAltLov (HashMap<String, Object> params)throws SQLException;
 	public HashMap<String, Object> createOcAlt(HashMap<String, Object> params)throws SQLException;
 	public PolOcInfo retrievePolOcInfo(HashMap<String, Object> params) throws SQLException;
+	public Integer saveManualDistPol(HashMap<String, Object> params)throws SQLException;
 	
 }

@@ -69,6 +69,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistPoltRequest;
 import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -151,6 +152,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistPolResponse;
 import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -806,7 +808,7 @@ public class UnderwritingController {
 	@PostMapping(path="createOcAlt")
 	public @ResponseBody CreateOcAltResponse createOcAlt(@RequestBody CreateOcAltRequest rpedr) throws SQLException{
 		logger.info("POST: /api/underwriting-service/createOcAlt");
-		logger.info("CreateOcAltResponse : " + rpedr.toString());
+		logger.info("CreateOcAltRequest : " + rpedr.toString());
 		return underwritingService.createOcAlt(rpedr);
 	}
 	
@@ -815,5 +817,12 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolOcInfo");
 		logger.info("RetrieveCreateOcAltLovRequest : " + rpedr.toString());
 		return underwritingService.retrievePolOcInfo(rpedr);
+	}
+	
+	@PostMapping(path="saveManualDistPol")
+	public @ResponseBody SaveManualDistPolResponse saveManualDistPol(@RequestBody SaveManualDistPoltRequest rpedr) throws SQLException{
+		logger.info("POST: /api/underwriting-service/saveManualDistPol");
+		logger.info("SaveManualDistPoltRequest : " + rpedr.toString());
+		return underwritingService.saveManualDistPol(rpedr);
 	}
 }

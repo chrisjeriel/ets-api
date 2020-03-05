@@ -1038,6 +1038,7 @@
 		
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="clmStatus" column="CLM_STAT_DESC"/>
+		<result property="bookingMonth" column="BOOKING_MONTH"/>
 	</resultMap>
 	
 	<select id="retrieveClmPaytReqInq" resultMap="ClaimPaytReqInqMap">

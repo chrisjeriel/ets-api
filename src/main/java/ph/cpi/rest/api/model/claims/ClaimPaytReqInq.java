@@ -32,7 +32,14 @@ public class ClaimPaytReqInq {
 	
 	private String policyId;
 	private String clmStatus;
+	private String bookingMonth;
 	
+	public String getBookingMonth() {
+		return bookingMonth;
+	}
+	public void setBookingMonth(String bookingMonth) {
+		this.bookingMonth = bookingMonth;
+	}
 	public String getClaimId() {
 		return claimId;
 	}
@@ -192,7 +199,7 @@ public class ClaimPaytReqInq {
 				+ ", acctRefNo=" + acctRefNo + ", tranDate=" + tranDate + ", insuredDesc=" + insuredDesc + ", riskName="
 				+ riskName + ", lossDate=" + lossDate + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", policyId=" + policyId
-				+ ", clmStatus=" + clmStatus + "]";
+				+ ", clmStatus=" + clmStatus + ", bookingMonth=" + bookingMonth + "]";
 	}
 	
 }

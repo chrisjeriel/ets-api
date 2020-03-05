@@ -61,6 +61,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistPoltRequest;
 import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -143,6 +144,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistPolResponse;
 import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -275,4 +277,5 @@ public interface UnderwritingService {
 	public RetrieveCreateOcAltLovResponse retrieveCreateOcAltLov(RetrieveOpenCoverPolListRequest rpedr) throws SQLException;
 	public CreateOcAltResponse createOcAlt(CreateOcAltRequest rpedr) throws SQLException;
 	public RetrievePolOcInfoResponse retrievePolOcInfo(RetrievePolOcInfoRequest rpedr)throws SQLException;
+	public SaveManualDistPolResponse saveManualDistPol(SaveManualDistPoltRequest rpedr)throws SQLException;
 }

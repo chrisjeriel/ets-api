@@ -746,6 +746,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	public PolOcInfo retrievePolOcInfo(HashMap<String, Object> params) throws SQLException {
 		return (PolOcInfo) sqlSession.selectOne("retrievePolOcInfo",params);
 	}
+
+	@Override
+	public Integer saveManualDistPol(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveManualDistPol",params);
+	}
 	
 	
 }

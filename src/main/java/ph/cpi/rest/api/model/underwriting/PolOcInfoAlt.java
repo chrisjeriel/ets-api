@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 
 public class PolOcInfoAlt {
@@ -12,6 +14,7 @@ public class PolOcInfoAlt {
 	private String totalPrem;
 	private String statusDesc;
 	private String insured;
+	private List<AlterationHist> subPolList;
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -66,11 +69,17 @@ public class PolOcInfoAlt {
 	public void setInsured(String insured) {
 		this.insured = insured;
 	}
+	public List<AlterationHist> getSubPolList() {
+		return subPolList;
+	}
+	public void setSubPolList(List<AlterationHist> subPolList) {
+		this.subPolList = subPolList;
+	}
 	@Override
 	public String toString() {
 		return "PolOcInfoAlt [policyId=" + policyId + ", policyNo=" + policyNo + ", effDate=" + effDate + ", issueDate="
 				+ issueDate + ", quotationNo=" + quotationNo + ", totalSi=" + totalSi + ", totalPrem=" + totalPrem
-				+ ", statusDesc=" + statusDesc + ", insured=" + insured + "]";
+				+ ", statusDesc=" + statusDesc + ", insured=" + insured + ", subPolList=" + subPolList + "]";
 	}
 	
 }
