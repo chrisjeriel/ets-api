@@ -1765,12 +1765,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			if(srdr.getAutoCalc().equals("Y")){
 				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
 			}
-//			else if(!srdr.getManualTag()){
-//				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
-//			}
 			else{
-				srdrResponse.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
+				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
 			}
+//			else{
+//				srdrResponse.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
+//			}
 		}catch (Exception ex){
 			
 			srdrResponse.setReturnCode(0);

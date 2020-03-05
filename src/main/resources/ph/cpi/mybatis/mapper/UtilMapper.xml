@@ -240,6 +240,21 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR044OA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044OA_PKG.extract_burncost(#{extractUser, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
+												  #{cedingIdParam, jdbcType=VARCHAR}, 
+												  #{dateParam, jdbcType=VARCHAR},
+												  #{dateRange, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{extractCount, mode=OUT, jdbcType=INTEGER},
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<update id="extractPOLR044P" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044P_PKG.extract_accsipercomp(#{extractUser, jdbcType=VARCHAR},
