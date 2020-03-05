@@ -19,7 +19,15 @@ public class DistPolWtreaty {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String retLayer;
 	
+	
+	public String getRetLayer() {
+		return retLayer;
+	}
+	public void setRetLayer(String retLayer) {
+		this.retLayer = retLayer;
+	}
 	public Integer getTreatyId() {
 		return treatyId;
 	}
@@ -123,6 +131,6 @@ public class DistPolWtreaty {
 				+ ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", siAmt="
 				+ siAmt + ", premAmt=" + premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm="
 				+ vatRiComm + ", netDue=" + netDue + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", retLayer=" + retLayer + "]";
 	}
 }

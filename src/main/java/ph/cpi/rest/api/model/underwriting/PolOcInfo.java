@@ -36,7 +36,6 @@ public class PolOcInfo {
 	private String riskName;
 	
 	private List<PolOcInfoAlt> altList;
-	private List<PolOcInfoAlt> subPolList;
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -217,12 +216,6 @@ public class PolOcInfo {
 	public void setAltList(List<PolOcInfoAlt> altList) {
 		this.altList = altList;
 	}
-	public List<PolOcInfoAlt> getSubPolList() {
-		return subPolList;
-	}
-	public void setSubPolList(List<PolOcInfoAlt> subPolList) {
-		this.subPolList = subPolList;
-	}
 	@Override
 	public String toString() {
 		return "PolOcInfo [policyId=" + policyId + ", policyNo=" + policyNo + ", lineCd=" + lineCd + ", lineDesc="
@@ -233,9 +226,7 @@ public class PolOcInfo {
 				+ reinsurerName + ", riBinderNo=" + riBinderNo + ", intmId=" + intmId + ", intmName=" + intmName
 				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", lapseFrom=" + lapseFrom
 				+ ", lapseTo=" + lapseTo + ", issueDate=" + issueDate + ", effDate=" + effDate + ", distDate="
-				+ distDate + ", acctDate=" + acctDate + ", riskName=" + riskName + "]";
+				+ distDate + ", acctDate=" + acctDate + ", riskName=" + riskName + ", altList=" + altList + "]";
 	}
-	
-	
 	
 }

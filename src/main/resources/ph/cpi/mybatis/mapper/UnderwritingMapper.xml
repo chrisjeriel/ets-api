@@ -2669,6 +2669,7 @@
 		<result property="vatRiComm"		column="VAT_RI_COMM" />
 		<result property="netDue"			column="NET_DUE" />
 		<result property="createUser"		column="CREATE_USER" />
+		<result property="retLayer"			column="RET_LAYER" />
 		<result property="createDate"		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"		column="UPDATE_USER" />
 		<result property="updateDate"		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
@@ -3183,7 +3184,6 @@
 		<result property="riskName"	column="RISK_NAME"/>
 		
 		<association property="altList" 	resultMap="PolOcAltListMap"/>
-		<association property="subPolList" 	resultMap="PolOcSubPolListMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfoAlt" id="PolOcAltListMap">
@@ -3196,6 +3196,7 @@
 		<result property="totalPrem"	column="ALT_TOTAL_PREM_OC"/>
 		<result property="statusDesc"	column="ALT_STATUS_DESC_OC"/>
 		<result property="insured"	column="ALT_INSURED_OC"/>
+		<association property="subPolList" 	resultMap="AlterationHistMap"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.PolOcInfoAlt" id="PolOcSubPolListMap">
@@ -3210,5 +3211,28 @@
 		<result property="insured"	column="ALT_INSURED"/>
 	</resultMap>
 	
-	
+	<update id="saveManualDistPol">
+		BEGIN
+			NULL;
+			<foreach collection="saveList" item="item">
+				dist_pkg.merge_dist_pol_wtreaty(#{distId},#{policyId},#{item.treatyId},
+																#{item.section},
+																#{item.trtyCedId},
+																#{item.retLayer},
+																#{item.siAmt},
+																#{item.premAmt},
+																#{item.commRt},
+																#{item.commAmt},
+																#{item.vatRiComm},
+																#{item.netDue},
+																#{updateUser},
+																SYSDATE,
+																#{updateUser},
+																SYSDATE,
+																TRUE);
+			</foreach>
+			
+			DIST_PKG.manual_dist_pol(#{distId},#{policyId},#{updateUser});
+		END;
+	</update>
 </mapper>

@@ -70,6 +70,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistPoltRequest;
 import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -152,6 +153,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistPolResponse;
 import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -1762,9 +1764,11 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		try {
 			if(srdr.getAutoCalc().equals("Y")){
 				srdrResponse.setReturnCode(underwritingDao.autoCalcDist(params));
-			}else if(!srdr.getManualTag()){
-				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
-			}else{
+			}
+//			else if(!srdr.getManualTag()){
+//				srdrResponse.setReturnCode(underwritingDao.saveRiskDist(params));
+//			}
+			else{
 				srdrResponse.setReturnCode(underwritingDao.saveManualDistRiskTreaty(params));
 			}
 		}catch (Exception ex){
@@ -2197,6 +2201,29 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("policyId",rpedr.getPolicyId());
 		response.setPolicy(underwritingDao.retrievePolOcInfo(params));
+		return response;
+	}
+
+	@Override
+	public SaveManualDistPolResponse saveManualDistPol(SaveManualDistPoltRequest rpedr) throws SQLException {
+		SaveManualDistPolResponse response = new SaveManualDistPolResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyId", rpedr.getPolicyId());
+		params.put("distId",rpedr.getDistId());
+		params.put("updateUser", rpedr.getUpdateUser());
+		params.put("saveList", rpedr.getSaveList());
+		try{
+			response.setReturnCode(underwritingDao.saveManualDistPol(params));
+		}catch(SQLException ex){
+			ex.printStackTrace();
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
 		return response;
 	}
 }
