@@ -518,6 +518,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("saveOrTransDtl", saotdr.getSaveOrTransDtl());
 		params.put("delOrTransDtl", saotdr.getDelOrTransDtl());
 		params.put("delOrItemTaxes", saotdr.getDelOrItemTaxes());
+		params.put("fromTaxMdl", saotdr.getFromTaxMdl());
 		try {
 			response.setReturnCode(acctServDao.saveAcseOrTransDtl(params));
 		} catch (SQLException sqlex) {
@@ -575,6 +576,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			saptParams.put("deletePrqTrans", saptr.getDeletePrqTrans());
 			saptParams.put("savePrqTrans", saptr.getSavePrqTrans());
 			saptParams.put("delCvItemTaxes", saptr.getDelCvItemTaxes());
+			saptParams.put("fromTaxMdl", saptr.getFromTaxMdl());
 			
 			HashMap<String, Object> response = acctServDao.saveAcsePrqTrans(saptParams);
 			saptResponse.setReturnCode((Integer) response.get("errorCode"));
@@ -852,6 +854,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("delServFee", saosfr.getDelServFee());
 		params.put("saveServFee", saosfr.getSaveServFee());
 		params.put("delOrItemTaxes", saosfr.getDelOrItemTaxes());
+		params.put("fromTaxMdl", saosfr.getFromTaxMdl());
 		try{
 			response.setReturnCode(acctServDao.saveAcseOrServFee(params));
 			logger.info("SaveAcseOrServFeeResponse : "+ response);
@@ -1225,6 +1228,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			sapdParams.put("deletePerDiem", saptr.getDeletePerDiem());
 			sapdParams.put("savePerDiem", saptr.getSavePerDiem());
 			sapdParams.put("delCvItemTaxes", saptr.getDelCvItemTaxes());
+			sapdParams.put("fromTaxMdl", saptr.getFromTaxMdl());
 			
 			HashMap<String, Object> response = acctServDao.saveAcsePerDiem(sapdParams);
 			sapdResponse.setReturnCode((Integer) response.get("errorCode"));
@@ -1302,6 +1306,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			saieParams.put("deleteInsuranceExp", saier.getDeleteInsuranceExp());
 			saieParams.put("saveInsuranceExp", saier.getSaveInsuranceExp());
 			saieParams.put("delCvItemTaxes", saier.getDelCvItemTaxes());
+			saieParams.put("fromTaxMdl", saier.getFromTaxMdl());
 			
 			HashMap<String, Object> response = acctServDao.saveAcseInsuranceExp(saieParams);
 			saieResponse.setReturnCode((Integer) response.get("errorCode"));

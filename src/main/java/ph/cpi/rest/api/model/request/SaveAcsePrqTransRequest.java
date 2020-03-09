@@ -12,7 +12,7 @@ public class SaveAcsePrqTransRequest {
 	private List<PrqTransAcse> deletePrqTrans;
 	private List<PrqTransAcse> savePrqTrans;
 	private List<SaveCvItemTaxes> delCvItemTaxes;
-	
+	private String fromTaxMdl;
 	
 	public String getReqId() {
 		return reqId;
@@ -56,11 +56,17 @@ public class SaveAcsePrqTransRequest {
 	public void setDelCvItemTaxes(List<SaveCvItemTaxes> delCvItemTaxes) {
 		this.delCvItemTaxes = delCvItemTaxes;
 	}
+	public String getFromTaxMdl() {
+		return fromTaxMdl;
+	}
+	public void setFromTaxMdl(String fromTaxMdl) {
+		this.fromTaxMdl = fromTaxMdl;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcsePrqTransRequest [reqId=" + reqId + ", tranTypeCd=" + tranTypeCd + ", createUser=" + createUser
 				+ ", updateUser=" + updateUser + ", deletePrqTrans=" + deletePrqTrans + ", savePrqTrans=" + savePrqTrans
-				+ ", delCvItemTaxes=" + delCvItemTaxes + "]";
+				+ ", delCvItemTaxes=" + delCvItemTaxes + ", fromTaxMdl=" + fromTaxMdl + "]";
 	}
 }
 

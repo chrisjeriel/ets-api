@@ -18,6 +18,7 @@ public class SaveAcseOrServFeeRequest {
 	private List<ServFeeOr> delServFee;
 	
 	private List<saveOrItemTaxesServFee> delOrItemTaxes;
+	private String fromTaxMdl;
 	
 	public String getTranId() {
 		return tranId;
@@ -85,12 +86,19 @@ public class SaveAcseOrServFeeRequest {
 	public void setDelOrItemTaxes(List<saveOrItemTaxesServFee> delOrItemTaxes) {
 		this.delOrItemTaxes = delOrItemTaxes;
 	}
+	public String getFromTaxMdl() {
+		return fromTaxMdl;
+	}
+	public void setFromTaxMdl(String fromTaxMdl) {
+		this.fromTaxMdl = fromTaxMdl;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseOrServFeeRequest [tranId=" + tranId + ", billId=" + billId + ", billType=" + billType
 				+ ", totalLocalAmt=" + totalLocalAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveServFee=" + saveServFee
-				+ ", delServFee=" + delServFee + ", delOrItemTaxes=" + delOrItemTaxes + "]";
+				+ ", delServFee=" + delServFee + ", delOrItemTaxes=" + delOrItemTaxes + ", fromTaxMdl=" + fromTaxMdl
+				+ "]";
 	}
 	
 }

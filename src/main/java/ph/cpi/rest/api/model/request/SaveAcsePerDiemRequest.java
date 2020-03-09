@@ -6,6 +6,7 @@ public class SaveAcsePerDiemRequest {
 	private List<PerDiemAcse> deletePerDiem;
 	private List<PerDiemAcse> savePerDiem;
 	private List<SaveCvItemTaxes> delCvItemTaxes;
+	private String fromTaxMdl;
 	
 	public List<PerDiemAcse> getDeletePerDiem() {
 		return deletePerDiem;
@@ -25,10 +26,16 @@ public class SaveAcsePerDiemRequest {
 	public void setDelCvItemTaxes(List<SaveCvItemTaxes> delCvItemTaxes) {
 		this.delCvItemTaxes = delCvItemTaxes;
 	}
+	public String getFromTaxMdl() {
+		return fromTaxMdl;
+	}
+	public void setFromTaxMdl(String fromTaxMdl) {
+		this.fromTaxMdl = fromTaxMdl;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcsePerDiemRequest [deletePerDiem=" + deletePerDiem + ", savePerDiem=" + savePerDiem
-				+ ", delCvItemTaxes=" + delCvItemTaxes + "]";
+				+ ", delCvItemTaxes=" + delCvItemTaxes + ", fromTaxMdl=" + fromTaxMdl + "]";
 	}
 }
 
