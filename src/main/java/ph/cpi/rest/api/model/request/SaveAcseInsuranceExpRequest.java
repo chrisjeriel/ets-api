@@ -6,6 +6,7 @@ public class SaveAcseInsuranceExpRequest {
 	private List<InsExpAcse> deleteInsuranceExp;
 	private List<InsExpAcse> saveInsuranceExp;
 	private List<SaveCvItemTaxes> delCvItemTaxes;
+	private String fromTaxMdl;
 	public List<InsExpAcse> getDeleteInsuranceExp() {
 		return deleteInsuranceExp;
 	}
@@ -24,10 +25,16 @@ public class SaveAcseInsuranceExpRequest {
 	public void setDelCvItemTaxes(List<SaveCvItemTaxes> delCvItemTaxes) {
 		this.delCvItemTaxes = delCvItemTaxes;
 	}
+	public String getFromTaxMdl() {
+		return fromTaxMdl;
+	}
+	public void setFromTaxMdl(String fromTaxMdl) {
+		this.fromTaxMdl = fromTaxMdl;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseInsuranceExpRequest [deleteInsuranceExp=" + deleteInsuranceExp + ", saveInsuranceExp="
-				+ saveInsuranceExp + ", delCvItemTaxes=" + delCvItemTaxes + "]";
+				+ saveInsuranceExp + ", delCvItemTaxes=" + delCvItemTaxes + ", fromTaxMdl=" + fromTaxMdl + "]";
 	}
 }
 

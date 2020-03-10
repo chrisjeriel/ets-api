@@ -41,6 +41,7 @@ public class AcitJVAppPaymentZeroBal {
 	private String updateUser;
 	private DateTime updateDate;
 	private String okDelete;
+	private String insuredDesc;
 	
 	public String getCedingId() {
 		return cedingId;
@@ -261,6 +262,12 @@ public class AcitJVAppPaymentZeroBal {
 	public void setOkDelete(String okDelete) {
 		this.okDelete = okDelete;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVAppPaymentZeroBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
@@ -273,7 +280,7 @@ public class AcitJVAppPaymentZeroBal {
 				+ netDue + ", prevPaytAmt=" + prevPaytAmt + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt
 				+ ", overdueInt=" + overdueInt + ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + "]";
+				+ ", updateDate=" + updateDate + ", okDelete=" + okDelete + ", insuredDesc=" + insuredDesc + "]";
 	}
 	
 }
