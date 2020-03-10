@@ -54,7 +54,11 @@ import ph.cpi.rest.api.model.quote.Quotation;
 import ph.cpi.rest.api.model.request.ExportToCSVRequest;
 import ph.cpi.rest.api.model.request.GenerateReportMergeRequest;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitPaytReqRequest;
+import ph.cpi.rest.api.model.request.RetrieveExtractToCsvRequest;
+import ph.cpi.rest.api.model.request.RetrieveExtractToCsvResponse;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitPaytReqResponse;
 import ph.cpi.rest.api.service.UtilService;
 import ph.cpi.rest.api.utils.PDFMergingUtility;
 import ph.cpi.rest.api.utils.PrintingUtility;
@@ -552,4 +556,10 @@ public class UtilController {
 		return response;
 	}
 	
+	@GetMapping(path="retrieveExtractToCsv")
+	public @ResponseBody RetrieveExtractToCsvResponse retrieveExtractToCsv(RetrieveExtractToCsvRequest raprr) throws SQLException {
+		logger.info("GET: /api/util-service/retrieveExtractToCsv");
+		logger.info("RetrieveExtractToCsvRequest : " + raprr.toString());
+		return utilService.retrieveExtractToCsv(raprr);
+	}
 }

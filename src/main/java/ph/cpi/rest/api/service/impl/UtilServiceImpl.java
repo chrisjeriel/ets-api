@@ -27,8 +27,12 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
+import ph.cpi.rest.api.model.request.RetrieveExtractToCsvRequest;
+import ph.cpi.rest.api.model.request.RetrieveExtractToCsvResponse;
 import ph.cpi.rest.api.model.request.UploadAcctEntryRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.UploadAcctEntryResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 import ph.cpi.rest.api.service.UtilService;
@@ -195,8 +199,38 @@ public class UtilServiceImpl implements UtilService {
 		}
 		
 		return resp;
+	}	
+
+	@Override
+	public RetrieveExtractToCsvResponse retrieveExtractToCsv(RetrieveExtractToCsvRequest racprlp) throws SQLException {
+		RetrieveExtractToCsvResponse retcResponse = new RetrieveExtractToCsvResponse();
+		HashMap<String, Object> retcParams = new HashMap<String, Object>();
+		retcParams.put("extractUser", racprlp.getExtractUser());
+		retcParams.put("reportName", racprlp.getReportName());
+		String reportName = racprlp.getReportName();
+		System.out.println(reportName);
+		
+		if(reportName.equals("POLR044E")) {
+			retcResponse.setListPolr044e(utilDao.retrievePolR044e(retcParams));
+		}else if(reportName.equals("POLR044A")) {
+			retcResponse.setListPolr044a(utilDao.retrievePolR044a(retcParams));
+		}else if(reportName.equals("POLR044B")) {
+			retcResponse.setListPolr044b(utilDao.retrievePolR044b(retcParams));
+		}else if(reportName.equals("POLR044C")) {
+			retcResponse.setListPolr044c(utilDao.retrievePolR044c(retcParams));
+		}else if(reportName.equals("POLR044D")) {
+			retcResponse.setListPolr044d(utilDao.retrievePolR044d(retcParams));
+		}else if(reportName.equals("POLR044F")) {
+			retcResponse.setListPolr044f(utilDao.retrievePolR044f(retcParams));
+		}else if(reportName.equals("POLR044G")) {
+			retcResponse.setListPolr044g(utilDao.retrievePolR044g(retcParams));
+		}else if(reportName.equals("POLR044H")) {
+			retcResponse.setListPolr044h(utilDao.retrievePolR044h(retcParams));
+		}else {
+			System.out.println("No Response yet!");
+		}
+		
+		return retcResponse;
 	}
 	
-	
-
 }
