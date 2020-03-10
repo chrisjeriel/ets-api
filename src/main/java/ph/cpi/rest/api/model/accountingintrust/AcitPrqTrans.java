@@ -38,6 +38,7 @@ public class AcitPrqTrans {
 	private BigDecimal prevBalance;
 	private BigDecimal newPaytAmt;
 	private BigDecimal newBalance;
+	private String insuredDesc;
 	
 	public Integer getReqId() {
 		return reqId;
@@ -231,6 +232,12 @@ public class AcitPrqTrans {
 	public void setNewBalance(BigDecimal newBalance) {
 		this.newBalance = newBalance;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	@Override
 	public String toString() {
 		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
@@ -242,6 +249,6 @@ public class AcitPrqTrans {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", serviceFee=" + serviceFee + ", qsoaId=" + qsoaId + ", netQsoaAmt="
 				+ netQsoaAmt + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt="
-				+ newPaytAmt + ", newBalance=" + newBalance + "]";
+				+ newPaytAmt + ", newBalance=" + newBalance + ", insuredDesc=" + insuredDesc + "]";
 	}
 }

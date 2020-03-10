@@ -99,6 +99,7 @@
 		<result property="prevBalance"			column="PREV_BALANCE"/>
 		<result property="newPaytAmt" 			column="NEW_PAYT_AMT"/>
 		<result property="newBalance"			column="NEW_BALANCE"/>
+		<result property="insuredDesc"			column="INSURED_DESC"/>
 	</resultMap>
 	
 	<select id="retrieveAcitCvPaytReqList" resultMap="acitCvPaytReqListMap" parameterType="java.util.Map">
@@ -1426,6 +1427,7 @@
 		<result property="updateUser"       column="UPDATE_USER" />
 		<result property="updateDate"       column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="allotedAmt"       column="ALLOTED_AMT"  />
+		<result property="insuredDesc"      column="INSURED_DESC"  />
 	</resultMap>
 	
 	<select id="retrieveArInwPolBal" resultMap="arInwPolBalMap" parameterType="java.util.Map">
@@ -1797,7 +1799,8 @@
 		<result property="createUser" 		   column="CREATE_USER"/>
 		<result property="createDate" 		   column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		   column="UPDATE_USER"/>
-		<result property="updateDate" 		   column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />	
+		<result property="updateDate" 		   column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="insuredDesc" 		   column="INSURED_DESC"/>
 	</resultMap>
 	
 	<select id="retrieveAcitPrqInwPol" resultMap="acitPrqInwPolMap" parameterType="java.util.Map">
@@ -2085,6 +2088,7 @@
 		<result property="updateUser" column="PWZB_UPDATE_USER"/>
 		<result property="updateDate" column="PWZB_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="okDelete" column="OKDELETE"/>
+		<result property="insuredDesc" column="INSURED_DESC"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJVAppPaytZeroBal" resultMap="zeroBalMap" parameterType="java.util.Map">
