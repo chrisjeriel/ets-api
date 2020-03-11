@@ -12,6 +12,14 @@ import ph.cpi.rest.api.model.utils.POLR044E;
 import ph.cpi.rest.api.model.utils.POLR044F;
 import ph.cpi.rest.api.model.utils.POLR044G;
 import ph.cpi.rest.api.model.utils.POLR044H;
+import ph.cpi.rest.api.model.utils.POLR044I;
+import ph.cpi.rest.api.model.utils.POLR044J;
+import ph.cpi.rest.api.model.utils.POLR044K;
+import ph.cpi.rest.api.model.utils.POLR044L;
+import ph.cpi.rest.api.model.utils.POLR044M;
+import ph.cpi.rest.api.model.utils.POLR044N;
+import ph.cpi.rest.api.model.utils.POLR044O;
+import ph.cpi.rest.api.model.utils.POLR044P;
 
 public interface UtilDao {
 	
@@ -27,4 +35,14 @@ public interface UtilDao {
 	public List<POLR044F> retrievePolR044f(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044G> retrievePolR044g(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044H> retrievePolR044h(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044I> retrievePolR044i(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044J> retrievePolR044j(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044K> retrievePolR044k(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044L> retrievePolR044l(final HashMap<String, Object> params ) throws SQLException;
+	//need to double check from this point below
+	
+	public List<POLR044M> retrievePolR044m(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044N> retrievePolR044n(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044O> retrievePolR044o(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044P> retrievePolR044p(final HashMap<String, Object> params ) throws SQLException;
 }

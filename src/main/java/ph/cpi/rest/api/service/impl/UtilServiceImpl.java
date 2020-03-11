@@ -226,7 +226,26 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044g(utilDao.retrievePolR044g(retcParams));
 		}else if(reportName.equals("POLR044H")) {
 			retcResponse.setListPolr044h(utilDao.retrievePolR044h(retcParams));
-		}else {
+		}
+		//need to check
+		else if(reportName.equals("POLR044I")) {
+			retcResponse.setListPolr044i(utilDao.retrievePolR044i(retcParams));
+		}else if(reportName.equals("POLR044J")) {
+			retcResponse.setListPolr044j(utilDao.retrievePolR044j(retcParams));
+		}else if(reportName.equals("POLR044K")) {
+			retcResponse.setListPolr044k(utilDao.retrievePolR044k(retcParams));
+		}else if(reportName.equals("POLR044L")) {
+			retcResponse.setListPolr044l(utilDao.retrievePolR044l(retcParams));
+		}else if(reportName.equals("POLR044M")) {
+			retcResponse.setListPolr044m(utilDao.retrievePolR044m(retcParams));
+		}else if(reportName.equals("POLR044N")) {
+			retcResponse.setListPolr044n(utilDao.retrievePolR044n(retcParams));
+		}else if(reportName.equals("POLR044O")) {
+			retcResponse.setListPolr044o(utilDao.retrievePolR044o(retcParams));
+		}else if(reportName.equals("POLR044P")) {
+			retcResponse.setListPolr044p(utilDao.retrievePolR044p(retcParams));
+		}
+		else {
 			System.out.println("No Response yet!");
 		}
 		

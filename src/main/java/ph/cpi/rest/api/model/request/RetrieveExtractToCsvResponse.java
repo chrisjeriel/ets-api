@@ -11,6 +11,14 @@ import ph.cpi.rest.api.model.utils.POLR044E;
 import ph.cpi.rest.api.model.utils.POLR044F;
 import ph.cpi.rest.api.model.utils.POLR044G;
 import ph.cpi.rest.api.model.utils.POLR044H;
+import ph.cpi.rest.api.model.utils.POLR044I;
+import ph.cpi.rest.api.model.utils.POLR044J;
+import ph.cpi.rest.api.model.utils.POLR044K;
+import ph.cpi.rest.api.model.utils.POLR044L;
+import ph.cpi.rest.api.model.utils.POLR044M;
+import ph.cpi.rest.api.model.utils.POLR044N;
+import ph.cpi.rest.api.model.utils.POLR044O;
+import ph.cpi.rest.api.model.utils.POLR044P;
 
 public class RetrieveExtractToCsvResponse {
 	private List<POLR044E> listPolr044e;
@@ -21,6 +29,14 @@ public class RetrieveExtractToCsvResponse {
 	private List<POLR044F> listPolr044f;
 	private List<POLR044G> listPolr044g;
 	private List<POLR044H> listPolr044h;
+	private List<POLR044I> listPolr044i;
+	private List<POLR044J> listPolr044j;
+	private List<POLR044K> listPolr044k;
+	private List<POLR044L> listPolr044l;
+	private List<POLR044M> listPolr044m;
+	private List<POLR044N> listPolr044n;
+	private List<POLR044O> listPolr044o;
+	private List<POLR044P> listPolr044p;
 
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
@@ -86,10 +102,77 @@ public class RetrieveExtractToCsvResponse {
 		this.listPolr044h = listPolr044h;
 	}
 
+	public List<POLR044I> getListPolr044i() {
+		return listPolr044i;
+	}
+
+	public void setListPolr044i(List<POLR044I> listPolr044i) {
+		this.listPolr044i = listPolr044i;
+	}
+
+	public List<POLR044J> getListPolr044j() {
+		return listPolr044j;
+	}
+
+	public void setListPolr044j(List<POLR044J> listPolr044j) {
+		this.listPolr044j = listPolr044j;
+	}
+
+	public List<POLR044K> getListPolr044k() {
+		return listPolr044k;
+	}
+
+	public void setListPolr044k(List<POLR044K> listPolr044k) {
+		this.listPolr044k = listPolr044k;
+	}
+
+	public List<POLR044L> getListPolr044l() {
+		return listPolr044l;
+	}
+
+	public void setListPolr044l(List<POLR044L> listPolr044l) {
+		this.listPolr044l = listPolr044l;
+	}
+
+	public List<POLR044M> getListPolr044m() {
+		return listPolr044m;
+	}
+
+	public void setListPolr044m(List<POLR044M> listPolr044m) {
+		this.listPolr044m = listPolr044m;
+	}
+
+	public List<POLR044N> getListPolr044n() {
+		return listPolr044n;
+	}
+
+	public void setListPolr044n(List<POLR044N> listPolr044n) {
+		this.listPolr044n = listPolr044n;
+	}
+
+	public List<POLR044O> getListPolr044o() {
+		return listPolr044o;
+	}
+
+	public void setListPolr044o(List<POLR044O> listPolr044o) {
+		this.listPolr044o = listPolr044o;
+	}
+
+	public List<POLR044P> getListPolr044p() {
+		return listPolr044p;
+	}
+
+	public void setListPolr044p(List<POLR044P> listPolr044p) {
+		this.listPolr044p = listPolr044p;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
 				+ ", listPolr044b=" + listPolr044b + ", listPolr044c=" + listPolr044c + ", listPolr044d=" + listPolr044d
-				+ ", listPolr044f=" + listPolr044f + ", listPolr044g=" + listPolr044g + "]";
-	}
+				+ ", listPolr044f=" + listPolr044f + ", listPolr044g=" + listPolr044g + ", listPolr044h=" + listPolr044h
+				+ ", listPolr044i=" + listPolr044i + ", listPolr044j=" + listPolr044j + ", listPolr044k=" + listPolr044k
+				+ ", listPolr044l=" + listPolr044l + ", listPolr044m=" + listPolr044m + ", listPolr044n=" + listPolr044n
+				+ ", listPolr044o=" + listPolr044o + ", listPolr044p=" + listPolr044p + "]";
+	}	
 }

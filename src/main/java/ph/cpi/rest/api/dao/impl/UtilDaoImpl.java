@@ -20,6 +20,14 @@ import ph.cpi.rest.api.model.utils.POLR044E;
 import ph.cpi.rest.api.model.utils.POLR044F;
 import ph.cpi.rest.api.model.utils.POLR044G;
 import ph.cpi.rest.api.model.utils.POLR044H;
+import ph.cpi.rest.api.model.utils.POLR044I;
+import ph.cpi.rest.api.model.utils.POLR044J;
+import ph.cpi.rest.api.model.utils.POLR044K;
+import ph.cpi.rest.api.model.utils.POLR044L;
+import ph.cpi.rest.api.model.utils.POLR044M;
+import ph.cpi.rest.api.model.utils.POLR044N;
+import ph.cpi.rest.api.model.utils.POLR044O;
+import ph.cpi.rest.api.model.utils.POLR044P;
 
 @Component
 public class UtilDaoImpl implements UtilDao{
@@ -173,6 +181,54 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR044H> retrievePolR044h(HashMap<String, Object> params) throws SQLException {
 		List<POLR044H> retrievePolR044h = sqlSession.selectList("retrievePolR044h",params);
 		return retrievePolR044h;
+	}
+
+	@Override
+	public List<POLR044I> retrievePolR044i(HashMap<String, Object> params) throws SQLException {
+		List<POLR044I> retrievePolR044i = sqlSession.selectList("retrievePolR044i",params);
+		return retrievePolR044i;
+	}
+
+	@Override
+	public List<POLR044J> retrievePolR044j(HashMap<String, Object> params) throws SQLException {
+		List<POLR044J> retrievePolR044j = sqlSession.selectList("retrievePolR044j",params);
+		return retrievePolR044j;
+	}
+
+	@Override
+	public List<POLR044K> retrievePolR044k(HashMap<String, Object> params) throws SQLException {
+		List<POLR044K> retrievePolR044k = sqlSession.selectList("retrievePolR044k",params);
+		return retrievePolR044k;
+	}
+
+	@Override
+	public List<POLR044L> retrievePolR044l(HashMap<String, Object> params) throws SQLException {
+		List<POLR044L> retrievePolR044l = sqlSession.selectList("retrievePolR044l",params);
+		return retrievePolR044l;
+	}
+
+	@Override
+	public List<POLR044M> retrievePolR044m(HashMap<String, Object> params) throws SQLException {
+		List<POLR044M> retrievePolR044m = sqlSession.selectList("retrievePolR044m",params);
+		return retrievePolR044m;
+	}
+
+	@Override
+	public List<POLR044N> retrievePolR044n(HashMap<String, Object> params) throws SQLException {
+		List<POLR044N> retrievePolR044n = sqlSession.selectList("retrievePolR044n",params);
+		return retrievePolR044n;
+	}
+
+	@Override
+	public List<POLR044O> retrievePolR044o(HashMap<String, Object> params) throws SQLException {
+		List<POLR044O> retrievePolR044o = sqlSession.selectList("retrievePolR044o",params);
+		return retrievePolR044o;
+	}
+
+	@Override
+	public List<POLR044P> retrievePolR044p(HashMap<String, Object> params) throws SQLException {
+		List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
+		return retrievePolR044p;
 	}
 	
 }
