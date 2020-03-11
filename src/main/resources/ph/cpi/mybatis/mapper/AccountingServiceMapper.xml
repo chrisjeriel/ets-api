@@ -794,6 +794,8 @@
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
+			
+			NULL;
 		END;
 	</update>
 	
