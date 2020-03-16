@@ -7,8 +7,8 @@ public class POLR044E {
 	private String currCdParam;
 	private String lineCdParam;
 	private String siRange;
-	private String amtMth;
-	private String amtCum;
+	private String mthNoPol;
+	private String cumNoPol;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -45,22 +45,22 @@ public class POLR044E {
 	public void setSiRange(String siRange) {
 		this.siRange = siRange;
 	}
-	public String getAmtMth() {
-		return amtMth;
+	public String getMthNoPol() {
+		return mthNoPol;
 	}
-	public void setAmtMth(String amtMth) {
-		this.amtMth = amtMth;
+	public void setMthNoPol(String mthNoPol) {
+		this.mthNoPol = mthNoPol;
 	}
-	public String getAmtCum() {
-		return amtCum;
+	public String getCumNoPol() {
+		return cumNoPol;
 	}
-	public void setAmtCum(String amtCum) {
-		this.amtCum = amtCum;
+	public void setCumNoPol(String cumNoPol) {
+		this.cumNoPol = cumNoPol;
 	}
 	@Override
 	public String toString() {
 		return "POLR044E [extractUser=" + extractUser + ", fromDate=" + fromDate + ", toDate=" + toDate
-				+ ", currCdParam=" + currCdParam + ", lineCdParam=" + lineCdParam + ", siRange=" + siRange + ", amtMth="
-				+ amtMth + ", amtCum=" + amtCum + "]";
+				+ ", currCdParam=" + currCdParam + ", lineCdParam=" + lineCdParam + ", siRange=" + siRange
+				+ ", mthNoPol=" + mthNoPol + ", cumNoPol=" + cumNoPol + "]";
 	}
 }

@@ -28,6 +28,10 @@ import ph.cpi.rest.api.model.utils.POLR044M;
 import ph.cpi.rest.api.model.utils.POLR044N;
 import ph.cpi.rest.api.model.utils.POLR044O;
 import ph.cpi.rest.api.model.utils.POLR044P;
+import ph.cpi.rest.api.model.utils.POLR044Q;
+import ph.cpi.rest.api.model.utils.POLR044R;
+import ph.cpi.rest.api.model.utils.POLR044S;
+import ph.cpi.rest.api.model.utils.POLR044T;
 
 @Component
 public class UtilDaoImpl implements UtilDao{
@@ -227,8 +231,32 @@ public class UtilDaoImpl implements UtilDao{
 
 	@Override
 	public List<POLR044P> retrievePolR044p(HashMap<String, Object> params) throws SQLException {
-		List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
-		return retrievePolR044p;
+		//List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
+		return null;
+	}
+
+	@Override
+	public List<POLR044Q> retrievePolR044q(HashMap<String, Object> params) throws SQLException {
+		//List<POLR044Q> retrievePolR044q = sqlSession.selectList("retrievePolR044q",params);
+		return null;
+	}
+
+	@Override
+	public List<POLR044R> retrievePolR044r(HashMap<String, Object> params) throws SQLException {
+		//List<POLR044R> retrievePolR044r = sqlSession.selectList("retrievePolR044r",params);
+		return null;
+	}
+
+	@Override
+	public List<POLR044S> retrievePolR044s(HashMap<String, Object> params) throws SQLException {
+		//List<POLR044S> retrievePolR044s = sqlSession.selectList("retrievePolR044s",params);
+		return null;
+	}
+
+	@Override
+	public List<POLR044T> retrievePolR044t(HashMap<String, Object> params) throws SQLException {
+		//List<POLR044T> retrievePolR044t = sqlSession.selectList("retrievePolR044t",params);
+		return null;
 	}
 	
 }

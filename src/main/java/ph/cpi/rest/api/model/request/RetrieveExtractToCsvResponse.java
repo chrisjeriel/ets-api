@@ -19,6 +19,10 @@ import ph.cpi.rest.api.model.utils.POLR044M;
 import ph.cpi.rest.api.model.utils.POLR044N;
 import ph.cpi.rest.api.model.utils.POLR044O;
 import ph.cpi.rest.api.model.utils.POLR044P;
+import ph.cpi.rest.api.model.utils.POLR044Q;
+import ph.cpi.rest.api.model.utils.POLR044R;
+import ph.cpi.rest.api.model.utils.POLR044S;
+import ph.cpi.rest.api.model.utils.POLR044T;
 
 public class RetrieveExtractToCsvResponse {
 	private List<POLR044E> listPolr044e;
@@ -37,6 +41,10 @@ public class RetrieveExtractToCsvResponse {
 	private List<POLR044N> listPolr044n;
 	private List<POLR044O> listPolr044o;
 	private List<POLR044P> listPolr044p;
+	private List<POLR044Q> listPolr044q;
+	private List<POLR044R> listPolr044r;
+	private List<POLR044S> listPolr044s;
+	private List<POLR044T> listPolr044t;
 
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
@@ -166,6 +174,38 @@ public class RetrieveExtractToCsvResponse {
 		this.listPolr044p = listPolr044p;
 	}
 
+	public List<POLR044Q> getListPolr044q() {
+		return listPolr044q;
+	}
+
+	public void setListPolr044q(List<POLR044Q> listPolr044q) {
+		this.listPolr044q = listPolr044q;
+	}
+
+	public List<POLR044R> getListPolr044r() {
+		return listPolr044r;
+	}
+
+	public void setListPolr044r(List<POLR044R> listPolr044r) {
+		this.listPolr044r = listPolr044r;
+	}
+
+	public List<POLR044S> getListPolr044s() {
+		return listPolr044s;
+	}
+
+	public void setListPolr044s(List<POLR044S> listPolr044s) {
+		this.listPolr044s = listPolr044s;
+	}
+
+	public List<POLR044T> getListPolr044t() {
+		return listPolr044t;
+	}
+
+	public void setListPolr044t(List<POLR044T> listPolr044t) {
+		this.listPolr044t = listPolr044t;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -173,6 +213,8 @@ public class RetrieveExtractToCsvResponse {
 				+ ", listPolr044f=" + listPolr044f + ", listPolr044g=" + listPolr044g + ", listPolr044h=" + listPolr044h
 				+ ", listPolr044i=" + listPolr044i + ", listPolr044j=" + listPolr044j + ", listPolr044k=" + listPolr044k
 				+ ", listPolr044l=" + listPolr044l + ", listPolr044m=" + listPolr044m + ", listPolr044n=" + listPolr044n
-				+ ", listPolr044o=" + listPolr044o + ", listPolr044p=" + listPolr044p + "]";
-	}	
+				+ ", listPolr044o=" + listPolr044o + ", listPolr044p=" + listPolr044p + ", listPolr044q=" + listPolr044q
+				+ ", listPolr044r=" + listPolr044r + ", listPolr044s=" + listPolr044s + "]";
+	}
+	
 }
