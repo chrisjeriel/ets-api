@@ -182,6 +182,7 @@ import ph.cpi.rest.api.model.response.UpdatePolOpenCoverStatusResponse;
 import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.model.underwriting.BatchDistribution;
 import ph.cpi.rest.api.model.underwriting.BatchPost;
+import ph.cpi.rest.api.model.underwriting.FullWordings;
 import ph.cpi.rest.api.model.underwriting.PolicyAsIs;
 import ph.cpi.rest.api.model.underwriting.PolicyNonRenewal;
 import ph.cpi.rest.api.model.underwriting.PolicyWithChanges;
@@ -1431,6 +1432,10 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		rpfcResponse.setPolicy(underwritingDao.retrievePolicyFullCoverage(retrievePolFullCoverageParams));
 		
+		FullWordings altWordings = underwritingDao.retrieveFullWordings(retrievePolFullCoverageParams);
+		if(altWordings != null) {
+			rpfcResponse.setAltWordings(altWordings.getFull());
+		}
 		
 		
 		return rpfcResponse;
@@ -1476,6 +1481,12 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolFullCoverageParams.put("saveDeductibleList",spfcr.getSaveDeductibleList());
 			savePolFullCoverageParams.put("deleteDeductibleList",spfcr.getDeleteDeductibleList());
 			
+			Integer index = 0;
+			while (index < spfcr.getRemarks().length()) {
+			    savePolFullCoverageParams.put("altwText"+ String.format("%02d", (index/1800)+1) , spfcr.getRemarks().substring(index, Math.min(index + 1800,spfcr.getRemarks().length())));
+			    index += 1800;
+			}
+			logger.info(savePolFullCoverageParams.toString());
 			HashMap<String, Object> res = underwritingDao.savePolFullCoverage(savePolFullCoverageParams);
 			spfcResponse.setReturnCode((Integer) res.get("errorCode"));
 		} catch (Exception ex) {
@@ -2223,6 +2234,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 				response.setReturnCode(0);
 				response.getErrorList().add(new Error("SQLException","Please check field values."));
 			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			response.setReturnCode(0);
 		}
 		return response;
 	}

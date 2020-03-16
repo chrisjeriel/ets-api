@@ -6,10 +6,21 @@ import ph.cpi.rest.api.model.underwriting.Policy;
 
 public class RetrievePolFullCoverageResponse {
 	private Policy policy;
+	private String altWordings;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
 	
+	public String getAltWordings() {
+		return altWordings;
+	}
+
+
+	public void setAltWordings(String altWordings) {
+		this.altWordings = altWordings;
+	}
+
+
 	public Policy getPolicy() {
 		return policy;
 	}
@@ -42,7 +53,7 @@ public class RetrievePolFullCoverageResponse {
 
 	@Override
 	public String toString() {
-		return "RetrievePolFullCoverageResponse [paginationResponse=" + paginationResponse + ", policy=" + policy
-				+ ", sortResponse=" + sortResponse + "]";
+		return "RetrievePolFullCoverageResponse [policy=" + policy + ", altWordings=" + altWordings
+				+ ", paginationResponse=" + paginationResponse + ", sortResponse=" + sortResponse + "]";
 	}
 }

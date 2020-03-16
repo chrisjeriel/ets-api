@@ -25,6 +25,7 @@ import ph.cpi.rest.api.model.underwriting.DistPolInst;
 import ph.cpi.rest.api.model.underwriting.DistRiskWparam;
 import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
+import ph.cpi.rest.api.model.underwriting.FullWordings;
 import ph.cpi.rest.api.model.underwriting.InwPolBalance;
 import ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
@@ -750,6 +751,11 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public Integer saveManualDistPol(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.update("saveManualDistPol",params);
+	}
+
+	@Override
+	public FullWordings retrieveFullWordings(HashMap<String, Object> params) throws SQLException {
+		return (FullWordings) sqlSession.selectOne("retrieveFullWordings",params);
 	}
 	
 	
