@@ -758,5 +758,16 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		return (FullWordings) sqlSession.selectOne("retrieveFullWordings",params);
 	}
 	
+	@Override
+	public Policy retrievePolFullItem(HashMap<String, Object> params) throws SQLException {
+		Policy polItem = sqlSession.selectOne("retrievePolFullItem",params);
+		return polItem;
+	}
 	
+	@Override
+	public HashMap<String, Object> savePolFullItem(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("savePolFullItem",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
 }

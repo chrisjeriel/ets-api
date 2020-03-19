@@ -3112,8 +3112,17 @@
 			#{altNo, jdbcType=VARCHAR},
 			#{policyNo, jdbcType=VARCHAR},
 			#{cedingName, jdbcType=VARCHAR},
-			#{riskName, jdbcType=VARCHAR}
+			#{riskName, jdbcType=VARCHAR},
+			#{insuredDesc, jdbcType=VARCHAR}
 		))
+		WHERE 1 = 1
+		<if test="search != null and search.value != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	   </if>
 	</select>
 	
 	<update id="saveManualDistRiskTreaty">
@@ -3289,4 +3298,50 @@
 	<select id="retrieveFullWordings" resultMap="FullWordingsMap">
 		SELECT * FROM TABLE(POL_FULLWORDINGS_PKG.ret_pol_fullwordings(#{policyId,jdbcType=VARCHAR}))
 	</select>
+	
+	<select id="retrievePolFullItem" resultMap="itemMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(POL_FULLITEM_PKG.ret_pol_itm(#{policyId, jdbcType=INTEGER},
+																	#{policyNo, jdbcType=VARCHAR},
+																	#{position, jdbcType=VARCHAR}, 
+																	#{count, jdbcType=VARCHAR}, 
+																	#{sortKey, jdbcType=VARCHAR}, 
+																	#{order, jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="savePolFullItem" parameterType="java.util.Map">
+		BEGIN
+		
+		  <foreach collection="deleteItemLists" item="Items">
+		  	POL_FULLITEM_PKG.del_pol_itm(#{policyId},
+				#{projId},#{Items.itemNo});
+		  </foreach>
+		  
+		  <foreach collection="saveItemLists" item="Items">
+			POL_FULLITEM_PKG.save_pol_itm(
+				#{policyId},
+				#{projId},
+				#{Items.itemNo, jdbcType=INTEGER},
+				#{Items.quantity, jdbcType=INTEGER},
+				#{Items.itemDesc, jdbcType=VARCHAR},
+				#{Items.makeYear, jdbcType=VARCHAR},
+				#{Items.deductibleTxt, jdbcType=VARCHAR},
+				#{Items.sumInsured, jdbcType=INTEGER},
+				#{Items.stockType, jdbcType=VARCHAR},
+				#{Items.serialNo, jdbcType=VARCHAR},
+				#{Items.location, jdbcType=VARCHAR},
+				#{Items.chamberNo, jdbcType=VARCHAR},
+				#{Items.noClaimPd, jdbcType=INTEGER},
+				#{Items.ipl, jdbcType=INTEGER},
+				#{Items.relativeImp, jdbcType=VARCHAR},
+				#{Items.standbyUnit, jdbcType=VARCHAR},
+				#{Items.section, jdbcType=VARCHAR},
+				#{Items.createUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{Items.updateUser, jdbcType=VARCHAR},
+				CAST(to_timestamp(#{Items.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+			);
+			</foreach>
+			POL_FULLITEM_PKG.renumber_pol_itm(#{policyId},#{projId});
+		END;
+	</update>
 </mapper>

@@ -11,13 +11,22 @@ public class RetrieveEditableDistListRequest {
 	private String cedingId;
 	private Integer coSeriesNo;
 	private Integer altNo;
+	
 	private String policyNo;
 	private String riskName;
 	private String cedingName;
+	private String insuredDesc;
 	
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest;
 	private SearchRequest search;
+	
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -94,8 +103,9 @@ public class RetrieveEditableDistListRequest {
 	public String toString() {
 		return "RetrieveEditableDistListRequest [lineCd=" + lineCd + ", polYear=" + polYear + ", polSeqNo=" + polSeqNo
 				+ ", cedingId=" + cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", policyNo="
-				+ policyNo + ", riskName=" + riskName + ", cedingName=" + cedingName + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + ", search=" + search + "]";
+				+ policyNo + ", riskName=" + riskName + ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", search=" + search
+				+ "]";
 	}
 	
 }

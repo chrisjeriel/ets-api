@@ -2130,6 +2130,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("policyNo", rpedr.getPolicyNo());
 		params.put("riskName", rpedr.getRiskName());
 		params.put("cedingName", rpedr.getCedingName());
+		params.put("insuredDesc",rpedr.getInsuredDesc());
+		params.put("search",rpedr.getSearch());
 		
 		response.setPolList(underwritingDao.retrieveEditableDistList(params));
 		return response;
@@ -2239,5 +2241,37 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			response.setReturnCode(0);
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrievePolItemResponse retrievePolFullItem(RetrievePolItemRequest rpir) throws SQLException {
+		RetrievePolItemResponse rpiresponse = new RetrievePolItemResponse();
+		HashMap<String, Object> retrievePolItemParams = new HashMap<String, Object>();
+		
+		retrievePolItemParams.put("policyId", rpir.getPolicyId());
+		retrievePolItemParams.put("policyNo", rpir.getPolicyNo());
+		
+		rpiresponse.setPolicy(underwritingDao.retrievePolFullItem(retrievePolItemParams));
+		
+		return rpiresponse;
+	}
+	
+	@Override
+	public SavePolItemResponse savePolFullItem(SavePolItemRequest spir) throws SQLException {
+		SavePolItemResponse spiresponse = new SavePolItemResponse();
+		try{
+			HashMap<String, Object> savePolItemParams = new HashMap<String, Object>();
+			savePolItemParams.put("policyId", spir.getPolicyId());
+			savePolItemParams.put("projId", spir.getProjId());
+			savePolItemParams.put("saveItemLists",spir.getSaveItemLists());
+			savePolItemParams.put("deleteItemLists",spir.getDeleteItemLists());
+			HashMap<String, Object> res = underwritingDao.savePolFullItem(savePolItemParams);
+			spiresponse.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			spiresponse.setReturnCode(0);
+			spiresponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return spiresponse;
 	}
 }

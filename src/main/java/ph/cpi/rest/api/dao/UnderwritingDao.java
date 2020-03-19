@@ -153,4 +153,6 @@ public interface UnderwritingDao {
 	public PolOcInfo retrievePolOcInfo(HashMap<String, Object> params) throws SQLException;
 	public Integer saveManualDistPol(HashMap<String, Object> params)throws SQLException;
 	public FullWordings retrieveFullWordings(HashMap<String, Object> params)throws SQLException;
+	public Policy retrievePolFullItem(HashMap<String, Object> retrievePolItemParams)throws SQLException;
+	public HashMap<String, Object> savePolFullItem(HashMap<String, Object> savePolItemParams)throws SQLException;
 }

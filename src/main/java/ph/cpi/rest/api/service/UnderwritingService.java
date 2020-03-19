@@ -278,4 +278,6 @@ public interface UnderwritingService {
 	public CreateOcAltResponse createOcAlt(CreateOcAltRequest rpedr) throws SQLException;
 	public RetrievePolOcInfoResponse retrievePolOcInfo(RetrievePolOcInfoRequest rpedr)throws SQLException;
 	public SaveManualDistPolResponse saveManualDistPol(SaveManualDistPoltRequest rpedr)throws SQLException;
+	public RetrievePolItemResponse retrievePolFullItem(RetrievePolItemRequest rpir)throws SQLException;
+	public SavePolItemResponse savePolFullItem(SavePolItemRequest spir)throws SQLException;
 }
