@@ -1490,4 +1490,30 @@ public class MaintenanceController {
         return maintenanceService.saveMtnBookingMth(smbmr);
     }
 
+	@GetMapping(path="retMtnPostingAmtLimit")
+	public @ResponseBody RetMtnUserAmtLimitResponse retMtnPostingAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retMtnPostingAmtLimit");
+		logger.info("RetMtnPostingAmtLimitRequest : " + rmil.toString());
+		return maintenanceService.retMtnPostingAmtLimit(rmil); 	
+	}
+	@PostMapping(path="saveMtnPostingAmtLimit")
+	public @ResponseBody SaveMtnUserAmtLimitResponse saveMtnPostingAmtLimit(@RequestBody SaveMtnUserAmtLimitRequest smualr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPostingAmtLimit");
+		logger.info("SaveMtnPostingAmtLimitRequest : " + smualr.toString());
+		return maintenanceService.saveMtnPostingAmtLimit(smualr);
+	}
+	
+	@GetMapping(path="retrieveMtnClmReportsRange")
+	public @ResponseBody RetrieveMtnClmReportsRangeResponse retrieveMtnClmReportsRange(RetrieveMtnClmReportsRangeRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmReportsRange");
+		logger.info("RetrieveMtnClmReportsRangeRequest : " + request.toString());
+		return maintenanceService.retrieveMtnClmReportsRange(request);
+	}
+	
+	@PostMapping(path="saveMtnClmReportsRange")
+    public @ResponseBody SaveMtnClmReportsRangeResponse saveMtnClmReportsRange(@RequestBody SaveMtnClmReportsRangeRequest request) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnClmReportsRange");
+        logger.info("SaveMtnClmReportsRangeRequest : " + request.toString());
+        return maintenanceService.saveMtnClmReportsRange(request);
+    }
 }

@@ -3365,5 +3365,56 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+	
+	@Override
+	public RetMtnUserAmtLimitResponse retMtnPostingAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException {
+		RetMtnUserAmtLimitResponse rmqrrResponse = new RetMtnUserAmtLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("userGrp", rmil.getUserGrp());
+		params.put("lineCd", rmil.getLineCd());
+		rmqrrResponse.setUserAmtLimit(maintenanceDao.retMtnPostingAmtLimit(params));
+		return rmqrrResponse;
+	}
+	
+	@Override
+	public SaveMtnUserAmtLimitResponse saveMtnPostingAmtLimit(SaveMtnUserAmtLimitRequest smualr) throws SQLException {
+		SaveMtnUserAmtLimitResponse smualrResponse = new SaveMtnUserAmtLimitResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("saveUserAmtLmt", smualr.getSaveUserAmtLmt());
+		params.put("delUserAmtLmt", smualr.getDelUserAmtLmt());
+		try{
+			smualrResponse.setReturnCode(maintenanceDao.saveMtnPostingAmtLimit(params));
+		}catch (Exception ex) {
+			smualrResponse.setReturnCode(0);
+			smualrResponse.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return smualrResponse;
+	}
+	
+	@Override
+	public RetrieveMtnClmReportsRangeResponse retrieveMtnClmReportsRange(RetrieveMtnClmReportsRangeRequest request)throws SQLException{
+		RetrieveMtnClmReportsRangeResponse response  =  new RetrieveMtnClmReportsRangeResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("userId", request.getUserId());
+		response.setReportsRange(maintenanceDao.retrieveMtnClmReportsRange(params));
+		return response;
+	}
 
+	@Override
+	public SaveMtnClmReportsRangeResponse saveMtnClmReportsRange(SaveMtnClmReportsRangeRequest request)throws SQLException{
+		SaveMtnClmReportsRangeResponse response = new SaveMtnClmReportsRangeResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveReportsRange", request.getSaveReportsRange());
+			params.put("delReportsRange", request.getDelReportsRange());
+			HashMap<String,Object> res = maintenanceDao.saveMtnClmReportsRange(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }
