@@ -20,6 +20,8 @@ public class AcitArTransDtl {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String returnTag;
+	private Integer unappliedId;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -111,13 +113,24 @@ public class AcitArTransDtl {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public String getReturnTag() {
+		return returnTag;
+	}
+	public void setReturnTag(String returnTag) {
+		this.returnTag = returnTag;
+	}	
+	public Integer getUnappliedId() {
+		return unappliedId;
+	}
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
+	}
 	@Override
 	public String toString() {
 		return "AcitArTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", transdtlType="
 				+ transdtlType + ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate
 				+ ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", refNo=" + refNo + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", returnTag=" + returnTag + ", unappliedId=" + unappliedId + "]";
 	}
 }

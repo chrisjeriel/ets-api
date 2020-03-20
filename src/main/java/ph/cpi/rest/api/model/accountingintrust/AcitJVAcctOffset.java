@@ -40,6 +40,7 @@ public class AcitJVAcctOffset {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String insuredDesc;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -251,6 +252,12 @@ public class AcitJVAcctOffset {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVAcctOffset [tranId=" + tranId + ", quarterNo=" + quarterNo + ", itemNo=" + itemNo + ", policyId="
@@ -262,7 +269,8 @@ public class AcitJVAcctOffset {
 				+ ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges
 				+ ", netDue=" + netDue + ", paytAmt=" + paytAmt + ", balPaytAmt=" + balPaytAmt + ", localAmt="
 				+ localAmt + ", overdueInt=" + overdueInt + ", remarks=" + remarks + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", insuredDesc=" + insuredDesc + "]";
 	}
 	
 }

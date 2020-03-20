@@ -54,6 +54,8 @@ class PrqTrans {
 	private BigDecimal prevBalance;
 	private BigDecimal newPaytAmt;
 	private BigDecimal newBalance;
+	private String returnTag;
+	private Integer unappliedId;
 	
 	private SavePrqInwPolLoc inwPol;
 	
@@ -237,6 +239,18 @@ class PrqTrans {
 	public void setNewBalance(BigDecimal newBalance) {
 		this.newBalance = newBalance;
 	}
+	public String getReturnTag() {
+		return returnTag;
+	}
+	public void setReturnTag(String returnTag) {
+		this.returnTag = returnTag;
+	}
+	public Integer getUnappliedId() {
+		return unappliedId;
+	}
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
+	}
 	@Override
 	public String toString() {
 		return "PrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId=" + claimId
@@ -247,7 +261,7 @@ class PrqTrans {
 				+ allotedAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", qsoaId=" + qsoaId + ", prevPaytAmt="
 				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt=" + newPaytAmt + ", newBalance="
-				+ newBalance + ", inwPol=" + inwPol + "]";
+				+ newBalance + ", returnTag=" + returnTag + ", unappliedId=" + unappliedId + ", inwPol=" + inwPol + "]";
 	}
 }
 	
