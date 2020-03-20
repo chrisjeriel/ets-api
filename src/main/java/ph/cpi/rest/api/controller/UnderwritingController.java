@@ -825,4 +825,18 @@ public class UnderwritingController {
 		logger.info("SaveManualDistPoltRequest : " + rpedr.toString());
 		return underwritingService.saveManualDistPol(rpedr);
 	}
+	
+	@GetMapping(path="retrievePolFullItem")
+	public @ResponseBody RetrievePolItemResponse retrievePolFullItem(RetrievePolItemRequest rpir) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolFullItem");
+		logger.info("RetrievePolFullItemRequest : " + rpir.toString());
+		return underwritingService.retrievePolFullItem(rpir);
+	}
+	
+	@PostMapping(path="savePolFullItem")
+	public @ResponseBody SavePolItemResponse savePolFullItem(@RequestBody SavePolItemRequest spir ) throws SQLException {
+		logger.info("GET: /api/underwriting-service/savePolFullItem");
+		logger.info("SavePolFullItemRequest : " + spir.toString());
+		return underwritingService.savePolFullItem(spir);
+	}
 }

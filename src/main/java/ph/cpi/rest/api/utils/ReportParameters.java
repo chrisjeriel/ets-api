@@ -58,6 +58,7 @@ public class ReportParameters {
 		reportParams.put("P_DIST_ID", grr.getDistId());
 		reportParams.put("P_HIST_NO", grr.getHistNo());
 		reportParams.put("P_DRAFT_TAG", grr.getDraftTag());
+		reportParams.put("P_HUNDRED_PCT",grr.getHundredPct());
 		
 		return reportParams;
 	}
