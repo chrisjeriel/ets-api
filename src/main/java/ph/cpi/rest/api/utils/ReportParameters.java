@@ -146,6 +146,7 @@ public class ReportParameters {
 		CLMR010Params.put("p_printed_by", param.getExtractUser());
 		
 		//Extract MyBatis Purposes
+		CLMR010Params.put("extTypeTag", param.getExtTypeTag());
 		CLMR010Params.put("reportId", param.getReportId());
 		CLMR010Params.put("extractUser", param.getExtractUser());
 		CLMR010Params.put("lineCdParam", param.getLineCdParam());
@@ -156,6 +157,9 @@ public class ReportParameters {
 		CLMR010Params.put("toDate", param.getToDate());
 		CLMR010Params.put("forceExtract", param.getForceExtract());
 		CLMR010Params.put("printedBy", param.getExtractUser());
+		CLMR010Params.put("currCdParam", param.getCurrCdParam());
+		CLMR010Params.put("clmAdj", param.getClmAdj());
+		CLMR010Params.put("clmStat", param.getClmStat());
 		
 		return CLMR010Params;
 	}

@@ -429,10 +429,11 @@
 										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 										  #{extTypeTag, jdbcType=VARCHAR},
 										  #{lineCdParam, jdbcType=VARCHAR},
-										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{clmAdj, jdbcType=VARCHAR},
 										  #{currCdParam, jdbcType=VARCHAR},
 										  #{extractCount, mode=OUT, jdbcType=INTEGER},
-										  #{forceExtract, jdbcType=VARCHAR});
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{clmStat, jdbcType=VARCHAR});
 		END;
 	</update>
 	
