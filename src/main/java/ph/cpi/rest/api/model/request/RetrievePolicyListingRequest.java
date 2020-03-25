@@ -40,7 +40,14 @@ public class RetrievePolicyListingRequest {
 	private String lineCd;
 	private String length;
 	private String mode = "";
+	private String renTag;
 	
+	public String getRenTag() {
+		return renTag;
+	}
+	public void setRenTag(String renTag) {
+		this.renTag = renTag;
+	}
 	public String getLength() {
 		return length;
 	}

@@ -871,7 +871,8 @@
 															 null,
 															 null,
 															 #{lineCd, jdbcType=VARCHAR},
-															 #{statusArrStr, jdbcType=VARCHAR})) a
+															 #{statusArrStr, jdbcType=VARCHAR},
+															 #{renTag, jdbcType=VARCHAR})) a
 															 WHERE  1=1
 		   	   <if test="search != null and search.value != null">
 		   	   	 AND
@@ -930,7 +931,8 @@
 												 null,
 												 null,
 												#{lineCd, jdbcType=VARCHAR},
-											    #{statusArrStr, jdbcType=VARCHAR}))
+											    #{statusArrStr, jdbcType=VARCHAR},
+											    #{renTag, jdbcType=VARCHAR}))
 												 WHERE  1=1
 	  	   <if test="search != null">
 	  	   	 AND

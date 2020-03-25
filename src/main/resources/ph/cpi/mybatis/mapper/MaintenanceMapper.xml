@@ -5429,4 +5429,8 @@
 			</foreach>
 		END;
 	</update>
+	
+	<select id="checkOkDeleteRetPerCede" resultType="java.lang.String">
+		select MTN_POOL_RET_HIST_PKG.check_ok_del(#{currencyCd},#{retHistId}) FROM DUAL
+	</select>
 </mapper>

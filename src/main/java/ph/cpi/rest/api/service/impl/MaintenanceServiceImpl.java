@@ -3417,4 +3417,12 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		}
 		return response;
 	}
+
+	@Override
+	public String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException {
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("currencyCd", request.getCurrencyCd());
+		params.put("retHistId", request.getRetHistId());
+		return maintenanceDao.checkOkDeleteRetPerCede(params);
+	}
 }
