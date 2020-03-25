@@ -160,6 +160,8 @@ public class ReportParameters {
 		CLMR010Params.put("currCdParam", param.getCurrCdParam());
 		CLMR010Params.put("clmAdj", param.getClmAdj());
 		CLMR010Params.put("clmStat", param.getClmStat());
+		CLMR010Params.put("minLossAmt", param.getMinLossAmt());
+		
 		
 		return CLMR010Params;
 	}

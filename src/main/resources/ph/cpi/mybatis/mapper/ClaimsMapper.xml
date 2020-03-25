@@ -1026,6 +1026,7 @@
 		<result property="particulars" column="PARTICULARS"/>
 		<result property="reqDate" column="REQ_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="requestedBy" column="REQUESTED_BY"/>
+		<result property="bookingMonth" column="BOOKING_MONTH"/>
 		<result property="acctRefNo" column="ACCT_REF_NO"/>
 		<result property="tranDate" column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="insuredDesc" column="INSURED_DESC"/>
@@ -1038,7 +1039,6 @@
 		
 		<result property="policyId" column="POLICY_ID"/>
 		<result property="clmStatus" column="CLM_STAT_DESC"/>
-		<result property="bookingMonth" column="BOOKING_MONTH"/>
 	</resultMap>
 	
 	<select id="retrieveClmPaytReqInq" resultMap="ClaimPaytReqInqMap">
@@ -1057,8 +1057,20 @@
 																  CAST(to_timestamp(#{tranDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																  #{insuredDesc, jdbcType=VARCHAR},
 																  #{riskName, jdbcType=VARCHAR},
-																  CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+																  CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																  #{bookingMonth, jdbcType=VARCHAR}
 																  ))
+		WHERE 1=1				 
+		 <if test="search != null">
+	   	   	 AND
+	   	    	<foreach item="col" index="index" collection="search.searchCols"
+		             open="(" separator=" OR " close=")">
+				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+			    </foreach>
+	   	 </if>					
+	   	 <if test="sort.sortKey != null">
+   	    	ORDER BY ${sort.sortKey} ${sort.order}
+   	     </if>													  
 	</select>
 	
 	<select id="checkExistingClaim" resultType="java.lang.String">

@@ -57,14 +57,17 @@
 	
 	<update id="extractPOLR044D" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			POLR044D_PKG.extract_pol_monytdissue(
+			POLR044D_PKG.extract_polr052d(
 											        #{extractUser, jdbcType=VARCHAR},
 											        #{dateParam, jdbcType=VARCHAR},
 											        #{dateRange, jdbcType=VARCHAR},
+											        CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 											        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												    #{lineCdParam, jdbcType=VARCHAR},
+												    #{cedingIdParam, jdbcType=VARCHAR},,
+											        #{currCdParam, jdbcType=VARCHAR} 
 											        #{extractCount, jdbcType=INTEGER, mode=OUT},
-											        #{forceExtract, jdbcType=VARCHAR},
-											        #{currCdParam, jdbcType=VARCHAR}
+											        #{forceExtract, jdbcType=VARCHAR}
 											    );
 		END;
 	</update>
@@ -398,7 +401,8 @@
 										  #{cedingIdParam, jdbcType=VARCHAR},
 										  #{currCdParam, jdbcType=VARCHAR},
 										  #{extractCount, mode=OUT, jdbcType=INTEGER},
-										  #{forceExtract, jdbcType=VARCHAR});
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{minLossAmt, jdbcType=VARCHAR});
 		END;
 	</update>
 	

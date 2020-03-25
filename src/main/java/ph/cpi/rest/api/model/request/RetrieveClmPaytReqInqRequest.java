@@ -3,6 +3,7 @@ package ph.cpi.rest.api.model.request;
 import java.math.BigDecimal;
 
 import ph.cpi.rest.api.model.PaginationRequest;
+import ph.cpi.rest.api.model.SearchRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveClmPaytReqInqRequest {
@@ -22,9 +23,24 @@ public class RetrieveClmPaytReqInqRequest {
 	private String insuredDesc;
 	private String riskName;
 	private String lossDate;
+	private String bookingMonth;
+	private SearchRequest search;
 
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
+	
+	public SearchRequest getSearch() {
+		return search;
+	}
+	public void setSearch(SearchRequest search) {
+		this.search = search;
+	}
+	public String getBookingMonth() {
+		return bookingMonth;
+	}
+	public void setBookingMonth(String bookingMonth) {
+		this.bookingMonth = bookingMonth;
+	}
 	public String getClaimNo() {
 		return claimNo;
 	}
@@ -139,7 +155,7 @@ public class RetrieveClmPaytReqInqRequest {
 				+ ", paytReqNo=" + paytReqNo + ", payee=" + payee + ", paytType=" + paytType + ", currCd=" + currCd
 				+ ", resAmt=" + resAmt + ", particulars=" + particulars + ", reqDate=" + reqDate + ", reqBy=" + reqBy
 				+ ", acctRef=" + acctRef + ", tranDate=" + tranDate + ", insuredDesc=" + insuredDesc + ", riskName="
-				+ riskName + ", lossDate=" + lossDate + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ riskName + ", lossDate=" + lossDate + ", bookingMonth=" + bookingMonth + ", search=" + search
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 }
