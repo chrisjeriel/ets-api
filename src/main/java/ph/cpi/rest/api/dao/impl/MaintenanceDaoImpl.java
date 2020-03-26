@@ -1538,5 +1538,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+
+	@Override
+	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException {
+		return (String) sqlSession.selectOne("checkOkDeleteRetPerCede",params);
+	}
 }
 

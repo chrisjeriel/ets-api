@@ -398,7 +398,8 @@
 										  #{cedingIdParam, jdbcType=VARCHAR},
 										  #{currCdParam, jdbcType=VARCHAR},
 										  #{extractCount, mode=OUT, jdbcType=INTEGER},
-										  #{forceExtract, jdbcType=VARCHAR});
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{minLossAmt, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -429,10 +430,11 @@
 										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 										  #{extTypeTag, jdbcType=VARCHAR},
 										  #{lineCdParam, jdbcType=VARCHAR},
-										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{clmAdj, jdbcType=VARCHAR},
 										  #{currCdParam, jdbcType=VARCHAR},
 										  #{extractCount, mode=OUT, jdbcType=INTEGER},
-										  #{forceExtract, jdbcType=VARCHAR});
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{clmStat, jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -564,15 +566,18 @@
 	
 	<update id="extractPOLR052D" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			POLR052D_PKG.extract_get_pol_otwrdfcl(#{extractUser, jdbcType=VARCHAR},
-												  #{lineCdParam, jdbcType=VARCHAR},
-												  #{cedingIdParam, jdbcType=VARCHAR},
-												  #{dateRange, jdbcType=VARCHAR},
-												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-												  #{extractCount, mode=OUT, jdbcType=INTEGER},
-												  #{forceExtract, jdbcType=VARCHAR},
-												  #{currCdParam, jdbcType=VARCHAR});
+			POLR052D_PKG.extract_polr052d(
+											        #{extractUser, jdbcType=VARCHAR},
+											        #{dateParam, jdbcType=VARCHAR},
+											        #{dateRange, jdbcType=VARCHAR},
+											        CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												    #{lineCdParam, jdbcType=VARCHAR},
+												    #{cedingIdParam, jdbcType=VARCHAR},
+											        #{currCdParam, jdbcType=VARCHAR} ,
+											        #{extractCount, jdbcType=INTEGER, mode=OUT},
+											        #{forceExtract, jdbcType=VARCHAR}
+											    );
 		END;
 	</update>
 	

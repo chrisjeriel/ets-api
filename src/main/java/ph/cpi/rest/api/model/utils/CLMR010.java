@@ -13,7 +13,30 @@ public class CLMR010 {
 	private String forceExtract;
 	private String currCdParam;
 	private String extTypeTag;
+	private String clmAdj;
+	private String clmStat;
+	private String minLossAmt;
 	
+	
+	
+	public String getMinLossAmt() {
+		return minLossAmt;
+	}
+	public void setMinLossAmt(String minLossAmt) {
+		this.minLossAmt = minLossAmt;
+	}
+	public String getClmStat() {
+		return clmStat;
+	}
+	public void setClmStat(String clmStat) {
+		this.clmStat = clmStat;
+	}
+	public String getClmAdj() {
+		return clmAdj;
+	}
+	public void setClmAdj(String clmAdj) {
+		this.clmAdj = clmAdj;
+	}
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -85,7 +108,8 @@ public class CLMR010 {
 		return "CLMR010 [reportId=" + reportId + ", extractUser=" + extractUser + ", lineCdParam=" + lineCdParam
 				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", forceExtract=" + forceExtract + ", currCdParam="
-				+ currCdParam + ", extTypeTag=" + extTypeTag + "]";
+				+ currCdParam + ", extTypeTag=" + extTypeTag + ", clmAdj=" + clmAdj + ", clmStat=" + clmStat
+				+ ", minLossAmt=" + minLossAmt + "]";
 	}
 	
 }

@@ -320,4 +320,5 @@ public interface MaintenanceDao {
 	public Integer saveMtnPostingAmtLimit(HashMap<String, Object> params) throws SQLException;
 	public List<ClaimReportsRange> retrieveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
+	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException;
 }

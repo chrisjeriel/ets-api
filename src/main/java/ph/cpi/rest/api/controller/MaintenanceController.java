@@ -1516,4 +1516,12 @@ public class MaintenanceController {
         logger.info("SaveMtnClmReportsRangeRequest : " + request.toString());
         return maintenanceService.saveMtnClmReportsRange(request);
     }
+	
+	@GetMapping(path="checkOkDeleteRetPerCede")
+	public @ResponseBody String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/CheckOkDeleteRetPerCedeRequest");
+		logger.info("CheckOkDeleteRetPerCedeRequest : " + request.toString());
+		return maintenanceService.checkOkDeleteRetPerCede(request);
+	}
+	
 }
