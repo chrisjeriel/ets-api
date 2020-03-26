@@ -2988,6 +2988,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJvUnappliedTrtyResponse response = new SaveAcitJvUnappliedTrtyResponse();
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveTrtyUnapplied", request.getSaveTrtyUnapplied());
 			params.put("delTrtyUnapplied", request.getDelTrtyUnapplied());
 			HashMap<String,Object> res = acctITDao.saveJVTrtyUnappliedColl(params);

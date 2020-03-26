@@ -1274,7 +1274,8 @@
 													       #{save.totalBudget, jdbcType=INTEGER},
 													       #{save.totalExpense, jdbcType=INTEGER},
 														   #{save.createUser, jdbcType=VARCHAR},
-														   #{save.updateUser, jdbcType=VARCHAR});
+														   #{save.updateUser, jdbcType=VARCHAR},
+														   #{save.glShortDesc, jdbcType=VARCHAR});
 			</foreach>
 		END;
 	</update>
@@ -2196,5 +2197,21 @@
 	<select id="checkAcseJvSeries" resultType="java.lang.String" statementType="CALLABLE">
 		SELECT ACSE_JOURNAL_VOUCHER_PKG.check_acse_jv_series FROM DUAL
 	</select>
+	
+	<update id="validateCopyBudgetYear" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSE_BUDGET_EXPENSE_PKG.validate_budget_year(#{originYear, jdbcType=INTEGER},
+														 #{desYear, jdbcType=INTEGER},
+														 #{validate, mode=OUT, jdbcType=VARCHAR},
+														 #{message, mode=OUT, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractAcseExpenseBudget" parameterType="java.util.Map">
+		BEGIN
+			ACSE_BUDGET_EXPENSE_PKG.extract_actual_expense(CAST(to_timestamp(#{extDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											   			   #{extUser, jdbcType=VARCHAR});
+		END;
+	</update>
 
 </mapper>

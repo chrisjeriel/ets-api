@@ -9,6 +9,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.EditServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.ExtractAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PostAcitMonthEndTrialBalRequest;
@@ -79,6 +80,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.EditServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.ExtractAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PostAcitMonthEndTrialBalResponse;
@@ -220,5 +222,6 @@ public interface AccountingServService {
 	public SaveAcitMonthEndTBTempCloseResponse saveAcseMonthEndTBTempClose(SaveAcitMonthEndTBTempCloseRequest sametcr) throws SQLException;
 	public SaveAcitMonthEndTBReopenResponse saveAcseMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException;
 	public RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr) throws SQLException;
+	public ExtractAcseExpenseBudgetResponse extractAcseExpenseBudget(ExtractAcseExpenseBudgetRequest request) throws SQLException;
 	
 }

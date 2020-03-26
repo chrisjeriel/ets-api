@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.EditServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.ExtractAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PostAcitMonthEndTrialBalRequest;
@@ -88,6 +89,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.EditServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.ExtractAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PostAcitMonthEndTrialBalResponse;
@@ -679,6 +681,13 @@ public class AccountingServiceController {
 		logger.info("GET: /api/acct-serv-service/retrieveOrSFeeDtlDist");
 		logger.info("RetrieveOrSFeeDtlDistRequest : " + rosfddr.toString());
 		return acctServService.retrieveOrSFeeDtlDist(rosfddr);
+	}
+    
+    @PostMapping(path="extractAcseExpenseBudget")
+	public @ResponseBody ExtractAcseExpenseBudgetResponse extractAcseExpenseBudget(@RequestBody ExtractAcseExpenseBudgetRequest request) throws SQLException {
+		logger.info("POST: /api/acct-serv-service/extractAcseExpenseBudget");
+		logger.info("ExtractAcseExpenseBudgetRequest : " + request.toString());
+		return acctServService.extractAcseExpenseBudget(request);
 	}
     
 }

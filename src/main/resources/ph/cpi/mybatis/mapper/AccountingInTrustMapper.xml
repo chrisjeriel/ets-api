@@ -4805,7 +4805,7 @@
 		BEGIN
 			<foreach collection="delUnappliedColl" item="del">
 				ACIT_JV_UNAPP_INW_PKG.del_jv_unapp_coll(#{del.tranId},
-														#{save.unappliedId});
+														#{del.unappliedId});
 			</foreach>
 			
 			<foreach collection="saveUnappliedColl" item="save">
@@ -4925,6 +4925,8 @@
 	</select>
 	
 	<update id="saveJVTrtyUnappliedColl" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
 		BEGIN
 			<foreach collection="delTrtyUnapplied" item="del">
 				ACIT_JV_UNAPP_INW_PKG.del_jv_trty(#{del.tranId},
@@ -4963,6 +4965,8 @@
 														 CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 				);
 			</foreach>
+			
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
 		END;
 	</update>
 	

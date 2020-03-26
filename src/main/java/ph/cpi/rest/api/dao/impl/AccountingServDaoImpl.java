@@ -650,5 +650,20 @@ public class AccountingServDaoImpl implements AccountingServDao{
 		String result = sqlSession.selectOne("checkAcseJvSeries");
 		return result;
 	}
+
+	@Override
+	public HashMap<String, Object> validateCopyBudgetYear(HashMap<String, Object> params) throws SQLException {
+		params.put("validate", "");
+		params.put("message", "");
+		sqlSession.update("validateCopyBudgetYear", params);
+		
+		return params;
+	}
+
+	@Override
+	public HashMap<String, Object> extractAcseExpenseBudget(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("extractAcseExpenseBudget", params);
+		return params;
+	}
 	
 }
