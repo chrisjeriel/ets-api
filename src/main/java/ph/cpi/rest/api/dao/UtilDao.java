@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import ph.cpi.rest.api.model.utils.CLMR010B;
+import ph.cpi.rest.api.model.utils.CLMR010D;
 import ph.cpi.rest.api.model.utils.CLMR010H;
 import ph.cpi.rest.api.model.utils.CLMR010I;
 import ph.cpi.rest.api.model.utils.CLMR010J;
+import ph.cpi.rest.api.model.utils.CLMR010K;
+import ph.cpi.rest.api.model.utils.CLMR010M;
+import ph.cpi.rest.api.model.utils.CLMR010N;
 import ph.cpi.rest.api.model.utils.POLR044A;
 import ph.cpi.rest.api.model.utils.POLR044B;
 import ph.cpi.rest.api.model.utils.POLR044C;
@@ -68,8 +72,12 @@ public interface UtilDao {
 	public List<POLR052F> retrievePolR052f(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<CLMR010B> retrieveClmR010b(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010D> retrieveClmR010d(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010H> retrieveClmR010h(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010I> retrieveClmR010i(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010J> retrieveClmR010j(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010K> retrieveClmR010k(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010M> retrieveClmR010m(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010N> retrieveClmR010n(final HashMap<String, Object> params ) throws SQLException;
 	
 }

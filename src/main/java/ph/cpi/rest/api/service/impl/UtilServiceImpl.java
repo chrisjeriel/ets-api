@@ -266,12 +266,20 @@ public class UtilServiceImpl implements UtilService {
 		//claims > reports > csv
 		else if(reportName.equals("CLMR010B")) {
 			retcResponse.setListClmr010b(utilDao.retrieveClmR010b(retcParams));
+		}else if(reportName.equals("CLMR010D")) {
+			retcResponse.setListClmr010d(utilDao.retrieveClmR010d(retcParams));
 		}else if(reportName.equals("CLMR010H")) {
 			retcResponse.setListClmr010h(utilDao.retrieveClmR010h(retcParams));
 		}else if(reportName.equals("CLMR010I")) {
 			retcResponse.setListClmr010i(utilDao.retrieveClmR010i(retcParams));
 		}else if(reportName.equals("CLMR010J")) {
 			retcResponse.setListClmr010j(utilDao.retrieveClmR010j(retcParams));
+		}else if(reportName.equals("CLMR010K")) {
+			retcResponse.setListClmr010k(utilDao.retrieveClmR010k(retcParams));
+		}else if(reportName.equals("CLMR010M")) {
+			retcResponse.setListClmr010m(utilDao.retrieveClmR010m(retcParams));
+		}else if(reportName.equals("CLMR010N")) {
+			retcResponse.setListClmr010n(utilDao.retrieveClmR010n(retcParams));
 		}
 		else {
 			System.out.println("No Response yet!");

@@ -12,9 +12,13 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
 import ph.cpi.rest.api.model.utils.CLMR010B;
+import ph.cpi.rest.api.model.utils.CLMR010D;
 import ph.cpi.rest.api.model.utils.CLMR010H;
 import ph.cpi.rest.api.model.utils.CLMR010I;
 import ph.cpi.rest.api.model.utils.CLMR010J;
+import ph.cpi.rest.api.model.utils.CLMR010K;
+import ph.cpi.rest.api.model.utils.CLMR010M;
+import ph.cpi.rest.api.model.utils.CLMR010N;
 import ph.cpi.rest.api.model.utils.POLR044;
 import ph.cpi.rest.api.model.utils.POLR044A;
 import ph.cpi.rest.api.model.utils.POLR044B;
@@ -320,6 +324,30 @@ public class UtilDaoImpl implements UtilDao{
 	public List<CLMR010J> retrieveClmR010j(HashMap<String, Object> params) throws SQLException {
 		List<CLMR010J> retrieveClmR010j = sqlSession.selectList("retrieveClmR010j",params);
 		return retrieveClmR010j;
+	}
+
+	@Override
+	public List<CLMR010D> retrieveClmR010d(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010D> retrieveClmR010d = sqlSession.selectList("retrieveClmR010d",params);
+		return retrieveClmR010d;
+	}
+
+	@Override
+	public List<CLMR010K> retrieveClmR010k(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010K> retrieveClmR010k = sqlSession.selectList("retrieveClmR010k",params);
+		return retrieveClmR010k;
+	}
+
+	@Override
+	public List<CLMR010M> retrieveClmR010m(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010M> retrieveClmR010m = sqlSession.selectList("retrieveClmR010m",params);
+		return retrieveClmR010m;
+	}
+
+	@Override
+	public List<CLMR010N> retrieveClmR010n(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010N> retrieveClmR010n = sqlSession.selectList("retrieveClmR010n",params);
+		return retrieveClmR010n;
 	}
 	
 }
