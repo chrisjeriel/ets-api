@@ -5387,4 +5387,50 @@
 		END;
 	</update>
 
+	<select id="retMtnPostingAmtLimit" resultMap="UserAmtLimitMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(MTN_POSTING_LIMIT_PKG.ret_MTN_POSTING_LIMIT(#{userGrp,jdbcType=VARCHAR},#{lineCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
+	
+	<update id="saveMtnPostingAmtLimit" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="delUserAmtLmt" item="userAmtLmt">
+				MTN_POSTING_LIMIT_PKG.del_MTN_POSTING_LIMIT(#{userAmtLmt.userGrp},#{userAmtLmt.lineCd});
+			</foreach>
+			<foreach collection="saveUserAmtLmt" item="userAmtLmt">
+				MTN_POSTING_LIMIT_PKG.save_MTN_POSTING_LIMIT(#{userAmtLmt.userGrp,jdbcType=VARCHAR},#{userAmtLmt.lineCd,jdbcType=VARCHAR},
+						#{userAmtLmt.allAmtSw,jdbcType=VARCHAR},#{userAmtLmt.amtLimit,jdbcType=VARCHAR},#{userAmtLmt.remarks,jdbcType=VARCHAR},
+						#{userAmtLmt.createUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+						#{userAmtLmt.updateUser,jdbcType=VARCHAR},CAST(to_timestamp(#{userAmtLmt.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.ClaimReportsRange" id="ClaimReportsRangeMap">
+		<result property="userId" 			column="USER_ID"/>
+		<result property="rangeCd" 			column="RANGE_CD"/>
+		<result property="rangeValue" 			column="RANGE_VALUE"/>
+	</resultMap>
+	
+	<select id="retrieveMtnClmReportsRange" resultMap="ClaimReportsRangeMap" parameterType="java.util.Map">
+			SELECT * FROM TABLE(MTN_REP_CLM_RANGE_PKG.ret_MTN_REP_CLM_RANGE(#{userId},'', '', '', ''))
+	</select>
+	
+	<update id="saveMtnClmReportsRange">
+		BEGIN
+			<foreach collection="delReportsRange" item="del">
+				MTN_REP_CLM_RANGE_PKG.del_MTN_REP_CLM_RANGE(#{del.userId},
+														 #{del.rangeCd});
+			</foreach>
+			
+			<foreach collection="saveReportsRange" item="save">
+				MTN_REP_CLM_RANGE_PKG.save_MTN_REP_CLM_RANGE(#{save.userId},
+														 #{save.rangeCd},
+														 #{save.rangeValue});
+			</foreach>
+		END;
+	</update>
+	
+	<select id="checkOkDeleteRetPerCede" resultType="java.lang.String">
+		select MTN_POOL_RET_HIST_PKG.check_ok_del(#{currencyCd},#{retHistId}) FROM DUAL
+	</select>
 </mapper>

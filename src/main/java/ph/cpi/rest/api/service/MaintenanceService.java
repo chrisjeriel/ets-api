@@ -216,5 +216,10 @@ public interface MaintenanceService {
 	public SaveMtnReportsRangeResponse saveMtnReportsRange(SaveMtnReportsRangeRequest request) throws SQLException;
 	public GenerateMtnBookingMthResponse generateMtnBookingMth(GenerateMtnBookingMthRequest gmbmr) throws SQLException;
 	public SaveMtnBookingMthResponse saveMtnBookingMth(SaveMtnBookingMthRequest smbmr) throws SQLException;
+	public RetMtnUserAmtLimitResponse retMtnPostingAmtLimit(RetMtnUserAmtLimitRequest rmil)throws SQLException;
+	public SaveMtnUserAmtLimitResponse saveMtnPostingAmtLimit(SaveMtnUserAmtLimitRequest smualr)throws SQLException;
+	public RetrieveMtnClmReportsRangeResponse retrieveMtnClmReportsRange(RetrieveMtnClmReportsRangeRequest request)throws SQLException;
+	public SaveMtnClmReportsRangeResponse saveMtnClmReportsRange(SaveMtnClmReportsRangeRequest request)throws SQLException;
+	public String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException;;
 	
 }

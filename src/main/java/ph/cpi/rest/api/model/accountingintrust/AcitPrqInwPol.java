@@ -32,6 +32,7 @@ public class AcitPrqInwPol {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String insuredDesc;
 	public Integer getReqId() {
 		return reqId;
 	}
@@ -194,6 +195,12 @@ public class AcitPrqInwPol {
 	public void setPrevNetDue(BigDecimal prevNetDue) {
 		this.prevNetDue = prevNetDue;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	@Override
 	public String toString() {
 		return "AcitPrqInwPol [reqId=" + reqId + ", itemNo=" + itemNo + ", policyNo=" + policyNo + ", coRefNo="
@@ -203,6 +210,7 @@ public class AcitPrqInwPol {
 				+ ", prevBalance=" + prevBalance + ", returnAmt=" + returnAmt + ", premAmt=" + premAmt + ", riComm="
 				+ riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", prevNetDue=" + prevNetDue
 				+ ", totalPayt=" + totalPayt + ", remainingBal=" + remainingBal + ", createUser=" + createUser
-				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
+				+ ", insuredDesc=" + insuredDesc + "]";
 	}
 }

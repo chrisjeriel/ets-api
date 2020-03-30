@@ -30,7 +30,7 @@ import ph.cpi.rest.api.model.response.SaveRemindersResponse;
 import ph.cpi.rest.api.service.WorkFlowService;
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", 
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200","http://192.168.99.202:4201", 
 						"http://192.168.99.202:8888", "http://192.168.99.202:8080",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
 						"http://192.10.10.210:8889", "http://192.10.10.210:4201","http://192.168.1.4:4200"})

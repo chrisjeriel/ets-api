@@ -69,6 +69,7 @@ import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
+import ph.cpi.rest.api.model.request.SaveManualDistPoltRequest;
 import ph.cpi.rest.api.model.request.SaveManualDistRiskTreatyRequest;
 import ph.cpi.rest.api.model.request.SaveOpenPolDetailsRequest;
 import ph.cpi.rest.api.model.request.SavePolAlopItemRequest;
@@ -151,6 +152,7 @@ import ph.cpi.rest.api.model.response.RetrieveWfmApprovalsResponse;
 import ph.cpi.rest.api.model.response.SaveExpCatPerilResponse;
 import ph.cpi.rest.api.model.response.SaveExpCovResponse;
 import ph.cpi.rest.api.model.response.SaveExpGenInfoResponse;
+import ph.cpi.rest.api.model.response.SaveManualDistPolResponse;
 import ph.cpi.rest.api.model.response.SaveManualDistRiskTreatyResponse;
 import ph.cpi.rest.api.model.response.SaveOpenPolDetailsResponse;
 import ph.cpi.rest.api.model.response.SavePolAlopItemResponse;
@@ -180,7 +182,7 @@ import ph.cpi.rest.api.model.response.UpdatePolicyStatusResponse;
 import ph.cpi.rest.api.service.UnderwritingService;
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", 
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:4201", 
 						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
 						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
@@ -806,7 +808,7 @@ public class UnderwritingController {
 	@PostMapping(path="createOcAlt")
 	public @ResponseBody CreateOcAltResponse createOcAlt(@RequestBody CreateOcAltRequest rpedr) throws SQLException{
 		logger.info("POST: /api/underwriting-service/createOcAlt");
-		logger.info("CreateOcAltResponse : " + rpedr.toString());
+		logger.info("CreateOcAltRequest : " + rpedr.toString());
 		return underwritingService.createOcAlt(rpedr);
 	}
 	
@@ -815,5 +817,26 @@ public class UnderwritingController {
 		logger.info("GET: /api/underwriting-service/retrievePolOcInfo");
 		logger.info("RetrieveCreateOcAltLovRequest : " + rpedr.toString());
 		return underwritingService.retrievePolOcInfo(rpedr);
+	}
+	
+	@PostMapping(path="saveManualDistPol")
+	public @ResponseBody SaveManualDistPolResponse saveManualDistPol(@RequestBody SaveManualDistPoltRequest rpedr) throws SQLException{
+		logger.info("POST: /api/underwriting-service/saveManualDistPol");
+		logger.info("SaveManualDistPoltRequest : " + rpedr.toString());
+		return underwritingService.saveManualDistPol(rpedr);
+	}
+	
+	@GetMapping(path="retrievePolFullItem")
+	public @ResponseBody RetrievePolItemResponse retrievePolFullItem(RetrievePolItemRequest rpir) throws SQLException {
+		logger.info("GET: /api/underwriting-service/retrievePolFullItem");
+		logger.info("RetrievePolFullItemRequest : " + rpir.toString());
+		return underwritingService.retrievePolFullItem(rpir);
+	}
+	
+	@PostMapping(path="savePolFullItem")
+	public @ResponseBody SavePolItemResponse savePolFullItem(@RequestBody SavePolItemRequest spir ) throws SQLException {
+		logger.info("GET: /api/underwriting-service/savePolFullItem");
+		logger.info("SavePolFullItemRequest : " + spir.toString());
+		return underwritingService.savePolFullItem(spir);
 	}
 }

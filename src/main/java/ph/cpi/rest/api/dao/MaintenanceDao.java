@@ -43,6 +43,7 @@ import ph.cpi.rest.api.model.maintenance.CedingCompany;
 import ph.cpi.rest.api.model.maintenance.CedingRetention;
 import ph.cpi.rest.api.model.maintenance.Cession;
 import ph.cpi.rest.api.model.maintenance.ClaimReason;
+import ph.cpi.rest.api.model.maintenance.ClaimReportsRange;
 import ph.cpi.rest.api.model.maintenance.ClaimStatus;
 import ph.cpi.rest.api.model.maintenance.Company;
 import ph.cpi.rest.api.model.maintenance.CrestaZone;
@@ -315,4 +316,9 @@ public interface MaintenanceDao {
 	public HashMap<String,Object> saveMtnReportsRange(final HashMap<String,Object> params) throws SQLException;
 	public HashMap<String,Object> generateMtnBookingMth(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> saveMtnBookingMth(final HashMap<String,Object> params) throws SQLException;
+	public List<UserAmtLimit> retMtnPostingAmtLimit(HashMap<String, Object> params) throws SQLException;
+	public Integer saveMtnPostingAmtLimit(HashMap<String, Object> params) throws SQLException;
+	public List<ClaimReportsRange> retrieveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
+	public HashMap<String, Object> saveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
+	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException;
 }

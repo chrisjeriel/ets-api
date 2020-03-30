@@ -18,7 +18,7 @@ import ph.cpi.rest.api.service.MaintenanceService;
 
 
 @Controller
-@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", 
+@CrossOrigin(origins = {"http://192.10.10.210:4200", "http://127.0.0.1:4200", "http://localhost:4200", "http://192.168.99.202:4200", "http://192.168.99.163:4200", "http://192.168.99.202:4201", 
 						"http://192.168.99.202:8888", "http://192.168.99.202:8080", "http://192.10.10.230:4200", "http://192.10.10.230:8888", "http://192.10.10.149:4200", 
 						"http://192.10.10.149:8888", "http://192.168.99.200:4200", "http://192.168.99.200:8888",
 						"http://192.168.99.201:8888", "http://192.168.99.201:4200", "http://192.168.99.202:8888", "http://192.168.99.202:4200",
@@ -1490,4 +1490,38 @@ public class MaintenanceController {
         return maintenanceService.saveMtnBookingMth(smbmr);
     }
 
+	@GetMapping(path="retMtnPostingAmtLimit")
+	public @ResponseBody RetMtnUserAmtLimitResponse retMtnPostingAmtLimit(RetMtnUserAmtLimitRequest rmil) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retMtnPostingAmtLimit");
+		logger.info("RetMtnPostingAmtLimitRequest : " + rmil.toString());
+		return maintenanceService.retMtnPostingAmtLimit(rmil); 	
+	}
+	@PostMapping(path="saveMtnPostingAmtLimit")
+	public @ResponseBody SaveMtnUserAmtLimitResponse saveMtnPostingAmtLimit(@RequestBody SaveMtnUserAmtLimitRequest smualr) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnPostingAmtLimit");
+		logger.info("SaveMtnPostingAmtLimitRequest : " + smualr.toString());
+		return maintenanceService.saveMtnPostingAmtLimit(smualr);
+	}
+	
+	@GetMapping(path="retrieveMtnClmReportsRange")
+	public @ResponseBody RetrieveMtnClmReportsRangeResponse retrieveMtnClmReportsRange(RetrieveMtnClmReportsRangeRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnClmReportsRange");
+		logger.info("RetrieveMtnClmReportsRangeRequest : " + request.toString());
+		return maintenanceService.retrieveMtnClmReportsRange(request);
+	}
+	
+	@PostMapping(path="saveMtnClmReportsRange")
+    public @ResponseBody SaveMtnClmReportsRangeResponse saveMtnClmReportsRange(@RequestBody SaveMtnClmReportsRangeRequest request) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnClmReportsRange");
+        logger.info("SaveMtnClmReportsRangeRequest : " + request.toString());
+        return maintenanceService.saveMtnClmReportsRange(request);
+    }
+	
+	@GetMapping(path="checkOkDeleteRetPerCede")
+	public @ResponseBody String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/CheckOkDeleteRetPerCedeRequest");
+		logger.info("CheckOkDeleteRetPerCedeRequest : " + request.toString());
+		return maintenanceService.checkOkDeleteRetPerCede(request);
+	}
+	
 }

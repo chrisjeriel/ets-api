@@ -683,6 +683,9 @@ public class ClaimsServiceImpl implements ClaimsService {
 		params.put("insuredDesc", rcprr.getInsuredDesc());
 		params.put("riskName", rcprr.getRiskName());
 		params.put("lossDate", rcprr.getLossDate());
+		params.put("bookingMonth", rcprr.getBookingMonth());
+		params.put("search", rcprr.getSearch());
+		params.put("sort",rcprr.getSortRequest());
 		response.setList(claimsDao.retrieveClmPaytReqInq(params));
 		return response;
 	}

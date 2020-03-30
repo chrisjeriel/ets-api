@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class DistPolWtreaty {
@@ -8,18 +10,26 @@ public class DistPolWtreaty {
 	private String section;
 	private String trtyCedId;
 	private String trtyCedName;
-	private Double pctShare;
-	private Double siAmt;
-	private Double premAmt;
-	private Double commRt;
-	private Double commAmt;
-	private Double vatRiComm;
-	private Double netDue;
+	private BigDecimal pctShare;
+	private BigDecimal siAmt;
+	private BigDecimal premAmt;
+	private BigDecimal commRt;
+	private BigDecimal commAmt;
+	private BigDecimal vatRiComm;
+	private BigDecimal netDue;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String retLayer;
 	
+	
+	public String getRetLayer() {
+		return retLayer;
+	}
+	public void setRetLayer(String retLayer) {
+		this.retLayer = retLayer;
+	}
 	public Integer getTreatyId() {
 		return treatyId;
 	}
@@ -50,46 +60,46 @@ public class DistPolWtreaty {
 	public void setTrtyCedName(String trtyCedName) {
 		this.trtyCedName = trtyCedName;
 	}
-	public Double getPctShare() {
+	public BigDecimal getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(Double pctShare) {
+	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
 	}
-	public Double getSiAmt() {
+	public BigDecimal getSiAmt() {
 		return siAmt;
 	}
-	public void setSiAmt(Double siAmt) {
+	public void setSiAmt(BigDecimal siAmt) {
 		this.siAmt = siAmt;
 	}
-	public Double getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(Double premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public Double getCommRt() {
+	public BigDecimal getCommRt() {
 		return commRt;
 	}
-	public void setCommRt(Double commRt) {
+	public void setCommRt(BigDecimal commRt) {
 		this.commRt = commRt;
 	}
-	public Double getCommAmt() {
+	public BigDecimal getCommAmt() {
 		return commAmt;
 	}
-	public void setCommAmt(Double commAmt) {
+	public void setCommAmt(BigDecimal commAmt) {
 		this.commAmt = commAmt;
 	}
-	public Double getVatRiComm() {
+	public BigDecimal getVatRiComm() {
 		return vatRiComm;
 	}
-	public void setVatRiComm(Double vatRiComm) {
+	public void setVatRiComm(BigDecimal vatRiComm) {
 		this.vatRiComm = vatRiComm;
 	}
-	public Double getNetDue() {
+	public BigDecimal getNetDue() {
 		return netDue;
 	}
-	public void setNetDue(Double netDue) {
+	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
 	public String getCreateUser() {
@@ -123,6 +133,6 @@ public class DistPolWtreaty {
 				+ ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName + ", pctShare=" + pctShare + ", siAmt="
 				+ siAmt + ", premAmt=" + premAmt + ", commRt=" + commRt + ", commAmt=" + commAmt + ", vatRiComm="
 				+ vatRiComm + ", netDue=" + netDue + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", retLayer=" + retLayer + "]";
 	}
 }
