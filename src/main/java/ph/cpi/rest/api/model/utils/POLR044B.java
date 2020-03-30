@@ -11,6 +11,8 @@ public class POLR044B {
 	private String siAmt;
 	private String premAmt;
 	private String remarks;
+	private String fromDate;
+	private String toDate;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -71,11 +73,23 @@ public class POLR044B {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
 	@Override
 	public String toString() {
 		return "POLR044B [extractUser=" + extractUser + ", policyNo=" + policyNo + ", cedingName=" + cedingName
 				+ ", expiryDate=" + expiryDate + ", insuredDesc=" + insuredDesc + ", projDesc=" + projDesc
 				+ ", currencyCd=" + currencyCd + ", siAmt=" + siAmt + ", premAmt=" + premAmt + ", remarks=" + remarks
-				+ "]";
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
 	}
 }

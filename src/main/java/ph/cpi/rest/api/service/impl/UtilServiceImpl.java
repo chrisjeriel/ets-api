@@ -226,9 +226,7 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044g(utilDao.retrievePolR044g(retcParams));
 		}else if(reportName.equals("POLR044H")) {
 			retcResponse.setListPolr044h(utilDao.retrievePolR044h(retcParams));
-		}
-		//need to check
-		else if(reportName.equals("POLR044I")) {
+		}else if(reportName.equals("POLR044I")) {
 			retcResponse.setListPolr044i(utilDao.retrievePolR044i(retcParams));
 		}else if(reportName.equals("POLR044J")) {
 			retcResponse.setListPolr044j(utilDao.retrievePolR044j(retcParams));
@@ -252,7 +250,30 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044s(utilDao.retrievePolR044s(retcParams));
 		}else if(reportName.equals("POLR044T")) {
 			retcResponse.setListPolr044t(utilDao.retrievePolR044t(retcParams));
-		}else {
+		}
+		//accounting > reports > csv
+		else if(reportName.equals("POLR052A")) {
+			retcResponse.setListPolr052a(utilDao.retrievePolR052a(retcParams));
+		}else if(reportName.equals("POLR052B")) {
+			retcResponse.setListPolr052b(utilDao.retrievePolR052b(retcParams));
+		}else if(reportName.equals("POLR052C")) {
+			retcResponse.setListPolr052c(utilDao.retrievePolR052c(retcParams));
+		}else if(reportName.equals("POLR052E")) {
+			retcResponse.setListPolr052e(utilDao.retrievePolR052e(retcParams));
+		}else if(reportName.equals("POLR052F")) {
+			retcResponse.setListPolr052f(utilDao.retrievePolR052f(retcParams));
+		}
+		//claims > reports > csv
+		else if(reportName.equals("CLMR010B")) {
+			retcResponse.setListClmr010b(utilDao.retrieveClmR010b(retcParams));
+		}else if(reportName.equals("CLMR010H")) {
+			retcResponse.setListClmr010h(utilDao.retrieveClmR010h(retcParams));
+		}else if(reportName.equals("CLMR010I")) {
+			retcResponse.setListClmr010i(utilDao.retrieveClmR010i(retcParams));
+		}else if(reportName.equals("CLMR010J")) {
+			retcResponse.setListClmr010j(utilDao.retrieveClmR010j(retcParams));
+		}
+		else {
 			System.out.println("No Response yet!");
 		}
 		
