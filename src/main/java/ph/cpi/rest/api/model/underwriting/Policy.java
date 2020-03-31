@@ -97,7 +97,22 @@ public class Policy {
 	private String repPolicyNo;
 	private String oldPolicyNo;
 	
+	private DateTime prevInceptDate;
+	private DateTime prevExpiryDate;
 	
+	
+	public DateTime getPrevInceptDate() {
+		return prevInceptDate;
+	}
+	public void setPrevInceptDate(DateTime prevInceptDate) {
+		this.prevInceptDate = prevInceptDate;
+	}
+	public DateTime getPrevExpiryDate() {
+		return prevExpiryDate;
+	}
+	public void setPrevExpiryDate(DateTime prevExpiryDate) {
+		this.prevExpiryDate = prevExpiryDate;
+	}
 	public BigDecimal getCnt() {
 		return cnt;
 	}
@@ -643,7 +658,8 @@ public class Policy {
 				+ ", alterationHist=" + alterationHist + ", polWordings=" + polWordings + ", endtText=" + endtText
 				+ ", lastAffectingPolId=" + lastAffectingPolId + ", coTermTag=" + coTermTag + ", coTermText="
 				+ coTermText + ", mbiPolicyId=" + mbiPolicyId + ", coAltRefNo=" + coAltRefNo + ", repPolicyNo="
-				+ repPolicyNo + ", oldPolicyNo=" + oldPolicyNo + "]";
+				+ repPolicyNo + ", oldPolicyNo=" + oldPolicyNo + ", prevInceptDate=" + prevInceptDate
+				+ ", prevExpiryDate=" + prevExpiryDate + "]";
 	}
 	
 }

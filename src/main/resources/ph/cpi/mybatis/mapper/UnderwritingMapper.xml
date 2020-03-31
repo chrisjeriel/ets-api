@@ -128,6 +128,8 @@
 		<result property="repPolicyNo"   column="REP_POLICY_NO"/>
 		<result property="oldPolicyNo"   column="OLD_POLICY_NO"/>
 		
+		<result property="prevInceptDate"   column="PREV_INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="prevExpiryDate"   column="PREV_EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>

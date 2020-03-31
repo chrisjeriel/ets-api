@@ -502,7 +502,8 @@
 										  #{cedingIdParam, jdbcType=VARCHAR},
 										  #{currCdParam, jdbcType=VARCHAR},
 										  #{extractCount, mode=OUT, jdbcType=INTEGER},
-										  #{forceExtract, jdbcType=VARCHAR});
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{clmEvent,  jdbcType=VARCHAR});
 		END;
 	</update>
 	

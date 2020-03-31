@@ -16,9 +16,16 @@ public class CLMR010 {
 	private String clmAdj;
 	private String clmStat;
 	private String minLossAmt;
+	private String clmEvent;
 	
 	
 	
+	public String getClmEvent() {
+		return clmEvent;
+	}
+	public void setClmEvent(String clmEvent) {
+		this.clmEvent = clmEvent;
+	}
 	public String getMinLossAmt() {
 		return minLossAmt;
 	}
@@ -109,7 +116,7 @@ public class CLMR010 {
 				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", forceExtract=" + forceExtract + ", currCdParam="
 				+ currCdParam + ", extTypeTag=" + extTypeTag + ", clmAdj=" + clmAdj + ", clmStat=" + clmStat
-				+ ", minLossAmt=" + minLossAmt + "]";
+				+ ", minLossAmt=" + minLossAmt + ", clmEvent=" + clmEvent + "]";
 	}
 	
 }
