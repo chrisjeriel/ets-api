@@ -2896,7 +2896,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			throws SQLException {
 		RetrieveAcitUnappliedCollResponse response  =  new RetrieveAcitUnappliedCollResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("unappliedId", request.getUnappliedId());
 		params.put("cedingId", request.getCedingId());
+		params.put("currCd", request.getCurrCd());
+		
 		response.setUnappliedColl(acctITDao.retrieveUnappliedCollection(params));
 		return response;
 	}
@@ -2985,6 +2988,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		SaveAcitJvUnappliedTrtyResponse response = new SaveAcitJvUnappliedTrtyResponse();
 		try{
 			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("tranId", request.getTranId());
+			params.put("tranType", request.getTranType());
 			params.put("saveTrtyUnapplied", request.getSaveTrtyUnapplied());
 			params.put("delTrtyUnapplied", request.getDelTrtyUnapplied());
 			HashMap<String,Object> res = acctITDao.saveJVTrtyUnappliedColl(params);

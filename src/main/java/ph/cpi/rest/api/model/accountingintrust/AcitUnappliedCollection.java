@@ -28,6 +28,19 @@ public class AcitUnappliedCollection {
 	private String updateUser;
 	private DateTime updateDate;
 	private String processing;
+	
+	private Integer unappliedId;
+	private String cedingId;
+	private Integer refTranId;
+	private Integer refBillId;
+	private Integer refItemNo;
+	private String transDtlType;
+	private BigDecimal totalUnapldAmt;
+	private BigDecimal totalApldAmt;
+	private BigDecimal tempApldAmt;
+	private BigDecimal balUnapldAmt;
+	private String returnTag;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -168,6 +181,72 @@ public class AcitUnappliedCollection {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getUnappliedId() {
+		return unappliedId;
+	}
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public Integer getRefTranId() {
+		return refTranId;
+	}
+	public void setRefTranId(Integer refTranId) {
+		this.refTranId = refTranId;
+	}
+	public Integer getRefBillId() {
+		return refBillId;
+	}
+	public void setRefBillId(Integer refBillId) {
+		this.refBillId = refBillId;
+	}
+	public Integer getRefItemNo() {
+		return refItemNo;
+	}
+	public void setRefItemNo(Integer refItemNo) {
+		this.refItemNo = refItemNo;
+	}
+	public String getTransDtlType() {
+		return transDtlType;
+	}
+	public void setTransDtlType(String transDtlType) {
+		this.transDtlType = transDtlType;
+	}
+	public BigDecimal getTotalUnapldAmt() {
+		return totalUnapldAmt;
+	}
+	public void setTotalUnapldAmt(BigDecimal totalUnapldAmt) {
+		this.totalUnapldAmt = totalUnapldAmt;
+	}
+	public BigDecimal getTotalApldAmt() {
+		return totalApldAmt;
+	}
+	public void setTotalApldAmt(BigDecimal totalApldAmt) {
+		this.totalApldAmt = totalApldAmt;
+	}
+	public BigDecimal getTempApldAmt() {
+		return tempApldAmt;
+	}
+	public void setTempApldAmt(BigDecimal tempApldAmt) {
+		this.tempApldAmt = tempApldAmt;
+	}
+	public BigDecimal getBalUnapldAmt() {
+		return balUnapldAmt;
+	}
+	public void setBalUnapldAmt(BigDecimal balUnapldAmt) {
+		this.balUnapldAmt = balUnapldAmt;
+	}
+	public String getReturnTag() {
+		return returnTag;
+	}
+	public void setReturnTag(String returnTag) {
+		this.returnTag = returnTag;
+	}
 	@Override
 	public String toString() {
 		return "AcitUnappliedCollection [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo
@@ -177,7 +256,10 @@ public class AcitUnappliedCollection {
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
 				+ ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing="
-				+ processing + "]";
+				+ processing + ", unappliedId=" + unappliedId + ", cedingId=" + cedingId + ", refTranId=" + refTranId
+				+ ", refBillId=" + refBillId + ", refItemNo=" + refItemNo + ", transDtlType=" + transDtlType
+				+ ", totalUnapldAmt=" + totalUnapldAmt + ", totalApldAmt=" + totalApldAmt + ", tempApldAmt="
+				+ tempApldAmt + ", balUnapldAmt=" + balUnapldAmt + ", returnTag=" + returnTag + "]";
 	}
 	
 	

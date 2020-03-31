@@ -56,7 +56,7 @@ class unappliedColl {
 	private Integer refBillId;
 	private Integer refItemNo;
 	private String cedingId;
-	private String transdtlType;
+	private String transDtlType;
 	private String itemName;
 	private String currCd;
 	private BigDecimal currRate;
@@ -73,6 +73,7 @@ class unappliedColl {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private Integer unappliedId;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -104,11 +105,11 @@ class unappliedColl {
 	public void setRefItemNo(Integer refItemNo) {
 		this.refItemNo = refItemNo;
 	}
-	public String getTransdtlType() {
-		return transdtlType;
+	public String getTransDtlType() {
+		return transDtlType;
 	}
-	public void setTransdtlType(String transdtlType) {
-		this.transdtlType = transdtlType;
+	public void setTransDtlType(String transDtlType) {
+		this.transDtlType = transDtlType;
 	}
 	public String getItemName() {
 		return itemName;
@@ -206,15 +207,22 @@ class unappliedColl {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getUnappliedId() {
+		return unappliedId;
+	}
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
+	}
 	@Override
 	public String toString() {
 		return "unappliedColl [tranId=" + tranId + ", refTranId=" + refTranId + ", refBillId=" + refBillId
-				+ ", refItemNo=" + refItemNo + ", cedingId=" + cedingId + ", transdtlType=" + transdtlType
+				+ ", refItemNo=" + refItemNo + ", cedingId=" + cedingId + ", transDtlType=" + transDtlType
 				+ ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPaytAmt="
 				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", unappliedAmt=" + unappliedAmt + ", actualBalPaid="
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
 				+ ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", unappliedId="
+				+ unappliedId + "]";
 	}
 	
 	

@@ -4,8 +4,24 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class SaveAcitJvUnappliedTrtyRequest {
+	
+	private Integer tranId;
+	private Integer tranType;
 	private List<UnappliedTrty> saveTrtyUnapplied;
 	private List<UnappliedTrty> delTrtyUnapplied;
+	
+	public Integer getTranId() {
+		return tranId;
+	}
+	public void setTranId(Integer tranId) {
+		this.tranId = tranId;
+	}
+	public Integer getTranType() {
+		return tranType;
+	}
+	public void setTranType(Integer tranType) {
+		this.tranType = tranType;
+	}
 	public List<UnappliedTrty> getSaveTrtyUnapplied() {
 		return saveTrtyUnapplied;
 	}
@@ -20,8 +36,8 @@ public class SaveAcitJvUnappliedTrtyRequest {
 	}
 	@Override
 	public String toString() {
-		return "SaveAcitJvUnappliedTrtyRequest [saveTrtyUnapplied=" + saveTrtyUnapplied + ", delTrtyUnapplied="
-				+ delTrtyUnapplied + "]";
+		return "SaveAcitJvUnappliedTrtyRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveTrtyUnapplied="
+				+ saveTrtyUnapplied + ", delTrtyUnapplied=" + delTrtyUnapplied + "]";
 	}
 	
 	

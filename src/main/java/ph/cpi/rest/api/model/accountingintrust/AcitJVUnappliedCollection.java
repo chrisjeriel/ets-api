@@ -29,6 +29,7 @@ public class AcitJVUnappliedCollection {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private Integer unappliedId;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -175,15 +176,22 @@ public class AcitJVUnappliedCollection {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getUnappliedId() {
+		return unappliedId;
+	}
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
+	}
 	@Override
 	public String toString() {
-		return "AcitJVUnappliedCollection [tranId=" + tranId + ", refTranId=" + refTranId + ", refBillId=" + refBillId
-				+ ", refItemNo=" + refItemNo + ", transDtlType=" + transDtlType + ", transDtlName=" + transDtlName
-				+ ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPaytAmt="
-				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", unappliedAmt=" + unappliedAmt + ", localAmt="
+		return "AcitJVUnappliedCollection [tranId=" + tranId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", refTranId=" + refTranId + ", refBillId=" + refBillId + ", refItemNo=" + refItemNo
+				+ ", transDtlType=" + transDtlType + ", transDtlName=" + transDtlName + ", itemName=" + itemName
+				+ ", currCd=" + currCd + ", currRate=" + currRate + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance="
+				+ prevBalance + ", actualBalPaid=" + actualBalPaid + ", unappliedAmt=" + unappliedAmt + ", localAmt="
 				+ localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance + ", refNo=" + refNo
 				+ ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", unappliedId=" + unappliedId + "]";
 	}
 	
 }

@@ -39,6 +39,7 @@ class SaveAcseBudgetExp {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private String glShortDesc;
 	public Integer getBudgetYear() {
 		return budgetYear;
 	}
@@ -105,11 +106,17 @@ class SaveAcseBudgetExp {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getGlShortDesc() {
+		return glShortDesc;
+	}
+	public void setGlShortDesc(String glShortDesc) {
+		this.glShortDesc = glShortDesc;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseBudgetExp [budgetYear=" + budgetYear + ", itemNo=" + itemNo + ", glAcctId=" + glAcctId
 				+ ", slTypeCd=" + slTypeCd + ", slCd=" + slCd + ", totalBudget=" + totalBudget + ", totalExpense="
 				+ totalExpense + ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser="
-				+ updateUser + ", updateDate=" + updateDate + "]";
+				+ updateUser + ", updateDate=" + updateDate + ", glShortDesc=" + glShortDesc + "]";
 	}
 }
