@@ -25,6 +25,7 @@ public class CLMR010D {
 	private String lossCd;
 	private String lossAbbr;
 	private String lossResAmt;
+	private String treatyCompany;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -169,6 +170,12 @@ public class CLMR010D {
 	public void setLossResAmt(String lossResAmt) {
 		this.lossResAmt = lossResAmt;
 	}
+	public String getTreatyCompany() {
+		return treatyCompany;
+	}
+	public void setTreatyCompany(String treatyCompany) {
+		this.treatyCompany = treatyCompany;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010D [extractUser=" + extractUser + ", extractDate=" + extractDate + ", dateParam=" + dateParam
@@ -177,6 +184,7 @@ public class CLMR010D {
 				+ ", lossDate=" + lossDate + ", adjId=" + adjId + ", adjName=" + adjName + ", cedingId=" + cedingId
 				+ ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", coRefNo="
 				+ coRefNo + ", currencyCd=" + currencyCd + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
-				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossResAmt=" + lossResAmt + "]";
+				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossResAmt=" + lossResAmt + ", treatyCompany="
+				+ treatyCompany + "]";
 	}
 }

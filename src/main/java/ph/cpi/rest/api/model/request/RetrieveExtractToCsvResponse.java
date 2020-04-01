@@ -10,6 +10,8 @@ import ph.cpi.rest.api.model.utils.CLMR010J;
 import ph.cpi.rest.api.model.utils.CLMR010K;
 import ph.cpi.rest.api.model.utils.CLMR010M;
 import ph.cpi.rest.api.model.utils.CLMR010N;
+import ph.cpi.rest.api.model.utils.CLMR010O;
+import ph.cpi.rest.api.model.utils.CLMR010P;
 import ph.cpi.rest.api.model.utils.POLR044;
 import ph.cpi.rest.api.model.utils.POLR044A;
 import ph.cpi.rest.api.model.utils.POLR044B;
@@ -73,6 +75,8 @@ public class RetrieveExtractToCsvResponse {
 	private List<CLMR010K> listClmr010k;
 	private List<CLMR010M> listClmr010m;
 	private List<CLMR010N> listClmr010n;
+	private List<CLMR010O> listClmr010o;
+	private List<CLMR010P> listClmr010p;
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
 	}
@@ -271,6 +275,18 @@ public class RetrieveExtractToCsvResponse {
 	public void setListClmr010n(List<CLMR010N> listClmr010n) {
 		this.listClmr010n = listClmr010n;
 	}
+	public List<CLMR010O> getListClmr010o() {
+		return listClmr010o;
+	}
+	public void setListClmr010o(List<CLMR010O> listClmr010o) {
+		this.listClmr010o = listClmr010o;
+	}
+	public List<CLMR010P> getListClmr010p() {
+		return listClmr010p;
+	}
+	public void setListClmr010p(List<CLMR010P> listClmr010p) {
+		this.listClmr010p = listClmr010p;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -284,6 +300,7 @@ public class RetrieveExtractToCsvResponse {
 				+ ", listPolr052e=" + listPolr052e + ", listPolr052f=" + listPolr052f + ", listClmr010b=" + listClmr010b
 				+ ", listClmr010d=" + listClmr010d + ", listClmr010h=" + listClmr010h + ", listClmr010i=" + listClmr010i
 				+ ", listClmr010j=" + listClmr010j + ", listClmr010k=" + listClmr010k + ", listClmr010m=" + listClmr010m
-				+ ", listClmr010n=" + listClmr010n + "]";
+				+ ", listClmr010n=" + listClmr010n + ", listClmr010o=" + listClmr010o + ", listClmr010p=" + listClmr010p
+				+ "]";
 	}
 }

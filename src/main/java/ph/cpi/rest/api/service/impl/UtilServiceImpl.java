@@ -280,6 +280,10 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr010m(utilDao.retrieveClmR010m(retcParams));
 		}else if(reportName.equals("CLMR010N")) {
 			retcResponse.setListClmr010n(utilDao.retrieveClmR010n(retcParams));
+		}else if(reportName.equals("CLMR010O")) {
+			retcResponse.setListClmr010o(utilDao.retrieveClmR010o(retcParams));
+		}else if(reportName.equals("CLMR010P")) {
+			retcResponse.setListClmr010p(utilDao.retrieveClmR010p(retcParams));
 		}
 		else {
 			System.out.println("No Response yet!");

@@ -1706,6 +1706,7 @@
 		<result property="lossCd"             column="LOSS_CD"/>
 		<result property="lossAbbr"           column="LOSS_ABBR"/>
 		<result property="lossResAmt"         column="LOSS_RES_AMT"/>
+		<result property="treatyCompany"      column="TREATY_COMPANY"/>
 	</resultMap>
 	
 	<select id="retrieveClmR010d" resultMap="retrieveClmR010dMap" parameterType="java.util.Map">
@@ -1769,6 +1770,7 @@
 		<result property="cedingIdName"     column="CEDING_ID_NAME"/>
 		<result property="ret1ClmAmt"       column="RET1_CLM_AMT"/>
 		<result property="ret2ClmAmt"       column="RET2_CLM_AMT"/>
+		<result property="total"	        column="TOTAL"/>
 		<result property="osPaidTag"        column="OS_PAID_TAG"/>
 		<result property="extTypeTag"       column="EXT_TYPE_TAG"/>
 		<result property="dateParam"        column="DATE_PARAM"/>
@@ -1790,6 +1792,7 @@
         <result property="cedingIdName"     column="CEDING_ID_NAME"/>
         <result property="ret1ClmAmt"       column="RET1_CLM_AMT"/>
         <result property="ret2ClmAmt"       column="RET2_CLM_AMT"/>
+        <result property="total"	        column="TOTAL"/>
         <result property="osPaidTag"        column="OS_PAID_TAG"/>
         <result property="extTypeTag"       column="EXT_TYPE_TAG"/>
         <result property="dateParam"        column="DATE_PARAM"/>
@@ -1864,6 +1867,76 @@
     
     <select id="retrieveClmR010n" resultMap="retrieveClmR010nMap" parameterType="java.util.Map">
         SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010n_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010O" id="retrieveClmR010oMap">
+    	<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="claimId"            column="CLAIM_ID"/>
+		<result property="claimNo"            column="CLAIM_NO"/>
+		<result property="histCategory"       column="HIST_CATEGORY"/>
+		<result property="histCatDesc"        column="HIST_CAT_DESC"/>
+		<result property="insuredClm"         column="INSURED_CLM"/>
+		<result property="insuredDesc"        column="INSURED_DESC"/>
+		<result property="approvedAmt"        column="APPROVED_AMT"/>
+		<result property="lossResAmt"         column="LOSS_RES_AMT"/>
+		<result property="adjId"              column="ADJ_ID"/>
+		<result property="adjName"            column="ADJ_NAME"/>
+		<result property="cedingId"           column="CEDING_ID"/>
+		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="policyId"           column="POLICY_ID"/>
+		<result property="policyNo"           column="POLICY_NO"/>
+		<result property="polCoRefNo"         column="POL_CO_REF_NO"/>
+		<result property="lossCd"             column="LOSS_CD"/>
+		<result property="lossAbbr"           column="LOSS_ABBR"/>
+		<result property="lossDate"           column="LOSS_DATE"/>
+		<result property="dateParam"          column="DATE_PARAM"/>
+		<result property="dateRange"          column="DATE_RANGE"/>
+		<result property="dateFrom"           column="DATE_FROM"/>
+		<result property="dateTo"             column="DATE_TO"/>
+		<result property="totalLossRes"       column="TOTAL_LOSS_RES"/>
+		<result property="totalLossPd"        column="TOTAL_LOSS_PD"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010o" resultMap="retrieveClmR010oMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010o_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010P" id="retrieveClmR010pMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="claimId"          column="CLAIM_ID"/>
+		<result property="claimNo"          column="CLAIM_NO"/>
+		<result property="histCategory"     column="HIST_CATEGORY"/>
+		<result property="histCatDesc"      column="HIST_CAT_DESC"/>
+		<result property="insuredClm"       column="INSURED_CLM"/>
+		<result property="insuredDesc"      column="INSURED_DESC"/>
+		<result property="lossResAmt"       column="LOSS_RES_AMT"/>
+		<result property="lossPdAmt"        column="LOSS_PD_AMT"/>
+		<result property="adjId"            column="ADJ_ID"/>
+		<result property="adjName"          column="ADJ_NAME"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="polCoRefNo"       column="POL_CO_REF_NO"/>
+		<result property="lossCd"           column="LOSS_CD"/>
+		<result property="lossAbbr"         column="LOSS_ABBR"/>
+		<result property="lossDate"         column="LOSS_DATE"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+		<result property="totalLossRes"     column="TOTAL_LOSS_RES"/>
+		<result property="totalLossPd"      column="TOTAL_LOSS_PD"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010p" resultMap="retrieveClmR010pMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010p_to_csv(
                     #{extractUser,jdbcType=VARCHAR}))
     </select>
 </mapper>

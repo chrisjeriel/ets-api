@@ -8,6 +8,7 @@ public class CLMR010K {
 	private String cedingIdName;
 	private String ret1ClmAmt;
 	private String ret2ClmAmt;
+	private String total;
 	private String osPaidTag;
 	private String extTypeTag;
 	private String dateParam;
@@ -56,6 +57,12 @@ public class CLMR010K {
 	public void setRet2ClmAmt(String ret2ClmAmt) {
 		this.ret2ClmAmt = ret2ClmAmt;
 	}
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
+	}
 	public String getOsPaidTag() {
 		return osPaidTag;
 	}
@@ -96,8 +103,8 @@ public class CLMR010K {
 	public String toString() {
 		return "CLMR010K [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", cedingId=" + cedingId + ", cedingIdName=" + cedingIdName + ", ret1ClmAmt=" + ret1ClmAmt
-				+ ", ret2ClmAmt=" + ret2ClmAmt + ", osPaidTag=" + osPaidTag + ", extTypeTag=" + extTypeTag
-				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo="
-				+ dateTo + "]";
+				+ ", ret2ClmAmt=" + ret2ClmAmt + ", total=" + total + ", osPaidTag=" + osPaidTag + ", extTypeTag="
+				+ extTypeTag + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom
+				+ ", dateTo=" + dateTo + "]";
 	}
 }
