@@ -79,14 +79,9 @@ public class UtilDaoImpl implements UtilDao{
         	extractionMethod = "extractPOLR044OA";
         } else if ("POLR044OB".equalsIgnoreCase((String) params.get("reportId"))) {
         	extractionMethod = "extractPOLR044OB";
-        }
-		
-		
-		if (reportId.toUpperCase().contains("ACITR052")) {
+        }else if (reportId.toUpperCase().contains("ACITR052")) {
 			extractionMethod = "extractBRDRX";
-		}
-		
-		if ("POLR052A".equalsIgnoreCase((String) params.get("reportId"))) {
+		}else if ("POLR052A".equalsIgnoreCase((String) params.get("reportId"))) {
 			extractionMethod = "extractPOLR052A";
 		} else if ("POLR052B".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractPOLR052B";
@@ -98,7 +93,7 @@ public class UtilDaoImpl implements UtilDao{
             extractionMethod = "extractPOLR052E";
         } else if ("POLR052F".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractPOLR052F";
-        } else if (((String) params.get("reportId")).toUpperCase().contains("CLMR010")) {
+        } else  {
             extractionMethod = "extract" + ((String) params.get("reportId"));
         } 
 		

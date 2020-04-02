@@ -99,8 +99,15 @@ public class Policy {
 	
 	private DateTime prevInceptDate;
 	private DateTime prevExpiryDate;
+	private DateTime binderWarrantyDate;
 	
 	
+	public DateTime getBinderWarrantyDate() {
+		return binderWarrantyDate;
+	}
+	public void setBinderWarrantyDate(DateTime binderWarrantyDate) {
+		this.binderWarrantyDate = binderWarrantyDate;
+	}
 	public DateTime getPrevInceptDate() {
 		return prevInceptDate;
 	}
@@ -659,7 +666,7 @@ public class Policy {
 				+ ", lastAffectingPolId=" + lastAffectingPolId + ", coTermTag=" + coTermTag + ", coTermText="
 				+ coTermText + ", mbiPolicyId=" + mbiPolicyId + ", coAltRefNo=" + coAltRefNo + ", repPolicyNo="
 				+ repPolicyNo + ", oldPolicyNo=" + oldPolicyNo + ", prevInceptDate=" + prevInceptDate
-				+ ", prevExpiryDate=" + prevExpiryDate + "]";
+				+ ", prevExpiryDate=" + prevExpiryDate + ", binderWarrantyDate=" + binderWarrantyDate + "]";
 	}
 	
 }
