@@ -492,7 +492,8 @@
 		SELECT * FROM TABLE(MTN_ENDT_PKG.ret_endt_code(#{lineCd, jdbcType=VARCHAR},#{endtCd , jdbcType=VARCHAR},'',1,'','',
 															#{endtTitle,jdbcType=VARCHAR},
 															#{endtDesc,jdbcType=VARCHAR},
-															#{remarks,jdbcType=VARCHAR}))
+															#{remarks,jdbcType=VARCHAR},
+															#{mtnMode,jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.District" id="district">
