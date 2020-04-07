@@ -60,6 +60,10 @@ public class ReportParameters {
 		reportParams.put("P_DRAFT_TAG", grr.getDraftTag());
 		reportParams.put("P_HUNDRED_PCT",grr.getHundredPct());
 		
+		reportParams.put("P_PROD_DATE",grr.getProdDate());
+		
+		
+		
 		return reportParams;
 	}
 	
