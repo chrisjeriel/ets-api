@@ -415,6 +415,7 @@
 		<result property="updateUser" 			column="UPDATE_USER"/> 
 		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="mbiQuoteId" 			column="MBI_QUOTE_ID"/>
+		<result property="assignedBy" 			column="ASSIGNED_BY"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.quote.EndorsementsOc" id="quoteEndorsementsOcMap">

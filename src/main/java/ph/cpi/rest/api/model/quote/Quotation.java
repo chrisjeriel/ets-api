@@ -64,6 +64,7 @@ public class Quotation {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String assignedBy;
 	
 	private Project project;
 	private Options options;
@@ -492,6 +493,13 @@ public class Quotation {
 	public void setHoldCoverId(Integer holdCoverId) {
 		this.holdCoverId = holdCoverId;
 	}
+	
+	public String getAssignedBy() {
+		return assignedBy;
+	}
+	public void setAssignedBy(String assignedBy) {
+		this.assignedBy = assignedBy;
+	}
 	@Override
 	public String toString() {
 		return "Quotation [cnt=" + cnt + ", quoteId=" + quoteId + ", holdCoverId=" + holdCoverId + ", quotationNo="
@@ -512,11 +520,11 @@ public class Quotation {
 				+ ", printDate=" + printDate + ", openingParag=" + openingParag + ", closingParag=" + closingParag
 				+ ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc + ", firstOptionRt=" + firstOptionRt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", project=" + project + ", options=" + options + ", otherRates="
-				+ otherRates + ", attachmentsList=" + attachmentsList + ", competitionsList=" + competitionsList
-				+ ", otherRatesList=" + otherRatesList + ", optionsList=" + optionsList + ", alop=" + alop
-				+ ", holdCover=" + holdCover + ", attachment=" + attachment + ", intCompId=" + intCompId
-				+ ", mbiQuoteId=" + mbiQuoteId + "]";
+				+ ", updateDate=" + updateDate + ", assignedBy=" + assignedBy + ", project=" + project + ", options="
+				+ options + ", otherRates=" + otherRates + ", attachmentsList=" + attachmentsList
+				+ ", competitionsList=" + competitionsList + ", otherRatesList=" + otherRatesList + ", optionsList="
+				+ optionsList + ", alop=" + alop + ", holdCover=" + holdCover + ", attachment=" + attachment
+				+ ", intCompId=" + intCompId + ", mbiQuoteId=" + mbiQuoteId + "]";
 	}
 	
 	

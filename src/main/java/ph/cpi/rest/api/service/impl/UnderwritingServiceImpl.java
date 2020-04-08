@@ -881,6 +881,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolGenInfoParams.put("coTermText", spgip.getCoTermText());
 			savePolGenInfoParams.put("mbiPolicyId", spgip.getMbiPolicyId());
 			savePolGenInfoParams.put("coAltRefNo", spgip.getCoAltRefNo());
+			savePolGenInfoParams.put("binderWarrantyDate",spgip.getBinderWarrantyDate());
+			
 			
 			HashMap<String, Object> res = underwritingDao.savePolGenInfo(savePolGenInfoParams);
 			
@@ -1363,6 +1365,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			updatePolGenInfoParams.put("updateUser",uppgif.getUpdateUser());
 			updatePolGenInfoParams.put("updateDate",uppgif.getUpdateDate());
 			updatePolGenInfoParams.put("coAltRefNo",uppgif.getCoAltRefNo());
+			updatePolGenInfoParams.put("binderWarrantyDate",uppgif.getBinderWarrantyDate());
+			
 			
 			uppgifResponse.setReturnCode(underwritingDao.updatePolGenInfo(updatePolGenInfoParams));
 		}catch(Exception ex){

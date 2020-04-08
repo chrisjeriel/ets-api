@@ -13,7 +13,15 @@ public class UpdatePolGenInfoRequest {
 	private String updateUser;
 	private String updateDate;
 	private String coAltRefNo;
+	private String binderWarrantyDate;
+	
 
+	public String getBinderWarrantyDate() {
+		return binderWarrantyDate;
+	}
+	public void setBinderWarrantyDate(String binderWarrantyDate) {
+		this.binderWarrantyDate = binderWarrantyDate;
+	}
 	public String getCoAltRefNo() {
 		return coAltRefNo;
 	}
@@ -85,6 +93,6 @@ public class UpdatePolGenInfoRequest {
 		return "UpdatePolGenInfoRequest [policyId=" + policyId + ", riskId=" + riskId + ", coRefNo=" + coRefNo
 				+ ", riBinderNo=" + riBinderNo + ", intmId=" + intmId + ", projDesc=" + projDesc + ", latitude="
 				+ latitude + ", longitude=" + longitude + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", coAltRefNo=" + coAltRefNo + "]";
+				+ ", coAltRefNo=" + coAltRefNo + ", binderWarrantyDate=" + binderWarrantyDate + "]";
 	}
 }

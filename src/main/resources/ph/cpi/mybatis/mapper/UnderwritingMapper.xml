@@ -128,6 +128,9 @@
 		<result property="repPolicyNo"   column="REP_POLICY_NO"/>
 		<result property="oldPolicyNo"   column="OLD_POLICY_NO"/>
 		
+		<result property="prevInceptDate"   column="PREV_INCEPT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="prevExpiryDate"   column="PREV_EXPIRY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="binderWarrantyDate"   column="BINDER_WARRANTY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 
 		<association property="inwPolBalance" 	resultMap="inwPolBalMap"/>
 		<association property="coInsurance" 	resultMap="coInsuranceMap"/>
@@ -1191,7 +1194,8 @@
 											   #{coTermTag,jdbcType=VARCHAR},
 												#{coTermText,jdbcType=VARCHAR},
 												#{mbiPolicyId,jdbcType=VARCHAR},
-												#{coAltRefNo,jdbcType=VARCHAR}
+												#{coAltRefNo,jdbcType=VARCHAR},
+												CAST(to_timestamp(#{binderWarrantyDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 			);
 			
 			<!-- POL_WORDINGS_PKG.save_pol_wordings(
@@ -1992,7 +1996,8 @@
 											 #{longtitude, jdbcType=VARCHAR},
 											 #{updateUser, jdbcType=VARCHAR},
 											 CAST(to_timestamp(#{updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-											 #{coAltRefNo, jdbcType=VARCHAR}
+											 #{coAltRefNo, jdbcType=VARCHAR},
+											 CAST(to_timestamp(#{binderWarrantyDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
 											 );
 		END;
 	</update>

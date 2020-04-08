@@ -13,6 +13,7 @@ public class POLR044 {
 	private String toDate;
 	private String incRecTag;
 	private String forceExtract;
+	private String faculTag;
 	
 	private String amtMth;
 	private String amtCum;
@@ -36,6 +37,12 @@ public class POLR044 {
 	}
 	public void setSiRange(String siRange) {
 		this.siRange = siRange;
+	}
+	public String getFaculTag() {
+		return faculTag;
+	}
+	public void setFaculTag(String faculTag) {
+		this.faculTag = faculTag;
 	}
 	public String getReportId() {
 		return reportId;
@@ -110,6 +117,6 @@ public class POLR044 {
 				+ ", cedingIdParam=" + cedingIdParam + ", currCdParam=" + currCdParam + ", dateParam=" + dateParam
 				+ ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag="
 				+ incRecTag + ", forceExtract=" + forceExtract + ", amtMth=" + amtMth + ", amtCum=" + amtCum
-				+ ", siRange=" + siRange + "]";
+				+ ", siRange=" + siRange + ", faculTag=" + faculTag +  "]";
 	}
 }

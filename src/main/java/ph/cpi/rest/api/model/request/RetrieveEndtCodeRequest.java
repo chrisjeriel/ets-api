@@ -10,9 +10,16 @@ public class RetrieveEndtCodeRequest {
 	private String endtTitle;
 	private String endtDesc;
 	private String remarks;
+	private String mtnMode;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
+	public String getMtnMode() {
+		return mtnMode;
+	}
+	public void setMtnMode(String mtnMode) {
+		this.mtnMode = mtnMode;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -57,7 +64,8 @@ public class RetrieveEndtCodeRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveEndtCodeRequest [lineCd=" + lineCd + ", endtCd=" + endtCd + ", paginationRequest="
+		return "RetrieveEndtCodeRequest [lineCd=" + lineCd + ", endtCd=" + endtCd + ", endtTitle=" + endtTitle
+				+ ", endtDesc=" + endtDesc + ", remarks=" + remarks + ", mtnMode=" + mtnMode + ", paginationRequest="
 				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 
