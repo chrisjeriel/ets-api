@@ -73,6 +73,15 @@ import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
 import ph.cpi.rest.api.model.accountingintrust.AcknowledgementReceipt;
 import ph.cpi.rest.api.model.accountingintrust.GenUPRParams;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetLrd;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetClm;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetExisting;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetInvPl;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetInvPo;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetIpb;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetOth;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetTrty;
+import ph.cpi.rest.api.model.accountingintrust.MultiOffsetUnapp;
 import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.QSOAAcctReceivable;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
@@ -1274,5 +1283,71 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public Integer retrieveAcitJvListingLength(HashMap<String, Object> params) throws SQLException {
 		Integer length = (Integer) sqlSession.selectOne("retrieveAcitJvListingLength", params);
 		return length;
+	}
+
+	@Override
+	public HashMap<String, Object> saveJVMultiOffset(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("saveJVMultiOffset",params);
+		return params;
+	}
+
+	@Override
+	public List<MultiOffsetIpb> retrieveMultiOffsetIpb(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetIpb> response = sqlSession.selectList("retrieveMultiOffsetIpb", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetClm> retrieveMultiOffsetClm(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetClm> response = sqlSession.selectList("retrieveMultiOffsetClm", params);
+		return response;
+	}
+
+	@Override
+	public List<MultiOffsetTrty> retrieveMultiOffsetTrty(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetTrty> response = sqlSession.selectList("retrieveMultiOffsetTrty", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetUnapp> retrieveMultiOffsetUnapp(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetUnapp> response = sqlSession.selectList("retrieveMultiOffsetUnapp", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetInvPo> retrieveMultiOffsetInvPo(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetInvPo> response = sqlSession.selectList("retrieveMultiOffsetInvPo", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetInvPl> retrieveMultiOffsetInvPl(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetInvPl> response = sqlSession.selectList("retrieveMultiOffsetInvPl", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetLrd> retrieveAcitJVCedRepLoss(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetLrd> response = sqlSession.selectList("retrieveAcitJVCedRepLoss", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetLrd> retrieveMultiOffsetLrd(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetLrd> response = sqlSession.selectList("retrieveMultiOffsetLrd", params);
+		return response;
+	}
+	
+	@Override
+	public List<MultiOffsetOth> retrieveMultiOffsetOth(HashMap<String, Object> params) throws SQLException {
+		List<MultiOffsetOth> response = sqlSession.selectList("retrieveMultiOffsetOth", params);
+		return response;
+	}
+	
+	@Override
+	public MultiOffsetExisting retrieveMultiOffsetExisting(HashMap<String, Object> params) throws SQLException {
+		MultiOffsetExisting response = sqlSession.selectOne("retrieveMultiOffsetExisting", params);
+		return response;
 	}
 }

@@ -2969,7 +2969,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public RetrieveAcitJvUnappliedTrtyResponse retrieveTrtyUnappliedCollection(
 			RetrieveAcitJvUnappliedTrtyRequest request) throws SQLException {
@@ -2980,7 +2979,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setTrtyUnappColl(acctITDao.retrieveTrtyUnappliedCollection(params));
 		return response;
 	}
-
 
 	@Override
 	public SaveAcitJvUnappliedTrtyResponse saveJVTrtyUnappliedColl(SaveAcitJvUnappliedTrtyRequest request)
@@ -3002,7 +3000,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		return response;
 	}
 
-
 	@Override
 	public String retrieveAcitJvListingLength(RetrieveAcitJVListingRequest rajll) throws SQLException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -3020,5 +3017,104 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("jvStat", rajll.getJvStat());
 		
 		return acctITDao.retrieveAcitJvListingLength(params).toString();
+	}
+
+	@Override
+	public SaveJVMultiOffsetResponse saveJVMultiOffset(SaveJVMultiOffsetRequest request) throws SQLException {
+		SaveJVMultiOffsetResponse response = new SaveJVMultiOffsetResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("tranId", request.getTranId());
+		params.put("tranType", request.getTranType());
+		params.put("saveIpb", request.getSaveIpb());
+		params.put("delIpb", request.getDelIpb());
+		params.put("saveClm", request.getSaveClm());
+		params.put("delClm", request.getDelClm());
+		params.put("saveTrty", request.getSaveTrty());
+		params.put("delTrty", request.getDelTrty());
+		params.put("saveUnapp", request.getSaveUnapp());
+		params.put("delUnapp", request.getDelUnapp());
+		params.put("saveInvPo", request.getSaveInvPo());
+		params.put("delInvPo", request.getDelInvPo());
+		params.put("saveInvPl", request.getSaveInvPl());
+		params.put("delInvPl", request.getDelInvPl());
+		params.put("saveLrd", request.getSaveLrd());
+		params.put("delLrd", request.getDelLrd());
+		params.put("saveOth", request.getSaveOth());
+		params.put("delOth", request.getDelOth());
+		
+		try {
+			acctITDao.saveJVMultiOffset(params);
+			response.setReturnCode(-1);
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveAcitJVMultiOffsetResponse retrieveAcitJVMultiOffset(RetrieveAcitJVMultiOffsetRequest request)
+			throws SQLException {
+		RetrieveAcitJVMultiOffsetResponse response = new RetrieveAcitJVMultiOffsetResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("tranId", request.getTranId());
+		params.put("cedingId", request.getCedingId());
+		
+		switch (request.getFrom()) {
+		case "ipb":
+			response.setIpbList(acctITDao.retrieveMultiOffsetIpb(params));
+			break;
+			
+		case "clm":
+			response.setClmList(acctITDao.retrieveMultiOffsetClm(params));
+			break;
+			
+		case "trty":
+			response.setTrtyList(acctITDao.retrieveMultiOffsetTrty(params));
+			break;
+			
+		case "unapp":
+			response.setUnappList(acctITDao.retrieveMultiOffsetUnapp(params));
+			break;
+			
+		case "invPo":
+			response.setInvPoList(acctITDao.retrieveMultiOffsetInvPo(params));
+			break;
+			
+		case "invPl":
+			response.setInvPlList(acctITDao.retrieveMultiOffsetInvPl(params));
+			break;
+			
+		case "lrd":
+			response.setLrdList(acctITDao.retrieveMultiOffsetLrd(params));
+			break;
+			
+		case "oth":
+			response.setOthList(acctITDao.retrieveMultiOffsetOth(params));
+			break;
+
+		default:
+			break;
+		}
+		
+		response.setExisting(acctITDao.retrieveMultiOffsetExisting(params));
+		
+		return response;
+	}
+
+	@Override
+	public RetrieveAcitJVCedRepLossResponse retrieveAcitJVCedRepLoss(RetrieveAcitJVCedRepLossRequest request)
+			throws SQLException {
+		RetrieveAcitJVCedRepLossResponse response = new RetrieveAcitJVCedRepLossResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("cedingId", request.getCedingId());
+		
+		response.setCedRepLossList(acctITDao.retrieveAcitJVCedRepLoss(params));
+		return response;
 	}
 }

@@ -145,4 +145,7 @@ public interface AccountingInTrustService {
 	public RetrieveAcitJvUnappliedTrtyResponse retrieveTrtyUnappliedCollection(RetrieveAcitJvUnappliedTrtyRequest request)throws SQLException;
 	public SaveAcitJvUnappliedTrtyResponse saveJVTrtyUnappliedColl(SaveAcitJvUnappliedTrtyRequest request) throws SQLException;
 	public String retrieveAcitJvListingLength(RetrieveAcitJVListingRequest rajll) throws SQLException;
+	public SaveJVMultiOffsetResponse saveJVMultiOffset(SaveJVMultiOffsetRequest request) throws SQLException;
+	public RetrieveAcitJVMultiOffsetResponse retrieveAcitJVMultiOffset(RetrieveAcitJVMultiOffsetRequest request) throws SQLException;
+	public RetrieveAcitJVCedRepLossResponse retrieveAcitJVCedRepLoss(RetrieveAcitJVCedRepLossRequest request) throws SQLException;
 }

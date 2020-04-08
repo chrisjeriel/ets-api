@@ -565,6 +565,8 @@
 		<result property="updateDate" 		column="JV_UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="approveJV" 		column="APPROVE_JV"/>
 		<result property="jvNo2" 			column="JV_NO2"/>
+		<result property="memoId" 			column="MEMO_ID"/>
+		<result property="memoType" 		column="MEMO_TYPE"/>
 		<association property="inwPolBal" resultMap="inwPolBalMap"></association>
 	
 	</resultMap>
@@ -4792,7 +4794,7 @@
 		<result property="updateUser"  	 column="UPDATE_USER"/>
 		<result property="updateDate"  	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="insuredDesc"   column="INSURED_DESC"/>
-		<result property="soaNo"   		column="SOA_NO"/>
+		<result property="soaNo"   		 column="SOA_NO"/>
 	</resultMap>
 	
 	<select id="retrieveInwUnappliedCollection" resultMap="inwCollMap" parameterType="java.util.Map">
@@ -4890,7 +4892,7 @@
 															#{save.policyId},
 															#{save.instNo},
 															#{save.paytType, jdbcType=VARCHAR}, <!-- PAYT TYPE 1 FOR JV. CHANGE AS NECESSARY -->
-															5
+															3
 				);
 			</foreach>
 			
@@ -4989,6 +4991,584 @@
 								   #{tranStat, jdbcType=VARCHAR},
 								   #{jvStat, jdbcType=VARCHAR},
 								   '', '', '',''))
+	</select>
+	
+	<update id="saveJVMultiOffset" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
+		BEGIN
+			<foreach collection="delIpb" item="del">
+				ACIT_AGING_SOA_DETAILS_PKG.reset_soa(
+					#{del.tranId},
+					#{del.policyId},
+					#{del.instNo},
+					#{del.premAmt},
+					#{del.riComm},
+					#{del.riCommVat},
+					#{del.charges},
+					#{del.netDue}
+				);
+			
+				ACIT_JV_MO_INWPOLBAL_PKG.del_multoff_inwpolbal(
+					#{del.tranId},
+					#{del.policyId},
+					#{del.instNo}
+				);
+				
+				ACIT_INWPOL_PAYTS_PKG.del_inwpol_payts(
+					#{del.tranId},
+					#{del.policyId},
+					#{del.instNo}
+				);
+			</foreach>
+			
+			<foreach collection="saveIpb" item="save">
+				ACIT_JV_MO_INWPOLBAL_PKG.save_multoff_inwpolbal(
+					#{save.tranId},
+					#{save.policyId},
+					#{save.instNo},
+					#{save.currCd},
+				 	#{save.currRate},
+				 	#{save.cedingId},
+				 	#{save.premAmt},
+				 	#{save.riComm},	
+				 	#{save.riCommVat},
+				 	#{save.charges},
+				 	#{save.netDue},
+				 	#{save.prevPaytAmt},
+				 	#{save.prevBalance},
+				 	#{save.balPaytAmt},
+				 	#{save.localAmt},
+				 	#{save.newPaytAmt},
+					#{save.newBalance},
+				 	#{save.overdueInt},
+				 	#{save.createUser},
+				 	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				 	#{save.updateUser},
+				 	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				
+				ACIT_AGING_SOA_DETAILS_PKG.save_soa_dtl(
+					#{save.tranId},
+					#{save.policyId},
+					#{save.instNo},
+					#{save.premAmt},
+					#{save.riComm},
+					#{save.riCommVat},
+					#{save.charges},
+					#{save.balPaytAmt},
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+																  
+				ACIT_JV_MO_INWPOLBAL_PKG.save_inwpol_payts(
+					#{save.tranId},
+					#{save.policyId},
+					#{save.instNo},
+					#{save.paytType},
+					#{save.updateUser}
+				);
+			</foreach>
+			
+			<foreach collection="delClm" item="del">
+				ACIT_JV_MO_CLAIMS_PKG.del_multoff_claims(
+					#{del.tranId},
+					#{del.claimId},
+					#{del.projId},
+					#{del.histNo}
+				);
+				
+				ACIT_CLM_RES_HIST_PAYTS_PKG.del_acit_clmres_hist(
+					#{del.tranId},
+					#{del.claimId},
+					#{del.projId},
+					#{del.histNo}
+				);
+			</foreach>
+			
+			<foreach collection="saveClm" item="save">
+				ACIT_JV_MO_CLAIMS_PKG.save_multoff_claims(
+					#{save.tranId},
+					#{save.claimId},
+					#{save.projId},
+					#{save.histNo},
+					#{save.paymentFor, jdbcType=VARCHAR},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.clmPaytAmt},
+					#{save.localAmt},
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.cedingId}
+				);
+				
+				ACIT_JV_MO_CLAIMS_PKG.update_res_hist_payts(
+					#{save.tranId},
+					#{save.claimId},
+					#{save.projId},
+					#{save.histNo}
+				);
+			</foreach>
+			
+			<foreach collection="delTrty" item="del">
+				ACIT_JV_MO_TRTYBAL_PKG.del_multoff_trtybal(
+					#{del.tranId},
+					#{del.qsoaId}
+				);
+				
+				ACIT_QSOA_PAYTS_PKG.del_qsoa_payts(
+					#{del.tranId},
+					#{del.qsoaId}
+				);
+			</foreach>
+			
+			<foreach collection="saveTrty" item="save">
+				ACIT_JV_MO_TRTYBAL_PKG.save_multoff_trtybal(
+					#{save.tranId},
+					#{save.qsoaId},
+					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.cedingId},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.prevPaytAmt},
+					#{save.prevBalance},
+					#{save.balanceAmt},
+					#{save.actualBalPaid},
+					#{save.localAmt},
+					#{save.newPaytAmt},
+					#{save.newBalance},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				
+				ACIT_QSOA_PAYTS_PKG.save_qsoa_payts(
+					#{save.tranId},
+					#{save.qsoaId},
+					CAST(to_timestamp(#{save.quarterEnding}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.currCd},
+					#{save.currRate},
+					#{save.actualBalPaid},
+					#{save.localAmt},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			
+			<foreach collection="delUnapp" item="del">
+				ACIT_JV_MO_UNAPPLIED_PKG.del_multoff_unapplied(
+					#{del.tranId},
+					#{del.unappliedId}
+				);
+			</foreach>
+			
+			<foreach collection="saveUnapp" item="save">
+				ACIT_JV_MO_UNAPPLIED_PKG.save_multoff_unapplied(
+					#{save.tranId},
+					#{save.unappliedId},
+					#{save.cedingId},
+					#{save.transdtlType},
+					#{save.itemName},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.prevPaytAmt},
+					#{save.prevBalance},
+					#{save.unappliedAmt},
+					#{save.actualBalPaid},
+					#{save.localAmt},
+					#{save.newPaytAmt},
+					#{save.newBalance},
+					#{save.refNo, jdbcType=VARCHAR},
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.returnTag},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+				
+				ACIT_JV_MO_UNAPPLIED_PKG.save_unapplied_payts(
+			    	#{save.tranId},
+					#{save.unappliedId}
+				);
+			</foreach>
+			
+			<foreach collection="delInvPo" item="del">
+				ACIT_JV_MO_INVTOUT_PKG.del_multoff_invout(
+					#{del.tranId},
+					#{del.invtId}
+				);
+			</foreach>
+			
+			<foreach collection="saveInvPo" item="save">
+				ACIT_JV_MO_INVTOUT_PKG.save_multoff_invout(
+					#{save.tranId},
+					#{save.invtId},
+					#{save.pulloutType},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.invtAmt},
+					#{save.incomeAmt},
+					#{save.bankCharge},
+					#{save.whtaxAmt},
+					#{save.maturityValue},
+					#{save.localAmt},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			
+			<foreach collection="delInvPl" item="del">
+				ACIT_JV_MO_INVTPLACE_PKG.del_multoff_invtplace(
+					#{del.tranId},
+					#{del.invtId}
+				);
+			</foreach>
+			
+			<foreach collection="saveInvPl" item="save">
+				ACIT_JV_MO_INVTPLACE_PKG.save_multoff_invtplace(
+					#{save.tranId},
+					#{save.invtId},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.invtAmt},
+					#{save.localAmt},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			
+			<foreach collection="delLrd" item="del">
+				ACIT_JV_MO_LOSSRESDEP_PKG.del_multoff_lossresdep(
+					#{del.tranId},
+					#{del.cedingId},
+					#{del.currCd}
+				);
+			</foreach>
+			
+			<foreach collection="saveLrd" item="save">
+				ACIT_JV_MO_LOSSRESDEP_PKG.save_multoff_lossresdep(
+					#{save.tranId},
+					#{save.cedingId},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.lossresdepAmt},
+					#{save.localAmt},
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			
+			<foreach collection="delOth" item="del">
+				ACIT_JV_MO_OTHERS_PKG.del_multoff_others(
+					#{del.tranId},
+					#{del.itemNo}
+				);
+			</foreach>
+			
+			<foreach collection="saveOth" item="save">
+				ACIT_JV_MO_OTHERS_PKG.save_multoff_others(
+					#{save.tranId},
+					#{save.itemNo, jdbcType=INTEGER},
+					#{save.cedingId},
+					#{save.itemName},
+					#{save.currCd},
+					#{save.currRate},
+					#{save.currAmt},
+					#{save.localAmt},
+					#{save.refNo, jdbcType=VARCHAR},
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.createUser},
+					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.updateUser},
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			</foreach>
+			
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{tranId}, v_message);
+		END;
+	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetIpb" id="multiOffsetIpbMap">
+		<result property="tranId" 		 column="TRAN_ID"/>
+		<result property="policyId" 	 column="POLICY_ID"/>
+		<result property="policyNo" 	 column="POLICY_NO"/>
+		<result property="instNo" 		 column="INST_NO"/>
+		<result property="cedingName" 	 column="CEDING_NAME"/>
+		<result property="cedingId" 	 column="CEDING_ID"/>
+		<result property="currCd" 		 column="CURR_CD"/>
+		<result property="currRate" 	 column="CURR_RATE"/>
+		<result property="prevPremAmt" 	 column="PREV_PREMIUM"/>
+		<result property="prevRiComm" 	 column="PREV_RI_COMM"/>
+		<result property="prevRiCommVat" column="PREV_RI_COMM_VAT"/>
+		<result property="prevCharges" 	 column="PREV_CHARGES"/>
+		<result property="prevNetDue" 	 column="PREV_NET_DUE"/>
+		<result property="coRefNo" 	 	 column="CO_REF_NO"/>
+		<result property="dueDate" 	 	 column="DUE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="premAmt" 		 column="PREM_AMT"/>
+		<result property="riComm" 		 column="RI_COMM"/>
+		<result property="riCommVat" 	 column="RI_COMM_VAT"/>
+		<result property="charges" 		 column="CHARGES"/>
+		<result property="netDue" 		 column="NET_DUE"/>
+		<result property="balance"  	 column="PREV_BALANCE"/>
+		<result property="cumPayment"    column="PREV_PAYT_AMT"/>
+		<result property="paytAmt" 		 column="BAL_PAYT_AMT"/>
+		<result property="localAmt" 	 column="LOCAL_AMT"/>
+		<result property="totalPayt" 	 column="NEW_PAYT_AMT"/>
+		<result property="remainingBal"  column="NEW_BALANCE"/>
+		<result property="overdueInt" 	 column="OVERDUE_INT"/>
+		<result property="remarks" 		 column="REMARKS"/>
+		<result property="createUser" 	 column="CREATE_USER"/>
+		<result property="createDate" 	 column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"  	 column="UPDATE_USER"/>
+		<result property="updateDate"  	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="insuredDesc"   column="INSURED_DESC"/>
+		<result property="soaNo"   		 column="SOA_NO"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetIpb" resultMap="multiOffsetIpbMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_INWPOLBAL_PKG.ret_multoff_inwpolbal(#{tranId}, #{policyId, jdbcType=INTEGER}, #{instNo, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetClm" id="multiOffsetClmMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="claimId" 			column="CLAIM_ID"/>
+		<result property="claimNo" 			column="CLAIM_NO"/>
+		<result property="histCategory" 	column="HIST_CATEGORY"/>
+		<result property="histCategoryDesc" column="HIST_CATEGORY_DESC"/>
+		<result property="histType" 		column="HIST_TYPE"/>
+		<result property="histTypeDesc" 	column="HIST_TYPE_DESC"/>
+		<result property="exGratia" 		column="EX_GRATIA"/>
+		<result property="reserveAmt" 		column="RESERVE_AMT"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="projId" 			column="PROJ_ID"/>
+		<result property="histNo" 			column="HIST_NO"/>
+		<result property="paymentFor" 		column="PAYMENT_FOR"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="paytAmt" 			column="CUM_PAYMENT"/>
+		<result property="clmPaytAmt" 		column="CLM_PAYT_AMT"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetClm" resultMap="multiOffsetClmMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_CLAIMS_PKG.ret_multoff_claims(#{tranId}, #{claimId, jdbcType=INTEGER}, #{projId, jdbcType=INTEGER}, #{histNo, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetTrty" id="multiOffsetTrtyMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="qsoaId" 			column="QSOA_ID"/>
+		<result property="quarterEnding" 	column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="prevPaytAmt" 		column="PREV_PAYT_AMT"/>
+		<result property="prevBalance" 		column="PREV_BALANCE"/>
+		<!-- <result property="balanceAmt" 		column="BALANCE_AMT"/> -->
+		<result property="balanceAmt"	 	column="ACTUAL_BAL_PAID"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="newPaytAmt" 		column="NEW_PAYT_AMT"/>
+		<result property="newBalance" 		column="NEW_BALANCE"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="netQsoaAmt" 		column="NET_QSOA_AMT"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>		
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetTrty" resultMap="multiOffsetTrtyMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_TRTYBAL_PKG.ret_multoff_trtybal(#{tranId}, #{qsoaId, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetUnapp" id="multiOffsetUnappMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="unappliedId" 		column="UNAPPLIED_ID"/>
+		<result property="transdtlType" 	column="TRANSDTL_TYPE"/>
+		<result property="transdtlName" 	column="TRANSDTL_NAME"/>
+		<result property="itemName" 		column="ITEM_NAME"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="prevPaytAmt" 		column="PREV_PAYT_AMT"/>
+		<result property="prevBalance" 		column="PREV_BALANCE"/>
+		<result property="unappliedAmt" 	column="UNAPPLIED_AMT"/>
+		<result property="actualBalPaid" 	column="ACTUAL_BAL_PAID"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="newPaytAmt" 		column="NEW_PAYT_AMT"/>
+		<result property="newBalance" 		column="NEW_BALANCE"/>
+		<result property="refNo" 			column="REF_NO"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="returnTag" 		column="RETURN_TAG"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetUnapp" resultMap="multiOffsetUnappMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_UNAPPLIED_PKG.ret_multoff_unapplied(#{tranId}, #{unappliedId, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetInvPo" id="multiOffsetInvPoMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="invtId" 			column="INVT_ID"/>
+		<result property="invtCode" 		column="INVT_CODE"/>
+		<result property="certNo" 			column="CERT_NO"/>
+		<result property="invtType" 		column="INVT_TYPE"/>
+		<result property="invtTypeDesc" 	column="INVT_TYPE_DESC"/>
+		<result property="invtSecCd" 		column="INVT_SEC_CD"/>
+		<result property="securityDesc" 	column="SECURITY_DESC"/>
+		<result property="maturityPeriod" 	column="MATURITY_PERIOD"/>
+		<result property="durationUnit" 	column="DURATION_UNIT"/>
+		<result property="interestRate" 	column="INTEREST_RATE"/>
+		<result property="purchasedDate" 	column="PURCHASED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maturityDate" 	column="MATURITY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>    
+		<result property="pulloutType" 		column="PULLOUT_TYPE"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="invtAmt" 			column="INVT_AMT"/>
+		<result property="incomeAmt" 		column="INCOME_AMT"/>
+		<result property="bankCharge" 		column="BANK_CHARGE"/>
+		<result property="whtaxAmt" 		column="WHTAX_AMT"/>
+		<result property="maturityValue" 	column="MATURITY_VALUE"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetInvPo" resultMap="multiOffsetInvPoMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_INVTOUT_PKG.ret_multoff_invtout(#{tranId}, #{invtId, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetInvPl" id="multiOffsetInvPlMap">
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="invtId" 			column="INVT_ID"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="invtAmt" 			column="INVT_AMT"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="invtCode" 		column="INVT_CODE"/>
+		<result property="certNo" 			column="CERT_NO"/>
+		<result property="invtType" 		column="INVT_TYPE"/>
+		<result property="invtTypeDesc" 	column="INVT_TYPE_DESC"/>
+		<result property="invtSecCd" 		column="INVT_SEC_CD"/>
+		<result property="securityDesc" 	column="SECURITY_DESC"/>
+		<result property="maturityPeriod" 	column="MATURITY_PERIOD"/>
+		<result property="durationUnit" 	column="DURATION_UNIT"/>
+		<result property="interestRate" 	column="INTEREST_RATE"/>
+		<result property="purchasedDate" 	column="PURCHASED_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="maturityDate" 	column="MATURITY_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="incomeAmt" 		column="INCOME_AMT"/>
+		<result property="bankCharge" 		column="BANK_CHARGE"/>
+		<result property="whtaxAmt" 		column="WHTAX_AMT"/>
+		<result property="maturityValue" 	column="MATURITY_VALUE"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetInvPl" resultMap="multiOffsetInvPlMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_INVTPLACE_PKG.ret_multoff_invtplace(#{tranId}, #{invtId, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetLrd" id="multiOffsetLrdMap">
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="address" 			column="ADDRESS"/>
+		<result property="membershipDate" 	column="MEMBERSHIP_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="bussTypeCd" 		column="BUSS_TYPE_CD"/>
+		<result property="bussTypeName" 	column="BUSS_TYPE_NAME"/>
+		<result property="tin" 				column="TIN"/>
+		<result property="activeTag" 		column="ACTIVE_TAG"/>
+		<result property="cedingRep" 		column="CEDING_REP"/>
+		<result property="contactNo" 		column="CONTACT_NO"/>
+		<result property="emailAdd" 		column="EMAIL_ADD"/>
+		<result property="currCd" 			column="CURR_CD"/>
+		<result property="currRate" 		column="CURR_RATE"/>
+		<result property="totalLossresdep" 	column="TOTAL_LOSSRESDEP"/>
+		<result property="localAmt" 		column="LOCAL_AMT"/>
+		<result property="tranId" 			column="TRAN_ID"/>
+		<result property="lossresdepAmt" 	column="LOSSRESDEP_AMT"/>
+		<result property="moLocalAmt" 		column="MO_LOCAL_AMT"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="createUser" 		column="CREATE_USER"/>
+		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 		column="UPDATE_USER"/>
+		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitJVCedRepLoss" resultMap="multiOffsetLrdMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_LOSSRESDEP_PKG.ret_ced_rep_loss(#{cedingId, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveMultiOffsetLrd" resultMap="multiOffsetLrdMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_LOSSRESDEP_PKG.ret_multoff_lossresdep(#{tranId}, #{cedingId, jdbcType=INTEGER}, #{currCd, jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetOth" id="multiOffsetOthMap">
+		<result property="tranId" 		column="TRAN_ID"/>
+		<result property="itemNo" 		column="ITEM_NO"/>
+		<result property="cedingId" 	column="CEDING_ID"/>
+		<result property="cedingName" 	column="CEDING_NAME"/>
+		<result property="itemName" 	column="ITEM_NAME"/>
+		<result property="currCd" 		column="CURR_CD"/>
+		<result property="currRate" 	column="CURR_RATE"/>
+		<result property="currAmt" 		column="CURR_AMT"/>
+		<result property="localAmt" 	column="LOCAL_AMT"/>
+		<result property="refNo" 		column="REF_NO"/>
+		<result property="remarks" 		column="REMARKS"/>
+		<result property="createUser" 	column="CREATE_USER"/>
+		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser" 	column="UPDATE_USER"/>
+		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetOth" resultMap="multiOffsetOthMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_OTHERS_PKG.ret_multoff_others(#{tranId}, #{itemId, jdbcType=INTEGER}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.MultiOffsetExisting" id="multiOffsetExistingMap">
+		<result property="cedingId" 	column="CEDING_ID"/>
+		<result property="cedingName" 	column="CEDING_NAME"/>
+	</resultMap>
+	
+	<select id="retrieveMultiOffsetExisting" resultMap="multiOffsetExistingMap" parameterType="java.util.Map">
+		SELECT *
+		  FROM TABLE(ACIT_JV_MO_INWPOLBAL_PKG.ret_multoff_existing(#{tranId}))
 	</select>
 	
 </mapper>
