@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.utils;
 
-public class POLR044I {
+public class POLR044W {
 	private String extractUser;
 	private String extractDate;
 	private String incRecTag;
@@ -15,8 +15,8 @@ public class POLR044I {
 	private String amtRangeTo;
 	private String amtRangeDesc;
 	private String currencyCd;
-	private String premAmtCum;
-	private String premAmtMth;
+	private String quotIssCnt;
+	private String quotConvCnt;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -101,24 +101,24 @@ public class POLR044I {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getPremAmtCum() {
-		return premAmtCum;
+	public String getQuotIssCnt() {
+		return quotIssCnt;
 	}
-	public void setPremAmtCum(String premAmtCum) {
-		this.premAmtCum = premAmtCum;
+	public void setQuotIssCnt(String quotIssCnt) {
+		this.quotIssCnt = quotIssCnt;
 	}
-	public String getPremAmtMth() {
-		return premAmtMth;
+	public String getQuotConvCnt() {
+		return quotConvCnt;
 	}
-	public void setPremAmtMth(String premAmtMth) {
-		this.premAmtMth = premAmtMth;
+	public void setQuotConvCnt(String quotConvCnt) {
+		this.quotConvCnt = quotConvCnt;
 	}
 	@Override
 	public String toString() {
-		return "POLR044I [extractUser=" + extractUser + ", extractDate=" + extractDate + ", incRecTag=" + incRecTag
+		return "POLR044W [extractUser=" + extractUser + ", extractDate=" + extractDate + ", incRecTag=" + incRecTag
 				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate="
 				+ toDate + ", lineCd=" + lineCd + ", lineSortSeq=" + lineSortSeq + ", siRange=" + siRange
 				+ ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo + ", amtRangeDesc=" + amtRangeDesc
-				+ ", currencyCd=" + currencyCd + ", premAmtCum=" + premAmtCum + ", premAmtMth=" + premAmtMth + "]";
+				+ ", currencyCd=" + currencyCd + ", quotIssCnt=" + quotIssCnt + ", quotConvCnt=" + quotConvCnt + "]";
 	}
 }

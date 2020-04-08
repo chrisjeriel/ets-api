@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
+import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
+import ph.cpi.rest.api.model.utils.CLMR010C;
 import ph.cpi.rest.api.model.utils.CLMR010D;
+import ph.cpi.rest.api.model.utils.CLMR010E;
 import ph.cpi.rest.api.model.utils.CLMR010H;
 import ph.cpi.rest.api.model.utils.CLMR010I;
 import ph.cpi.rest.api.model.utils.CLMR010J;
@@ -21,6 +24,12 @@ import ph.cpi.rest.api.model.utils.CLMR010M;
 import ph.cpi.rest.api.model.utils.CLMR010N;
 import ph.cpi.rest.api.model.utils.CLMR010O;
 import ph.cpi.rest.api.model.utils.CLMR010P;
+import ph.cpi.rest.api.model.utils.CLMR010S;
+import ph.cpi.rest.api.model.utils.CLMR010T;
+import ph.cpi.rest.api.model.utils.CLMR010U;
+import ph.cpi.rest.api.model.utils.CLMR010V;
+import ph.cpi.rest.api.model.utils.CLMR010W;
+import ph.cpi.rest.api.model.utils.CLMR010X;
 import ph.cpi.rest.api.model.utils.POLR044;
 import ph.cpi.rest.api.model.utils.POLR044A;
 import ph.cpi.rest.api.model.utils.POLR044B;
@@ -37,11 +46,16 @@ import ph.cpi.rest.api.model.utils.POLR044L;
 import ph.cpi.rest.api.model.utils.POLR044M;
 import ph.cpi.rest.api.model.utils.POLR044N;
 import ph.cpi.rest.api.model.utils.POLR044O;
+import ph.cpi.rest.api.model.utils.POLR044OA;
+import ph.cpi.rest.api.model.utils.POLR044OB;
 import ph.cpi.rest.api.model.utils.POLR044P;
 import ph.cpi.rest.api.model.utils.POLR044Q;
 import ph.cpi.rest.api.model.utils.POLR044R;
 import ph.cpi.rest.api.model.utils.POLR044S;
 import ph.cpi.rest.api.model.utils.POLR044T;
+import ph.cpi.rest.api.model.utils.POLR044W;
+import ph.cpi.rest.api.model.utils.POLR044X;
+import ph.cpi.rest.api.model.utils.POLR044Y;
 import ph.cpi.rest.api.model.utils.POLR052A;
 import ph.cpi.rest.api.model.utils.POLR052B;
 import ph.cpi.rest.api.model.utils.POLR052C;
@@ -366,6 +380,90 @@ public class UtilDaoImpl implements UtilDao{
 	public List<CLMR010P> retrieveClmR010p(HashMap<String, Object> params) throws SQLException {
 		List<CLMR010P> retrieveClmR010p = sqlSession.selectList("retrieveClmR010p",params);
 		return retrieveClmR010p;
+	}
+
+	@Override
+	public List<CLMR010S> retrieveClmR010s(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010S> retrieveClmR010s = sqlSession.selectList("retrieveClmR010s",params);
+		return retrieveClmR010s;
+	}
+
+	@Override
+	public List<CLMR010T> retrieveClmR010t(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010T> retrieveClmR010t = sqlSession.selectList("retrieveClmR010t",params);
+		return retrieveClmR010t;
+	}
+
+	@Override
+	public List<CLMR010U> retrieveClmR010u(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010U> retrieveClmR010u = sqlSession.selectList("retrieveClmR010u",params);
+		return retrieveClmR010u;
+	}
+
+	@Override
+	public List<CLMR010V> retrieveClmR010v(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010V> retrieveClmR010v = sqlSession.selectList("retrieveClmR010v",params);
+		return retrieveClmR010v;
+	}
+
+	@Override
+	public List<CLMR010W> retrieveClmR010w(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010W> retrieveClmR010w = sqlSession.selectList("retrieveClmR010w",params);
+		return retrieveClmR010w;
+	}
+
+	@Override
+	public List<CLMR010X> retrieveClmR010x(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010X> retrieveClmR010x = sqlSession.selectList("retrieveClmR010x",params);
+		return retrieveClmR010x;
+	}
+
+	@Override
+	public List<POLR044OA> retrievePolR044oa(HashMap<String, Object> params) throws SQLException {
+		List<POLR044OA> retrievePolR044oa = sqlSession.selectList("retrievePolR044oa",params);
+		return retrievePolR044oa;
+	}
+
+	@Override
+	public List<POLR044OB> retrievePolR044ob(HashMap<String, Object> params) throws SQLException {
+		List<POLR044OB> retrievePolR044ob = sqlSession.selectList("retrievePolR044ob",params);
+		return retrievePolR044ob;
+	}
+
+	@Override
+	public List<POLR044W> retrievePolR044w(HashMap<String, Object> params) throws SQLException {
+		List<POLR044W> retrievePolR044w = sqlSession.selectList("retrievePolR044w",params);
+		return retrievePolR044w;
+	}
+
+	@Override
+	public List<POLR044X> retrievePolR044x(HashMap<String, Object> params) throws SQLException {
+		List<POLR044X> retrievePolR044x = sqlSession.selectList("retrievePolR044x",params);
+		return retrievePolR044x;
+	}
+
+	@Override
+	public List<POLR044Y> retrievePolR044y(HashMap<String, Object> params) throws SQLException {
+		List<POLR044Y> retrievePolR044y = sqlSession.selectList("retrievePolR044y",params);
+		return retrievePolR044y;
+	}
+
+	@Override
+	public List<CLMR010A> retrieveClmR010a(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010A> retrieveClmR010a = sqlSession.selectList("retrieveClmR010a",params);
+		return retrieveClmR010a;
+	}
+
+	@Override
+	public List<CLMR010C> retrieveClmR010c(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010C> retrieveClmR010c = sqlSession.selectList("retrieveClmR010c",params);
+		return retrieveClmR010c;
+	}
+
+	@Override
+	public List<CLMR010E> retrieveClmR010e(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010E> retrieveClmR010e = sqlSession.selectList("retrieveClmR010e",params);
+		return retrieveClmR010e;
 	}
 	
 }

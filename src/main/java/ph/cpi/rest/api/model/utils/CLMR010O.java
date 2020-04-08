@@ -28,6 +28,9 @@ public class CLMR010O {
 	private String dateTo;
 	private String totalLossRes;
 	private String totalLossPd;
+	private String treatyName;
+	private String treatyCompany;
+	
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -190,6 +193,18 @@ public class CLMR010O {
 	public void setTotalLossPd(String totalLossPd) {
 		this.totalLossPd = totalLossPd;
 	}
+	public String getTreatyName() {
+		return treatyName;
+	}
+	public void setTreatyName(String treatyName) {
+		this.treatyName = treatyName;
+	}
+	public String getTreatyCompany() {
+		return treatyCompany;
+	}
+	public void setTreatyCompany(String treatyCompany) {
+		this.treatyCompany = treatyCompany;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010O [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
@@ -200,6 +215,6 @@ public class CLMR010O {
 				+ policyNo + ", polCoRefNo=" + polCoRefNo + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr
 				+ ", lossDate=" + lossDate + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom="
 				+ dateFrom + ", dateTo=" + dateTo + ", totalLossRes=" + totalLossRes + ", totalLossPd=" + totalLossPd
-				+ "]";
+				+ ", treatyName=" + treatyName + ", treatyCompany=" + treatyCompany + "]";
 	}
 }
