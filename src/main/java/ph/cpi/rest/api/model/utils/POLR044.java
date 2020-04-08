@@ -14,6 +14,29 @@ public class POLR044 {
 	private String incRecTag;
 	private String forceExtract;
 	
+	private String amtMth;
+	private String amtCum;
+	private String siRange;
+	
+	
+	public String getAmtMth() {
+		return amtMth;
+	}
+	public void setAmtMth(String amtMth) {
+		this.amtMth = amtMth;
+	}
+	public String getAmtCum() {
+		return amtCum;
+	}
+	public void setAmtCum(String amtCum) {
+		this.amtCum = amtCum;
+	}
+	public String getSiRange() {
+		return siRange;
+	}
+	public void setSiRange(String siRange) {
+		this.siRange = siRange;
+	}
 	public String getReportId() {
 		return reportId;
 	}
@@ -86,7 +109,7 @@ public class POLR044 {
 		return "POLR044 [reportId=" + reportId + ", extractUser=" + extractUser + ", lineCdParam=" + lineCdParam
 				+ ", cedingIdParam=" + cedingIdParam + ", currCdParam=" + currCdParam + ", dateParam=" + dateParam
 				+ ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag="
-				+ incRecTag + ", forceExtract=" + forceExtract + "]";
+				+ incRecTag + ", forceExtract=" + forceExtract + ", amtMth=" + amtMth + ", amtCum=" + amtCum
+				+ ", siRange=" + siRange + "]";
 	}
-	
 }

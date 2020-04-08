@@ -1020,4 +1020,1326 @@
 	<select id="getReportPath" resultType="java.lang.String"  >
 		SELECT MTN_REPORTS_PKG.get_report_path() FROM DUAL
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044E" id="retrievePolR044eMap">
+		<result property="extractUser" 		column="EXTRACT_USER"/>
+		<result property="fromDate" 		column="FROM_DATE" />
+		<result property="toDate" 			column="TO_DATE" />
+		<result property="lineCdParam" 		column="LINE_CD"/>
+		<result property="currCdParam" 		column="CURRENCY_CD"/>
+		<result property="mthNoPol" 		column="MTH_NO_POL"/>
+		<result property="cumNoPol" 		column="CUM_NO_POL"/>
+		<result property="siRange" 			column="SI_RANGE"/>
+	</resultMap>
+	
+	<select id="retrievePolR044e" resultMap="retrievePolR044eMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044e_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044A" id="retrievePolR044aMap">
+		<result property="extractUser"     column="EXTRACT_USER"/>
+		<result property="fromDate"        column="FROM_DATE"/>
+		<result property="toDate"          column="TO_DATE"/>
+		<result property="currencyCd"      column="CURRENCY_CD"/>
+		<result property="cedingName"      column="CEDING_NAME"/>
+		<result property="lineCd"          column="LINE_CD"/>
+		<result property="total"           column="TOTAL"/>
+	</resultMap>
+	
+	<select id="retrievePolR044a" resultMap="retrievePolR044aMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044a_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044B" id="retrievePolR044bMap">
+		<result property="extractUser"  column="EXTRACT_USER"/>
+		<result property="policyNo"     column="POLICY_NO"/>
+		<result property="cedingName"   column="CEDING_NAME"/>
+		<result property="expiryDate"   column="EXPIRY_DATE"/>
+		<result property="insuredDesc"  column="INSURED_DESC"/>
+		<result property="projDesc"     column="PROJ_DESC"/>
+		<result property="currencyCd"   column="CURRENCY_CD"/>
+		<result property="siAmt"        column="SI_AMT"/>
+		<result property="premAmt"      column="PREM_AMT"/>
+		<result property="remarks"      column="REMARKS"/>
+		<result property="fromDate"		column="FROM_DATE"/>
+		<result property="toDate"		column="TO_DATE"/>
+	</resultMap>
+	
+	<select id="retrievePolR044b" resultMap="retrievePolR044bMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044b_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044C" id="retrievePolR044cMap">
+		<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="lineCd"                 column="LINE_CD"/>
+		<result property="currencyCd"             column="CURRENCY_CD"/>
+		<result property="prevYear"               column="PREV_YEAR"/>
+		<result property="prevMthPrem"            column="PREV_MTH_PREM"/>
+		<result property="prevPctTotal"           column="PREV_PCT_TOTAL"/>
+		<result property="prevCumPrem"            column="PREV_CUM_PREM"/>
+		<result property="currYear"               column="CURR_YEAR"/>
+		<result property="currMthPrem"            column="CURR_MTH_PREM"/>
+		<result property="currPctTotal"           column="CURR_PCT_TOTAL"/>
+		<result property="currCumPrem"            column="CURR_CUM_PREM"/>
+		<result property="mthIncDecPct"           column="MTH_INC_DEC_PCT"/>
+		<result property="cumIncDecPct"           column="CUM_INC_DEC_PCT"/>
+		<result property="mthPlanPrem"            column="MTH_PLAN_PREM"/>
+		<result property="mthVariance"            column="MTH_VARIANCE"/>
+		<result property="cumPlanPrem"            column="CUM_PLAN_PREM"/>
+		<result property="cumVariance"            column="CUM_VARIANCE"/>
+	</resultMap>
+	
+	<select id="retrievePolR044c" resultMap="retrievePolR044cMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044c_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044D" id="retrievePolR044dMap">
+		<result property="extractUser"         column="EXTRACT_USER"/>
+		<result property="extractDate"         column="EXTRACT_DATE"/>
+		<result property="dateParam"           column="DATE_PARAM"/>
+		<result property="dateRange"           column="DATE_RANGE"/>
+		<result property="toDate"              column="TO_DATE"/>
+		<result property="lineCd"              column="LINE_CD"/>
+		<result property="currencyCd"          column="CURRENCY_CD"/>
+		<result property="sortSeq"             column="SORT_SEQ"/>
+		<result property="mmPolcountPrev"      column="MM_POLCOUNT_PREV"/>
+		<result property="mmPolcountCur"       column="MM_POLCOUNT_CUR"/>
+		<result property="ytdPolcountPrev"     column="YTD_POLCOUNT_PREV"/>
+		<result property="ytdPolcountCur"      column="YTD_POLCOUNT_CUR"/>
+	</resultMap>
+	
+	<select id="retrievePolR044d" resultMap="retrievePolR044dMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044d_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044F" id="retrievePolR044fMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="prevYear"         column="PREV_YEAR"/>
+		<result property="prevMthPrem"      column="PREV_MTH_PREM"/>
+		<result property="prevCumPrem"      column="PREV_CUM_PREM"/>
+		<result property="prevMthNoPol"     column="PREV_MTH_NO_POL"/>
+		<result property="prevCumNoPol"     column="PREV_CUM_NO_POL"/>
+		<result property="currYear"         column="CURR_YEAR"/>
+		<result property="currMthPrem"      column="CURR_MTH_PREM"/>
+		<result property="currCumPrem"      column="CURR_CUM_PREM"/>
+		<result property="currMthNoPol"     column="CURR_MTH_NO_POL"/>
+		<result property="currCumNoPol"     column="CURR_CUM_NO_POL"/>
+	</resultMap>
+	<select id="retrievePolR044f" resultMap="retrievePolR044fMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044f_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044G" id="retrievePolR044gMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="renThisMmQty"   	column="REN_THIS_MM_QTY"/>
+		<result property="renThisMmPrem"  	column="REN_THIS_MM_PREM"/>
+		<result property="renCumuQty"      	column="REN_CUMU_QTY"/>
+		<result property="renCumuPrem"     	column="REN_CUMU_PREM"/>
+		<result property="newThisMmQty"   	column="NEW_THIS_MM_QTY"/>
+		<result property="newThisMmPrem"  	column="NEW_THIS_MM_PREM"/>
+		<result property="newCumuQty"      	column="NEW_CUMU_QTY"/>
+		<result property="newCumuPrem"     	column="NEW_CUMU_PREM"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="totThisMmQty"     column="TOT_THIS_MM_QTY"/>
+		<result property="totThisMmPrem"    column="TOT_THIS_MM_PREM"/>
+		<result property="totCumuQty"       column="TOT_CUMU_QTY"/>
+		<result property="totCumuPrem"      column="TOT_CUMU_PREM"/>
+	</resultMap>
+	<select id="retrievePolR044g" resultMap="retrievePolR044gMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044g_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044H" id="retrievePolR044hMap">
+		<result property="extractUser"    column="EXTRACT_USER"/>
+		<result property="fromDate"       column="FROM_DATE"/>
+		<result property="toDate"         column="TO_DATE"/>
+		<result property="cedingName"     column="CEDING_NAME"/>
+		<result property="lineCd"         column="LINE_CD"/>
+		<result property="currencyCd"     column="CURRENCY_CD"/>
+		<result property="premAmt"        column="PREM_AMT"/>
+	</resultMap>
+	<select id="retrievePolR044h" resultMap="retrievePolR044hMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044h_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044I" id="retrievePolR044iMap">
+	  	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="incRecTag"        column="INC_REC_TAG"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="lineSortSeq"      column="LINE_SORT_SEQ"/>
+		<result property="siRange"          column="SI_RANGE"/>
+		<result property="amtRangeFrom"     column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"       column="AMT_RANGE_TO"/>
+		<result property="amtRangeDesc"     column="AMT_RANGE_DESC"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="premAmtCum"       column="PREM_AMT_CUM"/>
+		<result property="premAmtMth"       column="PREM_AMT_MTH"/>
+	</resultMap>
+	
+	<select id="retrievePolR044i" resultMap="retrievePolR044iMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044i_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044J" id="retrievePolR044jMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="lineCd"             column="LINE_CD"/>
+		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="ret1PremAmt"        column="RET1_PREM_AMT"/>
+		<result property="ret1CommAmt"        column="RET1_COMM_AMT"/>
+		<result property="ret1VatRiComm"      column="RET1_VAT_RI_COMM"/>
+		<result property="ret1NetDue"         column="RET1_NET_DUE"/>
+		<result property="ret2PremAmt"        column="RET2_PREM_AMT"/>
+		<result property="ret2CommAmt"        column="RET2_COMM_AMT"/>
+		<result property="ret2VatRiComm"      column="RET2_VAT_RI_COMM"/>
+		<result property="ret2NetDue"         column="RET2_NET_DUE"/>
+		<result property="fromDate"           column="FROM_DATE"/>
+		<result property="toDate"             column="TO_DATE"/>
+	</resultMap>
+	
+	<select id="retrievePolR044j" resultMap="retrievePolR044jMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044j_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044K" id="retrievePolR044kMap">
+		<result property="extractUser"             column="EXTRACT_USER"/>
+		<result property="extractDate"             column="EXTRACT_DATE"/>
+		<result property="currencyCd"              column="CURRENCY_CD"/>
+		<result property="lineCd"                  column="LINE_CD"/>
+		<result property="treatyId"                column="TREATY_ID"/>
+		<result property="treatyIdDesc"            column="TREATY_ID_DESC"/>
+		<result property="trtyCedId"               column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName"           column="TRTY_CED_ID_NAME"/>
+		<result property="retLayer"                column="RET_LAYER"/>
+		<result property="retLayerDesc"            column="RET_LAYER_DESC"/>
+		<result property="tranType"                column="TRAN_TYPE"/>
+		<result property="premAmt"                 column="PREM_AMT"/>
+		<result property="commAmt"                 column="COMM_AMT"/>
+		<result property="vatRiComm"               column="VAT_RI_COMM"/>
+		<result property="dueToTrty"               column="DUE_TO_TRTY"/>
+		<result property="dueToCedant"             column="DUE_TO_CEDANT"/>
+		<result property="lineCdParam"             column="LINE_CD_PARAM"/>
+		<result property="cedingIdParam"           column="CEDING_ID_PARAM"/>
+		<result property="dateParam"               column="DATE_PARAM"/>
+		<result property="dateRange"               column="DATE_RANGE"/>
+		<result property="fromDate"                column="FROM_DATE"/>
+		<result property="toDate"                  column="TO_DATE"/>
+		<result property="incRecTag"               column="INC_REC_TAG"/>
+	</resultMap>
+	
+	<select id="retrievePolR044k" resultMap="retrievePolR044kMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044k_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044L" id="retrievePolR044lMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="fromDate"           column="FROM_DATE"/>
+		<result property="toDate"             column="TO_DATE"/>
+		<result property="acctDate"           column="ACCT_DATE"/>
+		<result property="policyNo"           column="POLICY_NO"/>
+		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="inceptDate"         column="INCEPT_DATE"/>
+		<result property="expiryDate"         column="EXPIRY_DATE"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="premAmt"            column="PREM_AMT"/>
+		<result property="status"             column="STATUS"/>
+	</resultMap>
+	
+	<select id="retrievePolR044l" resultMap="retrievePolR044lMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044l_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044M" id="retrievePolR044mMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>  
+		<result property="extractDate"      column="EXTRACT_DATE"/>  
+		<result property="dateParam"      	column="DATE_PARAM"/>    
+		<result property="dateRange"      	column="DATE_RANGE"/>    
+		<result property="currencyCd"     	column="CURRENCY_CD"/>   
+		<result property="zoneCd"     		column="ZONE_CD"/>       
+		<result property="polCount"     	column="POL_COUNT"/>     
+		<result property="siAmt"      		column="SI_AMT"/>        
+		<result property="premAmt"      	column="PREM_AMT"/>      
+		<result property="avRiskAmt"      	column="AV_RISK_AMT"/>   
+		<result property="fromDate"     	column="FROM_DATE"/>     
+		<result property="toDate"     		column="TO_DATE"/>       
+		<result property="zoneCdDesc"     	column="ZONE_CD_DESC"/>  
+	</resultMap>
+	
+	<select id="retrievePolR044m" resultMap="retrievePolR044mMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044m_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044N" id="retrievePolR044nMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="toDate"             column="TO_DATE"/>
+		<result property="lineCd"             column="LINE_CD"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="siAmt"              column="SI_AMT"/>
+		<result property="premAmt"            column="PREM_AMT"/>
+	</resultMap>
+	
+	<select id="retrievePolR044n" resultMap="retrievePolR044nMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044n_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044O" id="retrievePolR044oMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="cedingIdParam"      column="CEDING_ID_PARAM"/>
+		<result property="lineCdParam"        column="LINE_CD_PARAM"/>
+		<result property="dateParam"          column="DATE_PARAM"/>
+		<result property="dateRange"          column="DATE_RANGE"/>
+		<result property="fromDate"           column="FROM_DATE"/>
+		<result property="toDate"             column="TO_DATE"/>
+		<result property="lineCd"             column="LINE_CD"/>
+		<result property="lineSortSeq"        column="LINE_SORT_SEQ"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="polCount"           column="POL_COUNT"/>
+		<result property="siAmt"              column="SI_AMT"/>
+		<result property="premAmt"            column="PREM_AMT"/>
+		<result property="lossPdCount"        column="LOSS_PD_COUNT"/>
+		<result property="lossPaid"           column="LOSS_PAID"/>
+		<result property="lossOsCount"        column="LOSS_OS_COUNT"/>
+		<result property="lossOs"             column="LOSS_OS"/>
+	</resultMap>
+	
+	<select id="retrievePolR044o" resultMap="retrievePolR044oMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044o_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044OA" id="retrievePolR044oaMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="cedingIdParam"    column="CEDING_ID_PARAM"/>
+		<result property="lineCdParam"      column="LINE_CD_PARAM"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="polCount"         column="POL_COUNT"/>
+		<result property="siAmt"            column="SI_AMT"/>
+		<result property="premAmt"          column="PREM_AMT"/>
+		<result property="lossPdCount"      column="LOSS_PD_COUNT"/>
+		<result property="lossPaid"         column="LOSS_PAID"/>
+		<result property="lossOsCount"      column="LOSS_OS_COUNT"/>
+		<result property="lossOs"           column="LOSS_OS"/>
+	</resultMap>
+	
+	<select id="retrievePolR044oa" resultMap="retrievePolR044oaMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044oa_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044OB" id="retrievePolR044obMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="cedingIdParam"      column="CEDING_ID_PARAM"/>
+		<result property="lineCdParam"        column="LINE_CD_PARAM"/>
+		<result property="dateParam"          column="DATE_PARAM"/>
+		<result property="dateRange"          column="DATE_RANGE"/>
+		<result property="fromDate"           column="FROM_DATE"/>
+		<result property="toDate"             column="TO_DATE"/>
+		<result property="insuredId"          column="INSURED_ID"/>
+		<result property="insuredName"        column="INSURED_NAME"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="polCount"           column="POL_COUNT"/>
+		<result property="siAmt"              column="SI_AMT"/>
+		<result property="premAmt"            column="PREM_AMT"/>
+		<result property="lossPdCount"        column="LOSS_PD_COUNT"/>
+		<result property="lossPaid"           column="LOSS_PAID"/>
+		<result property="lossOsCount"        column="LOSS_OS_COUNT"/>
+		<result property="lossOs"             column="LOSS_OS"/>
+	</resultMap>
+	
+	<select id="retrievePolR044ob" resultMap="retrievePolR044obMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044ob_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044P" id="retrievePolR044pMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCdComp"   column="CURRENCY_CD_COMP"/>
+		<result property="cedingIdParam"    column="CEDING_ID_PARAM"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="treatyCompany"    column="TREATY_COMPANY"/>
+		<result property="zoneCd"           column="ZONE_CD"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="siAmtComp"        column="SI_AMT_COMP"/>
+		<result property="siAmtDist"        column="SI_AMT_DIST"/>
+		<result property="premAmtComp"      column="PREM_AMT_COMP"/>
+		<result property="premAmtDist"      column="PREM_AMT_DIST"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="retLayer"         column="RET_LAYER"/>
+		<result property="treatyId"         column="TREATY_ID"/>
+	</resultMap>
+	
+	<select id="retrievePolR044p" resultMap="retrievePolR044pMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044p_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044Q" id="retrievePolR044qMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="cedingIdParam"      column="CEDING_ID_PARAM"/>
+		<result property="dateParam"          column="DATE_PARAM"/>
+		<result property="dateRange"          column="DATE_RANGE"/>
+		<result property="fromDate"           column="FROM_DATE"/>
+		<result property="toDate"             column="TO_DATE"/>
+		<result property="lineCd"             column="LINE_CD"/>
+		<result property="policyId"           column="POLICY_ID"/>
+		<result property="policyNo"           column="POLICY_NO"/>
+		<result property="cedingId"           column="CEDING_ID"/>
+		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="zoneCd"             column="ZONE_CD"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="siAmt"              column="SI_AMT"/>
+		<result property="premAmt"            column="PREM_AMT"/>
+	</resultMap>
+	
+	<select id="retrievePolR044q" resultMap="retrievePolR044qMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044q_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044R" id="retrievePolR044rMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="trtyYyParam"        column="TRTY_YY_PARAM"/>
+		<result property="currParam"          column="CURR_PARAM"/>
+		<result property="cedingIdParam"      column="CEDING_ID_PARAM"/>
+		<result property="cedingId"           column="CEDING_ID"/>
+		<result property="lineCd"             column="LINE_CD"/>
+		<result property="siBandCd"           column="SI_BAND_CD"/>
+		<result property="polCount"           column="POL_COUNT"/>
+		<result property="premGross"          column="PREM_GROSS"/>
+		<result property="premQuota"          column="PREM_QUOTA"/>
+		<result property="prem1stRet"         column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"         column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"     column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"     column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"          column="PREM_FACUL"/>
+		<result property="treatyCompany"      column="TREATY_COMPANY"/>
+	</resultMap>
+	
+	<select id="retrievePolR044r" resultMap="retrievePolR044rMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044r_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044S" id="retrievePolR044sMap">
+		<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="extractDate"            column="EXTRACT_DATE"/>
+		<result property="trtyYyParam"            column="TRTY_YY_PARAM"/>
+		<result property="currParam"              column="CURR_PARAM"/>
+		<result property="cedingId"               column="CEDING_ID"/>
+		<result property="cedingIdParam"          column="CEDING_ID_PARAM"/>
+		<result property="lineCd"                 column="LINE_CD"/>
+		<result property="siBandCd"               column="SI_BAND_CD"/>
+		<result property="polCount"               column="POL_COUNT"/>
+		<result property="siGross"                column="SI_GROSS"/>
+		<result property="siQuota"                column="SI_QUOTA"/>
+		<result property="si1stRet"               column="SI_1ST_RET"/>
+		<result property="si2ndRet"               column="SI_2ND_RET"/>
+		<result property="si1stSurplus"           column="SI_1ST_SURPLUS"/>
+		<result property="si2ndSurplus"           column="SI_2ND_SURPLUS"/>
+		<result property="siFacul"                column="SI_FACUL"/>
+		<result property="treatyCompany"          column="TREATY_COMPANY"/>
+	</resultMap>
+	
+	<select id="retrievePolR044s" resultMap="retrievePolR044sMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044s_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044T" id="retrievePolR044tMap">
+		<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="trtyYyFrom"           column="TRTY_YY_FROM"/>
+		<result property="trtyYyTo"             column="TRTY_YY_TO"/>
+		<result property="currParam"            column="CURR_PARAM"/>
+		<result property="cedingIdParam"        column="CEDING_ID_PARAM"/>
+		<result property="cedingId"             column="CEDING_ID"/>
+		<result property="trtyYy"               column="TRTY_YY"/>
+		<result property="treatyCompany"        column="TREATY_COMPANY"/>
+		<result property="siBandCd"             column="SI_BAND_CD"/>
+		<result property="premGross"            column="PREM_GROSS"/>
+		<result property="premQuota"            column="PREM_QUOTA"/>
+		<result property="prem1stRet"           column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"           column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"       column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"       column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"            column="PREM_FACUL"/>
+		<result property="commGross"            column="COMM_GROSS"/>
+		<result property="commQuota"            column="COMM_QUOTA"/>
+		<result property="comm1stRet"           column="COMM_1ST_RET"/>
+		<result property="comm2ndRet"           column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus"       column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus"       column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul"            column="COMM_FACUL"/>
+		<result property="vatriGross"           column="VATRI_GROSS"/>
+		<result property="vatriQuota"           column="VATRI_QUOTA"/>
+		<result property="vatri1stRet"          column="VATRI_1ST_RET"/>
+		<result property="vatri2ndRet"          column="VATRI_2ND_RET"/>
+		<result property="vatri1stSurplus"      column="VATRI_1ST_SURPLUS"/>
+		<result property="vatri2ndSurplus"      column="VATRI_2ND_SURPLUS"/>
+		<result property="vatriFacul"           column="VATRI_FACUL"/>
+		<result property="clmGross"             column="CLM_GROSS"/>
+		<result property="clmQuota"             column="CLM_QUOTA"/>
+		<result property="clm1stRet"            column="CLM_1ST_RET"/>
+		<result property="clm2ndRet"            column="CLM_2ND_RET"/>
+		<result property="clm1stSurplus"        column="CLM_1ST_SURPLUS"/>
+		<result property="clm2ndSurplus"        column="CLM_2ND_SURPLUS"/>
+		<result property="clmFacul"             column="CLM_FACUL"/>
+	</resultMap>
+	
+	<select id="retrievePolR044t" resultMap="retrievePolR044tMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044t_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<!-- accounting > reports -->
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052A" id="retrievePolR052aMap">
+		<result property="extractUser"       column="EXTRACT_USER"/>
+		<result property="extractDate"       column="EXTRACT_DATE"/>
+		<result property="lineCd"            column="LINE_CD"/>
+		<result property="dateParam"         column="DATE_PARAM"/>
+		<result property="dateRange"         column="DATE_RANGE"/>
+		<result property="fromDate"          column="FROM_DATE"/>
+		<result property="toDate"            column="TO_DATE"/>
+		<result property="policyId"          column="POLICY_ID"/>
+		<result property="policyNo"          column="POLICY_NO"/>
+		<result property="currencyCd"        column="CURRENCY_CD"/>
+		<result property="totalPrem"         column="TOTAL_PREM"/>
+		<result property="premQuota"         column="PREM_QUOTA"/>
+		<result property="prem1stRet"        column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"        column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"    column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"    column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"         column="PREM_FACUL"/>
+		<result property="totalComm"         column="TOTAL_COMM"/>
+		<result property="commQuota"         column="COMM_QUOTA"/>
+		<result property="comm1stRet"        column="COMM_1ST_RET"/>
+		<result property="comm2ndRet"        column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus"    column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus"    column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul"         column="COMM_FACUL"/>
+		<result property="totalVatri"        column="TOTAL_VATRI"/>
+		<result property="vatriQuota"        column="VATRI_QUOTA"/>
+		<result property="vatri1stRet"       column="VATRI_1ST_RET"/>
+		<result property="vatri2ndRet"       column="VATRI_2ND_RET"/>
+		<result property="vatri1stSurplus"   column="VATRI_1ST_SURPLUS"/>
+		<result property="vatri2ndSurplus"   column="VATRI_2ND_SURPLUS"/>
+		<result property="vatriFacul"        column="VATRI_FACUL"/>
+	</resultMap>
+
+	<select id="retrievePolR052a" resultMap="retrievePolR052aMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052a_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052B" id="retrievePolR052bMap">
+		<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="lineCd"                 column="LINE_CD"/>
+		<result property="fromDate"               column="FROM_DATE"/>
+		<result property="toDate"                 column="TO_DATE"/>
+		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="instNo"                 column="INST_NO"/>
+		<result property="coRefNo"                column="CO_REF_NO"/>
+		<result property="currencyCd"             column="CURRENCY_CD"/>
+		<result property="cedingAbbr"             column="CEDING_ABBR"/>
+		<result property="insuredDesc"            column="INSURED_DESC"/>
+		<result property="inceptDate"             column="INCEPT_DATE"/>
+		<result property="expiryDate"             column="EXPIRY_DATE"/>
+		<result property="ret1Lines"              column="RET1_LINES"/>
+		<result property="ret2Lines"              column="RET2_LINES"/>
+		<result property="totalSi"                column="TOTAL_SI"/>
+		<result property="totalPrem"              column="TOTAL_PREM"/>
+		<result property="premQuota"              column="PREM_QUOTA"/>
+		<result property="prem1stRet"             column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"             column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"         column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"         column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"              column="PREM_FACUL"/>
+		<result property="totalComm"              column="TOTAL_COMM"/>
+		<result property="commQuota"              column="COMM_QUOTA"/>
+		<result property="comm1stRet"             column="COMM_1ST_RET"/>
+		<result property="comm2ndRet"             column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus"         column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus"         column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul"              column="COMM_FACUL"/>
+		<result property="totalVatri"             column="TOTAL_VATRI"/>
+		<result property="vatriQuota"             column="VATRI_QUOTA"/>
+		<result property="vatri1stRet"            column="VATRI_1ST_RET"/>
+		<result property="vatri2ndRet"            column="VATRI_2ND_RET"/>
+		<result property="vatri1stSurplus"        column="VATRI_1ST_SURPLUS"/>
+		<result property="vatri2ndSurplus"        column="VATRI_2ND_SURPLUS"/>
+		<result property="vatriFacul"             column="VATRI_FACUL"/>
+	</resultMap>
+	
+	<select id="retrievePolR052b" resultMap="retrievePolR052bMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052b_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052C" id="retrievePolR052cMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="instNo"           column="INST_NO"/>
+		<result property="coRefNo"          column="CO_REF_NO"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="cedingAbbr"       column="CEDING_ABBR"/>
+		<result property="insuredDesc"      column="INSURED_DESC"/>
+		<result property="inceptDate"       column="INCEPT_DATE"/>
+		<result property="expiryDate"       column="EXPIRY_DATE"/>
+		<result property="ret1Lines"        column="RET1_LINES"/>
+		<result property="ret2Lines"        column="RET2_LINES"/>
+		<result property="totalSi"          column="TOTAL_SI"/>
+		<result property="totalPrem"        column="TOTAL_PREM"/>
+		<result property="premQuota"        column="PREM_QUOTA"/>
+		<result property="prem1stRet"       column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"       column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"   column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"   column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"        column="PREM_FACUL"/>
+		<result property="totalComm"        column="TOTAL_COMM"/>
+		<result property="commQuota"        column="COMM_QUOTA"/>
+		<result property="comm1stRet"       column="COMM_1ST_RET"/>
+		<result property="comm2ndRet"       column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus"   column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus"   column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul"        column="COMM_FACUL"/>
+		<result property="totalVatri"       column="TOTAL_VATRI"/>
+		<result property="vatriQuota"       column="VATRI_QUOTA"/>
+		<result property="vatri1stRet"      column="VATRI_1ST_RET"/>
+		<result property="vatri2ndRet"      column="VATRI_2ND_RET"/>
+		<result property="vatri1stSurplus"  column="VATRI_1ST_SURPLUS"/>
+		<result property="vatri2ndSurplus"  column="VATRI_2ND_SURPLUS"/>
+		<result property="vatriFacul"       column="VATRI_FACUL"/>
+	</resultMap>
+	
+	<select id="retrievePolR052c" resultMap="retrievePolR052cMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052c_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052E" id="retrievePolR052eMap">
+		<result property="extractUser"    column="EXTRACT_USER"/>
+		<result property="fromDate"       column="FROM_DATE"/>
+		<result property="toDate"         column="TO_DATE"/>
+		<result property="currencyCd"     column="CURRENCY_CD"/>
+		<result property="lineCd"         column="LINE_CD"/>
+		<result property="debitMemoNo"    column="DEBIT_MEMO_NO"/>
+		<result property="policyNo"       column="POLICY_NO"/>
+		<result property="instNo"         column="INST_NO"/>
+		<result property="cedingName"     column="CEDING_NAME"/>
+		<result property="dueFrom"        column="DUE_FROM"/>
+		<result property="commAmt"        column="COMM_AMT"/>
+		<result property="vatriComm"      column="VATRI_COMM"/>
+		<result property="premAmt"        column="PREM_AMT"/>
+	</resultMap>
+	
+	<select id="retrievePolR052e" resultMap="retrievePolR052eMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052e_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052F" id="retrievePolR052fMap">
+		<result property="extractUser"       column="EXTRACT_USER"/>
+		<result property="fromDate"          column="FROM_DATE"/>
+		<result property="toDate"            column="TO_DATE"/>
+		<result property="currencyCd"        column="CURRENCY_CD"/>
+		<result property="lineCd"            column="LINE_CD"/>
+		<result property="debitMemoNo"       column="DEBIT_MEMO_NO"/>
+		<result property="cedingName"        column="CEDING_NAME"/>
+		<result property="policyNo"          column="POLICY_NO"/>
+		<result property="instNo"            column="INST_NO"/>
+		<result property="policyRef"         column="POLICY_REF"/>
+		<result property="inceptDate"        column="INCEPT_DATE"/>
+		<result property="expDate"           column="EXP_DATE"/>
+		<result property="effDate"           column="EFF_DATE"/>
+		<result property="dueFrom"           column="DUE_FROM"/>
+		<result property="commAmt"           column="COMM_AMT"/>
+		<result property="vatriComm"         column="VATRI_COMM"/>
+		<result property="premAmt"           column="PREM_AMT"/>
+	</resultMap>
+	
+	<select id="retrievePolR052f" resultMap="retrievePolR052fMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052f_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010B" id="retrieveClmR010bMap">
+		<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="currencyCd"             column="CURRENCY_CD"/>
+		<result property="claimNo"                column="CLAIM_NO"/>
+		<result property="histType"               column="HIST_TYPE"/>
+		<result property="histTypeDesc"           column="HIST_TYPE_DESC"/>
+		<result property="histCategory"           column="HIST_CATEGORY"/>
+		<result property="histCatDesc"            column="HIST_CAT_DESC"/>
+		<result property="origResAmt"             column="ORIG_RES_AMT"/>
+		<result property="revResAmt"              column="REV_RES_AMT"/>
+		<result property="adjRefNo"               column="ADJ_REF_NO"/>
+		<result property="adjName"                column="ADJ_NAME"/>
+		<result property="cedingName"             column="CEDING_NAME"/>
+		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="polCoRefNo"             column="POL_CO_REF_NO"/>
+		<result property="insuredClm"             column="INSURED_CLM"/>
+		<result property="insuredDesc"            column="INSURED_DESC"/>
+		<result property="approvedAmt"            column="APPROVED_AMT"/>
+		<result property="lossAbbr"               column="LOSS_ABBR"/>
+		<result property="lossDate"               column="LOSS_DATE"/>
+		<result property="clmCoRefNo"             column="CLM_CO_REF_NO"/>
+		<result property="dateFrom"               column="DATE_FROM"/>
+		<result property="dateTo"                 column="DATE_TO"/>
+		<result property="treatyCompany"          column="TREATY_COMPANY"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010b" resultMap="retrieveClmR010bMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010b_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010D" id="retrieveClmR010dMap">
+		<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="dateParam"          column="DATE_PARAM"/>
+		<result property="dateRange"          column="DATE_RANGE"/>
+		<result property="dateFrom"           column="DATE_FROM"/>
+		<result property="dateTo"             column="DATE_TO"/>
+		<result property="claimId"            column="CLAIM_ID"/>
+		<result property="claimNo"            column="CLAIM_NO"/>
+		<result property="histCategory"       column="HIST_CATEGORY"/>
+		<result property="histCatDesc"        column="HIST_CAT_DESC"/>
+		<result property="lossDate"           column="LOSS_DATE"/>
+		<result property="adjId"              column="ADJ_ID"/>
+		<result property="adjName"            column="ADJ_NAME"/>
+		<result property="cedingId"           column="CEDING_ID"/>
+		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="policyId"           column="POLICY_ID"/>
+		<result property="policyNo"           column="POLICY_NO"/>
+		<result property="coRefNo"            column="CO_REF_NO"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="insuredDesc"        column="INSURED_DESC"/>
+		<result property="insuredClm"         column="INSURED_CLM"/>
+		<result property="lossCd"             column="LOSS_CD"/>
+		<result property="lossAbbr"           column="LOSS_ABBR"/>
+		<result property="lossResAmt"         column="LOSS_RES_AMT"/>
+		<result property="treatyCompany"      column="TREATY_COMPANY"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010d" resultMap="retrieveClmR010dMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010d_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010H" id="retrieveClmR010hMap">
+		<result property="extractUser"    column="EXTRACT_USER"/>
+		<result property="extractDate"    column="EXTRACT_DATE"/>
+		<result property="currencyCd"     column="CURRENCY_CD"/>
+		<result property="lineCd"         column="LINE_CD"/>
+		<result property="treatyId"       column="TREATY_ID"/>
+		<result property="treatyIdName"   column="TREATY_ID_NAME"/>
+		<result property="trtyCedId"      column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName"  column="TRTY_CED_ID_NAME"/>
+		<result property="retLayer"       column="RET_LAYER"/>
+		<result property="resAmt"         column="RES_AMT"/>
+		<result property="osPaidTag"      column="OS_PAID_TAG"/>
+		<result property="extTypeTag"     column="EXT_TYPE_TAG"/>
+		<result property="dateParam"      column="DATE_PARAM"/>
+		<result property="dateRange"      column="DATE_RANGE"/>
+		<result property="dateFrom"       column="DATE_FROM"/>
+		<result property="dateTo"         column="DATE_TO"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010h" resultMap="retrieveClmR010hMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010h_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010I" id="retrieveClmR010iMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="treatyId"         column="TREATY_ID"/>
+		<result property="treatyIdName"     column="TREATY_ID_NAME"/>
+		<result property="trtyCedId"        column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName"    column="TRTY_CED_ID_NAME"/>
+		<result property="retLayer"         column="RET_LAYER"/>
+		<result property="resAmt"           column="RES_AMT"/>
+		<result property="osPaidTag"        column="OS_PAID_TAG"/>
+		<result property="extTypeTag"       column="EXT_TYPE_TAG"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010i" resultMap="retrieveClmR010iMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010i_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010J" id="retrieveClmR010jMap">
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingIdName"     column="CEDING_ID_NAME"/>
+		<result property="ret1ClmAmt"       column="RET1_CLM_AMT"/>
+		<result property="ret2ClmAmt"       column="RET2_CLM_AMT"/>
+		<result property="total"	        column="TOTAL"/>
+		<result property="osPaidTag"        column="OS_PAID_TAG"/>
+		<result property="extTypeTag"       column="EXT_TYPE_TAG"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+	</resultMap>
+	
+	<select id="retrieveClmR010j" resultMap="retrieveClmR010jMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010j_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010K" id="retrieveClmR010kMap">
+        <result property="extractUser"      column="EXTRACT_USER"/>
+        <result property="extractDate"      column="EXTRACT_DATE"/>
+        <result property="currencyCd"       column="CURRENCY_CD"/>
+        <result property="cedingId"         column="CEDING_ID"/>
+        <result property="cedingIdName"     column="CEDING_ID_NAME"/>
+        <result property="ret1ClmAmt"       column="RET1_CLM_AMT"/>
+        <result property="ret2ClmAmt"       column="RET2_CLM_AMT"/>
+        <result property="total"	        column="TOTAL"/>
+        <result property="osPaidTag"        column="OS_PAID_TAG"/>
+        <result property="extTypeTag"       column="EXT_TYPE_TAG"/>
+        <result property="dateParam"        column="DATE_PARAM"/>
+        <result property="dateRange"        column="DATE_RANGE"/>
+        <result property="dateFrom"         column="DATE_FROM"/>
+        <result property="dateTo"           column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010k" resultMap="retrieveClmR010kMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010k_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010M" id="retrieveClmR010mMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+		<result property="claimId"          column="CLAIM_ID"/>
+		<result property="claimNo"          column="CLAIM_NO"/>
+		<result property="histCategory"     column="HIST_CATEGORY"/>
+		<result property="histCatDesc"      column="HIST_CAT_DESC"/>
+		<result property="lossDate"         column="LOSS_DATE"/>
+		<result property="adjId"            column="ADJ_ID"/>
+		<result property="adjName"          column="ADJ_NAME"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="polCoRefNo"       column="POL_CO_REF_NO"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="insuredDesc"      column="INSURED_DESC"/>
+		<result property="insuredClm"       column="INSURED_CLM"/>
+		<result property="lossCd"           column="LOSS_CD"/>
+		<result property="lossAbbr"         column="LOSS_ABBR"/>
+		<result property="lossResAmt"       column="LOSS_RES_AMT"/>
+		<result property="treatyCompany"	column="TREATY_COMPANY"/>
+		<result property="treatyName"		column="TREATY_NAME"/>
+		<result property="approvedAmt"		column="APPROVED_AMT"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010m" resultMap="retrieveClmR010mMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010m_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010N" id="retrieveClmR010nMap">
+        <result property="extractUser"      column="EXTRACT_USER"/>
+        <result property="extractDate"      column="EXTRACT_DATE"/>
+        <result property="dateParam"        column="DATE_PARAM"/>
+        <result property="dateRange"        column="DATE_RANGE"/>
+        <result property="dateFrom"         column="DATE_FROM"/>
+        <result property="dateTo"           column="DATE_TO"/>
+        <result property="claimId"          column="CLAIM_ID"/>
+        <result property="claimNo"          column="CLAIM_NO"/>
+        <result property="histCategory"     column="HIST_CATEGORY"/>
+        <result property="histCatDesc"      column="HIST_CAT_DESC"/>
+        <result property="lossDate"         column="LOSS_DATE"/>
+        <result property="adjId"            column="ADJ_ID"/>
+        <result property="adjName"          column="ADJ_NAME"/>
+        <result property="cedingId"         column="CEDING_ID"/>
+        <result property="cedingName"       column="CEDING_NAME"/>
+        <result property="policyId"         column="POLICY_ID"/>
+        <result property="policyNo"         column="POLICY_NO"/>
+        <result property="polCoRefNo"       column="POL_CO_REF_NO"/>
+        <result property="currencyCd"       column="CURRENCY_CD"/>
+        <result property="insuredDesc"      column="INSURED_DESC"/>
+        <result property="insuredClm"       column="INSURED_CLM"/>
+        <result property="lossCd"           column="LOSS_CD"/>
+        <result property="lossAbbr"         column="LOSS_ABBR"/>
+        <result property="lossResAmt"       column="LOSS_RES_AMT"/>
+        <result property="treatyCompany"	column="TREATY_COMPANY"/>
+		<result property="treatyName"		column="TREATY_NAME"/>
+		<result property="approvedAmt"		column="APPROVED_AMT"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010n" resultMap="retrieveClmR010nMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010n_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010O" id="retrieveClmR010oMap">
+    	<result property="extractUser"        column="EXTRACT_USER"/>
+		<result property="extractDate"        column="EXTRACT_DATE"/>
+		<result property="currencyCd"         column="CURRENCY_CD"/>
+		<result property="claimId"            column="CLAIM_ID"/>
+		<result property="claimNo"            column="CLAIM_NO"/>
+		<result property="histCategory"       column="HIST_CATEGORY"/>
+		<result property="histCatDesc"        column="HIST_CAT_DESC"/>
+		<result property="insuredClm"         column="INSURED_CLM"/>
+		<result property="insuredDesc"        column="INSURED_DESC"/>
+		<result property="approvedAmt"        column="APPROVED_AMT"/>
+		<result property="lossResAmt"         column="LOSS_RES_AMT"/>
+		<result property="adjId"              column="ADJ_ID"/>
+		<result property="adjName"            column="ADJ_NAME"/>
+		<result property="cedingId"           column="CEDING_ID"/>
+		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="policyId"           column="POLICY_ID"/>
+		<result property="policyNo"           column="POLICY_NO"/>
+		<result property="polCoRefNo"         column="POL_CO_REF_NO"/>
+		<result property="lossCd"             column="LOSS_CD"/>
+		<result property="lossAbbr"           column="LOSS_ABBR"/>
+		<result property="lossDate"           column="LOSS_DATE"/>
+		<result property="dateParam"          column="DATE_PARAM"/>
+		<result property="dateRange"          column="DATE_RANGE"/>
+		<result property="dateFrom"           column="DATE_FROM"/>
+		<result property="dateTo"             column="DATE_TO"/>
+		<result property="totalLossRes"       column="TOTAL_LOSS_RES"/>
+		<result property="totalLossPd"        column="TOTAL_LOSS_PD"/>
+		<result property="treatyCompany"	  column="TREATY_COMPANY"/>
+		<result property="treatyName"		  column="TREATY_NAME"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010o" resultMap="retrieveClmR010oMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010o_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010P" id="retrieveClmR010pMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="claimId"          column="CLAIM_ID"/>
+		<result property="claimNo"          column="CLAIM_NO"/>
+		<result property="histCategory"     column="HIST_CATEGORY"/>
+		<result property="histCatDesc"      column="HIST_CAT_DESC"/>
+		<result property="insuredClm"       column="INSURED_CLM"/>
+		<result property="insuredDesc"      column="INSURED_DESC"/>
+		<result property="lossResAmt"       column="LOSS_RES_AMT"/>
+		<result property="lossPdAmt"        column="LOSS_PD_AMT"/>
+		<result property="adjId"            column="ADJ_ID"/>
+		<result property="adjName"          column="ADJ_NAME"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="polCoRefNo"       column="POL_CO_REF_NO"/>
+		<result property="lossCd"           column="LOSS_CD"/>
+		<result property="lossAbbr"         column="LOSS_ABBR"/>
+		<result property="lossDate"         column="LOSS_DATE"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+		<result property="totalLossRes"     column="TOTAL_LOSS_RES"/>
+		<result property="totalLossPd"      column="TOTAL_LOSS_PD"/>
+		<result property="treatyCompany"	column="TREATY_COMPANY"/>
+		<result property="treatyName"		column="TREATY_NAME"/>
+		<result property="approvedAmt"		column="APPROVED_AMT"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010p" resultMap="retrieveClmR010pMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010p_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010S" id="retrieveClmR010sMap">
+    	<result property="extractUser"     column="EXTRACT_USER"/>
+		<result property="extractDate"     column="EXTRACT_DATE"/>
+		<result property="currencyCd"      column="CURRENCY_CD"/>
+		<result property="lineCd"          column="LINE_CD"/>
+		<result property="cedingId"        column="CEDING_ID"/>
+		<result property="cedingName"      column="CEDING_NAME"/>
+		<result property="lossResAmt"      column="LOSS_RES_AMT"/>
+		<result property="dateParam"       column="DATE_PARAM"/>
+		<result property="dateRange"       column="DATE_RANGE"/>
+		<result property="dateFrom"        column="DATE_FROM"/>
+		<result property="dateTo"          column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010s" resultMap="retrieveClmR010sMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010s_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010T" id="retrieveClmR010tMap">
+        <result property="extractUser"     column="EXTRACT_USER"/>
+        <result property="extractDate"     column="EXTRACT_DATE"/>
+        <result property="currencyCd"      column="CURRENCY_CD"/>
+        <result property="lineCd"          column="LINE_CD"/>
+        <result property="cedingId"        column="CEDING_ID"/>
+        <result property="cedingName"      column="CEDING_NAME"/>
+        <result property="lossResAmt"      column="LOSS_RES_AMT"/>
+        <result property="dateParam"       column="DATE_PARAM"/>
+        <result property="dateRange"       column="DATE_RANGE"/>
+        <result property="dateFrom"        column="DATE_FROM"/>
+        <result property="dateTo"          column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010t" resultMap="retrieveClmR010tMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010t_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010U" id="retrieveClmR010uMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="claimId"          column="CLAIM_ID"/>
+		<result property="claimNo"          column="CLAIM_NO"/>
+		<result property="lossResAmt"       column="LOSS_RES_AMT"/>
+		<result property="lossPdAmt"        column="LOSS_PD_AMT"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010u" resultMap="retrieveClmR010uMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010u_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010V" id="retrieveClmR010vMap">
+    	<result property="extractUser"    column="EXTRACT_USER"/>
+		<result property="extractDate"    column="EXTRACT_DATE"/>
+		<result property="currencyCd"     column="CURRENCY_CD"/>
+		<result property="lineCd"         column="LINE_CD"/>
+		<result property="cedingId"       column="CEDING_ID"/>
+		<result property="cedingName"     column="CEDING_NAME"/>
+		<result property="claimId"        column="CLAIM_ID"/>
+		<result property="claimNo"        column="CLAIM_NO"/>
+		<result property="lossResAmt"     column="LOSS_RES_AMT"/>
+		<result property="lossPdAmt"      column="LOSS_PD_AMT"/>
+		<result property="dateParam"      column="DATE_PARAM"/>
+		<result property="dateRange"      column="DATE_RANGE"/>
+		<result property="dateFrom"       column="DATE_FROM"/>
+		<result property="dateTo"         column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010v" resultMap="retrieveClmR010vMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010v_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010W" id="retrieveClmR010wMap">
+    	<result property="extractUser"    column="EXTRACT_USER"/>
+		<result property="extractDate"    column="EXTRACT_DATE"/>
+		<result property="currencyCd"     column="CURRENCY_CD"/>
+		<result property="lineCd"         column="LINE_CD"/>
+		<result property="cedingId"       column="CEDING_ID"/>
+		<result property="cedingName"     column="CEDING_NAME"/>
+		<result property="claimId"        column="CLAIM_ID"/>
+		<result property="claimNo"        column="CLAIM_NO"/>
+		<result property="dateParam"      column="DATE_PARAM"/>
+		<result property="dateRange"      column="DATE_RANGE"/>
+		<result property="dateFrom"       column="DATE_FROM"/>
+		<result property="dateTo"         column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010w" resultMap="retrieveClmR010wMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010w_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010X" id="retrieveClmR010xMap">
+   		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="claimId"          column="CLAIM_ID"/>
+		<result property="claimNo"          column="CLAIM_NO"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010x" resultMap="retrieveClmR010xMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010x_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.POLR044W" id="retrievePolR044wMap">
+    	<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="incRecTag"            column="INC_REC_TAG"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="fromDate"             column="FROM_DATE"/>
+		<result property="toDate"               column="TO_DATE"/>
+		<result property="lineCd"               column="LINE_CD"/>
+		<result property="lineSortSeq"          column="LINE_SORT_SEQ"/>
+		<result property="siRange"              column="SI_RANGE"/>
+		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
+		<result property="amtRangeDesc"         column="AMT_RANGE_DESC"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="quotIssCnt"           column="QUOT_ISS_CNT"/>
+		<result property="quotConvCnt"          column="QUOT_CONV_CNT"/>
+    </resultMap>
+    
+    <select id="retrievePolR044w" resultMap="retrievePolR044wMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(POLR044_CSV_PKG.polr044w_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.POLR044X" id="retrievePolR044xMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRangeDesc"    column="DATE_RANGE_DESC"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="insuredDesc"      column="INSURED_DESC"/>
+		<result property="inceptDate"       column="INCEPT_DATE"/>
+		<result property="expiryDate"       column="EXPIRY_DATE"/>
+		<result property="period"           column="PERIOD"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="siAmt"            column="SI_AMT"/>
+		<result property="premAmt"          column="PREM_AMT"/>
+		<result property="binderWarranty"   column="BINDER_WARRANTY"/>
+    </resultMap>
+    
+    <select id="retrievePolR044x" resultMap="retrievePolR044xMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(POLR044_CSV_PKG.polr044x_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.POLR044Y" id="retrievePolR044yMap">
+    	<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="extractDate"            column="EXTRACT_DATE"/>
+		<result property="currencyCd"             column="CURRENCY_CD"/>
+		<result property="policyId"               column="POLICY_ID"/>
+		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="cedingId"               column="CEDING_ID"/>
+		<result property="lineCd"                 column="LINE_CD"/>
+		<result property="prinId"                 column="PRIN_ID"/>
+		<result property="contractorId"           column="CONTRACTOR_ID"/>
+		<result property="effDate"                column="EFF_DATE"/>
+		<result property="expiryDate"             column="EXPIRY_DATE"/>
+		<result property="acctDate"               column="ACCT_DATE"/>
+		<result property="distId"                 column="DIST_ID"/>
+		<result property="histNo"                 column="HIST_NO"/>
+		<result property="instNo"                 column="INST_NO"/>
+		<result property="tsiAmt"                 column="TSI_AMT"/>
+		<result property="tsiQuota"               column="TSI_QUOTA"/>
+		<result property="tsi1stRet"              column="TSI_1ST_RET"/>
+		<result property="tsi2ndRet"              column="TSI_2ND_RET"/>
+		<result property="tsi1stSurplus"          column="TSI_1ST_SURPLUS"/>
+		<result property="tsi2ndSurplus"          column="TSI_2ND_SURPLUS"/>
+		<result property="tsiFacul"               column="TSI_FACUL"/>
+		<result property="premAmt"                column="PREM_AMT"/>
+		<result property="premQuota"              column="PREM_QUOTA"/>
+		<result property="prem1stRet"             column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"             column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"         column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"         column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"              column="PREM_FACUL"/>
+		<result property="commAmt"                column="COMM_AMT"/>
+		<result property="commQuota"              column="COMM_QUOTA"/>
+		<result property="comm1stRet"             column="COMM_1ST_RET"/>
+		<result property="comm2ndRet"             column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus"         column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus"         column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul"              column="COMM_FACUL"/>
+		<result property="commVatAmt"             column="COMM_VAT_AMT"/>
+		<result property="commVatQuota"           column="COMM_VAT_QUOTA"/>
+		<result property="commVat1stRet"          column="COMM_VAT_1ST_RET"/>
+		<result property="commVat2ndRet"          column="COMM_VAT_2ND_RET"/>
+		<result property="commVat1stSurplus"      column="COMM_VAT_1ST_SURPLUS"/>
+		<result property="commVat2ndSurplus"      column="COMM_VAT_2ND_SURPLUS"/>
+		<result property="commVatFacul"           column="COMM_VAT_FACUL"/>
+		<result property="netDueAmt"              column="NET_DUE_AMT"/>
+		<result property="netDueQuota"            column="NET_DUE_QUOTA"/>
+		<result property="netDue1stRet"           column="NET_DUE_1ST_RET"/>
+		<result property="netDue2ndRet"           column="NET_DUE_2ND_RET"/>
+		<result property="netDue1stSurplus"       column="NET_DUE_1ST_SURPLUS"/>
+		<result property="netDue2ndSurplus"       column="NET_DUE_2ND_SURPLUS"/>
+		<result property="netDueFacul"            column="NET_DUE_FACUL"/>
+		<result property="dateParam"              column="DATE_PARAM"/>
+		<result property="dateRange"              column="DATE_RANGE"/>
+		<result property="fromDate"               column="FROM_DATE"/>
+		<result property="toDate"                 column="TO_DATE"/>
+		<result property="incRecTag"              column="INC_REC_TAG"/>
+		<result property="sortSeq"                column="SORT_SEQ"/>
+    </resultMap>
+    
+    <select id="retrievePolR044y" resultMap="retrievePolR044yMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(POLR044_CSV_PKG.polr044y_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010A" id="retrieveClmR010aMap">
+    	<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="lineCd"               column="LINE_CD"/>
+		<result property="claimId"              column="CLAIM_ID"/>
+		<result property="claimNo"              column="CLAIM_NO"/>
+		<result property="cedingId"             column="CEDING_ID"/>
+		<result property="insuredDesc"          column="INSURED_DESC"/>
+		<result property="insuredClm"           column="INSURED_CLM"/>
+		<result property="distDate"             column="DIST_DATE"/>
+		<result property="lossDate"             column="LOSS_DATE"/>
+		<result property="lossCd"               column="LOSS_CD"/>
+		<result property="lossAbbr"             column="LOSS_ABBR"/>
+		<result property="lossDtl"              column="LOSS_DTL"/>
+		<result property="osAmt"                column="OS_AMT"/>
+		<result property="pdAmt"                column="PD_AMT"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="dateFrom"             column="DATE_FROM"/>
+		<result property="dateTo"               column="DATE_TO"/>
+		<result property="minAmt"               column="MIN_AMT"/>
+		<result property="treatyCompany"        column="TREATY_COMPANY"/>
+		<result property="treatyId"             column="TREATY_ID"/>
+		<result property="trtyCedId"            column="TRTY_CED_ID"/>
+		<result property="treatyName"           column="TREATY_NAME"/>
+		<result property="retLayer"             column="RET_LAYER"/>
+		<result property="retName"              column="RET_NAME"/>
+		<result property="uwYear"               column="UW_YEAR"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010a" resultMap="retrieveClmR010aMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010a_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010C" id="retrieveClmR010cMap">
+   		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="adjId"            column="ADJ_ID"/>
+		<result property="adjName"          column="ADJ_NAME"/>
+		<result property="claimId"          column="CLAIM_ID"/>
+		<result property="claimNo"          column="CLAIM_NO"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="coRefNo"          column="CO_REF_NO"/>
+		<result property="lossDate"         column="LOSS_DATE"/>
+		<result property="lossCd"           column="LOSS_CD"/>
+		<result property="lossAbbr"         column="LOSS_ABBR"/>
+		<result property="insuredDesc"      column="INSURED_DESC"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="insuredClm"       column="INSURED_CLM"/>
+		<result property="approvedAmt"      column="APPROVED_AMT"/>
+		<result property="lossOsAmt"        column="LOSS_OS_AMT"/>
+		<result property="lossPdAmt"        column="LOSS_PD_AMT"/>
+		<result property="adjFeeAmt"        column="ADJ_FEE_AMT"/>
+		<result property="clmStatCd"        column="CLM_STAT_CD"/>
+		<result property="clmStatDesc"      column="CLM_STAT_DESC"/>
+		<result property="adjIdParam"       column="ADJ_ID_PARAM"/>
+		<result property="clmStatParam"     column="CLM_STAT_PARAM"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010c" resultMap="retrieveClmR010cMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010c_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010E" id="retrieveClmR010eMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="refYear"          column="REF_YEAR"/>
+		<result property="categoryCd"       column="CATEGORY_CD"/>
+		<result property="ctgryCdDesc"      column="CTGRY_CD_DESC"/>
+		<result property="thisMthQty"       column="THIS_MTH_QTY"/>
+		<result property="thisMthAmt"       column="THIS_MTH_AMT"/>
+		<result property="lastMthQty"       column="LAST_MTH_QTY"/>
+		<result property="lastMthAmt"       column="LAST_MTH_AMT"/>
+		<result property="dateParam"        column="DATE_PARAM"/>
+		<result property="dateRange"        column="DATE_RANGE"/>
+		<result property="dateFrom"         column="DATE_FROM"/>
+		<result property="dateTo"           column="DATE_TO"/>
+		<result property="sortSeq"          column="SORT_SEQ"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010e" resultMap="retrieveClmR010eMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010e_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
 </mapper>
