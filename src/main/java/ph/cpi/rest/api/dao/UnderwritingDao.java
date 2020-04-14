@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.underwriting.DistWrisk;
 import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.FullWordings;
 import ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo;
+import ph.cpi.rest.api.model.underwriting.MoveBookingList;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
@@ -155,4 +156,6 @@ public interface UnderwritingDao {
 	public FullWordings retrieveFullWordings(HashMap<String, Object> params)throws SQLException;
 	public Policy retrievePolFullItem(HashMap<String, Object> retrievePolItemParams)throws SQLException;
 	public HashMap<String, Object> savePolFullItem(HashMap<String, Object> savePolItemParams)throws SQLException;
+	public List<MoveBookingList> retrieveMoveBookingMonthList(HashMap<String, Object> params)throws SQLException;
+	public HashMap<String, Object> batchUpdateBookingDate(HashMap<String, Object> params)throws SQLException;
 }

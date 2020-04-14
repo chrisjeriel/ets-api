@@ -3351,4 +3351,46 @@
 			POL_FULLITEM_PKG.renumber_pol_itm(#{policyId},#{projId});
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.underwriting.MoveBookingList" id="MoveBookingListMap">
+		<result property="policyId"		column="POLICY_ID"/>
+		<result property="policyNo"		column="POLICY_NO"/>
+		<result property="bookingDate"	column="BOOKING_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="distStatus"	column="DIST_STATUS"/>
+		<result property="withInst"		column="WITH_INST"/>
+		<result property="cessionDesc"	column="CESSION_DESC"/>
+		<result property="createUser"	column="CREATE_USER"/>
+		<result property="totalSi"		column="TOTAL_SI"/>
+		<result property="totalPrem"	column="TOTAL_PREM"/>
+		<result property="instNo"		column="INST_NO"/>
+	</resultMap>
+	
+	<select id="retrieveMoveBookingMonthList" resultMap="MoveBookingListMap">
+		SELECT * FROM TABLE(DIST_WPOL_PKG.ret_move_pol_list_type(
+			#{policyNo, jdbcType=VARCHAR},
+			#{distStatus, jdbcType=VARCHAR},
+			CAST(to_timestamp(#{bookingFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+			CAST(to_timestamp(#{bookingTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			#{cessionDesc, jdbcType=VARCHAR},
+			#{createdBy, jdbcType=VARCHAR},
+			#{totalSiFrom, jdbcType=VARCHAR},
+			#{totalSiTo, jdbcType=VARCHAR},
+			#{totalPremFrom, jdbcType=VARCHAR},
+			#{totalPremTo, jdbcType=VARCHAR}
+		))
+	</select>
+	
+	<update id="batchUpdateBookingDate">
+		BEGIN
+			NULL;
+			<foreach collection="list" item="item">
+			  	DIST_WPOL_PKG.moveBookingDate(
+			  		#{item.policyId},
+					#{item.instNo},
+					CAST(to_timestamp(#{bookingDate, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+					#{updateUser}
+					);
+			 </foreach>
+		END;
+	</update>
 </mapper>
