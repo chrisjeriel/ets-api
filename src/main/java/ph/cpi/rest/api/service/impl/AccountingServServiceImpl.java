@@ -12,11 +12,13 @@ import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.Error;
+import ph.cpi.rest.api.model.Message;
 import ph.cpi.rest.api.model.request.ApproveJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelJVServiceRequest;
 import ph.cpi.rest.api.model.request.CancelOrRequest;
 import ph.cpi.rest.api.model.request.CopyAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.EditServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.ExtractAcseExpenseBudgetRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchInvoiceNoRequest;
 import ph.cpi.rest.api.model.request.GenerateBatchOrNoRequest;
 import ph.cpi.rest.api.model.request.PostAcitMonthEndTrialBalRequest;
@@ -87,6 +89,7 @@ import ph.cpi.rest.api.model.response.CancelJVServiceResponse;
 import ph.cpi.rest.api.model.response.CancelOrResponse;
 import ph.cpi.rest.api.model.response.CopyAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.EditServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.ExtractAcseExpenseBudgetResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchInvoiceNoResponse;
 import ph.cpi.rest.api.model.response.GenerateBatchOrNoResponse;
 import ph.cpi.rest.api.model.response.PostAcitMonthEndTrialBalResponse;
@@ -1199,11 +1202,41 @@ public class AccountingServServiceImpl implements AccountingServService{
 			HashMap<String,Object> params = new HashMap<String,Object>();
 			params.put("originYear", request.getOriginYear());
 			params.put("desYear", request.getDesYear());
-			HashMap<String,Object> res = acctServDao.copyAcseExpenseBudget(params);
-			response.setReturnCode((Integer) res.get("errorCode"));
+			
+			HashMap<String,Object> validate = new HashMap<String,Object>();
+			Boolean proceed = false;
+			
+			if("N".equals(request.getForce())) {
+				validate = acctServDao.validateCopyBudgetYear(params);
+				
+				switch ((String) validate.get("validate")) {
+				case "P":
+					proceed = true;
+					break;
+				case "T":
+					proceed = false;
+					response.getMessageList().add(new Message("INFO", (String) validate.get("message")));
+					response.setReturnCode(1);
+					break;
+				case "F":
+					proceed = false;
+					response.getMessageList().add(new Message("INFO", (String) validate.get("message")));
+					response.setReturnCode(2);
+					break;
+				default:
+					break;
+				}
+			} else {
+				proceed = true;
+			}
+			
+			if(proceed) {
+				HashMap<String,Object> res = acctServDao.copyAcseExpenseBudget(params);
+				response.setReturnCode((Integer) res.get("errorCode"));
+			}
 		}catch(Exception ex){
 			response.setReturnCode(0);
-			response.getErrorList().add(new Error("General Exception","Unable to proceed to printing. Check fields."));
+			response.getErrorList().add(new Error("General Exception","Unable to proceed to copying. Check fields."));
 			ex.printStackTrace();
 		}
 		return response;
@@ -1727,6 +1760,27 @@ public class AccountingServServiceImpl implements AccountingServService{
 			e.printStackTrace();
 			res.setReturnCode(0);
 			res.getErrorList().add(new Error("SQLException","Reopening failed."));
+		}
+		
+		return res;
+	}
+
+	@Override
+	public ExtractAcseExpenseBudgetResponse extractAcseExpenseBudget(ExtractAcseExpenseBudgetRequest request)
+			throws SQLException {
+		ExtractAcseExpenseBudgetResponse res = new ExtractAcseExpenseBudgetResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("extDate", request.getExtDate());
+		params.put("extUser", request.getExtUser());
+		
+		try {
+			acctServDao.extractAcseExpenseBudget(params);
+			res.setReturnCode(-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setReturnCode(0);
+			res.getErrorList().add(new Error("SQLException","Extraction failed."));
 		}
 		
 		return res;

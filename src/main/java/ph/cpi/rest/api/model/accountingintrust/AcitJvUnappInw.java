@@ -37,6 +37,8 @@ public class AcitJvUnappInw {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String insuredDesc;
+	private String soaNo;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -234,6 +236,18 @@ public class AcitJvUnappInw {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
+	public String getSoaNo() {
+		return soaNo;
+	}
+	public void setSoaNo(String soaNo) {
+		this.soaNo = soaNo;
+	}
 	@Override
 	public String toString() {
 		return "AcitJvUnappInw [tranId=" + tranId + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId="
@@ -245,7 +259,7 @@ public class AcitJvUnappInw {
 				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", totalPayt=" + totalPayt
 				+ ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", soaNo=" + soaNo + "]";
 	}
 	
 	

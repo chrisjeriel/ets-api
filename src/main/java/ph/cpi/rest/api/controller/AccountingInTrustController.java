@@ -968,4 +968,25 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitJVListingLengthRequest : " + rajll.toString());
 		return acctInTrustService.retrieveAcitJvListingLength(rajll);
 	}
+	
+	@PostMapping(path="saveJVMultiOffset")
+	public @ResponseBody SaveJVMultiOffsetResponse saveJVMultiOffset(@RequestBody SaveJVMultiOffsetRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveJVMultiOffset");
+		logger.info("SaveJVMultiOffsetRequest : " + request.toString());
+		return acctInTrustService.saveJVMultiOffset(request);
+	}
+	
+	@GetMapping(path="retrieveAcitJVMultiOffset")
+	public @ResponseBody RetrieveAcitJVMultiOffsetResponse retrieveAcitJVMultiOffset(RetrieveAcitJVMultiOffsetRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVMultiOffset");
+		logger.info("RetrieveAcitJVMultiOffsetRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitJVMultiOffset(request);
+	}
+	
+	@GetMapping(path="retrieveAcitJVCedRepLoss")
+	public @ResponseBody RetrieveAcitJVCedRepLossResponse retrieveAcitJVCedRepLoss(RetrieveAcitJVCedRepLossRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVCedRepLoss");
+		logger.info("RetrieveAcitJVCedRepLossRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitJVCedRepLoss(request);
+	}
 }

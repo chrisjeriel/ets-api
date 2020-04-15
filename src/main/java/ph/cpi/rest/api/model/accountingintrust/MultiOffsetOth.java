@@ -4,11 +4,12 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcitArTransDtl {
+public class MultiOffsetOth {
+
 	private Integer tranId;
-	private Integer billId;
 	private Integer itemNo;
-	private String transdtlType;
+	private String cedingId;
+	private String cedingName;
 	private String itemName;
 	private String currCd;
 	private BigDecimal currRate;
@@ -20,8 +21,6 @@ public class AcitArTransDtl {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private String returnTag;
-	private Integer unappliedId;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -29,23 +28,23 @@ public class AcitArTransDtl {
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	public Integer getBillId() {
-		return billId;
-	}
-	public void setBillId(Integer billId) {
-		this.billId = billId;
-	}
 	public Integer getItemNo() {
 		return itemNo;
 	}
 	public void setItemNo(Integer itemNo) {
 		this.itemNo = itemNo;
 	}
-	public String getTransdtlType() {
-		return transdtlType;
+	public String getCedingId() {
+		return cedingId;
 	}
-	public void setTransdtlType(String transdtlType) {
-		this.transdtlType = transdtlType;
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public String getItemName() {
 		return itemName;
@@ -113,24 +112,12 @@ public class AcitArTransDtl {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	public String getReturnTag() {
-		return returnTag;
-	}
-	public void setReturnTag(String returnTag) {
-		this.returnTag = returnTag;
-	}	
-	public Integer getUnappliedId() {
-		return unappliedId;
-	}
-	public void setUnappliedId(Integer unappliedId) {
-		this.unappliedId = unappliedId;
-	}
 	@Override
 	public String toString() {
-		return "AcitArTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", transdtlType="
-				+ transdtlType + ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate
-				+ ", currAmt=" + currAmt + ", localAmt=" + localAmt + ", refNo=" + refNo + ", remarks=" + remarks
-				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", returnTag=" + returnTag + ", unappliedId=" + unappliedId + "]";
+		return "MultiOffsetOth [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
+				+ currAmt + ", localAmt=" + localAmt + ", refNo=" + refNo + ", remarks=" + remarks + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
 }

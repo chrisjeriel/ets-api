@@ -39,6 +39,7 @@ public class AcitJVInwPolBal {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String insuredDesc;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -243,6 +244,12 @@ public class AcitJVInwPolBal {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId + ", instNo="
@@ -254,7 +261,7 @@ public class AcitJVInwPolBal {
 				+ ", riComm=" + riComm + ", riCommVat=" + riCommVat + ", charges=" + charges + ", netDue=" + netDue
 				+ ", prevPaytAmt=" + prevPaytAmt + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", overdueInt="
 				+ overdueInt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + "]";
 	}
 	
 }

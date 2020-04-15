@@ -141,6 +141,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		retrieveEndtCodeParams.put("endtTitle", recr.getEndtTitle());
 		retrieveEndtCodeParams.put("endtDesc", recr.getEndtDesc());
 		retrieveEndtCodeParams.put("remarks", recr.getRemarks());
+		retrieveEndtCodeParams.put("mtnMode", recr.getMtnMode());
 		
 		recrResponse.setEndtCode(maintenanceDao.retrieveEndtCode(retrieveEndtCodeParams));
 		

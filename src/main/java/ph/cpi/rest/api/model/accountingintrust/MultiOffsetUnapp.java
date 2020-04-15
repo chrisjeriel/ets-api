@@ -1,62 +1,17 @@
-package ph.cpi.rest.api.model.request;
+package ph.cpi.rest.api.model.accountingintrust;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class SaveAcitJVUnappCollRequest {
+import org.joda.time.DateTime;
+
+public class MultiOffsetUnapp {
+
 	private Integer tranId;
-	private Integer tranType;
-	private List<unappliedColl> saveUnappliedColl;
-	private List<unappliedColl> delUnappliedColl;
-	
-	
-	public Integer getTranId() {
-		return tranId;
-	}
-
-	public void setTranId(Integer tranId) {
-		this.tranId = tranId;
-	}
-
-	public Integer getTranType() {
-		return tranType;
-	}
-
-	public void setTranType(Integer tranType) {
-		this.tranType = tranType;
-	}
-
-	public List<unappliedColl> getSaveUnappliedColl() {
-		return saveUnappliedColl;
-	}
-
-	public void setSaveUnappliedColl(List<unappliedColl> saveUnappliedColl) {
-		this.saveUnappliedColl = saveUnappliedColl;
-	}
-	
-	
-	public List<unappliedColl> getDelUnappliedColl() {
-		return delUnappliedColl;
-	}
-
-	public void setDelUnappliedColl(List<unappliedColl> delUnappliedColl) {
-		this.delUnappliedColl = delUnappliedColl;
-	}
-
-	@Override
-	public String toString() {
-		return "SaveAcitJVUnappCollRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveUnappliedColl="
-				+ saveUnappliedColl + ", delUnappliedColl=" + delUnappliedColl + "]";
-	}
-}
-
-class unappliedColl {
-	private Integer tranId;
-	private Integer refTranId;
-	private Integer refBillId;
-	private Integer refItemNo;
 	private String cedingId;
-	private String transDtlType;
+	private String cedingName;
+	private Integer unappliedId;
+	private String transdtlType;
+	private String transdtlName;
 	private String itemName;
 	private String currCd;
 	private BigDecimal currRate;
@@ -69,47 +24,47 @@ class unappliedColl {
 	private BigDecimal newBalance;
 	private String refNo;
 	private String remarks;
+	private String returnTag;
 	private String createUser;
-	private String createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private String updateDate;
-	private Integer unappliedId;
+	private DateTime updateDate;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
 	}
-	public Integer getRefTranId() {
-		return refTranId;
-	}
-	public void setRefTranId(Integer refTranId) {
-		this.refTranId = refTranId;
-	}
-	
 	public String getCedingId() {
 		return cedingId;
 	}
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
-	public Integer getRefBillId() {
-		return refBillId;
+	public String getCedingName() {
+		return cedingName;
 	}
-	public void setRefBillId(Integer refBillId) {
-		this.refBillId = refBillId;
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
-	public Integer getRefItemNo() {
-		return refItemNo;
+	public Integer getUnappliedId() {
+		return unappliedId;
 	}
-	public void setRefItemNo(Integer refItemNo) {
-		this.refItemNo = refItemNo;
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
 	}
-	public String getTransDtlType() {
-		return transDtlType;
+	public String getTransdtlType() {
+		return transdtlType;
 	}
-	public void setTransDtlType(String transDtlType) {
-		this.transDtlType = transDtlType;
+	public void setTransdtlType(String transdtlType) {
+		this.transdtlType = transdtlType;
+	}
+	public String getTransdtlName() {
+		return transdtlName;
+	}
+	public void setTransdtlName(String transdtlName) {
+		this.transdtlName = transdtlName;
 	}
 	public String getItemName() {
 		return itemName;
@@ -183,16 +138,22 @@ class unappliedColl {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public String getReturnTag() {
+		return returnTag;
+	}
+	public void setReturnTag(String returnTag) {
+		this.returnTag = returnTag;
+	}
 	public String getCreateUser() {
 		return createUser;
 	}
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public String getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -201,30 +162,21 @@ class unappliedColl {
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public String getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(String updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
-	}
-	public Integer getUnappliedId() {
-		return unappliedId;
-	}
-	public void setUnappliedId(Integer unappliedId) {
-		this.unappliedId = unappliedId;
 	}
 	@Override
 	public String toString() {
-		return "unappliedColl [tranId=" + tranId + ", refTranId=" + refTranId + ", refBillId=" + refBillId
-				+ ", refItemNo=" + refItemNo + ", cedingId=" + cedingId + ", transDtlType=" + transDtlType
+		return "MultiOffsetUnapp [tranId=" + tranId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", unappliedId=" + unappliedId + ", transdtlType=" + transdtlType + ", transdtlName=" + transdtlName
 				+ ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPaytAmt="
 				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", unappliedAmt=" + unappliedAmt + ", actualBalPaid="
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
-				+ ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", unappliedId="
-				+ unappliedId + "]";
+				+ ", refNo=" + refNo + ", remarks=" + remarks + ", returnTag=" + returnTag + ", createUser="
+				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
+				+ updateDate + "]";
 	}
-	
-	
-	
 }

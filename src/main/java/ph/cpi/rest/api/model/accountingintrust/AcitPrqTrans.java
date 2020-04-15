@@ -39,6 +39,8 @@ public class AcitPrqTrans {
 	private BigDecimal newPaytAmt;
 	private BigDecimal newBalance;
 	private String insuredDesc;
+	private String returnTag;
+	private Integer unappliedId;
 	
 	public Integer getReqId() {
 		return reqId;
@@ -238,6 +240,18 @@ public class AcitPrqTrans {
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
+	public String getReturnTag() {
+		return returnTag;
+	}
+	public void setReturnTag(String returnTag) {
+		this.returnTag = returnTag;
+	}
+	public Integer getUnappliedId() {
+		return unappliedId;
+	}
+	public void setUnappliedId(Integer unappliedId) {
+		this.unappliedId = unappliedId;
+	}
 	@Override
 	public String toString() {
 		return "AcitPrqTrans [reqId=" + reqId + ", itemNo=" + itemNo + ", tranTypeCd=" + tranTypeCd + ", claimId="
@@ -249,6 +263,7 @@ public class AcitPrqTrans {
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
 				+ ", updateDate=" + updateDate + ", serviceFee=" + serviceFee + ", qsoaId=" + qsoaId + ", netQsoaAmt="
 				+ netQsoaAmt + ", prevPaytAmt=" + prevPaytAmt + ", prevBalance=" + prevBalance + ", newPaytAmt="
-				+ newPaytAmt + ", newBalance=" + newBalance + ", insuredDesc=" + insuredDesc + "]";
+				+ newPaytAmt + ", newBalance=" + newBalance + ", insuredDesc=" + insuredDesc + ", returnTag="
+				+ returnTag + ", unappliedId=" + unappliedId + "]";
 	}
 }

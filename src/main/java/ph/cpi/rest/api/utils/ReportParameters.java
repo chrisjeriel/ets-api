@@ -60,6 +60,10 @@ public class ReportParameters {
 		reportParams.put("P_DRAFT_TAG", grr.getDraftTag());
 		reportParams.put("P_HUNDRED_PCT",grr.getHundredPct());
 		
+		reportParams.put("P_PROD_DATE",grr.getProdDate());
+		
+		
+		
 		return reportParams;
 	}
 	
@@ -161,6 +165,8 @@ public class ReportParameters {
 		CLMR010Params.put("clmAdj", param.getClmAdj());
 		CLMR010Params.put("clmStat", param.getClmStat());
 		CLMR010Params.put("minLossAmt", param.getMinLossAmt());
+		CLMR010Params.put("clmEvent", param.getClmEvent());
+		
 		
 		
 		return CLMR010Params;

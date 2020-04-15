@@ -84,8 +84,15 @@ public class SavePolGenInfoRequest {
 	private String coTermText;
 	private String mbiPolicyId;
 	private String coAltRefNo;
+	private String binderWarrantyDate;
 	
 	
+	public String getBinderWarrantyDate() {
+		return binderWarrantyDate;
+	}
+	public void setBinderWarrantyDate(String binderWarrantyDate) {
+		this.binderWarrantyDate = binderWarrantyDate;
+	}
 	public String getCoAltRefNo() {
 		return coAltRefNo;
 	}
@@ -591,7 +598,8 @@ public class SavePolGenInfoRequest {
 				+ ", prjUpdateUser=" + prjUpdateUser + ", prjUpdateDate=" + prjUpdateDate + ", regionCd=" + regionCd
 				+ ", provinceCd=" + provinceCd + ", cityCd=" + cityCd + ", districtCd=" + districtCd + ", blockCd="
 				+ blockCd + ", latitude=" + latitude + ", longitude=" + longitude + ", polWordings=" + polWordings
-				+ ", coTermTag=" + coTermTag + ", coTermText=" + coTermText + ", mbiPolicyId=" + mbiPolicyId + "]";
+				+ ", coTermTag=" + coTermTag + ", coTermText=" + coTermText + ", mbiPolicyId=" + mbiPolicyId
+				+ ", coAltRefNo=" + coAltRefNo + ", binderWarrantyDate=" + binderWarrantyDate + "]";
 	}
 	
 	

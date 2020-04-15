@@ -4,66 +4,47 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-public class AcitJVAdjstInwPolBal {
+public class MultiOffsetIpb {
 	private Integer tranId;
-	private Integer itemNo;
 	private Integer policyId;
 	private String policyNo;
-	private String soaNo;
 	private String cedingId;
 	private String cedingName;
 	private Integer instNo;
-	private String coRefNo;
-	private DateTime effDate;
-	private DateTime dueDate;
 	private String currCd;
+	private String coRefNo;
+	private DateTime dueDate;
 	private BigDecimal currRate;
 	private BigDecimal prevPremAmt;
-	private BigDecimal prevRiComm;
+	private BigDecimal prevRiComm; 
 	private BigDecimal prevRiCommVat;
 	private BigDecimal prevCharges;
 	private BigDecimal prevNetDue;
-	private BigDecimal cumPayment;
-	private BigDecimal balance;
-	private BigDecimal localAmt;
-	private BigDecimal paytAmt;
 	private BigDecimal premAmt;
 	private BigDecimal riComm;
 	private BigDecimal riCommVat;
 	private BigDecimal charges;
 	private BigDecimal netDue;
+	private BigDecimal balance;
+	private BigDecimal cumPayment;
+	private BigDecimal paytAmt;
+	private BigDecimal localAmt;
 	private BigDecimal totalPayt;
 	private BigDecimal remainingBal;
+	private BigDecimal overdueInt;
+	private String remarks;
 	private String createUser;
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	private String okDelete;
 	private String insuredDesc;
+	private String soaNo;
 	
-	public String getCedingId() {
-		return cedingId;
-	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
-	}
-	public String getCedingName() {
-		return cedingName;
-	}
-	public void setCedingName(String cedingName) {
-		this.cedingName = cedingName;
-	}
 	public Integer getTranId() {
 		return tranId;
 	}
 	public void setTranId(Integer tranId) {
 		this.tranId = tranId;
-	}
-	public Integer getItemNo() {
-		return itemNo;
-	}
-	public void setItemNo(Integer itemNo) {
-		this.itemNo = itemNo;
 	}
 	public Integer getPolicyId() {
 		return policyId;
@@ -77,12 +58,17 @@ public class AcitJVAdjstInwPolBal {
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
 	}
-	
-	public String getSoaNo() {
-		return soaNo;
+	public String getCedingId() {
+		return cedingId;
 	}
-	public void setSoaNo(String soaNo) {
-		this.soaNo = soaNo;
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public Integer getInstNo() {
 		return instNo;
@@ -90,29 +76,23 @@ public class AcitJVAdjstInwPolBal {
 	public void setInstNo(Integer instNo) {
 		this.instNo = instNo;
 	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
 	public String getCoRefNo() {
 		return coRefNo;
 	}
 	public void setCoRefNo(String coRefNo) {
 		this.coRefNo = coRefNo;
 	}
-	public DateTime getEffDate() {
-		return effDate;
-	}
-	public void setEffDate(DateTime effDate) {
-		this.effDate = effDate;
-	}
 	public DateTime getDueDate() {
 		return dueDate;
 	}
 	public void setDueDate(DateTime dueDate) {
 		this.dueDate = dueDate;
-	}
-	public String getCurrCd() {
-		return currCd;
-	}
-	public void setCurrCd(String currCd) {
-		this.currCd = currCd;
 	}
 	public BigDecimal getCurrRate() {
 		return currRate;
@@ -150,30 +130,6 @@ public class AcitJVAdjstInwPolBal {
 	public void setPrevNetDue(BigDecimal prevNetDue) {
 		this.prevNetDue = prevNetDue;
 	}
-	public BigDecimal getCumPayment() {
-		return cumPayment;
-	}
-	public void setCumPayment(BigDecimal cumPayment) {
-		this.cumPayment = cumPayment;
-	}
-	public BigDecimal getBalance() {
-		return balance;
-	}
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-	public BigDecimal getLocalAmt() {
-		return localAmt;
-	}
-	public void setLocalAmt(BigDecimal localAmt) {
-		this.localAmt = localAmt;
-	}
-	public BigDecimal getPaytAmt() {
-		return paytAmt;
-	}
-	public void setPaytAmt(BigDecimal paytAmt) {
-		this.paytAmt = paytAmt;
-	}
 	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
@@ -204,6 +160,30 @@ public class AcitJVAdjstInwPolBal {
 	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
 	}
+	public BigDecimal getBalance() {
+		return balance;
+	}
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+	public BigDecimal getCumPayment() {
+		return cumPayment;
+	}
+	public void setCumPayment(BigDecimal cumPayment) {
+		this.cumPayment = cumPayment;
+	}
+	public BigDecimal getPaytAmt() {
+		return paytAmt;
+	}
+	public void setPaytAmt(BigDecimal paytAmt) {
+		this.paytAmt = paytAmt;
+	}
+	public BigDecimal getLocalAmt() {
+		return localAmt;
+	}
+	public void setLocalAmt(BigDecimal localAmt) {
+		this.localAmt = localAmt;
+	}
 	public BigDecimal getTotalPayt() {
 		return totalPayt;
 	}
@@ -215,6 +195,18 @@ public class AcitJVAdjstInwPolBal {
 	}
 	public void setRemainingBal(BigDecimal remainingBal) {
 		this.remainingBal = remainingBal;
+	}
+	public BigDecimal getOverdueInt() {
+		return overdueInt;
+	}
+	public void setOverdueInt(BigDecimal overdueInt) {
+		this.overdueInt = overdueInt;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	public String getCreateUser() {
 		return createUser;
@@ -240,32 +232,29 @@ public class AcitJVAdjstInwPolBal {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	public String getOkDelete() {
-		return okDelete;
-	}
-	public void setOkDelete(String okDelete) {
-		this.okDelete = okDelete;
-	}
 	public String getInsuredDesc() {
 		return insuredDesc;
 	}
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
+	public String getSoaNo() {
+		return soaNo;
+	}
+	public void setSoaNo(String soaNo) {
+		this.soaNo = soaNo;
+	}
 	@Override
 	public String toString() {
-		return "AcitJVAdjstInwPolBal [tranId=" + tranId + ", itemNo=" + itemNo + ", policyId=" + policyId
-				+ ", policyNo=" + policyNo + ", soaNo=" + soaNo + ", cedingId=" + cedingId + ", cedingName="
-				+ cedingName + ", instNo=" + instNo + ", coRefNo=" + coRefNo + ", effDate=" + effDate + ", dueDate="
-				+ dueDate + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt
+		return "MultoffIpb [tranId=" + tranId + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId="
+				+ cedingId + ", cedingName=" + cedingName + ", instNo=" + instNo + ", currCd=" + currCd + ", coRefNo="
+				+ coRefNo + ", dueDate=" + dueDate + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt
 				+ ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges
-				+ ", prevNetDue=" + prevNetDue + ", cumPayment=" + cumPayment + ", balance=" + balance + ", localAmt="
-				+ localAmt + ", paytAmt=" + paytAmt + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat="
-				+ riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", totalPayt=" + totalPayt
-				+ ", remainingBal=" + remainingBal + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", okDelete=" + okDelete
-				+ ", insuredDesc=" + insuredDesc + "]";
+				+ ", prevNetDue=" + prevNetDue + ", premAmt=" + premAmt + ", riComm=" + riComm + ", riCommVat="
+				+ riCommVat + ", charges=" + charges + ", netDue=" + netDue + ", balance=" + balance + ", cumPayment="
+				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", totalPayt=" + totalPayt
+				+ ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt + ", remarks=" + remarks
+				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
+				+ ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", soaNo=" + soaNo + "]";
 	}
-	
 }

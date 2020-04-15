@@ -1,52 +1,14 @@
-package ph.cpi.rest.api.model.request;
+package ph.cpi.rest.api.model.accountingintrust;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-public class SaveAcitJvUnappliedTrtyRequest {
-	
-	private Integer tranId;
-	private Integer tranType;
-	private List<UnappliedTrty> saveTrtyUnapplied;
-	private List<UnappliedTrty> delTrtyUnapplied;
-	
-	public Integer getTranId() {
-		return tranId;
-	}
-	public void setTranId(Integer tranId) {
-		this.tranId = tranId;
-	}
-	public Integer getTranType() {
-		return tranType;
-	}
-	public void setTranType(Integer tranType) {
-		this.tranType = tranType;
-	}
-	public List<UnappliedTrty> getSaveTrtyUnapplied() {
-		return saveTrtyUnapplied;
-	}
-	public void setSaveTrtyUnapplied(List<UnappliedTrty> saveTrtyUnapplied) {
-		this.saveTrtyUnapplied = saveTrtyUnapplied;
-	}
-	public List<UnappliedTrty> getDelTrtyUnapplied() {
-		return delTrtyUnapplied;
-	}
-	public void setDelTrtyUnapplied(List<UnappliedTrty> delTrtyUnapplied) {
-		this.delTrtyUnapplied = delTrtyUnapplied;
-	}
-	@Override
-	public String toString() {
-		return "SaveAcitJvUnappliedTrtyRequest [tranId=" + tranId + ", tranType=" + tranType + ", saveTrtyUnapplied="
-				+ saveTrtyUnapplied + ", delTrtyUnapplied=" + delTrtyUnapplied + "]";
-	}
-	
-	
-}
+import org.joda.time.DateTime;
 
-class UnappliedTrty{
+public class MultiOffsetTrty {
+
 	private Integer tranId;
 	private Integer qsoaId;
-	private String quarterEnding;
+	private DateTime quarterEnding;
 	private String cedingId;
 	private String currCd;
 	private BigDecimal currRate;
@@ -58,9 +20,12 @@ class UnappliedTrty{
 	private BigDecimal newPaytAmt;
 	private BigDecimal newBalance;
 	private String createUser;
-	private String createDate;
+	private DateTime createDate;
 	private String updateUser;
-	private String updateDate;
+	private DateTime updateDate;
+	private BigDecimal netQsoaAmt;
+	private String cedingName;
+	
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -73,10 +38,10 @@ class UnappliedTrty{
 	public void setQsoaId(Integer qsoaId) {
 		this.qsoaId = qsoaId;
 	}
-	public String getQuarterEnding() {
+	public DateTime getQuarterEnding() {
 		return quarterEnding;
 	}
-	public void setQuarterEnding(String quarterEnding) {
+	public void setQuarterEnding(DateTime quarterEnding) {
 		this.quarterEnding = quarterEnding;
 	}
 	public String getCedingId() {
@@ -145,10 +110,10 @@ class UnappliedTrty{
 	public void setCreateUser(String createUser) {
 		this.createUser = createUser;
 	}
-	public String getCreateDate() {
+	public DateTime getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(DateTime createDate) {
 		this.createDate = createDate;
 	}
 	public String getUpdateUser() {
@@ -157,19 +122,31 @@ class UnappliedTrty{
 	public void setUpdateUser(String updateUser) {
 		this.updateUser = updateUser;
 	}
-	public String getUpdateDate() {
+	public DateTime getUpdateDate() {
 		return updateDate;
 	}
-	public void setUpdateDate(String updateDate) {
+	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
+	}
+	public BigDecimal getNetQsoaAmt() {
+		return netQsoaAmt;
+	}
+	public void setNetQsoaAmt(BigDecimal netQsoaAmt) {
+		this.netQsoaAmt = netQsoaAmt;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	@Override
 	public String toString() {
-		return "UnappliedTrty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterEnding=" + quarterEnding
+		return "MultiOffsetTrty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterEnding=" + quarterEnding
 				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", currRate=" + currRate + ", prevPaytAmt="
 				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", balanceAmt=" + balanceAmt + ", actualBalPaid="
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + "]";
+				+ ", updateDate=" + updateDate + ", netQsoaAmt=" + netQsoaAmt + ", cedingName=" + cedingName + "]";
 	}
 }

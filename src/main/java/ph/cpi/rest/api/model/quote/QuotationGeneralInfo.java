@@ -62,8 +62,15 @@ public class QuotationGeneralInfo {
 	private String updateUser;
 	private DateTime updateDate;
 	private String mbiQuoteId;
+	private String assignedBy;
 	
 	
+	public String getAssignedBy() {
+		return assignedBy;
+	}
+	public void setAssignedBy(String assignedBy) {
+		this.assignedBy = assignedBy;
+	}
 	public String getMbiQuoteId() {
 		return mbiQuoteId;
 	}
@@ -422,7 +429,7 @@ public class QuotationGeneralInfo {
 				+ ", altWordings=" + altWordings + ", reasonCd=" + reasonCd + ", reasonDesc=" + reasonDesc
 				+ ", autoIntComp=" + autoIntComp + ", intCompTag=" + intCompTag + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", mbiQuoteId=" + mbiQuoteId + "]";
+				+ ", mbiQuoteId=" + mbiQuoteId + ", assignedBy=" + assignedBy + "]";
 	}
 	
 }

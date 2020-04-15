@@ -28,7 +28,7 @@ public class Project {
 	private Integer totalSiI;
 	private Integer pctShareI;
 	private BigDecimal totalValue;
-	private Integer objectId;
+	private String objectId;
 	private String objectDesc;
 	private String site;
 	private String duration;
@@ -174,10 +174,10 @@ public class Project {
 	public void setTotalValue(BigDecimal totalValue) {
 		this.totalValue = totalValue;
 	}
-	public Integer getObjectId() {
+	public String getObjectId() {
 		return objectId;
 	}
-	public void setObjectId(Integer objectId) {
+	public void setObjectId(String objectId) {
 		this.objectId = objectId;
 	}
 	public String getObjectDesc() {

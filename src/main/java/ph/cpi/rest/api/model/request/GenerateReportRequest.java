@@ -20,6 +20,7 @@ public class GenerateReportRequest {
 	private String policyId;
 	private String pctValue;
 	private String inclEndt;
+	private String prodDate;
 	
 	private POLR044 polr044Params;
 	private ACITR061 acitr061Params;
@@ -28,6 +29,14 @@ public class GenerateReportRequest {
 	private ACSER060 acser060Params;
 	
 	
+	
+	
+	public String getProdDate() {
+		return prodDate;
+	}
+	public void setProdDate(String prodDate) {
+		this.prodDate = prodDate;
+	}
 	private String printerName;
 	private String pageOrientation;
 	private String paperSize;
@@ -194,11 +203,12 @@ public class GenerateReportRequest {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
-				+ ", inclEndt=" + inclEndt + ", polr044Params=" + polr044Params + ", acitr061Params=" + acitr061Params
-				+ ", clmr010Params=" + clmr010Params + ", acitr052Params=" + acitr052Params + ", acser060Params="
-				+ acser060Params + ", printerName=" + printerName + ", pageOrientation=" + pageOrientation
-				+ ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId + ", histNo=" + histNo
-				+ ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
+				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", polr044Params=" + polr044Params
+				+ ", acitr061Params=" + acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params="
+				+ acitr052Params + ", acser060Params=" + acser060Params + ", printerName=" + printerName
+				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo
+				+ ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct
+				+ "]";
 	}
 	
 }

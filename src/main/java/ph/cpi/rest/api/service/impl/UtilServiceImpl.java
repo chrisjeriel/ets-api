@@ -68,6 +68,7 @@ public class UtilServiceImpl implements UtilService {
 				params.put("fromDate", grr.getPolr044Params().getFromDate());
 				params.put("toDate", grr.getPolr044Params().getToDate());
 				params.put("incRecTag", grr.getPolr044Params().getIncRecTag());
+				params.put("faculTag", grr.getPolr044Params().getFaculTag());
 				
 				params.put("forceExtract", grr.getPolr044Params().getForceExtract());
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("CLMR010")) {
