@@ -11,6 +11,21 @@ public class RretrieveMoveBookingMonthListRequest {
 	private String totalSiTo;
 	private String totalPremFrom;
 	private String totalPremTo;
+	private String insuredDesc;
+	private String instNo;
+	
+	public String getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(String instNo) {
+		this.instNo = instNo;
+	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	public String getPolicyNo() {
 		return policyNo;
 	}
@@ -76,7 +91,8 @@ public class RretrieveMoveBookingMonthListRequest {
 		return "RretrieveMoveBookingMonthListRequest [policyNo=" + policyNo + ", distStatus=" + distStatus
 				+ ", bookingFrom=" + bookingFrom + ", bookingTo=" + bookingTo + ", cessionDesc=" + cessionDesc
 				+ ", createdBy=" + createdBy + ", totalSiFrom=" + totalSiFrom + ", totalSiTo=" + totalSiTo
-				+ ", totalPremFrom=" + totalPremFrom + ", totalPremTo=" + totalPremTo + "]";
+				+ ", totalPremFrom=" + totalPremFrom + ", totalPremTo=" + totalPremTo + ", insuredDesc=" + insuredDesc
+				+ ", instNo=" + instNo + "]";
 	}
 	
 	

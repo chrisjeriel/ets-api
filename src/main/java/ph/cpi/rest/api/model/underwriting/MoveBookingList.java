@@ -15,6 +15,13 @@ public class MoveBookingList {
 	private BigDecimal totalSi;
 	private BigDecimal totalPrem;
 	private Integer instNo;
+	private String insuredDesc;
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
+	}
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -80,7 +87,7 @@ public class MoveBookingList {
 		return "MoveBookingList [policyId=" + policyId + ", policyNo=" + policyNo + ", bookingDate=" + bookingDate
 				+ ", distStatus=" + distStatus + ", withInst=" + withInst + ", cessionDesc=" + cessionDesc
 				+ ", createUser=" + createUser + ", totalSi=" + totalSi + ", totalPrem=" + totalPrem + ", instNo="
-				+ instNo + "]";
+				+ instNo + ", insuredDesc=" + insuredDesc + "]";
 	}
 	
 	

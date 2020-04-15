@@ -2299,6 +2299,8 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		params.put("totalSiTo", rpir.getTotalSiTo());
 		params.put("totalPremFrom", rpir.getTotalPremFrom());
 		params.put("totalPremTo", rpir.getTotalPremTo());
+		params.put("insuredDesc", rpir.getInsuredDesc());
+		params.put("instNo", rpir.getInstNo());
 		response.setList(underwritingDao.retrieveMoveBookingMonthList(params));
 		return response;
 	}

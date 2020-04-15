@@ -3363,6 +3363,8 @@
 		<result property="totalSi"		column="TOTAL_SI"/>
 		<result property="totalPrem"	column="TOTAL_PREM"/>
 		<result property="instNo"		column="INST_NO"/>
+		<result property="insuredDesc"		column="INSURED_DESC"/>
+		
 	</resultMap>
 	
 	<select id="retrieveMoveBookingMonthList" resultMap="MoveBookingListMap">
@@ -3376,7 +3378,9 @@
 			#{totalSiFrom, jdbcType=VARCHAR},
 			#{totalSiTo, jdbcType=VARCHAR},
 			#{totalPremFrom, jdbcType=VARCHAR},
-			#{totalPremTo, jdbcType=VARCHAR}
+			#{totalPremTo, jdbcType=VARCHAR},
+			#{insuredDesc, jdbcType=VARCHAR},
+			#{instNo, jdbcType=VARCHAR}
 		))
 	</select>
 	
