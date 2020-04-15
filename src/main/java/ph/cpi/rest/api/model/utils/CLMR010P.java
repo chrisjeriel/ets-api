@@ -11,7 +11,6 @@ public class CLMR010P {
 	private String insuredClm;
 	private String insuredDesc;
 	private String lossResAmt;
-	private String lossPdAmt;
 	private String adjId;
 	private String adjName;
 	private String cedingId;
@@ -27,10 +26,10 @@ public class CLMR010P {
 	private String dateFrom;
 	private String dateTo;
 	private String totalLossRes;
-	private String totalLossPd;
 	private String treatyName;
 	private String treatyCompany;
 	private String approvedAmt;
+	private String cedingCompany;
 	
 	public String getExtractUser() {
 		return extractUser;
@@ -91,12 +90,6 @@ public class CLMR010P {
 	}
 	public void setLossResAmt(String lossResAmt) {
 		this.lossResAmt = lossResAmt;
-	}
-	public String getLossPdAmt() {
-		return lossPdAmt;
-	}
-	public void setLossPdAmt(String lossPdAmt) {
-		this.lossPdAmt = lossPdAmt;
 	}
 	public String getAdjId() {
 		return adjId;
@@ -188,12 +181,6 @@ public class CLMR010P {
 	public void setTotalLossRes(String totalLossRes) {
 		this.totalLossRes = totalLossRes;
 	}
-	public String getTotalLossPd() {
-		return totalLossPd;
-	}
-	public void setTotalLossPd(String totalLossPd) {
-		this.totalLossPd = totalLossPd;
-	}
 	public String getTreatyName() {
 		return treatyName;
 	}
@@ -209,22 +196,25 @@ public class CLMR010P {
 	public String getApprovedAmt() {
 		return approvedAmt;
 	}
-	
+	public void setApprovedAmt(String approvedAmt) {
+		this.approvedAmt = approvedAmt;
+	}
+	public String getCedingCompany() {
+		return cedingCompany;
+	}
+	public void setCedingCompany(String cedingCompany) {
+		this.cedingCompany = cedingCompany;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010P [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", claimId=" + claimId + ", claimNo=" + claimNo + ", histCategory=" + histCategory + ", histCatDesc="
 				+ histCatDesc + ", insuredClm=" + insuredClm + ", insuredDesc=" + insuredDesc + ", lossResAmt="
-				+ lossResAmt + ", lossPdAmt=" + lossPdAmt + ", adjId=" + adjId + ", adjName=" + adjName + ", cedingId="
-				+ cedingId + ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo
-				+ ", polCoRefNo=" + polCoRefNo + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossDate="
-				+ lossDate + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom
-				+ ", dateTo=" + dateTo + ", totalLossRes=" + totalLossRes + ", totalLossPd=" + totalLossPd
-				+ ", treatyName=" + treatyName + ", treatyCompany=" + treatyCompany + ", approvedAmt=" + approvedAmt
-				+ "]";
+				+ lossResAmt + ", adjId=" + adjId + ", adjName=" + adjName + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", polCoRefNo=" + polCoRefNo
+				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossDate=" + lossDate + ", dateParam="
+				+ dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo
+				+ ", totalLossRes=" + totalLossRes + ", treatyName=" + treatyName + ", treatyCompany=" + treatyCompany
+				+ ", approvedAmt=" + approvedAmt + ", cedingCompany=" + cedingCompany + "]";
 	}
-	public void setApprovedAmt(String approvedAmt) {
-		this.approvedAmt = approvedAmt;
-	}
-	
 }

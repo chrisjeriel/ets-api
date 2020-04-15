@@ -269,10 +269,16 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr052b(utilDao.retrievePolR052b(retcParams));
 		}else if(reportName.equals("POLR052C")) {
 			retcResponse.setListPolr052c(utilDao.retrievePolR052c(retcParams));
+		}else if(reportName.equals("POLR052D")) {
+			retcResponse.setListPolr052d(utilDao.retrievePolR052d(retcParams));
 		}else if(reportName.equals("POLR052E")) {
 			retcResponse.setListPolr052e(utilDao.retrievePolR052e(retcParams));
 		}else if(reportName.equals("POLR052F")) {
 			retcResponse.setListPolr052f(utilDao.retrievePolR052f(retcParams));
+		}else if(reportName.equals("POLR052G")) {
+			retcResponse.setListPolr052g(utilDao.retrievePolR052g(retcParams));
+		}else if(reportName.equals("POLR052H")) {
+			retcResponse.setListPolr052h(utilDao.retrievePolR052h(retcParams));
 		}
 		//claims > reports > csv
 		else if(reportName.equals("CLMR010A")) {
@@ -285,6 +291,10 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr010d(utilDao.retrieveClmR010d(retcParams));
 		}else if(reportName.equals("CLMR010E")) {
 			retcResponse.setListClmr010e(utilDao.retrieveClmR010e(retcParams));
+		}else if(reportName.equals("CLMR010F")) {
+			retcResponse.setListClmr010f(utilDao.retrieveClmR010f(retcParams));
+		}else if(reportName.equals("CLMR010G")) {
+			retcResponse.setListClmr010g(utilDao.retrieveClmR010g(retcParams));
 		}else if(reportName.equals("CLMR010H")) {
 			retcResponse.setListClmr010h(utilDao.retrieveClmR010h(retcParams));
 		}else if(reportName.equals("CLMR010I")) {
@@ -293,6 +303,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr010j(utilDao.retrieveClmR010j(retcParams));
 		}else if(reportName.equals("CLMR010K")) {
 			retcResponse.setListClmr010k(utilDao.retrieveClmR010k(retcParams));
+		}else if(reportName.equals("CLMR010L")) {
+			retcResponse.setListClmr010l(utilDao.retrieveClmR010l(retcParams));
 		}else if(reportName.equals("CLMR010M")) {
 			retcResponse.setListClmr010m(utilDao.retrieveClmR010m(retcParams));
 		}else if(reportName.equals("CLMR010N")) {
@@ -301,6 +313,10 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr010o(utilDao.retrieveClmR010o(retcParams));
 		}else if(reportName.equals("CLMR010P")) {
 			retcResponse.setListClmr010p(utilDao.retrieveClmR010p(retcParams));
+		}else if(reportName.equals("CLMR010Q")) {
+			retcResponse.setListClmr010q(utilDao.retrieveClmR010q(retcParams));
+		}else if(reportName.equals("CLMR010R")) {
+			retcResponse.setListClmr010r(utilDao.retrieveClmR010r(retcParams));
 		}else if(reportName.equals("CLMR010S")) {
 			retcResponse.setListClmr010s(utilDao.retrieveClmR010s(retcParams));
 		}else if(reportName.equals("CLMR010T")) {
