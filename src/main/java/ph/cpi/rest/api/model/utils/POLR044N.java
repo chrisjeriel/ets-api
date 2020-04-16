@@ -7,6 +7,7 @@ public class POLR044N {
 	private String currencyCd;
 	private String siAmt;
 	private String premAmt;
+	private String noOfPol;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -43,9 +44,15 @@ public class POLR044N {
 	public void setPremAmt(String premAmt) {
 		this.premAmt = premAmt;
 	}
+	public String getNoOfPol() {
+		return noOfPol;
+	}
+	public void setNoOfPol(String noOfPol) {
+		this.noOfPol = noOfPol;
+	}
 	@Override
 	public String toString() {
 		return "POLR044N [extractUser=" + extractUser + ", toDate=" + toDate + ", lineCd=" + lineCd + ", currencyCd="
-				+ currencyCd + ", siAmt=" + siAmt + ", premAmt=" + premAmt + "]";
+				+ currencyCd + ", siAmt=" + siAmt + ", premAmt=" + premAmt + ", noOfPol=" + noOfPol + "]";
 	}
 }
