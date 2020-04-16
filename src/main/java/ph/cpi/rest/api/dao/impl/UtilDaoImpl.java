@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
+import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
 import ph.cpi.rest.api.model.utils.CLMR010C;
@@ -69,6 +70,7 @@ import ph.cpi.rest.api.model.utils.POLR052E;
 import ph.cpi.rest.api.model.utils.POLR052F;
 import ph.cpi.rest.api.model.utils.POLR052G;
 import ph.cpi.rest.api.model.utils.POLR052H;
+import ph.cpi.rest.api.model.utils.POLR052I;
 
 @Component
 public class UtilDaoImpl implements UtilDao{
@@ -515,6 +517,18 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR052H> retrievePolR052h(HashMap<String, Object> params) throws SQLException {
 		List<POLR052H> retrievePolR052h = sqlSession.selectList("retrievePolR052h",params);
 		return retrievePolR052h;
+	}
+
+	@Override
+	public List<POLR052I> retrievePolR052i(HashMap<String, Object> params) throws SQLException {
+		List<POLR052I> retrievePolR052i = sqlSession.selectList("retrievePolR052i",params);
+		return retrievePolR052i;
+	}
+
+	@Override
+	public List<ACITR063A> retrieveAcitR063a(HashMap<String, Object> params) throws SQLException {
+		List<ACITR063A> retrieveAcitR063a = sqlSession.selectList("retrieveAcitR063a",params);
+		return retrieveAcitR063a;
 	}
 	
 }
