@@ -281,14 +281,14 @@ public class UtilDaoImpl implements UtilDao{
 
 	@Override
 	public List<POLR044R> retrievePolR044r(HashMap<String, Object> params) throws SQLException {
-		//List<POLR044R> retrievePolR044r = sqlSession.selectList("retrievePolR044r",params);
-		return null;
+		List<POLR044R> retrievePolR044r = sqlSession.selectList("retrievePolR044r",params);
+		return retrievePolR044r;
 	}
 
 	@Override
 	public List<POLR044S> retrievePolR044s(HashMap<String, Object> params) throws SQLException {
-		//List<POLR044S> retrievePolR044s = sqlSession.selectList("retrievePolR044s",params);
-		return null;
+		List<POLR044S> retrievePolR044s = sqlSession.selectList("retrievePolR044s",params);
+		return retrievePolR044s;
 	}
 
 	@Override
