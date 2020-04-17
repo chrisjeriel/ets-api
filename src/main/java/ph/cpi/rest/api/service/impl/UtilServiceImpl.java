@@ -208,6 +208,7 @@ public class UtilServiceImpl implements UtilService {
 		HashMap<String, Object> retcParams = new HashMap<String, Object>();
 		retcParams.put("extractUser", racprlp.getExtractUser());
 		retcParams.put("reportName", racprlp.getReportName());
+		retcParams.put("prodDate", racprlp.getProdDate());
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		
@@ -331,6 +332,10 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr010w(utilDao.retrieveClmR010w(retcParams));
 		}else if(reportName.equals("CLMR010X")) {
 			retcResponse.setListClmr010x(utilDao.retrieveClmR010x(retcParams));
+		}
+		
+		else if(reportName.equals("ACITR063A")) {
+			retcResponse.setListAcitr063a(utilDao.retrieveAcitR063a(retcParams));
 		}
 		else {
 			System.out.println("No Response yet!");

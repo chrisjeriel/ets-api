@@ -2764,4 +2764,68 @@
                     #{extractUser,jdbcType=VARCHAR}))
     </select>
     
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR063A" id="retrieveAcitR063aMap">
+    	<result property="extractUser"             column="EXTRACT_USER"/>
+		<result property="extractDate"             column="EXTRACT_DATE"/>
+		<result property="currencyCd"              column="CURRENCY_CD"/>
+		<result property="policyId"                column="POLICY_ID"/>
+		<result property="policyNo"                column="POLICY_NO"/>
+		<result property="cedingId"                column="CEDING_ID"/>
+		<result property="lineCd"                  column="LINE_CD"/>
+		<result property="prinId"                  column="PRIN_ID"/>
+		<result property="contractorId"            column="CONTRACTOR_ID"/>
+		<result property="effDate"                 column="EFF_DATE"/>
+		<result property="expiryDate"              column="EXPIRY_DATE"/>
+		<result property="acctDate"                column="ACCT_DATE"/>
+		<result property="distId"                  column="DIST_ID"/>
+		<result property="histNo"                  column="HIST_NO"/>
+		<result property="instNo"                  column="INST_NO"/>
+		<result property="tsiAmt"                  column="TSI_AMT"/>
+		<result property="tsiQuota"                column="TSI_QUOTA"/>
+		<result property="tsi1stRet"               column="TSI_1ST_RET"/>
+		<result property="tsi2ndRet"               column="TSI_2ND_RET"/>
+		<result property="tsi1stSurplus"           column="TSI_1ST_SURPLUS"/>
+		<result property="tsi2ndSurplus"           column="TSI_2ND_SURPLUS"/>
+		<result property="tsiFacul"                column="TSI_FACUL"/>
+		<result property="premAmt"                 column="PREM_AMT"/>
+		<result property="premQuota"               column="PREM_QUOTA"/>
+		<result property="prem1stRet"              column="PREM_1ST_RET"/>
+		<result property="prem2ndRet"              column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus"          column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"          column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"               column="PREM_FACUL"/>
+		<result property="commAmt"                 column="COMM_AMT"/>
+		<result property="commQuota"               column="COMM_QUOTA"/>
+		<result property="comm1stRet"              column="COMM_1ST_RET"/>
+		<result property="comm2ndRet"              column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus"          column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus"          column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul"               column="COMM_FACUL"/>
+		<result property="commVatAmt"              column="COMM_VAT_AMT"/>
+		<result property="commVatQuota"            column="COMM_VAT_QUOTA"/>
+		<result property="commVat1stRet"           column="COMM_VAT_1ST_RET"/>
+		<result property="commVat2ndRet"           column="COMM_VAT_2ND_RET"/>
+		<result property="commVat1stSurplus"       column="COMM_VAT_1ST_SURPLUS"/>
+		<result property="commVat2ndSurplus"       column="COMM_VAT_2ND_SURPLUS"/>
+		<result property="commVatFacul"            column="COMM_VAT_FACUL"/>
+		<result property="netDueAmt"               column="NET_DUE_AMT"/>
+		<result property="netDueQuota"             column="NET_DUE_QUOTA"/>
+		<result property="netDue1stRet"            column="NET_DUE_1ST_RET"/>
+		<result property="netDue2ndRet"            column="NET_DUE_2ND_RET"/>
+		<result property="netDue1stSurplus"        column="NET_DUE_1ST_SURPLUS"/>
+		<result property="netDue2ndSurplus"        column="NET_DUE_2ND_SURPLUS"/>
+		<result property="netDueFacul"             column="NET_DUE_FACUL"/>
+		<result property="dateParam"               column="DATE_PARAM"/>
+		<result property="dateRange"               column="DATE_RANGE"/>
+		<result property="fromDate"                column="FROM_DATE"/>
+		<result property="toDate"                  column="TO_DATE"/>
+		<result property="incRecTag"               column="INC_REC_TAG"/>
+		<result property="dateFromTo"              column="DATE_FROM_TO"/>
+		<result property="sortSeq"                 column="SORT_SEQ"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR063a" resultMap="retrieveAcitR063aMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR063_CSV_PKG.acitr063a_to_csv(
+                    #{prodDate,jdbcType=VARCHAR}))
+    </select>
 </mapper>

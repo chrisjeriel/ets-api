@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
+import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
 import ph.cpi.rest.api.model.utils.CLMR010C;
@@ -123,6 +124,8 @@ public class RetrieveExtractToCsvResponse {
 	private List<CLMR010V> listClmr010v;
 	private List<CLMR010W> listClmr010w;
 	private List<CLMR010X> listClmr010x;
+	
+	private List<ACITR063A> listAcitr063a;
 	
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
@@ -472,6 +475,12 @@ public class RetrieveExtractToCsvResponse {
 	public void setListPolr052i(List<POLR052I> listPolr052i) {
 		this.listPolr052i = listPolr052i;
 	}
+	public List<ACITR063A> getListAcitr063a() {
+		return listAcitr063a;
+	}
+	public void setListAcitr063a(List<ACITR063A> listAcitr063a) {
+		this.listAcitr063a = listAcitr063a;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -494,6 +503,7 @@ public class RetrieveExtractToCsvResponse {
 				+ ", listClmr010p=" + listClmr010p + ", listClmr010q=" + listClmr010q + ", listClmr010r=" + listClmr010r
 				+ ", listClmr010s=" + listClmr010s + ", listClmr010t=" + listClmr010t + ", listClmr010u=" + listClmr010u
 				+ ", listClmr010v=" + listClmr010v + ", listClmr010w=" + listClmr010w + ", listClmr010x=" + listClmr010x
-				+ "]";
+				+ ", listAcitr063a=" + listAcitr063a + "]";
 	}
+	
 }
