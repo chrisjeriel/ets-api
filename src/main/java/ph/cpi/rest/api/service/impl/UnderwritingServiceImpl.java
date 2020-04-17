@@ -16,6 +16,7 @@ import ph.cpi.rest.api.dao.UnderwritingDao;
 import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.request.BatchDistributionRequest;
 import ph.cpi.rest.api.model.request.BatchPostingRequest;
+import ph.cpi.rest.api.model.request.BatchUpdateBookingDateRequest;
 import ph.cpi.rest.api.model.request.CreateOcAltRequest;
 import ph.cpi.rest.api.model.request.DistRiskRequest;
 import ph.cpi.rest.api.model.request.ExtractExpiringPolicyRequest;
@@ -67,6 +68,7 @@ import ph.cpi.rest.api.model.request.RetrievePoolDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveRiskDistributionRequest;
 import ph.cpi.rest.api.model.request.RetrieveValidBookingDateRequest;
 import ph.cpi.rest.api.model.request.RetrieveWfmApprovalsRequest;
+import ph.cpi.rest.api.model.request.RretrieveMoveBookingMonthListRequest;
 import ph.cpi.rest.api.model.request.SaveExpCatPerilRequest;
 import ph.cpi.rest.api.model.request.SaveExpCovRequest;
 import ph.cpi.rest.api.model.request.SaveExpGenInfoRequest;
@@ -99,6 +101,7 @@ import ph.cpi.rest.api.model.request.UpdatePolOpenCoverStatusRequest;
 import ph.cpi.rest.api.model.request.UpdatePolicyStatusRequest;
 import ph.cpi.rest.api.model.response.BatchDistributionResponse;
 import ph.cpi.rest.api.model.response.BatchPostingResponse;
+import ph.cpi.rest.api.model.response.BatchUpdateBookingDateResponse;
 import ph.cpi.rest.api.model.response.CreateOcAltResponse;
 import ph.cpi.rest.api.model.response.DistRiskResponse;
 import ph.cpi.rest.api.model.response.ExtractExpiringPolicyResponse;
@@ -115,6 +118,7 @@ import ph.cpi.rest.api.model.response.RetrieveDistCoInsResponse;
 import ph.cpi.rest.api.model.response.RetrieveEditableDistListResponse;
 import ph.cpi.rest.api.model.response.RetrieveExpPolListResponse;
 import ph.cpi.rest.api.model.response.RetrieveLastExtractInfoResponse;
+import ph.cpi.rest.api.model.response.RetrieveMoveBookingMonthListResponse;
 import ph.cpi.rest.api.model.response.RetrieveOpenCoverPolListResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopItemResponse;
 import ph.cpi.rest.api.model.response.RetrievePolAlopResponse;
@@ -2278,5 +2282,43 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			ex.printStackTrace();
 		}
 		return spiresponse;
+	}
+
+	@Override
+	public RetrieveMoveBookingMonthListResponse retrieveMoveBookingMonthList(RretrieveMoveBookingMonthListRequest rpir)
+			throws SQLException {
+		RetrieveMoveBookingMonthListResponse response = new RetrieveMoveBookingMonthListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("policyNo", rpir.getPolicyNo());
+		params.put("distStatus", rpir.getDistStatus());
+		params.put("bookingFrom", rpir.getBookingFrom());
+		params.put("bookingTo", rpir.getBookingTo());
+		params.put("cessionDesc", rpir.getCessionDesc());
+		params.put("createdBy", rpir.getCreatedBy());
+		params.put("totalSiFrom", rpir.getTotalSiFrom());
+		params.put("totalSiTo", rpir.getTotalSiTo());
+		params.put("totalPremFrom", rpir.getTotalPremFrom());
+		params.put("totalPremTo", rpir.getTotalPremTo());
+		params.put("insuredDesc", rpir.getInsuredDesc());
+		params.put("instNo", rpir.getInstNo());
+		response.setList(underwritingDao.retrieveMoveBookingMonthList(params));
+		return response;
+	}
+
+	@Override
+	public BatchUpdateBookingDateResponse batchUpdateBookingDate(BatchUpdateBookingDateRequest spir)
+			throws SQLException {
+		BatchUpdateBookingDateResponse response = new BatchUpdateBookingDateResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("list", spir.getList());
+		params.put("bookingDate", spir.getBookingDate());
+		params.put("updateUser", spir.getUpdateUser());
+		try {
+			HashMap<String, Object> res = underwritingDao.batchUpdateBookingDate(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

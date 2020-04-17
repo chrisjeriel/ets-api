@@ -28,6 +28,7 @@ import ph.cpi.rest.api.model.underwriting.ExpPolicy;
 import ph.cpi.rest.api.model.underwriting.FullWordings;
 import ph.cpi.rest.api.model.underwriting.InwPolBalance;
 import ph.cpi.rest.api.model.underwriting.LastExpiryExtractInfo;
+import ph.cpi.rest.api.model.underwriting.MoveBookingList;
 import ph.cpi.rest.api.model.underwriting.OpenPolicy;
 import ph.cpi.rest.api.model.underwriting.PolDistList;
 import ph.cpi.rest.api.model.underwriting.PolDistribution;
@@ -767,6 +768,19 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 	@Override
 	public HashMap<String, Object> savePolFullItem(HashMap<String, Object> params) throws SQLException {
 		Integer errorCode = sqlSession.update("savePolFullItem",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public List<MoveBookingList> retrieveMoveBookingMonthList(HashMap<String, Object> params) throws SQLException {
+		List<MoveBookingList> list = sqlSession.selectList("retrieveMoveBookingMonthList",params);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> batchUpdateBookingDate(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("batchUpdateBookingDate",params);
 		params.put("errorCode", errorCode);
 		return params;
 	}

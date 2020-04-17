@@ -62,7 +62,7 @@ public class ReportParameters {
 		
 		reportParams.put("P_PROD_DATE",grr.getProdDate());
 		
-		
+		reportParams.put("P_MEMO_ID", grr.getMemoId());
 		
 		return reportParams;
 	}

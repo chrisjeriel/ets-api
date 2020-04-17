@@ -28,9 +28,18 @@ public class GenerateReportRequest {
 	private ACITR052 acitr052Params;
 	private ACSER060 acser060Params;
 	
+	private String memoId;
 	
 	
 	
+	
+	
+	public String getMemoId() {
+		return memoId;
+	}
+	public void setMemoId(String memoId) {
+		this.memoId = memoId;
+	}
 	public String getProdDate() {
 		return prodDate;
 	}
@@ -205,10 +214,10 @@ public class GenerateReportRequest {
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
 				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", polr044Params=" + polr044Params
 				+ ", acitr061Params=" + acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params="
-				+ acitr052Params + ", acser060Params=" + acser060Params + ", printerName=" + printerName
-				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo
-				+ ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct
-				+ "]";
+				+ acitr052Params + ", acser060Params=" + acser060Params + ", memoId=" + memoId + ", printerName="
+				+ printerName + ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo="
+				+ instNo + ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct="
+				+ hundredPct + "]";
 	}
 	
 }
