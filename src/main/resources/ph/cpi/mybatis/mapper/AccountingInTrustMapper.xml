@@ -420,16 +420,17 @@
 	</resultMap>
 	
 	<select id="retArList" resultMap="arListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_ACKGT_RECEIPT_PKG.ret_ar_list(
+		SELECT * FROM TABLE(ACIT_ACKGT_RECEIPT_PKG.ret_acit_ar_list(
 																#{arNo, jdbcType=VARCHAR},
 																#{payor, jdbcType=VARCHAR},
 																CAST(to_timestamp(#{arDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																CAST(to_timestamp(#{arDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																#{tranTypeName, jdbcType=VARCHAR},
-																#{arStatus, jdbcType=VARCHAR},
 																#{particulars, jdbcType=VARCHAR},
 																#{arAmtFrom, jdbcType=VARCHAR},
 																#{arAmtTo, jdbcType=VARCHAR},
+																#{tranStat, jdbcType=VARCHAR},
+																#{arStat, jdbcType=VARCHAR},
 																NULL,
 																NULL,
 																NULL,

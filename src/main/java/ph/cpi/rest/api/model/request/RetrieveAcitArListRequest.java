@@ -13,6 +13,8 @@ public class RetrieveAcitArListRequest {
 	private String particulars;
 	private String arAmtFrom;
 	private String arAmtTo;
+	private String tranStat;
+	private String arStat;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
@@ -70,6 +72,18 @@ public class RetrieveAcitArListRequest {
 	public void setArAmtTo(String arAmtTo) {
 		this.arAmtTo = arAmtTo;
 	}
+	public String getTranStat() {
+		return tranStat;
+	}
+	public void setTranStat(String tranStat) {
+		this.tranStat = tranStat;
+	}
+	public String getArStat() {
+		return arStat;
+	}
+	public void setArStat(String arStat) {
+		this.arStat = arStat;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -87,7 +101,8 @@ public class RetrieveAcitArListRequest {
 	public String toString() {
 		return "RetrieveAcitArListRequest [arNo=" + arNo + ", payor=" + payor + ", arDateFrom=" + arDateFrom
 				+ ", arDateTo=" + arDateTo + ", tranTypeName=" + tranTypeName + ", arStatus=" + arStatus
-				+ ", particulars=" + particulars + ", arAmtFrom=" + arAmtFrom + ", arAmtTo=" + arAmtTo
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", particulars=" + particulars + ", arAmtFrom=" + arAmtFrom + ", arAmtTo=" + arAmtTo + ", tranStat="
+				+ tranStat + ", arStat=" + arStat + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
 }

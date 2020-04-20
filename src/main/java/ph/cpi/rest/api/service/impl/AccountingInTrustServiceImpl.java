@@ -193,6 +193,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("particulars", raalr.getParticulars());
 		params.put("arAmtFrom", raalr.getArAmtFrom());
 		params.put("arAmtTo", raalr.getArAmtTo());
+		params.put("tranStat", raalr.getTranStat());
+		params.put("arStat", raalr.getArStat());
 		response.setAr(acctITDao.retrieveArList(params));
 		return response;
 	}
