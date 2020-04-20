@@ -279,6 +279,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr052g(utilDao.retrievePolR052g(retcParams));
 		}else if(reportName.equals("POLR052H")) {
 			retcResponse.setListPolr052h(utilDao.retrievePolR052h(retcParams));
+		}else if(reportName.equals("POLR052I")) {
+			retcResponse.setListPolr052i(utilDao.retrievePolR052i(retcParams));
 		}
 		//claims > reports > csv
 		else if(reportName.equals("CLMR010A")) {
