@@ -1383,19 +1383,21 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044M" id="retrievePolR044mMap">
-		<result property="extractUser"      column="EXTRACT_USER"/>  
-		<result property="extractDate"      column="EXTRACT_DATE"/>  
-		<result property="dateParam"      	column="DATE_PARAM"/>    
-		<result property="dateRange"      	column="DATE_RANGE"/>    
-		<result property="currencyCd"     	column="CURRENCY_CD"/>   
-		<result property="zoneCd"     		column="ZONE_CD"/>       
-		<result property="polCount"     	column="POL_COUNT"/>     
-		<result property="siAmt"      		column="SI_AMT"/>        
-		<result property="premAmt"      	column="PREM_AMT"/>      
-		<result property="avRiskAmt"      	column="AV_RISK_AMT"/>   
-		<result property="fromDate"     	column="FROM_DATE"/>     
-		<result property="toDate"     		column="TO_DATE"/>       
-		<result property="zoneCdDesc"     	column="ZONE_CD_DESC"/>  
+		<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateParamDesc"        column="DATE_PARAM_DESC"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="dateRangeDesc"        column="DATE_RANGE_DESC"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="zoneCd"               column="ZONE_CD"/>
+		<result property="zoneCdDtl"            column="ZONE_CD_DTL"/>
+		<result property="zoneDesc"             column="ZONE_DESC"/>
+		<result property="polCount"             column="POL_COUNT"/>
+		<result property="siAmt"                column="SI_AMT"/>
+		<result property="premAmt"              column="PREM_AMT"/>
+		<result property="avRiskAmt"            column="AV_RISK_AMT"/>
+		<result property="dateFromTo"           column="DATE_FROM_TO"/>
 	</resultMap>
 	
 	<select id="retrievePolR044m" resultMap="retrievePolR044mMap" parameterType="java.util.Map">
