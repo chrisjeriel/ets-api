@@ -111,7 +111,7 @@
 					'', '', '',''))
 	</select>
 	<select id="retrieveAcitPaytReq" resultMap="acitPaytReqMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_PAYMENT_REQUEST_PKG.ret_payt_req(
+		<!-- SELECT * FROM TABLE(ACIT_PAYMENT_REQUEST_PKG.ret_payt_req(
 					#{reqId,jdbcType=INTEGER},
 					#{paytReqNo, jdbcType=VARCHAR},
 					#{tranTypeDesc, jdbcType=VARCHAR},
@@ -123,6 +123,21 @@
 					#{reqAmt, jdbcType=INTEGER},
 					#{particulars, jdbcType=VARCHAR},
 					#{requestedBy, jdbcType=VARCHAR},
+					'', '', '','')) -->
+		SELECT * FROM TABLE(ACIT_PAYMENT_REQUEST_PKG.ret_acit_prq_list(
+					#{reqId,jdbcType=INTEGER},
+					#{paytReqNo, jdbcType=VARCHAR},
+					#{tranTypeDesc, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{reqDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{reqDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{reqStatusDesc, jdbcType=VARCHAR},
+					#{payee, jdbcType=VARCHAR},
+					#{currCd, jdbcType=VARCHAR},
+					#{reqAmtFrom, jdbcType=INTEGER},
+					#{reqAmtTo, jdbcType=INTEGER},
+					#{particulars, jdbcType=VARCHAR},
+					#{requestedBy, jdbcType=VARCHAR},
+					#{prqStat, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 	
@@ -3390,7 +3405,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcitCv" resultMap="acitCvMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_CHECK_VOUCHER_PKG.ret_acit_cv(
+		<!-- SELECT * FROM TABLE(ACIT_CHECK_VOUCHER_PKG.ret_acit_cv(
 					#{tranId,jdbcType=INTEGER},
 					#{cvGenNo, jdbcType=VARCHAR},
 					CAST(to_timestamp(#{cvDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -3399,6 +3414,19 @@
 					#{payee, jdbcType=VARCHAR},
 					#{particulars, jdbcType=VARCHAR},
 					#{cvAmt, jdbcType=INTEGER},
+					'', '', '','')) -->
+		SELECT * FROM TABLE(ACIT_CHECK_VOUCHER_PKG.ret_acit_cv_list(
+					#{tranId,jdbcType=INTEGER},
+					#{cvGenNo, jdbcType=VARCHAR},
+					CAST(to_timestamp(#{cvDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					CAST(to_timestamp(#{cvDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{cvStatusDesc, jdbcType=VARCHAR},
+					#{payee, jdbcType=VARCHAR},
+					#{particulars, jdbcType=VARCHAR},
+					#{cvAmtFrom, jdbcType=INTEGER},
+					#{cvAmtTo, jdbcType=INTEGER},
+					#{tranStat, jdbcType=VARCHAR},
+					#{cvStat, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 	
