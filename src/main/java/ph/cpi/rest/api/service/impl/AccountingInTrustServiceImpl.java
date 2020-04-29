@@ -56,9 +56,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		rapParams.put("reqStatusDesc", racprlp.getReqStatusDesc());
 		rapParams.put("payee", racprlp.getPayee());
 		rapParams.put("currCd", racprlp.getCurrCd());
-		rapParams.put("reqAmt", racprlp.getReqAmt());
+		rapParams.put("reqAmtFrom", racprlp.getReqAmtFrom());
+		rapParams.put("reqAmtTo", racprlp.getReqAmtTo());
 		rapParams.put("particulars", racprlp.getParticulars());
 		rapParams.put("requestedBy", racprlp.getRequestedBy());
+		rapParams.put("prqStat", racprlp.getPrqStat());
 		rapResponse.setAcitPaytReq(acctITDao.retrieveAcitPaytReq(rapParams));
 		logger.info("RetrieveAcitPaytReqResponse : " + rapResponse.toString());
 		return rapResponse;
@@ -193,6 +195,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("particulars", raalr.getParticulars());
 		params.put("arAmtFrom", raalr.getArAmtFrom());
 		params.put("arAmtTo", raalr.getArAmtTo());
+		params.put("tranStat", raalr.getTranStat());
+		params.put("arStat", raalr.getArStat());
 		response.setAr(acctITDao.retrieveArList(params));
 		return response;
 	}
@@ -1598,7 +1602,10 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		racParams.put("cvStatusDesc",raptp.getCvStatusDesc());
 		racParams.put("payee",raptp.getPayee());
 		racParams.put("particulars",raptp.getParticulars());
-		racParams.put("cvAmt",raptp.getCvAmt());
+		racParams.put("cvAmtFrom",raptp.getCvAmtFrom());
+		racParams.put("cvAmtTo",raptp.getCvAmtTo());
+		racParams.put("tranStat",raptp.getTranStat());
+		racParams.put("cvStat",raptp.getCvStat());
 		racResponse.setAcitCvList(acctITDao.retrieveAcitCv(racParams));
 		logger.info("RetrieveAcitCvResponse : " + racResponse);
 		return racResponse;
