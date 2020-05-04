@@ -2844,4 +2844,83 @@
         SELECT * FROM TABLE(ACITR063_CSV_PKG.acitr063a_to_csv(
                     #{prodDate,jdbcType=VARCHAR}))
     </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR066A" id="retrieveAcitR066aMap">
+    	<result property="acctGroup"			column="ACCT_GROUP"/>
+		<result property="sortSeq"				column="SORT_SEQ"/>
+		<result property="accountName"			column="ACCOUNT_NAME"/>
+		<result property="dollarTreaty"			column="DOLLAR_TREATY"/>
+		<result property="pesoEquivalent"		column="PESO_EQUIVALENT"/>
+		<result property="pesoTreaty"			column="PESO_TREATY"/>
+		<result property="totalTreatyCy"		column="TOTAL_TREATY_CY"/>
+		<result property="totalTreatyPy"		column="TOTAL_TREATY_PY"/>
+		<result property="paramDate"			column="PARAM_DATE"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR066a" resultMap="retrieveAcitR066aMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066a_to_csv(
+                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE)))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR066B" id="retrieveAcitR066bMap">
+    	<result property="cedingGrp"                     column="CEDING_GRP"/>
+		<result property="cedingId"                      column="CEDING_ID"/>
+		<result property="cedingName"                    column="CEDING_NAME"/>
+		<result property="ageGrp1"                       column="AGE_GRP1"/>
+		<result property="ageGrp2"                       column="AGE_GRP2"/>
+		<result property="ageGrp3"                       column="AGE_GRP3"/>
+		<result property="ageGrp4"                       column="AGE_GRP4"/>
+		<result property="ageGrp5"                       column="AGE_GRP5"/>
+		<result property="ageGrp6"                       column="AGE_GRP6"/>
+		<result property="ageGrp7"                       column="AGE_GRP7"/>
+		<result property="ageGrp8"                       column="AGE_GRP8"/>
+		<result property="intPenalty"                    column="INT_PENALTY"/>
+		<result property="totalDueFrom"                  column="TOTAL_DUE_FROM"/>
+		<result property="totalDueTo"                    column="TOTAL_DUE_TO"/>
+		<result property="trtyDueTo"                     column="TRTY_DUE_TO"/>
+		<result property="lossPayable"                   column="LOSS_PAYABLE"/>
+		<result property="paramDate"                     column="PARAM_DATE"/>
+		<result property="paramCurrency"                 column="PARAM_CURRENCY"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR066b" resultMap="retrieveAcitR066bMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066b_to_csv(
+                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+                    #{paramCurrency,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR066EF" id="retrieveAcitR066efMap">
+    	<result property="eomDate"              column="EOM_DATE"/>
+		<result property="eomMm"                column="EOM_MM"/>
+		<result property="eomYear"              column="EOM_YEAR"/>
+		<result property="currCd"               column="CURR_CD"/>
+		<result property="currRt"               column="CURR_RT"/>
+		<result property="glAcctId"             column="GL_ACCT_ID"/>
+		<result property="shortCode"            column="SHORT_CODE"/>
+		<result property="shortDesc"            column="SHORT_DESC"/>
+		<result property="longDesc"             column="LONG_DESC"/>
+		<result property="begDebitAmt"          column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"         column="BEG_CREDIT_AMT"/>
+		<result property="totalDebitAmt"        column="TOTAL_DEBIT_AMT"/>
+		<result property="totalCreditAmt"       column="TOTAL_CREDIT_AMT"/>
+		<result property="transDebitBal"        column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"       column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"         column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"          column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"         column="END_CREDIT_AMT"/>
+		<result property="eomUser"              column="EOM_USER"/>
+		<result property="tbBase"               column="TB_BASE"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR066e" resultMap="retrieveAcitR066efMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066ef_to_csv(
+                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+                    #{paramCurrency,jdbcType=VARCHAR}))
+    </select>
+    
+    <select id="retrieveAcitR066f" resultMap="retrieveAcitR066efMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066ef_to_csv(
+                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+                    #{paramCurrency,jdbcType=VARCHAR}))
+    </select>
 </mapper>

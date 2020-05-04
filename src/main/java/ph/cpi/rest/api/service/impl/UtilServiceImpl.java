@@ -209,6 +209,8 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("extractUser", racprlp.getExtractUser());
 		retcParams.put("reportName", racprlp.getReportName());
 		retcParams.put("prodDate", racprlp.getProdDate());
+		retcParams.put("paramDate", racprlp.getParamDate());
+		retcParams.put("paramCurrency", racprlp.getParamCurrency());
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		
@@ -337,10 +339,18 @@ public class UtilServiceImpl implements UtilService {
 		else if(reportName.equals("ACITR063A")) {
 			retcResponse.setListAcitr063a(utilDao.retrieveAcitR063a(retcParams));
 		}
+		else if(reportName.equals("ACITR066A")) {
+			retcResponse.setListAcitr066a(utilDao.retrieveAcitR066a(retcParams));
+		}else if(reportName.equals("ACITR066B")) {
+			retcResponse.setListAcitr066b(utilDao.retrieveAcitR066b(retcParams));
+		}else if(reportName.equals("ACITR066E")) {
+			retcResponse.setListAcitr066e(utilDao.retrieveAcitR066e(retcParams));
+		}else if(reportName.equals("ACITR066F")) {
+			retcResponse.setListAcitr066f(utilDao.retrieveAcitR066f(retcParams));
+		}
 		else {
 			System.out.println("No Response yet!");
 		}
-		
 		return retcResponse;
 	}
 	
