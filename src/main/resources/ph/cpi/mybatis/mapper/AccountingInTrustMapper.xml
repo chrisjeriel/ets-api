@@ -1685,7 +1685,7 @@
 	
 	<select id="retrieveQSOAList" resultMap="qsoaMap">
 		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_comp_qsoa_list(#{qsoaId, jdbcType=INTEGER},
-															 #{cedingId, jdbcType=INTEGER},
+															 #{cedingId, jdbcType=VARCHAR},
 															 #{fromQtr, jdbcType=INTEGER},
 															 #{fromYear, jdbcType=INTEGER},
 															 #{toQtr, jdbcType=INTEGER},
