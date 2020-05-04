@@ -6,6 +6,7 @@ import java.util.HashMap;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
+import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
@@ -243,5 +244,16 @@ public class ReportParameters {
 		ACSER060Params.put("P_PRINTED_BY", param.getPrintedBy());
 		
 		return ACSER060Params;
+	}
+	
+	public static HashMap<String, Object> mapACITR066Params(ACITR066 param) throws ParseException {
+		HashMap<String, Object> ACITR066Params = new HashMap<String, Object>();
+		
+		ACITR066Params.put("P_REPORT_ID", param.getReportId());
+		ACITR066Params.put("P_DATE", param.getEomDate());
+		ACITR066Params.put("P_CEDING_ID", param.getCedingId());
+		ACITR066Params.put("P_CURR_CD", param.getCurrCd());
+		
+		return ACITR066Params;
 	}
 }

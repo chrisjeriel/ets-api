@@ -12,11 +12,13 @@ public class RetrieveAcitPaytReqRequest {
     private String reqStatusDesc;
     private String payee;
     private String currCd;
-    private String reqAmt;
+    private String reqAmtFrom;
+    private String reqAmtTo;
     private String particulars;
     private String requestedBy;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	private String prqStat;
 	public String getReqId() {
 		return reqId;
 	}
@@ -65,11 +67,17 @@ public class RetrieveAcitPaytReqRequest {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
-	public String getReqAmt() {
-		return reqAmt;
+	public String getReqAmtFrom() {
+		return reqAmtFrom;
 	}
-	public void setReqAmt(String reqAmt) {
-		this.reqAmt = reqAmt;
+	public void setReqAmtFrom(String reqAmtFrom) {
+		this.reqAmtFrom = reqAmtFrom;
+	}
+	public String getReqAmtTo() {
+		return reqAmtTo;
+	}
+	public void setReqAmtTo(String reqAmtTo) {
+		this.reqAmtTo = reqAmtTo;
 	}
 	public String getParticulars() {
 		return particulars;
@@ -95,12 +103,19 @@ public class RetrieveAcitPaytReqRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
+	public String getPrqStat() {
+		return prqStat;
+	}
+	public void setPrqStat(String prqStat) {
+		this.prqStat = prqStat;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcitPaytReqRequest [reqId=" + reqId + ", paytReqNo=" + paytReqNo + ", tranTypeDesc="
 				+ tranTypeDesc + ", reqDateFrom=" + reqDateFrom + ", reqDateTo=" + reqDateTo + ", reqStatusDesc="
-				+ reqStatusDesc + ", payee=" + payee + ", currCd=" + currCd + ", reqAmt=" + reqAmt + ", particulars="
-				+ particulars + ", requestedBy=" + requestedBy + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+				+ reqStatusDesc + ", payee=" + payee + ", currCd=" + currCd + ", reqAmtFrom=" + reqAmtFrom
+				+ ", reqAmtTo=" + reqAmtTo + ", particulars=" + particulars + ", requestedBy=" + requestedBy
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + ", prqStat=" + prqStat
+				+ "]";
 	}
 }

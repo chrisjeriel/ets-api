@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.request;
 
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
+import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
@@ -27,6 +28,7 @@ public class GenerateReportRequest {
 	private CLMR010 clmr010Params;
 	private ACITR052 acitr052Params;
 	private ACSER060 acser060Params;
+	private ACITR066 acitr066Params;
 	
 	private String memoId;
 	
@@ -207,6 +209,12 @@ public class GenerateReportRequest {
 	public void setAcser060Params(ACSER060 acser060Params) {
 		this.acser060Params = acser060Params;
 	}
+	public ACITR066 getAcitr066Params() {
+		return acitr066Params;
+	}
+	public void setAcitr066Params(ACITR066 acitr066Params) {
+		this.acitr066Params = acitr066Params;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
@@ -214,10 +222,10 @@ public class GenerateReportRequest {
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
 				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", polr044Params=" + polr044Params
 				+ ", acitr061Params=" + acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params="
-				+ acitr052Params + ", acser060Params=" + acser060Params + ", memoId=" + memoId + ", printerName="
-				+ printerName + ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo="
-				+ instNo + ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct="
-				+ hundredPct + "]";
+				+ acitr052Params + ", acser060Params=" + acser060Params + ", acitr066Params=" + acitr066Params
+				+ ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation=" + pageOrientation
+				+ ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId + ", histNo=" + histNo
+				+ ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
 	}
 	
 }

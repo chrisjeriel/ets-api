@@ -272,6 +272,7 @@
 	<update id="extractPOLR044P" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044P_PKG.extract_accsipercomp(#{extractUser, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
 												  #{cedingIdParam, jdbcType=VARCHAR}, 
 												  #{dateParam, jdbcType=VARCHAR},
 												  #{dateRange, jdbcType=VARCHAR},
@@ -286,6 +287,7 @@
 	<update id="extractPOLR044Q" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044Q_PKG.extract_accsiall(#{extractUser, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
 												  #{cedingIdParam, jdbcType=VARCHAR}, 
 												  #{dateParam, jdbcType=VARCHAR},
 												  #{dateRange, jdbcType=VARCHAR},
