@@ -5600,4 +5600,10 @@
 		  FROM TABLE(ACIT_JV_MO_INWPOLBAL_PKG.ret_multoff_existing(#{tranId}))
 	</select>
 	
+	<update id="updateAgingSoa" parameterType="java.util.Map">
+		BEGIN
+			UPDATE_AGING_SOA_DAYS(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
 </mapper>
