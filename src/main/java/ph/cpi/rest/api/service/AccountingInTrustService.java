@@ -148,4 +148,5 @@ public interface AccountingInTrustService {
 	public SaveJVMultiOffsetResponse saveJVMultiOffset(SaveJVMultiOffsetRequest request) throws SQLException;
 	public RetrieveAcitJVMultiOffsetResponse retrieveAcitJVMultiOffset(RetrieveAcitJVMultiOffsetRequest request) throws SQLException;
 	public RetrieveAcitJVCedRepLossResponse retrieveAcitJVCedRepLoss(RetrieveAcitJVCedRepLossRequest request) throws SQLException;
+	public UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException;
 }

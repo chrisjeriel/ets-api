@@ -989,4 +989,11 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitJVCedRepLossRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitJVCedRepLoss(request);
 	}
+	
+	@PostMapping(path="updateAgingSoa")
+	public @ResponseBody UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/updateAgingSoa");
+		logger.info("eomDate : " + eomDate);
+		return acctInTrustService.updateAgingSoa(eomDate);
+	}
 }
