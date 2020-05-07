@@ -7,6 +7,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
+import ph.cpi.rest.api.model.utils.ACITR066C;
 import ph.cpi.rest.api.model.utils.ACITR066EF;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
@@ -54,6 +55,7 @@ import ph.cpi.rest.api.model.utils.POLR044Q;
 import ph.cpi.rest.api.model.utils.POLR044R;
 import ph.cpi.rest.api.model.utils.POLR044S;
 import ph.cpi.rest.api.model.utils.POLR044T;
+import ph.cpi.rest.api.model.utils.POLR044V;
 import ph.cpi.rest.api.model.utils.POLR044W;
 import ph.cpi.rest.api.model.utils.POLR044X;
 import ph.cpi.rest.api.model.utils.POLR044Y;
@@ -95,6 +97,7 @@ public interface UtilDao {
 	public List<POLR044R> retrievePolR044r(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044S> retrievePolR044s(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044T> retrievePolR044t(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044V> retrievePolR044v(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044W> retrievePolR044w(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044X> retrievePolR044x(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044Y> retrievePolR044y(final HashMap<String, Object> params ) throws SQLException;
@@ -138,6 +141,7 @@ public interface UtilDao {
 	
 	public List<ACITR066A> retrieveAcitR066a(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066B> retrieveAcitR066b(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR066C> retrieveAcitR066c(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066EF> retrieveAcitR066e(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066EF> retrieveAcitR066f(final HashMap<String, Object> params ) throws SQLException;
 }

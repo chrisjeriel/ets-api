@@ -258,6 +258,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044s(utilDao.retrievePolR044s(retcParams));
 		}else if(reportName.equals("POLR044T")) {
 			retcResponse.setListPolr044t(utilDao.retrievePolR044t(retcParams));
+		}else if(reportName.equals("POLR044V")) {
+			retcResponse.setListPolr044v(utilDao.retrievePolR044v(retcParams));
 		}else if(reportName.equals("POLR044W")) {
 			retcResponse.setListPolr044w(utilDao.retrievePolR044w(retcParams));
 		}else if(reportName.equals("POLR044X")) {
@@ -343,6 +345,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr066a(utilDao.retrieveAcitR066a(retcParams));
 		}else if(reportName.equals("ACITR066B")) {
 			retcResponse.setListAcitr066b(utilDao.retrieveAcitR066b(retcParams));
+		}else if(reportName.equals("ACITR066C")) {
+			retcResponse.setListAcitr066c(utilDao.retrieveAcitR066c(retcParams));
 		}else if(reportName.equals("ACITR066E")) {
 			retcResponse.setListAcitr066e(utilDao.retrieveAcitR066e(retcParams));
 		}else if(reportName.equals("ACITR066F")) {
