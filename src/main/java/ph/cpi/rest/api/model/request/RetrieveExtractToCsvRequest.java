@@ -4,6 +4,8 @@ public class RetrieveExtractToCsvRequest {
 	private String extractUser;
 	private String reportName;
 	private String prodDate;
+	private String paramDate;
+	private String paramCurrency;
 
 	public String getExtractUser() {
 		return extractUser;
@@ -29,9 +31,25 @@ public class RetrieveExtractToCsvRequest {
 		this.prodDate = prodDate;
 	}
 
+	public String getParamDate() {
+		return paramDate;
+	}
+
+	public void setParamDate(String paramDate) {
+		this.paramDate = paramDate;
+	}
+
+	public String getParamCurrency() {
+		return paramCurrency;
+	}
+
+	public void setParamCurrency(String paramCurrency) {
+		this.paramCurrency = paramCurrency;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvRequest [extractUser=" + extractUser + ", reportName=" + reportName + ", prodDate="
-				+ prodDate + "]";
+				+ prodDate + ", paramDate=" + paramDate + ", paramCurrency=" + paramCurrency + "]";
 	}
 }
