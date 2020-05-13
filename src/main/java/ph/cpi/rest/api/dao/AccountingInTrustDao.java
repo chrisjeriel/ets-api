@@ -282,4 +282,5 @@ public interface AccountingInTrustDao {
 	public List<MultiOffsetLrd> retrieveMultiOffsetLrd(final HashMap<String, Object> params) throws SQLException;
 	public List<MultiOffsetOth> retrieveMultiOffsetOth(final HashMap<String, Object> params) throws SQLException;
 	public MultiOffsetExisting retrieveMultiOffsetExisting(final HashMap<String, Object> params) throws SQLException;
+	public HashMap<String,Object> updateAgingSoa(final HashMap<String, Object> params ) throws SQLException;
 }

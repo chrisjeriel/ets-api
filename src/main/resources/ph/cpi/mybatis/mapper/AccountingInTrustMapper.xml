@@ -1685,7 +1685,7 @@
 	
 	<select id="retrieveQSOAList" resultMap="qsoaMap">
 		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_comp_qsoa_list(#{qsoaId, jdbcType=INTEGER},
-															 #{cedingId, jdbcType=INTEGER},
+															 #{cedingId, jdbcType=VARCHAR},
 															 #{fromQtr, jdbcType=INTEGER},
 															 #{fromYear, jdbcType=INTEGER},
 															 #{toQtr, jdbcType=INTEGER},
@@ -5599,5 +5599,11 @@
 		SELECT *
 		  FROM TABLE(ACIT_JV_MO_INWPOLBAL_PKG.ret_multoff_existing(#{tranId}))
 	</select>
+	
+	<update id="updateAgingSoa" parameterType="java.util.Map">
+		BEGIN
+			UPDATE_AGING_SOA_DAYS(CAST(to_timestamp(#{eomDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
 	
 </mapper>

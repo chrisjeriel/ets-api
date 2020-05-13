@@ -3124,4 +3124,23 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setCedRepLossList(acctITDao.retrieveAcitJVCedRepLoss(params));
 		return response;
 	}
+
+
+	@Override
+	public UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException {
+		UpdateAgingSoaReponse response = new UpdateAgingSoaReponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("eomDate", eomDate);
+		
+		try {
+			acctITDao.updateAgingSoa(params);
+			response.setReturnCode(-1);
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Update failed."));
+			e.printStackTrace();
+		}
+		
+		return response;
+	}
 }

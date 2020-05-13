@@ -1350,4 +1350,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		MultiOffsetExisting response = sqlSession.selectOne("retrieveMultiOffsetExisting", params);
 		return response;
 	}
+
+	@Override
+	public HashMap<String, Object> updateAgingSoa(HashMap<String, Object> params) throws SQLException {
+		sqlSession.update("updateAgingSoa", params);
+		return params;
+	}
 }
