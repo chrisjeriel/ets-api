@@ -4,12 +4,17 @@ import java.text.ParseException;
 import java.util.HashMap;
 
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
+import ph.cpi.rest.api.model.utils.ACITR049;
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
+import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class ReportParameters {
 
@@ -250,10 +255,39 @@ public class ReportParameters {
 		HashMap<String, Object> ACITR066Params = new HashMap<String, Object>();
 		
 		ACITR066Params.put("P_REPORT_ID", param.getReportId());
+		ACITR066Params.put("p_report_id", param.getReportId());
+		ACITR066Params.put("pReportId", param.getReportId());
+		ACITR066Params.put("reportId", param.getReportId());
 		ACITR066Params.put("P_DATE", param.getEomDate());
 		ACITR066Params.put("P_CEDING_ID", param.getCedingId());
 		ACITR066Params.put("P_CURR_CD", param.getCurrCd());
 		
 		return ACITR066Params;
+	}
+	
+	public static HashMap<String, Object> mapACSER024Params(ACSER024 param) throws ParseException {
+		HashMap<String, Object> ACSER024Params = new HashMap<String, Object>();
+		
+		ACSER024Params.put("P_REPORT_ID", param.getReportId());
+		ACSER024Params.put("p_report_id", param.getReportId());
+		ACSER024Params.put("pReportId", param.getReportId());
+		ACSER024Params.put("reportId", param.getReportId());
+		ACSER024Params.put("P_DATE", param.getEomDate());
+		ACSER024Params.put("P_CEDING_ID", param.getCedingId());
+		ACSER024Params.put("P_CURR_CD", param.getCurrCd());
+		
+		return ACSER024Params;
+	}
+	
+	public static HashMap<String, Object> mapACITR049Params(ACITR049 param) throws ParseException {
+		HashMap<String, Object> ACITR049Params = new HashMap<String, Object>();
+		
+		ACITR049Params.put("P_REPORT_ID", param.getReportId());
+		ACITR049Params.put("p_report_id", param.getReportId());
+		ACITR049Params.put("pReportId", param.getReportId());
+		ACITR049Params.put("reportId", param.getReportId());
+		ACITR049Params.put("P_PROFCOMM_ID", param.getProfCommId());
+		
+		return ACITR049Params;
 	}
 }
