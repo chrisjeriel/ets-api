@@ -8,7 +8,10 @@ import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
 import ph.cpi.rest.api.model.utils.ACITR066C;
+import ph.cpi.rest.api.model.utils.ACITR066D;
 import ph.cpi.rest.api.model.utils.ACITR066EF;
+import ph.cpi.rest.api.model.utils.ACSER024B;
+import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
 import ph.cpi.rest.api.model.utils.CLMR010C;
@@ -142,6 +145,11 @@ public interface UtilDao {
 	public List<ACITR066A> retrieveAcitR066a(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066B> retrieveAcitR066b(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066C> retrieveAcitR066c(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR066D> retrieveAcitR066d(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066EF> retrieveAcitR066e(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066EF> retrieveAcitR066f(final HashMap<String, Object> params ) throws SQLException;
+	
+	public List<ACSER024B> retrieveAcseR024b(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACSER024CD> retrieveAcseR024c(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACSER024CD> retrieveAcseR024d(final HashMap<String, Object> params ) throws SQLException;
 }

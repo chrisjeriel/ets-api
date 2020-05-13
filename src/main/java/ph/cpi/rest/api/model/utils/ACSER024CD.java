@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.utils;
 
-public class ACITR066EF {
+public class ACSER024CD {
 	private String eomDate;
 	private String eomMm;
 	private String eomYear;
@@ -21,9 +21,6 @@ public class ACITR066EF {
 	private String endCreditAmt;
 	private String eomUser;
 	private String tbBase;
-	private String paramDate;
-	private String paramCurrency;
-	
 	public String getEomDate() {
 		return eomDate;
 	}
@@ -144,27 +141,14 @@ public class ACITR066EF {
 	public void setTbBase(String tbBase) {
 		this.tbBase = tbBase;
 	}
-	public String getParamDate() {
-		return paramDate;
-	}
-	public void setParamDate(String paramDate) {
-		this.paramDate = paramDate;
-	}
-	public String getParamCurrency() {
-		return paramCurrency;
-	}
-	public void setParamCurrency(String paramCurrency) {
-		this.paramCurrency = paramCurrency;
-	}
 	@Override
 	public String toString() {
-		return "ACITR066EF [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd=" + currCd
+		return "ACSER024CD [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd=" + currCd
 				+ ", currRt=" + currRt + ", glAcctId=" + glAcctId + ", shortCode=" + shortCode + ", shortDesc="
 				+ shortDesc + ", longDesc=" + longDesc + ", begDebitAmt=" + begDebitAmt + ", begCreditAmt="
 				+ begCreditAmt + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt
 				+ ", transDebitBal=" + transDebitBal + ", transCreditBal=" + transCreditBal + ", transBalance="
 				+ transBalance + ", endDebitAmt=" + endDebitAmt + ", endCreditAmt=" + endCreditAmt + ", eomUser="
-				+ eomUser + ", tbBase=" + tbBase + ", paramDate=" + paramDate + ", paramCurrency=" + paramCurrency
-				+ "]";
+				+ eomUser + ", tbBase=" + tbBase + "]";
 	}
 }

@@ -211,6 +211,7 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("prodDate", racprlp.getProdDate());
 		retcParams.put("paramDate", racprlp.getParamDate());
 		retcParams.put("paramCurrency", racprlp.getParamCurrency());
+		retcParams.put("cedingId", racprlp.getCedingId());
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		
@@ -347,11 +348,22 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr066b(utilDao.retrieveAcitR066b(retcParams));
 		}else if(reportName.equals("ACITR066C")) {
 			retcResponse.setListAcitr066c(utilDao.retrieveAcitR066c(retcParams));
+		}else if(reportName.equals("ACITR066D")) {
+			retcResponse.setListAcitr066d(utilDao.retrieveAcitR066d(retcParams));
 		}else if(reportName.equals("ACITR066E")) {
 			retcResponse.setListAcitr066e(utilDao.retrieveAcitR066e(retcParams));
 		}else if(reportName.equals("ACITR066F")) {
 			retcResponse.setListAcitr066f(utilDao.retrieveAcitR066f(retcParams));
 		}
+		
+		else if(reportName.equals("ACSER024B")) {
+			retcResponse.setListAcser024b(utilDao.retrieveAcseR024b(retcParams));
+		}else if(reportName.equals("ACSER024C")) {
+			retcResponse.setListAcser024c(utilDao.retrieveAcseR024c(retcParams));
+		}else if(reportName.equals("ACSER024D")) {
+			retcResponse.setListAcser024d(utilDao.retrieveAcseR024d(retcParams));
+		}
+		
 		else {
 			System.out.println("No Response yet!");
 		}

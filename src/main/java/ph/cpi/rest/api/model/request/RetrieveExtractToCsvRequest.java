@@ -6,6 +6,7 @@ public class RetrieveExtractToCsvRequest {
 	private String prodDate;
 	private String paramDate;
 	private String paramCurrency;
+	private String cedingId;
 
 	public String getExtractUser() {
 		return extractUser;
@@ -47,9 +48,18 @@ public class RetrieveExtractToCsvRequest {
 		this.paramCurrency = paramCurrency;
 	}
 
+	public String getCedingId() {
+		return cedingId;
+	}
+
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvRequest [extractUser=" + extractUser + ", reportName=" + reportName + ", prodDate="
-				+ prodDate + ", paramDate=" + paramDate + ", paramCurrency=" + paramCurrency + "]";
+				+ prodDate + ", paramDate=" + paramDate + ", paramCurrency=" + paramCurrency + ", cedingId=" + cedingId
+				+ "]";
 	}
 }

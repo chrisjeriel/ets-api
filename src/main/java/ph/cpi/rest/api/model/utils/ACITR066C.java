@@ -14,6 +14,9 @@ public class ACITR066C {
 	private String prevGrandTotal;
 	private String planAmt;
 	private String incDecPct;
+	private String paramDate;
+	private String paramCurrency;
+	
 	public String getGrpNo() {
 		return grpNo;
 	}
@@ -92,12 +95,25 @@ public class ACITR066C {
 	public void setIncDecPct(String incDecPct) {
 		this.incDecPct = incDecPct;
 	}
+	public String getParamDate() {
+		return paramDate;
+	}
+	public void setParamDate(String paramDate) {
+		this.paramDate = paramDate;
+	}
+	public String getParamCurrency() {
+		return paramCurrency;
+	}
+	public void setParamCurrency(String paramCurrency) {
+		this.paramCurrency = paramCurrency;
+	}
 	@Override
 	public String toString() {
 		return "ACITR066C [grpNo=" + grpNo + ", itemNo=" + itemNo + ", acctName=" + acctName + ", currMembersTotal="
 				+ currMembersTotal + ", currMreTotal=" + currMreTotal + ", currNatreTotal=" + currNatreTotal
 				+ ", currGrandTotal=" + currGrandTotal + ", prevMembersTotal=" + prevMembersTotal + ", prevMreTotal="
 				+ prevMreTotal + ", prevNatreTotal=" + prevNatreTotal + ", prevGrandTotal=" + prevGrandTotal
-				+ ", planAmt=" + planAmt + ", incDecPct=" + incDecPct + "]";
+				+ ", planAmt=" + planAmt + ", incDecPct=" + incDecPct + ", paramDate=" + paramDate + ", paramCurrency="
+				+ paramCurrency + "]";
 	}
 }

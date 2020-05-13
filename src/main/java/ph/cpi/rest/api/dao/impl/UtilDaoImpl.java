@@ -15,7 +15,10 @@ import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
 import ph.cpi.rest.api.model.utils.ACITR066C;
+import ph.cpi.rest.api.model.utils.ACITR066D;
 import ph.cpi.rest.api.model.utils.ACITR066EF;
+import ph.cpi.rest.api.model.utils.ACSER024B;
+import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
 import ph.cpi.rest.api.model.utils.CLMR010C;
@@ -274,14 +277,14 @@ public class UtilDaoImpl implements UtilDao{
 
 	@Override
 	public List<POLR044P> retrievePolR044p(HashMap<String, Object> params) throws SQLException {
-		//List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
-		return null;
+		List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
+		return retrievePolR044p;
 	}
 
 	@Override
 	public List<POLR044Q> retrievePolR044q(HashMap<String, Object> params) throws SQLException {
-		//List<POLR044Q> retrievePolR044q = sqlSession.selectList("retrievePolR044q",params);
-		return null;
+		List<POLR044Q> retrievePolR044q = sqlSession.selectList("retrievePolR044q",params);
+		return retrievePolR044q;
 	}
 
 	@Override
@@ -570,6 +573,30 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR044V> retrievePolR044v(HashMap<String, Object> params) throws SQLException {
 		List<POLR044V> retrievePolR044v = sqlSession.selectList("retrievePolR044v",params);
 		return retrievePolR044v;
+	}
+
+	@Override
+	public List<ACITR066D> retrieveAcitR066d(HashMap<String, Object> params) throws SQLException {
+		List<ACITR066D> retrieveAcitR066d = sqlSession.selectList("retrieveAcitR066d",params);
+		return retrieveAcitR066d;
+	}
+
+	@Override
+	public List<ACSER024B> retrieveAcseR024b(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024B> retrieveAcseR024b = sqlSession.selectList("retrieveAcseR024b",params);
+		return retrieveAcseR024b;
+	}
+
+	@Override
+	public List<ACSER024CD> retrieveAcseR024c(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024CD> retrieveAcseR024c = sqlSession.selectList("retrieveAcseR024c",params);
+		return retrieveAcseR024c;
+	}
+	
+	@Override
+	public List<ACSER024CD> retrieveAcseR024d(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024CD> retrieveAcseR024d = sqlSession.selectList("retrieveAcseR024d",params);
+		return retrieveAcseR024d;
 	}
 
 }
