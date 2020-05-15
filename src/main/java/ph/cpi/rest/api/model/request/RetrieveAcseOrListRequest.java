@@ -11,6 +11,9 @@ public class RetrieveAcseOrListRequest {
 	private String particulars;
 	private String orAmtFrom;
 	private String orAmtTo;
+	private String tranStat;
+	private String orStat;
+	
 	public String getOrType() {
 		return orType;
 	}
@@ -71,11 +74,23 @@ public class RetrieveAcseOrListRequest {
 	public void setOrAmtTo(String orAmtTo) {
 		this.orAmtTo = orAmtTo;
 	}
+	public String getTranStat() {
+		return tranStat;
+	}
+	public void setTranStat(String tranStat) {
+		this.tranStat = tranStat;
+	}
+	public String getOrStat() {
+		return orStat;
+	}
+	public void setOrStat(String orStat) {
+		this.orStat = orStat;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcseOrListRequest [orType=" + orType + ", orNo=" + orNo + ", payor=" + payor + ", orDateFrom="
 				+ orDateFrom + ", orDateTo=" + orDateTo + ", tranTypeName=" + tranTypeName + ", orStatDesc="
 				+ orStatDesc + ", particulars=" + particulars + ", orAmtFrom=" + orAmtFrom + ", orAmtTo=" + orAmtTo
-				+ "]";
+				+ ", tranStat=" + tranStat + ", orStat=" + orStat + "]";
 	}
 }

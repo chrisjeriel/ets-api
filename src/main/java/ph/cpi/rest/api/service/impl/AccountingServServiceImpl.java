@@ -179,6 +179,8 @@ public class AccountingServServiceImpl implements AccountingServService{
 		params.put("particulars", raolr.getParticulars());
 		params.put("orAmtFrom", raolr.getOrAmtFrom());
 		params.put("orAmtTo", raolr.getOrAmtTo());
+		params.put("tranStat", raolr.getTranStat());
+		params.put("orStat", raolr.getOrStat());
 		response.setOrList(acctServDao.retrieveOrList(params));
 		logger.info("RetrieveAcseOrListResponse : " + response.toString());
 		return response;

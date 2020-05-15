@@ -277,10 +277,18 @@ public class UtilController {
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR066")) {
 				System.out.println("ACITR066");
 				reportParam = ReportParameters.mapACITR066Params(grr.getAcitr066Params());
+			} else if (grr.getReportId() != null && (grr.getReportId().toUpperCase().contains("ACSER024") || grr.getReportId().toUpperCase().contains("ACSER004"))) {
+				System.out.println("ACSER024");
+				reportParam = ReportParameters.mapACSER024Params(grr.getAcser024Params());
+			} else if (grr.getReportId() != null && grr.getReportId().toUpperCase().contains("ACITR049")) {
+				System.out.println("ACITR049");
+				reportParam = ReportParameters.mapACITR049Params(grr.getAcitr049Params());
+			} else if (grr.getReportId() != null && grr.getReportId().toUpperCase().contains("ACITR050")) {
+				System.out.println("ACITR050");
+				reportParam = ReportParameters.mapACITR050Params(grr.getAcitr050Params());
 			} else {
 				reportParam = ReportParameters.mapReportParams(grr);
 			}
-			
 			
 			reportParam.put("REPORT_NAME", utilService.getReportFileName(reportParam));
 			reportParam.put("REPORT_PATH", utilService.getReportPath());

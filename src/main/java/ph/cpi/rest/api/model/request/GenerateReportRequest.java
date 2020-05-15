@@ -1,8 +1,11 @@
 package ph.cpi.rest.api.model.request;
 
+import ph.cpi.rest.api.model.utils.ACITR049;
+import ph.cpi.rest.api.model.utils.ACITR050;
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
+import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.POLR044;
@@ -29,6 +32,9 @@ public class GenerateReportRequest {
 	private ACITR052 acitr052Params;
 	private ACSER060 acser060Params;
 	private ACITR066 acitr066Params;
+	private ACSER024 acser024Params;
+	private ACITR049 acitr049Params;
+	private ACITR050 acitr050Params;
 	
 	private String memoId;
 	
@@ -215,6 +221,24 @@ public class GenerateReportRequest {
 	public void setAcitr066Params(ACITR066 acitr066Params) {
 		this.acitr066Params = acitr066Params;
 	}
+	public ACSER024 getAcser024Params() {
+		return acser024Params;
+	}
+	public void setAcser024Params(ACSER024 acser024Params) {
+		this.acser024Params = acser024Params;
+	}
+	public ACITR049 getAcitr049Params() {
+		return acitr049Params;
+	}
+	public void setAcitr049Params(ACITR049 acitr049Params) {
+		this.acitr049Params = acitr049Params;
+	}
+	public ACITR050 getAcitr050Params() {
+		return acitr050Params;
+	}
+	public void setAcitr050Params(ACITR050 acitr050Params) {
+		this.acitr050Params = acitr050Params;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
@@ -223,9 +247,10 @@ public class GenerateReportRequest {
 				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", polr044Params=" + polr044Params
 				+ ", acitr061Params=" + acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params="
 				+ acitr052Params + ", acser060Params=" + acser060Params + ", acitr066Params=" + acitr066Params
-				+ ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation=" + pageOrientation
-				+ ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId + ", histNo=" + histNo
-				+ ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
+				+ ", acser024Params=" + acser024Params + ", acitr049Params=" + acitr049Params + ", acitr050Params="
+				+ acitr050Params + ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation="
+				+ pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId
+				+ ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
 	}
 	
 }
