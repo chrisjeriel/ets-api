@@ -376,13 +376,6 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr050c(utilDao.retrieveAcitR050c(retcParams));
 			retcResponse.setListAcitr050d(utilDao.retrieveAcitR050d(retcParams));
 		}
-//		else if(reportName.equals("ACITR050B")) {
-//			retcResponse.setListAcitr050b(utilDao.retrieveAcitR050b(retcParams));
-//		}else if(reportName.equals("ACITR050C")) {
-//			retcResponse.setListAcitr050c(utilDao.retrieveAcitR050c(retcParams));
-//		}else if(reportName.equals("ACITR050D")) {
-//			retcResponse.setListAcitr050d(utilDao.retrieveAcitR050d(retcParams));
-//		}
 		
 		else {
 			System.out.println("No Response yet!");
