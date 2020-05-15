@@ -21,6 +21,9 @@ public class ACSER024CD {
 	private String endCreditAmt;
 	private String eomUser;
 	private String tbBase;
+	private String paramDate;
+	private String paramCurrency;
+	
 	public String getEomDate() {
 		return eomDate;
 	}
@@ -141,6 +144,18 @@ public class ACSER024CD {
 	public void setTbBase(String tbBase) {
 		this.tbBase = tbBase;
 	}
+	public String getParamDate() {
+		return paramDate;
+	}
+	public void setParamDate(String paramDate) {
+		this.paramDate = paramDate;
+	}
+	public String getParamCurrency() {
+		return paramCurrency;
+	}
+	public void setParamCurrency(String paramCurrency) {
+		this.paramCurrency = paramCurrency;
+	}
 	@Override
 	public String toString() {
 		return "ACSER024CD [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd=" + currCd
@@ -149,6 +164,7 @@ public class ACSER024CD {
 				+ begCreditAmt + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt
 				+ ", transDebitBal=" + transDebitBal + ", transCreditBal=" + transCreditBal + ", transBalance="
 				+ transBalance + ", endDebitAmt=" + endDebitAmt + ", endCreditAmt=" + endCreditAmt + ", eomUser="
-				+ eomUser + ", tbBase=" + tbBase + "]";
+				+ eomUser + ", tbBase=" + tbBase + ", paramDate=" + paramDate + ", paramCurrency=" + paramCurrency
+				+ "]";
 	}
 }

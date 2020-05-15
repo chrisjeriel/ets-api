@@ -2,12 +2,17 @@ package ph.cpi.rest.api.model.request;
 
 import java.util.List;
 
+import ph.cpi.rest.api.model.utils.ACITR050B;
+import ph.cpi.rest.api.model.utils.ACITR050C;
+import ph.cpi.rest.api.model.utils.ACITR050D;
 import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
 import ph.cpi.rest.api.model.utils.ACITR066C;
 import ph.cpi.rest.api.model.utils.ACITR066D;
 import ph.cpi.rest.api.model.utils.ACITR066EF;
+import ph.cpi.rest.api.model.utils.ACSER004;
+import ph.cpi.rest.api.model.utils.ACSER024A;
 import ph.cpi.rest.api.model.utils.ACSER024B;
 import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
@@ -143,9 +148,16 @@ public class RetrieveExtractToCsvResponse {
 	private List<ACITR066EF> listAcitr066e;
 	private List<ACITR066EF> listAcitr066f;
 	
+	private List<ACSER024A> listAcser024a;
 	private List<ACSER024B> listAcser024b;
 	private List<ACSER024CD> listAcser024c;
 	private List<ACSER024CD> listAcser024d;
+	
+	private List<ACSER004> listAcser004;
+	
+	private List<ACITR050B> listAcitr050b;
+	private List<ACITR050C> listAcitr050c;
+	private List<ACITR050D> listAcitr050d;
 	
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
@@ -561,6 +573,36 @@ public class RetrieveExtractToCsvResponse {
 	public void setListAcser024d(List<ACSER024CD> listAcser024d) {
 		this.listAcser024d = listAcser024d;
 	}
+	public List<ACSER004> getListAcser004() {
+		return listAcser004;
+	}
+	public void setListAcser004(List<ACSER004> listAcser004) {
+		this.listAcser004 = listAcser004;
+	}
+	public List<ACSER024A> getListAcser024a() {
+		return listAcser024a;
+	}
+	public void setListAcser024a(List<ACSER024A> listAcser024a) {
+		this.listAcser024a = listAcser024a;
+	}
+	public List<ACITR050B> getListAcitr050b() {
+		return listAcitr050b;
+	}
+	public void setListAcitr050b(List<ACITR050B> listAcitr050b) {
+		this.listAcitr050b = listAcitr050b;
+	}
+	public List<ACITR050C> getListAcitr050c() {
+		return listAcitr050c;
+	}
+	public void setListAcitr050c(List<ACITR050C> listAcitr050c) {
+		this.listAcitr050c = listAcitr050c;
+	}
+	public List<ACITR050D> getListAcitr050d() {
+		return listAcitr050d;
+	}
+	public void setListAcitr050d(List<ACITR050D> listAcitr050d) {
+		this.listAcitr050d = listAcitr050d;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -586,7 +628,9 @@ public class RetrieveExtractToCsvResponse {
 				+ ", listClmr010x=" + listClmr010x + ", listAcitr063a=" + listAcitr063a + ", listAcitr066a="
 				+ listAcitr066a + ", listAcitr066b=" + listAcitr066b + ", listAcitr066c=" + listAcitr066c
 				+ ", listAcitr066d=" + listAcitr066d + ", listAcitr066e=" + listAcitr066e + ", listAcitr066f="
-				+ listAcitr066f + ", listAcser024b=" + listAcser024b + ", listAcser024c=" + listAcser024c
-				+ ", listAcser024d=" + listAcser024d + "]";
+				+ listAcitr066f + ", listAcser024a=" + listAcser024a + ", listAcser024b=" + listAcser024b
+				+ ", listAcser024c=" + listAcser024c + ", listAcser024d=" + listAcser024d + ", listAcser004="
+				+ listAcser004 + ", listAcitr050b=" + listAcitr050b + ", listAcitr050c=" + listAcitr050c
+				+ ", listAcitr050d=" + listAcitr050d + "]";
 	}
 }

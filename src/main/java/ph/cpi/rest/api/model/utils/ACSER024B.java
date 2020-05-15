@@ -7,6 +7,8 @@ public class ACSER024B {
 	private String currExpense;
 	private String prevIncome;
 	private String prevExpense;
+	private String paramDate;
+	
 	public String getItemNo() {
 		return itemNo;
 	}
@@ -43,9 +45,16 @@ public class ACSER024B {
 	public void setPrevExpense(String prevExpense) {
 		this.prevExpense = prevExpense;
 	}
+	public String getParamDate() {
+		return paramDate;
+	}
+	public void setParamDate(String paramDate) {
+		this.paramDate = paramDate;
+	}
 	@Override
 	public String toString() {
 		return "ACSER024B [itemNo=" + itemNo + ", itemName=" + itemName + ", currIncome=" + currIncome
-				+ ", currExpense=" + currExpense + ", prevIncome=" + prevIncome + ", prevExpense=" + prevExpense + "]";
+				+ ", currExpense=" + currExpense + ", prevIncome=" + prevIncome + ", prevExpense=" + prevExpense
+				+ ", paramDate=" + paramDate + "]";
 	}
 }
