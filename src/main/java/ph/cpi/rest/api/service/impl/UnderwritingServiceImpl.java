@@ -1491,7 +1491,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolFullCoverageParams.put("deleteDeductibleList",spfcr.getDeleteDeductibleList());
 			
 			Integer index = 0;
-			while (index < spfcr.getRemarks().length()) {
+			while (spfcr.getRemarks() != null &&  index < spfcr.getRemarks().length()) {
 			    savePolFullCoverageParams.put("altwText"+ String.format("%02d", (index/1800)+1) , spfcr.getRemarks().substring(index, Math.min(index + 1800,spfcr.getRemarks().length())));
 			    index += 1800;
 			}
