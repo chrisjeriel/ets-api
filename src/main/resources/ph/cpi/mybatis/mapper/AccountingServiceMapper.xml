@@ -26,7 +26,7 @@
 	</resultMap>
 	
 	<select id="retOrList" resultMap="orListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_OFFICIAL_RECEIPT_PKG.ret_or_list(
+		<!-- SELECT * FROM TABLE(ACSE_OFFICIAL_RECEIPT_PKG.ret_or_list(
 																#{orType, jdbcType=VARCHAR},
 																#{orNo, jdbcType=VARCHAR},
 																#{payor, jdbcType=VARCHAR},
@@ -37,6 +37,20 @@
 																#{particulars, jdbcType=VARCHAR},
 																#{orAmtFrom, jdbcType=VARCHAR},
 																#{orAmtTo, jdbcType=VARCHAR}
+															   )
+						   ) -->
+		SELECT * FROM TABLE(ACSE_OFFICIAL_RECEIPT_PKG.ret_acse_or_list(
+																#{orType, jdbcType=VARCHAR},
+																#{orNo, jdbcType=VARCHAR},
+																#{payor, jdbcType=VARCHAR},
+																CAST(to_timestamp(#{orDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																CAST(to_timestamp(#{orDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+																#{tranTypeName, jdbcType=VARCHAR},
+																#{particulars, jdbcType=VARCHAR},
+																#{orAmtFrom, jdbcType=VARCHAR},
+																#{orAmtTo, jdbcType=VARCHAR},
+																#{tranStat, jdbcType=VARCHAR},
+																#{orStat, jdbcType=VARCHAR}
 															   )
 						   )
 	</select>

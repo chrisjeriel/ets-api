@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.utils.ACITR049;
+import ph.cpi.rest.api.model.utils.ACITR050;
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
@@ -289,5 +290,20 @@ public class ReportParameters {
 		ACITR049Params.put("P_PROFCOMM_ID", param.getProfCommId());
 		
 		return ACITR049Params;
+	}
+	
+	public static HashMap<String, Object> mapACITR050Params(ACITR050 param) throws ParseException {
+		HashMap<String, Object> ACITR050Params = new HashMap<String, Object>();
+		
+		ACITR050Params.put("P_REPORT_ID", param.getReportId());
+		ACITR050Params.put("p_report_id", param.getReportId());
+		ACITR050Params.put("pReportId", param.getReportId());
+		ACITR050Params.put("reportId", param.getReportId());
+		ACITR050Params.put("P_QSOA_ID", param.getQsoaId());
+		ACITR050Params.put("P_DATE", param.getQtrEnding());
+		ACITR050Params.put("P_CURR_CD", param.getCurrCd());
+		ACITR050Params.put("P_CEDING_ID", param.getCedingId());
+		
+		return ACITR050Params;
 	}
 }

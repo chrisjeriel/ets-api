@@ -60,6 +60,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
+import ph.cpi.rest.api.model.accountingintrust.AcitMonthEndJV;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
@@ -86,6 +87,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.QSOAAcctReceivable;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
+import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
@@ -1355,5 +1357,17 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public HashMap<String, Object> updateAgingSoa(HashMap<String, Object> params) throws SQLException {
 		sqlSession.update("updateAgingSoa", params);
 		return params;
+	}
+
+	@Override
+	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(HashMap<String, Object> params) throws SQLException {
+		List<AcitMonthEndJV> res = sqlSession.selectList("retrieveAcitMonthEndJV", params);
+		return res;
+	}
+	
+	@Override
+	public List<QSOAPrint> retrieveAcitQsoaPrint(HashMap<String, Object> params) throws SQLException {
+		List<QSOAPrint> res = sqlSession.selectList("retrieveAcitQsoaPrint", params);
+		return res;
 	}
 }

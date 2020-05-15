@@ -50,6 +50,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitJvAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappInw;
 import ph.cpi.rest.api.model.accountingintrust.AcitJvUnappliedTreaty;
 import ph.cpi.rest.api.model.accountingintrust.AcitMonthEnd;
+import ph.cpi.rest.api.model.accountingintrust.AcitMonthEndJV;
 import ph.cpi.rest.api.model.accountingintrust.AcitOsQsoa;
 import ph.cpi.rest.api.model.accountingintrust.AcitPaytReq;
 import ph.cpi.rest.api.model.accountingintrust.AcitProfCommDtl;
@@ -76,6 +77,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOA;
 import ph.cpi.rest.api.model.accountingintrust.QSOAAcctReceivable;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtl;
 import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
+import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
@@ -283,4 +285,6 @@ public interface AccountingInTrustDao {
 	public List<MultiOffsetOth> retrieveMultiOffsetOth(final HashMap<String, Object> params) throws SQLException;
 	public MultiOffsetExisting retrieveMultiOffsetExisting(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> updateAgingSoa(final HashMap<String, Object> params ) throws SQLException;
+	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(final HashMap<String, Object> params) throws SQLException;
+	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
 }

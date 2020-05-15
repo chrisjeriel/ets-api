@@ -3143,4 +3143,38 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitMonthEndJVResponse retrieveAcitMonthEndJV(RetrieveAcitMonthEndJVRequest ramer)
+			throws SQLException {
+		RetrieveAcitMonthEndJVResponse res = new RetrieveAcitMonthEndJVResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("from", ramer.getFrom());
+		params.put("eomDate", ramer.getEomDate());
+		
+		res.setMonthEndJVList(acctITDao.retrieveAcitMonthEndJV(params));
+		
+		return res;
+	}
+
+
+	@Override
+	public RetrieveAcitQsoaPrintResponse retrieveAcitQsoaPrint(RetrieveAcitQsoaPrintRequest request)
+			throws SQLException {
+		RetrieveAcitQsoaPrintResponse response = new RetrieveAcitQsoaPrintResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("treatyTag", request.getTreatyTag());
+		params.put("cedingId", request.getCedingId());
+		params.put("currCd", request.getCurrCd());
+		params.put("fromQtr", request.getFromQtr());
+		params.put("fromYear", request.getFromYear());
+		params.put("toQtr", request.getToQtr());
+		params.put("toYear", request.getToYear());
+		
+		response.setQsoaPrintList(acctITDao.retrieveAcitQsoaPrint(params));
+		
+		return response;
+	}
 }

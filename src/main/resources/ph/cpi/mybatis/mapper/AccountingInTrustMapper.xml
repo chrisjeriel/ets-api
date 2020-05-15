@@ -5606,4 +5606,40 @@
 		END;
 	</update>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitMonthEndJV" id="acitMonthEndJV">
+		<result property="tranId"		column="TRAN_ID"/>
+		<result property="tranNo"		column="TRAN_NO"/>
+		<result property="tranTypeCd"	column="TRAN_TYPE_CD"/>
+		<result property="tranTypeName"	column="TRAN_TYPE_NAME"/>
+		<result property="acctEntDate"	column="ACCT_ENT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currCd"		column="CURR_CD"/>
+		<result property="jvAmt"		column="JV_AMT"/>
+	</resultMap>
+	
+	<select id="retrieveAcitMonthEndJV" resultMap="acitMonthEndJV" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_EOM_TRANS_PKG.ret_month_end_jv(#{from, jdbcType=VARCHAR}, CAST(to_timestamp(#{eomDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.QSOAPrint" id="qsoaPrint">
+		<result property="qsoaId"			column="QSOA_ID"/>
+		<result property="currCd"			column="CURR_CD"/>
+		<result property="cedingId"			column="CEDING_ID"/>
+		<result property="cedingAbbr"		column="CEDING_ABBR"/>
+		<result property="cedingName"		column="CEDING_NAME"/>
+		<result property="treatyTag"		column="TREATY_TAG"/>
+		<result property="quarterEnding"	column="QUARTER_ENDING" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveAcitQsoaPrint" resultMap="qsoaPrint" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_QSOA_PKG.ret_qsoa_print(
+			#{treatyTag},
+			#{cedingId, jdbcType=VARCHAR},
+			#{currCd, jdbcType=VARCHAR},
+			#{fromQtr, jdbcType=INTEGER},
+			#{fromYear, jdbcType=INTEGER},
+			#{toQtr, jdbcType=INTEGER},
+			#{toYear, jdbcType=INTEGER}
+		))
+	</select>
+	
 </mapper>
