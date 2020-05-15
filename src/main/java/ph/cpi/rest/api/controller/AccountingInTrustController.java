@@ -996,4 +996,18 @@ public class AccountingInTrustController {
 		logger.info("eomDate : " + eomDate);
 		return acctInTrustService.updateAgingSoa(eomDate);
 	}
+	
+	@GetMapping(path="retrieveAcitMonthEndJV")
+	public @ResponseBody RetrieveAcitMonthEndJVResponse retrieveAcitMonthEndJV(RetrieveAcitMonthEndJVRequest ramer) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitMonthEndJV");
+		logger.info("RetrieveAcitMonthEndJVRequest : " + ramer.toString());
+		return acctInTrustService.retrieveAcitMonthEndJV(ramer);
+	}
+	
+	@GetMapping(path="retrieveAcitQsoaPrint")
+	public @ResponseBody RetrieveAcitQsoaPrintResponse retrieveAcitQsoaPrint(RetrieveAcitQsoaPrintRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitQsoaPrint");
+		logger.info("RetrieveAcitQsoaPrintRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitQsoaPrint(request);
+	}
 }
