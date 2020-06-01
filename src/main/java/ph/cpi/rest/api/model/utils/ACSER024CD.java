@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.utils;
 
-public class ACITR066EF {
+public class ACSER024CD {
 	private String eomDate;
 	private String eomMm;
 	private String eomYear;
@@ -158,7 +158,7 @@ public class ACITR066EF {
 	}
 	@Override
 	public String toString() {
-		return "ACITR066EF [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd=" + currCd
+		return "ACSER024CD [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd=" + currCd
 				+ ", currRt=" + currRt + ", glAcctId=" + glAcctId + ", shortCode=" + shortCode + ", shortDesc="
 				+ shortDesc + ", longDesc=" + longDesc + ", begDebitAmt=" + begDebitAmt + ", begCreditAmt="
 				+ begCreditAmt + ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt

@@ -11,11 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
+import ph.cpi.rest.api.model.utils.ACITR050B;
+import ph.cpi.rest.api.model.utils.ACITR050C;
+import ph.cpi.rest.api.model.utils.ACITR050D;
+import ph.cpi.rest.api.model.utils.ACITR061A;
+import ph.cpi.rest.api.model.utils.ACITR061B;
+import ph.cpi.rest.api.model.utils.ACITR061C;
 import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
 import ph.cpi.rest.api.model.utils.ACITR066C;
+import ph.cpi.rest.api.model.utils.ACITR066D;
 import ph.cpi.rest.api.model.utils.ACITR066EF;
+import ph.cpi.rest.api.model.utils.ACSER004;
+import ph.cpi.rest.api.model.utils.ACSER024A;
+import ph.cpi.rest.api.model.utils.ACSER024B;
+import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
 import ph.cpi.rest.api.model.utils.CLMR010C;
@@ -274,14 +285,14 @@ public class UtilDaoImpl implements UtilDao{
 
 	@Override
 	public List<POLR044P> retrievePolR044p(HashMap<String, Object> params) throws SQLException {
-		//List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
-		return null;
+		List<POLR044P> retrievePolR044p = sqlSession.selectList("retrievePolR044p",params);
+		return retrievePolR044p;
 	}
 
 	@Override
 	public List<POLR044Q> retrievePolR044q(HashMap<String, Object> params) throws SQLException {
-		//List<POLR044Q> retrievePolR044q = sqlSession.selectList("retrievePolR044q",params);
-		return null;
+		List<POLR044Q> retrievePolR044q = sqlSession.selectList("retrievePolR044q",params);
+		return retrievePolR044q;
 	}
 
 	@Override
@@ -570,6 +581,78 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR044V> retrievePolR044v(HashMap<String, Object> params) throws SQLException {
 		List<POLR044V> retrievePolR044v = sqlSession.selectList("retrievePolR044v",params);
 		return retrievePolR044v;
+	}
+
+	@Override
+	public List<ACITR066D> retrieveAcitR066d(HashMap<String, Object> params) throws SQLException {
+		List<ACITR066D> retrieveAcitR066d = sqlSession.selectList("retrieveAcitR066d",params);
+		return retrieveAcitR066d;
+	}
+
+	@Override
+	public List<ACSER024B> retrieveAcseR024b(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024B> retrieveAcseR024b = sqlSession.selectList("retrieveAcseR024b",params);
+		return retrieveAcseR024b;
+	}
+
+	@Override
+	public List<ACSER024CD> retrieveAcseR024c(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024CD> retrieveAcseR024c = sqlSession.selectList("retrieveAcseR024c",params);
+		return retrieveAcseR024c;
+	}
+	
+	@Override
+	public List<ACSER024CD> retrieveAcseR024d(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024CD> retrieveAcseR024d = sqlSession.selectList("retrieveAcseR024d",params);
+		return retrieveAcseR024d;
+	}
+
+	@Override
+	public List<ACSER004> retrieveAcseR004(HashMap<String, Object> params) throws SQLException {
+		List<ACSER004> retrieveAcseR004 = sqlSession.selectList("retrieveAcseR004",params);
+		return retrieveAcseR004;
+	}
+
+	@Override
+	public List<ACSER024A> retrieveAcseR024a(HashMap<String, Object> params) throws SQLException {
+		List<ACSER024A> retrieveAcseR024a = sqlSession.selectList("retrieveAcseR024a",params);
+		return retrieveAcseR024a;
+	}
+
+	@Override
+	public List<ACITR050B> retrieveAcitR050b(HashMap<String, Object> params) throws SQLException {
+		List<ACITR050B> retrieveAcitR050b = sqlSession.selectList("retrieveAcitR050b",params);
+		return retrieveAcitR050b;
+	}
+
+	@Override
+	public List<ACITR050C> retrieveAcitR050c(HashMap<String, Object> params) throws SQLException {
+		List<ACITR050C> retrieveAcitR050c = sqlSession.selectList("retrieveAcitR050c",params);
+		return retrieveAcitR050c;
+	}
+
+	@Override
+	public List<ACITR050D> retrieveAcitR050d(HashMap<String, Object> params) throws SQLException {
+		List<ACITR050D> retrieveAcitR050d = sqlSession.selectList("retrieveAcitR050d",params);
+		return retrieveAcitR050d;
+	}
+
+	@Override
+	public List<ACITR061A> retrieveAcitR061a(HashMap<String, Object> params) throws SQLException {
+		List<ACITR061A> retrieveAcitR061a = sqlSession.selectList("retrieveAcitR061a",params);
+		return retrieveAcitR061a;
+	}
+
+	@Override
+	public List<ACITR061B> retrieveAcitR061b(HashMap<String, Object> params) throws SQLException {
+		List<ACITR061B> retrieveAcitR061b = sqlSession.selectList("retrieveAcitR061b",params);
+		return retrieveAcitR061b;
+	}
+
+	@Override
+	public List<ACITR061C> retrieveAcitR061c(HashMap<String, Object> params) throws SQLException {
+		List<ACITR061C> retrieveAcitR061c = sqlSession.selectList("retrieveAcitR061c",params);
+		return retrieveAcitR061c;
 	}
 
 }
