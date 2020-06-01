@@ -212,6 +212,14 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("paramDate", racprlp.getParamDate());
 		retcParams.put("paramCurrency", racprlp.getParamCurrency());
 		retcParams.put("cedingId", racprlp.getCedingId());
+		retcParams.put("paymentMode", racprlp.getPaymentMode());
+		retcParams.put("paymentType", racprlp.getPaymentType());
+		retcParams.put("fromDate", racprlp.getFromDate());
+		retcParams.put("toDate", racprlp.getToDate());
+		retcParams.put("incClosedTran", racprlp.getIncClosedTran());
+		retcParams.put("incCancelTran", racprlp.getIncCancelTran());
+		retcParams.put("tranpostDate", racprlp.getTranpostDate());
+		retcParams.put("chkDate", racprlp.getChkDate());
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		
@@ -375,6 +383,14 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr050b(utilDao.retrieveAcitR050b(retcParams));
 			retcResponse.setListAcitr050c(utilDao.retrieveAcitR050c(retcParams));
 			retcResponse.setListAcitr050d(utilDao.retrieveAcitR050d(retcParams));
+		}
+		
+		else if(reportName.equals("ACITR061A")) {
+			retcResponse.setListAcitr061a(utilDao.retrieveAcitR061a(retcParams));
+		}else if(reportName.equals("ACITR061B")) {
+			retcResponse.setListAcitr061b(utilDao.retrieveAcitR061b(retcParams));
+		}else if(reportName.equals("ACITR061C")) {
+			retcResponse.setListAcitr061c(utilDao.retrieveAcitR061c(retcParams));
 		}
 		
 		else {

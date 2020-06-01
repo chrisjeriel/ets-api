@@ -5,6 +5,9 @@ import java.util.List;
 import ph.cpi.rest.api.model.utils.ACITR050B;
 import ph.cpi.rest.api.model.utils.ACITR050C;
 import ph.cpi.rest.api.model.utils.ACITR050D;
+import ph.cpi.rest.api.model.utils.ACITR061A;
+import ph.cpi.rest.api.model.utils.ACITR061B;
+import ph.cpi.rest.api.model.utils.ACITR061C;
 import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
@@ -158,6 +161,10 @@ public class RetrieveExtractToCsvResponse {
 	private List<ACITR050B> listAcitr050b;
 	private List<ACITR050C> listAcitr050c;
 	private List<ACITR050D> listAcitr050d;
+	
+	private List<ACITR061A> listAcitr061a;
+	private List<ACITR061B> listAcitr061b;
+	private List<ACITR061C> listAcitr061c;
 	
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
@@ -603,6 +610,24 @@ public class RetrieveExtractToCsvResponse {
 	public void setListAcitr050d(List<ACITR050D> listAcitr050d) {
 		this.listAcitr050d = listAcitr050d;
 	}
+	public List<ACITR061A> getListAcitr061a() {
+		return listAcitr061a;
+	}
+	public void setListAcitr061a(List<ACITR061A> listAcitr061a) {
+		this.listAcitr061a = listAcitr061a;
+	}
+	public List<ACITR061B> getListAcitr061b() {
+		return listAcitr061b;
+	}
+	public void setListAcitr061b(List<ACITR061B> listAcitr061b) {
+		this.listAcitr061b = listAcitr061b;
+	}
+	public List<ACITR061C> getListAcitr061c() {
+		return listAcitr061c;
+	}
+	public void setListAcitr061c(List<ACITR061C> listAcitr061c) {
+		this.listAcitr061c = listAcitr061c;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -631,6 +656,7 @@ public class RetrieveExtractToCsvResponse {
 				+ listAcitr066f + ", listAcser024a=" + listAcser024a + ", listAcser024b=" + listAcser024b
 				+ ", listAcser024c=" + listAcser024c + ", listAcser024d=" + listAcser024d + ", listAcser004="
 				+ listAcser004 + ", listAcitr050b=" + listAcitr050b + ", listAcitr050c=" + listAcitr050c
-				+ ", listAcitr050d=" + listAcitr050d + "]";
+				+ ", listAcitr050d=" + listAcitr050d + ", listAcitr061a=" + listAcitr061a + ", listAcitr061b="
+				+ listAcitr061b + ", listAcitr061c=" + listAcitr061c + "]";
 	}
 }

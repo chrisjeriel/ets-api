@@ -3195,4 +3195,80 @@
                     #{paramCurrency,jdbcType=VARCHAR},
                     #{cedingId,jdbcType=VARCHAR}))
     </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR061A" id="retrieveAcitR061aMap">
+    	<result property="shortCode"              column="SHORT_CODE"/>
+		<result property="glAcctId"               column="GL_ACCT_ID"/>
+		<result property="shortDesc"              column="SHORT_DESC"/>
+		<result property="creditAmt"              column="CREDIT_AMT"/>
+		<result property="debitAmt"               column="DEBIT_AMT"/>
+		<result property="tranClass"              column="TRAN_CLASS"/>
+		<result property="paytMode"               column="PAYT_MODE"/>
+		<result property="paytModeDesc"           column="PAYT_MODE_DESC"/>
+		<result property="tranTypeCd"             column="TRAN_TYPE_CD"/>
+		<result property="tranTypeName"           column="TRAN_TYPE_NAME"/>
+		<result property="fromDate"               column="FROM_DATE"/>
+		<result property="toDate"                 column="TO_DATE"/>
+		<result property="printedBy"              column="PRINTED_BY"/>
+		<result property="incClosedTran"          column="INC_CLOSED_TRAN"/>
+		<result property="incCancelTran"          column="INC_CANCEL_TRAN"/>
+		<result property="tranpostDate"           column="TRANPOST_DATE"/>
+		<result property="tranpostDateDesc"       column="TRANPOST_DATE_DESC"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR061a" resultMap="retrieveAcitR061aMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR061_CSV_PKG.acitr061a_to_csv(
+        			#{paymentMode,jdbcType=VARCHAR},
+        			#{paymentType,jdbcType=VARCHAR},
+        			#{fromDate,jdbcType=VARCHAR},
+        			#{toDate,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{tranpostDate,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR061B" id="retrieveAcitR061bMap">
+    	<result property="debitAmt"         column="DEBIT_AMT"/>
+		<result property="creditAmt"        column="CREDIT_AMT"/>
+		<result property="glAcctId"         column="GL_ACCT_ID"/>
+		<result property="shortCode"        column="SHORT_CODE"/>
+		<result property="shortDesc"        column="SHORT_DESC"/>
+		<result property="fromDate"         column="FROM_DATE"/>
+		<result property="toDate"           column="TO_DATE"/>
+		<result property="printedBy"        column="PRINTED_BY"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR061b" resultMap="retrieveAcitR061bMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR061_CSV_PKG.acitr061b_to_csv(
+        			#{tranpostDate,jdbcType=VARCHAR},
+        			#{chkDate,jdbcType=VARCHAR},
+        			#{fromDate,jdbcType=VARCHAR},
+        			#{toDate,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR061C" id="retrieveAcitR061cMap">
+        <result property="debitAmt"         column="DEBIT_AMT"/>
+        <result property="creditAmt"        column="CREDIT_AMT"/>
+        <result property="glAcctId"         column="GL_ACCT_ID"/>
+        <result property="shortCode"        column="SHORT_CODE"/>
+        <result property="shortDesc"        column="SHORT_DESC"/>
+        <result property="fromDate"         column="FROM_DATE"/>
+        <result property="toDate"           column="TO_DATE"/>
+        <result property="printedBy"        column="PRINTED_BY"/>
+    </resultMap>
+    
+    <select id="retrieveAcitR061c" resultMap="retrieveAcitR061cMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR061_CSV_PKG.acitr061c_to_csv(
+                    #{tranpostDate,jdbcType=VARCHAR},
+                    #{fromDate,jdbcType=VARCHAR},
+                    #{toDate,jdbcType=VARCHAR},
+                    #{paymentType,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
 </mapper>
