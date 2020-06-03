@@ -211,6 +211,15 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("prodDate", racprlp.getProdDate());
 		retcParams.put("paramDate", racprlp.getParamDate());
 		retcParams.put("paramCurrency", racprlp.getParamCurrency());
+		retcParams.put("cedingId", racprlp.getCedingId());
+		retcParams.put("paymentMode", racprlp.getPaymentMode());
+		retcParams.put("paymentType", racprlp.getPaymentType());
+		retcParams.put("fromDate", racprlp.getFromDate());
+		retcParams.put("toDate", racprlp.getToDate());
+		retcParams.put("incClosedTran", racprlp.getIncClosedTran());
+		retcParams.put("incCancelTran", racprlp.getIncCancelTran());
+		retcParams.put("tranpostDate", racprlp.getTranpostDate());
+		retcParams.put("chkDate", racprlp.getChkDate());
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		
@@ -341,17 +350,49 @@ public class UtilServiceImpl implements UtilService {
 		else if(reportName.equals("ACITR063A")) {
 			retcResponse.setListAcitr063a(utilDao.retrieveAcitR063a(retcParams));
 		}
+		
 		else if(reportName.equals("ACITR066A")) {
 			retcResponse.setListAcitr066a(utilDao.retrieveAcitR066a(retcParams));
 		}else if(reportName.equals("ACITR066B")) {
 			retcResponse.setListAcitr066b(utilDao.retrieveAcitR066b(retcParams));
 		}else if(reportName.equals("ACITR066C")) {
 			retcResponse.setListAcitr066c(utilDao.retrieveAcitR066c(retcParams));
+		}else if(reportName.equals("ACITR066D")) {
+			retcResponse.setListAcitr066d(utilDao.retrieveAcitR066d(retcParams));
 		}else if(reportName.equals("ACITR066E")) {
 			retcResponse.setListAcitr066e(utilDao.retrieveAcitR066e(retcParams));
 		}else if(reportName.equals("ACITR066F")) {
 			retcResponse.setListAcitr066f(utilDao.retrieveAcitR066f(retcParams));
 		}
+		
+		else if(reportName.equals("ACSER024A")) {
+			retcResponse.setListAcser024a(utilDao.retrieveAcseR024a(retcParams));
+		}else if(reportName.equals("ACSER024B")) {
+			retcResponse.setListAcser024b(utilDao.retrieveAcseR024b(retcParams));
+		}else if(reportName.equals("ACSER024C")) {
+			retcResponse.setListAcser024c(utilDao.retrieveAcseR024c(retcParams));
+		}else if(reportName.equals("ACSER024D")) {
+			retcResponse.setListAcser024d(utilDao.retrieveAcseR024d(retcParams));
+		}
+		
+		else if(reportName.equals("ACSER004")) {
+			retcResponse.setListAcser004(utilDao.retrieveAcseR004(retcParams));
+		}
+		
+		else if(reportName.equals("ACITR050")) {
+			retcResponse.setListAcitr050b(utilDao.retrieveAcitR050b(retcParams));
+			retcResponse.setListAcitr050c(utilDao.retrieveAcitR050c(retcParams));
+			retcResponse.setListAcitr050d(utilDao.retrieveAcitR050d(retcParams));
+		}
+		
+		else if(reportName.equals("ACITR061A")) {
+			retcResponse.setListAcitr061a(utilDao.retrieveAcitR061a(retcParams));
+		}else if(reportName.equals("ACITR061B")) {
+			retcResponse.setListAcitr061b(utilDao.retrieveAcitR061b(retcParams));
+		}else if(reportName.equals("ACITR061C")) {
+			retcResponse.setListAcitr061c(utilDao.retrieveAcitR061c(retcParams));
+		}
+		
 		else {
 			System.out.println("No Response yet!");
 		}

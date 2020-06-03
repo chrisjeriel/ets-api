@@ -4,10 +4,6 @@ public class POLR044Q {
 	private String extractUser;
 	private String extractDate;
 	private String cedingIdParam;
-	private String dateParam;
-	private String dateRange;
-	private String fromDate;
-	private String toDate;
 	private String lineCd;
 	private String policyId;
 	private String policyNo;
@@ -16,7 +12,17 @@ public class POLR044Q {
 	private String zoneCd;
 	private String currencyCd;
 	private String siAmt;
+	private String siAmtDist;
+	private String premAmtDist;
 	private String premAmt;
+	private String treatyId;
+	private String treatyName;
+	private String trtyCedId;
+	private String treatyCompany;
+	private String retLayer;
+	private String retName;
+	private String distGrp;
+	private String dateFromTo;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -34,30 +40,6 @@ public class POLR044Q {
 	}
 	public void setCedingIdParam(String cedingIdParam) {
 		this.cedingIdParam = cedingIdParam;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
-	public String getFromDate() {
-		return fromDate;
-	}
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
-	public String getToDate() {
-		return toDate;
-	}
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
 	}
 	public String getLineCd() {
 		return lineCd;
@@ -107,18 +89,80 @@ public class POLR044Q {
 	public void setSiAmt(String siAmt) {
 		this.siAmt = siAmt;
 	}
+	public String getSiAmtDist() {
+		return siAmtDist;
+	}
+	public void setSiAmtDist(String siAmtDist) {
+		this.siAmtDist = siAmtDist;
+	}
+	public String getPremAmtDist() {
+		return premAmtDist;
+	}
+	public void setPremAmtDist(String premAmtDist) {
+		this.premAmtDist = premAmtDist;
+	}
 	public String getPremAmt() {
 		return premAmt;
 	}
 	public void setPremAmt(String premAmt) {
 		this.premAmt = premAmt;
 	}
+	public String getTreatyId() {
+		return treatyId;
+	}
+	public void setTreatyId(String treatyId) {
+		this.treatyId = treatyId;
+	}
+	public String getTreatyName() {
+		return treatyName;
+	}
+	public void setTreatyName(String treatyName) {
+		this.treatyName = treatyName;
+	}
+	public String getTrtyCedId() {
+		return trtyCedId;
+	}
+	public void setTrtyCedId(String trtyCedId) {
+		this.trtyCedId = trtyCedId;
+	}
+	public String getTreatyCompany() {
+		return treatyCompany;
+	}
+	public void setTreatyCompany(String treatyCompany) {
+		this.treatyCompany = treatyCompany;
+	}
+	public String getRetLayer() {
+		return retLayer;
+	}
+	public void setRetLayer(String retLayer) {
+		this.retLayer = retLayer;
+	}
+	public String getRetName() {
+		return retName;
+	}
+	public void setRetName(String retName) {
+		this.retName = retName;
+	}
+	public String getDistGrp() {
+		return distGrp;
+	}
+	public void setDistGrp(String distGrp) {
+		this.distGrp = distGrp;
+	}
+	public String getDateFromTo() {
+		return dateFromTo;
+	}
+	public void setDateFromTo(String dateFromTo) {
+		this.dateFromTo = dateFromTo;
+	}
 	@Override
 	public String toString() {
 		return "POLR044Q [extractUser=" + extractUser + ", extractDate=" + extractDate + ", cedingIdParam="
-				+ cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + ", lineCd=" + lineCd + ", policyId=" + policyId + ", policyNo=" + policyNo
+				+ cedingIdParam + ", lineCd=" + lineCd + ", policyId=" + policyId + ", policyNo=" + policyNo
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", zoneCd=" + zoneCd + ", currencyCd="
-				+ currencyCd + ", siAmt=" + siAmt + ", premAmt=" + premAmt + "]";
+				+ currencyCd + ", siAmt=" + siAmt + ", siAmtDist=" + siAmtDist + ", premAmtDist=" + premAmtDist
+				+ ", premAmt=" + premAmt + ", treatyId=" + treatyId + ", treatyName=" + treatyName + ", trtyCedId="
+				+ trtyCedId + ", treatyCompany=" + treatyCompany + ", retLayer=" + retLayer + ", retName=" + retName
+				+ ", distGrp=" + distGrp + ", dateFromTo=" + dateFromTo + "]";
 	}
 }
