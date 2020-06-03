@@ -167,7 +167,7 @@
 	
 	
 	<select id="retrieveAcsePaytReq" resultMap="acsePaytReqMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_PAYMENT_REQUEST_PKG.ret_payt_req(
+		SELECT * FROM TABLE(ACSE_PAYMENT_REQUEST_PKG.ret_acse_payt_req(
 					#{reqId,jdbcType=INTEGER},
 					#{paytReqNo, jdbcType=VARCHAR},
 					#{tranTypeDesc, jdbcType=VARCHAR},
@@ -176,9 +176,11 @@
 					#{reqStatusDesc, jdbcType=VARCHAR},
 					#{payee, jdbcType=VARCHAR},
 					#{currCd, jdbcType=VARCHAR},
-					#{reqAmt, jdbcType=INTEGER},
+					#{reqAmtFrom, jdbcType=INTEGER},
+					#{reqAmtTo, jdbcType=INTEGER},
 					#{particulars, jdbcType=VARCHAR},
 					#{requestedBy, jdbcType=VARCHAR},
+					#{prqStat, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 
@@ -312,7 +314,23 @@
 	</resultMap>
 	
 	<select id="retrieveJVList" resultMap="jvListMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_JOURNAL_VOUCHER_PKG.ret_acse_jv_list(#{tranId, jdbcType=INTEGER},null,null,null,null))
+		<!-- SELECT * FROM TABLE(ACSE_JOURNAL_VOUCHER_PKG.ret_acse_jv_list(#{tranId, jdbcType=INTEGER},null,null,null,null)) -->
+		
+		SELECT * FROM TABLE(ACSE_JOURNAL_VOUCHER_PKG.ret_acse_jv_listing(
+			#{tranId, jdbcType=INTEGER},
+			#{jvNo, jdbcType=VARCHAR},
+			CAST(to_timestamp(#{jvDateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			CAST(to_timestamp(#{jvDateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			#{particulars, jdbcType=VARCHAR},
+			#{tranTypeName, jdbcType=VARCHAR},
+			#{refNo, jdbcType=VARCHAR},
+			#{preparedBy, jdbcType=VARCHAR},
+			#{jvAmtFrom, jdbcType=INTEGER},
+			#{jvAmtTo, jdbcType=INTEGER},
+			#{tranStat, jdbcType=VARCHAR},
+			#{jvStat, jdbcType=VARCHAR},
+			null,null,null,null
+		))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseJournalVoucherEntry" id="jvEntryMap">
@@ -682,6 +700,7 @@
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="acctCd" 		column="ACCT_CD"/>
+		<result property="vatTag" 		column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -748,7 +767,8 @@
 					#{save.createUser, jdbcType=VARCHAR},
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.updateUser, jdbcType=VARCHAR}, 
-					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 				IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
@@ -906,7 +926,7 @@
 	</resultMap>
 	
 	<select id="retrieveAcseCv" resultMap="acseCvMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACSE_CHECK_VOUCHER_PKG.ret_acse_cv(
+		SELECT * FROM TABLE(ACSE_CHECK_VOUCHER_PKG.ret_acse_cv_list(
 					#{tranId,jdbcType=INTEGER},
 					#{cvGenNo, jdbcType=VARCHAR},
 					CAST(to_timestamp(#{cvDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
@@ -914,7 +934,10 @@
 					#{cvStatusDesc, jdbcType=VARCHAR},
 					#{payee, jdbcType=VARCHAR},
 					#{particulars, jdbcType=VARCHAR},
-					#{cvAmt, jdbcType=INTEGER},
+					#{cvAmtFrom, jdbcType=INTEGER},
+					#{cvAmtTo, jdbcType=INTEGER},
+					#{tranStat, jdbcType=VARCHAR},
+					#{cvStat, jdbcType=VARCHAR},
 					'', '', '',''))
 	</select>
 	
@@ -1175,7 +1198,8 @@
 														 CAST(to_timestamp(#{save.createDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														 #{save.updateUser, jdbcType=VARCHAR}, 
 														 CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														 #{save.invoiceId, jdbcType=VARCHAR});
+														 #{save.invoiceId, jdbcType=VARCHAR},
+														 #{save.vatTag, jdbcType=INTEGER});
 			   <!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_SERVFEE item -->
 			   	IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
 					<foreach item="saveTaxes" collection="save.taxAllocation">
@@ -1669,6 +1693,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="vatTag" 			column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1727,7 +1752,8 @@
 					v_create_user,
 					CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					v_update_user, 
-					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 				IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
@@ -1816,6 +1842,7 @@
 		<result property="reimburseTag" 		column="REIMBURSE_TAG"/>
 		<result property="accruedTag" 			column="ACCRUED_TAG"/>
 		<result property="remarks" 				column="REMARKS"/>
+		<result property="vatTag" 				column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1879,7 +1906,8 @@
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.reimburseTag, jdbcType=VARCHAR},
 					#{save.accruedTag, jdbcType=VARCHAR},
-					#{save.remarks, jdbcType=VARCHAR}
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 

@@ -53,6 +53,7 @@ class PerDiemAcse {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private Integer vatTag;
 	
 	private List<SaveCvItemTaxes> taxAllocation;
 	
@@ -134,6 +135,12 @@ class PerDiemAcse {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
 	public List<SaveCvItemTaxes> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -145,8 +152,8 @@ class PerDiemAcse {
 		return "PerDiemAcse [reqId=" + reqId + ", itemNo=" + itemNo + ", directorId=" + directorId + ", directorName="
 				+ directorName + ", feeType=" + feeType + ", currCd=" + currCd + ", currRate=" + currRate + ", feeAmt="
 				+ feeAmt + ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation
-				+ "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", vatTag=" + vatTag
+				+ ", taxAllocation=" + taxAllocation + "]";
 	}
 	
 }
