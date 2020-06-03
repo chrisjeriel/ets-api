@@ -209,9 +209,11 @@ public class AccountingServServiceImpl implements AccountingServService{
 		rapParams.put("reqStatusDesc", racprlp.getReqStatusDesc());
 		rapParams.put("payee", racprlp.getPayee());
 		rapParams.put("currCd", racprlp.getCurrCd());
-		rapParams.put("reqAmt", racprlp.getReqAmt());
+		rapParams.put("reqAmtFrom", racprlp.getReqAmtFrom());
+		rapParams.put("reqAmtTo", racprlp.getReqAmtTo());
 		rapParams.put("particulars", racprlp.getParticulars());
 		rapParams.put("requestedBy", racprlp.getRequestedBy());
+		rapParams.put("prqStat", racprlp.getPrqStat());
 		rapResponse.setAcsePaytReq(acctServDao.retrieveAcsePaytReq(rapParams));
 		logger.info("RetrieveAcsePaytReqResponse : " + rapResponse.toString());
 		return rapResponse;
@@ -296,6 +298,18 @@ public class AccountingServServiceImpl implements AccountingServService{
 		RetrieveAcseJVListResponse response = new RetrieveAcseJVListResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("tranId", request.getTranId());
+		params.put("jvNo", request.getJvNo());
+		params.put("jvDateFrom", request.getJvDateFrom());
+		params.put("jvDateTo", request.getJvDateTo());
+		params.put("particulars", request.getParticulars());
+		params.put("tranTypeName", request.getTranTypeName());
+		params.put("refNo", request.getRefNo());
+		params.put("preparedBy", request.getPreparedBy());
+		params.put("jvAmtFrom", request.getJvAmtFrom());
+		params.put("jvAmtTo", request.getJvAmtTo());
+		params.put("tranStat", request.getTranStat());
+		params.put("jvStat", request.getJvStat());
+		
 		response.setJvList(acctServDao.retrieveJVList(params));
 		return response;
 	}
@@ -622,7 +636,10 @@ public class AccountingServServiceImpl implements AccountingServService{
 		racParams.put("cvStatusDesc",raptp.getCvStatusDesc());
 		racParams.put("payee",raptp.getPayee());
 		racParams.put("particulars",raptp.getParticulars());
-		racParams.put("cvAmt",raptp.getCvAmt());
+		racParams.put("cvAmtFrom",raptp.getCvAmtFrom());
+		racParams.put("cvAmtTo",raptp.getCvAmtTo());
+		racParams.put("tranStat",raptp.getTranStat());
+		racParams.put("cvStat",raptp.getCvStat());
 		racResponse.setAcseCvList(acctServDao.retrieveAcseCv(racParams));
 		logger.info("RetrieveAcseCvResponse : " + racResponse);
 		return racResponse;
