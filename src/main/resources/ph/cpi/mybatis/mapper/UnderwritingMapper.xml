@@ -1758,7 +1758,8 @@
 																	   #{position, jdbcType=VARCHAR}, 
 																	   #{count, jdbcType=VARCHAR}, 
 																	   #{sortKey, jdbcType=VARCHAR}, 
-																	   #{order, jdbcType=VARCHAR}))
+																	   #{order, jdbcType=VARCHAR},
+																	   #{policyId, jdbcType=VARCHAR}))
 	</select>
 	
 	

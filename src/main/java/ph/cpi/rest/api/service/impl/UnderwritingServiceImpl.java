@@ -1215,7 +1215,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolCoverageAltParams.put("cedingId", rpcar.getCedingId());
 		retrievePolCoverageAltParams.put("coSeriesNo", rpcar.getCoSeriesNo());
 		retrievePolCoverageAltParams.put("altNo", rpcar.getAltNo());
-		
+		retrievePolCoverageAltParams.put("policyId", rpcar.getPolicyId());
 		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverageAlt(retrievePolCoverageAltParams));
 		
 		
