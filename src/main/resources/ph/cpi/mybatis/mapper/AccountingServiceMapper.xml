@@ -700,6 +700,7 @@
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="acctCd" 		column="ACCT_CD"/>
+		<result property="vatTag" 		column="VAT_TAG"/>
 		<association property="taxAllocation" resultMap="taxAllocAssocCv"></association>
 	</resultMap>
 	
@@ -1905,7 +1906,8 @@
 					CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					#{save.reimburseTag, jdbcType=VARCHAR},
 					#{save.accruedTag, jdbcType=VARCHAR},
-					#{save.remarks, jdbcType=VARCHAR}
+					#{save.remarks, jdbcType=VARCHAR},
+					#{save.vatTag, jdbcType=INTEGER}
 				);
 				
 
