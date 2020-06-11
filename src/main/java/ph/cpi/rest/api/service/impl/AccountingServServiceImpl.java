@@ -697,7 +697,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 	        
 	        if(isCvNoAvail.equalsIgnoreCase("N") && sacr.getTranId() == null) {
 	        	sacResponse.setReturnCode(-300);
-	        }else if(checkNo.equalsIgnoreCase("-100")) {
+	        }else if(checkNo.equalsIgnoreCase("-100") && sacr.getDisbType().equals("CK")) {
 	        	sacResponse.setReturnCode(-100);
 	        }else if(checkNo.equalsIgnoreCase(sacr.getCheckNo()) || sacr.getDisbType().equals("BT")) {
 	        	sacResponse.setReturnCode(Integer.parseInt(checkNo));

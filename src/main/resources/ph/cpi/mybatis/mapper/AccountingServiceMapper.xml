@@ -400,6 +400,7 @@
 		<result property="createDate"	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"	column="UPDATE_USER" />
 		<result property="updateDate"	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="vatTag"		column="VAT_TAG" />
 		<association property="taxAllocation" resultMap="taxAllocAssoc" />
 	</resultMap>
 	
@@ -582,7 +583,10 @@
 		DECLARE
 			v_item_no		NUMBER;
 			v_message       VARCHAR2(500);
+			v_allow_edit_tax_alloc VARCHAR2(5);
 		BEGIN
+		
+			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
 		
 			<!-- Save in ACSE_OR_TRANSUMM -->
 			ACSE_OR_TRANSUMM_PKG.save_acse_transumm(
@@ -632,7 +636,8 @@
 														#{save.createUser},
 														CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 														#{save.updateUser},
-														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+														CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+														#{save.vatTag, jdbcType=INTEGER}
 				);
 				<!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_TRANSDTL item -->
 				
@@ -650,10 +655,16 @@
 																	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	#{save.updateUser},
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																	#{saveTaxes.genType}
+																	#{saveTaxes.genType},
+																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
+						IF v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						THEN
+							GENERATE_ACCSE_TAXES.UPDATE_TAX_DTL('OR', #{saveTaxes.tranId}, #{save.updateUser}, v_message);
+						ELSE
+							GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
+						END IF;
 					</foreach>
 					
 					NULL;
@@ -732,7 +743,11 @@
 		DECLARE
 			v_item_no		NUMBER;
 			v_message		VARCHAR2(500);
+			v_allow_edit_tax_alloc VARCHAR2(5);
 		BEGIN
+		
+			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
+
 			<foreach item="del" collection="delCvItemTaxes">
 				<!-- Delete data from ACSE_CV_ITEMTAXES first since it's a child table -->
 				ACSE_CV_ITEMTAXES_PKG.del_cv_itemtaxes(
@@ -785,10 +800,15 @@
 																	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	#{save.updateUser},
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																	#{saveTaxes.genType}
+																	#{saveTaxes.genType},
+																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.currAmt,jdbcType=INTEGER}, v_message);
+						IF v_allow_edit_tax_alloc <![CDATA[ <> ]]> 'Y'
+						THEN
+							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.currAmt,jdbcType=INTEGER}, v_message);
+						END IF;
+						
 					</foreach>
 					
 					NULL;
@@ -1143,6 +1163,7 @@
 		<result property="createDate"           column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="updateUser"           column="UPDATE_USER" />
 		<result property="updateDate"           column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="vatTag"           	column="VAT_TAG" />
 		<association property="taxAllocation" resultMap="taxAllocAssoc" />
 	</resultMap>
 	
@@ -1156,7 +1177,11 @@
 		DECLARE
 			v_message	VARCHAR2(500);
 			v_item_no	NUMBER;
+			v_allow_edit_tax_alloc VARCHAR2(5);
 		BEGIN
+		
+			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
+
 			<!-- Save in ACSE_OR_TRANSUMM -->
 			ACSE_OR_TRANSUMM_PKG.save_acse_transumm(
 														#{tranId},
@@ -1215,10 +1240,16 @@
 																	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	#{save.updateUser},
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																	#{saveTaxes.genType}
+																	#{saveTaxes.genType},
+																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
+						IF v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						THEN
+							GENERATE_ACCSE_TAXES.UPDATE_TAX_DTL('OR', #{saveTaxes.tranId}, #{save.updateUser}, v_message);
+						ELSE
+							GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
+						END IF;
 					</foreach>
 				
 					NULL;
@@ -1710,7 +1741,11 @@
 			v_create_user   VARCHAR2(10);
 			v_update_user	VARCHAR2(10);
 			v_message		VARCHAR2(500);
+			v_allow_edit_tax_alloc VARCHAR2(5);
 		BEGIN
+		
+			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
+
 			<foreach item="del" collection="delCvItemTaxes">
 				v_req_id := #{del.reqId,jdbcType=INTEGER};
 				v_item_no := #{del.itemNo,jdbcType=INTEGER};
@@ -1770,10 +1805,15 @@
 																	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	#{save.updateUser},
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																	#{saveTaxes.genType}
+																	#{saveTaxes.genType},
+																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.feeAmt, jdbcType=INTEGER}, v_message);
+						IF v_allow_edit_tax_alloc <![CDATA[ <> ]]> 'Y'
+						THEN
+							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.feeAmt, jdbcType=INTEGER}, v_message);
+						END IF;
+						
 					</foreach>
 					NULL;
 				END IF;
@@ -1860,7 +1900,11 @@
 			v_create_user   VARCHAR2(10);
 			v_update_user	VARCHAR2(10);
 			v_message		VARCHAR2(500);
+			v_allow_edit_tax_alloc VARCHAR2(5);
 		BEGIN
+		
+			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
+
 			<foreach item="del" collection="delCvItemTaxes">
 				<!-- Delete data from ACSE_CV_ITEMTAXES first since it's a child table -->
 				v_req_id := #{del.reqId,jdbcType=INTEGER};
@@ -1925,10 +1969,15 @@
 																	CAST(to_timestamp(#{save.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 																	#{save.updateUser},
 																	CAST(to_timestamp(#{save.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																	#{saveTaxes.genType}
+																	#{saveTaxes.genType},
+																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.insuredAmt, jdbcType=INTEGER}, v_message);
+						IF v_allow_edit_tax_alloc <![CDATA[ <> ]]> 'Y'
+						THEN
+							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.insuredAmt, jdbcType=INTEGER}, v_message);
+						END IF;
+						
 					</foreach>
 					
 					NULL;

@@ -116,6 +116,7 @@ class SaveOrTransDtl{
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private Integer vatTag;
 	
 	private List<SaveOrItemTaxes> taxAllocation;
 
@@ -231,6 +232,14 @@ class SaveOrTransDtl{
 		this.updateDate = updateDate;
 	}
 
+	public Integer getVatTag() {
+		return vatTag;
+	}
+
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
+
 	public List<SaveOrItemTaxes> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -245,7 +254,7 @@ class SaveOrTransDtl{
 				+ itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt="
 				+ localAmt + ", refNo=" + refNo + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", vatTag=" + vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 	
 }
@@ -264,6 +273,7 @@ class SaveOrItemTaxes{
 	private String updateUser;
 	private String updateDate;
 	private String genType;
+	private String taxBaseAmt;
 	public String getTranId() {
 		return tranId;
 	}
@@ -336,11 +346,17 @@ class SaveOrItemTaxes{
 	public void setGenType(String genType) {
 		this.genType = genType;
 	}
+	public String getTaxBaseAmt() {
+		return taxBaseAmt;
+	}
+	public void setTaxBaseAmt(String taxBaseAmt) {
+		this.taxBaseAmt = taxBaseAmt;
+	}
 	@Override
 	public String toString() {
 		return "SaveOrItemTaxes [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", taxType="
 				+ taxType + ", taxCd=" + taxCd + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", genType=" + genType + "]";
+				+ updateDate + ", genType=" + genType + ", taxBaseAmt=" + taxBaseAmt + "]";
 	}
 }
