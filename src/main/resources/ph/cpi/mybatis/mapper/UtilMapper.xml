@@ -3376,4 +3376,17 @@
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044ha_to_csv(
 					#{extractUser,jdbcType=VARCHAR}))
 	</select>
+
+    <update id="extractPOLR044Z" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044Z_PKg.extract_polr044z(#{extractUser, jdbcType=VARCHAR},
+												  #{dateParam, jdbcType=VARCHAR},
+												  #{dateRange, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{extractCount, mode=OUT, jdbcType=INTEGER},
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
+		END;
+	</update>
 </mapper>

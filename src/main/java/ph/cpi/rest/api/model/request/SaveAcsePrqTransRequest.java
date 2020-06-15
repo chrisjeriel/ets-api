@@ -86,6 +86,7 @@ class PrqTransAcse {
 	private String createDate;
 	private String updateUser;
 	private String updateDate;
+	private Integer vatTag;
 	
 	private List<SaveCvItemTaxes> taxAllocation;
 	
@@ -179,6 +180,12 @@ class PrqTransAcse {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
+	public Integer getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
 	public List<SaveCvItemTaxes> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -191,7 +198,7 @@ class PrqTransAcse {
 				+ itemName + ", glAcctId=" + glAcctId + ", refNo=" + refNo + ", remarks=" + remarks + ", currCd="
 				+ currCd + ", currRate=" + currRate + ", currAmt=" + currAmt + ", localAmt=" + localAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", taxAllocation=" + taxAllocation + "]";
+				+ ", updateDate=" + updateDate + ", vatTag=" + vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 }
 

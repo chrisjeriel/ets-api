@@ -158,4 +158,8 @@ public interface UnderwritingDao {
 	public HashMap<String, Object> savePolFullItem(HashMap<String, Object> savePolItemParams)throws SQLException;
 	public List<MoveBookingList> retrieveMoveBookingMonthList(HashMap<String, Object> params)throws SQLException;
 	public HashMap<String, Object> batchUpdateBookingDate(HashMap<String, Object> params)throws SQLException;
+	
+
+	public Integer savePolicyDeductiblesOc(final HashMap<String, Object> params ) throws SQLException;
+	public Policy retrievePolicyDeductiblesOc(final HashMap<String, Object> params) throws SQLException;
 }

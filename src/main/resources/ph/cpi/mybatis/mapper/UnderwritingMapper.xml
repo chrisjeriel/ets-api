@@ -1373,6 +1373,8 @@
 		<result property="createDateSec" column="CREATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUserSec" column="UPDATE_USER_SEC"/>
 		<result property="updateDateSec" column="UPDATE_DATE_SEC" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="remarks" column="SEC_REMARK"/>
+		<association property="deductiblesSec" resultMap="DeductibleMap"></association>
 	</resultMap>
 	
 	<select id="retrievePolCoverageOc" resultMap="policyOcMap" parameterType="java.util.Map">
@@ -1387,7 +1389,7 @@
 			POL_COVERAGE_OC_PKG.save_pol_cover_oc( #{policyIdOc},#{projId},#{riskId},#{sectionISi}, #{sectionIISi}, #{sectionIIISi}, #{totalSi},
 										   #{sectionIPrem}, #{sectionIIPrem}, #{sectionIIIPrem}, 
 										   #{totalPrem}, #{currencyCd}, #{currencyRt}, #{pctShare}, 
-										   #{pctPml}, #{totalValue}, #{remarks}, #{createUser}, 
+										   #{pctPml}, #{totalValue}, #{remarks, jdbcType=VARCHAR}, #{createUser, jdbcType=VARCHAR}, 
 										    CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 										    #{updateUser},  CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 										   
@@ -1401,10 +1403,24 @@
 													#{sectioncovers.section}  ,#{sectioncovers.coverCd} ,
 													#{sectioncovers.bulletNo},#{sectioncovers.sumInsured},
 													#{sectioncovers.premRt},#{sectioncovers.premAmt},
-													#{sectioncovers.addSi},#{sectioncovers.createUserSec},
+													#{sectioncovers.addSi},#{sectioncovers.createUserSec, jdbcType=VARCHAR},
 													CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+													#{sectioncovers.updateUserSec}, CAST(to_timestamp(#{sectioncovers.createDateSec}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{sectioncovers.remarks, jdbcType=VARCHAR});
 			</foreach>
+			
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.del_pol_deductibles(
+		   			#{policyIdOc},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.save_pol_deductibles(
+		   			#{policyIdOc},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
 		END;
 	</update>
 	
@@ -1758,7 +1774,8 @@
 																	   #{position, jdbcType=VARCHAR}, 
 																	   #{count, jdbcType=VARCHAR}, 
 																	   #{sortKey, jdbcType=VARCHAR}, 
-																	   #{order, jdbcType=VARCHAR}))
+																	   #{order, jdbcType=VARCHAR},
+																	   #{policyId, jdbcType=VARCHAR}))
 	</select>
 	
 	
@@ -3364,6 +3381,7 @@
 		<result property="totalPrem"	column="TOTAL_PREM"/>
 		<result property="instNo"		column="INST_NO"/>
 		<result property="insuredDesc"		column="INSURED_DESC"/>
+		<result property="policyStatus"		column="POL_STATUS"/>
 		
 	</resultMap>
 	
@@ -3397,4 +3415,27 @@
 			 </foreach>
 		END;
 	</update>
+	
+	
+	<update id="savePolicyDeductiblesOc" parameterType="java.util.Map">
+		BEGIN
+			<foreach collection="deleteDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.del_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd},#{deductible.endtCd},#{deductible.deductibleCd,jdbcType=VARCHAR}
+		   		);
+		    </foreach>
+			<foreach collection="saveDeductibleList" item="deductible">
+		   		POL_DEDUCTIBLES_OC_PKG.save_pol_deductibles(
+		   			#{policyId},#{deductible.coverCd,jdbcType=VARCHAR},#{deductible.endtCd},#{deductible.deductibleCd},#{deductible.deductibleRt,jdbcType=VARCHAR},
+		   			#{deductible.deductibleAmt,jdbcType=VARCHAR},#{deductible.deductibleTxt,jdbcType=VARCHAR},#{deductible.createUser},
+		   			CAST(to_timestamp(#{deductible.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),#{deductible.updateUser},
+				   	CAST(to_timestamp(#{deductible.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE) 
+		   		);
+		   	</foreach>
+		END;
+	</update>
+	
+	<select id="retrievePolicyDeductiblesOc" resultMap="policyMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE (POL_DEDUCTIBLES_OC_PKG.ret_pol_deductibles_oc(#{policyId,jdbcType=VARCHAR},#{policyNo,jdbcType=VARCHAR},#{coverCd,jdbcType=VARCHAR},#{endtCd,jdbcType=VARCHAR},null,null,null,null))
+	</select>
 </mapper>

@@ -119,6 +119,7 @@ class ServFeeOr{
 	private String updateUser;
 	private String updateDate;
 	private String invoiceId;
+	private String vatTag;
 	
 	private List<saveOrItemTaxesServFee> taxAllocation;
 	
@@ -200,6 +201,12 @@ class ServFeeOr{
 	public void setInvoiceId(String invoiceId) {
 		this.invoiceId = invoiceId;
 	}
+	public String getVatTag() {
+		return vatTag;
+	}
+	public void setVatTag(String vatTag) {
+		this.vatTag = vatTag;
+	}
 	public List<saveOrItemTaxesServFee> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -211,8 +218,8 @@ class ServFeeOr{
 		return "ServFeeOr [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", servFeeAmt=" + servFeeAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", invoiceId=" + invoiceId
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", invoiceId=" + invoiceId + ", vatTag="
+				+ vatTag + ", taxAllocation=" + taxAllocation + "]";
 	}
 }
 

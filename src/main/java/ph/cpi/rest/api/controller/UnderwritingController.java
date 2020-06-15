@@ -857,4 +857,18 @@ public class UnderwritingController {
 		logger.info("BatchUpdateBookingDateRequest : " + spir.toString());
 		return underwritingService.batchUpdateBookingDate(spir);
 	}
+	
+	@GetMapping(path="retrievePolicyDeductiblesOc")
+	public @ResponseBody RetrievePolicyDeductiblesResponse retrievePolicyDeductiblesOc(RetrievePolicyDeductiblesRequest rpdr) throws SQLException {
+		logger.info("GET: /api/Policy-service/retrievePolicyDeductiblesOc");
+		logger.info("RetrievePolicyDeductiblesOcRequest : " + rpdr.toString());
+		return underwritingService.retrievePolicyDeductiblesOc(rpdr);
+	}
+	
+	@PostMapping(path="savePolicyDeductiblesOc")
+	public @ResponseBody SavePolicyDeductiblesResponse savePolicyDeductiblesOc(@RequestBody SavePolicyDeductiblesRequest spdr) throws SQLException {
+		logger.info("GET: /api/Policy-service/savePolicyDeductiblesOc");
+		logger.info("SavePolicyDeductiblesRequestOc : " + spdr.toString());
+		return underwritingService.savePolicyDeductiblesOc(spdr);
+	}
 }
