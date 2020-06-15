@@ -17,6 +17,7 @@ import ph.cpi.rest.api.model.utils.ACITR050D;
 import ph.cpi.rest.api.model.utils.ACITR061A;
 import ph.cpi.rest.api.model.utils.ACITR061B;
 import ph.cpi.rest.api.model.utils.ACITR061C;
+import ph.cpi.rest.api.model.utils.ACITR061D;
 import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
@@ -60,6 +61,7 @@ import ph.cpi.rest.api.model.utils.POLR044E;
 import ph.cpi.rest.api.model.utils.POLR044F;
 import ph.cpi.rest.api.model.utils.POLR044G;
 import ph.cpi.rest.api.model.utils.POLR044H;
+import ph.cpi.rest.api.model.utils.POLR044HA;
 import ph.cpi.rest.api.model.utils.POLR044I;
 import ph.cpi.rest.api.model.utils.POLR044J;
 import ph.cpi.rest.api.model.utils.POLR044K;
@@ -78,6 +80,7 @@ import ph.cpi.rest.api.model.utils.POLR044V;
 import ph.cpi.rest.api.model.utils.POLR044W;
 import ph.cpi.rest.api.model.utils.POLR044X;
 import ph.cpi.rest.api.model.utils.POLR044Y;
+import ph.cpi.rest.api.model.utils.POLR044Z;
 import ph.cpi.rest.api.model.utils.POLR052A;
 import ph.cpi.rest.api.model.utils.POLR052B;
 import ph.cpi.rest.api.model.utils.POLR052C;
@@ -653,6 +656,24 @@ public class UtilDaoImpl implements UtilDao{
 	public List<ACITR061C> retrieveAcitR061c(HashMap<String, Object> params) throws SQLException {
 		List<ACITR061C> retrieveAcitR061c = sqlSession.selectList("retrieveAcitR061c",params);
 		return retrieveAcitR061c;
+	}
+
+	@Override
+	public List<ACITR061D> retrieveAcitR061d(HashMap<String, Object> params) throws SQLException {
+		List<ACITR061D> retrieveAcitR061d = sqlSession.selectList("retrieveAcitR061d",params);
+		return retrieveAcitR061d;
+	}
+
+	@Override
+	public List<POLR044Z> retrievePolR044z(HashMap<String, Object> params) throws SQLException {
+		List<POLR044Z> retrievePolR044z = sqlSession.selectList("retrievePolR044z",params);
+		return retrievePolR044z;
+	}
+
+	@Override
+	public List<POLR044HA> retrievePolR044ha(HashMap<String, Object> params) throws SQLException {
+		List<POLR044HA> retrievePolR044ha = sqlSession.selectList("retrievePolR044ha",params);
+		return retrievePolR044ha;
 	}
 
 }

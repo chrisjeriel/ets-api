@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.utils.ACITR050D;
 import ph.cpi.rest.api.model.utils.ACITR061A;
 import ph.cpi.rest.api.model.utils.ACITR061B;
 import ph.cpi.rest.api.model.utils.ACITR061C;
+import ph.cpi.rest.api.model.utils.ACITR061D;
 import ph.cpi.rest.api.model.utils.ACITR063A;
 import ph.cpi.rest.api.model.utils.ACITR066A;
 import ph.cpi.rest.api.model.utils.ACITR066B;
@@ -52,6 +53,7 @@ import ph.cpi.rest.api.model.utils.POLR044E;
 import ph.cpi.rest.api.model.utils.POLR044F;
 import ph.cpi.rest.api.model.utils.POLR044G;
 import ph.cpi.rest.api.model.utils.POLR044H;
+import ph.cpi.rest.api.model.utils.POLR044HA;
 import ph.cpi.rest.api.model.utils.POLR044I;
 import ph.cpi.rest.api.model.utils.POLR044J;
 import ph.cpi.rest.api.model.utils.POLR044K;
@@ -70,6 +72,7 @@ import ph.cpi.rest.api.model.utils.POLR044V;
 import ph.cpi.rest.api.model.utils.POLR044W;
 import ph.cpi.rest.api.model.utils.POLR044X;
 import ph.cpi.rest.api.model.utils.POLR044Y;
+import ph.cpi.rest.api.model.utils.POLR044Z;
 import ph.cpi.rest.api.model.utils.POLR052A;
 import ph.cpi.rest.api.model.utils.POLR052B;
 import ph.cpi.rest.api.model.utils.POLR052C;
@@ -94,6 +97,7 @@ public interface UtilDao {
 	public List<POLR044F> retrievePolR044f(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044G> retrievePolR044g(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044H> retrievePolR044h(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044HA> retrievePolR044ha(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044I> retrievePolR044i(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044J> retrievePolR044j(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044K> retrievePolR044k(final HashMap<String, Object> params ) throws SQLException;
@@ -112,6 +116,7 @@ public interface UtilDao {
 	public List<POLR044W> retrievePolR044w(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044X> retrievePolR044x(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044Y> retrievePolR044y(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044Z> retrievePolR044z(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<POLR052A> retrievePolR052a(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052B> retrievePolR052b(final HashMap<String, Object> params ) throws SQLException;
@@ -171,4 +176,6 @@ public interface UtilDao {
 	public List<ACITR061A> retrieveAcitR061a(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR061B> retrieveAcitR061b(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR061C> retrieveAcitR061c(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR061D> retrieveAcitR061d(final HashMap<String, Object> params ) throws SQLException;
+	
 }

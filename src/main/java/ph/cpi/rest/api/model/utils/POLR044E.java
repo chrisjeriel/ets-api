@@ -9,6 +9,7 @@ public class POLR044E {
 	private String siRange;
 	private String mthNoPol;
 	private String cumNoPol;
+	private String lineSortSeq;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -57,10 +58,16 @@ public class POLR044E {
 	public void setCumNoPol(String cumNoPol) {
 		this.cumNoPol = cumNoPol;
 	}
+	public String getLineSortSeq() {
+		return lineSortSeq;
+	}
+	public void setLineSortSeq(String lineSortSeq) {
+		this.lineSortSeq = lineSortSeq;
+	}
 	@Override
 	public String toString() {
 		return "POLR044E [extractUser=" + extractUser + ", fromDate=" + fromDate + ", toDate=" + toDate
 				+ ", currCdParam=" + currCdParam + ", lineCdParam=" + lineCdParam + ", siRange=" + siRange
-				+ ", mthNoPol=" + mthNoPol + ", cumNoPol=" + cumNoPol + "]";
+				+ ", mthNoPol=" + mthNoPol + ", cumNoPol=" + cumNoPol + ", lineSortSeq=" + lineSortSeq + "]";
 	}
 }
