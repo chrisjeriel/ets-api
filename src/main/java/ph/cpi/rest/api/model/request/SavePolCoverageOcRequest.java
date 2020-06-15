@@ -27,7 +27,22 @@ public class SavePolCoverageOcRequest {
 	
 	private List<SectionCoversOc> saveSectionCoversOc;
 	private List<SectionCoversOc> delSectionCoversOc;
+	private List<UwDeductible> saveDeductibleList;
+	private List<UwDeductible> deleteDeductibleList;
 	
+	
+	public List<UwDeductible> getSaveDeductibleList() {
+		return saveDeductibleList;
+	}
+	public void setSaveDeductibleList(List<UwDeductible> saveDeductibleList) {
+		this.saveDeductibleList = saveDeductibleList;
+	}
+	public List<UwDeductible> getDeleteDeductibleList() {
+		return deleteDeductibleList;
+	}
+	public void setDeleteDeductibleList(List<UwDeductible> deleteDeductibleList) {
+		this.deleteDeductibleList = deleteDeductibleList;
+	}
 	public Integer getPolicyIdOc() {
 		return policyIdOc;
 	}
@@ -176,7 +191,8 @@ public class SavePolCoverageOcRequest {
 				+ ", currencyRt=" + currencyRt + ", pctShare=" + pctShare + ", pctPml=" + pctPml + ", totalValue="
 				+ totalValue + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", saveSectionCoversOc="
-				+ saveSectionCoversOc + ", delSectionCoversOc=" + delSectionCoversOc + "]";
+				+ saveSectionCoversOc + ", delSectionCoversOc=" + delSectionCoversOc + ", saveDeductibleList="
+				+ saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
 	
 	
@@ -189,14 +205,15 @@ public class SavePolCoverageOcRequest {
 	 private String section  ;
 	 private String coverCd ;
 	 private String bulletNo;
-	 private Integer sumInsured;
-	 private Integer premRt;
-	 private Integer premAmt;
+	 private String sumInsured;
+	 private String premRt;
+	 private String premAmt;
 	 private String addSi;
 	 private String createUserSec;
 	 private String createDateSec;
 	 private String updateUserSec;
 	 private String updateDateSec;
+	 private String remarks;
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -221,22 +238,22 @@ public class SavePolCoverageOcRequest {
 	public void setBulletNo(String bulletNo) {
 		this.bulletNo = bulletNo;
 	}
-	public Integer getSumInsured() {
+	public String getSumInsured() {
 		return sumInsured;
 	}
-	public void setSumInsured(Integer sumInsured) {
+	public void setSumInsured(String sumInsured) {
 		this.sumInsured = sumInsured;
 	}
-	public Integer getPremRt() {
+	public String getPremRt() {
 		return premRt;
 	}
-	public void setPremRt(Integer premRt) {
+	public void setPremRt(String premRt) {
 		this.premRt = premRt;
 	}
-	public Integer getPremAmt() {
+	public String getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(Integer premAmt) {
+	public void setPremAmt(String premAmt) {
 		this.premAmt = premAmt;
 	}
 	public String getAddSi() {
@@ -269,14 +286,19 @@ public class SavePolCoverageOcRequest {
 	public void setUpdateDateSec(String updateDateSec) {
 		this.updateDateSec = updateDateSec;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "SectionCoversOc [lineCd=" + lineCd + ", section=" + section + ", coverCd=" + coverCd + ", bulletNo="
 				+ bulletNo + ", sumInsured=" + sumInsured + ", premRt=" + premRt + ", premAmt=" + premAmt + ", addSi="
 				+ addSi + ", createUserSec=" + createUserSec + ", createDateSec=" + createDateSec + ", updateUserSec="
-				+ updateUserSec + ", updateDateSec=" + updateDateSec + "]";
+				+ updateUserSec + ", updateDateSec=" + updateDateSec + ", remarks=" + remarks + "]";
 	}
 	
-	 
 	 
 }
