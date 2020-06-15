@@ -220,6 +220,9 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("incCancelTran", racprlp.getIncCancelTran());
 		retcParams.put("tranpostDate", racprlp.getTranpostDate());
 		retcParams.put("chkDate", racprlp.getChkDate());
+		retcParams.put("bank", racprlp.getBank());
+		retcParams.put("bankAcct", racprlp.getBankAcct());
+		retcParams.put("sortBy", racprlp.getSortBy());
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		
@@ -239,6 +242,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044g(utilDao.retrievePolR044g(retcParams));
 		}else if(reportName.equals("POLR044H")) {
 			retcResponse.setListPolr044h(utilDao.retrievePolR044h(retcParams));
+		}else if(reportName.equals("POLR044HA")) {
+			retcResponse.setListPolr044ha(utilDao.retrievePolR044ha(retcParams));
 		}else if(reportName.equals("POLR044I")) {
 			retcResponse.setListPolr044i(utilDao.retrievePolR044i(retcParams));
 		}else if(reportName.equals("POLR044J")) {
@@ -275,6 +280,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044x(utilDao.retrievePolR044x(retcParams));
 		}else if(reportName.equals("POLR044Y")) {
 			retcResponse.setListPolr044y(utilDao.retrievePolR044y(retcParams));
+		}else if(reportName.equals("POLR044Z")) {
+			retcResponse.setListPolr044z(utilDao.retrievePolR044z(retcParams));
 		}
 		//accounting > reports > csv
 		else if(reportName.equals("POLR052A")) {
@@ -391,6 +398,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr061b(utilDao.retrieveAcitR061b(retcParams));
 		}else if(reportName.equals("ACITR061C")) {
 			retcResponse.setListAcitr061c(utilDao.retrieveAcitR061c(retcParams));
+		}else if(reportName.equals("ACITR061D")) {
+			retcResponse.setListAcitr061d(utilDao.retrieveAcitR061d(retcParams));
 		}
 		
 		else {
