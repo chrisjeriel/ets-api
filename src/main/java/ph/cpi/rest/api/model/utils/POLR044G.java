@@ -18,6 +18,7 @@ public class POLR044G {
 	private String totThisMmPrem;
 	private String totCumuQty;
 	private String totCumuPrem;
+	private String renewTag;
 	
 	public String getExtractUser() {
 		return extractUser;
@@ -121,6 +122,12 @@ public class POLR044G {
 	public void setTotCumuPrem(String totCumuPrem) {
 		this.totCumuPrem = totCumuPrem;
 	}
+	public String getRenewTag() {
+		return renewTag;
+	}
+	public void setRenewTag(String renewTag) {
+		this.renewTag = renewTag;
+	}
 	@Override
 	public String toString() {
 		return "POLR044G [extractUser=" + extractUser + ", fromDate=" + fromDate + ", toDate=" + toDate + ", lineCd="
@@ -128,6 +135,6 @@ public class POLR044G {
 				+ renCumuQty + ", renCumuPrem=" + renCumuPrem + ", newThisMmQty=" + newThisMmQty + ", newThisMmPrem="
 				+ newThisMmPrem + ", newCumuQty=" + newCumuQty + ", newCumuPrem=" + newCumuPrem + ", currencyCd="
 				+ currencyCd + ", totThisMmQty=" + totThisMmQty + ", totThisMmPrem=" + totThisMmPrem + ", totCumuQty="
-				+ totCumuQty + ", totCumuPrem=" + totCumuPrem + "]";
+				+ totCumuQty + ", totCumuPrem=" + totCumuPrem + ", renewTag=" + renewTag + "]";
 	}
 }

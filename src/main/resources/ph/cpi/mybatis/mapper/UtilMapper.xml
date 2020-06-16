@@ -1216,6 +1216,7 @@
 		<result property="mthNoPol" 		column="MTH_NO_POL"/>
 		<result property="cumNoPol" 		column="CUM_NO_POL"/>
 		<result property="siRange" 			column="SI_RANGE"/>
+		<result property="siRangeDesc"      column="SI_RANGE_DESC"/>
 		<result property="lineSortSeq"      column="LINE_SORT_SEQ"/>
 	</resultMap>
 	
@@ -1342,6 +1343,7 @@
 		<result property="totThisMmPrem"    column="TOT_THIS_MM_PREM"/>
 		<result property="totCumuQty"       column="TOT_CUMU_QTY"/>
 		<result property="totCumuPrem"      column="TOT_CUMU_PREM"/>
+		<result property="renewTag"      column="RENEW_TAG"/>
 	</resultMap>
 	<select id="retrievePolR044g" resultMap="retrievePolR044gMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044g_to_csv(

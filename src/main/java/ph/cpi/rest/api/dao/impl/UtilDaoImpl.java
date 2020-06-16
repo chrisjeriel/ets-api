@@ -30,6 +30,7 @@ import ph.cpi.rest.api.model.utils.ACSER024B;
 import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
+import ph.cpi.rest.api.model.utils.CLMR010BE;
 import ph.cpi.rest.api.model.utils.CLMR010C;
 import ph.cpi.rest.api.model.utils.CLMR010D;
 import ph.cpi.rest.api.model.utils.CLMR010E;
@@ -674,6 +675,12 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR044HA> retrievePolR044ha(HashMap<String, Object> params) throws SQLException {
 		List<POLR044HA> retrievePolR044ha = sqlSession.selectList("retrievePolR044ha",params);
 		return retrievePolR044ha;
+	}
+
+	@Override
+	public List<CLMR010BE> retrieveClmR010be(HashMap<String, Object> params) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
