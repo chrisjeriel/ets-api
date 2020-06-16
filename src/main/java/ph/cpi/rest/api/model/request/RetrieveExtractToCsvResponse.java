@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.utils.ACSER024B;
 import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
 import ph.cpi.rest.api.model.utils.CLMR010B;
+import ph.cpi.rest.api.model.utils.CLMR010BE;
 import ph.cpi.rest.api.model.utils.CLMR010C;
 import ph.cpi.rest.api.model.utils.CLMR010D;
 import ph.cpi.rest.api.model.utils.CLMR010E;
@@ -32,7 +33,9 @@ import ph.cpi.rest.api.model.utils.CLMR010J;
 import ph.cpi.rest.api.model.utils.CLMR010K;
 import ph.cpi.rest.api.model.utils.CLMR010L;
 import ph.cpi.rest.api.model.utils.CLMR010M;
+import ph.cpi.rest.api.model.utils.CLMR010ME;
 import ph.cpi.rest.api.model.utils.CLMR010N;
+import ph.cpi.rest.api.model.utils.CLMR010NE;
 import ph.cpi.rest.api.model.utils.CLMR010O;
 import ph.cpi.rest.api.model.utils.CLMR010P;
 import ph.cpi.rest.api.model.utils.CLMR010Q;
@@ -43,6 +46,7 @@ import ph.cpi.rest.api.model.utils.CLMR010U;
 import ph.cpi.rest.api.model.utils.CLMR010V;
 import ph.cpi.rest.api.model.utils.CLMR010W;
 import ph.cpi.rest.api.model.utils.CLMR010X;
+import ph.cpi.rest.api.model.utils.CLMR010Y;
 import ph.cpi.rest.api.model.utils.POLR044;
 import ph.cpi.rest.api.model.utils.POLR044A;
 import ph.cpi.rest.api.model.utils.POLR044B;
@@ -124,6 +128,7 @@ public class RetrieveExtractToCsvResponse {
 	
 	private List<CLMR010A> listClmr010a;
 	private List<CLMR010B> listClmr010b;
+	private List<CLMR010BE> listClmr010be;
 	private List<CLMR010C> listClmr010c;
 	private List<CLMR010D> listClmr010d;
 	private List<CLMR010E> listClmr010e;
@@ -135,7 +140,9 @@ public class RetrieveExtractToCsvResponse {
 	private List<CLMR010K> listClmr010k;
 	private List<CLMR010L> listClmr010l;
 	private List<CLMR010M> listClmr010m;
+	private List<CLMR010ME> listClmr010me;
 	private List<CLMR010N> listClmr010n;
+	private List<CLMR010NE> listClmr010ne;
 	private List<CLMR010O> listClmr010o;
 	private List<CLMR010P> listClmr010p;
 	private List<CLMR010Q> listClmr010q;
@@ -146,6 +153,7 @@ public class RetrieveExtractToCsvResponse {
 	private List<CLMR010V> listClmr010v;
 	private List<CLMR010W> listClmr010w;
 	private List<CLMR010X> listClmr010x;
+	private List<CLMR010Y> listClmr010y;
 	
 	private List<ACITR063A> listAcitr063a;
 	
@@ -652,6 +660,30 @@ public class RetrieveExtractToCsvResponse {
 	public void setListPolr044ha(List<POLR044HA> listPolr044ha) {
 		this.listPolr044ha = listPolr044ha;
 	}
+	public List<CLMR010BE> getListClmr010be() {
+		return listClmr010be;
+	}
+	public void setListClmr010be(List<CLMR010BE> listClmr010be) {
+		this.listClmr010be = listClmr010be;
+	}
+	public List<CLMR010NE> getListClmr010ne() {
+		return listClmr010ne;
+	}
+	public void setListClmr010ne(List<CLMR010NE> listClmr010ne) {
+		this.listClmr010ne = listClmr010ne;
+	}
+	public List<CLMR010ME> getListClmr010me() {
+		return listClmr010me;
+	}
+	public void setListClmr010me(List<CLMR010ME> listClmr010me) {
+		this.listClmr010me = listClmr010me;
+	}
+	public List<CLMR010Y> getListClmr010y() {
+		return listClmr010y;
+	}
+	public void setListClmr010y(List<CLMR010Y> listClmr010y) {
+		this.listClmr010y = listClmr010y;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -667,15 +699,17 @@ public class RetrieveExtractToCsvResponse {
 				+ listPolr044z + ", listPolr052a=" + listPolr052a + ", listPolr052b=" + listPolr052b + ", listPolr052c="
 				+ listPolr052c + ", listPolr052d=" + listPolr052d + ", listPolr052e=" + listPolr052e + ", listPolr052f="
 				+ listPolr052f + ", listPolr052g=" + listPolr052g + ", listPolr052h=" + listPolr052h + ", listPolr052i="
-				+ listPolr052i + ", listClmr010a=" + listClmr010a + ", listClmr010b=" + listClmr010b + ", listClmr010c="
-				+ listClmr010c + ", listClmr010d=" + listClmr010d + ", listClmr010e=" + listClmr010e + ", listClmr010f="
-				+ listClmr010f + ", listClmr010g=" + listClmr010g + ", listClmr010h=" + listClmr010h + ", listClmr010i="
-				+ listClmr010i + ", listClmr010j=" + listClmr010j + ", listClmr010k=" + listClmr010k + ", listClmr010l="
-				+ listClmr010l + ", listClmr010m=" + listClmr010m + ", listClmr010n=" + listClmr010n + ", listClmr010o="
-				+ listClmr010o + ", listClmr010p=" + listClmr010p + ", listClmr010q=" + listClmr010q + ", listClmr010r="
-				+ listClmr010r + ", listClmr010s=" + listClmr010s + ", listClmr010t=" + listClmr010t + ", listClmr010u="
-				+ listClmr010u + ", listClmr010v=" + listClmr010v + ", listClmr010w=" + listClmr010w + ", listClmr010x="
-				+ listClmr010x + ", listAcitr063a=" + listAcitr063a + ", listAcitr066a=" + listAcitr066a
+				+ listPolr052i + ", listClmr010a=" + listClmr010a + ", listClmr010b=" + listClmr010b
+				+ ", listClmr010be=" + listClmr010be + ", listClmr010c=" + listClmr010c + ", listClmr010d="
+				+ listClmr010d + ", listClmr010e=" + listClmr010e + ", listClmr010f=" + listClmr010f + ", listClmr010g="
+				+ listClmr010g + ", listClmr010h=" + listClmr010h + ", listClmr010i=" + listClmr010i + ", listClmr010j="
+				+ listClmr010j + ", listClmr010k=" + listClmr010k + ", listClmr010l=" + listClmr010l + ", listClmr010m="
+				+ listClmr010m + ", listClmr010me=" + listClmr010me + ", listClmr010n=" + listClmr010n
+				+ ", listClmr010ne=" + listClmr010ne + ", listClmr010o=" + listClmr010o + ", listClmr010p="
+				+ listClmr010p + ", listClmr010q=" + listClmr010q + ", listClmr010r=" + listClmr010r + ", listClmr010s="
+				+ listClmr010s + ", listClmr010t=" + listClmr010t + ", listClmr010u=" + listClmr010u + ", listClmr010v="
+				+ listClmr010v + ", listClmr010w=" + listClmr010w + ", listClmr010x=" + listClmr010x + ", listClmr010y="
+				+ listClmr010y + ", listAcitr063a=" + listAcitr063a + ", listAcitr066a=" + listAcitr066a
 				+ ", listAcitr066b=" + listAcitr066b + ", listAcitr066c=" + listAcitr066c + ", listAcitr066d="
 				+ listAcitr066d + ", listAcitr066e=" + listAcitr066e + ", listAcitr066f=" + listAcitr066f
 				+ ", listAcser024a=" + listAcser024a + ", listAcser024b=" + listAcser024b + ", listAcser024c="
