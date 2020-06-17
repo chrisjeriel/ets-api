@@ -223,6 +223,8 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("bank", racprlp.getBank());
 		retcParams.put("bankAcct", racprlp.getBankAcct());
 		retcParams.put("sortBy", racprlp.getSortBy());
+		retcParams.put("lineCd", racprlp.getLineCd());
+		
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
 		

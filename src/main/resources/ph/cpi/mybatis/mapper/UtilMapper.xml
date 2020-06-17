@@ -1536,33 +1536,37 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044Q" id="retrievePolR044qMap">
-		<result property="extractUser"          column="EXTRACT_USER"/>
-		<result property="extractDate"          column="EXTRACT_DATE"/>
-		<result property="cedingIdParam"        column="CEDING_ID_PARAM"/>
-		<result property="lineCd"               column="LINE_CD"/>
-		<result property="policyId"             column="POLICY_ID"/>
-		<result property="policyNo"             column="POLICY_NO"/>
-		<result property="cedingId"             column="CEDING_ID"/>
-		<result property="cedingName"           column="CEDING_NAME"/>
-		<result property="zoneCd"               column="ZONE_CD"/>
-		<result property="currencyCd"           column="CURRENCY_CD"/>
-		<result property="siAmt"                column="SI_AMT"/>
-		<result property="siAmtDist"            column="SI_AMT_DIST"/>
-		<result property="premAmtDist"          column="PREM_AMT_DIST"/>
-		<result property="premAmt"              column="PREM_AMT"/>
-		<result property="treatyId"             column="TREATY_ID"/>
-		<result property="treatyName"           column="TREATY_NAME"/>
-		<result property="trtyCedId"            column="TRTY_CED_ID"/>
-		<result property="treatyCompany"        column="TREATY_COMPANY"/>
-		<result property="retLayer"             column="RET_LAYER"/>
-		<result property="retName"              column="RET_NAME"/>
-		<result property="distGrp"              column="DIST_GRP"/>
-		<result property="dateFromTo"           column="DATE_FROM_TO"/>
+		<result property="dateFromTo"       column="DATE_FROM_TO"/>
+		<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="extractDate"      column="EXTRACT_DATE"/>
+		<result property="cedingIdParam"    column="CEDING_ID_PARAM"/>
+		<result property="lineCd"           column="LINE_CD"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="inceptDate"       column="INCEPT_DATE"/>
+		<result property="expiryDate"       column="EXPIRY_DATE"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="zoneCd"           column="ZONE_CD"/>
+		<result property="currencyCd"       column="CURRENCY_CD"/>
+		<result property="siAmt"            column="SI_AMT"/>
+		<result property="premAmt"          column="PREM_AMT"/>
+		<result property="treatyId"         column="TREATY_ID"/>
+		<result property="treatyName"       column="TREATY_NAME"/>
+		<result property="trtyCedId"        column="TRTY_CED_ID"/>
+		<result property="treatyCompany"    column="TREATY_COMPANY"/>
+		<result property="retLayer"         column="RET_LAYER"/>
+		<result property="retName"          column="RET_NAME"/>
+		<result property="distGrp"          column="DIST_GRP"/>
+		<result property="accumSiAmt"       column="ACCUM_SI_AMT"/>
+		<result property="accumPremAmt"     column="ACCUM_PREM_AMT"/>
 	</resultMap>
 	
 	<select id="retrievePolR044q" resultMap="retrievePolR044qMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044q_to_csv(
-					#{extractUser,jdbcType=VARCHAR}))
+					#{extractUser,jdbcType=VARCHAR},
+					#{lineCd,jdbcType=VARCHAR},
+					#{paramCurrency,jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044R" id="retrievePolR044rMap">

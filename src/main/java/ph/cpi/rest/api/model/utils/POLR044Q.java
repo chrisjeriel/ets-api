@@ -1,28 +1,38 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044Q {
+	private String dateFromTo;
 	private String extractUser;
 	private String extractDate;
 	private String cedingIdParam;
 	private String lineCd;
-	private String policyId;
+	private Integer policyId;
 	private String policyNo;
+	private String inceptDate;
+	private String expiryDate;
 	private String cedingId;
 	private String cedingName;
 	private String zoneCd;
 	private String currencyCd;
-	private String siAmt;
-	private String siAmtDist;
-	private String premAmtDist;
-	private String premAmt;
-	private String treatyId;
+	private BigDecimal siAmt;
+	private BigDecimal premAmt;
+	private Integer treatyId;
 	private String treatyName;
 	private String trtyCedId;
 	private String treatyCompany;
-	private String retLayer;
+	private Integer retLayer;
 	private String retName;
 	private String distGrp;
-	private String dateFromTo;
+	private BigDecimal accumSiAmt;
+	private BigDecimal accumPremAmt;
+	public String getDateFromTo() {
+		return dateFromTo;
+	}
+	public void setDateFromTo(String dateFromTo) {
+		this.dateFromTo = dateFromTo;
+	}
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -47,10 +57,10 @@ public class POLR044Q {
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
-	public String getPolicyId() {
+	public Integer getPolicyId() {
 		return policyId;
 	}
-	public void setPolicyId(String policyId) {
+	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
 	public String getPolicyNo() {
@@ -58,6 +68,18 @@ public class POLR044Q {
 	}
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
+	}
+	public String getInceptDate() {
+		return inceptDate;
+	}
+	public void setInceptDate(String inceptDate) {
+		this.inceptDate = inceptDate;
+	}
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 	public String getCedingId() {
 		return cedingId;
@@ -83,34 +105,22 @@ public class POLR044Q {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getSiAmt() {
+	public BigDecimal getSiAmt() {
 		return siAmt;
 	}
-	public void setSiAmt(String siAmt) {
+	public void setSiAmt(BigDecimal siAmt) {
 		this.siAmt = siAmt;
 	}
-	public String getSiAmtDist() {
-		return siAmtDist;
-	}
-	public void setSiAmtDist(String siAmtDist) {
-		this.siAmtDist = siAmtDist;
-	}
-	public String getPremAmtDist() {
-		return premAmtDist;
-	}
-	public void setPremAmtDist(String premAmtDist) {
-		this.premAmtDist = premAmtDist;
-	}
-	public String getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(String premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public String getTreatyId() {
+	public Integer getTreatyId() {
 		return treatyId;
 	}
-	public void setTreatyId(String treatyId) {
+	public void setTreatyId(Integer treatyId) {
 		this.treatyId = treatyId;
 	}
 	public String getTreatyName() {
@@ -131,10 +141,10 @@ public class POLR044Q {
 	public void setTreatyCompany(String treatyCompany) {
 		this.treatyCompany = treatyCompany;
 	}
-	public String getRetLayer() {
+	public Integer getRetLayer() {
 		return retLayer;
 	}
-	public void setRetLayer(String retLayer) {
+	public void setRetLayer(Integer retLayer) {
 		this.retLayer = retLayer;
 	}
 	public String getRetName() {
@@ -149,20 +159,27 @@ public class POLR044Q {
 	public void setDistGrp(String distGrp) {
 		this.distGrp = distGrp;
 	}
-	public String getDateFromTo() {
-		return dateFromTo;
+	public BigDecimal getAccumSiAmt() {
+		return accumSiAmt;
 	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
+	public void setAccumSiAmt(BigDecimal accumSiAmt) {
+		this.accumSiAmt = accumSiAmt;
+	}
+	public BigDecimal getAccumPremAmt() {
+		return accumPremAmt;
+	}
+	public void setAccumPremAmt(BigDecimal accumPremAmt) {
+		this.accumPremAmt = accumPremAmt;
 	}
 	@Override
 	public String toString() {
-		return "POLR044Q [extractUser=" + extractUser + ", extractDate=" + extractDate + ", cedingIdParam="
-				+ cedingIdParam + ", lineCd=" + lineCd + ", policyId=" + policyId + ", policyNo=" + policyNo
-				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", zoneCd=" + zoneCd + ", currencyCd="
-				+ currencyCd + ", siAmt=" + siAmt + ", siAmtDist=" + siAmtDist + ", premAmtDist=" + premAmtDist
-				+ ", premAmt=" + premAmt + ", treatyId=" + treatyId + ", treatyName=" + treatyName + ", trtyCedId="
-				+ trtyCedId + ", treatyCompany=" + treatyCompany + ", retLayer=" + retLayer + ", retName=" + retName
-				+ ", distGrp=" + distGrp + ", dateFromTo=" + dateFromTo + "]";
+		return "POLR044Q [dateFromTo=" + dateFromTo + ", extractUser=" + extractUser + ", extractDate=" + extractDate
+				+ ", cedingIdParam=" + cedingIdParam + ", lineCd=" + lineCd + ", policyId=" + policyId + ", policyNo="
+				+ policyNo + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", cedingId=" + cedingId
+				+ ", cedingName=" + cedingName + ", zoneCd=" + zoneCd + ", currencyCd=" + currencyCd + ", siAmt="
+				+ siAmt + ", premAmt=" + premAmt + ", treatyId=" + treatyId + ", treatyName=" + treatyName
+				+ ", trtyCedId=" + trtyCedId + ", treatyCompany=" + treatyCompany + ", retLayer=" + retLayer
+				+ ", retName=" + retName + ", distGrp=" + distGrp + ", accumSiAmt=" + accumSiAmt + ", accumPremAmt="
+				+ accumPremAmt + "]";
 	}
 }
