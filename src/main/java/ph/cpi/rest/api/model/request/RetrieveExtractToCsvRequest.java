@@ -21,6 +21,8 @@ public class RetrieveExtractToCsvRequest {
 	private String bankAcct;
 	private String sortBy;
 	
+	private String lineCd;
+	
 
 	public String getExtractUser() {
 		return extractUser;
@@ -158,6 +160,14 @@ public class RetrieveExtractToCsvRequest {
 		this.sortBy = sortBy;
 	}
 
+	public String getLineCd() {
+		return lineCd;
+	}
+
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvRequest [extractUser=" + extractUser + ", reportName=" + reportName + ", prodDate="
@@ -165,6 +175,6 @@ public class RetrieveExtractToCsvRequest {
 				+ ", paymentMode=" + paymentMode + ", paymentType=" + paymentType + ", fromDate=" + fromDate
 				+ ", toDate=" + toDate + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
 				+ ", tranpostDate=" + tranpostDate + ", chkDate=" + chkDate + ", bank=" + bank + ", bankAcct="
-				+ bankAcct + ", sortBy=" + sortBy + "]";
+				+ bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd + "]";
 	}
 }
