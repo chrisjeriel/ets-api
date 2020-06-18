@@ -37,6 +37,8 @@ public class CLMR010BE {
 	private BigDecimal lossOs;
 	private String histCategory;
 	private String histCatDesc;
+	private BigDecimal origResAmt;
+	private BigDecimal revResAmt;
 	public String getDateFromTo() {
 		return dateFromTo;
 	}
@@ -241,6 +243,18 @@ public class CLMR010BE {
 	public void setHistCatDesc(String histCatDesc) {
 		this.histCatDesc = histCatDesc;
 	}
+	public BigDecimal getOrigResAmt() {
+		return origResAmt;
+	}
+	public void setOrigResAmt(BigDecimal origResAmt) {
+		this.origResAmt = origResAmt;
+	}
+	public BigDecimal getRevResAmt() {
+		return revResAmt;
+	}
+	public void setRevResAmt(BigDecimal revResAmt) {
+		this.revResAmt = revResAmt;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010BE [dateFromTo=" + dateFromTo + ", extractUser=" + extractUser + ", extractDate=" + extractDate
@@ -253,6 +267,6 @@ public class CLMR010BE {
 				+ lossAbbr + ", lossDate=" + lossDate + ", clmCoRefNo=" + clmCoRefNo + ", cedingIdParam="
 				+ cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom
 				+ ", dateTo=" + dateTo + ", lossOs=" + lossOs + ", histCategory=" + histCategory + ", histCatDesc="
-				+ histCatDesc + "]";
+				+ histCatDesc + ", origResAmt=" + origResAmt + ", revResAmt=" + revResAmt + "]";
 	}
 }

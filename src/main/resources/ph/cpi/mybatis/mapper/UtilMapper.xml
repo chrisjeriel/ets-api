@@ -3468,6 +3468,8 @@
 		<result property="histCategory"                 column="HIST_CATEGORY"/>
 		<result property="histCatDesc"                  column="HIST_CAT_DESC"/>
 		<result property="lossOs"                       column="LOSS_OS"/>
+		<result property="origResAmt"                   column="ORIG_RES_AMT"/>
+		<result property="revResAmt"                    column="REV_RES_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveClmR010be" resultMap="retrieveClmR010beMap" parameterType="java.util.Map">
