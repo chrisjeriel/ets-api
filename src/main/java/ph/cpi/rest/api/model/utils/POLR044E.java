@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044E {
 	private String extractUser;
 	private String fromDate;
@@ -8,8 +10,8 @@ public class POLR044E {
 	private String lineCdParam;
 	private String siRange;
 	private String siRangeDesc;
-	private String mthNoPol;
-	private String cumNoPol;
+	private BigDecimal mthNoPol;
+	private BigDecimal cumNoPol;
 	private String lineSortSeq;
 	public String getExtractUser() {
 		return extractUser;
@@ -47,16 +49,22 @@ public class POLR044E {
 	public void setSiRange(String siRange) {
 		this.siRange = siRange;
 	}
-	public String getMthNoPol() {
+	public String getSiRangeDesc() {
+		return siRangeDesc;
+	}
+	public void setSiRangeDesc(String siRangeDesc) {
+		this.siRangeDesc = siRangeDesc;
+	}
+	public BigDecimal getMthNoPol() {
 		return mthNoPol;
 	}
-	public void setMthNoPol(String mthNoPol) {
+	public void setMthNoPol(BigDecimal mthNoPol) {
 		this.mthNoPol = mthNoPol;
 	}
-	public String getCumNoPol() {
+	public BigDecimal getCumNoPol() {
 		return cumNoPol;
 	}
-	public void setCumNoPol(String cumNoPol) {
+	public void setCumNoPol(BigDecimal cumNoPol) {
 		this.cumNoPol = cumNoPol;
 	}
 	public String getLineSortSeq() {
@@ -64,12 +72,6 @@ public class POLR044E {
 	}
 	public void setLineSortSeq(String lineSortSeq) {
 		this.lineSortSeq = lineSortSeq;
-	}
-	public String getSiRangeDesc() {
-		return siRangeDesc;
-	}
-	public void setSiRangeDesc(String siRangeDesc) {
-		this.siRangeDesc = siRangeDesc;
 	}
 	@Override
 	public String toString() {

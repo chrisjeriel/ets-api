@@ -1,24 +1,25 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044C {
 	private String extractUser;
 	private String lineCd;
 	private String currencyCd;
 	private String prevYear;
-	private String prevMthPrem;
-	private String prevPctTotal;
-	private String prevCumPrem;
+	private BigDecimal prevMthPrem;
+	private BigDecimal prevPctTotal;
+	private BigDecimal prevCumPrem;
 	private String currYear;
-	private String currMthPrem;
-	private String currPctTotal;
-	private String currCumPrem;
-	private String mthIncDecPct;
-	private String cumIncDecPct;
-	private String mthPlanPrem;
-	private String mthVariance;
-	private String cumPlanPrem;
-	private String cumVariance;
-	
+	private BigDecimal currMthPrem;
+	private BigDecimal currPctTotal;
+	private BigDecimal currCumPrem;
+	private BigDecimal mthIncDecPct;
+	private BigDecimal cumIncDecPct;
+	private BigDecimal mthPlanPrem;
+	private BigDecimal mthVariance;
+	private BigDecimal cumPlanPrem;
+	private BigDecimal cumVariance;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -43,22 +44,22 @@ public class POLR044C {
 	public void setPrevYear(String prevYear) {
 		this.prevYear = prevYear;
 	}
-	public String getPrevMthPrem() {
+	public BigDecimal getPrevMthPrem() {
 		return prevMthPrem;
 	}
-	public void setPrevMthPrem(String prevMthPrem) {
+	public void setPrevMthPrem(BigDecimal prevMthPrem) {
 		this.prevMthPrem = prevMthPrem;
 	}
-	public String getPrevPctTotal() {
+	public BigDecimal getPrevPctTotal() {
 		return prevPctTotal;
 	}
-	public void setPrevPctTotal(String prevPctTotal) {
+	public void setPrevPctTotal(BigDecimal prevPctTotal) {
 		this.prevPctTotal = prevPctTotal;
 	}
-	public String getPrevCumPrem() {
+	public BigDecimal getPrevCumPrem() {
 		return prevCumPrem;
 	}
-	public void setPrevCumPrem(String prevCumPrem) {
+	public void setPrevCumPrem(BigDecimal prevCumPrem) {
 		this.prevCumPrem = prevCumPrem;
 	}
 	public String getCurrYear() {
@@ -67,58 +68,58 @@ public class POLR044C {
 	public void setCurrYear(String currYear) {
 		this.currYear = currYear;
 	}
-	public String getCurrMthPrem() {
+	public BigDecimal getCurrMthPrem() {
 		return currMthPrem;
 	}
-	public void setCurrMthPrem(String currMthPrem) {
+	public void setCurrMthPrem(BigDecimal currMthPrem) {
 		this.currMthPrem = currMthPrem;
 	}
-	public String getCurrPctTotal() {
+	public BigDecimal getCurrPctTotal() {
 		return currPctTotal;
 	}
-	public void setCurrPctTotal(String currPctTotal) {
+	public void setCurrPctTotal(BigDecimal currPctTotal) {
 		this.currPctTotal = currPctTotal;
 	}
-	public String getCurrCumPrem() {
+	public BigDecimal getCurrCumPrem() {
 		return currCumPrem;
 	}
-	public void setCurrCumPrem(String currCumPrem) {
+	public void setCurrCumPrem(BigDecimal currCumPrem) {
 		this.currCumPrem = currCumPrem;
 	}
-	public String getMthIncDecPct() {
+	public BigDecimal getMthIncDecPct() {
 		return mthIncDecPct;
 	}
-	public void setMthIncDecPct(String mthIncDecPct) {
+	public void setMthIncDecPct(BigDecimal mthIncDecPct) {
 		this.mthIncDecPct = mthIncDecPct;
 	}
-	public String getCumIncDecPct() {
+	public BigDecimal getCumIncDecPct() {
 		return cumIncDecPct;
 	}
-	public void setCumIncDecPct(String cumIncDecPct) {
+	public void setCumIncDecPct(BigDecimal cumIncDecPct) {
 		this.cumIncDecPct = cumIncDecPct;
 	}
-	public String getMthPlanPrem() {
+	public BigDecimal getMthPlanPrem() {
 		return mthPlanPrem;
 	}
-	public void setMthPlanPrem(String mthPlanPrem) {
+	public void setMthPlanPrem(BigDecimal mthPlanPrem) {
 		this.mthPlanPrem = mthPlanPrem;
 	}
-	public String getMthVariance() {
+	public BigDecimal getMthVariance() {
 		return mthVariance;
 	}
-	public void setMthVariance(String mthVariance) {
+	public void setMthVariance(BigDecimal mthVariance) {
 		this.mthVariance = mthVariance;
 	}
-	public String getCumPlanPrem() {
+	public BigDecimal getCumPlanPrem() {
 		return cumPlanPrem;
 	}
-	public void setCumPlanPrem(String cumPlanPrem) {
+	public void setCumPlanPrem(BigDecimal cumPlanPrem) {
 		this.cumPlanPrem = cumPlanPrem;
 	}
-	public String getCumVariance() {
+	public BigDecimal getCumVariance() {
 		return cumVariance;
 	}
-	public void setCumVariance(String cumVariance) {
+	public void setCumVariance(BigDecimal cumVariance) {
 		this.cumVariance = cumVariance;
 	}
 	@Override
@@ -130,4 +131,5 @@ public class POLR044C {
 				+ ", cumIncDecPct=" + cumIncDecPct + ", mthPlanPrem=" + mthPlanPrem + ", mthVariance=" + mthVariance
 				+ ", cumPlanPrem=" + cumPlanPrem + ", cumVariance=" + cumVariance + "]";
 	}
+	
 }
