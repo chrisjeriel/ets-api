@@ -180,6 +180,24 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR044JA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044JA_PKG.extract_acit_premaloc_dtl_ext(#{extractUser, jdbcType=VARCHAR},
+													  #{dateParam, jdbcType=VARCHAR},
+													  #{dateRange, jdbcType=VARCHAR},
+													  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  #{lineCdParam, jdbcType=VARCHAR},
+													  #{cedingIdParam, jdbcType=VARCHAR},
+													  #{currCdParam, jdbcType=VARCHAR},
+													  #{incRecTag, jdbcType=VARCHAR},
+													  #{extractCount, mode=OUT, jdbcType=INTEGER},
+													  #{forceExtract, jdbcType=VARCHAR}
+													  );
+		END;
+	</update>
+	
+	
 	<update id="extractPOLR044K" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044K_PKG.extract_acit_premaloc_trty_ext(#{extractUser, jdbcType=VARCHAR},
