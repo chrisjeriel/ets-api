@@ -60,6 +60,7 @@ import ph.cpi.rest.api.model.utils.POLR044H;
 import ph.cpi.rest.api.model.utils.POLR044HA;
 import ph.cpi.rest.api.model.utils.POLR044I;
 import ph.cpi.rest.api.model.utils.POLR044J;
+import ph.cpi.rest.api.model.utils.POLR044JA;
 import ph.cpi.rest.api.model.utils.POLR044K;
 import ph.cpi.rest.api.model.utils.POLR044L;
 import ph.cpi.rest.api.model.utils.POLR044M;
@@ -104,6 +105,7 @@ public interface UtilDao {
 	public List<POLR044HA> retrievePolR044ha(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044I> retrievePolR044i(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044J> retrievePolR044j(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044JA> retrievePolR044ja(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044K> retrievePolR044k(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044L> retrievePolR044l(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044M> retrievePolR044m(final HashMap<String, Object> params ) throws SQLException;

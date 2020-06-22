@@ -27,6 +27,12 @@ public class POLR044Q {
 	private String distGrp;
 	private BigDecimal accumSiAmt;
 	private BigDecimal accumPremAmt;
+	private String fromDate;
+	private String toDate;
+	private BigDecimal pctPml;
+	private Integer accumNoDays;
+	private Integer totalNoDays;
+	
 	public String getDateFromTo() {
 		return dateFromTo;
 	}
@@ -171,6 +177,36 @@ public class POLR044Q {
 	public void setAccumPremAmt(BigDecimal accumPremAmt) {
 		this.accumPremAmt = accumPremAmt;
 	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
+	public BigDecimal getPctPml() {
+		return pctPml;
+	}
+	public void setPctPml(BigDecimal pctPml) {
+		this.pctPml = pctPml;
+	}
+	public Integer getAccumNoDays() {
+		return accumNoDays;
+	}
+	public void setAccumNoDays(Integer accumNoDays) {
+		this.accumNoDays = accumNoDays;
+	}
+	public Integer getTotalNoDays() {
+		return totalNoDays;
+	}
+	public void setTotalNoDays(Integer totalNoDays) {
+		this.totalNoDays = totalNoDays;
+	}
 	@Override
 	public String toString() {
 		return "POLR044Q [dateFromTo=" + dateFromTo + ", extractUser=" + extractUser + ", extractDate=" + extractDate
@@ -180,6 +216,7 @@ public class POLR044Q {
 				+ siAmt + ", premAmt=" + premAmt + ", treatyId=" + treatyId + ", treatyName=" + treatyName
 				+ ", trtyCedId=" + trtyCedId + ", treatyCompany=" + treatyCompany + ", retLayer=" + retLayer
 				+ ", retName=" + retName + ", distGrp=" + distGrp + ", accumSiAmt=" + accumSiAmt + ", accumPremAmt="
-				+ accumPremAmt + "]";
+				+ accumPremAmt + ", fromDate=" + fromDate + ", toDate=" + toDate + ", pctPml=" + pctPml
+				+ ", accumNoDays=" + accumNoDays + ", totalNoDays=" + totalNoDays + "]";
 	}
 }
