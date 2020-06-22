@@ -1,24 +1,25 @@
 package ph.cpi.rest.api.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class SavePolCoverageOcRequest {
 	private  Integer policyIdOc;
 	private  Integer riskId;
 	private  Integer projId;
-	private Integer sectionISi;
-	private Integer sectionIISi;
-	private Integer sectionIIISi;
-	private Integer totalSi;
-	private Integer sectionIPrem;
-	private Integer sectionIIPrem;
-	private Integer sectionIIIPrem;
-	private Integer totalPrem;
+	private BigDecimal sectionISi;
+	private BigDecimal sectionIISi;
+	private BigDecimal sectionIIISi;
+	private BigDecimal totalSi;
+	private BigDecimal sectionIPrem;
+	private BigDecimal sectionIIPrem;
+	private BigDecimal sectionIIIPrem;
+	private BigDecimal totalPrem;
 	private String currencyCd;
-	private Integer currencyRt;
-	private Integer pctShare;
-	private Integer pctPml;
-	private Integer totalValue;
+	private BigDecimal currencyRt;
+	private BigDecimal pctShare;
+	private BigDecimal pctPml;
+	private BigDecimal totalValue;
 	private String remarks;
 	private String createUser;
 	private String createDate;
@@ -29,20 +30,6 @@ public class SavePolCoverageOcRequest {
 	private List<SectionCoversOc> delSectionCoversOc;
 	private List<UwDeductible> saveDeductibleList;
 	private List<UwDeductible> deleteDeductibleList;
-	
-	
-	public List<UwDeductible> getSaveDeductibleList() {
-		return saveDeductibleList;
-	}
-	public void setSaveDeductibleList(List<UwDeductible> saveDeductibleList) {
-		this.saveDeductibleList = saveDeductibleList;
-	}
-	public List<UwDeductible> getDeleteDeductibleList() {
-		return deleteDeductibleList;
-	}
-	public void setDeleteDeductibleList(List<UwDeductible> deleteDeductibleList) {
-		this.deleteDeductibleList = deleteDeductibleList;
-	}
 	public Integer getPolicyIdOc() {
 		return policyIdOc;
 	}
@@ -61,52 +48,52 @@ public class SavePolCoverageOcRequest {
 	public void setProjId(Integer projId) {
 		this.projId = projId;
 	}
-	public Integer getSectionISi() {
+	public BigDecimal getSectionISi() {
 		return sectionISi;
 	}
-	public void setSectionISi(Integer sectionISi) {
+	public void setSectionISi(BigDecimal sectionISi) {
 		this.sectionISi = sectionISi;
 	}
-	public Integer getSectionIISi() {
+	public BigDecimal getSectionIISi() {
 		return sectionIISi;
 	}
-	public void setSectionIISi(Integer sectionIISi) {
+	public void setSectionIISi(BigDecimal sectionIISi) {
 		this.sectionIISi = sectionIISi;
 	}
-	public Integer getSectionIIISi() {
+	public BigDecimal getSectionIIISi() {
 		return sectionIIISi;
 	}
-	public void setSectionIIISi(Integer sectionIIISi) {
+	public void setSectionIIISi(BigDecimal sectionIIISi) {
 		this.sectionIIISi = sectionIIISi;
 	}
-	public Integer getTotalSi() {
+	public BigDecimal getTotalSi() {
 		return totalSi;
 	}
-	public void setTotalSi(Integer totalSi) {
+	public void setTotalSi(BigDecimal totalSi) {
 		this.totalSi = totalSi;
 	}
-	public Integer getSectionIPrem() {
+	public BigDecimal getSectionIPrem() {
 		return sectionIPrem;
 	}
-	public void setSectionIPrem(Integer sectionIPrem) {
+	public void setSectionIPrem(BigDecimal sectionIPrem) {
 		this.sectionIPrem = sectionIPrem;
 	}
-	public Integer getSectionIIPrem() {
+	public BigDecimal getSectionIIPrem() {
 		return sectionIIPrem;
 	}
-	public void setSectionIIPrem(Integer sectionIIPrem) {
+	public void setSectionIIPrem(BigDecimal sectionIIPrem) {
 		this.sectionIIPrem = sectionIIPrem;
 	}
-	public Integer getSectionIIIPrem() {
+	public BigDecimal getSectionIIIPrem() {
 		return sectionIIIPrem;
 	}
-	public void setSectionIIIPrem(Integer sectionIIIPrem) {
+	public void setSectionIIIPrem(BigDecimal sectionIIIPrem) {
 		this.sectionIIIPrem = sectionIIIPrem;
 	}
-	public Integer getTotalPrem() {
+	public BigDecimal getTotalPrem() {
 		return totalPrem;
 	}
-	public void setTotalPrem(Integer totalPrem) {
+	public void setTotalPrem(BigDecimal totalPrem) {
 		this.totalPrem = totalPrem;
 	}
 	public String getCurrencyCd() {
@@ -115,28 +102,28 @@ public class SavePolCoverageOcRequest {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Integer getCurrencyRt() {
+	public BigDecimal getCurrencyRt() {
 		return currencyRt;
 	}
-	public void setCurrencyRt(Integer currencyRt) {
+	public void setCurrencyRt(BigDecimal currencyRt) {
 		this.currencyRt = currencyRt;
 	}
-	public Integer getPctShare() {
+	public BigDecimal getPctShare() {
 		return pctShare;
 	}
-	public void setPctShare(Integer pctShare) {
+	public void setPctShare(BigDecimal pctShare) {
 		this.pctShare = pctShare;
 	}
-	public Integer getPctPml() {
+	public BigDecimal getPctPml() {
 		return pctPml;
 	}
-	public void setPctPml(Integer pctPml) {
+	public void setPctPml(BigDecimal pctPml) {
 		this.pctPml = pctPml;
 	}
-	public Integer getTotalValue() {
+	public BigDecimal getTotalValue() {
 		return totalValue;
 	}
-	public void setTotalValue(Integer totalValue) {
+	public void setTotalValue(BigDecimal totalValue) {
 		this.totalValue = totalValue;
 	}
 	public String getRemarks() {
@@ -169,7 +156,6 @@ public class SavePolCoverageOcRequest {
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
-	
 	public List<SectionCoversOc> getSaveSectionCoversOc() {
 		return saveSectionCoversOc;
 	}
@@ -181,6 +167,18 @@ public class SavePolCoverageOcRequest {
 	}
 	public void setDelSectionCoversOc(List<SectionCoversOc> delSectionCoversOc) {
 		this.delSectionCoversOc = delSectionCoversOc;
+	}
+	public List<UwDeductible> getSaveDeductibleList() {
+		return saveDeductibleList;
+	}
+	public void setSaveDeductibleList(List<UwDeductible> saveDeductibleList) {
+		this.saveDeductibleList = saveDeductibleList;
+	}
+	public List<UwDeductible> getDeleteDeductibleList() {
+		return deleteDeductibleList;
+	}
+	public void setDeleteDeductibleList(List<UwDeductible> deleteDeductibleList) {
+		this.deleteDeductibleList = deleteDeductibleList;
 	}
 	@Override
 	public String toString() {
@@ -194,7 +192,6 @@ public class SavePolCoverageOcRequest {
 				+ saveSectionCoversOc + ", delSectionCoversOc=" + delSectionCoversOc + ", saveDeductibleList="
 				+ saveDeductibleList + ", deleteDeductibleList=" + deleteDeductibleList + "]";
 	}
-	
 	
 	
 	

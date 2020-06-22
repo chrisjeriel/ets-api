@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR052A {
 	private String extractUser;
 	private String extractDate;
@@ -25,7 +27,7 @@ public class POLR052A {
 	private String comm1stSurplus;
 	private String comm2ndSurplus;
 	private String commFacul;
-	private String totalVatri;
+	private BigDecimal totalVatri;
 	private String vatriQuota;
 	private String vatri1stRet;
 	private String vatri2ndRet;
@@ -176,10 +178,10 @@ public class POLR052A {
 	public void setCommFacul(String commFacul) {
 		this.commFacul = commFacul;
 	}
-	public String getTotalVatri() {
+	public BigDecimal getTotalVatri() {
 		return totalVatri;
 	}
-	public void setTotalVatri(String totalVatri) {
+	public void setTotalVatri(BigDecimal totalVatri) {
 		this.totalVatri = totalVatri;
 	}
 	public String getVatriQuota() {

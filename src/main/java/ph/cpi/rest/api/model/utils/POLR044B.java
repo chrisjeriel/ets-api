@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044B {
 	private String extractUser;
 	private String policyNo;
@@ -8,8 +10,8 @@ public class POLR044B {
 	private String insuredDesc;
 	private String projDesc;
 	private String currencyCd;
-	private String siAmt;
-	private String premAmt;
+	private BigDecimal siAmt;
+	private BigDecimal premAmt;
 	private String remarks;
 	private String fromDate;
 	private String toDate;
@@ -55,16 +57,16 @@ public class POLR044B {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getSiAmt() {
+	public BigDecimal getSiAmt() {
 		return siAmt;
 	}
-	public void setSiAmt(String siAmt) {
+	public void setSiAmt(BigDecimal siAmt) {
 		this.siAmt = siAmt;
 	}
-	public String getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(String premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
 	public String getRemarks() {
