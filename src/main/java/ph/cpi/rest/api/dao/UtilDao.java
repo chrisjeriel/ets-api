@@ -79,8 +79,11 @@ import ph.cpi.rest.api.model.utils.POLR044X;
 import ph.cpi.rest.api.model.utils.POLR044Y;
 import ph.cpi.rest.api.model.utils.POLR044Z;
 import ph.cpi.rest.api.model.utils.POLR052A;
+import ph.cpi.rest.api.model.utils.POLR052AA;
 import ph.cpi.rest.api.model.utils.POLR052B;
+import ph.cpi.rest.api.model.utils.POLR052BA;
 import ph.cpi.rest.api.model.utils.POLR052C;
+import ph.cpi.rest.api.model.utils.POLR052CA;
 import ph.cpi.rest.api.model.utils.POLR052D;
 import ph.cpi.rest.api.model.utils.POLR052E;
 import ph.cpi.rest.api.model.utils.POLR052F;
@@ -125,8 +128,11 @@ public interface UtilDao {
 	public List<POLR044Z> retrievePolR044z(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<POLR052A> retrievePolR052a(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052AA> retrievePolR052aa(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052B> retrievePolR052b(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052BA> retrievePolR052ba(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052C> retrievePolR052c(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052CA> retrievePolR052ca(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052D> retrievePolR052d(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052E> retrievePolR052e(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052F> retrievePolR052f(final HashMap<String, Object> params ) throws SQLException;

@@ -3680,4 +3680,238 @@
         SELECT * FROM TABLE(POLR044_CSV_PKG.polr044ja_to_csv(
                     #{extractUser,jdbcType=VARCHAR}))
     </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.POLR052AA" id="retrievePolR052aaMap">
+		<result property="dateFromTo"             column="DATE_FROM_TO"/>
+		<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="extractDate"            column="EXTRACT_DATE"/>
+		<result property="lineCd"                 column="LINE_CD"/>
+		<result property="currencyCd"             column="CURRENCY_CD"/>
+		<result property="policyId"               column="POLICY_ID"/>
+		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="instNo"                 column="INST_NO"/>
+		<result property="totalPrem"              column="TOTAL_PREM"/>
+		<result property="premQsMre"              column="PREM_QS_MRE"/>
+		<result property="premQsNre"              column="PREM_QS_NRE"/>
+		<result property="premQsRet1"             column="PREM_QS_RET1"/>
+		<result property="premQsRet2"             column="PREM_QS_RET2"/>
+		<result property="prem1spMre"             column="PREM_1SP_MRE"/>
+		<result property="prem1spNre"             column="PREM_1SP_NRE"/>
+		<result property="prem2spMre"             column="PREM_2SP_MRE"/>
+		<result property="prem2spNre"             column="PREM_2SP_NRE"/>
+		<result property="premFaculMre"           column="PREM_FACUL_MRE"/>
+		<result property="totalComm"              column="TOTAL_COMM"/>
+		<result property="commQsMre"              column="COMM_QS_MRE"/>
+		<result property="commQsNre"              column="COMM_QS_NRE"/>
+		<result property="commQsRet1"             column="COMM_QS_RET1"/>
+		<result property="commQsRet2"             column="COMM_QS_RET2"/>
+		<result property="comm1spMre"             column="COMM_1SP_MRE"/>
+		<result property="comm1spNre"             column="COMM_1SP_NRE"/>
+		<result property="comm2spMre"             column="COMM_2SP_MRE"/>
+		<result property="comm2spNre"             column="COMM_2SP_NRE"/>
+		<result property="commFaculMre"           column="COMM_FACUL_MRE"/>
+		<result property="totalVatri"             column="TOTAL_VATRI"/>
+		<result property="vatriQsMre"             column="VATRI_QS_MRE"/>
+		<result property="vatriQsNre"             column="VATRI_QS_NRE"/>
+		<result property="vatriQsRet1"            column="VATRI_QS_RET1"/>
+		<result property="vatriQsRet2"            column="VATRI_QS_RET2"/>
+		<result property="vatri1spMre"            column="VATRI_1SP_MRE"/>
+		<result property="vatri1spNre"            column="VATRI_1SP_NRE"/>
+		<result property="vatri2spMre"            column="VATRI_2SP_MRE"/>
+		<result property="vatri2spNre"            column="VATRI_2SP_NRE"/>
+		<result property="vatriFaculMre"          column="VATRI_FACUL_MRE"/>
+		<result property="totalNetbal"            column="TOTAL_NETBAL"/>
+		<result property="netbalQsMre"            column="NETBAL_QS_MRE"/>
+		<result property="netbalQsNre"            column="NETBAL_QS_NRE"/>
+		<result property="netbalQsRet1"           column="NETBAL_QS_RET1"/>
+		<result property="netbalQsRet2"           column="NETBAL_QS_RET2"/>
+		<result property="netbal1spMre"           column="NETBAL_1SP_MRE"/>
+		<result property="netbal1spNre"           column="NETBAL_1SP_NRE"/>
+		<result property="netbal2spMre"           column="NETBAL_2SP_MRE"/>
+		<result property="netbal2spNre"           column="NETBAL_2SP_NRE"/>
+		<result property="netbalFaculMre"         column="NETBAL_FACUL_MRE"/>
+		<result property="dateParam"              column="DATE_PARAM"/>
+		<result property="dateRange"              column="DATE_RANGE"/>
+		<result property="fromDate"               column="FROM_DATE"/>
+		<result property="toDate"                 column="TO_DATE"/>
+		<result property="totalPremMre"           column="TOTAL_PREM_MRE"/>
+		<result property="totalPremNre"           column="TOTAL_PREM_NRE"/>
+		<result property="totalPremCedants"       column="TOTAL_PREM_CEDANTS"/>
+		<result property="totalCommMre"           column="TOTAL_COMM_MRE"/>
+		<result property="totalCommNre"           column="TOTAL_COMM_NRE"/>
+		<result property="totalCommCedants"       column="TOTAL_COMM_CEDANTS"/>
+		<result property="totalVatriMre"          column="TOTAL_VATRI_MRE"/>
+		<result property="totalVatriNre"          column="TOTAL_VATRI_NRE"/>
+		<result property="totalVatriCedants"      column="TOTAL_VATRI_CEDANTS"/>
+		<result property="totalNetbalMre"         column="TOTAL_NETBAL_MRE"/>
+		<result property="totalNetbalNre"         column="TOTAL_NETBAL_NRE"/>
+		<result property="totalNetbalCedants"     column="TOTAL_NETBAL_CEDANTS"/>
+	</resultMap>
+
+	<select id="retrievePolR052aa" resultMap="retrievePolR052aaMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052aa_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052BA" id="retrievePolR052baMap">
+		<result property="dateFromTo"             column="DATE_FROM_TO"/>
+		<result property="extractUser"            column="EXTRACT_USER"/>
+		<result property="extractDate"            column="EXTRACT_DATE"/>
+		<result property="lineCd"                 column="LINE_CD"/>
+		<result property="currencyCd"             column="CURRENCY_CD"/>
+		<result property="policyId"               column="POLICY_ID"/>
+		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="instNo"                 column="INST_NO"/>
+		<result property="coRefNo"                column="CO_REF_NO"/>
+		<result property="cedingId"               column="CEDING_ID"/>
+		<result property="cedingAbbr"             column="CEDING_ABBR"/>
+		<result property="insuredDesc"            column="INSURED_DESC"/>
+		<result property="inceptDate"             column="INCEPT_DATE"/>
+		<result property="expiryDate"             column="EXPIRY_DATE"/>
+		<result property="ret1Lines"              column="RET1_LINES"/>
+		<result property="ret2Lines"              column="RET2_LINES"/>
+		<result property="totalSi"                column="TOTAL_SI"/>
+		<result property="totalPrem"              column="TOTAL_PREM"/>
+		<result property="premQsMre"              column="PREM_QS_MRE"/>
+		<result property="premQsNre"              column="PREM_QS_NRE"/>
+		<result property="premQsRet1"             column="PREM_QS_RET1"/>
+		<result property="premQsRet2"             column="PREM_QS_RET2"/>
+		<result property="prem1spMre"             column="PREM_1SP_MRE"/>
+		<result property="prem1spNre"             column="PREM_1SP_NRE"/>
+		<result property="prem2spMre"             column="PREM_2SP_MRE"/>
+		<result property="prem2spNre"             column="PREM_2SP_NRE"/>
+		<result property="premFaculMre"           column="PREM_FACUL_MRE"/>
+		<result property="totalComm"              column="TOTAL_COMM"/>
+		<result property="commQsMre"              column="COMM_QS_MRE"/>
+		<result property="commQsNre"              column="COMM_QS_NRE"/>
+		<result property="commQsRet1"             column="COMM_QS_RET1"/>
+		<result property="commQsRet2"             column="COMM_QS_RET2"/>
+		<result property="comm1spMre"             column="COMM_1SP_MRE"/>
+		<result property="comm1spNre"             column="COMM_1SP_NRE"/>
+		<result property="comm2spMre"             column="COMM_2SP_MRE"/>
+		<result property="comm2spNre"             column="COMM_2SP_NRE"/>
+		<result property="commFaculMre"           column="COMM_FACUL_MRE"/>
+		<result property="totalVatri"             column="TOTAL_VATRI"/>
+		<result property="vatriQsMre"             column="VATRI_QS_MRE"/>
+		<result property="vatriQsNre"             column="VATRI_QS_NRE"/>
+		<result property="vatriQsRet1"            column="VATRI_QS_RET1"/>
+		<result property="vatriQsRet2"            column="VATRI_QS_RET2"/>
+		<result property="vatri1spMre"            column="VATRI_1SP_MRE"/>
+		<result property="vatri1spNre"            column="VATRI_1SP_NRE"/>
+		<result property="vatri2spMre"            column="VATRI_2SP_MRE"/>
+		<result property="vatri2spNre"            column="VATRI_2SP_NRE"/>
+		<result property="vatriFaculMre"          column="VATRI_FACUL_MRE"/>
+		<result property="totalNetbal"            column="TOTAL_NETBAL"/>
+		<result property="netbalQsMre"            column="NETBAL_QS_MRE"/>
+		<result property="netbalQsNre"            column="NETBAL_QS_NRE"/>
+		<result property="netbalQsRet1"           column="NETBAL_QS_RET1"/>
+		<result property="netbalQsRet2"           column="NETBAL_QS_RET2"/>
+		<result property="netbal1spMre"           column="NETBAL_1SP_MRE"/>
+		<result property="netbal1spNre"           column="NETBAL_1SP_NRE"/>
+		<result property="netbal2spMre"           column="NETBAL_2SP_MRE"/>
+		<result property="netbal2spNre"           column="NETBAL_2SP_NRE"/>
+		<result property="netbalFaculMre"         column="NETBAL_FACUL_MRE"/>
+		<result property="dateParam"              column="DATE_PARAM"/>
+		<result property="dateRange"              column="DATE_RANGE"/>
+		<result property="fromDate"               column="FROM_DATE"/>
+		<result property="toDate"                 column="TO_DATE"/>
+		<result property="totalPremMre"           column="TOTAL_PREM_MRE"/>
+		<result property="totalPremNre"           column="TOTAL_PREM_NRE"/>
+		<result property="totalPremCedants"       column="TOTAL_PREM_CEDANTS"/>
+		<result property="totalCommMre"           column="TOTAL_COMM_MRE"/>
+		<result property="totalCommNre"           column="TOTAL_COMM_NRE"/>
+		<result property="totalCommCedants"       column="TOTAL_COMM_CEDANTS"/>
+		<result property="totalVatriMre"          column="TOTAL_VATRI_MRE"/>
+		<result property="totalVatriNre"          column="TOTAL_VATRI_NRE"/>
+		<result property="totalVatriCedants"      column="TOTAL_VATRI_CEDANTS"/>
+		<result property="totalNetbalMre"         column="TOTAL_NETBAL_MRE"/>
+		<result property="totalNetbalNre"         column="TOTAL_NETBAL_NRE"/>
+		<result property="totalNetbalCedants"     column="TOTAL_NETBAL_CEDANTS"/>
+	</resultMap>
+	
+	<select id="retrievePolR052ba" resultMap="retrievePolR052baMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052ba_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR052CA" id="retrievePolR052caMap">
+		<result property="dateFromTo"                   column="DATE_FROM_TO"/>
+		<result property="extractUser"                  column="EXTRACT_USER"/>
+		<result property="extractDate"                  column="EXTRACT_DATE"/>
+		<result property="lineCd"                       column="LINE_CD"/>
+		<result property="currencyCd"                   column="CURRENCY_CD"/>
+		<result property="policyId"                     column="POLICY_ID"/>
+		<result property="policyNo"                     column="POLICY_NO"/>
+		<result property="instNo"                       column="INST_NO"/>
+		<result property="coRefNo"                      column="CO_REF_NO"/>
+		<result property="cedingId"                     column="CEDING_ID"/>
+		<result property="cedingAbbr"                   column="CEDING_ABBR"/>
+		<result property="insuredDesc"                  column="INSURED_DESC"/>
+		<result property="inceptDate"                   column="INCEPT_DATE"/>
+		<result property="expiryDate"                   column="EXPIRY_DATE"/>
+		<result property="ret1Lines"                    column="RET1_LINES"/>
+		<result property="ret2Lines"                    column="RET2_LINES"/>
+		<result property="totalSi"                      column="TOTAL_SI"/>
+		<result property="totalPrem"                    column="TOTAL_PREM"/>
+		<result property="premQsMre"                    column="PREM_QS_MRE"/>
+		<result property="premQsNre"                    column="PREM_QS_NRE"/>
+		<result property="premQsRet1"                   column="PREM_QS_RET1"/>
+		<result property="premQsRet2"                   column="PREM_QS_RET2"/>
+		<result property="prem1spMre"                   column="PREM_1SP_MRE"/>
+		<result property="prem1spNre"                   column="PREM_1SP_NRE"/>
+		<result property="prem2spMre"                   column="PREM_2SP_MRE"/>
+		<result property="prem2spNre"                   column="PREM_2SP_NRE"/>
+		<result property="premFaculMre"                 column="PREM_FACUL_MRE"/>
+		<result property="totalComm"                    column="TOTAL_COMM"/>
+		<result property="commQsMre"                    column="COMM_QS_MRE"/>
+		<result property="commQsNre"                    column="COMM_QS_NRE"/>
+		<result property="commQsRet1"                   column="COMM_QS_RET1"/>
+		<result property="commQsRet2"                   column="COMM_QS_RET2"/>
+		<result property="comm1spMre"                   column="COMM_1SP_MRE"/>
+		<result property="comm1spNre"                   column="COMM_1SP_NRE"/>
+		<result property="comm2spMre"                   column="COMM_2SP_MRE"/>
+		<result property="comm2spNre"                   column="COMM_2SP_NRE"/>
+		<result property="commFaculMre"                 column="COMM_FACUL_MRE"/>
+		<result property="totalVatri"                   column="TOTAL_VATRI"/>
+		<result property="vatriQsMre"                   column="VATRI_QS_MRE"/>
+		<result property="vatriQsNre"                   column="VATRI_QS_NRE"/>
+		<result property="vatriQsRet1"                  column="VATRI_QS_RET1"/>
+		<result property="vatriQsRet2"                  column="VATRI_QS_RET2"/>
+		<result property="vatri1spMre"                  column="VATRI_1SP_MRE"/>
+		<result property="vatri1spNre"                  column="VATRI_1SP_NRE"/>
+		<result property="vatri2spMre"                  column="VATRI_2SP_MRE"/>
+		<result property="vatri2spNre"                  column="VATRI_2SP_NRE"/>
+		<result property="vatriFaculMre"                column="VATRI_FACUL_MRE"/>
+		<result property="totalNetbal"                  column="TOTAL_NETBAL"/>
+		<result property="netbalQsMre"                  column="NETBAL_QS_MRE"/>
+		<result property="netbalQsNre"                  column="NETBAL_QS_NRE"/>
+		<result property="netbalQsRet1"                 column="NETBAL_QS_RET1"/>
+		<result property="netbalQsRet2"                 column="NETBAL_QS_RET2"/>
+		<result property="netbal1spMre"                 column="NETBAL_1SP_MRE"/>
+		<result property="netbal1spNre"                 column="NETBAL_1SP_NRE"/>
+		<result property="netbal2spMre"                 column="NETBAL_2SP_MRE"/>
+		<result property="netbal2spNre"                 column="NETBAL_2SP_NRE"/>
+		<result property="netbalFaculMre"               column="NETBAL_FACUL_MRE"/>
+		<result property="dateParam"                    column="DATE_PARAM"/>
+		<result property="dateRange"                    column="DATE_RANGE"/>
+		<result property="fromDate"                     column="FROM_DATE"/>
+		<result property="toDate"                       column="TO_DATE"/>
+		<result property="totalPremMre"                 column="TOTAL_PREM_MRE"/>
+		<result property="totalPremNre"                 column="TOTAL_PREM_NRE"/>
+		<result property="totalPremCedants"             column="TOTAL_PREM_CEDANTS"/>
+		<result property="totalCommMre"                 column="TOTAL_COMM_MRE"/>
+		<result property="totalCommNre"                 column="TOTAL_COMM_NRE"/>
+		<result property="totalCommCedants"             column="TOTAL_COMM_CEDANTS"/>
+		<result property="totalVatriMre"                column="TOTAL_VATRI_MRE"/>
+		<result property="totalVatriNre"                column="TOTAL_VATRI_NRE"/>
+		<result property="totalVatriCedants"            column="TOTAL_VATRI_CEDANTS"/>
+		<result property="totalNetbalMre"               column="TOTAL_NETBAL_MRE"/>
+		<result property="totalNetbalNre"               column="TOTAL_NETBAL_NRE"/>
+		<result property="totalNetbalCedants"           column="TOTAL_NETBAL_CEDANTS"/>
+	</resultMap>
+	
+	<select id="retrievePolR052ca" resultMap="retrievePolR052caMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR052_CSV_PKG.polr052ca_to_csv(
+					#{extractUser,jdbcType=VARCHAR}))
+	</select>
 </mapper>
