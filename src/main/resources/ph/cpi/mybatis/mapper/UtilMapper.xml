@@ -681,6 +681,48 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR052AA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR052AA_PKG.extract_pol_prembrdx(#{extractUser, jdbcType=VARCHAR},
+											  #{lineCdParam, jdbcType=VARCHAR},
+											  #{dateParam, jdbcType=VARCHAR},
+										      #{dateRange, jdbcType=VARCHAR},
+											  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  #{extractCount, mode=OUT, jdbcType=INTEGER},
+											  #{forceExtract, jdbcType=VARCHAR},
+											  #{currCdParam, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractPOLR052BA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR052BA_PKG.extract_pol_prembrdx(#{extractUser, jdbcType=VARCHAR},
+											  	  #{lineCdParam, jdbcType=VARCHAR},
+											  	  #{dateParam, jdbcType=VARCHAR},
+										      	  #{dateRange, jdbcType=VARCHAR},
+											  	  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  	  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  	  #{extractCount, mode=OUT, jdbcType=INTEGER},
+											  	  #{forceExtract, jdbcType=VARCHAR},
+											  	  #{currCdParam, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractPOLR052CA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR052CA_PKG.extract_pol_prembrdx(#{extractUser, jdbcType=VARCHAR},
+											  	  #{lineCdParam, jdbcType=VARCHAR},
+											  	  #{dateParam, jdbcType=VARCHAR},
+										      	  #{dateRange, jdbcType=VARCHAR},
+											  	  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  	  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+											  	  #{extractCount, mode=OUT, jdbcType=INTEGER},
+											  	  #{forceExtract, jdbcType=VARCHAR},
+											  	  #{currCdParam, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<update id="extractPOLR052D" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR052D_PKG.extract_polr052d(
