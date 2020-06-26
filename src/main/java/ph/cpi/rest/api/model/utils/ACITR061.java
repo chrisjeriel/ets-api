@@ -19,6 +19,18 @@ public class ACITR061 {
 	private String bank;
 	private String bankAcct;
 	private String sortBy;
+	private String lineCd;
+	private String cedingId;
+	private String currCd;
+	
+	private String extractUser;
+	private String osPaidTag;
+	private String dateParam;
+	private String dateRange;
+	private String dateFrom;
+	private String dateTo;
+	private String extTypeTag;
+	private String forceExtract;
 	
 	public String getReportId() {
 		return reportId;
@@ -122,13 +134,82 @@ public class ACITR061 {
 	public void setSortBy(String sortBy) {
 		this.sortBy = sortBy;
 	}
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
+	public String getExtractUser() {
+		return extractUser;
+	}
+	public void setExtractUser(String extractUser) {
+		this.extractUser = extractUser;
+	}
+	public String getOsPaidTag() {
+		return osPaidTag;
+	}
+	public void setOsPaidTag(String osPaidTag) {
+		this.osPaidTag = osPaidTag;
+	}
+	public String getDateParam() {
+		return dateParam;
+	}
+	public void setDateParam(String dateParam) {
+		this.dateParam = dateParam;
+	}
+	public String getDateRange() {
+		return dateRange;
+	}
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
+	}
+	public String getDateFrom() {
+		return dateFrom;
+	}
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+	public String getDateTo() {
+		return dateTo;
+	}
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
+	}
+	public String getExtTypeTag() {
+		return extTypeTag;
+	}
+	public void setExtTypeTag(String extTypeTag) {
+		this.extTypeTag = extTypeTag;
+	}
+	public String getForceExtract() {
+		return forceExtract;
+	}
+	public void setForceExtract(String forceExtract) {
+		this.forceExtract = forceExtract;
+	}
 	@Override
 	public String toString() {
 		return "ACITR061 [reportId=" + reportId + ", reportName=" + reportName + ", tranPostDate=" + tranPostDate
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", paytType=" + paytType + ", paytMode=" + paytMode
 				+ ", reportType=" + reportType + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
 				+ ", destination=" + destination + ", printedBy=" + printedBy + ", chkDate=" + chkDate + ", jvType="
-				+ jvType + ", bank=" + bank + ", bankAcct=" + bankAcct + ", sortBy=" + sortBy + "]";
+				+ jvType + ", bank=" + bank + ", bankAcct=" + bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd
+				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", extractUser=" + extractUser + ", osPaidTag="
+				+ osPaidTag + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom
+				+ ", dateTo=" + dateTo + ", extTypeTag=" + extTypeTag + ", forceExtract=" + forceExtract + "]";
 	}
 	
 }

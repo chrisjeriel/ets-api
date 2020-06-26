@@ -371,6 +371,40 @@
 		END;
 	</update>
 	
+	<update id="extractACITR061H" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACITR061H_PKG.extract_acitr061h(#{extractUser, jdbcType=VARCHAR},
+										    #{osPaidTag, jdbcType=VARCHAR},
+										    #{dateParam, jdbcType=VARCHAR},
+										    #{dateRange, jdbcType=VARCHAR},
+										    CAST(to_timestamp(#{dateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    CAST(to_timestamp(#{dateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{extTypeTag, jdbcType=VARCHAR},
+										    #{lineCd, jdbcType=VARCHAR},
+										    #{cedingId, jdbcType=VARCHAR},
+										    #{currCd, jdbcType=VARCHAR},
+										    #{extractCount, mode=OUT, jdbcType=INTEGER},
+										    #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractACITR061I" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACITR061I_PKG.extract_acitr061i(#{extractUser, jdbcType=VARCHAR},
+										    #{osPaidTag, jdbcType=VARCHAR},
+										    #{dateParam, jdbcType=VARCHAR},
+										    #{dateRange, jdbcType=VARCHAR},
+										    CAST(to_timestamp(#{dateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    CAST(to_timestamp(#{dateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										    #{extTypeTag, jdbcType=VARCHAR},
+										    #{lineCd, jdbcType=VARCHAR},
+										    #{cedingId, jdbcType=VARCHAR},
+										    #{currCd, jdbcType=VARCHAR},
+										    #{extractCount, mode=OUT, jdbcType=INTEGER},
+										    #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<update id="extractPOLR044V" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044V_PKG.extract_current_policies(#{extractUser, jdbcType=VARCHAR},

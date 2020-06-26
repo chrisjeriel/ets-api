@@ -131,6 +131,30 @@ public class ReportParameters {
 		ACITR061Params.put("P_CANCELLED_TRANS", param.getIncCancelTran());
 		ACITR061Params.put("P_TRANPOST_DATE", param.getTranPostDate());
 		ACITR061Params.put("P_PRINTED_BY", param.getPrintedBy());
+		ACITR061Params.put("P_LINE_CD", param.getLineCd());
+		ACITR061Params.put("P_CEDING_ID", param.getCedingId());
+		ACITR061Params.put("P_CURR_CD", param.getCurrCd());
+		
+		ACITR061Params.put("P_EXTRACT_USER", param.getExtractUser());
+		ACITR061Params.put("P_OS_PAID_TAG", param.getOsPaidTag());
+		ACITR061Params.put("P_DATE_PARAM", param.getDateParam());
+		ACITR061Params.put("P_DATE_RANGE", param.getDateRange());
+		ACITR061Params.put("P_DATE_FROM", param.getDateFrom());
+		ACITR061Params.put("P_DATE_TO", param.getDateTo());
+		ACITR061Params.put("P_EXT_TYPE_TAG", param.getExtTypeTag());
+		ACITR061Params.put("P_FORCE_EXTRACT", param.getForceExtract());
+		
+		ACITR061Params.put("extractUser", param.getExtractUser());
+		ACITR061Params.put("osPaidTag", param.getOsPaidTag());
+		ACITR061Params.put("dateParam", param.getDateParam());
+		ACITR061Params.put("dateRange", param.getDateRange());
+		ACITR061Params.put("dateFrom", param.getDateFrom());
+		ACITR061Params.put("dateTo", param.getDateTo());
+		ACITR061Params.put("extTypeTag", param.getExtTypeTag());
+		ACITR061Params.put("lineCd", param.getLineCd());
+		ACITR061Params.put("cedingId", param.getCedingId());
+		ACITR061Params.put("currCd", param.getCurrCd());
+		ACITR061Params.put("forceExtract", param.getForceExtract());
 		
 		return ACITR061Params;
 	}
