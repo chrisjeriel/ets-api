@@ -78,6 +78,7 @@ import ph.cpi.rest.api.model.utils.POLR044OA;
 import ph.cpi.rest.api.model.utils.POLR044OB;
 import ph.cpi.rest.api.model.utils.POLR044P;
 import ph.cpi.rest.api.model.utils.POLR044Q;
+import ph.cpi.rest.api.model.utils.POLR044Q2;
 import ph.cpi.rest.api.model.utils.POLR044R;
 import ph.cpi.rest.api.model.utils.POLR044S;
 import ph.cpi.rest.api.model.utils.POLR044T;
@@ -87,8 +88,11 @@ import ph.cpi.rest.api.model.utils.POLR044X;
 import ph.cpi.rest.api.model.utils.POLR044Y;
 import ph.cpi.rest.api.model.utils.POLR044Z;
 import ph.cpi.rest.api.model.utils.POLR052A;
+import ph.cpi.rest.api.model.utils.POLR052AA;
 import ph.cpi.rest.api.model.utils.POLR052B;
+import ph.cpi.rest.api.model.utils.POLR052BA;
 import ph.cpi.rest.api.model.utils.POLR052C;
+import ph.cpi.rest.api.model.utils.POLR052CA;
 import ph.cpi.rest.api.model.utils.POLR052D;
 import ph.cpi.rest.api.model.utils.POLR052E;
 import ph.cpi.rest.api.model.utils.POLR052F;
@@ -713,6 +717,30 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR044JA> retrievePolR044ja(HashMap<String, Object> params) throws SQLException {
 		List<POLR044JA> retrievePolR044ja = sqlSession.selectList("retrievePolR044ja",params);
 		return retrievePolR044ja;
+	}
+
+	@Override
+	public List<POLR052AA> retrievePolR052aa(HashMap<String, Object> params) throws SQLException {
+		List<POLR052AA> retrievePolR052aa = sqlSession.selectList("retrievePolR052aa",params);
+		return retrievePolR052aa;
+	}
+
+	@Override
+	public List<POLR052BA> retrievePolR052ba(HashMap<String, Object> params) throws SQLException {
+		List<POLR052BA> retrievePolR052ba = sqlSession.selectList("retrievePolR052ba",params);
+		return retrievePolR052ba;
+	}
+
+	@Override
+	public List<POLR052CA> retrievePolR052ca(HashMap<String, Object> params) throws SQLException {
+		List<POLR052CA> retrievePolR052ca = sqlSession.selectList("retrievePolR052ca",params);
+		return retrievePolR052ca;
+	}
+
+	@Override
+	public List<POLR044Q2> retrievePolR044q2(HashMap<String, Object> params) throws SQLException {
+		List<POLR044Q2> retrievePolR044q2 = sqlSession.selectList("retrievePolR044q2",params);
+		return retrievePolR044q2;
 	}
 
 }
