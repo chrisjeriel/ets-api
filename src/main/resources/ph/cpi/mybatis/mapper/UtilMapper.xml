@@ -1706,6 +1706,42 @@
 					#{paramCurrency,jdbcType=VARCHAR}))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044Q2" id="retrievePolR044q2Map">
+		<result property="extractUser"		column="EXTRACT_USER"/>
+		<result property="extractDate"		column="EXTRACT_DATE"/>
+		<result property="cedingIdParam"	column="CEDING_ID_PARAM"/>
+		<result property="dateParam"		column="DATE_PARAM"/>
+		<result property="dateRange"		column="DATE_RANGE"/>
+		<result property="fromDate"			column="FROM_DATE"/>
+		<result property="toDate"			column="TO_DATE"/>
+		<result property="lineCd"			column="LINE_CD"/>
+		<result property="policyId"			column="POLICY_ID"/>
+		<result property="policyNo"			column="POLICY_NO"/>
+		<result property="cedingId"			column="CEDING_ID"/>
+		<result property="cedingName"		column="CEDING_NAME"/>
+		<result property="inceptDate"		column="INCEPT_DATE"/>
+		<result property="expiryDate"		column="EXPIRY_DATE"/>
+		<result property="acctEntDate"		column="ACCT_ENT_DATE"/>
+		<result property="accumNoDays"		column="ACCUM_NO_DAYS"/>
+		<result property="totalNoDays"		column="TOTAL_NO_DAYS"/>
+		<result property="noOfMonths"		column="NO_OF_MONTHS"/>
+		<result property="cityCd"			column="CITY_CD"/>
+		<result property="zoneCd"			column="ZONE_CD"/>
+		<result property="currencyCd"		column="CURRENCY_CD"/>
+		<result property="pctPml"			column="PCT_PML"/>
+		<result property="siAmt"			column="SI_AMT"/>
+		<result property="premAmt"			column="PREM_AMT"/>
+		<result property="accumSiAmt"		column="ACCUM_SI_AMT"/>
+		<result property="accumPremAmt"		column="ACCUM_PREM_AMT"/>
+	</resultMap>
+	
+	<select id="retrievePolR044q2" resultMap="retrievePolR044q2Map" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044q2_to_csv(
+					#{extractUser,jdbcType=VARCHAR},
+					#{lineCd,jdbcType=VARCHAR},
+					#{paramCurrency,jdbcType=VARCHAR}))
+	</select>
+	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044R" id="retrievePolR044rMap">
 		<result property="extractUser"      column="EXTRACT_USER"/>
 		<result property="extractDate"      column="EXTRACT_DATE"/>

@@ -2,13 +2,14 @@ package ph.cpi.rest.api.model.utils;
 
 import java.math.BigDecimal;
 
-public class POLR044Q {
+public class POLR044Q2 {
 	private String extractUser;
 	private String extractDate;
 	private String fromDate;
 	private String toDate;
-	private String dateFromTo;
 	private String cedingIdParam;
+	private String dateParam;
+	private String dateRange;
 	private String inceptDate;
 	private String expiryDate;
 	private String lineCd;
@@ -16,18 +17,14 @@ public class POLR044Q {
 	private String policyNo;
 	private String cedingId;
 	private String cedingName;
+	private Integer cityCd;
 	private Integer zoneCd;
-	private String currencyCd;
-	private BigDecimal pctPml;
+	private String acctEntDate;
 	private Integer accumNoDays;
 	private Integer totalNoDays;
-	private Integer treatyId;
-	private String treatyName;
-	private String trtyCedId;
-	private String treatyCompany;
-	private Integer retLayer;
-	private String retName;
-	private String distGrp;
+	private Integer noOfMonths;
+	private String currencyCd;
+	private BigDecimal pctPml;
 	private BigDecimal siAmt;
 	private BigDecimal accumSiAmt;
 	private BigDecimal premAmt;
@@ -56,17 +53,23 @@ public class POLR044Q {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getDateFromTo() {
-		return dateFromTo;
-	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
-	}
 	public String getCedingIdParam() {
 		return cedingIdParam;
 	}
 	public void setCedingIdParam(String cedingIdParam) {
 		this.cedingIdParam = cedingIdParam;
+	}
+	public String getDateParam() {
+		return dateParam;
+	}
+	public void setDateParam(String dateParam) {
+		this.dateParam = dateParam;
+	}
+	public String getDateRange() {
+		return dateRange;
+	}
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
 	}
 	public String getInceptDate() {
 		return inceptDate;
@@ -110,23 +113,23 @@ public class POLR044Q {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
+	public Integer getCityCd() {
+		return cityCd;
+	}
+	public void setCityCd(Integer cityCd) {
+		this.cityCd = cityCd;
+	}
 	public Integer getZoneCd() {
 		return zoneCd;
 	}
 	public void setZoneCd(Integer zoneCd) {
 		this.zoneCd = zoneCd;
 	}
-	public String getCurrencyCd() {
-		return currencyCd;
+	public String getAcctEntDate() {
+		return acctEntDate;
 	}
-	public void setCurrencyCd(String currencyCd) {
-		this.currencyCd = currencyCd;
-	}
-	public BigDecimal getPctPml() {
-		return pctPml;
-	}
-	public void setPctPml(BigDecimal pctPml) {
-		this.pctPml = pctPml;
+	public void setAcctEntDate(String acctEntDate) {
+		this.acctEntDate = acctEntDate;
 	}
 	public Integer getAccumNoDays() {
 		return accumNoDays;
@@ -140,47 +143,23 @@ public class POLR044Q {
 	public void setTotalNoDays(Integer totalNoDays) {
 		this.totalNoDays = totalNoDays;
 	}
-	public Integer getTreatyId() {
-		return treatyId;
+	public Integer getNoOfMonths() {
+		return noOfMonths;
 	}
-	public void setTreatyId(Integer treatyId) {
-		this.treatyId = treatyId;
+	public void setNoOfMonths(Integer noOfMonths) {
+		this.noOfMonths = noOfMonths;
 	}
-	public String getTreatyName() {
-		return treatyName;
+	public String getCurrencyCd() {
+		return currencyCd;
 	}
-	public void setTreatyName(String treatyName) {
-		this.treatyName = treatyName;
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
 	}
-	public String getTrtyCedId() {
-		return trtyCedId;
+	public BigDecimal getPctPml() {
+		return pctPml;
 	}
-	public void setTrtyCedId(String trtyCedId) {
-		this.trtyCedId = trtyCedId;
-	}
-	public String getTreatyCompany() {
-		return treatyCompany;
-	}
-	public void setTreatyCompany(String treatyCompany) {
-		this.treatyCompany = treatyCompany;
-	}
-	public Integer getRetLayer() {
-		return retLayer;
-	}
-	public void setRetLayer(Integer retLayer) {
-		this.retLayer = retLayer;
-	}
-	public String getRetName() {
-		return retName;
-	}
-	public void setRetName(String retName) {
-		this.retName = retName;
-	}
-	public String getDistGrp() {
-		return distGrp;
-	}
-	public void setDistGrp(String distGrp) {
-		this.distGrp = distGrp;
+	public void setPctPml(BigDecimal pctPml) {
+		this.pctPml = pctPml;
 	}
 	public BigDecimal getSiAmt() {
 		return siAmt;
@@ -208,14 +187,13 @@ public class POLR044Q {
 	}
 	@Override
 	public String toString() {
-		return "POLR044Q [extractUser=" + extractUser + ", extractDate=" + extractDate + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + ", dateFromTo=" + dateFromTo + ", cedingIdParam=" + cedingIdParam
-				+ ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", lineCd=" + lineCd + ", policyId="
-				+ policyId + ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", zoneCd=" + zoneCd + ", currencyCd=" + currencyCd + ", pctPml=" + pctPml + ", accumNoDays="
-				+ accumNoDays + ", totalNoDays=" + totalNoDays + ", treatyId=" + treatyId + ", treatyName=" + treatyName
-				+ ", trtyCedId=" + trtyCedId + ", treatyCompany=" + treatyCompany + ", retLayer=" + retLayer
-				+ ", retName=" + retName + ", distGrp=" + distGrp + ", siAmt=" + siAmt + ", accumSiAmt=" + accumSiAmt
-				+ ", premAmt=" + premAmt + ", accumPremAmt=" + accumPremAmt + "]";
+		return "POLR044Q2 [extractUser=" + extractUser + ", extractDate=" + extractDate + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam
+				+ ", dateRange=" + dateRange + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", lineCd="
+				+ lineCd + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId=" + cedingId
+				+ ", cedingName=" + cedingName + ", cityCd=" + cityCd + ", zoneCd=" + zoneCd + ", acctEntDate="
+				+ acctEntDate + ", accumNoDays=" + accumNoDays + ", totalNoDays=" + totalNoDays + ", noOfMonths="
+				+ noOfMonths + ", currencyCd=" + currencyCd + ", pctPml=" + pctPml + ", siAmt=" + siAmt
+				+ ", accumSiAmt=" + accumSiAmt + ", premAmt=" + premAmt + ", accumPremAmt=" + accumPremAmt + "]";
 	}
 }

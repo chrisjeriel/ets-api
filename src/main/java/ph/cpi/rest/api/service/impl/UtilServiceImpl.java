@@ -270,6 +270,7 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr044p(utilDao.retrievePolR044p(retcParams));
 		}else if(reportName.equals("POLR044Q")) {
 			retcResponse.setListPolr044q(utilDao.retrievePolR044q(retcParams));
+			retcResponse.setListPolr044q2(utilDao.retrievePolR044q2(retcParams));
 		}else if(reportName.equals("POLR044R")) {
 			retcResponse.setListPolr044r(utilDao.retrievePolR044r(retcParams));
 		}else if(reportName.equals("POLR044S")) {
