@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
+import ph.cpi.rest.api.model.utils.CLMR052;
 import ph.cpi.rest.api.model.utils.POLR044;
 
 public class GenerateReportRequest {
@@ -35,6 +36,7 @@ public class GenerateReportRequest {
 	private ACSER024 acser024Params;
 	private ACITR049 acitr049Params;
 	private ACITR050 acitr050Params;
+	private CLMR052 clmr052Params;
 	
 	private String memoId;
 	
@@ -239,6 +241,12 @@ public class GenerateReportRequest {
 	public void setAcitr050Params(ACITR050 acitr050Params) {
 		this.acitr050Params = acitr050Params;
 	}
+	public CLMR052 getClmr052Params() {
+		return clmr052Params;
+	}
+	public void setClmr052Params(CLMR052 clmr052Params) {
+		this.clmr052Params = clmr052Params;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
@@ -248,9 +256,10 @@ public class GenerateReportRequest {
 				+ ", acitr061Params=" + acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params="
 				+ acitr052Params + ", acser060Params=" + acser060Params + ", acitr066Params=" + acitr066Params
 				+ ", acser024Params=" + acser024Params + ", acitr049Params=" + acitr049Params + ", acitr050Params="
-				+ acitr050Params + ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation="
-				+ pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId
-				+ ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
+				+ acitr050Params + ", clmr052Params=" + clmr052Params + ", memoId=" + memoId + ", printerName="
+				+ printerName + ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo="
+				+ instNo + ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct="
+				+ hundredPct + "]";
 	}
 	
 }

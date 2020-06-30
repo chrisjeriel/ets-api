@@ -12,6 +12,7 @@ import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
+import ph.cpi.rest.api.model.utils.CLMR052;
 import ph.cpi.rest.api.model.utils.POLR044;
 
 import java.util.Date;
@@ -329,5 +330,49 @@ public class ReportParameters {
 		ACITR050Params.put("P_CEDING_ID", param.getCedingId());
 		
 		return ACITR050Params;
+	}
+	
+	public static HashMap<String, Object> mapCLMR052Params(CLMR052 param) throws ParseException {
+		HashMap<String, Object> CLMR052Params = new HashMap<String, Object>();
+		
+		CLMR052Params.put("P_REPORT_ID", param.getReportId());
+		CLMR052Params.put("p_report_id", param.getReportId());
+		CLMR052Params.put("pReportId", param.getReportId());
+		CLMR052Params.put("reportId", param.getReportId());
+		CLMR052Params.put("P_PAYMENT_MODE", param.getPaytMode());
+		CLMR052Params.put("P_PAYMENT_TYPE", param.getPaytType());
+		CLMR052Params.put("P_SORT_BY", param.getSortBy());
+		CLMR052Params.put("P_FROM_DATE", param.getFromDate());
+		CLMR052Params.put("P_INC_CLOSED_TRAN", param.getIncClosedTran());
+		CLMR052Params.put("P_CLOSED_TRANS", param.getIncClosedTran());
+		CLMR052Params.put("P_INC_CANCEL_TRAN", param.getIncCancelTran());
+		CLMR052Params.put("P_CANCELLED_TRANS", param.getIncCancelTran());
+		CLMR052Params.put("P_TRANPOST_DATE", param.getTranPostDate());
+		CLMR052Params.put("P_PRINTED_BY", param.getPrintedBy());
+		CLMR052Params.put("P_LINE_CD", param.getLineCd());
+		CLMR052Params.put("P_CEDING_ID", param.getCedingId());
+		CLMR052Params.put("P_CURR_CD", param.getCurrCd());
+		CLMR052Params.put("P_EXTRACT_USER", param.getExtractUser());
+		CLMR052Params.put("P_OS_PAID_TAG", param.getOsPaidTag());
+		CLMR052Params.put("P_DATE_PARAM", param.getDateParam());
+		CLMR052Params.put("P_DATE_RANGE", param.getDateRange());
+		CLMR052Params.put("P_DATE_FROM", param.getDateFrom());
+		CLMR052Params.put("P_DATE_TO", param.getDateTo());
+		CLMR052Params.put("P_EXT_TYPE_TAG", param.getExtTypeTag());
+		CLMR052Params.put("P_FORCE_EXTRACT", param.getForceExtract());
+		
+		CLMR052Params.put("extractUser", param.getExtractUser());
+		CLMR052Params.put("osPaidTag", param.getOsPaidTag());
+		CLMR052Params.put("dateParam", param.getDateParam());
+		CLMR052Params.put("dateRange", param.getDateRange());
+		CLMR052Params.put("dateFrom", param.getDateFrom());
+		CLMR052Params.put("dateTo", param.getDateTo());
+		CLMR052Params.put("extTypeTag", param.getExtTypeTag());
+		CLMR052Params.put("lineCd", param.getLineCd());
+		CLMR052Params.put("cedingId", param.getCedingId());
+		CLMR052Params.put("currCd", param.getCurrCd());
+		CLMR052Params.put("forceExtract", param.getForceExtract());
+		
+		return CLMR052Params;
 	}
 }
