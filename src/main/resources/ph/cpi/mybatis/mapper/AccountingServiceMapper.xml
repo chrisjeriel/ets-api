@@ -584,6 +584,7 @@
 			v_item_no		NUMBER;
 			v_message       VARCHAR2(500);
 			v_allow_edit_tax_alloc VARCHAR2(5);
+			v_with_itemtaxes VARCHAR2(1);
 		BEGIN
 		
 			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
@@ -642,6 +643,8 @@
 				<!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_TRANSDTL item -->
 				
 				IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
+					v_with_itemtaxes <![CDATA[ := ]]> ACSE_OR_ITEMTAXES_PKG.with_itemtaxes(#{tranId}, #{billId}, v_item_no);
+				
 					<foreach item="saveTaxes" collection="save.taxAllocation">
 						ACSE_OR_ITEMTAXES_PKG.save_or_itemtaxes(
 																	#{saveTaxes.tranId},
@@ -659,10 +662,9 @@
 																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						IF v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
-						THEN
-							GENERATE_ACCSE_TAXES.UPDATE_TAX_DTL('OR', #{saveTaxes.tranId}, #{save.updateUser}, v_message);
-						ELSE
+						IF (v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						    AND v_with_itemtaxes <![CDATA[ = ]]> 'N')
+						  OR v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
 							GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
 						END IF;
 					</foreach>
@@ -670,22 +672,14 @@
 					NULL;
 				END IF;
 			</foreach>
-			
-			<!-- Generate Tax Details -->
-		    <!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message); -->
 		    
-		    <!-- ACSE_OR_ITEMTAXES_PKG.generate_tax_dtl(#{tranId}, 
-													#{billId},
-													#{createUser},
-													CAST(to_timestamp(#{createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-													#{updateUser},
-													CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)); -->
-													
-			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser}); -->
-		    <!-- ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser});  -->
-		    
-		    IF #{fromTaxMdl} <![CDATA[ = ]]> 'N' THEN
+		    IF #{fromTaxMdl} <![CDATA[ = ]]> 'N'
+		      AND v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
 		    	GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
+		    END IF;
+		    
+		    IF v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y' THEN
+		    	GENERATE_ACCSE_TAXES.UPDATE_TAX_DTL('OR', #{tranId}, #{updateUser}, v_message);
 		    END IF;
 		    
 		    <!-- Generate Accounting Entries -->
@@ -744,6 +738,7 @@
 			v_item_no		NUMBER;
 			v_message		VARCHAR2(500);
 			v_allow_edit_tax_alloc VARCHAR2(5);
+			v_with_itemtaxes VARCHAR2(1);
 		BEGIN
 		
 			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
@@ -787,6 +782,8 @@
 				);
 				
 				IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
+					v_with_itemtaxes <![CDATA[ := ]]> ACSE_CV_ITEMTAXES_PKG.with_itemtaxes(#{reqId}, v_item_no);
+				
 					<foreach item="saveTaxes" collection="save.taxAllocation">
 						ACSE_CV_ITEMTAXES_PKG.save_cv_itemtaxes(
 																	#{saveTaxes.reqId},
@@ -804,8 +801,9 @@
 																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						IF v_allow_edit_tax_alloc <![CDATA[ <> ]]> 'Y'
-						THEN
+						IF (v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						    AND v_with_itemtaxes <![CDATA[ = ]]> 'N')
+						  OR v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
 							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.currAmt,jdbcType=INTEGER}, v_message);
 						END IF;
 						
@@ -1178,6 +1176,7 @@
 			v_message	VARCHAR2(500);
 			v_item_no	NUMBER;
 			v_allow_edit_tax_alloc VARCHAR2(5);
+			v_with_itemtaxes VARCHAR2(1);
 		BEGIN
 		
 			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
@@ -1227,6 +1226,8 @@
 														 #{save.vatTag, jdbcType=INTEGER});
 			   <!-- Save data from ACSE_OR_ITEMTAXES per ACSE_OR_SERVFEE item -->
 			   	IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
+			   		v_with_itemtaxes <![CDATA[ := ]]> ACSE_OR_ITEMTAXES_PKG.with_itemtaxes(#{tranId}, #{billId}, v_item_no);
+			   	
 					<foreach item="saveTaxes" collection="save.taxAllocation">
 						ACSE_OR_ITEMTAXES_PKG.save_or_itemtaxes(
 																	#{saveTaxes.tranId},
@@ -1244,10 +1245,9 @@
 																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						IF v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
-						THEN
-							GENERATE_ACCSE_TAXES.UPDATE_TAX_DTL('OR', #{saveTaxes.tranId}, #{save.updateUser}, v_message);
-						ELSE
+						IF (v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						    AND v_with_itemtaxes <![CDATA[ = ]]> 'N')
+						  OR v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
 							GENERATE_ACCSE_TAXES.UPDATE_OR_TAXES(#{saveTaxes.tranId}, #{saveTaxes.billId}, v_item_no, #{save.localAmt}, v_message);
 						END IF;
 					</foreach>
@@ -1255,14 +1255,14 @@
 					NULL;
 				END IF;
 			</foreach>
-			<!-- Generate Tax Details -->
-			<!-- GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message); -->
-			    
-			<!-- ACCOUNTING_SERVICE_PKG.generate_item_taxes('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser}); -->
-		    <!-- ACCOUNTING_SERVICE_PKG.generate_tax_dtl('OR', #{tranId}, #{billType}, #{createUser}, #{updateUser}); -->
-		    
-		    IF #{fromTaxMdl} <![CDATA[ = ]]> 'N' THEN
+			
+			IF #{fromTaxMdl} <![CDATA[ = ]]> 'N'
+		      AND v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
 		    	GENERATE_ACCSE_TAXES.SAVE_FINAL_TAXES('OR', #{billType}, #{tranId}, v_message);
+		    END IF;
+		    
+		    IF v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y' THEN
+		    	GENERATE_ACCSE_TAXES.UPDATE_TAX_DTL('OR', #{tranId}, #{updateUser}, v_message);
 		    END IF;
 		    
 		    <!-- Generate Accounting Entries -->
@@ -1742,6 +1742,7 @@
 			v_update_user	VARCHAR2(10);
 			v_message		VARCHAR2(500);
 			v_allow_edit_tax_alloc VARCHAR2(5);
+			v_with_itemtaxes VARCHAR2(1);
 		BEGIN
 		
 			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
@@ -1792,6 +1793,8 @@
 				);
 				
 				IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
+					v_with_itemtaxes <![CDATA[ := ]]> ACSE_CV_ITEMTAXES_PKG.with_itemtaxes(v_req_id, v_item_no);
+				
 					<foreach item="saveTaxes" collection="save.taxAllocation">
 						ACSE_CV_ITEMTAXES_PKG.save_cv_itemtaxes(
 																	#{saveTaxes.reqId},
@@ -1809,9 +1812,10 @@
 																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						IF v_allow_edit_tax_alloc <![CDATA[ <> ]]> 'Y'
-						THEN
-							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.feeAmt, jdbcType=INTEGER}, v_message);
+						IF (v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						    AND v_with_itemtaxes <![CDATA[ = ]]> 'N')
+						  OR v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
+							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.feeAmt,jdbcType=INTEGER}, v_message);
 						END IF;
 						
 					</foreach>
@@ -1901,6 +1905,7 @@
 			v_update_user	VARCHAR2(10);
 			v_message		VARCHAR2(500);
 			v_allow_edit_tax_alloc VARCHAR2(5);
+			v_with_itemtaxes VARCHAR2(1);
 		BEGIN
 		
 			v_allow_edit_tax_alloc <![CDATA[ := ]]> MTNP.v('ALLOW_EDIT_TAX_ALLOC');
@@ -1956,6 +1961,8 @@
 				
 
 				IF #{fromTaxMdl} <![CDATA[ = ]]> 'Y' THEN
+					v_with_itemtaxes <![CDATA[ := ]]> ACSE_CV_ITEMTAXES_PKG.with_itemtaxes(v_req_id, v_item_no);
+				
 					<foreach item="saveTaxes" collection="save.taxAllocation">
 						ACSE_CV_ITEMTAXES_PKG.save_cv_itemtaxes(
 																	#{saveTaxes.reqId},
@@ -1973,9 +1980,10 @@
 																	#{saveTaxes.taxBaseAmt, jdbcType=INTEGER}
 						);
 						
-						IF v_allow_edit_tax_alloc <![CDATA[ <> ]]> 'Y'
-						THEN
-							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.insuredAmt, jdbcType=INTEGER}, v_message);
+						IF (v_allow_edit_tax_alloc <![CDATA[ = ]]> 'Y'
+						    AND v_with_itemtaxes <![CDATA[ = ]]> 'N')
+						  OR v_allow_edit_tax_alloc <![CDATA[ = ]]> 'N' THEN
+							GENERATE_ACCSE_TAXES.UPDATE_PRQ_TAXES(#{saveTaxes.reqId}, v_item_no, #{save.insuredAmt,jdbcType=INTEGER}, v_message);
 						END IF;
 						
 					</foreach>
