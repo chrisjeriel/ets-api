@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044D {
 	private String extractUser;
 	private String extractDate;
@@ -9,10 +11,10 @@ public class POLR044D {
 	private String lineCd;
 	private String currencyCd;
 	private String sortSeq;
-	private String mmPolcountPrev;
-	private String mmPolcountCur;
-	private String ytdPolcountPrev;
-	private String ytdPolcountCur;
+	private BigDecimal mmPolcountPrev;
+	private BigDecimal mmPolcountCur;
+	private BigDecimal ytdPolcountPrev;
+	private BigDecimal ytdPolcountCur;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -61,28 +63,28 @@ public class POLR044D {
 	public void setSortSeq(String sortSeq) {
 		this.sortSeq = sortSeq;
 	}
-	public String getMmPolcountPrev() {
+	public BigDecimal getMmPolcountPrev() {
 		return mmPolcountPrev;
 	}
-	public void setMmPolcountPrev(String mmPolcountPrev) {
+	public void setMmPolcountPrev(BigDecimal mmPolcountPrev) {
 		this.mmPolcountPrev = mmPolcountPrev;
 	}
-	public String getMmPolcountCur() {
+	public BigDecimal getMmPolcountCur() {
 		return mmPolcountCur;
 	}
-	public void setMmPolcountCur(String mmPolcountCur) {
+	public void setMmPolcountCur(BigDecimal mmPolcountCur) {
 		this.mmPolcountCur = mmPolcountCur;
 	}
-	public String getYtdPolcountPrev() {
+	public BigDecimal getYtdPolcountPrev() {
 		return ytdPolcountPrev;
 	}
-	public void setYtdPolcountPrev(String ytdPolcountPrev) {
+	public void setYtdPolcountPrev(BigDecimal ytdPolcountPrev) {
 		this.ytdPolcountPrev = ytdPolcountPrev;
 	}
-	public String getYtdPolcountCur() {
+	public BigDecimal getYtdPolcountCur() {
 		return ytdPolcountCur;
 	}
-	public void setYtdPolcountCur(String ytdPolcountCur) {
+	public void setYtdPolcountCur(BigDecimal ytdPolcountCur) {
 		this.ytdPolcountCur = ytdPolcountCur;
 	}
 	@Override
@@ -92,4 +94,6 @@ public class POLR044D {
 				+ currencyCd + ", sortSeq=" + sortSeq + ", mmPolcountPrev=" + mmPolcountPrev + ", mmPolcountCur="
 				+ mmPolcountCur + ", ytdPolcountPrev=" + ytdPolcountPrev + ", ytdPolcountCur=" + ytdPolcountCur + "]";
 	}
+	
+	
 }

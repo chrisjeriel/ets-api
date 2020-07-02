@@ -761,7 +761,9 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolCoverageOcParams.put("updateDate",spcr.getUpdateDate());
 			savePolCoverageOcParams.put("saveSectionCoversOc",spcr.getSaveSectionCoversOc());
 			savePolCoverageOcParams.put("delSectionCoversOc",spcr.getDelSectionCoversOc());
-			
+			savePolCoverageOcParams.put("saveDeductibleList",spcr.getSaveDeductibleList());
+			savePolCoverageOcParams.put("deleteDeductibleList",spcr.getDeleteDeductibleList());
+			  
 			
 			HashMap<String, Object> res = underwritingDao.savePolCoverageOc(savePolCoverageOcParams);
 			spcResponse.setReturnCode((Integer) res.get("errorCode"));
@@ -1215,7 +1217,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolCoverageAltParams.put("cedingId", rpcar.getCedingId());
 		retrievePolCoverageAltParams.put("coSeriesNo", rpcar.getCoSeriesNo());
 		retrievePolCoverageAltParams.put("altNo", rpcar.getAltNo());
-		
+		retrievePolCoverageAltParams.put("policyId", rpcar.getPolicyId());
 		rpcResponse.setPolicy(underwritingDao.retrievePolicyCoverageAlt(retrievePolCoverageAltParams));
 		
 		
@@ -2320,5 +2322,40 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			e.printStackTrace();
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrievePolicyDeductiblesResponse retrievePolicyDeductiblesOc(RetrievePolicyDeductiblesRequest rpdr)
+			throws SQLException {
+		RetrievePolicyDeductiblesResponse rpdResponse = new RetrievePolicyDeductiblesResponse();
+		HashMap<String, Object> retrievePolDeductiblesParams = new HashMap<String, Object>();
+		retrievePolDeductiblesParams.put("policyId", rpdr.getPolicyId());
+		retrievePolDeductiblesParams.put("policyNo", rpdr.getPolicyNo());
+		retrievePolDeductiblesParams.put("coverCd", rpdr.getCoverCd());
+		retrievePolDeductiblesParams.put("endtCd", rpdr.getEndtCd());
+		rpdResponse.setPolicy(underwritingDao.retrievePolicyDeductiblesOc(retrievePolDeductiblesParams));
+		return rpdResponse;
+	}
+	
+	
+	@Override
+	public SavePolicyDeductiblesResponse savePolicyDeductiblesOc(SavePolicyDeductiblesRequest spdr) throws SQLException {
+		SavePolicyDeductiblesResponse spdrResponse = new SavePolicyDeductiblesResponse();
+		try{
+			HashMap<String, Object> savePolDeductiblesParams = new HashMap<String, Object>();
+			savePolDeductiblesParams.put("policyId" , spdr.getPolicyId());
+			savePolDeductiblesParams.put("saveDeductibleList" , spdr.getSaveDeductibleList());
+			savePolDeductiblesParams.put("deleteDeductibleList" , spdr.getDeleteDeductibleList());
+			spdrResponse.setReturnCode(underwritingDao.savePolicyDeductiblesOc(savePolDeductiblesParams));
+		}catch (SQLException ex) {
+			spdrResponse.setReturnCode(0);
+			spdrResponse.getErrorList().add(new Error("SQLException","Please check the field values. Error Stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}catch (Exception ex) {
+			spdrResponse.setReturnCode(0);
+			spdrResponse.getErrorList().add(new Error("General Exception","Error stack: " + System.lineSeparator() + ex.getCause()));
+			ex.printStackTrace();
+		}
+		return spdrResponse;
 	}
 }

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044A {
 	private String extractUser;
 	private String fromDate;
@@ -7,7 +9,7 @@ public class POLR044A {
 	private String currencyCd;
 	private String cedingName;
 	private String lineCd;
-	private String total;
+	private BigDecimal total;
 	
 	public String getExtractUser() {
 		return extractUser;
@@ -45,10 +47,10 @@ public class POLR044A {
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
-	public String getTotal() {
+	public BigDecimal getTotal() {
 		return total;
 	}
-	public void setTotal(String total) {
+	public void setTotal(BigDecimal total) {
 		this.total = total;
 	}
 	@Override

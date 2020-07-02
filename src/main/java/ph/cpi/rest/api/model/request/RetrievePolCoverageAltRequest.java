@@ -10,9 +10,16 @@ public class RetrievePolCoverageAltRequest {
 	private String cedingId;
 	private Integer coSeriesNo;
 	private Integer altNo;
+	private Integer policyId;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -65,8 +72,8 @@ public class RetrievePolCoverageAltRequest {
 	@Override
 	public String toString() {
 		return "RetrievePolCoverageAltRequest [lineCd=" + lineCd + ", polYear=" + polYear + ", seqNo=" + seqNo
-				+ ", cedingId=" + cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", cedingId=" + cedingId + ", coSeriesNo=" + coSeriesNo + ", altNo=" + altNo + ", policyId="
+				+ policyId + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 	

@@ -152,6 +152,14 @@ public class OrTransDtl {
 		this.taxAllocation = taxAllocation;
 	}
 
+	public Integer getVatTag() {
+		return vatTag;
+	}
+
+	public void setVatTag(Integer vatTag) {
+		this.vatTag = vatTag;
+	}
+
 	@Override
 	public String toString() {
 		return "OrTransDtl [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", itemName=" + itemName

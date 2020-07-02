@@ -286,4 +286,6 @@ public interface UnderwritingService {
 	public SavePolItemResponse savePolFullItem(SavePolItemRequest spir)throws SQLException;
 	public RetrieveMoveBookingMonthListResponse retrieveMoveBookingMonthList(RretrieveMoveBookingMonthListRequest rpir)throws SQLException;
 	public BatchUpdateBookingDateResponse batchUpdateBookingDate(BatchUpdateBookingDateRequest spir)throws SQLException;
+	public RetrievePolicyDeductiblesResponse retrievePolicyDeductiblesOc(RetrievePolicyDeductiblesRequest rpdr) throws SQLException;
+	public SavePolicyDeductiblesResponse savePolicyDeductiblesOc(SavePolicyDeductiblesRequest spdr) throws SQLException;
 }

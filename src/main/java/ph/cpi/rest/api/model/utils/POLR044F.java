@@ -1,19 +1,21 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044F {
 	private String extractUser;
 	private String currencyCd;
 	private String cedingName;
 	private String prevYear;
-	private String prevMthPrem;
-	private String prevCumPrem;
-	private String prevMthNoPol;
-	private String prevCumNoPol;
+	private BigDecimal prevMthPrem;
+	private BigDecimal prevCumPrem;
+	private BigDecimal prevMthNoPol;
+	private BigDecimal prevCumNoPol;
 	private String currYear;
-	private String currMthPrem;
-	private String currCumPrem;
-	private String currMthNoPol;
-	private String currCumNoPol;
+	private BigDecimal currMthPrem;
+	private BigDecimal currCumPrem;
+	private BigDecimal currMthNoPol;
+	private BigDecimal currCumNoPol;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -26,40 +28,34 @@ public class POLR044F {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getCedingName() {
-		return cedingName;
-	}
-	public void setCedingName(String cedingName) {
-		this.cedingName = cedingName;
-	}
 	public String getPrevYear() {
 		return prevYear;
 	}
 	public void setPrevYear(String prevYear) {
 		this.prevYear = prevYear;
 	}
-	public String getPrevMthPrem() {
+	public BigDecimal getPrevMthPrem() {
 		return prevMthPrem;
 	}
-	public void setPrevMthPrem(String prevMthPrem) {
+	public void setPrevMthPrem(BigDecimal prevMthPrem) {
 		this.prevMthPrem = prevMthPrem;
 	}
-	public String getPrevCumPrem() {
+	public BigDecimal getPrevCumPrem() {
 		return prevCumPrem;
 	}
-	public void setPrevCumPrem(String prevCumPrem) {
+	public void setPrevCumPrem(BigDecimal prevCumPrem) {
 		this.prevCumPrem = prevCumPrem;
 	}
-	public String getPrevMthNoPol() {
+	public BigDecimal getPrevMthNoPol() {
 		return prevMthNoPol;
 	}
-	public void setPrevMthNoPol(String prevMthNoPol) {
+	public void setPrevMthNoPol(BigDecimal prevMthNoPol) {
 		this.prevMthNoPol = prevMthNoPol;
 	}
-	public String getPrevCumNoPol() {
+	public BigDecimal getPrevCumNoPol() {
 		return prevCumNoPol;
 	}
-	public void setPrevCumNoPol(String prevCumNoPol) {
+	public void setPrevCumNoPol(BigDecimal prevCumNoPol) {
 		this.prevCumNoPol = prevCumNoPol;
 	}
 	public String getCurrYear() {
@@ -68,29 +64,35 @@ public class POLR044F {
 	public void setCurrYear(String currYear) {
 		this.currYear = currYear;
 	}
-	public String getCurrMthPrem() {
+	public BigDecimal getCurrMthPrem() {
 		return currMthPrem;
 	}
-	public void setCurrMthPrem(String currMthPrem) {
+	public void setCurrMthPrem(BigDecimal currMthPrem) {
 		this.currMthPrem = currMthPrem;
 	}
-	public String getCurrCumPrem() {
+	public BigDecimal getCurrCumPrem() {
 		return currCumPrem;
 	}
-	public void setCurrCumPrem(String currCumPrem) {
+	public void setCurrCumPrem(BigDecimal currCumPrem) {
 		this.currCumPrem = currCumPrem;
 	}
-	public String getCurrMthNoPol() {
+	public BigDecimal getCurrMthNoPol() {
 		return currMthNoPol;
 	}
-	public void setCurrMthNoPol(String currMthNoPol) {
+	public void setCurrMthNoPol(BigDecimal currMthNoPol) {
 		this.currMthNoPol = currMthNoPol;
 	}
-	public String getCurrCumNoPol() {
+	public BigDecimal getCurrCumNoPol() {
 		return currCumNoPol;
 	}
-	public void setCurrCumNoPol(String currCumNoPol) {
+	public void setCurrCumNoPol(BigDecimal currCumNoPol) {
 		this.currCumNoPol = currCumNoPol;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	@Override
 	public String toString() {

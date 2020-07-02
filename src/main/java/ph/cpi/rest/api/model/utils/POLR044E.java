@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044E {
 	private String extractUser;
 	private String fromDate;
@@ -7,8 +9,10 @@ public class POLR044E {
 	private String currCdParam;
 	private String lineCdParam;
 	private String siRange;
-	private String mthNoPol;
-	private String cumNoPol;
+	private String siRangeDesc;
+	private BigDecimal mthNoPol;
+	private BigDecimal cumNoPol;
+	private String lineSortSeq;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -45,22 +49,35 @@ public class POLR044E {
 	public void setSiRange(String siRange) {
 		this.siRange = siRange;
 	}
-	public String getMthNoPol() {
+	public String getSiRangeDesc() {
+		return siRangeDesc;
+	}
+	public void setSiRangeDesc(String siRangeDesc) {
+		this.siRangeDesc = siRangeDesc;
+	}
+	public BigDecimal getMthNoPol() {
 		return mthNoPol;
 	}
-	public void setMthNoPol(String mthNoPol) {
+	public void setMthNoPol(BigDecimal mthNoPol) {
 		this.mthNoPol = mthNoPol;
 	}
-	public String getCumNoPol() {
+	public BigDecimal getCumNoPol() {
 		return cumNoPol;
 	}
-	public void setCumNoPol(String cumNoPol) {
+	public void setCumNoPol(BigDecimal cumNoPol) {
 		this.cumNoPol = cumNoPol;
+	}
+	public String getLineSortSeq() {
+		return lineSortSeq;
+	}
+	public void setLineSortSeq(String lineSortSeq) {
+		this.lineSortSeq = lineSortSeq;
 	}
 	@Override
 	public String toString() {
 		return "POLR044E [extractUser=" + extractUser + ", fromDate=" + fromDate + ", toDate=" + toDate
 				+ ", currCdParam=" + currCdParam + ", lineCdParam=" + lineCdParam + ", siRange=" + siRange
-				+ ", mthNoPol=" + mthNoPol + ", cumNoPol=" + cumNoPol + "]";
+				+ ", siRangeDesc=" + siRangeDesc + ", mthNoPol=" + mthNoPol + ", cumNoPol=" + cumNoPol
+				+ ", lineSortSeq=" + lineSortSeq + "]";
 	}
 }

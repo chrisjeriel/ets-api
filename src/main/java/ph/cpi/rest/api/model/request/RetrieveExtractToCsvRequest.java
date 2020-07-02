@@ -17,6 +17,12 @@ public class RetrieveExtractToCsvRequest {
 	private String tranpostDate;
 	
 	private String chkDate;
+	private String bank;
+	private String bankAcct;
+	private String sortBy;
+	
+	private String lineCd;
+	
 
 	public String getExtractUser() {
 		return extractUser;
@@ -130,12 +136,45 @@ public class RetrieveExtractToCsvRequest {
 		this.chkDate = chkDate;
 	}
 
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
+	public String getBankAcct() {
+		return bankAcct;
+	}
+
+	public void setBankAcct(String bankAcct) {
+		this.bankAcct = bankAcct;
+	}
+
+	public String getSortBy() {
+		return sortBy;
+	}
+
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
+	}
+
+	public String getLineCd() {
+		return lineCd;
+	}
+
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvRequest [extractUser=" + extractUser + ", reportName=" + reportName + ", prodDate="
 				+ prodDate + ", paramDate=" + paramDate + ", paramCurrency=" + paramCurrency + ", cedingId=" + cedingId
 				+ ", paymentMode=" + paymentMode + ", paymentType=" + paymentType + ", fromDate=" + fromDate
 				+ ", toDate=" + toDate + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
-				+ ", tranpostDate=" + tranpostDate + ", chkDate=" + chkDate + "]";
+				+ ", tranpostDate=" + tranpostDate + ", chkDate=" + chkDate + ", bank=" + bank + ", bankAcct="
+				+ bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd + "]";
 	}
 }

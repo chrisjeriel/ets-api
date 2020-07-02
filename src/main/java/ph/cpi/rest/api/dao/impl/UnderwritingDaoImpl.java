@@ -784,4 +784,16 @@ public class UnderwritingDaoImpl implements UnderwritingDao {
 		params.put("errorCode", errorCode);
 		return params;
 	}
+	
+	@Override
+	public Policy retrievePolicyDeductiblesOc(HashMap<String, Object> params) throws SQLException {
+		Policy policy = sqlSession.selectOne("retrievePolicyDeductiblesOc", params);
+		return policy;
+	}
+	
+	@Override
+	public Integer savePolicyDeductiblesOc(HashMap<String, Object> params) throws SQLException {
+		Integer returnCd = sqlSession.update("savePolicyDeductiblesOc",params);
+		return returnCd;
+	}
 }
