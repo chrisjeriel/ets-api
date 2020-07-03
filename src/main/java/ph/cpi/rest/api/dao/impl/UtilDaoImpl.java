@@ -37,7 +37,9 @@ import ph.cpi.rest.api.model.utils.CLMR010E;
 import ph.cpi.rest.api.model.utils.CLMR010F;
 import ph.cpi.rest.api.model.utils.CLMR010G;
 import ph.cpi.rest.api.model.utils.CLMR010H;
+import ph.cpi.rest.api.model.utils.CLMR010HA;
 import ph.cpi.rest.api.model.utils.CLMR010I;
+import ph.cpi.rest.api.model.utils.CLMR010IA;
 import ph.cpi.rest.api.model.utils.CLMR010J;
 import ph.cpi.rest.api.model.utils.CLMR010K;
 import ph.cpi.rest.api.model.utils.CLMR010L;
@@ -70,6 +72,7 @@ import ph.cpi.rest.api.model.utils.POLR044I;
 import ph.cpi.rest.api.model.utils.POLR044J;
 import ph.cpi.rest.api.model.utils.POLR044JA;
 import ph.cpi.rest.api.model.utils.POLR044K;
+import ph.cpi.rest.api.model.utils.POLR044KA;
 import ph.cpi.rest.api.model.utils.POLR044L;
 import ph.cpi.rest.api.model.utils.POLR044M;
 import ph.cpi.rest.api.model.utils.POLR044N;
@@ -737,6 +740,24 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR044Q2> retrievePolR044q2(HashMap<String, Object> params) throws SQLException {
 		List<POLR044Q2> retrievePolR044q2 = sqlSession.selectList("retrievePolR044q2",params);
 		return retrievePolR044q2;
+	}
+
+	@Override
+	public List<POLR044KA> retrievePolR044ka(HashMap<String, Object> params) throws SQLException {
+		List<POLR044KA> retrievePolR044ka = sqlSession.selectList("retrievePolR044ka",params);
+		return retrievePolR044ka;
+	}
+
+	@Override
+	public List<CLMR010HA> retrieveClmR010ha(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010HA> retrieveClmR010ha = sqlSession.selectList("retrieveClmR010ha",params);
+		return retrieveClmR010ha;
+	}
+
+	@Override
+	public List<CLMR010IA> retrieveClmR010ia(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010IA> retrieveClmR010ia = sqlSession.selectList("retrieveClmR010ia",params);
+		return retrieveClmR010ia;
 	}
 
 }

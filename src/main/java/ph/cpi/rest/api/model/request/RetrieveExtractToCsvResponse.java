@@ -28,7 +28,9 @@ import ph.cpi.rest.api.model.utils.CLMR010E;
 import ph.cpi.rest.api.model.utils.CLMR010F;
 import ph.cpi.rest.api.model.utils.CLMR010G;
 import ph.cpi.rest.api.model.utils.CLMR010H;
+import ph.cpi.rest.api.model.utils.CLMR010HA;
 import ph.cpi.rest.api.model.utils.CLMR010I;
+import ph.cpi.rest.api.model.utils.CLMR010IA;
 import ph.cpi.rest.api.model.utils.CLMR010J;
 import ph.cpi.rest.api.model.utils.CLMR010K;
 import ph.cpi.rest.api.model.utils.CLMR010L;
@@ -61,6 +63,7 @@ import ph.cpi.rest.api.model.utils.POLR044I;
 import ph.cpi.rest.api.model.utils.POLR044J;
 import ph.cpi.rest.api.model.utils.POLR044JA;
 import ph.cpi.rest.api.model.utils.POLR044K;
+import ph.cpi.rest.api.model.utils.POLR044KA;
 import ph.cpi.rest.api.model.utils.POLR044L;
 import ph.cpi.rest.api.model.utils.POLR044M;
 import ph.cpi.rest.api.model.utils.POLR044N;
@@ -105,6 +108,7 @@ public class RetrieveExtractToCsvResponse {
 	private List<POLR044J> listPolr044j;
 	private List<POLR044JA> listPolr044ja;
 	private List<POLR044K> listPolr044k;
+	private List<POLR044KA> listPolr044ka;
 	private List<POLR044L> listPolr044l;
 	private List<POLR044M> listPolr044m;
 	private List<POLR044N> listPolr044n;
@@ -145,7 +149,9 @@ public class RetrieveExtractToCsvResponse {
 	private List<CLMR010F> listClmr010f;
 	private List<CLMR010G> listClmr010g;
 	private List<CLMR010H> listClmr010h;
+	private List<CLMR010HA> listClmr010ha;
 	private List<CLMR010I> listClmr010i;
+	private List<CLMR010IA> listClmr010ia;
 	private List<CLMR010J> listClmr010j;
 	private List<CLMR010K> listClmr010k;
 	private List<CLMR010L> listClmr010l;
@@ -724,6 +730,24 @@ public class RetrieveExtractToCsvResponse {
 	public void setListPolr044q2(List<POLR044Q2> listPolr044q2) {
 		this.listPolr044q2 = listPolr044q2;
 	}
+	public List<POLR044KA> getListPolr044ka() {
+		return listPolr044ka;
+	}
+	public void setListPolr044ka(List<POLR044KA> listPolr044ka) {
+		this.listPolr044ka = listPolr044ka;
+	}
+	public List<CLMR010HA> getListClmr010ha() {
+		return listClmr010ha;
+	}
+	public void setListClmr010ha(List<CLMR010HA> listClmr010ha) {
+		this.listClmr010ha = listClmr010ha;
+	}
+	public List<CLMR010IA> getListClmr010ia() {
+		return listClmr010ia;
+	}
+	public void setListClmr010ia(List<CLMR010IA> listClmr010ia) {
+		this.listClmr010ia = listClmr010ia;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -731,34 +755,35 @@ public class RetrieveExtractToCsvResponse {
 				+ ", listPolr044f=" + listPolr044f + ", listPolr044g=" + listPolr044g + ", listPolr044h=" + listPolr044h
 				+ ", listPolr044ha=" + listPolr044ha + ", listPolr044i=" + listPolr044i + ", listPolr044j="
 				+ listPolr044j + ", listPolr044ja=" + listPolr044ja + ", listPolr044k=" + listPolr044k
-				+ ", listPolr044l=" + listPolr044l + ", listPolr044m=" + listPolr044m + ", listPolr044n=" + listPolr044n
-				+ ", listPolr044o=" + listPolr044o + ", listPolr044oa=" + listPolr044oa + ", listPolr044ob="
-				+ listPolr044ob + ", listPolr044p=" + listPolr044p + ", listPolr044q=" + listPolr044q
-				+ ", listPolr044q2=" + listPolr044q2 + ", listPolr044r=" + listPolr044r + ", listPolr044s="
-				+ listPolr044s + ", listPolr044t=" + listPolr044t + ", listPolr044v=" + listPolr044v + ", listPolr044w="
-				+ listPolr044w + ", listPolr044x=" + listPolr044x + ", listPolr044y=" + listPolr044y + ", listPolr044z="
-				+ listPolr044z + ", listPolr052a=" + listPolr052a + ", listPolr052aa=" + listPolr052aa
-				+ ", listPolr052b=" + listPolr052b + ", listPolr052ba=" + listPolr052ba + ", listPolr052c="
-				+ listPolr052c + ", listPolr052ca=" + listPolr052ca + ", listPolr052d=" + listPolr052d
-				+ ", listPolr052e=" + listPolr052e + ", listPolr052f=" + listPolr052f + ", listPolr052g=" + listPolr052g
-				+ ", listPolr052h=" + listPolr052h + ", listPolr052i=" + listPolr052i + ", listClmr010a=" + listClmr010a
-				+ ", listClmr010b=" + listClmr010b + ", listClmr010be=" + listClmr010be + ", listClmr010c="
-				+ listClmr010c + ", listClmr010d=" + listClmr010d + ", listClmr010e=" + listClmr010e + ", listClmr010f="
-				+ listClmr010f + ", listClmr010g=" + listClmr010g + ", listClmr010h=" + listClmr010h + ", listClmr010i="
-				+ listClmr010i + ", listClmr010j=" + listClmr010j + ", listClmr010k=" + listClmr010k + ", listClmr010l="
-				+ listClmr010l + ", listClmr010m=" + listClmr010m + ", listClmr010me=" + listClmr010me
-				+ ", listClmr010n=" + listClmr010n + ", listClmr010ne=" + listClmr010ne + ", listClmr010o="
-				+ listClmr010o + ", listClmr010p=" + listClmr010p + ", listClmr010q=" + listClmr010q + ", listClmr010r="
-				+ listClmr010r + ", listClmr010s=" + listClmr010s + ", listClmr010t=" + listClmr010t + ", listClmr010u="
-				+ listClmr010u + ", listClmr010v=" + listClmr010v + ", listClmr010w=" + listClmr010w + ", listClmr010x="
-				+ listClmr010x + ", listClmr010y=" + listClmr010y + ", listAcitr063a=" + listAcitr063a
-				+ ", listAcitr066a=" + listAcitr066a + ", listAcitr066b=" + listAcitr066b + ", listAcitr066c="
-				+ listAcitr066c + ", listAcitr066d=" + listAcitr066d + ", listAcitr066e=" + listAcitr066e
-				+ ", listAcitr066f=" + listAcitr066f + ", listAcser024a=" + listAcser024a + ", listAcser024b="
-				+ listAcser024b + ", listAcser024c=" + listAcser024c + ", listAcser024d=" + listAcser024d
-				+ ", listAcser004=" + listAcser004 + ", listAcitr050b=" + listAcitr050b + ", listAcitr050c="
-				+ listAcitr050c + ", listAcitr050d=" + listAcitr050d + ", listAcitr061a=" + listAcitr061a
-				+ ", listAcitr061b=" + listAcitr061b + ", listAcitr061c=" + listAcitr061c + ", listAcitr061d="
-				+ listAcitr061d + "]";
+				+ ", listPolr044ka=" + listPolr044ka + ", listPolr044l=" + listPolr044l + ", listPolr044m="
+				+ listPolr044m + ", listPolr044n=" + listPolr044n + ", listPolr044o=" + listPolr044o
+				+ ", listPolr044oa=" + listPolr044oa + ", listPolr044ob=" + listPolr044ob + ", listPolr044p="
+				+ listPolr044p + ", listPolr044q=" + listPolr044q + ", listPolr044q2=" + listPolr044q2
+				+ ", listPolr044r=" + listPolr044r + ", listPolr044s=" + listPolr044s + ", listPolr044t=" + listPolr044t
+				+ ", listPolr044v=" + listPolr044v + ", listPolr044w=" + listPolr044w + ", listPolr044x=" + listPolr044x
+				+ ", listPolr044y=" + listPolr044y + ", listPolr044z=" + listPolr044z + ", listPolr052a=" + listPolr052a
+				+ ", listPolr052aa=" + listPolr052aa + ", listPolr052b=" + listPolr052b + ", listPolr052ba="
+				+ listPolr052ba + ", listPolr052c=" + listPolr052c + ", listPolr052ca=" + listPolr052ca
+				+ ", listPolr052d=" + listPolr052d + ", listPolr052e=" + listPolr052e + ", listPolr052f=" + listPolr052f
+				+ ", listPolr052g=" + listPolr052g + ", listPolr052h=" + listPolr052h + ", listPolr052i=" + listPolr052i
+				+ ", listClmr010a=" + listClmr010a + ", listClmr010b=" + listClmr010b + ", listClmr010be="
+				+ listClmr010be + ", listClmr010c=" + listClmr010c + ", listClmr010d=" + listClmr010d
+				+ ", listClmr010e=" + listClmr010e + ", listClmr010f=" + listClmr010f + ", listClmr010g=" + listClmr010g
+				+ ", listClmr010h=" + listClmr010h + ", listClmr010ha=" + listClmr010ha + ", listClmr010i="
+				+ listClmr010i + ", listClmr010ia=" + listClmr010ia + ", listClmr010j=" + listClmr010j
+				+ ", listClmr010k=" + listClmr010k + ", listClmr010l=" + listClmr010l + ", listClmr010m=" + listClmr010m
+				+ ", listClmr010me=" + listClmr010me + ", listClmr010n=" + listClmr010n + ", listClmr010ne="
+				+ listClmr010ne + ", listClmr010o=" + listClmr010o + ", listClmr010p=" + listClmr010p
+				+ ", listClmr010q=" + listClmr010q + ", listClmr010r=" + listClmr010r + ", listClmr010s=" + listClmr010s
+				+ ", listClmr010t=" + listClmr010t + ", listClmr010u=" + listClmr010u + ", listClmr010v=" + listClmr010v
+				+ ", listClmr010w=" + listClmr010w + ", listClmr010x=" + listClmr010x + ", listClmr010y=" + listClmr010y
+				+ ", listAcitr063a=" + listAcitr063a + ", listAcitr066a=" + listAcitr066a + ", listAcitr066b="
+				+ listAcitr066b + ", listAcitr066c=" + listAcitr066c + ", listAcitr066d=" + listAcitr066d
+				+ ", listAcitr066e=" + listAcitr066e + ", listAcitr066f=" + listAcitr066f + ", listAcser024a="
+				+ listAcser024a + ", listAcser024b=" + listAcser024b + ", listAcser024c=" + listAcser024c
+				+ ", listAcser024d=" + listAcser024d + ", listAcser004=" + listAcser004 + ", listAcitr050b="
+				+ listAcitr050b + ", listAcitr050c=" + listAcitr050c + ", listAcitr050d=" + listAcitr050d
+				+ ", listAcitr061a=" + listAcitr061a + ", listAcitr061b=" + listAcitr061b + ", listAcitr061c="
+				+ listAcitr061c + ", listAcitr061d=" + listAcitr061d + "]";
 	}
 }
