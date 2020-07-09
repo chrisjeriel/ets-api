@@ -3853,7 +3853,8 @@
 				#{slTypeCd, jdbcType=VARCHAR},
 				#{drCrTag, jdbcType=VARCHAR},
 				#{postTag, jdbcType=VARCHAR},
-				#{activeTag, jdbcType=VARCHAR}))
+				#{activeTag, jdbcType=VARCHAR},
+				#{lov, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveMtnSLType" resultMap="SLTypeMap">
@@ -4337,7 +4338,8 @@
 				#{slTypeCd, jdbcType=VARCHAR},
 				#{drCrTag, jdbcType=VARCHAR},
 				#{postTag, jdbcType=VARCHAR},
-				#{activeTag, jdbcType=VARCHAR}))
+				#{activeTag, jdbcType=VARCHAR},
+				#{lov, jdbcType=VARCHAR}))
 	</select>
 
      <update id="generateARSeries" >
