@@ -136,20 +136,20 @@ public class OrTransDtl {
 		this.updateDate = updateDate;
 	}
 
-	public List<OrItemTaxes> getTaxAllocation() {
-		return taxAllocation;
-	}
-
-	public void setTaxAllocation(List<OrItemTaxes> taxAllocation) {
-		this.taxAllocation = taxAllocation;
-	}
-
 	public Integer getVatTag() {
 		return vatTag;
 	}
 
 	public void setVatTag(Integer vatTag) {
 		this.vatTag = vatTag;
+	}
+
+	public List<OrItemTaxes> getTaxAllocation() {
+		return taxAllocation;
+	}
+
+	public void setTaxAllocation(List<OrItemTaxes> taxAllocation) {
+		this.taxAllocation = taxAllocation;
 	}
 
 	@Override

@@ -2153,6 +2153,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("drCrTag", rbmr.getDrCrTag());
 		params.put("postTag", rbmr.getPostTag());
 		params.put("activeTag", rbmr.getActiveTag());
+		params.put("lov", rbmr.getLov());
 		response.setList(maintenanceDao.retrieveMtnAcitChartAcct(params));
 		return response;
 	}
@@ -2446,6 +2447,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("drCrTag", rmacar.getDrCrTag());
 		params.put("postTag", rmacar.getPostTag());
 		params.put("activeTag", rmacar.getActiveTag());
+		params.put("lov", rmacar.getLov());
 		response.setList(maintenanceDao.retrieveMtnAcseChartAcct(params));
 		return response;
 	}

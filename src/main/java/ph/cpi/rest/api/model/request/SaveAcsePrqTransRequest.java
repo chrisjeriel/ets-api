@@ -215,6 +215,7 @@ class SaveCvItemTaxes{
 	private String updateUser;
 	private String updateDate;
 	private String genType;
+	private String taxBaseAmt;
 	public String getReqId() {
 		return reqId;
 	}
@@ -287,12 +288,18 @@ class SaveCvItemTaxes{
 	public void setGenType(String genType) {
 		this.genType = genType;
 	}
+	public String getTaxBaseAmt() {
+		return taxBaseAmt;
+	}
+	public void setTaxBaseAmt(String taxBaseAmt) {
+		this.taxBaseAmt = taxBaseAmt;
+	}
 	@Override
 	public String toString() {
 		return "SaveCvItemTaxes [reqId=" + reqId + ", itemNo=" + itemNo + ", taxSeqNo=" + taxSeqNo + ", taxType="
 				+ taxType + ", taxCd=" + taxCd + ", taxRate=" + taxRate + ", taxAmt=" + taxAmt + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + ", genType=" + genType + "]";
+				+ updateDate + ", genType=" + genType + ", taxBaseAmt=" + taxBaseAmt + "]";
 	}
 	
 }

@@ -15,6 +15,7 @@ public class RetrieveMtnAcitChartAcctRequest {
 	private String drCrTag;
 	private String postTag;
 	private String activeTag;
+	private String lov;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getGlAcctId() {
@@ -77,6 +78,12 @@ public class RetrieveMtnAcitChartAcctRequest {
 	public void setActiveTag(String activeTag) {
 		this.activeTag = activeTag;
 	}
+	public String getLov() {
+		return lov;
+	}
+	public void setLov(String lov) {
+		this.lov = lov;
+	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
 	}
@@ -91,11 +98,11 @@ public class RetrieveMtnAcitChartAcctRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnAcitChartAcctResponse [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory
+		return "RetrieveMtnAcitChartAcctRequest [glAcctId=" + glAcctId + ", glAcctCategory=" + glAcctCategory
 				+ ", glAcctControl=" + glAcctControl + ", glAcctSub1=" + glAcctSub1 + ", glAcctSub2=" + glAcctSub2
 				+ ", glAcctSub3=" + glAcctSub3 + ", slTypeCd=" + slTypeCd + ", drCrTag=" + drCrTag + ", postTag="
-				+ postTag + ", activeTag=" + activeTag + ", paginationRequest=" + paginationRequest + ", sortRequest="
-				+ sortRequest + "]";
+				+ postTag + ", activeTag=" + activeTag + ", lov=" + lov + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 	
 }
