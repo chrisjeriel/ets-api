@@ -24,11 +24,18 @@ public class RetrieveClmPaytReqInqRequest {
 	private String riskName;
 	private String lossDate;
 	private String bookingMonth;
+	private String bookingYear;
 	private SearchRequest search;
 
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 	
+	public String getBookingYear() {
+		return bookingYear;
+	}
+	public void setBookingYear(String bookingYear) {
+		this.bookingYear = bookingYear;
+	}
 	public SearchRequest getSearch() {
 		return search;
 	}
@@ -155,7 +162,8 @@ public class RetrieveClmPaytReqInqRequest {
 				+ ", paytReqNo=" + paytReqNo + ", payee=" + payee + ", paytType=" + paytType + ", currCd=" + currCd
 				+ ", resAmt=" + resAmt + ", particulars=" + particulars + ", reqDate=" + reqDate + ", reqBy=" + reqBy
 				+ ", acctRef=" + acctRef + ", tranDate=" + tranDate + ", insuredDesc=" + insuredDesc + ", riskName="
-				+ riskName + ", lossDate=" + lossDate + ", bookingMonth=" + bookingMonth + ", search=" + search
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ riskName + ", lossDate=" + lossDate + ", bookingMonth=" + bookingMonth + ", bookingYear="
+				+ bookingYear + ", search=" + search + ", paginationRequest=" + paginationRequest + ", sortRequest="
+				+ sortRequest + "]";
 	}
 }

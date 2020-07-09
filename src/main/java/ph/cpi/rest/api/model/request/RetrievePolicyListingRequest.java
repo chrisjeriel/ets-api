@@ -41,7 +41,15 @@ public class RetrievePolicyListingRequest {
 	private String length;
 	private String mode = "";
 	private String renTag;
+	private String coRefNo;
 	
+	
+	public String getCoRefNo() {
+		return coRefNo;
+	}
+	public void setCoRefNo(String coRefNo) {
+		this.coRefNo = coRefNo;
+	}
 	public String getRenTag() {
 		return renTag;
 	}
@@ -245,6 +253,7 @@ public class RetrievePolicyListingRequest {
 				+ inceptDateFrom + ", inceptDateTo=" + inceptDateTo + ", acctDateFrom=" + acctDateFrom + ", acctDateTo="
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + ", recount=" + recount + ", statusArr=" + statusArr + ", search="
-				+ search + ", altNo=" + altNo + ", lineCd=" + lineCd + ", length=" + length + ", mode=" + mode + "]";
+				+ search + ", altNo=" + altNo + ", lineCd=" + lineCd + ", length=" + length + ", mode=" + mode
+				+ ", renTag=" + renTag + ", coRefNo=" + coRefNo + "]";
 	}
 }
