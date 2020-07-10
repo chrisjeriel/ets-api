@@ -22,6 +22,7 @@ import ph.cpi.rest.api.model.utils.ACSER024A;
 import ph.cpi.rest.api.model.utils.ACSER024B;
 import ph.cpi.rest.api.model.utils.ACSER024CD;
 import ph.cpi.rest.api.model.utils.CLMR010A;
+import ph.cpi.rest.api.model.utils.CLMR010AP;
 import ph.cpi.rest.api.model.utils.CLMR010B;
 import ph.cpi.rest.api.model.utils.CLMR010BE;
 import ph.cpi.rest.api.model.utils.CLMR010C;
@@ -147,6 +148,7 @@ public interface UtilDao {
 	public List<POLR052I> retrievePolR052i(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<CLMR010A> retrieveClmR010a(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010AP> retrieveClmR010ap(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010B> retrieveClmR010b(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010BE> retrieveClmR010be(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010C> retrieveClmR010c(final HashMap<String, Object> params ) throws SQLException;

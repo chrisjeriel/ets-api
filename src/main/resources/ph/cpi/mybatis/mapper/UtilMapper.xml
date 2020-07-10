@@ -4188,4 +4188,40 @@
 		SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010ia_to_csv(
 					#{extractUser,jdbcType=VARCHAR}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010AP" id="retrieveClmR010apMap">
+    	<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="lineCd"               column="LINE_CD"/>
+		<result property="claimId"              column="CLAIM_ID"/>
+		<result property="claimNo"              column="CLAIM_NO"/>
+		<result property="cedingId"             column="CEDING_ID"/>
+		<result property="insuredDesc"          column="INSURED_DESC"/>
+		<result property="insuredClm"           column="INSURED_CLM"/>
+		<result property="distDate"             column="DIST_DATE"/>
+		<result property="lossDate"             column="LOSS_DATE"/>
+		<result property="lossCd"               column="LOSS_CD"/>
+		<result property="lossAbbr"             column="LOSS_ABBR"/>
+		<result property="lossDtl"              column="LOSS_DTL"/>
+		<result property="osAmt"                column="OS_AMT"/>
+		<result property="pdAmt"                column="PD_AMT"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="dateFrom"             column="DATE_FROM"/>
+		<result property="dateTo"               column="DATE_TO"/>
+		<result property="minAmt"               column="MIN_AMT"/>
+		<result property="treatyCompany"        column="TREATY_COMPANY"/>
+		<result property="treatyId"             column="TREATY_ID"/>
+		<result property="trtyCedId"            column="TRTY_CED_ID"/>
+		<result property="treatyName"           column="TREATY_NAME"/>
+		<result property="retLayer"             column="RET_LAYER"/>
+		<result property="retName"              column="RET_NAME"/>
+		<result property="uwYear"               column="UW_YEAR"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010ap" resultMap="retrieveClmR010apMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010ap_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
 </mapper>
