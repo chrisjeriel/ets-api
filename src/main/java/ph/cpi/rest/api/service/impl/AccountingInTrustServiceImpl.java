@@ -458,6 +458,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			params.put("createDateJv", raje.getCreateDateJv());
 			params.put("updateUserJv", raje.getUpdateUser());
 			params.put("updateDateJv", raje.getUpdateDateJv());
+			params.put("remarks", raje.getRemarks());
 			
 			Boolean proceed = false;
 			

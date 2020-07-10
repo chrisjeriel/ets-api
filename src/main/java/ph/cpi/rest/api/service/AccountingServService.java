@@ -47,6 +47,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveOrSFeeDtlDistRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBReopenRequest;
@@ -119,6 +120,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
@@ -223,5 +225,6 @@ public interface AccountingServService {
 	public SaveAcitMonthEndTBReopenResponse saveAcseMonthEndTBReopen(SaveAcitMonthEndTBReopenRequest sametrr) throws SQLException;
 	public RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr) throws SQLException;
 	public ExtractAcseExpenseBudgetResponse extractAcseExpenseBudget(ExtractAcseExpenseBudgetRequest request) throws SQLException;
+	public RetrieveAcseRefNoLOVResponse retrieveAcseRefNoLOV(RetrieveAcseRefNoLOVRequest rarflr) throws SQLException;
 	
 }

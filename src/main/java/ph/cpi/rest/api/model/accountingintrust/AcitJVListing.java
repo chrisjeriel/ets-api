@@ -41,6 +41,7 @@ public class AcitJVListing {
 	private String jvNo2;
 	private Integer memoId;
 	private String memoType;
+	private String remarks;
 	
 	private List<AcitJVAdjstInwPolBal> inwPolBal;
 	public Integer getTranId() {
@@ -263,6 +264,12 @@ public class AcitJVListing {
 	public void setMemoType(String memoType) {
 		this.memoType = memoType;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "AcitJVListing [tranId=" + tranId + ", jvYear=" + jvYear + ", jvNo=" + jvNo + ", jvDate=" + jvDate
@@ -275,8 +282,8 @@ public class AcitJVListing {
 				+ ", approvedBy=" + approvedBy + ", approvedName=" + approvedName + ", approvedPosition="
 				+ approvedPosition + ", approvedDate=" + approvedDate + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", approveJV=" + approveJV
-				+ ", jvNo2=" + jvNo2 + ", memoId=" + memoId + ", memoType=" + memoType + ", inwPolBal=" + inwPolBal
-				+ "]";
+				+ ", jvNo2=" + jvNo2 + ", memoId=" + memoId + ", memoType=" + memoType + ", remarks=" + remarks
+				+ ", inwPolBal=" + inwPolBal + "]";
 	}
 	
 }

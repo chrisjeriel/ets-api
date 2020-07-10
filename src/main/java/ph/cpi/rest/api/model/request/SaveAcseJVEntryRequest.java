@@ -42,6 +42,7 @@ public class SaveAcseJVEntryRequest {
 	private String createDateJv;
 	private String updateUserJv;
 	private String updateDateJv;
+	private String remarks;
 	public Integer getTranId() {
 		return tranId;
 	}
@@ -271,6 +272,12 @@ public class SaveAcseJVEntryRequest {
 	public void setUpdateDateJv(String updateDateJv) {
 		this.updateDateJv = updateDateJv;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcseJVEntryRequest [tranId=" + tranId + ", tranDate=" + tranDate + ", tranClass=" + tranClass
@@ -284,7 +291,7 @@ public class SaveAcseJVEntryRequest {
 				+ ", allocTag=" + allocTag + ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy
 				+ ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate
 				+ ", createUserJv=" + createUserJv + ", createDateJv=" + createDateJv + ", updateUserJv=" + updateUserJv
-				+ ", updateDateJv=" + updateDateJv + "]";
+				+ ", updateDateJv=" + updateDateJv + ", remarks=" + remarks + "]";
 	}
 	
 }

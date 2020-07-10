@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveOrSFeeDtlDistRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBReopenRequest;
@@ -128,6 +129,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
@@ -416,6 +418,7 @@ public class AccountingServServiceImpl implements AccountingServService{
 			params.put("createDateJv" , request.getCreateDateJv());
 			params.put("updateUserJv" , request.getUpdateUserJv());
 			params.put("updateDateJv" , request.getUpdateDateJv());
+			params.put("remarks" , request.getRemarks());
 			
 			String checkSeries = acctServDao.checkAcseJvSeries();
 			
@@ -1803,5 +1806,22 @@ public class AccountingServServiceImpl implements AccountingServService{
 		}
 		
 		return res;
+	}
+
+	@Override
+	public RetrieveAcseRefNoLOVResponse retrieveAcseRefNoLOV(RetrieveAcseRefNoLOVRequest rarflr) throws SQLException {
+		RetrieveAcseRefNoLOVResponse response = new RetrieveAcseRefNoLOVResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("orTag", rarflr.getOrTag());
+		params.put("cvTag", rarflr.getCvTag());
+		params.put("jvTag", rarflr.getJvTag());
+		params.put("groupTag", rarflr.getGroupTag());
+		params.put("tranStat", rarflr.getTranStat());
+		params.put("orStatus", rarflr.getOrStatus());
+		params.put("cvStatus", rarflr.getCvStatus());
+		params.put("jvStatus", rarflr.getJvStatus());
+		response.setRefNoList(acctServDao.retrieveAcseRefNoLOV(params));
+		
+		return response;
 	}
 }
