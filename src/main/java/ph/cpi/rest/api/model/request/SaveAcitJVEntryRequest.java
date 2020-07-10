@@ -44,6 +44,7 @@ public class SaveAcitJVEntryRequest {
 	private String createDateJv;
 	private String updateUserJv;
 	private String updateDateJv;
+	private String remarks;
 	
 	private Integer profCommId;
 	
@@ -287,6 +288,12 @@ public class SaveAcitJVEntryRequest {
 	public void setUpdateDateJv(String updateDateJv) {
 		this.updateDateJv = updateDateJv;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public Integer getProfCommId() {
 		return profCommId;
 	}
@@ -307,6 +314,6 @@ public class SaveAcitJVEntryRequest {
 				+ ", allocTranId=" + allocTranId + ", preparedBy=" + preparedBy + ", preparedDate=" + preparedDate
 				+ ", approvedBy=" + approvedBy + ", approvedDate=" + approvedDate + ", createUserJv=" + createUserJv
 				+ ", createDateJv=" + createDateJv + ", updateUserJv=" + updateUserJv + ", updateDateJv=" + updateDateJv
-				+ ", profCommId=" + profCommId + "]";
+				+ ", remarks=" + remarks + ", profCommId=" + profCommId + "]";
 	}
 }

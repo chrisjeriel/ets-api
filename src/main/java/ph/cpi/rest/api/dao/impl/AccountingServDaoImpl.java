@@ -17,6 +17,7 @@ import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -664,6 +665,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public HashMap<String, Object> extractAcseExpenseBudget(HashMap<String, Object> params) throws SQLException {
 		sqlSession.update("extractAcseExpenseBudget", params);
 		return params;
+	}
+
+	@Override
+	public List<RefNoLov> retrieveAcseRefNoLOV(HashMap<String, Object> params) throws SQLException {
+		List<RefNoLov> list = sqlSession.selectList("retrieveAcseRefNoLOV", params);
+		return list;
 	}
 	
 }

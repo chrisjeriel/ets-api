@@ -583,6 +583,7 @@
 		<result property="jvNo2" 			column="JV_NO2"/>
 		<result property="memoId" 			column="MEMO_ID"/>
 		<result property="memoType" 		column="MEMO_TYPE"/>
+		<result property="remarks" 		column="REMARKS"/>
 		<association property="inwPolBal" resultMap="inwPolBalMap"></association>
 	
 	</resultMap>
@@ -743,7 +744,7 @@
 												  CAST(to_timestamp(#{preparedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{approvedBy,jdbcType=VARCHAR}, 
 												  CAST(to_timestamp(#{approvedDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), 
 												  #{createUserJv}, CAST(to_timestamp(#{createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{updateUserJv}, 
-												  CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+												  CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{remarks, jdbcType=VARCHAR});
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
 		END;
 		

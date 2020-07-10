@@ -50,7 +50,8 @@ public class AcseJournalVoucherEntry {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
-	
+	private String remarks;
+	private String refno;
 	
 	public Integer getTranIdTran() {
 		return tranIdTran;
@@ -316,6 +317,18 @@ public class AcseJournalVoucherEntry {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	public String getRefno() {
+		return refno;
+	}
+	public void setRefno(String refno) {
+		this.refno = refno;
+	}
 	@Override
 	public String toString() {
 		return "AcseJournalVoucherEntry [tranIdTran=" + tranIdTran + ", tranDate=" + tranDate + ", tranClass="
@@ -332,7 +345,7 @@ public class AcseJournalVoucherEntry {
 				+ ", preparedDate=" + preparedDate + ", approvedBy=" + approvedBy + ", approvedName=" + approvedName
 				+ ", approvedPosition=" + approvedPosition + ", approvedDate=" + approvedDate + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", remarks=" + remarks + ", refno=" + refno + "]";
 	}
 	
 }

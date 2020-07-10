@@ -387,6 +387,8 @@
 		<result property="createDate" 		column="JV_CREATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="JV_UPDATE_USER"/>
 		<result property="updateDate" 		column="JV_UPDATE_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="remarks" 			column="REMARKS"/>
+		<result property="refno" 			column="REF_NO"/>
 	</resultMap>
 	
 	<select id="retrieveJVEntry" resultMap="jvEntryMap" parameterType="java.util.Map">
@@ -521,7 +523,8 @@
 													#{createUserJv}, 
 													CAST(to_timestamp(#{createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),  
 													#{updateUserJv}, 
-													CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+													CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													#{remarks, jdbcType=VARCHAR}
 												  );
 				#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;							  
 		END;
@@ -2379,5 +2382,29 @@
 											   			   #{extUser, jdbcType=VARCHAR});
 		END;
 	</update>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.RefNoLov" id="refNoLovMap">
+		<result property="tranId" 		column="TRAN_ID"/>
+		<result property="tranClass" 	column="TRAN_CLASS"/>
+		<result property="tranNo" 		column="TRAN_NO"/>
+		<result property="tranTypeName" column="TRAN_TYPE_NAME"/>
+		<result property="tranDate" 	column="TRAN_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="tranStat" 	column="TRAN_STAT"/>
+		<result property="particulars" 	column="PARTICULARS"/>
+		<result property="status" 		column="STATUS"/>
+		<result property="amount" 		column="AMOUNT"/>
+	</resultMap>
+	
+	<select id="retrieveAcseRefNoLOV" resultMap="refNoLovMap">
+		SELECT * FROM TABLE(
+			ACSE_TRANSACTIONS_PKG.get_ref_nos(#{orTag, jdbcType=VARCHAR},
+				#{cvTag, jdbcType=VARCHAR},
+				#{jvTag, jdbcType=VARCHAR},
+				#{groupTag, jdbcType=VARCHAR},
+				#{tranStat, jdbcType=VARCHAR},
+				#{orStatus, jdbcType=VARCHAR},
+				#{cvStatus, jdbcType=VARCHAR},
+				#{jvStatus, jdbcType=VARCHAR}))
+	</select>
 
 </mapper>

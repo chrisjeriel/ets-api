@@ -56,6 +56,7 @@ import ph.cpi.rest.api.model.request.RetrieveAcseOrTransDtlRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePaytReqRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePerDiemRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcsePrqTransRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseRefNoLOVRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseTaxDetailsRequest;
 import ph.cpi.rest.api.model.request.RetrieveOrSFeeDtlDistRequest;
 import ph.cpi.rest.api.model.request.SaveAcitMonthEndTBReopenRequest;
@@ -128,6 +129,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcseOrTransDtlResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePaytReqResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
@@ -688,6 +690,13 @@ public class AccountingServiceController {
 		logger.info("POST: /api/acct-serv-service/extractAcseExpenseBudget");
 		logger.info("ExtractAcseExpenseBudgetRequest : " + request.toString());
 		return acctServService.extractAcseExpenseBudget(request);
+	}
+    
+    @GetMapping(path="retrieveAcseRefNoLOV")
+	public @ResponseBody RetrieveAcseRefNoLOVResponse retrieveAcseRefNoLOV(RetrieveAcseRefNoLOVRequest rarflr) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseRefNoLOV");
+		logger.info("RetrieveAcseRefNoLOVRequest : " + rarflr.toString());
+		return acctServService.retrieveAcseRefNoLOV(rarflr);
 	}
     
 }
