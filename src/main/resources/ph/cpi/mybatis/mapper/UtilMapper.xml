@@ -4224,4 +4224,38 @@
         SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010ap_to_csv(
                     #{extractUser,jdbcType=VARCHAR}))
     </select>
+    
+    <update id="extractCLMR010ZO" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010ZO_PKG.extract_clmr010zo(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractCLMR010ZP" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010ZP_PKG.extract_clmr010zp(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
 </mapper>
