@@ -215,6 +215,23 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR044KA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044KA_PKG.extract_acit_uwpremaloc_trty_ext(#{extractUser, jdbcType=VARCHAR},
+													  #{dateParam, jdbcType=VARCHAR},
+													  #{dateRange, jdbcType=VARCHAR},
+													  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+													  #{lineCdParam, jdbcType=VARCHAR},
+													  #{cedingIdParam, jdbcType=VARCHAR},
+													  #{currCdParam, jdbcType=VARCHAR},
+													  #{incRecTag, jdbcType=VARCHAR},
+													  #{extractCount, mode=OUT, jdbcType=INTEGER},
+													  #{forceExtract, jdbcType=VARCHAR}
+													  );
+		END;
+	</update>
+	
 	<update id="extractPOLR044L" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044L_PKG.extract_pol_osdistlist(#{extractUser, jdbcType=VARCHAR},
@@ -371,6 +388,40 @@
 		END;
 	</update>
 	
+	<update id="extractCLMR052A" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR052A_PKG.extract_clmr052a(#{extractUser, jdbcType=VARCHAR},
+										  #{osPaidTag, jdbcType=VARCHAR},
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{dateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{dateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCd, jdbcType=VARCHAR},
+										  #{cedingId, jdbcType=VARCHAR},
+										  #{currCd, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractCLMR052B" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR052B_PKG.extract_clmr052b(#{extractUser, jdbcType=VARCHAR},
+										  #{osPaidTag, jdbcType=VARCHAR},
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{dateFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{dateTo, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCd, jdbcType=VARCHAR},
+										  #{cedingId, jdbcType=VARCHAR},
+										  #{currCd, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<update id="extractPOLR044V" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044V_PKG.extract_current_policies(#{extractUser, jdbcType=VARCHAR},
@@ -487,6 +538,24 @@
 		
 		BEGIN
 			CLMR010A_PKG.extract_clmr010a(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{minLossAmt, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractCLMR010AP" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010AP_PKG.extract_clmr010ap(#{extractUser, jdbcType=VARCHAR},
 										  null,
 										  #{dateParam, jdbcType=VARCHAR},
 										  #{dateRange, jdbcType=VARCHAR},
@@ -837,6 +906,24 @@
 		END;
 	</update>
 	
+	<update id="extractCLMR010HA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010HA_PKG.extract_clmr010ha(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{clmEvent,  jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<update id="extractCLMR010I" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			CLMR010I_PKG.extract_clmr010i(#{extractUser, jdbcType=VARCHAR},
@@ -851,6 +938,24 @@
 										  #{currCdParam, jdbcType=VARCHAR},
 										  #{extractCount, mode=OUT, jdbcType=INTEGER},
 										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractCLMR010IA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010IA_PKG.extract_clmr010ia(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR},
+										  #{clmEvent,  jdbcType=VARCHAR});
 		END;
 	</update>
 	
@@ -4121,4 +4226,38 @@
         SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010ap_to_csv(
                     #{extractUser,jdbcType=VARCHAR}))
     </select>
+    
+    <update id="extractCLMR010ZO" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010ZO_PKG.extract_clmr010zo(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
+	
+	<update id="extractCLMR010ZP" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			CLMR010ZP_PKG.extract_clmr010zp(#{extractUser, jdbcType=VARCHAR},
+										  null,
+										  #{dateParam, jdbcType=VARCHAR},
+										  #{dateRange, jdbcType=VARCHAR},
+										  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+										  #{extTypeTag, jdbcType=VARCHAR},
+										  #{lineCdParam, jdbcType=VARCHAR},
+										  #{cedingIdParam, jdbcType=VARCHAR},
+										  #{currCdParam, jdbcType=VARCHAR},
+										  #{extractCount, mode=OUT, jdbcType=INTEGER},
+										  #{forceExtract, jdbcType=VARCHAR});
+		END;
+	</update>
 </mapper>

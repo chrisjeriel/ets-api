@@ -186,6 +186,10 @@ public class UtilDaoImpl implements UtilDao{
             extractionMethod = "extractPOLR052E";
         } else if ("POLR052F".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractPOLR052F";
+        } else if ("CLMR052A".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractCLMR052A";
+        } else if ("CLMR052B".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractCLMR052B";
         } else  {
             extractionMethod = "extract" + ((String) params.get("reportId"));
         } 

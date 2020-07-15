@@ -7,10 +7,22 @@ import ph.cpi.rest.api.model.underwriting.Policy;
 public class RetrievePolFullCoverageResponse {
 	private Policy policy;
 	private String altWordings;
+	private String polWordings;
 	private PaginationResponse paginationResponse;
 	private SortResponse sortResponse;
 	
 	
+	
+	public String getPolWordings() {
+		return polWordings;
+	}
+
+
+	public void setPolWordings(String polWordings) {
+		this.polWordings = polWordings;
+	}
+
+
 	public String getAltWordings() {
 		return altWordings;
 	}

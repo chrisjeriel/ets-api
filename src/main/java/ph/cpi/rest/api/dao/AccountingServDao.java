@@ -7,6 +7,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
+import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
@@ -134,4 +135,5 @@ public interface AccountingServDao {
 	public String checkAcseJvSeries() throws SQLException;
 	public HashMap<String,Object> validateCopyBudgetYear(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> extractAcseExpenseBudget(final HashMap<String, Object> params) throws SQLException;
+	public List<RefNoLov> retrieveAcseRefNoLOV(final HashMap<String, Object> params) throws SQLException;
 }

@@ -177,6 +177,7 @@
 		<result property="quoteId"				column="QUOTE_ID"/> <!-- added by CJS for WFMServices -->
 		<result property="quotationNo"			column="QUOTATION_NO"/> <!-- added by CJS for WFMServices -->
 		<result property="createUser"			column="CREATE_USER"/>
+		<result property="coRefNo"				column="CO_REF_NO"/>
 		<result property="cnt"	     column="cnt"/>
 		<association property="project" 		resultMap="projectMap"/>
 	</resultMap>
@@ -875,7 +876,8 @@
 															 null,
 															 #{lineCd, jdbcType=VARCHAR},
 															 #{statusArrStr, jdbcType=VARCHAR},
-															 #{renTag, jdbcType=VARCHAR})) a
+															 #{renTag, jdbcType=VARCHAR},
+															 #{coRefNo, jdbcType=VARCHAR})) a
 															 WHERE  1=1
 		   	   <if test="search != null and search.value != null">
 		   	   	 AND
@@ -935,7 +937,8 @@
 												 null,
 												#{lineCd, jdbcType=VARCHAR},
 											    #{statusArrStr, jdbcType=VARCHAR},
-											    #{renTag, jdbcType=VARCHAR}))
+											    #{renTag, jdbcType=VARCHAR},
+											    #{coRefNo, jdbcType=VARCHAR}))
 												 WHERE  1=1
 	  	   <if test="search != null">
 	  	   	 AND
@@ -2226,6 +2229,23 @@
 		   	
 		   	POL_FULLWORDINGS_PKG.save_pol_fullwordings(
 		   		#{policyId,jdbcType=VARCHAR},
+		   		#{polwText01,jdbcType=VARCHAR},
+				#{polwText02,jdbcType=VARCHAR},
+				#{polwText03,jdbcType=VARCHAR},
+				#{polwText04,jdbcType=VARCHAR},
+				#{polwText05,jdbcType=VARCHAR},
+				#{polwText06,jdbcType=VARCHAR},
+				#{polwText07,jdbcType=VARCHAR},
+				#{polwText08,jdbcType=VARCHAR},
+				#{polwText09,jdbcType=VARCHAR},
+				#{polwText10,jdbcType=VARCHAR},
+				#{polwText11,jdbcType=VARCHAR},
+				#{polwText12,jdbcType=VARCHAR},
+				#{polwText13,jdbcType=VARCHAR},
+				#{polwText14,jdbcType=VARCHAR},
+				#{polwText15,jdbcType=VARCHAR},
+				#{polwText16,jdbcType=VARCHAR},
+				#{polwText17,jdbcType=VARCHAR},
 				#{altwText01,jdbcType=VARCHAR},
 				#{altwText02,jdbcType=VARCHAR},
 				#{altwText03,jdbcType=VARCHAR},
@@ -3296,6 +3316,25 @@
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.FullWordings" id="FullWordingsMap">
 		<result property="policyId"		column="POLICY_ID"/>
+		
+		<result property="polwText01"	column="POLW_TEXT01"/>
+		<result property="polwText02"	column="POLW_TEXT02"/>
+		<result property="polwText03"	column="POLW_TEXT03"/>
+		<result property="polwText04"	column="POLW_TEXT04"/>
+		<result property="polwText05"	column="POLW_TEXT05"/>
+		<result property="polwText06"	column="POLW_TEXT06"/>
+		<result property="polwText07"	column="POLW_TEXT07"/>
+		<result property="polwText08"	column="POLW_TEXT08"/>
+		<result property="polwText09"	column="POLW_TEXT09"/>
+		<result property="polwText10"	column="POLW_TEXT10"/>
+		<result property="polwText11"	column="POLW_TEXT11"/>
+		<result property="polwText12"	column="POLW_TEXT12"/>
+		<result property="polwText13"	column="POLW_TEXT13"/>
+		<result property="polwText14"	column="POLW_TEXT14"/>
+		<result property="polwText15"	column="POLW_TEXT15"/>
+		<result property="polwText16"	column="POLW_TEXT16"/>
+		<result property="polwText17"	column="POLW_TEXT17"/>
+		
 		<result property="altwText01"	column="ALTW_TEXT01"/>
 		<result property="altwText02"	column="ALTW_TEXT02"/>
 		<result property="altwText03"	column="ALTW_TEXT03"/>

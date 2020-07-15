@@ -441,6 +441,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("sort", rplp.getSortRequest());
 		retrievePolicyListingParams.put("search", rplp.getSearch());
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
+		retrievePolicyListingParams.put("coRefNo", rplp.getCoRefNo());
 		
 		retrievePolicyListingParams.put("mode", rplp.getMode());
 		retrievePolicyListingParams.put("recount", rplp.getRecount());
@@ -494,6 +495,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("pagination", rplp.getPaginationRequest());
 		retrievePolicyListingParams.put("sort", rplp.getSortRequest());
 		retrievePolicyListingParams.put("search", rplp.getSearch());
+		retrievePolicyListingParams.put("coRefNo", rplp.getCoRefNo());
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
 		
 		retrievePolicyListingParams.put("mode", rplp.getMode());
@@ -1445,7 +1447,11 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		
 		FullWordings altWordings = underwritingDao.retrieveFullWordings(retrievePolFullCoverageParams);
 		if(altWordings != null) {
-			rpfcResponse.setAltWordings(altWordings.getFull());
+			if(rpfcResponse.getPolicy().getAltNo() == 0 && (rpfcResponse.getPolicy().getOpenCoverTag() != null && rpfcResponse.getPolicy().getOpenCoverTag().equals("Y"))) {
+				rpfcResponse.setAltWordings(altWordings.getFullPol());
+			}else {
+				rpfcResponse.setAltWordings(altWordings.getFullAlt());
+			}
 		}
 		
 		
@@ -1474,7 +1480,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolFullCoverageParams.put("pctShare",spfcr.getPctShare());
 			savePolFullCoverageParams.put("pctPml",spfcr.getPctPml());
 			savePolFullCoverageParams.put("totalValue",spfcr.getTotalValue());
-			savePolFullCoverageParams.put("remarks",spfcr.getRemarks());
+//			savePolFullCoverageParams.put("remarks",spfcr.getRemarks());
 			savePolFullCoverageParams.put("cumSecISi",spfcr.getCumSecISi());
 			savePolFullCoverageParams.put("cumSecIISi",spfcr.getCumSecIISi());
 			savePolFullCoverageParams.put("cumSecIIISi",spfcr.getCumSecIIISi());
@@ -1493,8 +1499,13 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolFullCoverageParams.put("deleteDeductibleList",spfcr.getDeleteDeductibleList());
 			
 			Integer index = 0;
-			while (spfcr.getRemarks() != null &&  index < spfcr.getRemarks().length()) {
-			    savePolFullCoverageParams.put("altwText"+ String.format("%02d", (index/1800)+1) , spfcr.getRemarks().substring(index, Math.min(index + 1800,spfcr.getRemarks().length())));
+			while (spfcr.getPolWordings() != null &&  index < spfcr.getPolWordings().length()) {
+			    savePolFullCoverageParams.put("polwText"+ String.format("%02d", (index/1800)+1) , spfcr.getPolWordings().substring(index, Math.min(index + 1800,spfcr.getPolWordings().length())));
+			    index += 1800;
+			}
+			index = 0;
+			while (spfcr.getAltWordings() != null &&  index < spfcr.getAltWordings().length()) {
+			    savePolFullCoverageParams.put("altwText"+ String.format("%02d", (index/1800)+1) , spfcr.getAltWordings().substring(index, Math.min(index + 1800,spfcr.getAltWordings().length())));
 			    index += 1800;
 			}
 			logger.info(savePolFullCoverageParams.toString());

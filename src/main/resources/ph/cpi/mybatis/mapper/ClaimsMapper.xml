@@ -1058,7 +1058,8 @@
 																  #{insuredDesc, jdbcType=VARCHAR},
 																  #{riskName, jdbcType=VARCHAR},
 																  CAST(to_timestamp(#{lossDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-																  #{bookingMonth, jdbcType=VARCHAR}
+																  #{bookingMonth, jdbcType=VARCHAR},
+																  #{bookingYear, jdbcType=VARCHAR}
 																  ))
 		WHERE 1=1				 
 		 <if test="search != null">

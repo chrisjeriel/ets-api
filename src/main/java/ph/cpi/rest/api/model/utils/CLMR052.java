@@ -1,7 +1,6 @@
 package ph.cpi.rest.api.model.utils;
 
-public class ACITR061 {
-	
+public class CLMR052 {
 	private String reportId;
 	private String reportName;
 	private String tranPostDate;
@@ -14,10 +13,6 @@ public class ACITR061 {
 	private String incCancelTran;
 	private String destination;
 	private String printedBy;
-	private String chkDate;
-	private String jvType;
-	private String bank;
-	private String bankAcct;
 	private String sortBy;
 	private String lineCd;
 	private String cedingId;
@@ -104,30 +99,6 @@ public class ACITR061 {
 	public void setPrintedBy(String printedBy) {
 		this.printedBy = printedBy;
 	}
-	public String getChkDate() {
-		return chkDate;
-	}
-	public void setChkDate(String chkDate) {
-		this.chkDate = chkDate;
-	}
-	public String getJvType() {
-		return jvType;
-	}
-	public void setJvType(String jvType) {
-		this.jvType = jvType;
-	}
-	public String getBank() {
-		return bank;
-	}
-	public void setBank(String bank) {
-		this.bank = bank;
-	}
-	public String getBankAcct() {
-		return bankAcct;
-	}
-	public void setBankAcct(String bankAcct) {
-		this.bankAcct = bankAcct;
-	}
 	public String getSortBy() {
 		return sortBy;
 	}
@@ -202,14 +173,13 @@ public class ACITR061 {
 	}
 	@Override
 	public String toString() {
-		return "ACITR061 [reportId=" + reportId + ", reportName=" + reportName + ", tranPostDate=" + tranPostDate
+		return "CLMR052 [reportId=" + reportId + ", reportName=" + reportName + ", tranPostDate=" + tranPostDate
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", paytType=" + paytType + ", paytMode=" + paytMode
 				+ ", reportType=" + reportType + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
-				+ ", destination=" + destination + ", printedBy=" + printedBy + ", chkDate=" + chkDate + ", jvType="
-				+ jvType + ", bank=" + bank + ", bankAcct=" + bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd
-				+ ", cedingId=" + cedingId + ", currCd=" + currCd + ", extractUser=" + extractUser + ", osPaidTag="
-				+ osPaidTag + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom
-				+ ", dateTo=" + dateTo + ", extTypeTag=" + extTypeTag + ", forceExtract=" + forceExtract + "]";
+				+ ", destination=" + destination + ", printedBy=" + printedBy + ", sortBy=" + sortBy + ", lineCd="
+				+ lineCd + ", cedingId=" + cedingId + ", currCd=" + currCd + ", extractUser=" + extractUser
+				+ ", osPaidTag=" + osPaidTag + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom="
+				+ dateFrom + ", dateTo=" + dateTo + ", extTypeTag=" + extTypeTag + ", forceExtract=" + forceExtract
+				+ "]";
 	}
-	
 }
