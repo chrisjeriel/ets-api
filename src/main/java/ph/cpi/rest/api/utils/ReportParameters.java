@@ -7,6 +7,7 @@ import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.utils.ACITR049;
 import ph.cpi.rest.api.model.utils.ACITR050;
 import ph.cpi.rest.api.model.utils.ACITR052;
+import ph.cpi.rest.api.model.utils.ACITR058;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER024;
@@ -14,9 +15,6 @@ import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.CLMR052;
 import ph.cpi.rest.api.model.utils.POLR044;
-
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class ReportParameters {
 
@@ -374,5 +372,31 @@ public class ReportParameters {
 		CLMR052Params.put("forceExtract", param.getForceExtract());
 		
 		return CLMR052Params;
+	}
+	
+	public static HashMap<String, Object> mapACITR058Params(ACITR058 param) throws ParseException {
+		HashMap<String, Object> ACITR058Params = new HashMap<String, Object>();
+		
+		ACITR058Params.put("reportId" ,param.getReportId());
+		ACITR058Params.put("reportName" ,param.getReportName());
+		ACITR058Params.put("entryType" ,param.getEntryType());
+		ACITR058Params.put("periodType" ,param.getPeriodType());
+		ACITR058Params.put("periodFrom" ,param.getPeriodFrom());
+		ACITR058Params.put("periodTo" ,param.getPeriodTo());
+		ACITR058Params.put("acctParam" ,param.getAcctParam());
+		ACITR058Params.put("slTypeParam" ,param.getSlTypeParam());
+		ACITR058Params.put("arTag" ,param.getArTag());
+		ACITR058Params.put("cvTag" ,param.getCvTag());
+		ACITR058Params.put("jvTag" ,param.getJvTag());
+		ACITR058Params.put("closeTranTag" ,param.getCloseTranTag());
+		ACITR058Params.put("appendTag" ,param.getAppendTag());
+		ACITR058Params.put("extractUser" ,param.getExtractUser());
+		ACITR058Params.put("extractDate" ,param.getExtractDate());
+		ACITR058Params.put("currCdParam" ,param.getCurrCdParam());
+		ACITR058Params.put("forceExtract", param.getForceExtract());
+		
+
+
+		return ACITR058Params;
 	}
 }

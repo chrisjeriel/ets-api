@@ -3178,4 +3178,13 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request)
+			throws SQLException {
+		RetrieveAcitAcctEntriesExtResponse response = new RetrieveAcitAcctEntriesExtResponse();
+		response.setAcitAcctEntriesExt(acctITDao.retrieveAcitAcctEntriesExt(request));
+		return response;
+	}
 }

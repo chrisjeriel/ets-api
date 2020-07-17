@@ -4258,4 +4258,26 @@
 										  #{forceExtract, jdbcType=VARCHAR});
 		END;
 	</update>
+	
+	<update id="extractACITR058" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACITR058_PKG.extract_acitr058(
+											#{extractUser, jdbcType=VARCHAR},
+											#{entryType, jdbcType=VARCHAR},
+											#{periodType, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{periodFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											CAST(to_timestamp(#{periodTo, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											#{acctParam, jdbcType=VARCHAR},
+											#{slTypeParam, jdbcType=VARCHAR},
+											#{arTag, jdbcType=VARCHAR},
+											#{cvTag, jdbcType=VARCHAR},
+											#{jvTag, jdbcType=VARCHAR},
+											#{closeTranTag, jdbcType=VARCHAR},
+											#{appendTag, jdbcType=VARCHAR},
+											#{currCdParam, jdbcType=VARCHAR},
+											#{extractCount, mode=OUT, jdbcType=INTEGER},
+											#{forceExtract, jdbcType=VARCHAR}
+										  );
+		END;
+	</update>
 </mapper>

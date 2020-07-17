@@ -18,6 +18,7 @@ import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitAmortize;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
@@ -91,6 +92,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -1368,6 +1370,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<QSOAPrint> retrieveAcitQsoaPrint(HashMap<String, Object> params) throws SQLException {
 		List<QSOAPrint> res = sqlSession.selectList("retrieveAcitQsoaPrint", params);
+		return res;
+	}
+
+	@Override
+	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) {
+		List<AcitAcctEntriesExt> res = sqlSession.selectList("retrieveAcitAcctEntriesExt", request);
 		return res;
 	}
 }

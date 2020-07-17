@@ -151,4 +151,5 @@ public interface AccountingInTrustService {
 	public UpdateAgingSoaReponse updateAgingSoa(String eomDate) throws SQLException;
 	public RetrieveAcitMonthEndJVResponse retrieveAcitMonthEndJV(RetrieveAcitMonthEndJVRequest ramer) throws SQLException;
 	public RetrieveAcitQsoaPrintResponse retrieveAcitQsoaPrint(RetrieveAcitQsoaPrintRequest request) throws SQLException;
+	public RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) throws SQLException;
 }
