@@ -92,6 +92,7 @@ public class ReportParameters {
 		POLR044AParams.put("P_TO_DATE", param.getToDate());
 		POLR044AParams.put("P_INC_REC_TAG", param.getIncRecTag());
 		POLR044AParams.put("P_PRINTED_BY", param.getExtractUser());
+		POLR044AParams.put("P_CURR_CD_PARAM", param.getCurrCdParam());
 		
 		return POLR044AParams;
 	}

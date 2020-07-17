@@ -4260,4 +4260,101 @@
 										  #{forceExtract, jdbcType=VARCHAR});
 		END;
 	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR010ZO" id="retrieveClmR010zoMap">
+    	<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="currCdDesc"           column="CURR_CD_DESC"/>
+		<result property="lineCd"               column="LINE_CD"/>
+		<result property="trtyCedId"            column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName"        column="TRTY_CED_ID_NAME"/>
+		<result property="clmCount"             column="CLM_COUNT"/>
+		<result property="clmAmtTotal"          column="CLM_AMT_TOTAL"/>
+		<result property="clmAmtQuota"          column="CLM_AMT_QUOTA"/>
+		<result property="clmAmtQuotaRet1"      column="CLM_AMT_QUOTA_RET1"/>
+		<result property="clmAmtQuotaRet2"      column="CLM_AMT_QUOTA_RET2"/>
+		<result property="clmAmt1stSurplus"     column="CLM_AMT_1ST_SURPLUS"/>
+		<result property="clmAmt2ndSurplus"     column="CLM_AMT_2ND_SURPLUS"/>
+		<result property="clmAmtFacul"          column="CLM_AMT_FACUL"/>
+		<result property="siRange"              column="SI_RANGE"/>
+		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
+		<result property="amtRangeDesc"         column="AMT_RANGE_DESC"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="dateFrom"             column="DATE_FROM"/>
+		<result property="dateTo"               column="DATE_TO"/>
+		<result property="dateFromTo"           column="DATE_FROM_TO"/>
+		<result property="sortSeq"              column="SORT_SEQ"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010zo" resultMap="retrieveClmR010zoMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010zo_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR010ZP" id="retrieveClmR010zpMap">
+    	<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="currCdDesc"           column="CURR_CD_DESC"/>
+		<result property="lineCd"               column="LINE_CD"/>
+		<result property="trtyCedId"            column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName"        column="TRTY_CED_ID_NAME"/>
+		<result property="clmCount"             column="CLM_COUNT"/>
+		<result property="clmAmtTotal"          column="CLM_AMT_TOTAL"/>
+		<result property="clmAmtQuota"          column="CLM_AMT_QUOTA"/>
+		<result property="clmAmtQuotaRet1"      column="CLM_AMT_QUOTA_RET1"/>
+		<result property="clmAmtQuotaRet2"      column="CLM_AMT_QUOTA_RET2"/>
+		<result property="clmAmt1stSurplus"     column="CLM_AMT_1ST_SURPLUS"/>
+		<result property="clmAmt2ndSurplus"     column="CLM_AMT_2ND_SURPLUS"/>
+		<result property="clmAmtFacul"          column="CLM_AMT_FACUL"/>
+		<result property="siRange"              column="SI_RANGE"/>
+		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
+		<result property="amtRangeDesc"         column="AMT_RANGE_DESC"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="dateFrom"             column="DATE_FROM"/>
+		<result property="dateTo"               column="DATE_TO"/>
+		<result property="dateFromTo"           column="DATE_FROM_TO"/>
+		<result property="sortSeq"              column="SORT_SEQ"/>
+    </resultMap>
+    
+    <select id="retrieveClmR010zp" resultMap="retrieveClmR010zpMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR010_CSV_PKG.clmr010zp_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.POLR044YA" id="retrievePolR044yaMap">
+    	<result property="extractUser"      column="EXTRACT_USER"/>
+		<result property="paramDate"        column="PARAM_DATE"/>
+		<result property="paramCurrency"    column="PARAM_CURRENCY"/>
+		<result property="paramCedingId"    column="PARAM_CEDING_ID"/>
+		<result property="cedingId"         column="CEDING_ID"/>
+		<result property="cedingName"       column="CEDING_NAME"/>
+		<result property="currency"         column="CURRENCY"/>
+		<result property="policyId"         column="POLICY_ID"/>
+		<result property="instNo"           column="INST_NO"/>
+		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="policyRef"        column="POLICY_REF"/>
+		<result property="prinId"           column="PRIN_ID"/>
+		<result property="contractorId"     column="CONTRACTOR_ID"/>
+		<result property="insured"          column="INSURED"/>
+		<result property="premium"          column="PREMIUM"/>
+		<result property="commission"       column="COMMISSION"/>
+		<result property="vatOnComm"        column="VAT_ON_COMM"/>
+		<result property="netDue"           column="NET_DUE"/>
+		<result property="dueDate"          column="DUE_DATE"/>
+		<result property="bookingDate"      column="BOOKING_DATE"/>
+    </resultMap>
+    
+    <select id="retrievePolR044ya" resultMap="retrievePolR044yaMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(POLR044_CSV_PKG.polr044ya_to_csv(
+                    #{extractUser,jdbcType=VARCHAR},
+                    #{toDate,jdbcType=VARCHAR},
+                    #{paramCurrency,jdbcType=VARCHAR},
+                    #{cedingId,jdbcType=VARCHAR}))
+    </select>
 </mapper>
