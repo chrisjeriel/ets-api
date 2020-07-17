@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class CLMR010A {
 	private String extractUser;
 	private String extractDate;
@@ -29,6 +31,7 @@ public class CLMR010A {
 	private String retLayer;
 	private String retName;
 	private String uwYear;
+	private BigDecimal intlResAmt;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -197,6 +200,12 @@ public class CLMR010A {
 	public void setUwYear(String uwYear) {
 		this.uwYear = uwYear;
 	}
+	public BigDecimal getIntlResAmt() {
+		return intlResAmt;
+	}
+	public void setIntlResAmt(BigDecimal intlResAmt) {
+		this.intlResAmt = intlResAmt;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010A [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
@@ -206,6 +215,7 @@ public class CLMR010A {
 				+ ", osAmt=" + osAmt + ", pdAmt=" + pdAmt + ", dateParam=" + dateParam + ", dateRange=" + dateRange
 				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", minAmt=" + minAmt + ", treatyCompany="
 				+ treatyCompany + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId + ", treatyName=" + treatyName
-				+ ", retLayer=" + retLayer + ", retName=" + retName + ", uwYear=" + uwYear + "]";
+				+ ", retLayer=" + retLayer + ", retName=" + retName + ", uwYear=" + uwYear + ", intlResAmt="
+				+ intlResAmt + "]";
 	}
 }

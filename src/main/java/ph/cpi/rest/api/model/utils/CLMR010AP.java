@@ -31,6 +31,8 @@ public class CLMR010AP {
 	private Integer retLayer;
 	private String retName;
 	private Integer uwYear;
+	private BigDecimal intlResAmt;
+	
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -199,6 +201,12 @@ public class CLMR010AP {
 	public void setUwYear(Integer uwYear) {
 		this.uwYear = uwYear;
 	}
+	public BigDecimal getIntlResAmt() {
+		return intlResAmt;
+	}
+	public void setIntlResAmt(BigDecimal intlResAmt) {
+		this.intlResAmt = intlResAmt;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010AP [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
@@ -208,6 +216,7 @@ public class CLMR010AP {
 				+ ", osAmt=" + osAmt + ", pdAmt=" + pdAmt + ", dateParam=" + dateParam + ", dateRange=" + dateRange
 				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", minAmt=" + minAmt + ", treatyCompany="
 				+ treatyCompany + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId + ", treatyName=" + treatyName
-				+ ", retLayer=" + retLayer + ", retName=" + retName + ", uwYear=" + uwYear + "]";
+				+ ", retLayer=" + retLayer + ", retName=" + retName + ", uwYear=" + uwYear + ", intlResAmt="
+				+ intlResAmt + "]";
 	}
 }

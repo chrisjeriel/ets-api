@@ -52,6 +52,8 @@ import ph.cpi.rest.api.model.utils.CLMR010V;
 import ph.cpi.rest.api.model.utils.CLMR010W;
 import ph.cpi.rest.api.model.utils.CLMR010X;
 import ph.cpi.rest.api.model.utils.CLMR010Y;
+import ph.cpi.rest.api.model.utils.CLMR010ZO;
+import ph.cpi.rest.api.model.utils.CLMR010ZP;
 import ph.cpi.rest.api.model.utils.POLR044A;
 import ph.cpi.rest.api.model.utils.POLR044B;
 import ph.cpi.rest.api.model.utils.POLR044C;
@@ -82,6 +84,7 @@ import ph.cpi.rest.api.model.utils.POLR044V;
 import ph.cpi.rest.api.model.utils.POLR044W;
 import ph.cpi.rest.api.model.utils.POLR044X;
 import ph.cpi.rest.api.model.utils.POLR044Y;
+import ph.cpi.rest.api.model.utils.POLR044YA;
 import ph.cpi.rest.api.model.utils.POLR044Z;
 import ph.cpi.rest.api.model.utils.POLR052A;
 import ph.cpi.rest.api.model.utils.POLR052AA;
@@ -132,6 +135,7 @@ public interface UtilDao {
 	public List<POLR044W> retrievePolR044w(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044X> retrievePolR044x(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044Y> retrievePolR044y(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR044YA> retrievePolR044ya(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR044Z> retrievePolR044z(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<POLR052A> retrievePolR052a(final HashMap<String, Object> params ) throws SQLException;
@@ -178,6 +182,8 @@ public interface UtilDao {
 	public List<CLMR010W> retrieveClmR010w(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010X> retrieveClmR010x(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010Y> retrieveClmR010y(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010ZO> retrieveClmR010zo(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010ZP> retrieveClmR010zp(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<ACITR063A> retrieveAcitR063a(final HashMap<String, Object> params ) throws SQLException;
 	
