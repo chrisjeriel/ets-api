@@ -2407,4 +2407,68 @@
 				#{jvStatus, jdbcType=VARCHAR}))
 	</select>
 
+	<resultMap type="ph.cpi.rest.api.model.accountingservice.AcseAcctEntriesExt" id="AcseAcctEntriesExtMap">
+		<result property="extractId"		column="EXTRACT_ID"/>
+		<result property="tranId"			column="TRAN_ID"/>
+		<result property="tranDate"			column="TRAN_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="tranClass"		column="TRAN_CLASS"/>
+		<result property="refNo"			column="REF_NO"/>
+		<result property="tranTypeCd"		column="TRAN_TYPE_CD"/>
+		<result property="currCd"			column="CURR_CD"/>
+		<result property="payee"			column="PAYEE"/>
+		<result property="particulars"		column="PARTICULARS"/>
+		<result property="tranStatus"		column="TRAN_STATUS"/>
+		<result property="acctStatus"		column="ACCT_STATUS"/>
+		<result property="glAcctId"			column="GL_ACCT_ID"/>
+		<result property="acctCode"			column="ACCT_CODE"/>
+		<result property="acctName"			column="ACCT_NAME"/>
+		<result property="slTypeCd"			column="SL_TYPE_CD"/>
+		<result property="slTypeName"		column="SL_TYPE_NAME"/>
+		<result property="slCd"				column="SL_CD"/>
+		<result property="slName"			column="SL_NAME"/>
+		<result property="creditAmt"		column="CREDIT_AMT"/>
+		<result property="debitAmt"			column="DEBIT_AMT"/>
+		<result property="localCreditAmt"	column="LOCAL_CREDIT_AMT"/>
+		<result property="localDebitAmt"	column="LOCAL_DEBIT_AMT"/>
+		<result property="tranTypeName"		column="TRAN_TYPE_NAME"/>
+		<result property="tranStatusDesc"	column="TRAN_STATUS_DESC"/>
+		<result property="acctStatusDesc"	column="ACCT_STATUS_DESC"/>
+		<result property="entryType"		column="ENTRY_TYPE"/>
+		<result property="periodType"		column="PERIOD_TYPE"/>
+		<result property="periodFrom"		column="PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="periodTo"			column="PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="acctParam"		column="ACCT_PARAM"/>
+		<result property="acctParamCode"	column="ACCT_PARAM_CODE"/>
+		<result property="acctParamName"	column="ACCT_PARAM_NAME"/>
+		<result property="slTypeParam"		column="SL_TYPE_PARAM"/>
+		<result property="slTypeParamName"	column="SL_TYPE_PARAM_NAME"/>
+		<result property="orTag"			column="OR_TAG"/>
+		<result property="cvTag"			column="CV_TAG"/>
+		<result property="jvTag"			column="JV_TAG"/>
+		<result property="closeTranTag"		column="CLOSE_TRAN_TAG"/>
+		<result property="appendTag"		column="APPEND_TAG"/>
+		<result property="extractUser"		column="EXTRACT_USER"/>
+		<result property="extractDate"		column="EXTRACT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currCdParam"		column="EXTRACT_USER"/>
+	</resultMap>
+	
+	
+	<select id="retrieveAcseAcctEntriesExt" parameterType="ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest" resultMap="AcseAcctEntriesExtMap">
+		SELECT * FROM TABLE( ACSER007_PKG.ret_acser007(
+											#{extractUser, jdbcType=VARCHAR},
+											#{entryType, jdbcType=VARCHAR},
+											#{periodType, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{periodFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											CAST(to_timestamp(#{periodTo, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											#{acctParam, jdbcType=VARCHAR},
+											#{slTypeParam, jdbcType=VARCHAR},
+											#{orTag, jdbcType=VARCHAR},
+											#{cvTag, jdbcType=VARCHAR},
+											#{jvTag, jdbcType=VARCHAR},
+											#{closeTranTag, jdbcType=VARCHAR},
+											#{appendTag, jdbcType=VARCHAR},
+											#{currCdParam, jdbcType=VARCHAR}
+										  ))
+		
+	</select>
 </mapper>

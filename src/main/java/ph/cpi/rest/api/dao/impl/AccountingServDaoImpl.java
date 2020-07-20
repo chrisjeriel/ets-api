@@ -15,10 +15,12 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ph.cpi.rest.api.dao.AccountingServDao;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
+import ph.cpi.rest.api.model.accountingservice.AcseAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
@@ -44,6 +46,7 @@ import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest;
 
 @Component
 public class AccountingServDaoImpl implements AccountingServDao{
@@ -671,6 +674,12 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public List<RefNoLov> retrieveAcseRefNoLOV(HashMap<String, Object> params) throws SQLException {
 		List<RefNoLov> list = sqlSession.selectList("retrieveAcseRefNoLOV", params);
 		return list;
+	}
+
+	@Override
+	public List<AcseAcctEntriesExt> retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) {
+		List<AcseAcctEntriesExt> res = sqlSession.selectList("retrieveAcseAcctEntriesExt", request);
+		return res;
 	}
 	
 }

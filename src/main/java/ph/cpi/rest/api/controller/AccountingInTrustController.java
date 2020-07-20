@@ -1010,4 +1010,12 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitQsoaPrintRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitQsoaPrint(request);
 	}
+	
+	@GetMapping(path="retrieveAcitAcctEntriesExt")
+	public @ResponseBody RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAcctEntriesExt");
+		logger.info("RetrieveAcitAcctEntriesExtRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitAcctEntriesExt(request);
+	}
+	
 }

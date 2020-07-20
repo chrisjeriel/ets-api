@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitAmortize;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
@@ -81,6 +82,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.maintenance.UserId;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -287,4 +289,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> updateAgingSoa(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request);
 }
