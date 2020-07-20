@@ -439,6 +439,10 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr061d(utilDao.retrieveAcitR061d(retcParams));
 		}
 		
+		else if(reportName.equals("ACITR058")) {
+			retcResponse.setListAcitr058(utilDao.retrieveAcitR058(retcParams));
+		}
+		
 		else {
 			System.out.println("No Response yet!");
 		}
