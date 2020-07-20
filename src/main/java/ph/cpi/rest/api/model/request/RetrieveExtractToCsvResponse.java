@@ -5,7 +5,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.utils.ACITR050B;
 import ph.cpi.rest.api.model.utils.ACITR050C;
 import ph.cpi.rest.api.model.utils.ACITR050D;
-import ph.cpi.rest.api.model.utils.ACITR058;
+import ph.cpi.rest.api.model.utils.ACITR058_CSV;
 import ph.cpi.rest.api.model.utils.ACITR061A;
 import ph.cpi.rest.api.model.utils.ACITR061B;
 import ph.cpi.rest.api.model.utils.ACITR061C;
@@ -205,7 +205,7 @@ public class RetrieveExtractToCsvResponse {
 	private List<ACITR061C> listAcitr061c;
 	private List<ACITR061D> listAcitr061d;
 	
-	private List<ACITR058> listAcitr058;
+	private List<ACITR058_CSV> listAcitr058;
 	
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
@@ -783,10 +783,10 @@ public class RetrieveExtractToCsvResponse {
 	public void setListPolr044ya(List<POLR044YA> listPolr044ya) {
 		this.listPolr044ya = listPolr044ya;
 	}
-	public List<ACITR058> getListAcitr058() {
+	public List<ACITR058_CSV> getListAcitr058() {
 		return listAcitr058;
 	}
-	public void setListAcitr058(List<ACITR058> listAcitr058) {
+	public void setListAcitr058(List<ACITR058_CSV> listAcitr058) {
 		this.listAcitr058 = listAcitr058;
 	}
 	@Override

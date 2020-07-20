@@ -2,7 +2,7 @@ package ph.cpi.rest.api.model.utils;
 
 import java.math.BigDecimal;
 
-public class ACITR058 {  
+public class ACITR058_CSV {
 	private String acctParamCode;
 	private String acctParamName;
 	private String slTypeParamName;
@@ -299,18 +299,18 @@ public class ACITR058 {
 	}
 	@Override
 	public String toString() {
-		return "ACITR058 [acctParamCode=" + acctParamCode + ", acctParamName=" + acctParamName + ", slTypeParamName="
-				+ slTypeParamName + ", extractId=" + extractId + ", tranId=" + tranId + ", tranDate=" + tranDate
-				+ ", tranClass=" + tranClass + ", refNo=" + refNo + ", tranTypeCd=" + tranTypeCd + ", currCd=" + currCd
-				+ ", payee=" + payee + ", particulars=" + particulars + ", tranStatus=" + tranStatus + ", acctStatus="
-				+ acctStatus + ", glAcctId=" + glAcctId + ", acctCode=" + acctCode + ", acctName=" + acctName
-				+ ", slTypeCd=" + slTypeCd + ", slTypeName=" + slTypeName + ", slCd=" + slCd + ", slName=" + slName
-				+ ", creditAmt=" + creditAmt + ", debitAmt=" + debitAmt + ", localCreditAmt=" + localCreditAmt
-				+ ", localDebitAmt=" + localDebitAmt + ", entryType=" + entryType + ", periodType=" + periodType
-				+ ", periodFrom=" + periodFrom + ", periodTo=" + periodTo + ", acctParam=" + acctParam
-				+ ", slTypeParam=" + slTypeParam + ", arTag=" + arTag + ", cvTag=" + cvTag + ", jvTag=" + jvTag
-				+ ", closeTranTag=" + closeTranTag + ", appendTag=" + appendTag + ", extractUser=" + extractUser
-				+ ", extractDate=" + extractDate + ", tranTypeName=" + tranTypeName + ", tranStatusDesc="
+		return "ACITR058_CSV [acctParamCode=" + acctParamCode + ", acctParamName=" + acctParamName
+				+ ", slTypeParamName=" + slTypeParamName + ", extractId=" + extractId + ", tranId=" + tranId
+				+ ", tranDate=" + tranDate + ", tranClass=" + tranClass + ", refNo=" + refNo + ", tranTypeCd="
+				+ tranTypeCd + ", currCd=" + currCd + ", payee=" + payee + ", particulars=" + particulars
+				+ ", tranStatus=" + tranStatus + ", acctStatus=" + acctStatus + ", glAcctId=" + glAcctId + ", acctCode="
+				+ acctCode + ", acctName=" + acctName + ", slTypeCd=" + slTypeCd + ", slTypeName=" + slTypeName
+				+ ", slCd=" + slCd + ", slName=" + slName + ", creditAmt=" + creditAmt + ", debitAmt=" + debitAmt
+				+ ", localCreditAmt=" + localCreditAmt + ", localDebitAmt=" + localDebitAmt + ", entryType=" + entryType
+				+ ", periodType=" + periodType + ", periodFrom=" + periodFrom + ", periodTo=" + periodTo
+				+ ", acctParam=" + acctParam + ", slTypeParam=" + slTypeParam + ", arTag=" + arTag + ", cvTag=" + cvTag
+				+ ", jvTag=" + jvTag + ", closeTranTag=" + closeTranTag + ", appendTag=" + appendTag + ", extractUser="
+				+ extractUser + ", extractDate=" + extractDate + ", tranTypeName=" + tranTypeName + ", tranStatusDesc="
 				+ tranStatusDesc + ", currCdParam=" + currCdParam + ", acctStatusDesc=" + acctStatusDesc + "]";
 	}
 }

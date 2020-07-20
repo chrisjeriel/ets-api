@@ -4358,7 +4358,7 @@
                     #{cedingId,jdbcType=VARCHAR}))
     </select>
     
-    <resultMap type="ph.cpi.rest.api.model.utils.ACITR058" id="retrieveAcitR058Map">
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR058_CSV" id="retrieveAcitR058Map">
     	<result property="acctParamCode"                    column="ACCT_PARAM_CODE"/>
 		<result property="acctParamName"                    column="ACCT_PARAM_NAME"/>
 		<result property="slTypeParamName"                  column="SL_TYPE_PARAM_NAME"/>

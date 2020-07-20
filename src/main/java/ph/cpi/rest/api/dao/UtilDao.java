@@ -7,7 +7,7 @@ import java.util.List;
 import ph.cpi.rest.api.model.utils.ACITR050B;
 import ph.cpi.rest.api.model.utils.ACITR050C;
 import ph.cpi.rest.api.model.utils.ACITR050D;
-import ph.cpi.rest.api.model.utils.ACITR058;
+import ph.cpi.rest.api.model.utils.ACITR058_CSV;
 import ph.cpi.rest.api.model.utils.ACITR061A;
 import ph.cpi.rest.api.model.utils.ACITR061B;
 import ph.cpi.rest.api.model.utils.ACITR061C;
@@ -211,6 +211,6 @@ public interface UtilDao {
 	public List<ACITR061C> retrieveAcitR061c(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR061D> retrieveAcitR061d(final HashMap<String, Object> params ) throws SQLException;
 	
-	public List<ACITR058> retrieveAcitR058(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR058_CSV> retrieveAcitR058(final HashMap<String, Object> params ) throws SQLException;
 	
 }

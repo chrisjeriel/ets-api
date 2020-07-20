@@ -14,7 +14,7 @@ import ph.cpi.rest.api.dao.UtilDao;
 import ph.cpi.rest.api.model.utils.ACITR050B;
 import ph.cpi.rest.api.model.utils.ACITR050C;
 import ph.cpi.rest.api.model.utils.ACITR050D;
-import ph.cpi.rest.api.model.utils.ACITR058;
+import ph.cpi.rest.api.model.utils.ACITR058_CSV;
 import ph.cpi.rest.api.model.utils.ACITR061A;
 import ph.cpi.rest.api.model.utils.ACITR061B;
 import ph.cpi.rest.api.model.utils.ACITR061C;
@@ -794,8 +794,8 @@ public class UtilDaoImpl implements UtilDao{
 	}
 
 	@Override
-	public List<ACITR058> retrieveAcitR058(HashMap<String, Object> params) throws SQLException {
-		List<ACITR058> retrieveAcitR058 = sqlSession.selectList("retrieveAcitR058",params);
+	public List<ACITR058_CSV> retrieveAcitR058(HashMap<String, Object> params) throws SQLException {
+		List<ACITR058_CSV> retrieveAcitR058 = sqlSession.selectList("retrieveAcitR058",params);
 		return retrieveAcitR058;
 	}
 
