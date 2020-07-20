@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RestoreServiceAccountingEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntBackupRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntInqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchInvoiceRequest;
@@ -94,6 +95,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndUnpostedMonthsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntInqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchInvoiceResponse;
@@ -226,5 +228,6 @@ public interface AccountingServService {
 	public RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr) throws SQLException;
 	public ExtractAcseExpenseBudgetResponse extractAcseExpenseBudget(ExtractAcseExpenseBudgetRequest request) throws SQLException;
 	public RetrieveAcseRefNoLOVResponse retrieveAcseRefNoLOV(RetrieveAcseRefNoLOVRequest rarflr) throws SQLException;
+	public RetrieveAcseAcctEntriesExtResponse retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) throws SQLException;
 	
 }

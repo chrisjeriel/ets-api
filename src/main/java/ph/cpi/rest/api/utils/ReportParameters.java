@@ -10,6 +10,7 @@ import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR058;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
+import ph.cpi.rest.api.model.utils.ACSER007;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
@@ -399,5 +400,31 @@ public class ReportParameters {
 
 
 		return ACITR058Params;
+	}
+	
+	public static HashMap<String, Object> mapACSER007Params(ACSER007 param) throws ParseException {
+		HashMap<String, Object> ACSER007Params = new HashMap<String, Object>();
+		
+		ACSER007Params.put("reportId" ,param.getReportId());
+		ACSER007Params.put("reportName" ,param.getReportName());
+		ACSER007Params.put("entryType" ,param.getEntryType());
+		ACSER007Params.put("periodType" ,param.getPeriodType());
+		ACSER007Params.put("periodFrom" ,param.getPeriodFrom());
+		ACSER007Params.put("periodTo" ,param.getPeriodTo());
+		ACSER007Params.put("acctParam" ,param.getAcctParam());
+		ACSER007Params.put("slTypeParam" ,param.getSlTypeParam());
+		ACSER007Params.put("orTag" ,param.getOrTag());
+		ACSER007Params.put("cvTag" ,param.getCvTag());
+		ACSER007Params.put("jvTag" ,param.getJvTag());
+		ACSER007Params.put("closeTranTag" ,param.getCloseTranTag());
+		ACSER007Params.put("appendTag" ,param.getAppendTag());
+		ACSER007Params.put("extractUser" ,param.getExtractUser());
+		ACSER007Params.put("extractDate" ,param.getExtractDate());
+		ACSER007Params.put("currCdParam" ,param.getCurrCdParam());
+		ACSER007Params.put("forceExtract", param.getForceExtract());
+		
+
+
+		return ACSER007Params;
 	}
 }
