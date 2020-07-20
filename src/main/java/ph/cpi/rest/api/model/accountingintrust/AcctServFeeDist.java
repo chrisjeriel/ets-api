@@ -41,6 +41,12 @@ public class AcctServFeeDist {
 	private BigDecimal netDue;
 	private Integer invoiceId;
 	
+	private BigDecimal grossShrAmt1;
+	private BigDecimal grossShrAmt2;
+	private BigDecimal grossShrAmt3;
+	private BigDecimal grossShrAmt4;
+	private BigDecimal netSfee;
+	
 	private AcctServFeeTotals servFeeTotals;
 	
 	public Integer getReqId() {
@@ -241,6 +247,36 @@ public class AcctServFeeDist {
 	public void setInvoiceId(Integer invoiceId) {
 		this.invoiceId = invoiceId;
 	}
+	public BigDecimal getGrossShrAmt1() {
+		return grossShrAmt1;
+	}
+	public void setGrossShrAmt1(BigDecimal grossShrAmt1) {
+		this.grossShrAmt1 = grossShrAmt1;
+	}
+	public BigDecimal getGrossShrAmt2() {
+		return grossShrAmt2;
+	}
+	public void setGrossShrAmt2(BigDecimal grossShrAmt2) {
+		this.grossShrAmt2 = grossShrAmt2;
+	}
+	public BigDecimal getGrossShrAmt3() {
+		return grossShrAmt3;
+	}
+	public void setGrossShrAmt3(BigDecimal grossShrAmt3) {
+		this.grossShrAmt3 = grossShrAmt3;
+	}
+	public BigDecimal getGrossShrAmt4() {
+		return grossShrAmt4;
+	}
+	public void setGrossShrAmt4(BigDecimal grossShrAmt4) {
+		this.grossShrAmt4 = grossShrAmt4;
+	}
+	public BigDecimal getNetSfee() {
+		return netSfee;
+	}
+	public void setNetSfee(BigDecimal netSfee) {
+		this.netSfee = netSfee;
+	}
 	public AcctServFeeTotals getServFeeTotals() {
 		return servFeeTotals;
 	}
@@ -259,6 +295,7 @@ public class AcctServFeeDist {
 				+ ", actualShrPct=" + actualShrPct + ", actualShrAmt=" + actualShrAmt + ", baseShrPct=" + baseShrPct
 				+ ", baseShrAmt=" + baseShrAmt + ", netDueLocal=" + netDueLocal + ", sfeeAmt=" + sfeeAmt + ", vatAmt="
 				+ vatAmt + ", whtaxAmt=" + whtaxAmt + ", netDue=" + netDue + ", invoiceId=" + invoiceId
-				+ ", servFeeTotals=" + servFeeTotals + "]";
+				+ ", grossShrAmt1=" + grossShrAmt1 + ", grossShrAmt2=" + grossShrAmt2 + ", grossShrAmt3=" + grossShrAmt3
+				+ ", grossShrAmt4=" + grossShrAmt4 + ", netSfee=" + netSfee + ", servFeeTotals=" + servFeeTotals + "]";
 	}
 }
