@@ -1,6 +1,6 @@
 package ph.cpi.rest.api.model.utils;
 
-public class ACSER009 {
+public class ACSER008 {
 	private String periodFrom;
 	private String periodTo;
 	private String type;

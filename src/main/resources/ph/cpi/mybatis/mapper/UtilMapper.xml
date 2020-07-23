@@ -4443,7 +4443,7 @@
 		END;
 	</update>
 	
-	<update id="extractACSER009" parameterType="java.util.Map" statementType="CALLABLE">
+	<update id="extractACSER008" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			ACSER008_PKG.extract_acser008(
 											#{extractUser, jdbcType=VARCHAR},
