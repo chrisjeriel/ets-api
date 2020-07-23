@@ -4623,6 +4623,7 @@
 		<result property="transactDate"                 column="TRANSACT_DATE"/>
 		<result property="currencyCd"                   column="CURRENCY_CD"/>
 		<result property="treatyId"                     column="TREATY_ID"/>
+		<result property="treatyName"                   column="TREATY_NAME"/>
 		<result property="trtyCedId"                    column="TRTY_CED_ID"/>
 		<result property="trtyCedName"                  column="TRTY_CED_NAME"/>
 		<result property="premAmt"                      column="PREM_AMT"/>

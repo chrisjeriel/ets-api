@@ -16,6 +16,7 @@ public class POLR044U {
 	private String transactDate;
 	private String currencyCd;
 	private Integer treatyId;
+	private String treatyName;
 	private String trtyCedId;
 	private String trtyCedName;
 	private BigDecimal premAmt;
@@ -150,14 +151,20 @@ public class POLR044U {
 	public void setLossRatio(BigDecimal lossRatio) {
 		this.lossRatio = lossRatio;
 	}
+	public String getTreatyName() {
+		return treatyName;
+	}
+	public void setTreatyName(String treatyName) {
+		this.treatyName = treatyName;
+	}
 	@Override
 	public String toString() {
 		return "POLR044U [extractUser=" + extractUser + ", extractDate=" + extractDate + ", lineCdParam=" + lineCdParam
 				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag + ", uwYear=" + uwYear
 				+ ", transactDate=" + transactDate + ", currencyCd=" + currencyCd + ", treatyId=" + treatyId
-				+ ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName + ", premAmt=" + premAmt + ", commAmt="
-				+ commAmt + ", lossAmt=" + lossAmt + ", paidLoss=" + paidLoss + ", incurredLoss=" + incurredLoss
-				+ ", lossRatio=" + lossRatio + "]";
+				+ ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName
+				+ ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", lossAmt=" + lossAmt + ", paidLoss=" + paidLoss
+				+ ", incurredLoss=" + incurredLoss + ", lossRatio=" + lossRatio + "]";
 	}
 }
