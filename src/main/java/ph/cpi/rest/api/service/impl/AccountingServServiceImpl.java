@@ -100,7 +100,6 @@ import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RestoreServiceAccountingEntriesResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndUnpostedMonthsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
@@ -134,6 +133,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseTrialBalExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
@@ -1833,6 +1833,15 @@ public class AccountingServServiceImpl implements AccountingServService{
 			throws SQLException {
 		RetrieveAcseAcctEntriesExtResponse response = new RetrieveAcseAcctEntriesExtResponse();
 		response.setAcseAcctEntriesExt(acctServDao.retrieveAcseAcctEntriesExt(request));
+		return response;
+	}
+
+	@Override
+	public RetrieveAcseTrialBalExtResponse retrieveAcseTrialBalExt(String extractUser) throws SQLException {
+		RetrieveAcseTrialBalExtResponse response = new RetrieveAcseTrialBalExtResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extractUser", extractUser);
+		response.setList(acctServDao.retrieveAcseTrialBalExt(params));
 		return response;
 	}
 }
