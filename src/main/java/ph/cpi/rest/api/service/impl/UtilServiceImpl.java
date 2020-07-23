@@ -83,6 +83,8 @@ public class UtilServiceImpl implements UtilService {
 				params = ReportParameters.mapACITR058Params(grr.getAcitr058Params());
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER007")) {
 				params = ReportParameters.mapACSER007Params(grr.getAcser007Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR059")) {
+				params = ReportParameters.mapACITR059Params(grr.getAcitr059Params());
 			}
 			
 			params.put("extractCount", 0);

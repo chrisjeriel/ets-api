@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.utils.ACITR049;
 import ph.cpi.rest.api.model.utils.ACITR050;
 import ph.cpi.rest.api.model.utils.ACITR052;
 import ph.cpi.rest.api.model.utils.ACITR058;
+import ph.cpi.rest.api.model.utils.ACITR059;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER007;
@@ -426,5 +427,18 @@ public class ReportParameters {
 
 
 		return ACSER007Params;
+	}
+
+	public static HashMap<String, Object> mapACITR059Params(ACITR059 param) {
+		HashMap<String, Object> ACSER059Params = new HashMap<String, Object>();
+		ACSER059Params.put("periodFrom", param.getPeriodFrom());
+		ACSER059Params.put("periodTo", param.getPeriodTo());
+		ACSER059Params.put("type", param.getType());
+		ACSER059Params.put("currCdParam", param.getCurrCdParam());
+		ACSER059Params.put("forceExtract", param.getForceExtract());
+		ACSER059Params.put("extractUser", param.getExtractUser());
+		ACSER059Params.put("reportId", param.getReportId());
+		ACSER059Params.put("reportName", param.getReportName());
+		return ACSER059Params;
 	}
 }

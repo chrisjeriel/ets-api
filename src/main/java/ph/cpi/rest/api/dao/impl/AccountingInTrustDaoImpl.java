@@ -70,6 +70,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitTrialBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
@@ -1376,6 +1377,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) {
 		List<AcitAcctEntriesExt> res = sqlSession.selectList("retrieveAcitAcctEntriesExt", request);
+		return res;
+	}
+
+	@Override
+	public List<AcitTrialBal> retrieveAcitTrialBalExt(HashMap<String, Object> params) throws SQLException {
+		List<AcitTrialBal> res = sqlSession.selectList("retrieveAcitTrialBalExt", params);
 		return res;
 	}
 }

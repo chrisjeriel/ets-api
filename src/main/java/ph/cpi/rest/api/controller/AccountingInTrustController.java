@@ -1018,4 +1018,10 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitAcctEntriesExt(request);
 	}
 	
+	@GetMapping(path="retrieveAcitTrialBalExt")
+	public @ResponseBody RetrieveAcitTrialBalExtResponse retrieveAcitTrialBalExt(String extractUser) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitTrialBalExt");
+		logger.info("RetrieveAcitTrialBalExtRequest : " + extractUser.toString());
+		return acctInTrustService.retrieveAcitTrialBalExt(extractUser);
+	}
 }

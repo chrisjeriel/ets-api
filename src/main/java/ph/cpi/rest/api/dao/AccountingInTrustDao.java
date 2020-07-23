@@ -60,6 +60,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitTrialBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
@@ -289,5 +290,6 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> updateAgingSoa(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
-	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request);
+	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request)throws SQLException;
+	public List<AcitTrialBal> retrieveAcitTrialBalExt(HashMap<String, Object> params)throws SQLException;
 }
