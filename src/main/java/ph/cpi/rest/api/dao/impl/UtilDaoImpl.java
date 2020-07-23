@@ -11,102 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ph.cpi.rest.api.dao.UtilDao;
-import ph.cpi.rest.api.model.utils.ACITR050B;
-import ph.cpi.rest.api.model.utils.ACITR050C;
-import ph.cpi.rest.api.model.utils.ACITR050D;
-import ph.cpi.rest.api.model.utils.ACITR058_CSV;
-import ph.cpi.rest.api.model.utils.ACITR061A;
-import ph.cpi.rest.api.model.utils.ACITR061B;
-import ph.cpi.rest.api.model.utils.ACITR061C;
-import ph.cpi.rest.api.model.utils.ACITR061D;
-import ph.cpi.rest.api.model.utils.ACITR063A;
-import ph.cpi.rest.api.model.utils.ACITR066A;
-import ph.cpi.rest.api.model.utils.ACITR066B;
-import ph.cpi.rest.api.model.utils.ACITR066C;
-import ph.cpi.rest.api.model.utils.ACITR066D;
-import ph.cpi.rest.api.model.utils.ACITR066EF;
-import ph.cpi.rest.api.model.utils.ACSER004;
-import ph.cpi.rest.api.model.utils.ACSER024A;
-import ph.cpi.rest.api.model.utils.ACSER024B;
-import ph.cpi.rest.api.model.utils.ACSER024CD;
-import ph.cpi.rest.api.model.utils.CLMR010A;
-import ph.cpi.rest.api.model.utils.CLMR010AP;
-import ph.cpi.rest.api.model.utils.CLMR010B;
-import ph.cpi.rest.api.model.utils.CLMR010BE;
-import ph.cpi.rest.api.model.utils.CLMR010C;
-import ph.cpi.rest.api.model.utils.CLMR010D;
-import ph.cpi.rest.api.model.utils.CLMR010E;
-import ph.cpi.rest.api.model.utils.CLMR010F;
-import ph.cpi.rest.api.model.utils.CLMR010G;
-import ph.cpi.rest.api.model.utils.CLMR010H;
-import ph.cpi.rest.api.model.utils.CLMR010HA;
-import ph.cpi.rest.api.model.utils.CLMR010I;
-import ph.cpi.rest.api.model.utils.CLMR010IA;
-import ph.cpi.rest.api.model.utils.CLMR010J;
-import ph.cpi.rest.api.model.utils.CLMR010K;
-import ph.cpi.rest.api.model.utils.CLMR010L;
-import ph.cpi.rest.api.model.utils.CLMR010M;
-import ph.cpi.rest.api.model.utils.CLMR010ME;
-import ph.cpi.rest.api.model.utils.CLMR010N;
-import ph.cpi.rest.api.model.utils.CLMR010NE;
-import ph.cpi.rest.api.model.utils.CLMR010O;
-import ph.cpi.rest.api.model.utils.CLMR010P;
-import ph.cpi.rest.api.model.utils.CLMR010Q;
-import ph.cpi.rest.api.model.utils.CLMR010R;
-import ph.cpi.rest.api.model.utils.CLMR010S;
-import ph.cpi.rest.api.model.utils.CLMR010T;
-import ph.cpi.rest.api.model.utils.CLMR010U;
-import ph.cpi.rest.api.model.utils.CLMR010V;
-import ph.cpi.rest.api.model.utils.CLMR010W;
-import ph.cpi.rest.api.model.utils.CLMR010X;
-import ph.cpi.rest.api.model.utils.CLMR010Y;
-import ph.cpi.rest.api.model.utils.CLMR010ZO;
-import ph.cpi.rest.api.model.utils.CLMR010ZP;
-import ph.cpi.rest.api.model.utils.POLR044;
-import ph.cpi.rest.api.model.utils.POLR044A;
-import ph.cpi.rest.api.model.utils.POLR044B;
-import ph.cpi.rest.api.model.utils.POLR044C;
-import ph.cpi.rest.api.model.utils.POLR044D;
-import ph.cpi.rest.api.model.utils.POLR044E;
-import ph.cpi.rest.api.model.utils.POLR044F;
-import ph.cpi.rest.api.model.utils.POLR044G;
-import ph.cpi.rest.api.model.utils.POLR044H;
-import ph.cpi.rest.api.model.utils.POLR044HA;
-import ph.cpi.rest.api.model.utils.POLR044I;
-import ph.cpi.rest.api.model.utils.POLR044J;
-import ph.cpi.rest.api.model.utils.POLR044JA;
-import ph.cpi.rest.api.model.utils.POLR044K;
-import ph.cpi.rest.api.model.utils.POLR044KA;
-import ph.cpi.rest.api.model.utils.POLR044L;
-import ph.cpi.rest.api.model.utils.POLR044M;
-import ph.cpi.rest.api.model.utils.POLR044N;
-import ph.cpi.rest.api.model.utils.POLR044O;
-import ph.cpi.rest.api.model.utils.POLR044OA;
-import ph.cpi.rest.api.model.utils.POLR044OB;
-import ph.cpi.rest.api.model.utils.POLR044P;
-import ph.cpi.rest.api.model.utils.POLR044Q;
-import ph.cpi.rest.api.model.utils.POLR044Q2;
-import ph.cpi.rest.api.model.utils.POLR044R;
-import ph.cpi.rest.api.model.utils.POLR044S;
-import ph.cpi.rest.api.model.utils.POLR044T;
-import ph.cpi.rest.api.model.utils.POLR044V;
-import ph.cpi.rest.api.model.utils.POLR044W;
-import ph.cpi.rest.api.model.utils.POLR044X;
-import ph.cpi.rest.api.model.utils.POLR044Y;
-import ph.cpi.rest.api.model.utils.POLR044YA;
-import ph.cpi.rest.api.model.utils.POLR044Z;
-import ph.cpi.rest.api.model.utils.POLR052A;
-import ph.cpi.rest.api.model.utils.POLR052AA;
-import ph.cpi.rest.api.model.utils.POLR052B;
-import ph.cpi.rest.api.model.utils.POLR052BA;
-import ph.cpi.rest.api.model.utils.POLR052C;
-import ph.cpi.rest.api.model.utils.POLR052CA;
-import ph.cpi.rest.api.model.utils.POLR052D;
-import ph.cpi.rest.api.model.utils.POLR052E;
-import ph.cpi.rest.api.model.utils.POLR052F;
-import ph.cpi.rest.api.model.utils.POLR052G;
-import ph.cpi.rest.api.model.utils.POLR052H;
-import ph.cpi.rest.api.model.utils.POLR052I;
+import ph.cpi.rest.api.model.utils.*;
 
 @Component
 public class UtilDaoImpl implements UtilDao{
@@ -798,5 +703,31 @@ public class UtilDaoImpl implements UtilDao{
 		List<ACITR058_CSV> retrieveAcitR058 = sqlSession.selectList("retrieveAcitR058",params);
 		return retrieveAcitR058;
 	}
+
+	@Override
+	public List<ACSER007_CSV> retrieveAcseR007(HashMap<String, Object> params) throws SQLException {
+		List<ACSER007_CSV> retrieveAcseR007 = sqlSession.selectList("retrieveAcseR007",params);
+		return retrieveAcseR007;
+	}
+
+	@Override
+	public List<ACITR059_CSV> retrieveAcitR059(HashMap<String, Object> params) throws SQLException {
+		List<ACITR059_CSV> retrieveAcitR059 = sqlSession.selectList("retrieveAcitR059",params);
+		return retrieveAcitR059;
+	}
+
+	@Override
+	public List<ACSER008_CSV> retrieveAcseR008(HashMap<String, Object> params) throws SQLException {
+		List<ACSER008_CSV> retrieveAcseR008 = sqlSession.selectList("retrieveAcseR008",params);
+		return retrieveAcseR008;
+	}
+
+	@Override
+	public List<POLR044U> retrievePolR044u(HashMap<String, Object> params) throws SQLException {
+		List<POLR044U> retrievePolR044u = sqlSession.selectList("retrievePolR044u",params);
+		return retrievePolR044u;
+	}
+
+	
 
 }

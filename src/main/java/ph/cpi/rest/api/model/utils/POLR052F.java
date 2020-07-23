@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR052F {
 	private String dateFromTo;
 	private String tranTypeDesc;
@@ -13,17 +15,17 @@ public class POLR052F {
 	private String cedingName;
 	private String lineCd;
 	private String debitMemoNo;
-	private String policyId;
+	private Integer policyId;
 	private String policyNo;
-	private String instNo;
+	private Integer instNo;
 	private String policyRef;
 	private String inceptDate;
 	private String expDate;
 	private String effDate;
-	private String dueFrom;
-	private String commAmt;
-	private String vatriComm;
-	private String premAmt;
+	private BigDecimal dueFrom;
+	private BigDecimal commAmt;
+	private BigDecimal vatriComm;
+	private BigDecimal premAmt;
 	private String dateRange;
 	private String currencyCd;
 	private String insuredDesc;
@@ -99,10 +101,10 @@ public class POLR052F {
 	public void setDebitMemoNo(String debitMemoNo) {
 		this.debitMemoNo = debitMemoNo;
 	}
-	public String getPolicyId() {
+	public Integer getPolicyId() {
 		return policyId;
 	}
-	public void setPolicyId(String policyId) {
+	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
 	public String getPolicyNo() {
@@ -111,10 +113,10 @@ public class POLR052F {
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
 	}
-	public String getInstNo() {
+	public Integer getInstNo() {
 		return instNo;
 	}
-	public void setInstNo(String instNo) {
+	public void setInstNo(Integer instNo) {
 		this.instNo = instNo;
 	}
 	public String getPolicyRef() {
@@ -141,28 +143,28 @@ public class POLR052F {
 	public void setEffDate(String effDate) {
 		this.effDate = effDate;
 	}
-	public String getDueFrom() {
+	public BigDecimal getDueFrom() {
 		return dueFrom;
 	}
-	public void setDueFrom(String dueFrom) {
+	public void setDueFrom(BigDecimal dueFrom) {
 		this.dueFrom = dueFrom;
 	}
-	public String getCommAmt() {
+	public BigDecimal getCommAmt() {
 		return commAmt;
 	}
-	public void setCommAmt(String commAmt) {
+	public void setCommAmt(BigDecimal commAmt) {
 		this.commAmt = commAmt;
 	}
-	public String getVatriComm() {
+	public BigDecimal getVatriComm() {
 		return vatriComm;
 	}
-	public void setVatriComm(String vatriComm) {
+	public void setVatriComm(BigDecimal vatriComm) {
 		this.vatriComm = vatriComm;
 	}
-	public String getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(String premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
 	public String getDateRange() {
