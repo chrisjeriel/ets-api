@@ -27,12 +27,10 @@ import ph.cpi.rest.api.model.Error;
 import ph.cpi.rest.api.model.Response;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.request.GenerateReportRequest;
-import ph.cpi.rest.api.model.request.RetrieveAcitCvPaytReqListRequest;
 import ph.cpi.rest.api.model.request.RetrieveExtractToCsvRequest;
 import ph.cpi.rest.api.model.request.RetrieveExtractToCsvResponse;
 import ph.cpi.rest.api.model.request.UploadAcctEntryRequest;
 import ph.cpi.rest.api.model.response.ExtractReportResponse;
-import ph.cpi.rest.api.model.response.RetrieveAcitCvPaytReqListResponse;
 import ph.cpi.rest.api.model.response.UploadAcctEntryResponse;
 import ph.cpi.rest.api.service.AccountingInTrustService;
 import ph.cpi.rest.api.service.UtilService;
@@ -83,6 +81,10 @@ public class UtilServiceImpl implements UtilService {
 				params = ReportParameters.mapACITR058Params(grr.getAcitr058Params());
 			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER007")) {
 				params = ReportParameters.mapACSER007Params(grr.getAcser007Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACITR059")) {
+				params = ReportParameters.mapACITR059Params(grr.getAcitr059Params());
+			} else if (grr.getReportId() != null &&  grr.getReportId().toUpperCase().contains("ACSER009")) {
+				params = ReportParameters.mapACSER009Params(grr.getAcser009Params());
 			}
 			
 			params.put("extractCount", 0);

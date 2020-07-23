@@ -3187,4 +3187,14 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		response.setAcitAcctEntriesExt(acctITDao.retrieveAcitAcctEntriesExt(request));
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitTrialBalExtResponse retrieveAcitTrialBalExt(String extractUser) throws SQLException {
+		RetrieveAcitTrialBalExtResponse response = new RetrieveAcitTrialBalExtResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extractUser", extractUser);
+		response.setList(acctITDao.retrieveAcitTrialBalExt(params));
+		return response;
+	}
 }

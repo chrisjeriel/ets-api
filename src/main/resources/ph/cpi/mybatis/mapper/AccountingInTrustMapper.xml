@@ -5708,4 +5708,31 @@
 		
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitTrialBal" id="AcitTrialBalMap">
+		<result property="extractId"	column="EXTRACT_ID"/>
+		<result property="glAcctId"		column="GL_ACCT_ID"/>
+		<result property="acctCode"		column="ACCT_CODE"/>
+		<result property="acctName"		column="ACCT_NAME"/>
+		<result property="currCd"		column="CURR_CD"/>
+		<result property="slTypeCd"		column="SL_TYPE_CD"/>
+		<result property="slTypeName"	column="SL_TYPE_NAME"/>
+		<result property="slCd"			column="SL_CD"/>
+		<result property="slName"		column="SL_NAME"/>
+		<result property="totalCredit"	column="TOTAL_CREDIT"/>
+		<result property="totalDebit"	column="TOTAL_DEBIT"/>
+		<result property="periodFrom"	column="PERIOD_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="periodTo"		column="PERIOD_TO" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="extractUser"	column="EXTRACT_USER"/>
+		<result property="extractDate"	column="EXTRACT_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="currCdParam"	column="CURR_CD_PARAM"/>
+		<result property="type"			column="EXT_TYPE"/>
+		
+	</resultMap>
+	
+	<select id="retrieveAcitTrialBalExt" resultMap="AcitTrialBalMap">
+		SELECT * FROM TABLE( ACITR059_PKG.ret_acitr059(
+											#{extractUser, jdbcType=VARCHAR}
+										  ))
+	</select>
+	
 </mapper>

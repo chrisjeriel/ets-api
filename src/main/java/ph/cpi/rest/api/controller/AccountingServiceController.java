@@ -135,6 +135,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseTrialBalExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
@@ -710,4 +711,10 @@ public class AccountingServiceController {
 		return acctServService.retrieveAcseAcctEntriesExt(request);
 	}
     
+    @GetMapping(path="retrieveAcseTrialBalExt")
+	public @ResponseBody RetrieveAcseTrialBalExtResponse retrieveAcseTrialBalExt(String extractUser) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseTrialBalExt");
+		logger.info("RetrieveAcseTrialBalExtRequest : " + extractUser.toString());
+		return acctServService.retrieveAcseTrialBalExt(extractUser);
+	}
 }

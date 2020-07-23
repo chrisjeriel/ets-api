@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -70,6 +68,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitTrialBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
@@ -105,8 +104,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	private DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
 	
 	private TransactionStatus txStat;
-		
-	private static final Logger logger = LoggerFactory.getLogger(AccountingInTrustDaoImpl.class);
 
 	@Override
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
@@ -1376,6 +1373,12 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) {
 		List<AcitAcctEntriesExt> res = sqlSession.selectList("retrieveAcitAcctEntriesExt", request);
+		return res;
+	}
+
+	@Override
+	public List<AcitTrialBal> retrieveAcitTrialBalExt(HashMap<String, Object> params) throws SQLException {
+		List<AcitTrialBal> res = sqlSession.selectList("retrieveAcitTrialBalExt", params);
 		return res;
 	}
 }

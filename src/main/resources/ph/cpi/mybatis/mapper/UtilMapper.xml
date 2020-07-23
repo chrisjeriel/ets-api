@@ -452,6 +452,22 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR044U" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044U_PKG.extract_triangulated_stats(#{extractUser, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
+												  #{cedingIdParam, jdbcType=VARCHAR}, 
+												  #{dateParam, jdbcType=VARCHAR},
+												  #{dateRange, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{incRecTag, jdbcType=VARCHAR},
+												  #{extractCount, mode=OUT, jdbcType=INTEGER},
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam,jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<update id="extractPOLR044X" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044X_PKG.extract_polr044x(#{extractUser, jdbcType=VARCHAR},
@@ -4412,8 +4428,36 @@
                     #{paramCurrency,jdbcType=VARCHAR},
                     #{cedingId,jdbcType=VARCHAR}))
     </select>
-    
-    <resultMap type="ph.cpi.rest.api.model.utils.ACITR058_CSV" id="retrieveAcitR058Map">
+   
+    <update id="extractACITR059" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACITR059_PKG.extract_acitr059(
+											#{extractUser, jdbcType=VARCHAR},
+											#{type, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{periodFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											CAST(to_timestamp(#{periodTo, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											#{currCdParam, jdbcType=VARCHAR},
+											#{extractCount, mode=OUT, jdbcType=INTEGER},
+											#{forceExtract, jdbcType=VARCHAR}
+										  );
+		END;
+	</update>
+	
+	<update id="extractACSER009" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			ACSER008_PKG.extract_acser008(
+											#{extractUser, jdbcType=VARCHAR},
+											#{type, jdbcType=VARCHAR},
+											CAST(to_timestamp(#{periodFrom, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											CAST(to_timestamp(#{periodTo, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
+											#{currCdParam, jdbcType=VARCHAR},
+											#{extractCount, mode=OUT, jdbcType=INTEGER},
+											#{forceExtract, jdbcType=VARCHAR}
+										  );
+		END;
+	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.utils.ACITR058_CSV" id="retrieveAcitR058Map">
     	<result property="acctParamCode"                    column="ACCT_PARAM_CODE"/>
 		<result property="acctParamName"                    column="ACCT_PARAM_NAME"/>
 		<result property="slTypeParamName"                  column="SL_TYPE_PARAM_NAME"/>
@@ -4593,5 +4637,4 @@
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044u_to_csv(
 					#{extractUser,jdbcType=VARCHAR}))
 	</select>
-    
 </mapper>

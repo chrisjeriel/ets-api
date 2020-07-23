@@ -152,4 +152,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitMonthEndJVResponse retrieveAcitMonthEndJV(RetrieveAcitMonthEndJVRequest ramer) throws SQLException;
 	public RetrieveAcitQsoaPrintResponse retrieveAcitQsoaPrint(RetrieveAcitQsoaPrintRequest request) throws SQLException;
 	public RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) throws SQLException;
+	public RetrieveAcitTrialBalExtResponse retrieveAcitTrialBalExt(String extractUser)throws SQLException;
 }
