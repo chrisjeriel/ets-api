@@ -8,7 +8,7 @@ import ph.cpi.rest.api.model.utils.ACITR059;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER007;
-import ph.cpi.rest.api.model.utils.ACSER009;
+import ph.cpi.rest.api.model.utils.ACSER008;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
@@ -44,15 +44,16 @@ public class GenerateReportRequest {
 	private ACITR058 acitr058Params;
 	private ACSER007 acser007Params;
 	private ACITR059 acitr059Params;
-	private ACSER009 acser009Params;
+	private ACSER008 acser008Params;
 	private String memoId;
 	
 	
-	public ACSER009 getAcser009Params() {
-		return acser009Params;
+	
+	public ACSER008 getAcser008Params() {
+		return acser008Params;
 	}
-	public void setAcser009Params(ACSER009 acser009Params) {
-		this.acser009Params = acser009Params;
+	public void setAcser008Params(ACSER008 acser008Params) {
+		this.acser008Params = acser008Params;
 	}
 	public ACITR059 getAcitr059Params() {
 		return acitr059Params;
@@ -285,8 +286,8 @@ public class GenerateReportRequest {
 				+ acitr052Params + ", acser060Params=" + acser060Params + ", acitr066Params=" + acitr066Params
 				+ ", acser024Params=" + acser024Params + ", acitr049Params=" + acitr049Params + ", acitr050Params="
 				+ acitr050Params + ", clmr052Params=" + clmr052Params + ", acitr058Params=" + acitr058Params
-				+ ", acser007Params=" + acser007Params + ", acitr059Params=" + acitr059Params + ", acser009Params="
-				+ acser009Params + ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation="
+				+ ", acser007Params=" + acser007Params + ", acitr059Params=" + acitr059Params + ", acser008Params="
+				+ acser008Params + ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation="
 				+ pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId
 				+ ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
 	}

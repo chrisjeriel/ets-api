@@ -12,7 +12,7 @@ import ph.cpi.rest.api.model.utils.ACITR059;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
 import ph.cpi.rest.api.model.utils.ACSER007;
-import ph.cpi.rest.api.model.utils.ACSER009;
+import ph.cpi.rest.api.model.utils.ACSER008;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
@@ -443,7 +443,7 @@ public class ReportParameters {
 		return ACSER059Params;
 	}
 	
-	public static HashMap<String, Object> mapACSER009Params(ACSER009 param) {
+	public static HashMap<String, Object> mapACSER008Params(ACSER008 param) {
 		HashMap<String, Object> ACSER009Params = new HashMap<String, Object>();
 		ACSER009Params.put("periodFrom", param.getPeriodFrom());
 		ACSER009Params.put("periodTo", param.getPeriodTo());
