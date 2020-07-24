@@ -4624,10 +4624,12 @@
 		<result property="currencyCd"                   column="CURRENCY_CD"/>
 		<result property="treatyId"                     column="TREATY_ID"/>
 		<result property="treatyName"                   column="TREATY_NAME"/>
+		<result property="retLayer"                   	column="RET_LAYER"/>
 		<result property="trtyCedId"                    column="TRTY_CED_ID"/>
 		<result property="trtyCedName"                  column="TRTY_CED_NAME"/>
 		<result property="premAmt"                      column="PREM_AMT"/>
 		<result property="commAmt"                      column="COMM_AMT"/>
+		<result property="riCommVat"                    column="RI_COMM_VAT"/>
 		<result property="lossAmt"                      column="LOSS_AMT"/>
 		<result property="paidLoss"                     column="PAID_LOSS"/>
 		<result property="incurredLoss"                 column="INCURRED_LOSS"/>
