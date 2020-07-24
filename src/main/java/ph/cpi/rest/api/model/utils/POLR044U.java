@@ -17,10 +17,12 @@ public class POLR044U {
 	private String currencyCd;
 	private Integer treatyId;
 	private String treatyName;
+	private Integer retLayer;
 	private String trtyCedId;
 	private String trtyCedName;
 	private BigDecimal premAmt;
 	private BigDecimal commAmt;
+	private BigDecimal riCommVat;
 	private BigDecimal lossAmt;
 	private BigDecimal paidLoss;
 	private BigDecimal incurredLoss;
@@ -157,14 +159,27 @@ public class POLR044U {
 	public void setTreatyName(String treatyName) {
 		this.treatyName = treatyName;
 	}
+	public Integer getRetLayer() {
+		return retLayer;
+	}
+	public void setRetLayer(Integer retLayer) {
+		this.retLayer = retLayer;
+	}
+	public BigDecimal getRiCommVat() {
+		return riCommVat;
+	}
+	public void setRiCommVat(BigDecimal riCommVat) {
+		this.riCommVat = riCommVat;
+	}
 	@Override
 	public String toString() {
 		return "POLR044U [extractUser=" + extractUser + ", extractDate=" + extractDate + ", lineCdParam=" + lineCdParam
 				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
 				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag + ", uwYear=" + uwYear
 				+ ", transactDate=" + transactDate + ", currencyCd=" + currencyCd + ", treatyId=" + treatyId
-				+ ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName
-				+ ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", lossAmt=" + lossAmt + ", paidLoss=" + paidLoss
-				+ ", incurredLoss=" + incurredLoss + ", lossRatio=" + lossRatio + "]";
+				+ ", treatyName=" + treatyName + ", retLayer=" + retLayer + ", trtyCedId=" + trtyCedId
+				+ ", trtyCedName=" + trtyCedName + ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", riCommVat="
+				+ riCommVat + ", lossAmt=" + lossAmt + ", paidLoss=" + paidLoss + ", incurredLoss=" + incurredLoss
+				+ ", lossRatio=" + lossRatio + "]";
 	}
 }
