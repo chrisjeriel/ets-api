@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.apache.ibatis.type.Alias;
 import org.joda.time.DateTime;
 
@@ -26,6 +28,58 @@ public class HoldCover {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	
+	
+	private Integer totalNoDays;
+	private BigDecimal premAmt;
+	private BigDecimal commAmt;
+	private BigDecimal vatRiComm;
+	private BigDecimal netDue;
+	private String currCd;
+	private BigDecimal currRt;
+	
+	public Integer getTotalNoDays() {
+		return totalNoDays;
+	}
+	public void setTotalNoDays(Integer totalNoDays) {
+		this.totalNoDays = totalNoDays;
+	}
+	public BigDecimal getPremAmt() {
+		return premAmt;
+	}
+	public void setPremAmt(BigDecimal premAmt) {
+		this.premAmt = premAmt;
+	}
+	public BigDecimal getCommAmt() {
+		return commAmt;
+	}
+	public void setCommAmt(BigDecimal commAmt) {
+		this.commAmt = commAmt;
+	}
+	public BigDecimal getVatRiComm() {
+		return vatRiComm;
+	}
+	public void setVatRiComm(BigDecimal vatRiComm) {
+		this.vatRiComm = vatRiComm;
+	}
+	public BigDecimal getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(BigDecimal netDue) {
+		this.netDue = netDue;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
+	public BigDecimal getCurrRt() {
+		return currRt;
+	}
+	public void setCurrRt(BigDecimal currRt) {
+		this.currRt = currRt;
+	}
 	public String getPolicyId() {
 		return policyId;
 	}
@@ -154,6 +208,7 @@ public class HoldCover {
 				+ compRefHoldCovNo + ", status=" + status + ", statusDesc=" + statusDesc + ", reqBy=" + reqBy
 				+ ", reqDate=" + reqDate + ", preparedBy=" + preparedBy + ", approvedBy=" + approvedBy + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", totalNoDays=" + totalNoDays + ", premAmt=" + premAmt + ", commAmt=" + commAmt
+				+ ", vatRiComm=" + vatRiComm + ", netDue=" + netDue + ", currCd=" + currCd + ", currRt=" + currRt + "]";
 	}
 }
