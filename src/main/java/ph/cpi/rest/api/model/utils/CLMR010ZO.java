@@ -6,11 +6,14 @@ public class CLMR010ZO {
 	private String extractUser;
 	private String extractDate;
 	private String currencyCd;
-	private String currCdDesc;
 	private String lineCd;
+	private Integer claimId;
+	private String claimNo;
+	private Integer policyId;
+	private String policyNo;
+	private BigDecimal tsiAmt;
 	private String trtyCedId;
 	private String trtyCedIdName;
-	private Integer clmCount;
 	private BigDecimal clmAmtTotal;
 	private BigDecimal clmAmtQuota;
 	private BigDecimal clmAmtQuotaRet1;
@@ -21,13 +24,10 @@ public class CLMR010ZO {
 	private Integer siRange;
 	private BigDecimal amtRangeFrom;
 	private BigDecimal amtRangeTo;
-	private String amtRangeDesc;
 	private String dateParam;
 	private String dateRange;
 	private String dateFrom;
 	private String dateTo;
-	private String dateFromTo;
-	private Integer sortSeq;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -46,17 +46,41 @@ public class CLMR010ZO {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getCurrCdDesc() {
-		return currCdDesc;
-	}
-	public void setCurrCdDesc(String currCdDesc) {
-		this.currCdDesc = currCdDesc;
-	}
 	public String getLineCd() {
 		return lineCd;
 	}
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
+	}
+	public Integer getClaimId() {
+		return claimId;
+	}
+	public void setClaimId(Integer claimId) {
+		this.claimId = claimId;
+	}
+	public String getClaimNo() {
+		return claimNo;
+	}
+	public void setClaimNo(String claimNo) {
+		this.claimNo = claimNo;
+	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+	public BigDecimal getTsiAmt() {
+		return tsiAmt;
+	}
+	public void setTsiAmt(BigDecimal tsiAmt) {
+		this.tsiAmt = tsiAmt;
 	}
 	public String getTrtyCedId() {
 		return trtyCedId;
@@ -69,12 +93,6 @@ public class CLMR010ZO {
 	}
 	public void setTrtyCedIdName(String trtyCedIdName) {
 		this.trtyCedIdName = trtyCedIdName;
-	}
-	public Integer getClmCount() {
-		return clmCount;
-	}
-	public void setClmCount(Integer clmCount) {
-		this.clmCount = clmCount;
 	}
 	public BigDecimal getClmAmtTotal() {
 		return clmAmtTotal;
@@ -136,12 +154,6 @@ public class CLMR010ZO {
 	public void setAmtRangeTo(BigDecimal amtRangeTo) {
 		this.amtRangeTo = amtRangeTo;
 	}
-	public String getAmtRangeDesc() {
-		return amtRangeDesc;
-	}
-	public void setAmtRangeDesc(String amtRangeDesc) {
-		this.amtRangeDesc = amtRangeDesc;
-	}
 	public String getDateParam() {
 		return dateParam;
 	}
@@ -166,28 +178,15 @@ public class CLMR010ZO {
 	public void setDateTo(String dateTo) {
 		this.dateTo = dateTo;
 	}
-	public String getDateFromTo() {
-		return dateFromTo;
-	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
-	}
-	public Integer getSortSeq() {
-		return sortSeq;
-	}
-	public void setSortSeq(Integer sortSeq) {
-		this.sortSeq = sortSeq;
-	}
 	@Override
 	public String toString() {
 		return "CLMR010ZO [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", currCdDesc=" + currCdDesc + ", lineCd=" + lineCd + ", trtyCedId=" + trtyCedId + ", trtyCedIdName="
-				+ trtyCedIdName + ", clmCount=" + clmCount + ", clmAmtTotal=" + clmAmtTotal + ", clmAmtQuota="
-				+ clmAmtQuota + ", clmAmtQuotaRet1=" + clmAmtQuotaRet1 + ", clmAmtQuotaRet2=" + clmAmtQuotaRet2
-				+ ", clmAmt1stSurplus=" + clmAmt1stSurplus + ", clmAmt2ndSurplus=" + clmAmt2ndSurplus + ", clmAmtFacul="
-				+ clmAmtFacul + ", siRange=" + siRange + ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo
-				+ ", amtRangeDesc=" + amtRangeDesc + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", dateFromTo=" + dateFromTo + ", sortSeq="
-				+ sortSeq + "]";
+				+ ", lineCd=" + lineCd + ", claimId=" + claimId + ", claimNo=" + claimNo + ", policyId=" + policyId
+				+ ", policyNo=" + policyNo + ", tsiAmt=" + tsiAmt + ", trtyCedId=" + trtyCedId + ", trtyCedIdName="
+				+ trtyCedIdName + ", clmAmtTotal=" + clmAmtTotal + ", clmAmtQuota=" + clmAmtQuota + ", clmAmtQuotaRet1="
+				+ clmAmtQuotaRet1 + ", clmAmtQuotaRet2=" + clmAmtQuotaRet2 + ", clmAmt1stSurplus=" + clmAmt1stSurplus
+				+ ", clmAmt2ndSurplus=" + clmAmt2ndSurplus + ", clmAmtFacul=" + clmAmtFacul + ", siRange=" + siRange
+				+ ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo + ", dateParam=" + dateParam
+				+ ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + "]";
 	}
 }

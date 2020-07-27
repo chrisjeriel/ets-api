@@ -1864,30 +1864,30 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044R" id="retrievePolR044rMap">
-		<result property="extractUser"      column="EXTRACT_USER"/>
-		<result property="extractDate"      column="EXTRACT_DATE"/>
-		<result property="currencyCd"       column="CURRENCY_CD"/>
-		<result property="lineCd"           column="LINE_CD"/>
-		<result property="cedingId"         column="CEDING_ID"/>
-		<result property="cedingName"       column="CEDING_NAME"/>
-		<result property="polCount"         column="POL_COUNT"/>
-		<result property="premTotal"        column="PREM_TOTAL"/>
-		<result property="premQuota"        column="PREM_QUOTA"/>
-		<result property="premQuotaRet1"    column="PREM_QUOTA_RET1"/>
-		<result property="premQuotaRet2"    column="PREM_QUOTA_RET2"/>
-		<result property="prem1stSurplus"   column="PREM_1ST_SURPLUS"/>
-		<result property="prem2ndSurplus"   column="PREM_2ND_SURPLUS"/>
-		<result property="premFacul"        column="PREM_FACUL"/>
-		<result property="siRange"          column="SI_RANGE"/>
-		<result property="amtRangeFrom"     column="AMT_RANGE_FROM"/>
-		<result property="amtRangeTo"       column="AMT_RANGE_TO"/>
-		<result property="amtRangeDesc"     column="AMT_RANGE_DESC"/>
-		<result property="dateParam"        column="DATE_PARAM"/>
-		<result property="dateRange"        column="DATE_RANGE"/>
-		<result property="fromDate"         column="FROM_DATE"/>
-		<result property="toDate"           column="TO_DATE"/>
-		<result property="dateFromTo"       column="DATE_FROM_TO"/>
-		<result property="incRecTag"        column="INC_REC_TAG"/>
+		<result property="extractUser"          column="EXTRACT_USER"/>
+		<result property="extractDate"          column="EXTRACT_DATE"/>
+		<result property="currencyCd"           column="CURRENCY_CD"/>
+		<result property="lineCd"               column="LINE_CD"/>
+		<result property="policyId"             column="POLICY_ID"/>
+		<result property="policyNo"             column="POLICY_NO"/>
+		<result property="tsiAmt"               column="TSI_AMT"/>
+		<result property="cedingId"             column="CEDING_ID"/>
+		<result property="cedingName"           column="CEDING_NAME"/>
+		<result property="premTotal"            column="PREM_TOTAL"/>
+		<result property="premQuota"            column="PREM_QUOTA"/>
+		<result property="premQuotaRet1"        column="PREM_QUOTA_RET1"/>
+		<result property="premQuotaRet2"        column="PREM_QUOTA_RET2"/>
+		<result property="prem1stSurplus"       column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus"       column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul"            column="PREM_FACUL"/>
+		<result property="siRange"              column="SI_RANGE"/>
+		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
+		<result property="dateParam"            column="DATE_PARAM"/>
+		<result property="dateRange"            column="DATE_RANGE"/>
+		<result property="fromDate"             column="FROM_DATE"/>
+		<result property="toDate"               column="TO_DATE"/>
+		<result property="incRecTag"            column="INC_REC_TAG"/>
 	</resultMap>
 	
 	<select id="retrievePolR044r" resultMap="retrievePolR044rMap" parameterType="java.util.Map">
@@ -1896,30 +1896,31 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044S" id="retrievePolR044sMap">
-		<result property="extractUser"      column="EXTRACT_USER"/>
-		<result property="extractDate"      column="EXTRACT_DATE"/>
-		<result property="currencyCd"       column="CURRENCY_CD"/>
-		<result property="lineCd"           column="LINE_CD"/>
-		<result property="cedingId"         column="CEDING_ID"/>
-		<result property="cedingName"       column="CEDING_NAME"/>
-		<result property="polCount"         column="POL_COUNT"/>
-		<result property="siTotal"          column="SI_TOTAL"/>
-		<result property="siQuota"          column="SI_QUOTA"/>
-		<result property="siQuotaRet1"      column="SI_QUOTA_RET1"/>
-		<result property="siQuotaRet2"      column="SI_QUOTA_RET2"/>
-		<result property="si1stSurplus"     column="SI_1ST_SURPLUS"/>
-		<result property="si2ndSurplus"     column="SI_2ND_SURPLUS"/>
-		<result property="siFacul"          column="SI_FACUL"/>
-		<result property="siRange"          column="SI_RANGE"/>
-		<result property="amtRangeFrom"     column="AMT_RANGE_FROM"/>
-		<result property="amtRangeTo"       column="AMT_RANGE_TO"/>
-		<result property="amtRangeDesc"     column="AMT_RANGE_DESC"/>
-		<result property="dateParam"        column="DATE_PARAM"/>
-		<result property="dateRange"        column="DATE_RANGE"/>
-		<result property="fromDate"         column="FROM_DATE"/>
-		<result property="toDate"           column="TO_DATE"/>
-		<result property="incRecTag"        column="INC_REC_TAG"/>
-		<result property="dateFromTo"       column="DATE_FROM_TO"/>
+		<result property="extractUser"			column="EXTRACT_USER"/>
+		<result property="extractDate"			column="EXTRACT_DATE"/>
+		<result property="currencyCd"			column="CURRENCY_CD"/>
+		<result property="lineCd"				column="LINE_CD"/>
+		<result property="policyId"				column="POLICY_ID"/>
+		<result property="policyNo"				column="POLICY_NO"/>
+		<result property="tsiAmt"				column="TSI_AMT"/>
+		<result property="cedingId"				column="CEDING_ID"/>
+		<result property="cedingName"			column="CEDING_NAME"/>
+		<result property="polCount"				column="POL_COUNT"/>
+		<result property="siTotal"				column="SI_TOTAL"/>
+		<result property="siQuota"				column="SI_QUOTA"/>
+		<result property="siQuotaRet1"			column="SI_QUOTA_RET1"/>
+		<result property="siQuotaRet2"			column="SI_QUOTA_RET2"/>
+		<result property="si1stSurplus"			column="SI_1ST_SURPLUS"/>
+		<result property="si2ndSurplus"			column="SI_2ND_SURPLUS"/>
+		<result property="siFacul"				column="SI_FACUL"/>
+		<result property="siRange"				column="SI_RANGE"/>
+		<result property="amtRangeFrom"			column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"			column="AMT_RANGE_TO"/>
+		<result property="dateParam"			column="DATE_PARAM"/>
+		<result property="dateRange"			column="DATE_RANGE"/>
+		<result property="fromDate"				column="FROM_DATE"/>
+		<result property="toDate"				column="TO_DATE"/>
+		<result property="incRecTag"			column="INC_REC_TAG"/>
 	</resultMap>
 	
 	<select id="retrievePolR044s" resultMap="retrievePolR044sMap" parameterType="java.util.Map">
@@ -4336,11 +4337,14 @@
     	<result property="extractUser"          column="EXTRACT_USER"/>
 		<result property="extractDate"          column="EXTRACT_DATE"/>
 		<result property="currencyCd"           column="CURRENCY_CD"/>
-		<result property="currCdDesc"           column="CURR_CD_DESC"/>
 		<result property="lineCd"               column="LINE_CD"/>
+		<result property="claimId"              column="CLAIM_ID"/>
+		<result property="claimNo"              column="CLAIM_NO"/>
+		<result property="policyId"             column="POLICY_ID"/>
+		<result property="policyNo"             column="POLICY_NO"/>
+		<result property="tsiAmt"               column="TSI_AMT"/>
 		<result property="trtyCedId"            column="TRTY_CED_ID"/>
 		<result property="trtyCedIdName"        column="TRTY_CED_ID_NAME"/>
-		<result property="clmCount"             column="CLM_COUNT"/>
 		<result property="clmAmtTotal"          column="CLM_AMT_TOTAL"/>
 		<result property="clmAmtQuota"          column="CLM_AMT_QUOTA"/>
 		<result property="clmAmtQuotaRet1"      column="CLM_AMT_QUOTA_RET1"/>
@@ -4351,13 +4355,10 @@
 		<result property="siRange"              column="SI_RANGE"/>
 		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
 		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
-		<result property="amtRangeDesc"         column="AMT_RANGE_DESC"/>
 		<result property="dateParam"            column="DATE_PARAM"/>
 		<result property="dateRange"            column="DATE_RANGE"/>
 		<result property="dateFrom"             column="DATE_FROM"/>
 		<result property="dateTo"               column="DATE_TO"/>
-		<result property="dateFromTo"           column="DATE_FROM_TO"/>
-		<result property="sortSeq"              column="SORT_SEQ"/>
     </resultMap>
     
     <select id="retrieveClmR010zo" resultMap="retrieveClmR010zoMap" parameterType="java.util.Map">
@@ -4369,11 +4370,14 @@
     	<result property="extractUser"          column="EXTRACT_USER"/>
 		<result property="extractDate"          column="EXTRACT_DATE"/>
 		<result property="currencyCd"           column="CURRENCY_CD"/>
-		<result property="currCdDesc"           column="CURR_CD_DESC"/>
 		<result property="lineCd"               column="LINE_CD"/>
+		<result property="claimId"              column="CLAIM_ID"/>
+		<result property="claimNo"              column="CLAIM_NO"/>
+		<result property="policyId"             column="POLICY_ID"/>
+		<result property="policyNo"             column="POLICY_NO"/>
+		<result property="tsiAmt"               column="TSI_AMT"/>
 		<result property="trtyCedId"            column="TRTY_CED_ID"/>
 		<result property="trtyCedIdName"        column="TRTY_CED_ID_NAME"/>
-		<result property="clmCount"             column="CLM_COUNT"/>
 		<result property="clmAmtTotal"          column="CLM_AMT_TOTAL"/>
 		<result property="clmAmtQuota"          column="CLM_AMT_QUOTA"/>
 		<result property="clmAmtQuotaRet1"      column="CLM_AMT_QUOTA_RET1"/>
@@ -4384,13 +4388,10 @@
 		<result property="siRange"              column="SI_RANGE"/>
 		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
 		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
-		<result property="amtRangeDesc"         column="AMT_RANGE_DESC"/>
 		<result property="dateParam"            column="DATE_PARAM"/>
 		<result property="dateRange"            column="DATE_RANGE"/>
 		<result property="dateFrom"             column="DATE_FROM"/>
 		<result property="dateTo"               column="DATE_TO"/>
-		<result property="dateFromTo"           column="DATE_FROM_TO"/>
-		<result property="sortSeq"              column="SORT_SEQ"/>
     </resultMap>
     
     <select id="retrieveClmR010zp" resultMap="retrieveClmR010zpMap" parameterType="java.util.Map">

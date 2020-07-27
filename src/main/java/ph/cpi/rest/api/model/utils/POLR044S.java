@@ -1,30 +1,33 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044S {
 	private String extractUser;
 	private String extractDate;
 	private String currencyCd;
 	private String lineCd;
+	private Integer policyId;
+	private String policyNo;
+	private BigDecimal tsiAmt;
 	private String cedingId;
 	private String cedingName;
-	private String polCount;
-	private String siTotal;
-	private String siQuota;
-	private String siQuotaRet1;
-	private String siQuotaRet2;
-	private String si1stSurplus;
-	private String si2ndSurplus;
-	private String siFacul;
-	private String siRange;
-	private String amtRangeFrom;
-	private String amtRangeTo;
-	private String amtRangeDesc;
+	private Integer polCount;
+	private BigDecimal siTotal;
+	private BigDecimal siQuota;
+	private BigDecimal siQuotaRet1;
+	private BigDecimal siQuotaRet2;
+	private BigDecimal si1stSurplus;
+	private BigDecimal si2ndSurplus;
+	private BigDecimal siFacul;
+	private Integer siRange;
+	private BigDecimal amtRangeFrom;
+	private BigDecimal amtRangeTo;
 	private String dateParam;
 	private String dateRange;
 	private String fromDate;
 	private String toDate;
 	private String incRecTag;
-	private String dateFromTo;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -49,6 +52,24 @@ public class POLR044S {
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
+	public String getPolicyNo() {
+		return policyNo;
+	}
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+	public BigDecimal getTsiAmt() {
+		return tsiAmt;
+	}
+	public void setTsiAmt(BigDecimal tsiAmt) {
+		this.tsiAmt = tsiAmt;
+	}
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -61,77 +82,71 @@ public class POLR044S {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public String getPolCount() {
+	public Integer getPolCount() {
 		return polCount;
 	}
-	public void setPolCount(String polCount) {
+	public void setPolCount(Integer polCount) {
 		this.polCount = polCount;
 	}
-	public String getSiTotal() {
+	public BigDecimal getSiTotal() {
 		return siTotal;
 	}
-	public void setSiTotal(String siTotal) {
+	public void setSiTotal(BigDecimal siTotal) {
 		this.siTotal = siTotal;
 	}
-	public String getSiQuota() {
+	public BigDecimal getSiQuota() {
 		return siQuota;
 	}
-	public void setSiQuota(String siQuota) {
+	public void setSiQuota(BigDecimal siQuota) {
 		this.siQuota = siQuota;
 	}
-	public String getSiQuotaRet1() {
+	public BigDecimal getSiQuotaRet1() {
 		return siQuotaRet1;
 	}
-	public void setSiQuotaRet1(String siQuotaRet1) {
+	public void setSiQuotaRet1(BigDecimal siQuotaRet1) {
 		this.siQuotaRet1 = siQuotaRet1;
 	}
-	public String getSiQuotaRet2() {
+	public BigDecimal getSiQuotaRet2() {
 		return siQuotaRet2;
 	}
-	public void setSiQuotaRet2(String siQuotaRet2) {
+	public void setSiQuotaRet2(BigDecimal siQuotaRet2) {
 		this.siQuotaRet2 = siQuotaRet2;
 	}
-	public String getSi1stSurplus() {
+	public BigDecimal getSi1stSurplus() {
 		return si1stSurplus;
 	}
-	public void setSi1stSurplus(String si1stSurplus) {
+	public void setSi1stSurplus(BigDecimal si1stSurplus) {
 		this.si1stSurplus = si1stSurplus;
 	}
-	public String getSi2ndSurplus() {
+	public BigDecimal getSi2ndSurplus() {
 		return si2ndSurplus;
 	}
-	public void setSi2ndSurplus(String si2ndSurplus) {
+	public void setSi2ndSurplus(BigDecimal si2ndSurplus) {
 		this.si2ndSurplus = si2ndSurplus;
 	}
-	public String getSiFacul() {
+	public BigDecimal getSiFacul() {
 		return siFacul;
 	}
-	public void setSiFacul(String siFacul) {
+	public void setSiFacul(BigDecimal siFacul) {
 		this.siFacul = siFacul;
 	}
-	public String getSiRange() {
+	public Integer getSiRange() {
 		return siRange;
 	}
-	public void setSiRange(String siRange) {
+	public void setSiRange(Integer siRange) {
 		this.siRange = siRange;
 	}
-	public String getAmtRangeFrom() {
+	public BigDecimal getAmtRangeFrom() {
 		return amtRangeFrom;
 	}
-	public void setAmtRangeFrom(String amtRangeFrom) {
+	public void setAmtRangeFrom(BigDecimal amtRangeFrom) {
 		this.amtRangeFrom = amtRangeFrom;
 	}
-	public String getAmtRangeTo() {
+	public BigDecimal getAmtRangeTo() {
 		return amtRangeTo;
 	}
-	public void setAmtRangeTo(String amtRangeTo) {
+	public void setAmtRangeTo(BigDecimal amtRangeTo) {
 		this.amtRangeTo = amtRangeTo;
-	}
-	public String getAmtRangeDesc() {
-		return amtRangeDesc;
-	}
-	public void setAmtRangeDesc(String amtRangeDesc) {
-		this.amtRangeDesc = amtRangeDesc;
 	}
 	public String getDateParam() {
 		return dateParam;
@@ -163,21 +178,15 @@ public class POLR044S {
 	public void setIncRecTag(String incRecTag) {
 		this.incRecTag = incRecTag;
 	}
-	public String getDateFromTo() {
-		return dateFromTo;
-	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
-	}
 	@Override
 	public String toString() {
 		return "POLR044S [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", lineCd=" + lineCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", polCount="
-				+ polCount + ", siTotal=" + siTotal + ", siQuota=" + siQuota + ", siQuotaRet1=" + siQuotaRet1
-				+ ", siQuotaRet2=" + siQuotaRet2 + ", si1stSurplus=" + si1stSurplus + ", si2ndSurplus=" + si2ndSurplus
-				+ ", siFacul=" + siFacul + ", siRange=" + siRange + ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo="
-				+ amtRangeTo + ", amtRangeDesc=" + amtRangeDesc + ", dateParam=" + dateParam + ", dateRange="
-				+ dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag
-				+ ", dateFromTo=" + dateFromTo + "]";
+				+ ", lineCd=" + lineCd + ", policyId=" + policyId + ", policyNo=" + policyNo + ", tsiAmt=" + tsiAmt
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", polCount=" + polCount + ", siTotal="
+				+ siTotal + ", siQuota=" + siQuota + ", siQuotaRet1=" + siQuotaRet1 + ", siQuotaRet2=" + siQuotaRet2
+				+ ", si1stSurplus=" + si1stSurplus + ", si2ndSurplus=" + si2ndSurplus + ", siFacul=" + siFacul
+				+ ", siRange=" + siRange + ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo
+				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate="
+				+ toDate + ", incRecTag=" + incRecTag + "]";
 	}
 }
