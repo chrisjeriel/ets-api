@@ -5436,4 +5436,54 @@
 	<select id="checkOkDeleteRetPerCede" resultType="java.lang.String">
 		select MTN_POOL_RET_HIST_PKG.check_ok_del(#{currencyCd},#{retHistId}) FROM DUAL
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PremPlan" id="PremPlanMap">
+		<result property="currencyCd"  column="CURRENCY_CD"/>
+		<result property="lineCd"  column="LINE_CD"/>
+		<result property="planYear"  column="PLAN_YEAR"/>
+		<result property="planMm"  column="PLAN_MM"/>
+		<result property="premPlan"  column="PREM_PLAN"/>
+		<result property="remarks"  column="REMARKS"/>
+		<result property="createUser"  column="CREATE_USER"/>
+		<result property="createDate"  column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"  column="UPDATE_USER"/>
+		<result property="updateDate"  column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnPremPlan" resultMap="PremPlanMap">
+		SELECT * FROM TABLE(mtn_prem_plan_pkg.ret_mtn_pre_plan(#{lineCd},#{planYear},#{currencyCd}))
+	</select>
+	
+	<update id="saveMtnPremPlan">
+		BEGIN
+			<foreach collection="saveList" item="save">
+				mtn_prem_plan_pkg.save_mtn_prem_plan(
+					#{save.lineCd,jdbcType=VARCHAR},
+					#{save.planYear,jdbcType=VARCHAR},
+					#{save.planMm,jdbcType=VARCHAR},
+					#{save.premPlan,jdbcType=VARCHAR},
+					#{save.remarks,jdbcType=VARCHAR},
+					#{save.createUser,jdbcType=VARCHAR},
+					NULL,
+					#{save.updateUser,jdbcType=VARCHAR},
+					NULL,
+					#{save.currencyCd,jdbcType=VARCHAR}
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<update id="copyMtnPremPlan">
+		BEGIN
+			mtn_prem_plan_pkg.copy_prem_plan(
+				#{fromCurrencyCd ,jdbcType=VARCHAR},
+				#{fromLineCd ,jdbcType=VARCHAR},
+				#{fromPlanYear ,jdbcType=VARCHAR},
+				#{toCurrencyCd ,jdbcType=VARCHAR},
+				#{toLineCd ,jdbcType=VARCHAR},
+				#{toPlanYear ,jdbcType=VARCHAR},
+				#{user,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
 </mapper>

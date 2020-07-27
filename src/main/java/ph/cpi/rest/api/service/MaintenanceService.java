@@ -220,6 +220,9 @@ public interface MaintenanceService {
 	public SaveMtnUserAmtLimitResponse saveMtnPostingAmtLimit(SaveMtnUserAmtLimitRequest smualr)throws SQLException;
 	public RetrieveMtnClmReportsRangeResponse retrieveMtnClmReportsRange(RetrieveMtnClmReportsRangeRequest request)throws SQLException;
 	public SaveMtnClmReportsRangeResponse saveMtnClmReportsRange(SaveMtnClmReportsRangeRequest request)throws SQLException;
-	public String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException;;
+	public String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException;
+	public RetrieveMtnPremPlanResponse retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request)throws SQLException;
+	public SaveMtnPremPlanResponse saveMtnPremPlan(SaveMtnPremPlanRequest request) throws SQLException;
+	public CopyMtnPremPlanResponse copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException;
 	
 }

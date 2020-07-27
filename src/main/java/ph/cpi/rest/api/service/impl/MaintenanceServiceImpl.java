@@ -3428,4 +3428,40 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("retHistId", request.getRetHistId());
 		return maintenanceDao.checkOkDeleteRetPerCede(params);
 	}
+
+	@Override
+	public RetrieveMtnPremPlanResponse retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException {
+		RetrieveMtnPremPlanResponse response = new RetrieveMtnPremPlanResponse();
+		response.setList(maintenanceDao.retrieveMtnPremPlan(request));
+		return response;
+	}
+
+	@Override
+	public SaveMtnPremPlanResponse saveMtnPremPlan(SaveMtnPremPlanRequest request) throws SQLException {
+		SaveMtnPremPlanResponse response = new SaveMtnPremPlanResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveList", request.getSaveList());
+			HashMap<String,Object> res = maintenanceDao.saveMtnPremPlan(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
+
+	@Override
+	public CopyMtnPremPlanResponse copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException {
+		CopyMtnPremPlanResponse response = new CopyMtnPremPlanResponse();
+		try{
+			response.setReturnCode(maintenanceDao.copyMtnPremPlan(request));
+		}catch(Exception ex){
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("General Exception","Please check the field values."));
+			ex.printStackTrace();
+		}
+		return response;
+	}
 }

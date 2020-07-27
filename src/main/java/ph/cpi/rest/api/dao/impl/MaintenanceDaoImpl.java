@@ -86,6 +86,7 @@ import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PayeeCeding;
 import ph.cpi.rest.api.model.maintenance.PayeeClass;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PremPlan;
 import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -107,6 +108,9 @@ import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
 import ph.cpi.rest.api.model.maintenance.WithholdingTaxes;
+import ph.cpi.rest.api.model.request.CopyMtnPremPlanRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnPremPlanRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPremPlanRequest;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao {
@@ -1542,6 +1546,25 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	@Override
 	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException {
 		return (String) sqlSession.selectOne("checkOkDeleteRetPerCede",params);
+	}
+
+	@Override
+	public List<PremPlan> retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException {
+		List<PremPlan> list = sqlSession.selectList("retrieveMtnPremPlan",request);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnPremPlan(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnPremPlan",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Integer copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException {
+		Integer errorCode = sqlSession.update("copyMtnPremPlan",request);
+		return errorCode;
 	}
 }
 
