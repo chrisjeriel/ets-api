@@ -221,5 +221,6 @@ public interface MaintenanceService {
 	public RetrieveMtnClmReportsRangeResponse retrieveMtnClmReportsRange(RetrieveMtnClmReportsRangeRequest request)throws SQLException;
 	public SaveMtnClmReportsRangeResponse saveMtnClmReportsRange(SaveMtnClmReportsRangeRequest request)throws SQLException;
 	public String checkOkDeleteRetPerCede(CheckOkDeleteRetPerCedeRequest request) throws SQLException;;
-	
+	public RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarr) throws SQLException;
+	public SaveMtnAdjusterRateResponse saveMtnAdjusterRate(SaveMtnAdjusterRateRequest smarr) throws SQLException;
 }

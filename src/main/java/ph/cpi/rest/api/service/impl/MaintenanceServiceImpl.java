@@ -3428,4 +3428,24 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("retHistId", request.getRetHistId());
 		return maintenanceDao.checkOkDeleteRetPerCede(params);
 	}
+
+	@Override
+	public RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarr)
+			throws SQLException {
+		RetrieveMtnAdjusterRateResponse rmarResponse = new RetrieveMtnAdjusterRateResponse();
+		HashMap<String, Object> retMtnAdjRateParams = new HashMap<String, Object>();
+		retMtnAdjRateParams.put("adjRateId", rmarr.getAdjRateId());
+		rmarResponse.setAdjusterRateList(maintenanceDao.retrieveMtnAdjusterRate(retMtnAdjRateParams));
+		return rmarResponse;
+	}
+
+	@Override
+	public SaveMtnAdjusterRateResponse saveMtnAdjusterRate(SaveMtnAdjusterRateRequest smarr) throws SQLException {
+		SaveMtnAdjusterRateResponse smarResponse = new SaveMtnAdjusterRateResponse();
+		HashMap<String, Object> smarParams = new HashMap<String, Object>();
+		smarParams.put("saveAdjusterRate", smarr.getSaveAdjusterRate());
+		smarParams.put("deleteAdjusterRate",smarr.getDeleteAdjusterRate());
+		smarResponse.setReturnCode(maintenanceDao.saveMtnAdjusterRate(smarParams));
+		return smarResponse;
+	}
 }

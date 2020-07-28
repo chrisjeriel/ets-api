@@ -12,6 +12,7 @@ public class POLR044K {
 	private String retLayer;
 	private String retLayerDesc;
 	private String tranType;
+	private String tranTypeDesc;
 	private String premAmt;
 	private String commAmt;
 	private String vatRiComm;
@@ -162,15 +163,21 @@ public class POLR044K {
 	public void setRetLayerDesc(String retLayerDesc) {
 		this.retLayerDesc = retLayerDesc;
 	}
+	public String getTranTypeDesc() {
+		return tranTypeDesc;
+	}
+	public void setTranTypeDesc(String tranTypeDesc) {
+		this.tranTypeDesc = tranTypeDesc;
+	}
 	@Override
 	public String toString() {
 		return "POLR044K [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", treatyId=" + treatyId + ", treatyIdDesc=" + treatyIdDesc + ", trtyCedId="
 				+ trtyCedId + ", trtyCedIdName=" + trtyCedIdName + ", retLayer=" + retLayer + ", retLayerDesc="
-				+ retLayerDesc + ", tranType=" + tranType + ", premAmt=" + premAmt + ", commAmt=" + commAmt
-				+ ", vatRiComm=" + vatRiComm + ", dueToTrty=" + dueToTrty + ", dueToCedant=" + dueToCedant
-				+ ", lineCdParam=" + lineCdParam + ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam
-				+ ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag="
-				+ incRecTag + "]";
+				+ retLayerDesc + ", tranType=" + tranType + ", tranTypeDesc=" + tranTypeDesc + ", premAmt=" + premAmt
+				+ ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", dueToTrty=" + dueToTrty + ", dueToCedant="
+				+ dueToCedant + ", lineCdParam=" + lineCdParam + ", cedingIdParam=" + cedingIdParam + ", dateParam="
+				+ dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate
+				+ ", incRecTag=" + incRecTag + "]";
 	}
 }

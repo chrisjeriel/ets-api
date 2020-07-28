@@ -60,7 +60,9 @@ public interface UtilDao {
 	public List<POLR052I> retrievePolR052i(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<CLMR010A> retrieveClmR010a(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010A2> retrieveClmR010a2(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010AP> retrieveClmR010ap(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR010AP2> retrieveClmR010ap2(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010B> retrieveClmR010b(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010BE> retrieveClmR010be(final HashMap<String, Object> params ) throws SQLException;
 	public List<CLMR010C> retrieveClmR010c(final HashMap<String, Object> params ) throws SQLException;
