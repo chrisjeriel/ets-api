@@ -3428,4 +3428,22 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		params.put("retHistId", request.getRetHistId());
 		return maintenanceDao.checkOkDeleteRetPerCede(params);
 	}
+
+	@Override
+	public RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr)
+			throws SQLException {
+		RetrieveMtnAcitChartAcctResponse response = new RetrieveMtnAcitChartAcctResponse();
+		String param = rbmr.getGlShortCd();
+		response.setList(maintenanceDao.retrieveMtnAcitChartAcctLov(param));
+		return response;
+	}
+	
+	@Override
+	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr)
+			throws SQLException {
+		RetrieveMtnAcseChartAcctResponse response = new RetrieveMtnAcseChartAcctResponse();
+		String param = rbmr.getGlShortCd();
+		response.setList(maintenanceDao.retrieveMtnAcseChartAcctLov(param));
+		return response;
+	}
 }

@@ -1543,5 +1543,15 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException {
 		return (String) sqlSession.selectOne("checkOkDeleteRetPerCede",params);
 	}
+
+	@Override
+	public List<AcitChartAcct> retrieveMtnAcitChartAcctLov(String param) throws SQLException {
+		return sqlSession.selectList("retrieveMtnAcitChartAcctLov", param);
+	}
+	
+	@Override
+	public List<AcseChartAcct> retrieveMtnAcseChartAcctLov(String param) throws SQLException {
+		return sqlSession.selectList("retrieveMtnAcseChartAcctLov", param);
+	}
 }
 

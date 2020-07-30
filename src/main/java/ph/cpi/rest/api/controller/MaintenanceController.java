@@ -1524,4 +1524,18 @@ public class MaintenanceController {
 		return maintenanceService.checkOkDeleteRetPerCede(request);
 	}
 	
+	@GetMapping(path="retrieveMtnAcitChartAcctLov")
+	public @ResponseBody RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcitChartAcctLov");
+		logger.info("RetrieveMtnAcitChartAcctLovRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnAcitChartAcctLov(rbmr);
+	}
+	
+	@GetMapping(path="retrieveMtnAcseChartAcctLov")
+	public @ResponseBody RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAcseChartAcctLov");
+		logger.info("RetrieveMtnAcseChartAcctLovRequest : " + rbmr.toString());
+		return maintenanceService.retrieveMtnAcseChartAcctLov(rbmr);
+	}
+	
 }
