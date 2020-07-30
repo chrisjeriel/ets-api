@@ -12,7 +12,6 @@ public class POLR044S {
 	private BigDecimal tsiAmt;
 	private String cedingId;
 	private String cedingName;
-	private Integer polCount;
 	private BigDecimal siTotal;
 	private BigDecimal siQuota;
 	private BigDecimal siQuotaRet1;
@@ -21,12 +20,14 @@ public class POLR044S {
 	private BigDecimal si2ndSurplus;
 	private BigDecimal siFacul;
 	private Integer siRange;
-	private BigDecimal amtRangeFrom;
-	private BigDecimal amtRangeTo;
-	private String dateParam;
-	private String dateRange;
+	private String amtRangeDesc;
 	private String fromDate;
 	private String toDate;
+	private BigDecimal amtRangeFrom;
+	private BigDecimal amtRangeTo;
+	private Integer polCount;
+	private String dateParam;
+	private String dateRange;
 	private String incRecTag;
 	public String getExtractUser() {
 		return extractUser;
@@ -82,12 +83,6 @@ public class POLR044S {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public Integer getPolCount() {
-		return polCount;
-	}
-	public void setPolCount(Integer polCount) {
-		this.polCount = polCount;
-	}
 	public BigDecimal getSiTotal() {
 		return siTotal;
 	}
@@ -136,29 +131,11 @@ public class POLR044S {
 	public void setSiRange(Integer siRange) {
 		this.siRange = siRange;
 	}
-	public BigDecimal getAmtRangeFrom() {
-		return amtRangeFrom;
+	public String getAmtRangeDesc() {
+		return amtRangeDesc;
 	}
-	public void setAmtRangeFrom(BigDecimal amtRangeFrom) {
-		this.amtRangeFrom = amtRangeFrom;
-	}
-	public BigDecimal getAmtRangeTo() {
-		return amtRangeTo;
-	}
-	public void setAmtRangeTo(BigDecimal amtRangeTo) {
-		this.amtRangeTo = amtRangeTo;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
+	public void setAmtRangeDesc(String amtRangeDesc) {
+		this.amtRangeDesc = amtRangeDesc;
 	}
 	public String getFromDate() {
 		return fromDate;
@@ -172,6 +149,36 @@ public class POLR044S {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
+	public BigDecimal getAmtRangeFrom() {
+		return amtRangeFrom;
+	}
+	public void setAmtRangeFrom(BigDecimal amtRangeFrom) {
+		this.amtRangeFrom = amtRangeFrom;
+	}
+	public BigDecimal getAmtRangeTo() {
+		return amtRangeTo;
+	}
+	public void setAmtRangeTo(BigDecimal amtRangeTo) {
+		this.amtRangeTo = amtRangeTo;
+	}
+	public Integer getPolCount() {
+		return polCount;
+	}
+	public void setPolCount(Integer polCount) {
+		this.polCount = polCount;
+	}
+	public String getDateParam() {
+		return dateParam;
+	}
+	public void setDateParam(String dateParam) {
+		this.dateParam = dateParam;
+	}
+	public String getDateRange() {
+		return dateRange;
+	}
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
+	}
 	public String getIncRecTag() {
 		return incRecTag;
 	}
@@ -182,11 +189,11 @@ public class POLR044S {
 	public String toString() {
 		return "POLR044S [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", policyId=" + policyId + ", policyNo=" + policyNo + ", tsiAmt=" + tsiAmt
-				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", polCount=" + polCount + ", siTotal="
-				+ siTotal + ", siQuota=" + siQuota + ", siQuotaRet1=" + siQuotaRet1 + ", siQuotaRet2=" + siQuotaRet2
-				+ ", si1stSurplus=" + si1stSurplus + ", si2ndSurplus=" + si2ndSurplus + ", siFacul=" + siFacul
-				+ ", siRange=" + siRange + ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo
-				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate="
-				+ toDate + ", incRecTag=" + incRecTag + "]";
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", siTotal=" + siTotal + ", siQuota="
+				+ siQuota + ", siQuotaRet1=" + siQuotaRet1 + ", siQuotaRet2=" + siQuotaRet2 + ", si1stSurplus="
+				+ si1stSurplus + ", si2ndSurplus=" + si2ndSurplus + ", siFacul=" + siFacul + ", siRange=" + siRange
+				+ ", amtRangeDesc=" + amtRangeDesc + ", fromDate=" + fromDate + ", toDate=" + toDate + ", amtRangeFrom="
+				+ amtRangeFrom + ", amtRangeTo=" + amtRangeTo + ", polCount=" + polCount + ", dateParam=" + dateParam
+				+ ", dateRange=" + dateRange + ", incRecTag=" + incRecTag + "]";
 	}
 }

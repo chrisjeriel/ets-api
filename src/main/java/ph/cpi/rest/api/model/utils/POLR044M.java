@@ -1,21 +1,19 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR044M {
 	private String extractUser;
 	private String extractDate;
-	private String dateParam;
-	private String dateParamDesc;
-	private String dateRange;
-	private String dateRangeDesc;
 	private String currencyCd;
-	private String zoneCd;
-	private String zoneCdDtl;
-	private String zoneDesc;
-	private String polCount;
-	private String siAmt;
-	private String premAmt;
-	private String avRiskAmt;
-	private String dateFromTo;
+	private Integer zoneCd;
+	private String zoneCdDesc;
+	private Integer polCount;
+	private BigDecimal siAmt;
+	private BigDecimal premAmt;
+	private BigDecimal avRiskAmt;
+	private String fromDate;
+	private String toDate;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -28,90 +26,65 @@ public class POLR044M {
 	public void setExtractDate(String extractDate) {
 		this.extractDate = extractDate;
 	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateParamDesc() {
-		return dateParamDesc;
-	}
-	public void setDateParamDesc(String dateParamDesc) {
-		this.dateParamDesc = dateParamDesc;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
-	public String getDateRangeDesc() {
-		return dateRangeDesc;
-	}
-	public void setDateRangeDesc(String dateRangeDesc) {
-		this.dateRangeDesc = dateRangeDesc;
-	}
 	public String getCurrencyCd() {
 		return currencyCd;
 	}
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getZoneCd() {
+	public Integer getZoneCd() {
 		return zoneCd;
 	}
-	public void setZoneCd(String zoneCd) {
+	public void setZoneCd(Integer zoneCd) {
 		this.zoneCd = zoneCd;
 	}
-	public String getZoneCdDtl() {
-		return zoneCdDtl;
+	public String getZoneCdDesc() {
+		return zoneCdDesc;
 	}
-	public void setZoneCdDtl(String zoneCdDtl) {
-		this.zoneCdDtl = zoneCdDtl;
+	public void setZoneCdDesc(String zoneCdDesc) {
+		this.zoneCdDesc = zoneCdDesc;
 	}
-	public String getZoneDesc() {
-		return zoneDesc;
-	}
-	public void setZoneDesc(String zoneDesc) {
-		this.zoneDesc = zoneDesc;
-	}
-	public String getPolCount() {
+	public Integer getPolCount() {
 		return polCount;
 	}
-	public void setPolCount(String polCount) {
+	public void setPolCount(Integer polCount) {
 		this.polCount = polCount;
 	}
-	public String getSiAmt() {
+	public BigDecimal getSiAmt() {
 		return siAmt;
 	}
-	public void setSiAmt(String siAmt) {
+	public void setSiAmt(BigDecimal siAmt) {
 		this.siAmt = siAmt;
 	}
-	public String getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(String premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public String getAvRiskAmt() {
+	public BigDecimal getAvRiskAmt() {
 		return avRiskAmt;
 	}
-	public void setAvRiskAmt(String avRiskAmt) {
+	public void setAvRiskAmt(BigDecimal avRiskAmt) {
 		this.avRiskAmt = avRiskAmt;
 	}
-	public String getDateFromTo() {
-		return dateFromTo;
+	public String getFromDate() {
+		return fromDate;
 	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
 	@Override
 	public String toString() {
-		return "POLR044M [extractUser=" + extractUser + ", extractDate=" + extractDate + ", dateParam=" + dateParam
-				+ ", dateParamDesc=" + dateParamDesc + ", dateRange=" + dateRange + ", dateRangeDesc=" + dateRangeDesc
-				+ ", currencyCd=" + currencyCd + ", zoneCd=" + zoneCd + ", zoneCdDtl=" + zoneCdDtl + ", zoneDesc="
-				+ zoneDesc + ", polCount=" + polCount + ", siAmt=" + siAmt + ", premAmt=" + premAmt + ", avRiskAmt="
-				+ avRiskAmt + ", dateFromTo=" + dateFromTo + "]";
+		return "POLR044M [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
+				+ ", zoneCd=" + zoneCd + ", zoneCdDesc=" + zoneCdDesc + ", polCount=" + polCount + ", siAmt=" + siAmt
+				+ ", premAmt=" + premAmt + ", avRiskAmt=" + avRiskAmt + ", fromDate=" + fromDate + ", toDate=" + toDate
+				+ "]";
 	}
 }

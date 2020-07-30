@@ -20,12 +20,13 @@ public class POLR044R {
 	private BigDecimal prem2ndSurplus;
 	private BigDecimal premFacul;
 	private Integer siRange;
+	private String amtRangeDesc;
+	private String fromDate;
+	private String toDate;
 	private BigDecimal amtRangeFrom;
 	private BigDecimal amtRangeTo;
 	private String dateParam;
 	private String dateRange;
-	private String fromDate;
-	private String toDate;
 	private String incRecTag;
 	public String getExtractUser() {
 		return extractUser;
@@ -129,6 +130,24 @@ public class POLR044R {
 	public void setSiRange(Integer siRange) {
 		this.siRange = siRange;
 	}
+	public String getAmtRangeDesc() {
+		return amtRangeDesc;
+	}
+	public void setAmtRangeDesc(String amtRangeDesc) {
+		this.amtRangeDesc = amtRangeDesc;
+	}
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
 	public BigDecimal getAmtRangeFrom() {
 		return amtRangeFrom;
 	}
@@ -153,18 +172,6 @@ public class POLR044R {
 	public void setDateRange(String dateRange) {
 		this.dateRange = dateRange;
 	}
-	public String getFromDate() {
-		return fromDate;
-	}
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
-	public String getToDate() {
-		return toDate;
-	}
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
-	}
 	public String getIncRecTag() {
 		return incRecTag;
 	}
@@ -178,8 +185,8 @@ public class POLR044R {
 				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", premTotal=" + premTotal + ", premQuota="
 				+ premQuota + ", premQuotaRet1=" + premQuotaRet1 + ", premQuotaRet2=" + premQuotaRet2
 				+ ", prem1stSurplus=" + prem1stSurplus + ", prem2ndSurplus=" + prem2ndSurplus + ", premFacul="
-				+ premFacul + ", siRange=" + siRange + ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo
-				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate="
-				+ toDate + ", incRecTag=" + incRecTag + "]";
+				+ premFacul + ", siRange=" + siRange + ", amtRangeDesc=" + amtRangeDesc + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + ", amtRangeFrom=" + amtRangeFrom + ", amtRangeTo=" + amtRangeTo
+				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", incRecTag=" + incRecTag + "]";
 	}
 }

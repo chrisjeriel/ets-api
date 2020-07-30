@@ -5,7 +5,10 @@ public class POLR044J {
 	private String extractDate;
 	private String currencyCd;
 	private String lineCd;
+	private String cedingId;
 	private String cedingName;
+	private String tranType;
+	private String tranTypeDesc;
 	private String ret1PremAmt;
 	private String ret1CommAmt;
 	private String ret1VatRiComm;
@@ -16,13 +19,17 @@ public class POLR044J {
 	private String ret2NetDue;
 	private String fromDate;
 	private String toDate;
-	private String tranType;
-	private String tranTypeDesc;
 	public String getExtractUser() {
 		return extractUser;
 	}
 	public void setExtractUser(String extractUser) {
 		this.extractUser = extractUser;
+	}
+	public String getExtractDate() {
+		return extractDate;
+	}
+	public void setExtractDate(String extractDate) {
+		this.extractDate = extractDate;
 	}
 	public String getCurrencyCd() {
 		return currencyCd;
@@ -36,11 +43,29 @@ public class POLR044J {
 	public void setLineCd(String lineCd) {
 		this.lineCd = lineCd;
 	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
 	public String getCedingName() {
 		return cedingName;
 	}
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
+	}
+	public String getTranType() {
+		return tranType;
+	}
+	public void setTranType(String tranType) {
+		this.tranType = tranType;
+	}
+	public String getTranTypeDesc() {
+		return tranTypeDesc;
+	}
+	public void setTranTypeDesc(String tranTypeDesc) {
+		this.tranTypeDesc = tranTypeDesc;
 	}
 	public String getRet1PremAmt() {
 		return ret1PremAmt;
@@ -102,31 +127,13 @@ public class POLR044J {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getExtractDate() {
-		return extractDate;
-	}
-	public void setExtractDate(String extractDate) {
-		this.extractDate = extractDate;
-	}
-	public String getTranType() {
-		return tranType;
-	}
-	public void setTranType(String tranType) {
-		this.tranType = tranType;
-	}
-	public String getTranTypeDesc() {
-		return tranTypeDesc;
-	}
-	public void setTranTypeDesc(String tranTypeDesc) {
-		this.tranTypeDesc = tranTypeDesc;
-	}
 	@Override
 	public String toString() {
 		return "POLR044J [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", lineCd=" + lineCd + ", cedingName=" + cedingName + ", ret1PremAmt=" + ret1PremAmt
-				+ ", ret1CommAmt=" + ret1CommAmt + ", ret1VatRiComm=" + ret1VatRiComm + ", ret1NetDue=" + ret1NetDue
-				+ ", ret2PremAmt=" + ret2PremAmt + ", ret2CommAmt=" + ret2CommAmt + ", ret2VatRiComm=" + ret2VatRiComm
-				+ ", ret2NetDue=" + ret2NetDue + ", fromDate=" + fromDate + ", toDate=" + toDate + ", tranType="
-				+ tranType + ", tranTypeDesc=" + tranTypeDesc + "]";
+				+ ", lineCd=" + lineCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", tranType="
+				+ tranType + ", tranTypeDesc=" + tranTypeDesc + ", ret1PremAmt=" + ret1PremAmt + ", ret1CommAmt="
+				+ ret1CommAmt + ", ret1VatRiComm=" + ret1VatRiComm + ", ret1NetDue=" + ret1NetDue + ", ret2PremAmt="
+				+ ret2PremAmt + ", ret2CommAmt=" + ret2CommAmt + ", ret2VatRiComm=" + ret2VatRiComm + ", ret2NetDue="
+				+ ret2NetDue + ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
 	}
 }

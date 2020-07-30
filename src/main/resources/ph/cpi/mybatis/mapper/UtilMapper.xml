@@ -1407,13 +1407,23 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044A" id="retrievePolR044aMap">
-		<result property="extractUser"     column="EXTRACT_USER"/>
-		<result property="fromDate"        column="FROM_DATE"/>
-		<result property="toDate"          column="TO_DATE"/>
-		<result property="currencyCd"      column="CURRENCY_CD"/>
-		<result property="cedingName"      column="CEDING_NAME"/>
-		<result property="lineCd"          column="LINE_CD"/>
-		<result property="total"           column="TOTAL"/>
+		<result property="extractUser"				column="EXTRACT_USER"/>
+		<result property="extractDate"				column="EXTRACT_DATE"/>
+		<result property="lineCdParam"				column="LINE_CD_PARAM"/>
+		<result property="cedingIdParam"			column="CEDING_ID_PARAM"/>
+		<result property="dateParam"				column="DATE_PARAM"/>
+		<result property="dateRange"				column="DATE_RANGE"/>
+		<result property="fromDate"					column="FROM_DATE"/>
+		<result property="toDate"					column="TO_DATE"/>
+		<result property="incRecTag"				column="INC_REC_TAG"/>
+		<result property="currencyCd"				column="CURRENCY_CD"/>
+		<result property="cedingId"					column="CEDING_ID"/>
+		<result property="cedingName"				column="CEDING_NAME"/>
+		<result property="lineCd"					column="LINE_CD"/>
+		<result property="policyId"					column="POLICY_ID"/>
+		<result property="policyNo"					column="POLICY_NO"/>
+		<result property="issueDate"				column="ISSUE_DATE"/>
+		<result property="effDate"					column="EFF_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR044a" resultMap="retrievePolR044aMap" parameterType="java.util.Map">
@@ -1422,18 +1432,23 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044B" id="retrievePolR044bMap">
-		<result property="extractUser"  column="EXTRACT_USER"/>
-		<result property="policyNo"     column="POLICY_NO"/>
-		<result property="cedingName"   column="CEDING_NAME"/>
-		<result property="expiryDate"   column="EXPIRY_DATE"/>
-		<result property="insuredDesc"  column="INSURED_DESC"/>
-		<result property="projDesc"     column="PROJ_DESC"/>
-		<result property="currencyCd"   column="CURRENCY_CD"/>
-		<result property="siAmt"        column="SI_AMT"/>
-		<result property="premAmt"      column="PREM_AMT"/>
-		<result property="remarks"      column="REMARKS"/>
-		<result property="fromDate"		column="FROM_DATE"/>
-		<result property="toDate"		column="TO_DATE"/>
+		<result property="extractUser"		column="EXTRACT_USER"/>
+		<result property="extractDate"		column="EXTRACT_DATE"/>
+		<result property="lineCd"			column="LINE_CD"/>
+		<result property="policyId"			column="POLICY_ID"/>
+		<result property="policyNo"			column="POLICY_NO"/>
+		<result property="cedingId"			column="CEDING_ID"/>
+		<result property="cedingName"		column="CEDING_NAME"/>
+		<result property="inceptDate"		column="INCEPT_DATE"/>
+		<result property="expiryDate"		column="EXPIRY_DATE"/>
+		<result property="insuredDesc"		column="INSURED_DESC"/>
+		<result property="projDesc"			column="PROJ_DESC"/>
+		<result property="currencyCd"		column="CURRENCY_CD"/>
+		<result property="siAmt"			column="SI_AMT"/>
+		<result property="premAmt"			column="PREM_AMT"/>
+		<result property="remarks"			column="REMARKS"/>
+		<result property="fromDate"			column="FROM_DATE"/>
+		<result property="toDate"			column="TO_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR044b" resultMap="retrievePolR044bMap" parameterType="java.util.Map">
@@ -1532,13 +1547,20 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044H" id="retrievePolR044hMap">
-		<result property="extractUser"    column="EXTRACT_USER"/>
-		<result property="fromDate"       column="FROM_DATE"/>
-		<result property="toDate"         column="TO_DATE"/>
-		<result property="cedingName"     column="CEDING_NAME"/>
-		<result property="lineCd"         column="LINE_CD"/>
-		<result property="currencyCd"     column="CURRENCY_CD"/>
-		<result property="premAmt"        column="PREM_AMT"/>
+		<result property="extractUser" 			column="EXTRACT_USER"/>
+		<result property="extractDate" 			column="EXTRACT_DATE"/>
+		<result property="cedingId" 			column="CEDING_ID"/>
+		<result property="cedingName" 			column="CEDING_NAME"/>
+		<result property="lineCd" 				column="LINE_CD"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="instNo" 				column="INST_NO"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="issueDate" 			column="ISSUE_DATE"/>
+		<result property="effDate" 				column="EFF_DATE"/>
+		<result property="premAmt" 				column="PREM_AMT"/>
+		<result property="fromDate" 			column="FROM_DATE"/>
+		<result property="toDate" 				column="TO_DATE"/>
 	</resultMap>
 	<select id="retrievePolR044h" resultMap="retrievePolR044hMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044h_to_csv(
@@ -1574,7 +1596,10 @@
 		<result property="extractDate"        column="EXTRACT_DATE"/>
 		<result property="currencyCd"         column="CURRENCY_CD"/>
 		<result property="lineCd"             column="LINE_CD"/>
+		<result property="cedingId"           column="CEDING_ID"/>
 		<result property="cedingName"         column="CEDING_NAME"/>
+		<result property="tranType"           column="TRAN_TYPE"/>
+		<result property="tranTypeDesc"       column="TRAN_TYPE_DESC"/>
 		<result property="ret1PremAmt"        column="RET1_PREM_AMT"/>
 		<result property="ret1CommAmt"        column="RET1_COMM_AMT"/>
 		<result property="ret1VatRiComm"      column="RET1_VAT_RI_COMM"/>
@@ -1585,8 +1610,6 @@
 		<result property="ret2NetDue"         column="RET2_NET_DUE"/>
 		<result property="fromDate"           column="FROM_DATE"/>
 		<result property="toDate"             column="TO_DATE"/>
-		<result property="tranType"           column="TRAN_TYPE"/>
-		<result property="tranTypeDesc"       column="TRAN_TYPE_DESC"/>
 	</resultMap>
 	
 	<select id="retrievePolR044j" resultMap="retrievePolR044jMap" parameterType="java.util.Map">
@@ -1595,30 +1618,25 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044K" id="retrievePolR044kMap">
-		<result property="extractUser"             column="EXTRACT_USER"/>
-		<result property="extractDate"             column="EXTRACT_DATE"/>
-		<result property="currencyCd"              column="CURRENCY_CD"/>
-		<result property="lineCd"                  column="LINE_CD"/>
-		<result property="treatyId"                column="TREATY_ID"/>
-		<result property="treatyIdDesc"            column="TREATY_ID_DESC"/>
-		<result property="trtyCedId"               column="TRTY_CED_ID"/>
-		<result property="trtyCedIdName"           column="TRTY_CED_ID_NAME"/>
-		<result property="retLayer"                column="RET_LAYER"/>
-		<result property="retLayerDesc"            column="RET_LAYER_DESC"/>
-		<result property="tranType"                column="TRAN_TYPE"/>
-		<result property="tranTypeDesc"            column="TRAN_TYPE_DESC"/>
-		<result property="premAmt"                 column="PREM_AMT"/>
-		<result property="commAmt"                 column="COMM_AMT"/>
-		<result property="vatRiComm"               column="VAT_RI_COMM"/>
-		<result property="dueToTrty"               column="DUE_TO_TRTY"/>
-		<result property="dueToCedant"             column="DUE_TO_CEDANT"/>
-		<result property="lineCdParam"             column="LINE_CD_PARAM"/>
-		<result property="cedingIdParam"           column="CEDING_ID_PARAM"/>
-		<result property="dateParam"               column="DATE_PARAM"/>
-		<result property="dateRange"               column="DATE_RANGE"/>
-		<result property="fromDate"                column="FROM_DATE"/>
-		<result property="toDate"                  column="TO_DATE"/>
-		<result property="incRecTag"               column="INC_REC_TAG"/>
+		<result property="extractUser"			column="EXTRACT_USER"/>
+		<result property="extractDate"			column="EXTRACT_DATE"/>
+		<result property="currencyCd"			column="CURRENCY_CD"/>
+		<result property="lineCd"				column="LINE_CD"/>
+		<result property="treatyId"				column="TREATY_ID"/>
+		<result property="treatyName"			column="TREATY_NAME"/>
+		<result property="trtyCedId"			column="TRTY_CED_ID"/>
+		<result property="trtyCedIdName"		column="TRTY_CED_ID_NAME"/>
+		<result property="retLayer"				column="RET_LAYER"/>
+		<result property="retLayerDesc"			column="RET_LAYER_DESC"/>
+		<result property="tranType"				column="TRAN_TYPE"/>
+		<result property="tranTypeDesc"			column="TRAN_TYPE_DESC"/>
+		<result property="premAmt"				column="PREM_AMT"/>
+		<result property="commAmt"				column="COMM_AMT"/>
+		<result property="vatRiComm"			column="VAT_RI_COMM"/>
+		<result property="dueToTrty"			column="DUE_TO_TRTY"/>
+		<result property="dueToCedant"			column="DUE_TO_CEDANT"/>
+		<result property="fromDate"				column="FROM_DATE"/>
+		<result property="toDate"				column="TO_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR044k" resultMap="retrievePolR044kMap" parameterType="java.util.Map">
@@ -1627,17 +1645,21 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044L" id="retrievePolR044lMap">
-		<result property="extractUser"        column="EXTRACT_USER"/>
-		<result property="fromDate"           column="FROM_DATE"/>
-		<result property="toDate"             column="TO_DATE"/>
-		<result property="acctDate"           column="ACCT_DATE"/>
-		<result property="policyNo"           column="POLICY_NO"/>
-		<result property="cedingName"         column="CEDING_NAME"/>
-		<result property="inceptDate"         column="INCEPT_DATE"/>
-		<result property="expiryDate"         column="EXPIRY_DATE"/>
-		<result property="currencyCd"         column="CURRENCY_CD"/>
-		<result property="premAmt"            column="PREM_AMT"/>
-		<result property="status"             column="STATUS"/>
+		<result property="extractUser" 		column="EXTRACT_USER"/>
+		<result property="extractDate" 		column="EXTRACT_DATE"/>
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="acctDate" 		column="ACCT_DATE"/>
+		<result property="policyId" 		column="POLICY_ID"/>
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="inceptDate" 		column="INCEPT_DATE"/>
+		<result property="expiryDate" 		column="EXPIRY_DATE"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="premAmt" 			column="PREM_AMT"/>
+		<result property="status" 			column="STATUS"/>
+		<result property="fromDate" 		column="FROM_DATE"/>
+		<result property="toDate" 			column="TO_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR044l" resultMap="retrievePolR044lMap" parameterType="java.util.Map">
@@ -1646,21 +1668,17 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044M" id="retrievePolR044mMap">
-		<result property="extractUser"          column="EXTRACT_USER"/>
-		<result property="extractDate"          column="EXTRACT_DATE"/>
-		<result property="dateParam"            column="DATE_PARAM"/>
-		<result property="dateParamDesc"        column="DATE_PARAM_DESC"/>
-		<result property="dateRange"            column="DATE_RANGE"/>
-		<result property="dateRangeDesc"        column="DATE_RANGE_DESC"/>
-		<result property="currencyCd"           column="CURRENCY_CD"/>
-		<result property="zoneCd"               column="ZONE_CD"/>
-		<result property="zoneCdDtl"            column="ZONE_CD_DTL"/>
-		<result property="zoneDesc"             column="ZONE_DESC"/>
-		<result property="polCount"             column="POL_COUNT"/>
-		<result property="siAmt"                column="SI_AMT"/>
-		<result property="premAmt"              column="PREM_AMT"/>
-		<result property="avRiskAmt"            column="AV_RISK_AMT"/>
-		<result property="dateFromTo"           column="DATE_FROM_TO"/>
+		<result property="extractUser"			column="EXTRACT_USER"/>
+		<result property="extractDate"			column="EXTRACT_DATE"/>
+		<result property="currencyCd"			column="CURRENCY_CD"/>
+		<result property="zoneCd"				column="ZONE_CD"/>
+		<result property="zoneCdDesc"			column="ZONE_CD_DESC"/>
+		<result property="polCount"				column="POL_COUNT"/>
+		<result property="siAmt"				column="SI_AMT"/>
+		<result property="premAmt"				column="PREM_AMT"/>
+		<result property="avRiskAmt"			column="AV_RISK_AMT"/>
+		<result property="fromDate"				column="FROM_DATE"/>
+		<result property="toDate"				column="TO_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR044m" resultMap="retrievePolR044mMap" parameterType="java.util.Map">
@@ -1669,13 +1687,22 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044N" id="retrievePolR044nMap">
-		<result property="extractUser"        column="EXTRACT_USER"/>
-		<result property="toDate"             column="TO_DATE"/>
-		<result property="lineCd"             column="LINE_CD"/>
-		<result property="currencyCd"         column="CURRENCY_CD"/>
-		<result property="siAmt"              column="SI_AMT"/>
-		<result property="premAmt"            column="PREM_AMT"/>
-		<result property="noOfPol"            column="NO_OF_POL"/>
+		<result property="extractUser"			column="EXTRACT_USER"/>
+		<result property="extractDate"			column="EXTRACT_DATE"/>
+		<result property="lineCd"				column="LINE_CD"/>
+		<result property="policyId"				column="POLICY_ID"/>
+		<result property="policyNo"				column="POLICY_NO"/>
+		<result property="cedingId"				column="CEDING_ID"/>
+		<result property="cedingName"			column="CEDING_NAME"/>
+		<result property="inceptDate"			column="INCEPT_DATE"/>
+		<result property="expiryDate"			column="EXPIRY_DATE"/>
+		<result property="insuredDesc"			column="INSURED_DESC"/>
+		<result property="projectDesc"			column="PROJECT_DESC"/>
+		<result property="currencyCd"			column="CURRENCY_CD"/>
+		<result property="siAmt"				column="SI_AMT"/>
+		<result property="premAmt"				column="PREM_AMT"/>
+		<result property="fromDate"				column="FROM_DATE"/>
+		<result property="toDate"				column="TO_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR044n" resultMap="retrievePolR044nMap" parameterType="java.util.Map">
@@ -1762,29 +1789,42 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044P" id="retrievePolR044pMap">
-		<result property="extractUser"		column="EXTRACT_USER"/>
-		<result property="extractDate"		column="EXTRACT_DATE"/>
-		<result property="cedingIdParam"	column="CEDING_ID_PARAM"/>
-		<result property="lineCd"			column="LINE_CD"/>
-		<result property="policyId"			column="POLICY_ID"/>
-		<result property="policyNo"			column="POLICY_NO"/>
-		<result property="cedingId"			column="CEDING_ID"/>
-		<result property="cedingAbbr"		column="CEDING_ABBR"/>
-		<result property="cedingName"		column="CEDING_NAME"/>
-		<result property="zoneCd"			column="ZONE_CD"/>
-		<result property="currencyCd"		column="CURRENCY_CD"/>
-		<result property="siAmt"			column="SI_AMT"/>
-		<result property="siAmtDist"		column="SI_AMT_DIST"/>
-		<result property="premAmtDist"		column="PREM_AMT_DIST"/>
-		<result property="premAmt"			column="PREM_AMT"/>
-		<result property="treatyId"			column="TREATY_ID"/>
-		<result property="treatyName"		column="TREATY_NAME"/>
-		<result property="trtyCedId"		column="TRTY_CED_ID"/>
-		<result property="treatyCompany"	column="TREATY_COMPANY"/>
-		<result property="retLayer"			column="RET_LAYER"/>
-		<result property="retName"			column="RET_NAME"/>
-		<result property="distGrp"			column="DIST_GRP"/>
-		<result property="dateFromTo"		column="DATE_FROM_TO"/>
+		<result property="extractUser"					column="EXTRACT_USER"/>
+		<result property="extractDate"					column="EXTRACT_DATE"/>
+		<result property="fromDate"						column="FROM_DATE"/>
+		<result property="toDate"						column="TO_DATE"/>
+		<result property="lineCd"						column="LINE_CD"/>
+		<result property="policyId"						column="POLICY_ID"/>
+		<result property="policyNo"						column="POLICY_NO"/>
+		<result property="cedingId"						column="CEDING_ID"/>
+		<result property="cedingAbbr"					column="CEDING_ABBR"/>
+		<result property="cedingName"					column="CEDING_NAME"/>
+		<result property="inceptDate"					column="INCEPT_DATE"/>
+		<result property="expiryDate"					column="EXPIRY_DATE"/>
+		<result property="acctEntDate"					column="ACCT_ENT_DATE"/>
+		<result property="accumNoDays"					column="ACCUM_NO_DAYS"/>
+		<result property="totalNoDays"					column="TOTAL_NO_DAYS"/>
+		<result property="noOfMonths"					column="NO_OF_MONTHS"/>
+		<result property="cityCd"						column="CITY_CD"/>
+		<result property="cityDesc"						column="CITY_DESC"/>
+		<result property="zoneCd"						column="ZONE_CD"/>
+		<result property="zoneCdDesc"					column="ZONE_CD_DESC"/>
+		<result property="currencyCd"					column="CURRENCY_CD"/>
+		<result property="polSi"						column="POL_SI"/>
+		<result property="polPrem"						column="POL_PREM"/>
+		<result property="polAccumSi"					column="POL_ACCUM_SI"/>
+		<result property="polAccumPrem"					column="POL_ACCUM_PREM"/>
+		<result property="treatyId"						column="TREATY_ID"/>
+		<result property="treatyName"					column="TREATY_NAME"/>
+		<result property="trtyCedId"					column="TRTY_CED_ID"/>
+		<result property="treatyCompany"				column="TREATY_COMPANY"/>
+		<result property="retLayer"						column="RET_LAYER"/>
+		<result property="retName"						column="RET_NAME"/>
+		<result property="distGrp"						column="DIST_GRP"/>
+		<result property="distSi"						column="DIST_SI"/>
+		<result property="distPrem"						column="DIST_PREM"/>
+		<result property="distAccumSi"					column="DIST_ACCUM_SI"/>
+		<result property="distAccumPrem"				column="DIST_ACCUM_PREM"/>
 	</resultMap>
 	
 	<select id="retrievePolR044p" resultMap="retrievePolR044pMap" parameterType="java.util.Map">
@@ -1885,12 +1925,13 @@
 		<result property="prem2ndSurplus"       column="PREM_2ND_SURPLUS"/>
 		<result property="premFacul"            column="PREM_FACUL"/>
 		<result property="siRange"              column="SI_RANGE"/>
+		<result property="amtRangeDesc"         column="AMT_RANGE_DESC"/>
+		<result property="fromDate"             column="FROM_DATE"/>
+		<result property="toDate"               column="TO_DATE"/>
 		<result property="amtRangeFrom"         column="AMT_RANGE_FROM"/>
 		<result property="amtRangeTo"           column="AMT_RANGE_TO"/>
 		<result property="dateParam"            column="DATE_PARAM"/>
 		<result property="dateRange"            column="DATE_RANGE"/>
-		<result property="fromDate"             column="FROM_DATE"/>
-		<result property="toDate"               column="TO_DATE"/>
 		<result property="incRecTag"            column="INC_REC_TAG"/>
 	</resultMap>
 	
@@ -1909,7 +1950,6 @@
 		<result property="tsiAmt"				column="TSI_AMT"/>
 		<result property="cedingId"				column="CEDING_ID"/>
 		<result property="cedingName"			column="CEDING_NAME"/>
-		<result property="polCount"				column="POL_COUNT"/>
 		<result property="siTotal"				column="SI_TOTAL"/>
 		<result property="siQuota"				column="SI_QUOTA"/>
 		<result property="siQuotaRet1"			column="SI_QUOTA_RET1"/>
@@ -1918,12 +1958,14 @@
 		<result property="si2ndSurplus"			column="SI_2ND_SURPLUS"/>
 		<result property="siFacul"				column="SI_FACUL"/>
 		<result property="siRange"				column="SI_RANGE"/>
-		<result property="amtRangeFrom"			column="AMT_RANGE_FROM"/>
-		<result property="amtRangeTo"			column="AMT_RANGE_TO"/>
-		<result property="dateParam"			column="DATE_PARAM"/>
-		<result property="dateRange"			column="DATE_RANGE"/>
+		<result property="amtRangeDesc"			column="AMT_RANGE_DESC"/>
 		<result property="fromDate"				column="FROM_DATE"/>
 		<result property="toDate"				column="TO_DATE"/>
+		<result property="amtRangeFrom"			column="AMT_RANGE_FROM"/>
+		<result property="amtRangeTo"			column="AMT_RANGE_TO"/>
+		<result property="polCount"				column="POL_COUNT"/>
+		<result property="dateParam"			column="DATE_PARAM"/>
+		<result property="dateRange"			column="DATE_RANGE"/>
 		<result property="incRecTag"			column="INC_REC_TAG"/>
 	</resultMap>
 	
@@ -2816,9 +2858,12 @@
 		<result property="policyId"               column="POLICY_ID"/>
 		<result property="policyNo"               column="POLICY_NO"/>
 		<result property="cedingId"               column="CEDING_ID"/>
+		<result property="cedingName"             column="CEDING_NAME"/>
 		<result property="lineCd"                 column="LINE_CD"/>
 		<result property="prinId"                 column="PRIN_ID"/>
+		<result property="principalName"          column="PRINCIPAL_NAME"/>
 		<result property="contractorId"           column="CONTRACTOR_ID"/>
+		<result property="contractorName"         column="CONTRACTOR_NAME"/>
 		<result property="effDate"                column="EFF_DATE"/>
 		<result property="expiryDate"             column="EXPIRY_DATE"/>
 		<result property="acctDate"               column="ACCT_DATE"/>
@@ -4644,13 +4689,6 @@
     <resultMap type="ph.cpi.rest.api.model.utils.POLR044U" id="retrievePolR044uMap">
 		<result property="extractUser"                  column="EXTRACT_USER"/>
 		<result property="extractDate"                  column="EXTRACT_DATE"/>
-		<result property="lineCdParam"                  column="LINE_CD_PARAM"/>
-		<result property="cedingIdParam"                column="CEDING_ID_PARAM"/>
-		<result property="dateParam"                    column="DATE_PARAM"/>
-		<result property="dateRange"                    column="DATE_RANGE"/>
-		<result property="fromDate"                     column="FROM_DATE"/>
-		<result property="toDate"                       column="TO_DATE"/>
-		<result property="incRecTag"                    column="INC_REC_TAG"/>
 		<result property="uwYear"                       column="UW_YEAR"/>
 		<result property="transactDate"                 column="TRANSACT_DATE"/>
 		<result property="currencyCd"                   column="CURRENCY_CD"/>
@@ -4666,6 +4704,13 @@
 		<result property="paidLoss"                     column="PAID_LOSS"/>
 		<result property="incurredLoss"                 column="INCURRED_LOSS"/>
 		<result property="lossRatio"                    column="LOSS_RATIO"/>
+		<result property="fromDate"                     column="FROM_DATE"/>
+		<result property="toDate"                       column="TO_DATE"/>
+		<result property="lineCdParam"                  column="LINE_CD_PARAM"/>
+		<result property="cedingIdParam"                column="CEDING_ID_PARAM"/>
+		<result property="dateParam"                    column="DATE_PARAM"/>
+		<result property="dateRange"                    column="DATE_RANGE"/>
+		<result property="incRecTag"                    column="INC_REC_TAG"/>
 	</resultMap>
 	
 	<select id="retrievePolR044u" resultMap="retrievePolR044uMap" parameterType="java.util.Map">
