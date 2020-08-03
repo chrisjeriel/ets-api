@@ -7,9 +7,12 @@ public class POLR044Y {
 	private String policyId;
 	private String policyNo;
 	private String cedingId;
+	private String cedingName;
 	private String lineCd;
 	private String prinId;
+	private String principalName;
 	private String contractorId;
+	private String contractorName;
 	private String effDate;
 	private String expiryDate;
 	private String acctDate;
@@ -51,10 +54,10 @@ public class POLR044Y {
 	private String netDue1stSurplus;
 	private String netDue2ndSurplus;
 	private String netDueFacul;
-	private String dateParam;
-	private String dateRange;
 	private String fromDate;
 	private String toDate;
+	private String dateParam;
+	private String dateRange;
 	private String incRecTag;
 	private String sortSeq;
 	public String getExtractUser() {
@@ -93,6 +96,12 @@ public class POLR044Y {
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
 	public String getLineCd() {
 		return lineCd;
 	}
@@ -105,11 +114,23 @@ public class POLR044Y {
 	public void setPrinId(String prinId) {
 		this.prinId = prinId;
 	}
+	public String getPrincipalName() {
+		return principalName;
+	}
+	public void setPrincipalName(String principalName) {
+		this.principalName = principalName;
+	}
 	public String getContractorId() {
 		return contractorId;
 	}
 	public void setContractorId(String contractorId) {
 		this.contractorId = contractorId;
+	}
+	public String getContractorName() {
+		return contractorName;
+	}
+	public void setContractorName(String contractorName) {
+		this.contractorName = contractorName;
 	}
 	public String getEffDate() {
 		return effDate;
@@ -357,18 +378,6 @@ public class POLR044Y {
 	public void setNetDueFacul(String netDueFacul) {
 		this.netDueFacul = netDueFacul;
 	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
 	public String getFromDate() {
 		return fromDate;
 	}
@@ -380,6 +389,18 @@ public class POLR044Y {
 	}
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
+	}
+	public String getDateParam() {
+		return dateParam;
+	}
+	public void setDateParam(String dateParam) {
+		this.dateParam = dateParam;
+	}
+	public String getDateRange() {
+		return dateRange;
+	}
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
 	}
 	public String getIncRecTag() {
 		return incRecTag;
@@ -396,13 +417,14 @@ public class POLR044Y {
 	@Override
 	public String toString() {
 		return "POLR044Y [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", lineCd=" + lineCd
-				+ ", prinId=" + prinId + ", contractorId=" + contractorId + ", effDate=" + effDate + ", expiryDate="
-				+ expiryDate + ", acctDate=" + acctDate + ", distId=" + distId + ", histNo=" + histNo + ", instNo="
-				+ instNo + ", tsiAmt=" + tsiAmt + ", tsiQuota=" + tsiQuota + ", tsi1stRet=" + tsi1stRet + ", tsi2ndRet="
-				+ tsi2ndRet + ", tsi1stSurplus=" + tsi1stSurplus + ", tsi2ndSurplus=" + tsi2ndSurplus + ", tsiFacul="
-				+ tsiFacul + ", premAmt=" + premAmt + ", premQuota=" + premQuota + ", prem1stRet=" + prem1stRet
-				+ ", prem2ndRet=" + prem2ndRet + ", prem1stSurplus=" + prem1stSurplus + ", prem2ndSurplus="
+				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", lineCd=" + lineCd + ", prinId=" + prinId + ", principalName=" + principalName
+				+ ", contractorId=" + contractorId + ", contractorName=" + contractorName + ", effDate=" + effDate
+				+ ", expiryDate=" + expiryDate + ", acctDate=" + acctDate + ", distId=" + distId + ", histNo=" + histNo
+				+ ", instNo=" + instNo + ", tsiAmt=" + tsiAmt + ", tsiQuota=" + tsiQuota + ", tsi1stRet=" + tsi1stRet
+				+ ", tsi2ndRet=" + tsi2ndRet + ", tsi1stSurplus=" + tsi1stSurplus + ", tsi2ndSurplus=" + tsi2ndSurplus
+				+ ", tsiFacul=" + tsiFacul + ", premAmt=" + premAmt + ", premQuota=" + premQuota + ", prem1stRet="
+				+ prem1stRet + ", prem2ndRet=" + prem2ndRet + ", prem1stSurplus=" + prem1stSurplus + ", prem2ndSurplus="
 				+ prem2ndSurplus + ", premFacul=" + premFacul + ", commAmt=" + commAmt + ", commQuota=" + commQuota
 				+ ", comm1stRet=" + comm1stRet + ", comm2ndRet=" + comm2ndRet + ", comm1stSurplus=" + comm1stSurplus
 				+ ", comm2ndSurplus=" + comm2ndSurplus + ", commFacul=" + commFacul + ", commVatAmt=" + commVatAmt
@@ -411,7 +433,7 @@ public class POLR044Y {
 				+ commVat2ndSurplus + ", commVatFacul=" + commVatFacul + ", netDueAmt=" + netDueAmt + ", netDueQuota="
 				+ netDueQuota + ", netDue1stRet=" + netDue1stRet + ", netDue2ndRet=" + netDue2ndRet
 				+ ", netDue1stSurplus=" + netDue1stSurplus + ", netDue2ndSurplus=" + netDue2ndSurplus + ", netDueFacul="
-				+ netDueFacul + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + ", incRecTag=" + incRecTag + ", sortSeq=" + sortSeq + "]";
+				+ netDueFacul + ", fromDate=" + fromDate + ", toDate=" + toDate + ", dateParam=" + dateParam
+				+ ", dateRange=" + dateRange + ", incRecTag=" + incRecTag + ", sortSeq=" + sortSeq + "]";
 	}
 }

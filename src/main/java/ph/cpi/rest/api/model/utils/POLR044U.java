@@ -5,19 +5,13 @@ import java.math.BigDecimal;
 public class POLR044U {
 	private String extractUser;
 	private String extractDate;
-	private String lineCdParam;
-	private String cedingIdParam;
-	private String dateParam;
-	private String dateRange;
-	private String fromDate;
-	private String toDate;
-	private String incRecTag;
 	private Integer uwYear;
 	private String transactDate;
 	private String currencyCd;
 	private Integer treatyId;
 	private String treatyName;
 	private Integer retLayer;
+	private String retLayerDesc;
 	private String trtyCedId;
 	private String trtyCedName;
 	private BigDecimal premAmt;
@@ -27,6 +21,13 @@ public class POLR044U {
 	private BigDecimal paidLoss;
 	private BigDecimal incurredLoss;
 	private BigDecimal lossRatio;
+	private String fromDate;
+	private String toDate;
+	private String lineCdParam;
+	private String cedingIdParam;
+	private String dateParam;
+	private String dateRange;
+	private String incRecTag;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -38,48 +39,6 @@ public class POLR044U {
 	}
 	public void setExtractDate(String extractDate) {
 		this.extractDate = extractDate;
-	}
-	public String getLineCdParam() {
-		return lineCdParam;
-	}
-	public void setLineCdParam(String lineCdParam) {
-		this.lineCdParam = lineCdParam;
-	}
-	public String getCedingIdParam() {
-		return cedingIdParam;
-	}
-	public void setCedingIdParam(String cedingIdParam) {
-		this.cedingIdParam = cedingIdParam;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
-	public String getFromDate() {
-		return fromDate;
-	}
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
-	public String getToDate() {
-		return toDate;
-	}
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
-	}
-	public String getIncRecTag() {
-		return incRecTag;
-	}
-	public void setIncRecTag(String incRecTag) {
-		this.incRecTag = incRecTag;
 	}
 	public Integer getUwYear() {
 		return uwYear;
@@ -105,6 +64,24 @@ public class POLR044U {
 	public void setTreatyId(Integer treatyId) {
 		this.treatyId = treatyId;
 	}
+	public String getTreatyName() {
+		return treatyName;
+	}
+	public void setTreatyName(String treatyName) {
+		this.treatyName = treatyName;
+	}
+	public Integer getRetLayer() {
+		return retLayer;
+	}
+	public void setRetLayer(Integer retLayer) {
+		this.retLayer = retLayer;
+	}
+	public String getRetLayerDesc() {
+		return retLayerDesc;
+	}
+	public void setRetLayerDesc(String retLayerDesc) {
+		this.retLayerDesc = retLayerDesc;
+	}
 	public String getTrtyCedId() {
 		return trtyCedId;
 	}
@@ -128,6 +105,12 @@ public class POLR044U {
 	}
 	public void setCommAmt(BigDecimal commAmt) {
 		this.commAmt = commAmt;
+	}
+	public BigDecimal getRiCommVat() {
+		return riCommVat;
+	}
+	public void setRiCommVat(BigDecimal riCommVat) {
+		this.riCommVat = riCommVat;
 	}
 	public BigDecimal getLossAmt() {
 		return lossAmt;
@@ -153,33 +136,57 @@ public class POLR044U {
 	public void setLossRatio(BigDecimal lossRatio) {
 		this.lossRatio = lossRatio;
 	}
-	public String getTreatyName() {
-		return treatyName;
+	public String getFromDate() {
+		return fromDate;
 	}
-	public void setTreatyName(String treatyName) {
-		this.treatyName = treatyName;
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
 	}
-	public Integer getRetLayer() {
-		return retLayer;
+	public String getToDate() {
+		return toDate;
 	}
-	public void setRetLayer(Integer retLayer) {
-		this.retLayer = retLayer;
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
-	public BigDecimal getRiCommVat() {
-		return riCommVat;
+	public String getLineCdParam() {
+		return lineCdParam;
 	}
-	public void setRiCommVat(BigDecimal riCommVat) {
-		this.riCommVat = riCommVat;
+	public void setLineCdParam(String lineCdParam) {
+		this.lineCdParam = lineCdParam;
+	}
+	public String getCedingIdParam() {
+		return cedingIdParam;
+	}
+	public void setCedingIdParam(String cedingIdParam) {
+		this.cedingIdParam = cedingIdParam;
+	}
+	public String getDateParam() {
+		return dateParam;
+	}
+	public void setDateParam(String dateParam) {
+		this.dateParam = dateParam;
+	}
+	public String getDateRange() {
+		return dateRange;
+	}
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
+	}
+	public String getIncRecTag() {
+		return incRecTag;
+	}
+	public void setIncRecTag(String incRecTag) {
+		this.incRecTag = incRecTag;
 	}
 	@Override
 	public String toString() {
-		return "POLR044U [extractUser=" + extractUser + ", extractDate=" + extractDate + ", lineCdParam=" + lineCdParam
-				+ ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag=" + incRecTag + ", uwYear=" + uwYear
+		return "POLR044U [extractUser=" + extractUser + ", extractDate=" + extractDate + ", uwYear=" + uwYear
 				+ ", transactDate=" + transactDate + ", currencyCd=" + currencyCd + ", treatyId=" + treatyId
-				+ ", treatyName=" + treatyName + ", retLayer=" + retLayer + ", trtyCedId=" + trtyCedId
-				+ ", trtyCedName=" + trtyCedName + ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", riCommVat="
-				+ riCommVat + ", lossAmt=" + lossAmt + ", paidLoss=" + paidLoss + ", incurredLoss=" + incurredLoss
-				+ ", lossRatio=" + lossRatio + "]";
+				+ ", treatyName=" + treatyName + ", retLayer=" + retLayer + ", retLayerDesc=" + retLayerDesc
+				+ ", trtyCedId=" + trtyCedId + ", trtyCedName=" + trtyCedName + ", premAmt=" + premAmt + ", commAmt="
+				+ commAmt + ", riCommVat=" + riCommVat + ", lossAmt=" + lossAmt + ", paidLoss=" + paidLoss
+				+ ", incurredLoss=" + incurredLoss + ", lossRatio=" + lossRatio + ", fromDate=" + fromDate + ", toDate="
+				+ toDate + ", lineCdParam=" + lineCdParam + ", cedingIdParam=" + cedingIdParam + ", dateParam="
+				+ dateParam + ", dateRange=" + dateRange + ", incRecTag=" + incRecTag + "]";
 	}
 }
