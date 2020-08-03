@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
 import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAdjusterRate;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -1563,8 +1565,26 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 
 	@Override
 	public Integer copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException {
-		Integer errorCode = sqlSession.update("copyMtnPremPlan",request);
+		Integer errorCode;
+		try{
+			errorCode = sqlSession.update("copyMtnPremPlan",request);
+		}catch (UncategorizedSQLException e){
+			throw (SQLException) e.getCause();
+		}
 		return errorCode;
 	}
+	
+	@Override
+	public List<MtnAdjusterRate> retrieveMtnAdjusterRate(HashMap<String, Object> params) throws SQLException {
+		List<MtnAdjusterRate> retrieveMtnAdjusterRate = sqlSession.selectList("retrieveMtnAdjusterRate", params);
+		return retrieveMtnAdjusterRate;
+	}
+
+	@Override
+	public Integer saveMtnAdjusterRate(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnAdjusterRate = sqlSession.update("saveMtnAdjusterRate", params);
+		return saveMtnAdjusterRate;
+	}
+	
 }
 

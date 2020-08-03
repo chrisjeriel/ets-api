@@ -1545,4 +1545,18 @@ public class MaintenanceController {
         return maintenanceService.copyMtnPremPlan(request);
     }
 	
+	@GetMapping(path="retrieveMtnAdjusterRate")
+	public @ResponseBody RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAdjusterRate");
+		logger.info("RetrieveMtnAdjusterRateRequest : " + rmarp.toString());
+		return maintenanceService.retrieveMtnAdjusterRate(rmarp);
+	}
+	
+	@PostMapping(path="saveMtnAdjusterRate")
+	public @ResponseBody SaveMtnAdjusterRateResponse saveMtnAdjusterRate(@RequestBody SaveMtnAdjusterRateRequest smarp) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAdjusterRate");
+		logger.info("SaveMtnAdjusterRateRequest : " + smarp.toString());
+		return maintenanceService.saveMtnAdjusterRate(smarp);
+	}
+	
 }

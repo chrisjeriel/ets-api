@@ -2,6 +2,7 @@ package ph.cpi.rest.api.model.utils;
 
 public class POLR044J {
 	private String extractUser;
+	private String extractDate;
 	private String currencyCd;
 	private String lineCd;
 	private String cedingName;
@@ -15,6 +16,8 @@ public class POLR044J {
 	private String ret2NetDue;
 	private String fromDate;
 	private String toDate;
+	private String tranType;
+	private String tranTypeDesc;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -99,12 +102,31 @@ public class POLR044J {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
+	public String getExtractDate() {
+		return extractDate;
+	}
+	public void setExtractDate(String extractDate) {
+		this.extractDate = extractDate;
+	}
+	public String getTranType() {
+		return tranType;
+	}
+	public void setTranType(String tranType) {
+		this.tranType = tranType;
+	}
+	public String getTranTypeDesc() {
+		return tranTypeDesc;
+	}
+	public void setTranTypeDesc(String tranTypeDesc) {
+		this.tranTypeDesc = tranTypeDesc;
+	}
 	@Override
 	public String toString() {
-		return "POLR044J [extractUser=" + extractUser + ", currencyCd=" + currencyCd + ", lineCd=" + lineCd
-				+ ", cedingName=" + cedingName + ", ret1PremAmt=" + ret1PremAmt + ", ret1CommAmt=" + ret1CommAmt
-				+ ", ret1VatRiComm=" + ret1VatRiComm + ", ret1NetDue=" + ret1NetDue + ", ret2PremAmt=" + ret2PremAmt
-				+ ", ret2CommAmt=" + ret2CommAmt + ", ret2VatRiComm=" + ret2VatRiComm + ", ret2NetDue=" + ret2NetDue
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
+		return "POLR044J [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
+				+ ", lineCd=" + lineCd + ", cedingName=" + cedingName + ", ret1PremAmt=" + ret1PremAmt
+				+ ", ret1CommAmt=" + ret1CommAmt + ", ret1VatRiComm=" + ret1VatRiComm + ", ret1NetDue=" + ret1NetDue
+				+ ", ret2PremAmt=" + ret2PremAmt + ", ret2CommAmt=" + ret2CommAmt + ", ret2VatRiComm=" + ret2VatRiComm
+				+ ", ret2NetDue=" + ret2NetDue + ", fromDate=" + fromDate + ", toDate=" + toDate + ", tranType="
+				+ tranType + ", tranTypeDesc=" + tranTypeDesc + "]";
 	}
 }

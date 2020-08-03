@@ -61,6 +61,7 @@ import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
 import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAdjusterRate;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -328,4 +329,6 @@ public interface MaintenanceDao {
 	public List<PremPlan> retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException;
 	public HashMap<String, Object> saveMtnPremPlan(HashMap<String, Object> params) throws SQLException;
 	public Integer copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException;
+	public List<MtnAdjusterRate> retrieveMtnAdjusterRate(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveMtnAdjusterRate(final HashMap<String, Object> params) throws SQLException;
 }

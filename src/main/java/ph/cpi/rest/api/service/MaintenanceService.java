@@ -224,5 +224,6 @@ public interface MaintenanceService {
 	public RetrieveMtnPremPlanResponse retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request)throws SQLException;
 	public SaveMtnPremPlanResponse saveMtnPremPlan(SaveMtnPremPlanRequest request) throws SQLException;
 	public CopyMtnPremPlanResponse copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException;
-	
+	public RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarr) throws SQLException;
+	public SaveMtnAdjusterRateResponse saveMtnAdjusterRate(SaveMtnAdjusterRateRequest smarr) throws SQLException;
 }

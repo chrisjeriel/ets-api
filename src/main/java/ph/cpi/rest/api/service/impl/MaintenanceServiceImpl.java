@@ -3444,10 +3444,14 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("saveList", request.getSaveList());
 			HashMap<String,Object> res = maintenanceDao.saveMtnPremPlan(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
-		}catch(Exception ex){
-			response.setReturnCode(0);
-			response.getErrorList().add(new Error("General Exception","Please check the field values."));
-			ex.printStackTrace();
+		}catch(SQLException ex){
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
 		}
 		return response;
 	}
@@ -3457,11 +3461,35 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		CopyMtnPremPlanResponse response = new CopyMtnPremPlanResponse();
 		try{
 			response.setReturnCode(maintenanceDao.copyMtnPremPlan(request));
-		}catch(Exception ex){
-			response.setReturnCode(0);
-			response.getErrorList().add(new Error("General Exception","Please check the field values."));
-			ex.printStackTrace();
+		}catch(SQLException ex){
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
 		}
 		return response;
+	}
+	
+	@Override
+	public RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarr)
+			throws SQLException {
+		RetrieveMtnAdjusterRateResponse rmarResponse = new RetrieveMtnAdjusterRateResponse();
+		HashMap<String, Object> retMtnAdjRateParams = new HashMap<String, Object>();
+		retMtnAdjRateParams.put("adjRateId", rmarr.getAdjRateId());
+		rmarResponse.setAdjusterRateList(maintenanceDao.retrieveMtnAdjusterRate(retMtnAdjRateParams));
+		return rmarResponse;
+	}
+
+	@Override
+	public SaveMtnAdjusterRateResponse saveMtnAdjusterRate(SaveMtnAdjusterRateRequest smarr) throws SQLException {
+		SaveMtnAdjusterRateResponse smarResponse = new SaveMtnAdjusterRateResponse();
+		HashMap<String, Object> smarParams = new HashMap<String, Object>();
+		smarParams.put("saveAdjusterRate", smarr.getSaveAdjusterRate());
+		smarParams.put("deleteAdjusterRate",smarr.getDeleteAdjusterRate());
+		smarResponse.setReturnCode(maintenanceDao.saveMtnAdjusterRate(smarParams));
+		return smarResponse;
 	}
 }
