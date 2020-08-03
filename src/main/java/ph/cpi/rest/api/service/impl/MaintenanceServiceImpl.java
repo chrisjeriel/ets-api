@@ -965,6 +965,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("updateDate", smccr.getUpdateDate());
 			params.put("saveCedingRepList", smccr.getSaveCedingRepList());
 			params.put("delCedingRepList", smccr.getDelCedingRepList());
+			params.put("serviceFeeGrp", smccr.getServiceFeeGrp());
+			
 			HashMap<String, Object> res = maintenanceDao.saveMtnCedingCompany(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setOutCedingId((String) res.get("outCedingId"));

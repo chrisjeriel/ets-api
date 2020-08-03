@@ -34,6 +34,15 @@ public class SaveMtnCedingCompanyRequest {
 	private List<CedingRep> saveCedingRepList;
 	private List<CedingRep> delCedingRepList;
 	
+	private String serviceFeeGrp;
+	
+	
+	public String getServiceFeeGrp() {
+		return serviceFeeGrp;
+	}
+	public void setServiceFeeGrp(String serviceFeeGrp) {
+		this.serviceFeeGrp = serviceFeeGrp;
+	}
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -213,7 +222,8 @@ public class SaveMtnCedingCompanyRequest {
 				+ membershipDate + ", withdrawDate=" + withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag="
 				+ treatyTag + ", withdrawTag=" + withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
-				+ ", saveCedingRepList=" + saveCedingRepList + ", delCedingRepList=" + delCedingRepList + "]";
+				+ ", saveCedingRepList=" + saveCedingRepList + ", delCedingRepList=" + delCedingRepList
+				+ ", serviceFeeGrp=" + serviceFeeGrp + "]";
 	}
 }
 

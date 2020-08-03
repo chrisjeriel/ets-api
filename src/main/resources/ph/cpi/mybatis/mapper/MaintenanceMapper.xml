@@ -824,6 +824,10 @@
 		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+		<result property="serviceFeeGrp" 		column="SERVICE_FEE_GRP"/>
+		<result property="serviceFeeGrpName" 	column="SERVICE_FEE_GRP_NAME"/>
+		
      	<association property="cedingRepresentative" resultMap="cedingRepresentativeMap"></association>
      	<association property="cedingHistory" resultMap="cedingHistMap"></association>
      </resultMap>
@@ -1700,7 +1704,8 @@
     						#{createUser},
     						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     						#{updateUser},
-    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						#{serviceFeeGrp, jdbcType=VARCHAR}
     		);
     		
     		#{outCedingId, mode=OUT, jdbcType=VARCHAR} := v_ceding_id;
