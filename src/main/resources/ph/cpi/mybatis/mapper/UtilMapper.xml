@@ -2023,37 +2023,36 @@
 	
 	<!-- accounting > reports -->
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR052A" id="retrievePolR052aMap">
-		<result property="extractUser"       column="EXTRACT_USER"/>
-		<result property="extractDate"       column="EXTRACT_DATE"/>
-		<result property="lineCd"            column="LINE_CD"/>
-		<result property="dateParam"         column="DATE_PARAM"/>
-		<result property="dateRange"         column="DATE_RANGE"/>
-		<result property="fromDate"          column="FROM_DATE"/>
-		<result property="toDate"            column="TO_DATE"/>
-		<result property="policyId"          column="POLICY_ID"/>
-		<result property="policyNo"          column="POLICY_NO"/>
-		<result property="currencyCd"        column="CURRENCY_CD"/>
-		<result property="totalPrem"         column="TOTAL_PREM"/>
-		<result property="premQuota"         column="PREM_QUOTA"/>
-		<result property="prem1stRet"        column="PREM_1ST_RET"/>
-		<result property="prem2ndRet"        column="PREM_2ND_RET"/>
-		<result property="prem1stSurplus"    column="PREM_1ST_SURPLUS"/>
-		<result property="prem2ndSurplus"    column="PREM_2ND_SURPLUS"/>
-		<result property="premFacul"         column="PREM_FACUL"/>
-		<result property="totalComm"         column="TOTAL_COMM"/>
-		<result property="commQuota"         column="COMM_QUOTA"/>
-		<result property="comm1stRet"        column="COMM_1ST_RET"/>
-		<result property="comm2ndRet"        column="COMM_2ND_RET"/>
-		<result property="comm1stSurplus"    column="COMM_1ST_SURPLUS"/>
-		<result property="comm2ndSurplus"    column="COMM_2ND_SURPLUS"/>
-		<result property="commFacul"         column="COMM_FACUL"/>
-		<result property="totalVatri"        column="TOTAL_VATRI"/>
-		<result property="vatriQuota"        column="VATRI_QUOTA"/>
-		<result property="vatri1stRet"       column="VATRI_1ST_RET"/>
-		<result property="vatri2ndRet"       column="VATRI_2ND_RET"/>
-		<result property="vatri1stSurplus"   column="VATRI_1ST_SURPLUS"/>
-		<result property="vatri2ndSurplus"   column="VATRI_2ND_SURPLUS"/>
-		<result property="vatriFacul"        column="VATRI_FACUL"/>
+		<result property="extractUser" 			column="EXTRACT_USER"/>
+		<result property="extractDate" 			column="EXTRACT_DATE"/>
+		<result property="lineCd" 				column="LINE_CD"/>
+		<result property="policyId" 			column="POLICY_ID"/>
+		<result property="policyNo" 			column="POLICY_NO"/>
+		<result property="instNo" 				column="INST_NO"/>
+		<result property="currencyCd" 			column="CURRENCY_CD"/>
+		<result property="totalPrem" 			column="TOTAL_PREM"/>
+		<result property="premQuota" 			column="PREM_QUOTA"/>
+		<result property="prem1stRet" 			column="PREM_1ST_RET"/>
+		<result property="prem2ndRet" 			column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus" 		column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus" 		column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul" 			column="PREM_FACUL"/>
+		<result property="totalComm" 			column="TOTAL_COMM"/>
+		<result property="commQuota" 			column="COMM_QUOTA"/>
+		<result property="comm1stRet" 			column="COMM_1ST_RET"/>
+		<result property="comm2ndRet" 			column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus" 		column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus" 		column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul" 			column="COMM_FACUL"/>
+		<result property="totalVatri" 			column="TOTAL_VATRI"/>
+		<result property="vatriQuota" 			column="VATRI_QUOTA"/>
+		<result property="vatri1stRet" 			column="VATRI_1ST_RET"/>
+		<result property="vatri2ndRet" 			column="VATRI_2ND_RET"/>
+		<result property="vatri1stSurplus" 		column="VATRI_1ST_SURPLUS"/>
+		<result property="vatri2ndSurplus" 		column="VATRI_2ND_SURPLUS"/>
+		<result property="vatriFacul" 			column="VATRI_FACUL"/>
+		<result property="fromDate" 			column="FROM_DATE"/>
+		<result property="toDate" 				column="TO_DATE"/>
 	</resultMap>
 
 	<select id="retrievePolR052a" resultMap="retrievePolR052aMap" parameterType="java.util.Map">
@@ -2062,42 +2061,45 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR052B" id="retrievePolR052bMap">
-		<result property="extractUser"            column="EXTRACT_USER"/>
-		<result property="lineCd"                 column="LINE_CD"/>
-		<result property="fromDate"               column="FROM_DATE"/>
-		<result property="toDate"                 column="TO_DATE"/>
-		<result property="policyNo"               column="POLICY_NO"/>
-		<result property="instNo"                 column="INST_NO"/>
-		<result property="coRefNo"                column="CO_REF_NO"/>
-		<result property="currencyCd"             column="CURRENCY_CD"/>
-		<result property="cedingAbbr"             column="CEDING_ABBR"/>
-		<result property="insuredDesc"            column="INSURED_DESC"/>
-		<result property="inceptDate"             column="INCEPT_DATE"/>
-		<result property="expiryDate"             column="EXPIRY_DATE"/>
-		<result property="ret1Lines"              column="RET1_LINES"/>
-		<result property="ret2Lines"              column="RET2_LINES"/>
-		<result property="totalSi"                column="TOTAL_SI"/>
-		<result property="totalPrem"              column="TOTAL_PREM"/>
-		<result property="premQuota"              column="PREM_QUOTA"/>
-		<result property="prem1stRet"             column="PREM_1ST_RET"/>
-		<result property="prem2ndRet"             column="PREM_2ND_RET"/>
-		<result property="prem1stSurplus"         column="PREM_1ST_SURPLUS"/>
-		<result property="prem2ndSurplus"         column="PREM_2ND_SURPLUS"/>
-		<result property="premFacul"              column="PREM_FACUL"/>
-		<result property="totalComm"              column="TOTAL_COMM"/>
-		<result property="commQuota"              column="COMM_QUOTA"/>
-		<result property="comm1stRet"             column="COMM_1ST_RET"/>
-		<result property="comm2ndRet"             column="COMM_2ND_RET"/>
-		<result property="comm1stSurplus"         column="COMM_1ST_SURPLUS"/>
-		<result property="comm2ndSurplus"         column="COMM_2ND_SURPLUS"/>
-		<result property="commFacul"              column="COMM_FACUL"/>
-		<result property="totalVatri"             column="TOTAL_VATRI"/>
-		<result property="vatriQuota"             column="VATRI_QUOTA"/>
-		<result property="vatri1stRet"            column="VATRI_1ST_RET"/>
-		<result property="vatri2ndRet"            column="VATRI_2ND_RET"/>
-		<result property="vatri1stSurplus"        column="VATRI_1ST_SURPLUS"/>
-		<result property="vatri2ndSurplus"        column="VATRI_2ND_SURPLUS"/>
-		<result property="vatriFacul"             column="VATRI_FACUL"/>
+		<result property="extractUser" 		column="EXTRACT_USER"/>
+		<result property="extractDate" 		column="EXTRACT_DATE"/>
+		<result property="lineCd" 			column="LINE_CD"/>
+		<result property="policyId" 		column="POLICY_ID"/>
+		<result property="policyNo" 		column="POLICY_NO"/>
+		<result property="instNo" 			column="INST_NO"/>
+		<result property="coRefNo" 			column="CO_REF_NO"/>
+		<result property="currencyCd" 		column="CURRENCY_CD"/>
+		<result property="cedingId" 		column="CEDING_ID"/>
+		<result property="cedingAbbr" 		column="CEDING_ABBR"/>
+		<result property="insuredDesc" 		column="INSURED_DESC"/>
+		<result property="inceptDate" 		column="INCEPT_DATE"/>
+		<result property="expiryDate" 		column="EXPIRY_DATE"/>
+		<result property="ret1Lines" 		column="RET1_LINES"/>
+		<result property="ret2Lines" 		column="RET2_LINES"/>
+		<result property="totalSi" 			column="TOTAL_SI"/>
+		<result property="totalPrem" 		column="TOTAL_PREM"/>
+		<result property="premQuota" 		column="PREM_QUOTA"/>
+		<result property="prem1stRet" 		column="PREM_1ST_RET"/>
+		<result property="prem2ndRet" 		column="PREM_2ND_RET"/>
+		<result property="prem1stSurplus" 	column="PREM_1ST_SURPLUS"/>
+		<result property="prem2ndSurplus" 	column="PREM_2ND_SURPLUS"/>
+		<result property="premFacul" 		column="PREM_FACUL"/>
+		<result property="totalComm" 		column="TOTAL_COMM"/>
+		<result property="commQuota" 		column="COMM_QUOTA"/>
+		<result property="comm1stRet" 		column="COMM_1ST_RET"/>
+		<result property="comm2ndRet" 		column="COMM_2ND_RET"/>
+		<result property="comm1stSurplus" 	column="COMM_1ST_SURPLUS"/>
+		<result property="comm2ndSurplus" 	column="COMM_2ND_SURPLUS"/>
+		<result property="commFacul" 		column="COMM_FACUL"/>
+		<result property="totalVatri" 		column="TOTAL_VATRI"/>
+		<result property="vatriQuota" 		column="VATRI_QUOTA"/>
+		<result property="vatri1stRet" 		column="VATRI_1ST_RET"/>
+		<result property="vatri2ndRet" 		column="VATRI_2ND_RET"/>
+		<result property="vatri1stSurplus" 	column="VATRI_1ST_SURPLUS"/>
+		<result property="vatri2ndSurplus" 	column="VATRI_2ND_SURPLUS"/>
+		<result property="vatriFacul" 		column="VATRI_FACUL"/>
+		<result property="fromDate" 		column="FROM_DATE"/>
+		<result property="toDate" 			column="TO_DATE"/>
 	</resultMap>
 	
 	<select id="retrievePolR052b" resultMap="retrievePolR052bMap" parameterType="java.util.Map">
@@ -3973,6 +3975,7 @@
 		<result property="prem2spMre"             column="PREM_2SP_MRE"/>
 		<result property="prem2spNre"             column="PREM_2SP_NRE"/>
 		<result property="premFaculMre"           column="PREM_FACUL_MRE"/>
+		<result property="premFaculNre"           column="PREM_FACUL_NRE"/>
 		<result property="totalComm"              column="TOTAL_COMM"/>
 		<result property="commQsMre"              column="COMM_QS_MRE"/>
 		<result property="commQsNre"              column="COMM_QS_NRE"/>
@@ -3983,6 +3986,7 @@
 		<result property="comm2spMre"             column="COMM_2SP_MRE"/>
 		<result property="comm2spNre"             column="COMM_2SP_NRE"/>
 		<result property="commFaculMre"           column="COMM_FACUL_MRE"/>
+		<result property="commFaculNre"           column="COMM_FACUL_NRE"/>
 		<result property="totalVatri"             column="TOTAL_VATRI"/>
 		<result property="vatriQsMre"             column="VATRI_QS_MRE"/>
 		<result property="vatriQsNre"             column="VATRI_QS_NRE"/>
@@ -3993,6 +3997,7 @@
 		<result property="vatri2spMre"            column="VATRI_2SP_MRE"/>
 		<result property="vatri2spNre"            column="VATRI_2SP_NRE"/>
 		<result property="vatriFaculMre"          column="VATRI_FACUL_MRE"/>
+		<result property="vatriFaculNre"          column="VATRI_FACUL_NRE"/>
 		<result property="totalNetbal"            column="TOTAL_NETBAL"/>
 		<result property="netbalQsMre"            column="NETBAL_QS_MRE"/>
 		<result property="netbalQsNre"            column="NETBAL_QS_NRE"/>
@@ -4003,6 +4008,7 @@
 		<result property="netbal2spMre"           column="NETBAL_2SP_MRE"/>
 		<result property="netbal2spNre"           column="NETBAL_2SP_NRE"/>
 		<result property="netbalFaculMre"         column="NETBAL_FACUL_MRE"/>
+		<result property="netbalFaculNre"         column="NETBAL_FACUL_NRE"/>
 		<result property="dateParam"              column="DATE_PARAM"/>
 		<result property="dateRange"              column="DATE_RANGE"/>
 		<result property="fromDate"               column="FROM_DATE"/>
