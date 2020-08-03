@@ -5442,6 +5442,7 @@
 		select MTN_POOL_RET_HIST_PKG.check_ok_del(#{currencyCd},#{retHistId}) FROM DUAL
 	</select>
 	
+
 	<resultMap type="ph.cpi.rest.api.model.maintenance.PremPlan" id="PremPlanMap">
 		<result property="currencyCd"  column="CURRENCY_CD"/>
 		<result property="lineCd"  column="LINE_CD"/>
@@ -5534,4 +5535,13 @@
     		</foreach>
     	END;
     </update>
+
+	<select id="retrieveMtnAcitChartAcctLov" resultMap="AcitChartAcct" parameterType="java.lang.String">
+		SELECT * FROM TABLE(MTN_ACIT_CHART_ACCT_PKG.ret_mtn_acit_chart_acct_lov(#{param, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveMtnAcseChartAcctLov" resultMap="AcseChartAcctMap" parameterType="java.lang.String">
+		SELECT * FROM TABLE(MTN_ACSE_CHART_ACCT_PKG.ret_mtn_acse_chart_acct_lov(#{param, jdbcType=VARCHAR}))
+	</select>
+	
 </mapper>

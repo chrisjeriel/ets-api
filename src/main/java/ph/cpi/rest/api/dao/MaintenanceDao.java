@@ -326,9 +326,14 @@ public interface MaintenanceDao {
 	public List<ClaimReportsRange> retrieveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
 	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException;
+
 	public List<PremPlan> retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException;
 	public HashMap<String, Object> saveMtnPremPlan(HashMap<String, Object> params) throws SQLException;
 	public Integer copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException;
 	public List<MtnAdjusterRate> retrieveMtnAdjusterRate(final HashMap<String, Object> params ) throws SQLException;
 	public Integer saveMtnAdjusterRate(final HashMap<String, Object> params) throws SQLException;
+
+	public List<AcitChartAcct> retrieveMtnAcitChartAcctLov(String param) throws SQLException;
+	public List<AcseChartAcct> retrieveMtnAcseChartAcctLov(String param) throws SQLException;
+
 }
