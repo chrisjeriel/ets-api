@@ -5,9 +5,18 @@ import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveMtnPrintableNamesRequest {
 	private Integer employeeId;
+	private String activeTag;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	
+	
+	
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
+	}
 	public Integer getEmployeeId() {
 		return employeeId;
 	}
@@ -28,8 +37,8 @@ public class RetrieveMtnPrintableNamesRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveMtnPrintableNamesRequest [employeeId=" + employeeId + ", paginationRequest=" + paginationRequest
-				+ ", sortRequest=" + sortRequest + "]";
+		return "RetrieveMtnPrintableNamesRequest [employeeId=" + employeeId + ", activeTag=" + activeTag
+				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 }

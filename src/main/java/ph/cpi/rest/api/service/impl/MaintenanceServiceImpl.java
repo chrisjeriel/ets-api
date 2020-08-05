@@ -2191,6 +2191,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnPrintableNamesResponse response = new RetrieveMtnPrintableNamesResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("employeeId", request.getEmployeeId());
+		params.put("activeTag", request.getActiveTag());
 		response.setPrintableNames(maintenanceDao.retrieveMtnPrintableNames(params));
 		return response;
 	}

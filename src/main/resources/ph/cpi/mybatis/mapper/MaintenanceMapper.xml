@@ -3979,7 +3979,7 @@
      </resultMap>
      
      <select id="retrieveMtnPrintable" resultMap="printableMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null))
+			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null,#{activeTag,jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retMtnCedingTreaty" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
