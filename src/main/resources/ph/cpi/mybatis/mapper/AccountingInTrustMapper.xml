@@ -1911,6 +1911,12 @@
 		<result property="whtaxAmt" 		column="WHTAX_AMT"/>
 		<result property="netDue" 			column="NET_DUE"/>
 		
+		<result property="grossShrAmt1"		column="GROSS_SHR_AMT1"/>
+		<result property="grossShrAmt2"		column="GROSS_SHR_AMT2"/>
+		<result property="grossShrAmt3"		column="GROSS_SHR_AMT3"/>
+		<result property="grossShrAmt4"		column="GROSS_SHR_AMT4"/>
+		<result property="netSfee"			column="NET_SFEE"/>
+		
 		<association property="servFeeTotals" resultMap="servFeeTotalsMap"></association>
 	</resultMap>
 	

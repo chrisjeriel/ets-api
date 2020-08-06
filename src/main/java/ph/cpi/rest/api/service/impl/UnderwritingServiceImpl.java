@@ -631,6 +631,15 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 			savePolHoldCoverParams.put("updateUser", sphcr.getUpdateUser());
 			savePolHoldCoverParams.put("updateDate", sphcr.getUpdateDate());
 			
+			
+			savePolHoldCoverParams.put("totalNoDays", sphcr.getTotalNoDays());
+			savePolHoldCoverParams.put("premAmt", sphcr.getPremAmt());
+			savePolHoldCoverParams.put("commAmt", sphcr.getCommAmt());
+			savePolHoldCoverParams.put("vatRiComm", sphcr.getVatRiComm());
+			savePolHoldCoverParams.put("netDue", sphcr.getNetDue());
+			savePolHoldCoverParams.put("currCd", sphcr.getCurrCd());
+			savePolHoldCoverParams.put("currRt", sphcr.getCurrRt());
+			
 			HashMap<String, Object> res = underwritingDao.savePolHoldCover(savePolHoldCoverParams);
 			sphcResponse.setReturnCode((Integer) res.get("errorCode"));
 			sphcResponse.setPolHoldCoverNo((String) res.get("polHoldCoverNo"));

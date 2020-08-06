@@ -8,7 +8,15 @@ public class RetrieveMtnUsersRequest {
 	private String userGrp;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
+	private String activeTag;
 	
+	
+	public String getActiveTag() {
+		return activeTag;
+	}
+	public void setActiveTag(String activeTag) {
+		this.activeTag = activeTag;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -42,7 +50,7 @@ public class RetrieveMtnUsersRequest {
 	@Override
 	public String toString() {
 		return "RetrieveMtnUsersRequest [userId=" + userId + ", userGrp=" + userGrp + ", paginationRequest="
-				+ paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ paginationRequest + ", sortRequest=" + sortRequest + ", activeTag=" + activeTag + "]";
 	}
 	
 	

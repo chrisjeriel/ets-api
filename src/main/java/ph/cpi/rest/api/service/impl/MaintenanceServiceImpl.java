@@ -965,6 +965,8 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 			params.put("updateDate", smccr.getUpdateDate());
 			params.put("saveCedingRepList", smccr.getSaveCedingRepList());
 			params.put("delCedingRepList", smccr.getDelCedingRepList());
+			params.put("serviceFeeGrp", smccr.getServiceFeeGrp());
+			
 			HashMap<String, Object> res = maintenanceDao.saveMtnCedingCompany(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setOutCedingId((String) res.get("outCedingId"));
@@ -2189,6 +2191,7 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		RetrieveMtnPrintableNamesResponse response = new RetrieveMtnPrintableNamesResponse();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("employeeId", request.getEmployeeId());
+		params.put("activeTag", request.getActiveTag());
 		response.setPrintableNames(maintenanceDao.retrieveMtnPrintableNames(params));
 		return response;
 	}
@@ -3430,6 +3433,59 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 	}
 
 	@Override
+	public RetrieveMtnPremPlanResponse retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException {
+		RetrieveMtnPremPlanResponse response = new RetrieveMtnPremPlanResponse();
+		response.setList(maintenanceDao.retrieveMtnPremPlan(request));
+		return response;
+	}
+
+	@Override
+	public SaveMtnPremPlanResponse saveMtnPremPlan(SaveMtnPremPlanRequest request) throws SQLException {
+		SaveMtnPremPlanResponse response = new SaveMtnPremPlanResponse();
+		try{
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("saveList", request.getSaveList());
+			HashMap<String,Object> res = maintenanceDao.saveMtnPremPlan(params);
+			response.setReturnCode((Integer) res.get("errorCode"));
+		}catch(SQLException ex){
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
+		return response;
+	}
+
+	@Override
+	public CopyMtnPremPlanResponse copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException {
+		CopyMtnPremPlanResponse response = new CopyMtnPremPlanResponse();
+		try{
+			response.setReturnCode(maintenanceDao.copyMtnPremPlan(request));
+		}catch(SQLException ex){
+			if(ex.getErrorCode()== 20000){
+				response.setReturnCode(20000);
+				response.getErrorList().add(new Error("SQLException", ex.getMessage().substring(ex.getMessage().indexOf(':')+2,ex.getMessage().indexOf("\n"))));
+			}else{
+				response.setReturnCode(0);
+				response.getErrorList().add(new Error("SQLException","Please check field values."));
+			}
+		}
+		return response;
+	}
+	
+	@Override
+	public RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr)
+			throws SQLException {
+		RetrieveMtnAcitChartAcctResponse response = new RetrieveMtnAcitChartAcctResponse();
+		String param = rbmr.getGlShortCd();
+		response.setList(maintenanceDao.retrieveMtnAcitChartAcctLov(param));
+		return response;
+	}
+	
+	@Override
 	public RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarr)
 			throws SQLException {
 		RetrieveMtnAdjusterRateResponse rmarResponse = new RetrieveMtnAdjusterRateResponse();
@@ -3447,5 +3503,13 @@ public class MaintenanceServiceImpl implements MaintenanceService{
 		smarParams.put("deleteAdjusterRate",smarr.getDeleteAdjusterRate());
 		smarResponse.setReturnCode(maintenanceDao.saveMtnAdjusterRate(smarParams));
 		return smarResponse;
+	}
+	
+	public RetrieveMtnAcseChartAcctResponse retrieveMtnAcseChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr)
+			throws SQLException {
+		RetrieveMtnAcseChartAcctResponse response = new RetrieveMtnAcseChartAcctResponse();
+		String param = rbmr.getGlShortCd();
+		response.setList(maintenanceDao.retrieveMtnAcseChartAcctLov(param));
+		return response;
 	}
 }
