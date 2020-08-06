@@ -10,6 +10,7 @@ public class CLMR010A {
 	private Integer claimId;
 	private String claimNo;
 	private String cedingId;
+	private String cedingName;
 	private String insuredDesc;
 	private BigDecimal insuredClm;
 	private String distDate;
@@ -19,12 +20,8 @@ public class CLMR010A {
 	private String lossDtl;
 	private BigDecimal intlResAmt;
 	private BigDecimal osAmt;
-	private BigDecimal pdAmt;
-	private String dateParam;
-	private String dateRange;
 	private String dateFrom;
 	private String dateTo;
-	private BigDecimal minAmt;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -66,6 +63,12 @@ public class CLMR010A {
 	}
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public String getInsuredDesc() {
 		return insuredDesc;
@@ -121,24 +124,6 @@ public class CLMR010A {
 	public void setOsAmt(BigDecimal osAmt) {
 		this.osAmt = osAmt;
 	}
-	public BigDecimal getPdAmt() {
-		return pdAmt;
-	}
-	public void setPdAmt(BigDecimal pdAmt) {
-		this.pdAmt = pdAmt;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
 	public String getDateFrom() {
 		return dateFrom;
 	}
@@ -151,20 +136,13 @@ public class CLMR010A {
 	public void setDateTo(String dateTo) {
 		this.dateTo = dateTo;
 	}
-	public BigDecimal getMinAmt() {
-		return minAmt;
-	}
-	public void setMinAmt(BigDecimal minAmt) {
-		this.minAmt = minAmt;
-	}
 	@Override
 	public String toString() {
 		return "CLMR010A [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", claimId=" + claimId + ", claimNo=" + claimNo + ", cedingId=" + cedingId
-				+ ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm + ", distDate=" + distDate
-				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossDtl=" + lossDtl
-				+ ", intlResAmt=" + intlResAmt + ", osAmt=" + osAmt + ", pdAmt=" + pdAmt + ", dateParam=" + dateParam
-				+ ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", minAmt=" + minAmt
-				+ "]";
+				+ ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
+				+ ", distDate=" + distDate + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr
+				+ ", lossDtl=" + lossDtl + ", intlResAmt=" + intlResAmt + ", osAmt=" + osAmt + ", dateFrom=" + dateFrom
+				+ ", dateTo=" + dateTo + "]";
 	}
 }

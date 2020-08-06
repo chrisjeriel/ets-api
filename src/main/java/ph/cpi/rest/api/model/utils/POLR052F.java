@@ -3,22 +3,20 @@ package ph.cpi.rest.api.model.utils;
 import java.math.BigDecimal;
 
 public class POLR052F {
-	private String dateFromTo;
-	private String tranTypeDesc;
 	private String extractUser;
 	private String extractDate;
-	private String dateParam;
-	private String fromDate;
-	private String toDate;
 	private String tranType;
-	private String cedingId;
-	private String cedingName;
+	private String tranTypeDesc;
+	private String currencyCd;
 	private String lineCd;
 	private String debitMemoNo;
+	private String cedingId;
+	private String cedingName;
 	private Integer policyId;
 	private String policyNo;
 	private Integer instNo;
 	private String policyRef;
+	private String insuredDesc;
 	private String inceptDate;
 	private String expDate;
 	private String effDate;
@@ -26,21 +24,8 @@ public class POLR052F {
 	private BigDecimal commAmt;
 	private BigDecimal vatriComm;
 	private BigDecimal premAmt;
-	private String dateRange;
-	private String currencyCd;
-	private String insuredDesc;
-	public String getDateFromTo() {
-		return dateFromTo;
-	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
-	}
-	public String getTranTypeDesc() {
-		return tranTypeDesc;
-	}
-	public void setTranTypeDesc(String tranTypeDesc) {
-		this.tranTypeDesc = tranTypeDesc;
-	}
+	private String fromDate;
+	private String toDate;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -53,41 +38,23 @@ public class POLR052F {
 	public void setExtractDate(String extractDate) {
 		this.extractDate = extractDate;
 	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getFromDate() {
-		return fromDate;
-	}
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
-	public String getToDate() {
-		return toDate;
-	}
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
-	}
 	public String getTranType() {
 		return tranType;
 	}
 	public void setTranType(String tranType) {
 		this.tranType = tranType;
 	}
-	public String getCedingId() {
-		return cedingId;
+	public String getTranTypeDesc() {
+		return tranTypeDesc;
 	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
+	public void setTranTypeDesc(String tranTypeDesc) {
+		this.tranTypeDesc = tranTypeDesc;
 	}
-	public String getCedingName() {
-		return cedingName;
+	public String getCurrencyCd() {
+		return currencyCd;
 	}
-	public void setCedingName(String cedingName) {
-		this.cedingName = cedingName;
+	public void setCurrencyCd(String currencyCd) {
+		this.currencyCd = currencyCd;
 	}
 	public String getLineCd() {
 		return lineCd;
@@ -100,6 +67,18 @@ public class POLR052F {
 	}
 	public void setDebitMemoNo(String debitMemoNo) {
 		this.debitMemoNo = debitMemoNo;
+	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public Integer getPolicyId() {
 		return policyId;
@@ -124,6 +103,12 @@ public class POLR052F {
 	}
 	public void setPolicyRef(String policyRef) {
 		this.policyRef = policyRef;
+	}
+	public String getInsuredDesc() {
+		return insuredDesc;
+	}
+	public void setInsuredDesc(String insuredDesc) {
+		this.insuredDesc = insuredDesc;
 	}
 	public String getInceptDate() {
 		return inceptDate;
@@ -167,33 +152,26 @@ public class POLR052F {
 	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public String getDateRange() {
-		return dateRange;
+	public String getFromDate() {
+		return fromDate;
 	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
 	}
-	public String getCurrencyCd() {
-		return currencyCd;
+	public String getToDate() {
+		return toDate;
 	}
-	public void setCurrencyCd(String currencyCd) {
-		this.currencyCd = currencyCd;
-	}
-	public String getInsuredDesc() {
-		return insuredDesc;
-	}
-	public void setInsuredDesc(String insuredDesc) {
-		this.insuredDesc = insuredDesc;
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
 	@Override
 	public String toString() {
-		return "POLR052F [dateFromTo=" + dateFromTo + ", tranTypeDesc=" + tranTypeDesc + ", extractUser=" + extractUser
-				+ ", extractDate=" + extractDate + ", dateParam=" + dateParam + ", fromDate=" + fromDate + ", toDate="
-				+ toDate + ", tranType=" + tranType + ", cedingId=" + cedingId + ", cedingName=" + cedingName
-				+ ", lineCd=" + lineCd + ", debitMemoNo=" + debitMemoNo + ", policyId=" + policyId + ", policyNo="
-				+ policyNo + ", instNo=" + instNo + ", policyRef=" + policyRef + ", inceptDate=" + inceptDate
-				+ ", expDate=" + expDate + ", effDate=" + effDate + ", dueFrom=" + dueFrom + ", commAmt=" + commAmt
-				+ ", vatriComm=" + vatriComm + ", premAmt=" + premAmt + ", dateRange=" + dateRange + ", currencyCd="
-				+ currencyCd + ", insuredDesc=" + insuredDesc + "]";
+		return "POLR052F [extractUser=" + extractUser + ", extractDate=" + extractDate + ", tranType=" + tranType
+				+ ", tranTypeDesc=" + tranTypeDesc + ", currencyCd=" + currencyCd + ", lineCd=" + lineCd
+				+ ", debitMemoNo=" + debitMemoNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName
+				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", instNo=" + instNo + ", policyRef="
+				+ policyRef + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate + ", expDate=" + expDate
+				+ ", effDate=" + effDate + ", dueFrom=" + dueFrom + ", commAmt=" + commAmt + ", vatriComm=" + vatriComm
+				+ ", premAmt=" + premAmt + ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
 	}
 }

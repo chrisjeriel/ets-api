@@ -30,6 +30,7 @@ public class POLR052CA {
 	private BigDecimal prem2spMre;
 	private BigDecimal prem2spNre;
 	private BigDecimal premFaculMre;
+	private BigDecimal premFaculNre;
 	private BigDecimal totalComm;
 	private BigDecimal commQsMre;
 	private BigDecimal commQsNre;
@@ -40,6 +41,7 @@ public class POLR052CA {
 	private BigDecimal comm2spMre;
 	private BigDecimal comm2spNre;
 	private BigDecimal commFaculMre;
+	private BigDecimal commFaculNre;
 	private BigDecimal totalVatri;
 	private BigDecimal vatriQsMre;
 	private BigDecimal vatriQsNre;
@@ -50,6 +52,7 @@ public class POLR052CA {
 	private BigDecimal vatri2spMre;
 	private BigDecimal vatri2spNre;
 	private BigDecimal vatriFaculMre;
+	private BigDecimal vatriFaculNre;
 	private BigDecimal totalNetbal;
 	private BigDecimal netbalQsMre;
 	private BigDecimal netbalQsNre;
@@ -60,6 +63,7 @@ public class POLR052CA {
 	private BigDecimal netbal2spMre;
 	private BigDecimal netbal2spNre;
 	private BigDecimal netbalFaculMre;
+	private BigDecimal netbalFaculNre;
 	private String dateParam;
 	private String dateRange;
 	private String fromDate;
@@ -514,6 +518,30 @@ public class POLR052CA {
 	public void setTotalNetbalCedants(BigDecimal totalNetbalCedants) {
 		this.totalNetbalCedants = totalNetbalCedants;
 	}
+	public BigDecimal getPremFaculNre() {
+		return premFaculNre;
+	}
+	public void setPremFaculNre(BigDecimal premFaculNre) {
+		this.premFaculNre = premFaculNre;
+	}
+	public BigDecimal getCommFaculNre() {
+		return commFaculNre;
+	}
+	public void setCommFaculNre(BigDecimal commFaculNre) {
+		this.commFaculNre = commFaculNre;
+	}
+	public BigDecimal getVatriFaculNre() {
+		return vatriFaculNre;
+	}
+	public void setVatriFaculNre(BigDecimal vatriFaculNre) {
+		this.vatriFaculNre = vatriFaculNre;
+	}
+	public BigDecimal getNetbalFaculNre() {
+		return netbalFaculNre;
+	}
+	public void setNetbalFaculNre(BigDecimal netbalFaculNre) {
+		this.netbalFaculNre = netbalFaculNre;
+	}
 	@Override
 	public String toString() {
 		return "POLR052CA [dateFromTo=" + dateFromTo + ", extractUser=" + extractUser + ", extractDate=" + extractDate
@@ -524,22 +552,23 @@ public class POLR052CA {
 				+ ", totalPrem=" + totalPrem + ", premQsMre=" + premQsMre + ", premQsNre=" + premQsNre + ", premQsRet1="
 				+ premQsRet1 + ", premQsRet2=" + premQsRet2 + ", prem1spMre=" + prem1spMre + ", prem1spNre="
 				+ prem1spNre + ", prem2spMre=" + prem2spMre + ", prem2spNre=" + prem2spNre + ", premFaculMre="
-				+ premFaculMre + ", totalComm=" + totalComm + ", commQsMre=" + commQsMre + ", commQsNre=" + commQsNre
-				+ ", commQsRet1=" + commQsRet1 + ", commQsRet2=" + commQsRet2 + ", comm1spMre=" + comm1spMre
-				+ ", comm1spNre=" + comm1spNre + ", comm2spMre=" + comm2spMre + ", comm2spNre=" + comm2spNre
-				+ ", commFaculMre=" + commFaculMre + ", totalVatri=" + totalVatri + ", vatriQsMre=" + vatriQsMre
-				+ ", vatriQsNre=" + vatriQsNre + ", vatriQsRet1=" + vatriQsRet1 + ", vatriQsRet2=" + vatriQsRet2
-				+ ", vatri1spMre=" + vatri1spMre + ", vatri1spNre=" + vatri1spNre + ", vatri2spMre=" + vatri2spMre
-				+ ", vatri2spNre=" + vatri2spNre + ", vatriFaculMre=" + vatriFaculMre + ", totalNetbal=" + totalNetbal
-				+ ", netbalQsMre=" + netbalQsMre + ", netbalQsNre=" + netbalQsNre + ", netbalQsRet1=" + netbalQsRet1
-				+ ", netbalQsRet2=" + netbalQsRet2 + ", netbal1spMre=" + netbal1spMre + ", netbal1spNre=" + netbal1spNre
-				+ ", netbal2spMre=" + netbal2spMre + ", netbal2spNre=" + netbal2spNre + ", netbalFaculMre="
-				+ netbalFaculMre + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + ", totalPremMre=" + totalPremMre + ", totalPremNre=" + totalPremNre
-				+ ", totalPremCedants=" + totalPremCedants + ", totalCommMre=" + totalCommMre + ", totalCommNre="
-				+ totalCommNre + ", totalCommCedants=" + totalCommCedants + ", totalVatriMre=" + totalVatriMre
-				+ ", totalVatriNre=" + totalVatriNre + ", totalVatriCedants=" + totalVatriCedants + ", totalNetbalMre="
-				+ totalNetbalMre + ", totalNetbalNre=" + totalNetbalNre + ", totalNetbalCedants=" + totalNetbalCedants
-				+ "]";
+				+ premFaculMre + ", premFaculNre=" + premFaculNre + ", totalComm=" + totalComm + ", commQsMre="
+				+ commQsMre + ", commQsNre=" + commQsNre + ", commQsRet1=" + commQsRet1 + ", commQsRet2=" + commQsRet2
+				+ ", comm1spMre=" + comm1spMre + ", comm1spNre=" + comm1spNre + ", comm2spMre=" + comm2spMre
+				+ ", comm2spNre=" + comm2spNre + ", commFaculMre=" + commFaculMre + ", commFaculNre=" + commFaculNre
+				+ ", totalVatri=" + totalVatri + ", vatriQsMre=" + vatriQsMre + ", vatriQsNre=" + vatriQsNre
+				+ ", vatriQsRet1=" + vatriQsRet1 + ", vatriQsRet2=" + vatriQsRet2 + ", vatri1spMre=" + vatri1spMre
+				+ ", vatri1spNre=" + vatri1spNre + ", vatri2spMre=" + vatri2spMre + ", vatri2spNre=" + vatri2spNre
+				+ ", vatriFaculMre=" + vatriFaculMre + ", vatriFaculNre=" + vatriFaculNre + ", totalNetbal="
+				+ totalNetbal + ", netbalQsMre=" + netbalQsMre + ", netbalQsNre=" + netbalQsNre + ", netbalQsRet1="
+				+ netbalQsRet1 + ", netbalQsRet2=" + netbalQsRet2 + ", netbal1spMre=" + netbal1spMre + ", netbal1spNre="
+				+ netbal1spNre + ", netbal2spMre=" + netbal2spMre + ", netbal2spNre=" + netbal2spNre
+				+ ", netbalFaculMre=" + netbalFaculMre + ", netbalFaculNre=" + netbalFaculNre + ", dateParam="
+				+ dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate
+				+ ", totalPremMre=" + totalPremMre + ", totalPremNre=" + totalPremNre + ", totalPremCedants="
+				+ totalPremCedants + ", totalCommMre=" + totalCommMre + ", totalCommNre=" + totalCommNre
+				+ ", totalCommCedants=" + totalCommCedants + ", totalVatriMre=" + totalVatriMre + ", totalVatriNre="
+				+ totalVatriNre + ", totalVatriCedants=" + totalVatriCedants + ", totalNetbalMre=" + totalNetbalMre
+				+ ", totalNetbalNre=" + totalNetbalNre + ", totalNetbalCedants=" + totalNetbalCedants + "]";
 	}
 }

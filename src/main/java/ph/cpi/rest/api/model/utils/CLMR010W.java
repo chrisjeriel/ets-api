@@ -7,10 +7,8 @@ public class CLMR010W {
 	private String lineCd;
 	private String cedingId;
 	private String cedingName;
-	private String claimId;
+	private Integer claimId;
 	private String claimNo;
-	private String dateParam;
-	private String dateRange;
 	private String dateFrom;
 	private String dateTo;
 	public String getExtractUser() {
@@ -49,10 +47,10 @@ public class CLMR010W {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public String getClaimId() {
+	public Integer getClaimId() {
 		return claimId;
 	}
-	public void setClaimId(String claimId) {
+	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
 	}
 	public String getClaimNo() {
@@ -60,18 +58,6 @@ public class CLMR010W {
 	}
 	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
 	}
 	public String getDateFrom() {
 		return dateFrom;
@@ -89,7 +75,6 @@ public class CLMR010W {
 	public String toString() {
 		return "CLMR010W [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", claimId="
-				+ claimId + ", claimNo=" + claimNo + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + "]";
+				+ claimId + ", claimNo=" + claimNo + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + "]";
 	}
 }
