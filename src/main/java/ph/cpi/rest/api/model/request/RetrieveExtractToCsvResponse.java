@@ -101,6 +101,7 @@ public class RetrieveExtractToCsvResponse {
 	private List<ACSER024B> listAcser024b;
 	private List<ACSER024CD> listAcser024c;
 	private List<ACSER024CD> listAcser024d;
+	private List<ACSER024CD> listAcser024cd;
 	
 	private List<ACSER004> listAcser004;
 	
@@ -736,6 +737,12 @@ public class RetrieveExtractToCsvResponse {
 	public void setListClmr010ap2(List<CLMR010AP2> listClmr010ap2) {
 		this.listClmr010ap2 = listClmr010ap2;
 	}
+	public List<ACSER024CD> getListAcser024cd() {
+		return listAcser024cd;
+	}
+	public void setListAcser024cd(List<ACSER024CD> listAcser024cd) {
+		this.listAcser024cd = listAcser024cd;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -772,11 +779,11 @@ public class RetrieveExtractToCsvResponse {
 				+ listAcitr066b + ", listAcitr066c=" + listAcitr066c + ", listAcitr066d=" + listAcitr066d
 				+ ", listAcitr066e=" + listAcitr066e + ", listAcitr066f=" + listAcitr066f + ", listAcser024a="
 				+ listAcser024a + ", listAcser024b=" + listAcser024b + ", listAcser024c=" + listAcser024c
-				+ ", listAcser024d=" + listAcser024d + ", listAcser004=" + listAcser004 + ", listAcitr050b="
-				+ listAcitr050b + ", listAcitr050c=" + listAcitr050c + ", listAcitr050d=" + listAcitr050d
-				+ ", listAcitr061a=" + listAcitr061a + ", listAcitr061b=" + listAcitr061b + ", listAcitr061c="
-				+ listAcitr061c + ", listAcitr061d=" + listAcitr061d + ", listAcitr058=" + listAcitr058
-				+ ", listAcitr059=" + listAcitr059 + ", listAcser007=" + listAcser007 + ", listAcser008=" + listAcser008
-				+ "]";
+				+ ", listAcser024d=" + listAcser024d + ", listAcser024cd=" + listAcser024cd + ", listAcser004="
+				+ listAcser004 + ", listAcitr050b=" + listAcitr050b + ", listAcitr050c=" + listAcitr050c
+				+ ", listAcitr050d=" + listAcitr050d + ", listAcitr061a=" + listAcitr061a + ", listAcitr061b="
+				+ listAcitr061b + ", listAcitr061c=" + listAcitr061c + ", listAcitr061d=" + listAcitr061d
+				+ ", listAcitr058=" + listAcitr058 + ", listAcitr059=" + listAcitr059 + ", listAcser007=" + listAcser007
+				+ ", listAcser008=" + listAcser008 + "]";
 	}
 }

@@ -3480,28 +3480,41 @@
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.utils.ACSER024CD" id="retrieveAcseR024cdMap">
-		<result property ="eomDate"               column="EOM_DATE"/>
-		<result property ="eomMm"                 column="EOM_MM"/>
-		<result property ="eomYear"               column="EOM_YEAR"/>
-		<result property ="currCd"                column="CURR_CD"/>
-		<result property ="currRt"                column="CURR_RT"/>
-		<result property ="glAcctId"              column="GL_ACCT_ID"/>
-		<result property ="shortCode"             column="SHORT_CODE"/>
-		<result property ="shortDesc"             column="SHORT_DESC"/>
-		<result property ="longDesc"              column="LONG_DESC"/>
-		<result property ="begDebitAmt"           column="BEG_DEBIT_AMT"/>
-		<result property ="begCreditAmt"          column="BEG_CREDIT_AMT"/>
-		<result property ="totalDebitAmt"         column="TOTAL_DEBIT_AMT"/>
-		<result property ="totalCreditAmt"        column="TOTAL_CREDIT_AMT"/>
-		<result property ="transDebitBal"         column="TRANS_DEBIT_BAL"/>
-		<result property ="transCreditBal"        column="TRANS_CREDIT_BAL"/>
-		<result property ="transBalance"          column="TRANS_BALANCE"/>
-		<result property ="endDebitAmt"           column="END_DEBIT_AMT"/>
-		<result property ="endCreditAmt"          column="END_CREDIT_AMT"/>
-		<result property ="eomUser"               column="EOM_USER"/>
-		<result property ="tbBase"                column="TB_BASE"/>
-		<result property="paramDate"			  column="PARAM_DATE"/>
-		<result property="paramCurrency"  		  column="PARAM_CURRENCY"/>
+		<result property="eomMm"                  column="eom_mm"/>
+		<result property="eomYear"                column="eom_year"/>
+		<result property="currCd"                 column="curr_cd"/>
+		<result property="currRt"                 column="curr_rt"/>
+		<result property="glAcctId"               column="gl_acct_id"/>
+		<result property="shortCode"              column="short_code"/>
+		<result property="shortDesc"              column="short_desc"/>
+		<result property="longDesc"               column="long_desc"/>
+		<result property="slTypeCd"               column="sl_type_cd"/>
+		<result property="slTypeName"             column="sl_type_name"/>
+		<result property="slCd"                   column="sl_cd"/>
+		<result property="slName"                 column="sl_name"/>
+		<result property="begDebitAmt"            column="beg_debit_amt"/>
+		<result property="begCreditAmt"           column="beg_credit_amt"/>
+		<result property="transDebitBal"          column="trans_debit_bal"/>
+		<result property="transCreditBal"         column="trans_credit_bal"/>
+		<result property="transBalance"           column="trans_balance"/>
+		<result property="endDebitAmt"            column="end_debit_amt"/>
+		<result property="endCreditAmt"           column="end_credit_amt"/>
+		<result property="localBegDebitAmt"       column="local_beg_debit_amt"/>
+		<result property="localBegCreditAmt"      column="local_beg_credit_amt"/>
+		<result property="localTransDebitBal"     column="local_trans_debit_bal"/>
+		<result property="localTransCreditBal"    column="local_trans_credit_bal"/>
+		<result property="localTransBalance"      column="local_trans_balance"/>
+		<result property="localEndDebitAmt"       column="local_end_debit_amt"/>
+		<result property="localEndCreditAmt"      column="local_end_credit_amt"/>
+		<result property="postTag"                column="post_tag"/>
+		<result property="eomUser"                column="eom_user"/>
+		<result property="tbBase"                 column="tb_base"/>
+		<result property="glAcctCategory"         column="gl_acct_category"/>
+		<result property="glAcctControl"          column="gl_acct_control"/>
+		<result property="glAcctSub1"             column="gl_acct_sub1"/>
+		<result property="glAcctSub2"             column="gl_acct_sub2"/>
+		<result property="glAcctSub3"             column="gl_acct_sub3"/>
+		<result property="parentGlId"             column="parent_gl_id"/>
 	</resultMap>
 	
 	<select id="retrieveAcseR024c" resultMap="retrieveAcseR024cdMap" parameterType="java.util.Map">		
@@ -4755,5 +4768,10 @@
 	<select id="retrievePolR044u" resultMap="retrievePolR044uMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044u_to_csv(
 					#{extractUser,jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrieveAcseR024cd" resultMap="retrieveAcseR024cdMap">
+		SELECT *
+  		  FROM TABLE(ACSER024CD_PKG.ret_acser024cd_dtl(CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),#{paramCurrency,jdbcType=VARCHAR}))
 	</select>
 </mapper>

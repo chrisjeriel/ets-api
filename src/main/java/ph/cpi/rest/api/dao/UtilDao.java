@@ -124,5 +124,6 @@ public interface UtilDao {
 	public List<ACITR059_CSV> retrieveAcitR059(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACSER007_CSV> retrieveAcseR007(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACSER008_CSV> retrieveAcseR008(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACSER024CD> retrieveAcseR024cd(HashMap<String, Object> retcParams) throws SQLException;
 
 }

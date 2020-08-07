@@ -740,6 +740,12 @@ public class UtilDaoImpl implements UtilDao{
 		return retrieveClmR010ap2;
 	}
 
+	@Override
+	public List<ACSER024CD> retrieveAcseR024cd(HashMap<String, Object> retcParams) throws SQLException {
+		List<ACSER024CD> retrieveAcseR024cd = sqlSession.selectList("retrieveAcseR024cd",retcParams);
+		return retrieveAcseR024cd;
+	}
+
 	
 
 }

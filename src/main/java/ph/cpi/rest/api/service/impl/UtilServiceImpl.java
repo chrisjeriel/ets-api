@@ -461,6 +461,12 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcser008(utilDao.retrieveAcseR008(retcParams));
 		}
 		
+		else if(reportName.startsWith("ACSER024C")) {
+			retcResponse.setListAcser024cd(utilDao.retrieveAcseR024cd(retcParams));
+		}else if(reportName.startsWith("ACSER024D")) {
+			retcResponse.setListAcser024cd(utilDao.retrieveAcseR024cd(retcParams));
+		}
+		
 		else {
 			System.out.println("No Response yet!");
 		}
