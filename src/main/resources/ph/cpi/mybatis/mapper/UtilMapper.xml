@@ -2524,6 +2524,9 @@
 		<result property="cedingName"       column="CEDING_NAME"/>
 		<result property="policyId"         column="POLICY_ID"/>
 		<result property="policyNo"         column="POLICY_NO"/>
+		<result property="uwYear"         	column="UW_YEAR"/>
+		<result property="effDate"         	column="EFF_DATE"/>
+		<result property="distDate"         column="DIST_DATE"/>
 		<result property="polCoRefNo"       column="POL_CO_REF_NO"/>
 		<result property="currencyCd"       column="CURRENCY_CD"/>
 		<result property="insuredDesc"      column="INSURED_DESC"/>
@@ -2561,6 +2564,9 @@
 		<result property="cedingName"             column="CEDING_NAME"/>
 		<result property="policyId"               column="POLICY_ID"/>
 		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="uwYear"         		  column="UW_YEAR"/>
+		<result property="effDate"         		  column="EFF_DATE"/>
+		<result property="distDate"         	  column="DIST_DATE"/>
 		<result property="polCoRefNo"             column="POL_CO_REF_NO"/>
 		<result property="currencyCd"             column="CURRENCY_CD"/>
 		<result property="insuredDesc"            column="INSURED_DESC"/>
@@ -2596,6 +2602,9 @@
         <result property="cedingName"       column="CEDING_NAME"/>
         <result property="policyId"         column="POLICY_ID"/>
         <result property="policyNo"         column="POLICY_NO"/>
+        <result property="uwYear"         		  column="UW_YEAR"/>
+		<result property="effDate"         		  column="EFF_DATE"/>
+		<result property="distDate"         	  column="DIST_DATE"/>
         <result property="polCoRefNo"       column="POL_CO_REF_NO"/>
         <result property="currencyCd"       column="CURRENCY_CD"/>
         <result property="insuredDesc"      column="INSURED_DESC"/>
@@ -3378,41 +3387,48 @@
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.utils.ACITR066EF" id="retrieveAcitR066efMap">
-    	<!-- <result property="eomDate"              column="EOM_DATE"/> -->
-		<result property="eomMm"                column="EOM_MM"/>
-		<result property="eomYear"              column="EOM_YEAR"/>
-		<result property="currCd"               column="CURR_CD"/>
-		<result property="currRt"               column="CURR_RT"/>
-		<result property="glAcctId"             column="GL_ACCT_ID"/>
-		<result property="shortCode"            column="SHORT_CODE"/>
-		<result property="shortDesc"            column="SHORT_DESC"/>
-		<result property="longDesc"             column="LONG_DESC"/>
-		<result property="begDebitAmt"          column="BEG_DEBIT_AMT"/>
-		<result property="begCreditAmt"         column="BEG_CREDIT_AMT"/>
-		<result property="totalDebitAmt"        column="TOTAL_DEBIT_AMT"/>
-		<result property="totalCreditAmt"       column="TOTAL_CREDIT_AMT"/>
-		<result property="transDebitBal"        column="TRANS_DEBIT_BAL"/>
-		<result property="transCreditBal"       column="TRANS_CREDIT_BAL"/>
-		<result property="transBalance"         column="TRANS_BALANCE"/>
-		<result property="endDebitAmt"          column="END_DEBIT_AMT"/>
-		<result property="endCreditAmt"         column="END_CREDIT_AMT"/>
-		<result property="eomUser"              column="EOM_USER"/>
-		<result property="tbBase"               column="TB_BASE"/>
-		<result property="paramDate"			column="PARAM_DATE"/>
-		<result property="paramCurrency"		column="PARAM_CURRENCY"/>
+    	<result property="eomMm"						column="EOM_MM"/>
+		<result property="eomYear"						column="EOM_YEAR"/>
+		<result property="currCd"						column="CURR_CD"/>
+		<result property="currRt"						column="CURR_RT"/>
+		<result property="glAcctId"						column="GL_ACCT_ID"/>
+		<result property="shortCode"					column="SHORT_CODE"/>
+		<result property="shortDesc"					column="SHORT_DESC"/>
+		<result property="longDesc"						column="LONG_DESC"/>
+		<result property="slTypeCd"						column="SL_TYPE_CD"/>
+		<result property="slTypeName"					column="SL_TYPE_NAME"/>
+		<result property="slCd"							column="SL_CD"/>
+		<result property="slName"						column="SL_NAME"/>
+		<result property="begDebitAmt"					column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"					column="BEG_CREDIT_AMT"/>
+		<result property="transDebitBal"				column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"				column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"					column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"					column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"					column="END_CREDIT_AMT"/>
+		<result property="localBegDebitAmt"				column="LOCAL_BEG_DEBIT_AMT"/>
+		<result property="localBegCreditAmt"			column="LOCAL_BEG_CREDIT_AMT"/>
+		<result property="localTransDebitBal"			column="LOCAL_TRANS_DEBIT_BAL"/>
+		<result property="localTransCreditBal"			column="LOCAL_TRANS_CREDIT_BAL"/>
+		<result property="localTransBalance"			column="LOCAL_TRANS_BALANCE"/>
+		<result property="localEndDebitAmt"				column="LOCAL_END_DEBIT_AMT"/>
+		<result property="localEndCreditAmt"			column="LOCAL_END_CREDIT_AMT"/>
+		<result property="postTag"						column="POST_TAG"/>
+		<result property="eomUser"						column="EOM_USER"/>
+		<result property="tbBase"						column="TB_BASE"/>
+		<result property="glAcctCategory"				column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctControl"				column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1"					column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2"					column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3"					column="GL_ACCT_SUB3"/>
+		<result property="parentGlId"					column="PARENT_GL_ID"/>
     </resultMap>
     
-    <select id="retrieveAcitR066e" resultMap="retrieveAcitR066efMap" parameterType="java.util.Map">
-        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066ef_to_csv(
+    <select id="retrieveAcitR066ef" resultMap="retrieveAcitR066efMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066EF_PKG.ret_acitr066ef_dtl(
                     CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
                     #{paramCurrency,jdbcType=VARCHAR}))
-    </select>
-    
-    <select id="retrieveAcitR066f" resultMap="retrieveAcitR066efMap" parameterType="java.util.Map">
-        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066ef_to_csv(
-                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
-                    #{paramCurrency,jdbcType=VARCHAR},null))
-    </select>
+    </select>    
     
     <resultMap type="ph.cpi.rest.api.model.utils.ACITR066D" id="retrieveAcitR066dMap">
     	<result property="grpNo"				column="GRP_NO"/>
@@ -3897,6 +3913,9 @@
 		<result property="cedingName"             column="CEDING_NAME"/>
 		<result property="policyId"               column="POLICY_ID"/>
 		<result property="policyNo"               column="POLICY_NO"/>
+		<result property="uwYear"         		  column="UW_YEAR"/>
+		<result property="effDate"         		  column="EFF_DATE"/>
+		<result property="distDate"         	  column="DIST_DATE"/>
 		<result property="polCoRefNo"             column="POL_CO_REF_NO"/>
 		<result property="currencyCd"             column="CURRENCY_CD"/>
 		<result property="insuredDesc"            column="INSURED_DESC"/>
@@ -4756,4 +4775,114 @@
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044u_to_csv(
 					#{extractUser,jdbcType=VARCHAR}))
 	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.CLMR052A" id="retrieveClmR052aMap">
+      	<result property="extractUser"                  column="EXTRACT_USER"/>
+		<result property="extractDate"                  column="EXTRACT_DATE"/>
+		<result property="currencyCd"                   column="CURRENCY_CD"/>
+		<result property="lineCd"                       column="LINE_CD"/>
+		<result property="claimId"                      column="CLAIM_ID"/>
+		<result property="claimNo"                      column="CLAIM_NO"/>
+		<result property="insuredClm"                   column="INSURED_CLM"/>
+		<result property="insuredDesc"                  column="INSURED_DESC"/>
+		<result property="approvedAmt"                  column="APPROVED_AMT"/>
+		<result property="reserveAmt"                   column="RESERVE_AMT"/>
+		<result property="adjId"                        column="ADJ_ID"/>
+		<result property="adjName"                      column="ADJ_NAME"/>
+		<result property="cedingId"                     column="CEDING_ID"/>
+		<result property="cedingName"                   column="CEDING_NAME"/>
+		<result property="policyId"                     column="POLICY_ID"/>
+		<result property="policyNo"                     column="POLICY_NO"/>
+		<result property="polCoRefNo"                 	column="POL_CO_REF_NO"/>
+		<result property="inceptDate"                   column="INCEPT_DATE"/>
+		<result property="expiryDate"                   column="EXPIRY_DATE"/>
+		<result property="mrePctShr"                   	column="MRE_PCT_SHR"/>
+		<result property="nrePctShr"                   	column="NRE_PCT_SHR"/>
+		<result property="ret1Lines"                    column="RET1_LINES"/>
+		<result property="ret2Lines"                    column="RET2_LINES"/>
+		<result property="lossCd"                       column="LOSS_CD"/>
+		<result property="lossAbbr"                     column="LOSS_ABBR"/>
+		<result property="lossDate"                     column="LOSS_DATE"/>
+		<result property="histNo"                       column="HIST_NO"/>
+		<result property="histCategory"                 column="HIST_CATEGORY"/>
+		<result property="histCatDesc"                 	column="HIST_CAT_DESC"/>
+		<result property="reserveQuota"                 column="RESERVE_QUOTA"/>
+		<result property="reserve1stRet"               	column="RESERVE_1ST_RET"/>
+		<result property="reserve2ndRet"               	column="RESERVE_2ND_RET"/>
+		<result property="reserve1stSurplus"           	column="RESERVE_1ST_SURPLUS"/>
+		<result property="reserve2ndSurplus"           	column="RESERVE_2ND_SURPLUS"/>
+		<result property="reserveFacul"                 column="RESERVE_FACUL"/>
+		<result property="mreQuota"                     column="MRE_QUOTA"/>
+		<result property="mre1stSurplus"               	column="MRE_1ST_SURPLUS"/>
+		<result property="mre2ndSurplus"               	column="MRE_2ND_SURPLUS"/>
+		<result property="mreFacul"                     column="MRE_FACUL"/>
+		<result property="mreTotal"                     column="MRE_TOTAL"/>
+		<result property="nreQuota"                     column="NRE_QUOTA"/>
+		<result property="nre1stSurplus"               	column="NRE_1ST_SURPLUS"/>
+		<result property="nre2ndSurplus"               	column="NRE_2ND_SURPLUS"/>
+		<result property="nreFacul"                     column="NRE_FACUL"/>
+		<result property="nreTotal"                     column="NRE_TOTAL"/>
+		<result property="dateFrom"                     column="DATE_FROM"/>
+		<result property="dateTo"                       column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR052a" resultMap="retrieveClmR052aMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR052_CSV_PKG.clmr052a_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.CLMR052B" id="retrieveClmR052bMap">
+      	<result property="extractUser"                  column="EXTRACT_USER"/>
+		<result property="extractDate"                  column="EXTRACT_DATE"/>
+		<result property="currencyCd"                   column="CURRENCY_CD"/>
+		<result property="lineCd"                       column="LINE_CD"/>
+		<result property="claimId"                      column="CLAIM_ID"/>
+		<result property="claimNo"                      column="CLAIM_NO"/>
+		<result property="insuredClm"                   column="INSURED_CLM"/>
+		<result property="insuredDesc"                  column="INSURED_DESC"/>
+		<result property="approvedAmt"                  column="APPROVED_AMT"/>
+		<result property="reserveAmt"                   column="RESERVE_AMT"/>
+		<result property="adjId"                        column="ADJ_ID"/>
+		<result property="adjName"                      column="ADJ_NAME"/>
+		<result property="cedingId"                     column="CEDING_ID"/>
+		<result property="cedingName"                   column="CEDING_NAME"/>
+		<result property="policyId"                     column="POLICY_ID"/>
+		<result property="policyNo"                     column="POLICY_NO"/>
+		<result property="polCoRefNo"                 	column="POL_CO_REF_NO"/>
+		<result property="inceptDate"                   column="INCEPT_DATE"/>
+		<result property="expiryDate"                   column="EXPIRY_DATE"/>
+		<result property="mrePctShr"                   	column="MRE_PCT_SHR"/>
+		<result property="nrePctShr"                   	column="NRE_PCT_SHR"/>
+		<result property="ret1Lines"                    column="RET1_LINES"/>
+		<result property="ret2Lines"                    column="RET2_LINES"/>
+		<result property="lossCd"                       column="LOSS_CD"/>
+		<result property="lossAbbr"                     column="LOSS_ABBR"/>
+		<result property="lossDate"                     column="LOSS_DATE"/>
+		<result property="histNo"                       column="HIST_NO"/>
+		<result property="histCategory"                 column="HIST_CATEGORY"/>
+		<result property="histCatDesc"                 	column="HIST_CAT_DESC"/>
+		<result property="reserveQuota"                 column="RESERVE_QUOTA"/>
+		<result property="reserve1stRet"               	column="RESERVE_1ST_RET"/>
+		<result property="reserve2ndRet"               	column="RESERVE_2ND_RET"/>
+		<result property="reserve1stSurplus"           	column="RESERVE_1ST_SURPLUS"/>
+		<result property="reserve2ndSurplus"           	column="RESERVE_2ND_SURPLUS"/>
+		<result property="reserveFacul"                 column="RESERVE_FACUL"/>
+		<result property="mreQuota"                     column="MRE_QUOTA"/>
+		<result property="mre1stSurplus"               	column="MRE_1ST_SURPLUS"/>
+		<result property="mre2ndSurplus"               	column="MRE_2ND_SURPLUS"/>
+		<result property="mreFacul"                     column="MRE_FACUL"/>
+		<result property="mreTotal"                     column="MRE_TOTAL"/>
+		<result property="nreQuota"                     column="NRE_QUOTA"/>
+		<result property="nre1stSurplus"               	column="NRE_1ST_SURPLUS"/>
+		<result property="nre2ndSurplus"               	column="NRE_2ND_SURPLUS"/>
+		<result property="nreFacul"                     column="NRE_FACUL"/>
+		<result property="nreTotal"                     column="NRE_TOTAL"/>
+		<result property="dateFrom"                     column="DATE_FROM"/>
+		<result property="dateTo"                       column="DATE_TO"/>
+    </resultMap>
+    
+    <select id="retrieveClmR052b" resultMap="retrieveClmR052bMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(CLMR052_CSV_PKG.clmr052b_to_csv(
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
 </mapper>

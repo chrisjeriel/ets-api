@@ -23,6 +23,9 @@ public class CLMR010NE {
 	private String cedingName;
 	private Integer policyId;
 	private String policyNo;
+	private Integer uwYear;
+	private String effDate;
+	private String distDate;
 	private String polCoRefNo;
 	private String currencyCd;
 	private String insuredDesc;
@@ -213,6 +216,24 @@ public class CLMR010NE {
 	public void setLossPaid(BigDecimal lossPaid) {
 		this.lossPaid = lossPaid;
 	}
+	public Integer getUwYear() {
+		return uwYear;
+	}
+	public void setUwYear(Integer uwYear) {
+		this.uwYear = uwYear;
+	}
+	public String getEffDate() {
+		return effDate;
+	}
+	public void setEffDate(String effDate) {
+		this.effDate = effDate;
+	}
+	public String getDistDate() {
+		return distDate;
+	}
+	public void setDistDate(String distDate) {
+		this.distDate = distDate;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010NE [dateFromTo=" + dateFromTo + ", extractUser=" + extractUser + ", extractDate=" + extractDate
@@ -220,9 +241,10 @@ public class CLMR010NE {
 				+ dateTo + ", lineCd=" + lineCd + ", claimId=" + claimId + ", claimNo=" + claimNo + ", lossDate="
 				+ lossDate + ", createDate=" + createDate + ", bookingMth=" + bookingMth + ", bookingYear="
 				+ bookingYear + ", adjId=" + adjId + ", adjName=" + adjName + ", cedingId=" + cedingId + ", cedingName="
-				+ cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", polCoRefNo=" + polCoRefNo
-				+ ", currencyCd=" + currencyCd + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
-				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", approvedAmt=" + approvedAmt + ", histCategory="
-				+ histCategory + ", histCatDesc=" + histCatDesc + ", lossPaid=" + lossPaid + "]";
+				+ cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", uwYear=" + uwYear + ", effDate="
+				+ effDate + ", distDate=" + distDate + ", polCoRefNo=" + polCoRefNo + ", currencyCd=" + currencyCd
+				+ ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm + ", lossCd=" + lossCd + ", lossAbbr="
+				+ lossAbbr + ", approvedAmt=" + approvedAmt + ", histCategory=" + histCategory + ", histCatDesc="
+				+ histCatDesc + ", lossPaid=" + lossPaid + "]";
 	}
 }

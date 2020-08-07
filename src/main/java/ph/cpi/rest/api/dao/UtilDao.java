@@ -101,8 +101,7 @@ public interface UtilDao {
 	public List<ACITR066B> retrieveAcitR066b(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066C> retrieveAcitR066c(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACITR066D> retrieveAcitR066d(final HashMap<String, Object> params ) throws SQLException;
-	public List<ACITR066EF> retrieveAcitR066e(final HashMap<String, Object> params ) throws SQLException;
-	public List<ACITR066EF> retrieveAcitR066f(final HashMap<String, Object> params ) throws SQLException;
+	public List<ACITR066EF> retrieveAcitR066ef(final HashMap<String, Object> params ) throws SQLException;
 	
 	public List<ACSER024A> retrieveAcseR024a(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACSER024B> retrieveAcseR024b(final HashMap<String, Object> params ) throws SQLException;
@@ -125,4 +124,6 @@ public interface UtilDao {
 	public List<ACSER007_CSV> retrieveAcseR007(final HashMap<String, Object> params ) throws SQLException;
 	public List<ACSER008_CSV> retrieveAcseR008(final HashMap<String, Object> params ) throws SQLException;
 
+	public List<CLMR052A> retrieveClmR052a(final HashMap<String, Object> params ) throws SQLException;
+	public List<CLMR052B> retrieveClmR052b(final HashMap<String, Object> params ) throws SQLException;
 }

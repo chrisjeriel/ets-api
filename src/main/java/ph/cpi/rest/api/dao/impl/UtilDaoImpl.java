@@ -489,15 +489,9 @@ public class UtilDaoImpl implements UtilDao{
 	}
 
 	@Override
-	public List<ACITR066EF> retrieveAcitR066e(HashMap<String, Object> params) throws SQLException {
-		List<ACITR066EF> retrieveAcitR066e = sqlSession.selectList("retrieveAcitR066e",params);
-		return retrieveAcitR066e;
-	}
-
-	@Override
-	public List<ACITR066EF> retrieveAcitR066f(HashMap<String, Object> params) throws SQLException {
-		List<ACITR066EF> retrieveAcitR066f = sqlSession.selectList("retrieveAcitR066f",params);
-		return retrieveAcitR066f;
+	public List<ACITR066EF> retrieveAcitR066ef(HashMap<String, Object> params) throws SQLException {
+		List<ACITR066EF> retrieveAcitR066ef = sqlSession.selectList("retrieveAcitR066ef",params);
+		return retrieveAcitR066ef;
 	}
 
 	@Override
@@ -738,6 +732,18 @@ public class UtilDaoImpl implements UtilDao{
 	public List<CLMR010AP2> retrieveClmR010ap2(HashMap<String, Object> params) throws SQLException {
 		List<CLMR010AP2> retrieveClmR010ap2 = sqlSession.selectList("retrieveClmR010ap2",params);
 		return retrieveClmR010ap2;
+	}
+
+	@Override
+	public List<CLMR052A> retrieveClmR052a(HashMap<String, Object> params) throws SQLException {
+		List<CLMR052A> retrieveClmR052a = sqlSession.selectList("retrieveClmR052a",params);
+		return retrieveClmR052a;
+	}
+
+	@Override
+	public List<CLMR052B> retrieveClmR052b(HashMap<String, Object> params) throws SQLException {
+		List<CLMR052B> retrieveClmR052b = sqlSession.selectList("retrieveClmR052b",params);
+		return retrieveClmR052b;
 	}
 
 	
