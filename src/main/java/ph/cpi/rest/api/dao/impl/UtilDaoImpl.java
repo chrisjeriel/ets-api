@@ -733,6 +733,12 @@ public class UtilDaoImpl implements UtilDao{
 		List<CLMR010AP2> retrieveClmR010ap2 = sqlSession.selectList("retrieveClmR010ap2",params);
 		return retrieveClmR010ap2;
 	}
+	
+	@Override
+	public List<ACSER024CD> retrieveAcseR024cd(HashMap<String, Object> retcParams) throws SQLException {
+		List<ACSER024CD> retrieveAcseR024cd = sqlSession.selectList("retrieveAcseR024cd",retcParams);
+		return retrieveAcseR024cd;
+	}
 
 	@Override
 	public List<CLMR052A> retrieveClmR052a(HashMap<String, Object> params) throws SQLException {
@@ -745,7 +751,4 @@ public class UtilDaoImpl implements UtilDao{
 		List<CLMR052B> retrieveClmR052b = sqlSession.selectList("retrieveClmR052b",params);
 		return retrieveClmR052b;
 	}
-
-	
-
 }
