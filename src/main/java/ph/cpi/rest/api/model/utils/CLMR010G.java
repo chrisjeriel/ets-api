@@ -14,6 +14,8 @@ public class CLMR010G {
 	private String inceptDate;
 	private String expiryDate;
 	private String lossDate;
+	private String uwYear;
+	private String distDate;
 	private String eventCd;
 	private String eventDesc;
 	private String remarks;
@@ -435,26 +437,38 @@ public class CLMR010G {
 	public void setDateFromTo(String dateFromTo) {
 		this.dateFromTo = dateFromTo;
 	}
+	public String getUwYear() {
+		return uwYear;
+	}
+	public void setUwYear(String uwYear) {
+		this.uwYear = uwYear;
+	}
+	public String getDistDate() {
+		return distDate;
+	}
+	public void setDistDate(String distDate) {
+		this.distDate = distDate;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010G [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", claimId=" + claimId + ", claimNo=" + claimNo + ", policyId=" + policyId
 				+ ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", inceptDate="
-				+ inceptDate + ", expiryDate=" + expiryDate + ", lossDate=" + lossDate + ", eventCd=" + eventCd
-				+ ", eventDesc=" + eventDesc + ", remarks=" + remarks + ", insuredDesc=" + insuredDesc + ", site="
-				+ site + ", tsiAmt=" + tsiAmt + ", pctShare=" + pctShare + ", retEffDate=" + retEffDate
-				+ ", retLineAmt=" + retLineAmt + ", ret1Lines=" + ret1Lines + ", ret2Lines=" + ret2Lines
-				+ ", shrCoRetlines=" + shrCoRetlines + ", osAmt=" + osAmt + ", pdAmt=" + pdAmt + ", adjId=" + adjId
-				+ ", adjName=" + adjName + ", adjFee=" + adjFee + ", cedRet1Shr=" + cedRet1Shr + ", cedRet2Shr="
-				+ cedRet2Shr + ", cedTotalShr=" + cedTotalShr + ", polQuCedRet1=" + polQuCedRet1 + ", polQuCedRet2="
-				+ polQuCedRet2 + ", polQuCedTotal=" + polQuCedTotal + ", polQuMre=" + polQuMre + ", polQuNre="
-				+ polQuNre + ", pol1spMre=" + pol1spMre + ", pol1spNre=" + pol1spNre + ", pol2spMre=" + pol2spMre
-				+ ", pol2spNre=" + pol2spNre + ", polFacul=" + polFacul + ", clmQuCedRet1=" + clmQuCedRet1
-				+ ", clmQuCedRet2=" + clmQuCedRet2 + ", clmQuCedTotal=" + clmQuCedTotal + ", clmQuMre=" + clmQuMre
-				+ ", clmQuNre=" + clmQuNre + ", clm1spMre=" + clm1spMre + ", clm1spNre=" + clm1spNre + ", clm2spMre="
-				+ clm2spMre + ", clm2spNre=" + clm2spNre + ", clmFacul=" + clmFacul + ", cedingIdParam=" + cedingIdParam
-				+ ", cedIdParamDesc=" + cedIdParamDesc + ", dateParam=" + dateParam + ", dateParamDesc=" + dateParamDesc
-				+ ", dateRange=" + dateRange + ", dateRangeDesc=" + dateRangeDesc + ", dateFrom=" + dateFrom
-				+ ", dateTo=" + dateTo + ", dateFromTo=" + dateFromTo + "]";
+				+ inceptDate + ", expiryDate=" + expiryDate + ", lossDate=" + lossDate + ", uwYear=" + uwYear
+				+ ", distDate=" + distDate + ", eventCd=" + eventCd + ", eventDesc=" + eventDesc + ", remarks="
+				+ remarks + ", insuredDesc=" + insuredDesc + ", site=" + site + ", tsiAmt=" + tsiAmt + ", pctShare="
+				+ pctShare + ", retEffDate=" + retEffDate + ", retLineAmt=" + retLineAmt + ", ret1Lines=" + ret1Lines
+				+ ", ret2Lines=" + ret2Lines + ", shrCoRetlines=" + shrCoRetlines + ", osAmt=" + osAmt + ", pdAmt="
+				+ pdAmt + ", adjId=" + adjId + ", adjName=" + adjName + ", adjFee=" + adjFee + ", cedRet1Shr="
+				+ cedRet1Shr + ", cedRet2Shr=" + cedRet2Shr + ", cedTotalShr=" + cedTotalShr + ", polQuCedRet1="
+				+ polQuCedRet1 + ", polQuCedRet2=" + polQuCedRet2 + ", polQuCedTotal=" + polQuCedTotal + ", polQuMre="
+				+ polQuMre + ", polQuNre=" + polQuNre + ", pol1spMre=" + pol1spMre + ", pol1spNre=" + pol1spNre
+				+ ", pol2spMre=" + pol2spMre + ", pol2spNre=" + pol2spNre + ", polFacul=" + polFacul + ", clmQuCedRet1="
+				+ clmQuCedRet1 + ", clmQuCedRet2=" + clmQuCedRet2 + ", clmQuCedTotal=" + clmQuCedTotal + ", clmQuMre="
+				+ clmQuMre + ", clmQuNre=" + clmQuNre + ", clm1spMre=" + clm1spMre + ", clm1spNre=" + clm1spNre
+				+ ", clm2spMre=" + clm2spMre + ", clm2spNre=" + clm2spNre + ", clmFacul=" + clmFacul
+				+ ", cedingIdParam=" + cedingIdParam + ", cedIdParamDesc=" + cedIdParamDesc + ", dateParam=" + dateParam
+				+ ", dateParamDesc=" + dateParamDesc + ", dateRange=" + dateRange + ", dateRangeDesc=" + dateRangeDesc
+				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", dateFromTo=" + dateFromTo + "]";
 	}
 }

@@ -3044,6 +3044,8 @@
 		<result property="policyNo"                     column="POLICY_NO"/>
 		<result property="cedingId"                     column="CEDING_ID"/>
 		<result property="cedingName"                   column="CEDING_NAME"/>
+		<result property="uwYear"                   	column="UW_YEAR"/>
+		<result property="distDate"                   	column="DIST_DATE"/>
 		<result property="inceptDate"                   column="INCEPT_DATE"/>
 		<result property="expiryDate"                   column="EXPIRY_DATE"/>
 		<result property="lossDate"                     column="LOSS_DATE"/>
@@ -4903,5 +4905,89 @@
         SELECT * FROM TABLE(CLMR052_CSV_PKG.clmr052b_to_csv(
                     #{extractUser,jdbcType=VARCHAR}))
     </select>
-
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR066H" id="retrieveAcitR066hMap">
+      	<result property="eomMm"							column="EOM_MM"/>
+		<result property="eomYear"							column="EOM_YEAR"/>
+		<result property="currCd"							column="CURR_CD"/>
+		<result property="currRt"							column="CURR_RT"/>
+		<result property="glAcctId"							column="GL_ACCT_ID"/>
+		<result property="shortCode"						column="SHORT_CODE"/>
+		<result property="shortDesc"						column="SHORT_DESC"/>
+		<result property="longDesc"							column="LONG_DESC"/>
+		<result property="slTypeCd"							column="SL_TYPE_CD"/>
+		<result property="slTypeName"						column="SL_TYPE_NAME"/>
+		<result property="slCd"								column="SL_CD"/>
+		<result property="slName"							column="SL_NAME"/>
+		<result property="begDebitAmt"						column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"						column="BEG_CREDIT_AMT"/>
+		<result property="transDebitBal"					column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"					column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"						column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"						column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"						column="END_CREDIT_AMT"/>
+		<result property="localBegDebitAmt"					column="LOCAL_BEG_DEBIT_AMT"/>
+		<result property="localBegCreditAmt"				column="LOCAL_BEG_CREDIT_AMT"/>
+		<result property="localTransDebitBal"				column="LOCAL_TRANS_DEBIT_BAL"/>
+		<result property="localTransCreditBal"				column="LOCAL_TRANS_CREDIT_BAL"/>
+		<result property="localTransBalance"				column="LOCAL_TRANS_BALANCE"/>
+		<result property="localEndDebitAmt"					column="LOCAL_END_DEBIT_AMT"/>
+		<result property="localEndCreditAmt"				column="LOCAL_END_CREDIT_AMT"/>
+		<result property="postTag"							column="POST_TAG"/>
+		<result property="eomUser"							column="EOM_USER"/>
+		<result property="tbBase"							column="TB_BASE"/>
+		<result property="glAcctCategory"					column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctControl"					column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1"						column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2"						column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3"						column="GL_ACCT_SUB3"/>
+    </resultMap>
+        
+    <select id="retrieveAcitR066h" resultMap="retrieveAcitR066hMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066H_PKG.ret_acitr066h_dtl(
+                    CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+                    #{paramCurrency,jdbcType=VARCHAR}))
+    </select>
+	
+	<resultMap type="ph.cpi.rest.api.model.utils.ACSER024F" id="retrieveAcseR024fMap">
+		<result property="eomMm"				column="EOM_MM"/>
+		<result property="eomYear"				column="EOM_YEAR"/>
+		<result property="currCd"				column="CURR_CD"/>
+		<result property="currRt"				column="CURR_RT"/>
+		<result property="glAcctId"				column="GL_ACCT_ID"/>
+		<result property="shortCode"			column="SHORT_CODE"/>
+		<result property="shortDesc"			column="SHORT_DESC"/>
+		<result property="longDesc"				column="LONG_DESC"/>
+		<result property="slTypeCd"				column="SL_TYPE_CD"/>
+		<result property="slTypeName"			column="SL_TYPE_NAME"/>
+		<result property="slCd"					column="SL_CD"/>
+		<result property="slName"				column="SL_NAME"/>
+		<result property="begDebitAmt"			column="BEG_DEBIT_AMT"/>
+		<result property="begCreditAmt"			column="BEG_CREDIT_AMT"/>
+		<result property="transDebitBal"		column="TRANS_DEBIT_BAL"/>
+		<result property="transCreditBal"		column="TRANS_CREDIT_BAL"/>
+		<result property="transBalance"			column="TRANS_BALANCE"/>
+		<result property="endDebitAmt"			column="END_DEBIT_AMT"/>
+		<result property="endCreditAmt"			column="END_CREDIT_AMT"/>
+		<result property="localBegDebitAmt"		column="LOCAL_BEG_DEBIT_AMT"/>
+		<result property="localBegCreditAmt"	column="LOCAL_BEG_CREDIT_AMT"/>
+		<result property="localTransDebitBal"	column="LOCAL_TRANS_DEBIT_BAL"/>
+		<result property="localTransCreditBal"	column="LOCAL_TRANS_CREDIT_BAL"/>
+		<result property="localTransBalance"	column="LOCAL_TRANS_BALANCE"/>
+		<result property="localEndDebitAmt"		column="LOCAL_END_DEBIT_AMT"/>
+		<result property="localEndCreditAmt"	column="LOCAL_END_CREDIT_AMT"/>
+		<result property="postTag"				column="POST_TAG"/>
+		<result property="eomUser"				column="EOM_USER"/>
+		<result property="tbBase"				column="TB_BASE"/>
+		<result property="glAcctCategory"		column="GL_ACCT_CATEGORY"/>
+		<result property="glAcctControl"		column="GL_ACCT_CONTROL"/>
+		<result property="glAcctSub1"			column="GL_ACCT_SUB1"/>
+		<result property="glAcctSub2"			column="GL_ACCT_SUB2"/>
+		<result property="glAcctSub3"			column="GL_ACCT_SUB3"/>
+	</resultMap>	
+	<select id="retrieveAcseR024f" resultMap="retrieveAcseR024fMap" parameterType="java.util.Map">		
+        SELECT * FROM TABLE(ACSER024F_PKG.ret_acser024f_dtl(
+                     CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE),
+                    #{paramCurrency,jdbcType=VARCHAR}))
+	</select>
 </mapper>

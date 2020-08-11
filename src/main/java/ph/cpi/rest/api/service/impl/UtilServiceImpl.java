@@ -415,6 +415,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcitr066d(utilDao.retrieveAcitR066d(retcParams));
 		}else if(reportName.startsWith("ACITR066E") || reportName.startsWith("ACITR066F")) {
 			retcResponse.setListAcitr066ef(utilDao.retrieveAcitR066ef(retcParams));
+		}else if(reportName.equals("ACITR066H")) {
+			retcResponse.setListAcitr066h(utilDao.retrieveAcitR066h(retcParams));
 		}
 		
 		else if(reportName.equals("ACSER024A")) {
@@ -425,6 +427,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcser024c(utilDao.retrieveAcseR024c(retcParams));
 		}else if(reportName.equals("ACSER024D")) {
 			retcResponse.setListAcser024d(utilDao.retrieveAcseR024d(retcParams));
+		}else if(reportName.equals("ACSER024F")) {
+			retcResponse.setListAcser024f(utilDao.retrieveAcseR024f(retcParams));
 		}
 		
 		else if(reportName.equals("ACSER004")) {
