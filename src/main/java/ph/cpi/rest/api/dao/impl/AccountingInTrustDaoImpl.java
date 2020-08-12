@@ -1370,4 +1370,9 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<QSOAPrint> res = sqlSession.selectList("retrieveAcitQsoaPrint", params);
 		return res;
 	}
+
+	@Override
+	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcitJVMoSoa", params);
+	}
 }

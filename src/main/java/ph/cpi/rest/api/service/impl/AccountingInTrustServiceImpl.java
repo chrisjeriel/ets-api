@@ -3109,7 +3109,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			break;
 		}
 		
-		response.setExisting(acctITDao.retrieveMultiOffsetExisting(params));
+//		response.setExisting(acctITDao.retrieveMultiOffsetExisting(params));
 		
 		return response;
 	}
@@ -3121,6 +3121,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("cedingId", request.getCedingId());
+		params.put("currCd", request.getCurrCd());
 		
 		response.setCedRepLossList(acctITDao.retrieveAcitJVCedRepLoss(params));
 		return response;
@@ -3175,6 +3176,51 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("toYear", request.getToYear());
 		
 		response.setQsoaPrintList(acctITDao.retrieveAcitQsoaPrint(params));
+		
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException {
+		RetrieveAcitJVMultiOffsetLovResponse response = new RetrieveAcitJVMultiOffsetLovResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		switch (request.getFrom()) {
+		case "ipb":
+			params.put("policyId", request.getPolicyId());
+			params.put("instNo", request.getPolicyId());
+			params.put("cedingId", request.getCedingId());
+			params.put("payeeNo", request.getPayeeNo());
+			params.put("zeroBal", request.getZeroBal());
+			params.put("currCd", request.getCurrCd());
+			
+			response.setSoaList(acctITDao.retrieveAcitJVMoSoa(params));
+			break;
+			
+//		case "clm":
+//			response.setClmList(acctITDao.retrieveMultiOffsetClm(params));
+//			break;
+//			
+//		case "trty":
+//			response.setTrtyList(acctITDao.retrieveMultiOffsetTrty(params));
+//			break;
+//			
+//		case "unapp":
+//			response.setUnappList(acctITDao.retrieveMultiOffsetUnapp(params));
+//			break;
+//			
+//		case "lrd":
+//			response.setLrdList(acctITDao.retrieveMultiOffsetLrd(params));
+//			break;
+//			
+//		case "oth":
+//			response.setOthList(acctITDao.retrieveMultiOffsetOth(params));
+//			break;
+
+		default:
+			break;
+		}
 		
 		return response;
 	}

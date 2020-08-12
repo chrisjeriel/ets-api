@@ -287,4 +287,5 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> updateAgingSoa(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(final HashMap<String, Object> params) throws SQLException;
 }

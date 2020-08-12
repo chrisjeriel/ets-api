@@ -29,6 +29,7 @@ public class MultiOffsetUnapp {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String cedingAbbr;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -168,6 +169,12 @@ public class MultiOffsetUnapp {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "MultiOffsetUnapp [tranId=" + tranId + ", cedingId=" + cedingId + ", cedingName=" + cedingName
@@ -177,6 +184,6 @@ public class MultiOffsetUnapp {
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
 				+ ", refNo=" + refNo + ", remarks=" + remarks + ", returnTag=" + returnTag + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 }

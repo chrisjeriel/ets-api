@@ -1279,6 +1279,8 @@
 		<result property="processing" 			column="PROCESSING"/>
 		<result property="memoNo"				column="MEMO_NO"/>
 		<result property="insuredDesc" 		    column="INSURED_DESC"/>
+		<result property="cedingName" 		    column="CEDING_NAME"/>
+		<result property="cedingAbbr" 		    column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveAcitAgingSoaDtl" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
@@ -3537,6 +3539,9 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="processing"	    column="PROCESSING"/>
 		<result property="clmStatCd"	    column="CLM_STAT_CD"/>
+		<result property="cedingId"	    	column="CEDING_ID"/>
+		<result property="cedingName"	    column="CEDING_NAME"/>
+		<result property="cedingAbbr"	    column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveAcitClmResHistPayts" resultMap="clmResHistPaytMap" parameterType="java.util.Map">
@@ -4497,6 +4502,8 @@
 		<result property="cumPayt"	        column="CUM_PAYT" />
 		<result property="remainingBal"	    column="REMAINING_BAL" />
 		<result property="processing"	    column="PROCESSING" />
+		<result property="cedingName"	    column="CEDING_NAME" />
+		<result property="cedingAbbr"	    column="CEDING_ABBR" />
 	</resultMap>
 	
 	<select id="retrieveAcitOsQsoa" resultMap="acitOsQsoaMap" parameterType="java.util.Map">
@@ -4754,6 +4761,8 @@
 		<result property="tempApldAmt" 			column="TEMP_APLD_AMT" />
 		<result property="balUnapldAmt" 		column="BAL_UNAPLD_AMT" />
 		<result property="returnTag" 			column="RETURN_TAG" />
+		<result property="cedingName" 			column="CEDING_NAME" />
+		<result property="cedingAbbr" 			column="CEDING_ABBR" />
 	</resultMap>
 	
 	<select id="retrieveUnappliedCollection" resultMap="unappliedMap" parameterType="java.util.Map">
@@ -5373,6 +5382,7 @@
 		<result property="updateDate"  	 column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="insuredDesc"   column="INSURED_DESC"/>
 		<result property="soaNo"   		 column="SOA_NO"/>
+		<result property="cedingAbbr"    column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveMultiOffsetIpb" resultMap="multiOffsetIpbMap" parameterType="java.util.Map">
@@ -5406,6 +5416,7 @@
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="cedingId" 		column="CEDING_ID"/>
 		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="cedingAbbr" 		column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveMultiOffsetClm" resultMap="multiOffsetClmMap" parameterType="java.util.Map">
@@ -5432,7 +5443,8 @@
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="netQsoaAmt" 		column="NET_QSOA_AMT"/>
-		<result property="cedingName" 		column="CEDING_NAME"/>		
+		<result property="cedingName" 		column="CEDING_NAME"/>
+		<result property="cedingAbbr" 		column="CEDING_ABBR"/>	
 	</resultMap>
 	
 	<select id="retrieveMultiOffsetTrty" resultMap="multiOffsetTrtyMap" parameterType="java.util.Map">
@@ -5464,6 +5476,7 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cedingAbbr" 		column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveMultiOffsetUnapp" resultMap="multiOffsetUnappMap" parameterType="java.util.Map">
@@ -5562,11 +5575,12 @@
 		<result property="createDate" 		column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cedingAbbr" 		column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveAcitJVCedRepLoss" resultMap="multiOffsetLrdMap" parameterType="java.util.Map">
 		SELECT *
-		  FROM TABLE(ACIT_JV_MO_LOSSRESDEP_PKG.ret_ced_rep_loss(#{cedingId, jdbcType=VARCHAR}))
+		  FROM TABLE(ACIT_JV_MO_LOSSRESDEP_PKG.ret_ced_rep_loss(#{cedingId, jdbcType=VARCHAR}, #{currCd}))
 	</select>
 	
 	<select id="retrieveMultiOffsetLrd" resultMap="multiOffsetLrdMap" parameterType="java.util.Map">
@@ -5590,6 +5604,7 @@
 		<result property="createDate" 	column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 	column="UPDATE_USER"/>
 		<result property="updateDate" 	column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="cedingAbbr" 	column="CEDING_ABBR"/>
 	</resultMap>
 	
 	<select id="retrieveMultiOffsetOth" resultMap="multiOffsetOthMap" parameterType="java.util.Map">
@@ -5647,6 +5662,16 @@
 			#{toQtr, jdbcType=INTEGER},
 			#{toYear, jdbcType=INTEGER}
 		))
+	</select>
+	
+	<select id="retrieveAcitJVMoSoa" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JV_MO_INWPOLBAL_PKG.ret_soa_dtl_mo(
+																	#{policyId, jdbcType=VARCHAR},
+																	#{instNo, jdbcType=VARCHAR},
+																	#{cedingId, jdbcType=VARCHAR},
+																	#{payeeNo, jdbcType=VARCHAR},
+																	#{zeroBal, jdbcType=INTEGER},
+																	#{currCd}))
 	</select>
 	
 </mapper>

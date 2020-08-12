@@ -21,6 +21,7 @@ public class MultiOffsetOth {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String cedingAbbr;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -112,12 +113,18 @@ public class MultiOffsetOth {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "MultiOffsetOth [tranId=" + tranId + ", itemNo=" + itemNo + ", cedingId=" + cedingId + ", cedingName="
 				+ cedingName + ", itemName=" + itemName + ", currCd=" + currCd + ", currRate=" + currRate + ", currAmt="
 				+ currAmt + ", localAmt=" + localAmt + ", refNo=" + refNo + ", remarks=" + remarks + ", createUser="
 				+ createUser + ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate="
-				+ updateDate + "]";
+				+ updateDate + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 }

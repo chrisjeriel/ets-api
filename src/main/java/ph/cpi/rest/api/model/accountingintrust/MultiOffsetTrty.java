@@ -25,6 +25,7 @@ public class MultiOffsetTrty {
 	private DateTime updateDate;
 	private BigDecimal netQsoaAmt;
 	private String cedingName;
+	private String cedingAbbr;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -140,6 +141,12 @@ public class MultiOffsetTrty {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "MultiOffsetTrty [tranId=" + tranId + ", qsoaId=" + qsoaId + ", quarterEnding=" + quarterEnding
@@ -147,6 +154,7 @@ public class MultiOffsetTrty {
 				+ prevPaytAmt + ", prevBalance=" + prevBalance + ", balanceAmt=" + balanceAmt + ", actualBalPaid="
 				+ actualBalPaid + ", localAmt=" + localAmt + ", newPaytAmt=" + newPaytAmt + ", newBalance=" + newBalance
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", netQsoaAmt=" + netQsoaAmt + ", cedingName=" + cedingName + "]";
+				+ ", updateDate=" + updateDate + ", netQsoaAmt=" + netQsoaAmt + ", cedingName=" + cedingName
+				+ ", cedingAbbr=" + cedingAbbr + "]";
 	}
 }

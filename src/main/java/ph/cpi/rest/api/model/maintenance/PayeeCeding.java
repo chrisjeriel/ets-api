@@ -5,6 +5,8 @@ public class PayeeCeding {
 	private String payeeCd;
 	private String payeeName;
 	private String payeeAddress;
+	private String cedingAbbr;
+	
 	public Integer getPayeeClassCd() {
 		return payeeClassCd;
 	}
@@ -29,10 +31,16 @@ public class PayeeCeding {
 	public void setPayeeAddress(String payeeAddress) {
 		this.payeeAddress = payeeAddress;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "PayeeCeding [payeeClassCd=" + payeeClassCd + ", payeeCd=" + payeeCd + ", payeeName=" + payeeName
-				+ ", payeeAddress=" + payeeAddress + "]";
+				+ ", payeeAddress=" + payeeAddress + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 	
 	

@@ -29,6 +29,7 @@ public class MultiOffsetLrd {
 	private DateTime createDate;
 	private String updateUser;
 	private DateTime updateDate;
+	private String cedingAbbr;
 	
 	public String getCedingId() {
 		return cedingId;
@@ -168,6 +169,12 @@ public class MultiOffsetLrd {
 	public void setUpdateDate(DateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "MultiOffsetLrd [cedingId=" + cedingId + ", cedingName=" + cedingName + ", address=" + address
@@ -176,6 +183,7 @@ public class MultiOffsetLrd {
 				+ ", emailAdd=" + emailAdd + ", currCd=" + currCd + ", currRate=" + currRate + ", totalLossresdep="
 				+ totalLossresdep + ", localAmt=" + localAmt + ", tranId=" + tranId + ", lossresdepAmt=" + lossresdepAmt
 				+ ", moLocalAmt=" + moLocalAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
-				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + "]";
+				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingAbbr="
+				+ cedingAbbr + "]";
 	}
 }

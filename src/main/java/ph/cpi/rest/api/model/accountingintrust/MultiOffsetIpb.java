@@ -39,6 +39,7 @@ public class MultiOffsetIpb {
 	private DateTime updateDate;
 	private String insuredDesc;
 	private String soaNo;
+	private String cedingAbbr;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -244,9 +245,15 @@ public class MultiOffsetIpb {
 	public void setSoaNo(String soaNo) {
 		this.soaNo = soaNo;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
-		return "MultoffIpb [tranId=" + tranId + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId="
+		return "MultiOffsetIpb [tranId=" + tranId + ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId="
 				+ cedingId + ", cedingName=" + cedingName + ", instNo=" + instNo + ", currCd=" + currCd + ", coRefNo="
 				+ coRefNo + ", dueDate=" + dueDate + ", currRate=" + currRate + ", prevPremAmt=" + prevPremAmt
 				+ ", prevRiComm=" + prevRiComm + ", prevRiCommVat=" + prevRiCommVat + ", prevCharges=" + prevCharges
@@ -255,6 +262,7 @@ public class MultiOffsetIpb {
 				+ cumPayment + ", paytAmt=" + paytAmt + ", localAmt=" + localAmt + ", totalPayt=" + totalPayt
 				+ ", remainingBal=" + remainingBal + ", overdueInt=" + overdueInt + ", remarks=" + remarks
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", soaNo=" + soaNo + "]";
+				+ ", updateDate=" + updateDate + ", insuredDesc=" + insuredDesc + ", soaNo=" + soaNo + ", cedingAbbr="
+				+ cedingAbbr + "]";
 	}
 }

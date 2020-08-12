@@ -1010,4 +1010,12 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitQsoaPrintRequest : " + request.toString());
 		return acctInTrustService.retrieveAcitQsoaPrint(request);
 	}
+	
+	@GetMapping(path="retrieveAcitJVMultiOffsetLov")
+	public @ResponseBody RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVMultiOffsetLov");
+		logger.info("RetrieveAcitJVMultiOffsetLovRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitJVMultiOffsetLov(request);
+	}
+	
 }
