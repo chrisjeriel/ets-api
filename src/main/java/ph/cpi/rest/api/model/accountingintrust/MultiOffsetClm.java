@@ -31,6 +31,7 @@ public class MultiOffsetClm {
 	private DateTime updateDate;
 	private String cedingId;
 	private String cedingName;
+	private String cedingAbbr;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -182,6 +183,12 @@ public class MultiOffsetClm {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "MultiOffsetClm [tranId=" + tranId + ", claimId=" + claimId + ", claimNo=" + claimNo + ", histCategory="
@@ -191,6 +198,6 @@ public class MultiOffsetClm {
 				+ currCd + ", currRate=" + currRate + ", paytAmt=" + paytAmt + ", clmPaytAmt=" + clmPaytAmt
 				+ ", localAmt=" + localAmt + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate="
 				+ createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingId=" + cedingId
-				+ ", cedingName=" + cedingName + "]";
+				+ ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 }

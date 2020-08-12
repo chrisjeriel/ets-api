@@ -1024,4 +1024,12 @@ public class AccountingInTrustController {
 		logger.info("RetrieveAcitTrialBalExtRequest : " + extractUser.toString());
 		return acctInTrustService.retrieveAcitTrialBalExt(extractUser);
 	}
+
+	@GetMapping(path="retrieveAcitJVMultiOffsetLov")
+	public @ResponseBody RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVMultiOffsetLov");
+		logger.info("RetrieveAcitJVMultiOffsetLovRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitJVMultiOffsetLov(request);
+	}
+	
 }

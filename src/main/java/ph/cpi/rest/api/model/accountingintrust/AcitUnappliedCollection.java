@@ -40,6 +40,8 @@ public class AcitUnappliedCollection {
 	private BigDecimal tempApldAmt;
 	private BigDecimal balUnapldAmt;
 	private String returnTag;
+	private String cedingName;
+	private String cedingAbbr;
 	
 	public Integer getTranId() {
 		return tranId;
@@ -247,6 +249,18 @@ public class AcitUnappliedCollection {
 	public void setReturnTag(String returnTag) {
 		this.returnTag = returnTag;
 	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "AcitUnappliedCollection [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo
@@ -259,7 +273,8 @@ public class AcitUnappliedCollection {
 				+ processing + ", unappliedId=" + unappliedId + ", cedingId=" + cedingId + ", refTranId=" + refTranId
 				+ ", refBillId=" + refBillId + ", refItemNo=" + refItemNo + ", transDtlType=" + transDtlType
 				+ ", totalUnapldAmt=" + totalUnapldAmt + ", totalApldAmt=" + totalApldAmt + ", tempApldAmt="
-				+ tempApldAmt + ", balUnapldAmt=" + balUnapldAmt + ", returnTag=" + returnTag + "]";
+				+ tempApldAmt + ", balUnapldAmt=" + balUnapldAmt + ", returnTag=" + returnTag + ", cedingName="
+				+ cedingName + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 	
 	

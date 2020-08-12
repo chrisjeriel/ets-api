@@ -46,6 +46,8 @@ public class AcitSOAAgingDetails {
 	private String processing;
 	private String memoNo;
 	private String insuredDesc;
+	private String cedingName;
+	private String cedingAbbr;
 	
 	public Integer getPolicyId() {
 		return policyId;
@@ -293,6 +295,18 @@ public class AcitSOAAgingDetails {
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "AcitSOAAgingDetails [policyId=" + policyId + ", cedingId=" + cedingId + ", refCd=" + refCd
@@ -307,6 +321,7 @@ public class AcitSOAAgingDetails {
 				+ ", dueDate=" + dueDate + ", bookingDate=" + bookingDate + ", agingId=" + agingId + ", netDue="
 				+ netDue + ", balance=" + balance + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", processing=" + processing
-				+ ", memoNo=" + memoNo + ", insuredDesc=" + insuredDesc + "]";
+				+ ", memoNo=" + memoNo + ", insuredDesc=" + insuredDesc + ", cedingName=" + cedingName + ", cedingAbbr="
+				+ cedingAbbr + "]";
 	}
 }

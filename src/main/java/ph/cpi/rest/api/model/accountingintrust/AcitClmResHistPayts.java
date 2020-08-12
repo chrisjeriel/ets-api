@@ -27,6 +27,10 @@ public class AcitClmResHistPayts {
 	private DateTime updateDate;
 	private String processing;
 	private String clmStatCd;
+	private String cedingId;
+	private String cedingName;
+	private String cedingAbbr;
+	
 	public Integer getClaimId() {
 		return claimId;
 	}
@@ -159,6 +163,24 @@ public class AcitClmResHistPayts {
 	public void setClmStatCd(String clmStatCd) {
 		this.clmStatCd = clmStatCd;
 	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "AcitClmResHistPayts [claimId=" + claimId + ", claimNo=" + claimNo + ", projId=" + projId + ", policyId="
@@ -167,7 +189,8 @@ public class AcitClmResHistPayts {
 				+ ", exGratia=" + exGratia + ", insuredDesc=" + insuredDesc + ", currencyCd=" + currencyCd
 				+ ", currencyRt=" + currencyRt + ", reserveAmt=" + reserveAmt + ", cumulativeAmt=" + cumulativeAmt
 				+ ", createUser=" + createUser + ", createDate=" + createDate + ", updateUser=" + updateUser
-				+ ", updateDate=" + updateDate + ", processing=" + processing + ", clmStatCd=" + clmStatCd + "]";
+				+ ", updateDate=" + updateDate + ", processing=" + processing + ", clmStatCd=" + clmStatCd
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", cedingAbbr=" + cedingAbbr + "]";
 	}
 	
 }

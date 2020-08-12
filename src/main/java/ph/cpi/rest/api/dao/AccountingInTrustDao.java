@@ -292,4 +292,5 @@ public interface AccountingInTrustDao {
 	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request)throws SQLException;
 	public List<AcitTrialBal> retrieveAcitTrialBalExt(HashMap<String, Object> params)throws SQLException;
+	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(final HashMap<String, Object> params) throws SQLException;
 }

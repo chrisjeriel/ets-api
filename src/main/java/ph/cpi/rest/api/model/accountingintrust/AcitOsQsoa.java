@@ -15,6 +15,8 @@ public class AcitOsQsoa {
 	private BigDecimal cumPayt;
 	private BigDecimal remainingBal;
 	private String processing;
+	private String cedingName;
+	private String cedingAbbr;
 	
 	public Integer getQsoaId() {
 		return qsoaId;
@@ -64,10 +66,23 @@ public class AcitOsQsoa {
 	public void setProcessing(String processing) {
 		this.processing = processing;
 	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
+	}
+	public String getCedingAbbr() {
+		return cedingAbbr;
+	}
+	public void setCedingAbbr(String cedingAbbr) {
+		this.cedingAbbr = cedingAbbr;
+	}
 	@Override
 	public String toString() {
 		return "AcitOsQsoa [qsoaId=" + qsoaId + ", quarterEnding=" + quarterEnding + ", currCd=" + currCd
 				+ ", cedingId=" + cedingId + ", netQsoaAmt=" + netQsoaAmt + ", cumPayt=" + cumPayt + ", remainingBal="
-				+ remainingBal + ", processing=" + processing + "]";
+				+ remainingBal + ", processing=" + processing + ", cedingName=" + cedingName + ", cedingAbbr="
+				+ cedingAbbr + "]";
 	}
 }

@@ -4009,6 +4009,7 @@
 		<result property="payeeCd" column="PAYEE_CD"/>
 		<result property="payeeName" column="PAYEE_NAME"/>
 		<result property="payeeAddress" column="MAIL_ADDRESS"/>
+		<result property="cedingAbbr" column="CEDING_ABBR"/>
      </resultMap>
      
      <select id="retrieveMtnPayeeCeding" resultMap="payeeCedMap" parameterType="java.util.Map">
