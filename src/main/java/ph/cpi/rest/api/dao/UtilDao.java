@@ -48,10 +48,13 @@ public interface UtilDao {
 	
 	public List<POLR052A> retrievePolR052a(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052AA> retrievePolR052aa(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052AB> retrievePolR052ab(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052BB> retrievePolR052bb(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052B> retrievePolR052b(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052BA> retrievePolR052ba(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052C> retrievePolR052c(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052CA> retrievePolR052ca(final HashMap<String, Object> params ) throws SQLException;
+	public List<POLR052CB> retrievePolR052cb(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052D> retrievePolR052d(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052E> retrievePolR052e(final HashMap<String, Object> params ) throws SQLException;
 	public List<POLR052F> retrievePolR052f(final HashMap<String, Object> params ) throws SQLException;
