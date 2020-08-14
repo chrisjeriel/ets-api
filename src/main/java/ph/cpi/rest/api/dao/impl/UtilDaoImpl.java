@@ -763,4 +763,23 @@ public class UtilDaoImpl implements UtilDao{
 		List<ACSER024F> retrieveAcseR024f = sqlSession.selectList("retrieveAcseR024f",params);
 		return retrieveAcseR024f;
 	}
+
+	@Override
+	public List<POLR052AB> retrievePolR052ab(HashMap<String, Object> params) throws SQLException {
+		List<POLR052AB> retrievePolR052ab = sqlSession.selectList("retrievePolR052ab",params);
+		return retrievePolR052ab;
+	}
+
+	@Override
+	public List<POLR052BB> retrievePolR052bb(HashMap<String, Object> params) throws SQLException {
+		List<POLR052BB> retrievePolR052bb = sqlSession.selectList("retrievePolR052bb",params);
+		return retrievePolR052bb;
+	}
+
+	@Override
+	public List<POLR052CB> retrievePolR052cb(HashMap<String, Object> params) throws SQLException {
+		List<POLR052CB> retrievePolR052cb = sqlSession.selectList("retrievePolR052cb",params);
+		return retrievePolR052cb;
+	}
+	
 }

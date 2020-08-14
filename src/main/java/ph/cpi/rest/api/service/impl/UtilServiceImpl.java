@@ -309,6 +309,10 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr052a(utilDao.retrievePolR052a(retcParams));
 		}else if(reportName.equals("POLR052AA")) {
 			retcResponse.setListPolr052aa(utilDao.retrievePolR052aa(retcParams));
+		}else if(reportName.equals("POLR052AB")) {
+			retcResponse.setListPolr052ab(utilDao.retrievePolR052ab(retcParams));
+		}else if(reportName.equals("POLR052BB")) {
+			retcResponse.setListPolr052bb(utilDao.retrievePolR052bb(retcParams));
 		}else if(reportName.equals("POLR052B")) {
 			retcResponse.setListPolr052b(utilDao.retrievePolR052b(retcParams));
 		}else if(reportName.equals("POLR052BA")) {
@@ -317,6 +321,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListPolr052c(utilDao.retrievePolR052c(retcParams));
 		}else if(reportName.equals("POLR052CA")) {
 			retcResponse.setListPolr052ca(utilDao.retrievePolR052ca(retcParams));
+		}else if(reportName.equals("POLR052CB")) {
+			retcResponse.setListPolr052cb(utilDao.retrievePolR052cb(retcParams));
 		}else if(reportName.equals("POLR052D")) {
 			retcResponse.setListPolr052d(utilDao.retrievePolR052d(retcParams));
 		}else if(reportName.equals("POLR052E")) {
