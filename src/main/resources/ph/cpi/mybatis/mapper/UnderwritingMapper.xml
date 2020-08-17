@@ -894,7 +894,8 @@
 															 #{lineCd, jdbcType=VARCHAR},
 															 #{statusArrStr, jdbcType=VARCHAR},
 															 #{renTag, jdbcType=VARCHAR},
-															 #{coRefNo, jdbcType=VARCHAR})) a
+															 #{coRefNo, jdbcType=VARCHAR},
+															 #{createUser, jdbcType=VARCHAR})) a
 															 WHERE  1=1
 		   	   <if test="search != null and search.value != null">
 		   	   	 AND
@@ -955,7 +956,8 @@
 												#{lineCd, jdbcType=VARCHAR},
 											    #{statusArrStr, jdbcType=VARCHAR},
 											    #{renTag, jdbcType=VARCHAR},
-											    #{coRefNo, jdbcType=VARCHAR}))
+											    #{coRefNo, jdbcType=VARCHAR},
+												#{createUser, jdbcType=VARCHAR}))
 												 WHERE  1=1
 	  	   <if test="search != null">
 	  	   	 AND

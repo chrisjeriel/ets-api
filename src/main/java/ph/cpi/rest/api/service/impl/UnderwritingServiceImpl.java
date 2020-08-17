@@ -442,7 +442,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("search", rplp.getSearch());
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
 		retrievePolicyListingParams.put("coRefNo", rplp.getCoRefNo());
-		
+		retrievePolicyListingParams.put("createUser", rplp.getCreateUser());
 		retrievePolicyListingParams.put("mode", rplp.getMode());
 		retrievePolicyListingParams.put("recount", rplp.getRecount());
 		retrievePolicyListingParams.put("statusArrStr", StringUtils.join(rplp.getStatusArr(),','));
@@ -497,7 +497,7 @@ public class UnderwritingServiceImpl implements UnderwritingService {
 		retrievePolicyListingParams.put("search", rplp.getSearch());
 		retrievePolicyListingParams.put("coRefNo", rplp.getCoRefNo());
 		retrievePolicyListingParams.put("altNo", rplp.getAltNo());
-		
+		retrievePolicyListingParams.put("createUser", rplp.getCreateUser());
 		retrievePolicyListingParams.put("mode", rplp.getMode());
 		retrievePolicyListingParams.put("statusArrStr", StringUtils.join(rplp.getStatusArr(),','));
 		
