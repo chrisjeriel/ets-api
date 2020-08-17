@@ -3835,7 +3835,7 @@
 	</resultMap>
 	
 	<select id="retrieveQuarterPremResfinal" resultMap="AcitJVQuarterPremResMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_quarter_end(#{quarterEnd},#{cedingId},NULL,NULL,NULL,NULL))
+		SELECT * FROM TABLE (ACIT_JOURNAL_VOUCHER_PKG.ret_quarter_end(#{quarterEnd},#{cedingId}, #{currCd},NULL,NULL,NULL,NULL))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.accountingintrust.AcitAmortize" id="acitAmortize">
