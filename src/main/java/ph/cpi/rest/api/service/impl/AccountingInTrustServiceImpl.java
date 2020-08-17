@@ -1978,6 +1978,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("cedingId",request.getCedingId());
 		params.put("quarterEnd",request.getQuarterEnd());
+		params.put("currCd",request.getCurrCd());
 		response.setPremRes(acctITDao.retrieveQuarterPremRes(params));
 		return response;
 	}

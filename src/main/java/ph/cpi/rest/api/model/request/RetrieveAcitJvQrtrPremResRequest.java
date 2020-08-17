@@ -6,6 +6,7 @@ import ph.cpi.rest.api.model.SortRequest;
 public class RetrieveAcitJvQrtrPremResRequest {
 	private String cedingId;
 	private String quarterEnd;
+	private String currCd;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
 	public String getCedingId() {
@@ -19,6 +20,12 @@ public class RetrieveAcitJvQrtrPremResRequest {
 	}
 	public void setQuarterEnd(String quarterEnd) {
 		this.quarterEnd = quarterEnd;
+	}
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
 	}
 	public PaginationRequest getPaginationRequest() {
 		return paginationRequest;
@@ -34,8 +41,8 @@ public class RetrieveAcitJvQrtrPremResRequest {
 	}
 	@Override
 	public String toString() {
-		return "RetrieveAcitJvQrtrPremResRequest [cedingId=" + cedingId + ", quarterEnd=" + quarterEnd
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+		return "RetrieveAcitJvQrtrPremResRequest [cedingId=" + cedingId + ", quarterEnd=" + quarterEnd + ", currCd="
+				+ currCd + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 }
