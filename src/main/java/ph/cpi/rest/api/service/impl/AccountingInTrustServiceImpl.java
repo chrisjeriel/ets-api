@@ -3224,4 +3224,60 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		
 		return response;
 	}
+
+
+	@Override
+	public RetrieveAcitJVRiskMgtAllocResponse retrieveAcitJVRiskMgtAlloc(RetrieveAcitJVRiskMgtAllocRequest request)
+			throws SQLException {
+		RetrieveAcitJVRiskMgtAllocResponse response = new RetrieveAcitJVRiskMgtAllocResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("tranId", request.getTranId());
+		params.put("pwFromMm", request.getPwFromMm());
+		params.put("pwFromYear", request.getPwFromYear());
+		params.put("pwToMm", request.getPwToMm());
+		params.put("pwToYear", request.getPwToYear());
+		params.put("paytForQtr", request.getPaytForQtr());
+		params.put("paytForYear", request.getPaytForYear());
+		params.put("totalAmt", request.getTotalAmt());
+		params.put("currCd", request.getCurrCd());
+		params.put("currRate", request.getCurrRate());
+		
+		if(request.getGenerate().equals("Y")) {
+			response.setRiskMgtAllocList(acctITDao.retrieveAcitJVRiskMgtAllocGnrt(params));
+		} else {
+			response.setRiskMgtAllocList(acctITDao.retrieveAcitJVRiskMgtAlloc(params));
+		}
+		
+		return response;
+	}
+
+
+	@Override
+	public SaveAcitJVRiskMgtAllocResponse saveAcitJVRiskMgtAlloc(SaveAcitJVRiskMgtAllocRequest request)
+			throws SQLException {
+		
+		SaveAcitJVRiskMgtAllocResponse response = new SaveAcitJVRiskMgtAllocResponse();
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		
+		params.put("tranType", request.getTranType());
+		params.put("allocTranId", request.getAllocTranId());
+		params.put("paytForQtr", request.getPaytForQtr());
+		params.put("paytForYear", request.getPaytForYear());
+		params.put("totalAmt", request.getTotalAmt());
+		params.put("currCd", request.getCurrCd());
+		params.put("currRate", request.getCurrRate());
+		params.put("saveRiskMgtAlloc", request.getSaveRiskMgtAlloc());
+		
+		try {
+			acctITDao.saveAcitJVRiskMgtAlloc(params);
+			response.setReturnCode(-1);
+		} catch (Exception e) {
+			response.setReturnCode(0);
+			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
+			e.printStackTrace();
+		}
+		
+		return response;
+	}
 }

@@ -90,6 +90,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
 @Component
@@ -1374,5 +1375,20 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	@Override
 	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveAcitJVMoSoa", params);
+	}
+
+	@Override
+	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAllocGnrt(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcitJVRiskMgtAllocGnrt", params);
+	}
+
+	@Override
+	public Integer saveAcitJVRiskMgtAlloc(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.update("saveAcitJVRiskMgtAlloc", params);
+	}
+
+	@Override
+	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAlloc(HashMap<String, Object> params) throws SQLException {
+		return sqlSession.selectList("retrieveAcitJVRiskMgtAlloc", params);
 	}
 }

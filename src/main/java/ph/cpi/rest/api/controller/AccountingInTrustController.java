@@ -1018,4 +1018,18 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitJVMultiOffsetLov(request);
 	}
 	
+	@GetMapping(path="retrieveAcitJVRiskMgtAlloc")
+	public @ResponseBody RetrieveAcitJVRiskMgtAllocResponse retrieveAcitJVRiskMgtAlloc(RetrieveAcitJVRiskMgtAllocRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVRiskMgtAlloc");
+		logger.info("RetrieveAcitJVRiskMgtAllocRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitJVRiskMgtAlloc(request);
+	}
+	
+	@PostMapping(path="saveAcitJVRiskMgtAlloc")
+	public @ResponseBody SaveAcitJVRiskMgtAllocResponse saveAcitJVRiskMgtAlloc(@RequestBody SaveAcitJVRiskMgtAllocRequest request) throws SQLException {
+		logger.info("POST: /api/acct-in-trust-service/saveAcitJVRiskMgtAlloc");
+		logger.info("SaveAcitJVRiskMgtAllocRequest : " + request.toString());
+		return acctInTrustService.saveAcitJVRiskMgtAlloc(request);
+	}
+	
 }

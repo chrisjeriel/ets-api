@@ -80,6 +80,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOADtlExclude;
 import ph.cpi.rest.api.model.accountingintrust.QSOAPrint;
 import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
+import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.maintenance.UserId;
 
 public interface AccountingInTrustDao {
@@ -288,4 +289,7 @@ public interface AccountingInTrustDao {
 	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(final HashMap<String, Object> params) throws SQLException;
+	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAllocGnrt(final HashMap<String, Object> params) throws SQLException;
+	public Integer saveAcitJVRiskMgtAlloc(final HashMap<String, Object> params) throws SQLException;
+	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAlloc(final HashMap<String, Object> params) throws SQLException;
 }

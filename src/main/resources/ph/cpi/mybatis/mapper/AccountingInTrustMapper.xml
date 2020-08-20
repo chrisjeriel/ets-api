@@ -746,6 +746,18 @@
 												  #{createUserJv}, CAST(to_timestamp(#{createDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{updateUserJv}, 
 												  CAST(to_timestamp(#{updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE), #{remarks, jdbcType=VARCHAR});
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
+						
+			IF #{jvTranTypeCd} <![CDATA[ = ]]> 66 THEN
+				ACIT_JV_RISK_MGT_DIST_PKG.save_charges(
+					v_tran_id,
+					#{jvAmt},
+					#{currCd},
+					#{currRate},
+					CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{updateUser},
+					CAST(to_timestamp(#{updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+				);
+			END IF;
 		END;
 		
 	</update>
@@ -5672,6 +5684,94 @@
 																	#{payeeNo, jdbcType=VARCHAR},
 																	#{zeroBal, jdbcType=INTEGER},
 																	#{currCd}))
+	</select>
+	
+	<resultMap type="ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc" id="riskMgtAllocMap">
+		<result property="tranId" 				column="TRAN_ID" />
+		<result property="allocTranId" 			column="ALLOC_TRAN_ID" />
+		<result property="riskMm" 				column="RISK_MM" />
+		<result property="riskYear" 			column="RISK_YEAR" />
+		<result property="cedingId" 			column="CEDING_ID" />
+		<result property="cedingName" 			column="CEDING_NAME" />
+		<result property="currCd" 				column="CURR_CD" />
+		<result property="currRate" 			column="CURR_RATE" />
+		<result property="totalRiskmgtCharge" 	column="TOTAL_RISKMGT_CHARGE" />
+		<result property="actualFromDate" 		column="ACTUAL_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="actualToDate" 		column="ACTUAL_TO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="actualPremWrtn" 		column="ACTUAL_PREM_WRTN" />
+		<result property="actualNetPrem" 		column="ACTUAL_NET_PREM" />
+		<result property="actualShrPct" 		column="ACTUAL_SHR_PCT" />
+		<result property="actualShrAmt" 		column="ACTUAL_SHR_AMT" />
+		<result property="servfeeFromDate" 		column="SERVFEE_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="servfeeToDate" 		column="SERVFEE_TO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="servfeePremWrtn" 		column="SERVFEE_PREM_WRTN" />
+		<result property="servfeeNetPrem" 		column="SERVFEE_NET_PREM" />
+		<result property="servfeeShrPct" 		column="SERVFEE_SHR_PCT" />
+		<result property="servfeeShrAmt" 		column="SERVFEE_SHR_AMT" />
+		<result property="finalFromDate" 		column="FINAL_FROM_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="finalToDate" 			column="FINAL_TO_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="finalPremWrtn" 		column="FINAL_PREM_WRTN" />
+		<result property="finalNetPrem" 		column="FINAL_NET_PREM" />
+		<result property="finalShrPct" 			column="FINAL_SHR_PCT" />
+		<result property="finalShrAmt" 			column="FINAL_SHR_AMT" />
+		<result property="createUser" 			column="CREATE_USER" />
+		<result property="createDate" 			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="updateUser" 			column="UPDATE_USER" />
+		<result property="updateDate" 			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
+		<result property="riskMgtQtr1" 			column="RISK_MGT_QTR1" />
+		<result property="riskMgtQtr2" 			column="RISK_MGT_QTR2" />
+		<result property="riskMgtQtr3" 			column="RISK_MGT_QTR3" />
+		<result property="riskMgtQtr4" 			column="RISK_MGT_QTR4" />
+		<result property="premWrtnCede" 		column="PREM_WRTN_CEDE" />
+		<result property="netRate" 				column="NET_RATE" />
+		<result property="baseShrPct" 			column="BASE_SHR_PCT" />
+		<result property="baseShrAmt" 			column="BASE_SHR_AMT" />
+		<result property="riskQtr" 				column="RISK_QTR" />
+	</resultMap>
+	
+	<select id="retrieveAcitJVRiskMgtAllocGnrt" resultMap="riskMgtAllocMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JV_RISK_MGT_DIST_PKG.get_risk_mgt_gnrt(
+			#{pwFromMm, jdbcType=INTEGER},
+			#{pwFromYear, jdbcType=INTEGER},
+			#{pwToMm, jdbcType=INTEGER},
+			#{pwToYear, jdbcType=INTEGER},
+			#{paytForQtr, jdbcType=INTEGER},
+			#{paytForYear, jdbcType=INTEGER},
+			#{totalAmt, jdbcType=INTEGER},
+			#{currCd, jdbcType=VARCHAR},
+			#{currRate, jdbcType=INTEGER}
+		))
+	</select>
+	
+	<update id="saveAcitJVRiskMgtAlloc" parameterType="java.util.Map">
+		DECLARE
+			v_message VARCHAR2(500);
+		BEGIN
+			<foreach collection="saveRiskMgtAlloc" item="save">
+				ACIT_JV_RISK_MGT_DIST_PKG.save_risk_mgt(
+					#{allocTranId, jdbcType=INTEGER},
+					#{paytForQtr, jdbcType=INTEGER},
+					#{paytForYear, jdbcType=INTEGER},
+					#{save.cedingId, jdbcType=VARCHAR},
+					#{totalAmt, jdbcType=INTEGER},
+				    CAST(to_timestamp(#{save.finalFromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    CAST(to_timestamp(#{save.finalToDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				    #{save.finalPremWrtn, jdbcType=INTEGER},
+				    #{save.finalNetPrem, jdbcType=INTEGER},
+				    #{save.finalShrPct, jdbcType=INTEGER},
+				    #{save.finalShrAmt, jdbcType=INTEGER},
+				    #{save.updateUser, jdbcType=VARCHAR},
+				    CAST(to_timestamp(#{save.updateDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			</foreach>
+											   
+			GENERATE_ACCIT_ENTRIES.SAVE_FINAL_ACCT_ENTRIES('JV', #{tranType}, #{allocTranId}, v_message);
+		END;
+	</update>
+	
+	<select id="retrieveAcitJVRiskMgtAlloc" resultMap="riskMgtAllocMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(ACIT_JV_RISK_MGT_DIST_PKG.get_risk_mgt(
+			#{tranId, jdbcType=INTEGER}
+		))
 	</select>
 	
 </mapper>
