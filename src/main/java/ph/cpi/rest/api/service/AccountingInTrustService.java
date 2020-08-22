@@ -154,4 +154,6 @@ public interface AccountingInTrustService {
 	public RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) throws SQLException;
 	public RetrieveAcitTrialBalExtResponse retrieveAcitTrialBalExt(String extractUser)throws SQLException;
 	public RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException;
+	public RetrieveAcitJVRiskMgtAllocResponse retrieveAcitJVRiskMgtAlloc(RetrieveAcitJVRiskMgtAllocRequest request) throws SQLException;
+	public SaveAcitJVRiskMgtAllocResponse saveAcitJVRiskMgtAlloc(SaveAcitJVRiskMgtAllocRequest request) throws SQLException;
 }
