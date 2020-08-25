@@ -120,6 +120,8 @@ class ServFeeOr{
 	private String updateDate;
 	private String invoiceId;
 	private String vatTag;
+	private String netDue;
+	private String netDueLocal;
 	
 	private List<saveOrItemTaxesServFee> taxAllocation;
 	
@@ -204,6 +206,18 @@ class ServFeeOr{
 	public String getVatTag() {
 		return vatTag;
 	}
+	public String getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(String netDue) {
+		this.netDue = netDue;
+	}
+	public String getNetDueLocal() {
+		return netDueLocal;
+	}
+	public void setNetDueLocal(String netDueLocal) {
+		this.netDueLocal = netDueLocal;
+	}
 	public void setVatTag(String vatTag) {
 		this.vatTag = vatTag;
 	}
@@ -219,7 +233,8 @@ class ServFeeOr{
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", servFeeAmt=" + servFeeAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", invoiceId=" + invoiceId + ", vatTag="
-				+ vatTag + ", taxAllocation=" + taxAllocation + "]";
+				+ vatTag + ", netDue=" + netDue + ", netDueLocal=" + netDueLocal + ", taxAllocation=" + taxAllocation
+				+ "]";
 	}
 }
 

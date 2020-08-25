@@ -19,6 +19,8 @@ public class AcseOrServFee {
 	private String updateUser;
 	private DateTime updateDate;
 	private Integer vatTag;
+	private BigDecimal netDue;
+	private BigDecimal netDueLocal;
 	
 	List<OrItemTaxes> taxAllocation;
 	
@@ -100,6 +102,18 @@ public class AcseOrServFee {
 	public void setVatTag(Integer vatTag) {
 		this.vatTag = vatTag;
 	}
+	public BigDecimal getNetDue() {
+		return netDue;
+	}
+	public void setNetDue(BigDecimal netDue) {
+		this.netDue = netDue;
+	}
+	public BigDecimal getNetDueLocal() {
+		return netDueLocal;
+	}
+	public void setNetDueLocal(BigDecimal netDueLocal) {
+		this.netDueLocal = netDueLocal;
+	}
 	public List<OrItemTaxes> getTaxAllocation() {
 		return taxAllocation;
 	}
@@ -111,7 +125,7 @@ public class AcseOrServFee {
 		return "AcseOrServFee [tranId=" + tranId + ", billId=" + billId + ", itemNo=" + itemNo + ", quarterEnding="
 				+ quarterEnding + ", currCd=" + currCd + ", currRate=" + currRate + ", servFeeAmt=" + servFeeAmt
 				+ ", localAmt=" + localAmt + ", createUser=" + createUser + ", createDate=" + createDate
-				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", vatTag=" + vatTag
-				+ ", taxAllocation=" + taxAllocation + "]";
+				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", vatTag=" + vatTag + ", netDue="
+				+ netDue + ", netDueLocal=" + netDueLocal + ", taxAllocation=" + taxAllocation + "]";
 	}
 }
