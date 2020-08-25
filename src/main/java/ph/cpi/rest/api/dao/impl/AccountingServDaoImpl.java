@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -19,6 +17,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
+import ph.cpi.rest.api.model.accountingservice.AcseAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
@@ -42,8 +41,10 @@ import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcsePerDiem;
 import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
+import ph.cpi.rest.api.model.accountingservice.AcseTrialBal;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest;
 
 @Component
 public class AccountingServDaoImpl implements AccountingServDao{
@@ -57,7 +58,6 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	
 	private TransactionStatus txStat;
 	
-	private static final Logger logger = LoggerFactory.getLogger(AccountingInTrustDaoImpl.class);
 
 	@Override
 	public List<OfficialReceipt> retrieveOrList(HashMap<String, Object> params) throws SQLException {
@@ -671,6 +671,18 @@ public class AccountingServDaoImpl implements AccountingServDao{
 	public List<RefNoLov> retrieveAcseRefNoLOV(HashMap<String, Object> params) throws SQLException {
 		List<RefNoLov> list = sqlSession.selectList("retrieveAcseRefNoLOV", params);
 		return list;
+	}
+
+	@Override
+	public List<AcseAcctEntriesExt> retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) {
+		List<AcseAcctEntriesExt> res = sqlSession.selectList("retrieveAcseAcctEntriesExt", request);
+		return res;
+	}
+
+	@Override
+	public List<AcseTrialBal> retrieveAcseTrialBalExt(HashMap<String, Object> params) throws SQLException {
+		List<AcseTrialBal> res = sqlSession.selectList("retrieveAcseTrialBalExt", params);
+		return res;
 	}
 	
 }

@@ -4,8 +4,13 @@ import java.math.BigDecimal;
 
 public class POLR044B {
 	private String extractUser;
+	private String extractDate;
+	private String lineCd;
+	private Integer policyId;
 	private String policyNo;
+	private String cedingId;
 	private String cedingName;
+	private String inceptDate;
 	private String expiryDate;
 	private String insuredDesc;
 	private String projDesc;
@@ -21,17 +26,47 @@ public class POLR044B {
 	public void setExtractUser(String extractUser) {
 		this.extractUser = extractUser;
 	}
+	public String getExtractDate() {
+		return extractDate;
+	}
+	public void setExtractDate(String extractDate) {
+		this.extractDate = extractDate;
+	}
+	public String getLineCd() {
+		return lineCd;
+	}
+	public void setLineCd(String lineCd) {
+		this.lineCd = lineCd;
+	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
 	public String getPolicyNo() {
 		return policyNo;
 	}
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
 	}
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
 	public String getCedingName() {
 		return cedingName;
 	}
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
+	}
+	public String getInceptDate() {
+		return inceptDate;
+	}
+	public void setInceptDate(String inceptDate) {
+		this.inceptDate = inceptDate;
 	}
 	public String getExpiryDate() {
 		return expiryDate;
@@ -89,9 +124,11 @@ public class POLR044B {
 	}
 	@Override
 	public String toString() {
-		return "POLR044B [extractUser=" + extractUser + ", policyNo=" + policyNo + ", cedingName=" + cedingName
-				+ ", expiryDate=" + expiryDate + ", insuredDesc=" + insuredDesc + ", projDesc=" + projDesc
-				+ ", currencyCd=" + currencyCd + ", siAmt=" + siAmt + ", premAmt=" + premAmt + ", remarks=" + remarks
-				+ ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
+		return "POLR044B [extractUser=" + extractUser + ", extractDate=" + extractDate + ", lineCd=" + lineCd
+				+ ", policyId=" + policyId + ", policyNo=" + policyNo + ", cedingId=" + cedingId + ", cedingName="
+				+ cedingName + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate + ", insuredDesc="
+				+ insuredDesc + ", projDesc=" + projDesc + ", currencyCd=" + currencyCd + ", siAmt=" + siAmt
+				+ ", premAmt=" + premAmt + ", remarks=" + remarks + ", fromDate=" + fromDate + ", toDate=" + toDate
+				+ "]";
 	}
 }

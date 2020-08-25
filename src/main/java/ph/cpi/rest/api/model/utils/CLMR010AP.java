@@ -10,6 +10,7 @@ public class CLMR010AP {
 	private Integer claimId;
 	private String claimNo;
 	private String cedingId;
+	private String cedingName;
 	private String insuredDesc;
 	private BigDecimal insuredClm;
 	private String distDate;
@@ -17,20 +18,10 @@ public class CLMR010AP {
 	private String lossCd;
 	private String lossAbbr;
 	private String lossDtl;
-	private BigDecimal osAmt;
+	private BigDecimal intlResAmt;
 	private BigDecimal pdAmt;
-	private String dateParam;
-	private String dateRange;
 	private String dateFrom;
 	private String dateTo;
-	private BigDecimal minAmt;
-	private String treatyCompany;
-	private Integer treatyId;
-	private String trtyCedId;
-	private String treatyName;
-	private Integer retLayer;
-	private String retName;
-	private Integer uwYear;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -72,6 +63,12 @@ public class CLMR010AP {
 	}
 	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
+	}
+	public String getCedingName() {
+		return cedingName;
+	}
+	public void setCedingName(String cedingName) {
+		this.cedingName = cedingName;
 	}
 	public String getInsuredDesc() {
 		return insuredDesc;
@@ -115,29 +112,17 @@ public class CLMR010AP {
 	public void setLossDtl(String lossDtl) {
 		this.lossDtl = lossDtl;
 	}
-	public BigDecimal getOsAmt() {
-		return osAmt;
+	public BigDecimal getIntlResAmt() {
+		return intlResAmt;
 	}
-	public void setOsAmt(BigDecimal osAmt) {
-		this.osAmt = osAmt;
+	public void setIntlResAmt(BigDecimal intlResAmt) {
+		this.intlResAmt = intlResAmt;
 	}
 	public BigDecimal getPdAmt() {
 		return pdAmt;
 	}
 	public void setPdAmt(BigDecimal pdAmt) {
 		this.pdAmt = pdAmt;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
 	}
 	public String getDateFrom() {
 		return dateFrom;
@@ -151,63 +136,13 @@ public class CLMR010AP {
 	public void setDateTo(String dateTo) {
 		this.dateTo = dateTo;
 	}
-	public BigDecimal getMinAmt() {
-		return minAmt;
-	}
-	public void setMinAmt(BigDecimal minAmt) {
-		this.minAmt = minAmt;
-	}
-	public String getTreatyCompany() {
-		return treatyCompany;
-	}
-	public void setTreatyCompany(String treatyCompany) {
-		this.treatyCompany = treatyCompany;
-	}
-	public Integer getTreatyId() {
-		return treatyId;
-	}
-	public void setTreatyId(Integer treatyId) {
-		this.treatyId = treatyId;
-	}
-	public String getTrtyCedId() {
-		return trtyCedId;
-	}
-	public void setTrtyCedId(String trtyCedId) {
-		this.trtyCedId = trtyCedId;
-	}
-	public String getTreatyName() {
-		return treatyName;
-	}
-	public void setTreatyName(String treatyName) {
-		this.treatyName = treatyName;
-	}
-	public Integer getRetLayer() {
-		return retLayer;
-	}
-	public void setRetLayer(Integer retLayer) {
-		this.retLayer = retLayer;
-	}
-	public String getRetName() {
-		return retName;
-	}
-	public void setRetName(String retName) {
-		this.retName = retName;
-	}
-	public Integer getUwYear() {
-		return uwYear;
-	}
-	public void setUwYear(Integer uwYear) {
-		this.uwYear = uwYear;
-	}
 	@Override
 	public String toString() {
 		return "CLMR010AP [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", claimId=" + claimId + ", claimNo=" + claimNo + ", cedingId=" + cedingId
-				+ ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm + ", distDate=" + distDate
-				+ ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossDtl=" + lossDtl
-				+ ", osAmt=" + osAmt + ", pdAmt=" + pdAmt + ", dateParam=" + dateParam + ", dateRange=" + dateRange
-				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", minAmt=" + minAmt + ", treatyCompany="
-				+ treatyCompany + ", treatyId=" + treatyId + ", trtyCedId=" + trtyCedId + ", treatyName=" + treatyName
-				+ ", retLayer=" + retLayer + ", retName=" + retName + ", uwYear=" + uwYear + "]";
+				+ ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
+				+ ", distDate=" + distDate + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr
+				+ ", lossDtl=" + lossDtl + ", intlResAmt=" + intlResAmt + ", pdAmt=" + pdAmt + ", dateFrom=" + dateFrom
+				+ ", dateTo=" + dateTo + "]";
 	}
 }

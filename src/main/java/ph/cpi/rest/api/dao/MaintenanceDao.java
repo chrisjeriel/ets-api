@@ -61,6 +61,7 @@ import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
 import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAdjusterRate;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -77,6 +78,7 @@ import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PayeeCeding;
 import ph.cpi.rest.api.model.maintenance.PayeeClass;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PremPlan;
 import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -98,6 +100,9 @@ import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
 import ph.cpi.rest.api.model.maintenance.WithholdingTaxes;
+import ph.cpi.rest.api.model.request.CopyMtnPremPlanRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnPremPlanRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPremPlanRequest;
 
 public interface MaintenanceDao {
 
@@ -321,6 +326,14 @@ public interface MaintenanceDao {
 	public List<ClaimReportsRange> retrieveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
 	public HashMap<String, Object> saveMtnClmReportsRange(HashMap<String, Object> params) throws SQLException;
 	public String checkOkDeleteRetPerCede(HashMap<String, Object> params) throws SQLException;
+
+	public List<PremPlan> retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException;
+	public HashMap<String, Object> saveMtnPremPlan(HashMap<String, Object> params) throws SQLException;
+	public Integer copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException;
+	public List<MtnAdjusterRate> retrieveMtnAdjusterRate(final HashMap<String, Object> params ) throws SQLException;
+	public Integer saveMtnAdjusterRate(final HashMap<String, Object> params) throws SQLException;
+
 	public List<AcitChartAcct> retrieveMtnAcitChartAcctLov(String param) throws SQLException;
 	public List<AcseChartAcct> retrieveMtnAcseChartAcctLov(String param) throws SQLException;
+
 }

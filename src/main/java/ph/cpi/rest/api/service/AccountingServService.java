@@ -21,6 +21,7 @@ import ph.cpi.rest.api.model.request.RestoreServiceAccountingEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntBackupRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntInqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchInvoiceRequest;
@@ -94,6 +95,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndUnpostedMonthsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntInqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchInvoiceResponse;
@@ -122,6 +124,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseTrialBalExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
@@ -226,5 +229,7 @@ public interface AccountingServService {
 	public RetrieveOrSFeeDtlDistResponse retrieveOrSFeeDtlDist(RetrieveOrSFeeDtlDistRequest rosfddr) throws SQLException;
 	public ExtractAcseExpenseBudgetResponse extractAcseExpenseBudget(ExtractAcseExpenseBudgetRequest request) throws SQLException;
 	public RetrieveAcseRefNoLOVResponse retrieveAcseRefNoLOV(RetrieveAcseRefNoLOVRequest rarflr) throws SQLException;
+	public RetrieveAcseAcctEntriesExtResponse retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) throws SQLException;
+	public RetrieveAcseTrialBalExtResponse retrieveAcseTrialBalExt(String extractUser) throws SQLException;
 	
 }

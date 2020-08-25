@@ -42,8 +42,17 @@ public class RetrievePolicyListingRequest {
 	private String mode = "";
 	private String renTag;
 	private String coRefNo;
+	private String createUser;
 	
 	
+	
+	
+	public String getCreateUser() {
+		return createUser;
+	}
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
 	public String getCoRefNo() {
 		return coRefNo;
 	}
@@ -254,6 +263,6 @@ public class RetrievePolicyListingRequest {
 				+ acctDateTo + ", statusDesc=" + statusDesc + ", paginationRequest=" + paginationRequest
 				+ ", sortRequest=" + sortRequest + ", recount=" + recount + ", statusArr=" + statusArr + ", search="
 				+ search + ", altNo=" + altNo + ", lineCd=" + lineCd + ", length=" + length + ", mode=" + mode
-				+ ", renTag=" + renTag + ", coRefNo=" + coRefNo + "]";
+				+ ", renTag=" + renTag + ", coRefNo=" + coRefNo + ", createUser=" + createUser + "]";
 	}
 }

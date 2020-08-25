@@ -1524,6 +1524,41 @@ public class MaintenanceController {
 		return maintenanceService.checkOkDeleteRetPerCede(request);
 	}
 	
+	@GetMapping(path="retrieveMtnPremPlan")
+	public @ResponseBody RetrieveMtnPremPlanResponse retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnPremPlan");
+		logger.info("RetrieveMtnPremPlanRequest : " + request.toString());
+		return maintenanceService.retrieveMtnPremPlan(request);
+	}
+	
+	@PostMapping(path="saveMtnPremPlan")
+    public @ResponseBody SaveMtnPremPlanResponse saveMtnPremPlan(@RequestBody SaveMtnPremPlanRequest request) throws SQLException {
+        logger.info("POST: /api/maintenance-service/saveMtnPremPlan");
+        logger.info("SaveMtnPremPlanRequest : " + request.toString());
+        return maintenanceService.saveMtnPremPlan(request);
+    }
+	
+	@PostMapping(path="copyMtnPremPlan")
+    public @ResponseBody CopyMtnPremPlanResponse copyMtnPremPlan(@RequestBody CopyMtnPremPlanRequest request) throws SQLException {
+        logger.info("POST: /api/maintenance-service/copyMtnPremPlan");
+        logger.info("CopyMtnPremPlanRequest : " + request.toString());
+        return maintenanceService.copyMtnPremPlan(request);
+    }
+	
+	@GetMapping(path="retrieveMtnAdjusterRate")
+	public @ResponseBody RetrieveMtnAdjusterRateResponse retrieveMtnAdjusterRate(RetrieveMtnAdjusterRateRequest rmarp) throws SQLException {
+		logger.info("GET: /api/maintenance-service/retrieveMtnAdjusterRate");
+		logger.info("RetrieveMtnAdjusterRateRequest : " + rmarp.toString());
+		return maintenanceService.retrieveMtnAdjusterRate(rmarp);
+	}
+	
+	@PostMapping(path="saveMtnAdjusterRate")
+	public @ResponseBody SaveMtnAdjusterRateResponse saveMtnAdjusterRate(@RequestBody SaveMtnAdjusterRateRequest smarp) throws SQLException {
+		logger.info("POST: /api/maintenance-service/saveMtnAdjusterRate");
+		logger.info("SaveMtnAdjusterRateRequest : " + smarp.toString());
+		return maintenanceService.saveMtnAdjusterRate(smarp);
+	}
+	
 	@GetMapping(path="retrieveMtnAcitChartAcctLov")
 	public @ResponseBody RetrieveMtnAcitChartAcctResponse retrieveMtnAcitChartAcctLov(RetrieveMtnAcitChartAcctLovRequest rbmr) throws SQLException {
 		logger.info("GET: /api/maintenance-service/retrieveMtnAcitChartAcctLov");

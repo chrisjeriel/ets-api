@@ -18,6 +18,9 @@ public class CLMR010M {
 	private String cedingName;
 	private String policyId;
 	private String policyNo;
+	private String uwYear;
+	private String effDate;
+	private String distDate;
 	private String polCoRefNo;
 	private String currencyCd;
 	private String insuredDesc;
@@ -191,16 +194,34 @@ public class CLMR010M {
 	public void setApprovedAmt(String approvedAmt) {
 		this.approvedAmt = approvedAmt;
 	}
+	public String getUwYear() {
+		return uwYear;
+	}
+	public void setUwYear(String uwYear) {
+		this.uwYear = uwYear;
+	}
+	public String getEffDate() {
+		return effDate;
+	}
+	public void setEffDate(String effDate) {
+		this.effDate = effDate;
+	}
+	public String getDistDate() {
+		return distDate;
+	}
+	public void setDistDate(String distDate) {
+		this.distDate = distDate;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010M [extractUser=" + extractUser + ", extractDate=" + extractDate + ", dateParam=" + dateParam
 				+ ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", claimId=" + claimId
 				+ ", claimNo=" + claimNo + ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc
 				+ ", lossDate=" + lossDate + ", adjId=" + adjId + ", adjName=" + adjName + ", cedingId=" + cedingId
-				+ ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", polCoRefNo="
-				+ polCoRefNo + ", currencyCd=" + currencyCd + ", insuredDesc=" + insuredDesc + ", insuredClm="
-				+ insuredClm + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossResAmt=" + lossResAmt
-				+ ", treatyName=" + treatyName + ", treatyCompany=" + treatyCompany + ", approvedAmt=" + approvedAmt
-				+ "]";
+				+ ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", uwYear="
+				+ uwYear + ", effDate=" + effDate + ", distDate=" + distDate + ", polCoRefNo=" + polCoRefNo
+				+ ", currencyCd=" + currencyCd + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
+				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossResAmt=" + lossResAmt + ", treatyName="
+				+ treatyName + ", treatyCompany=" + treatyCompany + ", approvedAmt=" + approvedAmt + "]";
 	}
 }

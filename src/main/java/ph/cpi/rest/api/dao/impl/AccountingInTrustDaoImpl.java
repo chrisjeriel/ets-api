@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -18,6 +16,7 @@ import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitAmortize;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
@@ -69,6 +68,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitTrialBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
@@ -92,6 +92,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.maintenance.UserId;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 
 @Component
 public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
@@ -104,8 +105,6 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	private DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
 	
 	private TransactionStatus txStat;
-		
-	private static final Logger logger = LoggerFactory.getLogger(AccountingInTrustDaoImpl.class);
 
 	@Override
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(HashMap<String, Object> params) throws SQLException {
@@ -1372,6 +1371,18 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		return res;
 	}
 
+	@Override
+	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) {
+		List<AcitAcctEntriesExt> res = sqlSession.selectList("retrieveAcitAcctEntriesExt", request);
+		return res;
+	}
+
+	@Override
+	public List<AcitTrialBal> retrieveAcitTrialBalExt(HashMap<String, Object> params) throws SQLException {
+		List<AcitTrialBal> res = sqlSession.selectList("retrieveAcitTrialBalExt", params);
+		return res;
+	}
+	
 	@Override
 	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveAcitJVMoSoa", params);

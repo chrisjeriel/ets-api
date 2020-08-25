@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,6 +71,7 @@ import ph.cpi.rest.api.model.maintenance.Line;
 import ph.cpi.rest.api.model.maintenance.LineClass;
 import ph.cpi.rest.api.model.maintenance.MtnAcitTranType;
 import ph.cpi.rest.api.model.maintenance.MtnAcseTranType;
+import ph.cpi.rest.api.model.maintenance.MtnAdjusterRate;
 import ph.cpi.rest.api.model.maintenance.MtnCharges;
 import ph.cpi.rest.api.model.maintenance.MtnClmCashCall;
 import ph.cpi.rest.api.model.maintenance.MtnClmEvent;
@@ -86,6 +88,7 @@ import ph.cpi.rest.api.model.maintenance.Payee;
 import ph.cpi.rest.api.model.maintenance.PayeeCeding;
 import ph.cpi.rest.api.model.maintenance.PayeeClass;
 import ph.cpi.rest.api.model.maintenance.PoolRetHist;
+import ph.cpi.rest.api.model.maintenance.PremPlan;
 import ph.cpi.rest.api.model.maintenance.PrintableNames;
 import ph.cpi.rest.api.model.maintenance.QuoteStatusReason;
 import ph.cpi.rest.api.model.maintenance.QuoteWordings;
@@ -107,6 +110,9 @@ import ph.cpi.rest.api.model.maintenance.TreatyShare;
 import ph.cpi.rest.api.model.maintenance.UserAmtLimit;
 import ph.cpi.rest.api.model.maintenance.UsersLov;
 import ph.cpi.rest.api.model.maintenance.WithholdingTaxes;
+import ph.cpi.rest.api.model.request.CopyMtnPremPlanRequest;
+import ph.cpi.rest.api.model.request.RetrieveMtnPremPlanRequest;
+import ph.cpi.rest.api.model.request.SaveMtnPremPlanRequest;
 
 @Component
 public class MaintenanceDaoImpl implements MaintenanceDao {
@@ -1544,6 +1550,42 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
 		return (String) sqlSession.selectOne("checkOkDeleteRetPerCede",params);
 	}
 
+	@Override
+	public List<PremPlan> retrieveMtnPremPlan(RetrieveMtnPremPlanRequest request) throws SQLException {
+		List<PremPlan> list = sqlSession.selectList("retrieveMtnPremPlan",request);
+		return list;
+	}
+
+	@Override
+	public HashMap<String, Object> saveMtnPremPlan(HashMap<String, Object> params) throws SQLException {
+		Integer errorCode = sqlSession.update("saveMtnPremPlan",params);
+		params.put("errorCode", errorCode);
+		return params;
+	}
+
+	@Override
+	public Integer copyMtnPremPlan(CopyMtnPremPlanRequest request) throws SQLException {
+		Integer errorCode;
+		try{
+			errorCode = sqlSession.update("copyMtnPremPlan",request);
+		}catch (UncategorizedSQLException e){
+			throw (SQLException) e.getCause();
+		}
+		return errorCode;
+	}
+	
+	@Override
+	public List<MtnAdjusterRate> retrieveMtnAdjusterRate(HashMap<String, Object> params) throws SQLException {
+		List<MtnAdjusterRate> retrieveMtnAdjusterRate = sqlSession.selectList("retrieveMtnAdjusterRate", params);
+		return retrieveMtnAdjusterRate;
+	}
+
+	@Override
+	public Integer saveMtnAdjusterRate(HashMap<String, Object> params) throws SQLException {
+		Integer saveMtnAdjusterRate = sqlSession.update("saveMtnAdjusterRate", params);
+		return saveMtnAdjusterRate;
+	}
+	
 	@Override
 	public List<AcitChartAcct> retrieveMtnAcitChartAcctLov(String param) throws SQLException {
 		return sqlSession.selectList("retrieveMtnAcitChartAcctLov", param);

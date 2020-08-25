@@ -36,6 +36,22 @@ public class CedingCompany {
 	private List<CedingRepresentative> cedingRepresentative;
 	private List<CedingHist> cedingHistory;
 	
+	private String serviceFeeGrp;
+	private String serviceFeeGrpName;
+	
+	
+	public String getServiceFeeGrp() {
+		return serviceFeeGrp;
+	}
+	public void setServiceFeeGrp(String serviceFeeGrp) {
+		this.serviceFeeGrp = serviceFeeGrp;
+	}
+	public String getServiceFeeGrpName() {
+		return serviceFeeGrpName;
+	}
+	public void setServiceFeeGrpName(String serviceFeeGrpName) {
+		this.serviceFeeGrpName = serviceFeeGrpName;
+	}
 	public String getCedingId() {
 		return cedingId;
 	}
@@ -227,6 +243,7 @@ public class CedingCompany {
 				+ withdrawDate + ", inactiveDate=" + inactiveDate + ", treatyTag=" + treatyTag + ", withdrawTag="
 				+ withdrawTag + ", remarks=" + remarks + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingRepresentative="
-				+ cedingRepresentative + ", cedingHistory=" + cedingHistory + "]";
+				+ cedingRepresentative + ", cedingHistory=" + cedingHistory + ", serviceFeeGrp=" + serviceFeeGrp
+				+ ", serviceFeeGrpName=" + serviceFeeGrpName + "]";
 	}
 }

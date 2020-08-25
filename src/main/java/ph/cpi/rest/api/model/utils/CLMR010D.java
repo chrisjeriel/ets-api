@@ -1,31 +1,35 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class CLMR010D {
 	private String extractUser;
 	private String extractDate;
-	private String dateParam;
-	private String dateRange;
-	private String dateFrom;
-	private String dateTo;
-	private String claimId;
+	private Integer claimId;
 	private String claimNo;
 	private String histCategory;
 	private String histCatDesc;
 	private String lossDate;
-	private String adjId;
+	private Integer adjId;
 	private String adjName;
 	private String cedingId;
 	private String cedingName;
-	private String policyId;
+	private Integer policyId;
 	private String policyNo;
 	private String coRefNo;
 	private String currencyCd;
 	private String insuredDesc;
-	private String insuredClm;
+	private BigDecimal insuredClm;
 	private String lossCd;
 	private String lossAbbr;
-	private String lossResAmt;
+	private BigDecimal totalResAmt;
+	private Integer treatyId;
+	private String treatyName;
+	private String trtyCedId;
 	private String treatyCompany;
+	private BigDecimal distributionShare;
+	private String dateFrom;
+	private String dateTo;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -38,34 +42,10 @@ public class CLMR010D {
 	public void setExtractDate(String extractDate) {
 		this.extractDate = extractDate;
 	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
-	public String getDateFrom() {
-		return dateFrom;
-	}
-	public void setDateFrom(String dateFrom) {
-		this.dateFrom = dateFrom;
-	}
-	public String getDateTo() {
-		return dateTo;
-	}
-	public void setDateTo(String dateTo) {
-		this.dateTo = dateTo;
-	}
-	public String getClaimId() {
+	public Integer getClaimId() {
 		return claimId;
 	}
-	public void setClaimId(String claimId) {
+	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
 	}
 	public String getClaimNo() {
@@ -92,10 +72,10 @@ public class CLMR010D {
 	public void setLossDate(String lossDate) {
 		this.lossDate = lossDate;
 	}
-	public String getAdjId() {
+	public Integer getAdjId() {
 		return adjId;
 	}
-	public void setAdjId(String adjId) {
+	public void setAdjId(Integer adjId) {
 		this.adjId = adjId;
 	}
 	public String getAdjName() {
@@ -116,10 +96,10 @@ public class CLMR010D {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public String getPolicyId() {
+	public Integer getPolicyId() {
 		return policyId;
 	}
-	public void setPolicyId(String policyId) {
+	public void setPolicyId(Integer policyId) {
 		this.policyId = policyId;
 	}
 	public String getPolicyNo() {
@@ -146,10 +126,10 @@ public class CLMR010D {
 	public void setInsuredDesc(String insuredDesc) {
 		this.insuredDesc = insuredDesc;
 	}
-	public String getInsuredClm() {
+	public BigDecimal getInsuredClm() {
 		return insuredClm;
 	}
-	public void setInsuredClm(String insuredClm) {
+	public void setInsuredClm(BigDecimal insuredClm) {
 		this.insuredClm = insuredClm;
 	}
 	public String getLossCd() {
@@ -164,11 +144,29 @@ public class CLMR010D {
 	public void setLossAbbr(String lossAbbr) {
 		this.lossAbbr = lossAbbr;
 	}
-	public String getLossResAmt() {
-		return lossResAmt;
+	public BigDecimal getTotalResAmt() {
+		return totalResAmt;
 	}
-	public void setLossResAmt(String lossResAmt) {
-		this.lossResAmt = lossResAmt;
+	public void setTotalResAmt(BigDecimal totalResAmt) {
+		this.totalResAmt = totalResAmt;
+	}
+	public Integer getTreatyId() {
+		return treatyId;
+	}
+	public void setTreatyId(Integer treatyId) {
+		this.treatyId = treatyId;
+	}
+	public String getTreatyName() {
+		return treatyName;
+	}
+	public void setTreatyName(String treatyName) {
+		this.treatyName = treatyName;
+	}
+	public String getTrtyCedId() {
+		return trtyCedId;
+	}
+	public void setTrtyCedId(String trtyCedId) {
+		this.trtyCedId = trtyCedId;
 	}
 	public String getTreatyCompany() {
 		return treatyCompany;
@@ -176,15 +174,34 @@ public class CLMR010D {
 	public void setTreatyCompany(String treatyCompany) {
 		this.treatyCompany = treatyCompany;
 	}
+	public BigDecimal getDistributionShare() {
+		return distributionShare;
+	}
+	public void setDistributionShare(BigDecimal distributionShare) {
+		this.distributionShare = distributionShare;
+	}
+	public String getDateFrom() {
+		return dateFrom;
+	}
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+	public String getDateTo() {
+		return dateTo;
+	}
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
+	}
 	@Override
 	public String toString() {
-		return "CLMR010D [extractUser=" + extractUser + ", extractDate=" + extractDate + ", dateParam=" + dateParam
-				+ ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", claimId=" + claimId
+		return "CLMR010D [extractUser=" + extractUser + ", extractDate=" + extractDate + ", claimId=" + claimId
 				+ ", claimNo=" + claimNo + ", histCategory=" + histCategory + ", histCatDesc=" + histCatDesc
 				+ ", lossDate=" + lossDate + ", adjId=" + adjId + ", adjName=" + adjName + ", cedingId=" + cedingId
 				+ ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo=" + policyNo + ", coRefNo="
 				+ coRefNo + ", currencyCd=" + currencyCd + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
-				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", lossResAmt=" + lossResAmt + ", treatyCompany="
-				+ treatyCompany + "]";
+				+ ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr + ", totalResAmt=" + totalResAmt + ", treatyId="
+				+ treatyId + ", treatyName=" + treatyName + ", trtyCedId=" + trtyCedId + ", treatyCompany="
+				+ treatyCompany + ", distributionShare=" + distributionShare + ", dateFrom=" + dateFrom + ", dateTo="
+				+ dateTo + "]";
 	}
 }

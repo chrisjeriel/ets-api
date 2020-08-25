@@ -824,6 +824,10 @@
 		<result property="createDate" 		column="CREATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
 		<result property="updateUser" 		column="UPDATE_USER"/>
 		<result property="updateDate" 		column="UPDATE_DATE" 		typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		
+		<result property="serviceFeeGrp" 		column="SERVICE_FEE_GRP"/>
+		<result property="serviceFeeGrpName" 	column="SERVICE_FEE_GRP_NAME"/>
+		
      	<association property="cedingRepresentative" resultMap="cedingRepresentativeMap"></association>
      	<association property="cedingHistory" resultMap="cedingHistMap"></association>
      </resultMap>
@@ -1700,7 +1704,8 @@
     						#{createUser},
     						CAST(to_timestamp(#{createDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
     						#{updateUser},
-    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+    						CAST(to_timestamp(#{updateDate,jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+    						#{serviceFeeGrp, jdbcType=VARCHAR}
     		);
     		
     		#{outCedingId, mode=OUT, jdbcType=VARCHAR} := v_ceding_id;
@@ -3974,7 +3979,7 @@
      </resultMap>
      
      <select id="retrieveMtnPrintable" resultMap="printableMap" parameterType="java.util.Map">
-			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null))
+			SELECT * FROM TABLE(mtn_users_pkg.ret_mtn_user_print(#{employeeId,jdbcType=INTEGER},null,null,null,null,#{activeTag,jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retMtnCedingTreaty" resultMap="maintenanceCedingCompanyListMap" parameterType="java.util.Map">
@@ -5438,6 +5443,100 @@
 		select MTN_POOL_RET_HIST_PKG.check_ok_del(#{currencyCd},#{retHistId}) FROM DUAL
 	</select>
 	
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.PremPlan" id="PremPlanMap">
+		<result property="currencyCd"  column="CURRENCY_CD"/>
+		<result property="lineCd"  column="LINE_CD"/>
+		<result property="planYear"  column="PLAN_YEAR"/>
+		<result property="planMm"  column="PLAN_MM"/>
+		<result property="premPlan"  column="PREM_PLAN"/>
+		<result property="remarks"  column="REMARKS"/>
+		<result property="createUser"  column="CREATE_USER"/>
+		<result property="createDate"  column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"  column="UPDATE_USER"/>
+		<result property="updateDate"  column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+	</resultMap>
+	
+	<select id="retrieveMtnPremPlan" resultMap="PremPlanMap">
+		SELECT * FROM TABLE(mtn_prem_plan_pkg.ret_mtn_pre_plan(#{lineCd},#{planYear},#{currencyCd}))
+	</select>
+	
+	<update id="saveMtnPremPlan">
+		BEGIN
+			<foreach collection="saveList" item="save">
+				mtn_prem_plan_pkg.save_mtn_prem_plan(
+					#{save.lineCd,jdbcType=VARCHAR},
+					#{save.planYear,jdbcType=VARCHAR},
+					#{save.planMm,jdbcType=VARCHAR},
+					#{save.premPlan,jdbcType=VARCHAR},
+					#{save.remarks,jdbcType=VARCHAR},
+					#{save.createUser,jdbcType=VARCHAR},
+					NULL,
+					#{save.updateUser,jdbcType=VARCHAR},
+					NULL,
+					#{save.currencyCd,jdbcType=VARCHAR}
+				);
+			</foreach>
+		END;
+	</update>
+	
+	<update id="copyMtnPremPlan">
+		BEGIN
+			mtn_prem_plan_pkg.copy_prem_plan(
+				#{fromCurrencyCd ,jdbcType=VARCHAR},
+				#{fromLineCd ,jdbcType=VARCHAR},
+				#{fromPlanYear ,jdbcType=VARCHAR},
+				#{toCurrencyCd ,jdbcType=VARCHAR},
+				#{toLineCd ,jdbcType=VARCHAR},
+				#{toPlanYear ,jdbcType=VARCHAR},
+				#{user,jdbcType=VARCHAR}
+			);
+		END;
+	</update>
+
+	<resultMap type="ph.cpi.rest.api.model.maintenance.MtnAdjusterRate" id="mtnAdjusterRateMap">
+    	<result property="adjRateId"			column="ADJ_RATE_ID"/>
+		<result property="adjRate"				column="ADJ_RATE"/>
+		<result property="effDateFrom"			column="EFF_DATE_FROM" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="activeTag"			column="ACTIVE_TAG"/>
+		<result property="remarks"				column="REMARKS"/>
+		<result property="createUser"			column="CREATE_USER"/>
+		<result property="createDate"			column="CREATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="updateUser"			column="UPDATE_USER"/>
+		<result property="updateDate"			column="UPDATE_DATE" typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"/>
+		<result property="okDelete"				column="OK_DELETE"/>
+    </resultMap>
+   
+   	<select id="retrieveMtnAdjusterRate" resultMap="mtnAdjusterRateMap" parameterType="java.util.Map">
+   		SELECT * FROM TABLE(MTN_ADJ_RATE_PKG.ret_mtn_adj_rate(
+   					#{adjRateId, jdbcType=VARCHAR},
+					#{position, jdbcType=VARCHAR},
+					#{count, jdbcType=VARCHAR},
+					#{sortKey, jdbcType=VARCHAR},
+					#{order, jdbcType=VARCHAR}))
+   	</select>
+   
+   	 <update id="saveMtnAdjusterRate" parameterType="java.util.Map">
+    	BEGIN
+    		<foreach collection="saveAdjusterRate" item="adjRateSave">
+	    		MTN_ADJ_RATE_PKG.save_mtn_adj_rate(
+	    			#{adjRateSave.adjRateId,jdbcType=VARCHAR},
+					#{adjRateSave.adjRate,jdbcType=VARCHAR},
+					CAST(to_timestamp(#{adjRateSave.effDateFrom}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+					#{adjRateSave.activeTag,jdbcType=VARCHAR},
+					#{adjRateSave.remarks,jdbcType=VARCHAR},
+					#{adjRateSave.createUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{adjRateSave.createDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			        #{adjRateSave.updateUser,jdbcType=VARCHAR},
+			        CAST(to_timestamp(#{adjRateSave.updateDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE)
+	    		);
+    		</foreach>
+    		<foreach collection="deleteAdjusterRate" item="adjRateDelete">
+    			MTN_ADJ_RATE_PKG.del_mtn_adj_rate(#{adjRateDelete.adjRateId,jdbcType=VARCHAR});
+    		</foreach>
+    	END;
+    </update>
+
 	<select id="retrieveMtnAcitChartAcctLov" resultMap="AcitChartAcct" parameterType="java.lang.String">
 		SELECT * FROM TABLE(MTN_ACIT_CHART_ACCT_PKG.ret_mtn_acit_chart_acct_lov(#{param, jdbcType=VARCHAR}))
 	</select>

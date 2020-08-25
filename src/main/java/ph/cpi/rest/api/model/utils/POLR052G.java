@@ -1,26 +1,28 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR052G {
 	private String extractUser;
 	private String extractDate;
 	private String currencyCd;
-	private String cedingId;
-	private String cedingName;
-	private String tinNo;
-	private String address;
-	private String shrCedId;
-	private String shrCedName;
+	private String issuingCedId;
+	private String issuingCedName;
+	private String issTinNo;
+	private String issAddress;
+	private Integer policyId;
+	private String policyNo;
+	private Integer instNo;
+	private String sharingCedId;
+	private String sharingCedName;
 	private String shrTinNo;
 	private String shrAddress;
-	private String premAmt;
-	private String commAmt;
-	private String vatRiComm;
-	private String amtDue;
-	private String dateParam;
-	private String dateRange;
+	private BigDecimal shareOnPrem;
+	private BigDecimal shareOnComm;
+	private BigDecimal shareOnVat;
+	private BigDecimal shareOnNet;
 	private String fromDate;
 	private String toDate;
-	private String dateFromTo;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -39,41 +41,59 @@ public class POLR052G {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public String getCedingId() {
-		return cedingId;
+	public String getIssuingCedId() {
+		return issuingCedId;
 	}
-	public void setCedingId(String cedingId) {
-		this.cedingId = cedingId;
+	public void setIssuingCedId(String issuingCedId) {
+		this.issuingCedId = issuingCedId;
 	}
-	public String getCedingName() {
-		return cedingName;
+	public String getIssuingCedName() {
+		return issuingCedName;
 	}
-	public void setCedingName(String cedingName) {
-		this.cedingName = cedingName;
+	public void setIssuingCedName(String issuingCedName) {
+		this.issuingCedName = issuingCedName;
 	}
-	public String getTinNo() {
-		return tinNo;
+	public String getIssTinNo() {
+		return issTinNo;
 	}
-	public void setTinNo(String tinNo) {
-		this.tinNo = tinNo;
+	public void setIssTinNo(String issTinNo) {
+		this.issTinNo = issTinNo;
 	}
-	public String getAddress() {
-		return address;
+	public String getIssAddress() {
+		return issAddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setIssAddress(String issAddress) {
+		this.issAddress = issAddress;
 	}
-	public String getShrCedId() {
-		return shrCedId;
+	public Integer getPolicyId() {
+		return policyId;
 	}
-	public void setShrCedId(String shrCedId) {
-		this.shrCedId = shrCedId;
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
 	}
-	public String getShrCedName() {
-		return shrCedName;
+	public String getPolicyNo() {
+		return policyNo;
 	}
-	public void setShrCedName(String shrCedName) {
-		this.shrCedName = shrCedName;
+	public void setPolicyNo(String policyNo) {
+		this.policyNo = policyNo;
+	}
+	public Integer getInstNo() {
+		return instNo;
+	}
+	public void setInstNo(Integer instNo) {
+		this.instNo = instNo;
+	}
+	public String getSharingCedId() {
+		return sharingCedId;
+	}
+	public void setSharingCedId(String sharingCedId) {
+		this.sharingCedId = sharingCedId;
+	}
+	public String getSharingCedName() {
+		return sharingCedName;
+	}
+	public void setSharingCedName(String sharingCedName) {
+		this.sharingCedName = sharingCedName;
 	}
 	public String getShrTinNo() {
 		return shrTinNo;
@@ -87,41 +107,29 @@ public class POLR052G {
 	public void setShrAddress(String shrAddress) {
 		this.shrAddress = shrAddress;
 	}
-	public String getPremAmt() {
-		return premAmt;
+	public BigDecimal getShareOnPrem() {
+		return shareOnPrem;
 	}
-	public void setPremAmt(String premAmt) {
-		this.premAmt = premAmt;
+	public void setShareOnPrem(BigDecimal shareOnPrem) {
+		this.shareOnPrem = shareOnPrem;
 	}
-	public String getCommAmt() {
-		return commAmt;
+	public BigDecimal getShareOnComm() {
+		return shareOnComm;
 	}
-	public void setCommAmt(String commAmt) {
-		this.commAmt = commAmt;
+	public void setShareOnComm(BigDecimal shareOnComm) {
+		this.shareOnComm = shareOnComm;
 	}
-	public String getVatRiComm() {
-		return vatRiComm;
+	public BigDecimal getShareOnVat() {
+		return shareOnVat;
 	}
-	public void setVatRiComm(String vatRiComm) {
-		this.vatRiComm = vatRiComm;
+	public void setShareOnVat(BigDecimal shareOnVat) {
+		this.shareOnVat = shareOnVat;
 	}
-	public String getAmtDue() {
-		return amtDue;
+	public BigDecimal getShareOnNet() {
+		return shareOnNet;
 	}
-	public void setAmtDue(String amtDue) {
-		this.amtDue = amtDue;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
+	public void setShareOnNet(BigDecimal shareOnNet) {
+		this.shareOnNet = shareOnNet;
 	}
 	public String getFromDate() {
 		return fromDate;
@@ -135,19 +143,14 @@ public class POLR052G {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getDateFromTo() {
-		return dateFromTo;
-	}
-	public void setDateFromTo(String dateFromTo) {
-		this.dateFromTo = dateFromTo;
-	}
 	@Override
 	public String toString() {
 		return "POLR052G [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", tinNo=" + tinNo + ", address=" + address
-				+ ", shrCedId=" + shrCedId + ", shrCedName=" + shrCedName + ", shrTinNo=" + shrTinNo + ", shrAddress="
-				+ shrAddress + ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm
-				+ ", amtDue=" + amtDue + ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate="
-				+ fromDate + ", toDate=" + toDate + ", dateFromTo=" + dateFromTo + "]";
+				+ ", issuingCedId=" + issuingCedId + ", issuingCedName=" + issuingCedName + ", issTinNo=" + issTinNo
+				+ ", issAddress=" + issAddress + ", policyId=" + policyId + ", policyNo=" + policyNo + ", instNo="
+				+ instNo + ", sharingCedId=" + sharingCedId + ", sharingCedName=" + sharingCedName + ", shrTinNo="
+				+ shrTinNo + ", shrAddress=" + shrAddress + ", shareOnPrem=" + shareOnPrem + ", shareOnComm="
+				+ shareOnComm + ", shareOnVat=" + shareOnVat + ", shareOnNet=" + shareOnNet + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + "]";
 	}
 }

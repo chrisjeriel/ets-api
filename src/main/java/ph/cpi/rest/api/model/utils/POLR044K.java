@@ -6,24 +6,20 @@ public class POLR044K {
 	private String currencyCd;
 	private String lineCd;
 	private String treatyId;
-	private String treatyIdDesc;
+	private String treatyName;
 	private String trtyCedId;
 	private String trtyCedIdName;
 	private String retLayer;
 	private String retLayerDesc;
 	private String tranType;
+	private String tranTypeDesc;
 	private String premAmt;
 	private String commAmt;
 	private String vatRiComm;
 	private String dueToTrty;
 	private String dueToCedant;
-	private String lineCdParam;
-	private String cedingIdParam;
-	private String dateParam;
-	private String dateRange;
 	private String fromDate;
 	private String toDate;
-	private String incRecTag;
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -54,6 +50,12 @@ public class POLR044K {
 	public void setTreatyId(String treatyId) {
 		this.treatyId = treatyId;
 	}
+	public String getTreatyName() {
+		return treatyName;
+	}
+	public void setTreatyName(String treatyName) {
+		this.treatyName = treatyName;
+	}
 	public String getTrtyCedId() {
 		return trtyCedId;
 	}
@@ -72,11 +74,23 @@ public class POLR044K {
 	public void setRetLayer(String retLayer) {
 		this.retLayer = retLayer;
 	}
+	public String getRetLayerDesc() {
+		return retLayerDesc;
+	}
+	public void setRetLayerDesc(String retLayerDesc) {
+		this.retLayerDesc = retLayerDesc;
+	}
 	public String getTranType() {
 		return tranType;
 	}
 	public void setTranType(String tranType) {
 		this.tranType = tranType;
+	}
+	public String getTranTypeDesc() {
+		return tranTypeDesc;
+	}
+	public void setTranTypeDesc(String tranTypeDesc) {
+		this.tranTypeDesc = tranTypeDesc;
 	}
 	public String getPremAmt() {
 		return premAmt;
@@ -108,30 +122,6 @@ public class POLR044K {
 	public void setDueToCedant(String dueToCedant) {
 		this.dueToCedant = dueToCedant;
 	}
-	public String getLineCdParam() {
-		return lineCdParam;
-	}
-	public void setLineCdParam(String lineCdParam) {
-		this.lineCdParam = lineCdParam;
-	}
-	public String getCedingIdParam() {
-		return cedingIdParam;
-	}
-	public void setCedingIdParam(String cedingIdParam) {
-		this.cedingIdParam = cedingIdParam;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
-	}
 	public String getFromDate() {
 		return fromDate;
 	}
@@ -144,33 +134,13 @@ public class POLR044K {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getIncRecTag() {
-		return incRecTag;
-	}
-	public void setIncRecTag(String incRecTag) {
-		this.incRecTag = incRecTag;
-	}
-	public String getTreatyIdDesc() {
-		return treatyIdDesc;
-	}
-	public void setTreatyIdDesc(String treatyIdDesc) {
-		this.treatyIdDesc = treatyIdDesc;
-	}
-	public String getRetLayerDesc() {
-		return retLayerDesc;
-	}
-	public void setRetLayerDesc(String retLayerDesc) {
-		this.retLayerDesc = retLayerDesc;
-	}
 	@Override
 	public String toString() {
 		return "POLR044K [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", lineCd=" + lineCd + ", treatyId=" + treatyId + ", treatyIdDesc=" + treatyIdDesc + ", trtyCedId="
+				+ ", lineCd=" + lineCd + ", treatyId=" + treatyId + ", treatyName=" + treatyName + ", trtyCedId="
 				+ trtyCedId + ", trtyCedIdName=" + trtyCedIdName + ", retLayer=" + retLayer + ", retLayerDesc="
-				+ retLayerDesc + ", tranType=" + tranType + ", premAmt=" + premAmt + ", commAmt=" + commAmt
-				+ ", vatRiComm=" + vatRiComm + ", dueToTrty=" + dueToTrty + ", dueToCedant=" + dueToCedant
-				+ ", lineCdParam=" + lineCdParam + ", cedingIdParam=" + cedingIdParam + ", dateParam=" + dateParam
-				+ ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate=" + toDate + ", incRecTag="
-				+ incRecTag + "]";
+				+ retLayerDesc + ", tranType=" + tranType + ", tranTypeDesc=" + tranTypeDesc + ", premAmt=" + premAmt
+				+ ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", dueToTrty=" + dueToTrty + ", dueToCedant="
+				+ dueToCedant + ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
 	}
 }

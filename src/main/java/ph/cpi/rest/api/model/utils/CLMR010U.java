@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class CLMR010U {
 	private String extractUser;
 	private String extractDate;
@@ -7,12 +9,9 @@ public class CLMR010U {
 	private String lineCd;
 	private String cedingId;
 	private String cedingName;
-	private String claimId;
+	private Integer claimId;
 	private String claimNo;
-	private String lossResAmt;
-	private String lossPdAmt;
-	private String dateParam;
-	private String dateRange;
+	private BigDecimal lossResAmt;
 	private String dateFrom;
 	private String dateTo;
 	public String getExtractUser() {
@@ -51,10 +50,10 @@ public class CLMR010U {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
-	public String getClaimId() {
+	public Integer getClaimId() {
 		return claimId;
 	}
-	public void setClaimId(String claimId) {
+	public void setClaimId(Integer claimId) {
 		this.claimId = claimId;
 	}
 	public String getClaimNo() {
@@ -63,29 +62,11 @@ public class CLMR010U {
 	public void setClaimNo(String claimNo) {
 		this.claimNo = claimNo;
 	}
-	public String getLossResAmt() {
+	public BigDecimal getLossResAmt() {
 		return lossResAmt;
 	}
-	public void setLossResAmt(String lossResAmt) {
+	public void setLossResAmt(BigDecimal lossResAmt) {
 		this.lossResAmt = lossResAmt;
-	}
-	public String getLossPdAmt() {
-		return lossPdAmt;
-	}
-	public void setLossPdAmt(String lossPdAmt) {
-		this.lossPdAmt = lossPdAmt;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
 	}
 	public String getDateFrom() {
 		return dateFrom;
@@ -103,8 +84,7 @@ public class CLMR010U {
 	public String toString() {
 		return "CLMR010U [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
 				+ ", lineCd=" + lineCd + ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", claimId="
-				+ claimId + ", claimNo=" + claimNo + ", lossResAmt=" + lossResAmt + ", lossPdAmt=" + lossPdAmt
-				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", dateFrom=" + dateFrom + ", dateTo="
-				+ dateTo + "]";
+				+ claimId + ", claimNo=" + claimNo + ", lossResAmt=" + lossResAmt + ", dateFrom=" + dateFrom
+				+ ", dateTo=" + dateTo + "]";
 	}
 }

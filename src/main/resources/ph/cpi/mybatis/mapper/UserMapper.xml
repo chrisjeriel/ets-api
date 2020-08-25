@@ -33,7 +33,8 @@
 												  #{position, jdbcType=VARCHAR}, 
 												  #{count, jdbcType=VARCHAR}, 
 												  #{sortKey, jdbcType=VARCHAR}, 
-												  #{order, jdbcType=VARCHAR}))
+												  #{order, jdbcType=VARCHAR}, 
+												  #{activeTag, jdbcType=VARCHAR}))
 	</select>
 	
 	<resultMap type="ph.cpi.rest.api.model.maintenance.UserTran" id="userTranMap">

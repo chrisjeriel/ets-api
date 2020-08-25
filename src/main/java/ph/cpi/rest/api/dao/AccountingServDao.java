@@ -9,6 +9,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitEomMonthlyTotals;
 import ph.cpi.rest.api.model.accountingintrust.AcitEomUnpostedMonth;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingservice.AcseAcctEntries;
+import ph.cpi.rest.api.model.accountingservice.AcseAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingservice.AcseAttachments;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchInvoice;
 import ph.cpi.rest.api.model.accountingservice.AcseBatchOR;
@@ -32,8 +33,10 @@ import ph.cpi.rest.api.model.accountingservice.AcsePaytReq;
 import ph.cpi.rest.api.model.accountingservice.AcsePerDiem;
 import ph.cpi.rest.api.model.accountingservice.AcsePrqTrans;
 import ph.cpi.rest.api.model.accountingservice.AcseTaxDetails;
+import ph.cpi.rest.api.model.accountingservice.AcseTrialBal;
 import ph.cpi.rest.api.model.accountingservice.OfficialReceipt;
 import ph.cpi.rest.api.model.accountingservice.OrTransDtl;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest;
 
 public interface AccountingServDao {
 	public List<OfficialReceipt> retrieveOrList(final HashMap<String, Object> params) throws SQLException;
@@ -136,4 +139,6 @@ public interface AccountingServDao {
 	public HashMap<String,Object> validateCopyBudgetYear(final HashMap<String, Object> params) throws SQLException;
 	public HashMap<String,Object> extractAcseExpenseBudget(final HashMap<String, Object> params) throws SQLException;
 	public List<RefNoLov> retrieveAcseRefNoLOV(final HashMap<String, Object> params) throws SQLException;
+	public List<AcseAcctEntriesExt> retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) throws SQLException;
+	public List<AcseTrialBal> retrieveAcseTrialBalExt(HashMap<String, Object> params) throws SQLException;
 }

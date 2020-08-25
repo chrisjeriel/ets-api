@@ -8,6 +8,7 @@ import ph.cpi.rest.api.model.accountingintrust.ACITSOATreatyDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcctEntryRowUpload;
 import ph.cpi.rest.api.model.accountingintrust.AcctServFeeDist;
 import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntries;
+import ph.cpi.rest.api.model.accountingintrust.AcitAcctEntriesExt;
 import ph.cpi.rest.api.model.accountingintrust.AcitAllInvtIncome;
 import ph.cpi.rest.api.model.accountingintrust.AcitAmortize;
 import ph.cpi.rest.api.model.accountingintrust.AcitArAmtDtl;
@@ -59,6 +60,7 @@ import ph.cpi.rest.api.model.accountingintrust.AcitPrqInwPol;
 import ph.cpi.rest.api.model.accountingintrust.AcitPrqTrans;
 import ph.cpi.rest.api.model.accountingintrust.AcitSOAAgingDetails;
 import ph.cpi.rest.api.model.accountingintrust.AcitTransactions;
+import ph.cpi.rest.api.model.accountingintrust.AcitTrialBal;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerLine;
 import ph.cpi.rest.api.model.accountingintrust.AcitUPRPerPolicy;
 import ph.cpi.rest.api.model.accountingintrust.AcitUnappliedCollection;
@@ -82,6 +84,7 @@ import ph.cpi.rest.api.model.accountingintrust.QSOARemittance;
 import ph.cpi.rest.api.model.accountingintrust.RefNoLov;
 import ph.cpi.rest.api.model.accountingintrust.RiskMgtAlloc;
 import ph.cpi.rest.api.model.maintenance.UserId;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 
 public interface AccountingInTrustDao {
 	public List<AcitCvPaytReq> retrieveAcitCvPaytReqList(final HashMap<String, Object> params ) throws SQLException;
@@ -288,6 +291,8 @@ public interface AccountingInTrustDao {
 	public HashMap<String,Object> updateAgingSoa(final HashMap<String, Object> params ) throws SQLException;
 	public List<AcitMonthEndJV> retrieveAcitMonthEndJV(final HashMap<String, Object> params) throws SQLException;
 	public List<QSOAPrint> retrieveAcitQsoaPrint(final HashMap<String, Object> params) throws SQLException;
+	public List<AcitAcctEntriesExt> retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request)throws SQLException;
+	public List<AcitTrialBal> retrieveAcitTrialBalExt(HashMap<String, Object> params)throws SQLException;
 	public List<AcitSOAAgingDetails> retrieveAcitJVMoSoa(final HashMap<String, Object> params) throws SQLException;
 	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAllocGnrt(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcitJVRiskMgtAlloc(final HashMap<String, Object> params) throws SQLException;

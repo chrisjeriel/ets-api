@@ -7,16 +7,17 @@ import ph.cpi.rest.api.model.request.GenerateReportRequest;
 import ph.cpi.rest.api.model.utils.ACITR049;
 import ph.cpi.rest.api.model.utils.ACITR050;
 import ph.cpi.rest.api.model.utils.ACITR052;
+import ph.cpi.rest.api.model.utils.ACITR058;
+import ph.cpi.rest.api.model.utils.ACITR059;
 import ph.cpi.rest.api.model.utils.ACITR061;
 import ph.cpi.rest.api.model.utils.ACITR066;
+import ph.cpi.rest.api.model.utils.ACSER007;
+import ph.cpi.rest.api.model.utils.ACSER008;
 import ph.cpi.rest.api.model.utils.ACSER024;
 import ph.cpi.rest.api.model.utils.ACSER060;
 import ph.cpi.rest.api.model.utils.CLMR010;
 import ph.cpi.rest.api.model.utils.CLMR052;
 import ph.cpi.rest.api.model.utils.POLR044;
-
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 public class ReportParameters {
 
@@ -92,6 +93,7 @@ public class ReportParameters {
 		POLR044AParams.put("P_TO_DATE", param.getToDate());
 		POLR044AParams.put("P_INC_REC_TAG", param.getIncRecTag());
 		POLR044AParams.put("P_PRINTED_BY", param.getExtractUser());
+		POLR044AParams.put("P_CURR_CD_PARAM", param.getCurrCdParam());
 		
 		return POLR044AParams;
 	}
@@ -374,5 +376,83 @@ public class ReportParameters {
 		CLMR052Params.put("forceExtract", param.getForceExtract());
 		
 		return CLMR052Params;
+	}
+	
+	public static HashMap<String, Object> mapACITR058Params(ACITR058 param) throws ParseException {
+		HashMap<String, Object> ACITR058Params = new HashMap<String, Object>();
+		
+		ACITR058Params.put("reportId" ,param.getReportId());
+		ACITR058Params.put("reportName" ,param.getReportName());
+		ACITR058Params.put("entryType" ,param.getEntryType());
+		ACITR058Params.put("periodType" ,param.getPeriodType());
+		ACITR058Params.put("periodFrom" ,param.getPeriodFrom());
+		ACITR058Params.put("periodTo" ,param.getPeriodTo());
+		ACITR058Params.put("acctParam" ,param.getAcctParam());
+		ACITR058Params.put("slTypeParam" ,param.getSlTypeParam());
+		ACITR058Params.put("arTag" ,param.getArTag());
+		ACITR058Params.put("cvTag" ,param.getCvTag());
+		ACITR058Params.put("jvTag" ,param.getJvTag());
+		ACITR058Params.put("closeTranTag" ,param.getCloseTranTag());
+		ACITR058Params.put("appendTag" ,param.getAppendTag());
+		ACITR058Params.put("extractUser" ,param.getExtractUser());
+		ACITR058Params.put("extractDate" ,param.getExtractDate());
+		ACITR058Params.put("currCdParam" ,param.getCurrCdParam());
+		ACITR058Params.put("forceExtract", param.getForceExtract());
+		
+
+
+		return ACITR058Params;
+	}
+	
+	public static HashMap<String, Object> mapACSER007Params(ACSER007 param) throws ParseException {
+		HashMap<String, Object> ACSER007Params = new HashMap<String, Object>();
+		
+		ACSER007Params.put("reportId" ,param.getReportId());
+		ACSER007Params.put("reportName" ,param.getReportName());
+		ACSER007Params.put("entryType" ,param.getEntryType());
+		ACSER007Params.put("periodType" ,param.getPeriodType());
+		ACSER007Params.put("periodFrom" ,param.getPeriodFrom());
+		ACSER007Params.put("periodTo" ,param.getPeriodTo());
+		ACSER007Params.put("acctParam" ,param.getAcctParam());
+		ACSER007Params.put("slTypeParam" ,param.getSlTypeParam());
+		ACSER007Params.put("orTag" ,param.getOrTag());
+		ACSER007Params.put("cvTag" ,param.getCvTag());
+		ACSER007Params.put("jvTag" ,param.getJvTag());
+		ACSER007Params.put("closeTranTag" ,param.getCloseTranTag());
+		ACSER007Params.put("appendTag" ,param.getAppendTag());
+		ACSER007Params.put("extractUser" ,param.getExtractUser());
+		ACSER007Params.put("extractDate" ,param.getExtractDate());
+		ACSER007Params.put("currCdParam" ,param.getCurrCdParam());
+		ACSER007Params.put("forceExtract", param.getForceExtract());
+		
+
+
+		return ACSER007Params;
+	}
+
+	public static HashMap<String, Object> mapACITR059Params(ACITR059 param) {
+		HashMap<String, Object> ACSER059Params = new HashMap<String, Object>();
+		ACSER059Params.put("periodFrom", param.getPeriodFrom());
+		ACSER059Params.put("periodTo", param.getPeriodTo());
+		ACSER059Params.put("type", param.getType());
+		ACSER059Params.put("currCdParam", param.getCurrCdParam());
+		ACSER059Params.put("forceExtract", param.getForceExtract());
+		ACSER059Params.put("extractUser", param.getExtractUser());
+		ACSER059Params.put("reportId", param.getReportId());
+		ACSER059Params.put("reportName", param.getReportName());
+		return ACSER059Params;
+	}
+	
+	public static HashMap<String, Object> mapACSER008Params(ACSER008 param) {
+		HashMap<String, Object> ACSER009Params = new HashMap<String, Object>();
+		ACSER009Params.put("periodFrom", param.getPeriodFrom());
+		ACSER009Params.put("periodTo", param.getPeriodTo());
+		ACSER009Params.put("type", param.getType());
+		ACSER009Params.put("currCdParam", param.getCurrCdParam());
+		ACSER009Params.put("forceExtract", param.getForceExtract());
+		ACSER009Params.put("extractUser", param.getExtractUser());
+		ACSER009Params.put("reportId", param.getReportId());
+		ACSER009Params.put("reportName", param.getReportName());
+		return ACSER009Params;
 	}
 }

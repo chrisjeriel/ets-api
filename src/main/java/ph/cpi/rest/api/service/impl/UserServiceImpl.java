@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
 	
 		params.put("userId", rmur.getUserId());
 		params.put("userGrp", rmur.getUserGrp());
+		params.put("activeTag", rmur.getActiveTag());
 		params.put("position", rmur.getPaginationRequest().getPosition());
 		params.put("count", rmur.getPaginationRequest().getCount());
 		params.put("sortKey", rmur.getSortRequest().getSortKey());

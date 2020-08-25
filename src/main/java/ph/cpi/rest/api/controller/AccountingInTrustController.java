@@ -1011,6 +1011,20 @@ public class AccountingInTrustController {
 		return acctInTrustService.retrieveAcitQsoaPrint(request);
 	}
 	
+	@GetMapping(path="retrieveAcitAcctEntriesExt")
+	public @ResponseBody RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitAcctEntriesExt");
+		logger.info("RetrieveAcitAcctEntriesExtRequest : " + request.toString());
+		return acctInTrustService.retrieveAcitAcctEntriesExt(request);
+	}
+	
+	@GetMapping(path="retrieveAcitTrialBalExt")
+	public @ResponseBody RetrieveAcitTrialBalExtResponse retrieveAcitTrialBalExt(String extractUser) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitTrialBalExt");
+		logger.info("RetrieveAcitTrialBalExtRequest : " + extractUser.toString());
+		return acctInTrustService.retrieveAcitTrialBalExt(extractUser);
+	}
+
 	@GetMapping(path="retrieveAcitJVMultiOffsetLov")
 	public @ResponseBody RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException {
 		logger.info("GET: /api/acct-in-trust-service/retrieveAcitJVMultiOffsetLov");

@@ -1,28 +1,25 @@
 package ph.cpi.rest.api.model.utils;
 
+import java.math.BigDecimal;
+
 public class POLR052I {
 	private String extractUser;
 	private String extractDate;
 	private String currencyCd;
 	private String cedingId;
 	private String cedingName;
+	private Integer policyId;
 	private String policyNo;
-	private String instNo;
+	private Integer instNo;
 	private String insuredDesc;
 	private String inceptDate;
 	private String expiryDate;
-	private String premAmt;
-	private String commAmt;
-	private String vatRiComm;
-	private String netDue;
-	private String dateParam;
-	private String dateRange;
+	private BigDecimal premAmt;
+	private BigDecimal commAmt;
+	private BigDecimal vatRiComm;
+	private BigDecimal netDue;
 	private String fromDate;
 	private String toDate;
-	private String address;
-	private String cedRepName;
-	private String cedRepPosition;
-	
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -53,16 +50,22 @@ public class POLR052I {
 	public void setCedingName(String cedingName) {
 		this.cedingName = cedingName;
 	}
+	public Integer getPolicyId() {
+		return policyId;
+	}
+	public void setPolicyId(Integer policyId) {
+		this.policyId = policyId;
+	}
 	public String getPolicyNo() {
 		return policyNo;
 	}
 	public void setPolicyNo(String policyNo) {
 		this.policyNo = policyNo;
 	}
-	public String getInstNo() {
+	public Integer getInstNo() {
 		return instNo;
 	}
-	public void setInstNo(String instNo) {
+	public void setInstNo(Integer instNo) {
 		this.instNo = instNo;
 	}
 	public String getInsuredDesc() {
@@ -83,41 +86,29 @@ public class POLR052I {
 	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	public String getPremAmt() {
+	public BigDecimal getPremAmt() {
 		return premAmt;
 	}
-	public void setPremAmt(String premAmt) {
+	public void setPremAmt(BigDecimal premAmt) {
 		this.premAmt = premAmt;
 	}
-	public String getCommAmt() {
+	public BigDecimal getCommAmt() {
 		return commAmt;
 	}
-	public void setCommAmt(String commAmt) {
+	public void setCommAmt(BigDecimal commAmt) {
 		this.commAmt = commAmt;
 	}
-	public String getVatRiComm() {
+	public BigDecimal getVatRiComm() {
 		return vatRiComm;
 	}
-	public void setVatRiComm(String vatRiComm) {
+	public void setVatRiComm(BigDecimal vatRiComm) {
 		this.vatRiComm = vatRiComm;
 	}
-	public String getNetDue() {
+	public BigDecimal getNetDue() {
 		return netDue;
 	}
-	public void setNetDue(String netDue) {
+	public void setNetDue(BigDecimal netDue) {
 		this.netDue = netDue;
-	}
-	public String getDateParam() {
-		return dateParam;
-	}
-	public void setDateParam(String dateParam) {
-		this.dateParam = dateParam;
-	}
-	public String getDateRange() {
-		return dateRange;
-	}
-	public void setDateRange(String dateRange) {
-		this.dateRange = dateRange;
 	}
 	public String getFromDate() {
 		return fromDate;
@@ -131,32 +122,12 @@ public class POLR052I {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getCedRepName() {
-		return cedRepName;
-	}
-	public void setCedRepName(String cedRepName) {
-		this.cedRepName = cedRepName;
-	}
-	public String getCedRepPosition() {
-		return cedRepPosition;
-	}
-	public void setCedRepPosition(String cedRepPosition) {
-		this.cedRepPosition = cedRepPosition;
-	}
 	@Override
 	public String toString() {
 		return "POLR052I [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
-				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", policyNo=" + policyNo + ", instNo="
-				+ instNo + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate + ", expiryDate=" + expiryDate
-				+ ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", vatRiComm=" + vatRiComm + ", netDue=" + netDue
-				+ ", dateParam=" + dateParam + ", dateRange=" + dateRange + ", fromDate=" + fromDate + ", toDate="
-				+ toDate + ", address=" + address + ", cedRepName=" + cedRepName + ", cedRepPosition=" + cedRepPosition
-				+ "]";
+				+ ", cedingId=" + cedingId + ", cedingName=" + cedingName + ", policyId=" + policyId + ", policyNo="
+				+ policyNo + ", instNo=" + instNo + ", insuredDesc=" + insuredDesc + ", inceptDate=" + inceptDate
+				+ ", expiryDate=" + expiryDate + ", premAmt=" + premAmt + ", commAmt=" + commAmt + ", vatRiComm="
+				+ vatRiComm + ", netDue=" + netDue + ", fromDate=" + fromDate + ", toDate=" + toDate + "]";
 	}
 }

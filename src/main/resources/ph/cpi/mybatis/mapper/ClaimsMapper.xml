@@ -323,38 +323,40 @@
 	</resultMap>
 	
 	<select id="retrieveClaimListing" resultMap="claimsListingMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(CLM_GEN_INFO_PKG.ret_clm_list(
-														#{claimNo,jdbcType=VARCHAR},
-														#{cedingName,jdbcType=VARCHAR},
-														#{clmStatus,jdbcType=VARCHAR},
-														#{policyNo,jdbcType=VARCHAR},
-														#{insuredDesc,jdbcType=VARCHAR},
-														#{riskName,jdbcType=VARCHAR},
-														CAST(to_timestamp(#{lossDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														CAST(to_timestamp(#{lossDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-														#{totalResFrom,jdbcType=VARCHAR},
-														#{totalResTo,jdbcType=VARCHAR},
-														#{totalPaytFrom,jdbcType=VARCHAR},
-														#{totalPaytTo,jdbcType=VARCHAR},
-														#{adjName,jdbcType=VARCHAR},
-														#{currencyCd,jdbcType=VARCHAR},
-														#{processedBy,jdbcType=VARCHAR}, 
-														'', '', '','',
-														#{fromInq,jdbcType=VARCHAR})
-						 )
-		 WHERE 1=1				 
-		 <if test="search != null">
-	   	   	 AND
-	   	    	<foreach item="col" index="index" collection="search.searchCols"
-		             open="(" separator=" OR " close=")">
-				         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
-			    </foreach>
-	   	 </if>				 
-		 <if test="sort != null">
-   	    	ORDER BY ${sort.sortKey} ${sort.order}
-   	     </if>				 
+		SELECT * FROM (
+			SELECT * FROM TABLE(CLM_GEN_INFO_PKG.ret_clm_list(
+															#{claimNo,jdbcType=VARCHAR},
+															#{cedingName,jdbcType=VARCHAR},
+															#{clmStatus,jdbcType=VARCHAR},
+															#{policyNo,jdbcType=VARCHAR},
+															#{insuredDesc,jdbcType=VARCHAR},
+															#{riskName,jdbcType=VARCHAR},
+															CAST(to_timestamp(#{lossDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															CAST(to_timestamp(#{lossDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+															#{totalResFrom,jdbcType=VARCHAR},
+															#{totalResTo,jdbcType=VARCHAR},
+															#{totalPaytFrom,jdbcType=VARCHAR},
+															#{totalPaytTo,jdbcType=VARCHAR},
+															#{adjName,jdbcType=VARCHAR},
+															#{currencyCd,jdbcType=VARCHAR},
+															#{processedBy,jdbcType=VARCHAR}, 
+															'', '', '','',
+															#{fromInq,jdbcType=VARCHAR})
+							 )
+			 WHERE 1=1				 
+			 <if test="search != null">
+		   	   	 AND
+		   	    	<foreach item="col" index="index" collection="search.searchCols"
+			             open="(" separator=" OR " close=")">
+					         UPPER(${col}) LIKE  '%' || NVL(UPPER(#{search.value}),UPPER(${col})) || '%'
+				    </foreach>
+		   	 </if>				 
+			 <if test="sort != null">
+	   	    	ORDER BY ${sort.sortKey} ${sort.order}
+	   	     </if>
+   	     )
 		 <if test="pagination.position != null">
-	   	    OFFSET (#{pagination.position} - 1)*#{pagination.count} ROWS FETCH NEXT #{pagination.count} ROWS ONLY
+	   	    OFFSET (${pagination.position} - 1)*${pagination.count} ROWS FETCH NEXT ${pagination.count} ROWS ONLY
 	   	 </if>
 		
 	</select>

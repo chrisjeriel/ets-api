@@ -27,9 +27,11 @@ import ph.cpi.rest.api.model.request.PrintInvoiceBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrBatchRequest;
 import ph.cpi.rest.api.model.request.PrintOrRequest;
 import ph.cpi.rest.api.model.request.RestoreServiceAccountingEntriesRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcitAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcitMonthEndTrialBalRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntBackupRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntInqRequest;
+import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesExtRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAcctEntriesRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseAttachmentsRequest;
 import ph.cpi.rest.api.model.request.RetrieveAcseBatchInvoiceRequest;
@@ -99,10 +101,12 @@ import ph.cpi.rest.api.model.response.PrintInvoiceBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrBatchResponse;
 import ph.cpi.rest.api.model.response.PrintOrResponse;
 import ph.cpi.rest.api.model.response.RestoreServiceAccountingEntriesResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcitAcctEntriesExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndTrialBalResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcitMonthEndUnpostedMonthsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntBackupResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntInqResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAcctEntriesResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseAttachmentsResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseBatchInvoiceResponse;
@@ -131,6 +135,7 @@ import ph.cpi.rest.api.model.response.RetrieveAcsePerDiemResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcsePrqTransResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseRefNoLOVResponse;
 import ph.cpi.rest.api.model.response.RetrieveAcseTaxDetailsResponse;
+import ph.cpi.rest.api.model.response.RetrieveAcseTrialBalExtResponse;
 import ph.cpi.rest.api.model.response.RetrieveOrSFeeDtlDistResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBReopenResponse;
 import ph.cpi.rest.api.model.response.SaveAcitMonthEndTBTempCloseResponse;
@@ -699,4 +704,17 @@ public class AccountingServiceController {
 		return acctServService.retrieveAcseRefNoLOV(rarflr);
 	}
     
+    @GetMapping(path="retrieveAcseAcctEntriesExt")
+	public @ResponseBody RetrieveAcseAcctEntriesExtResponse retrieveAcseAcctEntriesExt(RetrieveAcseAcctEntriesExtRequest request) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseAcctEntriesExt");
+		logger.info("RetrieveAcseAcctEntriesExtRequest : " + request.toString());
+		return acctServService.retrieveAcseAcctEntriesExt(request);
+	}
+    
+    @GetMapping(path="retrieveAcseTrialBalExt")
+	public @ResponseBody RetrieveAcseTrialBalExtResponse retrieveAcseTrialBalExt(String extractUser) throws SQLException {
+		logger.info("GET: /api/acct-serv-service/retrieveAcseTrialBalExt");
+		logger.info("RetrieveAcseTrialBalExtRequest : " + extractUser.toString());
+		return acctServService.retrieveAcseTrialBalExt(extractUser);
+	}
 }

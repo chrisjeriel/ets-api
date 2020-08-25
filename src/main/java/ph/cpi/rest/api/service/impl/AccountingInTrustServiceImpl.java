@@ -1978,6 +1978,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("cedingId",request.getCedingId());
 		params.put("quarterEnd",request.getQuarterEnd());
+		params.put("currCd",request.getCurrCd());
 		response.setPremRes(acctITDao.retrieveQuarterPremRes(params));
 		return response;
 	}
@@ -3182,6 +3183,24 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 
 
 	@Override
+	public RetrieveAcitAcctEntriesExtResponse retrieveAcitAcctEntriesExt(RetrieveAcitAcctEntriesExtRequest request)
+			throws SQLException {
+		RetrieveAcitAcctEntriesExtResponse response = new RetrieveAcitAcctEntriesExtResponse();
+		response.setAcitAcctEntriesExt(acctITDao.retrieveAcitAcctEntriesExt(request));
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitTrialBalExtResponse retrieveAcitTrialBalExt(String extractUser) throws SQLException {
+		RetrieveAcitTrialBalExtResponse response = new RetrieveAcitTrialBalExtResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("extractUser", extractUser);
+		response.setList(acctITDao.retrieveAcitTrialBalExt(params));
+		return response;
+	}
+	
+	@Override
 	public RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException {
 		RetrieveAcitJVMultiOffsetLovResponse response = new RetrieveAcitJVMultiOffsetLovResponse();
 		HashMap<String,Object> params = new HashMap<String,Object>();
@@ -3221,7 +3240,6 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		default:
 			break;
 		}
-		
 		return response;
 	}
 
