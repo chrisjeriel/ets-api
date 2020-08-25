@@ -46,6 +46,7 @@ public class GenerateReportRequest {
 	private ACITR059 acitr059Params;
 	private ACSER008 acser008Params;
 	private String memoId;
+	private Integer invoiceId;
 	
 	
 	
@@ -276,6 +277,12 @@ public class GenerateReportRequest {
 	public void setClmr052Params(CLMR052 clmr052Params) {
 		this.clmr052Params = clmr052Params;
 	}
+	public Integer getInvoiceId() {
+		return invoiceId;
+	}
+	public void setInvoiceId(Integer invoiceId) {
+		this.invoiceId = invoiceId;
+	}
 	@Override
 	public String toString() {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
@@ -287,9 +294,10 @@ public class GenerateReportRequest {
 				+ ", acser024Params=" + acser024Params + ", acitr049Params=" + acitr049Params + ", acitr050Params="
 				+ acitr050Params + ", clmr052Params=" + clmr052Params + ", acitr058Params=" + acitr058Params
 				+ ", acser007Params=" + acser007Params + ", acitr059Params=" + acitr059Params + ", acser008Params="
-				+ acser008Params + ", memoId=" + memoId + ", printerName=" + printerName + ", pageOrientation="
-				+ pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo + ", distId=" + distId
-				+ ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct + "]";
+				+ acser008Params + ", memoId=" + memoId + ", invoiceId=" + invoiceId + ", printerName=" + printerName
+				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo
+				+ ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct
+				+ "]";
 	}
 	
 }
