@@ -1402,4 +1402,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAlloc(HashMap<String, Object> params) throws SQLException {
 		return sqlSession.selectList("retrieveAcitJVRiskMgtAlloc", params);
 	}
+
+	@Override
+	public String validateRiskDate(HashMap<String, Object> params) throws SQLException {
+		params.put("tranNo", "");
+		sqlSession.update("validateRiskDate",params);
+		return (String) params.get("tranNo");
+	}
 }

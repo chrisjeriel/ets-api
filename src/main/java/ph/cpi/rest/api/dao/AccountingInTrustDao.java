@@ -297,4 +297,5 @@ public interface AccountingInTrustDao {
 	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAllocGnrt(final HashMap<String, Object> params) throws SQLException;
 	public Integer saveAcitJVRiskMgtAlloc(final HashMap<String, Object> params) throws SQLException;
 	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAlloc(final HashMap<String, Object> params) throws SQLException;
+	public String validateRiskDate(final HashMap<String, Object> params) throws SQLException;
 }

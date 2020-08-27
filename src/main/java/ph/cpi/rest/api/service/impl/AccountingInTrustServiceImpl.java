@@ -479,6 +479,14 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 				String checkSeries = acctITDao.checkAcitJvSeries();
 				
 				if(checkSeries.equals("Y")) {
+					System.out.println("here");
+					System.out.println(acctITDao.validateRiskDate(params));
+					if(raje.getJvTranTypeCd() == 66 && acctITDao.validateRiskDate(params) != null) {
+						response.setReturnCode(101);
+						response.setTranNo(acctITDao.validateRiskDate(params));
+						return response;
+					}
+					
 					HashMap<String, Object> res = acctITDao.saveAcitJVEntry(params);
 					response.setReturnCode((Integer) res.get("errorCode"));
 					response.setTranIdOut((Integer) res.get("tranIdOut"));

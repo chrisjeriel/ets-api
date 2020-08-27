@@ -5866,4 +5866,10 @@
 		))
 	</select>
 	
+	<update id="validateRiskDate" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			#{tranNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_JV_RISK_MGT_DIST_PKG.validate_risk_date(CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+		END;
+	</update>
+	
 </mapper>
