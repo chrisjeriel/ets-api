@@ -10,6 +10,7 @@ public class RetrieveAcitAllInvestmentIncomeRequest {
 	private String  	tranMonth;
 	private String 		tranYear;
 	private String		tranDate;
+	private String currCd;
 	private PaginationRequest paginationRequest = new PaginationRequest();
 	private SortRequest sortRequest = new SortRequest();
 
@@ -56,12 +57,17 @@ public class RetrieveAcitAllInvestmentIncomeRequest {
 	public void setSortRequest(SortRequest sortRequest) {
 		this.sortRequest = sortRequest;
 	}
-	
+	public String getCurrCd() {
+		return currCd;
+	}
+	public void setCurrCd(String currCd) {
+		this.currCd = currCd;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveAcitAllInvestmentIncomeRequest [tranDateFrom=" + tranDateFrom + ", tranDateTo=" + tranDateTo
-				+ ", tranMonth=" + tranMonth + ", tranYear=" + tranYear + ", tranDate=" + tranDate
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", tranMonth=" + tranMonth + ", tranYear=" + tranYear + ", tranDate=" + tranDate + ", currCd="
+				+ currCd + ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
 	}
 	
 

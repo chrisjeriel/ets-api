@@ -786,6 +786,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("tranMonth", raaii.getTranMonth());
 		params.put("tranYear", raaii.getTranYear());
 		params.put("tranDate", raaii.getTranDate());
+		params.put("currCd", raaii.getCurrCd());
 		
 		raaiiResponse.setAllInvtIncomeList(acctITDao.retrieveAcitAllInvestmentIncome(params));
 		logger.info("RetrieveAcitAllInvestmentIncomeResponse : " + raaiiResponse.toString());
@@ -1139,9 +1140,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			HashMap<String, Object> params = new HashMap<String, Object>();
 			params.put("saveAcitAllocInvtIncome", sajel.getSaveAcitAllocInvtIncome());
 			params.put("saveAcitJvEntryList", sajel.getSaveAcitJvEntryList());
+			params.put("tranIdStr", "");
 			HashMap<String, Object> res = acctITDao.saveAcitJVEntryList(params);
 			response.setReturnCode((Integer) res.get("errorCode"));
 			response.setTranIdOut((Integer) res.get("tranIdOut"));
+			response.setTranIdStr((String) res.get("tranIdStr"));
 		} catch (Exception sqlex) {
 			response.setReturnCode(0);
 			response.getErrorList().add(new Error("SQLException","Unable to proceed to saving. Check fields."));
@@ -3304,6 +3307,16 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 			e.printStackTrace();
 		}
 		
+		return response;
+	}
+
+
+	@Override
+	public RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentsIncArtUtil(Integer tranId) throws SQLException {
+		RetrieveAcitInvestmentsListResponse response = new RetrieveAcitInvestmentsListResponse();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("tranId", tranId);
+		response.setInvtList(acctITDao.retrieveAcitInvestmentsIncArtUtil(params));
 		return response;
 	}
 }

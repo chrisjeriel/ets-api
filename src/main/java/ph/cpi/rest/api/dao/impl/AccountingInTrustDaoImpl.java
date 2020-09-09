@@ -1409,4 +1409,11 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		sqlSession.update("validateRiskDate",params);
 		return (String) params.get("tranNo");
 	}
+
+	@Override
+	public List<AcitInvestments> retrieveAcitInvestmentsIncArtUtil(HashMap<String, Object> params)
+			throws SQLException {
+		List<AcitInvestments> acitInvestmentsList = sqlSession.selectList("retrieveAcitInvestmentsIncArtUtil", params);
+		return acitInvestmentsList;
+	}
 }

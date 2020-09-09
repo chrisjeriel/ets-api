@@ -12,6 +12,7 @@ public class SaveAcitJVEntryListResponse {
 	private List<Message> messageList;
 	private Integer returnCode;
 	private Integer tranIdOut;
+	private String tranIdStr;
 	
 	public List<Error> getErrorList() {
 		if (errorList == null) {
@@ -40,9 +41,15 @@ public class SaveAcitJVEntryListResponse {
 	public void setTranIdOut(Integer tranIdOut) {
 		this.tranIdOut = tranIdOut;
 	}
+	public String getTranIdStr() {
+		return tranIdStr;
+	}
+	public void setTranIdStr(String tranIdStr) {
+		this.tranIdStr = tranIdStr;
+	}
 	@Override
 	public String toString() {
 		return "SaveAcitJVEntryListResponse [errorList=" + errorList + ", messageList=" + messageList + ", returnCode="
-				+ returnCode + ", tranIdOut=" + tranIdOut + "]";
+				+ returnCode + ", tranIdOut=" + tranIdOut + ", tranIdStr=" + tranIdStr + "]";
 	}
 }

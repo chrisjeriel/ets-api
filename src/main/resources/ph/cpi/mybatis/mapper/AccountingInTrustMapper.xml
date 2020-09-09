@@ -951,6 +951,7 @@
 			v_tran_id		ACIT_TRANSACTIONS.TRAN_ID%TYPE;
 			v_tran_type_cd 	ACIT_TRANSACTIONS.TRAN_TYPE_CD%TYPE;
 			v_message 		VARCHAR2(500);
+			v_tran_id_str	varchar2(100);
 			
 		TYPE acit_tran_type IS RECORD (
 			TRAN_ID			ACIT_TRANSACTIONS.TRAN_ID%TYPE,
@@ -1003,6 +1004,7 @@
 												CAST(to_timestamp(#{save.updateDateJv}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 												
 			#{tranIdOut, mode=OUT, jdbcType=INTEGER} := v_tran_id;
+			v_tran_id_str := v_tran_id_str || ',' || v_tran_id;
 			IF v_tran_id <![CDATA[ <> ]]> 0 THEN
 				<foreach collection="saveAcitAllocInvtIncome" item="save">
 					ACIT_ALL_INVT_INC_PKG.save_alloc_ref_dtl(
@@ -1017,6 +1019,8 @@
 				</foreach>
 			END IF; 
 	    </foreach>
+	    
+	    #{tranIdStr, mode=OUT, jdbcType=VARCHAR} := v_tran_id_str;
 	    
 	    SELECT TRAN_ID, TRAN_TYPE_CD 
 	    	BULK COLLECT INTO acit_tran_arr
@@ -1626,16 +1630,24 @@
 		<result property="invtId" 						column="INVT_ID"/>
 		<result property="currCd" 						column="CURR_CD"/>
 		<result property="currRate" 					column="CURR_RATE"/>
+		<result property="entryId" 						column="ENTRY_ID"/>
+		<result property="tranTypeName" 				column="TRAN_TYPE_NAME"/>
+		<result property="acctCode" 					column="ACCT_CODE"/>
+		<result property="acctName" 					column="ACCT_NAME"/>
+		<result property="slTypeCd" 					column="SL_TYPE_CD"/>
+		<result property="slCd" 						column="SL_CD"/>
+		<result property="slName" 						column="SL_NAME"/>
+		<result property="creditAmt" 					column="CREDIT_AMT"/>
+		<result property="debitAmt" 					column="DEBIT_AMT"/>
+		<result property="foreignCreditAmt" 			column="FOREIGN_CREDIT_AMT"/>
+		<result property="foreignDebitAmt" 				column="FOREIGN_DEBIT_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveAcitAllInvestmentIncome" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_ALL_INVT_INC_PKG.ret_all_invt_inc_list(
 					CAST(to_timestamp(#{tranDateFrom,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
 					CAST(to_timestamp(#{tranDateTo,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					#{tranMonth, jdbcType=VARCHAR},
-					#{tranYear, jdbcType=VARCHAR},
-					CAST(to_timestamp(#{tranDate,jdbcType=DATE}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
-					'', '', '',''))
+					#{currCd, jdbcType=VARCHAR}))
 	</select>
 	
 	<select id="retrieveAcitAllInvestmentIncomeInvtId" resultMap="acitAllInvtIncomeList" parameterType="java.util.Map">
@@ -5868,8 +5880,12 @@
 	
 	<update id="validateRiskDate" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
-			#{tranNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_JV_RISK_MGT_DIST_PKG.validate_risk_date(CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
+			#{tranNo, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_JV_RISK_MGT_DIST_PKG.validate_risk_date(#{tranId, jdbcType=INTEGER}, CAST(to_timestamp(#{jvDate}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE));
 		END;
 	</update>
+	
+	<select id="retrieveAcitInvestmentsIncArtUtil" resultMap="acitInvestmentsList" parameterType="java.lang.Integer">
+		SELECT * FROM TABLE(ACIT_ALL_INVT_INC_PKG.ret_invt_inc_ar(#{tranId, jdbcType=INTEGER}))
+	</select> 
 	
 </mapper>

@@ -20,6 +20,17 @@ public class AcitAllInvtIncome {
 	private Integer		invtId;
 	private String		currCd;
 	private Integer		currRate;
+	private Integer entryId;
+	private String tranTypeName;
+	private String acctCode;
+	private String acctName;
+	private Integer slTypeCd;
+	private String slCd;
+	private String slName;
+	private BigDecimal creditAmt;
+	private BigDecimal debitAmt;
+	private BigDecimal foreignCreditAmt;
+	private BigDecimal foreignDebitAmt;
 	
 	public String getCurrCd() {
 		return currCd;
@@ -108,13 +119,82 @@ public class AcitAllInvtIncome {
 		this.invtId = invtId;
 	}
 	
+	public Integer getEntryId() {
+		return entryId;
+	}
+	public void setEntryId(Integer entryId) {
+		this.entryId = entryId;
+	}
+	public String getTranTypeName() {
+		return tranTypeName;
+	}
+	public void setTranTypeName(String tranTypeName) {
+		this.tranTypeName = tranTypeName;
+	}
+	public String getAcctCode() {
+		return acctCode;
+	}
+	public void setAcctCode(String acctCode) {
+		this.acctCode = acctCode;
+	}
+	public String getAcctName() {
+		return acctName;
+	}
+	public void setAcctName(String acctName) {
+		this.acctName = acctName;
+	}
+	public Integer getSlTypeCd() {
+		return slTypeCd;
+	}
+	public void setSlTypeCd(Integer slTypeCd) {
+		this.slTypeCd = slTypeCd;
+	}
+	public String getSlCd() {
+		return slCd;
+	}
+	public void setSlCd(String slCd) {
+		this.slCd = slCd;
+	}
+	public String getSlName() {
+		return slName;
+	}
+	public void setSlName(String slName) {
+		this.slName = slName;
+	}
+	public BigDecimal getCreditAmt() {
+		return creditAmt;
+	}
+	public void setCreditAmt(BigDecimal creditAmt) {
+		this.creditAmt = creditAmt;
+	}
+	public BigDecimal getDebitAmt() {
+		return debitAmt;
+	}
+	public void setDebitAmt(BigDecimal debitAmt) {
+		this.debitAmt = debitAmt;
+	}
+	public BigDecimal getForeignCreditAmt() {
+		return foreignCreditAmt;
+	}
+	public void setForeignCreditAmt(BigDecimal foreignCreditAmt) {
+		this.foreignCreditAmt = foreignCreditAmt;
+	}
+	public BigDecimal getForeignDebitAmt() {
+		return foreignDebitAmt;
+	}
+	public void setForeignDebitAmt(BigDecimal foreignDebitAmt) {
+		this.foreignDebitAmt = foreignDebitAmt;
+	}
 	@Override
 	public String toString() {
 		return "AcitAllInvtIncome [tranId=" + tranId + ", tranClass=" + tranClass + ", tranNo=" + tranNo + ", tranDate="
 				+ tranDate + ", payor=" + payor + ", arStatus=" + arStatus + ", statusDesc=" + statusDesc
 				+ ", particulars=" + particulars + ", bankCharge=" + bankCharge + ", whtaxAmt=" + whtaxAmt
 				+ ", incomeAmt=" + incomeAmt + ", invtId=" + invtId + ", currCd=" + currCd + ", currRate=" + currRate
-				+ "]";
+				+ ", entryId=" + entryId + ", tranTypeName=" + tranTypeName + ", acctCode=" + acctCode + ", acctName="
+				+ acctName + ", slTypeCd=" + slTypeCd + ", slCd=" + slCd + ", slName=" + slName + ", creditAmt="
+				+ creditAmt + ", debitAmt=" + debitAmt + ", foreignCreditAmt=" + foreignCreditAmt + ", foreignDebitAmt="
+				+ foreignDebitAmt + "]";
 	}
 	
 	

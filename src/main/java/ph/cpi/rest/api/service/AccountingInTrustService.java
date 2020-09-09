@@ -156,4 +156,5 @@ public interface AccountingInTrustService {
 	public RetrieveAcitJVMultiOffsetLovResponse retrieveAcitJVMultiOffsetLov(RetrieveAcitJVMultiOffsetLovRequest request) throws SQLException;
 	public RetrieveAcitJVRiskMgtAllocResponse retrieveAcitJVRiskMgtAlloc(RetrieveAcitJVRiskMgtAllocRequest request) throws SQLException;
 	public SaveAcitJVRiskMgtAllocResponse saveAcitJVRiskMgtAlloc(SaveAcitJVRiskMgtAllocRequest request) throws SQLException;
+	public RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentsIncArtUtil(Integer tranId) throws SQLException;
 }

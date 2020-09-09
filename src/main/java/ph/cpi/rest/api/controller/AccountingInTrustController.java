@@ -1046,4 +1046,11 @@ public class AccountingInTrustController {
 		return acctInTrustService.saveAcitJVRiskMgtAlloc(request);
 	}
 	
+	@GetMapping(path="retrieveAcitInvestmentsIncArtUtil")
+	public @ResponseBody RetrieveAcitInvestmentsListResponse retrieveAcitInvestmentsIncArtUtil(Integer tranId) throws SQLException {
+		logger.info("GET: /api/acct-in-trust-service/retrieveAcitInvestmentsIncArtUtil");
+		logger.info("Tran ID : " + tranId.toString());
+		return acctInTrustService.retrieveAcitInvestmentsIncArtUtil(tranId);
+	}
+	
 }
