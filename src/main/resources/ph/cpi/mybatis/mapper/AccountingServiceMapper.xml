@@ -101,6 +101,7 @@
 		<result property="rstrctTranUp"  column="RSTRCT_TRAN_UP"       />
 		<result property="orDtlSum"      column="ORDTL_SUM"       />
 		<result property="acctEntriesSum" column="ACCT_ENTRIES_SUM"       />
+		<result property="acctEntriesSumF" column="ACCT_ENTRIES_SUM_F"       />
 		<result property="acctEntDate"    column="ACCT_ENT_DATE"  typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler"     />
 		<association property="paytDtl"  resultMap="acsePaytDtlAssoc"   />
 	</resultMap>

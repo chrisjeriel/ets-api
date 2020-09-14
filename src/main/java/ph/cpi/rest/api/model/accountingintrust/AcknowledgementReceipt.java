@@ -49,6 +49,7 @@ public class AcknowledgementReceipt {
 	private Integer rstrctTranUp;
 	private BigDecimal arDtlSum;
 	private BigDecimal acctEntriesSum;
+	private BigDecimal acctEntriesSumF;
 	private DateTime acctEntDate;
 	private String reopenTag;
 	private DateTime reopenDate;
@@ -312,6 +313,12 @@ public class AcknowledgementReceipt {
 	public void setAcctEntriesSum(BigDecimal acctEntriesSum) {
 		this.acctEntriesSum = acctEntriesSum;
 	}
+	public BigDecimal getAcctEntriesSumF() {
+		return acctEntriesSumF;
+	}
+	public void setAcctEntriesSumF(BigDecimal acctEntriesSumF) {
+		this.acctEntriesSumF = acctEntriesSumF;
+	}
 	public DateTime getAcctEntDate() {
 		return acctEntDate;
 	}
@@ -350,7 +357,8 @@ public class AcknowledgementReceipt {
 				+ arAmt + ", currRate=" + currRate + ", particulars=" + particulars + ", createUser=" + createUser
 				+ ", createDate=" + createDate + ", updateUser=" + updateUser + ", updateDate=" + updateDate
 				+ ", cedingId=" + cedingId + ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp
-				+ ", arDtlSum=" + arDtlSum + ", acctEntriesSum=" + acctEntriesSum + ", acctEntDate=" + acctEntDate
-				+ ", reopenTag=" + reopenTag + ", reopenDate=" + reopenDate + ", paytDtl=" + paytDtl + "]";
+				+ ", arDtlSum=" + arDtlSum + ", acctEntriesSum=" + acctEntriesSum + ", acctEntriesSumF="
+				+ acctEntriesSumF + ", acctEntDate=" + acctEntDate + ", reopenTag=" + reopenTag + ", reopenDate="
+				+ reopenDate + ", paytDtl=" + paytDtl + "]";
 	}
 }

@@ -51,6 +51,7 @@ public class OfficialReceipt {
 	private Integer rstrctTranUp;
 	private BigDecimal orDtlSum;
 	private BigDecimal acctEntriesSum;
+	private BigDecimal acctEntriesSumF;
 	private DateTime acctEntDate;
 	private List<ORPaymentDetails> paytDtl;
 	
@@ -324,6 +325,12 @@ public class OfficialReceipt {
 	public void setAcctEntriesSum(BigDecimal acctEntriesSum) {
 		this.acctEntriesSum = acctEntriesSum;
 	}
+	public BigDecimal getAcctEntriesSumF() {
+		return acctEntriesSumF;
+	}
+	public void setAcctEntriesSumF(BigDecimal acctEntriesSumF) {
+		this.acctEntriesSumF = acctEntriesSumF;
+	}
 	public DateTime getAcctEntDate() {
 		return acctEntDate;
 	}
@@ -352,6 +359,7 @@ public class OfficialReceipt {
 				+ ", particulars=" + particulars + ", createUser=" + createUser + ", createDate=" + createDate
 				+ ", updateUser=" + updateUser + ", updateDate=" + updateDate + ", cedingId=" + cedingId
 				+ ", bussTypeName=" + bussTypeName + ", rstrctTranUp=" + rstrctTranUp + ", orDtlSum=" + orDtlSum
-				+ ", acctEntriesSum=" + acctEntriesSum + ", acctEntDate=" + acctEntDate + ", paytDtl=" + paytDtl + "]";
+				+ ", acctEntriesSum=" + acctEntriesSum + ", acctEntriesSumF=" + acctEntriesSumF + ", acctEntDate="
+				+ acctEntDate + ", paytDtl=" + paytDtl + "]";
 	}
 }
