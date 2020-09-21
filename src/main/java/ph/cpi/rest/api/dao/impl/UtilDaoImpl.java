@@ -95,6 +95,12 @@ public class UtilDaoImpl implements UtilDao{
             extractionMethod = "extractPOLR052E";
         } else if ("POLR052F".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractPOLR052F";
+        } else if ("POLR052AB".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052AB";
+        } else if ("POLR052BB".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052BB";
+        } else if ("POLR052CB".equalsIgnoreCase((String) params.get("reportId"))) {
+            extractionMethod = "extractPOLR052CB";
         } else if ("CLMR052A".equalsIgnoreCase((String) params.get("reportId"))) {
             extractionMethod = "extractCLMR052A";
         } else if ("CLMR052B".equalsIgnoreCase((String) params.get("reportId"))) {
@@ -780,6 +786,60 @@ public class UtilDaoImpl implements UtilDao{
 	public List<POLR052CB> retrievePolR052cb(HashMap<String, Object> params) throws SQLException {
 		List<POLR052CB> retrievePolR052cb = sqlSession.selectList("retrievePolR052cb",params);
 		return retrievePolR052cb;
+	}
+
+	@Override
+	public List<CLMR010ZAO> retrieveClmR010zao(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010ZAO> retrieveClmR010zao = sqlSession.selectList("retrieveClmR010zao",params);
+		return retrieveClmR010zao;
+	}
+
+	@Override
+	public List<CLMR010ZAP> retrieveClmR010zap(HashMap<String, Object> params) throws SQLException {
+		List<CLMR010ZAP> retrieveClmR010zap = sqlSession.selectList("retrieveClmR010zap",params);
+		return retrieveClmR010zap;
+	}
+
+	@Override
+	public List<POLR044RA> retrievePolR044ra(HashMap<String, Object> params) throws SQLException {
+		List<POLR044RA> retrievePolR044ra = sqlSession.selectList("retrievePolR044ra",params);
+		return retrievePolR044ra;
+	}
+
+	@Override
+	public List<POLR044SA> retrievePolR044sa(HashMap<String, Object> params) throws SQLException {
+		List<POLR044SA> retrievePolR044sa = sqlSession.selectList("retrievePolR044sa",params);
+		return retrievePolR044sa;
+	}
+
+	@Override
+	public List<POLR052J> retrievePolR052j(HashMap<String, Object> params) throws SQLException {
+		List<POLR052J> retrievePolR052j = sqlSession.selectList("retrievePolR052j",params);
+		return retrievePolR052j;
+	}
+
+	@Override
+	public List<POLR052K> retrievePolR052k(HashMap<String, Object> params) throws SQLException {
+		List<POLR052K> retrievePolR052k = sqlSession.selectList("retrievePolR052k",params);
+		return retrievePolR052k;
+	}
+
+	@Override
+	public List<CLMR052AA> retrieveClmR052aa(HashMap<String, Object> params) throws SQLException {
+		List<CLMR052AA> retrieveClmR052aa = sqlSession.selectList("retrieveClmR052aa",params);
+		return retrieveClmR052aa;
+	}
+
+	@Override
+	public List<CLMR052BA> retrieveClmR052ba(HashMap<String, Object> params) throws SQLException {
+		List<CLMR052BA> retrieveClmR052ba = sqlSession.selectList("retrieveClmR052ba",params);
+		return retrieveClmR052ba;
+	}
+
+	@Override
+	public List<POLR044WQ> retrievePolR044wq(HashMap<String, Object> params) throws SQLException {
+		List<POLR044WQ> retrievePolR044wq = sqlSession.selectList("retrievePolR044wq",params);
+		return retrievePolR044wq;
 	}
 	
 }

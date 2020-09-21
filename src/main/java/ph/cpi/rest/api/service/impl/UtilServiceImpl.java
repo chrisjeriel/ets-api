@@ -234,6 +234,8 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("bankAcct", racprlp.getBankAcct());
 		retcParams.put("sortBy", racprlp.getSortBy());
 		retcParams.put("lineCd", racprlp.getLineCd());
+		retcParams.put("dateParam", racprlp.getDateParam());
+		retcParams.put("dateRange", racprlp.getDateRange());
 		
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
@@ -479,6 +481,24 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListClmr052a(utilDao.retrieveClmR052a(retcParams));
 		}else if(reportName.equals("CLMR052B")) {
 			retcResponse.setListClmr052b(utilDao.retrieveClmR052b(retcParams));
+		} else if(reportName.equals("CLMR010ZAO")) {
+			retcResponse.setListClmr010zao(utilDao.retrieveClmR010zao(retcParams));
+		} else if(reportName.equals("CLMR010ZAP")) {
+			retcResponse.setListClmr010zap(utilDao.retrieveClmR010zap(retcParams));
+		} else if(reportName.equals("POLR044RA")) {
+			retcResponse.setListPolr044ra(utilDao.retrievePolR044ra(retcParams));
+		} else if(reportName.equals("POLR044SA")) {
+			retcResponse.setListPolr044sa(utilDao.retrievePolR044sa(retcParams));
+		} else if(reportName.equals("POLR052J")) {
+			retcResponse.setListPolr052j(utilDao.retrievePolR052j(retcParams));
+		} else if(reportName.equals("POLR052K")) {
+			retcResponse.setListPolr052k(utilDao.retrievePolR052k(retcParams));
+		} else if(reportName.equals("CLMR052AA")) {
+			retcResponse.setListClmr052aa(utilDao.retrieveClmR052aa(retcParams));
+		} else if(reportName.equals("CLMR052BA")) {
+			retcResponse.setListClmr052ba(utilDao.retrieveClmR052ba(retcParams));
+		} else if(reportName.equals("POLR044WQ")) {
+			retcResponse.setListPolr044wq(utilDao.retrievePolR044wq(retcParams));
 		}
 		
 		else {

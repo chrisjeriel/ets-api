@@ -22,6 +22,8 @@ public class RetrieveExtractToCsvRequest {
 	private String sortBy;
 	
 	private String lineCd;
+	private String dateParam;
+	private String dateRange;
 	
 
 	public String getExtractUser() {
@@ -168,6 +170,22 @@ public class RetrieveExtractToCsvRequest {
 		this.lineCd = lineCd;
 	}
 
+	public String getDateParam() {
+		return dateParam;
+	}
+
+	public void setDateParam(String dateParam) {
+		this.dateParam = dateParam;
+	}
+
+	public String getDateRange() {
+		return dateRange;
+	}
+
+	public void setDateRange(String dateRange) {
+		this.dateRange = dateRange;
+	}
+
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvRequest [extractUser=" + extractUser + ", reportName=" + reportName + ", prodDate="
@@ -175,6 +193,7 @@ public class RetrieveExtractToCsvRequest {
 				+ ", paymentMode=" + paymentMode + ", paymentType=" + paymentType + ", fromDate=" + fromDate
 				+ ", toDate=" + toDate + ", incClosedTran=" + incClosedTran + ", incCancelTran=" + incCancelTran
 				+ ", tranpostDate=" + tranpostDate + ", chkDate=" + chkDate + ", bank=" + bank + ", bankAcct="
-				+ bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd + "]";
+				+ bankAcct + ", sortBy=" + sortBy + ", lineCd=" + lineCd + ", dateParam=" + dateParam + ", dateRange="
+				+ dateRange + "]";
 	}
 }

@@ -125,6 +125,17 @@ public class RetrieveExtractToCsvResponse {
 	
 	private List<CLMR052A> listClmr052a;
 	private List<CLMR052B> listClmr052b;
+	
+	private List<CLMR010ZAO> listClmr010zao;
+	private List<CLMR010ZAP> listClmr010zap;
+	private List<POLR044RA> listPolr044ra;
+	private List<POLR044SA> listPolr044sa;
+	private List<POLR052J> listPolr052j;
+	private List<POLR052K> listPolr052k;
+	private List<CLMR052AA> listClmr052aa;
+	private List<CLMR052BA> listClmr052ba;
+	private List<POLR044WQ> listPolr044wq;
+	
 	public List<POLR044E> getListPolr044e() {
 		return listPolr044e;
 	}
@@ -785,6 +796,60 @@ public class RetrieveExtractToCsvResponse {
 	public void setListPolr052cb(List<POLR052CB> listPolr052cb) {
 		this.listPolr052cb = listPolr052cb;
 	}
+	public List<CLMR010ZAO> getListClmr010zao() {
+		return listClmr010zao;
+	}
+	public void setListClmr010zao(List<CLMR010ZAO> listClmr010zao) {
+		this.listClmr010zao = listClmr010zao;
+	}
+	public List<CLMR010ZAP> getListClmr010zap() {
+		return listClmr010zap;
+	}
+	public void setListClmr010zap(List<CLMR010ZAP> listClmr010zap) {
+		this.listClmr010zap = listClmr010zap;
+	}
+	public List<POLR044RA> getListPolr044ra() {
+		return listPolr044ra;
+	}
+	public void setListPolr044ra(List<POLR044RA> listPolr044ra) {
+		this.listPolr044ra = listPolr044ra;
+	}
+	public List<POLR044SA> getListPolr044sa() {
+		return listPolr044sa;
+	}
+	public void setListPolr044sa(List<POLR044SA> listPolr044sa) {
+		this.listPolr044sa = listPolr044sa;
+	}
+	public List<POLR052J> getListPolr052j() {
+		return listPolr052j;
+	}
+	public void setListPolr052j(List<POLR052J> listPolr052j) {
+		this.listPolr052j = listPolr052j;
+	}
+	public List<POLR052K> getListPolr052k() {
+		return listPolr052k;
+	}
+	public void setListPolr052k(List<POLR052K> listPolr052k) {
+		this.listPolr052k = listPolr052k;
+	}
+	public List<CLMR052AA> getListClmr052aa() {
+		return listClmr052aa;
+	}
+	public void setListClmr052aa(List<CLMR052AA> listClmr052aa) {
+		this.listClmr052aa = listClmr052aa;
+	}
+	public List<CLMR052BA> getListClmr052ba() {
+		return listClmr052ba;
+	}
+	public void setListClmr052ba(List<CLMR052BA> listClmr052ba) {
+		this.listClmr052ba = listClmr052ba;
+	}
+	public List<POLR044WQ> getListPolr044wq() {
+		return listPolr044wq;
+	}
+	public void setListPolr044wq(List<POLR044WQ> listPolr044wq) {
+		this.listPolr044wq = listPolr044wq;
+	}
 	@Override
 	public String toString() {
 		return "RetrieveExtractToCsvResponse [listPolr044e=" + listPolr044e + ", listPolr044a=" + listPolr044a
@@ -829,6 +894,9 @@ public class RetrieveExtractToCsvResponse {
 				+ listAcitr061b + ", listAcitr061c=" + listAcitr061c + ", listAcitr061d=" + listAcitr061d
 				+ ", listAcitr058=" + listAcitr058 + ", listAcitr059=" + listAcitr059 + ", listAcser007=" + listAcser007
 				+ ", listAcser008=" + listAcser008 + ", listClmr052a=" + listClmr052a + ", listClmr052b=" + listClmr052b
-				+ "]";
+				+ ", listClmr010zao=" + listClmr010zao + ", listClmr010zap=" + listClmr010zap + ", listPolr044ra="
+				+ listPolr044ra + ", listPolr044sa=" + listPolr044sa + ", listPolr052j=" + listPolr052j
+				+ ", listPolr052k=" + listPolr052k + ", listClmr052aa=" + listClmr052aa + ", listClmr052ba="
+				+ listClmr052ba + ", listPolr044wq=" + listPolr044wq + "]";
 	}
 }
