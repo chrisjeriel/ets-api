@@ -4374,7 +4374,7 @@
 	
 	<update id="validateQsoaQtr" parameterType="java.util.Map" statementType="CALLABLE">
 		{CALL
-			#{validateQsoaQtr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_QSOA_PKG.validate_qsoa_qtr(#{cedingId, jdbcType=INTEGER},
+			#{validateQsoaQtr, mode=OUT, javaType=String, jdbcType=VARCHAR} := ACIT_QSOA_PKG.validate_qsoa_qtr(#{cedingId, jdbcType=VARCHAR},
 																											   #{qtr, jdbcType=INTEGER},
 																										  	   #{year, jdbcType=INTEGER})
 		}
@@ -4382,7 +4382,7 @@
 	
 	<update id="saveQSOA" parameterType="java.util.Map">
 		BEGIN
-			ACIT_QSOA_PKG.gen_qsoa(#{cedingId, jdbcType=INTEGER},
+			ACIT_QSOA_PKG.gen_qsoa(#{cedingId, jdbcType=VARCHAR},
 								   #{qtr, jdbcType=INTEGER},
 								   #{year, jdbcType=INTEGER},
 								   #{user, jdbcType=VARCHAR});

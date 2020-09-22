@@ -3,7 +3,7 @@ package ph.cpi.rest.api.model.request;
 public class SaveQSOARequest {
 
 	private String force;
-	private Integer cedingId;
+	private String cedingId;
 	private Integer qtr;
 	private Integer year;
 	private String user;
@@ -14,10 +14,10 @@ public class SaveQSOARequest {
 	public void setForce(String force) {
 		this.force = force;
 	}
-	public Integer getCedingId() {
+	public String getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(Integer cedingId) {
+	public void setCedingId(String cedingId) {
 		this.cedingId = cedingId;
 	}
 	public Integer getQtr() {
