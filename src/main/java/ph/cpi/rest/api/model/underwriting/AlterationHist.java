@@ -15,6 +15,13 @@ public class AlterationHist {
 	private String status;
 	private String insured;
 	private String withDist;
+	private String postedBy;
+	public String getPostedBy() {
+		return postedBy;
+	}
+	public void setPostedBy(String postedBy) {
+		this.postedBy = postedBy;
+	}
 	public Integer getPolicyId() {
 		return policyId;
 	}
@@ -80,7 +87,7 @@ public class AlterationHist {
 		return "AlterationHist [policyId=" + policyId + ", policyNo=" + policyNo + ", effDate=" + effDate
 				+ ", issueDate=" + issueDate + ", quotationNo=" + quotationNo + ", sumInsured=" + sumInsured
 				+ ", premAmt=" + premAmt + ", status=" + status + ", insured=" + insured + ", withDist=" + withDist
-				+ "]";
+				+ ", postedBy=" + postedBy + "]";
 	}
 	
 }

@@ -154,6 +154,7 @@
 		<result property="status"   column="ALT_STATUS_DESC"/>
 		<result property="insured"   column="ALT_INSURED"/>
 		<result property="withDist" column="ALT_WITH_DIST"/>
+		<result property="postedBy" column="ALT_POSTED_BY"/>
 	</resultMap>
 	
 	<resultMap type="ph.cpi.rest.api.model.underwriting.Policy" id="policyListingMap">
@@ -2917,6 +2918,7 @@
 		<result property="riskName"      column="RISK_NAME" />
 		<result property="currencyCd"    column="CURRENCY_CD" />
 		<result property="totalSi"       column="TOTAL_SI" />
+		<result property="totalPrem"       column="PREM_AMT" />
 		<result property="distDate"      column="DIST_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 		<result property="acctDate"      column="ACCT_DATE"     typeHandler="ph.cpi.rest.api.typehandler.DateTimeTypeHandler" />
 	</resultMap>

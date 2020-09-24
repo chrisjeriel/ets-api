@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.underwriting;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
 public class PolDistList {
@@ -14,7 +16,8 @@ public class PolDistList {
 	private String insuredDesc;
 	private String riskName;
 	private String currencyCd;
-	private Double totalSi;
+	private BigDecimal totalPrem;
+	private BigDecimal totalSi;
 	private DateTime distDate;
 	private DateTime acctDate;
 	public Integer getDistId() {
@@ -83,10 +86,16 @@ public class PolDistList {
 	public void setCurrencyCd(String currencyCd) {
 		this.currencyCd = currencyCd;
 	}
-	public Double getTotalSi() {
+	public BigDecimal getTotalPrem() {
+		return totalPrem;
+	}
+	public void setTotalPrem(BigDecimal totalPrem) {
+		this.totalPrem = totalPrem;
+	}
+	public BigDecimal getTotalSi() {
 		return totalSi;
 	}
-	public void setTotalSi(Double totalSi) {
+	public void setTotalSi(BigDecimal totalSi) {
 		this.totalSi = totalSi;
 	}
 	public DateTime getDistDate() {
@@ -106,7 +115,7 @@ public class PolDistList {
 		return "PolDistList [distId=" + distId + ", riskDistId=" + riskDistId + ", status=" + status + ", lineCd="
 				+ lineCd + ", lineClassCd=" + lineClassCd + ", policyId=" + policyId + ", policyNo=" + policyNo
 				+ ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc + ", riskName=" + riskName
-				+ ", currencyCd=" + currencyCd + ", totalSi=" + totalSi + ", distDate=" + distDate + ", acctDate="
-				+ acctDate + "]";
+				+ ", currencyCd=" + currencyCd + ", totalPrem=" + totalPrem + ", totalSi=" + totalSi + ", distDate="
+				+ distDate + ", acctDate=" + acctDate + "]";
 	}
 }
