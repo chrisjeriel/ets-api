@@ -3466,7 +3466,7 @@
 			<foreach collection="list" item="item">
 			  	DIST_WPOL_PKG.moveBookingDate(
 			  		#{item.policyId},
-					#{item.instNo},
+					#{item.instNo, jdbcType=INTEGER},
 					CAST(to_timestamp(#{bookingDate, jdbcType=VARCHAR}, 'YYYY-MM-DD') AS DATE),
 					#{updateUser}
 					);

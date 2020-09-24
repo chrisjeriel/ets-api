@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -5624,6 +5623,52 @@
 					#{extractUser,jdbcType=VARCHAR},
 					#{dateParam,jdbcType=VARCHAR},
 					#{dateRange,jdbcType=VARCHAR}))
+	</select>
+	
+	<update id="extractPOLR044EA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044EA_PKG.extract_pol_buswritten_hndrd_ext (
+		        #{extractUser, jdbcType=VARCHAR}, 
+		        #{dateParam, jdbcType=VARCHAR}, 
+		        #{dateRange, jdbcType=VARCHAR},
+		        CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		        CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+		        #{incRecTag, jdbcType=VARCHAR},
+		        #{extractCount, jdbcType=INTEGER, mode=OUT},
+		        #{forceExtract, jdbcType=VARCHAR},
+		        #{currCdParam, jdbcType=VARCHAR}
+		    );
+		END;
+	</update>
+	
+	<update id="extractPOLR044IA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044IA_PKG.extract_POL_BUSWRITPREM_HNDRD_EXT(
+				#{extractUser, jdbcType=VARCHAR},
+			    #{dateParam, jdbcType=VARCHAR},
+			    #{dateRange, jdbcType=VARCHAR},
+			    CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+			    CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+				#{incRecTag, jdbcType=VARCHAR},
+			    #{extractCount, mode=OUT, jdbcType=INTEGER},
+			    #{forceExtract, jdbcType=VARCHAR},
+			    #{currCdParam, jdbcType=VARCHAR}
+			);
+		END;
+	</update>
+	
+	<select id="retrievePolR044ea" resultMap="retrievePolR044eMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044ea_to_csv(
+					#{extractUser, jdbcType=VARCHAR},
+					#{dateParam, jdbcType=VARCHAR},
+					#{dateRange, jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrievePolR044ia" resultMap="retrievePolR044iMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044ia_to_csv(
+					#{extractUser, jdbcType=VARCHAR},
+					#{dateParam, jdbcType=VARCHAR},
+					#{dateRange, jdbcType=VARCHAR}))
 	</select>
 	
 </mapper>
