@@ -13,6 +13,7 @@ public class CLMR010A {
 	private String cedingName;
 	private String insuredDesc;
 	private BigDecimal insuredClm;
+	private Integer uwYear;
 	private String distDate;
 	private String lossDate;
 	private String lossCd;
@@ -22,6 +23,7 @@ public class CLMR010A {
 	private BigDecimal osAmt;
 	private String dateFrom;
 	private String dateTo;
+	
 	public String getExtractUser() {
 		return extractUser;
 	}
@@ -136,6 +138,12 @@ public class CLMR010A {
 	public void setDateTo(String dateTo) {
 		this.dateTo = dateTo;
 	}
+	public Integer getUwYear() {
+		return uwYear;
+	}
+	public void setUwYear(Integer uwYear) {
+		this.uwYear = uwYear;
+	}
 	@Override
 	public String toString() {
 		return "CLMR010A [extractUser=" + extractUser + ", extractDate=" + extractDate + ", currencyCd=" + currencyCd
@@ -143,6 +151,6 @@ public class CLMR010A {
 				+ ", cedingName=" + cedingName + ", insuredDesc=" + insuredDesc + ", insuredClm=" + insuredClm
 				+ ", distDate=" + distDate + ", lossDate=" + lossDate + ", lossCd=" + lossCd + ", lossAbbr=" + lossAbbr
 				+ ", lossDtl=" + lossDtl + ", intlResAmt=" + intlResAmt + ", osAmt=" + osAmt + ", dateFrom=" + dateFrom
-				+ ", dateTo=" + dateTo + "]";
+				+ ", dateTo=" + dateTo + ", uwYear=" + uwYear + "]";
 	}
 }

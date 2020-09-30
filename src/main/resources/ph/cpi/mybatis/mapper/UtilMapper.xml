@@ -2944,6 +2944,7 @@
 		<result property="osAmt"				column="OS_AMT"/>
 		<result property="dateFrom"				column="DATE_FROM"/>
 		<result property="dateTo"				column="DATE_TO"/>
+		<result property="uwYear"				column="UW_YEAR"/>
     </resultMap>
     
     <select id="retrieveClmR010a" resultMap="retrieveClmR010aMap" parameterType="java.util.Map">
@@ -4374,6 +4375,7 @@
 		<result property="pdAmt"				column="PD_AMT"/>
 		<result property="dateFrom"				column="DATE_FROM"/>
 		<result property="dateTo"				column="DATE_TO"/>
+		<result property="uwYear"				column="UW_YEAR"/>
     </resultMap>
     
     <select id="retrieveClmR010ap" resultMap="retrieveClmR010apMap" parameterType="java.util.Map">
