@@ -2267,6 +2267,15 @@
 		<result property="transBalance"			column="TRANS_BALANCE"/>
 		<result property="endDebitAmt"			column="END_DEBIT_AMT"/>
 		<result property="endCreditAmt"			column="END_CREDIT_AMT"/>
+		<result property="localBegDebitAmt" 	column="LOCAL_BEG_DEBIT_AMT"/>
+		<result property="localBegCreditAmt" 	column="LOCAL_BEG_CREDIT_AMT"/>
+		<result property="localTotalDebitAmt" 	column="LOCAL_TOTAL_DEBIT_AMT"/>
+		<result property="localTotalCreditAmt" 	column="LOCAL_TOTAL_CREDIT_AMT"/>
+		<result property="localTransDebitBal" 	column="LOCAL_TRANS_DEBIT_BAL"/>
+		<result property="localTransCreditBal" 	column="LOCAL_TRANS_CREDIT_BAL"/>
+		<result property="localTransBalance" 	column="LOCAL_TRANS_BALANCE"/>
+		<result property="localEndDebitAmt" 	column="LOCAL_END_DEBIT_AMT"/>
+		<result property="localEndCreditAmt" 	column="LOCAL_END_CREDIT_AMT"/>
 	</resultMap>
 	
 	<select id="retrieveAcseMonthEndTrialBal" resultMap="acseEomMonthlyTotals" parameterType="java.util.Map">

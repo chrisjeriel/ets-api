@@ -23,6 +23,15 @@ public class AcitEomMonthlyTotals {
 	private BigDecimal transBalance;
 	private BigDecimal endDebitAmt;
 	private BigDecimal endCreditAmt;
+	private BigDecimal localBegDebitAmt;
+	private BigDecimal localBegCreditAmt;
+	private BigDecimal localTotalDebitAmt;
+	private BigDecimal localTotalCreditAmt;
+	private BigDecimal localTransDebitBal;
+	private BigDecimal localTransCreditBal;
+	private BigDecimal localTransBalance;
+	private BigDecimal localEndDebitAmt;
+	private BigDecimal localEndCreditAmt;
 	
 	public DateTime getEomDate() {
 		return eomDate;
@@ -126,6 +135,60 @@ public class AcitEomMonthlyTotals {
 	public void setEndCreditAmt(BigDecimal endCreditAmt) {
 		this.endCreditAmt = endCreditAmt;
 	}
+	public BigDecimal getLocalBegDebitAmt() {
+		return localBegDebitAmt;
+	}
+	public void setLocalBegDebitAmt(BigDecimal localBegDebitAmt) {
+		this.localBegDebitAmt = localBegDebitAmt;
+	}
+	public BigDecimal getLocalBegCreditAmt() {
+		return localBegCreditAmt;
+	}
+	public void setLocalBegCreditAmt(BigDecimal localBegCreditAmt) {
+		this.localBegCreditAmt = localBegCreditAmt;
+	}
+	public BigDecimal getLocalTotalDebitAmt() {
+		return localTotalDebitAmt;
+	}
+	public void setLocalTotalDebitAmt(BigDecimal localTotalDebitAmt) {
+		this.localTotalDebitAmt = localTotalDebitAmt;
+	}
+	public BigDecimal getLocalTotalCreditAmt() {
+		return localTotalCreditAmt;
+	}
+	public void setLocalTotalCreditAmt(BigDecimal localTotalCreditAmt) {
+		this.localTotalCreditAmt = localTotalCreditAmt;
+	}
+	public BigDecimal getLocalTransDebitBal() {
+		return localTransDebitBal;
+	}
+	public void setLocalTransDebitBal(BigDecimal localTransDebitBal) {
+		this.localTransDebitBal = localTransDebitBal;
+	}
+	public BigDecimal getLocalTransCreditBal() {
+		return localTransCreditBal;
+	}
+	public void setLocalTransCreditBal(BigDecimal localTransCreditBal) {
+		this.localTransCreditBal = localTransCreditBal;
+	}
+	public BigDecimal getLocalTransBalance() {
+		return localTransBalance;
+	}
+	public void setLocalTransBalance(BigDecimal localTransBalance) {
+		this.localTransBalance = localTransBalance;
+	}
+	public BigDecimal getLocalEndDebitAmt() {
+		return localEndDebitAmt;
+	}
+	public void setLocalEndDebitAmt(BigDecimal localEndDebitAmt) {
+		this.localEndDebitAmt = localEndDebitAmt;
+	}
+	public BigDecimal getLocalEndCreditAmt() {
+		return localEndCreditAmt;
+	}
+	public void setLocalEndCreditAmt(BigDecimal localEndCreditAmt) {
+		this.localEndCreditAmt = localEndCreditAmt;
+	}
 	@Override
 	public String toString() {
 		return "AcitEomMonthlyTotals [eomDate=" + eomDate + ", eomMm=" + eomMm + ", eomYear=" + eomYear + ", currCd="
@@ -133,6 +196,11 @@ public class AcitEomMonthlyTotals {
 				+ ", longDesc=" + longDesc + ", begDebitAmt=" + begDebitAmt + ", begCreditAmt=" + begCreditAmt
 				+ ", totalDebitAmt=" + totalDebitAmt + ", totalCreditAmt=" + totalCreditAmt + ", transDebitBal="
 				+ transDebitBal + ", transCreditBal=" + transCreditBal + ", transBalance=" + transBalance
-				+ ", endDebitAmt=" + endDebitAmt + ", endCreditAmt=" + endCreditAmt + "]";
+				+ ", endDebitAmt=" + endDebitAmt + ", endCreditAmt=" + endCreditAmt + ", localBegDebitAmt="
+				+ localBegDebitAmt + ", localBegCreditAmt=" + localBegCreditAmt + ", localTotalDebitAmt="
+				+ localTotalDebitAmt + ", localTotalCreditAmt=" + localTotalCreditAmt + ", localTransDebitBal="
+				+ localTransDebitBal + ", localTransCreditBal=" + localTransCreditBal + ", localTransBalance="
+				+ localTransBalance + ", localEndDebitAmt=" + localEndDebitAmt + ", localEndCreditAmt="
+				+ localEndCreditAmt + "]";
 	}
 }

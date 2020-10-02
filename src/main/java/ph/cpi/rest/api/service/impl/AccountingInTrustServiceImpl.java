@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -843,7 +844,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("qsoaId", rqlr.getQsoaId());
-		params.put("cedingId", rqlr.getCedingId());
+		params.put("cedingId", StringUtils.join(rqlr.getCedingId(),','));
 		params.put("fromQtr", rqlr.getFromQtr());
 		params.put("fromYear", rqlr.getFromYear());
 		params.put("toQtr", rqlr.getToQtr());
@@ -2550,6 +2551,7 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("year", sqr.getYear());
 		params.put("user", sqr.getUser());
 		
+		res.setCedingId(sqr.getCedingId());
 		try {
 			if("N".equals(sqr.getForce())) {				
 				switch (acctITDao.validateQsoaQtr(params)) {

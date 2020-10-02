@@ -1,12 +1,14 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
 public class RetrieveQSOAListRequest {
 	
 	private Integer qsoaId;
-	private String cedingId;
+	private List<String> cedingId;
 	private Integer fromQtr;
 	private Integer fromYear;
 	private Integer toQtr;
@@ -20,10 +22,10 @@ public class RetrieveQSOAListRequest {
 	public void setQsoaId(Integer qsoaId) {
 		this.qsoaId = qsoaId;
 	}
-	public String getCedingId() {
+	public List<String> getCedingId() {
 		return cedingId;
 	}
-	public void setCedingId(String cedingId) {
+	public void setCedingId(List<String> cedingId) {
 		this.cedingId = cedingId;
 	}
 	public Integer getFromQtr() {

@@ -8,10 +8,18 @@ import ph.cpi.rest.api.model.Message;
 
 public class SaveQSOAResponse {
 
+	private String cedingId;
 	private Integer returnCode;
 	private List<Error> errorList = new ArrayList<Error>();
 	private List<Message> messageList = new ArrayList<Message>();
 	
+	
+	public String getCedingId() {
+		return cedingId;
+	}
+	public void setCedingId(String cedingId) {
+		this.cedingId = cedingId;
+	}
 	public Integer getReturnCode() {
 		return returnCode;
 	}
@@ -32,7 +40,7 @@ public class SaveQSOAResponse {
 	}
 	@Override
 	public String toString() {
-		return "SaveQSOAResponse [returnCode=" + returnCode + ", errorList=" + errorList + ", messageList="
-				+ messageList + "]";
+		return "SaveQSOAResponse [cedingId=" + cedingId + ", returnCode=" + returnCode + ", errorList=" + errorList
+				+ ", messageList=" + messageList + "]";
 	}
 }
