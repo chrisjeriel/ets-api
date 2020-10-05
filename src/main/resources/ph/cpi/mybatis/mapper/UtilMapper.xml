@@ -349,6 +349,21 @@
 		END;
 	</update>
 	
+	<update id="extractPOLR044QA" parameterType="java.util.Map" statementType="CALLABLE">
+		BEGIN
+			POLR044QA_PKG.extract_accsiall(#{extractUser, jdbcType=VARCHAR},
+												  #{lineCdParam, jdbcType=VARCHAR},
+												  #{cedingIdParam, jdbcType=VARCHAR}, 
+												  #{dateParam, jdbcType=VARCHAR},
+												  #{dateRange, jdbcType=VARCHAR},
+												  CAST(to_timestamp(#{fromDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  CAST(to_timestamp(#{toDate, jdbcType=VARCHAR}, 'YYYY-MM-DD"T"HH24:MI:SS') AS DATE),
+												  #{extractCount, mode=OUT, jdbcType=INTEGER},
+												  #{forceExtract, jdbcType=VARCHAR},
+												  #{currCdParam, jdbcType=VARCHAR});
+		END;
+	</update>
+	
 	<!-- <update id="extractPOLR044R" parameterType="java.util.Map" statementType="CALLABLE">
 		BEGIN
 			POLR044Q_PKG.extract_accsiall(#{extractUser, jdbcType=VARCHAR},
@@ -1870,6 +1885,13 @@
 					#{paramCurrency,jdbcType=VARCHAR}))
 	</select>
 	
+	<select id="retrievePolR044qa" resultMap="retrievePolR044qMap" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044qa_to_csv(
+					#{extractUser,jdbcType=VARCHAR},
+					#{lineCd,jdbcType=VARCHAR},
+					#{paramCurrency,jdbcType=VARCHAR}))
+	</select>
+	
 	<resultMap type="ph.cpi.rest.api.model.utils.POLR044Q2" id="retrievePolR044q2Map">
 		<result property="extractUser"		column="EXTRACT_USER"/>
 		<result property="extractDate"		column="EXTRACT_DATE"/>
@@ -1901,6 +1923,13 @@
 	
 	<select id="retrievePolR044q2" resultMap="retrievePolR044q2Map" parameterType="java.util.Map">
 		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044q2_to_csv(
+					#{extractUser,jdbcType=VARCHAR},
+					#{lineCd,jdbcType=VARCHAR},
+					#{paramCurrency,jdbcType=VARCHAR}))
+	</select>
+	
+	<select id="retrievePolR044qa2" resultMap="retrievePolR044q2Map" parameterType="java.util.Map">
+		SELECT * FROM TABLE(POLR044_CSV_PKG.polr044qa2_to_csv(
 					#{extractUser,jdbcType=VARCHAR},
 					#{lineCd,jdbcType=VARCHAR},
 					#{paramCurrency,jdbcType=VARCHAR}))
