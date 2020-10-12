@@ -5702,4 +5702,115 @@
 					#{dateRange, jdbcType=VARCHAR}))
 	</select>
 	
+	<resultMap type="ph.cpi.rest.api.model.utils.ACSER060A" id="retrieveAcseR060aMap">
+    	<result property="debitAmt" 	column="debit_amt" />
+		<result property="creditAmt" 	column="credit_amt" />
+		<result property="glAcctId" 	column="gl_acct_id" />
+		<result property="shortCode" 	column="short_code" />
+		<result property="shortDesc" 	column="short_desc" />
+		<result property="fromDate" 	column="from_date" />
+		<result property="toDate" 		column="to_date" />
+		<result property="period" 		column="period" />
+		<result property="printedBy" 	column="printed_by" />
+    </resultMap>
+    
+    <select id="retrieveAcseR060a" resultMap="retrieveAcseR060aMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACSER060_CSV_PKG.get_acser060a_to_csv(
+        			#{tranpostDate,jdbcType=VARCHAR},
+        			#{fromDate,jdbcType=VARCHAR},
+        			#{toDate,jdbcType=VARCHAR},
+        			#{paymentType,jdbcType=VARCHAR},
+        			#{paymentMode,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACSER060B" id="retrieveAcseR060bMap">
+    	<result property="debitAmt" 	column="debit_amt" />
+		<result property="creditAmt" 	column="credit_amt" />
+		<result property="glAcctId" 	column="gl_acct_id" />
+		<result property="shortCode" 	column="short_code" />
+		<result property="shortDesc" 	column="short_desc" />
+		<result property="fromDate" 	column="from_date" />
+		<result property="toDate" 		column="to_date" />
+		<result property="period" 		column="period" />
+		<result property="printedBy" 	column="printed_by" />
+    </resultMap>
+    
+    <select id="retrieveAcseR060b" resultMap="retrieveAcseR060bMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACSER060_CSV_PKG.get_acser060b_to_csv(
+        			#{tranpostDate,jdbcType=VARCHAR},
+        			#{chkDate,jdbcType=VARCHAR},
+        			#{fromDate,jdbcType=VARCHAR},
+        			#{toDate,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACSER060C" id="retrieveAcseR060cMap">
+    	<result property="debitAmt" 	column="debit_amt" />
+		<result property="creditAmt" 	column="credit_amt" />
+		<result property="glAcctId" 	column="gl_acct_id" />
+		<result property="shortCode" 	column="short_code" />
+		<result property="shortDesc" 	column="short_desc" />
+		<result property="fromDate" 	column="from_date" />
+		<result property="toDate" 		column="to_date" />
+		<result property="period" 		column="period" />
+		<result property="printedBy" 	column="printed_by" />
+    </resultMap>
+    
+    <select id="retrieveAcseR060c" resultMap="retrieveAcseR060cMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACSER060_CSV_PKG.get_acser060c_to_csv(
+        			#{tranpostDate,jdbcType=VARCHAR},
+        			#{fromDate,jdbcType=VARCHAR},
+        			#{toDate,jdbcType=VARCHAR},
+        			#{paymentType,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACSER060D" id="retrieveAcseR060dMap">
+    	<result property="tranId" 		column="tran_id" />
+		<result property="tranDate" 	column="tran_date" />
+		<result property="postDate" 	column="post_date" />
+		<result property="tranStat" 	column="tran_stat" />
+		<result property="tranStatDesc" column="tran_stat_desc" />
+		<result property="cvNo" 		column="cv_no" />
+		<result property="cvNoDesc" 	column="cv_no_desc" />
+		<result property="cvStatus" 	column="cv_status" />
+		<result property="particulars" 	column="particulars" />
+		<result property="payee" 		column="payee" />
+		<result property="currCd" 		column="curr_cd" />
+		<result property="bank" 		column="bank" />
+		<result property="bankAcct" 	column="bank_acct" />
+		<result property="cvDate" 		column="cv_date" />
+		<result property="checkDate" 	column="check_date" />
+		<result property="updateDate" 	column="update_date" />
+		<result property="localAmt" 	column="local_amt" />
+		<result property="checkNo" 		column="check_no" />
+		<result property="accountNo" 	column="account_no" />
+		<result property="officialName" column="official_name" />
+		<result property="fromDate" 	column="from_date" />
+		<result property="toDate" 		column="to_date" />
+		<result property="period" 		column="period" />
+		<result property="printedBy" 	column="printed_by" />
+    </resultMap>
+    
+    <select id="retrieveAcseR060d" resultMap="retrieveAcseR060dMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACSER060_CSV_PKG.get_acser060d_to_csv(
+        			#{tranpostDate,jdbcType=VARCHAR},
+                    #{chkDate,jdbcType=VARCHAR},
+                    #{fromDate,jdbcType=VARCHAR},
+                    #{toDate,jdbcType=VARCHAR},
+                    #{bank,jdbcType=VARCHAR},
+                    #{bankAcct,jdbcType=VARCHAR},
+                    #{incClosedTran,jdbcType=VARCHAR},
+                    #{incCancelTran,jdbcType=VARCHAR},
+                    #{sortBy,jdbcType=VARCHAR},
+                    #{extractUser,jdbcType=VARCHAR}))
+    </select>
+	
 </mapper>
