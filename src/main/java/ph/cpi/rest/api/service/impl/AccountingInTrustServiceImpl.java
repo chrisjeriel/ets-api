@@ -686,7 +686,11 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("payeeNo", raasdr.getPayeeNo());
 		params.put("zeroBal", raasdr.getZeroBal());
 		params.put("currCd", raasdr.getCurrCd());
+		params.put("lovParam", raasdr.getLovParam());
+		params.put("page", raasdr.getPaginationRequest());
+		params.put("sort", raasdr.getSortRequest());
 		response.setSoaDtlList(acctITDao.retrieveAgingSoaDtl(params));
+		response.setCount(acctITDao.retrieveAgingSoaDtlCount(params));
 		return response;
 	}
 	

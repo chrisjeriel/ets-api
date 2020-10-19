@@ -299,4 +299,5 @@ public interface AccountingInTrustDao {
 	public List<RiskMgtAlloc> retrieveAcitJVRiskMgtAlloc(final HashMap<String, Object> params) throws SQLException;
 	public String validateRiskDate(final HashMap<String, Object> params) throws SQLException;
 	public List<AcitInvestments> retrieveAcitInvestmentsIncArtUtil(final HashMap<String, Object> params ) throws SQLException;
+	public Integer retrieveAgingSoaDtlCount(final HashMap<String, Object> params) throws SQLException;
 }

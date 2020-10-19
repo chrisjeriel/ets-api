@@ -1301,14 +1301,36 @@
 	</resultMap>
 	
 	<select id="retrieveAcitAgingSoaDtl" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
-		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl(
+		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_lov(
 																	#{policyId, jdbcType=VARCHAR},
 																	#{instNo,jdbcType=VARCHAR},
 																	#{cedingId,jdbcType=VARCHAR},
 																	#{payeeNo, jdbcType=VARCHAR},
 																	#{zeroBal, jdbcType=INTEGER},
-																	#{currCd}))
+																	#{currCd},
+																	#{lovParam, jdbcType=VARCHAR},
+																	#{page.position, jdbcType=VARCHAR},
+																	#{page.count, jdbcType=VARCHAR},
+																	#{sort.sortKey, jdbcType=VARCHAR},
+																	#{sort.order, jdbcType=VARCHAR}))
 	</select>
+	
+	<select id="retrieveAgingSoaDtlCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+    	SELECT ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_lov_count(
+															#{policyId, jdbcType=VARCHAR},
+															#{instNo,jdbcType=VARCHAR},
+															#{cedingId,jdbcType=VARCHAR},
+															#{payeeNo, jdbcType=VARCHAR},
+															#{zeroBal, jdbcType=INTEGER},
+															#{currCd},
+															#{lovParam, jdbcType=VARCHAR},
+															#{page.position, jdbcType=VARCHAR},
+															#{page.count, jdbcType=VARCHAR},
+															#{sort.sortKey, jdbcType=VARCHAR},
+															#{sort.order, jdbcType=VARCHAR}
+														  ) total_count
+		  FROM DUAL
+     </select>
 	
 	<select id="retrieveSoaAgingZeroLOV" resultMap="agingSoaDtlMap" parameterType="java.util.Map">
 		SELECT * FROM TABLE(ACIT_AGING_SOA_DETAILS_PKG.ret_soa_dtl_zero(

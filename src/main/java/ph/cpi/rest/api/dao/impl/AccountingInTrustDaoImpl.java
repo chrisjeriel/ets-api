@@ -1416,4 +1416,10 @@ public class AccountingInTrustDaoImpl implements AccountingInTrustDao {
 		List<AcitInvestments> acitInvestmentsList = sqlSession.selectList("retrieveAcitInvestmentsIncArtUtil", params);
 		return acitInvestmentsList;
 	}
+
+	@Override
+	public Integer retrieveAgingSoaDtlCount(HashMap<String, Object> params) throws SQLException {
+		Integer count = sqlSession.selectOne("retrieveAgingSoaDtlCount", params);
+		return count;
+	}
 }
