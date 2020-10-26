@@ -75,6 +75,9 @@ public class ReportParameters {
 		
 		reportParams.put("P_MEMO_ID", grr.getMemoId());
 		
+		reportParams.put("P_REPORT_TYPE", grr.getReportType());
+		reportParams.put("p_report_type", grr.getReportType());
+		
 		return reportParams;
 	}
 	

@@ -686,6 +686,8 @@ public class AccountingInTrustServiceImpl implements AccountingInTrustService {
 		params.put("payeeNo", raasdr.getPayeeNo());
 		params.put("zeroBal", raasdr.getZeroBal());
 		params.put("currCd", raasdr.getCurrCd());
+		params.put("from", raasdr.getFrom());
+		params.put("exclude", StringUtils.join(raasdr.getExclude(),','));
 		params.put("lovParam", raasdr.getLovParam());
 		params.put("page", raasdr.getPaginationRequest());
 		params.put("sort", raasdr.getSortRequest());

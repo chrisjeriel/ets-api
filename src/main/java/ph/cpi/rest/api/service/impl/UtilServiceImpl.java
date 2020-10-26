@@ -236,6 +236,7 @@ public class UtilServiceImpl implements UtilService {
 		retcParams.put("lineCd", racprlp.getLineCd());
 		retcParams.put("dateParam", racprlp.getDateParam());
 		retcParams.put("dateRange", racprlp.getDateRange());
+		retcParams.put("reportType", racprlp.getReportType());
 		
 		String reportName = racprlp.getReportName();
 		System.out.println(reportName);
@@ -516,6 +517,8 @@ public class UtilServiceImpl implements UtilService {
 			retcResponse.setListAcser060c(utilDao.retrieveAcseR060c(retcParams));
 		} else if(reportName.equals("ACSER060D")) {
 			retcResponse.setListAcser060d(utilDao.retrieveAcseR060d(retcParams));
+		} else if(reportName.equals("ACITR066J")) {
+			retcResponse.setListAcitr066j(utilDao.retrieveAcitR066j(retcParams));
 		}
 		
 		else {

@@ -1,5 +1,7 @@
 package ph.cpi.rest.api.model.request;
 
+import java.util.List;
+
 import ph.cpi.rest.api.model.PaginationRequest;
 import ph.cpi.rest.api.model.SortRequest;
 
@@ -10,6 +12,8 @@ public class RetrieveAcitAgingSoaDtlRequest {
 	private String payeeNo;
 	private Integer zeroBal;
 	private String currCd;
+	private String from;
+	private List<String> exclude;
 	private String lovParam;
 	private PaginationRequest paginationRequest;
 	private SortRequest sortRequest;
@@ -51,6 +55,18 @@ public class RetrieveAcitAgingSoaDtlRequest {
 	public void setCurrCd(String currCd) {
 		this.currCd = currCd;
 	}
+	public String getFrom() {
+		return from;
+	}
+	public void setFrom(String from) {
+		this.from = from;
+	}
+	public List<String> getExclude() {
+		return exclude;
+	}
+	public void setExclude(List<String> exclude) {
+		this.exclude = exclude;
+	}
 	public String getLovParam() {
 		return lovParam;
 	}
@@ -72,7 +88,8 @@ public class RetrieveAcitAgingSoaDtlRequest {
 	@Override
 	public String toString() {
 		return "RetrieveAcitAgingSoaDtlRequest [policyId=" + policyId + ", instNo=" + instNo + ", cedingId=" + cedingId
-				+ ", payeeNo=" + payeeNo + ", zeroBal=" + zeroBal + ", currCd=" + currCd + ", lovParam=" + lovParam
-				+ ", paginationRequest=" + paginationRequest + ", sortRequest=" + sortRequest + "]";
+				+ ", payeeNo=" + payeeNo + ", zeroBal=" + zeroBal + ", currCd=" + currCd + ", from=" + from
+				+ ", exclude=" + exclude + ", lovParam=" + lovParam + ", paginationRequest=" + paginationRequest
+				+ ", sortRequest=" + sortRequest + "]";
 	}
 }

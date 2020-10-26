@@ -4761,7 +4761,9 @@
     
     <select id="retrieveAcitR059" resultMap="retrieveAcitR059Map" parameterType="java.util.Map">
         SELECT * FROM TABLE(ACITR059_PKG.ret_acitr059(
-                    #{extractUser,jdbcType=VARCHAR}))
+			#{extractUser, jdbcType=VARCHAR},
+			#{reportType, jdbcType=VARCHAR}
+        ))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.utils.ACSER008_CSV" id="retrieveAcseR008Map">
@@ -4786,7 +4788,8 @@
     
     <select id="retrieveAcseR008" resultMap="retrieveAcseR008Map" parameterType="java.util.Map">
         SELECT * FROM TABLE(ACSER008_PKG.ret_acser008(
-                    #{extractUser,jdbcType=VARCHAR}))
+                    #{extractUser,jdbcType=VARCHAR},
+                    #{reportType, jdbcType=VARCHAR}))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.utils.POLR044U" id="retrievePolR044uMap">
@@ -5811,6 +5814,22 @@
                     #{incCancelTran,jdbcType=VARCHAR},
                     #{sortBy,jdbcType=VARCHAR},
                     #{extractUser,jdbcType=VARCHAR}))
+    </select>
+    
+    <resultMap type="ph.cpi.rest.api.model.utils.ACITR066J" id="retrieveAcitR066jMap">
+    	<result property="groupNo" 		column="group_no" />
+		<result property="groupName" 	column="group_name" />
+		<result property="itemNo" 		column="item_no" />
+		<result property="eomDate" 		column="eom_date" />
+		<result property="tranNo" 		column="tran_no" />
+		<result property="itemName" 	column="item_name" />
+		<result property="itemAmt" 		column="item_amt" />
+		<result property="localAmt" 	column="local_amt" />
+    </resultMap>
+    
+    <select id="retrieveAcitR066j" resultMap="retrieveAcitR066jMap" parameterType="java.util.Map">
+        SELECT * FROM TABLE(ACITR066_CSV_PKG.acitr066j_to_csv(
+        	CAST(to_timestamp(#{paramDate,jdbcType=DATE}, 'YYYY-MM-DD') AS DATE)))
     </select>
 	
 </mapper>

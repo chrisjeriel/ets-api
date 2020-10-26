@@ -30,6 +30,7 @@ public class GenerateReportRequest {
 	private String pctValue;
 	private String inclEndt;
 	private String prodDate;
+	private String reportType;
 	
 	private POLR044 polr044Params;
 	private ACITR061 acitr061Params;
@@ -85,6 +86,12 @@ public class GenerateReportRequest {
 	}
 	public void setProdDate(String prodDate) {
 		this.prodDate = prodDate;
+	}
+	public String getReportType() {
+		return reportType;
+	}
+	public void setReportType(String reportType) {
+		this.reportType = reportType;
 	}
 	private String printerName;
 	private String pageOrientation;
@@ -288,16 +295,16 @@ public class GenerateReportRequest {
 		return "GenerateReportRequest [reportName=" + reportName + ", reportId=" + reportId + ", quoteId=" + quoteId
 				+ ", adviceNo=" + adviceNo + ", holdCovId=" + holdCovId + ", userId=" + userId + ", tranId=" + tranId
 				+ ", reqId=" + reqId + ", cedingId=" + cedingId + ", policyId=" + policyId + ", pctValue=" + pctValue
-				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", polr044Params=" + polr044Params
-				+ ", acitr061Params=" + acitr061Params + ", clmr010Params=" + clmr010Params + ", acitr052Params="
-				+ acitr052Params + ", acser060Params=" + acser060Params + ", acitr066Params=" + acitr066Params
-				+ ", acser024Params=" + acser024Params + ", acitr049Params=" + acitr049Params + ", acitr050Params="
-				+ acitr050Params + ", clmr052Params=" + clmr052Params + ", acitr058Params=" + acitr058Params
-				+ ", acser007Params=" + acser007Params + ", acitr059Params=" + acitr059Params + ", acser008Params="
-				+ acser008Params + ", memoId=" + memoId + ", invoiceId=" + invoiceId + ", printerName=" + printerName
-				+ ", pageOrientation=" + pageOrientation + ", paperSize=" + paperSize + ", instNo=" + instNo
-				+ ", distId=" + distId + ", histNo=" + histNo + ", draftTag=" + draftTag + ", hundredPct=" + hundredPct
-				+ "]";
+				+ ", inclEndt=" + inclEndt + ", prodDate=" + prodDate + ", reportType=" + reportType
+				+ ", polr044Params=" + polr044Params + ", acitr061Params=" + acitr061Params + ", clmr010Params="
+				+ clmr010Params + ", acitr052Params=" + acitr052Params + ", acser060Params=" + acser060Params
+				+ ", acitr066Params=" + acitr066Params + ", acser024Params=" + acser024Params + ", acitr049Params="
+				+ acitr049Params + ", acitr050Params=" + acitr050Params + ", clmr052Params=" + clmr052Params
+				+ ", acitr058Params=" + acitr058Params + ", acser007Params=" + acser007Params + ", acitr059Params="
+				+ acitr059Params + ", acser008Params=" + acser008Params + ", memoId=" + memoId + ", invoiceId="
+				+ invoiceId + ", printerName=" + printerName + ", pageOrientation=" + pageOrientation + ", paperSize="
+				+ paperSize + ", instNo=" + instNo + ", distId=" + distId + ", histNo=" + histNo + ", draftTag="
+				+ draftTag + ", hundredPct=" + hundredPct + "]";
 	}
 	
 }

@@ -2508,7 +2508,7 @@
 		
 	</resultMap>
 	
-	<select id="retrieveAcitTrialBalExt" resultMap="AcseTrialBalMap">
+	<select id="retrieveAcseTrialBalExt" resultMap="AcseTrialBalMap">
 		SELECT * FROM TABLE( ACSER008_PKG.ret_acser008(
 											#{extractUser, jdbcType=VARCHAR}
 										  ))
