@@ -4683,9 +4683,10 @@
     </resultMap>
     
     <select id="retrieveAcitR058" resultMap="retrieveAcitR058Map" parameterType="java.util.Map">
-        SELECT * FROM TABLE(ACITR058_PKG.ret_acitr058(
-                    #{extractUser,jdbcType=VARCHAR},
-                    NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
+        SELECT * FROM TABLE(ACITR058_PKG.ret_acitr058_csv(
+			#{extractUser, jdbcType=VARCHAR},
+			#{reportType, jdbcType=VARCHAR}
+        ))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.utils.ACSER007_CSV" id="retrieveAcseR007Map">
@@ -4734,9 +4735,10 @@
     </resultMap>
     
     <select id="retrieveAcseR007" resultMap="retrieveAcseR007Map" parameterType="java.util.Map">
-        SELECT * FROM TABLE(ACSER007_PKG.ret_acser007(
-                    #{extractUser,jdbcType=VARCHAR},
-                    NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL))
+        SELECT * FROM TABLE(ACSER007_PKG.ret_acser007_csv(
+			#{extractUser, jdbcType=VARCHAR},
+			#{reportType, jdbcType=VARCHAR}
+        ))
     </select>
     
     <resultMap type="ph.cpi.rest.api.model.utils.ACITR059_CSV" id="retrieveAcitR059Map">

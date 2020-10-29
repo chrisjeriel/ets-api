@@ -13,7 +13,7 @@ public class AcseCancelledJV {
 	private Integer tranTypeCd;
 	private String tranTypeDesc;
 	private Integer refNoTranId;
-	private Integer refNo;
+	private String refNo;
 	private String preparedBy;
 	private String jvStatus;
 	private String status;
@@ -70,10 +70,10 @@ public class AcseCancelledJV {
 	public void setRefNoTranId(Integer refNoTranId) {
 		this.refNoTranId = refNoTranId;
 	}
-	public Integer getRefNo() {
+	public String getRefNo() {
 		return refNo;
 	}
-	public void setRefNo(Integer refNo) {
+	public void setRefNo(String refNo) {
 		this.refNo = refNo;
 	}
 	public String getPreparedBy() {
